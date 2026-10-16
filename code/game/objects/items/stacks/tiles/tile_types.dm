@@ -30,14 +30,16 @@
 	singular_name = name
 	turf_type = new_turf_type
 	stack_id = name
+	name = "[initial(floor_type.name)]地砖"
+	singular_name = name
 
 /obj/item/stack/tile/proc/build(turf/build_turf)
 	build_turf.ChangeTurf(turf_type)
 
 /obj/item/stack/tile/plasteel
-	name = "floor tile"
-	singular_name = "floor tile"
-	desc = "Those could work as a pretty decent throwing weapon."
+	name = "地砖"
+	singular_name = "地砖"
+	desc = "这些东西用来投掷伤人倒是挺不错。"
 	icon_state = "tile"
 	w_class = SIZE_MEDIUM
 	force = 6
@@ -62,9 +64,9 @@
  * Grass
  */
 /obj/item/stack/tile/grass
-	name = "grass patch tile"
-	desc = "A patch of grass like they often use on golf courses."
-	singular_name = "grass patch tile"
+	name = "草皮地砖"
+	desc = "一块高尔夫球场上常用的草皮。"
+	singular_name = "草皮地砖"
 	icon_state = "tile_grass"
 	stack_id = "grass patch tile"
 	turf_type = /turf/open/floor/grass
@@ -74,17 +76,17 @@
  * Wood
  */
 /obj/item/stack/tile/wood
-	name = "wooden floor tile"
-	desc = "An easy to fit wooden floor tile."
-	singular_name = "wooden floor tile"
+	name = "木地板"
+	desc = "一块便于安装的木地板。"
+	singular_name = "木地板"
 	icon_state = "tile-wood"
 	stack_id = "wooden floor tile"
 	turf_type = /turf/open/floor/wood
 
 /obj/item/stack/tile/wood/fake
-	name = "fake wooden floor tile"
-	desc = "Looks like wood. Feels like metal."
-	singular_name = "fake wooden floor tile"
+	name = "仿木地板"
+	desc = "看起来像木头，摸起来像金属。"
+	singular_name = "仿木地板"
 	stack_id = "fake wooden floor tile"
 	turf_type = /turf/open/floor/wood/ship
 
@@ -92,9 +94,9 @@
  * Carpets
  */
 /obj/item/stack/tile/carpet
-	name = "carpet tile"
-	desc = "A piece of carpet. It is the same size as a normal floor tile!"
-	singular_name = "carpet tile"
+	name = "地毯块"
+	desc = "一块地毯，大小与普通地砖相同！"
+	singular_name = "地毯块"
 	icon_state = "tile-carpet"
 	stack_id = "carpet tile"
 	turf_type = /turf/open/floor/carpet

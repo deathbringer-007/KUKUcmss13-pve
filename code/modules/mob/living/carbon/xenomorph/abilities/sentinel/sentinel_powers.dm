@@ -4,7 +4,7 @@
 		return
 
 	if(!action_cooldown_check())
-		to_chat(src, SPAN_WARNING("We must wait for our spit glands to refill."))
+		to_chat(src, SPAN_WARNING("我们必须等待喷吐腺重新蓄满。"))
 		return
 
 	var/turf/current_turf = get_turf(xeno)
@@ -15,8 +15,8 @@
 	if (!check_and_use_plasma_owner())
 		return
 
-	xeno.visible_message(SPAN_XENOWARNING("[xeno] spits at [target]!"), \
-	SPAN_XENOWARNING("You spit at [target]!") )
+	xeno.visible_message(SPAN_XENOWARNING("[xeno]朝[target]喷吐！"), \
+	SPAN_XENOWARNING("你朝[target]喷吐！") )
 	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
 	playsound(xeno.loc, sound_to_play, 25, 1)
 
@@ -36,7 +36,7 @@
 		return
 
 	if(!action_cooldown_check())
-		to_chat(src, SPAN_WARNING("We must wait for your spit glands to refill."))
+		to_chat(src, SPAN_WARNING("我们必须等待喷吐腺重新蓄满。"))
 		return
 
 	var/turf/current_turf = get_turf(xeno)
@@ -47,8 +47,8 @@
 	if (!check_and_use_plasma_owner())
 		return
 
-	xeno.visible_message(SPAN_XENOWARNING("[xeno] spits at [target]!"), \
-	SPAN_XENOWARNING("You spit at [target]!") )
+	xeno.visible_message(SPAN_XENOWARNING("[xeno]朝[target]喷吐！"), \
+	SPAN_XENOWARNING("你朝[target]喷吐！") )
 	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
 	playsound(xeno.loc, sound_to_play, 25, 1)
 
@@ -78,7 +78,7 @@
 	if (istype(behavior))
 		behavior.next_slash_buffed = TRUE
 
-	to_chat(xeno, SPAN_XENOHIGHDANGER("Our next slash will apply neurotoxin!"))
+	to_chat(xeno, SPAN_XENOHIGHDANGER("我们的下一次爪击将附带神经毒素！"))
 	button.icon_state = "template_active"
 
 	addtimer(CALLBACK(src, PROC_REF(unbuff_slash)), buff_duration)
@@ -97,5 +97,5 @@
 			return
 		behavior.next_slash_buffed = FALSE
 
-	to_chat(xeno, SPAN_XENODANGER("We have waited too long, our slash will no longer apply neurotoxin!"))
+	to_chat(xeno, SPAN_XENODANGER("我们等待得太久，爪击不再附带神经毒素！"))
 	button.icon_state = "template"

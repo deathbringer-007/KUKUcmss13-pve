@@ -1,5 +1,5 @@
 /obj/docking_port/mobile/trijent_elevator
-	name="Elevator"
+	name="升降机"
 	id=MOBILE_TRIJENT_ELEVATOR
 
 	// Map information
@@ -79,43 +79,43 @@
 	qdel(door_control)
 
 /obj/docking_port/stationary/trijent_elevator/occupied
-	name = "occupied"
+	name = "已占用停靠点"
 	id = STAT_TRIJENT_OCCUPIED
 	airlock_exit = "west"
 	roundstart_template = /datum/map_template/shuttle/trijent_elevator
 
 /obj/docking_port/stationary/trijent_elevator/empty
-	name = "empty"
+	name = "空置停靠点"
 	id = STAT_TRIJENT_EMPTY
 	airlock_exit = "west"
 
 /obj/docking_port/stationary/trijent_elevator/lz1
-	name="Lz1 Elevator"
+	name="一号着陆区升降机"
 	id=STAT_TRIJENT_LZ1
 	airlock_area=/area/shuttle/trijent_shuttle/lz1
 	airlock_exit="west"
 	roundstart_template = /datum/map_template/shuttle/trijent_elevator
 
 /obj/docking_port/stationary/trijent_elevator/lz2
-	name="Lz2 Elevator"
+	name="二号着陆区升降机"
 	id=STAT_TRIJENT_LZ2
 	airlock_area=/area/shuttle/trijent_shuttle/lz2
 	airlock_exit="west"
 
 /obj/docking_port/stationary/trijent_elevator/engineering
-	name="Engineering Elevator"
+	name="工程区升降机"
 	id=STAT_TRIJENT_ENGI
 	airlock_area=/area/shuttle/trijent_shuttle/engi
 	airlock_exit="east"
 
 /obj/docking_port/stationary/trijent_elevator/omega
-	name="Omega Elevator"
+	name="欧米伽区升降机"
 	id=STAT_TRIJENT_OMEGA
 	airlock_area=/area/shuttle/trijent_shuttle/omega
 	airlock_exit="east"
 
 /obj/docking_port/mobile/trijent_elevator/ice_classic
-	name = "Classic Ice Elevator"
+	name = "经典冰原升降机"
 	id = "ice_classic_shuttle"
 	width = 8
 	height = 5

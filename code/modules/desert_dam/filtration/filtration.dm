@@ -133,7 +133,7 @@ Each var depends on others
 
 		if(isxeno(M))
 			if(M.pulling)
-				to_chat(M, SPAN_WARNING("The current forces you to release [M.pulling]!"))
+				to_chat(M, SPAN_WARNING("水流迫使你松开了[M.pulling]！"))
 				M.stop_pulling()
 
 		cause_damage(M)
@@ -199,7 +199,7 @@ Each var depends on others
 			M.apply_damage(dam_amount,BURN,"r_foot")
 			M.apply_damage(dam_amount,BURN,"groin")
 		M.apply_effect(20,IRRADIATE,0)
-		if( !issynth(M) ) to_chat(M, SPAN_DANGER("The water burns!"))
+		if( !issynth(M) ) to_chat(M, SPAN_DANGER("河水灼痛了你！"))
 	playsound(M, 'sound/bullets/acid_impact1.ogg', 10, 1)
 
 
@@ -262,10 +262,10 @@ Each var depends on others
 
 
 /obj/structure/machinery/filtration_button
-	name = "\improper Filtration Activation"
+	name = "过滤系统启动按钮"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "launcherbtt"
-	desc = "Activates the filtration mechanism."
+	desc = "启动过滤装置。"
 	var/id = null
 	var/active = 0
 	anchored = TRUE

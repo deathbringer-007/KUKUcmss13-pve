@@ -1,6 +1,6 @@
 /obj/structure/janitorialcart
-	name = "janitorial cart"
-	desc = "A blue janitorial cart that has space for water, mops, signs, and trash bags."
+	name = "保洁推车"
+	desc = "蓝色保洁推车，可放置水、拖把、警示牌和垃圾袋。"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cart_blue"
 	anchored = FALSE
@@ -17,7 +17,7 @@
 	var/signs = 0 //maximum capacity hardcoded below
 
 /obj/structure/janitorialcart/brown
-	desc = "A brown janitorial cart that has space for water, mops, signs, and trash bags."
+	desc = "棕色保洁推车，可放置水、拖把、警示牌和垃圾袋。"
 	icon_state = "cart_brown"
 
 /obj/structure/janitorialcart/New()
@@ -28,9 +28,9 @@
 /obj/structure/janitorialcart/get_examine_text(mob/user)
 	. = ..()
 	if(mybucket)
-		. += "Its bucket contains [mybucket.reagents.total_volume] unit\s of liquid."
+		. += "车上的水桶装有[mybucket.reagents.total_volume]单位液体。"
 	else
-		. += "It has no bucket."
+		. += "车上没有水桶。"
 
 
 /obj/structure/janitorialcart/attackby(obj/item/I, mob/user)
@@ -40,15 +40,15 @@
 		I.forceMove(src)
 		update_icon()
 		updateUsrDialog()
-		to_chat(user, SPAN_NOTICE("You put [I] into [src]."))
+		to_chat(user, SPAN_NOTICE("你将[I]放入[src]。"))
 
 	else if(istype(I, /obj/item/tool/mop))
 		if(I.reagents.total_volume < I.reagents.maximum_volume && mybucket) //if it's not completely soaked we assume they want to wet it, otherwise store it
 			if(mybucket.reagents.total_volume < 1)
-				to_chat(user, "[mybucket] is out of water!")
+				to_chat(user, "[mybucket]没水了！")
 			else
 				mybucket.reagents.trans_to(I, 5) //
-				to_chat(user, SPAN_NOTICE("You wet [I] in [mybucket]."))
+				to_chat(user, SPAN_NOTICE("你在[mybucket]中浸湿了[I]。"))
 				playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 			return
 		if(!mymop)
@@ -57,7 +57,7 @@
 			I.forceMove(src)
 			update_icon()
 			updateUsrDialog()
-			to_chat(user, SPAN_NOTICE("You put [I] into [src]."))
+			to_chat(user, SPAN_NOTICE("你将[I]放入[src]。"))
 
 	else if(istype(I, /obj/item/reagent_container/spray) && !myspray)
 		user.drop_held_item()
@@ -65,7 +65,7 @@
 		I.forceMove(src)
 		update_icon()
 		updateUsrDialog()
-		to_chat(user, SPAN_NOTICE("You put [I] into [src]."))
+		to_chat(user, SPAN_NOTICE("你将[I]放入[src]。"))
 
 	else if(istype(I, /obj/item/device/lightreplacer) && !myreplacer)
 		user.drop_held_item()
@@ -73,7 +73,7 @@
 		I.forceMove(src)
 		update_icon()
 		updateUsrDialog()
-		to_chat(user, SPAN_NOTICE("You put [I] into [src]."))
+		to_chat(user, SPAN_NOTICE("你将[I]放入[src]。"))
 
 	else if(istype(I, /obj/item/tool/wet_sign))
 		if(signs < 4)
@@ -82,9 +82,9 @@
 			signs++
 			update_icon()
 			updateUsrDialog()
-			to_chat(user, SPAN_NOTICE("You put [I] into [src]."))
+			to_chat(user, SPAN_NOTICE("你将[I]放入[src]。"))
 		else
-			to_chat(user, SPAN_NOTICE("[src] can't hold any more signs."))
+			to_chat(user, SPAN_NOTICE("[src]放不下更多警示牌了。"))
 
 	else if(istype(I, /obj/item/reagent_container/glass/bucket/janibucket) && !mybucket)
 		user.drop_held_item()
@@ -92,7 +92,7 @@
 		I.forceMove(src)
 		update_icon()
 		updateUsrDialog()
-		to_chat(user, SPAN_NOTICE("You put [I] into [src]."))
+		to_chat(user, SPAN_NOTICE("你将[I]放入[src]。"))
 		return TRUE //no afterattack
 
 	else if(mybag)
@@ -116,7 +116,7 @@
 	if(mybucket)
 		dat += "<a href='byond://?src=\ref[src];bucket=1'>[mybucket.name]</a><br>"
 	if(signs)
-		dat += "<a href='byond://?src=\ref[src];sign=1'>[signs] sign\s</a><br>"
+		dat += "<a href='byond://?src=\ref[src];sign=1'>[signs]块警示牌</a><br>"
 	show_browser(user, dat, name, "janicart")
 
 /obj/structure/janitorialcart/Topic(href, href_list)
@@ -131,34 +131,34 @@
 	if(href_list["garbage"])
 		if(mybag)
 			user.put_in_hands(mybag)
-			to_chat(user, SPAN_NOTICE("You take [mybag] from [src]."))
+			to_chat(user, SPAN_NOTICE("你从[src]取出[mybag]。"))
 			mybag = null
 	if(href_list["mop"])
 		if(mymop)
 			user.put_in_hands(mymop)
-			to_chat(user, SPAN_NOTICE("You take [mymop] from [src]."))
+			to_chat(user, SPAN_NOTICE("你从[src]取出[mymop]。"))
 			mymop = null
 	if(href_list["spray"])
 		if(myspray)
 			user.put_in_hands(myspray)
-			to_chat(user, SPAN_NOTICE("You take [myspray] from [src]."))
+			to_chat(user, SPAN_NOTICE("你从[src]取出[myspray]。"))
 			myspray = null
 	if(href_list["replacer"])
 		if(myreplacer)
 			user.put_in_hands(myreplacer)
-			to_chat(user, SPAN_NOTICE("You take [myreplacer] from [src]."))
+			to_chat(user, SPAN_NOTICE("你从[src]取出[myreplacer]。"))
 			myreplacer = null
 	if(href_list["bucket"])
 		if(mybucket)
 			user.put_in_hands(mybucket)
-			to_chat(user, SPAN_NOTICE("You take [mybucket] from [src]."))
+			to_chat(user, SPAN_NOTICE("你从[src]取出[mybucket]。"))
 			mybucket = null
 	if(href_list["sign"])
 		if(signs)
 			var/obj/item/tool/wet_sign/Sign = locate() in src
 			if(Sign)
 				user.put_in_hands(Sign)
-				to_chat(user, SPAN_NOTICE("You take \a [Sign] from [src]."))
+				to_chat(user, SPAN_NOTICE("你从[src]取出[Sign]。"))
 				signs--
 			else
 				warning("[src] signs ([signs]) didn't match contents")
@@ -186,8 +186,8 @@
 /obj/structure/janitorialcart/attack_alien(mob/living/carbon/xenomorph/xeno_attacker)
 	xeno_attacker.animation_attack_on(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
-	xeno_attacker.visible_message(SPAN_DANGER("[xeno_attacker] slices \the [src] apart!"),
-	SPAN_DANGER("You slice \the [src] apart!"), max_distance = 5, message_flags = CHAT_TYPE_XENO_COMBAT)
+	xeno_attacker.visible_message(SPAN_DANGER("[xeno_attacker]将[src]撕成碎片！"),
+	SPAN_DANGER("你将[src]撕成碎片！"), max_distance = 5, message_flags = CHAT_TYPE_XENO_COMBAT)
 	qdel(src)
 	return XENO_ATTACK_ACTION
 

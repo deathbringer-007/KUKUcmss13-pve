@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(codebook_data)
 /obj/item/book/codebook/proc/generate_code()
 	var/number
 	var/letter
-	var/code_data = "<table><tr><th>Call</th><th>Response<th></tr>"
+	var/code_data = "<table><tr><th>问令</th><th>答令<th></tr>"
 	for(var/i in 1 to 10)
 		letter = pick(GLOB.greek_letters)
 		number = rand(100,999)
@@ -21,8 +21,8 @@ GLOBAL_LIST_EMPTY(codebook_data)
 	return code_data
 
 /obj/item/book/codebook
-	name = "USS Almayer Code Book"
-	author = "United States Colonial Marines"
+	name = "阿尔迈耶号口令簿"
+	author = "美国殖民地海军陆战队"
 	unique = 1
 	dat = ""
 	var/faction = FACTION_MARINE
@@ -33,24 +33,24 @@ GLOBAL_LIST_EMPTY(codebook_data)
 	create_codebook(faction)
 
 /obj/item/book/codebook/clf
-	name = "Liberation Front Authenticators"
+	name = "解放阵线身份验证口令簿"
 	faction = FACTION_CLF
-	author = "\[Obscured Ink\]"
+	author = "【墨迹模糊】"
 
 /obj/item/book/codebook/twe
-	name = "Imperial Authentication Codes"
+	name = "帝国身份验证口令簿"
 	faction = FACTION_TWE
-	author = "Royal Marines"
+	author = "皇家海军陆战队"
 
 /obj/item/book/codebook/upp
-	name = "Union Authentication Codes"
+	name = "联盟身份验证口令簿"
 	faction = FACTION_UPP
-	author = "People's Army"
+	author = "人民军"
 
 /obj/item/book/codebook/wey_yu
-	name = "Corporate Authentication Codes"
+	name = "公司身份验证口令簿"
 	faction = FACTION_WY
-	author = "Weyland-Yutani Communications Division"
+	author = "维兰德-汤谷通信部门"
 
 /obj/item/book/codebook/attackby(obj/item/W, mob/living/user)
 	if(istype(W, /obj/item/tool/kitchen/knife) || HAS_TRAIT(W, TRAIT_TOOL_WIRECUTTERS))

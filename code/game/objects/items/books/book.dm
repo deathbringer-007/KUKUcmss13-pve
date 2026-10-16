@@ -2,14 +2,14 @@
  * Book
  */
 /obj/item/book
-	name = "book"
+	name = "书"
 	icon = 'icons/obj/items/books.dmi'
 	icon_state ="book_blue"
 	throw_speed = SPEED_FAST
 	throw_range = 5
 	/// upped to three because books are, y'know, pretty big. (and you could hide them inside eachother recursively forever)
 	w_class = SIZE_MEDIUM
-	attack_verb = list("bashed", "whacked", "educated")
+	attack_verb = list("猛击", "敲打", "教育")
 	pickup_sound = "sound/handling/book_pickup.ogg"
 	drop_sound = "sound/handling/book_pickup.ogg"
 	black_market_value = 15 //mendoza likes to read
@@ -32,19 +32,19 @@
 	..()
 	if(carved)
 		if(store)
-			to_chat(user, SPAN_NOTICE("[store] falls out of [title]!"))
+			to_chat(user, SPAN_NOTICE("[store]从《[title]》中掉了出来！"))
 			store.forceMove(get_turf(src.loc))
 			store = null
 			return
 		else
-			to_chat(user, SPAN_NOTICE("The pages of [title] have been cut out!"))
+			to_chat(user, SPAN_NOTICE("《[title]》的书页被挖空了！"))
 			return
 	if(src.dat)
-		show_browser(user, "<body class='paper'><TT><I>Owner: [author].</I></TT> <BR>[dat]</body>", "window=book", width = 800, height = 600)
-		user.visible_message("[user] opens \"[src.title]\".")
+		show_browser(user, "<body class='paper'><TT><I>所有者：[author]。</I></TT> <BR>[dat]</body>", "window=book", width = 800, height = 600)
+		user.visible_message("[user]打开了《[src.title]》。")
 		onclose(user, "book")
 	else
-		to_chat(user, "This book is completely blank!")
+		to_chat(user, "这本书一片空白！")
 
 /obj/item/book/attackby(obj/item/W as obj, mob/user as mob)
 	if(carved)
@@ -53,41 +53,41 @@
 				user.drop_held_item()
 				W.forceMove(src)
 				store = W
-				to_chat(user, SPAN_NOTICE("You put [W] in [title]."))
+				to_chat(user, SPAN_NOTICE("你把[W]放进《[title]》中。"))
 				return
 			else
-				to_chat(user, SPAN_NOTICE("[W] won't fit in [title]."))
+				to_chat(user, SPAN_NOTICE("《[title]》里装不下[W]。"))
 				return
 		else
-			to_chat(user, SPAN_NOTICE("There's already something in [title]!"))
+			to_chat(user, SPAN_NOTICE("《[title]》里已经放了东西！"))
 			return
 	if(HAS_TRAIT(W, TRAIT_TOOL_PEN))
 		if(unique)
-			to_chat(user, "These pages don't seem to take the ink well. Looks like you can't modify it.")
+			to_chat(user, "这些书页似乎不吸墨，看来你无法修改它。")
 			return
-		var/choice = tgui_input_list(usr, "What would you like to change?", "Change Book", list("Title", "Contents", "Author", "Cancel"))
+		var/choice = tgui_input_list(usr, "你想修改什么？", "修改书籍", list("书名", "内容", "作者", "取消"))
 		switch(choice)
-			if("Title")
-				var/newtitle = reject_bad_text(stripped_input(usr, "Write a new title:"))
+			if("书名")
+				var/newtitle = reject_bad_text(stripped_input(usr, "请输入新书名："))
 				if(!newtitle)
-					to_chat(usr, "The title is invalid.")
+					to_chat(usr, "书名无效。")
 					return
 				else
 					src.name = newtitle
 					src.title = newtitle
 					playsound(src, "paper_writing", 15, TRUE)
-			if("Contents")
-				var/content = strip_html(input(usr, "Write your book's contents (HTML NOT allowed):"),8192)
+			if("内容")
+				var/content = strip_html(input(usr, "请输入书籍内容（不允许使用 HTML）："),8192)
 				if(!content)
-					to_chat(usr, "The content is invalid.")
+					to_chat(usr, "内容无效。")
 					return
 				else
 					src.dat += content
 					playsound(src, "paper_writing", 15, TRUE)
-			if("Author")
-				var/newauthor = stripped_input(usr, "Write the author's name:")
+			if("作者")
+				var/newauthor = stripped_input(usr, "请输入作者姓名：")
 				if(!newauthor)
-					to_chat(usr, "The name is invalid.")
+					to_chat(usr, "姓名无效。")
 					return
 				else
 					src.author = newauthor
@@ -97,9 +97,9 @@
 
 	else if(istype(W, /obj/item/tool/kitchen/knife) || HAS_TRAIT(W, TRAIT_TOOL_WIRECUTTERS))
 		if(carved) return
-		to_chat(user, SPAN_NOTICE("You begin to carve out [title]."))
+		to_chat(user, SPAN_NOTICE("你开始挖空《[title]》的书页。"))
 		if(do_after(user, 30, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
-			to_chat(user, SPAN_NOTICE("You carve out the pages from [title]! You didn't want to read it anyway."))
+			to_chat(user, SPAN_NOTICE("你把《[title]》的书页挖空了！反正你也没打算读。"))
 			carved = 1
 			return
 	else
@@ -107,8 +107,8 @@
 
 /obj/item/book/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(user.zone_selected == "eyes")
-		user.visible_message(SPAN_NOTICE("You open up the book and show it to [M]. "), \
-			SPAN_NOTICE(" [user] opens up a book and shows it to [M]. "))
-		show_browser(M, "<body class='paper'><TT><I>Penned by [author].</I></TT> <BR>[dat]</body>", "window=book")
+		user.visible_message(SPAN_NOTICE("你打开书给[M]看。"), \
+			SPAN_NOTICE("[user]打开书给[M]看。"))
+		show_browser(M, "<body class='paper'><TT><I>作者：[author]。</I></TT> <BR>[dat]</body>", "window=book")
 
 

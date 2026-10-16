@@ -1,7 +1,7 @@
 //standart fridge
 
 /obj/structure/closet/secure_closet/fridge
-	name = "Refrigerator"
+	name = "冰箱"
 	icon = 'icons/obj/structures/machinery/kitchen.dmi'
 	icon_state = "fridge1"
 	icon_closed = "fridge"
@@ -30,7 +30,7 @@
 //standart organic storage.
 
 /obj/structure/closet/secure_closet/fridge/organic
-	name = "Organic"
+	name = "果蔬冷藏柜"
 
 /obj/structure/closet/secure_closet/fridge/organic/Initialize()
 	. = ..()
@@ -54,7 +54,7 @@
 //DRy
 
 /obj/structure/closet/secure_closet/fridge/dry
-	name = "dry"
+	name = "干货柜"
 
 /obj/structure/closet/secure_closet/fridge/dry/Initialize()
 	. = ..()
@@ -66,7 +66,7 @@
 //grocery
 
 /obj/structure/closet/secure_closet/fridge/groceries
-	name = "Groceries"
+	name = "食品柜"
 
 /obj/structure/closet/secure_closet/fridge/groceries/Initialize()
 	. = ..()
@@ -80,7 +80,7 @@
 
 //meat surplus
 /obj/structure/closet/secure_closet/fridge/meat/stock
-	name = "meat"
+	name = "肉类冷藏柜"
 
 /obj/structure/closet/secure_closet/fridge/meat/stock/Initialize()
 	. = ..()
@@ -89,7 +89,7 @@
 
 //fish surplus
 /obj/structure/closet/secure_closet/fridge/fish/stock
-	name = "fish"
+	name = "鱼类冷藏柜"
 
 /obj/structure/closet/secure_closet/fridge/fish/stock/Initialize()
 	. = ..()
@@ -98,7 +98,7 @@
 
 //groceries to hold milk in bulk
 /obj/structure/closet/secure_closet/fridge/groceries/stock
-	name = "Groceries"
+	name = "食品柜"
 
 /obj/structure/closet/secure_closet/fridge/groceries/stock/Initialize()
 	. = ..()
@@ -111,7 +111,7 @@
 
 //dry storage for dry food only... not a fridge
 /obj/structure/closet/secure_closet/fridge/dry/stock
-	name = "dry"
+	name = "干货柜"
 
 /obj/structure/closet/secure_closet/fridge/dry/stock/Initialize()
 	. = ..()
@@ -122,7 +122,7 @@
 // organic storage in bulk
 
 /obj/structure/closet/secure_closet/fridge/organic/stock
-	name = "Organic"
+	name = "果蔬冷藏柜"
 
 /obj/structure/closet/secure_closet/fridge/organic/stock/Initialize()
 	. = ..()

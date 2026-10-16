@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/souto
-	name = "\improper Souto Slinger Supremo"
-	desc = "This appears to be a T-shirt cannon modified to fire cans of Souto at speeds fast enough to get them up into the top stands of a stadium. This can't be safe. Cobbled together in Havana."
+	name = "索托至尊发射器"
+	desc = "这似乎是由T恤发射炮改装的饮料发射器，能把罐装索托饮料打上体育场最高的看台。这玩意儿肯定不安全。在哈瓦那拼凑而成。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/event.dmi'
 	icon_state = "supremo_w"
 	item_state = "supremo_w"
@@ -26,7 +26,7 @@
 /obj/item/weapon/gun/souto/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(!soutopack)
 		if(!link_soutopack(user))
-			to_chat(user, "You must equip the specialized Backpack Souto Vending Machine to use the Souto Slinger Supremo!")
+			to_chat(user, "你必须装备专用的背包式索托饮料售卖机，才能使用索托至尊发射器！")
 			click_empty(user)
 			unlink_soutopack()
 			return NONE
@@ -39,11 +39,11 @@
 		return ..()
 
 /obj/item/weapon/gun/souto/reload(mob/user, obj/item/ammo_magazine/magazine)
-	to_chat(user, SPAN_WARNING("[src]'s feed system cannot be reloaded manually."))
+	to_chat(user, SPAN_WARNING("[src]的供弹系统无法手动装填。"))
 	return
 
 /obj/item/weapon/gun/souto/unload(mob/user, reload_override = 0, drop_override = 0, loc_override = 0)
-	to_chat(user, SPAN_WARNING("You cannot unload [src]."))
+	to_chat(user, SPAN_WARNING("你无法卸下[src]的弹药。"))
 	return
 
 /obj/item/weapon/gun/souto/able_to_fire(mob/user)
@@ -52,7 +52,7 @@
 		if(!current_mag || !current_mag.current_rounds)
 			return
 		if(!skillcheck(user, SKILL_SPEC_WEAPONS,  SKILL_SPEC_ALL))
-			to_chat(user, SPAN_WARNING("You don't seem to know how to use [src]..."))
+			to_chat(user, SPAN_WARNING("你似乎不知道如何使用[src]……"))
 			return FALSE
 
 		var/mob/living/carbon/human/H = user
@@ -88,7 +88,7 @@
 	return ..()
 
 /obj/item/ammo_magazine/internal/souto
-	name = "\improper Souto Slinger Supremo internal magazine"
+	name = "索托至尊发射器内置弹仓"
 	caliber = "Cans"
 	max_rounds = 100
 	default_ammo = /datum/ammo/souto

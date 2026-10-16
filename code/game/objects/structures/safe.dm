@@ -7,7 +7,7 @@ FLOOR SAFES
 //SAFES
 
 /obj/item/paper/safe_key
-	name = "Secure Safe Combination"
+	name = "保险箱密码"
 	var/obj/structure/safe/safe = null
 
 /obj/item/paper/safe_key/Initialize()
@@ -18,14 +18,14 @@ FLOOR SAFES
 	. = ..()
 	for(var/obj/structure/safe/safe in loc)
 		if(safe)
-			info = "This looks like a handwritten page with two numbers on it: \n\n<b>[safe.tumbler_1_open]|[safe.tumbler_2_open]</b>."
+			info = "这似乎是一页手写笔记，上面写着两个数字：\n\n<b>[safe.tumbler_1_open]|[safe.tumbler_2_open]</b>。"
 			info_links = info
 			icon_state = "paper_words"
 			break
 
 /obj/structure/safe
-	name = "safe"
-	desc = "A huge chunk of metal with a dial embedded in it. Fine print on the dial reads \"Scarborough Arms - 2 tumbler safe, guaranteed thermite resistant, explosion resistant, and assistant resistant.\""
+	name = "保险箱"
+	desc = "一大块嵌有密码转盘的金属。转盘上的小字写着：“斯卡伯勒军械——双转盘保险箱，保证防铝热剂、防爆炸，还防助手。”"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "safe"
 	anchored = TRUE
@@ -67,11 +67,11 @@ FLOOR SAFES
 /obj/structure/safe/proc/check_unlocked(mob/user as mob, canhear)
 	if(user && canhear)
 		if(tumbler_1_pos == tumbler_1_open)
-			to_chat(user, SPAN_NOTICE("You hear a [pick("tonk", "krunk", "plunk")] from [src]."))
+			to_chat(user, SPAN_NOTICE("你听到[src]传来一声[pick("咚", "哐", "砰")]。"))
 		if(tumbler_2_pos == tumbler_2_open)
-			to_chat(user, SPAN_NOTICE("You hear a [pick("tink", "krink", "plink")] from [src]."))
+			to_chat(user, SPAN_NOTICE("你听到[src]传来一声[pick("叮", "咔", "铛")]。"))
 	if(tumbler_1_pos == tumbler_1_open && tumbler_2_pos == tumbler_2_open)
-		if(user) visible_message("<b>[pick("Spring", "Sprang", "Sproing", "Clunk", "Click")]!</b>")
+		if(user) visible_message("<b>[pick("嘣", "嗙", "铮", "哐", "咔哒")]！</b>")
 		return 1
 	return 0
 
@@ -110,9 +110,9 @@ FLOOR SAFES
 /obj/structure/safe/attack_hand(mob/user as mob)
 	user.set_interaction(src)
 	var/dat = "<center>"
-	dat += "<a href='byond://?src=\ref[src];open=1'>[open ? "Close" : "Open"] [src]</a><br>"
-	dat += "Dial 1: <a href='byond://?src=\ref[src];decrement=1'>-</a> [tumbler_1_pos] <a href='byond://?src=\ref[src];increment=1'>+</a><br>"
-	dat += "Dial 2: <a href='byond://?src=\ref[src];decrement2=1'>-</a> [tumbler_2_pos] <a href='byond://?src=\ref[src];increment2=1'>+</a><br>"
+	dat += "<a href='byond://?src=\ref[src];open=1'>[open ? "关闭" : "打开"][src]</a><br>"
+	dat += "转盘1：<a href='byond://?src=\ref[src];decrement=1'>-</a> [tumbler_1_pos] <a href='byond://?src=\ref[src];increment=1'>+</a><br>"
+	dat += "转盘2：<a href='byond://?src=\ref[src];decrement2=1'>-</a> [tumbler_2_pos] <a href='byond://?src=\ref[src];increment2=1'>+</a><br>"
 	if(open)
 		dat += "<table>"
 		for(var/i = length(contents), i>=1, i--)
@@ -135,14 +135,14 @@ FLOOR SAFES
 
 	if(href_list["open"])
 		if(check_unlocked())
-			to_chat(user, SPAN_NOTICE("You [open ? "close" : "open"] [src]."))
+			to_chat(user, SPAN_NOTICE("你[open ? "关闭" : "打开"]了[src]。"))
 			open = !open
 			update_icon()
 			updateUsrDialog()
 			SEND_SIGNAL(src, COMSIG_SAFE_OPENED)
 			return
 		else
-			to_chat(user, SPAN_NOTICE("You can't [open ? "close" : "open"] [src], the lock is engaged!"))
+			to_chat(user, SPAN_NOTICE("你无法[open ? "关闭" : "打开"][src]，锁还锁着！"))
 			return
 
 	if(href_list["decrement"])
@@ -182,15 +182,15 @@ FLOOR SAFES
 		if(I.w_class + space <= maxspace)
 			space += I.w_class
 			if(user.drop_inv_item_to_loc(I, src))
-				to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
+				to_chat(user, SPAN_NOTICE("你将[I]放进[src]。"))
 			updateUsrDialog()
 			return
 		else
-			to_chat(user, SPAN_NOTICE("[I] won't fit in [src]."))
+			to_chat(user, SPAN_NOTICE("[I]放不进[src]。"))
 			return
 	else
 		if(istype(I, /obj/item/clothing/accessory/stethoscope))
-			to_chat(user, "Hold [I] in one of your hands while you manipulate the dial.")
+			to_chat(user, "转动转盘时，需要用一只手拿着[I]。")
 			return
 
 /obj/structure/safe/ex_act(severity)
@@ -198,7 +198,7 @@ FLOOR SAFES
 
 //FLOOR SAFES
 /obj/structure/safe/floor
-	name = "floor safe"
+	name = "地板保险箱"
 	icon_state = "floorsafe"
 	density = FALSE
 	level = 1 //underfloor

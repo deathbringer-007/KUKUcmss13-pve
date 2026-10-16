@@ -20,7 +20,7 @@
 			icon_state = icon_opened
 
 /obj/structure/closet/secure_closet/freezer/kitchen
-	name = "Kitchen Cabinet"
+	name = "厨房储物柜"
 	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/Initialize()
@@ -38,7 +38,7 @@
 
 
 /obj/structure/closet/secure_closet/freezer/meat
-	name = "Meat Fridge"
+	name = "肉类冰箱"
 
 
 /obj/structure/closet/secure_closet/freezer/meat/Initialize()
@@ -49,7 +49,7 @@
 
 
 /obj/structure/closet/secure_closet/freezer/fridge
-	name = "Refrigerator"
+	name = "冰箱"
 
 /obj/structure/closet/secure_closet/freezer/fridge/Initialize()
 	. = ..()
@@ -64,7 +64,7 @@
 	return
 
 /obj/structure/closet/secure_closet/freezer/fridge/groceries
-	name = "Groceries"
+	name = "食品柜"
 
 /obj/structure/closet/secure_closet/freezer/fridge/groceries/Initialize()
 	. = ..()
@@ -100,7 +100,7 @@
 		new /obj/item/reagent_container/food/snacks/grown/banana(src)
 
 /obj/structure/closet/secure_closet/freezer/money
-	name = "Freezer"
+	name = "冷冻柜"
 	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 
 
@@ -124,8 +124,8 @@
 	new /obj/item/reagent_container/food/condiment/enzyme(src)
 
 /obj/structure/closet/secure_closet/freezer/industry
-	name = "Industry Freezer"
-	desc = "A powerful fine-tuned freezer used to polymerize chemicals in the cold. This one is set to the perfect temperature for paraformaldehyde polymerization. The freezer must be kept closed for polymerization."
+	name = "工业冷冻柜"
+	desc = "一台精密调校的强力冷冻柜，用于在低温下使化学物质聚合。此柜已设定为适合多聚甲醛聚合的温度。聚合期间必须保持柜门关闭。"
 	req_access = list(ACCESS_MARINE_OT)
 	var/obj/structure/machinery/paraform_cooler/CU
 

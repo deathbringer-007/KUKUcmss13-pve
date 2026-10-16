@@ -1,6 +1,6 @@
 /obj/effect/alien/resin/special/nest
 	name = XENO_STRUCTURE_NEST
-	desc = "A very thick nest, oozing with a thick sticky substance."
+	desc = "一座十分厚实的巢穴，渗出浓稠黏液。"
 	pixel_x = -8
 	pixel_y = -8
 
@@ -16,7 +16,7 @@
 /obj/effect/alien/resin/special/nest/get_examine_text(mob/user)
 	. = ..()
 	if((isxeno(user) || isobserver(user)) && linked_hive)
-		. += "Used to secure formidable hosts."
+		. += "用于束缚强大的宿主。"
 
 /obj/effect/alien/resin/special/nest/Initialize(mapload, datum/hive_status/hive_ref)
 	. = ..()

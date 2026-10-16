@@ -1,7 +1,7 @@
 #define QUEEN_OVIPOSITOR_DECAY_TIME 500
 
 /obj/ovipositor
-	name = "Egg Sac"
+	name = "卵囊"
 	icon = 'icons/mob/xenos/ovipositor.dmi'
 	icon_state = "ovipositor"
 	unacidable = TRUE
@@ -65,8 +65,8 @@
 /obj/ovipositor/attack_alien(mob/living/carbon/xenomorph/M)
 	switch(M.a_intent)
 		if(INTENT_HELP)
-			M.visible_message(SPAN_NOTICE("\The [M] caresses [src] with its claws."), \
-			SPAN_NOTICE("You caress [src] with your claws."))
+			M.visible_message(SPAN_NOTICE("[M]用爪子轻抚[src]。"), \
+			SPAN_NOTICE("你用爪子轻抚[src]。"))
 
 		if(INTENT_GRAB)
 			if(M == src || anchored)
@@ -78,15 +78,15 @@
 		else
 			M.animation_attack_on(src)
 			var/damage = (rand(M.melee_damage_lower, M.melee_damage_upper) + 3)
-			M.visible_message(SPAN_DANGER("\The [M] bites [src]!"), \
-			SPAN_DANGER("You bite [src]!"))
+			M.visible_message(SPAN_DANGER("[M]咬了[src]！"), \
+			SPAN_DANGER("你咬了[src]！"))
 			health -= damage
 
 	return XENO_ATTACK_ACTION
 
 /obj/ovipositor/attack_larva(mob/living/carbon/xenomorph/larva/M)
-	M.visible_message(SPAN_DANGER("[M] nudges its head against [src]."), \
-	SPAN_DANGER("You nudge your head against [src]."))
+	M.visible_message(SPAN_DANGER("[M]用头轻轻蹭着[src]。"), \
+	SPAN_DANGER("你用头轻轻蹭着[src]。"))
 
 // Density override
 /obj/ovipositor/get_projectile_hit_boolean(obj/projectile/P)

@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/marine_personal
-	name = "personal locker"
-	desc = "It's an immobile card-locked storage unit."
+	name = "个人储物柜"
+	desc = "一座固定式刷卡上锁储物柜。"
 	icon_state = "secure1"
 	can_be_stacked = TRUE
 	var/owner
@@ -13,7 +13,7 @@
 
 /obj/structure/closet/secure_closet/marine_personal/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_NOTICE("It has a name tag[owner ? ": [owner]." : ". They are still in hypersleep..."]")
+	. += SPAN_NOTICE("上面有姓名牌[owner ? "：[owner]。" : "。主人仍在低温休眠中……"]")
 
 /obj/structure/closet/secure_closet/marine_personal/Initialize(mapload, ...)
 	. = ..()

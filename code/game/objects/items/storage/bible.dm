@@ -1,6 +1,6 @@
 /obj/item/storage/bible
-	name = "bible"
-	desc = "Apply to head repeatedly."
+	name = "圣经"
+	desc = "反复敲击头部使用。"
 	icon = 'icons/obj/items/books.dmi'
 	icon_state ="bible"
 	throw_speed = SPEED_FAST
@@ -26,8 +26,8 @@
 	var/deity_name = "Christ"
 
 /obj/item/storage/bible/booze
-	name = "bible"
-	desc = "To be applied to the head repeatedly."
+	name = "圣经"
+	desc = "用于反复敲击头部。"
 	icon_state ="bible"
 
 /obj/item/storage/bible/booze/fill_preset_inventory()
@@ -38,8 +38,8 @@
 	new /obj/item/spacecash(src)
 
 /obj/item/storage/bible/hefa
-	name = "Holy texts of the High Explosive Fragmenting Anti-personnel hand grenade."
-	desc = "Praise be he, reverend Clearsmire who has brought us into the light of the shrapnel! Sworn to the holy service of the HEFA lord are we, and while few, we are the voices of the silent many! Printed in the RESS."
+	name = "高爆破片反人员手榴弹圣典"
+	desc = "赞美克利尔斯迈尔牧师，是他将我们引入弹片的圣光！我们宣誓为HEFA之主献上神圣的侍奉。纵然人数寥寥，我们仍为沉默的芸芸众生发声！印制于RESS。"
 	icon_state ="tome_hefa"
 
 /obj/item/storage/bible/hefa/Initialize()
@@ -53,7 +53,7 @@
 		return
 	if(user.job == "Chaplain")
 		if(A.reagents && A.reagents.has_reagent("water")) //blesses all the water in the holder
-			to_chat(user, SPAN_NOTICE("You bless [A]."))
+			to_chat(user, SPAN_NOTICE("你祝福了[A]。"))
 			var/water2holy = A.reagents.get_reagent_amount("water")
 			A.reagents.del_reagent("water")
 			A.reagents.add_reagent("holywater",water2holy)

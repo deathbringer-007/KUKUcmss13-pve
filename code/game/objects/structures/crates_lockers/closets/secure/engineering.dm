@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/engineering_chief
-	name = "\improper Chief Engineer's locker"
+	name = "总工程师储物柜"
 	req_access = list(ACCESS_MARINE_CE)
 	icon_state = "securece1"
 	icon_closed = "securece"
@@ -29,7 +29,7 @@
 	new /obj/item/storage/pouch/tools(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical
-	name = "electrical supplies"
+	name = "电工用品柜"
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
 	icon_state = "secureengelec1"
 	icon_closed = "secureengelec"
@@ -55,7 +55,7 @@
 	new /obj/item/device/multitool(src)
 
 /obj/structure/closet/secure_closet/engineering_welding
-	name = "welding supplies"
+	name = "焊接用品柜"
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
 	icon_state = "secureengweld1"
 	icon_closed = "secureengweld"
@@ -77,7 +77,7 @@
 	new /obj/item/tool/weldpack(src)
 
 /obj/structure/closet/secure_closet/engineering_materials
-	name = "workshop materials"
+	name = "工坊材料柜"
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
 	icon_state = "secureenggen1"
 	icon_closed = "secureenggen"
@@ -102,7 +102,7 @@
 	new /obj/item/reagent_container/glass/beaker/large/potassiumchloride(src)
 
 /obj/structure/closet/secure_closet/engineering_personal
-	name = "engineer's locker"
+	name = "工程师储物柜"
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
 	icon_state = "secureeng1"
 	icon_closed = "secureeng"
@@ -135,7 +135,7 @@
 		new /obj/item/clothing/mask/rebreather/scarf(src)
 
 /obj/structure/closet/secure_closet/atmos_personal
-	name = "technician's locker"
+	name = "技术员储物柜"
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
 	icon_state = "secureatm1"
 	icon_closed = "secureatm"

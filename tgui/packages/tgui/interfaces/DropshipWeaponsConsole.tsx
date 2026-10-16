@@ -128,20 +128,20 @@ const WeaponStatsPanel = (props: {
   }
   return (
     <Stack vertical className="PanelTextBox">
-      <Stack.Item>{props.weapon.name ?? 'Empty'}</Stack.Item>
+      <Stack.Item>{props.weapon.name ?? '空'}</Stack.Item>
       {props.weapon.is_missile === 0 && props.weapon.ammo !== null && (
         <Stack.Item>
-          Ammo: {props.weapon?.ammo ?? 'Empty'} /{' '}
-          {props.weapon.max_ammo ?? 'Empty'}
+          弹药：{props.weapon?.ammo ?? '空'} /{' '}
+          {props.weapon.max_ammo ?? '空'}
         </Stack.Item>
       )}
       {props.weapon?.is_missile === 1 && (
         <Stack.Item>
-          Loaded: <br />
+          已装载：<br />
           {props.weapon.ammo_name}
         </Stack.Item>
       )}
-      {props.weapon?.ammo === null && <Stack.Item>Empty</Stack.Item>}
+      {props.weapon?.ammo === null && <Stack.Item>空</Stack.Item>}
     </Stack>
   );
 };
@@ -149,7 +149,7 @@ const WeaponStatsPanel = (props: {
 const EmptyWeaponStatsPanel = (props: { readonly slot: number }) => {
   return (
     <Stack vertical className="PanelTextBox">
-      <Stack.Item>Bay {props.slot} is empty</Stack.Item>
+      <Stack.Item>挂载位 {props.slot} 为空</Stack.Item>
     </Stack>
   );
 };
@@ -256,7 +256,7 @@ const FiremissionsSimMfdPanel = (props: MfdProps) => {
       panelStateId={props.panelStateId}
       bottomButtons={[
         {
-          children: 'BACK',
+          children: '返回',
           onClick: () => setPanelState(''),
         },
       ]}
@@ -282,34 +282,34 @@ const BaseMfdPanel = (props: MfdProps) => {
     <MfdPanel
       panelStateId={props.panelStateId}
       topButtons={[
-        { children: 'EQUIP', onClick: () => setPanelState('equipment') },
+        { children: '设备', onClick: () => setPanelState('equipment') },
         {
-          children: 'F-MISS',
+          children: '火力任务',
           onClick: () => setPanelState('firemission'),
         },
         {},
         {
-          children: 'TARGETS',
+          children: '目标',
           onClick: () => setPanelState('target-aquisition'),
         },
       ]}
       bottomButtons={[
         {},
         {
-          children: otherPanelState !== 'map' ? 'MAPS' : undefined,
+          children: otherPanelState !== 'map' ? '地图' : undefined,
           onClick: () => setPanelState('map'),
         },
         {
-          children: otherPanelState !== 'camera' ? 'CAMS' : undefined,
+          children: otherPanelState !== 'camera' ? '摄像头' : undefined,
           onClick: () => setPanelState('camera'),
         },
       ]}
     >
       <Box className="NavigationMenu">
         <div className="welcome-page">
-          <h1>U.S.C.M.</h1>
-          <h1>Dropship Weapons Control System</h1>
-          <h3>UA Northbridge</h3>
+          <h1>美国殖民地海军陆战队</h1>
+          <h1>登陆艇武器控制系统</h1>
+          <h3>美洲联盟北桥系统</h3>
           <h3>V 0.1</h3>
         </div>
       </Box>
@@ -363,9 +363,9 @@ export const DropshipWeaponsConsole = () => {
                 </Stack.Item>
                 <Stack.Item height="10px" />
                 <Stack.Item className="DLabel">
-                  Offset
+                  偏移
                   <br />
-                  Calibration
+                  校准
                 </Stack.Item>
                 <Stack.Item height="280px" />
               </Stack>

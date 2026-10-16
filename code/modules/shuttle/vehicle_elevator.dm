@@ -1,5 +1,5 @@
 /obj/docking_port/mobile/vehicle_elevator
-	name = "vehicle elevator"
+	name = "载具升降机"
 	width = 5
 	height = 5
 	dwidth = 2
@@ -83,7 +83,7 @@
 	dheight = 2
 
 /obj/docking_port/stationary/vehicle_elevator/almayer
-	name = "Almayer Vehicle Elevator Dock"
+	name = "阿尔迈耶号载具升降机停靠点"
 	id = "almayer vehicle"
 	roundstart_template = /datum/map_template/shuttle/vehicle
 

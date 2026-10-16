@@ -1,6 +1,6 @@
 /obj/structure/machinery/shower
-	name = "shower"
-	desc = "The HS-451. Installed in the 2050s by the Weyland Hygiene Division."
+	name = "淋浴器"
+	desc = "HS-451，由维兰德卫生事业部于21世纪50年代安装。"
 	icon = 'icons/obj/structures/props/watercloset.dmi'
 	icon_state = "shower"
 	density = FALSE
@@ -23,7 +23,7 @@
 //add heat controls? when emagged, you can freeze to death in it?
 
 /obj/effect/mist
-	name = "mist"
+	name = "水雾"
 	icon = 'icons/obj/structures/props/watercloset.dmi'
 	icon_state = "mist"
 	layer = FLY_LAYER
@@ -47,9 +47,10 @@
 
 /obj/structure/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.type == /obj/item/device/analyzer)
-		to_chat(user, SPAN_NOTICE("The water temperature seems to be [watertemp]."))
+		var/list/temperature_labels = list("normal" = "适中", "freezing" = "冰冷", "boiling" = "滚烫")
+		to_chat(user, SPAN_NOTICE("水温似乎[temperature_labels[watertemp]]。"))
 	if(HAS_TRAIT(I, TRAIT_TOOL_WRENCH))
-		to_chat(user, SPAN_NOTICE("You begin to adjust the temperature valve with \the [I]."))
+		to_chat(user, SPAN_NOTICE("你开始用[I]调节温控阀。"))
 		if(do_after(user, 50, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			switch(watertemp)
 				if("normal")
@@ -58,7 +59,7 @@
 					watertemp = "boiling"
 				if("boiling")
 					watertemp = "normal"
-			user.visible_message(SPAN_NOTICE("[user] adjusts the shower with \the [I]."), SPAN_NOTICE("You adjust the shower with \the [I]."))
+			user.visible_message(SPAN_NOTICE("[user]用[I]调节淋浴器。"), SPAN_NOTICE("你用[I]调节淋浴器。"))
 			add_fingerprint(user)
 
 
@@ -109,7 +110,7 @@
 		var/mob/living/L = O
 		L.ExtinguishMob()
 		L.fire_stacks = -20 //Douse ourselves with water to avoid fire more easily
-		to_chat(L, SPAN_WARNING("You've been drenched in water!"))
+		to_chat(L, SPAN_WARNING("你被水淋透了！"))
 		if(iscarbon(O))
 			var/mob/living/carbon/M = O
 			if(M.r_hand)
@@ -212,11 +213,11 @@
 		if(watertemp == "freezing")
 			C.bodytemperature = max(80, C.bodytemperature - 80)
 			C.recalculate_move_delay = TRUE
-			to_chat(C, SPAN_WARNING("The water is freezing!"))
+			to_chat(C, SPAN_WARNING("水冷得刺骨！"))
 			return
 		if(watertemp == "boiling")
 			C.bodytemperature = min(500, C.bodytemperature + 35)
 			C.recalculate_move_delay = TRUE
 			C.apply_damage(5, BURN)
-			to_chat(C, SPAN_DANGER("The water is searing!"))
+			to_chat(C, SPAN_DANGER("水烫得灼人！"))
 			return

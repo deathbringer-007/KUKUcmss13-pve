@@ -8,16 +8,16 @@
 		return
 
 	if (buffs_active)
-		to_chat(zenomorf, SPAN_XENOHIGHDANGER("We cannot stack this!"))
+		to_chat(zenomorf, SPAN_XENOHIGHDANGER("我们无法叠加这个效果！"))
 		return
 
 	if (!check_and_use_plasma_owner())
 		return
 
-	to_chat(zenomorf, SPAN_XENOHIGHDANGER("We accumulate acid in your glands. Our next spit will be stronger but shorter-ranged."))
-	to_chat(zenomorf, SPAN_XENOWARNING("Additionally, we are slightly faster and more armored for a small amount of time."))
+	to_chat(zenomorf, SPAN_XENOHIGHDANGER("我们在腺体中积蓄酸液。下一次喷吐会更强，但射程更短。"))
+	to_chat(zenomorf, SPAN_XENOWARNING("此外，我们会在短时间内获得少量移速和护甲提升。"))
 	zenomorf.create_custom_empower(icolor = "#93ec78", ialpha = 200, small_xeno = TRUE)
-	zenomorf.balloon_alert(zenomorf, "our next spit will be stronger", text_color = "#93ec78")
+	zenomorf.balloon_alert(zenomorf, "下一次喷吐得到强化", text_color = "#93ec78")
 	buffs_active = TRUE
 	zenomorf.ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/spatter] // shitcode is my city
 	zenomorf.speed_modifier -= speed_buff_amount
@@ -37,8 +37,8 @@
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/zenomorf = owner
 	if(zenomorf.ammo == GLOB.ammo_list[/datum/ammo/xeno/acid/spatter])
-		to_chat(zenomorf, SPAN_XENOWARNING("Our acid glands empty out and return back to normal. We will once more fire long-ranged weak spits."))
-		zenomorf.balloon_alert(zenomorf, "our spits are back to normal", text_color = "#93ec78")
+		to_chat(zenomorf, SPAN_XENOWARNING("我们的酸腺排空并恢复正常，喷吐重新变为射程较远、威力较弱的状态。"))
+		zenomorf.balloon_alert(zenomorf, "喷吐恢复正常", text_color = "#93ec78")
 		zenomorf.ammo = GLOB.ammo_list[/datum/ammo/xeno/acid] // el codigo de mierda es mi ciudad
 	UnregisterSignal(zenomorf, COMSIG_XENO_POST_SPIT)
 
@@ -52,7 +52,7 @@
 	zenomorf.armor_modifier -= armor_buff_amount
 	zenomorf.recalculate_speed()
 	zenomorf.recalculate_armor()
-	to_chat(zenomorf, SPAN_XENOHIGHDANGER("We feel our movement speed slow down!"))
+	to_chat(zenomorf, SPAN_XENOHIGHDANGER("我们感到移动速度慢了下来！"))
 	disable_spatter()
 	buffs_active = FALSE
 

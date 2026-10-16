@@ -1,18 +1,18 @@
 /mob/living/proc/ventcrawl()
-	set name = "Crawl through Vent"
-	set desc = "Enter an air vent and crawl through the pipe system."
+	set name = "钻入通风管"
+	set desc = "进入通风口，沿管道系统爬行。"
 	set category = "Abilities"
 	handle_ventcrawl()
 	return
 
 /mob/living/proc/hide()
-	set name = "Hide"
-	set desc = "Allows to hide beneath tables or certain items. Toggled on or off."
+	set name = "躲藏"
+	set desc = "切换躲藏状态，可藏在桌子或某些物品下方。"
 	set category = "Abilities"
 
 	if (layer != ANIMAL_HIDING_LAYER)
 		layer = ANIMAL_HIDING_LAYER
-		to_chat(src, text(SPAN_NOTICE("You are now hiding.")))
+		to_chat(src, text(SPAN_NOTICE("你躲了起来。")))
 	else
 		layer = MOB_LAYER
-		to_chat(src, text(SPAN_NOTICE("You have stopped hiding.")))
+		to_chat(src, text(SPAN_NOTICE("你不再躲藏。")))

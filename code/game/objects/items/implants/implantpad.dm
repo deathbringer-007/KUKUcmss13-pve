@@ -1,8 +1,8 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 /obj/item/implantpad
-	name = "implantpad"
-	desc = "Used to modify implants."
+	name = "植入物编程器"
+	desc = "用于修改植入物设置。"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "implantpad-0"
 	item_state = "electronic"
@@ -51,21 +51,21 @@
 /obj/item/implantpad/attack_self(mob/user)
 	..()
 	user.set_interaction(src)
-	var/dat = "<B>Implant Mini-Computer:</B><HR>"
+	var/dat = "<B>植入物微型电脑：</B><HR>"
 	if (src.case)
 		if(src.case.imp)
 			if(istype(src.case.imp, /obj/item/implant))
 				dat += src.case.imp.get_data()
 				if(istype(src.case.imp, /obj/item/implant/tracking))
-					dat += {"ID (1-100):
+					dat += {"编号（1–100）：
 					<A href='byond://?src=\ref[src];tracking_id=-10'>-</A>
 					<A href='byond://?src=\ref[src];tracking_id=-1'>-</A> [case.imp:id]
 					<A href='byond://?src=\ref[src];tracking_id=1'>+</A>
 					<A href='byond://?src=\ref[src];tracking_id=10'>+</A><BR>"}
 		else
-			dat += "The implant casing is empty."
+			dat += "植入物封装盒是空的。"
 	else
-		dat += "Please insert an implant casing!"
+		dat += "请插入植入物封装盒！"
 	user << browse(dat, "window=implantpad")
 	onclose(user, "implantpad")
 	return

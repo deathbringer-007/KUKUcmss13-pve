@@ -5,7 +5,7 @@
 	if(length(stomach_contents))
 		for(var/mob/living/carbon/human/H in stomach_contents)
 			if(!isspeciesmonkey(H))
-				to_chat(src, SPAN_XENOWARNING("You cannot ventcrawl with [H] inside you!"))
+				to_chat(src, SPAN_XENOWARNING("体内装着[H]时，你无法钻入通风管！"))
 				return FALSE
 	return TRUE
 

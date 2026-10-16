@@ -1,11 +1,11 @@
 //Analyzer, pestkillers, weedkillers, nutrients, hatchets, cutters.
 
 /obj/item/tool/wirecutters/clippers
-	name = "plant clippers"
-	desc = "A tool used to take samples from plants."
+	name = "植物采样剪"
+	desc = "用于采集植物样本的工具。"
 
 /obj/item/device/analyzer/plant_analyzer
-	name = "plant analyzer"
+	name = "植物分析仪"
 	icon_state = "hydro"
 	item_state = "analyzer"
 
@@ -34,116 +34,116 @@
 		grown_reagents = H.reagents
 
 	if(!grown_seed)
-		to_chat(user, SPAN_DANGER("[src] can tell you nothing about [target]."))
+		to_chat(user, SPAN_DANGER("[src]无法提供[target]的任何信息。"))
 		return
 
-	var/dat = "<h3>Plant data for [target]</h3>"
-	dat += "<h2>General Data</h2>"
+	var/dat = "<h3>[target]的植物数据</h3>"
+	dat += "<h2>基本数据</h2>"
 	dat += "<table>"
-	dat += "<tr><td><b>Endurance</b></td><td>[grown_seed.endurance]</td></tr>"
-	dat += "<tr><td><b>Yield</b></td><td>[grown_seed.yield]</td></tr>"
-	dat += "<tr><td><b>Lifespan</b></td><td>[grown_seed.lifespan]</td></tr>"
-	dat += "<tr><td><b>Maturation time</b></td><td>[grown_seed.maturation]</td></tr>"
-	dat += "<tr><td><b>Production time</b></td><td>[grown_seed.production]</td></tr>"
-	dat += "<tr><td><b>Potency</b></td><td>[grown_seed.potency]</td></tr>"
+	dat += "<tr><td><b>耐久</b></td><td>[grown_seed.endurance]</td></tr>"
+	dat += "<tr><td><b>产量</b></td><td>[grown_seed.yield]</td></tr>"
+	dat += "<tr><td><b>寿命</b></td><td>[grown_seed.lifespan]</td></tr>"
+	dat += "<tr><td><b>成熟时间</b></td><td>[grown_seed.maturation]</td></tr>"
+	dat += "<tr><td><b>结果周期</b></td><td>[grown_seed.production]</td></tr>"
+	dat += "<tr><td><b>效力</b></td><td>[grown_seed.potency]</td></tr>"
 	dat += "</table>"
 
 	if(grown_reagents && LAZYLEN(grown_reagents.reagent_list))
-		dat += "<h2>Reagent Data</h2>"
-		dat += "<br>This sample contains: "
+		dat += "<h2>试剂数据</h2>"
+		dat += "<br>该样本含有："
 		for(var/datum/reagent/R in grown_reagents.reagent_list)
-			dat += "<br>- [R.name], [grown_reagents.get_reagent_amount(R.id)] unit(s)"
+			dat += "<br>- [R.name]，[grown_reagents.get_reagent_amount(R.id)]单位"
 
-	dat += "<h2>Other Data</h2>"
+	dat += "<h2>其他数据</h2>"
 
 	if(grown_seed.harvest_repeat)
-		dat += "This plant can be harvested repeatedly.<br>"
+		dat += "这种植物可以多次收获。<br>"
 
 	if(grown_seed.immutable == -1)
-		dat += "This plant is highly mutable.<br>"
+		dat += "这种植物很容易发生突变。<br>"
 	else if(grown_seed.immutable > 0)
-		dat += "This plant does not possess genetics that are alterable.<br>"
+		dat += "这种植物的遗传特征无法修改。<br>"
 
 	if(LAZYLEN(grown_seed.products))
-		dat += "The mature plant will produce [length(grown_seed.products) == 1 ? "fruit" : "[length(grown_seed.products)] varieties of fruit"].<br>"
+		dat += "这种植物成熟后会结出[length(grown_seed.products) == 1 ? "果实" : "[length(grown_seed.products)]种果实"]。<br>"
 
 	if(grown_seed.requires_nutrients)
 		if(grown_seed.nutrient_consumption < 0.05)
-			dat += "It consumes a small amount of nutrient fluid.<br>"
+			dat += "它消耗少量营养液。<br>"
 		else if(grown_seed.nutrient_consumption > 0.2)
-			dat += "It requires a heavy supply of nutrient fluid.<br>"
+			dat += "它需要大量营养液。<br>"
 		else
-			dat += "It requires a supply of nutrient fluid.<br>"
+			dat += "它需要营养液供应。<br>"
 
 	if(grown_seed.requires_water)
 		if(grown_seed.water_consumption < 1)
-			dat += "It requires very little water.<br>"
+			dat += "它需要的水很少。<br>"
 		else if(grown_seed.water_consumption > 5)
-			dat += "It requires a large amount of water.<br>"
+			dat += "它需要大量水分。<br>"
 		else
-			dat += "It requires a stable supply of water.<br>"
+			dat += "它需要稳定的水分供应。<br>"
 
 	if(LAZYLEN(grown_seed.mutants))
-		dat += "It exhibits a high degree of potential subspecies shift.<br>"
+		dat += "它很容易变异为其他亚种。<br>"
 
-	dat += "It thrives in a temperature of [grown_seed.ideal_heat] Kelvin."
+	dat += "它在[grown_seed.ideal_heat]开尔文的温度下生长旺盛。"
 
 	if(grown_seed.lowkpa_tolerance < 20)
-		dat += "<br>It is well adapted to low pressure levels."
+		dat += "<br>它很适应低气压环境。"
 	if(grown_seed.highkpa_tolerance > 220)
-		dat += "<br>It is well adapted to high pressure levels."
+		dat += "<br>它很适应高气压环境。"
 
 	if(grown_seed.heat_tolerance > 30)
-		dat += "<br>It is well adapted to a range of temperatures."
+		dat += "<br>它能适应较大的温度范围。"
 	else if(grown_seed.heat_tolerance < 10)
-		dat += "<br>It is very sensitive to temperature shifts."
+		dat += "<br>它对温度变化十分敏感。"
 
-	dat += "<br>It thrives in a light level of [grown_seed.ideal_light] lumen[grown_seed.ideal_light == 1 ? "" : "s"]."
+	dat += "<br>它在[grown_seed.ideal_light]流明[grown_seed.ideal_light == 1 ? "" : ""]的光照下生长旺盛。"
 
 	if(grown_seed.light_tolerance > 10)
-		dat += "<br>It is well adapted to a range of light levels."
+		dat += "<br>它能适应较大的光照强度范围。"
 	else if(grown_seed.light_tolerance < 3)
-		dat += "<br>It is very sensitive to light level shifts."
+		dat += "<br>它对光照强度变化十分敏感。"
 
 	if(grown_seed.toxins_tolerance < 3)
-		dat += "<br>It is highly sensitive to toxins."
+		dat += "<br>它对毒素十分敏感。"
 	else if(grown_seed.toxins_tolerance > 6)
-		dat += "<br>It is remarkably resistant to toxins."
+		dat += "<br>它对毒素有很强的抵抗力。"
 
 	if(grown_seed.pest_tolerance < 3)
-		dat += "<br>It is highly sensitive to pests."
+		dat += "<br>它对害虫十分敏感。"
 	else if(grown_seed.pest_tolerance > 6)
-		dat += "<br>It is remarkably resistant to pests."
+		dat += "<br>它对害虫有很强的抵抗力。"
 
 	if(grown_seed.weed_tolerance < 3)
-		dat += "<br>It is highly sensitive to weeds."
+		dat += "<br>它对杂草十分敏感。"
 	else if(grown_seed.weed_tolerance > 6)
-		dat += "<br>It is remarkably resistant to weeds."
+		dat += "<br>它对杂草有很强的抵抗力。"
 
 	switch(grown_seed.spread)
 		if(1)
-			dat += "<br>It is capable of growing beyond the confines of a tray."
+			dat += "<br>它能生长到种植槽之外。"
 		if(2)
-			dat += "<br>It is a robust and vigorous vine that will spread rapidly."
+			dat += "<br>它是一种强健旺盛的藤蔓，会迅速蔓延。"
 
 	switch(grown_seed.carnivorous)
 		if(1)
-			dat += "<br>It is carniovorous and will eat tray pests for sustenance."
+			dat += "<br>它具有食肉性，会吞食种植槽内的害虫来获取养分。"
 		if(2)
-			dat += "<br>It is carnivorous and poses a significant threat to living things around it."
+			dat += "<br>它具有食肉性，会对周围的生物构成严重威胁。"
 
 	if(grown_seed.parasite)
-		dat += "<br>It is capable of parisitizing and gaining sustenance from tray weeds."
+		dat += "<br>它能寄生于种植槽内的杂草，从中获取养分。"
 	if(grown_seed.alter_temp)
-		dat += "<br>It will periodically alter the local temperature by [grown_seed.alter_temp] degrees Kelvin."
+		dat += "<br>它会周期性地使附近温度改变[grown_seed.alter_temp]开尔文。"
 
 	if(grown_seed.biolum)
-		dat += "<br>It is [grown_seed.biolum_color ? "<font color='[grown_seed.biolum_color]'>bio-luminescent</font>" : "bio-luminescent"]."
+		dat += "<br>它具有[grown_seed.biolum_color ? "<font color='[grown_seed.biolum_color]'>生物发光特性</font>" : "生物发光特性"]。"
 	if(grown_seed.flowers)
-		dat += "<br>It has [grown_seed.flower_color ? "<font color='[grown_seed.flower_color]'>flowers</font>" : "flowers"]."
+		dat += "<br>它会开出[grown_seed.flower_color ? "<font color='[grown_seed.flower_color]'>花朵</font>" : "花朵"]。"
 
 	if(dat)
-		show_browser(user, dat, "Plant Analysis", "plant_analyzer")
+		show_browser(user, dat, "植物分析", "plant_analyzer")
 
 	return
 
@@ -154,8 +154,8 @@
 // *************************************
 
 /obj/item/reagent_container/glass/fertilizer
-	name = "fertilizer bottle"
-	desc = "A small glass bottle. Can hold up to 10 units."
+	name = "肥料瓶"
+	desc = "一个小玻璃瓶，最多可容纳10单位。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle16"
 	flags_atom = FPRINT| OPENCONTAINER
@@ -178,16 +178,16 @@
 		reagents.add_reagent(fertilizer,10)
 
 /obj/item/reagent_container/glass/fertilizer/ez
-	name = "bottle of E-Z-Nutrient"
+	name = "易养营养液瓶"
 	icon_state = "bottle16"
 	fertilizer = "eznutrient"
 
 /obj/item/reagent_container/glass/fertilizer/l4z
-	name = "bottle of Left 4 Zed"
+	name = "求生突变肥瓶"
 	icon_state = "bottle18"
 	fertilizer = "left4zed"
 
 /obj/item/reagent_container/glass/fertilizer/rh
-	name = "bottle of Robust Harvest"
+	name = "丰收壮苗肥瓶"
 	icon_state = "bottle15"
 	fertilizer = "robustharvest"

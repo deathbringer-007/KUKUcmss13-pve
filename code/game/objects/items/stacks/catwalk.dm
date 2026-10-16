@@ -1,7 +1,7 @@
 /obj/item/stack/catwalk
-	name = "catwalk mesh"
-	singular_name = "catwalk mesh"
-	desc = "Those could work as a pretty decent throwing weapon."
+	name = "格栅走道网片"
+	singular_name = "格栅走道网片"
+	desc = "这些东西用来投掷伤人倒是挺不错。"
 	icon = 'icons/turf/almayer.dmi'
 	icon_state = "catwalk_tile"
 	w_class = SIZE_MEDIUM
@@ -26,6 +26,8 @@
 	singular_name = name
 	turf_type = new_turf_type
 	stack_id = name
+	name = "[initial(floor_type.name)]地砖"
+	singular_name = name
 
 /obj/item/stack/catwalk/proc/build(turf/build_turf)
 	build_turf.ChangeTurf(turf_type)

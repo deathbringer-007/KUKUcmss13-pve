@@ -32,13 +32,14 @@
 	/* You may be thinking 'Why the fuck would W-Y directly send a broadcast to a in-operation vessel and reveal their location to any hostiles nearby?'
 	The answer is they don't, it's a signal sent across entire sectors for every UA-affiliated vessel and colony to take note of when it passes by.
 	Colony vendors aren't updated because the colony's network has collapsed. */
-	shipwide_ai_announcement("An encrypted broadband signal from Weyland-Yutani has been received notifying the sector of sudden changes in the UA's economy during cryosleep, due to [get_random_story()], and have requested UA vessels to increase the prices of [product_type] products by [get_percentage()]%. This change will come into effect in [time_to_update] minutes.")
+	var/list/product_labels = list(VENDOR_PRODUCT_TYPE_FOOD = "食品", VENDOR_PRODUCT_TYPE_BEVERAGES = "饮料", VENDOR_PRODUCT_TYPE_SOUTO = "索托饮料", VENDOR_PRODUCT_TYPE_NICOTINE = "烟草", VENDOR_PRODUCT_TYPE_RECREATIONAL = "娱乐用品")
+	shipwide_ai_announcement("收到维兰德-汤谷的加密宽频信号，向本星区通告：在低温休眠期间，由于[get_random_story()]，美洲联盟经济发生突变。公司要求美洲联盟舰船将[product_labels[product_type]]类商品价格上调[get_percentage()]%。此调整将在[time_to_update]分钟后生效。")
 
 /datum/round_event/economy_inflation/start()
 	for(var/obj/structure/machinery/vending/vending_machine as anything in GLOB.total_vending_machines)
 		if(!is_mainship_level(vending_machine.z) || vending_machine.product_type != product_type)
 			continue
-		vending_machine.speak("Prices have been updated!")
+		vending_machine.speak("价格已更新！")
 		playsound(vending_machine, 'sound/machines/twobeep.ogg', 25, TRUE)
 		var/display_records = vending_machine.product_records + vending_machine.hidden_records + vending_machine.coin_records
 		for(var/datum/data/vending_product/product in display_records)
@@ -49,30 +50,30 @@
  */
 /datum/round_event/economy_inflation/proc/get_random_story()
 	var/list/backstories = list(,
-		"A tragic series of accidental factory explosions",
-		"public leaks of corporate secrets",
-		"a high-profile assassination",
-		"a CLF take-over of an important industrial colony",
-		"discovery of high levels of an unhealthy chemical",
-		"a public scandal involving a corporate chairman and a farm animal",
-		"large-scale colony riots",
-		"suppressed factory riots over riot responses",
-		"CLF bombing of vital industrial colonies",
-		"a tense stand-off on several mining stations with UPP insurgents",
-		"a publicized Xenomorph infestation",
-		"a succession of hostile takeovers by major corporate entities",
-		"widespread corporate bankruptcy",
-		"pirate takeover of an essential cargo fleet",
-		"a large sector of colonized space going dark for unknown reasons", //XX-121,
-		"withdrawal of government funding in relevant sectors",
-		"a vital Seegson industries space station going dark", // A:I,
-		"several mining colonies defecting to the UPP",
-		"a critical USCM defeat by CLF insurgents in the Tychon's Rift sector",
-		"newly imposed sanctions as a result of corporate investigations",
-		"flaring tensions with Arcturus",
-		"a Sol-wide solar flare technological blackout",
-		"\[REDACTED\]",
-		"the release of a competitor's product",
+		"接连发生工厂爆炸事故",
+		"企业机密遭公开泄露",
+		"发生备受关注的暗杀事件",
+		"殖民地解放阵线占领重要工业殖民地",
+		"检测出高浓度有害化学物质",
+		"涉及企业董事长与农场动物的丑闻曝光",
+		"殖民地发生大规模暴乱",
+		"工人因镇暴措施引发的工厂暴乱遭到镇压",
+		"殖民地解放阵线轰炸关键工业殖民地",
+		"数座采矿站与联盟叛乱分子陷入紧张对峙",
+		"异形侵袭事件被公开报道",
+		"大型企业接连实施恶意收购",
+		"大量企业破产",
+		"海盗劫持重要货运船队",
+		"大片殖民星域因不明原因失联", //XX-121,
+		"政府撤回相关领域的资金支持",
+		"西格森工业的一座重要空间站失联", // A:I,
+		"多个采矿殖民地倒向进步人民联盟",
+		"陆战队在泰肯裂隙星区被殖民地解放阵线叛乱分子重创",
+		"企业调查引发新制裁",
+		"与大角星的关系骤然紧张",
+		"太阳耀斑导致整个太阳系的技术设备瘫痪",
+		"【已删节】",
+		"竞争对手推出新产品",
 	)
 	return pick(backstories)
 

@@ -1,6 +1,6 @@
 /obj/structure/machinery/computer/shuttle/elevator_controller/elevator_call
-	name = "\improper Elevator Call"
-	desc = "Control panel for the elevator"
+	name = "升降机呼叫面板"
+	desc = "升降机的控制面板。"
 	shuttleId = MOBILE_TRIJENT_ELEVATOR
 	is_call = TRUE
 	var/dockId
@@ -28,8 +28,8 @@
 	dockId = STAT_TRIJENT_OMEGA
 
 /obj/structure/machinery/computer/shuttle/elevator_controller
-	name = "\improper Elevator Panel"
-	desc = "Control panel for the elevator"
+	name = "升降机面板"
+	desc = "升降机的控制面板。"
 	icon = 'icons/obj/structures/machinery/computer.dmi'
 	icon_state = "elevator_screen"
 
@@ -56,7 +56,7 @@
 /obj/structure/machinery/computer/shuttle/elevator_controller/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "ElevatorControl", "Elevator Panel")
+		ui = new(user, src, "ElevatorControl", "升降机面板")
 		ui.open()
 
 /obj/structure/machinery/computer/shuttle/elevator_controller/ui_state(mob/user)
@@ -65,7 +65,7 @@
 /obj/structure/machinery/computer/shuttle/elevator_controller/ui_status(mob/user, datum/ui_state/state)
 	. = ..()
 	if(inoperable())
-		to_chat(user, SPAN_WARNING("The panel is inoperable."))
+		to_chat(user, SPAN_WARNING("面板无法使用。"))
 		return UI_CLOSE
 
 /obj/structure/machinery/computer/shuttle/elevator_controller/ui_data(mob/user)
@@ -124,7 +124,7 @@
 
 /obj/structure/machinery/computer/shuttle/elevator_controller/railing
 	density = TRUE
-	name = "elevator control button"
+	name = "升降机控制按钮"
 	icon_state = "elevator_handrail"
 	flags_atom = ON_BORDER
 	dir = NORTH

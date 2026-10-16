@@ -3,7 +3,7 @@
 GLOBAL_VAR_INIT(med_lockdown_state, LOCKDOWN_READY)
 
 /obj/structure/machinery/biohazard_lockdown
-	name = "Emergency Containment Breach"
+	name = "收容失效紧急开关"
 	icon_state = "big_red_button_tablev"
 	unslashable = TRUE
 	unacidable = TRUE
@@ -25,12 +25,12 @@ GLOBAL_VAR_INIT(med_lockdown_state, LOCKDOWN_READY)
 	if(isxeno(user))
 		return FALSE
 	if(!allowed(user))
-		to_chat(user, SPAN_DANGER("Access Denied"))
+		to_chat(user, SPAN_DANGER("访问被拒绝"))
 		flick(initial(icon_state) + "-denied", src)
 		return FALSE
 
 	if(!COOLDOWN_FINISHED(src, containment_lockdown))
-		to_chat(user, SPAN_BOLDWARNING("Biohazard Lockdown procedures are on cooldown! They will be ready in [COOLDOWN_SECONDSLEFT(src, containment_lockdown)] seconds!"))
+		to_chat(user, SPAN_BOLDWARNING("生物危害封锁程序正在冷却！还需[COOLDOWN_SECONDSLEFT(src, containment_lockdown)]秒才能再次启动！"))
 		return FALSE
 
 	add_fingerprint(user)
@@ -38,7 +38,7 @@ GLOBAL_VAR_INIT(med_lockdown_state, LOCKDOWN_READY)
 	COOLDOWN_START(src, containment_lockdown, 5 MINUTES)
 
 /obj/structure/machinery/door/poddoor/almayer/biohazard
-	name = "Biohazard Containment Airlock"
+	name = "生物危害隔离气闸"
 	density = FALSE
 
 /obj/structure/machinery/door/poddoor/almayer/biohazard/Initialize()
@@ -77,7 +77,7 @@ GLOBAL_VAR_INIT(med_lockdown_state, LOCKDOWN_READY)
 	var/ares_log = "Triggered Medical Research Biohazard Containment Lockdown."
 	var/person = user.name
 	if(!message)
-		message = "ATTENTION! \n\nBIOHAZARD CONTAINMENT BREACH. \n\nRESEARCH DEPARTMENT UNDER LOCKDOWN."
+		message = "注意！\n\n生物危害收容失效。\n\n科研部门现已封锁。"
 	else
 		log = "[key_name(user)] triggered research bio lockdown! (Using a custom announcement)."
 	if(admin)
@@ -92,7 +92,7 @@ GLOBAL_VAR_INIT(med_lockdown_state, LOCKDOWN_READY)
 			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RESEARCH_LOCKDOWN)
 		if(LOCKDOWN_ACTIVE)
 			GLOB.med_lockdown_state = LOCKDOWN_READY
-			message = "ATTENTION! \n\nBIOHAZARD CONTAINMENT LOCKDOWN LIFTED."
+			message = "注意！\n\n生物危害收容封锁已解除。"
 			log = "[key_name(user)] lifted research bio lockdown!"
 			ares_log = "Lifted Medical Research Biohazard Containment Lockdown."
 			if(admin)

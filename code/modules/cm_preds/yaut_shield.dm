@@ -1,6 +1,6 @@
 /obj/item/weapon/shield/riot/yautja
-	name = "clan shield"
-	desc = "A large tribal shield made of a strange metal alloy. The face of the shield bears three skulls, two human, one alien."
+	name = "氏族盾牌"
+	desc = "用奇异金属合金制成的大型部落盾牌，盾面上装饰着三颗头骨：两颗人类头骨和一颗异形头骨。"
 	icon = 'icons/obj/items/hunter/pred_gear.dmi'
 	icon_state = "shield"
 	base_icon_state = "shield"
@@ -48,7 +48,7 @@
 /obj/item/weapon/shield/riot/yautja/attackby(obj/item/attacking_item, mob/user)
 	if(cooldown < world.time - 25)
 		if(istype(attacking_item, /obj/item/weapon) && (attacking_item.flags_item & ITEM_PREDATOR))
-			user.visible_message(SPAN_WARNING("[user] bashes [src] with [attacking_item]!"))
+			user.visible_message(SPAN_WARNING("[user]用[attacking_item]猛敲[src]！"))
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
 			cooldown = world.time
 	else

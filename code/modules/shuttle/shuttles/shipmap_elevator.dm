@@ -1,5 +1,5 @@
 /obj/docking_port/mobile/trijent_elevator/shipmap_elevator
-	name = "Vehicle Elevator One"
+	name = "一号载具升降机"
 	height = 5
 	width = 7
 	preferred_direction = NORTH
@@ -45,12 +45,12 @@
 		G.stop_moving()
 
 /obj/docking_port/mobile/trijent_elevator/shipmap_elevator/two
-	name = "Vehicle Elevator Two"
+	name = "二号载具升降机"
 	id = MOBILE_SHUTTLE_SHIPMAP_ELEVATOR_TWO
 	area_type = /area/golden_arrow/vehicle_shuttle/two
 
 /obj/docking_port/mobile/trijent_elevator/shipmap_elevator/cargo
-	name = "Cargo Elevator"
+	name = "货运升降机"
 	height = 6
 	width = 8
 	id = MOBILE_SHUTTLE_SHIPMAP_ELEVATOR_CARGO
@@ -65,12 +65,12 @@
 	width = 7
 
 /obj/docking_port/stationary/trijent_elevator/shipmap_elevator/one
-	name = "Vehicle Elevator One"
+	name = "一号载具升降机"
 
 /obj/docking_port/stationary/trijent_elevator/shipmap_elevator/two
-	name = "Vehicle Elevator Two"
+	name = "二号载具升降机"
 
 /obj/docking_port/stationary/trijent_elevator/shipmap_elevator/cargo
-	name = "Cargo Elevator"
+	name = "货运升降机"
 	height = 6
 	width = 8

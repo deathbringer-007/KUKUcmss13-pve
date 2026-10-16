@@ -1,6 +1,6 @@
 /datum/action/xeno_action/onclick/plant_weeds/lesser/use_ability(atom/A)
 	if(!(locate(/obj/effect/alien/weeds/node) in orange(4, owner)))
-		to_chat(owner, SPAN_XENONOTICE("We can only plant weed nodes near other weed nodes!"))
+		to_chat(owner, SPAN_XENONOTICE("我们只能在其他菌毯节点附近种植新的菌毯节点！"))
 		return
 
 	. = ..()

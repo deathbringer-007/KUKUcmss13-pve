@@ -3,8 +3,8 @@
 // Tightly coupled with the boiler trapper strain. Pretty unavoidable given
 // the amount of references this has to pass back and forth
 /obj/effect/alien/resin/boilertrap
-	desc = "It looks like a trap for catching tallhosts."
-	name = "resin hole"
+	desc = "这似乎是用来捕捉高大宿主的陷阱。"
+	name = "树脂陷坑"
 	icon_state = "trap_boiler"
 	density = FALSE
 	opacity = FALSE
@@ -37,7 +37,7 @@
 	if(!isxeno(user))
 		return ..()
 	. = ..()
-	. += SPAN_XENOWARNING("A trap designed for a catching tallhosts and holding them still.")
+	. += SPAN_XENOWARNING("用来捕捉高大宿主并将其困住的陷阱。")
 
 /obj/effect/alien/resin/boilertrap/fire_act()
 	. = ..()
@@ -54,12 +54,12 @@
 		return
 	var/datum/effects/boiler_trap/F = new(M, bound_xeno, name)
 	QDEL_IN(F, root_duration)
-	to_chat(bound_xeno, SPAN_XENOHIGHDANGER("You feel one of your traps capture a tallhost!"))
-	to_chat(M, SPAN_XENOHIGHDANGER("You are caught by a trap made of foul resin!"))
+	to_chat(bound_xeno, SPAN_XENOHIGHDANGER("你感到自己的一个陷阱捕获了高大宿主！"))
+	to_chat(M, SPAN_XENOHIGHDANGER("你被恶臭树脂制成的陷阱困住了！"))
 	qdel(src)
 
 /obj/effect/alien/resin/boilertrap/attack_alien(mob/living/carbon/xenomorph/X)
-	to_chat(X, SPAN_XENOWARNING("Best not to meddle with that trap."))
+	to_chat(X, SPAN_XENOWARNING("最好别去碰那个陷阱。"))
 	return XENO_NO_DELAY_ACTION
 
 /obj/effect/alien/resin/boilertrap/Crossed(atom/A)

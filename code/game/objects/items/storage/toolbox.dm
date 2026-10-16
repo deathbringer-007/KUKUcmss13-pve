@@ -1,6 +1,6 @@
 /obj/item/storage/toolbox
-	name = "toolbox"
-	desc = "Danger. Very robust."
+	name = "工具箱"
+	desc = "危险。砸人很疼。"
 	icon = 'icons/obj/items/storage/toolbox.dmi'
 	icon_state = "red"
 	item_state = "toolbox_red"
@@ -14,10 +14,10 @@
 	w_class = SIZE_LARGE
 	use_sound = "toolbox"
 
-	attack_verb = list("robusted")
+	attack_verb = list("猛砸")
 
 /obj/item/storage/toolbox/emergency
-	name = "emergency toolbox"
+	name = "应急工具箱"
 	icon_state = "red"
 	item_state = "toolbox_red"
 
@@ -31,12 +31,12 @@
 	new /obj/item/device/radio(src)
 
 /obj/item/storage/toolbox/mechanical
-	name = "mechanical toolbox"
+	name = "机械工具箱"
 	icon_state = "blue"
 	item_state = "toolbox_blue"
 
 /obj/item/storage/toolbox/mechanical/green
-	name = "mechanical toolbox"
+	name = "机械工具箱"
 	icon_state = "green"
 	item_state = "toolbox_green"
 
@@ -49,7 +49,7 @@
 	new /obj/item/tool/wirecutters(src)
 
 /obj/item/storage/toolbox/electrical
-	name = "electrical toolbox"
+	name = "电工工具箱"
 	icon_state = "yellow"
 	item_state = "toolbox_yellow"
 
@@ -67,7 +67,7 @@
 		new /obj/item/stack/cable_coil(src,30,color)
 
 /obj/item/storage/toolbox/syndicate
-	name = "suspicious looking toolbox"
+	name = "可疑的工具箱"
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
 

@@ -1,7 +1,7 @@
 // Fires an extracted trait into another packet of seeds with a chance
 // of destroying it based on the size/complexity of the plasmid.
 /obj/structure/machinery/botany/editor
-	name = "bioballistic delivery system"
+	name = "生物弹道导入系统"
 	icon_state = "traitgun"
 	disk_needs_genes = TRUE
 

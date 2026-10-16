@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 
 //MARINE COMMAND CLOSET
 /obj/structure/closet/secure_closet/commander
-	name = "commanding officer's locker"
+	name = "指挥官储物柜"
 	req_access = list(ACCESS_MARINE_CO)
 	icon_state = "secure_locked_commander"
 	icon_closed = "secure_unlocked_commander"
@@ -21,9 +21,9 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 	new /obj/item/clothing/head/marine/peaked/captain(src)
 
 /obj/structure/closet/secure_closet/securecom
-	name = "commanding officer's secure box"
+	name = "指挥官保险箱"
 	req_access = list(ACCESS_MARINE_CO)
-	desc = "A safe for the Commanding Officer to store any equipment they need to have ready at a moment's notice. There's a note inside saying that whatever was inside it before was moved out."
+	desc = "供指挥官存放需要随时取用的装备的保险箱。里面有张纸条，写着原先存放的东西已经搬走。"
 	icon = 'icons/obj/structures/marine_closet.dmi'
 	icon_state = "commander_safe"
 	icon_opened = "commander_safe_open"
@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 	return ..()
 
 /obj/structure/closet/secure_closet/staff_officer
-	name = "staff officer's locker"
+	name = "参谋军官储物柜"
 	req_access = list(ACCESS_MARINE_COMMAND)
 	icon_state = "secure_locked_staff"
 	icon_closed = "secure_unlocked_staff"
@@ -68,7 +68,7 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 	new /obj/item/clothing/gloves/combat(src)
 
 /obj/structure/closet/secure_closet/staff_officer/armory
-	name = "staff officer's armory locker"
+	name = "参谋军官武器柜"
 
 /obj/structure/closet/secure_closet/staff_officer/armory/Initialize()
 	. = ..()
@@ -94,7 +94,7 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 	new /obj/item/storage/large_holster/m37(src)
 
 /obj/structure/closet/secure_closet/staff_officer/intel
-	name = "intelligence officer's locker"
+	name = "情报官储物柜"
 
 /obj/structure/closet/secure_closet/staff_officer/intel/Initialize()
 	. = ..()
@@ -117,7 +117,7 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 		new /obj/item/clothing/mask/rebreather/scarf(src)
 
 /obj/structure/closet/secure_closet/pilot_officer
-	name = "pilot officer's locker"
+	name = "飞行军官储物柜"
 	req_access = list(ACCESS_MARINE_PILOT)
 	icon_state = "secure_locked_pilot"
 	icon_closed = "secure_unlocked_pilot"
@@ -144,7 +144,7 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 
 //**********************Military Police Gear**************************/
 /obj/structure/closet/secure_closet/military_police
-	name = "military police's locker"
+	name = "宪兵储物柜"
 	req_access = list(ACCESS_MARINE_BRIG)
 	icon_state = "secure_locked_police"
 	icon_closed = "secure_unlocked_police"
@@ -177,7 +177,7 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 		new /obj/item/storage/backpack/satchel/sec(src)
 
 /obj/structure/closet/secure_closet/warrant_officer
-	name = "chief MP's locker"
+	name = "宪兵长储物柜"
 	req_access = list(ACCESS_MARINE_ARMORY)
 	icon_state = "secure_locked_warrant"
 	icon_closed = "secure_unlocked_warrant"
@@ -207,7 +207,7 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 	new /obj/item/storage/pouch/general/large(src)
 
 /obj/structure/closet/secure_closet/military_officer_spare
-	name = "extra equipment locker"
+	name = "备用装备柜"
 	req_access = list(ACCESS_MARINE_BRIG)
 	icon_state = "secure_locked_warrant"
 	icon_closed = "secure_unlocked_warrant"
@@ -233,7 +233,7 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 
 //ALMAYER MEDICAL CLOSET
 /obj/structure/closet/secure_closet/medical_doctor
-	name = "medical doctor's locker"
+	name = "医生储物柜"
 	req_access = list(ACCESS_MARINE_MEDBAY)
 	icon_state = "secure_locked_medical"
 	icon_closed = "secure_unlocked_medical"
@@ -266,7 +266,7 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 		new /obj/item/clothing/mask/rebreather/scarf(src)
 
 /obj/structure/closet/secure_closet/hydroresearch
-	name = "Hydroponics Research Locker"
+	name = "水培研究储物柜"
 	req_access = list(ACCESS_MARINE_RESEARCH)
 	icon_state = "secure_locked_medical_white"
 	icon_closed = "secure_unlocked_medical_white"
@@ -294,7 +294,7 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 
 //ALAMAYER CARGO CLOSET
 /obj/structure/closet/secure_closet/req_officer
-	name = "\improper RO's Locker"
+	name = "补给官储物柜"
 	req_access = list(ACCESS_MARINE_RO)
 	icon_state = "secure_locked_cargo"
 	icon_closed = "secure_unlocked_cargo"
@@ -314,7 +314,7 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 	new /obj/item/storage/backpack/marine/satchel(src)
 
 /obj/structure/closet/secure_closet/cargotech
-	name = "Cargo Technician's Locker"
+	name = "货运技术员储物柜"
 	req_access = list(ACCESS_MARINE_CARGO)
 	icon_state = "secure_locked_cargo"
 	icon_closed = "secure_unlocked_cargo"
@@ -335,7 +335,7 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 	return
 
 /obj/structure/closet/secure_closet/sea
-	name = "\improper SEA's Locker"
+	name = "资深士官顾问储物柜"
 	req_access = list(ACCESS_MARINE_SEA)
 	icon_state = "secure_locked_commander"
 	icon_closed = "secure_unlocked_commander"
@@ -354,8 +354,8 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 	new /obj/item/storage/backpack/marine/satchel(src)
 
 /obj/structure/closet/secure_closet/cmdcabinet
-	name = "command tablet cabinet"
-	desc = "A bulletproof cabinet containing the command tablet for usage by the CO and XO. Opens only to them and department heads."
+	name = "指挥平板柜"
+	desc = "一个防弹柜，存放供指挥官和副指挥官使用的指挥平板。仅上述人员和部门负责人可以开启。"
 	density = FALSE
 	store_mobs = FALSE
 	req_access = list(ACCESS_MARINE_SENIOR)

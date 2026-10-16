@@ -9,8 +9,8 @@
  * Bartender
  */
 /obj/structure/closet/gmcloset
-	name = "formal closet"
-	desc = "It's a storage unit for formal clothing."
+	name = "正装柜"
+	desc = "用于存放正装的储物柜。"
 	icon_state = "black"
 	icon_closed = "black"
 
@@ -32,8 +32,8 @@
  * Janitor
  */
 /obj/structure/closet/jcloset
-	name = "custodial closet"
-	desc = "It's a storage unit for janitorial clothes and gear."
+	name = "保洁储物柜"
+	desc = "用于存放保洁服装与装备的储物柜。"
 	icon_state = "purple"
 	icon_closed = "purple"
 	icon_opened = "purple_open"
@@ -57,8 +57,8 @@
  * Lawyer
  */
 /obj/structure/closet/lawcloset
-	name = "legal closet"
-	desc = "It's a storage unit for courtroom apparel and items."
+	name = "司法用品柜"
+	desc = "用于存放法庭服装与用品的储物柜。"
 	icon_state = "blue"
 	icon_closed = "blue"
 	icon_opened = "blue_open"
@@ -76,8 +76,8 @@
 	new /obj/item/clothing/shoes/black(src)
 
 /obj/structure/closet/secure_closet/platoon_sergeant
-	name = "section sergeant locker"
-	desc = "A secure storage unit for the section sergeant."
+	name = "分队士官储物柜"
+	desc = "供分队士官使用的安全储物柜。"
 	req_one_access = list(ACCESS_MARINE_LEADER)
 
 /obj/structure/closet/secure_closet/platoon_sergeant/Initialize()
@@ -87,8 +87,8 @@
 	new /obj/item/device/whistle(src)
 
 /obj/structure/closet/secure_closet/platoon_sergeant_forecon
-	name = "squad leader locker"
-	desc = "A secure storage unit for the squad leader."
+	name = "小队长储物柜"
+	desc = "供小队长使用的安全储物柜。"
 	req_one_access = list(ACCESS_MARINE_LEADER)
 
 /obj/structure/closet/secure_closet/platoon_sergeant_forecon/Initialize()
@@ -97,8 +97,8 @@
 	new /obj/item/device/whistle(src)
 
 /obj/structure/closet/secure_closet/squad_sergeant
-	name = "squad sergeant locker"
-	desc = "A secure storage unit for a squad sergeant."
+	name = "小队士官储物柜"
+	desc = "供小队士官使用的安全储物柜。"
 	req_one_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_TL_PREP)
 
 /obj/structure/closet/secure_closet/squad_sergeant/Initialize()
@@ -107,8 +107,8 @@
 	new /obj/item/device/whistle(src)
 
 /obj/structure/closet/secure_closet/squad_sergeant_forecon
-	name = "assistant squad leader locker"
-	desc = "A secure storage unit for an assistant squad leader."
+	name = "副小队长储物柜"
+	desc = "供副小队长使用的安全储物柜。"
 	req_one_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_TL_PREP)
 
 /obj/structure/closet/secure_closet/squad_sergeant_forecon/Initialize()
@@ -117,8 +117,8 @@
 	new /obj/item/device/whistle(src)
 
 /obj/structure/closet/secure_closet/smartgunner
-	name = "smartgunner locker"
-	desc = "A secure storage unit for a smartgunner."
+	name = "智能机枪手储物柜"
+	desc = "供智能机枪手使用的安全储物柜。"
 	req_one_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_SMARTPREP)
 
 /obj/structure/closet/secure_closet/smartgunner/Initialize()
@@ -136,8 +136,8 @@
 	new /obj/item/clothing/accessory/storage/webbing/m56/grenade(src)
 
 /obj/structure/closet/secure_closet/smartgunner_forecon
-	name = "smartgunner locker"
-	desc = "A secure storage unit for a smartgunner."
+	name = "智能机枪手储物柜"
+	desc = "供智能机枪手使用的安全储物柜。"
 	req_one_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_SMARTPREP)
 
 /obj/structure/closet/secure_closet/smartgunner_forecon/Initialize()
@@ -164,8 +164,8 @@
 	new /obj/item/clothing/glasses/night/m56_goggles/no_nightvision(src)
 
 /obj/structure/closet/secure_closet/rmc_troop_sergeant
-	name = "troop sergeant locker"
-	desc = "A secure storage unit for the senior sergeant of the Royal Marines Commando troop."
+	name = "突击排士官储物柜"
+	desc = "供皇家陆战突击队突击排资深士官使用的安全储物柜。"
 	req_access = list(ACCESS_TWE_ARMORY, ACCESS_TWE_TLPREP)
 
 /obj/structure/closet/secure_closet/rmc_troop_sergeant/Initialize()
@@ -176,8 +176,8 @@
 	new /obj/item/ammo_box/magazine/nsg23(src)
 
 /obj/structure/closet/secure_closet/rmc_section_leader
-	name = "section leader locker"
-	desc = "A secure storage unit for the Royal Marines Commando section leader."
+	name = "班长储物柜"
+	desc = "供皇家陆战突击队班长使用的安全储物柜。"
 	req_access = list(ACCESS_TWE_TLPREP, ACCESS_TWE_SQUAD_ONE)
 
 /obj/structure/closet/secure_closet/rmc_section_leader/Initialize()
@@ -186,8 +186,8 @@
 	new /obj/item/device/whistle(src)
 
 /obj/structure/closet/secure_closet/rmc_smartgunner
-	name = "smartgunner locker"
-	desc = "A secure storage unit for a Royal Marines Commando smartgunner."
+	name = "智能机枪手储物柜"
+	desc = "供皇家陆战突击队智能机枪手使用的安全储物柜。"
 	req_access = list(ACCESS_TWE_SQUAD_TWO, ACCESS_TWE_HEVWEAPPREP)
 
 /obj/structure/closet/secure_closet/rmc_smartgunner/Initialize()

@@ -1,7 +1,7 @@
 
 /obj/structure/mirror
-	name = "mirror"
-	desc = "Mirror mirror on the wall, who's the most robust of them all?"
+	name = "镜子"
+	desc = "魔镜魔镜告诉我，谁才是最能打的那一个？"
 	icon = 'icons/obj/structures/props/watercloset.dmi'
 	icon_state = "mirror"
 	density = FALSE
@@ -19,14 +19,14 @@
 			var/obj/limb/hand_target = H.get_limb(H.hand ? "l_hand" : "r_hand")
 			if(shattered)
 				playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
-				user.visible_message(SPAN_DANGER("[user] punches [src], but it's already broken!"), SPAN_DANGER("You punch [src], but it's already broken!"))
+				user.visible_message(SPAN_DANGER("[user]一拳打向[src]，但镜子早已破碎！"), SPAN_DANGER("你一拳打向[src]，但镜子早已破碎！"))
 				hand_target.take_damage(5)
 				return
 			if(prob(30) || H.species.can_shred(H))
-				user.visible_message(SPAN_DANGER("[user] punches [src], smashing it!"), SPAN_DANGER("You punch [src], smashing it!"))
+				user.visible_message(SPAN_DANGER("[user]一拳打碎了[src]！"), SPAN_DANGER("你一拳打碎了[src]！"))
 				shatter(user)
 			else
-				user.visible_message(SPAN_DANGER("[user] punches [src] and bounces off!"), SPAN_DANGER("You punch [src] and bounce off!"))
+				user.visible_message(SPAN_DANGER("[user]一拳打向[src]，拳头却被弹了回来！"), SPAN_DANGER("你一拳打向[src]，拳头却被弹了回来！"))
 				hand_target.take_damage(5)
 				playsound(loc, 'sound/effects/glassbash.ogg', 25, 1)
 			return
@@ -48,7 +48,7 @@
 			else
 				species_facial_hair = GLOB.facial_hair_styles_list
 
-			var/new_style = input(user, "Select a facial hair style", "Grooming")  as null|anything in species_facial_hair
+			var/new_style = input(user, "选择胡须样式", "仪容整理")  as null|anything in species_facial_hair
 			if(userloc != H.loc) return //no tele-grooming
 			if(new_style)
 				H.f_style = new_style
@@ -64,7 +64,7 @@
 		else
 			species_hair = GLOB.hair_styles_list
 
-		var/new_style = input(user, "Select a hair style", "Grooming")  as null|anything in species_hair
+		var/new_style = input(user, "选择发型", "仪容整理")  as null|anything in species_hair
 		if(userloc != H.loc) return //no tele-grooming
 		if(new_style)
 			H.h_style = new_style
@@ -76,7 +76,7 @@
 	shattered = TRUE
 	icon_state = "mirror_broke"
 	playsound(src, "shatter", 70, 1)
-	desc = "Oh no, seven years of bad luck!"
+	desc = "糟糕，要倒霉七年了！"
 	var/obj/item/shard/mirror_shard = new(loc)
 	if(!user)
 		return
@@ -102,33 +102,33 @@
 /obj/structure/mirror/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/grab))
 		if(user.grab_level < GRAB_AGGRESSIVE)
-			to_chat(user, SPAN_WARNING("You need a better grip to do that!"))
+			to_chat(user, SPAN_WARNING("你需要抓得更牢才能这样做！"))
 			return
 		var/obj/item/grab/target_grab = I
 		var/mob/living/carbon/human/target = target_grab.grabbed_thing
 		var/obj/limb/head_target = target.get_limb("head")
 		if(shattered)
-			user.visible_message(SPAN_WARNING("[user] smashes [src] with [target]'s skull, but [src] is already broken!"), SPAN_WARNING("You smash [src] with [target]'s skull, but [src] is already broken!"))
+			user.visible_message(SPAN_WARNING("[user]抓着[target]的头撞向[src]，但[src]早已破碎！"), SPAN_WARNING("你抓着[target]的头撞向[src]，但[src]早已破碎！"))
 			head_target.take_damage(5)
 			playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
 			return
 		if(prob(30))
-			user.visible_message(SPAN_WARNING("[user] smashes [src] with [target]'s skull, breaking [src]!"), SPAN_WARNING("You smash [src] with [target]'s skull, breaking [src]!"))
+			user.visible_message(SPAN_WARNING("[user]抓着[target]的头猛撞[src]，将[src]撞碎！"), SPAN_WARNING("你用[target]的头撞碎了[src]，[src]碎裂开来！"))
 			shatter(target, TRUE)
 			return
-		user.visible_message(SPAN_WARNING("[user] smashes [src] with [target]'s skull!"), SPAN_WARNING("You smash [src] with [target]'s skull!"))
+		user.visible_message(SPAN_WARNING("[user]抓着[target]的头撞向[src]！"), SPAN_WARNING("你抓着[target]的头撞向[src]！"))
 		head_target.take_damage(5)
 		playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
 		return
 	if(shattered)
 		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
-		user.visible_message(SPAN_WARNING("[user] hits [src] with [I],  but it's already broken!"), SPAN_WARNING("You hit [src] with [I], but it's already broken!"))
+		user.visible_message(SPAN_WARNING("[user]用[I]击打[src]，但镜子早已破碎！"), SPAN_WARNING("你用[I]击打[src]，但镜子早已破碎！"))
 		return
 	if(prob(I.force * I.demolition_mod * 2))
-		user.visible_message(SPAN_WARNING("[user] smashes [src] with [I]!"), SPAN_WARNING("You smash [src] with [I]!"))
+		user.visible_message(SPAN_WARNING("[user]用[I]砸碎了[src]！"), SPAN_WARNING("你用[I]砸碎了[src]！"))
 		shatter()
 	else
-		user.visible_message(SPAN_WARNING("[user] hits [src] with [I]!"), SPAN_WARNING("You hit [src] with [I]!"))
+		user.visible_message(SPAN_WARNING("[user]用[I]击打[src]！"), SPAN_WARNING("你用[I]击打[src]！"))
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 
 /obj/structure/mirror/attack_animal(mob/user as mob)
@@ -138,5 +138,5 @@
 	if(shattered)
 		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
 		return
-	user.visible_message(SPAN_DANGER("[user] smashes [src]!"))
+	user.visible_message(SPAN_DANGER("[user]砸碎了[src]！"))
 	shatter()

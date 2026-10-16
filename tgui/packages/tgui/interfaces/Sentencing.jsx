@@ -38,12 +38,12 @@ const MainMenu = (props) => {
       mt="-3rem"
       bold
     >
-      <Box fontFamily="monospace">Jurisdictional Automated System</Box>
+      <Box fontFamily="monospace">司法自动化系统</Box>
       <Box mb="2rem" fontFamily="monospace">
-        WY-DOS Executive
+        WY-DOS 执行程序
       </Box>
-      <Box fontFamily="monospace">Version 5.8.4</Box>
-      <Box fontFamily="monospace">Copyright © 2182, Weyland Yutani Corp.</Box>
+      <Box fontFamily="monospace">版本 5.8.4</Box>
+      <Box fontFamily="monospace">版权所有 © 2182，维兰德-汤谷公司。</Box>
 
       <Button
         width="30vw"
@@ -53,13 +53,13 @@ const MainMenu = (props) => {
         mt="5rem"
         onClick={() => act('new_report')}
       >
-        New Report
+        新建报告
       </Button>
       <Box fontSize="2rem" mt="1rem">
-        OR
+        或
       </Box>
       <Box fontSize="1.5rem" mt="1rem">
-        scan an existing report
+        扫描现有报告
       </Box>
     </Flex>
   );
@@ -79,41 +79,45 @@ const NewReport = (props) => {
             px="2rem"
             textAlign="center"
             mr="1rem"
-            tooltip="Delete report"
+            tooltip="删除报告"
             onClick={() => act('scrap_report')}
           />
 
-          <h1>Incident Report</h1>
+          <h1>事件报告</h1>
 
           <Button
             icon="print"
             ml="auto"
             px="2rem"
             bold
-            tooltip={canExport ? '' : 'Missing suspect or charges'}
+            tooltip={canExport ? '' : '缺少嫌疑人或指控'}
             disabled={!canExport}
             onClick={() => act('export')}
           >
-            Export
+            导出
           </Button>
         </Flex>
       </Section>
       <Section>
         <LabeledList>
-          <LabeledList.Item label="Suspect">
+          <LabeledList.Item label="嫌疑人">
             <Button
               icon="pen"
               bold
-              tooltip="Hold an ID in your hand"
+              tooltip="请手持身份卡"
               onClick={() => act('set_suspect')}
             >
               {suspect_name}
             </Button>
           </LabeledList.Item>
-          <LabeledList.Item label="Sentence">
-            {sentence !== '0 minutes' ? sentence : '--'}
+          <LabeledList.Item label="刑期">
+            {sentence !== '0 minutes'
+              ? sentence === 'PERMA BRIGGED'
+                ? '永久监禁'
+                : sentence.replace(' minutes', ' 分钟')
+              : '--'}
           </LabeledList.Item>
-          <LabeledList.Item label="Summary">
+          <LabeledList.Item label="摘要">
             <Button icon="pen" onClick={() => act('edit_summary')} />
           </LabeledList.Item>
         </LabeledList>
@@ -145,7 +149,7 @@ const NewCharge = (props) => {
             mr="1rem"
             onClick={() => act('set_menu', { new_menu: 'incident_report' })}
           />
-          <h1>New Charge</h1>
+          <h1>新增指控</h1>
         </Flex>
       </Section>
       <Section>
@@ -168,11 +172,11 @@ const NewCharge = (props) => {
                 {law.desc}
               </Box>
               <LabeledList>
-                <LabeledList.Item label="Sentence">
-                  {law.brig_time} minutes
+                <LabeledList.Item label="刑期">
+                  {law.brig_time} 分钟
                 </LabeledList.Item>
                 {law.special_punishment && (
-                  <LabeledList.Item label="Extra">
+                  <LabeledList.Item label="附加处罚">
                     {law.special_punishment}
                   </LabeledList.Item>
                 )}
@@ -182,7 +186,7 @@ const NewCharge = (props) => {
                 mt="1rem"
                 onClick={() => act('new_charge', { law: law.ref })}
               >
-                Add Charge
+                添加指控
               </Button>
             </Section>
           ))}
@@ -197,7 +201,7 @@ const Charges = (props) => {
   const { current_charges } = data;
 
   return (
-    <Section title="Charges">
+    <Section title="指控">
       <Flex direction="column">
         {!!current_charges.length && (
           <Flex
@@ -207,10 +211,10 @@ const Charges = (props) => {
             fontSize="1.25rem"
           >
             <Flex.Item bold width="9rem" shrink="0" mr="1rem">
-              Charge
+              罪名
             </Flex.Item>
             <Flex.Item grow bold>
-              Description
+              说明
             </Flex.Item>
             <Flex.Item
               width="10rem"
@@ -219,7 +223,7 @@ const Charges = (props) => {
               pr="3rem"
               bold
             >
-              Extra
+              附加处罚
             </Flex.Item>
           </Flex>
         )}
@@ -252,7 +256,7 @@ const Charges = (props) => {
             bold
             onClick={() => act('set_menu', { new_menu: 'new_charge' })}
           >
-            New Charge
+            新增指控
           </Button>
         </Flex>
       </Flex>
@@ -265,7 +269,7 @@ const Evidence = (props) => {
   const { witnesses, evidence } = data;
 
   return (
-    <Section title="Evidence">
+    <Section title="证据">
       <Flex>
         {/* Witnesses */}
         <Flex direction="column" width="50%">
@@ -314,10 +318,10 @@ const Evidence = (props) => {
             width="50%"
             mx="auto"
             py=".25rem"
-            tooltip="Hold an ID in your hand"
+            tooltip="请手持身份卡"
             onClick={() => act('add_witness')}
           >
-            Add Witness
+            添加证人
           </Button>
         </Flex>
 
@@ -368,10 +372,10 @@ const Evidence = (props) => {
             width="50%"
             mx="auto"
             py=".25rem"
-            tooltip="Hold an object in your hand"
+            tooltip="请手持物品"
             onClick={() => act('add_evidence')}
           >
-            Add Evidence
+            添加证物
           </Button>
         </Flex>
       </Flex>

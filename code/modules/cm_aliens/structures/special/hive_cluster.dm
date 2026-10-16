@@ -3,7 +3,7 @@
 
 /obj/effect/alien/resin/special/cluster
 	name = XENO_STRUCTURE_CLUSTER
-	desc = "A large clump of gooey mass. It rhythmically pulses, as if its pumping something into the weeds below..."
+	desc = "一大团黏稠物质，正有节奏地搏动，仿佛在向下方的菌毯输送着什么……"
 	icon = 'icons/mob/xenos/structures48x48.dmi'
 	icon_state = "hive_cluster_idle"
 
@@ -48,10 +48,10 @@
 		return
 	var/can_repair = damaged || health < maxhealth
 	if(!can_repair)
-		to_chat(xeno, SPAN_XENONOTICE("\The [name] is in good condition, you don't need to repair it."))
+		to_chat(xeno, SPAN_XENONOTICE("[name]完好无损，无需修复。"))
 		return
 
-	to_chat(xeno, SPAN_XENONOTICE("We begin adding the plasma to \the [name] to repair it."))
+	to_chat(xeno, SPAN_XENONOTICE("我们开始向[name]注入等离子体，以修复它。"))
 	xeno_attack_delay(xeno)
 	if(!do_after(xeno, CLUSTER_REPAIR_TIME, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, src) || !can_repair)
 		return
@@ -61,7 +61,7 @@
 	xeno.plasma_stored -= amount_to_use
 
 	if(plasma_stored < plasma_required_to_repair)
-		to_chat(xeno, SPAN_WARNING("\The [name] requires [plasma_required_to_repair - plasma_stored] more plasma to repair it."))
+		to_chat(xeno, SPAN_WARNING("修复[name]还需要[plasma_required_to_repair - plasma_stored]点等离子体。"))
 		return
 
 	damaged = FALSE
@@ -77,7 +77,7 @@
 			continue
 		addtimer(CALLBACK(W, TYPE_PROC_REF(/obj/effect/alien/weeds, weed_expand), node), CLUSTER_WEEDS_REGROWTH_TIME, TIMER_UNIQUE)
 
-	to_chat(xeno, SPAN_XENONOTICE("We have successfully repaired \the [name]."))
+	to_chat(xeno, SPAN_XENONOTICE("我们成功修复了[name]。"))
 	playsound(loc, "alien_resin_build", 25)
 
 /obj/effect/alien/resin/special/cluster/proc/place_node()

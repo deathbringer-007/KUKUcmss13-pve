@@ -1,8 +1,6 @@
 /obj/effect/abstract/ripple
-	name = "hyperspace ripple"
-	desc = "Something is coming through hyperspace, you can see the \
-		visual disturbances. It's probably best not to be on top of these \
-		when whatever is tunneling comes through."
+	name = "超空间涟漪"
+	desc = "某个东西正穿越超空间，能看见周围的视觉扰动。无论穿行而来的是什么，最好别站在它抵达的位置。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield"
 	anchored = TRUE
@@ -12,9 +10,8 @@
 	alpha = 0
 
 /obj/effect/abstract/ripple/shadow
-	name = "looming shadow"
-	desc = "Something big is looming above. It's probably best \
-		not to be under it."
+	name = "逼近的阴影"
+	desc = "上方有庞然大物正在逼近。最好别待在它下面。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shadow_square"
 

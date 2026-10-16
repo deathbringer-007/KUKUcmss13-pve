@@ -18,9 +18,9 @@
 /datum/action/xeno_action/onclick/set_hugger_reserve/use_ability(atom/Atom)
 	var/mob/living/carbon/xenomorph/carrier/carrier = owner
 	carrier.huggers_reserved = tgui_input_number(usr,
-		"How many facehuggers would you like to keep safe from Observers wanting to join as facehuggers?",
-		"How many to reserve?",
+		"你想预留多少只抱脸虫，以免它们被想作为抱脸虫加入的观察者占用？",
+		"预留数量",
 		carrier.huggers_reserved, carrier.huggers_max, 0
 	)
-	to_chat(carrier, SPAN_XENONOTICE("We reserve [carrier.huggers_reserved] facehuggers for ourself."))
+	to_chat(carrier, SPAN_XENONOTICE("我们为自己预留了[carrier.huggers_reserved]只抱脸虫。"))
 	return ..()

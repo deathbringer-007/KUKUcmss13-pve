@@ -37,11 +37,11 @@
 
 /obj/item/holder/get_examine_text(mob/user)
 	. = list()
-	. += "[icon2html(src, user)] That's \a [src]."
+	. += "[icon2html(src, user)]这是[src]。"
 	if(desc)
 		. += desc
 	if(desc_lore)
-		. += SPAN_NOTICE("This has an <a href='byond://?src=\ref[src];desc_lore=1'>extended lore description</a>.")
+		. += SPAN_NOTICE("它有一段<a href='byond://?src=\ref[src];desc_lore=1'>详细背景描述</a>。")
 
 
 //Mob procs and vars for scooping up
@@ -51,10 +51,10 @@
 	if(!holder_type)
 		return
 	if(isxeno(grabber))
-		to_chat(grabber, SPAN_WARNING("You leave [src] alone. It cannot be made a host, so there is no use for it."))
+		to_chat(grabber, SPAN_WARNING("你放过了[src]。它无法成为宿主，对我们没有用处。"))
 		return
 	if(locate(/obj/item/explosive/plastic) in contents)
-		to_chat(grabber, SPAN_WARNING("You leave [src] alone. It's got live explosives on it!"))
+		to_chat(grabber, SPAN_WARNING("你放过了[src]。它身上有已经启动的爆炸物！"))
 		return
 
 	var/obj/item/holder/mob_holder = new holder_type(loc)
@@ -65,48 +65,48 @@
 	mob_holder.attack_hand(grabber)
 	invisibility = INVISIBILITY_MAXIMUM
 
-	to_chat(grabber, "You scoop up [src].")
-	to_chat(src, "[grabber] scoops you up.")
+	to_chat(grabber, "你把[src]捧了起来。")
+	to_chat(src, "[grabber]把你捧了起来。")
 	grabber.status_flags |= PASSEMOTES
 	return
 
 //Mob specific holders.
 
 /obj/item/holder/drone
-	name = "maintenance drone"
-	desc = "It's a small maintenance robot."
+	name = "维护无人机"
+	desc = "一台小型维护机器人。"
 	icon_state = "drone"
 
 /obj/item/holder/cat
-	name = "cat"
-	desc = "A domesticated, feline pet. Has a tendency to adopt crewmembers."
+	name = "猫"
+	desc = "一种家养猫科宠物。它往往会主动认领船员当主人。"
 	icon_state = "cat2"
 
 /obj/item/holder/cat/kitten
-	name = "kitten"
-	desc = "D'aaawwww"
+	name = "小猫"
+	desc = "哎呀，真可爱。"
 
 /obj/item/holder/cat/Jones
-	name = "\improper Jones"
-	desc = "A tough, old stray whose origin no one seems to know."
+	name = "琼斯"
+	desc = "一只顽强的老流浪猫，似乎没人知道它从哪里来。"
 
 /obj/item/holder/cat/blackcat
-	name = "black cat"
-	desc = "It's a cat, now in black!"
+	name = "黑猫"
+	desc = "一只猫，这回是黑色的！"
 	icon_state = "cat"
 
 /obj/item/holder/cat/blackcat/Runtime
-	name = "\improper Runtime"
-	desc = "Her fur has the look and feel of velvet, and her tail quivers occasionally."
+	name = "运行时"
+	desc = "她的毛发看起来、摸起来都像天鹅绒，尾巴偶尔会轻轻颤动。"
 
 /obj/item/holder/kitten
-	name = "kitten"
-	desc = "D'aaawwww"
+	name = "小猫"
+	desc = "哎呀，真可爱。"
 	icon_state = "cat2"
 
 /obj/item/holder/mouse
-	name = "mouse"
-	desc = "It's a small mouse."
+	name = "老鼠"
+	desc = "一只小老鼠。"
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "mouse_white"
 	w_class = SIZE_TINY;
@@ -122,9 +122,9 @@
 	icon_state = "mouse_brown"
 
 /obj/item/holder/mouse/white/Doc
-	name = "Doc"
-	desc = "Senior researcher of the Almayer. Likes: cheese, experiments, explosions."
+	name = "博士"
+	desc = "阿尔迈耶号的资深研究员。爱好：奶酪、实验、爆炸。"
 
 /obj/item/holder/mouse/brown/Tom
-	name = "Tom"
-	desc = "Jerry the cat is not amused."
+	name = "汤姆"
+	desc = "猫咪杰瑞对此并不开心。"

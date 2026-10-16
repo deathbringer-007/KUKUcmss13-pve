@@ -1,6 +1,6 @@
 /obj/item/iff_tag
-	name = "xenomorph IFF tag"
-	desc = "A tag containing a small IFF computer that gets inserted into the carapace of a xenomorph. You can modify the IFF groups by using an access tuner on it, or on the xeno if it's already implanted."
+	name = "异形敌我识别标签"
+	desc = "内置小型敌我识别电脑的标签，可植入异形甲壳。使用访问调谐器操作标签即可修改识别阵营；植入后也可直接对异形操作。"
 	icon = 'icons/obj/items/xeno_tag.dmi'
 	icon_state = "xeno_tag"
 	var/list/faction_groups = list()
@@ -8,19 +8,19 @@
 /obj/item/iff_tag/attack(mob/living/carbon/xenomorph/xeno, mob/living/carbon/human/injector)
 	if(isxeno(xeno))
 		if(xeno.stat == DEAD)
-			to_chat(injector, SPAN_WARNING("\The [xeno] is dead..."))
+			to_chat(injector, SPAN_WARNING("[xeno]已经死了……"))
 			return
 		if(xeno.iff_tag)
-			to_chat(injector, SPAN_WARNING("\The [xeno] already has a tag inside it."))
+			to_chat(injector, SPAN_WARNING("[xeno]体内已有一个标签。"))
 			return
-		injector.visible_message(SPAN_NOTICE("[injector] starts forcing \the [src] into [xeno]'s carapace..."), SPAN_NOTICE("You start forcing \the [src] into [xeno]'s carapace..."))
+		injector.visible_message(SPAN_NOTICE("[injector]开始将[src]强行塞入[xeno]的甲壳……"), SPAN_NOTICE("你开始将[src]强行塞入[xeno]的甲壳……"))
 		if(!do_after(injector, 5 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC, xeno, INTERRUPT_DIFF_LOC, BUSY_ICON_GENERIC))
 			return
-		injector.visible_message(SPAN_NOTICE("[injector] forces \the [src] into [xeno]'s carapace!"), SPAN_NOTICE("You force \the [src] into [xeno]'s carapace!"))
+		injector.visible_message(SPAN_NOTICE("[injector]将[src]强行塞入了[xeno]的甲壳！"), SPAN_NOTICE("你将[src]强行塞入了[xeno]的甲壳！"))
 		xeno.iff_tag = src
 		injector.drop_inv_item_to_loc(src, xeno)
 		if(xeno.hive.hivenumber == XENO_HIVE_RENEGADE) //it's important to know their IFF settings for renegade
-			to_chat(xeno, SPAN_NOTICE("With the insertion of the device into your carapace, your instincts have changed compelling you to protect [english_list(faction_groups, "no one")]."))
+			to_chat(xeno, SPAN_NOTICE("设备植入甲壳后，你的本能发生了变化，驱使你保护以下对象：[english_list(faction_groups, "无")]。"))
 		return
 	return ..()
 
@@ -32,26 +32,26 @@
 
 /obj/item/iff_tag/proc/handle_reprogramming(mob/living/carbon/human/programmer, mob/living/carbon/xenomorph/xeno)
 	var/list/id_faction_groups = programmer.get_id_faction_group()
-	var/option = tgui_alert(programmer, "The xeno tag's current IFF groups reads as: [english_list(faction_groups, "None")]\nYour ID's IFF group reads as: [english_list(id_faction_groups, "None")]", "Xenomorph IFF Tag", list("Overwrite", "Add", "Remove"))
+	var/option = tgui_alert(programmer, "异形标签当前的敌我识别阵营：[english_list(faction_groups, "无")]\n你的身份卡的敌我识别阵营：[english_list(id_faction_groups, "无")]", "异形敌我识别标签", list("覆盖", "添加", "清空"))
 	if(!option)
 		return FALSE
 	if(xeno)
 		if(!xeno.iff_tag)
-			to_chat(programmer, SPAN_WARNING("\The [src]'s tag got removed while you were reprogramming it!"))
+			to_chat(programmer, SPAN_WARNING("你编程期间，[src]的标签被移除了！"))
 			return FALSE
 		if(!programmer.Adjacent(xeno))
-			to_chat(programmer, SPAN_WARNING("You need to stay close to the xenomorph to reprogram the tag!"))
+			to_chat(programmer, SPAN_WARNING("你需要保持靠近异形才能重新编程标签！"))
 			return FALSE
 	switch(option)
-		if("Overwrite")
+		if("覆盖")
 			faction_groups = id_faction_groups
-		if("Add")
+		if("添加")
 			faction_groups |= id_faction_groups
-		if("Remove")
+		if("清空")
 			faction_groups = list()
-	to_chat(programmer, SPAN_NOTICE("You <b>[option]</b> the IFF group data, the IFF group on the tag now reads as: [english_list(faction_groups, "None")]"))
+	to_chat(programmer, SPAN_NOTICE("你已<b>[option]</b>敌我识别阵营数据，标签当前的识别阵营为：[english_list(faction_groups, "无")]。"))
 	if(xeno?.hive.hivenumber == XENO_HIVE_RENEGADE) //it's important to know their IFF settings for renegade
-		to_chat(xeno, SPAN_NOTICE("Your instincts have changed, you seem compelled to protect [english_list(faction_groups, "no one")]."))
+		to_chat(xeno, SPAN_NOTICE("你的本能发生了变化，似乎在驱使你保护以下对象：[english_list(faction_groups, "无")]。"))
 	return TRUE
 
 /obj/item/iff_tag/pmc_handler
@@ -59,8 +59,8 @@
 
 
 /obj/item/storage/xeno_tag_case
-	name = "xenomorph tag case"
-	desc = "A sturdy case designed to store and charge xenomorph IFF tags. Provided by the Wey-Yu Research and Data(TM) Division."
+	name = "异形标签箱"
+	desc = "用于存放异形敌我识别标签并为其充电的坚固箱子，由维兰德-汤谷研究与数据™部门提供。"
 	icon = 'icons/obj/items/xeno_tag.dmi'
 	icon_state = "tag_box"
 	use_sound = "toolbox"

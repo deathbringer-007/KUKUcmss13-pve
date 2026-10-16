@@ -1,6 +1,6 @@
 /obj/structure/grille
-	desc = "A flimsy lattice of metal rods, with screws to secure it to the floor."
-	name = "grille"
+	desc = "由金属杆组成的脆弱格栅，用螺丝固定在地板上。"
+	name = "金属格栅"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "grille"
 	density = TRUE
@@ -69,14 +69,14 @@
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
 			damage_dealt = 5
-			user.visible_message(SPAN_WARNING("[user] mangles [src]."), \
-						SPAN_WARNING("You mangle [src]."), \
-						"You hear twisting metal.")
+			user.visible_message(SPAN_WARNING("[user]扭坏了[src]。"), \
+						SPAN_WARNING("你扭坏了[src]。"), \
+						"你听到金属扭曲的声音。")
 
 	if(!damage_dealt)
-		user.visible_message(SPAN_WARNING("[user] kicks [src]."), \
-						SPAN_WARNING("You kick [src]."), \
-						"You hear twisting metal.")
+		user.visible_message(SPAN_WARNING("[user]踢向[src]。"), \
+						SPAN_WARNING("你踢向[src]。"), \
+						"你听到金属扭曲的声音。")
 
 	if(shock(user, 70))
 		return
@@ -91,9 +91,9 @@
 	if(M.melee_damage_upper == 0) return
 
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
-	M.visible_message(SPAN_WARNING("[M] smashes against [src]."), \
-					SPAN_WARNING("You smash against [src]."), \
-					"You hear twisting metal.")
+	M.visible_message(SPAN_WARNING("[M]猛撞[src]。"), \
+					SPAN_WARNING("你猛撞[src]。"), \
+					"你听到金属扭曲的声音。")
 
 	health -= M.melee_damage_upper
 	healthcheck()
@@ -126,8 +126,8 @@
 		if(!shock(user, 90))
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			anchored = !anchored
-			user.visible_message(SPAN_NOTICE("[user] [anchored ? "fastens" : "unfastens"] the grille."), \
-								SPAN_NOTICE("You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor."))
+			user.visible_message(SPAN_NOTICE("[user][anchored ? "固定了" : "松开了"]格栅。"), \
+								SPAN_NOTICE("你已[anchored ? "将格栅固定在地板上" : "解除格栅与地板的固定"]。"))
 			return
 
 //window placing begin
@@ -149,24 +149,24 @@
 					else
 						dir_to_set = 4
 			else
-				to_chat(user, SPAN_NOTICE("You can't reach."))
+				to_chat(user, SPAN_NOTICE("你够不着。"))
 				return //Only works for cardinal direcitons, diagonals aren't supposed to work like this.
 		for(var/obj/structure/window/WINDOW in loc)
 			if(WINDOW.dir == dir_to_set)
-				to_chat(user, SPAN_NOTICE("There is already a window facing this way there."))
+				to_chat(user, SPAN_NOTICE("那里已经有一扇朝这个方向的窗户了。"))
 				return
-		to_chat(user, SPAN_NOTICE("You start placing the window."))
+		to_chat(user, SPAN_NOTICE("你开始安装窗户。"))
 		if(do_after(user,20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			for(var/obj/structure/window/WINDOW in loc)
 				if(WINDOW.dir == dir_to_set)//checking this for a 2nd time to check if a window was made while we were waiting.
-					to_chat(user, SPAN_NOTICE("There is already a window facing this way there."))
+					to_chat(user, SPAN_NOTICE("那里已经有一扇朝这个方向的窗户了。"))
 					return
 
 			var/wtype = ST.created_window
 			if (ST.use(1))
 				var/obj/structure/window/WD = new wtype(loc)
 				WD.set_constructed_window(dir_to_set)
-				to_chat(user, SPAN_NOTICE("You place [WD] on [src]."))
+				to_chat(user, SPAN_NOTICE("你将[WD]安装在[src]上。"))
 		return
 //window placing end
 

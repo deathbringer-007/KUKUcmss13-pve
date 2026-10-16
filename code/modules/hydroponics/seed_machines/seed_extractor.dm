@@ -1,6 +1,6 @@
 // Allows for a trait to be extracted from a seed packet, destroying that seed.
 /obj/structure/machinery/botany/extractor
-	name = "lysis-isolation centrifuge"
+	name = "裂解分离离心机"
 	icon_state = "traitcopier"
 
 	var/datum/seed/genetics // Currently scanned seed genetic structure.
@@ -36,7 +36,7 @@
 		data["hasGenetics"] = TRUE
 		data["sourceName"] = genetics.display_name
 		if(!genetics.roundstart)
-			data["sourceName"] += " (variety #[genetics.uid])"
+			data["sourceName"] += "（品系编号[genetics.uid]）"
 	else
 		data["hasGenetics"] = FALSE
 		data["sourceName"] = FALSE
@@ -87,10 +87,10 @@
 
 			loaded_disk.genesource = "[genetics.display_name]"
 			if(!genetics.roundstart)
-				loaded_disk.genesource += " (variety #[genetics.uid])"
+				loaded_disk.genesource += "（品系编号[genetics.uid]）"
 
 			loaded_disk.name += " ([GLOB.gene_tag_masks[params["gene"]]], #[genetics.uid])"
-			loaded_disk.desc += " The label reads \'gene [GLOB.gene_tag_masks[params["gene"]]], sampled from [genetics.display_name]\'."
+			loaded_disk.desc += "标签写着“基因[GLOB.gene_tag_masks[params["gene"]]]，采样来源：[genetics.display_name]”。"
 			playsound(loc, 'sound/machines/fax.ogg', 15, 1)
 			eject_disk()
 

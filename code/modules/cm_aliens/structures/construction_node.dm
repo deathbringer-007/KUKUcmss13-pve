@@ -3,8 +3,8 @@
  */
 
 /obj/effect/alien/resin/construction
-	name = "construction node"
-	desc = "A strange wriggling lump. Looks like a marker for something."
+	name = "建造节点"
+	desc = "一团奇怪的蠕动肉块，似乎在标记什么。"
 	icon = 'icons/mob/xenos/weeds.dmi'
 	icon_state = "constructionnode"
 	density = FALSE
@@ -41,14 +41,14 @@
 /obj/effect/alien/resin/construction/get_examine_text(mob/user)
 	. = ..()
 	if((isxeno(user) || isobserver(user)) && linked_hive)
-		var/message = "A [template.name] construction is designated here. It requires [template.plasma_required - template.plasma_stored] more plasma."
+		var/message = "这里已规划建造[template.name]，还需要[template.plasma_required - template.plasma_stored]点等离子体。"
 		. += message
 
 /obj/effect/alien/resin/construction/attack_alien(mob/living/carbon/xenomorph/M)
 	if(!linked_hive || (linked_hive && (M.hivenumber != linked_hive.hivenumber)) || (M.a_intent == INTENT_HARM && M.can_destroy_special()))
 		return ..()
 	if(!template)
-		to_chat(M, SPAN_XENOWARNING("There is no template!"))
+		to_chat(M, SPAN_XENOWARNING("这里没有建造模板！"))
 	else
 		template.add_crystal(M) //This proc handles attack delay itself.
 	return XENO_NO_DELAY_ACTION

@@ -1,11 +1,11 @@
 /// Carved Pumpkin from the Halloween event
 /obj/item/clothing/head/pumpkin
-	name = "pumpkin"
+	name = "南瓜"
 	icon = 'icons/misc/events/pumpkins.dmi'
 	item_icons = list(
 		WEAR_HEAD = 'icons/misc/events/pumpkins.dmi',
 	)
-	desc = "An ominous looking pumpkin. Would look pretty spooky if worn on your head..."
+	desc = "一个看起来不太祥瑞的南瓜。戴在头上一定挺吓人……"
 	w_class = SIZE_MEDIUM
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	flags_armor_protection = BODY_FLAG_HEAD|BODY_FLAG_EYES
@@ -44,17 +44,22 @@
 
 /obj/item/clothing/head/pumpkin/mob_can_equip(mob/user, slot, disable_warning)
 	if(slot == WEAR_HEAD && !carved_icon)
-		to_chat(user, SPAN_WARNING("You can't put on a full pumpkin! Empty and carve it with a sharp object first."))
+		to_chat(user, SPAN_WARNING("你无法戴上完整的南瓜！先用锋利的物品将它掏空并雕刻好。"))
 		return FALSE
 	. = ..()
 
 /obj/item/clothing/head/pumpkin/attackby(obj/item/tool, mob/user)
 	if(!carved_icon && (tool.sharp == IS_SHARP_ITEM_ACCURATE || tool.sharp == IS_SHARP_ITEM_BIG))
-		var/choice = tgui_input_list(user, "Select the pattern to carve on your pumpkin!", "Pumpkin Carving", carvable_icons)
+		var/list/pattern_labels = list("smile" = "微笑", "cheeky" = "俏皮", "bugeyes" = "凸眼", "upside_down_smile" = "倒置笑脸", "skelly" = "骷髅", "ff" = "FF")
+		var/list/pattern_choices = list()
+		for(var/pattern_id in carvable_icons)
+			pattern_choices[pattern_labels[pattern_id] || pattern_id] = pattern_id
+		var/choice_label = tgui_input_list(user, "选择要雕刻在南瓜上的图案！", "南瓜雕刻", pattern_choices)
+		var/choice = pattern_choices[choice_label]
 		if(choice)
 			playsound(loc, 'sound/effects/vegetation_hit.ogg', 25, 1)
 			carved_icon = choice
-			name = "carved pumpkin"
+			name = "雕刻南瓜"
 			update_icon()
 	else
 		return ..()
@@ -67,6 +72,6 @@
 	return pumpkin
 
 /obj/item/clothing/head/pumpkin/corrupted
-	name = "corrupted pumpkin"
+	name = "腐化南瓜"
 	prefix = "cor_"
 	carvable_icons = list("cry", "sob", "sad", "why", "spooky", "ff")

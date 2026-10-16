@@ -13,8 +13,8 @@
  * Emergency Closet
  */
 /obj/structure/closet/emcloset
-	name = "emergency closet"
-	desc = "It's a storage unit for emergency breathmasks and o2 tanks."
+	name = "应急储物柜"
+	desc = "用于存放应急呼吸面罩和氧气瓶的储物柜。"
 	icon_state = "emergency"
 	icon_closed = "emergency"
 	icon_opened = "emergencyopen"
@@ -70,8 +70,8 @@
  * Fire Closet
  */
 /obj/structure/closet/firecloset
-	name = "fire-safety closet"
-	desc = "It's a storage unit for fire-fighting supplies."
+	name = "消防储物柜"
+	desc = "用于存放消防用品的储物柜。"
 	icon_state = "firecloset"
 	icon_closed = "firecloset"
 	icon_opened = "fireclosetopen"
@@ -105,8 +105,8 @@
  * Tool Closet
  */
 /obj/structure/closet/toolcloset
-	name = "tool closet"
-	desc = "It's a storage unit for tools."
+	name = "工具柜"
+	desc = "用于存放工具的储物柜。"
 	icon_state = "toolcloset"
 	icon_closed = "toolcloset"
 	icon_opened = "toolclosetopen"
@@ -149,8 +149,8 @@
  * Radiation Closet
  */
 /obj/structure/closet/radiation
-	name = "radiation suit closet"
-	desc = "It's a storage unit for rad-protective suits."
+	name = "防辐射服柜"
+	desc = "用于存放防辐射服的储物柜。"
 	icon_state = "radsuitcloset"
 	icon_opened = "radsuitclosetopen"
 	icon_closed = "radsuitcloset"
@@ -166,8 +166,8 @@
  * Bombsuit closet
  */
 /obj/structure/closet/bombcloset
-	name = "\improper EOD closet"
-	desc = "It's a storage unit for explosion-protective suits."
+	name = "排爆装备柜"
+	desc = "用于存放防爆服的储物柜。"
 	icon_state = "bombsuit"
 	icon_closed = "bombsuit"
 	icon_opened = "bombsuitopen"
@@ -181,8 +181,8 @@
 
 
 /obj/structure/closet/bombclosetsecurity
-	name = "\improper EOD closet"
-	desc = "It's a storage unit for explosion-protective suits."
+	name = "排爆装备柜"
+	desc = "用于存放防爆服的储物柜。"
 	icon_state = "bombsuitsec"
 	icon_closed = "bombsuitsec"
 	icon_opened = "bombsuitsecopen"
@@ -198,8 +198,8 @@
  * Hydrant
  */
 /obj/structure/closet/hydrant //wall mounted fire closet
-	name = "fire-safety closet"
-	desc = "It's a storage unit for fire-fighting supplies."
+	name = "消防储物柜"
+	desc = "用于存放消防用品的储物柜。"
 	icon_state = "hydrant"
 	icon_closed = "hydrant"
 	icon_opened = "hydrant_open"
@@ -225,8 +225,8 @@
  * First Aid
  */
 /obj/structure/closet/medical_wall //wall mounted medical closet
-	name = "first-aid closet"
-	desc = "It's wall-mounted storage unit for first aid supplies."
+	name = "急救用品柜"
+	desc = "壁挂式急救用品储物柜。"
 	icon_state = "medical_wall"
 	icon_closed = "medical_wall"
 	icon_opened = "medical_wall_open"

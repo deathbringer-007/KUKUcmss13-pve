@@ -103,7 +103,7 @@
 
 	M.animation_attack_on(src)
 
-	to_chat(M, SPAN_XENONOTICE("You slash open [src]!"))
+	to_chat(M, SPAN_XENONOTICE("你劈开了[src]！"))
 	open(M)
 	return XENO_ATTACK_ACTION
 

@@ -2,8 +2,8 @@
  * Morgue
  */
 /obj/structure/morgue
-	name = "morgue"
-	desc = "Used to keep bodies in until someone fetches them."
+	name = "停尸柜"
+	desc = "用于存放尸体，直至有人将其领走。"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "morgue1"
 	dir = EAST
@@ -94,20 +94,20 @@
 		var/datum/component/label/labelcomponent = src.GetComponent(/datum/component/label)
 		if(labelcomponent)
 			prior_label_text = labelcomponent.label_name
-		var/tmp_label = sanitize(input(user, "Enter a label for [name]","Label", prior_label_text))
+		var/tmp_label = sanitize(input(user, "为[name]输入标签","标签", prior_label_text))
 		if(tmp_label == "" || !tmp_label)
 			if(labelcomponent)
 				labelcomponent.remove_label()
-				user.visible_message(SPAN_NOTICE("[user] removes the label from \the [src]."), \
-				SPAN_NOTICE("You remove the label from \the [src]."))
+				user.visible_message(SPAN_NOTICE("[user]撕下了[src]上的标签。"), \
+				SPAN_NOTICE("你撕下了[src]上的标签。"))
 				return
 			else
 				return
 		if(length(tmp_label) > MAX_NAME_LEN)
-			to_chat(user, SPAN_WARNING("The label can be at most [MAX_NAME_LEN] characters long."))
+			to_chat(user, SPAN_WARNING("标签最多可包含[MAX_NAME_LEN]个字符。"))
 		else
-			user.visible_message(SPAN_NOTICE("[user] labels [src] as \"[tmp_label]\"."), \
-			SPAN_NOTICE("You label [src] as \"[tmp_label]\"."))
+			user.visible_message(SPAN_NOTICE("[user]给[src]贴上了“[tmp_label]”的标签。"), \
+			SPAN_NOTICE("你给[src]贴上了“[tmp_label]”的标签。"))
 			AddComponent(/datum/component/label, tmp_label)
 			playsound(src, "paper_writing", 15, TRUE)
 	else
@@ -119,8 +119,8 @@
 	if(exit_stun)
 		user.apply_effect(exit_stun, STUN)
 		if(user.mobility_flags & MOBILITY_MOVE)
-			user.visible_message(SPAN_WARNING("[user] suddenly gets out of [src]!"),
-			SPAN_WARNING("You get out of [src] and get your bearings!"))
+			user.visible_message(SPAN_WARNING("[user]突然从[src]里钻了出来！"),
+			SPAN_WARNING("你从[src]里钻出来，重新辨清了方向！"))
 		toggle_morgue(user)
 
 
@@ -129,8 +129,8 @@
  */
 
 /obj/structure/morgue_tray
-	name = "morgue tray"
-	desc = "Apply corpse before closing."
+	name = "停尸柜托盘"
+	desc = "关闭前请放入尸体。"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "morguet"
 	var/icon_tray = ""
@@ -162,7 +162,7 @@
 	O.forceMove(loc)
 	if(user != O)
 		for(var/mob/B in viewers(user, 3))
-			B.show_message(SPAN_DANGER("[user] stuffs [O] into [src]!"), SHOW_MESSAGE_VISIBLE)
+			B.show_message(SPAN_DANGER("[user]将[O]塞进了[src]！"), SHOW_MESSAGE_VISIBLE)
 			if(B.stat==DEAD)
 				bloody = TRUE
 				update_icon()
@@ -184,8 +184,8 @@
  */
 
 /obj/structure/morgue/crematorium
-	name = "crematorium"
-	desc = "A human incinerator. Works well on barbecue nights."
+	name = "焚尸炉"
+	desc = "用于焚烧人体的炉子。烧烤之夜也很好用。"
 	icon_state = "crema1"
 	dir = SOUTH
 	tray_path = /obj/structure/morgue_tray/crematorium
@@ -196,7 +196,7 @@
 
 /obj/structure/morgue/crematorium/toggle_morgue(mob/user)
 	if(cremating)
-		to_chat(user, SPAN_WARNING("It's locked."))
+		to_chat(user, SPAN_WARNING("它锁着。"))
 		return
 	..()
 
@@ -219,9 +219,9 @@
 		return
 
 	if(length(contents) <= 1) //1 because the tray is inside.
-		visible_message(SPAN_DANGER("You hear a hollow crackle."))
+		visible_message(SPAN_DANGER("你听到空洞的噼啪声。"))
 	else
-		visible_message(SPAN_DANGER("You hear a roar as the crematorium activates."))
+		visible_message(SPAN_DANGER("焚尸炉启动，发出一阵轰鸣。"))
 
 		cremating = 1
 
@@ -258,8 +258,8 @@
  */
 
 /obj/structure/morgue_tray/crematorium
-	name = "crematorium tray"
-	desc = "Apply body before burning."
+	name = "焚尸炉托盘"
+	desc = "焚烧前请放入尸体。"
 	icon_state = "cremat"
 
 
@@ -274,7 +274,7 @@
 				if(!C.cremating)
 					C.cremate(user)
 	else
-		to_chat(user, SPAN_DANGER("Access denied."))
+		to_chat(user, SPAN_DANGER("权限不足。"))
 
 
 
@@ -283,8 +283,8 @@
  */
 
 /obj/structure/morgue/sarcophagus
-	name = "sarcophagus"
-	desc = "Used to store fallen warriors."
+	name = "石棺"
+	desc = "用于安放阵亡战士。"
 	icon_state = "sarcophagus1"
 	morgue_type = "sarcophagus"
 	tray_path = /obj/structure/morgue_tray/sarcophagus
@@ -296,6 +296,6 @@
  */
 
 /obj/structure/morgue_tray/sarcophagus
-	name = "sarcophagus tray"
-	desc = "Apply corpse before closing."
+	name = "石棺托盘"
+	desc = "关闭前请放入尸体。"
 	icon_state = "sarcomat"

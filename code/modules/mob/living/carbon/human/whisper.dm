@@ -6,7 +6,7 @@
 
 	if (src.client)
 		if (src.client.prefs.muted & MUTE_IC)
-			to_chat(src, SPAN_DANGER("You cannot whisper (muted)."))
+			to_chat(src, SPAN_DANGER("你已被禁言，无法低语。"))
 			return
 
 		if (src.client.handle_spam_prevention(message,MUTE_IC))
@@ -21,7 +21,7 @@
 	message =  trim(strip_html(message)) //made consistent with say
 
 	if(name != GetVoice())
-		alt_name = "(as [get_id_name("Unknown")])"
+		alt_name = "（以[get_id_name("Unknown")]的身份）"
 
 	//parse the language code and consume it
 	var/datum/language/speaking = parse_language(message)
@@ -35,14 +35,14 @@
 
 
 //This is used by both the whisper verb and human/say() to handle whispering
-/mob/living/carbon/human/proc/whisper_say(message, datum/language/speaking = null, alt_name="", verb="whispers")
+/mob/living/carbon/human/proc/whisper_say(message, datum/language/speaking = null, alt_name="", verb="低语")
 	var/message_range = 1
 	var/eavesdropping_range = 2
 	var/watching_range = 5
 	var/italics = 1
 
 	if (speaking)
-		verb = speaking.speech_verb + pick(" quietly", " softly")
+		verb = speaking.speech_verb + pick("，压低声音", "，轻声细语")
 
 	message = capitalize(trim(message))
 
@@ -123,6 +123,6 @@
 				if(M.client) M.client.images -= speech_bubble
 
 	if (length(watching))
-		var/rendered = "<span class='game say'><span class='name'>[src.name]</span> whispers something.</span>"
+		var/rendered = "<span class='game say'><span class='name'>[src.name]</span>低声说了些什么。</span>"
 		for (var/mob/M in watching)
 			M.show_message(rendered, SHOW_MESSAGE_AUDIBLE)

@@ -1,8 +1,8 @@
 #define PERMABRIG_SENTENCE 60 // Measured in minutes
 
 /obj/structure/machinery/computer/sentencing
-	name = "\improper Jurisdictional Automated System"
-	desc = "A powerful machine produced by Weyland-Yutani to streamline all punishment of prisoners. The best grade policing gear seen on this side of the galaxy."
+	name = "司法自动化系统"
+	desc = "维兰德-汤谷生产的强大设备，用于简化囚犯处罚流程。这片银河最顶尖的执法装备。"
 	icon_state = "jas"
 	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_COMMAND)
 	var/datum/crime_incident/incident
@@ -18,7 +18,7 @@
 /obj/structure/machinery/computer/sentencing/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "Sentencing", "Criminal Sentencing")
+		ui = new(user, src, "Sentencing", "刑事量刑")
 		ui.open()
 		ui.set_autoupdate(FALSE)
 
@@ -74,11 +74,11 @@
 	var/list/data = list()
 
 	data["laws"] = list()
-	data["laws"] += list(create_law_data("Minor Laws", SSlaw_init.minor_law))
-	data["laws"] += list(create_law_data("Major Laws", SSlaw_init.major_law))
-	data["laws"] += list(create_law_data("Capital Laws", SSlaw_init.capital_law))
-	data["laws"] += list(create_law_data("Optional Laws", SSlaw_init.optional_law))
-	data["laws"] += list(create_law_data("Precautionary Laws", SSlaw_init.precautionary_law))
+	data["laws"] += list(create_law_data("轻罪", SSlaw_init.minor_law))
+	data["laws"] += list(create_law_data("重罪", SSlaw_init.major_law))
+	data["laws"] += list(create_law_data("死罪", SSlaw_init.capital_law))
+	data["laws"] += list(create_law_data("附加罪名", SSlaw_init.optional_law))
+	data["laws"] += list(create_law_data("预防性拘押", SSlaw_init.precautionary_law))
 
 	return data
 
@@ -137,12 +137,12 @@
 				if (incident && id.registered_name)
 					incident.criminal_name = id.registered_name
 					incident.criminal_gid = add_zero(num2hex(id.registered_gid), 6)
-					ping("\The [src] pings, \"Criminal [id.registered_name] verified.\"")
+					ping("[src]鸣响：“已核实嫌疑人[id.registered_name]。”")
 			else
-				to_chat(usr, SPAN_INFO("You need the suspect ID in your hand, or grab them and use the terminal."))
+				to_chat(usr, SPAN_INFO("你需要手持嫌疑人的身份卡，或抓住对方后使用终端。"))
 
 		if ("edit_summary")
-			var/notes = tgui_input_text(usr, "Describe the incident", "Incident Report", html_decode(incident.notes), multiline = TRUE)
+			var/notes = tgui_input_text(usr, "描述事件经过", "事件报告", html_decode(incident.notes), multiline = TRUE)
 			if(!isnull(notes) && incident)
 				incident.notes = notes
 
@@ -151,14 +151,14 @@
 			if (istype(id))
 				if (incident && id.registered_name)
 					incident.witnesses += list(id.registered_name)
-					ping("\The [src] pings, \"Witness [id.registered_name] added.\"")
+					ping("[src]鸣响：“已添加证人[id.registered_name]。”")
 			else
-				to_chat(usr, SPAN_INFO("You need the witness ID in your hand."))
+				to_chat(usr, SPAN_INFO("你需要手持证人的身份卡。"))
 
 		if ("edit_witness_notes")
 			var/witness = locate(params["witness"])
 
-			var/notes = tgui_input_text(usr, "Summarize what the witness said", "Witness Report", html_decode(incident.witnesses[witness]), multiline = TRUE)
+			var/notes = tgui_input_text(usr, "概述证人的陈述", "证人报告", html_decode(incident.witnesses[witness]), multiline = TRUE)
 			if(!isnull(notes) && incident)
 				incident.witnesses[witness] = notes
 
@@ -169,14 +169,14 @@
 			var/obj/O = usr.get_active_hand()
 			if(istype(O))
 				incident.evidence += O
-				ping("\The [src] pings, \"Evidence [O.name] catalogued.\"")
+				ping("[src]鸣响：“证物[O.name]已登记。”")
 			else
-				to_chat(usr, SPAN_INFO("You need the evidence in your hand."))
+				to_chat(usr, SPAN_INFO("你需要手持证物。"))
 
 		if ("edit_evidence_notes")
 			var/evidence = locate(params["evidence"])
 
-			var/notes = tgui_input_text(usr, "Describe the relevance of this evidence", "Evidence Report", html_decode(incident.evidence[evidence]), multiline = TRUE)
+			var/notes = tgui_input_text(usr, "描述此证物与案件的关联", "证据报告", html_decode(incident.evidence[evidence]), multiline = TRUE)
 			if (!isnull(notes) && incident)
 				incident.evidence[evidence] = notes
 
@@ -188,7 +188,7 @@
 				incident = null
 				current_menu = "main"
 			else
-				to_chat(usr, SPAN_ALERT("Report is lacking information."))
+				to_chat(usr, SPAN_ALERT("报告信息不完整。"))
 
 	return TRUE
 
@@ -203,14 +203,14 @@
 				var/datum/data/record/found_record = R
 
 				found_record.fields["incident"] += "<BR> \
-												Crime: [incident.charges_to_string()].<BR> \
-												Notes: [incident.notes].<BR>"
+												罪名： [incident.charges_to_string()].<BR> \
+												备注： [incident.notes].<BR>"
 
 				break
 
 	var/obj/item/paper/incident/paper = new /obj/item/paper/incident(loc)
 	paper.incident = incident
-	paper.name = "Encoded Incident Report [paper_counter++] ([incident.criminal_name])"
+	paper.name = "编码事件报告 [paper_counter++]（[incident.criminal_name]）"
 	playsound(loc, 'sound/machines/twobeep.ogg', 15, 1)
 	return TRUE
 
@@ -221,15 +221,15 @@
 			user.temp_drop_inv_item(paper)
 			paper.forceMove(loc)
 			incident = paper.incident
-			ping("\The [src] pings, \"Successfully imported incident report!\"")
+			ping("[src]鸣响：“事件报告导入成功！”")
 			current_menu = "incident_report"
 			qdel(paper)
 			tgui_interact(user)
 		else
-			to_chat(user, SPAN_ALERT("A report is already in progress."))
+			to_chat(user, SPAN_ALERT("已有一份报告正在处理中。"))
 
 	else if (istype(O, /obj/item/paper/) && current_menu == "main")
-		to_chat(user, SPAN_ALERT("This console only accepts authentic incident reports. Copies are invalid."))
+		to_chat(user, SPAN_ALERT("此控制台只接受事件报告原件，复印件无效。"))
 
 	else if (istype(O, /obj/item/grab))
 		var/obj/item/grab/grab = O
@@ -240,6 +240,6 @@
 				if (incident && id.registered_name)
 					incident.criminal_name = id.registered_name
 					incident.criminal_gid = add_zero(num2hex(id.registered_gid), 6)
-					ping("\The [src] pings, \"Criminal [id.registered_name] verified.\"")
+					ping("[src]鸣响：“已核实嫌疑人[id.registered_name]。”")
 
 	..()

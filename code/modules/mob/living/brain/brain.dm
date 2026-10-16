@@ -54,7 +54,7 @@
 
 //synth heads can ghost and re-enter given they're basically dead anyway
 /mob/living/brain/synth/ghost()
-	set desc = "Relinquish your sentience and visit the land of the past."
+	set desc = "放弃当前意识，化作幽灵游历逝者的世界。"
 
 	if(mind && mind.player_entity)
 		mind.player_entity.update_panel_data(GLOB.round_statistics)

@@ -30,8 +30,8 @@
 
 /obj/item/grown/log
 	name = "towercap"
-	name = "tower-cap log"
-	desc = "It's better than bad, it's good!"
+	name = "塔冠菇原木"
+	desc = "这可不是坏东西，明明是好东西！"
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "logs"
 	force = 5
@@ -41,11 +41,11 @@
 	throw_speed = SPEED_VERY_FAST
 	throw_range = 3
 
-	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
+	attack_verb = list("猛击", "殴打", "砸击", "敲打")
 
 /obj/item/grown/log/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.sharp == IS_SHARP_ITEM_BIG)
-		user.show_message(SPAN_NOTICE("You make planks out of \the [src]!"), SHOW_MESSAGE_VISIBLE)
+		user.show_message(SPAN_NOTICE("你把[src]加工成木板！"), SHOW_MESSAGE_VISIBLE)
 		for(var/i=0,i<2,i++)
 			var/obj/item/stack/sheet/wood/NG = new (user.loc)
 			for (var/obj/item/stack/sheet/wood/G in user.loc)
@@ -54,14 +54,14 @@
 				if(G.amount>=G.max_amount)
 					continue
 				G.attackby(NG, user)
-				to_chat(usr, "You add the newly-formed wood to the stack. It now contains [NG.amount] planks.")
+				to_chat(usr, "你将新制成的木板加入这摞木板，现在共有[NG.amount]块。")
 		qdel(src)
 		return
 
 /obj/item/grown/sunflower // FLOWER POWER!
 	plantname = "sunflowers"
-	name = "sunflower"
-	desc = "It's beautiful! A certain person might beat you to death if you trample these."
+	name = "向日葵"
+	desc = "真漂亮！如果你踩坏了这些花，某个人可能会把你活活打死。"
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "sunflower"
 	damtype = "fire"
@@ -73,14 +73,14 @@
 	throw_range = 3
 
 /obj/item/grown/sunflower/attack(mob/M as mob, mob/user as mob)
-	to_chat(M, "<font color='green'><b> [user] smacks you with a sunflower!</font><font color='yellow'><b>FLOWER POWER<b></font>")
-	to_chat(user, "<font color='green'> Your sunflower's </font><font color='yellow'><b>FLOWER POWER</b></font><font color='green'> strikes [M]</font>")
+	to_chat(M, "<font color='green'><b>[user]用向日葵拍打你！</font><font color='yellow'><b>花朵之力！<b></font>")
+	to_chat(user, "<font color='green'>你的向日葵释放出</font><font color='yellow'><b>花朵之力</b></font><font color='green'>，击中了[M]！</font>")
 
 /obj/item/grown/nettle // -- Skie
 	plantname = "nettle"
-	desc = "It's probably <B>not</B> wise to touch it with bare hands..."
+	desc = "赤手触碰它恐怕<B>不</B>太明智……"
 	icon = 'icons/obj/items/weapons/weapons.dmi'
-	name = "nettle"
+	name = "荨麻"
 	icon_state = "nettle"
 	damtype = "fire"
 	force = 15
@@ -90,7 +90,7 @@
 	throw_speed = SPEED_FAST
 	throw_range = 3
 
-	attack_verb = list("stung")
+	attack_verb = list("蜇刺")
 	hitsound = ""
 
 	var/potency_divisior = 5
@@ -102,7 +102,7 @@
 /obj/item/grown/nettle/pickup(mob/living/carbon/human/user as mob)
 	. = ..()
 	if(istype(user) && !user.gloves)
-		to_chat(user, SPAN_DANGER("The nettle burns your bare hand!"))
+		to_chat(user, SPAN_DANGER("荨麻灼伤了你裸露的手！"))
 		if(istype(user, /mob/living/carbon/human))
 			var/organ = ((user.hand ? "l_":"r_") + "arm")
 			var/obj/limb/affecting = user.get_limb(organ)
@@ -122,14 +122,14 @@
 
 	if(force <= 0)
 		if(user)
-			to_chat(user, "All the leaves have fallen off \the [src] from violent whacking.")
+			to_chat(user, "猛烈的挥打让[src]的叶子全部脱落了。")
 			user.temp_drop_inv_item(src)
 		qdel(src)
 
 /obj/item/grown/nettle/death // -- Skie
 	plantname = "deathnettle"
-	desc = "The glowing nettle incites <B>rage</B> in you just from looking at it!"
-	name = "deathnettle"
+	desc = "这株发光的荨麻光是看着就让你<B>怒火中烧</B>！"
+	name = "致命荨麻"
 	icon_state = "deathnettle"
 
 	potency_divisior = 2.5
@@ -138,7 +138,7 @@
 
 	if(..() && prob(50))
 		user.apply_effect(5, PARALYZE)
-		to_chat(user, SPAN_DANGER("You are stunned by the deathnettle when you try picking it up!"))
+		to_chat(user, SPAN_DANGER("你试图拿起致命荨麻，却被它震晕了！"))
 
 /obj/item/grown/nettle/attack(mob/living/carbon/M as mob, mob/user as mob)
 
@@ -151,7 +151,7 @@
 	if(!..()) return
 
 	if(istype(M, /mob/living))
-		to_chat(M, SPAN_WARNING("You are stunned by the powerful acid of the deathnettle!"))
+		to_chat(M, SPAN_WARNING("致命荨麻的强酸让你陷入眩晕！"))
 
 		M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Had the [src.name] used on them by [key_name(user)]</font>")
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] on [key_name(M)]</font>")
@@ -164,8 +164,8 @@
 		M.drop_held_item()
 
 /obj/item/corncob
-	name = "corn cob"
-	desc = "A reminder of meals gone by."
+	name = "玉米芯"
+	desc = "这是吃过玉米留下的痕迹。"
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "corncob"
 	item_state = "corncob"
@@ -176,7 +176,7 @@
 
 /obj/item/corncob/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.sharp == IS_SHARP_ITEM_ACCURATE)
-		to_chat(user, SPAN_NOTICE("You use [W] to fashion a pipe out of the corn cob!"))
+		to_chat(user, SPAN_NOTICE("你用[W]把玉米芯做成了烟斗！"))
 		new /obj/item/clothing/mask/cigarette/pipe/cobpipe (user.loc)
 		qdel(src)
 	else

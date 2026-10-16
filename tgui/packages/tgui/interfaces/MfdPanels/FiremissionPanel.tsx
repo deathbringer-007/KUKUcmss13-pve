@@ -26,10 +26,10 @@ const CreateFiremissionPanel = (props: {
   return (
     <Stack align="center" vertical>
       <Stack.Item>
-        <h3>Create Fire Mission</h3>
+        <h3>创建火力任务</h3>
       </Stack.Item>
       <Stack.Item>
-        Firemission Name{' '}
+        火力任务名称{' '}
         <Input
           value={fmName}
           onInput={(e, value) => setFmName(value)}
@@ -54,12 +54,12 @@ const FiremissionList = (props) => {
   return (
     <Stack align="center" vertical>
       <Stack.Item>
-        <h3>Existing Fire Missions</h3>
+        <h3>现有火力任务</h3>
       </Stack.Item>
       <Stack.Item>
         {data.firemission_data.map((x, i) => (
           <Stack.Item key={x.name}>
-            FM {i + 1}. {x.name}
+            任务 {i + 1}. {x.name}
           </Stack.Item>
         ))}
       </Stack.Item>
@@ -77,7 +77,7 @@ const FiremissionMfdHomePage = (props: MfdProps) => {
     const firemission =
       data.firemission_data.length > x ? data.firemission_data[x] : undefined;
     return {
-      children: firemission ? <div>FM {x + 1}</div> : undefined,
+      children: firemission ? <div>任务 {x + 1}</div> : undefined,
       onClick: () => setSelectedFm(firemission?.name),
     };
   };
@@ -101,7 +101,7 @@ const FiremissionMfdHomePage = (props: MfdProps) => {
         {},
         fmName
           ? {
-              children: 'SAVE',
+              children: '保存',
               onClick: () => {
                 act('firemission-create', {
                   firemission_name: fmName,
@@ -123,7 +123,7 @@ const FiremissionMfdHomePage = (props: MfdProps) => {
       ]}
       bottomButtons={[
         {
-          children: 'EXIT',
+          children: '退出',
           onClick: () => setPanelState(''),
         },
         {},
@@ -182,7 +182,7 @@ const ViewFiremissionMfdPanel = (
   const rightButtons = [
     editFmWeapon === undefined
       ? {}
-      : { children: 'BACK', onClick: () => setEditFmWeapon(undefined) },
+      : { children: '返回', onClick: () => setEditFmWeapon(undefined) },
     ...data.equipment_data
       .filter((x) => x.is_weapon === 1)
       .sort((a, b) => (a.mount_point < b.mount_point ? -1 : 1))
@@ -200,7 +200,7 @@ const ViewFiremissionMfdPanel = (
       panelStateId={props.panelStateId}
       topButtons={[
         {
-          children: 'DELETE',
+          children: '删除',
           onClick: () => {
             act('firemission-delete', {
               firemission_name: firemission.mission_tag,
@@ -208,14 +208,14 @@ const ViewFiremissionMfdPanel = (
             setSelectedFm(undefined);
           },
         },
-        { children: 'F-MISS', onClick: () => setSelectedFm(undefined) },
+        { children: '火力任务', onClick: () => setSelectedFm(undefined) },
         editFm
-          ? { children: 'VIEW', onClick: () => setEditFm(false) }
-          : { children: 'EDIT', onClick: () => setEditFm(true) },
+          ? { children: '查看', onClick: () => setEditFm(false) }
+          : { children: '编辑', onClick: () => setEditFm(true) },
       ]}
       bottomButtons={[
         {
-          children: 'EXIT',
+          children: '退出',
           onClick: () => {
             setSelectedFm(undefined);
             setPanelState('');
@@ -232,7 +232,7 @@ const ViewFiremissionMfdPanel = (
               <Stack.Item>
                 <Stack>
                   <Stack.Item>
-                    <h3>Firemission:</h3>
+                    <h3>火力任务：</h3>
                   </Stack.Item>
                   <Stack.Item>
                     <h3>{firemission.name}</h3>
@@ -272,19 +272,19 @@ const FiremissionView = (props: MfdProps & { readonly fm: CasFiremission }) => {
     <Stack>
       <Stack.Item>
         <Stack vertical>
-          <Stack.Item className="FireMissionTitle">Weapon</Stack.Item>
-          <Stack.Item className="FireMissionTitle">Ammunition</Stack.Item>
+          <Stack.Item className="FireMissionTitle">武器</Stack.Item>
+          <Stack.Item className="FireMissionTitle">弹药</Stack.Item>
           {!displayDetail && (
             <>
-              <Stack.Item className="FireMissionTitle">Consumption</Stack.Item>
+              <Stack.Item className="FireMissionTitle">弹药消耗</Stack.Item>
               <Stack.Item className="FireMissionTitle" />
             </>
           )}
           {displayDetail && (
             <>
-              <Stack.Item className="FireMissionTitle">Gimbals</Stack.Item>
-              <Stack.Item className="FireMissionTitle">Fire Delay</Stack.Item>
-              <Stack.Item className="FireMissionTitle">Offset</Stack.Item>
+              <Stack.Item className="FireMissionTitle">转向范围</Stack.Item>
+              <Stack.Item className="FireMissionTitle">射击间隔</Stack.Item>
+              <Stack.Item className="FireMissionTitle">偏移</Stack.Item>
             </>
           )}
 
@@ -314,7 +314,7 @@ const FiremissionView = (props: MfdProps & { readonly fm: CasFiremission }) => {
           </Stack.Item>
         ))}
       {editFm && selectedWeapon === undefined && (
-        <Stack.Item>Select weapon on right panel</Stack.Item>
+        <Stack.Item>在右侧面板选择武器</Stack.Item>
       )}
       {editFm && selectedWeapon && (
         <Stack.Item key={selectedWeapon.mount_point}>
@@ -348,7 +348,7 @@ const OffsetOverview = (
     (x) => x.weapon === props.equipment.mount_point,
   );
   if (weaponFm === undefined) {
-    return <>error</>;
+    return <>错误</>;
   }
   const ammoConsumption = weaponFm.offsets
     .map((x) => (x !== '-' ? props.equipment.burst ?? 0 : 0))
@@ -379,7 +379,7 @@ const OffsetDetailed = (
     (x) => x.weapon === props.equipment.mount_point,
   );
   if (weaponFm === undefined) {
-    return <>error</>;
+    return <>错误</>;
   }
   const ammoConsumption = weaponFm.offsets
     .map((x) => (x === '-' ? 0 : props.equipment.burst))
@@ -393,11 +393,11 @@ const OffsetDetailed = (
         {props.equipment.shorthand} {props.equipment.mount_point}
       </Stack.Item>
       <Stack.Item className="FireMissionOffsetLabel">
-        {props.equipment.ammo} / {props.equipment.max_ammo} using{' '}
-        {ammoConsumption} per run.
+        {props.equipment.ammo} / {props.equipment.max_ammo}，每轮消耗{' '}
+        {ammoConsumption}。
       </Stack.Item>
       <Stack.Item className="FireMissionOffsetLabel">
-        {availableGimbals.min} to {availableGimbals.max}
+        {availableGimbals.min} 至 {availableGimbals.max}
       </Stack.Item>
       <Stack.Item className="FireMissionOffsetLabel">
         {(props.equipment.firemission_delay ?? 0) - 1}
@@ -431,11 +431,11 @@ const FMOffsetError = (
       <Stack.Item height="25px" />
       <Divider />
       <Stack.Item className="FireMissionError">
-        Unable to set firemission offsets.
+        无法设置火力任务偏移。
         <br />
-        Offsets depend on ammunition.
+        偏移范围取决于弹药。
         <br />
-        Load ammunition to adjust.
+        装填弹药后即可调整。
       </Stack.Item>
     </Stack>
   );
@@ -503,7 +503,7 @@ const FMOffsetStack = (
           {editFm &&
             availableGimbals.values.map((x) => (
               <Stack.Item key={x} className="FireMissionOffset">
-                {x === '-' ? 'UNSET' : x}
+                {x === '-' ? '未设置' : x}
               </Stack.Item>
             ))}
         </Stack>
@@ -525,7 +525,7 @@ const FMOffsetStack = (
           if (availableMap[i] === false && x === '-') {
             return (
               <Stack.Item key={i}>
-                <Box className="FiremissionBadStep">WEAPON BUSY</Box>
+                <Box className="FiremissionBadStep">武器忙碌</Box>
               </Stack.Item>
             );
           }
@@ -533,7 +533,7 @@ const FMOffsetStack = (
             return (
               <Stack.Item key={i}>
                 <Box className="FiremissionBadStep">
-                  Ammo unusable for firemissions
+                  该弹药无法用于火力任务
                 </Box>
               </Stack.Item>
             );
