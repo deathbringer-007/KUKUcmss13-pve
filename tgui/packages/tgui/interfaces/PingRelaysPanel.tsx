@@ -10,7 +10,7 @@ import { Window } from '../layouts';
 const RED = '#dc2828';
 
 export class PingResult {
-  desc: string = 'Loading...';
+  desc: string = '正在加载……';
   url: string = '';
   ping: number = -1;
   error: string | null = null;
@@ -138,7 +138,7 @@ class PingApp extends Component<PingAppProps> {
                     <Box inline>
                       {this.state.lastClickedIndex === i &&
                       this.state.lastClickedState
-                        ? 'Connect via ' + result.desc + '?'
+                        ? '通过 ' + result.desc + ' 连接？'
                         : result.desc}
                     </Box>
                   </Flex.Item>
@@ -154,7 +154,7 @@ class PingApp extends Component<PingAppProps> {
                         average: [200, 500],
                         bad: [500, 1000],
                       }}
-                      format={(x) => x + 'ms'}
+                      format={(x) => x + '毫秒'}
                       inline
                     />
                   </Flex.Item>

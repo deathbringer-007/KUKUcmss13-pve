@@ -31,18 +31,18 @@ export const DemoSim = () => {
   return (
     <Window width={550} height={300}>
       <Window.Content scrollable>
-        <Section title="Configuration status">
+        <Section title="配置状态">
           {(!!data.configuration && (
             <NoticeBox info fontSize="15px">
-              Configuration : detonating {data.configuration}!
+              配置：引爆 {data.configuration}！
             </NoticeBox>
           )) || (
             <NoticeBox danger fontSize="15px">
-              No explosive configuration loaded!
+              尚未载入爆炸物配置！
             </NoticeBox>
           )}
           <NoticeBox info fontSize="15px">
-            Target dummy type : {data.dummy_mode}
+            靶标类型：{data.dummy_mode}
           </NoticeBox>
           {timeLeft > 0 && (
             <ProgressBar
@@ -55,13 +55,12 @@ export const DemoSim = () => {
               }}
             >
               <Box textAlign="center" fontSize="15px">
-                {Math.ceil(timeLeft / 10)} seconds until the console&apos;s
-                processors finish cooling!
+                控制台处理器还需 {Math.ceil(timeLeft / 10)} 秒冷却！
               </Box>
             </ProgressBar>
           )}
         </Section>
-        <Section title="Detonation controls">
+        <Section title="引爆控制">
           <Stack>
             <Stack.Item grow>
               {(!simulationView && (
@@ -75,7 +74,7 @@ export const DemoSim = () => {
                     setSimulationView(true);
                   }}
                 >
-                  Enter simulation
+                  进入模拟
                 </Button>
               )) || (
                 <Button
@@ -88,7 +87,7 @@ export const DemoSim = () => {
                     setSimulationView(false);
                   }}
                 >
-                  Exit simulation
+                  退出模拟
                 </Button>
               )}
             </Stack.Item>
@@ -100,7 +99,7 @@ export const DemoSim = () => {
                 color="good"
                 onClick={() => act('switchmode')}
               >
-                Switch dummy type
+                切换靶标类型
               </Button>
             </Stack.Item>
           </Stack>
@@ -114,7 +113,7 @@ export const DemoSim = () => {
                 color="good"
                 onClick={() => act('eject')}
               >
-                Eject explosive
+                弹出爆炸物
               </Button>
             </Stack.Item>
             <Stack.Item grow>
@@ -124,10 +123,10 @@ export const DemoSim = () => {
                 fluid
                 icon="bomb"
                 color="good"
-                confirmContent="Confirm?"
+                confirmContent="确认？"
                 onClick={() => act('detonate')}
               >
-                Detonate explosive
+                引爆爆炸物
               </Button.Confirm>
             </Stack.Item>
           </Stack>

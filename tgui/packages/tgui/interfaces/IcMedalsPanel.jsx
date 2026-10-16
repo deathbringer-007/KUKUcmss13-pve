@@ -26,7 +26,7 @@ export const IcMedalsPanel = (props) => {
             color="danger"
             onClick={() => act('grant_new_medal')}
           >
-            Grant new medal
+            颁发新勋章
           </Button>
         </NoticeBox>
         {data.recommendations.map((recommendation, index) => (
@@ -40,7 +40,7 @@ export const IcMedalsPanel = (props) => {
                   <Flex direction="column">
                     <Flex.Item>
                       <Button
-                        tooltip="Distinguished Conduct Medal"
+                        tooltip="卓越品行勋章"
                         color={
                           recommendationMedalTypes[index] === CONDUCT_MEDAL
                             ? 'green'
@@ -63,7 +63,7 @@ export const IcMedalsPanel = (props) => {
                     </Flex.Item>
                     <Flex.Item>
                       <Button
-                        tooltip="Medal of Valor"
+                        tooltip="英勇勋章"
                         color={
                           recommendationMedalTypes[index] === VALOR_MEDAL
                             ? 'green'
@@ -88,7 +88,7 @@ export const IcMedalsPanel = (props) => {
                   <Flex direction="column">
                     <Flex.Item>
                       <Button
-                        tooltip="Bronze Heart Medal"
+                        tooltip="青铜之心勋章"
                         color={
                           recommendationMedalTypes[index] === BRONZE_HEART_MEDAL
                             ? 'green'
@@ -111,7 +111,7 @@ export const IcMedalsPanel = (props) => {
                     </Flex.Item>
                     <Flex.Item>
                       <Button
-                        tooltip="Medal of Exceptional Heroism"
+                        tooltip="非凡英雄勋章"
                         color={
                           recommendationMedalTypes[index] === HEROISM_MEDAL
                             ? 'green'
@@ -137,17 +137,17 @@ export const IcMedalsPanel = (props) => {
               </Stack.Item>
               <Stack.Item grow textAlign={'center'}>
                 <Box>
-                  Recommender: {recommendation.recommender_name} (
+                  推荐人：{recommendation.recommender_name} (
                   {recommendation.recommender_rank})
                 </Box>
-                <Box>Reason: {recommendation.reason}</Box>
+                <Box>理由：{recommendation.reason}</Box>
               </Stack.Item>
               <Stack.Item textAlign="right">
                 <Button
                   icon="check"
                   tooltip={
                     !recommendationMedalTypes[index]
-                      ? 'Select a medal type first!'
+                      ? '请先选择勋章类型！'
                       : ''
                   }
                   disabled={!recommendationMedalTypes[index]}

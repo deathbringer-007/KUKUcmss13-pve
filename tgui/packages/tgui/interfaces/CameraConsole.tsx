@@ -121,7 +121,7 @@ const CameraSelector = (props) => {
           expensive
           fluid
           mt={1}
-          placeholder="Search for a camera"
+          placeholder="搜索摄像头"
           onInput={(e, value) => setSearchText(value)}
           value={searchText}
         />
@@ -176,7 +176,7 @@ const CameraControls = (props: { readonly searchText: string }) => {
               {activeCamera?.status ? (
                 <NoticeBox info>{activeCamera.name}</NoticeBox>
               ) : (
-                <NoticeBox danger>No input signal</NoticeBox>
+                <NoticeBox danger>无输入信号</NoticeBox>
               )}
             </Stack.Item>
 

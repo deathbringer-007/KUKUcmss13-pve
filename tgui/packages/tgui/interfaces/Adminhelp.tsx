@@ -24,9 +24,9 @@ export const Adminhelp = (props) => {
   const [currentlyInputting, setCurrentlyInputting] = useState(false);
   const [ahelpMessage, setAhelpMessage] = useState('');
 
-  const confirmationText = 'alert admins';
+  const confirmationText = '通知管理员';
   return (
-    <Window title="Create Adminhelp" theme="admin" height={300} width={500}>
+    <Window title="向管理员求助" theme="admin" height={300} width={500}>
       <Window.Content
         style={{
           backgroundImage: 'none',
@@ -38,7 +38,7 @@ export const Adminhelp = (props) => {
               autoFocus
               height="100%"
               value={ahelpMessage}
-              placeholder="Admin help"
+              placeholder="请描述需要管理员协助的问题"
               onChange={(e, value) => setAhelpMessage(value)}
             />
           </Stack.Item>
@@ -56,9 +56,9 @@ export const Adminhelp = (props) => {
                       fontStyle: 'normal',
                     }}
                   >
-                    Input &apos;{confirmationText}&apos; to proceed.
+                    输入“{confirmationText}”以继续。
                     <Input
-                      placeholder="Confirmation Prompt"
+                      placeholder="输入确认文字"
                       autoFocus
                       fluid
                       onChange={(e, value) => {
@@ -84,13 +84,13 @@ export const Adminhelp = (props) => {
                     disabled={bannedFromUrgentAhelp}
                     tooltip={
                       bannedFromUrgentAhelp
-                        ? 'You are banned from using urgent ahelps.'
+                        ? '你已被禁止使用紧急求助。'
                         : undefined
                     }
                     fluid
                     textAlign="center"
                   >
-                    Alert admins?
+                    通知管理员？
                   </Button>
                 )}
               </NoticeBox>
@@ -108,7 +108,7 @@ export const Adminhelp = (props) => {
                 })
               }
             >
-              Submit
+              提交
             </Button>
           </Stack.Item>
         </Stack>

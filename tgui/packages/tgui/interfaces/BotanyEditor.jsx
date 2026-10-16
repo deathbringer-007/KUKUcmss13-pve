@@ -23,7 +23,7 @@ export const BotanyEditor = () => {
                 disabled={!disk}
                 onClick={() => act('eject_disk')}
               >
-                {disk ? 'Eject ' + disk : 'Eject disk'}
+                {disk ? '弹出' + disk : '弹出磁盘'}
               </Button>
             </Stack.Item>
             <Stack.Item>
@@ -33,38 +33,38 @@ export const BotanyEditor = () => {
                 disabled={!seed}
                 onClick={() => act('eject_packet')}
               >
-                {seed ? 'Eject ' + seed : 'Eject target seeds'}
+                {seed ? '弹出' + seed : '弹出目标种子'}
               </Button>
             </Stack.Item>
           </Stack>
         </Section>
-        <Section title="Buffered Genetic Data">
+        <Section title="已缓存的遗传数据">
           <>
             {!disk && (
               <NoticeBox danger>
-                No disk! Genetic data cannot be applied.
+                未插入磁盘！无法应用遗传数据。
               </NoticeBox>
             )}
             {!seed && (
-              <NoticeBox danger>No seeds to apply genetic data to!</NoticeBox>
+              <NoticeBox danger>没有可供应用遗传数据的种子！</NoticeBox>
             )}
           </>
           {!!disk && (
             <LabeledList>
-              <LabeledList.Item label="Source">{sourceName}</LabeledList.Item>
-              <LabeledList.Item label="Locus">{locus}</LabeledList.Item>
+              <LabeledList.Item label="来源">{sourceName}</LabeledList.Item>
+              <LabeledList.Item label="基因座">{locus}</LabeledList.Item>
             </LabeledList>
           )}
         </Section>
         {!!seed && (
-          <Section title="Source Material">
+          <Section title="来源材料">
             {degraded && (
-              <NoticeBox danger>Genetic data too degraded to edit!</NoticeBox>
+              <NoticeBox danger>遗传数据损坏严重，无法编辑！</NoticeBox>
             )}
             <LabeledList>
-              <LabeledList.Item label="Target">{seed}</LabeledList.Item>
-              <LabeledList.Item label="Gene Decay">
-                {!degraded ? degradation + '%' : '#!ERROR%'}
+              <LabeledList.Item label="目标">{seed}</LabeledList.Item>
+              <LabeledList.Item label="基因退化程度">
+                {!degraded ? degradation + '%' : '#!错误%'}
               </LabeledList.Item>
               <LabeledList.Item>
                 <Button
@@ -73,7 +73,7 @@ export const BotanyEditor = () => {
                   disabled={!seed || degraded}
                   onClick={() => act('apply_gene')}
                 >
-                  Apply gene mods
+                  应用基因改造
                 </Button>
               </LabeledList.Item>
             </LabeledList>

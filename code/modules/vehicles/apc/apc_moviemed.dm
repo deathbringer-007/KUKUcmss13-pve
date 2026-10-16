@@ -1,6 +1,6 @@
 /obj/vehicle/multitile/apc/movie/med
-	name = "M577A5 Armored Treatment Vehicle"
-	desc = "A modification to the standard M577 APC commonly seen in support companies. Tailored for facilitating medical treatments whilst on the move. Limited offensive capability, but carries enough to defend itself from hostiles mistaking the red-cross mark as an easy target. Has capacity for a small number of casualties, entrance on the right."
+	name = "M577A5装甲医疗车"
+	desc = "由标准M577装甲输送车改装而来，常见于支援连，专为行进中的医疗救治设计。进攻能力有限，但足以击退把红十字标志当成软目标的敌人。可搭载少量伤员，入口位于右侧。"
 
 	icon_state = "apc_base_medical"
 	interior_map = /datum/map_template/interior/apc_moviemed

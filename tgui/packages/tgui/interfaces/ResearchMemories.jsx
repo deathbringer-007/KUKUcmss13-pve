@@ -13,13 +13,13 @@ export const ResearchMemories = () => {
   return (
     <Window width={650} height={700} theme={theme}>
       <Window.Content scrollable>
-        <Section title={'Clearance: ' + clearance}>
-          <Flex.Item>{'Research Credits: ' + research_credits}</Flex.Item>
+        <Section title={'权限等级：' + clearance}>
+          <Flex.Item>{'研究积分：' + research_credits}</Flex.Item>
         </Section>
 
         <Objectives />
 
-        <Section title="Clues">
+        <Section title="线索">
           <Tabs fluid>
             {clue_categories.map((clue_category, i) => {
               return (
@@ -73,7 +73,7 @@ const Objectives = (props) => {
   const { data } = useBackend();
 
   return (
-    <Section title="Objectives">
+    <Section title="目标">
       <LabeledList>
         {data.objectives.map((page) => {
           return (

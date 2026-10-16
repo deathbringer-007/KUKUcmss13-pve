@@ -56,7 +56,7 @@ export const Who = (props, context) => {
                       });
                     }}
                     onInput={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search..."
+                    placeholder="搜索……"
                     value={searchQuery}
                   />
                 </Stack.Item>
@@ -67,7 +67,7 @@ export const Who = (props, context) => {
             {filteredTotalPlayers && (
               <Section>
                 <WhoCollapsible
-                  title={'Players - ' + filteredTotalPlayers.length}
+                  title={'玩家 - ' + filteredTotalPlayers.length}
                   color="good"
                 >
                   <Box>
@@ -78,7 +78,7 @@ export const Who = (props, context) => {
             )}
             {factions_additional && (
               <Section>
-                <WhoCollapsible title="Information" color="olive">
+                <WhoCollapsible title="信息" color="olive">
                   <Box direction="column">
                     {factions_additional.map((x, index) => (
                       <GetAddInfo

@@ -41,11 +41,11 @@ export const SupportMfdPanel = (props: MfdProps) => {
     <MfdPanel
       panelStateId={props.panelStateId}
       topButtons={[
-        { children: 'EQUIP', onClick: () => setPanelState('equipment') },
+        { children: '设备', onClick: () => setPanelState('equipment') },
       ]}
       bottomButtons={[
         {
-          children: 'EXIT',
+          children: '退出',
           onClick: () => setPanelState(''),
         },
       ]}
@@ -53,14 +53,14 @@ export const SupportMfdPanel = (props: MfdProps) => {
       <Box className="NavigationMenu">
         <Stack align="center" vertical>
           <Stack.Item>
-            <h3>Component {result?.shorthand} not found</h3>
+            <h3>未找到组件：{result?.shorthand}</h3>
           </Stack.Item>
           <Stack.Item>
-            <h3>Is this authorised equipment?</h3>
+            <h3>这是经过授权的设备吗？</h3>
           </Stack.Item>
           <Stack.Item width="300px">
             <h3>
-              Contact your local WY representative for further upgrade options
+              如需了解更多升级方案，请联系当地维兰德-汤谷代表。
             </h3>
           </Stack.Item>
         </Stack>

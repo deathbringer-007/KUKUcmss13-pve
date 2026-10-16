@@ -13,34 +13,34 @@ const MedevacOccupant = (props: { readonly data: MedevacTargets }) => (
     <Flex justify="space-between" direction="horizontal">
       <Flex.Item grow>
         <Stack vertical>
-          <Stack.Item>{props.data.occupant ?? 'Empty'}</Stack.Item>
-          <Stack.Item>{props.data.area ?? 'Unknown'}</Stack.Item>
+          <Stack.Item>{props.data.occupant ?? '空置'}</Stack.Item>
+          <Stack.Item>{props.data.area ?? '未知'}</Stack.Item>
         </Stack>
       </Flex.Item>
       <Flex.Item grow>
         <Flex fill={1} justify="space-around">
           <Flex.Item>
-            HP
+            生命
             <br />
             {props.data.damage?.hp}
           </Flex.Item>
           <Flex.Item>
-            Brute
+            外伤
             <br />
             {props.data.damage?.brute}
           </Flex.Item>
           <Flex.Item>
-            Fire
+            烧伤
             <br />
             {props.data.damage?.fire}
           </Flex.Item>
           <Flex.Item>
-            Tox
+            毒伤
             <br />
             {props.data.damage?.tox}
           </Flex.Item>
           <Flex.Item>
-            Oxy
+            缺氧
             <br /> {props.data.damage?.oxy}
           </Flex.Item>
         </Flex>
@@ -62,7 +62,7 @@ export const MedevacMfdPanel = (props: MfdProps) => {
   const medevac_mapper = (x: number) => {
     const target = medevacs.length > x ? medevacs[x] : undefined;
     return {
-      children: target ? target.occupant?.split(' ')[0] ?? 'Empty' : undefined,
+      children: target ? target.occupant?.split(' ')[0] ?? '空置' : undefined,
       onClick: () =>
         act('medevac-target', {
           equipment_id: result?.mount_point,
@@ -107,11 +107,11 @@ export const MedevacMfdPanel = (props: MfdProps) => {
         },
       ]}
       topButtons={[
-        { children: 'EQUIP', onClick: () => setPanelState('equipment') },
+        { children: '设备', onClick: () => setPanelState('equipment') },
       ]}
       bottomButtons={[
         {
-          children: 'EXIT',
+          children: '退出',
           onClick: () => setPanelState(''),
         },
       ]}
@@ -160,7 +160,7 @@ export const MedevacMfdPanel = (props: MfdProps) => {
           <Flex.Item width="400px">
             <Stack vertical align="center">
               <Stack.Item>
-                <h3>Medevac Requests</h3>
+                <h3>医疗后送请求</h3>
               </Stack.Item>
               {all_targets.map((x) => (
                 <>

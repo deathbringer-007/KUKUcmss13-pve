@@ -10,11 +10,11 @@ export const StatbrowserOptions = (props) => {
   const [fontsize, setFontsize] = useState(current_fontsize);
 
   return (
-    <Window title="Statbrowser Options" width={300} height={120}>
+    <Window title="状态面板选项" width={300} height={120}>
       <Window.Content>
         <Options>
           <NumberOption
-            category="Font Size"
+            category="字号"
             value={fontsize}
             minValue={10}
             maxValue={30}
@@ -35,7 +35,7 @@ const Options = (props) => {
   const { children } = props;
 
   return (
-    <Section title="Options">
+    <Section title="选项">
       <Flex spacing={16 * 2}>
         {!Array.isArray(children)
           ? children

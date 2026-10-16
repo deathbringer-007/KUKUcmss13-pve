@@ -23,21 +23,21 @@ export const TechNode = (props) => {
         <Stack vertical fill>
           <Stack.Item grow>
             <Section
-              title="Information"
+              title="信息"
               fill
               buttons={
                 <Button backgroundColor="transparent">
-                  {'Tech points: ' + total_points}
+                  {'科技点数：' + total_points}
                 </Button>
               }
             >
               <LabeledList>
-                <LabeledList.Item label="Name">{name}</LabeledList.Item>
-                <LabeledList.Item label="Description">{desc}</LabeledList.Item>
-                <LabeledList.Item label="Cost">{cost}</LabeledList.Item>
+                <LabeledList.Item label="名称">{name}</LabeledList.Item>
+                <LabeledList.Item label="说明">{desc}</LabeledList.Item>
+                <LabeledList.Item label="费用">{cost}</LabeledList.Item>
 
                 {!!stats && (
-                  <LabeledList.Item label="Statistics">
+                  <LabeledList.Item label="属性">
                     {stats.map((stat, i) => (
                       <Button
                         key={i}
@@ -65,16 +65,16 @@ export const TechNode = (props) => {
                 disabled={!can_afford || !valid_tier || unlocked ? true : false}
                 tooltip={
                   unlocked
-                    ? 'Already unlocked'
+                    ? '已经解锁'
                     : !valid_tier
-                      ? 'Tech tier not unlocked'
+                      ? '尚未解锁该科技等级'
                       : !can_afford
-                        ? 'Not enough tech points'
+                        ? '科技点数不足'
                         : ''
                 }
                 onClick={() => act('purchase')}
               >
-                Purchase
+                购买
               </Button>
             </Section>
           </Stack.Item>

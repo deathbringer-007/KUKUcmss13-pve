@@ -16,23 +16,21 @@ export const NuclearBomb = () => {
             <Stack.Item>
               <NoticeBox textAlign="center">
                 {data.decryption_complete
-                  ? 'Decryption complete.'
-                  : `Decryption time left :
-                  ${data.decryption_time} minutes`}
+                  ? '解密完成。'
+                  : `解密剩余时间：${data.decryption_time}分钟`}
               </NoticeBox>
             </Stack.Item>
             <Stack.Item>
               <NoticeBox danger textAlign="center">
                 {data.timing
-                  ? `Time until detonation :
-                  ${data.timeleft}`
-                  : 'Not currently active.'}
+                  ? `引爆倒计时：${data.timeleft}`
+                  : '当前未启用。'}
               </NoticeBox>
             </Stack.Item>
             <Stack.Item>
               {(!data.safety && (
                 <Button fluid icon="lock" onClick={() => act('toggleSafety')}>
-                  Enable safety
+                  开启保险
                 </Button>
               )) || (
                 <Button.Confirm
@@ -40,7 +38,7 @@ export const NuclearBomb = () => {
                   icon="exclamation-triangle"
                   onClick={() => act('toggleSafety')}
                 >
-                  Disable safety
+                  关闭保险
                 </Button.Confirm>
               )}
             </Stack.Item>
@@ -51,7 +49,7 @@ export const NuclearBomb = () => {
                   icon="lock"
                   onClick={() => act('toggleCommandLockout')}
                 >
-                  Enable command lockout
+                  开启指挥权限锁
                 </Button>
               )) || (
                 <Button.Confirm
@@ -59,14 +57,14 @@ export const NuclearBomb = () => {
                   icon="exclamation-triangle"
                   onClick={() => act('toggleCommandLockout')}
                 >
-                  Disable command lockout
+                  关闭指挥权限锁
                 </Button.Confirm>
               )}
             </Stack.Item>
             <Stack.Item>
               {(!data.anchor && (
                 <Button fluid icon="lock" onClick={() => act('toggleAnchor')}>
-                  Activate anchor
+                  启用锚定
                 </Button>
               )) || (
                 <Button.Confirm
@@ -74,7 +72,7 @@ export const NuclearBomb = () => {
                   icon="lock-open"
                   onClick={() => act('toggleAnchor')}
                 >
-                  Deactivate anchor
+                  解除锚定
                 </Button.Confirm>
               )}
             </Stack.Item>
@@ -87,7 +85,7 @@ export const NuclearBomb = () => {
                   disabled={cantDecrypt}
                   onClick={() => act('toggleEncryption')}
                 >
-                  Start decryption
+                  开始解密
                 </Button.Confirm>
               )) || (
                 <Button.Confirm
@@ -95,7 +93,7 @@ export const NuclearBomb = () => {
                   icon="power-off"
                   onClick={() => act('toggleEncryption')}
                 >
-                  Stop decryption
+                  停止解密
                 </Button.Confirm>
               )}
             </Stack.Item>
@@ -108,7 +106,7 @@ export const NuclearBomb = () => {
                   disabled={cantNuke}
                   onClick={() => act('toggleNuke')}
                 >
-                  Activate nuke
+                  启动核弹
                 </Button.Confirm>
               )) || (
                 <Button.Confirm
@@ -116,7 +114,7 @@ export const NuclearBomb = () => {
                   icon="power-off"
                   onClick={() => act('toggleNuke')}
                 >
-                  Deactivate nuke
+                  停用核弹
                 </Button.Confirm>
               )}
             </Stack.Item>
@@ -124,13 +122,13 @@ export const NuclearBomb = () => {
           {!data.allowed && (
             <Dimmer fontSize="32px">
               <Icon name="exclamation-triangle" />
-              {' Access Denied!'}
+              {' 拒绝访问！'}
             </Dimmer>
           )}
           {!!data.being_used && (
             <Dimmer fontSize="32px">
               <Icon name="cog" spin />
-              {' Processing...'}
+              {' 处理中……'}
             </Dimmer>
           )}
         </Section>

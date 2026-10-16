@@ -1,7 +1,7 @@
 /obj/vehicle/multitile/tank/aev
-	name = "M34E1 Buckner Armored Engineering Vehicle"
-	desc = "A giant piece of armor with a plow, you know what to do. Entrance in the back."
-	desc_lore = "M34E1 is an extremely rare vehicle in the arsenal of USCMC. Developed after Operation Odolla Onslaught conducted by the forces of the USS Stalwart against a massive local insurrection. Being pinned down with improvised mortars and surrounded by IEDs, marines of 1/2 \"Iron Heads\" outfitted a Longstreet tank with improvised armor and mine plow, sending it unmanned into a minefield and allowing for a quick assault against enemy positions. MEUCOM took notice of this event, and after record-breaking 3 months of development and 10 million dollars of cost introduced M34E1 in limited numbers."
+	name = "M34E1“巴克纳”装甲工程车"
+	desc = "一大块装甲，配上一副推铲，你知道该怎么用。入口位于后方。"
+	desc_lore = "M34E1在殖民地海军陆战队的装备中极为罕见，其研发源于坚毅号部队为平定当地大规模叛乱而实施的“奥多拉猛攻”行动。当时，第2团第1营“铁头”陆战队员受到简易迫击炮压制，又被简易爆炸装置包围，于是给一辆“朗斯特里特”坦克加装临时装甲和扫雷犁，让它无人驶入雷区，为快速突击敌方阵地打开通路。陆战远征部队司令部注意到了此事，仅耗时创纪录的3个月、耗资1000万美元便完成研发，并少量列装M34E1。"
 
 	icon_state = "aev_base"
 
@@ -87,15 +87,15 @@
 	return
 
 /obj/vehicle/multitile/tank/aev/desert
-	desc = "A giant piece of armor with a plow, you know what to do. Entrance in the back. Painted in an arid-environment camo scheme."
+	desc = "一大块装甲，配上一副推铲，你知道该怎么用。入口位于后方。采用干旱环境迷彩。"
 	icon_state = "aev_base_d"
 
 /obj/vehicle/multitile/tank/aev/jungle
-	desc = "A giant piece of armor with a plow, you know what to do. Entrance in the back. Painted in a lush-environment camo scheme."
+	desc = "一大块装甲，配上一副推铲，你知道该怎么用。入口位于后方。采用茂密植被环境迷彩。"
 	icon_state = "aev_base_j"
 
 /obj/vehicle/multitile/tank/aev/night
-	desc = "A giant piece of armor with a plow, you know what to do. Entrance in the back. Painted in a night-environment camo scheme."
+	desc = "一大块装甲，配上一副推铲，你知道该怎么用。入口位于后方。采用夜间环境迷彩。"
 	icon_state = "aev_base_n"
 
 /obj/effect/vehicle_spawner/aev

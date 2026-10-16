@@ -28,8 +28,8 @@
 	ammo_band_color = AMMO_BAND_COLOR_AP
 
 /obj/item/ammo_magazine/smg/m39/le
-	name = "\improper 毒蛇 9 轻爆弹匣（9mm）"
-	desc = "一个 9mm 冲锋枪轻爆弹匣。"
+	name = "\improper 毒蛇 9 轻型爆破弹匣（9mm）"
+	desc = "一个 9mm 冲锋枪轻型爆破弹匣。"
 	default_ammo = /datum/ammo/bullet/smg/le
 	ammo_band_color = AMMO_BAND_COLOR_LIGHT_EXPLOSIVE
 

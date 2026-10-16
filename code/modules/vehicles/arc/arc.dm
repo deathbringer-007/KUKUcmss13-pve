@@ -1,6 +1,6 @@
 /obj/vehicle/multitile/arc
-	name = "\improper M540-B Armored Recon Carrier"
-	desc = "An M540-B Armored Recon Carrier. A lightly armored reconnaissance and intelligence vehicle. Entrances on the sides."
+	name = "\improper M540-B装甲侦察车"
+	desc = "M540-B装甲侦察车，配备轻型装甲，用于侦察和情报收集。入口位于两侧。"
 
 	icon = 'icons/obj/vehicles/arc.dmi'
 	icon_state = "arc_base"
@@ -100,9 +100,9 @@
 		return
 
 	if(health > 0)
-		. += SPAN_XENO("[src] can be crawled under once destroyed.")
+		. += SPAN_XENO("摧毁[src]后，我们便能从下面爬过。")
 	else
-		. += SPAN_XENO("[src] can be crawled under by <b>dragging our sprite</b> to it.")
+		. += SPAN_XENO("将<b>我们的角色图像拖到</b>[src]上，即可从下面爬过。")
 
 /obj/vehicle/multitile/arc/proc/on_antenna_toggle(datum/source)
 	SIGNAL_HANDLER
@@ -152,13 +152,13 @@
 
 /obj/vehicle/multitile/arc/load_role_reserved_slots()
 	var/datum/role_reserved_slots/RRS = new
-	RRS.category_name = "CIC Officer"
+	RRS.category_name = "作战情报中心军官"
 	RRS.roles = list(JOB_SO, JOB_DI, JOB_XO, JOB_CO, JOB_GENERAL)
 	RRS.total = 2
 	role_reserved_slots += RRS
 
 	RRS = new
-	RRS.category_name = "Intelligence Officer"
+	RRS.category_name = "情报官"
 	RRS.roles = list(JOB_INTEL)
 	RRS.total = 1
 	role_reserved_slots += RRS
@@ -213,7 +213,7 @@
 		return
 
 	if(health > 0)
-		to_chat(user, SPAN_XENO("We can't go under [src] until it is destroyed!"))
+		to_chat(user, SPAN_XENO("必须先摧毁[src]，我们才能从下面爬过！"))
 		return
 
 	var/turf/current_turf = get_turf(user)
@@ -224,22 +224,22 @@
 			break
 
 		if(current_turf.density)
-			to_chat(user, SPAN_XENO("The path under [src] is obstructed!"))
+			to_chat(user, SPAN_XENO("[src]下方的通路被挡住了！"))
 			return
 
 	// Now we check to make sure the turf on the other side of the ARC isn't dense too
 	current_turf = get_step(current_turf, dir_to_go)
 	if(current_turf.density)
-		to_chat(user, SPAN_XENO("The path under [src] is obstructed!"))
+		to_chat(user, SPAN_XENO("[src]下方的通路被挡住了！"))
 		return
 
-	to_chat(user, SPAN_XENO("We begin to crawl under [src]..."))
+	to_chat(user, SPAN_XENO("我们开始从[src]下方爬过……"))
 	if(!do_after(user, 3 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
-		to_chat(user, SPAN_XENO("We stop crawling under [src]."))
+		to_chat(user, SPAN_XENO("我们停止了从[src]下方爬过。"))
 		return
 
 	user.forceMove(current_turf)
-	to_chat(user, SPAN_XENO("We crawl to the other side of [src]."))
+	to_chat(user, SPAN_XENO("我们爬到了[src]的另一侧。"))
 
 /*
 ** PRESETS SPAWNERS

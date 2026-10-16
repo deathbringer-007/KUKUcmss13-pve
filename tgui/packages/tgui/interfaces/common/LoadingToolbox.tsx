@@ -25,7 +25,7 @@ export const LoadingScreen = (props) => {
         <Stack.Item>
           <Icon color="blue" name="toolbox" spin size={4} />
         </Stack.Item>
-        <Stack.Item>Please wait...</Stack.Item>
+        <Stack.Item>请稍候……</Stack.Item>
       </Stack>
     </Dimmer>
   );

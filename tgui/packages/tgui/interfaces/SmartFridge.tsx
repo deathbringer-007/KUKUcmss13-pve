@@ -15,6 +15,13 @@ import { Table, TableCell, TableRow } from '../components/Table';
 import { Window } from '../layouts';
 import { ElectricalPanel } from './common/ElectricalPanel';
 
+const categoryLabels = new Map([
+  ['all', '全部'],
+  ['other', '其他'],
+  ['bottle', '药瓶'],
+  ['pills', '药丸'],
+]);
+
 interface SmartFridgeData {
   secure: number;
   transfer_mode: number;
@@ -65,7 +72,7 @@ const Contents = (props: {
   if (allItems.length === 0) {
     return (
       <Section title={props.title}>
-        <NoticeBox danger>No items present!</NoticeBox>
+        <NoticeBox danger>没有物品！</NoticeBox>
       </Section>
     );
   }
@@ -87,9 +94,7 @@ const Contents = (props: {
           .map((value) => {
             const key = value[0];
             const items = value[1];
-            const displayName = `${key
-              .substring(0, 1)
-              .toUpperCase()}${key.substring(1)}`;
+            const displayName = categoryLabels.get(key) ?? key;
             return (
               <Tabs.Tab
                 key={key}
@@ -180,16 +185,16 @@ export const SmartFridge = () => {
         <Stack vertical>
           {!!data.secure && (
             <Stack.Item>
-              <NoticeBox>Smart Fridge is in secure mode</NoticeBox>
+              <NoticeBox>智能冰箱处于安全模式</NoticeBox>
             </Stack.Item>
           )}
           <Stack.Item>
-            <Contents title="Contents" isLocal items={data.storage.contents} />
+            <Contents title="存储物品" isLocal items={data.storage.contents} />
           </Stack.Item>
           {data.networked === 1 && (
             <Stack.Item>
               <Contents
-                title="Networked"
+                title="联网存储"
                 isLocal={false}
                 items={data.storage.networked}
               />

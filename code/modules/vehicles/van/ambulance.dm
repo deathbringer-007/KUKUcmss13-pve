@@ -4,8 +4,8 @@
 //Read the documentation in multitile.dm before trying to decipher this stuff
 
 /obj/vehicle/multitile/box_van/ambulance
-	name = "\improper ambulance"
-	desc = "An ambulance. It's used to transport critically injured patients."
+	name = "\improper 救护车"
+	desc = "一辆救护车，用于运送危重伤员。"
 	icon = 'icons/obj/vehicles/ambulance.dmi'
 
 	interior_map = /datum/map_template/interior/ambulance

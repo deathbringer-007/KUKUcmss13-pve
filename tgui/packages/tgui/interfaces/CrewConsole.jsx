@@ -91,7 +91,7 @@ const HealthStat = (props) => {
 
 export const CrewConsole = () => {
   return (
-    <Window title="Crew Monitor" width={600} height={600}>
+    <Window title="人员监测" width={600} height={600}>
       <Window.Content scrollable>
         <Section minHeight="540px">
           <CrewTable />
@@ -107,17 +107,17 @@ const CrewTable = (props) => {
   return (
     <Table>
       <Table.Row>
-        <Table.Cell bold>Name</Table.Cell>
+        <Table.Cell bold>姓名</Table.Cell>
         <Table.Cell bold collapsing />
         <Table.Cell bold collapsing textAlign="center">
-          Vitals
+          生命体征
         </Table.Cell>
         <Table.Cell bold textAlign="center">
-          Position
+          位置
         </Table.Cell>
         {!!data.link_allowed && (
           <Table.Cell bold collapsing textAlign="center">
-            Tracking
+            追踪
           </Table.Cell>
         )}
       </Table.Row>
@@ -189,9 +189,9 @@ const CrewTableEntry = (props) => {
             <HealthStat type="brute" value={brutedam} />
           </Box>
         ) : life_status ? (
-          'Alive'
+          '存活'
         ) : (
-          'Dead'
+          '死亡'
         )}
       </Table.Cell>
       <Table.Cell
@@ -217,7 +217,7 @@ const CrewTableEntry = (props) => {
               })
             }
           >
-            Track
+            追踪
           </Button>
         </Table.Cell>
       )}

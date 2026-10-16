@@ -16,18 +16,18 @@ export const Apc = (props) => {
 const powerStatusMap = {
   2: {
     color: 'good',
-    externalPowerText: 'External Power',
-    chargingText: 'Fully Charged',
+    externalPowerText: '外部供电',
+    chargingText: '电量已满',
   },
   1: {
     color: 'average',
-    externalPowerText: 'Low External Power',
-    chargingText: 'Charging',
+    externalPowerText: '外部供电不足',
+    chargingText: '正在充电',
   },
   0: {
     color: 'bad',
-    externalPowerText: 'No External Power',
-    chargingText: 'Not Charging',
+    externalPowerText: '无外部供电',
+    chargingText: '未充电',
   },
 };
 
@@ -43,10 +43,10 @@ const ApcContent = (props) => {
   return (
     <>
       <InterfaceLockNoticeBox />
-      <Section title="Power Status">
+      <Section title="供电状态">
         <LabeledList>
           <LabeledList.Item
-            label="Main Breaker"
+            label="总断路器"
             color={externalPowerStatus.color}
             buttons={
               <Button
@@ -55,17 +55,17 @@ const ApcContent = (props) => {
                 disabled={locked}
                 onClick={() => act('breaker')}
               >
-                {data.isOperating ? 'On' : 'Off'}
+                {data.isOperating ? '开启' : '关闭'}
               </Button>
             }
           >
             [ {externalPowerStatus.externalPowerText} ]
           </LabeledList.Item>
-          <LabeledList.Item label="Power Cell">
+          <LabeledList.Item label="电池">
             <ProgressBar color="good" value={adjustedCellChange} />
           </LabeledList.Item>
           <LabeledList.Item
-            label="Charge Mode"
+            label="充电模式"
             color={chargingStatus.color}
             buttons={
               <Button
@@ -73,7 +73,7 @@ const ApcContent = (props) => {
                 disabled={locked}
                 onClick={() => act('charge')}
               >
-                {data.chargeMode ? 'Auto' : 'Off'}
+                {data.chargeMode ? '自动' : '关闭'}
               </Button>
             }
           >
@@ -81,7 +81,7 @@ const ApcContent = (props) => {
           </LabeledList.Item>
         </LabeledList>
       </Section>
-      <Section title="Power Channels">
+      <Section title="供电回路">
         <LabeledList>
           {channelArray.map((channel) => {
             const { topicParams } = channel;
@@ -96,7 +96,7 @@ const ApcContent = (props) => {
                       mx={2}
                       color={channel.status >= 2 ? 'good' : 'bad'}
                     >
-                      {channel.status >= 2 ? 'On' : 'Off'}
+                      {channel.status >= 2 ? '开启' : '关闭'}
                     </Box>
                     <Button
                       icon="sync"
@@ -107,7 +107,7 @@ const ApcContent = (props) => {
                       disabled={locked}
                       onClick={() => act('channel', topicParams.auto)}
                     >
-                      Auto
+                      自动
                     </Button>
                     <Button
                       icon="power-off"
@@ -115,7 +115,7 @@ const ApcContent = (props) => {
                       disabled={locked}
                       onClick={() => act('channel', topicParams.on)}
                     >
-                      On
+                      开启
                     </Button>
                     <Button
                       icon="times"
@@ -123,7 +123,7 @@ const ApcContent = (props) => {
                       disabled={locked}
                       onClick={() => act('channel', topicParams.off)}
                     >
-                      Off
+                      关闭
                     </Button>
                   </>
                 }
@@ -132,13 +132,13 @@ const ApcContent = (props) => {
               </LabeledList.Item>
             );
           })}
-          <LabeledList.Item label="Total Load">
+          <LabeledList.Item label="总负载">
             <b>{data.totalLoad}</b>
           </LabeledList.Item>
         </LabeledList>
       </Section>
       <Section
-        title="Misc"
+        title="其他"
         buttons={
           !!data.siliconUser && (
             <>
@@ -152,7 +152,7 @@ const ApcContent = (props) => {
                 </Button>
               )}
               <Button icon="lightbulb-o" onClick={() => act('overload')}>
-                Overload
+                过载
               </Button>
             </>
           )
@@ -160,15 +160,15 @@ const ApcContent = (props) => {
       >
         <LabeledList>
           <LabeledList.Item
-            label="Cover Lock"
+            label="外盖锁"
             buttons={
               <Button
-                tooltip="APC cover can be pried open with a crowbar."
+                tooltip="区域电力控制器的外盖可用撬棍撬开。"
                 icon={data.coverLocked ? 'lock' : 'unlock'}
                 disabled={locked}
                 onClick={() => act('cover')}
               >
-                {data.coverLocked ? 'Engaged' : 'Disengaged'}
+                {data.coverLocked ? '已锁定' : '已解锁'}
               </Button>
             }
           />

@@ -1,8 +1,8 @@
 GLOBAL_LIST_EMPTY(command_apc_list)
 
 /obj/vehicle/multitile/apc
-	name = "M577 Armored Personnel Carrier"
-	desc = "An M577 Armored Personnel Carrier. An armored transport with four big wheels. Entrances on the sides and back."
+	name = "M577装甲输送车"
+	desc = "M577装甲输送车，拥有四个大轮子的装甲运输车辆。入口位于两侧和后方。"
 
 	icon = 'icons/obj/vehicles/apc.dmi'
 	icon_state = "apc_base"
@@ -86,13 +86,13 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 
 /obj/vehicle/multitile/apc/load_role_reserved_slots()
 	var/datum/role_reserved_slots/RRS = new
-	RRS.category_name = "Crewmen"
+	RRS.category_name = "车组成员"
 	RRS.roles = list(JOB_TANK_CREW, JOB_WO_CREWMAN, JOB_UPP_CREWMAN, JOB_PMC_CREWMAN)
 	RRS.total = 2
 	role_reserved_slots += RRS
 
 	RRS = new
-	RRS.category_name = "Synthetic Unit"
+	RRS.category_name = "合成人"
 	RRS.roles = list(JOB_SYNTH, JOB_WO_SYNTH)
 	RRS.total = 1
 	role_reserved_slots += RRS
@@ -179,7 +179,7 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 	FPW.allowed_seat = VEHICLE_SUPPORT_GUNNER_ONE
 	V.add_hardpoint(FPW)
 	FPW.dir = turn(V.dir, 90)
-	FPW.name = "Left "+ initial(FPW.name)
+	FPW.name = "左侧"+ initial(FPW.name)
 	FPW.origins = list(1, 0)
 	FPW.muzzle_flash_pos = list(
 		"1" = list(-18, 14),
@@ -192,7 +192,7 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 	FPW.allowed_seat = VEHICLE_SUPPORT_GUNNER_TWO
 	V.add_hardpoint(FPW)
 	FPW.dir = turn(V.dir, -90)
-	FPW.name = "Right "+ initial(FPW.name)
+	FPW.name = "右侧"+ initial(FPW.name)
 	FPW.origins = list(-1, 0)
 	FPW.muzzle_flash_pos = list(
 		"1" = list(16, 14),

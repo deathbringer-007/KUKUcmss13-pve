@@ -28,7 +28,7 @@ export const BrigCell = (props) => {
             py=".25rem"
             onClick={() => act('toggle_doors')}
           >
-            Toggle Shutters
+            开关卷帘门
           </Button>
           <Button
             height="100%"
@@ -36,7 +36,7 @@ export const BrigCell = (props) => {
             py=".25rem"
             onClick={() => act('flash')}
           >
-            Activate Flash
+            启动闪光器
           </Button>
         </Flex>
 
@@ -45,11 +45,11 @@ export const BrigCell = (props) => {
         <Flex direction="column" justify="center" align="center" width="auto">
           {!viewing_incident && (
             <>
-              <h1>Sentences:</h1>
+              <h1>刑期：</h1>
               <Flex align="center">
                 <ColorBox color="green" />
                 <Box inline px="1rem">
-                  Active
+                  正在服刑
                 </Box>
               </Flex>
 
@@ -137,13 +137,13 @@ const IncidentDetails = (props) => {
 
   let statusText, statusClass;
   if (isPardoned) {
-    statusText = 'PARDONED';
+    statusText = '已赦免';
     statusClass = 'info';
   } else if (isPerma) {
-    statusText = 'PERMABRIG';
+    statusText = '永久监禁';
     statusClass = 'danger';
   } else if (isServed) {
-    statusText = 'SERVED';
+    statusText = '刑期已满';
     statusClass = 'success';
   }
 
@@ -165,7 +165,7 @@ const IncidentDetails = (props) => {
               px=".75rem"
               py=".25rem"
               mr="1rem"
-              tooltip="Reset sentence"
+              tooltip="重置刑期"
               onClick={() => act('reset_timer')}
             />
           )}
@@ -174,7 +174,7 @@ const IncidentDetails = (props) => {
             icon="eject"
             px=".75rem"
             py=".25rem"
-            tooltip="Eject report"
+            tooltip="取出报告"
             onClick={() => act('remove_report')}
           />
         </Flex.Item>
@@ -208,9 +208,9 @@ const IncidentDetails = (props) => {
 
       <Flex mt="1rem">
         <LabeledList>
-          <LabeledList.Item label="Suspect">{suspect}</LabeledList.Item>
-          <LabeledList.Item label="Sentence">
-            {isPerma ? 'Permabrig' : brig_sentence + ' Minutes'}
+          <LabeledList.Item label="嫌疑人">{suspect}</LabeledList.Item>
+          <LabeledList.Item label="刑期">
+            {isPerma ? '永久监禁' : brig_sentence + ' 分钟'}
           </LabeledList.Item>
         </LabeledList>
       </Flex>
@@ -219,7 +219,7 @@ const IncidentDetails = (props) => {
         <Flex>
           {!isActive && (
             <Button
-              tooltip={isStarted ? 'Resume Timer' : 'Start Timer'}
+              tooltip={isStarted ? '继续计时' : '开始计时'}
               icon="play"
               px="2rem"
               py=".25rem"
@@ -233,7 +233,7 @@ const IncidentDetails = (props) => {
             <>
               {!isPerma && (
                 <Button
-                  tooltip="Pause Timer"
+                  tooltip="暂停计时"
                   icon="pause"
                   px="2rem"
                   py=".25rem"
@@ -245,7 +245,7 @@ const IncidentDetails = (props) => {
               )}
 
               <Button.Confirm
-                tooltip="End Timer"
+                tooltip="结束计时"
                 icon="stop"
                 px="2rem"
                 py=".25rem"
@@ -259,7 +259,7 @@ const IncidentDetails = (props) => {
 
           {!!can_pardon && (
             <Button.Confirm
-              tooltip="Pardon"
+              tooltip="赦免"
               icon="gavel"
               px="2rem"
               py=".25rem"
@@ -267,7 +267,7 @@ const IncidentDetails = (props) => {
               height="100%"
               onClick={() => act('pardon')}
             >
-              Pardon
+              赦免
             </Button.Confirm>
           )}
         </Flex>

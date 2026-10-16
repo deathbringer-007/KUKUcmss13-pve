@@ -2,6 +2,38 @@ import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, Section, Slider } from '../components';
 import { Window } from '../layouts';
 
+const categoryLabels = new Map([
+  ['Brute', '物理损伤'],
+  ['Burn', '烧伤'],
+  ['Toxin', '毒素损伤'],
+  ['Oxygen', '缺氧损伤'],
+  ['Genetic', '基因损伤'],
+  ['Heart', '心脏'],
+  ['Liver', '肝脏'],
+  ['Lungs', '肺部'],
+  ['Kidneys', '肾脏'],
+  ['Brain', '大脑'],
+  ['Vitals Level', '生命体征等级'],
+  ['Bleeding', '出血'],
+  ['Internal', '内出血'],
+  ['Bloodloss', '失血'],
+  ['Fracture', '骨折'],
+  ['Splinted', '已上夹板'],
+  ['Organ Damage', '器官损伤'],
+  ['Organ Failure', '器官衰竭'],
+  ['Death', '死亡'],
+  ['Defibrillation', '除颤'],
+  ['Concussion', '脑震荡'],
+  ['Intoxication', '醉酒'],
+  ['Foreign Object', '异物'],
+  ['Optimal', '最佳'],
+  ['Nominal', '正常'],
+  ['Low', '偏低'],
+  ['Very low', '极低'],
+  ['Critical', '危急'],
+  ['Emergency', '紧急'],
+]);
+
 export const AcidVest = (_props) => {
   const { act, data } = useBackend();
 
@@ -20,7 +52,7 @@ export const AcidVest = (_props) => {
       <Window.Content scrollable>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Injection Amount">
+            <LabeledList.Item label="注射量">
               <Slider
                 inline
                 maxValue={30}
@@ -33,7 +65,7 @@ export const AcidVest = (_props) => {
                 stepPixelSize={10}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Damage Threshold">
+            <LabeledList.Item label="伤害阈值">
               <Slider
                 inline
                 maxValue={200}
@@ -46,20 +78,20 @@ export const AcidVest = (_props) => {
                 stepPixelSize={2}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Configuration">
+            <LabeledList.Item label="触发逻辑">
               <Button
                 onClick={() => act('inject_logic')}
                 icon={Ormode ? 'question' : 'plus'}
               >
-                {injectLogic}
+                {Ormode ? '或：任一条件' : '且：全部条件'}
               </Button>
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Configuration">
+        <Section title="配置">
           <Flex direction="row" grow>
             <Flex.Item>
-              <Section title="Damage">
+              <Section title="伤害">
                 <Flex direction="column" grow>
                   {Object.keys(damageList).map((category) => (
                     <Flex.Item key={category}>
@@ -73,7 +105,7 @@ export const AcidVest = (_props) => {
                           })
                         }
                       >
-                        {category}
+                        {categoryLabels.get(category) ?? category}
                       </Button.Checkbox>
                     </Flex.Item>
                   ))}
@@ -82,7 +114,7 @@ export const AcidVest = (_props) => {
             </Flex.Item>
             <Box width="10px" />
             <Flex.Item>
-              <Section title="Conditions">
+              <Section title="条件">
                 <Flex direction="column" grow>
                   {Object.keys(conditionsList).map((category) => (
                     <Flex.Item key={category}>
@@ -96,7 +128,7 @@ export const AcidVest = (_props) => {
                           })
                         }
                       >
-                        {category}
+                        {categoryLabels.get(category) ?? category}
                       </Button.Checkbox>
                     </Flex.Item>
                   ))}
@@ -105,7 +137,7 @@ export const AcidVest = (_props) => {
             </Flex.Item>
             <Box width="10px" />
             <Flex.Item>
-              <Section title="Vitals">
+              <Section title="生命体征">
                 <Flex direction="column" grow>
                   {Object.keys(vitalsList).map((category) => (
                     <Flex.Item key={category}>
@@ -119,7 +151,7 @@ export const AcidVest = (_props) => {
                           })
                         }
                       >
-                        {category}
+                        {categoryLabels.get(category) ?? category}
                       </Button.Checkbox>
                     </Flex.Item>
                   ))}

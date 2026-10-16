@@ -27,12 +27,12 @@ export const OrbitalCannonConsole = () => {
   return (
     <Window width={500} height={500}>
       <Window.Content scrollable>
-        <Section title="Warhead status">
+        <Section title="战斗部状态">
           {(!!data.warhead && (
-            <NoticeBox info>{data.warhead} loaded!</NoticeBox>
-          )) || <NoticeBox danger>No warhead loaded!</NoticeBox>}
+            <NoticeBox info>已装载{data.warhead}！</NoticeBox>
+          )) || <NoticeBox danger>未装载战斗部！</NoticeBox>}
         </Section>
-        <Section title="Fuel status">
+        <Section title="燃料状态">
           <Box textAlign="center">
             <ProgressBar
               width="100%"
@@ -42,26 +42,26 @@ export const OrbitalCannonConsole = () => {
                 good: [0.51, Infinity],
               }}
             >
-              <Box textAlign="center">{data.fuel} Fuel Blocks loaded</Box>
+              <Box textAlign="center">已装载{data.fuel}块燃料</Box>
             </ProgressBar>
           </Box>
           <Divider />
-          <Collapsible title="Fuel Requirements">
+          <Collapsible title="燃料需求">
             <Box>
-              Warhead Fuel Requirements:
+              战斗部燃料需求：
               <br />
-              HE Orbital Warhead:
-              <b> {data.hefuel} Solid Fuel blocks.</b>
+              轨道高爆战斗部：
+              <b> {data.hefuel}块固体燃料。</b>
               <br />
-              Incendiary Orbital Warhead:
-              <b> {data.incfuel} Solid Fuel blocks.</b>
+              轨道燃烧战斗部：
+              <b> {data.incfuel}块固体燃料。</b>
               <br />
-              Cluster Orbital Warhead:
-              <b> {data.clusterfuel} Solid Fuel blocks.</b>
+              轨道集束战斗部：
+              <b> {data.clusterfuel}块固体燃料。</b>
             </Box>
           </Collapsible>
         </Section>
-        <Section title="Tray status">
+        <Section title="装填盘状态">
           {timeLeft > 0 && (
             <ProgressBar
               width="100%"
@@ -73,8 +73,7 @@ export const OrbitalCannonConsole = () => {
               }}
             >
               <Box textAlign="center">
-                {Math.ceil(timeLeft / 10)} seconds until the cannon can be
-                chambered!
+                距离可将炮弹装入炮膛还有{Math.ceil(timeLeft / 10)}秒！
               </Box>
             </ProgressBar>
           )}
@@ -88,7 +87,7 @@ export const OrbitalCannonConsole = () => {
               color="good"
               onClick={() => act('load_tray')}
             >
-              Load tray
+              装载装填盘
             </Button>
           )) || (
             <Box>
@@ -101,11 +100,11 @@ export const OrbitalCannonConsole = () => {
                   color="good"
                   onClick={() => act('unload_tray')}
                 >
-                  Unload tray
+                  卸下装填盘
                 </Button>
               )) || (
                 <NoticeBox fontSize="15px" textAlign="center" fluid danger>
-                  The tray is chambered, you cannot unchamber it.
+                  装填盘已送入炮膛，无法退出。
                 </NoticeBox>
               )}
             </Box>
@@ -118,19 +117,19 @@ export const OrbitalCannonConsole = () => {
               fluid
               icon="sign-in-alt"
               color="good"
-              confirmContent="You cannot unchamber the tray. Confirm?"
+              confirmContent="装填盘入膛后无法退出。确定吗？"
               onClick={() => act('chamber_tray')}
             >
-              Chamber tray
+              将装填盘送入炮膛
             </Button.Confirm>
           )}
         </Section>
         {(!data.linkedtray || !data.linkedcannon || !!data.disabled) && (
           <Dimmer fontSize="32px">
             <Icon name="exclamation-triangle" />
-            {!data.linkedtray && ' No tray linked to console!'}
-            {!data.linkedcannon && ' No cannon linked to console!'}
-            {!!data.disabled && '  Cannon disabled!'}
+            {!data.linkedtray && ' 控制台未连接装填盘！'}
+            {!data.linkedcannon && ' 控制台未连接舰炮！'}
+            {!!data.disabled && '  舰炮已停用！'}
           </Dimmer>
         )}
       </Window.Content>

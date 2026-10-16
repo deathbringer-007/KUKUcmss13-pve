@@ -12,7 +12,7 @@ export const MapMfdPanel = (props: MfdProps) => {
       panelStateId={props.panelStateId}
       bottomButtons={[
         {
-          children: 'EXIT',
+          children: '退出',
           onClick: () => setPanelState(''),
         },
       ]}

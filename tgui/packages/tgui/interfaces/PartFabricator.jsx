@@ -18,10 +18,10 @@ const GeneralPanel = (props) => {
   const { points, omnisentrygun_price, Equipment, Ammo } = data;
   return (
     <div>
-      <Section>Points: {points}</Section>
+      <Section>点数：{points}</Section>
       <Flex height="100%" direction="row">
         <Flex.Item>
-          <Section title="Equipment">
+          <Section title="设备">
             <LabeledList>
               {Equipment.map((Equipment) => (
                 <LabeledList.Item
@@ -40,7 +40,7 @@ const GeneralPanel = (props) => {
                         })
                       }
                     >
-                      {'Fabricate  (' + Equipment.cost + ')'}
+                      {'制造（' + Equipment.cost + '）'}
                     </Button>
                   }
                 />
@@ -49,7 +49,7 @@ const GeneralPanel = (props) => {
           </Section>
         </Flex.Item>
         <Flex.Item>
-          <Section title="Ammo">
+          <Section title="弹药">
             <LabeledList>
               {Ammo.map((Ammo) => (
                 <LabeledList.Item
@@ -70,7 +70,7 @@ const GeneralPanel = (props) => {
                           })
                         }
                       >
-                        {'Fabricate  (' + omnisentrygun_price + ')'}
+                        {'制造（' + omnisentrygun_price + '）'}
                       </Button>
                     ) : (
                       <Button
@@ -84,7 +84,7 @@ const GeneralPanel = (props) => {
                           })
                         }
                       >
-                        {'Fabricate  (' + Ammo.cost + ')'}
+                        {'制造（' + Ammo.cost + '）'}
                       </Button>
                     )
                   }

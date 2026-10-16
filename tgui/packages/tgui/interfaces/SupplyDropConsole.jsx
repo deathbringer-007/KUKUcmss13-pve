@@ -12,6 +12,43 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+const squadLabels = new Map([
+  ['Alpha', '阿尔法'],
+  ['Bravo', '布拉沃'],
+  ['Charlie', '查理'],
+  ['Delta', '德尔塔'],
+  ['Echo', '埃科'],
+  ['Foxtrot', '福克斯特罗特'],
+  ['Sun Riders', '烈日骑兵'],
+  ['Sun Riders B-Sct', '烈日骑兵 B 分队'],
+  ['Intel', '情报组'],
+  ['SOF', '特种部队'],
+  ['CBRN', '核生化'],
+  ['FORECON', '武装侦察部队'],
+  ['Solar Devils', '太阳恶魔'],
+  ['US Army', '美国陆军'],
+  ['Red Dawn', '赤色黎明'],
+  ['Golden Embers', '金色余烬'],
+  ['AZURE-15', '苍蓝-15'],
+  ['VIRIDIAN-22', '翠绿-22'],
+  ['AZURE-16', '苍蓝-16'],
+  ['Gamma Troop', '伽马分队'],
+  ['Snake Eaters', '食蛇者'],
+  ['Ocelot Grapplers', '豹猫搏击队'],
+  ['UPPS1', '联盟第1小队'],
+  ['UPPS2', '联盟第2小队'],
+  ['UPPS3', '联盟第3小队'],
+  ['UPPS4', '联盟第4小队'],
+  ['UPPKdo', '联盟突击队'],
+  ['Team Upsilon', '宇普西隆小组'],
+  ['Team Gamma', '伽马小组'],
+  ['Taskforce White', '白色特遣队'],
+  ['Python', '蟒蛇'],
+  ['Viper', '蝰蛇'],
+  ['Cobra', '眼镜蛇'],
+  ['Boa', '蚺蛇'],
+]);
+
 export const SupplyDropConsole = () => {
   const { act, data } = useBackend();
 
@@ -30,9 +67,8 @@ export const SupplyDropConsole = () => {
         {!!can_pick_squad && (
           <NoticeBox info={1} fluid textAlign="center">
             {data.current_squad
-              ? `Current squad is :
-                ${data.current_squad}`
-              : 'No squad selected'}
+              ? `当前小队：${squadLabels.get(data.current_squad) ?? data.current_squad}`
+              : '未选择小队'}
           </NoticeBox>
         )}
         {!!can_pick_squad && (
@@ -45,15 +81,15 @@ export const SupplyDropConsole = () => {
                   }}
                   key={val.squad_name}
                 >
-                  <Box color={val.squad_color}>{val.squad_name}</Box>
+                  <Box color={val.squad_color}>{squadLabels.get(val.squad_name) ?? val.squad_name}</Box>
                 </Tabs.Tab>
               );
             })}
           </Tabs>
         )}
-        <Section title="Supply Drop">
+        <Section title="补给空投">
           <LabeledList>
-            <LabeledList.Item label="Longitude">
+            <LabeledList.Item label="经度">
               <NumberInput
                 width="4em"
                 step={1}
@@ -63,7 +99,7 @@ export const SupplyDropConsole = () => {
                 onChange={(value) => act('set_x', { set_x: `${value}` })}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Latitude">
+            <LabeledList.Item label="纬度">
               <NumberInput
                 width="4em"
                 step={1}
@@ -76,22 +112,21 @@ export const SupplyDropConsole = () => {
           </LabeledList>
           <Divider />
           <Section
-            title="Supply Pad Status"
+            title="补给平台状态"
             buttons={
               <Button icon="sync-alt" onClick={() => act('refresh_pad')}>
-                Update
+                更新
               </Button>
             }
           >
             <NoticeBox info={1} textAlign="center">
               {data.loaded
-                ? `Supply Pad Status :
-                  ${data.crate_name} loaded.`
-                : 'No crate loaded.'}
+                ? `补给平台状态：已装载${data.crate_name}。`
+                : '未装载补给箱。'}
             </NoticeBox>
             {(timeLeft < 0 && (
               <NoticeBox success={1} textAlign="center">
-                Ready to fire!
+                准备就绪！
               </NoticeBox>
             )) || (
               <ProgressBar
@@ -104,7 +139,7 @@ export const SupplyDropConsole = () => {
                 }}
               >
                 <Box textAlign="center">
-                  {Math.ceil(timeLeft / 10)} seconds until next launch
+                  距离下次发射还有{Math.ceil(timeLeft / 10)}秒
                 </Box>
               </ProgressBar>
             )}
@@ -117,7 +152,7 @@ export const SupplyDropConsole = () => {
               color="good"
               onClick={() => act('send_beacon')}
             >
-              Launch Supply Drop
+              发射补给空投
             </Button>
           </Section>
         </Section>

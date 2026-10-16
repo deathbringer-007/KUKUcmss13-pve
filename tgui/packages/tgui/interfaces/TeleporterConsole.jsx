@@ -28,27 +28,27 @@ export const TeleporterConsole = () => {
     <Window width={500} height={380} theme="weyland">
       <Window.Content scrollable>
         <NoticeBox textAlign="center">
-          This teleporter is operating on the {data.name} network.
+          此传送器正在使用{data.name}网络。
         </NoticeBox>
-        <Section title="Teleporter Control">
+        <Section title="传送器控制">
           {!data.source ? (
             <NoticeBox info textAlign="center">
-              No source!
+              未选择起点！
             </NoticeBox>
           ) : null}
           {!data.destination ? (
             <NoticeBox danger textAlign="center">
-              No destination!
+              未选择终点！
             </NoticeBox>
           ) : null}
           {data.source === data.destination ? (
             <NoticeBox danger textAlign="center">
-              Source cannot match destination!
+              起点和终点不能相同！
             </NoticeBox>
           ) : null}
           {(timeLeft < 0 && (
             <NoticeBox success={1} textAlign="center">
-              Capacitors charged!
+              电容器已充满！
             </NoticeBox>
           )) || (
             <ProgressBar
@@ -61,16 +61,15 @@ export const TeleporterConsole = () => {
               }}
             >
               <Box textAlign="center">
-                {Math.ceil(timeLeft / 10)} seconds until capacitors have
-                recharged.
+                电容器将在{Math.ceil(timeLeft / 10)}秒后充满。
               </Box>
             </ProgressBar>
           )}
           <Box height="10px" />
           <LabeledList>
-            <LabeledList.Item label="Source" verticalAlign="top">
+            <LabeledList.Item label="起点" verticalAlign="top">
               <Dropdown
-                displayText={data.source ? data.source : 'Select source'}
+                displayText={data.source ? data.source : '选择起点'}
                 icon="right-from-bracket"
                 width="350px"
                 height="25px"
@@ -81,10 +80,10 @@ export const TeleporterConsole = () => {
                 }}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Destination" verticalAlign="top">
+            <LabeledList.Item label="终点" verticalAlign="top">
               <Dropdown
                 displayText={
-                  data.destination ? data.destination : 'Select destination'
+                  data.destination ? data.destination : '选择终点'
                 }
                 icon="right-to-bracket"
                 width="350px"
@@ -106,13 +105,13 @@ export const TeleporterConsole = () => {
             icon="plane-departure"
             onClick={() => act('teleport')}
           >
-            Commence Teleportation Sequence
+            启动传送程序
           </Button.Confirm>
         </Section>
         {!!data.teleporting && (
           <Dimmer fontSize="32px">
             <Icon name="cog" spin />
-            {' Teleportation in progress.'}
+            {' 正在传送。'}
           </Dimmer>
         )}
       </Window.Content>

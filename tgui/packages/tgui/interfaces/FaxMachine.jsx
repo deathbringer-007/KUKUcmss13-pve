@@ -39,11 +39,11 @@ const FaxId = (props) => {
   const { act, data } = useBackend();
   const { department, network, idcard, authenticated } = data;
   return (
-    <Section title="Authentication">
+    <Section title="身份验证">
       <NoticeBox color="grey" textAlign="center">
-        This machine is currently operating on the {network}
+        本机当前使用{network}
         <br />
-        and is sending from the {department} department.
+        发送部门为{department}。
       </NoticeBox>
       <Stack>
         <Stack.Item>
@@ -58,7 +58,7 @@ const FaxId = (props) => {
             selected={authenticated}
             onClick={() => act(authenticated ? 'logout' : 'auth')}
           >
-            {authenticated ? 'Log Out' : 'Log In'}
+            {authenticated ? '退出登录' : '登录'}
           </Button>
         </Stack.Item>
       </Stack>
@@ -81,7 +81,7 @@ const FaxSelect = (props) => {
   const timeLeft = nextfaxtime - worldtime;
 
   return (
-    <Section title="Department selection">
+    <Section title="部门选择">
       <Stack>
         <Stack.Item>
           <Button
@@ -89,12 +89,12 @@ const FaxSelect = (props) => {
             disabled={!authenticated}
             onClick={() => act('select')}
           >
-            Select department to send to
+            选择收件部门
           </Button>
         </Stack.Item>
         <Stack.Item grow>
           <Button icon="building" fluid disabled={!authenticated}>
-            {'Currently sending to : ' + target_department + '.'}
+            {'当前收件部门：' + target_department + '。'}
           </Button>
         </Stack.Item>
       </Stack>
@@ -107,7 +107,7 @@ const FaxSelect = (props) => {
             onClick={() => act(paper ? 'ejectpaper' : 'insertpaper')}
             color={paper ? 'default' : 'grey'}
           >
-            {paper ? 'Currently sending : ' + paper_name : 'No paper loaded!'}
+            {paper ? '待发送：' + paper_name : '未放入纸张！'}
           </Button>
         </Stack.Item>
         <Stack.Item grow>
@@ -118,11 +118,11 @@ const FaxSelect = (props) => {
               onClick={() => act('send')}
               disabled={timeLeft > 0 || !paper || !authenticated}
             >
-              {paper ? 'Send' : 'No paper loaded!'}
+              {paper ? '发送' : '未放入纸张！'}
             </Button>
           )) || (
             <Button icon="window-close" fluid disabled={1}>
-              {'Transmitters realigning, ' + timeLeft / 10 + ' seconds left.'}
+              {'发射器正在重新对准，还需' + timeLeft / 10 + '秒。'}
             </Button>
           )}
         </Stack.Item>
@@ -140,7 +140,7 @@ const FaxEmpty = (props) => {
         <Flex.Item grow="1" align="center" color="red">
           <Icon name="times-circle" mb="0.5rem" size="5" color="red" />
           <br />
-          No ID card detected.
+          未检测到ID卡。
           <br />
           {paper && (
             <Button
@@ -148,7 +148,7 @@ const FaxEmpty = (props) => {
               onClick={() => act('ejectpaper')}
               disabled={!paper}
             >
-              {'Eject ' + paper_name + '.'}
+              {'弹出' + paper_name + '。'}
             </Button>
           )}
         </Flex.Item>

@@ -63,9 +63,9 @@
 		..()
 
 /obj/vehicle/train/verb/unlatch_v()
-	set name = "Unlatch"
-	set desc = "Unhitches this train from the one in front of it."
-	set category = "Object"
+	set name = "脱钩"
+	set desc = "解除本节列车与前方车厢的连接。"
+	set category = "物品"
 	set src in view(1)
 
 	if(!istype(usr, /mob/living/carbon/human))
@@ -88,17 +88,17 @@
 
 	if (get_dist(src, T) > 1)
 		if(display_to_chat)
-			to_chat(user, SPAN_DANGER("[src] is too far away from [T] to hitch them together."))
+			to_chat(user, SPAN_DANGER("[src]离[T]太远，无法连接。"))
 		return
 
 	if (lead)
 		if(display_to_chat)
-			to_chat(user, SPAN_DANGER("[src] is already hitched to something."))
+			to_chat(user, SPAN_DANGER("[src]已经挂接在其他车辆上了。"))
 		return
 
 	if (T.tow)
 		if(display_to_chat)
-			to_chat(user, SPAN_DANGER("[T] is already towing something."))
+			to_chat(user, SPAN_DANGER("[T]已经在牵引其他车辆了。"))
 		return
 
 	//check for cycles.
@@ -106,7 +106,7 @@
 	while (next_car)
 		if (next_car == src)
 			if(display_to_chat)
-				to_chat(user, SPAN_DANGER("That seems very silly."))
+				to_chat(user, SPAN_DANGER("这么做可太傻了。"))
 			return
 		next_car = next_car.lead
 
@@ -116,7 +116,7 @@
 	setDir(lead.dir)
 
 	if(user && display_to_chat)
-		to_chat(user, SPAN_NOTICE(" You hitch [src] to [T]."))
+		to_chat(user, SPAN_NOTICE("你将[src]挂接到[T]上。"))
 
 	update_stats()
 
@@ -128,14 +128,14 @@
 
 	if (!lead)
 		if(display_to_chat)
-			to_chat(user, SPAN_DANGER("[src] is not hitched to anything."))
+			to_chat(user, SPAN_DANGER("[src]没有挂接到任何车辆上。"))
 		return
 
 	lead.tow = null
 	lead.update_stats()
 
 	if(display_to_chat)
-		to_chat(user, SPAN_NOTICE(" You unhitch [src] from [lead]."))
+		to_chat(user, SPAN_NOTICE("你解除了[src]与[lead]的连接。"))
 	lead = null
 
 	update_stats()

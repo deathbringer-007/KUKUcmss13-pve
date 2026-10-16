@@ -1,5 +1,5 @@
 /obj/structure/prop/vehicle/uppvan
-	name = "UPP Van chassis"
+	name = "进步人民联盟厢型车底盘"
 
 	icon = 'icons/obj/vehicles/interiors/uppvan_chassis.dmi'
 	icon_state = "uppvan_chassis"
@@ -7,7 +7,7 @@
 	mouse_opacity = FALSE
 
 /obj/structure/prop/vehicle/uppvan/turret
-	name = "UPP Van with turret chassis"
+	name = "进步人民联盟炮塔厢型车底盘"
 
 	icon = 'icons/obj/vehicles/interiors/uppvan_chassis.dmi'
 	icon_state = "uppvant_chassis"
@@ -15,7 +15,7 @@
 	mouse_opacity = FALSE
 
 /obj/structure/prop/vehicle/uppvan_logistics
-	name = "UPP Van logistics chassis"
+	name = "进步人民联盟后勤厢型车底盘"
 
 	icon = 'icons/obj/vehicles/interiors/uppvan_chassis.dmi'
 	icon_state = "uppvan_logistics_chassis"
@@ -23,24 +23,24 @@
 	mouse_opacity = FALSE
 
 /obj/structure/interior_exit/vehicle/uppvan/left
-	name = "Van left door"
+	name = "厢型车左侧门"
 	icon = 'icons/obj/vehicles/interiors/uppvan.dmi'
 	icon_state = "interior_door"
 
 /obj/structure/interior_exit/vehicle/uppvan/right
-	name = "Van right door"
+	name = "厢型车右侧门"
 	icon = 'icons/obj/vehicles/interiors/uppvan.dmi'
 	icon_state = "exterior_door_unique"
 	dir = SOUTH
 
 /obj/structure/interior_exit/vehicle/uppvan/backleft
-	name = "Van back exit"
+	name = "厢型车后部出口"
 	icon = 'icons/obj/vehicles/interiors/uppvan.dmi'
 	icon_state = "back_2"
 	dir = WEST
 
 /obj/structure/interior_exit/vehicle/uppvan/backright
-	name = "Van back exit"
+	name = "厢型车后部出口"
 	icon = 'icons/obj/vehicles/interiors/uppvan.dmi'
 	icon_state = "back_1"
 	dir = WEST
@@ -55,8 +55,8 @@
 	color = "#009cb8"
 
 /obj/structure/interior_viewport/simple/uppvan
-	name = "viewport"
-	desc = "Hey, I can see my base from here!"
+	name = "观察窗"
+	desc = "嘿，从这里能看见我的基地！"
 	icon = 'icons/obj/vehicles/interiors/uppvan.dmi'
 	icon_state = "viewport_simple"
 
@@ -82,8 +82,8 @@
 	alpha = 80
 
 /obj/structure/interior_viewport/simple/uppvanfront
-	name = "viewport"
-	desc = "Hey, I can see my base from here!"
+	name = "观察窗"
+	desc = "嘿，从这里能看见我的基地！"
 	icon = 'icons/obj/vehicles/interiors/uppvan.dmi'
 	icon_state = "viewport_simple_front"
 

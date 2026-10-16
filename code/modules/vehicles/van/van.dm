@@ -3,8 +3,8 @@
 //Read the documentation in multitile.dm before trying to decipher this stuff
 
 /obj/vehicle/multitile/van
-	name = "Colony Van"
-	desc = "A rather old hunk of metal with four wheels, you know what to do. Entrance on the back and sides."
+	name = "殖民地厢型车"
+	desc = "一块装着四个轮子的老旧铁疙瘩，你知道该怎么用。入口位于后方和两侧。"
 	layer = ABOVE_XENO_LAYER
 
 	icon = 'icons/obj/vehicles/van.dmi'
@@ -179,7 +179,7 @@
 
 	if(iswelder(O) && health >= initial(health))
 		if(!HAS_TRAIT(O, TRAIT_TOOL_BLOWTORCH))
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要更强力的焊炬！"))
 			return
 		var/obj/item/hardpoint/H
 		for(var/obj/item/hardpoint/potential_hardpoint in hardpoints)
@@ -198,14 +198,14 @@
 /obj/vehicle/multitile/van/handle_click(mob/living/user, atom/A, list/mods)
 	if(mods[SHIFT_CLICK] && !mods[ALT_CLICK])
 		if(overdrive_next > world.time)
-			to_chat(user, SPAN_WARNING("You can't activate overdrive yet! Wait [round((overdrive_next - world.time) / 10, 0.1)] seconds."))
+			to_chat(user, SPAN_WARNING("暂时还不能启动超速模式！请等待[round((overdrive_next - world.time) / 10, 0.1)]秒。"))
 			return
 
 		misc_multipliers["move"] -= overdrive_speed_mult
 		addtimer(CALLBACK(src, PROC_REF(reset_overdrive)), overdrive_duration)
 
 		overdrive_next = world.time + overdrive_cooldown
-		to_chat(user, SPAN_NOTICE("You activate overdrive."))
+		to_chat(user, SPAN_NOTICE("你启动了超速模式。"))
 		playsound(src, 'sound/vehicles/overdrive_activate.ogg', 75, FALSE)
 		return
 

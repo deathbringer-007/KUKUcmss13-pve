@@ -1,6 +1,6 @@
 /obj/vehicle/train/cargo/engine
-	name = "cargo train tug"
-	desc = "A ridable electric car designed for pulling cargo trolleys."
+	name = "货运列车牵引车"
+	desc = "用于牵引货运拖车的可驾驶电动车。"
 	icon = 'icons/obj/vehicles/vehicles.dmi'
 	icon_state = "cargo_engine"
 	on = 0
@@ -16,14 +16,14 @@
 	var/obj/item/key/cargo_train/key
 
 /obj/item/key/cargo_train
-	name = "key"
-	desc = "A keyring with a small steel key, and a yellow fob reading \"Choo Choo!\"."
+	name = "钥匙"
+	desc = "钥匙圈上挂着一把小钢钥匙，以及写着“呜呜！”的黄色挂饰。"
 	icon = 'icons/obj/vehicles/vehicles.dmi'
 	icon_state = "train_keys"
 	w_class = SIZE_TINY
 
 /obj/vehicle/train/cargo/trolley
-	name = "cargo train trolley"
+	name = "货运列车拖车"
 	icon = 'icons/obj/vehicles/vehicles.dmi'
 	icon_state = "cargo_trailer"
 	light_range = 0
@@ -132,52 +132,52 @@
 	if(!ishuman(user))
 		return
 	if(get_dist(user,src) <= 1)
-		. += "The power light is [on ? "on" : "off"].\nThere are[key ? "" : " no"] keys in the ignition."
-		. += "The charge meter reads [cell? round(cell.percent(), 0.01) : 0]%"
+		. += "电源指示灯[on ? "亮着" : "熄灭"]。\n点火开关上[key ? "插着钥匙" : "没有钥匙"]。"
+		. += "电量表显示为[cell? round(cell.percent(), 0.01) : 0]%。"
 
 /obj/vehicle/train/cargo/engine/verb/start_engine()
-	set name = "Start engine"
-	set category = "Object"
+	set name = "启动引擎"
+	set category = "物品"
 	set src in view(1)
 
 	if(!istype(usr, /mob/living/carbon/human))
 		return
 
 	if(on)
-		to_chat(usr, "The engine is already running.")
+		to_chat(usr, "引擎已经启动了。")
 		return
 
 	turn_on()
 	if (on)
-		to_chat(usr, "You start [src]'s engine.")
+		to_chat(usr, "你启动了[src]的引擎。")
 	else
 		if (cell)
 			if(cell.charge < charge_use)
-				to_chat(usr, "[src] is out of power.")
+				to_chat(usr, "[src]没电了。")
 			else
-				to_chat(usr, "[src]'s engine won't start.")
+				to_chat(usr, "[src]的引擎无法启动。")
 		else
-			to_chat(usr, "[src]'s engine won't start.")
+			to_chat(usr, "[src]的引擎无法启动。")
 
 /obj/vehicle/train/cargo/engine/verb/stop_engine()
-	set name = "Stop engine"
-	set category = "Object"
+	set name = "关闭引擎"
+	set category = "物品"
 	set src in view(1)
 
 	if(!istype(usr, /mob/living/carbon/human))
 		return
 
 	if(!on)
-		to_chat(usr, "The engine is already stopped.")
+		to_chat(usr, "引擎已经关闭了。")
 		return
 
 	turn_off()
 	if (!on)
-		to_chat(usr, "You stop [src]'s engine.")
+		to_chat(usr, "你关闭了[src]的引擎。")
 
 /obj/vehicle/train/cargo/engine/verb/remove_key()
-	set name = "Remove key"
-	set category = "Object"
+	set name = "拔出钥匙"
+	set category = "物品"
 	set src in view(1)
 
 	if(!istype(usr, /mob/living/carbon/human))

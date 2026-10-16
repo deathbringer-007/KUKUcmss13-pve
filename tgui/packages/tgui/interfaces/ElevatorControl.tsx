@@ -51,33 +51,33 @@ const ElevatorPanel = (props) => {
     <Stack vertical className="InfoPanel">
       {is_stationary && (
         <Stack.Item>
-          <InfoBox title="Located at" text={docked_label} />
+          <InfoBox title="当前位置" text={docked_label} />
         </Stack.Item>
       )}
 
       {data.mode === 'idle' && (
         <Stack.Item>
-          <InfoBox title="Status" text="Ready to depart" />
+          <InfoBox title="状态" text="准备出发" />
         </Stack.Item>
       )}
 
       {data.mode === 'recharging' && (
         <Stack.Item>
-          <InfoBox title="Curtesy Time" text={data.eta} />
+          <InfoBox title="停留倒计时" text={data.eta} />
         </Stack.Item>
       )}
       {data.mode === 'igniting' && (
         <Stack.Item>
-          <InfoBox title="Alighting In" text={data.eta} />
+          <InfoBox title="出发倒计时" text={data.eta} />
         </Stack.Item>
       )}
       {data.mode === 'called' && (
         <>
           <Stack.Item>
-            <InfoBox title="Travelling to" text={data.destination} />
+            <InfoBox title="目的地" text={data.destination} />
           </Stack.Item>
           <Stack.Item>
-            <InfoBox title="In transit" text={data.eta} />
+            <InfoBox title="行进中" text={data.eta} />
           </Stack.Item>
         </>
       )}
@@ -107,7 +107,7 @@ const ElevatorButton = (props: ElevatorButtonProps) => {
         </Button>
       </Flex.Item>
       <Flex.Item className="buttonLabel">
-        {data.is_call_button === 0 ? props.name : 'Call'}
+        {data.is_call_button === 0 ? props.name : '呼叫'}
       </Flex.Item>
     </Flex>
   );

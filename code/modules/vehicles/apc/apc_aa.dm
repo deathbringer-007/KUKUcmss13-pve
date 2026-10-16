@@ -1,6 +1,6 @@
 /obj/vehicle/multitile/apc/movie/aa
-	name = "M579 Aerial-Defence System Carrier"
-	desc = "A modification to the venerable M577 Armored Personnel Carrier, equipped with weapons systems tailored to target airborne threats. Comes with limited passenger capacity, entrance on the right."
+	name = "M579防空系统运载车"
+	desc = "由久经考验的M577装甲输送车改装而来，配备专门应对空中威胁的武器系统。载员空间有限，入口位于右侧。"
 
 	interior_map = /datum/map_template/interior/apc_aa
 

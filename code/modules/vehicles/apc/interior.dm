@@ -9,17 +9,17 @@
 		loc.opacity = FALSE
 
 /obj/structure/interior_wall/apc
-	name = "\improper APC interior wall"
+	name = "\improper 装甲输送车内壁"
 	icon = 'icons/obj/vehicles/interiors/apc.dmi'
 	icon_state = "apc_right_1"
 
 /obj/structure/interior_exit/vehicle/apc
-	name = "APC side door"
+	name = "装甲输送车侧门"
 	icon = 'icons/obj/vehicles/interiors/apc.dmi'
 	icon_state = "exit_door"
 
 /obj/structure/interior_exit/vehicle/apc/rear
-	name = "APC rear hatch"
+	name = "装甲输送车后舱门"
 	icon_state = "door_rear_center"
 
 /obj/structure/interior_exit/vehicle/apc/rear/left
@@ -29,7 +29,7 @@
 	icon_state = "door_rear_right"
 
 /obj/structure/interior_exit/vehicle/arc
-	name = "ARC side door"
+	name = "装甲侦察车侧门"
 	icon = 'icons/obj/vehicles/interiors/arc.dmi'
 	icon_state = "exit_door"
 
@@ -46,18 +46,18 @@
 	indestructible = TRUE
 
 /obj/structure/prop/vehicle/arc
-	name = "ARC chassis"
+	name = "装甲侦察车底盘"
 
 	icon = 'icons/obj/vehicles/interiors/arc_chassis.dmi'
 	icon_state = "arc_chassis"
 
 
 /obj/structure/prop/vehicle/firing_port_weapon
-	name = "M56 FPW handle"
-	desc = "A control handle for a modified M56B Smartgun installed on the sides of M577 Armored Personnel Carrier as a Firing Port Weapon. \
-	Used by support gunners to cover friendly infantry entering or exiting APC via side doors. \
-	For ease of use, firing ports are marked with green (right side) and red (left side) marks. \
-	Do not be mistaken however, this is not a piece of an actual weapon, but a joystick made in a familiar to marines form."
+	name = "M56射击孔武器握把"
+	desc = "改装M56B智能机枪的控制握把。这种机枪安装在M577装甲输送车两侧，作为射击孔武器，\
+	供支援机枪手掩护从侧门进出车辆的友军步兵。\
+	为便于使用，右侧射击孔采用绿色标记，左侧采用红色标记。\
+	别误会，这并非真正武器的一部分，而是做成陆战队员熟悉外形的操纵杆。"
 
 	icon = 'icons/obj/vehicles/interiors/apc.dmi'
 	icon_state = "m56_FPW"
@@ -73,14 +73,14 @@
 	if(!SG_seat)
 		SG_seat = locate() in get_turf(src)
 		if(!SG_seat)
-			. += SPAN_WARNING("ERROR HAS OCCURRED! NO SEAT FOUND, TELL A DEV!")
+			. += SPAN_WARNING("发生错误！找不到座椅，请向开发者报告！")
 			return
 	for(var/obj/item/hardpoint/special/firing_port_weapon/FPW in SG_seat.vehicle.hardpoints)
 		if(FPW.allowed_seat == SG_seat.seat)
 			if(FPW.ammo)
-				. += SPAN_NOTICE("The [FPW.name]'s ammo count is: [SPAN_HELPFUL(FPW.ammo.current_rounds)]/[SPAN_WARNING(FPW.ammo.max_rounds)].")
+				. += SPAN_NOTICE("[FPW.name]的弹药量为：[SPAN_HELPFUL(FPW.ammo.current_rounds)]/[SPAN_WARNING(FPW.ammo.max_rounds)]。")
 				break
-	. += SPAN_HELPFUL("Clicking on the [name] while being adjacent to support gunner seat will buckle you in and give you the control of the M56 FPW.")
+	. += SPAN_HELPFUL("站在支援机枪手座椅旁点击[name]，即可入座并操控M56射击孔武器。")
 
 /obj/structure/prop/vehicle/firing_port_weapon/attack_hand(mob/living/carbon/human/H)
 	if(!istype(H))
@@ -88,20 +88,20 @@
 	if(!SG_seat)
 		SG_seat = locate() in get_turf(src)
 		if(!SG_seat)
-			to_chat(H, SPAN_WARNING("ERROR HAS OCCURRED! NO SEAT FOUND, TELL A DEV!"))
+			to_chat(H, SPAN_WARNING("发生错误！找不到座椅，请向开发者报告！"))
 			return
 	if(!SG_seat.buckled_mob && !H.buckled)
 		SG_seat.do_buckle(H, H)
 		for(var/obj/item/hardpoint/special/firing_port_weapon/FPW in SG_seat.vehicle.hardpoints)
 			if(FPW.allowed_seat == SG_seat.seat)
 				if(FPW.ammo)
-					to_chat(H, SPAN_NOTICE("The [FPW.name]'s ammo count is: [SPAN_HELPFUL(FPW.ammo.current_rounds)]/[SPAN_WARNING(FPW.ammo.max_rounds)]."))
+					to_chat(H, SPAN_NOTICE("[FPW.name]的弹药量为：[SPAN_HELPFUL(FPW.ammo.current_rounds)]/[SPAN_WARNING(FPW.ammo.max_rounds)]。"))
 					break
 		return
 
 /obj/structure/prop/vehicle/sensor_equipment
-	name = "Data Analyzing Nexus"
-	desc = "This machinery collects and analyzes data from the M577 CMD APC's sensors cluster and then feeds the results to Almayer's tactical map display network. Better not touch it."
+	name = "数据分析枢纽"
+	desc = "这台设备收集并分析M577指挥装甲输送车传感器组的数据，再将结果传送至阿尔迈耶号的战术地图显示网络。最好别碰。"
 
 	icon = 'icons/obj/vehicles/interiors/apc.dmi'
 	icon_state = "sensors_equipment"

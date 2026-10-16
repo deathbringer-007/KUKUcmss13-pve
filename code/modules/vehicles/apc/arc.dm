@@ -1,7 +1,7 @@
 
 /obj/vehicle/multitile/apc/arc
-	name = "M540 Armored Recon Carrier"
-	desc = "An M540 Armored Recon Carrier, also known as an ARC. This is a much lighter and more nimble alternative to the M557A3 APC, often preferred by recon forces for that very reason. Entrance on the right."
+	name = "M540装甲侦察车"
+	desc = "M540装甲侦察车，简称ARC。相比M557A3装甲输送车，它轻得多，也灵活得多，因此常受侦察部队青睐。入口位于右侧。"
 
 	icon = 'icons/obj/vehicles/arc.dmi'
 	icon_state = "arc_base"

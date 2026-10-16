@@ -17,7 +17,7 @@ export const KillPanel = (props) => {
           {death_data ? (
             <KillView />
           ) : (
-            <NoticeBox danger>No recorded kills!</NoticeBox>
+            <NoticeBox danger>没有击杀记录！</NoticeBox>
           )}
         </Section>
       </Window.Content>
@@ -36,26 +36,26 @@ const KillView = (props) => {
       key={index}
       title={entry.mob_name + ' (' + entry.time_of_death + ')'}
     >
-      <Box>Mob: {entry.mob_name}</Box>
+      <Box>角色：{entry.mob_name}</Box>
       {entry.job_name ? (
         <>
           <Box height="3px" />
-          <Box>Job: {entry.job_name}</Box>
+          <Box>职务：{entry.job_name}</Box>
         </>
       ) : null}
       <Box height="3px" />
-      <Box>Area: {entry.area_name}</Box>
+      <Box>区域：{entry.area_name}</Box>
       <Box height="3px" />
-      <Box>Cause: {entry.cause_name}</Box>
+      <Box>死因：{entry.cause_name}</Box>
       <Box height="3px" />
-      <Box>Time: {entry.time_of_death}</Box>
+      <Box>时间：{entry.time_of_death}</Box>
       <Box height="3px" />
-      <Box>Lifespan: {entry.total_time_alive}</Box>
+      <Box>存活时长：{entry.total_time_alive}</Box>
       <Box height="3px" />
-      <Box>Damage taken: {entry.total_damage_taken}</Box>
+      <Box>承受伤害：{entry.total_damage_taken}</Box>
       <Box height="3px" />
       <Box>
-        Coords: {entry.x}, {entry.y}, {entry.z}
+        坐标：{entry.x}, {entry.y}, {entry.z}
       </Box>
     </Collapsible>
   ));

@@ -1,6 +1,6 @@
 //regular vehicle seats for general vehicles.
 /obj/structure/bed/chair/comfy/vehicle
-	name = "seat"
+	name = "座椅"
 
 	unacidable = TRUE
 	unslashable = TRUE
@@ -69,15 +69,15 @@
 
 // Driver's seat
 /obj/structure/bed/chair/comfy/vehicle/driver
-	name = "driver's seat"
-	desc = "Comfortable seat for a driver."
+	name = "驾驶员座椅"
+	desc = "供驾驶员使用的舒适座椅。"
 	seat = VEHICLE_DRIVER
 
 /obj/structure/bed/chair/comfy/vehicle/driver/do_buckle(mob/target, mob/user)
 	required_skill = vehicle.required_skill
 	if(!skillcheck(target, SKILL_VEHICLE, required_skill))
 		if(target == user)
-			to_chat(user, SPAN_WARNING("You have no idea how to drive this thing!"))
+			to_chat(user, SPAN_WARNING("你根本不知道怎么驾驶这东西！"))
 		return FALSE
 
 	if(vehicle)
@@ -87,8 +87,8 @@
 
 // Gunner seat
 /obj/structure/bed/chair/comfy/vehicle/gunner
-	name = "gunner's seat"
-	desc = "Comfortable seat for a gunner."
+	name = "炮手座椅"
+	desc = "供炮手使用的舒适座椅。"
 	seat = VEHICLE_GUNNER
 	required_skill = SKILL_VEHICLE_CREWMAN
 
@@ -96,16 +96,16 @@
 	// Gunning always requires crewman-level skill
 	if(!skillcheck(target, SKILL_VEHICLE, required_skill))
 		if(target == user)
-			to_chat(user, SPAN_WARNING("You have no idea how to operate the weapons on this thing!"))
+			to_chat(user, SPAN_WARNING("你根本不知道怎么操作这东西上的武器！"))
 		return FALSE
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(!H.allow_gun_usage)
 			if(issynth(user))
-				to_chat(user, SPAN_WARNING("Your programming does not allow you to use heavy weaponry."))
+				to_chat(user, SPAN_WARNING("你的程序不允许你使用重武器。"))
 			else
-				to_chat(user, SPAN_WARNING("You are unable to use heavy weaponry."))
+				to_chat(user, SPAN_WARNING("你无法使用重武器。"))
 			return
 
 	for(var/obj/item/I in user.contents)		//prevents shooting while zoomed in, but zoom can still be activated and used without shooting
@@ -132,8 +132,8 @@
 // Commander's seat
 // Mirror of drivers stuff as it isn't much more than a LARP seat
 /obj/structure/bed/chair/comfy/vehicle/commander
-	name = "commanders's seat"
-	desc = "Military-grade seat for armored vehicle commander with some controls, switches and indicators."
+	name = "车长座椅"
+	desc = "供装甲车辆车长使用的军用座椅，配有控制器、开关和指示灯。"
 	var/image/over_image = null
 	seat = VEHICLE_COMMANDER
 	required_skill = SKILL_VEHICLE_CREWMAN
@@ -142,7 +142,7 @@
 	required_skill = vehicle.required_skill
 	if(!skillcheck(target, SKILL_VEHICLE, required_skill))
 		if(target == user)
-			to_chat(user, SPAN_WARNING("You have no idea how to command this thing!"))
+			to_chat(user, SPAN_WARNING("你根本不知道怎么指挥这辆车！"))
 		return FALSE
 
 	if(vehicle)
@@ -154,7 +154,7 @@
 //spawners located in interior_landmarks
 
 /obj/structure/bed/chair/comfy/vehicle/driver/armor
-	desc = "Military-grade seat for armored vehicle driver with some controls, switches and indicators."
+	desc = "供装甲车辆驾驶员使用的军用座椅，配有控制器、开关和指示灯。"
 	var/image/over_image = null
 
 /obj/structure/bed/chair/comfy/vehicle/driver/armor/Initialize(mapload)
@@ -176,7 +176,7 @@
 		overlays += over_image
 
 /obj/structure/bed/chair/comfy/vehicle/gunner/armor
-	desc = "Military-grade seat for armored vehicle gunner with some controls, switches and indicators."
+	desc = "供装甲车辆炮手使用的军用座椅，配有控制器、开关和指示灯。"
 	var/image/over_image = null
 
 /obj/structure/bed/chair/comfy/vehicle/gunner/armor/Initialize(mapload)
@@ -225,8 +225,8 @@
 //armored vehicles support gunner seat
 
 /obj/structure/bed/chair/comfy/vehicle/support_gunner
-	name = "left support gunner's seat"
-	desc = "Military-grade seat for a support gunner with some controls, switches and indicators."
+	name = "左侧支援机枪手座椅"
+	desc = "供支援机枪手使用的军用座椅，配有控制器、开关和指示灯。"
 	seat = VEHICLE_SUPPORT_GUNNER_ONE
 
 	required_skill = SKILL_VEHICLE_DEFAULT
@@ -251,9 +251,9 @@
 		var/mob/living/carbon/human/H = user
 		if(!H.allow_gun_usage)
 			if(issynth(user))
-				to_chat(user, SPAN_WARNING("Your programming does not allow you to use firearms."))
+				to_chat(user, SPAN_WARNING("你的程序不允许你使用枪械。"))
 			else
-				to_chat(user, SPAN_WARNING("You are unable to use firearms."))
+				to_chat(user, SPAN_WARNING("你无法使用枪械。"))
 			return
 	. = ..()
 
@@ -289,26 +289,26 @@
 			M.client.change_view(8, vehicle)
 
 		if(vehicle.health < initial(vehicle.health) / 2)
-			to_chat(M, SPAN_WARNING("\The [vehicle] is too damaged to operate the Firing Port Weapon!"))
+			to_chat(M, SPAN_WARNING("[vehicle]损坏过于严重，无法操作射击孔武器！"))
 			return
 
 		for(var/obj/item/hardpoint/special/firing_port_weapon/FPW in vehicle.hardpoints)
 			if(FPW.allowed_seat == seat)
 				vehicle.active_hp[seat] = FPW
-				var/msg = SPAN_NOTICE("You take the control of the M56 Firing Port Weapon.")
+				var/msg = SPAN_NOTICE("你接管了M56射击孔武器。")
 				if(FPW.reloading)
-					msg += SPAN_WARNING("The M56 FPW is currently reloading. Wait [SPAN_HELPFUL((FPW.reload_time_started + FPW.reload_time - world.time) / 10)] seconds.")
+					msg += SPAN_WARNING("M56射击孔武器正在装填，请等待[SPAN_HELPFUL((FPW.reload_time_started + FPW.reload_time - world.time) / 10)]秒。")
 				else if(FPW.ammo)
-					msg += SPAN_NOTICE("Ammo: <b>[SPAN_HELPFUL(FPW.ammo.current_rounds)]/[SPAN_HELPFUL(FPW.ammo.max_rounds)]</b>")
+					msg += SPAN_NOTICE("弹药：<b>[SPAN_HELPFUL(FPW.ammo.current_rounds)]/[SPAN_HELPFUL(FPW.ammo.max_rounds)]</b>")
 				else
-					msg += SPAN_DANGER("<b>ERROR. AMMO NOT FOUND, TELL A DEV!</b>")
-				msg = SPAN_INFO("Use 'Reload Firing Port Weapon' verb in 'Vehicle' tab to activate automated reload.")
+					msg += SPAN_DANGER("<b>错误：找不到弹药，请向开发者报告！</b>")
+				msg = SPAN_INFO("使用“载具”选项卡中的“装填射击孔武器”指令启动自动装填。")
 				to_chat(M, msg)
 				return
-		to_chat(M, SPAN_WARNING("ERROR. NO FPW FOUND, TELL A DEV!"))
+		to_chat(M, SPAN_WARNING("错误：找不到射击孔武器，请向开发者报告！"))
 
 /obj/structure/bed/chair/comfy/vehicle/support_gunner/second
-	name = "right support gunner's seat"
+	name = "右侧支援机枪手座椅"
 	seat = VEHICLE_SUPPORT_GUNNER_TWO
 
 //ARMORED VEHICLES PASSENGER SEATS
@@ -317,8 +317,8 @@
 
 //DOES NOT SUPPORT MORE THAN TWO SEATS ON TILE
 /obj/structure/bed/chair/vehicle
-	name = "passenger seat"
-	desc = "A sturdy chair with a brace that lowers over your body. Prevents being flung around in vehicle during crash being injured as a result. Fasten your seatbelts, kids! Fix with welding tool in case of damage."
+	name = "乘员座椅"
+	desc = "结实的座椅，配有可放下固定身体的护架，防止碰撞时在车内被甩动而受伤。孩子们，系好安全带！损坏后可用焊接工具修理。"
 	icon = 'icons/obj/vehicles/interiors/general.dmi'
 	icon_state = "vehicle_seat"
 	buckling_sound = 'sound/effects/metal_close.ogg'
@@ -364,7 +364,7 @@
 /obj/structure/bed/chair/vehicle/buckle_mob(mob/M, mob/user)
 
 	if(broken)
-		to_chat(user, SPAN_WARNING("\The [name] is broken and requires fixing with a welder!"))
+		to_chat(user, SPAN_WARNING("[name]已经损坏，需要用焊接工具修理！"))
 		return
 
 	. = ..()
@@ -414,8 +414,8 @@
 
 /obj/structure/bed/chair/vehicle/attack_alien(mob/living/user)
 	if(!unslashable)
-		user.visible_message(SPAN_WARNING("[user] smashes \the [src]!"),
-		SPAN_WARNING("You smash \the [src]!"))
+		user.visible_message(SPAN_WARNING("[user]猛砸[src]！"),
+		SPAN_WARNING("你猛砸[src]！"))
 		playsound(loc, pick('sound/effects/metalhit.ogg', 'sound/weapons/alien_claw_metal1.ogg', 'sound/weapons/alien_claw_metal2.ogg', 'sound/weapons/alien_claw_metal3.ogg'), 25, 1)
 		if(!broken)
 			break_seat()
@@ -426,16 +426,16 @@
 /obj/structure/bed/chair/vehicle/attackby(obj/item/W, mob/living/user)
 	if((iswelder(W) && broken))
 		if(!HAS_TRAIT(W, TRAIT_TOOL_BLOWTORCH))
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要更强力的焊炬！"))
 			return
 		var/obj/item/tool/weldingtool/C = W
 		if(C.remove_fuel(0,user))
 			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 25)
-			user.visible_message(SPAN_WARNING("[user] begins repairing \the [src]."),
-			SPAN_WARNING("You begin repairing \the [src]."))
+			user.visible_message(SPAN_WARNING("[user]开始修理[src]。"),
+			SPAN_WARNING("你开始修理[src]。"))
 			if(do_after(user, 2 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD) && broken)
-				user.visible_message(SPAN_WARNING("[user] repairs \the [src]."),
-				SPAN_WARNING("You repair \the [src]."))
+				user.visible_message(SPAN_WARNING("[user]修好了[src]。"),
+				SPAN_WARNING("你修好了[src]。"))
 				repair_seat()
 				return
 
@@ -466,8 +466,8 @@
 			break_seat()
 
 /obj/structure/bed/chair/vehicle/toc
-	name = "overwatch chair"
-	desc = "A sturdy chair with a brace that lowers over the body. Prevents being flung around in vehicle during a crash and being injured as a result. Fasten your seatbelts, kids! Fix with welding tool in case of damage."
+	name = "战术监控座椅"
+	desc = "结实的座椅，配有可放下固定身体的护架，防止碰撞时在车内被甩动而受伤。孩子们，系好安全带！损坏后可用焊接工具修理。"
 	icon_state = "armor_chair"
 	can_rotate = TRUE
 
@@ -502,8 +502,8 @@
 	handle_rotation()
 
 /obj/structure/bed/chair/vehicle/dropship_cockpit
-	name = "cockpit seat"
-	desc = "A sturdy metal chair with a brace that lowers over your body. Holds you in place during high altitude drops."
+	name = "驾驶舱座椅"
+	desc = "结实的金属座椅，配有可放下固定身体的护架，在高空投放时将你牢牢固定。"
 	icon_state = "vehicle_seat"
 	can_rotate = FALSE
 
@@ -538,7 +538,7 @@
 	handle_rotation()
 
 /obj/structure/bed/chair/vehicle/dropship_cockpit/pilot
-	name = "pilot seat"
+	name = "主驾驶座椅"
 
 /obj/structure/bed/chair/vehicle/dropship_cockpit/pilot/handle_rotation()
 	if(dir == NORTH)
@@ -549,11 +549,11 @@
 		buckled_mob.setDir(dir)
 
 /obj/structure/bed/chair/vehicle/dropship_cockpit/copilot
-	name = "co-pilot seat"
+	name = "副驾驶座椅"
 
 // GUNNER VAN Seat
 /obj/structure/bed/chair/comfy/vehicle/van_gunner
-	name = "gunner's seat"
-	desc = "Comfortable seat for a gunner."
+	name = "炮手座椅"
+	desc = "供炮手使用的舒适座椅。"
 	seat = VEHICLE_GUNNER
 	required_skill = SKILL_VEHICLE_DEFAULT

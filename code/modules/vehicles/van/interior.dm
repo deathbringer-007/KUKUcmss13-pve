@@ -1,8 +1,8 @@
 // Van interior stuff
 
 /obj/structure/interior_wall/van
-	name = "van interior wall"
-	desc = "An interior wall."
+	name = "厢型车内壁"
+	desc = "一道车内隔墙。"
 	icon = 'icons/obj/vehicles/interiors/van.dmi'
 	icon_state = "van_right_1"
 	density = TRUE
@@ -14,29 +14,29 @@
 	unacidable = TRUE
 
 /obj/effect/vehicle_roof/van
-	name = "\improper van interior roof"
+	name = "\improper 厢型车内顶棚"
 	icon = 'icons/obj/vehicles/interiors/van.dmi'
 	icon_state = "roof_1"
 
 /obj/structure/interior_exit/vehicle/van/left
-	name = "Van left door"
+	name = "厢型车左侧门"
 	icon = 'icons/obj/vehicles/interiors/van.dmi'
 	icon_state = "interior_door"
 
 /obj/structure/interior_exit/vehicle/van/right
-	name = "Van right door"
+	name = "厢型车右侧门"
 	icon = 'icons/obj/vehicles/interiors/van.dmi'
 	icon_state = "exterior_door_unique"
 	dir = SOUTH
 
 /obj/structure/interior_exit/vehicle/van/backleft
-	name = "Van back exit"
+	name = "厢型车后部出口"
 	icon = 'icons/obj/vehicles/interiors/van.dmi'
 	icon_state = "back_2"
 	dir = WEST
 
 /obj/structure/interior_exit/vehicle/van/backright
-	name = "Van back exit"
+	name = "厢型车后部出口"
 	icon = 'icons/obj/vehicles/interiors/van.dmi'
 	icon_state = "back_1"
 	dir = WEST
@@ -45,8 +45,8 @@
 // Box-Van interior
 
 /obj/structure/interior_wall/box_van
-	name = "van interior wall"
-	desc = "An interior wall."
+	name = "厢型车内壁"
+	desc = "一道车内隔墙。"
 	icon = 'icons/obj/vehicles/interiors/box_van_interior.dmi'
 	icon_state = "exterior_2"
 	density = TRUE
@@ -58,29 +58,29 @@
 	unacidable = TRUE
 
 /obj/effect/vehicle_roof/box_van
-	name = "\improper van interior roof"
+	name = "\improper 厢型车内顶棚"
 	icon = 'icons/obj/vehicles/interiors/box_van_interior.dmi'
 	icon_state = "roof_1"
 
 /obj/structure/interior_exit/vehicle/box_van/left
-	name = "Van left door"
+	name = "厢型车左侧门"
 	icon = 'icons/obj/vehicles/interiors/box_van_interior.dmi'
 	icon_state = "interior_door"
 
 /obj/structure/interior_exit/vehicle/box_van/right
-	name = "Van right door"
+	name = "厢型车右侧门"
 	icon = 'icons/obj/vehicles/interiors/box_van_interior.dmi'
 	icon_state = "exterior_door_unique"
 	dir = SOUTH
 
 /obj/structure/interior_exit/vehicle/box_van/backleft
-	name = "Van back exit"
+	name = "厢型车后部出口"
 	icon = 'icons/obj/vehicles/interiors/box_van_interior.dmi'
 	icon_state = "back_2"
 	dir = WEST
 
 /obj/structure/interior_exit/vehicle/box_van/backright
-	name = "Van back exit"
+	name = "厢型车后部出口"
 	icon = 'icons/obj/vehicles/interiors/box_van_interior.dmi'
 	icon_state = "back_1"
 	dir = WEST
@@ -88,8 +88,8 @@
 // Pizza-Van interior
 
 /obj/structure/interior_wall/pizza_van
-	name = "van interior wall"
-	desc = "An interior wall."
+	name = "厢型车内壁"
+	desc = "一道车内隔墙。"
 	icon = 'icons/obj/vehicles/interiors/pizza_van_interior.dmi'
 	icon_state = "exterior_2"
 	density = TRUE
@@ -101,29 +101,29 @@
 	unacidable = TRUE
 
 /obj/effect/vehicle_roof/pizza_van
-	name = "\improper van interior roof"
+	name = "\improper 厢型车内顶棚"
 	icon = 'icons/obj/vehicles/interiors/pizza_van_interior.dmi'
 	icon_state = "roof_1"
 
 /obj/structure/interior_exit/vehicle/pizza_van/left
-	name = "Van left door"
+	name = "厢型车左侧门"
 	icon = 'icons/obj/vehicles/interiors/pizza_van_interior.dmi'
 	icon_state = "interior_door"
 
 /obj/structure/interior_exit/vehicle/pizza_van/right
-	name = "Van right door"
+	name = "厢型车右侧门"
 	icon = 'icons/obj/vehicles/interiors/pizza_van_interior.dmi'
 	icon_state = "exterior_door_unique"
 	dir = SOUTH
 
 /obj/structure/interior_exit/vehicle/pizza_van/backleft
-	name = "Van back exit"
+	name = "厢型车后部出口"
 	icon = 'icons/obj/vehicles/interiors/pizza_van_interior.dmi'
 	icon_state = "back_2"
 	dir = WEST
 
 /obj/structure/interior_exit/vehicle/pizza_van/backright
-	name = "Van back exit"
+	name = "厢型车后部出口"
 	icon = 'icons/obj/vehicles/interiors/pizza_van_interior.dmi'
 	icon_state = "back_1"
 	dir = WEST

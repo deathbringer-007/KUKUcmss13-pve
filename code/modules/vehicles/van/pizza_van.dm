@@ -4,7 +4,7 @@
 //Read the documentation in multitile.dm before trying to decipher this stuff
 
 /obj/vehicle/multitile/box_van/pizza_van
-	name = "\improper box-van"
+	name = "\improper 厢式货车"
 	icon = 'icons/obj/vehicles/pizza_van.dmi'
 
 	interior_map = /datum/map_template/interior/pizza_van

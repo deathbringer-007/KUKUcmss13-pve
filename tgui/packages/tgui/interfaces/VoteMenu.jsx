@@ -5,14 +5,14 @@ import { Box, Button, Flex, Section, Tabs } from '../components';
 import { Window } from '../layouts';
 const PAGES = [
   {
-    title: 'Vote',
+    title: '投票',
     component: () => MainMenu,
     color: 'white',
     icon: 'square',
     canAccess: (data) => !!data.vote_in_progress,
   },
   {
-    title: 'Start a vote',
+    title: '发起投票',
     component: () => StartVote,
     color: 'red',
     icon: 'gavel',
@@ -96,13 +96,13 @@ const MainMenu = (props) => {
                         textAlign="center"
                         onClick={() => act('vote', { voted_for: key })}
                       >
-                        Vote
+                        投票
                       </Button>
                     </Flex.Item>
                     {!!(vote_has_voted || is_admin) && (
                       <Flex.Item>
                         <Box height="100%" pl={1} fontSize="110%" nowrap>
-                          {vote_choices[key]} votes
+                          {vote_choices[key]} 票
                         </Box>
                       </Flex.Item>
                     )}
@@ -123,7 +123,7 @@ const MainMenu = (props) => {
             </Flex>
           )) || (
             <Box fontSize="150%" textAlign="center" height="100%">
-              No vote in progress
+              当前没有正在进行的投票
             </Box>
           )}
         </Section>

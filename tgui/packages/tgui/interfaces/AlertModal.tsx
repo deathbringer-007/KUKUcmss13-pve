@@ -7,6 +7,18 @@ import { Autofocus, Box, Button, Section, Stack } from '../components';
 import { Window } from '../layouts';
 import { Loader } from './common/Loader';
 
+const buttonLabels = new Map([
+  ['Yes', '是'],
+  ['No', '否'],
+  ['OK', '确定'],
+  ['Ok', '确定'],
+  ['Cancel', '取消'],
+  ['Confirm', '确认'],
+  ['Continue', '继续'],
+  ['Close', '关闭'],
+  ['Back', '返回'],
+]);
+
 type Data = {
   autofocus: BooleanLike;
   buttons: string[];
@@ -128,7 +140,8 @@ function HorizontalButtons(props: ButtonDisplayProps) {
             selected={selected === index}
             textAlign="center"
           >
-            {!large_buttons ? button : button.toUpperCase()}
+            {buttonLabels.get(button) ??
+              (!large_buttons ? button : button.toUpperCase())}
           </Button>
         </Stack.Item>
       ))}
@@ -170,7 +183,8 @@ function VerticalButtons(props: ButtonDisplayProps) {
             selected={selected === index}
             textAlign="center"
           >
-            {!large_buttons ? button : button.toUpperCase()}
+            {buttonLabels.get(button) ??
+              (!large_buttons ? button : button.toUpperCase())}
           </Button>
         </Stack.Item>
       ))}

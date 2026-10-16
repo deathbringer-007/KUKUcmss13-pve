@@ -42,7 +42,7 @@ export const XenomorphExtractor = () => {
                 disabled={!organ}
                 onClick={() => act('eject_organ')}
               >
-                {!organ ? 'Eject Biomass' : 'Eject ' + caste + ' biomass'}
+                {!organ ? '弹出生物质' : '弹出' + caste + '生物质'}
               </Button>
             </Stack.Item>
             <Stack.Item>
@@ -53,26 +53,26 @@ export const XenomorphExtractor = () => {
                 onClick={() => act('process_organ')}
               >
                 {!organ
-                  ? 'Process Biomass'
-                  : 'Process Biomass, Expected value : ' + value}
+                  ? '处理生物质'
+                  : '处理生物质，预计产出：' + value}
               </Button>
             </Stack.Item>
             <Stack.Item>
-              <NoticeBox info>Biological Matter : {points}</NoticeBox>
+              <NoticeBox info>生物质储量：{points}</NoticeBox>
             </Stack.Item>
           </Stack>
         </Section>
-        <Section title="Biological Material">
+        <Section title="生物材料">
           {!organ ? (
             <NoticeBox danger>
-              Recepticle is empty, analyzing is impossible!
+              容器为空，无法分析！
             </NoticeBox>
           ) : (
-            <NoticeBox notice>Biomass accepted. Ready to analyze.</NoticeBox>
+            <NoticeBox notice>已接收生物质，可以开始分析。</NoticeBox>
           )}
         </Section>
         <Divider />
-        <Section title={<span> Select Technology to print.</span>}>
+        <Section title={<span> 选择要制造的科技产品。</span>}>
           <Box ml={1}>
             <Dropdown
               selected={selectedTab}
@@ -111,32 +111,30 @@ export const XenomorphExtractor = () => {
                                   })
                                 }
                               >
-                                Print ({upgrades.cost})
+                                制造（{upgrades.cost}）
                               </Button>
                             </Box>
                           }
                         >
                           <Box mb={0.8}>
-                            Clearance{' '}
+                            所需权限等级：{' '}
                             {upgrades.clearance === 6
                               ? '5X'
                               : upgrades.clearance}{' '}
-                            Required
                             {upgrades.price_change !== 0 && (
                               <Box>
                                 <Divider />
-                                This technology will{' '}
+                                此科技产品每次购买后，费用将{' '}
                                 {upgrades.price_change > 0
-                                  ? 'increase'
-                                  : 'decrease'}{' '}
-                                in cost by {upgrades.price_change} each purchase
+                                  ? '增加'
+                                  : '减少'}{' '}
+                                {Math.abs(upgrades.price_change)}
                               </Box>
                             )}
                             {upgrades.price_change === 0 && (
                               <Box>
                                 <Divider />
-                                This technology will not change its value with
-                                purchase.
+                                此科技产品的费用不会随购买次数变化。
                               </Box>
                             )}
                           </Box>

@@ -63,8 +63,8 @@ const ElectricalPanelClosed = (props: BoxProps) => {
             </Flex.Item>
             <Flex.Item>
               <span>
-                Electrical Hazard <br />
-                Authorised Personnel Only
+                当心触电 <br />
+                仅限授权人员操作
               </span>
             </Flex.Item>
           </Flex>
@@ -113,7 +113,7 @@ const WireControl = (props: {
           <Button
             icon="scissors"
             onClick={() => act('cutwire', { wire: target })}
-            tooltip={'Cut'}
+            tooltip={'剪断'}
             tooltipPosition="left"
           />
         )}
@@ -121,7 +121,7 @@ const WireControl = (props: {
           <Button
             icon="wrench"
             onClick={() => act('fixwire', { wire: target })}
-            tooltip={'Fix'}
+            tooltip={'接合'}
             tooltipPosition="left"
           />
         )}
@@ -131,7 +131,7 @@ const WireControl = (props: {
           icon="wave-square"
           disabled={props.wire.cut === 1}
           onClick={() => act('pulsewire', { wire: target })}
-          tooltip={'Pulse'}
+          tooltip={'发送脉冲'}
           tooltipPosition="left"
         />
       </Stack.Item>

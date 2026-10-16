@@ -21,7 +21,7 @@ export const InterfaceLockNoticeBox = (props) => {
     siliconUser = data.siliconUser,
     locked = data.locked,
     onLockStatusChange = () => act('lock'),
-    accessText = 'an ID card or dogtags',
+    accessText = 'ID卡或身份牌',
     preventLocking = data.preventLocking,
   } = props;
   // For silicon users
@@ -29,7 +29,7 @@ export const InterfaceLockNoticeBox = (props) => {
     return (
       <NoticeBox color="grey">
         <Flex align="center">
-          <Flex.Item>Interface lock status:</Flex.Item>
+          <Flex.Item>界面锁定状态：</Flex.Item>
           <Flex.Item grow={1} />
           <Flex.Item>
             <Button
@@ -43,7 +43,7 @@ export const InterfaceLockNoticeBox = (props) => {
                 }
               }}
             >
-              {locked ? 'Locked' : 'Unlocked'}
+              {locked ? '已锁定' : '已解锁'}
             </Button>
           </Flex.Item>
         </Flex>
@@ -53,7 +53,7 @@ export const InterfaceLockNoticeBox = (props) => {
   // For everyone else
   return (
     <NoticeBox>
-      Swipe {accessText} to {locked ? 'unlock' : 'lock'} this interface.
+      刷{accessText}以{locked ? '解锁' : '锁定'}此界面。
     </NoticeBox>
   );
 };

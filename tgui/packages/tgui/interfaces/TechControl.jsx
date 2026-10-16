@@ -5,9 +5,9 @@ import { Window } from '../layouts';
 export const TechControl = (props) => {
   const { act, data } = useBackend();
   data.leader_data = data.leader_data || {
-    name: 'Unassigned',
-    job: 'N/A',
-    paygrade: 'N/A',
+    name: '未指派',
+    job: '无',
+    paygrade: '无',
     rank: 0,
   };
 
@@ -20,33 +20,33 @@ export const TechControl = (props) => {
           <Flex.Item grow={1}>
             <Flex direction="column" height="100%">
               <Flex.Item grow={1}>
-                <Section fill title="Leader Data">
+                <Section fill title="指挥者信息">
                   <Flex direction="column">
                     <Flex.Item>
-                      <Label label="Name" content={leader_data.name} />
+                      <Label label="姓名" content={leader_data.name} />
                     </Flex.Item>
                     <Flex.Item mt={1}>
-                      <Label label="Job" content={leader_data.job} />
+                      <Label label="职务" content={leader_data.job} />
                     </Flex.Item>
                     <Flex.Item mt={1}>
-                      <Label label="Paygrade" content={leader_data.paygrade} />
+                      <Label label="军衔" content={leader_data.paygrade} />
                     </Flex.Item>
                   </Flex>
                 </Section>
               </Flex.Item>
               <Flex.Item>
-                <Section fill title="Your Data">
+                <Section fill title="你的信息">
                   <Flex direction="column">
                     <Flex.Item>
-                      <Label label="Name" content={user_data.name} />
+                      <Label label="姓名" content={user_data.name} />
                     </Flex.Item>
                     <Flex.Item mt={1}>
-                      <Label label="Job" content={user_data.job || 'N/A'} />
+                      <Label label="职务" content={user_data.job || '无'} />
                     </Flex.Item>
                     <Flex.Item mt={1}>
                       <Label
-                        label="Paygrade"
-                        content={user_data.paygrade || 'N/A'}
+                        label="军衔"
+                        content={user_data.paygrade || '无'}
                       />
                     </Flex.Item>
                   </Flex>
@@ -55,7 +55,7 @@ export const TechControl = (props) => {
             </Flex>
           </Flex.Item>
           <Flex.Item ml={1}>
-            <Section fill title="Commands">
+            <Section fill title="指令">
               <Flex direction="column" height="100%">
                 <Flex.Item>
                   <Button
@@ -67,7 +67,7 @@ export const TechControl = (props) => {
                     width="100%"
                     onClick={() => act('override_leader')}
                   >
-                    Take Command
+                    接管指挥权
                   </Button>
                 </Flex.Item>
                 <Flex.Item mt={1}>
@@ -78,7 +78,7 @@ export const TechControl = (props) => {
                     width="100%"
                     onClick={() => act('giveup_control')}
                   >
-                    Resign Command
+                    放弃指挥权
                   </Button>
                 </Flex.Item>
               </Flex>

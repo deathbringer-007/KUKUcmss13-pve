@@ -5,6 +5,24 @@ import { MfdPanel, MfdProps } from './MultifunctionDisplay';
 import { mfdState, useEquipmentState, useWeaponState } from './stateManagers';
 import { EquipmentContext } from './types';
 
+const equipmentLabels = new Map<string, string>([
+  ['Sentry', '哨戒炮'],
+  ['MG', '机枪'],
+  ['Spotlight', '探照灯'],
+  ['Targeting', '瞄准'],
+  ['LZ Detector', '着陆区探测'],
+  ['GAU', '机炮'],
+  ['MSL', '导弹'],
+  ['RKT', '火箭弹'],
+  ['LZR', '激光'],
+  ['LCH', '哨戒炮投放'],
+  ['Medevac', '医疗后送'],
+  ['Fulton', '富尔顿'],
+  ['PDS', '空降'],
+]);
+
+const equipmentLabel = (value: string) => equipmentLabels.get(value) ?? value;
+
 const equipment_xs = [140, 160, 320, 340, 180, 300, 240, 240, 240, 140, 340];
 const equipment_ys = [120, 100, 100, 120, 100, 100, 260, 300, 340, 320, 320];
 
@@ -72,10 +90,10 @@ const DrawWeaponEquipment = (props: DropshipEquipment) => {
       <DrawWeaponText
         x={equipment_text_xs[props.mount_point - 1]}
         y={equipment_text_ys[props.mount_point - 1]}
-        desc={props.shorthand}
+        desc={equipmentLabel(props.shorthand)}
         sub_desc={`${
           props.shorthand === 'MSL'
-            ? props.ammo_name?.split(' ')[0] ?? 'Empty'
+            ? props.ammo_name?.split(' ')[0] ?? '空'
             : props.ammo ?? 0
         }`}
       />
@@ -94,7 +112,7 @@ const DrawMiscEquipment = (props: DropshipEquipment) => {
       <DrawWeaponText
         x={equipment_text_xs[props.mount_point - 1]}
         y={equipment_text_ys[props.mount_point - 1]}
-        desc={props.shorthand ?? props.name}
+        desc={equipmentLabel(props.shorthand ?? props.name)}
       />
     </>
   );
@@ -293,7 +311,7 @@ export const EquipmentMfdPanel = (props: MfdProps) => {
 
   const generateWeaponButton = (equip: DropshipEquipment) => {
     return {
-      children: equip.shorthand,
+      children: equipmentLabel(equip.shorthand),
       onClick: () => {
         setWeaponState(equip.mount_point);
         setPanelState('weapon');
@@ -303,7 +321,7 @@ export const EquipmentMfdPanel = (props: MfdProps) => {
 
   const generateEquipmentButton = (equip: DropshipEquipment) => {
     return {
-      children: equip.shorthand,
+      children: equipmentLabel(equip.shorthand),
       onClick: () => {
         setEquipmentState(equip.mount_point);
         setPanelState('support');
@@ -336,7 +354,7 @@ export const EquipmentMfdPanel = (props: MfdProps) => {
       ]}
       bottomButtons={[
         {
-          children: 'EXIT',
+          children: '退出',
           onClick: () => setPanelState(''),
         },
       ]}

@@ -3,8 +3,8 @@
 //Keyword rifles. They are subtype of rifles, but still contained here as a specialist weapon.
 
 /obj/item/ammo_magazine/sniper
-	name = "\improper M42A marksman magazine (10x28mm Caseless)"
-	desc = "A magazine of M252 HEAP match-grade 10x28mm ammo. An aimed shot with it will deal significant damage."
+	name = "\improper M42A精确射手弹匣（10x28mm无壳弹）"
+	desc = "装有M252高爆穿甲比赛级10x28mm弹药的弹匣。瞄准射击可造成显著伤害。"
 	caliber = "10x28mm"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/uscm.dmi'
 	icon_state = "m42c" //PLACEHOLDER
@@ -16,27 +16,27 @@
 	ammo_band_icon_empty = "+m42c_band_e"
 
 /obj/item/ammo_magazine/sniper/basic
-	name = "\improper M42A magazine (10x28mm)"
-	desc = "A magazine of M250 10x28mm ammunition. Not as effective as the match-grade kind, but still brings the hurt. An aimed shot with it will temporarily blind the targe and kindle the blaze further."
+	name = "\improper M42A弹匣（10x28mm）"
+	desc = "装有M250型10x28mm弹药的弹匣。效果虽不及比赛级弹药，仍有相当杀伤力。瞄准射击会使目标短暂失明，并加剧燃烧。"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	ammo_band_color = AMMO_BAND_COLOR_RUBBER
 
 /obj/item/ammo_magazine/sniper/incendiary
-	name = "\improper M42A incendiary magazine (10x28mm)"
-	desc = "A magazine of M254 incendiary match-grade 10x28mm ammo. An aimed shot with it will temporarily blind the targe and kindle the blaze further."
+	name = "\improper M42A燃烧弹匣（10x28mm）"
+	desc = "装有M254燃烧比赛级10x28mm弹药的弹匣。瞄准射击会使目标短暂失明，并加剧燃烧。"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/incendiary
 	ammo_band_color = AMMO_BAND_COLOR_INCENDIARY
 
 /obj/item/ammo_magazine/sniper/flak
-	name = "\improper M42A flak magazine (10x28mm)"
-	desc = "A magazine of M257 HEFA match-grade 10x28mm ammo. An aimed shot with it will temporarily slow the target and minimize the backlash."
+	name = "\improper M42A破片弹匣（10x28mm）"
+	desc = "装有M257高爆破片比赛级10x28mm弹药的弹匣。瞄准射击会使目标暂时减速，并尽量减轻反冲。"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/flak
 	ammo_band_color = AMMO_BAND_COLOR_IMPACT
 
 //XM43E1 Magazine
 /obj/item/ammo_magazine/sniper/anti_materiel
-	name = "\improper XM43E1 marksman magazine (10x99mm)"
-	desc = "A magazine of caseless 10x99mm anti-materiel rounds, capable of penetrating through most infantry-level materiel. Depending on what you hit, it might even have enough energy to wound anything behind the target."
+	name = "\improper XM43E1精确射手弹匣（10x99mm）"
+	desc = "装有10x99mm无壳反器材弹的弹匣，能够穿透大多数步兵级装备。视命中物体而定，穿透后甚至可能仍有足够能量伤及目标后方的物体。"
 	max_rounds = 8
 	caliber = "10x99mm"
 	default_ammo = /datum/ammo/bullet/sniper/anti_materiel
@@ -45,8 +45,8 @@
 //M42C magazine
 
 /obj/item/ammo_magazine/sniper/elite
-	name = "\improper M42C marksman magazine (10x28mm)"
-	desc = "A magazine of M252 HEAP match-grade 10x28mm ammo. An aimed shot with it will deal significant damage."
+	name = "\improper M42C精确射手弹匣（10x28mm）"
+	desc = "装有M252高爆穿甲比赛级10x28mm弹药的弹匣。瞄准射击可造成显著伤害。"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/heap/sniper
 	gun_type = /obj/item/weapon/gun/rifle/sniper/elite
 	caliber = "10x28mm"
@@ -54,8 +54,8 @@
 	max_rounds = 6
 
 /obj/item/ammo_magazine/sniper/elite/basic
-	name = "\improper M42C magazine (10x28mm)"
-	desc = "A magazine of M250 10x28mm ammunition. Not as effective as the match-grade kind, but still brings the hurt."
+	name = "\improper M42C弹匣（10x28mm）"
+	desc = "装有M250型10x28mm弹药的弹匣。效果虽不及比赛级弹药，仍有相当杀伤力。"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	gun_type = /obj/item/weapon/gun/rifle/sniper/elite
 	caliber = "10x28mm"
@@ -64,8 +64,8 @@
 	ammo_band_color = AMMO_BAND_COLOR_RUBBER
 
 /obj/item/ammo_magazine/sniper/elite/incin
-	name = "\improper M42C incendiary magazine (10x28mm)"
-	desc = "A magazine of M254 incendiary match-grade 10x28mm ammo. An aimed shot with it will temporarily blind the target and kindle the blaze further."
+	name = "\improper M42C燃烧弹匣（10x28mm）"
+	desc = "装有M254燃烧比赛级10x28mm弹药的弹匣。瞄准射击会使目标短暂失明，并加剧燃烧。"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/incendiary
 	gun_type = /obj/item/weapon/gun/rifle/sniper/elite
 	caliber = "10x28mm"
@@ -74,8 +74,8 @@
 	ammo_band_color = AMMO_BAND_COLOR_INCENDIARY
 
 /obj/item/ammo_magazine/sniper/elite/flak
-	name = "\improper M42C flak magazine (10x28mm)"
-	desc = "A magazine of M257 HEFA match-grade 10x28mm ammo. An aimed shot with it will temporarily slow the target and minimize the backlash."
+	name = "\improper M42C破片弹匣（10x28mm）"
+	desc = "装有M257高爆破片比赛级10x28mm弹药的弹匣。瞄准射击会使目标暂时减速，并尽量减轻反冲。"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/flak
 	gun_type = /obj/item/weapon/gun/rifle/sniper/elite
 	caliber = "10x28mm"
@@ -84,8 +84,8 @@
 	ammo_band_color = AMMO_BAND_COLOR_IMPACT
 
 /obj/item/ammo_magazine/sniper/elite/overkill
-	name = "\improper M42C super-sonic magazine (10x28mm)"
-	desc = "A magazine of M252A1 HEAPSS match-grade 10x28mm ammo. Capable of penetrating through most infantry-level materiel. Depending on what you hit, it might even have enough energy to wound anything behind the target."
+	name = "\improper M42C超音速弹匣（10x28mm）"
+	desc = "装有M252A1高爆穿甲超音速比赛级10x28mm弹药的弹匣，能够穿透大多数步兵级装备。视命中物体而定，穿透后甚至可能仍有足够能量伤及目标后方的物体。"
 	default_ammo = /datum/ammo/bullet/sniper/elite
 	gun_type = /obj/item/weapon/gun/rifle/sniper/elite
 	caliber = "10x28mm"
@@ -96,8 +96,8 @@
 //Type 88 //Based on the actual Dragunov designated marksman rifle.
 
 /obj/item/ammo_magazine/sniper/svd
-	name = "\improper Type-88 Magazine (7.62x54mmR)"
-	desc = "A large caliber magazine for the Type-88 designated marksman rifle."
+	name = "\improper 88式弹匣（7.62x54mmR）"
+	desc = "88式精确射手步枪使用的大口径弹匣。"
 	caliber = "7.62x54mmR"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/upp.dmi'
 	icon_state = "type88mag"
@@ -108,30 +108,30 @@
 	ammo_band_icon_empty = "+type88_band_e"
 
 /obj/item/ammo_magazine/sniper/svd/heap
-	name = "\improper Type-88 HV Magazine (7.62x54mmR)"
-	desc = "A large caliber magazine for the Type-88 designated marksman rifle. This one is loaded with HV rounds, that provide some additonal force and body armor penetration.."
+	name = "\improper 88式高速弹匣（7.62x54mmR）"
+	desc = "88式精确射手步枪使用的大口径弹匣，装有高速弹，可提供额外冲击力与防弹衣穿透能力。"
 	ammo_band_color = AMMO_BAND_COLOR_HEAP
 	default_ammo = /datum/ammo/bullet/sniper/upp/heap
 
 /obj/item/ammo_magazine/sniper/svd/flak
-	name = "\improper Type-88 flak Magazine (7.62x54mmR)"
-	desc = "A large caliber magazine for the Type-88 designated marksman rifle. This one is loaded with flak rounds, which explode into spall on impact."
+	name = "\improper 88式破片弹匣（7.62x54mmR）"
+	desc = "88式精确射手步枪使用的大口径弹匣，装有命中后爆裂并散布破片的弹药。"
 	ammo_band_color = AMMO_BAND_COLOR_IMPACT
 	default_ammo = /datum/ammo/bullet/sniper/upp/flak
 
 /obj/item/ammo_magazine/sniper/svd/flak/Initialize(mapload, spawn_empty)
 	. = ..()
-	desc = desc + SPAN_WARNING(" Be careful of collateral damage to friendlies caused by the spall.")
+	desc = desc + SPAN_WARNING(" 小心破片误伤友军。")
 
 /obj/item/ammo_magazine/sniper/svd/pve
-	name = "\improper Type-88 HP Magazine (7.62x54mmR)"
+	name = "\improper 88式空尖弹匣（7.62x54mmR）"
 	default_ammo = /datum/ammo/bullet/sniper/upp_pve
 
 //RMC DMR magazine
 
 /obj/item/ammo_magazine/sniper/rmc
-	name = "\improper L64A3 squash-head magazine (8.88x51mm Caseless)"
-	desc = "A magazine of L10A7 squash-head match-grade 8.88x51mm ammo. An aimed shot with it will deal significant damage."
+	name = "\improper L64A3碎甲弹匣（8.88x51mm无壳弹）"
+	desc = "装有L10A7比赛级8.88x51mm碎甲弹的弹匣。瞄准射击可造成显著伤害。"
 	caliber = "8.88x51mm"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/twe_ammo.dmi'
 	icon_state = "rmcdmr"
@@ -146,8 +146,8 @@
 //M49A magazines
 
 /obj/item/ammo_magazine/rifle/m49a/custom
-	name = "\improper A19 HV magazine (10x28mm)"
-	desc = "A magazine of A19 high velocity rounds for use in the later-model M49A battle rifles. The M49A5 & M49A6 battle rifles are the only guns that can chamber these rounds."
+	name = "\improper A19高速弹匣（10x28mm）"
+	desc = "装有供后期型号M49A战斗步枪使用的A19高速弹。只有M49A5和M49A6战斗步枪能使用这种弹药。"
 	icon_state = "a19"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/spec
 	max_rounds = 30
@@ -157,22 +157,22 @@
 	ammo_band_color = AMMO_BAND_COLOR_HIGH_IMPACT
 
 /obj/item/ammo_magazine/rifle/m49a/custom/incendiary
-	name = "\improper A19 HV incendiary magazine (10x28mm)"
-	desc = "A magazine of A19 HV incendiary rounds for use in the later-model M49A battle rifles. The M49A5 & M49A6 battle rifles are the only guns that can chamber these rounds."
+	name = "\improper A19高速燃烧弹匣（10x28mm）"
+	desc = "装有供后期型号M49A战斗步枪使用的A19高速燃烧弹。只有M49A5和M49A6战斗步枪能使用这种弹药。"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/spec/incendiary
 	gun_type = /obj/item/weapon/gun/rifle/m49a_custom
 	ammo_band_color = AMMO_BAND_COLOR_INCENDIARY
 
 /obj/item/ammo_magazine/rifle/m49a/custom/explosive
-	name = "\improper A19 HV explosive magazine (10x28mm)"
-	desc = "A magazine of A19 HV explosive rounds for use in the later-model M49A battle rifles. The M49A5 & M49A6 battle rifles are the only guns that can chamber these rounds."
+	name = "\improper A19高速爆破弹匣（10x28mm）"
+	desc = "装有供后期型号M49A战斗步枪使用的A19高速爆破弹。只有M49A5和M49A6战斗步枪能使用这种弹药。"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/spec/explosive
 	gun_type = /obj/item/weapon/gun/rifle/m49a_custom
 	ammo_band_color = AMMO_BAND_COLOR_EXPLOSIVE
 
 /obj/item/ammo_magazine/rifle/m49a/custom/pve
-	name = "\improper A19 HV depleted uranium magazine (10x28mm)"
-	desc = "A magazine of A19 HV wall-penetrating, body-penetrating, toxic 10x28mm rounds. Handloaded by Gateway armorers for use in the M49A6 battle rifle."
+	name = "\improper A19高速贫铀弹匣（10x28mm）"
+	desc = "装有可穿墙、穿透人体且带毒性的A19高速10x28mm弹药。由门户空间站军械师手工装填，供M49A6战斗步枪使用。"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/spec/du
 	gun_type = /obj/item/weapon/gun/rifle/m49a/pve
 	ammo_band_color = AMMO_BAND_COLOR_TOXIN
@@ -180,7 +180,7 @@
 //-------------------------------------------------------
 //SMARTGUN
 /obj/item/ammo_magazine/smartgun
-	name = "smartgun drum"
+	name = "智能机枪弹鼓"
 	caliber = "10x28mm"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/uscm.dmi'
 	icon_state = "m56_drum"
@@ -190,24 +190,24 @@
 	gun_type = /obj/item/weapon/gun/smartgun
 
 /obj/item/ammo_magazine/smartgun/dirty
-	name = "irradiated smartgun drum"
-	desc = "What at first glance appears to be a standard 500 round M56 Smartgun drum, is actually a drum loaded with irradiated rounds, providing an extra 'oomph' to to its bullets. The magazine itself is slightly modified to only fit in M56T smartguns, and is marked with a red X."
+	name = "智能机枪辐射弹鼓"
+	desc = "乍看像是标准的500发M56智能机枪弹鼓，实际装有辐射弹，为子弹增添了额外的“劲头”。弹鼓稍经改造，仅适配M56T智能机枪，并带有红色X标记。"
 	icon_state = "m56_drum_dirty"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/dirty
 	gun_type = /obj/item/weapon/gun/smartgun
 
 /obj/item/ammo_magazine/smartgun/holo_targeting
-	name = "holotargeting smartgun drum"
-	desc = "Holotargeting rounds for use in the royal marines commando L58A3 smartgun. The drum itself is designed to only fit in L58A3 smartguns, and is marked with a blue X."
+	name = "智能机枪全息标记弹鼓"
+	desc = "供皇家海军陆战队突击队L58A3智能机枪使用的全息标记弹。弹鼓仅适配L58A3智能机枪，并带有蓝色X标记。"
 	icon_state = "m56_drum_holo"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/holo_target
 	gun_type = /obj/item/weapon/gun/smartgun/rmc
 
 /obj/item/ammo_magazine/smartgun/upp
-	name = "automated machinegun drum"
+	name = "自动机枪弹鼓"
 	caliber = "12.7x40mm"
 	max_rounds = 250
-	desc = "Simple high-caliber 250 round machinegun drum."
+	desc = "简单的大口径250发机枪弹鼓。"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/upp.dmi'
 	icon_state = "rfvs37"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/upp_smartgun
@@ -226,8 +226,8 @@
 //M5 RPG
 
 /obj/item/ammo_magazine/rocket
-	name = "\improper 84mm high explosive rocket"
-	desc = "A rocket tube loaded with a HE warhead. Deals high damage to soft targets on direct hit and stuns most targets in a 5-meter-wide area for a short time. Has decreased effect on heavily armored targets."
+	name = "\improper 84mm高爆火箭弹"
+	desc = "装有高爆战斗部的火箭筒。直接命中软目标时造成高额伤害，并使5米宽范围内的大多数目标短暂眩晕。对重装甲目标的效果较弱。"
 	caliber = "rocket"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/uscm.dmi'
 	icon_state = "rocket"
@@ -243,15 +243,15 @@
 /obj/item/ammo_magazine/rocket/attack_self(mob/user)
 	. = ..()
 	if(current_rounds <= 0)
-		to_chat(user, SPAN_NOTICE("You begin taking apart the empty tube frame..."))
+		to_chat(user, SPAN_NOTICE("你开始拆解空发射筒框架……"))
 		if(do_after(user,10, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-			user.visible_message("[user] deconstructs the rocket tube frame.",SPAN_NOTICE("You take apart the empty frame."))
+			user.visible_message("[user]拆解了火箭筒框架。",SPAN_NOTICE("你拆解了空框架。"))
 			var/obj/item/stack/sheet/metal/M = new(get_turf(user))
 			M.amount = 2
 			user.drop_held_item()
 			qdel(src)
 	else
-		to_chat(user, "Not with a missile inside!")
+		to_chat(user, "里面还有导弹，不能拆解！")
 
 /obj/item/ammo_magazine/rocket/attack(mob/living/carbon/human/M, mob/living/carbon/human/user)
 	if(!istype(M) || !istype(user) || get_dist(user, M) > 1)
@@ -263,35 +263,35 @@
 		return
 	var/obj/item/weapon/twohanded/offhand/off_hand = M.get_inactive_hand()
 	if(!off_hand || !istype(off_hand))
-		to_chat(user, SPAN_WARNING("\the [M] needs to be wielding \the [in_hand] in order to reload!"))
+		to_chat(user, SPAN_WARNING("[M]必须双手握持[in_hand]，才能装填！"))
 		return
 	if(!skillcheck(M, SKILL_FIREARMS, SKILL_FIREARMS_TRAINED))
-		to_chat(user, SPAN_WARNING("You don't know how to reload \the [in_hand]!"))
+		to_chat(user, SPAN_WARNING("你不知道如何装填[in_hand]！"))
 		return
 	if(M.dir != user.dir || M.loc != get_step(user, user.dir))
-		to_chat(user, SPAN_WARNING("You must be standing behind \the [M] in order to reload it!"))
+		to_chat(user, SPAN_WARNING("你必须站在[M]身后才能装填！"))
 		return
 	if(in_hand.current_mag.current_rounds > 0)
-		to_chat(user, SPAN_WARNING("\the [in_hand] is already loaded!"))
+		to_chat(user, SPAN_WARNING("[in_hand]已经装填好了！"))
 		return
 	if(user.action_busy)
 		return
-	to_chat(user, SPAN_NOTICE("You begin reloading \the [M]'s [in_hand]! Hold still..."))
+	to_chat(user, SPAN_NOTICE("你开始为[M]的[in_hand]装填！保持不动……"))
 	if(!do_after(user,(in_hand.current_mag.reload_delay / 2), INTERRUPT_ALL, BUSY_ICON_FRIENDLY, M, INTERRUPT_ALL, BUSY_ICON_GENERIC))
-		to_chat(user, SPAN_WARNING("Your reload was interrupted!"))
+		to_chat(user, SPAN_WARNING("装填被打断了！"))
 		return
 	if(off_hand != M.get_inactive_hand())
-		to_chat(user, SPAN_WARNING("\the [M] needs to be wielding \the [in_hand] in order to reload!"))
+		to_chat(user, SPAN_WARNING("[M]必须双手握持[in_hand]，才能装填！"))
 		return
 	if(M.dir != user.dir)
-		to_chat(user, SPAN_WARNING("You must be standing behind \the [M] in order to reload it!"))
+		to_chat(user, SPAN_WARNING("你必须站在[M]身后才能装填！"))
 		return
 	user.drop_inv_item_on_ground(src)
 	qdel(in_hand.current_mag)
 	in_hand.replace_ammo(user,src)
 	in_hand.current_mag = src
 	forceMove(in_hand)
-	to_chat(user, SPAN_NOTICE("You load \the [src] into \the [M]'s [in_hand]."))
+	to_chat(user, SPAN_NOTICE("你将[src]装进了[M]的[in_hand]。"))
 	if(in_hand.reload_sound)
 		playsound(M, in_hand.reload_sound, 25, 1)
 	else
@@ -301,9 +301,9 @@
 
 /obj/item/ammo_magazine/rocket/update_icon()
 	if(current_rounds <= 0)
-		name = "\improper 84mm spent rocket tube"
+		name = "\improper 84mm空火箭筒"
 		icon_state = "rocket_e"
-		desc = "Spent rocket tube for M5 RPG rocket launcher. Activate in hand to disassemble for metal."
+		desc = "M5 RPG火箭发射器用过的空筒。拿在手中激活可拆解成金属。"
 		add_to_garbage(src)
 	else
 		icon_state = initial(icon_state)
@@ -323,20 +323,20 @@
 		icon_state = initial(icon_state)
 
 /obj/item/ammo_magazine/rocket/ap
-	name = "\improper 84mm anti-armor rocket"
+	name = "\improper 84mm反装甲火箭弹"
 	icon_state = "ap_rocket"
 	default_ammo = /datum/ammo/rocket/ap
-	desc = "A rocket tube loaded with an AP warhead. Capable of piercing heavily armored targets. Deals very little to no splash damage. Inflicts guaranteed stun to most targets. Has high accuracy within 7 meters."
+	desc = "装有穿甲战斗部的火箭筒，能够穿透重装甲目标。溅射伤害极小或没有，但必定使大多数目标眩晕。7米内精度较高。"
 
 /obj/item/ammo_magazine/rocket/wp
-	name = "\improper 84mm white-phosphorus rocket"
+	name = "\improper 84mm白磷火箭弹"
 	icon_state = "wp_rocket"
 	default_ammo = /datum/ammo/rocket/wp
-	desc = "Rocket tube loaded with WP warhead. Has two damaging factors. On hit disperses X-Variant Napthal (blue flames) in a 4-meter radius circle, ignoring cover, while simultaneously bursting into highly heated shrapnel that ignites targets within slightly bigger area."
+	desc = "装有白磷战斗部的火箭筒，具有两种杀伤效果：命中后无视掩体，在半径4米范围内散布X型Napthal燃料（蓝色火焰），同时爆裂出高温破片，点燃稍大范围内的目标。"
 
 /obj/item/ammo_magazine/rocket/custom
-	name = "\improper 84mm custom rocket"
-	desc = "An 84mm custom rocket."
+	name = "\improper 84mm自制火箭弹"
+	desc = "一枚84mm自制火箭弹。"
 	icon_state = "custom_rocket"
 	default_ammo = /datum/ammo/rocket/custom
 	matter = list("metal" = 7500) //2 sheets
@@ -361,49 +361,49 @@
 /obj/item/ammo_magazine/rocket/custom/get_examine_text(mob/user)
 	. = ..()
 	if(fuel)
-		. += SPAN_NOTICE("Contains fuel.")
+		. += SPAN_NOTICE("内有燃料。")
 	if(warhead)
-		. += SPAN_NOTICE("Contains a warhead.")
+		. += SPAN_NOTICE("内有战斗部。")
 
 /obj/item/ammo_magazine/rocket/custom/attackby(obj/item/W as obj, mob/user as mob)
 	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-		to_chat(user, SPAN_WARNING("You do not know how to tinker with [name]."))
+		to_chat(user, SPAN_WARNING("你不知道如何改装[name]。"))
 		return
 	if(current_rounds <= 0)
-		to_chat(user, SPAN_WARNING("The rocket tube has been used already."))
+		to_chat(user, SPAN_WARNING("这个火箭筒已经用过了。"))
 		return
 	if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
 		if(!warhead)
-			to_chat(user, SPAN_NOTICE("[name] must contain a warhead to do that!"))
+			to_chat(user, SPAN_NOTICE("[name]必须装有战斗部才能这样做！"))
 			return
 		if(locked)
-			to_chat(user, SPAN_NOTICE("You unlock [name]."))
+			to_chat(user, SPAN_NOTICE("你解锁了[name]。"))
 		else
-			to_chat(user, SPAN_NOTICE("You lock [name]."))
+			to_chat(user, SPAN_NOTICE("你锁定了[name]。"))
 		locked = !locked
 		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 0, 6)
 	else if(istype(W,/obj/item/reagent_container/glass) && !locked)
 		if(fuel)
-			to_chat(user, SPAN_DANGER("The [name] already has a fuel container!"))
+			to_chat(user, SPAN_DANGER("[name]已经装有燃料容器！"))
 			return
 		else
 			user.temp_drop_inv_item(W)
 			W.forceMove(src)
 			fuel = W
-			to_chat(user, SPAN_DANGER("You add [W] to [name]."))
+			to_chat(user, SPAN_DANGER("你将[W]装入了[name]。"))
 			playsound(loc, 'sound/items/Screwdriver2.ogg', 25, 0, 6)
 	else if(istype(W,/obj/item/explosive/warhead/rocket) && !locked)
 		if(warhead)
-			to_chat(user, SPAN_DANGER("The [name] already has a warhead!"))
+			to_chat(user, SPAN_DANGER("[name]已经装有战斗部！"))
 			return
 		var/obj/item/explosive/warhead/rocket/det = W
 		if(det.assembly_stage < ASSEMBLY_LOCKED)
-			to_chat(user, SPAN_DANGER("The [W] is not secured!"))
+			to_chat(user, SPAN_DANGER("[W]尚未固定好！"))
 			return
 		user.temp_drop_inv_item(W)
 		W.forceMove(src)
 		warhead = W
-		to_chat(user, SPAN_DANGER("You add [W] to [name]."))
+		to_chat(user, SPAN_DANGER("你将[W]装入了[name]。"))
 		playsound(loc, 'sound/items/Screwdriver2.ogg', 25, 0, 6)
 	update_icon()
 
@@ -411,8 +411,8 @@
 //M5 RPG'S MEAN FUCKING COUSIN
 
 /obj/item/ammo_magazine/rocket/m57a4
-	name = "\improper 84mm thermobaric rocket array"
-	desc = "A thermobaric rocket tube for an M57-A4 quad launcher with 4 warheads."
+	name = "\improper 84mm温压火箭弹组"
+	desc = "供M57-A4四联装发射器使用的温压火箭筒，装有4枚战斗部。"
 	caliber = "rocket array"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/event.dmi'
 	icon_state = "quad_rocket"
@@ -425,16 +425,16 @@
 /obj/item/ammo_magazine/rocket/m57a4/update_icon()
 	..()
 	if(current_rounds <= 0)
-		name = "\improper 84mm spent rocket array"
-		desc = "A spent rocket tube assembly for the M57-A4 quad launcher. Activate in hand to disassemble for metal."
+		name = "\improper 84mm空火箭筒组"
+		desc = "M57-A4四联装发射器用过的空筒组件。拿在手中激活可拆解成金属。"
 		icon_state = "quad_rocket_e"
 
 //-------------------------------------------------------
 //Anti-tank rocket
 
 /obj/item/ammo_magazine/rocket/anti_tank
-	name = "\improper 84mm Anti-Tank Rocket"
-	desc = "An anti-armor rocket specifically modified for penetration of armored vehicle hulls."
+	name = "\improper 84mm反坦克火箭弹"
+	desc = "专门改装用于穿透装甲车辆车体的反装甲火箭弹。"
 	caliber = "rocket"
 	icon_state = "at_rocket"
 
@@ -448,8 +448,8 @@
 //UPP Rockets
 
 /obj/item/ammo_magazine/rocket/upp
-	name = "\improper HJRA-12 High-Explosive Rocket"
-	desc = "A rocket for the UPP standard-issue HJRA-12 Handheld Anti-Tank Grenade Launcher. This one is a standard High-Explosive rocket for anti-personal or light-vehicle use."
+	name = "\improper HJRA-12高爆火箭弹"
+	desc = "供进步人民联盟制式HJRA-12便携式反坦克榴弹发射器使用的火箭弹。这是标准高爆弹，用于杀伤人员或攻击轻型车辆。"
 	caliber = "88mm"
 	icon_state = "hjra_explosive"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/upp.dmi'
@@ -466,8 +466,8 @@
 		icon_state = initial(icon_state)
 
 /obj/item/ammo_magazine/rocket/upp/at
-	name = "\improper HJRA-12 Anti-Tank Rocket"
-	desc = "A rocket for the UPP standard-issue HJRA-12 Handheld Anti-Tank Grenade Launcher. This one is a standard Anti-Tank rocket designed to disable or destroy hostile vehicles."
+	name = "\improper HJRA-12反坦克火箭弹"
+	desc = "供进步人民联盟制式HJRA-12便携式反坦克榴弹发射器使用的火箭弹。这是标准反坦克弹，用于瘫痪或摧毁敌方车辆。"
 	caliber = "88mm"
 	icon_state = "hjra_tank"
 
@@ -477,8 +477,8 @@
 	reload_delay = 85
 
 /obj/item/ammo_magazine/rocket/upp/incen
-	name = "\improper HJRA-12 Extreme-Intensity Incendiary Rocket"
-	desc = "A rocket for the UPP standard-issue HJRA-12 Handheld Anti-Tank Grenade Launcher. This one is an extreme-intensity incendiary rocket, using an experimental chemical designated R-189 by the UPP, it is designed to melt through fortified positions and bunkers but is most commonly used in an anti-personnal role due to over-issuing and the tempatures after use in its intended role leaving the tempature of the air incompatible with human life."
+	name = "\improper HJRA-12超强燃烧火箭弹"
+	desc = "供进步人民联盟制式HJRA-12便携式反坦克榴弹发射器使用的火箭弹。这种超强燃烧弹使用联盟编号为R-189的实验性化学物质，原本用于熔穿工事和碉堡。但由于配发过量，且用于原定用途后会使空气温度高到人类无法生存，它更多被用来杀伤人员。"
 	caliber = "88mm"
 	icon_state = "hjra_incen"
 
@@ -491,8 +491,8 @@
 //AA Missiles
 
 /obj/item/ammo_magazine/rocket/anti_air
-	name = "\improper 70mm 'Hornet' hypervelocity anti-air missile"
-	desc = "A thin missile designed to be fired by M579 ADS-C vehicles or launched from the SIM-118 MANPAD. A no-frills hypervelocity missile, the hornet relies on the kinetic energy it imparts on impact to take down targets."
+	name = "\improper 70mm“大黄蜂”超高速防空导弹"
+	desc = "一种细长导弹，可由M579 ADS-C车辆或SIM-118便携式防空导弹系统发射。大黄蜂是一种结构简洁的超高速导弹，依靠撞击时释放的动能击毁目标。"
 	caliber = "missile"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/uscm.dmi'
 	icon_state = "hornet"
@@ -506,8 +506,8 @@
 		icon_state = initial(icon_state)
 
 /obj/item/ammo_magazine/rocket/anti_air/upp
-	name = "\improper 92mm 'Goose' anti-air missile canister"
-	desc = "A squat missile canister for the EMBLR surface-to-air weapons system. Unlike it's USCM counterpart, the Goose carries a small but powerful warhead designed to spread a cloud of flechettes around it's target."
+	name = "\improper 92mm“大雁”防空导弹筒"
+	desc = "EMBLR地对空武器系统使用的矮粗导弹筒。与USCM同类武器不同，大雁携带小巧而强劲的战斗部，能够在目标周围散布大量箭形弹。"
 	caliber = "missile"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/upp.dmi'
 	icon_state = "emblr"
@@ -517,16 +517,16 @@
 /obj/item/ammo_magazine/rocket/anti_air/upp/update_icon()
 	..()
 	if(current_rounds <= 0)
-		name = "\improper spent 92mm missile canister"
-		desc = "A spent canister assembly for the EMBLR anti-air missile launcher."
+		name = "\improper 92mm空导弹筒"
+		desc = "EMBLR防空导弹发射器用过的空筒组件。"
 		icon_state = "emblr_e"
 
 //-------------------------------------------------------
 // XM99 power/fuel cells
 
 /obj/item/ammo_magazine/plasma
-	name = "\improper XM99A1 battery drum"
-	desc = "A hybrid battery cell and CdTe-pellet magazine designed to fit the XM99A series of phased plasma pulse rifles. Do not puncture or put in a microwave."
+	name = "\improper XM99A1电池弹鼓"
+	desc = "适配XM99A系列相位等离子脉冲步枪的电池与碲化镉弹丸混合弹匣。切勿刺穿或放入微波炉。"
 	caliber = "40W"
 	icon_state = "xm99a_cell"
 	w_class = SIZE_MEDIUM
@@ -537,8 +537,8 @@
 
 // The "round-remover" power/fuel cell for the XM99
 /obj/item/ammo_magazine/plasma/gibber
-	name = "\improper XM99A1 lithium battery drum"
-	desc = "A hybrid battery cell and LiTe-pellet magazine designed to fit the XM99A series of phased plasma pulse rifles. Do not puncture, put in a microwave, submerge in water or look at funny. Highly volatile."
+	name = "\improper XM99A1锂电池弹鼓"
+	desc = "适配XM99A系列相位等离子脉冲步枪的电池与碲化锂弹丸混合弹匣。切勿刺穿、放入微波炉、浸水，甚至别用奇怪的眼神看它。极不稳定。"
 	icon_state = "xm99a_lcell"
 	max_rounds = 2
 	default_ammo = /datum/ammo/energy/plasma/heavy
@@ -547,7 +547,7 @@
 //P9 SHARP Rifle
 
 /obj/item/ammo_magazine/rifle/sharp
-	name = "sharp rifle magazine"
+	name = "SHARP步枪弹匣"
 	icon_state = "sharprifle"
 	item_state = "sharprifle"
 
@@ -557,15 +557,15 @@
 	gun_type = /obj/item/weapon/gun/rifle/sharp
 	flags_magazine = NO_FLAGS
 
-	description_ammo = "darts"
+	description_ammo = "枚飞镖"
 
 /obj/item/ammo_magazine/rifle/sharp/explosive
-	name = "\improper 9X-E sticky explosive dart magazine"
-	desc = "A specialized sticky explosive dart magazine."
+	name = "\improper 9X-E黏附爆炸飞镖弹匣"
+	desc = "一种专用的黏附爆炸飞镖弹匣。"
 
 /obj/item/ammo_magazine/rifle/sharp/track
-	name = "\improper 9X-T sticky tracking dart magazine"
-	desc = "A specialized tracking dart magazine."
+	name = "\improper 9X-T黏附追踪飞镖弹匣"
+	desc = "一种专用的追踪飞镖弹匣。"
 	icon_state = "sharprifle_tracker"
 	default_ammo = /datum/ammo/rifle/sharp/track
 
@@ -573,7 +573,7 @@
 	default_ammo = /datum/ammo/rifle/sharp/track/infinite
 
 /obj/item/ammo_magazine/rifle/sharp/flechette
-	name = "\improper 9X-F flechette dart magazine"
-	desc = "A specialized flechette dart magazine."
+	name = "\improper 9X-F箭形飞镖弹匣"
+	desc = "一种专用的箭形飞镖弹匣。"
 	icon_state = "sharprifle_flechette"
 	default_ammo = /datum/ammo/rifle/sharp/flechette

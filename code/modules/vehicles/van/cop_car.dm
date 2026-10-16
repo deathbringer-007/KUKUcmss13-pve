@@ -4,8 +4,8 @@
 //Read the documentation in multitile.dm before trying to decipher this stuff
 
 /obj/vehicle/multitile/box_van/cop_car
-	name = "\improper Mono-Spectra"
-	desc = "A police car. Used to transport law enforcement and criminals alike."
+	name = "\improper 单谱警车"
+	desc = "一辆警车，用于运送执法人员和罪犯。"
 	icon = 'icons/obj/vehicles/cop_car.dmi'
 
 	interior_map = /datum/map_template/interior/cop_car

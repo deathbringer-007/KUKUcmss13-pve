@@ -20,11 +20,11 @@ export const SkillsMenu = (props) => {
     <Window width={300} height={550}>
       <Window.Content>
         <Section
-          title={'Skillset name: ' + skillset_name}
+          title={'技能组名称：' + skillset_name}
           buttons={
             <Button
               color="transparent"
-              tooltip="Refresh"
+              tooltip="刷新"
               tooltipPosition="left"
               icon="sync-alt"
               onClick={() => act('refresh')}
@@ -38,7 +38,7 @@ export const SkillsMenu = (props) => {
               <SkillsView />
             )
           ) : (
-            <NoticeBox danger>Warning! Mob has null skills!</NoticeBox>
+            <NoticeBox danger>警告！该角色没有技能数据！</NoticeBox>
           )}
         </Section>
       </Window.Content>

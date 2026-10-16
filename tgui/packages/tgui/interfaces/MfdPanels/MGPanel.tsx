@@ -20,16 +20,16 @@ const MgPanel = (props: DropshipEquipment) => {
           </Stack.Item>
           <Stack.Item>
             <h3>
-              Health: {mgData.health} / {mgData.health_max}
+              耐久：{mgData.health} / {mgData.health_max}
             </h3>
           </Stack.Item>
           <Stack.Item>
             <h3>
-              Ammo {mgData.rounds} / {mgData.max_rounds}
+              弹药：{mgData.rounds} / {mgData.max_rounds}
             </h3>
           </Stack.Item>
           <Stack.Item>
-            <h3>{mgData.deployed === 1 ? 'DEPLOYED' : 'UNDEPLOYED'}</h3>
+            <h3>{mgData.deployed === 1 ? '已展开' : '未展开'}</h3>
           </Stack.Item>
         </Stack>
       </Stack.Item>
@@ -45,13 +45,13 @@ export const MgMfdPanel = (props: MfdProps) => {
   const { setPanelState } = mfdState(props.panelStateId);
   const { equipmentState } = useEquipmentState(props.panelStateId);
   const mg = data.equipment_data.find((x) => x.mount_point === equipmentState);
-  const deployLabel = (mg?.data?.deployed ?? 0) === 1 ? 'RETRACT' : 'DEPLOY';
+  const deployLabel = (mg?.data?.deployed ?? 0) === 1 ? '收回' : '展开';
 
   return (
     <MfdPanel
       panelStateId={props.panelStateId}
       topButtons={[
-        { children: 'EQUIP', onClick: () => setPanelState('equipment') },
+        { children: '设备', onClick: () => setPanelState('equipment') },
       ]}
       leftButtons={[
         {
@@ -62,7 +62,7 @@ export const MgMfdPanel = (props: MfdProps) => {
       ]}
       bottomButtons={[
         {
-          children: 'EXIT',
+          children: '退出',
           onClick: () => setPanelState(''),
         },
       ]}

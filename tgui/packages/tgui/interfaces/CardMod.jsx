@@ -23,10 +23,10 @@ export const CardMod = (props) => {
         <Box>
           <Tabs fluid>
             <Tabs.Tab selected={tab2 === 1} onClick={() => setTab2(1)}>
-              Access Modifcation
+              权限修改
             </Tabs.Tab>
             <Tabs.Tab selected={tab2 === 2} onClick={() => setTab2(2)}>
-              Crew Manifest
+              船员名册
             </Tabs.Tab>
           </Tabs>
           {tab2 === 1 && <CardContent />}
@@ -42,7 +42,7 @@ export const CrewManifest = (props) => {
   const { manifest = {} } = data;
   return (
     <Section
-      title="Crew Manifest"
+      title="船员名册"
       buttons={
         <Button
           icon="print"
@@ -52,7 +52,7 @@ export const CrewManifest = (props) => {
             })
           }
         >
-          Print
+          打印
         </Button>
       }
     >
@@ -105,7 +105,7 @@ export const CardContent = (props) => {
               }
             />
           ) : (
-            id_owner || 'No Card Inserted'
+            id_owner || '未插入身份卡'
           )
         }
         buttons={
@@ -119,7 +119,7 @@ export const CardContent = (props) => {
                 })
               }
             >
-              Print
+              打印
             </Button>
             <Button
               icon={authenticated ? 'sign-out-alt' : 'sign-in-alt'}
@@ -128,7 +128,7 @@ export const CardContent = (props) => {
                 act(authenticated ? 'PRG_logout' : 'PRG_authenticate');
               }}
             >
-              {authenticated ? 'Log Out' : 'Log In'}
+              {authenticated ? '登出' : '登录'}
             </Button>
           </>
         }
@@ -138,7 +138,7 @@ export const CardContent = (props) => {
         </Button>
         {!!has_id && !!authenticated && (
           <>
-            Linked Account:
+            关联账户：
             <NumberInput
               step={1}
               value={id_account}
@@ -158,10 +158,10 @@ export const CardContent = (props) => {
         <Box>
           <Tabs>
             <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
-              Access
+              权限
             </Tabs.Tab>
             <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
-              Jobs
+              职位
             </Tabs.Tab>
           </Tabs>
           {tab === 1 && (
@@ -196,7 +196,7 @@ export const CardContent = (props) => {
                   color="bad"
                   onClick={() => act('PRG_terminate')}
                 >
-                  Terminate
+                  解除职务
                 </Button.Confirm>
               }
             >
@@ -209,7 +209,7 @@ export const CardContent = (props) => {
                   })
                 }
               >
-                Custom...
+                自定义……
               </Button.Input>
               <Stack>
                 <Stack.Item>

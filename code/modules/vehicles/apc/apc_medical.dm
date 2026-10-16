@@ -1,7 +1,7 @@
 
 /obj/vehicle/multitile/apc/medical
-	name = "M577-MED Armored Personnel Carrier"
-	desc = "A medical modification of the M577 Armored Personnel Carrier. An armored transport with four big wheels. Designed as a reliable mobile triage that stores a significant amount of medical supplies for in-field resupplying of medics. Entrances on the sides."
+	name = "M577-MED医疗装甲输送车"
+	desc = "M577装甲输送车的医疗改装型，拥有四个大轮子。它是可靠的机动分诊站，储备大量医疗物资，可为野战医务兵补给。入口位于两侧。"
 
 	icon_state = "apc_base_med"
 
@@ -31,13 +31,13 @@
 
 /obj/vehicle/multitile/apc/medical/load_role_reserved_slots()
 	var/datum/role_reserved_slots/RRS = new
-	RRS.category_name = "Crewmen"
+	RRS.category_name = "车组成员"
 	RRS.roles = list(JOB_TANK_CREW, JOB_WO_CREWMAN, JOB_UPP_CREWMAN, JOB_PMC_CREWMAN)
 	RRS.total = 2
 	role_reserved_slots += RRS
 
 	RRS = new
-	RRS.category_name = "Medical Support"
+	RRS.category_name = "医疗支援人员"
 	RRS.roles = JOB_MEDIC_ROLES_LIST + list(JOB_WO_CMO, JOB_WO_DOCTOR, JOB_WO_RESEARCHER, JOB_SYNTH, JOB_WO_SYNTH)
 	RRS.total = 1
 	role_reserved_slots += RRS

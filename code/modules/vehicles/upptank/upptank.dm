@@ -1,7 +1,7 @@
 /obj/vehicle/multitile/tank/upptank
-	name = "Cheetah 2A Light Tank"
-	desc = "A giant piece of state-approved armor with a big gun, you know what to do. Entrance in the back."
-	desc_lore = "The Cheetah 2A is an assault tank designed to be rapidly deployed from light dropcraft in daring raids and first strike operations. The Cheetah 2A is relatively new in comparison to most UPP vehicles seen on the Frontier, but has already earned a fair reputation as a reliable workhorse, that is able to bring some cutting edge technology to the fight. While the project was based in Germany, the Cheetah 2A has a truly progressive development history, seeing influences from nearly all UPP member states."
+	name = "“猎豹”2A轻型坦克"
+	desc = "一大块经过国家认证的装甲，配上一门大炮，你知道该怎么用。入口位于后方。"
+	desc_lore = "“猎豹”2A是一种突击坦克，可由轻型登陆艇快速投送，执行大胆的突袭和先发制人作战。相比边境常见的多数进步人民联盟车辆，它较为新颖，但已凭借可靠耐用、能将前沿技术带上战场的特点赢得良好口碑。虽然项目设在德国，其研发过程却汇集了几乎所有联盟成员国的成果，充分体现了共同进步。"
 
 	icon = 'icons/obj/vehicles/upptank.dmi'
 	icon_state = "tank_base"
@@ -48,8 +48,8 @@
 
 
 /obj/vehicle/multitile/tank/upptank/command
-	name = "Cheetah 2B Light Command Tank"
-	desc = "A giant piece of state-approved armor with a big gun and enhanced comms equipment, you know what to do. Entrance in the back."
+	name = "“猎豹”2B轻型指挥坦克"
+	desc = "一大块经过国家认证的装甲，配上一门大炮和增强型通信设备，你知道该怎么用。入口位于后方。"
 
 	icon = 'icons/obj/vehicles/upptank.dmi'
 	icon_state = "tank_base"

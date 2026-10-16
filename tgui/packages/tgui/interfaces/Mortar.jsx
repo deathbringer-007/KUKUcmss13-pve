@@ -18,7 +18,7 @@ export const Mortar = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Target X">
+            <LabeledList.Item label="目标X">
               <NumberInput
                 width="4em"
                 step={1}
@@ -28,7 +28,7 @@ export const Mortar = (props) => {
                 onChange={(value) => setTargetX(value)}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Target Y">
+            <LabeledList.Item label="目标Y">
               <NumberInput
                 width="4em"
                 step={1}
@@ -52,7 +52,7 @@ export const Mortar = (props) => {
               })
             }
           >
-            Set Target
+            设置目标
           </Button>
           <Button
             style={{
@@ -72,12 +72,12 @@ export const Mortar = (props) => {
               })
             }
           >
-            View Camera
+            查看摄像头
           </Button>
         </Section>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="X Offset">
+            <LabeledList.Item label="X偏移">
               <NumberInput
                 width="4em"
                 step={1}
@@ -88,7 +88,7 @@ export const Mortar = (props) => {
                 onChange={(value) => setDialX(value)}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Y Offset">
+            <LabeledList.Item label="Y偏移">
               <NumberInput
                 width="4em"
                 step={1}
@@ -113,7 +113,7 @@ export const Mortar = (props) => {
               })
             }
           >
-            Dial Offset
+            调整偏移量
           </Button>
         </Section>
       </Window.Content>

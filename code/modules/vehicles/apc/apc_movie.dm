@@ -1,7 +1,7 @@
 
 /obj/vehicle/multitile/apc/movie
-	name = "M577A3 Armored Personnel Carrier"
-	desc = "An M577A3 Armored Personnel Carrier complete with a tactical operations center. Entrance on the right."
+	name = "M577A3装甲输送车"
+	desc = "配备战术行动中心的M577A3装甲输送车。入口位于右侧。"
 
 	icon = 'icons/obj/vehicles/movieapc.dmi'
 	icon_state = "apc_base_movie"

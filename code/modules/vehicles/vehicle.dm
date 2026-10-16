@@ -51,7 +51,7 @@
 		if(on && powered && cell && cell.charge < charge_use)
 			turn_off()
 		else if(!on && powered)
-			to_chat(user, SPAN_WARNING("Turn on the engine first."))
+			to_chat(user, SPAN_WARNING("请先启动引擎。"))
 		else
 			. = step(src, direction)
 
@@ -60,7 +60,7 @@
 		if(!locked)
 			open = !open
 			update_icon()
-			to_chat(user, SPAN_NOTICE("Maintenance panel is now [open ? "opened" : "closed"]."))
+			to_chat(user, SPAN_NOTICE("检修面板现已[open ? "打开" : "关闭"]。"))
 	else if(HAS_TRAIT(W, TRAIT_TOOL_CROWBAR) && cell && open)
 		remove_cell(user)
 
@@ -68,19 +68,19 @@
 		insert_cell(W, user)
 	else if(iswelder(W))
 		if(!HAS_TRAIT(W, TRAIT_TOOL_BLOWTORCH))
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要更强力的焊炬！"))
 			return
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(1, user))
 			if(health < maxhealth)
-				user.visible_message(SPAN_NOTICE("[user] starts to repair [src]."),SPAN_NOTICE("You start to repair [src]"))
+				user.visible_message(SPAN_NOTICE("[user]开始修理[src]。"),SPAN_NOTICE("你开始修理[src]。"))
 				if(do_after(user, 20, INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
 					if(!src || !WT.isOn())
 						return
 					health = min(maxhealth, health+10)
-					user.visible_message(SPAN_NOTICE("[user] repairs [src]."),SPAN_NOTICE("You repair [src]."))
+					user.visible_message(SPAN_NOTICE("[user]修好了[src]。"),SPAN_NOTICE("你修好了[src]。"))
 			else
-				to_chat(user, SPAN_NOTICE("[src] does not need repairs."))
+				to_chat(user, SPAN_NOTICE("[src]不需要修理。"))
 
 	else if(W.force)
 		switch(W.damtype)
@@ -89,7 +89,7 @@
 			if("brute")
 				health -= W.force * W.demolition_mod * brute_dam_coeff
 		playsound(loc, "smash.ogg", 25, 1)
-		user.visible_message(SPAN_DANGER("[user] hits [src] with [W]."),SPAN_DANGER("You hit [src] with [W]."))
+		user.visible_message(SPAN_DANGER("[user]用[W]击打了[src]。"),SPAN_DANGER("你用[W]击打了[src]。"))
 		healthcheck()
 	else
 		..()
@@ -97,7 +97,7 @@
 /obj/vehicle/attack_animal(mob/living/simple_animal/M as mob)
 	if(M.melee_damage_upper == 0) return
 	health -= M.melee_damage_upper
-	src.visible_message(SPAN_DANGER("<B>[M] has [M.attacktext] [src]!</B>"))
+	src.visible_message(SPAN_DANGER("<B>[M][M.attacktext]了[src]！</B>"))
 	M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
 	if(prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)
@@ -136,12 +136,12 @@
 		return XENO_NO_DELAY_ACTION
 
 	if(attacking_xeno.mob_size < MOB_SIZE_XENO)
-		to_chat(attacking_xeno, SPAN_XENOWARNING("You're too small to do any significant damage to this vehicle!"))
+		to_chat(attacking_xeno, SPAN_XENOWARNING("你的体型太小，无法对这辆车造成明显伤害！"))
 		return XENO_NO_DELAY_ACTION
 
 	attacking_xeno.animation_attack_on(src)
 
-	attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno] slashes [src]!"), SPAN_DANGER("You slash [src]!"))
+	attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno]挥爪撕砍[src]！"), SPAN_DANGER("你挥爪撕砍[src]！"))
 	playsound(attacking_xeno, pick('sound/effects/metalhit.ogg', 'sound/weapons/alien_claw_metal1.ogg', 'sound/weapons/alien_claw_metal2.ogg', 'sound/weapons/alien_claw_metal3.ogg'), 25, 1)
 
 	var/damage = (attacking_xeno.melee_vehicle_damage + rand(-5,5)) * brute_dam_coeff
@@ -182,7 +182,7 @@
 	update_icon()
 
 /obj/vehicle/proc/explode()
-	src.visible_message(SPAN_DANGER("<B>[src] blows apart!</B>"), null, null, 1)
+	src.visible_message(SPAN_DANGER("<B>[src]炸成了碎片！</B>"), null, null, 1)
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/stack/rods(Tsec)
@@ -233,13 +233,13 @@
 	H.drop_inv_item_to_loc(C, src)
 	cell = C
 	powercheck()
-	to_chat(usr, SPAN_NOTICE("You install [C] in [src]."))
+	to_chat(usr, SPAN_NOTICE("你将[C]装进了[src]。"))
 
 /obj/vehicle/proc/remove_cell(mob/living/carbon/human/H)
 	if(!cell)
 		return
 
-	to_chat(usr, SPAN_NOTICE("You remove [cell] from [src]."))
+	to_chat(usr, SPAN_NOTICE("你从[src]中取出了[cell]。"))
 	cell.forceMove(get_turf(H))
 	H.put_in_hands(cell)
 	cell = null

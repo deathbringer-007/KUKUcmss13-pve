@@ -1,6 +1,6 @@
 /obj/vehicle/multitile/apc/uppapc
-	name = "ZSL-68 'Pilgrim'"
-	desc = "The ZSL-68 'Pilgrim APC designed in a joint project Ukraine and China, as part of the 'New Arms Cooperative' initiative of 2165. Despite its' rough appearance and age, it is still respected by the many branches it serves. Entrances on the rear and sides"
+	name = "ZSL-68“朝圣者”"
+	desc = "ZSL-68“朝圣者”装甲输送车是乌克兰与中国联合设计的产物，属于2165年“新军备合作”计划的一部分。尽管外观粗糙、型号老旧，它依然受到使用它的多个军种的认可。入口位于后方和两侧。"
 
 	icon = 'icons/obj/vehicles/uppapc.dmi'
 	icon_state = "uppapc_base"
@@ -86,7 +86,7 @@
 
 /obj/vehicle/multitile/apc/uppapc/load_role_reserved_slots()
 	var/datum/role_reserved_slots/RRS = new
-	RRS.category_name = "Crewmen"
+	RRS.category_name = "车组成员"
 	RRS.roles = list(JOB_TANK_CREW, JOB_WO_CREWMAN, JOB_UPP_CREWMAN, JOB_PMC_CREWMAN)
 	RRS.total = 2
 	role_reserved_slots += RRS
@@ -163,7 +163,7 @@
 		return
 
 	if(health > 0)
-		to_chat(user, SPAN_XENO("We can't jump over [src] until it is destroyed!"))
+		to_chat(user, SPAN_XENO("必须先摧毁[src]，我们才能跳过去！"))
 		return
 
 	var/turf/current_turf = get_turf(user)
@@ -174,7 +174,7 @@
 			break
 
 		if(current_turf.density)
-			to_chat(user, SPAN_XENO("The path over [src] is obstructed!"))
+			to_chat(user, SPAN_XENO("越过[src]的通路被挡住了！"))
 			return
 
 /*

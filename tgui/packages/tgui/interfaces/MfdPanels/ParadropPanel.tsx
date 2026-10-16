@@ -20,15 +20,15 @@ const ParadropPanel = (props: DropshipEquipment) => {
           <Stack.Item>
             <h3>
               {paradropData.signal
-                ? 'Locked to ' + paradropData.signal + '.'
-                : 'No locked target found.'}
+                ? '已锁定：' + paradropData.signal + '。'
+                : '未找到锁定目标。'}
             </h3>
           </Stack.Item>
           <Stack.Item>
             <h3>
               {paradropData.locked
-                ? 'Paradropping available.'
-                : 'Paradropping not available.'}
+                ? '可以空降。'
+                : '无法空降。'}
             </h3>
           </Stack.Item>
         </Stack>
@@ -47,13 +47,13 @@ export const ParadropMfdPanel = (props: MfdProps) => {
   const paradrop = data.equipment_data.find(
     (x) => x.mount_point === equipmentState,
   );
-  const deployLabel = paradrop?.data?.locked ? 'CLEAR' : 'LOCK';
+  const deployLabel = paradrop?.data?.locked ? '清除' : '锁定';
 
   return (
     <MfdPanel
       panelStateId={props.panelStateId}
       topButtons={[
-        { children: 'EQUIP', onClick: () => setPanelState('equipment') },
+        { children: '设备', onClick: () => setPanelState('equipment') },
       ]}
       leftButtons={[
         {
@@ -64,7 +64,7 @@ export const ParadropMfdPanel = (props: MfdProps) => {
       ]}
       bottomButtons={[
         {
-          children: 'EXIT',
+          children: '退出',
           onClick: () => setPanelState(''),
         },
       ]}

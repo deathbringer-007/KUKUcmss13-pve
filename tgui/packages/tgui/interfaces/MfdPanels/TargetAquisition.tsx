@@ -17,6 +17,24 @@ import {
   TargetContext,
 } from './types';
 
+const directionLabels = new Map<string, string>([
+  ['SOUTH', '南'],
+  ['NORTH', '北'],
+  ['EAST', '东'],
+  ['WEST', '西'],
+]);
+const strikeModeLabels = new Map<string, string>([
+  ['weapon', '武器'],
+  ['firemission', '火力任务'],
+]);
+const weaponLabels = new Map<string, string>([
+  ['GAU', '机炮'],
+  ['MSL', '导弹'],
+  ['RKT', '火箭弹'],
+  ['LZR', '激光'],
+  ['LCH', '哨戒炮投放'],
+]);
+
 const directionLookup = new Map<string, number>();
 directionLookup['SOUTH'] = 2;
 directionLookup['NORTH'] = 1;
@@ -147,7 +165,7 @@ const leftButtonGenerator = (panelId: string, fmOffset: number) => {
   const firemission_mapper = (x: number) => {
     if (x === 0) {
       return {
-        children: 'CANCEL',
+        children: '取消',
         onClick: () => {
           setFiremissionSelected(undefined);
           setStrikeMode(undefined);
@@ -159,7 +177,7 @@ const leftButtonGenerator = (panelId: string, fmOffset: number) => {
     const firemission =
       data.firemission_data.length > x ? data.firemission_data[x] : undefined;
     return {
-      children: firemission ? <div>FM {x + 1}</div> : undefined,
+      children: firemission ? <div>火力 {x + 1}</div> : undefined,
       onClick: () => {
         setFiremissionSelected(data.firemission_data[x]);
         setLeftButtonMode(undefined);
@@ -170,11 +188,11 @@ const leftButtonGenerator = (panelId: string, fmOffset: number) => {
   if (leftButtonMode === undefined) {
     return [
       {
-        children: 'STRIKE',
+        children: '打击',
         onClick: () => setLeftButtonMode('STRIKE'),
       },
       {
-        children: 'VECTOR',
+        children: '方向',
         onClick: () => setLeftButtonMode('VECTOR'),
       },
     ];
@@ -183,7 +201,7 @@ const leftButtonGenerator = (panelId: string, fmOffset: number) => {
     if (strikeMode === 'weapon' && weaponSelected === undefined) {
       const cancelButton = [
         {
-          children: 'CANCEL',
+          children: '取消',
           onClick: () => {
             setFiremissionSelected(undefined);
             setStrikeMode(undefined);
@@ -194,7 +212,7 @@ const leftButtonGenerator = (panelId: string, fmOffset: number) => {
       return cancelButton.concat(
         weapons.map((x) => {
           return {
-            children: x.shorthand,
+            children: weaponLabels.get(x.shorthand) ?? x.shorthand,
             onClick: () => {
               setWeaponSelected(x.eqp_tag);
               setLeftButtonMode(undefined);
@@ -207,16 +225,16 @@ const leftButtonGenerator = (panelId: string, fmOffset: number) => {
       return range(fmOffset, fmOffset + 5).map(firemission_mapper);
     }
     return [
-      { children: 'CANCEL', onClick: () => setLeftButtonMode(undefined) },
+      { children: '取消', onClick: () => setLeftButtonMode(undefined) },
       {
-        children: 'WEAPON',
+        children: '武器',
         onClick: () => {
           setWeaponSelected(undefined);
           setStrikeMode('weapon');
         },
       },
       {
-        children: 'F-MISS',
+        children: '火力任务',
         onClick: () => {
           setFiremissionSelected(undefined);
           setStrikeMode('firemission');
@@ -226,30 +244,30 @@ const leftButtonGenerator = (panelId: string, fmOffset: number) => {
   }
   if (leftButtonMode === 'VECTOR') {
     return [
-      { children: 'CANCEL', onClick: () => setLeftButtonMode(undefined) },
+      { children: '取消', onClick: () => setLeftButtonMode(undefined) },
       {
-        children: 'SOUTH',
+        children: '南',
         onClick: () => {
           setStrikeDirection('SOUTH');
           setLeftButtonMode(undefined);
         },
       },
       {
-        children: 'NORTH',
+        children: '北',
         onClick: () => {
           setStrikeDirection('NORTH');
           setLeftButtonMode(undefined);
         },
       },
       {
-        children: 'EAST',
+        children: '东',
         onClick: () => {
           setStrikeDirection('EAST');
           setLeftButtonMode(undefined);
         },
       },
       {
-        children: 'WEST',
+        children: '西',
         onClick: () => {
           setStrikeDirection('WEST');
           setLeftButtonMode(undefined);
@@ -344,7 +362,7 @@ export const TargetAquisitionMfdPanel = (props: MfdProps) => {
         ? data.firemission_data.find(
             (x) => x.mission_tag === firemissionSelected.mission_tag,
           )?.name
-        : 'NONE';
+        : '无';
 
   const strikeReady =
     selectedTarget !== undefined &&
@@ -371,7 +389,7 @@ export const TargetAquisitionMfdPanel = (props: MfdProps) => {
       panelStateId={panelStateId}
       topButtons={[
         {
-          children: 'FIRE',
+          children: '开火',
           onClick: () => {
             if (strikeMode === undefined) {
               return;
@@ -419,7 +437,7 @@ export const TargetAquisitionMfdPanel = (props: MfdProps) => {
       ]}
       bottomButtons={[
         {
-          children: 'EXIT',
+          children: '退出',
           onClick: () => setPanelState(''),
         },
         {
@@ -491,33 +509,33 @@ export const TargetAquisitionMfdPanel = (props: MfdProps) => {
                 </svg>
               </Stack.Item>
               <Stack.Item>
-                <h1>Target Aquisition</h1>
+                <h1>目标获取</h1>
               </Stack.Item>
               <Stack.Item>
-                <h3>Strike mode: {strikeMode?.toUpperCase() ?? 'NONE'}</h3>
+                <h3>打击模式：{strikeModeLabels.get(strikeMode ?? '') ?? '无'}</h3>
               </Stack.Item>
               <Stack.Item>
-                <h3>Strike configuration {strikeConfigLabel}</h3>
+                <h3>打击配置：{strikeConfigLabel}</h3>
               </Stack.Item>
               <Stack.Item className="TargetText">
                 <h3>
-                  Target selected:{' '}
+                  已选目标：{' '}
                   {data.targets_data.find(
                     (x) => x?.target_tag === selectedTarget,
-                  )?.target_name ?? 'NONE'}
+                  )?.target_name ?? '无'}
                 </h3>
               </Stack.Item>
               <Stack.Item>
-                <h3>Attack Vector {strikeDirection ?? 'NONE'}</h3>
+                <h3>攻击方向：{directionLabels.get(strikeDirection ?? '') ?? '无'}</h3>
               </Stack.Item>
               <Stack.Item>
                 <h3>
-                  Offset {fmXOffsetValue},{fmYOffsetValue}
+                  偏移量：{fmXOffsetValue},{fmYOffsetValue}
                 </h3>
               </Stack.Item>
               <Stack.Item>
                 <h3>
-                  Guidance computer {strikeReady ? 'READY' : 'INCOMPLETE'}
+                  制导计算机：{strikeReady ? '就绪' : '配置未完成'}
                 </h3>
               </Stack.Item>
             </Stack>
@@ -541,26 +559,26 @@ export const TargetAquisitionMfdPanel = (props: MfdProps) => {
                     fontSize="2em"
                   >
                     <tspan x={50} y={250} dy="1.2em">
-                      NO TARGETS
+                      无目标
                     </tspan>
                   </text>
                 )}
                 {data.targets_data.length > 0 && (
                   <text stroke="#00e94e" x={20} y={190} textAnchor="end">
                     <tspan x={40} dy="1.2em">
-                      SELECT
+                      选择
                     </tspan>
                     <tspan x={40} dy="1.2em">
-                      TARGETS
+                      目标
                     </tspan>
                     <tspan x={40} dy="1.2em">
-                      {Math.min(5, data.targets_data.length)} of{' '}
+                      {Math.min(5, data.targets_data.length)} /{' '}
                       {data.targets_data.length}
                     </tspan>
                     {data.targets_data.length > 0 && (
                       <>
                         <tspan x={40} dy="1.2em">
-                          LATEST
+                          最新
                         </tspan>
                         <tspan x={40} dy="1.2em">
                           {getLastTargetName(data)}

@@ -19,24 +19,24 @@ const SentryPanel = (props: DropshipEquipment) => {
           </Stack.Item>
           <Stack.Item>
             <h3>
-              Health: {sentryData.health} / {sentryData.health_max}
+              耐久：{sentryData.health} / {sentryData.health_max}
             </h3>
           </Stack.Item>
           <Stack.Item>
             <h3>
-              Ammo {sentryData.rounds} / {sentryData.max_rounds}
+              弹药：{sentryData.rounds} / {sentryData.max_rounds}
             </h3>
           </Stack.Item>
           <Stack.Item>
-            <h3>{sentryData.deployed === 1 ? 'DEPLOYED' : 'UNDEPLOYED'}</h3>
+            <h3>{sentryData.deployed === 1 ? '已展开' : '未展开'}</h3>
           </Stack.Item>
           <Stack.Item>
             <h3>
               {sentryData.engaged === 1
-                ? 'ENGAGED'
+                ? '交战中'
                 : sentryData.deployed === 1
-                  ? 'STANDBY'
-                  : 'OFFLINE'}
+                  ? '待命'
+                  : '离线'}
             </h3>
           </Stack.Item>
         </Stack>
@@ -56,13 +56,13 @@ export const SentryMfdPanel = (props: MfdProps) => {
     (x) => x.mount_point === equipmentState,
   );
   const deployLabel =
-    (sentry?.data?.deployed ?? 0) === 1 ? 'RETRACT' : 'DEPLOY';
+    (sentry?.data?.deployed ?? 0) === 1 ? '收回' : '展开';
 
   return (
     <MfdPanel
       panelStateId={props.panelStateId}
       topButtons={[
-        { children: 'EQUIP', onClick: () => setPanelState('equipment') },
+        { children: '设备', onClick: () => setPanelState('equipment') },
       ]}
       leftButtons={[
         {
@@ -71,14 +71,14 @@ export const SentryMfdPanel = (props: MfdProps) => {
             act('deploy-equipment', { equipment_id: sentry?.mount_point }),
         },
         {
-          children: sentry?.data?.camera_available ? 'CAMERA' : undefined,
+          children: sentry?.data?.camera_available ? '摄像头' : undefined,
           onClick: () =>
             act('set-camera-sentry', { equipment_id: sentry?.mount_point }),
         },
       ]}
       bottomButtons={[
         {
-          children: 'EXIT',
+          children: '退出',
           onClick: () => setPanelState(''),
         },
       ]}

@@ -3,8 +3,8 @@
 //Read the documentation in multitile.dm before trying to decipher this stuff
 
 /obj/vehicle/multitile/box_van
-	name = "\improper box-van"
-	desc = "A small box-type van. It's a compact vehicle with a rectangular cargo area, typically designed for transporting goods or small equipment. It features a high roof and straight sides, providing ample vertical space for storage. Its size makes it maneuverable and ideal for urban driving and tight spaces."
+	name = "\improper 厢式货车"
+	desc = "小型厢式货车，车身紧凑，拥有长方形货舱，通常用于运送货物或小型设备。高车顶和垂直侧壁提供了充足的垂直储物空间。小巧的体型使它机动灵活，很适合市区道路和狭窄空间。"
 	layer = ABOVE_XENO_LAYER
 
 	icon = 'icons/obj/vehicles/box_van.dmi'
@@ -189,7 +189,7 @@
 
 	if(iswelder(O) && health >= initial(health))
 		if(!HAS_TRAIT(O, TRAIT_TOOL_BLOWTORCH))
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要更强力的焊炬！"))
 			return
 		var/obj/item/hardpoint/health
 		for(var/obj/item/hardpoint/potential_hardpoint in hardpoints)
@@ -208,14 +208,14 @@
 /obj/vehicle/multitile/box_van/handle_click(mob/living/user, atom/A, list/mods)
 	if(mods[SHIFT_CLICK] && !mods[ALT_CLICK])
 		if(overdrive_next > world.time)
-			to_chat(user, SPAN_WARNING("You can't activate overdrive yet! Wait [round((overdrive_next - world.time) / 10, 0.1)] seconds."))
+			to_chat(user, SPAN_WARNING("暂时还不能启动超速模式！请等待[round((overdrive_next - world.time) / 10, 0.1)]秒。"))
 			return
 
 		misc_multipliers["move"] -= overdrive_speed_mult
 		addtimer(CALLBACK(src, PROC_REF(reset_overdrive)), overdrive_duration)
 
 		overdrive_next = world.time + overdrive_cooldown
-		to_chat(user, SPAN_NOTICE("You activate overdrive."))
+		to_chat(user, SPAN_NOTICE("你启动了超速模式。"))
 		playsound(src, 'sound/vehicles/box_van_overdrive.ogg', 75, FALSE)
 		return
 

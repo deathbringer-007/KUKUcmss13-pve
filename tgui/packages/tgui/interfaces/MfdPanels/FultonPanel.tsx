@@ -69,11 +69,11 @@ export const FultonMfdPanel = (props: MfdProps) => {
         },
       ]}
       topButtons={[
-        { children: 'EQUIP', onClick: () => setPanelState('equipment') },
+        { children: '设备', onClick: () => setPanelState('equipment') },
       ]}
       bottomButtons={[
         {
-          children: 'EXIT',
+          children: '退出',
           onClick: () => setPanelState(''),
         },
       ]}
@@ -122,7 +122,7 @@ export const FultonMfdPanel = (props: MfdProps) => {
           <Stack.Item>
             <Stack vertical width="300px" align="center">
               <Stack.Item>
-                <h3>Active Fultons</h3>
+                <h3>已启用的富尔顿装置</h3>
               </Stack.Item>
               {all_targets.map((x, i) => (
                 <Stack.Item key={i}>

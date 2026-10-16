@@ -1,7 +1,7 @@
 /obj/vehicle/multitile/tank
-	name = "M34A2 Longstreet Light Tank"
-	desc = "A giant piece of armor with a big gun, you know what to do. Entrance in the back."
-	desc_lore = "The Longstreet is a more recent addition to the Colonial Marines' arsenal, though it has served with distinction with Army units for over a decade. Designed as a fire-support and reconnaissance vehicle, with overall loaded mass permitting it be be carried in smaller drop-craft. \n The A2 variant was specially modified for USCM use, featuring modular turret packages and enhanced environmental hardening to account for variable AOs. It has proven exceedingly popular thanks to more modern ergonomics and combat-computer systems."
+	name = "M34A2“朗斯特里特”轻型坦克"
+	desc = "一大块装甲，配上一门大炮，你知道该怎么用。入口位于后方。"
+	desc_lore = "“朗斯特里特”加入殖民地海军陆战队装备序列的时间较晚，但已在陆军部队中出色服役十余年。它被设计为火力支援和侦察车辆，满载重量允许较小型登陆艇搭载。\nA2变型专为USCM改装，配备模块化炮塔组件，并加强环境适应能力，以应对多变的作战区域。更现代的人机工程设计和作战计算机系统使其极受欢迎。"
 
 	icon = 'icons/obj/vehicles/tank.dmi'
 	icon_state = "tank_base"
@@ -96,7 +96,7 @@
 
 /obj/vehicle/multitile/tank/load_role_reserved_slots()
 	var/datum/role_reserved_slots/RRS = new
-	RRS.category_name = "Crewmen"
+	RRS.category_name = "车组成员"
 	RRS.roles = list(JOB_TANK_CREW, JOB_WO_CREWMAN, JOB_UPP_CREWMAN, JOB_PMC_CREWMAN)
 	RRS.total = 2
 	role_reserved_slots += RRS
@@ -181,7 +181,7 @@
 		return
 
 	if(health > 0)
-		to_chat(user, SPAN_XENO("We can't jump over [src] until it is destroyed!"))
+		to_chat(user, SPAN_XENO("必须先摧毁[src]，我们才能跳过去！"))
 		return
 
 	var/turf/current_turf = get_turf(user)
@@ -192,46 +192,46 @@
 			break
 
 		if(current_turf.density)
-			to_chat(user, SPAN_XENO("The path over [src] is obstructed!"))
+			to_chat(user, SPAN_XENO("越过[src]的通路被挡住了！"))
 			return
 
 	// Now we check to make sure the turf on the other side of the tank isn't dense too
 	current_turf = get_step(current_turf, dir_to_go)
 	if(current_turf.density)
-		to_chat(user, SPAN_XENO("The path over [src] is obstructed!"))
+		to_chat(user, SPAN_XENO("越过[src]的通路被挡住了！"))
 		return
 
-	to_chat(user, SPAN_XENO("We begin to jump over [src]..."))
+	to_chat(user, SPAN_XENO("我们开始跳过[src]……"))
 	if(!do_after(user, 3 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
-		to_chat(user, SPAN_XENO("We stop jumping over [src]."))
+		to_chat(user, SPAN_XENO("我们停止了跳过[src]。"))
 		return
 
 	user.forceMove(current_turf)
-	to_chat(user, SPAN_XENO("We jump to the other side of [src]."))
+	to_chat(user, SPAN_XENO("我们跳到了[src]的另一侧。"))
 
 /*
 ** CAMO TANKS
 */
 
 /obj/vehicle/multitile/tank/desert
-	desc = "A giant piece of armor with a big gun, you know what to do. Entrance in the back. Painted in an arid-environment camo scheme."
+	desc = "一大块装甲，配上一门大炮，你知道该怎么用。入口位于后方。采用干旱环境迷彩。"
 	icon_state = "tank_base_d"
 
 /obj/vehicle/multitile/tank/jungle
-	desc = "A giant piece of armor with a big gun, you know what to do. Entrance in the back. Painted in a lush-environment camo scheme."
+	desc = "一大块装甲，配上一门大炮，你知道该怎么用。入口位于后方。采用茂密植被环境迷彩。"
 	icon_state = "tank_base_j"
 
 /obj/vehicle/multitile/tank/night
-	desc = "A giant piece of armor with a big gun, you know what to do. Entrance in the back. Painted in a dark-environment camo scheme."
+	desc = "一大块装甲，配上一门大炮，你知道该怎么用。入口位于后方。采用暗光环境迷彩。"
 	icon_state = "tank_base_n"
 
 /*
 ** COMMAND TANK
 */
 /obj/vehicle/multitile/tank/command
-	name = "M34A3 Hampton Light Command Tank"
-	desc = "A giant piece of armor with a big gun and enhanced comms equipment, you know what to do. Entrance in the back."
-	desc_lore = "Developed and deployed recently, the A3 model of the M34 light tank is a command variant of the Longstreet. The Hampton fields a bigger fighting compartment to facilitate a 'commander' station, and more robust connections to the command & control network compared to the more commonly seen version."
+	name = "M34A3“汉普顿”轻型指挥坦克"
+	desc = "一大块装甲，配上一门大炮和增强型通信设备，你知道该怎么用。入口位于后方。"
+	desc_lore = "近期研发并列装的M34轻型坦克A3型号，是“朗斯特里特”的指挥变型。“汉普顿”拥有更大的战斗舱，便于设置车长工作站；与更常见的型号相比，它与指挥控制网络的连接也更为可靠。"
 
 	interior_map = /datum/map_template/interior/tank_command
 

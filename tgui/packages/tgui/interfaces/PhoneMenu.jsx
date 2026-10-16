@@ -4,6 +4,13 @@ import { useBackend } from '../backend';
 import { Button, Input, Section, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
 
+const categoryLabels = new Map([
+  ['Uncategorised', '未分类'],
+  ['Marine', '陆战队员'],
+  ['Soldier', '士兵'],
+  ['IO', '情报官'],
+]);
+
 export const PhoneMenu = (props) => {
   const { act, data } = useBackend();
   return (
@@ -35,18 +42,18 @@ const GeneralPanel = (props) => {
   const [selectedPhone, setSelectedPhone] = useState(null);
   const [currentCategory, setCategory] = useState(categories[0]);
 
-  let dnd_tooltip = 'Do Not Disturb is DISABLED';
+  let dnd_tooltip = '勿扰模式已关闭';
   let dnd_locked = 'No';
   let dnd_icon = 'volume-high';
   if (availability === 1) {
-    dnd_tooltip = 'Do Not Disturb is ENABLED';
+    dnd_tooltip = '勿扰模式已开启';
     dnd_icon = 'volume-xmark';
   } else if (availability >= 2) {
-    dnd_tooltip = 'Do Not Disturb is ENABLED (LOCKED)';
+    dnd_tooltip = '勿扰模式已开启（已锁定）';
     dnd_locked = 'Yes';
     dnd_icon = 'volume-xmark';
   } else if (availability < 0) {
-    dnd_tooltip = 'Do Not Disturb is DISABLED (LOCKED)';
+    dnd_tooltip = '勿扰模式已关闭（已锁定）';
     dnd_locked = 'Yes';
   }
 
@@ -61,7 +68,7 @@ const GeneralPanel = (props) => {
                 onClick={() => setCategory(val)}
                 key={val}
               >
-                {val}
+                {categoryLabels.get(val) ?? val}
               </Tabs.Tab>
             ))}
           </Tabs>
@@ -70,7 +77,7 @@ const GeneralPanel = (props) => {
           <Input
             fluid
             value={currentSearch}
-            placeholder="Search for a phone"
+            placeholder="搜索电话"
             onInput={(e, value) => setSearch(value.toLowerCase())}
           />
         </Stack.Item>
@@ -119,11 +126,11 @@ const GeneralPanel = (props) => {
               textAlign="center"
               onClick={() => act('call_phone', { phone_id: selectedPhone })}
             >
-              Dial
+              拨号
             </Button>
           </Stack.Item>
         )}
-        {!!last_caller && <Stack.Item>Last Caller: {last_caller}</Stack.Item>}
+        {!!last_caller && <Stack.Item>上次来电：{last_caller}</Stack.Item>}
         <Stack.Item>
           <Button
             color="red"
@@ -134,14 +141,14 @@ const GeneralPanel = (props) => {
             textAlign="center"
             onClick={() => act('toggle_dnd')}
           >
-            Do Not Disturb
+            勿扰模式
           </Button>
         </Stack.Item>
         {data.virtual_phone && (
           <Stack.Item>
             <Stack vertical fill>
               <Stack.Item>
-                <Section title={data.calling_phone_id || 'Phone Control'} />
+                <Section title={data.calling_phone_id || '电话控制'} />
               </Stack.Item>
               <Stack.Item>
                 <Button
@@ -151,7 +158,7 @@ const GeneralPanel = (props) => {
                   disabled={!data.being_called}
                   onClick={() => act('pick_up')}
                 >
-                  Pick Up
+                  接听
                 </Button>
               </Stack.Item>
               <Stack.Item>
@@ -162,7 +169,7 @@ const GeneralPanel = (props) => {
                   disabled={!data.active_call}
                   onClick={() => act('hang_up')}
                 >
-                  Hang Up
+                  挂断
                 </Button>
               </Stack.Item>
             </Stack>

@@ -1,7 +1,7 @@
 
 /obj/vehicle/multitile/apc/arc/weaponless
-	name = "M540-S Armored Recon Carrier"
-	desc = "An M540-S Armored Recon Carrier, also known as an ARC. This is a much lighter and more nimble version to the M557A3 APC, often preferred by recon forces for that very reason. This variant has had it's weapons removed to lighten it's weight and improve it's stealth capabilities. Entrance on the right."
+	name = "M540-S装甲侦察车"
+	desc = "M540-S装甲侦察车，简称ARC。相比M557A3装甲输送车，它轻得多，也灵活得多，因此常受侦察部队青睐。这个变型拆除了武器，以减轻重量并提升隐蔽能力。入口位于右侧。"
 
 	icon_state = "arc_weaponless"
 

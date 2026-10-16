@@ -34,13 +34,13 @@ export const SpotlightMfdPanel = (props: MfdProps) => {
     (x) => x.mount_point === equipmentState,
   );
   const deployLabel =
-    (spotlight?.data?.deployed ?? 0) === 1 ? 'DISABLE' : 'ENABLE';
+    (spotlight?.data?.deployed ?? 0) === 1 ? '关闭' : '启用';
 
   return (
     <MfdPanel
       panelStateId={props.panelStateId}
       topButtons={[
-        { children: 'EQUIP', onClick: () => setPanelState('equipment') },
+        { children: '设备', onClick: () => setPanelState('equipment') },
       ]}
       leftButtons={[
         {
@@ -51,7 +51,7 @@ export const SpotlightMfdPanel = (props: MfdProps) => {
       ]}
       bottomButtons={[
         {
-          children: 'EXIT',
+          children: '退出',
           onClick: () => setPanelState(''),
         },
       ]}

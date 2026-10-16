@@ -1,7 +1,7 @@
 
 /obj/vehicle/multitile/apc/command
-	name = "M577-CMD Armored Personnel Carrier"
-	desc = "A modification of the M577 Armored Personnel Carrier designed to act as a field commander vehicle. An armored transport with four big wheels. Has inbuilt sensor tower and a field command station installed inside. Entrances on the sides."
+	name = "M577-CMD指挥装甲输送车"
+	desc = "M577装甲输送车的指挥改装型，拥有四个大轮子，作为战地指挥车使用。配备内置传感器塔，车内设有野战指挥站。入口位于两侧。"
 
 	icon_state = "apc_base_com"
 
@@ -67,19 +67,19 @@
 
 /obj/vehicle/multitile/apc/command/load_role_reserved_slots()
 	var/datum/role_reserved_slots/RRS = new
-	RRS.category_name = "Crewmen"
+	RRS.category_name = "车组成员"
 	RRS.roles = list(JOB_TANK_CREW, JOB_WO_CREWMAN, JOB_UPP_CREWMAN, JOB_PMC_CREWMAN)
 	RRS.total = 2
 	role_reserved_slots += RRS
 
 	RRS = new
-	RRS.category_name = "Command Staff"
+	RRS.category_name = "指挥人员"
 	RRS.roles = JOB_COMMAND_ROLES_LIST
 	RRS.total = 1
 	role_reserved_slots += RRS
 
 	RRS = new
-	RRS.category_name = "Synthetic Unit"
+	RRS.category_name = "合成人"
 	RRS.roles = list(JOB_SYNTH, JOB_WO_SYNTH)
 	RRS.total = 1
 	role_reserved_slots += RRS

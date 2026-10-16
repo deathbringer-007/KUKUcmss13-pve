@@ -3,8 +3,8 @@
 //Read the documentation in multitile.dm before trying to decipher this stuff
 
 /obj/vehicle/multitile/uppvan
-	name = "Kheshig-1M"
-	desc = "The Kheshig-1M is a result of a modernization program to try and make a common heavy utility vehicle for the Union. Lightly armored and relatively compact, most variants are unarmed."
+	name = "怯薛-1M"
+	desc = "怯薛-1M源自联盟的现代化计划，旨在打造通用重型多用途车辆。装甲较薄，车身较紧凑，大多数变型没有武装。"
 	layer = ABOVE_XENO_LAYER
 
 	icon = 'icons/obj/vehicles/uppvan.dmi'
@@ -75,7 +75,7 @@
 
 /obj/vehicle/multitile/uppvantank/load_role_reserved_slots()
 	var/datum/role_reserved_slots/RRS = new
-	RRS.category_name = "Crewmen"
+	RRS.category_name = "车组成员"
 	RRS.roles = list(JOB_TANK_CREW, JOB_WO_CREWMAN, JOB_UPP_CREWMAN, JOB_PMC_CREWMAN)
 	RRS.total = 2
 	role_reserved_slots += RRS
@@ -231,7 +231,7 @@
 
 	if(iswelder(O) && health >= initial(health))
 		if(!HAS_TRAIT(O, TRAIT_TOOL_BLOWTORCH))
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要更强力的焊炬！"))
 			return
 		var/obj/item/hardpoint/H
 		for(var/obj/item/hardpoint/potential_hardpoint in hardpoints)
@@ -250,14 +250,14 @@
 /obj/vehicle/multitile/uppvan/handle_click(mob/living/user, atom/A, list/mods)
 	if(mods["shift"] && !mods["alt"])
 		if(overdrive_next > world.time)
-			to_chat(user, SPAN_WARNING("You can't activate overdrive yet! Wait [round((overdrive_next - world.time) / 10, 0.1)] seconds."))
+			to_chat(user, SPAN_WARNING("暂时还不能启动超速模式！请等待[round((overdrive_next - world.time) / 10, 0.1)]秒。"))
 			return
 
 		misc_multipliers["move"] -= overdrive_speed_mult
 		addtimer(CALLBACK(src, PROC_REF(reset_overdrive)), overdrive_duration)
 
 		overdrive_next = world.time + overdrive_cooldown
-		to_chat(user, SPAN_NOTICE("You activate overdrive."))
+		to_chat(user, SPAN_NOTICE("你启动了超速模式。"))
 		playsound(src, 'sound/vehicles/overdrive_activate.ogg', 75, FALSE)
 		return
 
@@ -340,8 +340,8 @@
 	V.add_hardpoint(new /obj/item/hardpoint/locomotion/van_wheels/upp)
 
 /obj/vehicle/multitile/uppvan/uppvant
-	name = "Kheshig-1M-T"
-	desc = "The Kheshig-1M is a result of a modernization program to try and make a common heavy utility vehicle for the Union. Lightly armored and relatively compact, most variants are unarmed, though the mounting dock for a machine gun turret is on almost every model."
+	name = "怯薛-1M-T"
+	desc = "怯薛-1M源自联盟的现代化计划，旨在打造通用重型多用途车辆。装甲较薄，车身较紧凑。大多数变型没有武装，但几乎所有型号都预留了机枪塔安装座。"
 	layer = ABOVE_XENO_LAYER
 
 	icon = 'icons/obj/vehicles/uppvan.dmi'
@@ -412,7 +412,7 @@
 		return
 
 	if(health > 0)
-		to_chat(user, SPAN_XENO("We can't jump over [src] until it is destroyed!"))
+		to_chat(user, SPAN_XENO("必须先摧毁[src]，我们才能跳过去！"))
 		return
 
 	var/turf/current_turf = get_turf(user)
@@ -423,22 +423,22 @@
 			break
 
 		if(current_turf.density)
-			to_chat(user, SPAN_XENO("The path over [src] is obstructed!"))
+			to_chat(user, SPAN_XENO("越过[src]的通路被挡住了！"))
 			return
 
 	// Now we check to make sure the turf on the other side of the tank isn't dense too
 	current_turf = get_step(current_turf, dir_to_go)
 	if(current_turf.density)
-		to_chat(user, SPAN_XENO("The path over [src] is obstructed!"))
+		to_chat(user, SPAN_XENO("越过[src]的通路被挡住了！"))
 		return
 
-	to_chat(user, SPAN_XENO("We begin to jump over [src]..."))
+	to_chat(user, SPAN_XENO("我们开始跳过[src]……"))
 	if(!do_after(user, 3 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
-		to_chat(user, SPAN_XENO("We stop jumping over [src]."))
+		to_chat(user, SPAN_XENO("我们停止了跳过[src]。"))
 		return
 
 	user.forceMove(current_turf)
-	to_chat(user, SPAN_XENO("We jump to the other side of [src]."))
+	to_chat(user, SPAN_XENO("我们跳到了[src]的另一侧。"))
 
 /obj/effect/vehicle_spawner/uppvant
 	name = "Van Spawner"
@@ -492,8 +492,8 @@
 // Van UPP Medical
 
 /obj/vehicle/multitile/uppvan/medical
-	name = "Kheshig-1M-Medical"
-	desc = "The Kheshig-1M is a result of a modernization program to try and make a common heavy utility vehicle for the Union. Lightly armored and relatively compact, most variants are unarmed, The cross on the top marks this vehicle as a medical evacuation vehicle."
+	name = "怯薛-1M医疗型"
+	desc = "怯薛-1M源自联盟的现代化计划，旨在打造通用重型多用途车辆。装甲较薄，车身较紧凑，大多数变型没有武装。顶部的十字标记表明这是一辆医疗后送车。"
 	layer = ABOVE_XENO_LAYER
 
 	icon = 'icons/obj/vehicles/uppvan.dmi'
@@ -537,8 +537,8 @@
 // UPP Van logistics
 
 /obj/vehicle/multitile/uppvan/logistics
-	name = "Kheshig-1M-logistics"
-	desc = "The Kheshig-1M is a result of a modernization program to try and make a common heavy utility vehicle for the Union. Lightly armored and relatively compact, most variants are unarmed, The orange stripe across the side marks this vehicle as a logistics transport."
+	name = "怯薛-1M后勤型"
+	desc = "怯薛-1M源自联盟的现代化计划，旨在打造通用重型多用途车辆。装甲较薄，车身较紧凑，大多数变型没有武装。侧面的橙色条纹表明这是一辆后勤运输车。"
 	layer = ABOVE_XENO_LAYER
 
 	icon = 'icons/obj/vehicles/uppvan_logistics.dmi'
@@ -582,8 +582,8 @@
 // UPP Van prisoner
 
 /obj/vehicle/multitile/uppvan/prisoner
-	name = "Kheshig-1M-Prisoner"
-	desc = "The Kheshig-1M is a result of a modernization program to try and make a common heavy utility vehicle for the Union. Lightly armored and relatively compact, most variants are unarmed, The red stripe across the side marks this vehicle as a prisoner transport."
+	name = "怯薛-1M囚犯运输型"
+	desc = "怯薛-1M源自联盟的现代化计划，旨在打造通用重型多用途车辆。装甲较薄，车身较紧凑，大多数变型没有武装。侧面的红色条纹表明这是一辆囚犯运输车。"
 	layer = ABOVE_XENO_LAYER
 
 	icon = 'icons/obj/vehicles/uppvan.dmi'

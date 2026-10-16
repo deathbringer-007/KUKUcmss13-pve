@@ -5,6 +5,12 @@ import { useBackend } from '../backend';
 import { Box, Button, Divider, Section, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
 
+const categoryLabels = new Map([
+  ['Space Station 13', '空间站13号'],
+  ['Marine', '陆战队员'],
+  ['Xenomorph', '异形'],
+]);
+
 type Tutorial = {
   name: string;
   path: string;
@@ -29,7 +35,7 @@ export const TutorialMenu = (props) => {
   const [chosenTutorial, setTutorial] = useState<Tutorial | null>(null);
   const [categoryIndex, setCategoryIndex] = useState('Space Station 13');
   return (
-    <Window title="Tutorial Menu" width={800} height={600} theme="usmc">
+    <Window title="教程菜单" width={800} height={600} theme="usmc">
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>
@@ -48,7 +54,7 @@ export const TutorialMenu = (props) => {
                       setCategoryIndex(item.name);
                     }}
                   >
-                    {item.name}
+                    {categoryLabels.get(item.name) ?? item.name}
                   </Tabs.Tab>
                 ))}
               </Tabs>
@@ -89,7 +95,7 @@ export const TutorialMenu = (props) => {
             </Stack.Item>
             <Divider vertical />
             <Stack.Item width="30%">
-              <Section title="Selected Tutorial">
+              <Section title="已选教程">
                 {chosenTutorial !== null ? (
                   <Stack vertical>
                     <Stack.Item>
@@ -122,7 +128,7 @@ export const TutorialMenu = (props) => {
                           textAlign: 'center',
                         }}
                       >
-                        Tutorial has been completed.
+                        已完成该教程。
                       </Stack.Item>
                     )}
                     <Stack.Item>
@@ -135,7 +141,7 @@ export const TutorialMenu = (props) => {
                           })
                         }
                       >
-                        Start Tutorial
+                        开始教程
                       </Button>
                     </Stack.Item>
                   </Stack>

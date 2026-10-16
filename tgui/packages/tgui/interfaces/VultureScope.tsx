@@ -35,14 +35,14 @@ enum Direction {
 }
 
 const DirectionAbbreviation: Record<Direction, string> = {
-  [Direction.North]: 'N',
-  [Direction.NorthEast]: 'NE',
-  [Direction.East]: 'E',
-  [Direction.SouthEast]: 'SE',
-  [Direction.South]: 'S',
-  [Direction.SouthWest]: 'SW',
-  [Direction.West]: 'W',
-  [Direction.NorthWest]: 'NW',
+  [Direction.North]: '北',
+  [Direction.NorthEast]: '东北',
+  [Direction.East]: '东',
+  [Direction.SouthEast]: '东南',
+  [Direction.South]: '南',
+  [Direction.SouthWest]: '西南',
+  [Direction.West]: '西',
+  [Direction.NorthWest]: '西北',
 };
 
 const OffsetAdjuster = (props) => {
@@ -54,7 +54,7 @@ const OffsetAdjuster = (props) => {
         marginRight: '20px',
       }}
     >
-      <Section title="Offset">
+      <Section title="偏移">
         <Box>
           <Stack vertical>
             <Flex>
@@ -96,7 +96,7 @@ const OffsetDirection = (props) => {
   return (
     <Flex.Item grow={1} basis={0}>
       <Button
-        tooltip={`Adjusts the scope's offset to the ${DirectionAbbreviation[dir]}`}
+        tooltip={`向${DirectionAbbreviation[dir]}调整瞄准镜偏移`}
         disabled={
           data.valid_offset_dirs.indexOf(dir) === -1 || data.scope_cooldown
         }
@@ -117,7 +117,7 @@ const PositionAdjuster = (props) => {
   const { act, data } = useBackend<ScopeData>();
   return (
     <div style={{ flex: '1' }}>
-      <Section title="Position" textAlign="right">
+      <Section title="位置" textAlign="right">
         <Box>
           <Stack vertical>
             <Flex>
@@ -159,7 +159,7 @@ const ScopePosition = (props) => {
   return (
     <Flex.Item grow={1} basis={0}>
       <Button
-        tooltip={`Adjusts the scope's position to the ${DirectionAbbreviation[dir]}`}
+        tooltip={`向${DirectionAbbreviation[dir]}调整瞄准镜位置`}
         disabled={
           data.valid_adjust_dirs.indexOf(dir) === -1 || data.scope_cooldown
         }
@@ -179,10 +179,10 @@ const ScopePosition = (props) => {
 const SecondarySection = (props) => {
   const { data, act } = useBackend<ScopeData>();
   return (
-    <Section title="Breathing & Data" textAlign="center">
+    <Section title="呼吸与数据" textAlign="center">
       <Flex.Item grow={1} basis={0}>
         <Button
-          tooltip="Control your breathing for a short time, removing scope drift."
+          tooltip="短时间内控制呼吸，消除瞄准镜晃动。"
           disabled={data.breath_cooldown}
           textAlign="center"
           onClick={() => act('hold_breath')}
@@ -191,7 +191,7 @@ const SecondarySection = (props) => {
           m={-0.2}
           fluid
         >
-          Control Breathing
+          控制呼吸
         </Button>
       </Flex.Item>
       <div style={{ padding: '6px' }} />
@@ -206,7 +206,7 @@ const SecondarySection = (props) => {
             bad: [-Infinity, 0.5],
           }}
         >
-          Recharge
+          呼吸恢复
         </ProgressBar>
       </Flex.Item>
       <Flex.Item>
@@ -221,7 +221,7 @@ const SecondarySection = (props) => {
               bad: [51, Infinity],
             }}
           >
-            Scope Drift: {data.current_scope_drift}%
+            瞄准镜晃动：{data.current_scope_drift}%
           </ProgressBar>
         </div>
       </Flex.Item>
@@ -236,7 +236,7 @@ const SecondarySection = (props) => {
             bad: [-Infinity, 0.5],
           }}
         >
-          Fire Readiness
+          射击就绪进度
         </ProgressBar>
       </Flex.Item>
     </Section>
@@ -246,9 +246,9 @@ const SecondarySection = (props) => {
 export const VultureScope = (props) => {
   const { act, data } = useBackend<ScopeData>();
   return (
-    <Window title="Scope Configuration" width={325} height={400}>
+    <Window title="瞄准镜设置" width={325} height={400}>
       <Window.Content>
-        <Section title="Scope Adjustments">
+        <Section title="瞄准镜调整">
           <div style={{ display: 'flex' }}>
             <OffsetAdjuster />
             <PositionAdjuster />

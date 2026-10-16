@@ -29,15 +29,15 @@ export const CasSim = () => {
 
   return (
     <Box className="CasSim">
-      <Section title="Configuration status">
+      <Section title="配置状态">
         {(!!data.configuration && (
           <NoticeBox info>
-            Configuration : Executing {data.configuration}!
+            配置：执行 {data.configuration}！
           </NoticeBox>
         )) || (
-          <NoticeBox danger>No firemission configuration loaded!</NoticeBox>
+          <NoticeBox danger>尚未载入火力任务配置！</NoticeBox>
         )}
-        <NoticeBox info>Target dummy type : {data.dummy_mode}</NoticeBox>
+        <NoticeBox info>靶标类型：{data.dummy_mode}</NoticeBox>
         {timeLeft > 0 && (
           <ProgressBar
             width="100%"
@@ -49,13 +49,12 @@ export const CasSim = () => {
             }}
           >
             <Box textAlign="center">
-              {Math.ceil(timeLeft / 10)} seconds until the console&apos;s
-              processors finish cooling!
+              控制台处理器还需 {Math.ceil(timeLeft / 10)} 秒冷却！
             </Box>
           </ProgressBar>
         )}
       </Section>
-      <Section title="Cas Simulation Controls">
+      <Section title="近距空中支援模拟控制">
         <Stack>
           <Stack.Item grow>
             {(!simulationView && (
@@ -68,7 +67,7 @@ export const CasSim = () => {
                   setSimulationView(true);
                 }}
               >
-                Enter simulation
+                进入模拟
               </Button>
             )) || (
               <Button
@@ -80,7 +79,7 @@ export const CasSim = () => {
                   setSimulationView(false);
                 }}
               >
-                Exit simulation
+                退出模拟
               </Button>
             )}
           </Stack.Item>
@@ -91,7 +90,7 @@ export const CasSim = () => {
               color="good"
               onClick={() => act('switchmode')}
             >
-              Switch dummy type
+              切换靶标类型
             </Button>
           </Stack.Item>
         </Stack>
@@ -104,7 +103,7 @@ export const CasSim = () => {
               color="good"
               onClick={() => act('switch_firemission')}
             >
-              Switch firemission
+              切换火力任务
             </Button>
           </Stack.Item>
           <Stack.Item grow>
@@ -113,10 +112,10 @@ export const CasSim = () => {
               fluid
               icon="bomb"
               color="good"
-              confirmContent="Confirm?"
+              confirmContent="确认？"
               onClick={() => act('execute_simulated_firemission')}
             >
-              Execute firemission?
+              执行火力任务？
             </Button.Confirm>
           </Stack.Item>
         </Stack>

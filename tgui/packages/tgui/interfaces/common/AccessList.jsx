@@ -60,14 +60,14 @@ export const AccessList = (props) => {
 
   return (
     <Section
-      title="Access"
+      title="权限"
       buttons={
         <>
           <Button icon="check-double" color="good" onClick={() => grantAll()}>
-            Grant All
+            授予全部
           </Button>
           <Button icon="undo" color="bad" onClick={() => denyAll()}>
-            Deny All
+            撤销全部
           </Button>
         </>
       }
@@ -103,7 +103,7 @@ export const AccessList = (props) => {
                 color="good"
                 onClick={() => grantDep(selectedAccess.regid)}
               >
-                Grant Region
+                授予本区域权限
               </Button>
             </Stack.Item>
             <Stack.Item>
@@ -113,7 +113,7 @@ export const AccessList = (props) => {
                 color="bad"
                 onClick={() => denyDep(selectedAccess.regid)}
               >
-                Deny Region
+                撤销本区域权限
               </Button>
             </Stack.Item>
           </Stack>

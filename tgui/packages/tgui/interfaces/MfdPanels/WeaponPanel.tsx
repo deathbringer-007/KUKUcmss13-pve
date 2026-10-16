@@ -14,7 +14,7 @@ import {
 import { LazeTarget } from './types';
 
 const EmptyWeaponPanel = (props) => {
-  return <div>Nothing Listed</div>;
+  return <div>没有可用项目</div>;
 };
 interface EquipmentContext {
   equipment_data: Array<DropshipEquipment>;
@@ -32,7 +32,7 @@ const WeaponPanel = (props: {
       <Stack.Item>
         <svg height="501" width="100">
           <text stroke="#00e94e" x={60} y={230} textAnchor="start">
-            ACTIONS
+            操作
           </text>
           {true && (
             <path
@@ -83,7 +83,7 @@ const WeaponPanel = (props: {
             </Stack.Item>
             <Stack.Item>
               <h3>
-                Ammo {props.equipment.ammo} / {props.equipment.max_ammo}
+                弹药：{props.equipment.ammo} / {props.equipment.max_ammo}
               </h3>
             </Stack.Item>
           </Stack>
@@ -102,26 +102,26 @@ const WeaponPanel = (props: {
                 fontSize="2em"
               >
                 <tspan x={50} y={250} dy="1.2em">
-                  NO TARGETS
+                  无目标
                 </tspan>
               </text>
             )}
             {data.targets_data.length > 0 && (
               <text stroke="#00e94e" x={20} y={190} textAnchor="end">
                 <tspan x={40} dy="1.2em">
-                  SELECT
+                  选择
                 </tspan>
                 <tspan x={40} dy="1.2em">
-                  TARGETS
+                  目标
                 </tspan>
                 <tspan x={40} dy="1.2em">
-                  {Math.min(5, data.targets_data.length)} of{' '}
+                  {Math.min(5, data.targets_data.length)} /{' '}
                   {data.targets_data.length}
                 </tspan>
                 {data.targets_data.length > 0 && (
                   <>
                     <tspan x={40} dy="1.2em">
-                      LATEST
+                      最新
                     </tspan>
                     <tspan x={40} dy="1.2em">
                       {getLastTargetName(data)}
@@ -153,13 +153,13 @@ export const WeaponMfdPanel = (props: MfdProps) => {
       panelStateId={props.panelStateId}
       leftButtons={[
         {
-          children: 'FIRE',
+          children: '开火',
           onClick: () => act('fire-weapon', { eqp_tag: weap?.eqp_tag }),
         },
       ]}
       bottomButtons={[
         {
-          children: 'EXIT',
+          children: '退出',
           onClick: () => setPanelState(''),
         },
         {},
@@ -178,7 +178,7 @@ export const WeaponMfdPanel = (props: MfdProps) => {
         },
       ]}
       topButtons={[
-        { children: 'EQUIP', onClick: () => setPanelState('equipment') },
+        { children: '设备', onClick: () => setPanelState('equipment') },
         {},
         {},
         {},

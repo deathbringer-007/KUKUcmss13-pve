@@ -43,13 +43,13 @@ export const TechMemories = () => {
   return (
     <Window width={650} height={700} theme={theme}>
       <Window.Content scrollable>
-        <Section title="Tech Points">
+        <Section title="科技点数">
           <Box fontSize="16px">{tech_points}</Box>
         </Section>
 
         <Objectives />
 
-        <Section title="Clues">
+        <Section title="线索">
           <Tabs fluid>
             {clue_categories.map((clue_category, i) => {
               return (
@@ -125,10 +125,10 @@ const Objectives = (props) => {
 
   return (
     <Section
-      title="Objectives"
+      title="目标"
       buttons={
         <Button backgroundColor="transparent">
-          {'Total earned credits: ' + data.total_tech_points}
+          {'累计获得点数：' + data.total_tech_points}
         </Button>
       }
     >
