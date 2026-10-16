@@ -134,7 +134,7 @@
 			to_chat(pulled, FONT_SIZE_HUGE(SPAN_DANGER("[xeno]正试图吞噬你！")))
 		if(do_after(xeno, 50, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
 			if(isxeno(pulled.loc) && !length(xeno.stomach_contents))
-				to_chat(xeno, SPAN_WARNING("\the [pulled]已经被吞掉了。"))
+				to_chat(xeno, SPAN_WARNING("[pulled]已经被吞掉了。"))
 				return 0
 			if(xeno.pulling == pulled && !pulled.buckled && (pulled.stat != DEAD || pulled.chestburst) && !length(xeno.stomach_contents)) //make sure you've still got them in your claws, and alive
 				if(SEND_SIGNAL(pulled, COMSIG_MOB_DEVOURED, xeno) & COMPONENT_CANCEL_DEVOUR)

@@ -1,28 +1,28 @@
 //====================================================================================================Redemption Valley AREAS
 //BASE
 /area/redemptionvalley
-	name = "Redemption Valley"
+	name = "救赎谷"
 	icon_state = "lv-626"
 	can_build_special = TRUE
 	minimap_color = MINIMAP_AREA_COLONY
 //=============================================================================================PARENT
 /area/redemptionvalley/valley
-	name = "Outside"
+	name = "室外"
 	ceiling = CEILING_NONE
 	powernet_name = "outpost"
 /area/redemptionvalley/valleyroof
-	name = "Sheltered"
+	name = "遮蔽区"
 	ceiling = CEILING_METAL
 	sound_environment = SOUND_ENVIRONMENT_AUDITORIUM
 	powernet_name = "settlement"
 /area/redemptionvalley/caverns
-	name = "Caves"
+	name = "洞穴"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	ambience_exterior = AMBIENCE_CAVE
 	soundscape_playlist = SCAPE_PL_CAVE
 	base_muffle = MUFFLE_HIGH
 /area/redemptionvalley/outpost
-	name = "Redemption Outpost"
+	name = "救赎哨站"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	sound_environment = SOUND_ENVIRONMENT_AUDITORIUM
 	powernet_name = "outpost"
@@ -32,14 +32,14 @@
 	minimap_color = MINIMAP_SOLID
 //===============================================================================SHUTTLES
 /area/redemptionvalley/shuttles/drop1
-	name = "Redemption Valley - Supply Pad"
+	name = "救赎谷 - 补给停机坪"
 	icon_state = "shuttle"
 	icon = 'icons/turf/area_varadero.dmi'
 	is_landing_zone = TRUE
 	minimap_color = MINIMAP_AREA_LZ
 	powernet_name = "settlement"
 /area/redemptionvalley/shuttles/drop2
-	name = "Military Base - Clifftop Landing Pad"
+	name = "军事基地 - 崖顶停机坪"
 	icon_state = "shuttle2"
 	icon = 'icons/turf/area_varadero.dmi'
 	minimap_color = MINIMAP_AREA_LZ
@@ -48,167 +48,167 @@
 	powernet_name = "outpost"
 //=============================================================================================VALLEY
 /area/redemptionvalley/valley/proper
-	name = "Redemption Valley Main Road"
+	name = "救赎谷主干道"
 	icon_state = "south"
 	powernet_name = "settlement"
 /area/redemptionvalley/valley/checkpoint
-	name = "Redemption Valley Checkpoint"
+	name = "救赎谷检查站"
 	icon_state = "central"
 /area/redemptionvalley/valley/Westbound
-	name = "Redemption Valley Westbound"
+	name = "救赎谷西向道路"
 	icon_state = "west"
 /area/redemptionvalley/valley/cliff
-	name = "Redemption Valley - Clifftop"
+	name = "救赎谷 - 崖顶"
 	icon_state = "north"
 	soundscape_playlist = SCAPE_PL_LV522_OUTDOORS
 //=============================================================================================VALLEY ROOF
 /area/redemptionvalley/valleyroof/store
-	name = "Redemption Valley - Store"
+	name = "救赎谷 - 商店"
 	icon_state = "quart"
 /area/redemptionvalley/valleyroof/security
-	name = "Redemption Valley - Security Office"
+	name = "救赎谷 - 安保办公室"
 	icon_state = "security"
 	minimap_color = MINIMAP_AREA_SEC
 /area/redemptionvalley/valleyroof/medical
-	name = "Redemption Valley - Medical"
+	name = "救赎谷 - 医疗区"
 	icon_state = "medbay"
 	minimap_color = MINIMAP_AREA_MEDBAY
 /area/redemptionvalley/valleyroof/admin
-	name = "Redemption Valley - Site Administration"
+	name = "救赎谷 - 场地行政区"
 	icon_state = "blue"
 	minimap_color = MINIMAP_AREA_COMMAND
 /area/redemptionvalley/valleyroof/server
-	name = "Redemption Valley - Site Server Room"
+	name = "救赎谷 - 场地服务器室"
 	icon_state = "blue"
 	minimap_color = MINIMAP_AREA_COMMAND_CAVE
 /area/redemptionvalley/valleyroof/cafe
-	name = "Redemption Valley - Cafe"
+	name = "救赎谷 - 咖啡馆"
 	icon_state = "cafeteria"
 /area/redemptionvalley/valleyroof/laundro
-	name = "Redemption Valley - Laundromat"
+	name = "救赎谷 - 自助洗衣店"
 	icon_state = "janitor"
 /area/redemptionvalley/valleyroof/engi
-	name = "Redemption Valley - Engineering"
+	name = "救赎谷 - 工程区"
 	icon_state = "engine_smes"
 	minimap_color = MINIMAP_AREA_ENGI
 /area/redemptionvalley/valleyroof/company
-	name = "Redemption Valley - Company Housing"
+	name = "救赎谷 - 公司住宅区"
 	icon_state = "purple"
 /area/redemptionvalley/valleyroof/hydro
-	name = "Redemption Valley - Hydroponics"
+	name = "救赎谷 - 水培区"
 	icon_state = "hydro"
 /area/redemptionvalley/valleyroof/storage
-	name = "Redemption Valley - Pod Storage"
+	name = "救赎谷 - 舱体仓库"
 	icon_state = "storage"
 /area/redemptionvalley/valleyroof/houseone
-	name = "Redemption Valley - House One"
+	name = "救赎谷 - 一号住宅"
 	icon_state = "green"
 /area/redemptionvalley/valleyroof/housetwo
-	name = "Redemption Valley - House Two"
+	name = "救赎谷 - 二号住宅"
 	icon_state = "green"
 /area/redemptionvalley/valleyroof/housethree
-	name = "Redemption Valley - House Three"
+	name = "救赎谷 - 三号住宅"
 	icon_state = "green"
 /area/redemptionvalley/valleyroof/housefour
-	name = "Redemption Valley - House Four"
+	name = "救赎谷 - 四号住宅"
 	icon_state = "green"
 /area/redemptionvalley/valleyroof/housefive
-	name = "Redemption Valley - House Five"
+	name = "救赎谷 - 五号住宅"
 	icon_state = "green"
 /area/redemptionvalley/valleyroof/housesix
-	name = "Redemption Valley - House Six"
+	name = "救赎谷 - 六号住宅"
 	icon_state = "green"
 /area/redemptionvalley/valleyroof/cliffcomms
-	name = "Clifftop - T-Comms"
+	name = "崖顶 - 通讯区"
 	icon_state = "yellow"
 	soundscape_playlist = SCAPE_PL_LV522_OUTDOORS
 	powernet_name = "outpost"
 //=============================================================================================CAVERNS
 /area/redemptionvalley/caverns/north
-	name = "Redemption Valley - Caves Upper"
+	name = "救赎谷 - 上层洞穴"
 	icon_state = "cave"
 	minimap_color = MINIMAP_SOLID
 /area/redemptionvalley/caverns/east
-	name = "Redemption Valley - Caves Valley"
+	name = "救赎谷 - 山谷洞穴"
 	icon_state = "cave"
 	minimap_color = MINIMAP_SOLID
 /area/redemptionvalley/caverns/bunker
-	name = "Redemption Valley - Caves Bunker"
+	name = "救赎谷 - 地堡洞穴"
 	ceiling = CEILING_UNDERGROUND_BLOCK_CAS
 	icon_state = "cave"
 /area/redemptionvalley/caverns/lake
-	name = "Redemption Valley - Caves Lake"
+	name = "救赎谷 - 湖泊洞穴"
 	icon_state = "cave"
 	minimap_color = MINIMAP_SOLID
 /area/redemptionvalley/caverns/entry
-	name = "Redemption Valley - Caves Central"
+	name = "救赎谷 - 中央洞穴"
 	icon_state = "cave"
 	ceiling = CEILING_UNDERGROUND_ALLOW_CAS
 /area/redemptionvalley/caverns/west
-	name = "Redemption Valley - Caves Lower"
+	name = "救赎谷 - 下层洞穴"
 	icon_state = "cave"
 	minimap_color = MINIMAP_SOLID
 /area/redemptionvalley/caverns/ruin
-	name = "Valley Ruins"
+	name = "山谷遗迹"
 	icon_state = "cave"
 //=============================================================================================OUTPOST
 /area/redemptionvalley/outpost/elevup
-	name = "Military Base - Elevator Upper"
+	name = "军事基地 - 电梯上层"
 	icon_state = "away3"
 	soundscape_playlist = SCAPE_PL_LV522_INDOORS
 /area/redemptionvalley/outpost/flight
-	name = "Military Base - Flight Control"
+	name = "军事基地 - 飞行控制区"
 	icon_state = "purple"
 	soundscape_playlist = SCAPE_PL_LV522_INDOORS
 /area/redemptionvalley/outpost/ops
-	name = "Military Base - Operations Room"
+	name = "军事基地 - 作战室"
 	icon_state = "blue"
 	soundscape_playlist = SCAPE_PL_LV522_INDOORS
 	minimap_color = MINIMAP_AREA_COMMAND
 /area/redemptionvalley/outpost/elevlow
-	name = "Military Base - Elevator Lower"
+	name = "军事基地 - 电梯下层"
 	icon_state = "away2"
 /area/redemptionvalley/outpost/bunkwest
-	name = "Military Base - Bunkers West"
+	name = "军事基地 - 西侧地堡"
 	icon_state = "red"
 /area/redemptionvalley/outpost/bunkeast
-	name = "Military Base - Bunkers East"
+	name = "军事基地 - 东侧地堡"
 	icon_state = "red"
 /area/redemptionvalley/outpost/cavestruct
-	name = "Military Base - Cave Structures"
+	name = "军事基地 - 洞穴建筑"
 	icon_state = "red"
 /area/redemptionvalley/outpost/entry
-	name = "Military Base - Entryway"
+	name = "军事基地 - 入口"
 	icon_state = "away1"
 /area/redemptionvalley/outpost/halls
-	name = "Military Base - Hallways"
+	name = "军事基地 - 走廊"
 	icon_state = "green"
 /area/redemptionvalley/outpost/armory
-	name = "Military Base - Armory"
+	name = "军事基地 - 军械库"
 	icon_state = "armory"
 	minimap_color = MINIMAP_AREA_SEC
 /area/redemptionvalley/outpost/barracks
-	name = "Military Base - Barracks"
+	name = "军事基地 - 营房"
 	icon_state = "yellow"
 /area/redemptionvalley/outpost/canteen
-	name = "Military Base - Canteen"
+	name = "军事基地 - 食堂"
 	icon_state = "cafeteria"
 /area/redemptionvalley/outpost/toilet
-	name = "Military Base - Toilets"
+	name = "军事基地 - 卫生间"
 	icon_state = "toilet"
 /area/redemptionvalley/outpost/medical
-	name = "Military Base - Medical"
+	name = "军事基地 - 医疗区"
 	icon_state = "medbay"
 	minimap_color = MINIMAP_AREA_MEDBAY
 /area/redemptionvalley/outpost/brief
-	name = "Military Base - Briefing Hall"
+	name = "军事基地 - 简报大厅"
 	icon_state = "blue"
 /area/redemptionvalley/outpost/cells
-	name = "Military Base - Holding Cells"
+	name = "军事基地 - 拘留室"
 	icon_state = "security"
 	minimap_color = MINIMAP_AREA_SEC_CAVE
 /area/redemptionvalley/outpost/engi
-	name = "Military Base - Engineering"
+	name = "军事基地 - 工程区"
 	icon_state = "engine_smes"
 	minimap_color = MINIMAP_AREA_ENGI_CAVE
 	soundscape_playlist = SCAPE_PL_ENG

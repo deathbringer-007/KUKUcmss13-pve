@@ -42,8 +42,8 @@ display floor(lastgen) and phorontank amount
 
 //Baseline portable generator. Has all the default handling. Not intended to be used on it's own (since it generates unlimited power).
 /obj/structure/machinery/power/port_gen
-	name = "Placeholder Generator" //seriously, don't use this. It can't be anchored without VV magic.
-	desc = "A portable generator for emergency backup power."
+	name = "占位发电机" //seriously, don't use this. It can't be anchored without VV magic.
+	desc = "用于应急备用供电的便携发电机。"
 	icon = 'icons/obj/structures/machinery/power.dmi'
 	icon_state = "portgen0"
 	density = TRUE
@@ -98,37 +98,37 @@ display floor(lastgen) and phorontank amount
 /obj/structure/machinery/power/port_gen/get_examine_text(mob/user)
 	. = ..()
 	if(active)
-		. += SPAN_NOTICE("The generator is on.")
+		. += SPAN_NOTICE("发电机正在运行。")
 	else
-		. += SPAN_NOTICE("The generator is off.")
+		. += SPAN_NOTICE("发电机已关闭。")
 
 /obj/structure/machinery/power/port_gen/attack_alien(mob/living/carbon/xenomorph/attacking_xeno)
 	if(!active && !anchored)
 		return ..()
 
 	if(attacking_xeno.mob_size < MOB_SIZE_XENO)
-		to_chat(attacking_xeno, SPAN_XENOWARNING("You're too small to do any significant damage to affect this!"))
+		to_chat(attacking_xeno, SPAN_XENOWARNING("你的体型太小，无法造成足以影响它的伤害！"))
 		return XENO_NO_DELAY_ACTION
 
 	attacking_xeno.animation_attack_on(src)
-	attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno] slashes [src]!"), SPAN_DANGER("You slash [src]!"))
+	attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno]挥爪撕抓[src]！"), SPAN_DANGER("你挥爪撕抓[src]！"))
 	playsound(attacking_xeno, pick('sound/effects/metalhit.ogg', 'sound/weapons/alien_claw_metal1.ogg', 'sound/weapons/alien_claw_metal2.ogg', 'sound/weapons/alien_claw_metal3.ogg'), 25, 1)
 
 	if(active)
 		active = FALSE
 		stop_processing()
 		icon_state = initial(icon_state)
-		visible_message(SPAN_NOTICE("[src] sputters to a stop!"))
+		visible_message(SPAN_NOTICE("[src]突突作响，停止了运转！"))
 		return XENO_NONCOMBAT_ACTION
 
 	if(anchored)
 		anchored = FALSE
-		visible_message(SPAN_NOTICE("[src]'s bolts are dislodged!"))
+		visible_message(SPAN_NOTICE("[src]的固定螺栓被撞松了！"))
 		return XENO_NONCOMBAT_ACTION
 
 //A power generator that runs on solid plasma sheets.
 /obj/structure/machinery/power/port_gen/pacman
-	name = "P.A.C.M.A.N.-type Portable Generator"
+	name = "P.A.C.M.A.N.型便携发电机"
 	var/sheets = 0
 	var/max_sheets = 100
 	var/sheet_name = ""
@@ -173,8 +173,8 @@ display floor(lastgen) and phorontank amount
 
 /obj/structure/machinery/power/port_gen/pacman/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_NOTICE(" The generator has [sheets] units of [sheet_name] fuel left, producing [power_gen] per cycle.")
-	if(crit_fail) . += SPAN_DANGER("The generator seems to have broken down.")
+	. += SPAN_NOTICE(" 发电机还剩[sheets]单位的[sheet_name]燃料，每周期发电[power_gen]。")
+	if(crit_fail) . += SPAN_DANGER("发电机似乎已经损坏。")
 
 /obj/structure/machinery/power/port_gen/pacman/HasFuel()
 	if(sheets >= 1 / (time_per_sheet / power_output) - sheet_left)
@@ -236,9 +236,9 @@ display floor(lastgen) and phorontank amount
 		var/obj/item/stack/addstack = O
 		var/amount = min((max_sheets - sheets), addstack.amount)
 		if(amount < 1)
-			to_chat(user, SPAN_NOTICE(" The [src.name] is full!"))
+			to_chat(user, SPAN_NOTICE(" [src.name]已经满了！"))
 			return
-		to_chat(user, SPAN_NOTICE(" You add [amount] sheets to the [src.name]."))
+		to_chat(user, SPAN_NOTICE(" 你向[src.name]中加入了[amount]块板材。"))
 		sheets += amount
 		addstack.use(amount)
 		updateUsrDialog()
@@ -249,10 +249,10 @@ display floor(lastgen) and phorontank amount
 
 			if(!anchored)
 				connect_to_network()
-				to_chat(user, SPAN_NOTICE(" You secure the generator to the floor."))
+				to_chat(user, SPAN_NOTICE(" 你将发电机固定到了地板上。"))
 			else
 				disconnect_from_network()
-				to_chat(user, SPAN_NOTICE(" You unsecure the generator from the floor."))
+				to_chat(user, SPAN_NOTICE(" 你解除了发电机与地板的固定。"))
 
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 			anchored = !anchored
@@ -261,9 +261,9 @@ display floor(lastgen) and phorontank amount
 			open = !open
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			if(open)
-				to_chat(user, SPAN_NOTICE(" You open the access panel."))
+				to_chat(user, SPAN_NOTICE(" 你打开了维护面板。"))
 			else
-				to_chat(user, SPAN_NOTICE(" You close the access panel."))
+				to_chat(user, SPAN_NOTICE(" 你关闭了维护面板。"))
 		else if(HAS_TRAIT(O, TRAIT_TOOL_CROWBAR) && open)
 			var/obj/structure/machinery/constructable_frame/new_frame = new /obj/structure/machinery/constructable_frame(src.loc)
 			for(var/obj/item/I in component_parts)
@@ -305,16 +305,16 @@ display floor(lastgen) and phorontank amount
 
 	var/dat = text("<b>[name]</b><br>")
 	if (active)
-		dat += text("Generator: <A href='byond://?src=\ref[src];action=disable'>On</A><br>")
+		dat += text("发电机：<A href='byond://?src=\ref[src];action=disable'>开启</A><br>")
 	else
-		dat += text("Generator: <A href='byond://?src=\ref[src];action=enable'>Off</A><br>")
-	dat += text("[capitalize(sheet_name)]: [sheets] - <A href='byond://?src=\ref[src];action=eject'>Eject</A><br>")
+		dat += text("发电机：<A href='byond://?src=\ref[src];action=enable'>关闭</A><br>")
+	dat += text("[capitalize(sheet_name)]: [sheets] - <A href='byond://?src=\ref[src];action=eject'>取出</A><br>")
 	var/stack_percent = round(sheet_left * 100, 1)
-	dat += text("Current stack: [stack_percent]% <br>")
-	dat += text("Power output: <A href='byond://?src=\ref[src];action=lower_power'>-</A> [power_gen * power_output] <A href='byond://?src=\ref[src];action=higher_power'>+</A><br>")
-	dat += text("Power current: [(powernet == null ? "Unconnected" : "[avail()]")]<br>")
-	dat += text("Heat: [heat]<br>")
-	dat += "<br><A href='byond://?src=\ref[src];action=close'>Close</A>"
+	dat += text("当前燃料片剩余： [stack_percent]% <br>")
+	dat += text("输出功率： <A href='byond://?src=\ref[src];action=lower_power'>-</A> [power_gen * power_output] <A href='byond://?src=\ref[src];action=higher_power'>+</A><br>")
+	dat += text("电网功率： [(powernet == null ? "未连接" : "[avail()]")]<br>")
+	dat += text("热量： [heat]<br>")
+	dat += "<br><A href='byond://?src=\ref[src];action=close'>关闭</A>"
 	user << browse("[dat]", "window=port_gen")
 	onclose(user, "port_gen")
 
@@ -356,7 +356,7 @@ display floor(lastgen) and phorontank amount
 	return (stat & (BROKEN|additional_flags)) //Removes NOPOWER check since its a goddam generator and doesn't need power
 
 /obj/structure/machinery/power/port_gen/pacman/super
-	name = "S.U.P.E.R.P.A.C.M.A.N.-type Portable Generator"
+	name = "S.U.P.E.R.P.A.C.M.A.N.型便携发电机"
 	icon_state = "portgen1"
 	sheet_path = /obj/item/stack/sheet/mineral/uranium
 	power_gen = 15000
@@ -367,7 +367,7 @@ display floor(lastgen) and phorontank amount
 	explosion(src.loc, 3, 3, 3, -1)
 
 /obj/structure/machinery/power/port_gen/pacman/mrs
-	name = "M.R.S.P.A.C.M.A.N.-type Portable Generator"
+	name = "M.R.S.P.A.C.M.A.N.型便携发电机"
 	icon_state = "portgen2"
 	sheet_path = /obj/item/stack/sheet/mineral/tritium
 	power_gen = 40000

@@ -2,7 +2,7 @@
 //Desert Map
 
 /turf/open/desert //Basic groundmap turf parent
-	name = "desert dirt"
+	name = "沙漠土壤"
 	icon = 'icons/turf/floors/desert.dmi'
 	icon_state = "desert1"
 	is_groundmap_turf = TRUE
@@ -21,7 +21,7 @@
 // icon_state = "desert1"
 
 /turf/open/desert/dirt
-	name = "desert"
+	name = "沙漠"
 	icon_state = "desert1"
 
 /turf/open/desert/dirt/is_weedable()
@@ -34,16 +34,16 @@
 	dir = SOUTHWEST
 
 /turf/open/desert/dirt/dirt_transition_edge1
-	name = "desert"
+	name = "沙漠"
 	icon_state = "dirt4_transition_edge1"
 /turf/open/desert/dirt/dirt_transition_corner1
-	name = "desert"
+	name = "沙漠"
 	icon_state = "dirt4_transition_corner1"
 /turf/open/desert/dirt/dirt_transition_edge2
-	name = "desert"
+	name = "沙漠"
 	icon_state = "dirt4_transition_edge2"
 /turf/open/desert/dirt/dirt_transition_corner2
-	name = "desert"
+	name = "沙漠"
 	icon_state = "dirt4_transition_corner2"
 
 /turf/open/desert/dirt/desert_transition_corner1
@@ -84,7 +84,7 @@
 
 //desert riverbed
 /turf/open/desert/riverbed/dirt1
-	name = "riverbed"
+	name = "河床"
 	icon_state = "dirt1"
 //turf/open/desert/riverbed/dirt2
 // name = "riverbed"
@@ -95,14 +95,14 @@
 
 //desert floor
 /turf/open/desert/rock
-	name = "rock"
+	name = "岩石"
 	icon_state = "rock1"
 
 /turf/open/desert/rock/is_weedable()
 	return FULLY_WEEDABLE
 
 /turf/open/desert/rock/edge1
-	name = "desert"
+	name = "沙漠"
 	icon_state = "desert_transition_edge1"
 /*
 /turf/open/desert/rock/edge2
@@ -113,7 +113,7 @@
 	icon_state = "desert_transition_edge3"
 */
 /turf/open/desert/rock/corner1
-	name = "desert"
+	name = "沙漠"
 	icon_state = "desert_transition_corner1"
 /*
 /turf/open/desert/rock/corner2
@@ -126,7 +126,7 @@
 
 //desert floor
 /turf/open/desert/rock/deep
-	name = "cave"
+	name = "洞穴"
 	icon_state = "rock2"
 
 /turf/open/desert/rock/deep/rock3
@@ -164,10 +164,10 @@
 
 //Desert grass
 /turf/open/desert/desertgrass
-	name = "desert"
+	name = "沙漠"
 	icon_state = "desert_grass"
 /turf/open/desert/desertgrass/grass_edge
-	name = "desert"
+	name = "沙漠"
 	icon_state = "desert_grass_transition_edge1"
 
 
@@ -197,7 +197,7 @@
 	return NOT_WEEDABLE
 
 /turf/open/desert/desert_shore/desert_shore1
-	name = "shore"
+	name = "岸边"
 	icon_state = "shore1"
 
 /turf/open/desert/desert_shore/desert_shore1/north
@@ -244,13 +244,13 @@
 
 
 /turf/open/desert/desert_shore/shore_edge1
-	name = "shore"
+	name = "岸边"
 	icon_state = "shore_edge1"
 /turf/open/desert/desert_shore/shore_corner1
-	name = "shore"
+	name = "岸边"
 	icon_state = "shore_corner1"
 /turf/open/desert/desert_shore/shore_corner2
-	name = "shore"
+	name = "岸边"
 	icon_state = "shore_corner2"
 
 //Desert Waterway
@@ -278,23 +278,23 @@
 	icon_state = "outer_cave_floor1"
 //desert floor to outer cave floor transition
 /turf/open/desert/cave/desert_into_outer_cave_floor
-	name = "cave"
+	name = "洞穴"
 	icon_state = "outer_cave_transition1"
 //outer cave floor
 /turf/open/desert/cave/outer_cave_floor
-	name = "cave"
+	name = "洞穴"
 	icon_state = "outer_cave_floor1"
 //outer to inner cave floor transition
 /turf/open/desert/cave/outer_cave_to_inner_cave
-	name = "cave"
+	name = "洞穴"
 	icon_state = "outer_cave_to_inner1"
 //inner cave floor
 /turf/open/desert/cave/inner_cave_floor
-	name = "cave"
+	name = "洞穴"
 	icon_state = "inner_cave_1"
 //inner cave shore
 /turf/open/desert/cave/cave_shore
-	name = "cave shore"
+	name = "洞穴岸边"
 	icon = 'icons/turf/floors/desert_water.dmi'
 	icon_state = "shore_caves"
 	var/toxic = 0
@@ -323,7 +323,7 @@
 
 //Desert River Toxic
 /turf/open/gm/river/desert
-	name = "water"
+	name = "水"
 	icon = 'icons/turf/floors/desert_water.dmi'
 	icon_state = "shallow"
 	icon_overlay = "_shallow"
@@ -371,7 +371,7 @@
 	icon = 'icons/turf/floors/desert_water_toxic.dmi'
 
 /turf/open/gm/river/desert/shallow/pool
-	name = "pool"
+	name = "水池"
 
 //shallow water transition to deep
 /turf/open/gm/river/desert/shallow_edge

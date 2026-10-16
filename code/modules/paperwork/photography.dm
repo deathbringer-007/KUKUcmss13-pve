@@ -10,9 +10,9 @@
 * film *
 *******/
 /obj/item/device/camera_film
-	name = "film cartridge"
+	name = "胶卷盒"
 	icon = 'icons/obj/items/items.dmi'
-	desc = "A camera film cartridge. Insert it into a camera to reload it."
+	desc = "相机胶卷盒，装入相机即可补充胶卷。"
 	icon_state = "film"
 	item_state = "electropack"
 	w_class = SIZE_TINY
@@ -26,7 +26,7 @@
 * photo *
 ********/
 /obj/item/photo
-	name = "photo"
+	name = "照片"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "photo"
 	item_state = "paper"
@@ -42,7 +42,7 @@
 
 /obj/item/photo/attackby(obj/item/P as obj, mob/user as mob)
 	if(HAS_TRAIT(P, TRAIT_TOOL_PEN) || istype(P, /obj/item/toy/crayon))
-		var/txt = strip_html(input(user, "What would you like to write on the back?", "Photo Writing", null)  as text)
+		var/txt = strip_html(input(user, "你想在背面写什么？", "照片题字", null)  as text)
 		txt = copytext(txt, 1, 128)
 		if(loc == user && user.stat == 0)
 			scribble = txt
@@ -54,7 +54,7 @@
 		show(user)
 		return list(desc)
 	else
-		return  list(SPAN_NOTICE("It is too far away."))
+		return  list(SPAN_NOTICE("太远了。"))
 
 /obj/item/photo/proc/show(mob/living/user)
 	if(!isicon(img)) return // this should stop a runtime error
@@ -62,21 +62,21 @@
 	var/dat = "<html>" \
 		+ "<body style='overflow:hidden;margin:0;text-align:center' class='paper'>" \
 		+ "<img src='tmp_photo.png' width='[64*photo_size]' style='-ms-interpolation-mode:nearest-neighbor;image-rendering:pixelated' />" \
-		+ "[scribble ? "<br>Written on the back:<br><i>[scribble]</i>" : ""]"\
+		+ "[scribble ? "<br>背面写着：<br><i>[scribble]</i>" : ""]"\
 		+ "</body></html>"
 	show_browser(user, dat, name, name, width = 80 * photo_size, height = (scribble ? 100 : 82) *photo_size)
 	onclose(user, name)
 	return
 
 /obj/item/photo/verb/rename()
-	set name = "Rename photo"
+	set name = "重命名照片"
 	set category = "Object"
 	set src in usr
 
-	var/n_name = strip_html(input(usr, "What would you like to label the photo?", "Photo Labelling", null)  as text)
+	var/n_name = strip_html(input(usr, "你想给照片起什么名字？", "照片命名", null)  as text)
 	//loc.loc check is for making possible renaming photos in clipboards
 	if(( (loc == usr || (loc.loc && loc.loc == usr)) && usr.stat == 0))
-		name = "[(n_name ? text("[n_name]") : "photo")]"
+		name = "[(n_name ? text("[n_name]") : "照片")]"
 	add_fingerprint(usr)
 	return
 
@@ -85,7 +85,7 @@
 * photo album *
 **************/
 /obj/item/storage/photo_album
-	name = "Photo album"
+	name = "相册"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "album"
 	item_state = "briefcase"
@@ -120,9 +120,9 @@
 * camera *
 *********/
 /obj/item/device/camera
-	name = "camera"
+	name = "相机"
 	icon = 'icons/obj/items/items.dmi'
-	desc = "A polaroid camera."
+	desc = "拍立得相机。"
 	icon_state = "camera"
 	item_state = "camera"
 	item_icons = list(
@@ -141,7 +141,7 @@
 
 /obj/item/device/camera/get_examine_text(mob/user)
 	. = ..()
-	. += "It has [pictures_left] photos left."
+	. += "还可拍摄[pictures_left]张照片。"
 
 /obj/item/device/camera/attack_self(mob/user) //wielding capabilities
 	. = ..()
@@ -155,13 +155,13 @@
 	unwield(user)
 
 /obj/item/device/camera/verb/change_size()
-	set name = "Set Photo Focus"
+	set name = "设置拍摄范围"
 	set src in usr
 	set category = "Object"
-	var/nsize = tgui_input_list(usr, "Photo Size","Pick a size of resulting photo.", list(1,3,5,7))
+	var/nsize = tgui_input_list(usr, "照片尺寸","选择拍摄照片的尺寸。", list(1,3,5,7))
 	if(nsize)
 		size = nsize
-		to_chat(usr, SPAN_NOTICE("Camera will now take [size]x[size] photos."))
+		to_chat(usr, SPAN_NOTICE("相机现在将拍摄[size]x[size]的照片。"))
 
 /obj/item/device/camera/attack(mob/living/carbon/human/M, mob/user)
 	return
@@ -169,9 +169,9 @@
 /obj/item/device/camera/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/device/camera_film))
 		if(pictures_left > (pictures_max - 10))
-			to_chat(user, SPAN_NOTICE("[src] cannot fit more film in it!"))
+			to_chat(user, SPAN_NOTICE("[src]装不下更多胶卷了！"))
 			return
-		to_chat(user, SPAN_NOTICE("You insert [I] into [src]."))
+		to_chat(user, SPAN_NOTICE("你将[I]装入了[src]。"))
 		if(user.temp_drop_inv_item(I))
 			qdel(I)
 			pictures_left += 10
@@ -260,35 +260,35 @@
 		var/holding = null
 		if(cur_carbon.l_hand || cur_carbon.r_hand)
 			if(cur_carbon.l_hand)
-				holding = "They are holding \a [cur_carbon.l_hand]"
+				holding = "手中拿着[cur_carbon.l_hand]"
 			if(cur_carbon.r_hand)
 				if(holding)
-					holding += " and \a [cur_carbon.r_hand]"
+					holding += "和[cur_carbon.r_hand]"
 				else
-					holding = "They are holding \a [cur_carbon.r_hand]"
+					holding = "手中拿着[cur_carbon.r_hand]"
 
 		var/hurt = ""
 		if(cur_carbon.health < 75)
-			hurt = prob(25) ? " - they look hurt" : " - [cur_carbon] looks hurt"
+			hurt = prob(25) ? "——看起来受了伤" : "——[cur_carbon]看起来受了伤"
 
 		if(!mob_detail)
-			mob_detail = "You can see [cur_carbon] in the photo[hurt].[holding ? " [holding]" : "."]."
+			mob_detail = "照片中能看到[cur_carbon][hurt][holding ? "，[holding]" : ""]。"
 		else
-			mob_detail += " You [prob(50) ? "can" : "also"] see [cur_carbon] in the photo[hurt].[holding ? " [holding]" : "."]."
+			mob_detail += " 照片中[prob(50) ? "还能" : "也能"]看到[cur_carbon][hurt][holding ? "，[holding]" : ""]。"
 	return mob_detail
 
 /obj/item/device/camera/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
 	if(pictures_left <= 0)
-		to_chat(user, SPAN_WARNING("There isn't enough film in the [src] to take a photo."))
+		to_chat(user, SPAN_WARNING("[src]中的胶卷不足，无法拍照。"))
 		return
 	if(ismob(target.loc) || isstorage(target.loc) || user.contains(target) || istype(target, /atom/movable/screen))
 		return
 	if(!(flags_item & WIELDED))
-		to_chat(user, SPAN_WARNING("You need to wield the [src] with both hands to take a photo!"))
+		to_chat(user, SPAN_WARNING("你需要双手握持[src]才能拍照！"))
 		return
 	playsound(loc, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 15, 1)
 	pictures_left--
-	to_chat(user, SPAN_NOTICE("[pictures_left] photos left."))
+	to_chat(user, SPAN_NOTICE("还可拍摄[pictures_left]张照片。"))
 
 	addtimer(CALLBACK(src, PROC_REF(captureimage), target, user, flag), 1 SECONDS)
 
@@ -309,7 +309,7 @@
 	var/icon/photoimage = get_icon(turfs, target)
 
 	if(!description)
-		description = "A very scenic photo"
+		description = "一张风景优美的照片"
 
 	var/icon/small_img = icon(photoimage)
 	var/icon/tiny_img = icon(photoimage)
@@ -343,14 +343,14 @@
 
 
 /obj/item/device/camera/oldcamera
-	name = "Old Camera"
-	desc = "An old, slightly beat-up digital camera, with a cheap photo printer taped on. It's a nice shade of blue."
+	name = "旧相机"
+	desc = "一台老旧且略显破损的数码相机，上面用胶带粘着廉价照片打印机。蓝色外壳还挺好看。"
 	icon_state = "oldcamera"
 	pictures_left = 30
 
 /obj/item/device/camera/broadcasting
-	name = "Broadcasting Camera"
-	desc = "Actively document everything you see, from the mundanity of shipside to the brutal battlefields below. Has a built-in printer for action shots."
+	name = "直播摄像机"
+	desc = "实时记录你眼前的一切，从舰上平淡的日常到下方残酷的战场。内置打印机，可打印现场照片。"
 	icon_state = "broadcastingcamera"
 	item_state = "broadcastingcamera"
 	unacidable = TRUE
@@ -382,7 +382,7 @@
 		linked_cam.status = TRUE
 		linked_cam.forceMove(loc)
 	SEND_SIGNAL(src, COMSIG_BROADCAST_GO_LIVE)
-	to_chat(user, SPAN_NOTICE("[src] begins to buzz softly as you go live."))
+	to_chat(user, SPAN_NOTICE("你开始直播，[src]发出轻微的嗡鸣。"))
 
 /obj/item/device/camera/broadcasting/unwield(mob/user)
 	. = ..()

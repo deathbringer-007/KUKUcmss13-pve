@@ -43,7 +43,7 @@
 	if(mind)
 		mind.transfer_to(O)
 
-	to_chat(O, "<B>You are now [O]. </B>")
+	to_chat(O, "<B>你现在是[O]。</B>")
 
 	qdel(src)
 	qdel(animation)
@@ -109,7 +109,7 @@
 	new_xeno.key = key
 	if(new_xeno.client) new_xeno.client.change_view(GLOB.world_view_size)
 
-	to_chat(new_xeno, "<B>You are now an alien.</B>")
+	to_chat(new_xeno, "<B>你现在是异形了。</B>")
 	qdel(src)
 	return
 
@@ -143,7 +143,7 @@
 	new_mob.a_intent = INTENT_HARM
 
 
-	to_chat(new_mob, "You suddenly feel more... animalistic.")
+	to_chat(new_mob, "你突然觉得自己更……像野兽了。")
 	QDEL_IN(src, 1)
 	return
 
@@ -161,7 +161,7 @@
 	new_mob.key = key
 	if(new_mob.client) new_mob.client.change_view(GLOB.world_view_size)
 	new_mob.a_intent = INTENT_HARM
-	to_chat(new_mob, "You feel more... animalistic")
+	to_chat(new_mob, "你觉得自己更……像野兽了。")
 
 	qdel(src)
 

@@ -118,15 +118,15 @@
 			new O.type (src)
 			S.use(1)
 			user.visible_message( \
-				SPAN_NOTICE("[user]向\the [src]中加入了一份[O]。"), \
-				SPAN_NOTICE("你向\the [src]中加入了一份[O]。"))
+				SPAN_NOTICE("[user]向[src]中加入了一份[O]。"), \
+				SPAN_NOTICE("你向[src]中加入了一份[O]。"))
 		else
 		// user.before_take_item(O) //This just causes problems so far as I can tell. -Pete
 			if(user.drop_held_item())
 				O.forceMove(src)
 				user.visible_message( \
-					SPAN_NOTICE("[user]向\the [src]中加入了\the [O]。"), \
-					SPAN_NOTICE("你向\the [src]中加入了\the [O]。"))
+					SPAN_NOTICE("[user]向[src]中加入了[O]。"), \
+					SPAN_NOTICE("你向[src]中加入了[O]。"))
 	else if(istype(O,/obj/item/reagent_container/glass) || istype(O,/obj/item/reagent_container/food/drinks) || istype(O,/obj/item/reagent_container/food/condiment)) // TODO: typecache this
 		if (!O.reagents)
 			return 1

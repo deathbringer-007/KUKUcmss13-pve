@@ -5,8 +5,8 @@
 
 /datum/character_trait/language/New()
 	..()
-	trait_name = "Speaks [language_name]"
-	trait_desc = "Can speak the language [language_name]."
+	trait_name = "会说[preference_label(language_name)]"
+	trait_desc = "能够使用[preference_label(language_name)]交流。"
 
 /datum/character_trait/language/apply_trait(mob/living/carbon/human/target)
 	..()
@@ -18,7 +18,7 @@
 
 
 /datum/character_trait_group/language
-	trait_group_name = "Languages"
+	trait_group_name = "语言"
 
 /datum/character_trait/language/russian
 	language_name = LANGUAGE_RUSSIAN
@@ -82,7 +82,7 @@
 
 /datum/character_trait/language/english/New()
 	..()
-	trait_desc = "Can speak the language [language_name]. Not at all useful if you're in the Marine Corps."
+	trait_desc = "能够使用[preference_label(language_name)]交流。如果你在陆战队服役，这项特质毫无用处。"
 
 /datum/character_trait/language/primitive
 	language_name = LANGUAGE_MONKEY

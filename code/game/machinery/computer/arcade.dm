@@ -1,14 +1,14 @@
 /obj/structure/machinery/computer/arcade
-	name = "Black Donnovan II: Double Revenge"
-	desc = "Two years after the average high school teenager Josh transformed into the powerful ninja 'Black Donnovan' and defeated the evil forces of Colonel Ranchenko and his UPP experiments to save his captured ninja girlfriend Reino, chaos is unleashed again on the world. Josh's Canadian cousin, transforming into the powerful ninja 'Fury Fuhrer', has created a world in Florida no longer exists. Josh once again transforms into 'Black Donnovan' to fight against Fury Fuhrer's legions of goons and restore the hellscape world to its former glory."
+	name = "黑影多诺万Ⅱ：双重复仇"
+	desc = "普通高中生乔希化身强大忍者“黑影多诺万”，击败兰琴科上校及其进步人民联盟实验军团，救出被俘的忍者女友蕾诺，两年后世界再次陷入混乱。乔希的加拿大表亲化身“狂怒元首”，创造了一个佛罗里达不复存在的世界。乔希再次化身黑影多诺万，迎战狂怒元首的爪牙大军，让这个地狱般的世界重现昔日荣光。"
 	icon = 'icons/obj/structures/machinery/computer.dmi'
 	icon_state = "arcade"
 	circuit = /obj/item/circuitboard/computer/arcade
 	unacidable = FALSE
 	density = TRUE
 	black_market_value = 35 //mendoza likes games
-	var/enemy_name = "Fury Fuhrer"
-	var/temp = "Sponsored by Weyland-Yutani and the United States Colonial Marines" //Temporary message, for attack messages, etc
+	var/enemy_name = "狂怒元首"
+	var/temp = "由维兰德-汤谷与美国殖民地海军陆战队赞助" //Temporary message, for attack messages, etc
 	var/player_hp = 30 //Player health/attack points
 	var/player_mp = 10
 	var/enemy_hp = 50 //Enemy health/attack points
@@ -37,18 +37,18 @@
 	if(..())
 		return
 	user.set_interaction(src)
-	var/dat = "<a href='byond://?src=\ref[src];close=1'>Close</a>"
+	var/dat = "<a href='byond://?src=\ref[src];close=1'>关闭</a>"
 	dat += "<center><h4>[src.enemy_name]</h4></center>"
 
 	dat += "<br><center><h3>[src.temp]</h3></center>"
-	dat += "<br><center>Health: [src.player_hp]|Magic: [src.player_mp]|Enemy Health: [src.enemy_hp]</center>"
+	dat += "<br><center>生命：[src.player_hp]|魔力：[src.player_mp]|敌方生命：[src.enemy_hp]</center>"
 
 	if (src.gameover)
-		dat += "<center><b><a href='byond://?src=\ref[src];newgame=1'>New Game</a>"
+		dat += "<center><b><a href='byond://?src=\ref[src];newgame=1'>新游戏</a>"
 	else
-		dat += "<center><b><a href='byond://?src=\ref[src];attack=1'>Attack</a>|"
-		dat += "<a href='byond://?src=\ref[src];heal=1'>Heal</a>|"
-		dat += "<a href='byond://?src=\ref[src];charge=1'>Recharge Power</a>"
+		dat += "<center><b><a href='byond://?src=\ref[src];attack=1'>攻击</a>|"
+		dat += "<a href='byond://?src=\ref[src];heal=1'>治疗</a>|"
+		dat += "<a href='byond://?src=\ref[src];charge=1'>恢复魔力</a>"
 
 	dat += "</b></center>"
 
@@ -63,7 +63,7 @@
 		if (href_list["attack"])
 			src.blocked = 1
 			var/attackamt = rand(2,6)
-			src.temp = "Your sword strikes for [attackamt] damage!"
+			src.temp = "你的剑造成了[attackamt]点伤害！"
 			src.updateUsrDialog()
 			if(turtle > 0)
 				turtle--
@@ -76,7 +76,7 @@
 			src.blocked = 1
 			var/pointamt = rand(1,3)
 			var/healamt = rand(6,8)
-			src.temp = "You use [pointamt] magic to heal for [healamt] damage!"
+			src.temp = "你消耗[pointamt]点魔力，恢复了[healamt]点生命！"
 			src.updateUsrDialog()
 			turtle++
 
@@ -90,7 +90,7 @@
 		else if (href_list["charge"])
 			src.blocked = 1
 			var/chargeamt = rand(4,7)
-			src.temp = "You regain [chargeamt] points"
+			src.temp = "你恢复了[chargeamt]点魔力。"
 			src.player_mp += chargeamt
 			if(turtle > 0)
 				turtle--
@@ -104,7 +104,7 @@
 		close_browser(usr, "arcade")
 
 	else if (href_list["newgame"]) //Reset everything
-		temp = "New Round"
+		temp = "新的一局"
 		player_hp = 30
 		player_mp = 10
 		enemy_hp = 45
@@ -120,7 +120,7 @@
 	if ((src.enemy_mp <= 0) || (src.enemy_hp <= 0))
 		if(!gameover)
 			src.gameover = 1
-			src.temp = "[src.enemy_name] has fallen! Rejoice!"
+			src.temp = "[src.enemy_name]倒下了！欢呼吧！"
 
 			if(!length(contents))
 				var/prizeselect = pick_weight(prizes)
@@ -138,28 +138,28 @@
 
 	else if ((src.enemy_mp <= 5) && (prob(70)))
 		var/stealamt = rand(2,3)
-		src.temp = "[src.enemy_name] steals [stealamt] of your power!"
+		src.temp = "[src.enemy_name]偷走了你的[stealamt]点魔力！"
 		src.player_mp -= stealamt
 		src.updateUsrDialog()
 
 		if (src.player_mp <= 0)
 			src.gameover = 1
 			sleep(10)
-			src.temp = "You have been drained! GAME OVER"
+			src.temp = "你的魔力被吸干了！游戏结束。"
 
 	else if ((src.enemy_hp <= 10) && (src.enemy_mp > 4))
-		src.temp = "[src.enemy_name] heals for 4 health!"
+		src.temp = "[src.enemy_name]恢复了4点生命！"
 		src.enemy_hp += 4
 		src.enemy_mp -= 4
 
 	else
 		var/attackamt = rand(3,6)
-		src.temp = "[src.enemy_name] attacks for [attackamt] damage!"
+		src.temp = "[src.enemy_name]的攻击造成[attackamt]点伤害！"
 		src.player_hp -= attackamt
 
 	if ((src.player_mp <= 0) || (src.player_hp <= 0))
 		src.gameover = 1
-		src.temp = "GAME OVER"
+		src.temp = "游戏结束"
 
 	src.blocked = 0
 	return

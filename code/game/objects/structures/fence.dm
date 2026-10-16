@@ -138,17 +138,17 @@
 			user.drop_held_item()
 			switch(state)
 				if(GRAB_PASSIVE)
-					M.visible_message(SPAN_WARNING("[user]将[M]猛推向\the [src]！"))
+					M.visible_message(SPAN_WARNING("[user]将[M]猛推向[src]！"))
 					M.apply_damage(7)
 					health -= 10
 				if(GRAB_AGGRESSIVE)
-					M.visible_message(SPAN_DANGER("[user]将[M]砸向\the [src]！"))
+					M.visible_message(SPAN_DANGER("[user]将[M]砸向[src]！"))
 					if(prob(50))
 						M.apply_effect(1, WEAKEN)
 					M.apply_damage(10)
 					health -= 25
 				if(GRAB_CHOKE)
-					M.visible_message(SPAN_DANGER("[user]将[M]狠狠压向\the [src]！"))
+					M.visible_message(SPAN_DANGER("[user]将[M]狠狠压向[src]！"))
 					M.apply_effect(5, WEAKEN)
 					M.apply_damage(20)
 					health -= 50

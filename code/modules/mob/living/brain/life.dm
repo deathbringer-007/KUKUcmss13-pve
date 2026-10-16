@@ -93,7 +93,7 @@
 					silent = 1
 					if(!alert)//Sounds an alarm, but only once per 'level'
 						INVOKE_ASYNC(src, PROC_REF(emote), "alarm")
-						to_chat(src, SPAN_DANGER("Major electrical distruption detected: System rebooting."))
+						to_chat(src, SPAN_DANGER("检测到严重电气干扰：系统正在重启。"))
 						alert = 1
 					if(prob(75))
 						emp_damage--
@@ -109,7 +109,7 @@
 					ear_damage = 1
 					if(!alert)
 						INVOKE_ASYNC(src, PROC_REF(emote), "alert")
-						to_chat(src, SPAN_DANGER("Primary systems are now online."))
+						to_chat(src, SPAN_DANGER("主系统现已上线。"))
 						alert = 1
 					if(prob(50))
 						emp_damage--
@@ -121,13 +121,13 @@
 				if(2 to 9)//Low level of EMP damage, has few effects(handled elsewhere)
 					if(!alert)
 						INVOKE_ASYNC(src, PROC_REF(emote), "notice")
-						to_chat(src, SPAN_DANGER("System reboot nearly complete."))
+						to_chat(src, SPAN_DANGER("系统重启即将完成。"))
 						alert = 1
 					if(prob(25))
 						emp_damage--
 				if(1)
 					alert = 0
-					to_chat(src, SPAN_DANGER("All systems restored."))
+					to_chat(src, SPAN_DANGER("所有系统已恢复。"))
 					emp_damage--
 
 		//Other

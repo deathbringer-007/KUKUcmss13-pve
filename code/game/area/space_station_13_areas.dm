@@ -15,7 +15,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /*-----------------------------------------------------------------------------*/
 /area/space
-	name = "\improper Space"
+	name = "\improper 太空"
 	requires_power = 1
 	always_unpowered = 1
 	base_lighting_alpha = 255
@@ -49,11 +49,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 //Defined for fulton recovery storage
 /area/space/highalt
-	name = "High Altitude"
+	name = "高空"
 	icon_state = "blue"
 
 /area/start // will be unused once kurper gets his login interface patch done
-	name = "start area"
+	name = "起始区域"
 	icon_state = "start"
 	ceiling = CEILING_MAX
 	requires_power = FALSE
@@ -65,7 +65,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 // CENTCOM
 
 /area/centcom
-	name = "\improper abandoned  Centcom"
+	name = "\improper 废弃中央指挥部"
 	icon_state = "centcom"
 	requires_power = 0
 	statistic_exempt = TRUE
@@ -74,13 +74,13 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	base_lighting_alpha = 255
 
 /area/centcom/control
-	name = "\improper abandoned  Centcom Control"
+	name = "\improper 废弃中央指挥部控制室"
 
 /area/centcom/living
-	name = "\improper abandoned  Centcom Living Quarters"
+	name = "\improper 废弃中央指挥部生活区"
 
 /area/tdome
-	name = "\improper abandoned  Thunderdome"
+	name = "\improper 废弃雷霆竞技场"
 	icon_state = "thunder"
 	requires_power = 0
 	flags_area = AREA_NOTUNNEL
@@ -90,11 +90,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	base_lighting_alpha = 255
 
 /area/tdome/tdome1
-	name = "\improper abandoned  Thunderdome (Team 1)"
+	name = "\improper 废弃雷霆竞技场（一队）"
 	icon_state = "green"
 
 /area/tdome/tdome2
-	name = "\improper abandoned  Thunderdome (Team 2)"
+	name = "\improper 废弃雷霆竞技场（二队）"
 	icon_state = "yellow"
 
 /area/tdome/tdomeadmin
@@ -102,5 +102,5 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "purple"
 
 /area/tdome/tdomeobserve
-	name = "\improper abandoned  Thunderdome (Observer.)"
+	name = "\improper 废弃雷霆竞技场（观察者）"
 	icon_state = "purple"

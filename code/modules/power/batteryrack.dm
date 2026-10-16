@@ -3,8 +3,8 @@
 //Machines
 //The one that works safely.
 /obj/structure/machinery/power/smes/batteryrack
-	name = "Substation PSU"//"power cell rack PSU"
-	desc = "A rack of power cells working as a PSU."
+	name = "变电站电源组"//"power cell rack PSU"
+	desc = "由多块电池组成的供电架。"
 	charge = 0 //you dont really want to make a potato PSU which already is overloaded
 	outputting = 0
 	input_level = 0
@@ -27,8 +27,8 @@
 	// Smaller capacity, but higher I/O
 	// Starts fully charged, as it's used in substations. This replaces Engineering SMESs round start charge.
 /obj/structure/machinery/power/smes/batteryrack/substation
-	name = "Substation PSU"
-	desc = "A rack of power cells working as a PSU. This one seems to be equipped for higher power loads."
+	name = "变电站电源组"
+	desc = "由多块电池组成的供电架，看起来能够承受更高的电力负载。"
 	output_level = 150000
 	input_level = 150000
 	outputting = 1
@@ -114,20 +114,20 @@
 					qdel(src)
 					return 1
 				else
-					to_chat(user, SPAN_WARNING("Turn off the [src] before dismantling it."))
+					to_chat(user, SPAN_WARNING("拆卸[src]前，请先关闭电源。"))
 			else
-				to_chat(user, SPAN_WARNING("Better let [src] discharge before dismantling it."))
+				to_chat(user, SPAN_WARNING("最好等[src]放完电后再拆卸。"))
 		else if ((istype(W, /obj/item/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/cell) && (cells_amount < 5)))
 			if (charge < (capacity / 100))
 				if (!outputting && !input_attempt)
 					if(user.drop_inv_item_to_loc(W, src))
 						LAZYADD(component_parts, W)
 						RefreshParts()
-						to_chat(user, SPAN_NOTICE("You upgrade the [src] with [W.name]."))
+						to_chat(user, SPAN_NOTICE("你用[W.name]升级了[src]。"))
 				else
-					to_chat(user, SPAN_WARNING("Turn off the [src] before dismantling it."))
+					to_chat(user, SPAN_WARNING("拆卸[src]前，请先关闭电源。"))
 			else
-				to_chat(user, SPAN_WARNING("Better let [src] discharge before putting your hand inside it."))
+				to_chat(user, SPAN_WARNING("最好等[src]放完电后再把手伸进去。"))
 		else
 			user.set_interaction(src)
 			interact(user)
@@ -137,8 +137,8 @@
 
 //The shitty one that will blow up.
 /obj/structure/machinery/power/smes/batteryrack/makeshift
-	name = "makeshift PSU"
-	desc = "A rack of batteries connected by a mess of wires posing as a PSU."
+	name = "简易电源组"
+	desc = "一架用凌乱电线连接的电池，勉强充当电源组。"
 	var/overcharge_percent = 0
 	parts_to_add = list(
 		/obj/item/circuitboard/machine/ghettosmes,

@@ -6,7 +6,7 @@
 #define STATE_LAUNCHED 9 //Pod has successfully launched.
 
 /obj/structure/machinery/computer/shuttle/escape_pod_panel
-	name = "escape pod controller"
+	name = "逃生舱控制器"
 	icon = 'icons/obj/structures/machinery/airlock_machines.dmi'
 	icon_state = "airlock_control_standby"
 	unslashable = TRUE
@@ -23,7 +23,7 @@
 	if(..())
 		return
 	if(!allowed(user))
-		to_chat(user, SPAN_WARNING("Access denied!"))
+		to_chat(user, SPAN_WARNING("拒绝访问！"))
 		return
 	tgui_interact(user)
 
@@ -115,25 +115,25 @@
 			return FALSE
 
 		if(being_forced)
-			to_chat(user, SPAN_WARNING("There's something forcing it open!"))
+			to_chat(user, SPAN_WARNING("有东西正强行打开它！"))
 			return FALSE
 
 		if(occupant)
-			to_chat(user, SPAN_WARNING("There is someone in there already!"))
+			to_chat(user, SPAN_WARNING("里面已经有人了！"))
 			return FALSE
 
 		if(dock_state < STATE_READY)
-			to_chat(user, SPAN_WARNING("The cryo pod is not responding to commands!"))
+			to_chat(user, SPAN_WARNING("低温舱对指令没有反应！"))
 			return FALSE
 
 		var/mob/living/carbon/human/grabbed_mob = the_grab.grabbed_thing
 		if(!istype(grabbed_mob))
 			return FALSE
 		if(grabbed_mob.stat == DEAD) //This mob is dead
-			to_chat(user, SPAN_WARNING("[src] immediately rejects [grabbed_mob]. \He passed away!"))
+			to_chat(user, SPAN_WARNING("[src]立即拒绝接收[grabbed_mob]，该人员已经死亡！"))
 			return FALSE
 
-		visible_message(SPAN_WARNING("[user] starts putting [grabbed_mob.name] into the cryo pod."), null, null, 3)
+		visible_message(SPAN_WARNING("[user]开始将[grabbed_mob.name]放入低温舱。"), null, null, 3)
 
 		if(do_after(user, 20, INTERRUPT_ALL, BUSY_ICON_GENERIC))
 			if(!grabbed_mob || !the_grab || !the_grab.grabbed_thing || !the_grab.grabbed_thing.loc || the_grab.grabbed_thing != grabbed_mob)
@@ -142,7 +142,7 @@
 			injector_name = user.real_name
 
 /obj/structure/machinery/cryopod/evacuation/eject()
-	set name = "Eject Pod"
+	set name = "弹出舱内人员"
 	set category = "Object"
 	set src in oview(1)
 
@@ -153,12 +153,12 @@
 	//Once you're in, you cannot exit, and outside forces cannot eject you.
 	//The occupant is actually automatically ejected once the evac is canceled.
 	if(occupant != usr)
-		to_chat(usr, SPAN_WARNING("You are unable to eject the occupant unless the evacuation is canceled."))
+		to_chat(usr, SPAN_WARNING("除非疏散取消，否则你无法弹出舱内人员。"))
 		return FALSE
 	if(occupant.real_name != injector_name)
 		go_out()
 	else
-		to_chat(usr, SPAN_WARNING("You are unable to leave the [src] until evacuation completes, or is cancelled!."))
+		to_chat(usr, SPAN_WARNING("疏散完成或取消前，你无法离开[src]！"))
 		return FALSE
 
 /obj/structure/machinery/cryopod/evacuation/go_out() //When the system ejects the occupant.
@@ -170,7 +170,7 @@
 		icon_state = orient_right ? "body_scanner_open-r" : "body_scanner_open"
 
 /obj/structure/machinery/cryopod/evacuation/move_inside()
-	set name = "Enter Pod"
+	set name = "进入休眠舱"
 	set category = "Object"
 	set src in oview(1)
 
@@ -180,18 +180,18 @@
 		return FALSE
 
 	if(being_forced)
-		to_chat(user, SPAN_WARNING("You can't enter when it's being forced open!"))
+		to_chat(user, SPAN_WARNING("它正被强行打开，无法进入！"))
 		return FALSE
 
 	if(occupant)
-		to_chat(user, SPAN_WARNING("The cryogenic pod is already in use! You will need to find another."))
+		to_chat(user, SPAN_WARNING("低温舱已经有人在用了！你需要另找一个。"))
 		return FALSE
 
 	if(dock_state < STATE_READY)
-		to_chat(user, SPAN_WARNING("The cryo pod is not responding to commands!"))
+		to_chat(user, SPAN_WARNING("低温舱对指令没有反应！"))
 		return FALSE
 
-	visible_message(SPAN_WARNING("[user] starts climbing into the cryo pod."), null, null, 3)
+	visible_message(SPAN_WARNING("[user]开始爬入低温舱。"), null, null, 3)
 
 	if(do_after(user, 20, INTERRUPT_NO_NEEDHAND, BUSY_ICON_GENERIC))
 		user.stop_pulling()
@@ -200,16 +200,16 @@
 
 /obj/structure/machinery/cryopod/evacuation/attack_alien(mob/living/carbon/xenomorph/user)
 	if(being_forced)
-		to_chat(user, SPAN_XENOWARNING("It's being forced open already!"))
+		to_chat(user, SPAN_XENOWARNING("它已经在被强行打开了！"))
 		return XENO_NO_DELAY_ACTION
 
 	if(!occupant)
-		to_chat(user, SPAN_XENOWARNING("There is nothing of interest in there."))
+		to_chat(user, SPAN_XENOWARNING("里面没有值得关注的东西。"))
 		return XENO_NO_DELAY_ACTION
 
 	being_forced = !being_forced
 	xeno_attack_delay(user)
-	visible_message(SPAN_WARNING("[user] begins to pry \the [src]'s cover!"), null, null, 3)
+	visible_message(SPAN_WARNING("[user]开始撬开[src]的舱盖！"), null, null, 3)
 	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
 	if(do_after(user, 20, INTERRUPT_ALL, BUSY_ICON_HOSTILE)) go_out() //Force the occupant out.
 	being_forced = !being_forced
@@ -217,10 +217,10 @@
 
 /obj/structure/machinery/cryopod/evacuation/proc/move_mob_inside(mob/M)
 	if(occupant)
-		to_chat(M, SPAN_WARNING("The cryogenic pod is already in use. You will need to find another."))
+		to_chat(M, SPAN_WARNING("低温舱已经有人在用了，你需要另找一个。"))
 		return FALSE
 	M.forceMove(src)
-	to_chat(M, SPAN_NOTICE("You feel cool air surround you as your mind goes blank and the pod locks."))
+	to_chat(M, SPAN_NOTICE("凉气包围了你，舱门锁定，意识逐渐空白。"))
 	occupant = M
 	occupant.in_stasis = STASIS_IN_CRYO_CELL
 	add_fingerprint(M)
@@ -228,7 +228,7 @@
 
 
 /obj/structure/machinery/door/airlock/evacuation
-	name = "\improper Evacuation Airlock"
+	name = "\improper 疏散气闸"
 	icon = 'icons/obj/structures/doors/pod_doors.dmi'
 	unslashable = TRUE
 	unacidable = TRUE
@@ -261,7 +261,7 @@
 		return FALSE
 
 	if(xeno.claw_type < CLAW_TYPE_SHARP)
-		to_chat(xeno, SPAN_WARNING("[src] is bolted down tight."))
+		to_chat(xeno, SPAN_WARNING("[src]已被门栓牢牢锁住。"))
 		return XENO_NO_DELAY_ACTION
 
 	xeno.animation_attack_on(src)

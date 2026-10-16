@@ -193,7 +193,7 @@
 		for(var/type in forbidden_atoms)
 			if(istype(A, type))
 				if(A.pulledby)
-					to_chat(A.pulledby, SPAN_WARNING("\The [A] won't fit inside!"))
+					to_chat(A.pulledby, SPAN_WARNING("[A]进不去！"))
 				return FALSE
 
 	// Ensure we have an accurate count before trying to enter
@@ -209,7 +209,7 @@
 			//it's much easier to deny entering with many mobs rather than to juggle them around
 			M = A
 			if(mobs_amount > 1)
-				exterior.visible_message(SPAN_WARNING("\The [A] is too bulky to fit with so many creatures inside."))
+				exterior.visible_message(SPAN_WARNING("里面生物太多，[A]体积太大，放不下了。"))
 				return FALSE
 
 	if(ishuman(M))
@@ -241,7 +241,7 @@
 				passengers_taken_slots++
 			else
 				if(M.stat == CONSCIOUS)
-					to_chat(M, SPAN_WARNING("There's no more space inside!"))
+					to_chat(M, SPAN_WARNING("里面已经没有空间了！"))
 				return FALSE
 
 	else if(isxeno(M))
@@ -250,7 +250,7 @@
 				xenos_taken_slots++
 			else
 				if(M.stat == CONSCIOUS)
-					to_chat(M, SPAN_WARNING("There's no more space inside!"))
+					to_chat(M, SPAN_WARNING("里面已经没有空间了！"))
 				return FALSE
 
 	// If no entrance is specified drop them in the middle of the interior
@@ -295,7 +295,7 @@
 
 		if(O.BlockedPassDirs(A, exit_dir))
 			if(ismob(A))
-				to_chat(A, SPAN_WARNING("Something is blocking the exit!"))
+				to_chat(A, SPAN_WARNING("有东西挡住了出口！"))
 			return FALSE
 
 	A.forceMove(get_turf(exit_turf))

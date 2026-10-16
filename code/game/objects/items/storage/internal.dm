@@ -55,9 +55,9 @@
 			switch(over_object.name)
 				if("r_hand")
 					if(master_item.time_to_unequip)
-						user.visible_message(SPAN_NOTICE("[user] starts taking off \the [master_item]."))
+						user.visible_message(SPAN_NOTICE("[user]开始脱下[master_item]。"))
 						if(!do_after(user, master_item.time_to_unequip, INTERRUPT_ALL, BUSY_ICON_GENERIC))
-							to_chat(user, SPAN_WARNING("You stop taking off \the [master_item]!"))
+							to_chat(user, SPAN_WARNING("你停止脱下[master_item]！"))
 						else
 							user.drop_inv_item_on_ground(master_item)
 							user.put_in_r_hand(master_item)
@@ -70,9 +70,9 @@
 					return
 				if("l_hand")
 					if(master_item.time_to_unequip)
-						user.visible_message(SPAN_NOTICE("[user] starts taking off \the [master_item]."))
+						user.visible_message(SPAN_NOTICE("[user]开始脱下[master_item]。"))
 						if(!do_after(user, master_item.time_to_unequip, INTERRUPT_ALL, BUSY_ICON_GENERIC))
-							to_chat(user, SPAN_WARNING("You stop taking off \the [master_item]!"))
+							to_chat(user, SPAN_WARNING("你停止脱下[master_item]！"))
 						else
 							user.drop_inv_item_on_ground(master_item)
 							user.put_in_l_hand(master_item)
@@ -186,7 +186,7 @@
 
 	if(!HAS_FLAG(item.flags_obj, OBJ_IS_HELMET_GARB) && length(contents) - length(garb_items) >= storage_slots - slots_reserved_for_garb)
 		if(!stop_messages)
-			to_chat(usr, SPAN_WARNING("This slot is reserved for headgear accessories!"))
+			to_chat(usr, SPAN_WARNING("这个栏位只供头部配饰使用！"))
 		return FALSE
 
 /obj/item/storage/internal/headgear/_item_insertion(obj/item/item, prevent_warning = FALSE)

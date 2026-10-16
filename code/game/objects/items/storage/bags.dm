@@ -23,8 +23,8 @@
 //   Trash bag
 // -----------------------------
 /obj/item/storage/bag/trash
-	name = "trash bag"
-	desc = "It's the heavy-duty black polymer kind. Time to take out the trash!"
+	name = "垃圾袋"
+	desc = "结实耐用的黑色聚合物袋子。该倒垃圾了！"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "trashbag0"
 	item_state = "trashbag"
@@ -58,8 +58,8 @@
 // -----------------------------
 
 /obj/item/storage/bag/plasticbag
-	name = "plastic bag"
-	desc = "It's a very flimsy, very noisy alternative to a bag."
+	name = "塑料袋"
+	desc = "又薄又脆，响声还很大，勉强能当个袋子用。"
 	icon = 'icons/obj/items/trash.dmi'
 	icon_state = "plasticbag"
 	item_state = "plasticbag"
@@ -75,8 +75,8 @@
 // -----------------------------
 
 /obj/item/storage/bag/ore
-	name = "Mining Satchel"
-	desc = "This little bugger can be used to store and transport ores."
+	name = "矿石挎包"
+	desc = "这个小家伙能用来储存和运输矿石。"
 	icon = 'icons/obj/structures/props/mining.dmi'
 	icon_state = "satchel"
 	flags_equip_slot = SLOT_WAIST|SLOT_STORE
@@ -95,7 +95,7 @@
 /obj/item/storage/bag/plants
 	icon = 'icons/obj/items/storage/bags.dmi'
 	icon_state = "plantbag"
-	name = "Plant Bag"
+	name = "植物袋"
 	storage_slots = 50; //the number of plant pieces it can carry.
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * plants.w_class
 	max_w_class = SIZE_MEDIUM
@@ -117,8 +117,8 @@
 /obj/item/storage/bag/sheetsnatcher
 	icon = 'icons/obj/structures/props/mining.dmi'
 	icon_state = "sheetsnatcher"
-	name = "Sheet Snatcher"
-	desc = "A patented Yutani storage system designed for any kind of mineral sheet."
+	name = "板材收纳袋"
+	desc = "汤谷专利收纳系统，专为各种矿物板材设计。"
 
 	var/capacity = 300; //the number of sheets it can carry.
 	w_class = SIZE_MEDIUM
@@ -131,14 +131,14 @@
 /obj/item/storage/bag/sheetsnatcher/can_be_inserted(obj/item/W, mob/user, stop_messages = FALSE)
 	if(!istype(W,/obj/item/stack/sheet) || istype(W,/obj/item/stack/sheet/mineral/sandstone) || istype(W,/obj/item/stack/sheet/wood))
 		if(!stop_messages)
-			to_chat(usr, "The snatcher does not accept [W].")
+			to_chat(usr, "收纳袋装不下[W]。")
 		return 0 //I don't care, but the existing code rejects them for not being "sheets" *shrug* -Sayu
 	var/current = 0
 	for(var/obj/item/stack/sheet/S in contents)
 		current += S.amount
 	if(capacity == current)//If it's full, you're done
 		if(!stop_messages)
-			to_chat(usr, SPAN_DANGER("The snatcher is full."))
+			to_chat(usr, SPAN_DANGER("收纳袋已经满了。"))
 		return 0
 	return 1
 
@@ -244,7 +244,7 @@
 // -----------------------------
 
 /obj/item/storage/bag/sheetsnatcher/borg
-	name = "Sheet Snatcher 9000"
+	name = "板材收纳袋9000"
 	desc = ""
 	capacity = 500//Borgs get more because >specialization
 
@@ -255,8 +255,8 @@
 /obj/item/storage/bag/cash
 	icon = 'icons/obj/items/storage/bags.dmi'
 	icon_state = "cashbag"
-	name = "Cash bag"
-	desc = "A bag for carrying lots of cash. It's got a big dollar sign printed on the front."
+	name = "现金袋"
+	desc = "用来装大量现金的袋子，正面印着一个大大的美元符号。"
 	storage_slots = 50; //the number of cash pieces it can carry.
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * cash.w_class
 	max_w_class = SIZE_MEDIUM

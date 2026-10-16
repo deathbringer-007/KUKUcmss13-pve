@@ -5,8 +5,8 @@
 #define WIRE_RADIO_PULSE 16 //Allows Pulse(1) to send a radio message
 
 /obj/item/device/assembly
-	name = "assembly"
-	desc = "A small electronic device that should never exist."
+	name = "组件"
+	desc = "不应该存在的小型电子设备。"
 	icon = 'icons/obj/items/new_assemblies.dmi'
 	icon_state = ""
 	flags_atom = FPRINT|CONDUCT

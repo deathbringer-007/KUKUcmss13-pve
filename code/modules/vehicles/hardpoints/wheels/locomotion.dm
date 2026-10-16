@@ -1,6 +1,6 @@
 /obj/item/hardpoint/locomotion
-	name = "locomotive aid hardpoint"
-	desc = "i help the vehicle move :)"
+	name = "机动辅助挂载点"
+	desc = "我能帮助载具移动 :)"
 	gender = PLURAL // it's always wheels or treads
 
 	damage_multiplier = 0.15

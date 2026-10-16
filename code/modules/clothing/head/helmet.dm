@@ -1,7 +1,7 @@
 #define HELMET_GARB_RELAY_ICON_STATE "icon_state"
 /obj/item/clothing/head/helmet
-	name = "helmet"
-	desc = "Standard Security gear. Protects the head from impacts."
+	name = "头盔"
+	desc = "标准安保装备，可保护头部免受冲击。"
 	icon_state = "helmet"
 	item_state = "helmet"
 	armor_melee = CLOTHING_ARMOR_MEDIUM
@@ -126,8 +126,8 @@
 	flags_armor_protection = 0
 
 /obj/item/clothing/head/helmet/swat
-	name = "\improper SWAT helmet"
-	desc = "They're often used by highly trained Swat Members."
+	name = "SWAT 头盔"
+	desc = "常由训练有素的特警队员使用。"
 	icon_state = "swat"
 	item_state = "swat"
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
@@ -370,8 +370,8 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 ))
 
 /obj/item/clothing/head/helmet/marine
-	name = "\improper M10 pattern ballistic helmet"
-	desc = "Standard issue high molecular density polymer combat helmet. Resistant to glancing hits from small arms and shrapnel, incorporates tactical camera, IFF signal transponder, and heads up display eyepiece. Also features white/black hot IR viewing modes from the camera system."
+	name = "M10 式防弹头盔"
+	desc = "制式高分子密度聚合物战斗头盔，可抵御轻武器擦击和弹片。内置战术摄像机、敌我识别应答器与抬头显示目镜。摄像系统还具备白热／黑热红外观察模式。"
 	icon = 'icons/obj/items/clothing/cm_hats.dmi'
 	icon_state = "helmet"
 	item_state = "helmet"
@@ -429,7 +429,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 /obj/item/clothing/head/helmet/marine/Initialize(mapload, new_protection[] = list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROT))
 	. = ..()
 	if(!(flags_atom & NO_NAME_OVERRIDE))
-		name = "[specialty] helmet"
+		name = "[specialty]头盔"
 
 	if(!(flags_atom & NO_SNOW_TYPE))
 		select_gamemode_skin(type, null, new_protection)
@@ -771,14 +771,14 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	button.overlays += image('icons/obj/items/clothing/helmet_visors.dmi', button, action_icon_state)
 
 /obj/item/clothing/head/helmet/marine/tech
-	name = "\improper M10 technician helmet"
-	desc = "A modified M10 marine helmet for ComTechs. Features a toggleable welding screen for eye protection."
+	name = "M10 技术员头盔"
+	desc = "为战斗技术员改装的 M10 陆战队头盔，带有可翻下的焊接面罩以保护眼睛。"
 	icon_state = "tech_helmet"
 	specialty = "M10 technician"
 	built_in_visors = list(new /obj/item/device/helmet_visor, new /obj/item/device/helmet_visor/welding_visor)
 
 /obj/item/clothing/head/helmet/marine/grey
-	desc = "A standard M10 Pattern Helmet. This one has not had a camouflage pattern applied to it yet. There is a built-in camera on the right side."
+	desc = "一顶标准 M10 式头盔，尚未涂装迷彩。右侧内置摄像机。"
 	icon_state = "c_helmet"
 	item_state = "c_helmet"
 	flags_atom = NO_SNOW_TYPE
@@ -799,8 +799,8 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/head/helmet/marine/tech/tanker
-	name = "\improper Mk20 tanker helmet"
-	desc = "The older Mk20 Advanced Armored Crew Helmet is a variant of the precursor program to the Mk30, with a flipdown welding visor attached. Camera on the side and biometric transmitter ties into the sensor matrix."
+	name = "Mk20 坦克乘员头盔"
+	desc = "较旧的 Mk20 先进装甲乘员头盔，源自 Mk30 前身计划，带有可翻下的焊接面罩。侧面摄像机与生物测量发射器可接入传感器矩阵。"
 	icon_state = "tanker_helmet"
 	armor_melee = CLOTHING_ARMOR_MEDIUMLOW
 	armor_bomb = CLOTHING_ARMOR_MEDIUMHIGH
@@ -812,22 +812,22 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	built_in_visors = list(new /obj/item/device/helmet_visor, new /obj/item/device/helmet_visor/welding_visor/tanker)
 
 /obj/item/clothing/head/helmet/marine/medic
-	name = "\improper M10 corpsman helmet"
-	desc = "M10 combat helmet issued to marine hospital corpsmen. Has a red cross painted on its front for attracting the injured and snipers' attentions alike."
+	name = "M10 医疗兵头盔"
+	desc = "配发给陆战队医疗兵的 M10 战斗头盔。正面画着红十字，伤员与狙击手都很容易注意到它。"
 	icon_state = "med_helmet"
 	flags_atom = NO_NAME_OVERRIDE
 	built_in_visors = list(new /obj/item/device/helmet_visor/medical/advanced)
 	start_down_visor_type = /obj/item/device/helmet_visor/medical/advanced
 
 /obj/item/clothing/head/helmet/marine/medic/white
-	name = "\improper M10 white corpsman helmet"
-	desc = "An M10 marine helmet version worn by marine hospital corpsmen. Painted in medical white and has white cross in a red square painted on its front."
+	name = "M10 白色医疗兵头盔"
+	desc = "陆战队医疗兵佩戴的 M10 头盔型号。采用医用白色涂装，正面画有红底白十字。"
 	icon_state = "med_helmet_white"
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 	flags_marine_helmet = HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY
 
 /obj/item/clothing/head/helmet/marine/medic/plain
-	desc = "M10 combat helmet issued to marine hospital corpsmen. Identical to the standard marine M10, with the exception of the integrated medical optic sight."
+	desc = "配发给陆战队医疗兵的 M10 战斗头盔。除集成医疗光学瞄具外，与标准陆战队 M10 完全相同。"
 	icon_state = "helmet"
 
 /obj/item/clothing/head/helmet/marine/covert
@@ -844,15 +844,15 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 
 /obj/item/clothing/head/helmet/marine/leader
-	name = "\improper M09 pattern helmet"
-	desc = "Back issue model of an older combat helmet. Uncomfortable, but the added protection is supposedly worth it. It's been wired up the same, so it still ties into the sensor matrix fine."
+	name = "M09 式头盔"
+	desc = "旧款战斗头盔的库存型号。戴着不舒服，但据说额外防护值得这点牺牲。接线标准相同，仍可正常接入传感器矩阵。"
 	icon_state = "sl_helmet"
 	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
 	flags_atom = NO_NAME_OVERRIDE
 
 /obj/item/clothing/head/helmet/marine/rto
-	name = "\improper M12 pattern helmet"
-	desc = "Failed procurement, limited run successor to the old M10 Ballistic Helmet. New ceramic composites and suspension system show a remarkable increase in blunt impact resistance, while a revamped wiring structure added space for a second optic socket."
+	name = "M12 式头盔"
+	desc = "采购落选、限量生产的旧 M10 防弹头盔后继型号。新型陶瓷复合材料与悬挂系统显著提高了抗钝击能力，改良布线还腾出了第二个光学设备接口。"
 	icon_state = "io"
 	item_state = "io"
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
@@ -882,8 +882,8 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	flags_atom = NO_NAME_OVERRIDE
 
 /obj/item/clothing/head/helmet/marine/grenadier
-	name = "\improper M12 grenadier helmet"
-	desc = "Strictly speaking, the M12 is more of an offshoot of the B-series armor systems, and is fully enclosed, with hearing protection and anti-impact liquid armor layers to cushion blast. USCMC assault teams sometimes use these in close combat, grenade heavy operations."
+	name = "M12 榴弹兵头盔"
+	desc = "严格来说，M12 更接近 B 系列护甲系统的分支。全封闭结构，配有听力保护和吸收爆炸冲击的抗冲击液体护甲层。USCMC 突击队有时在近战和大量使用手榴弹的行动中采用它。"
 	icon_state = "grenadier_helmet"
 	item_state = "grenadier_helmet"
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
@@ -905,9 +905,9 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	flags_atom = NO_NAME_OVERRIDE
 
 /obj/item/clothing/head/helmet/marine/pyro
-	name = "\improper M10-P pyrotechnician helmet"
+	name = "M10-P 火焰兵头盔"
 	icon_state = "pyro_helmet"
-	desc = "M10 variant with complete facial coverage and internal breathing apparatus. Environmentally sealed with a full fitting of polymer compounds to resist burning."
+	desc = "具备全面面部防护与内置呼吸装置的 M10 变体。聚合物复合材料实现环境密封并抵御燃烧。"
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ|BLOCKGASEFFECT|ALLOWCPR
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROT
@@ -915,9 +915,9 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	flags_atom = NO_NAME_OVERRIDE
 
 /obj/item/clothing/head/helmet/marine/M3T
-	name = "\improper M10-R bombardier helmet"
+	name = "M10-R 轰炸手头盔"
 	icon_state = "sadar_helmet"
-	desc = "M10 combat helmet fitted with enhanced suspension liner and improved hearing protection, for firing high-concussion weapons like the M5 RPG. Also issued to Vehicle Crewmen."
+	desc = "M10 战斗头盔，配有加强悬挂内衬和改良听力保护，适合使用 M5 RPG 等高冲击武器的人员，也配发给载具乘员。"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROT
 	armor_bomb = CLOTHING_ARMOR_HIGH
 	flags_atom = NO_NAME_OVERRIDE
@@ -953,8 +953,8 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 
 
 /obj/item/clothing/head/helmet/marine/ghillie
-	name = "\improper M10 ghillie helmet"
-	desc = "M10 helmet fitted with thermal camouflage ghillie strips. Used and customized by USCMC Scout Snipers."
+	name = "M10 吉利伪装头盔"
+	desc = "装有热伪装吉利条的 M10 头盔，由 USCMC 侦察狙击手使用并自行改装。"
 	icon_state = "ghillie_coif"
 	armor_bomb = CLOTHING_ARMOR_MEDIUM
 	armor_bio = CLOTHING_ARMOR_LOW
@@ -965,8 +965,8 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	flags_atom = NO_NAME_OVERRIDE
 
 /obj/item/clothing/head/helmet/marine/CO
-	name = "\improper M10 pattern commanding officer helmet"
-	desc = "A special M10 Pattern Helmet worn by Commanding Officers of the USCM. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
+	name = "M10 式指挥官头盔"
+	desc = "USCM 指挥官佩戴的特制 M10 式头盔。标签上写着：“决定葬礼能否开棺的关键。戴在头上效果最佳。”"
 	icon_state = "co_officer"
 	item_state = "co_officer"
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
@@ -978,8 +978,8 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	built_in_visors = list(new /obj/item/device/helmet_visor, new /obj/item/device/helmet_visor/medical/advanced, new /obj/item/device/helmet_visor/security)
 
 /obj/item/clothing/head/helmet/marine/MP
-	name = "\improper M10 pattern MP helmet"
-	desc = "A special variant of the M10 Pattern Helmet worn by the Military Police of the USCM. Whether you're facing a crime syndicate or a mutiny, this bucket will keep your brains intact."
+	name = "M10 式 MP 头盔"
+	desc = "USCM 宪兵佩戴的 M10 式头盔特别型号。无论面对犯罪集团还是兵变，这个铁桶都能护住你的脑袋。"
 	icon_state = "mp_helmet"
 	item_state = "mp_helmet"
 	flags_atom = NO_NAME_OVERRIDE
@@ -987,15 +987,15 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/head/helmet/marine/MP/WO
-	name = "\improper M3 pattern chief MP helmet"
-	desc = "A well-crafted variant of the M10 Helmet typically distributed to Chief MPs. Useful for letting your men know who is in charge."
+	name = "M3 式宪兵长头盔"
+	desc = "通常配发给宪兵长的精制 M10 头盔变体。能让手下认清谁说了算。"
 	icon_state = "cmp_helmet"
 	item_state = "cmp_helmet"
 	flags_atom = NO_NAME_OVERRIDE
 
 /obj/item/clothing/head/helmet/marine/MP/SO
-	name = "\improper M10 pattern command helmet"
-	desc = "A special variant of the M10 Pattern Helmet worn by Officers of the USCM, attracting the attention of the grunts and sniper fire alike."
+	name = "M10 式指挥头盔"
+	desc = "USCM 军官佩戴的 M10 式头盔特别型号，既能吸引大兵的目光，也能吸引狙击手的子弹。"
 	icon_state = "helmet"
 	item_state = "helmet"
 	flags_atom = NO_NAME_OVERRIDE
@@ -1035,8 +1035,8 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc
-	name = "\improper Kame combat helmet"
-	desc = "Standard issue high molecular density polymer combat helmet used by Weyland Yutani's elite tactical teams. Designed by Weyland-Yutani, initially as a hard hat, the project was eventually retrofitted into a cheap, reliable combat helmet system that incorporates a tactical camera, IFF signal transponder, and heads up display lens. Also features white/black hot IR viewing modes from the camera system."
+	name = "龟甲战斗头盔"
+	desc = "维兰德-汤谷精锐战术小队使用的制式高分子密度聚合物战斗头盔。最初设计为安全帽，后来改造成廉价可靠的战斗头盔系统，内置战术摄像机、敌我识别应答器和抬头显示镜片。摄像系统还支持白热／黑热红外模式。"
 	icon_state = "pmc_helmet"
 	flags_armor_protection = BODY_FLAG_HEAD
 	armor_bullet = CLOTHING_ARMOR_MEDIUMHIGH
@@ -1050,28 +1050,28 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY|HELMET_GARB_OVERLAY
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/sniper
-	name = "\improper Mk12 marksman helmet"
-	desc = "A non-standard issue helmet used by marksmen & snipers of the RMC, though this one has been painted white for service with Weyland Yutani's elite tactical teams. Better resistance to glancing hits from small arms and shrapnel than later models, but heavier too. It incorporates a tactical camera, IFF signal transponder, and heads up display lens with night vision. Also features white/black hot IR viewing modes from the camera system."
+	name = "Mk12 精确射手头盔"
+	desc = "RMC 精确射手与狙击手使用的非制式头盔，这一顶为维兰德-汤谷精锐战术小队涂成了白色。比后续型号更能抵御轻武器擦击与弹片，但也更重。内置战术摄像机、敌我识别应答器和带夜视功能的抬头显示镜片。摄像系统还支持白热／黑热红外模式。"
 	icon_state = "pmc_sniper_hat"
 	flags_armor_protection = BODY_FLAG_HEAD|BODY_FLAG_FACE|BODY_FLAG_EYES
 	armor_internaldamage = CLOTHING_ARMOR_MEDIUMLOW
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/sniper/rmc
-	desc = "A non-standard issue helmet used by marksmen & snipers of the RMC. Better resistance to glancing hits from small arms and shrapnel than later models, but heavier too. Lacks an incorporated rebreather unit, owing to the open-face design. It incorporates a tactical camera, IFF signal transponder, and heads up display lens with night vision. Also features white/black hot IR viewing modes from the camera system."
+	desc = "RMC 精确射手与狙击手使用的非制式头盔。比后续型号更能抵御轻武器擦击与弹片，但也更重。开放式面部设计未集成呼吸调温器。内置战术摄像机、敌我识别应答器和带夜视功能的抬头显示镜片。摄像系统还支持白热／黑热红外模式。"
 	icon_state = "rmc_sniper_hat"
 	built_in_visors = list(new /obj/item/device/helmet_visor/medical/advanced/rmc/alt)
 	start_down_visor_type = /obj/item/device/helmet_visor/medical/advanced/rmc/alt
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner
-	name = "\improper Mk16 tactical helmet"
-	desc = "Standard issue high molecular density polymer combat helmet and ballistic mask of the RMC, though this one has been painted white for service with Weyland Yutani's elite tactical teams. Resistant to glancing hits from small arms and shrapnel, incorporates tactical camera, IFF signal transponder, and heads up display lens. Also features white/black hot IR viewing modes from the camera system."
+	name = "Mk16 战术头盔"
+	desc = "RMC 制式高分子密度聚合物战斗头盔与防弹面罩，这一顶为维兰德-汤谷精锐战术小队涂成了白色。可抵御轻武器擦击与弹片，内置战术摄像机、敌我识别应答器和抬头显示镜片。摄像系统还支持白热／黑热红外模式。"
 	icon_state = "heavy_wy"
 	flags_armor_protection = BODY_FLAG_HEAD|BODY_FLAG_FACE|BODY_FLAG_EYES
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH|ALLOWCPR
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/rmc
-	desc = "Standard issue high molecular density polymer combat helmet and ballistic mask of the RMC. Resistant to glancing hits from small arms and shrapnel, incorporates tactical camera, IFF signal transponder, and heads up display lens with night vision. Also features white/black hot IR viewing modes from the camera system."
+	desc = "RMC 制式高分子密度聚合物战斗头盔与防弹面罩。可抵御轻武器擦击与弹片，内置战术摄像机、敌我识别应答器和带夜视功能的抬头显示镜片。摄像系统还支持白热／黑热红外模式。"
 	icon_state = "heavy_rmc"
 	built_in_visors = list(new /obj/item/device/helmet_visor/medical/advanced/rmc)
 	start_down_visor_type = /obj/item/device/helmet_visor/medical/advanced/rmc
@@ -1222,8 +1222,8 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 //=======================================================================\\
 
 /obj/item/clothing/head/helmet/upp
-	name = "\improper 6B82 helmet"
-	desc = "Naval Infantry helmet for multiple environments. Alloy/para-aramid ballistic 'shell' comprised of three seperate plates held together with a complex liner system. Capable of being worn in tandem with an exoatmospheric fighting hood. A tactical datalink and A/V feeds are provided, alongside facilities for an infrared imager complex. Surprisingly comfortable. The fabric utilized for this model is rubbery and colored after the standard paint coating of UPP armor."
+	name = "6B82 头盔"
+	desc = "适用于多种环境的海军步兵头盔。合金／对位芳纶防弹外壳由三块独立护板组成，通过复杂内衬系统连接。可配合外大气作战头罩佩戴，提供战术数据链、音视频传输和红外成像系统接口。戴着意外地舒适。此型号的面料质感似橡胶，颜色与 UPP 护甲的标准涂装一致。"
 	icon = 'icons/obj/items/clothing/cm_hats.dmi'
 	icon_state = "upp_helmet_naval"
 	item_state = "helmet"
@@ -1571,7 +1571,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	return FALSE
 
 /obj/item/clothing/head/helmet/upp/alt
-	desc = "Naval Infantry helmet for multiple environments. Alloy/para-aramid ballistic 'shell' comprised of three seperate plates held together with a complex liner system. Capable of being worn in tandem with an exoatmospheric fighting hood. A tactical datalink and A/V feeds are provided, alongside facilities for an infrared imager complex. Surprisingly comfortable. The fabric utilized for this model is identical to the one used for UPP uniforms."
+	desc = "适用于多种环境的海军步兵头盔。合金／对位芳纶防弹外壳由三块独立护板组成，通过复杂内衬系统连接。可配合外大气作战头罩佩戴，提供战术数据链、音视频传输和红外成像系统接口。戴着意外地舒适。此型号使用与 UPP 制服相同的面料。"
 	icon_state = "upp_helmet_naval_alt"
 
 /obj/item/clothing/head/uppcap
@@ -1711,8 +1711,8 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	..()
 
 /obj/item/clothing/head/helmet/skullcap
-	name = "skullcap"
-	desc = "Good for keeping sweat out of your eyes"
+	name = "软帽"
+	desc = "能防止汗水流进眼睛。"
 	icon = 'icons/obj/items/clothing/cm_hats.dmi'
 	icon_state = "skullcap"
 	armor_melee = CLOTHING_ARMOR_MEDIUMLOW
@@ -1863,8 +1863,8 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	qdel(src)
 
 /obj/item/clothing/head/helmet/marine/reporter
-	name = "press helmet"
-	desc = "A helmet designed to make it clear that the wearer is safety aware and not looking for a fight."
+	name = "记者头盔"
+	desc = "一顶明确表明佩戴者注重安全、无意交战的头盔。"
 	icon_state = "cc_helmet"
 	item_state = "cc_helmet"
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE

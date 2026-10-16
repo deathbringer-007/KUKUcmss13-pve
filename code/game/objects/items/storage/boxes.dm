@@ -24,8 +24,8 @@
 
 
 /obj/item/storage/box
-	name = "box"
-	desc = "It's just an ordinary box."
+	name = "箱"
+	desc = "只是个普通箱子。"
 	icon_state = "box"
 	icon = 'icons/obj/items/storage/boxes.dmi'
 	item_state = "syringe_kit"
@@ -428,8 +428,8 @@
 	new /obj/item/restraint/legcuffs(src)
 
 /obj/item/storage/box/zipcuffs
-	name = "box of zip cuffs"
-	desc = "A box full of zip cuffs."
+	name = "整箱扎带手铐"
+	desc = "一箱扎带手铐。"
 	w_class = SIZE_MEDIUM
 	icon_state = "handcuff"
 
@@ -464,8 +464,8 @@
 	new /obj/item/restraint/handcuffs/zip(src)
 
 /obj/item/storage/box/tapes
-	name = "box of regulation tapes"
-	desc = "A box full of magnetic tapes for tape recorders. Contains 10 hours and 40 minutes of recording space!"
+	name = "整箱警戒胶带"
+	desc = "一箱录音机磁带，总计可录制 10 小时 40 分钟！"
 
 /obj/item/storage/box/tapes/fill_preset_inventory()
 	new /obj/item/tape/regulation(src)
@@ -497,8 +497,8 @@
 	new /obj/item/device/assembly/mousetrap( src )
 
 /obj/item/storage/box/pillbottles
-	name = "box of pill bottles"
-	desc = "It has pictures of pill bottles on its front."
+	name = "整箱药瓶"
+	desc = "正面印有药瓶图案。"
 	icon_state = "pillbox"
 
 /obj/item/storage/box/pillbottles/fill_preset_inventory()
@@ -523,8 +523,8 @@
 		new /obj/item/toy/snappop(src)
 
 /obj/item/storage/box/matches
-	name = "matchbox"
-	desc = "A small box of 'Space-Proof' premium matches."
+	name = "火柴盒"
+	desc = "一小盒“太空适用”优质火柴。"
 	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "matchbox"
 	item_state = "zippo"
@@ -622,8 +622,8 @@
 
 
 /obj/item/storage/box/explosive_mines
-	name = "\improper M20A2 mine box"
-	desc = "A secure box holding five M20 anti-personnel proximity mines."
+	name = "M20A2 地雷盒"
+	desc = "装有五枚 M20 反步兵感应地雷的安全盒。"
 	icon = 'icons/obj/items/storage/packets.dmi'
 	icon_state = "minebox"
 	w_class = SIZE_MEDIUM
@@ -642,8 +642,8 @@
 		new /obj/item/explosive/mine/pmc/strong(src)
 
 /obj/item/storage/box/flare
-	name = "\improper M94 marking flare pack"
-	desc = "A packet of fourteen M94 Marking Flares. Carried by USCM soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp."
+	name = "M94 标记照明弹包"
+	desc = "一包十四枚 M94 标记照明弹。USCM 士兵用它照亮普通 TNR 肩灯照不到的黑暗区域。"
 	icon_state = "m94"
 	icon = 'icons/obj/items/storage/packets.dmi'
 	w_class = SIZE_MEDIUM
@@ -662,8 +662,8 @@
 		icon_state = "m94"
 
 /obj/item/storage/box/flare/signal
-	name = "\improper M89-S signal flare pack"
-	desc = "A packet of fourteen M89-S Signal Marking Flares."
+	name = "M89-S 信号照明弹包"
+	desc = "一包十四枚 M89-S 信号标记照明弹。"
 	icon_state = "m89"
 
 /obj/item/storage/box/flare/signal/fill_preset_inventory()
@@ -677,8 +677,8 @@
 		icon_state = "m89"
 
 /obj/item/storage/box/flare/upp
-	name = "\improper R52 marking flare pack"
-	desc = "A packet of fourteen R52 Marking Flares. Carried by UPPAC soldiers to light dark areas that cannot be reached with the usual Shoulder Lamp."
+	name = "R52 标记照明弹包"
+	desc = "一包十四枚 R52 标记照明弹。UPPAC 士兵用它照亮普通肩灯照不到的黑暗区域。"
 	icon_state = "r52"
 	icon = 'icons/obj/items/storage/packets.dmi'
 	storage_slots = 14
@@ -696,8 +696,8 @@
 		icon_state = "r52"
 
 /obj/item/storage/box/flare/rmc
-	name = "\improper L96 illumination flare pack"
-	desc = "A packet of fourteen L96 Illumination Flares. Carried by TWE soldiers to light dark areas that cannot be reached with the usual Shoulder Lamp."
+	name = "L96 照明弹包"
+	desc = "一包十四枚 L96 照明弹。TWE 士兵用它照亮普通肩灯照不到的黑暗区域。"
 	icon_state = "l96"
 	can_hold = list(/obj/item/device/flashlight/flare/rmc)
 
@@ -810,7 +810,7 @@
 
 //meat
 /obj/item/storage/box/meat
-	name = "box of meat"
+	name = "整箱肉"
 
 /obj/item/storage/box/meat/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -818,7 +818,7 @@
 
 //fish
 /obj/item/storage/box/fish
-	name = "box of fish"
+	name = "整箱鱼"
 
 /obj/item/storage/box/fish/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -828,7 +828,7 @@
 
 //milk
 /obj/item/storage/box/milk
-	name = "box of milk"
+	name = "整箱牛奶"
 
 /obj/item/storage/box/milk/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -836,7 +836,7 @@
 
 //soymilk
 /obj/item/storage/box/soymilk
-	name = "box of soymilk"
+	name = "整箱豆奶"
 
 /obj/item/storage/box/soymilk/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -844,7 +844,7 @@
 
 //enzyme
 /obj/item/storage/box/enzyme
-	name = "box of enzyme"
+	name = "整箱酶"
 
 /obj/item/storage/box/enzyme/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -854,7 +854,7 @@
 
 //flour
 /obj/item/storage/box/flour
-	name = "box of flour"
+	name = "整箱面粉"
 
 /obj/item/storage/box/flour/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -862,7 +862,7 @@
 
 //sugar
 /obj/item/storage/box/sugar
-	name = "box of sugar"
+	name = "整箱糖"
 
 /obj/item/storage/box/sugar/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -870,7 +870,7 @@
 
 //saltshaker
 /obj/item/storage/box/saltshaker
-	name = "box of saltshakers"
+	name = "整箱盐瓶"
 
 /obj/item/storage/box/saltshaker/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -878,7 +878,7 @@
 
 //peppermill
 /obj/item/storage/box/peppermill
-	name = "box of peppermills"
+	name = "整箱胡椒研磨瓶"
 
 /obj/item/storage/box/peppermill/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -886,7 +886,7 @@
 
 //mint
 /obj/item/storage/box/mint
-	name = "box of mints"
+	name = "整箱薄荷糖"
 
 /obj/item/storage/box/mint/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -896,7 +896,7 @@
 
 //apple
 /obj/item/storage/box/apple
-	name = "box of apples"
+	name = "整箱苹果"
 
 /obj/item/storage/box/apple/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -904,7 +904,7 @@
 
 //banana
 /obj/item/storage/box/banana
-	name = "box of bananas"
+	name = "整箱香蕉"
 
 /obj/item/storage/box/banana/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -920,7 +920,7 @@
 
 //cherries
 /obj/item/storage/box/cherries
-	name = "box of cherries"
+	name = "整箱樱桃"
 
 /obj/item/storage/box/cherries/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -928,7 +928,7 @@
 
 //chili
 /obj/item/storage/box/chili
-	name = "box of chili"
+	name = "整箱辣椒"
 
 /obj/item/storage/box/chili/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -936,7 +936,7 @@
 
 //cabbage
 /obj/item/storage/box/cabbage
-	name = "box of cabbages"
+	name = "整箱卷心菜"
 
 /obj/item/storage/box/cabbage/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -944,7 +944,7 @@
 
 //carrot
 /obj/item/storage/box/carrot
-	name = "box of carrots"
+	name = "整箱胡萝卜"
 
 /obj/item/storage/box/carrot/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -952,7 +952,7 @@
 
 //corn
 /obj/item/storage/box/corn
-	name = "box of corn"
+	name = "整箱玉米"
 
 /obj/item/storage/box/corn/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -960,7 +960,7 @@
 
 //eggplant
 /obj/item/storage/box/eggplant
-	name = "box of eggplants"
+	name = "整箱茄子"
 
 /obj/item/storage/box/eggplant/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -968,7 +968,7 @@
 
 //lemon
 /obj/item/storage/box/lemon
-	name = "box of lemons"
+	name = "整箱柠檬"
 
 /obj/item/storage/box/lemon/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -976,7 +976,7 @@
 
 //lime
 /obj/item/storage/box/lime
-	name = "box of limes"
+	name = "整箱青柠"
 
 /obj/item/storage/box/lime/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -984,7 +984,7 @@
 
 //orange
 /obj/item/storage/box/orange
-	name = "box of oranges"
+	name = "整箱橙子"
 
 /obj/item/storage/box/orange/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -992,7 +992,7 @@
 
 //potato
 /obj/item/storage/box/potato
-	name = "box of potatoes"
+	name = "整箱土豆"
 
 /obj/item/storage/box/potato/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -1000,7 +1000,7 @@
 
 //tomato
 /obj/item/storage/box/tomato
-	name = "box of tomatoes"
+	name = "整箱番茄"
 
 /obj/item/storage/box/tomato/fill_preset_inventory()
 	for(var/i in 1 to 7)
@@ -1008,7 +1008,7 @@
 
 //whitebeet
 /obj/item/storage/box/whitebeet
-	name = "box of whitebeet"
+	name = "整箱白甜菜"
 
 /obj/item/storage/box/whitebeet/fill_preset_inventory()
 	for(var/i in 1 to 7)

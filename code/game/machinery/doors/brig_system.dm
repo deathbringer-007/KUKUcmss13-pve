@@ -5,10 +5,10 @@
 #define BRIG_SENTENCE_PERMA (1<<3) // Is this sentence a permabrig sentence?
 
 /obj/structure/machinery/brig_cell
-	name = "\improper Cell Controller"
+	name = "\improper 牢房控制器"
 	icon = 'icons/obj/structures/machinery/status_display.dmi'
 	icon_state = "security"
-	desc = "A remote control for a door."
+	desc = "用于控制门的远程开关。"
 	req_access = list(ACCESS_MARINE_BRIG)
 	anchored = TRUE // can't pick it up
 	density = FALSE // can walk through it.
@@ -45,7 +45,7 @@
 /obj/structure/machinery/brig_cell/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "BrigCell", "Brig Cell")
+		ui = new(user, src, "BrigCell", "禁闭牢房")
 		ui.open()
 
 /obj/structure/machinery/brig_cell/ui_data(mob/user)
@@ -153,7 +153,7 @@
 	// Sentence complete.
 	var/datum/crime_incident/incident = active_report.incident
 	if(REALTIMEOFDAY > incident.time_to_release)
-		ai_silent_announcement("BRIG REPORT: [incident.criminal_name] has served their time from [src]. Release them.", ":p")
+		ai_silent_announcement("禁闭报告：[incident.criminal_name]在[src]的刑期已满，请将其释放。", ":p")
 		timer_end()
 
 	update_icon()
@@ -175,11 +175,11 @@
 // Pardon this incident.
 /obj/structure/machinery/brig_cell/proc/do_pardon(mob/user)
 	viewed_report.incident.status |= BRIG_SENTENCE_PARDONED
-	viewed_report.name += " (PARDONED)"
+	viewed_report.name += "（已赦免）"
 
 	message_admins("[key_name(user, 1)][ADMIN_JMP_USER(user)] has pardoned [viewed_report.incident.criminal_name].")
 	log_admin("[key_name(user)] pardoned [viewed_report.incident.criminal_name] for [viewed_report.incident.charges_to_string()].")
-	ai_silent_announcement("BRIG REPORT: [viewed_report.incident.criminal_name] has been pardoned for [viewed_report.incident.charges_to_string()].")
+	ai_silent_announcement("禁闭报告：[viewed_report.incident.criminal_name]所涉[viewed_report.incident.charges_to_string()]已获赦免。")
 
 	// If this is the active timer, end it.
 	if (viewed_report.incident.status & BRIG_SENTENCE_ACTIVE)
@@ -197,7 +197,7 @@
 	// Calculate remaining time left.
 	incident.time_to_release = REALTIMEOFDAY + incident.brig_sentence * 600 - incident.time_served
 	if(!incident.time_served)
-		ai_silent_announcement("BRIG REPORT: [incident.criminal_name] has been jailed for [incident.charges_to_string()].")
+		ai_silent_announcement("禁闭报告：[incident.criminal_name]因[incident.charges_to_string()]被监禁。")
 
 	// Close cell doors.
 	for(var/obj/structure/machinery/door/window/brigdoor/door in targets)
@@ -268,7 +268,7 @@
 
 	message_admins("[key_name(user, 1)][ADMIN_JMP_USER(user)] has reset the jail timer of [incident.criminal_name].")
 	log_admin("[key_name(user)] reset the jail timer of [incident.criminal_name], [incident.charges_to_string()].")
-	ai_silent_announcement("BRIG REPORT: [incident.criminal_name] had their jail time reset by [user].", ":p")
+	ai_silent_announcement("禁闭报告：[user]重置了[incident.criminal_name]的刑期。", ":p")
 
 	update_icon()
 
@@ -323,11 +323,11 @@
 
 		// Perma sentence shows 'Perma. Regular sentence shows the timer.
 		if (active_report.incident.status & BRIG_SENTENCE_PERMA)
-			disp2 = "PERM"
+			disp2 = "永久"
 		else
 			disp2 = "[add_zero(num2text((time_left / 60) % 60),2)]~[add_zero(num2text(time_left % 60), 2)]"
 			if (length(disp2) > 5)
-				disp2 = "Error"
+				disp2 = "错误"
 
 		update_display(disp1, disp2)
 	else
@@ -342,7 +342,7 @@
 	W.moveToNullspace()
 	incident_reports += W
 
-	to_chat(user, SPAN_NOTICE("You insert \the [W] into \the [name]."))
+	to_chat(user, SPAN_NOTICE("你将[W]放入了[name]。"))
 
 /obj/structure/machinery/brig_cell/proc/set_picture(state)
 	picture_state = state
@@ -370,33 +370,33 @@
 
 
 /obj/structure/machinery/brig_cell/cell_1
-	name = "Cell 1"
+	name = "1号牢房"
 	id = "Cell 1"
 
 /obj/structure/machinery/brig_cell/cell_2
-	name = "Cell 2"
+	name = "2号牢房"
 	id = "Cell 2"
 
 /obj/structure/machinery/brig_cell/cell_3
-	name = "Cell 3"
+	name = "3号牢房"
 	id = "Cell 3"
 
 /obj/structure/machinery/brig_cell/cell_4
-	name = "Cell 4"
+	name = "4号牢房"
 	id = "Cell 4"
 
 /obj/structure/machinery/brig_cell/cell_5
-	name = "Cell 5"
+	name = "5号牢房"
 	id = "Cell 5"
 
 /obj/structure/machinery/brig_cell/cell_6
-	name = "Cell 6"
+	name = "6号牢房"
 	id = "Cell 6"
 
 /obj/structure/machinery/brig_cell/perma_1
-	name = "Perma 1"
+	name = "1号永久监禁室"
 	id = "Perma 1"
 
 /obj/structure/machinery/brig_cell/perma_2
-	name = "Perma 2"
+	name = "2号永久监禁室"
 	id = "Perma 2"

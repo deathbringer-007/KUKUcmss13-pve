@@ -177,8 +177,8 @@ can cause issues with ammo types getting mixed up during the burst.
 //GENERIC MERC SHOTGUN //Not really based on anything.
 
 /obj/item/weapon/gun/shotgun/merc
-	name = "custom built shotgun"
-	desc = "A cobbled-together pile of scrap and alien wood. Point end towards things you want to die. Has a burst fire feature, as if it needed it."
+	name = "自制霰弹枪"
+	desc = "废料和外星木材拼凑而成的一堆东西。将枪口对准你想让它死掉的目标。还带点射功能，好像真的需要似的。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "cshotgun"
 	item_state = "cshotgun"
@@ -241,8 +241,8 @@ can cause issues with ammo types getting mixed up during the burst.
 //TACTICAL SHOTGUN
 
 /obj/item/weapon/gun/shotgun/combat
-	name = "\improper M120 tactical shotgun"
-	desc = "A successor to the Benelli M4 Super 90, the M120 tactical shotgun is in service with the USCM due its easy maneuverability in close quarters, 12 gauge chambering, high firerate and integrated U1 underslung grenade launcher. While not part of the standard doctrine, they are common none the less. The internal tube magazine stores 6 shells and the U1 grenade launcher stores three grenades."
+	name = "M120 战术霰弹枪"
+	desc = "贝内利 M4 Super 90 的后继型号 M120 战术霰弹枪，因近距离操控便利、12 号口径、高射速和集成 U1 下挂榴弹发射器而在 USCM 服役。虽不属于标准作战条令装备，却依然常见。内置管式弹仓可装 6 发霰弹，U1 榴弹发射器可装 3 枚榴弹。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "mk221"
 	item_state = "mk221"
@@ -446,8 +446,8 @@ can cause issues with ammo types getting mixed up during the burst.
 //DOUBLE SHOTTY
 
 /obj/item/weapon/gun/shotgun/double
-	name = "\improper Spearhead Rival 78"
-	desc = "A double barrel shotgun produced by Spearhead. Archaic, sturdy, affordable. Only holds two 12g shells at a time."
+	name = "矛头“劲敌”78 型霰弹枪"
+	desc = "矛头公司生产的双管霰弹枪，老派、结实、便宜，一次只能装两发 12 号霰弹。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "dshotgun"
 	item_state = "dshotgun"
@@ -659,8 +659,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = RECOIL_AMOUNT_TIER_1
 
 /obj/item/weapon/gun/shotgun/double/sawn
-	name = "\improper sawn-off Spearhead Rival 78"
-	desc = "A double barrel shotgun produced by Spearhead. Archaic, sturdy, affordable. It has been artificially shortened to reduce range but increase damage and spread."
+	name = "短管矛头“劲敌”78 型霰弹枪"
+	desc = "矛头公司生产的双管霰弹枪，老派、结实、便宜。经人工截短，射程降低，但伤害与散布增大。"
 	icon_state = "sshotgun"
 	item_state = "sshotgun"
 	flags_equip_slot = SLOT_WAIST
@@ -767,8 +767,8 @@ can cause issues with ammo types getting mixed up during the burst.
 //M-OU53 SHOTGUN | Marine mid-range slug/flechette only coach gun (except its an over-under). Support weapon for slug stuns / flechette DOTS (when implemented). Buckshot in this thing is just stupidly strong, hence the denial.
 
 /obj/item/weapon/gun/shotgun/double/mou53
-	name = "\improper MOU53 break action shotgun"
-	desc = "A limited production Kerchner MOU53 triple break action classic. Respectable damage output at medium ranges, while the ARMAT M37 is the king of CQC, the Kerchner MOU53 is what hits the broadside of that barn. This specific model cannot safely fire buckshot shells."
+	name = "MOU53 折开式霰弹枪"
+	desc = "基尔希纳限量生产的 MOU53 三管中折经典型号。中距离输出可观：阿玛特 M37 是近战之王，而基尔希纳 MOU53 是能打中谷仓侧墙的那把。这一特定型号不能安全发射鹿弹。"
 	icon_state = "mou"
 	item_state = "mou"
 	var/max_rounds = 3
@@ -1077,8 +1077,8 @@ can cause issues with ammo types getting mixed up during the burst.
 //Shotguns in this category will need to be pumped each shot.
 
 /obj/item/weapon/gun/shotgun/pump
-	name = "Ithaca 37 pump-action shotgun"
-	desc = "A customized Ithaca 37 hunting shotgun. Its wooden stock has been replaced with a bakelite pistol grip, and its barrel and magazine tube have been cut down to half their lengths for easier handling in close quarters at the cost of magazine size, only fitting four shells and one chambered."
+	name = "伊萨卡 37 泵动霰弹枪"
+	desc = "定制伊萨卡 37 猎用霰弹枪。木制枪托换成胶木手枪握把，枪管与管式弹仓截短一半，便于近战操控，但牺牲了容量：弹仓只能装四发，膛内另有一发。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "m37"
 	item_state = "m37"
@@ -1211,8 +1211,8 @@ can cause issues with ammo types getting mixed up during the burst.
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/shotgun/pump/dual_tube
-	name = "generic dual-tube pump shotgun"
-	desc = "A twenty-round pump action shotgun with dual internal tube magazines. You can switch the active internal magazine by toggling the shotgun tube."
+	name = "通用双弹仓泵动霰弹枪"
+	desc = "二十发泵动霰弹枪，带有双内置管式弹仓。切换霰弹枪弹管即可更换当前供弹弹仓。"
 	current_mag = /obj/item/ammo_magazine/internal/shotgun
 	var/obj/item/ammo_magazine/internal/shotgun/primary_tube
 	var/obj/item/ammo_magazine/internal/shotgun/secondary_tube
@@ -1259,8 +1259,8 @@ can cause issues with ammo types getting mixed up during the burst.
 //SHOTGUN FROM ISOLATION
 
 /obj/item/weapon/gun/shotgun/pump/dual_tube/cmb
-	name = "\improper HG 37-12 pump shotgun"
-	desc = "An eight-round pump action shotgun with four-round capacity dual internal tube magazines allowing for quick reloading and highly accurate fire. Standard issue shotgun of the Colonial Marshals Bureau. By toggling the shotgun tube, you can swap between the internal magazines."
+	name = "HG 37-12 泵动霰弹枪"
+	desc = "八发泵动霰弹枪，带有两个各容纳四发的内置管式弹仓，兼具快速装填与高精度。殖民地执法局制式霰弹枪。切换霰弹枪弹管即可更换内置弹仓。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "hg3712"
 	item_state = "hg3712"
@@ -1316,8 +1316,8 @@ can cause issues with ammo types getting mixed up during the burst.
 //XM51, Breaching Scattergun, PVE Edition: civilian magfed shotgun
 
 /obj/item/weapon/gun/rifle/xm51
-	name = "\improper M1771 shotgun"
-	desc = "Full designation: Model 1771 Cobra Max Tactical. Magazine-fed, pump-action shotgun designed by ARMAT Battlefield Systems meant for civilian and law-enforcement use. Failed its short USCM trials due to unreliability and was ridiculed heavily for having a 'tryhard' name."
+	name = "M1771 霰弹枪"
+	desc = "完整名称为 1771 型眼镜蛇极限战术霰弹枪。阿玛特战场系统为民用与执法设计的弹匣供弹泵动霰弹枪。因可靠性不足而在短暂的 USCM 试验中落选，还因名字过于“装酷”遭到嘲笑。"
 	icon_state = "xm51"
 	item_state = "xm51"
 	mouse_pointer = 'icons/effects/mouse_pointer/shotgun_mouse.dmi'

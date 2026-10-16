@@ -9,14 +9,14 @@
 //parent types
 
 /area/lv295/indoors
-	name = "LV295 - Indoors"
+	name = "LV295 - 室内"
 	icon_state = "cliff_blocked" //because this is a PARENT TYPE and you should not be using it and should also be changing the icon!!!
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	soundscape_playlist = AMBIENCE_SHIP
 
 
 /area/lv295/outdoors
-	name = "LV295 - Outdoors"
+	name = "LV295 - 室外"
 	icon_state = "cliff_blocked" //because this is a PARENT TYPE and you should not be using it and should also be changing the icon!!!
 	ceiling = CEILING_NONE
 	soundscape_playlist = SCAPE_PL_WIND
@@ -32,13 +32,13 @@
 //Landing Zones
 
 /area/lv295/landing_zone_1
-	name = "LV295 - Landing Zone One"
+	name = "LV295 - 一号降落区"
 	icon_state = "explored"
 	is_landing_zone = TRUE
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv295/landing_zone_2
-	name = "LV295 - Landing Zone Two"
+	name = "LV295 - 二号降落区"
 	icon_state = "explored"
 	is_landing_zone = TRUE
 	minimap_color = MINIMAP_AREA_LZ
@@ -46,45 +46,45 @@
 //Outdoors
 
 /area/lv295/outdoors/compound
-	name = "LV295 - Exterior Compound"
+	name = "LV295 - 设施外院"
 	icon_state = "red"
 	requires_power = FALSE
 
 /area/lv295/outdoors/barrens
-	name = "LV295 - Outdoors"
+	name = "LV295 - 室外"
 	icon_state = "blue"
 	requires_power = FALSE
 
 //Maint
 
 /area/lv295/indoors/maint
-	name = "LV295 - Facility Maintenance"
+	name = "LV295 - 设施维护区"
 	icon_state = "yellow"
 	requires_power = FALSE
 
 //Lab
 
 /area/lv295/indoors/surface_lab
-	name = "LV295 - Surface Facility"
+	name = "LV295 - 地表设施"
 	icon_state = "green"
 	ceiling = CEILING_METAL
 
 /area/lv295/indoors/sublevel_1
-	name = "LV295 - Sublevel 1"
+	name = "LV295 - 地下一层"
 	icon_state = "yellow"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv295/indoors/sublevel_2
-	name = "LV295 - Sublevel 2"
+	name = "LV295 - 地下二层"
 	icon_state = "yellow"
 	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lv295/indoors/sublevel_3
-	name = "LV295 - Sublevel 3"
+	name = "LV295 - 地下三层"
 	icon_state = "mechbay"
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/lv295/indoors/sublevel_4
-	name = "LV295 - Sublevel 4"
+	name = "LV295 - 地下四层"
 	icon_state = "toxlab"
 	minimap_color = MINIMAP_AREA_MEDBAY

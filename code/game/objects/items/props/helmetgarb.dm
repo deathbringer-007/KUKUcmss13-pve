@@ -12,13 +12,13 @@
 		flags_obj |= OBJ_IS_HELMET_GARB
 
 /obj/item/prop/helmetgarb/gunoil
-	name = "gun oil"
-	desc = "It is a bottle of oil, for your gun. Don't fall for the rumors, the M41A is NOT a self-cleaning firearm."
+	name = "枪械润滑油"
+	desc = "一瓶给枪用的润滑油。别听传言，M41A 绝不是会自动清洁的枪械。"
 	icon_state = "gunoil"
 
 /obj/item/prop/helmetgarb/netting
-	name = "combat netting"
-	desc = "Probably combat netting for a helmet. Probably just an extra hairnet that got ordered for the phantom Almayer cooking staff. Probably useless."
+	name = "战斗伪装网"
+	desc = "大概是头盔用的战斗伪装网，也可能是给阿尔玛耶号那群不存在的厨师多订的发网。大概没什么用。"
 	icon_state = "netting"
 
 /obj/item/prop/helmetgarb/spent_buckshot
@@ -48,21 +48,21 @@
 	icon_state = "prescription_bottle"
 
 /obj/item/prop/helmetgarb/raincover
-	name = "raincover"
-	desc = "The standard M10 combat helmet is already water-resistant at depths of up to 10 meters. This makes the top potentially water-proof. At least it's something."
+	name = "防雨罩"
+	desc = "标准 M10 战斗头盔本就能在 10 米水深下防水。这东西或许能让顶部彻底防水，至少总比没有好。"
 	icon_state = "raincover"
 
 /obj/item/prop/helmetgarb/camocover
-	name = "jungle helmet cover"
-	desc = "A cover that goes over the top of an M10 pattern helmet to camoflauge it without needing the use of paints."
+	name = "丛林头盔罩"
+	desc = "套在 M10 式头盔顶部的罩布，无需涂漆即可实现伪装。"
 	icon_state = "camocover"
 
 /obj/item/prop/helmetgarb/camocover/snow
-	name = "snow helmet cover"
+	name = "雪地头盔罩"
 	icon_state = "s_camocover"
 
 /obj/item/prop/helmetgarb/camocover/desert
-	name = "desert helmet cover"
+	name = "沙漠头盔罩"
 	icon_state = "d_camocover"
 
 /obj/item/prop/helmetgarb/rabbitsfoot
@@ -502,8 +502,8 @@
 	icon_state = "flair_peace_smiley"
 
 /obj/item/prop/helmetgarb/flair_uscm
-	name = "\improper USCM flair"
-	desc = "These pins get handed out like candy at enlistment offices. Wear it with pride marine."
+	name = "USCM 装饰徽章"
+	desc = "征兵办公室像发糖一样发这些徽章。陆战队员，自豪地戴上吧。"
 	icon_state = "flair_uscm"
 
 /obj/item/prop/helmetgarb/spacejam_tickets
@@ -512,8 +512,8 @@
 	icon_state = "tickets_to_space_jam"
 
 /obj/item/prop/helmetgarb/riot_shield
-	name = "\improper RC6 riot shield"
-	desc = "The complimentary, but sold separate face shield associated with the RC6 riot helmet."
+	name = "RC6 防暴盾牌"
+	desc = "与 RC6 防暴头盔配套、但单独出售的面盾。"
 	icon_state = "helmet_riot_shield"
 	flags_obj = OBJ_NO_HELMET_BAND
 
@@ -593,8 +593,8 @@
 	return TRUE
 
 /obj/item/prop/helmetgarb/compass
-	name = "compass"
-	desc = "It always faces north. Are you sure it is not broken?"
+	name = "指南针"
+	desc = "它总是指向北方。你确定没坏吗？"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "compass"
 	w_class = SIZE_SMALL

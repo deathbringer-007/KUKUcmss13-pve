@@ -3,8 +3,8 @@
 //MARINE COMBAT LIGHT
 
 /obj/item/device/flashlight/combat
-	name = "combat flashlight"
-	desc = "A Flashlight designed to be held in the hand, or attached to a rifle, has better bulb compared to a normal flashlight."
+	name = "战斗手电筒"
+	desc = "可手持或安装在步枪上的手电筒，灯泡性能优于普通手电筒。"
 	icon_state = "combat_flashlight"
 	item_state = "flashlight"
 	light_range = 5 //Pretty luminous, but still a flashlight that fits in a pocket
@@ -12,8 +12,8 @@
 //MARINE SNIPER TARPS
 
 /obj/item/bodybag/tarp
-	name = "\improper V1 thermal-dapening tarp (folded)"
-	desc = "A tarp carried by USCM Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camouflage, and smell dampening."
+	name = "V1 隔热伪装布（已折叠）"
+	desc = "USCM 狙击手携带的伪装布。正确使用并伏卧其下时，狙击手几乎与地貌融为一体。采用抑热织层、光学伪装和气味抑制技术，隐藏使用者的热信号与踪迹。"
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_folded"
 	w_class = SIZE_MEDIUM
@@ -26,15 +26,15 @@
 	unfolded_path = /obj/structure/closet/bodybag/tarp/snow
 
 /obj/item/bodybag/tarp/reactive
-	name = "\improper V2 reactive thermal tarp (folded)"
-	desc = "A tarp carried by some USCM infantry. This updated tarp is capable of blending into its environment nearly flawlessly, given that it can properly collate data once deployed. The tarp is able to hide the wearer's heat signature."
+	name = "V2 自适应热学伪装布（已折叠）"
+	desc = "部分 USCM 步兵携带的伪装布。升级型号部署后若能充分收集环境数据，就能近乎完美地融入周围，也能隐藏使用者的热信号。"
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "reactivetarp_folded"
 	unfolded_path = /obj/structure/closet/bodybag/tarp/reactive
 
 /obj/item/bodybag/tarp/reactive/scout
-	name = "\improper V3 reactive thermal tarp (folded)"
-	desc = "A more compact and improved version of the V2 thermal tarp, intended primarily for the transportation of deceased or wounded marines. It has improved cloaking technology than earlier models, allowing it to cloak to a greater degree and faster."
+	name = "V3 自适应热学伪装布（已折叠）"
+	desc = "V2 热伪装布的紧凑改进版，主要用于运输阵亡或受伤的陆战队员。隐蔽技术优于早期型号，隐形更快、效果更好。"
 	icon_state = "scouttarp_folded"
 	w_class = SIZE_SMALL
 	unfolded_path = /obj/structure/closet/bodybag/tarp/reactive/scout
@@ -42,7 +42,7 @@
 /obj/structure/closet/bodybag/tarp
 	name = "\improper V1 thermal-dampening tarp"
 	bag_name = "\improper V1 thermal-dampening tarp"
-	desc = "A tarp carried by USCM Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camouflage, and smell dampening."
+	desc = "USCM 狙击手携带的伪装布。正确使用并伏卧其下时，狙击手几乎与地貌融为一体。采用抑热织层、光学伪装和气味抑制技术，隐藏使用者的热信号与踪迹。"
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_closed"
 	icon_closed = "jungletarp_closed"
@@ -70,7 +70,7 @@
 /obj/structure/closet/bodybag/tarp/reactive
 	name = "\improper V2 reactive thermal tarp"
 	bag_name = "\improper V2 reactive thermal tarp"
-	desc = "A tarp carried by some USCM infantry. This updated tarp is capable of blending into its environment nearly flawlessly, given that it can properly collate data once deployed. The tarp is able to hide the wearer's heat signature."
+	desc = "部分 USCM 步兵携带的伪装布。升级型号部署后若能充分收集环境数据，就能近乎完美地融入周围，也能隐藏使用者的热信号。"
 	icon_state = "reactivetarp_closed"
 	icon_closed = "reactivetarp_closed"
 	icon_opened = "reactivetarp_open"
@@ -81,7 +81,7 @@
 	anchored = FALSE
 
 /obj/structure/closet/bodybag/tarp/reactive/scout
-	name = "\improper V3 reactive thermal tarp (folded)"
+	name = "V3 自适应热学伪装布（已折叠）"
 	bag_name = "\improper V3 reactive thermal tarp"
 	desc = "A more compact and improved version of the V2 thermal tarp, intended primarily for the transportation of deceased or wounded marines. It has improved cloaking technology than earlier models, allowing it to cloak to a greater degree and faster.\nUse this item in-hand or click somewhere on the floor adjacent to you to deploy it, then click it again to close it, which automatically cloaks the bag. Click again to open and uncloak it. If you lose it, right click to check tile contents around you to find it."
 	icon_state = "scouttarp_closed"
@@ -156,8 +156,8 @@
 
 
 /obj/item/reagent_container/food/snacks/protein_pack
-	name = "chocolate Preemptive Action nutrition bar"
-	desc = "A flaky, crunchy military nutrition bar. It's an American armed forces classic, for better or worse. The chocolate tastes a bit artificial and the vitamins are barely covered up by the stevia sweetener."
+	name = "巧克力先发制人营养棒"
+	desc = "酥脆易碎的军用营养棒。无论好坏，它都是美国武装部队的经典食品。巧克力略带人工味，甜菊糖也几乎盖不住维生素味。"
 	icon_state = "yummers"
 	icon = 'icons/obj/items/food/mre_food/uscm.dmi'
 	filling_color = "#ED1169"
@@ -170,8 +170,8 @@
 	bitesize = 4
 
 /obj/item/reagent_container/food/snacks/protein_pack2
-	name = "strawberry Preemptive Action nutrition bar"
-	desc = "A flaky, crunchy military nutrition bar. It's an American armed forces classic, for better or worse. The strawberry coating is definitely oversweetened."
+	name = "草莓先发制人营养棒"
+	desc = "酥脆易碎的军用营养棒。无论好坏，它都是美国武装部队的经典食品。草莓涂层显然甜过头了。"
 	//TODO: ACTUAL SPRITES
 	icon_state = "yummers2"
 	filling_color = "#ff00cc"
@@ -184,8 +184,8 @@
 	bitesize = 4
 
 /obj/item/reagent_container/food/snacks/protein_pack3
-	name = "vanilla Preemptive Action nutrition bar"
-	desc = "A flaky, crunchy military nutrition bar. It's an American armed forces classic, for better or worse. The vanilla is overpoweringly strong, but there's not enough sweetener to cover the bitter aftertaste of the filling."
+	name = "香草先发制人营养棒"
+	desc = "酥脆易碎的军用营养棒。无论好坏，它都是美国武装部队的经典食品。香草味浓得呛人，甜味却不足以掩盖夹心的苦涩余味。"
 	//TODO: ACTUAL SPRITES
 	icon_state = "yummers3"
 	filling_color = "#e6e6e6"
@@ -198,15 +198,15 @@
 	bitesize = 4
 
 /obj/item/reagent_container/food/snacks/mre_pack
-	name = "\improper generic MRE pack"
+	name = "通用即食军粮包"
 	icon = 'icons/obj/items/food_canteen.dmi'
 	icon_state = "mar_tray_empty"
 	trash = /obj/item/trash/USCMtray
 	w_class = SIZE_SMALL
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal1
-	name = "\improper mechanically prepared meal (chili and cornbread)"
-	desc = "An autochef prepared meal meant to imitate 'Southern' cuisine, whatever that means. Contains aggressively overseasoned chili with reconstituted beans, dry crumbly cornbread, and something that might've been gazpacho once."
+	name = "机器烹制餐食 (辣炖肉与玉米面包)"
+	desc = "自动大厨模仿所谓“南方菜”制作的餐食。内含调味过重、掺有复水豆子的辣炖肉，干燥易碎的玉米面包，以及某种曾经可能是西班牙冷汤的东西。"
 	icon_state = "mar_tray_menu1"
 	filling_color = "#ED1169"
 
@@ -216,8 +216,8 @@
 	bitesize = 3
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal2
-	name = "\improper mechanically prepared meal (ham and potatoes)"
-	desc = "An autochef prepared meal of slightly undercooked ham, surprisingly good reconstituted potato wedges made with real potato powder, artificial fruit puree, and stale crackers."
+	name = "机器烹制餐食 (火腿与土豆)"
+	desc = "自动大厨制作的餐食：略欠火候的火腿、用真土豆粉制成且意外好吃的复水薯角、人工果泥和不新鲜的饼干。"
 	icon_state = "mar_tray_menu2"
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal2/Initialize()
@@ -226,8 +226,8 @@
 	bitesize = 2
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal3
-	name = "\improper mechanically prepared meal (spaghetti)"
-	desc = "An autochef prepared meal of oversalted spaghetti in sauce and square 'beef meatballs'. On the side are perfectly baked breadsticks, an unevenly warmed hotdog, and some bland applesauce."
+	name = "机器烹制餐食 (意大利面)"
+	desc = "自动大厨制作的餐食：咸过头的酱汁意面配方形“牛肉丸”。配菜有烤得恰到好处的面包棒、受热不均的热狗和寡淡的苹果酱。"
 	icon_state = "mar_tray_menu3"
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal3/Initialize()
@@ -236,8 +236,8 @@
 	bitesize = 3
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal4
-	name = "\improper mechanically prepared meal (pizza)"
-	desc = "An autochef prepared meal of underseasoned cheese pizza dotted with little bits of sausage. On the side are some concerningly wet scrambled reconstituted eggs and sautee'd broccoli with a little freezer burn."
+	name = "机器烹制餐食 (披萨)"
+	desc = "自动大厨制作的餐食：撒着少量香肠碎、调味不足的芝士披萨。配菜是湿得令人担忧的复水炒蛋，以及略有冻伤的炒西兰花。"
 	icon_state = "mar_tray_menu4"
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal4/Initialize()
@@ -246,8 +246,8 @@
 	bitesize = 3
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal5
-	name = "\improper mechanically prepared meal (chicken)"
-	desc = "An autochef prepared meal of some potentially undercooked apparently halal roast chicken slices, an unidentified dubious sauce, mixed nuts trail mix, overcooked brown rice, and a tube of cherry-flavored halal jelly that tastes pretty heavily of vitamins."
+	name = "机器烹制餐食 (鸡肉)"
+	desc = "自动大厨制作的餐食：似乎符合清真要求、但可能没熟透的烤鸡片，不明可疑酱汁，混合坚果，煮过头的糙米，以及一管维生素味很重的樱桃味清真果冻。"
 	icon_state = "mar_tray_menu5"
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal5/Initialize()
@@ -256,8 +256,8 @@
 	bitesize = 3
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal6
-	name = "\improper mechanically prepared meal (vegetarian tofu)"
-	desc = "An autochef prepared meal of some surprisingly well fried tofu, stale crackers, and underseasoned breadsticks. On the side is a protein bar in mediocre strawberry."
+	name = "机器烹制餐食 (素食豆腐)"
+	desc = "自动大厨制作的餐食：煎得意外不错的豆腐、不新鲜的饼干和调味不足的面包棒。另配一根草莓味平平的蛋白棒。"
 	icon_state = "mar_tray_menu6"
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal6/Initialize()
@@ -266,8 +266,8 @@
 	bitesize = 3
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal7
-	name = "\improper mechanically prepared meal (macaroni and cheese)"
-	desc = "An autochef prepared meal of concerningly viscous macaroni and cheese. On the side is sautee'd broccoli with some freezer burn, a tube of cherry-and-vitamin flavor jelly, and a packet of mixed nuts trail mix."
+	name = "机器烹制餐食 (芝士通心粉)"
+	desc = "自动大厨制作的餐食：黏稠得令人担忧的芝士通心粉。配菜有略带冻伤的炒西兰花、一管樱桃兼维生素味果冻和一包混合坚果。"
 	icon_state = "mar_tray_menu7"
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal7/Initialize()
@@ -344,7 +344,7 @@
 //UPP Tray Food
 
 /obj/item/reagent_container/food/snacks/mre_pack/upp
-	name = "\improper generic MRE pack"
+	name = "通用即食军粮包"
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = "upp_lid"
 	trash = /obj/item/trash/UPPtray
@@ -381,35 +381,35 @@
 	icon_state = "upp_wursts"
 
 /obj/item/reagent_container/food/snacks/mre_pack/upp/meal6
-	name = "\improper UPP Prepared Meal (Luncheon)"
-	desc = "A prepackaged meal for UPP troops with two scoops of slightly dried out rice, a square of some kind of luncheon meat, two carrot sticks, and a 'fruit' bar."
+	name = "UPP 预制餐 (午餐肉)"
+	desc = "UPP 部队的预包装餐，内含两勺略干的米饭、一块不明午餐肉、两根胡萝卜条和一条“水果”棒。"
 	icon_state = "upp_luncheon"
 
 /obj/item/reagent_container/food/snacks/mre_pack/upp/meal7
-	name = "\improper UPP Prepared Meal (Shrimp)"
-	desc = "A prepackaged meal for UPP troops that sports a greasy rice patty with bits of fake imitation shrimp and egg flavoring. Smells quite off. On the side there's a slightly soggy spring roll."
+	name = "UPP 预制餐 (虾)"
+	desc = "UPP 部队的预包装餐，内含油腻的米饼，混有仿制虾仁碎与鸡蛋调味料。气味很不对劲，另配一根略湿软的春卷。"
 	icon_state = "upp_shrimp"
 
 /obj/item/reagent_container/food/snacks/mre_pack/upp/meal8
-	name = "\improper UPP Prepared Meal (Cuban)"
-	desc = "A prepackaged meal for UPP troops containing Cuban rice with bland-ish eggs pieces, tomato sauce, potato salad, and a dry biscuit."
+	name = "UPP 预制餐 (古巴米饭)"
+	desc = "UPP 部队的预包装餐，内含古巴米饭、寡淡的鸡蛋块、番茄酱、土豆沙拉和一块干饼干。"
 	icon_state = "upp_cuban"
 
 /obj/item/reagent_container/food/snacks/mre_pack/upp/meal9
-	name = "\improper UPP Prepared Meal (Meatballs)"
-	desc = "A prepackaged meal for UPP troops containing marinated Königsberger Klopse meatballs, a creamy sauce, some spinach, and a scoop of rice. One of the better options out of the pre-packaged meals and is rarely ever in stock."
+	name = "UPP 预制餐 (肉丸)"
+	desc = "UPP 部队的预包装餐，内含腌制柯尼斯堡肉丸、奶油酱、菠菜和一勺米饭。算是预包装餐中较好的选择，因此几乎总是缺货。"
 	icon_state = "upp_meatballs"
 
 //RMC Tray Food
 
 /obj/item/reagent_container/food/snacks/protein_pack/rmc
-	name = "Biscuits Brown snack bar"
-	desc = "The devil in disguise. Quick to eat, with a fairly pleasant taste and texture, but consuming more than one in a short span of time will ensure you won't be digging latrine holes out in the field for at least two weeks."
+	name = "棕饼干能量棒"
+	desc = "披着美味外衣的魔鬼。吃起来快，味道和口感都不错，但短时间吃超过一根，至少两周都不用在野外挖厕所坑了。"
 	icon_state = "muesli"
 	filling_color = "#ED1169"
 
 /obj/item/reagent_container/food/snacks/mre_pack/rmc
-	name = "\improper generic MRE pack"
+	name = "通用即食军粮包"
 	icon = 'icons/obj/items/food_canteen.dmi'
 	icon_state = "rmc_tray_empty"
 	trash = /obj/item/trash/RMCtray
@@ -421,28 +421,28 @@
 	reagents.add_reagent("nutriment", 15)
 
 /obj/item/reagent_container/food/snacks/mre_pack/rmc/meal1
-	name = "\improper RMC Prepared Meal (Roast Beef)"
-	desc = "A slab of imitation beef drenched in too-salty gravy, with a portion of undercooked peas, soggy carrots and oddly dry mashed potatoes."
+	name = "RMC 预制餐 (烤牛肉)"
+	desc = "一块浸在过咸肉汁里的仿制牛肉，配有没熟透的豌豆、湿软胡萝卜和干得奇怪的土豆泥。"
 	icon_state = "rmc_meat"
 
 /obj/item/reagent_container/food/snacks/mre_pack/rmc/meal2
-	name = "\improper RMC Prepared Meal (Tikka Curry)"
-	desc = "Chunks of pork and potato submerged in a mass of mild Indian curry sauce, with a side of fluffy rice and a lukewarm bit of naan flatbread."
+	name = "RMC 预制餐 (蒂卡咖喱)"
+	desc = "猪肉块与土豆浸在温和的印度咖喱酱中，配有松软米饭和一小块温吞的印度烤饼。"
 	icon_state = "rmc_tikka"
 
 /obj/item/reagent_container/food/snacks/mre_pack/rmc/meal3
-	name = "\improper RMC Prepared Meal (Katsu Curry)"
-	desc = "Breaded chicken strips slathered in a Japanese style curry sauce. Comes with a helping of fluffy rice and an unidentifiable mound of overcooked veg as the side components."
+	name = "RMC 预制餐 (炸猪排咖喱)"
+	desc = "裹面包糠的鸡肉条浇上日式咖喱酱，配有松软米饭和一堆认不出是什么的过熟蔬菜。"
 	icon_state = "rmc_katsu"
 
 /obj/item/reagent_container/food/snacks/mre_pack/rmc/meal4
-	name = "\improper RMC Prepared Meal (Sausage & Eggs)"
-	desc = "Several overdone sausages, a wodge of scrambled eggs, and a load of sweet potato fries & green beans fill this tray."
+	name = "RMC 预制餐 (香肠与鸡蛋)"
+	desc = "餐盘里装着几根烤过头的香肠、一团炒蛋、大量红薯条和四季豆。"
 	icon_state = "rmc_sausage"
 
 /obj/item/reagent_container/food/snacks/mre_pack/rmc/meal5
-	name = "\improper RMC Prepared Meal (Seafood Platter)"
-	desc = "Numerous kinds of sushi occupy the side-component slots of this tray, with the main component being several slices of salmon sashimi atop cold, boiled rice."
+	name = "RMC 预制餐 (海鲜拼盘)"
+	desc = "餐盘配菜格里放着多种寿司，主菜则是冷白米饭上的几片三文鱼刺身。"
 	icon_state = "rmc_fish"
 
 /obj/item/storage/box/pizza
@@ -477,8 +477,8 @@
 
 
 /obj/item/device/overwatch_camera
-	name = "M5 Camera Gear"
-	desc = "A camera and associated headgear designed to allow unit commanders to see what their troops can see, and those troops to see squad info via a HUD. A more robust version of this equipment is integrated into all standard combat helmets in use by UA forces."
+	name = "M5 摄像装备"
+	desc = "摄像机及配套头戴装备，让部队指挥官能够看到士兵的视野，也让士兵通过抬头显示器查看小队信息。美洲联盟部队使用的标准战斗头盔均集成了更坚固的版本。"
 	icon = 'icons/obj/items/clothing/glasses.dmi'
 	icon_state = "overwatch_gear"
 	item_state = "overwatch_gear"
@@ -524,15 +524,15 @@
 	item_state = "rmc_overwatch_gear"
 
 /obj/item/device/overwatch_camera/pmc
-	name = "Mk3 TOCU headcam"
-	desc = "A modification & ruggedisation of the camera gear fielded by the RMC, the Tactical Overwatch Camera Unit is used by Weyland Yutani PMC forces that forgo a typical protective head-cover, allowing their handler to remain aware of the operatives current status."
+	name = "Mk3 TOCU 头戴摄像机"
+	desc = "战术监控摄像装置是 RMC 摄像装备的改进加固版，供不戴常规防护头具的维兰德-汤谷 PMC 部队使用，使其主管始终掌握作战人员的状态。"
 	hud_type = list(MOB_HUD_FACTION_PMC, MOB_HUD_FACTION_WY, MOB_HUD_FACTION_TWE)
 	icon_state = "rmc_overwatch_gear"
 	item_state = "rmc_overwatch_gear"
 
 /obj/item/device/overwatch_camera/upp
-	name = "1PN77M \"Periskop\" camera unit"
-	desc = "Replacing last generation head-mounted-sights, the \"Periskop\" brings several improvements over its' predecessors in the areas of ergonomics and technology. Thanks to its' superior camera systems and redesigned optical suite, which has improved both officer overwatch and personal combat capabilities, the unit has seen wide adoption among all UPP branches."
+	name = "1PN77M \"潜望镜\" 摄像装置"
+	desc = "用于替代上一代头戴瞄具的“潜望镜”，在人体工学与技术上都有改进。先进摄像系统与重新设计的光学组件同时提高了军官监控与个人战斗能力，因此在 UPP 各军种中广泛采用。"
 	hud_type = list(MOB_HUD_FACTION_UPP)
 	icon_state = "upp_overwatch_gear"
 	item_state = "upp_overwatch_gear"

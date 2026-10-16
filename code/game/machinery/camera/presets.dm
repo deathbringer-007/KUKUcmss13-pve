@@ -23,7 +23,7 @@
 
 //used by the laser camera dropship equipment
 /obj/structure/machinery/camera/laser_cam
-	name = "laser camera"
+	name = "激光摄像头"
 	invuln = TRUE
 	icon_state = ""
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -54,8 +54,8 @@
 // VEHICLE CAMERA
 
 /obj/structure/machinery/camera/vehicle
-	name = "military-grade vehicle camera"
-	desc = "It is used to monitor vehicle interiors."
+	name = "军用级载具摄像头"
+	desc = "用于监视载具内部。"
 	icon = 'icons/obj/vehicles/interiors/general.dmi'
 	icon_state = "vehicle_camera"
 	network = list(CAMERA_NET_VEHICLE)
@@ -83,11 +83,11 @@
 	network = list(CAMERA_NET_ALMAYER, CAMERA_NET_RESEARCH)
 
 /obj/structure/machinery/camera/autoname/almayer
-	name = "military-grade camera"
+	name = "军用级摄像头"
 	network = list(CAMERA_NET_ALMAYER)
 
 /obj/structure/machinery/camera/autoname/almayer/containment
-	name = "containment camera"
+	name = "收容区摄像头"
 	unslashable = TRUE
 	unacidable = TRUE
 	network = list(CAMERA_NET_RESEARCH, CAMERA_NET_CONTAINMENT)
@@ -99,15 +99,15 @@
 	network = list(CAMERA_NET_CONTAINMENT_HIDDEN)
 
 /obj/structure/machinery/camera/autoname/almayer/containment/ares
-	name = "ares core camera"
+	name = "ARES核心摄像头"
 	network = list(CAMERA_NET_ARES)
 
 /obj/structure/machinery/camera/autoname/almayer/brig
-	name = "brig camera"
+	name = "禁闭区摄像头"
 	network = list(CAMERA_NET_BRIG)
 
 /obj/structure/machinery/camera/autoname/golden_arrow
-	name = "military-grade camera"
+	name = "军用级摄像头"
 	network = list(CAMERA_NET_GOLDEN_ARROW)
 
 /obj/structure/machinery/camera/autoname/golden_arrow/midway
@@ -131,7 +131,7 @@
 //used by the landing camera dropship equipment. Do not place them right under where the dropship lands.
 //Should place them near each corner of your LZs.
 /obj/structure/machinery/camera/autoname/lz_camera
-	name = "landing zone camera"
+	name = "着陆区摄像头"
 	invuln = TRUE
 	icon_state = "editor_icon"//for the map editor
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

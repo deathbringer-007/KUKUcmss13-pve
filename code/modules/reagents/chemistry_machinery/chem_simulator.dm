@@ -14,8 +14,8 @@
 #define SIMULATION_STAGE_BEGIN 6
 
 /obj/structure/machinery/chem_simulator
-	name = "synthesis simulator"
-	desc = "This computer uses advanced algorithms to perform simulations of reagent properties, for the purpose of calculating the synthesis required to make a new variant."
+	name = "合成模拟器"
+	desc = "这台计算机采用先进算法模拟试剂特性，用于计算合成新变体所需的配方。"
 	icon = 'icons/obj/structures/machinery/science_machines_64x32.dmi'
 	icon_state = "modifier"
 	active_power_usage = 1000
@@ -37,7 +37,7 @@
 	var/new_od_level = 10
 
 	var/simulating = SIMULATION_STAGE_OFF
-	var/status_bar = "READY"
+	var/status_bar = "就绪"
 	var/ready = FALSE
 
 	var/template_filter = PROPERTY_TYPE_ALL
@@ -65,14 +65,14 @@
 
 /obj/structure/machinery/chem_simulator/attackby(obj/item/B, mob/living/user)
 	if(!skillcheck(user, SKILL_RESEARCH, SKILL_RESEARCH_TRAINED))
-		to_chat(user, SPAN_WARNING("You have no idea how to use this."))
+		to_chat(user, SPAN_WARNING("你完全不知道如何使用它。"))
 		return
 	if(istype(B, /obj/item/paper/research_notes))
 		var/obj/item/paper/research_notes/note = B
 		if(!target || (mode == MODE_RELATE && !reference))
 			B = note.convert_to_chem_report()
 		else
-			to_chat(user, SPAN_WARNING("Chemical data already inserted."))
+			to_chat(user, SPAN_WARNING("已经插入化学数据。"))
 			return
 	if(istype(B, /obj/item/paper/research_report))
 		var/obj/item/paper/research_report/note = B
@@ -84,13 +84,13 @@
 			reference = B
 			ready = check_ready()
 		else
-			to_chat(user, SPAN_WARNING("Chemical data [note.data ? "is already inserted" : "is refused"]"))
+			to_chat(user, SPAN_WARNING("化学数据[note.data ? "已经插入" : "被拒绝接收"]。"))
 			return
 	else
-		to_chat(user, SPAN_WARNING("[src] refuses [B]."))
+		to_chat(user, SPAN_WARNING("[src]拒绝接收[B]。"))
 		return
 	user.drop_inv_item_to_loc(B, src)
-	to_chat(user, SPAN_NOTICE("You insert [B] into [src]."))
+	to_chat(user, SPAN_NOTICE("你将[B]插入[src]。"))
 	flick("[icon_state]_reading",src)
 	update_costs()
 
@@ -98,14 +98,14 @@
 	if(inoperable())
 		return
 	if(!skillcheck(user, SKILL_RESEARCH, SKILL_RESEARCH_TRAINED))
-		to_chat(user, SPAN_WARNING("You have no idea how to use this."))
+		to_chat(user, SPAN_WARNING("你完全不知道如何使用它。"))
 		return
 	tgui_interact(user)
 
 /obj/structure/machinery/chem_simulator/tgui_interact(mob/user, datum/tgui/ui) //death to the chem simulator! All Hail the new chem simulator!
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "ChemSimulator", "Chemical Simulator")
+		ui = new(user, src, "ChemSimulator", "化学模拟器")
 		ui.open()
 
 /obj/structure/machinery/chem_simulator/ui_data(mob/user)
@@ -120,11 +120,11 @@
 	data["is_picking_recipe"] = (simulating == SIMULATION_STAGE_FINAL && mode != MODE_CREATE)
 	data["lock_control"] = (simulating != SIMULATION_STAGE_OFF)
 	data["can_cancel_simulation"] = (simulating <= SIMULATION_STAGE_WAIT)
-	data["estimated_cost"] = (mode == MODE_CREATE ? creation_cost : (!target_property ? "NULL" : property_costs[target_property.name]))
+	data["estimated_cost"] = (mode == MODE_CREATE ? creation_cost : (!target_property ? "无" : property_costs[target_property.name]))
 	calculate_new_od_level()
 	data["od_level"] = new_od_level
-	data["chemical_name"] = (mode == MODE_CREATE ? (creation_name == "" ? "NAME NOT SET" : creation_name) : (isnull(target) ? "CHEMICAL DATA NOT INSERTED" : target.data.name))
-	data["reference_name"] = (isnull(reference) ? "CHEMICAL DATA NOT INSERTED" : reference.data.name)
+	data["chemical_name"] = (mode == MODE_CREATE ? (creation_name == "" ? "未命名" : creation_name) : (isnull(target) ? "未插入化学数据" : target.data.name))
+	data["reference_name"] = (isnull(reference) ? "未插入化学数据" : reference.data.name)
 
 	if(mode == MODE_CREATE && GLOB.chemical_data.has_new_properties)
 		update_costs()
@@ -143,7 +143,7 @@
 			if(!isnull(reference_property))
 				if(LAZYACCESS(GLOB.conflicting_properties, reference_property.name) == target_property_data.name || LAZYACCESS(GLOB.conflicting_properties, target_property_data.name) == reference_property.name )
 					is_locked = TRUE
-					conflicting_tooltip = "This property conflicts with the selected reference property!"
+					conflicting_tooltip = "该特性与已选参考特性冲突！"
 			data["target_data"] += list(list(
 				"code" = target_property_data.code,
 				"level" = target_property_data.level,
@@ -163,7 +163,7 @@
 			if(!isnull(target_property))
 				if(LAZYACCESS(GLOB.conflicting_properties, target_property.name) == reference_property_data.name || LAZYACCESS(GLOB.conflicting_properties, reference_property_data.name) == target_property.name )
 					is_locked = TRUE
-					conflicting_tooltip = "This property conflicts with the selected target property!"
+					conflicting_tooltip = "该特性与已选目标特性冲突！"
 			data["reference_data"] += list(list(
 				"code" = reference_property_data.code,
 				"level" = reference_property_data.level,
@@ -194,7 +194,7 @@
 				template_property = template
 				if(LAZYACCESS(GLOB.conflicting_properties, template_property.name) == known_properties.name || LAZYACCESS(GLOB.conflicting_properties, known_properties.name) == template_property.name)
 					is_locked = TRUE
-					conflicting_tooltip = "This property conflicts with [template_property.code]!"
+					conflicting_tooltip = "该特性与[template_property.code]冲突！"
 				if(template_property.code == known_properties.code)
 					break
 				template_property = null
@@ -262,7 +262,7 @@
 						continue
 					target_property = target_prop
 				if(!target_property)
-					to_chat(usr, SPAN_WARNING("The [src] makes a suspicious wail."))
+					to_chat(usr, SPAN_WARNING("[src]发出一声可疑的哀鸣。"))
 					return
 		if("select_reference_property")
 			if(!reference)
@@ -272,13 +272,13 @@
 					continue
 				reference_property = reference_prop
 			if(!reference_property)
-				to_chat(usr, SPAN_WARNING("The [src] makes a suspicious wail."))
+				to_chat(usr, SPAN_WARNING("[src]发出一声可疑的哀鸣。"))
 				return
 		if("simulate")
 			if(!ready)
 				return
 			simulating = SIMULATION_STAGE_BEGIN
-			status_bar = "COMMENCING SIMULATION"
+			status_bar = "开始模拟"
 			icon_state = "modifier_running"
 			recipe_targets = list() //reset
 			start_processing()
@@ -316,12 +316,12 @@
 							continue
 						target_property = known_prop
 				if(!target_property)
-					to_chat(usr, SPAN_WARNING("The [src] makes a suspicious wail."))
+					to_chat(usr, SPAN_WARNING("[src]发出一声可疑的哀鸣。"))
 					return
 				calculate_creation_cost()
 		if("select_overdose")
 			if(simulating == SIMULATION_STAGE_OFF && mode == MODE_CREATE)
-				var/od_to_set = tgui_input_list(usr, "Set new OD:", "[src]", list(5,10,15,20,25,30,35,40,45,50,55,60))
+				var/od_to_set = tgui_input_list(usr, "设置新的过量阈值：", "[src]", list(5,10,15,20,25,30,35,40,45,50,55,60))
 				if(!od_to_set || simulating != SIMULATION_STAGE_OFF)
 					return
 				creation_od_level = od_to_set
@@ -329,22 +329,22 @@
 				calculate_creation_cost()
 		if("change_name")
 			if(simulating == SIMULATION_STAGE_OFF && mode == MODE_CREATE)
-				var/newname = input("Set name for template (2-20 characters)","[src]") as text
+				var/newname = input("为模板命名（2至20个字符）","[src]") as text
 				newname = reject_bad_name(newname, TRUE, 20, FALSE)
 				if(isnull(newname))
-					to_chat(usr, SPAN_WARNING("This name is not permited."))
+					to_chat(usr, SPAN_WARNING("不允许使用这个名称。"))
 				else if(GLOB.chemical_reagents_list[newname])
-					to_chat(usr, SPAN_WARNING("This name is already occupied"))
+					to_chat(usr, SPAN_WARNING("这个名称已被使用。"))
 				else
 					creation_name = newname
 		if("change_create_target_level")
 			var/level_to_set = 1
 			if(GLOB.chemical_data.clearance_level <= 2)
-				level_to_set = tgui_input_list(usr, "Set target level for [target_property.name]:","[src]", list(1,2,3,4))
+				level_to_set = tgui_input_list(usr, "设置[target_property.name]的目标等级：","[src]", list(1,2,3,4))
 			else if(GLOB.chemical_data.clearance_level <= 4)
-				level_to_set = tgui_input_list(usr, "Set target level for [target_property.name]:","[src]", list(1,2,3,4,5,6,7,8))
+				level_to_set = tgui_input_list(usr, "设置[target_property.name]的目标等级：","[src]", list(1,2,3,4,5,6,7,8))
 			else
-				level_to_set = tgui_input_list(usr, "Set target level for [target_property.name]:","[src]", list(1,2,3,4,5,6,7,8,9,10))
+				level_to_set = tgui_input_list(usr, "设置[target_property.name]的目标等级：","[src]", list(1,2,3,4,5,6,7,8,9,10))
 			if(!level_to_set)
 				return
 			if(!LAZYISIN(creation_template, target_property))
@@ -352,21 +352,21 @@
 			target_property.level = level_to_set
 			if(target_property.max_level && target_property.level > target_property.max_level)
 				target_property.level = target_property.max_level
-				to_chat(usr, "Max level for [target_property.name] is [target_property.max_level].")
+				to_chat(usr, "[target_property.name]的最高等级为[target_property.max_level]。")
 			calculate_creation_cost()
 		if("change_complexity")
 			var/slot = params["complexity_slot"]
-			var/new_rarity = tgui_input_list(usr, "Set chemical rarity for complexity slot [slot]:", "[src]", list("BASIC (+7)", "COMMON (+4)", "UNCOMMON (1)", "RARE (-5)"))
+			var/new_rarity = tgui_input_list(usr, "设置复杂度槽位[slot]的化学品稀有度：", "[src]", list("基础（+7）", "常见（+4）", "少见（1）", "稀有（-5）"))
 			if(!new_rarity || simulating != SIMULATION_STAGE_OFF)
 				return
 			switch(new_rarity)
-				if("BASIC (+7)")
+				if("基础（+7）")
 					creation_complexity[slot] = CHEM_CLASS_BASIC
-				if("COMMON (+4)")
+				if("常见（+4）")
 					creation_complexity[slot] = CHEM_CLASS_COMMON
-				if("UNCOMMON (1)")
+				if("少见（1）")
 					creation_complexity[slot] = CHEM_CLASS_UNCOMMON
-				if("RARE (-5)")
+				if("稀有（-5）")
 					creation_complexity[slot] = CHEM_CLASS_RARE
 			calculate_creation_cost()
 		if("keyboard_sound")//only exists to give sound
@@ -381,15 +381,15 @@
 		simulating = max(simulating - 1, SIMULATION_STAGE_FINAL)
 		switch(simulating)
 			if(SIMULATION_STAGE_5)
-				status_bar = pick("SIMULATING HUMANS","SIMULATING MONKEYS","SIMULATING BODILY FUNCTIONS","MEASURING PROPERTIES","INJECTING VIRTUAL HUMANS","TORTURING DIGITAL MONKEYS","EMULATING METABOLISM")
+				status_bar = pick("正在模拟人类","正在模拟猴子","正在模拟身体机能","正在测量特性","正在给虚拟人类注射","正在折磨数字猴子","正在仿真代谢")
 			if(SIMULATION_STAGE_4)
-				status_bar = pick("SEARCHING FOR CHIMPANZEES","PLAYING CHESS WITH ARES","CONSULTING DOC","BLAMING GOD","SEARCHING FOR MY PURPOSE","SPYING ON JONES","DIVIDING BY NULL","EQUATING SPACE TIME")
+				status_bar = pick("正在寻找黑猩猩","正在与阿瑞斯下棋","正在咨询医生","正在责怪上帝","正在寻找存在意义","正在偷看琼斯","正在除以空值","正在求解时空方程")
 			if(SIMULATION_STAGE_3)
-				status_bar = pick("PREDICTING REACTION PATTERNS","CALCULATING OVERDOSE RATIOS","CALCULATING SYNTHESIS","CLOSING THE EVENTUALITY","COMPUTING REAGENT INTERPRETATIONS",)
+				status_bar = pick("正在预测反应模式","正在计算过量比例","正在计算合成配方","正在排除意外情况","正在计算试剂分析结果",)
 			if(SIMULATION_STAGE_WAIT)
 				var/datum/reagent/generated/C = new /datum/reagent/generated
 				if(mode == MODE_CREATE)
-					status_bar = "CREATION COMPLETE"
+					status_bar = "创建完成"
 					simulating = SIMULATION_STAGE_OFF
 					create(C)
 				else
@@ -407,11 +407,11 @@
 						//We've already simulated this before, so we don't need to continue
 						C = GLOB.chemical_reagents_list[C.id]
 						print(C.id)
-						status_bar = "SIMULATION COMPLETE"
+						status_bar = "模拟完成"
 						simulating = SIMULATION_STAGE_OFF
 					else if(prepare_recipe_options())
 						chem_cache = C
-						status_bar = "ANALYSIS READY"
+						status_bar = "分析结果已就绪"
 						icon_state = "modifier_ready"
 						playsound(loc, 'sound/machines/twobeep.ogg', 15, 1)
 					else
@@ -519,18 +519,18 @@
 
 /obj/structure/machinery/chem_simulator/proc/check_ready()
 	if(simulating == SIMULATION_FAILURE)
-		status_bar = "CRITICAL FAILURE: NO POSSIBLE CHEMICAL COMBINATION"
+		status_bar = "严重失败：没有可行的化学组合"
 		simulating = SIMULATION_STAGE_OFF
 		return FALSE
 	if(target && mode != MODE_CREATE)
 		if(!target.completed)
-			status_bar = "INCOMPLETE DATA DETECTED IN TARGET"
+			status_bar = "检测到目标数据不完整"
 			return FALSE
 		if(!target.data)
-			status_bar = "DATA CORRUPTION DETECTED, RESCAN CHEMICAL"
+			status_bar = "检测到数据损坏，请重新扫描化学品"
 			return FALSE
 		if(target.data.chemclass < CHEM_CLASS_BASIC || !istype(target.data, /datum/reagent/generated)) //Requires a custom/generated chem as a base
-			status_bar = "TARGET CAN NOT BE ALTERED"
+			status_bar = "无法修改目标"
 			return FALSE
 		//Safety check in case of irregular papers
 		var/datum/chemical_reaction/C = GLOB.chemical_reactions_list[target.data.id]
@@ -538,67 +538,67 @@
 			for(var/component in C.required_reagents)
 				var/datum/reagent/R = GLOB.chemical_reagents_list[component]
 				if(R && R.chemclass >= CHEM_CLASS_SPECIAL && !GLOB.chemical_data.chemical_identified_list[R.id])
-					status_bar = "UNREGISTERED COMPONENTS DETECTED"
+					status_bar = "检测到未登记组分"
 					return FALSE
 			for(var/catalyst in C.required_catalysts)
 				var/datum/reagent/R = GLOB.chemical_reagents_list[catalyst]
 				if(R && R.chemclass >= CHEM_CLASS_SPECIAL && !GLOB.chemical_data.chemical_identified_list[R.id])
-					status_bar = "UNREGISTERED CATALYSTS DETECTED"
+					status_bar = "检测到未登记催化剂"
 					return FALSE
 		if(target_property)
 			if(property_costs[target_property.name] > GLOB.chemical_data.rsc_credits)
-				status_bar = "INSUFFICIENT FUNDS"
+				status_bar = "研究经费不足"
 				return FALSE
 			if(target_property.category & PROPERTY_TYPE_UNADJUSTABLE)
-				status_bar = "TARGET PROPERTY CAN NOT BE SIMULATED"
+				status_bar = "无法模拟目标特性"
 				return FALSE
 			if(mode == MODE_AMPLIFY)
 				if(target_property.level >= GLOB.chemical_data.clearance_level*TECHTREE_LEVEL_MULTIPLIER + 2 && GLOB.chemical_data.clearance_level < 5)
-					status_bar = "CLEARANCE INSUFFICIENT FOR AMPLIFICATION"
+					status_bar = "权限不足，无法增幅"
 					return FALSE
 		else
-			status_bar = "TARGET NOT SELECTED"
+			status_bar = "未选择目标"
 			return FALSE
 		if(target && length(target.data.properties) < 2)
-			status_bar = "TARGET COMPLEXITY IMPROPER FOR RELATION"
+			status_bar = "目标复杂度不适合进行特性替换"
 			return FALSE
 		if(mode == MODE_RELATE && isnull(reference))
-			status_bar = "NO REFERENCE DATA DETECTED"
+			status_bar = "未检测到参考数据"
 			return FALSE
 		if(mode == MODE_RELATE)
 			if(reference && target)
 				if(!reference.completed)
-					status_bar = "INCOMPLETE DATA DETECTED IN REFERENCE"
+					status_bar = "检测到参考数据不完整"
 					return FALSE
 				if(reference_property)
 					if(target.data.get_property(reference_property.name))
-						status_bar = "REFERENCE PROPERTY ALREADY IN TARGET"
+						status_bar = "目标已具备参考特性"
 						return FALSE
 					if(target_property)
 						if(target_property.level != reference_property.level)
-							status_bar = "REFERENCE AND TARGET PROPERTY MUST BE OF EQUAL LEVELS"
+							status_bar = "参考特性与目标特性的等级必须相同"
 							return FALSE
 						if(reference_property.category & PROPERTY_TYPE_UNADJUSTABLE)
-							status_bar = "REFERENCE PROPERTY CAN NOT BE SIMULATED"
+							status_bar = "无法模拟参考特性"
 							return FALSE
 				else
-					status_bar = "REFERENCE PROPERTY NOT SELECTED"
+					status_bar = "未选择参考特性"
 					return FALSE
 	if(mode == MODE_CREATE)
 		if(!LAZYLEN(creation_template))
-			status_bar = "TEMPLATE IS EMPTY"
+			status_bar = "模板为空"
 			return FALSE
 		if(LAZYLEN(creation_name) < 2)
-			status_bar = "NAME NOT SET"
+			status_bar = "未命名"
 			return FALSE
 		if(creation_cost > GLOB.chemical_data.rsc_credits)
-			status_bar = "INSUFFICIENT FUNDS"
+			status_bar = "研究经费不足"
 			return FALSE
 	else if(!target)
-		status_bar = "NO TARGET INSERTED"
+		status_bar = "未插入目标"
 		return FALSE
 	if(simulating == SIMULATION_STAGE_OFF)
-		status_bar = "READY"
+		status_bar = "就绪"
 	return TRUE
 
 /obj/structure/machinery/chem_simulator/proc/print(id, is_new)
@@ -609,7 +609,7 @@
 	var/obj/item/paper/research_report/report = new /obj/item/paper/research_report/(loc)
 	var/datum/reagent/D = GLOB.chemical_reagents_list[id]
 	var/datum/asset/asset = get_asset_datum(/datum/asset/simple/paper)
-	report.name = "Simulation result for [D.id]"
+	report.name = "[D.id]的模拟结果"
 	report.info += "<center><img src = [asset.get_url_mappings()["wylogo.png"]]><HR><I><B>Official Company Document</B><BR>Simulated Synthesis Report</I><HR><H2>Result for [D.id]</H2></center>"
 	report.generate(D)
 	report.info += "<BR><HR><font size = \"1\"><I>This report was automatically printed by the Synthesis Simulator.<BR>The [MAIN_SHIP_NAME], [time2text(world.timeofday, "MM/DD")]/[GLOB.game_year], [worldtime2text()]</I></font><BR>\n<span class=\"paper_field\"></span>"
@@ -744,7 +744,7 @@
 	R.result = C.id
 	GLOB.chemical_reactions_list[R.id] = R
 	R.add_to_filtered_list()
-	status_bar = "SIMULATION COMPLETE"
+	status_bar = "模拟完成"
 	print(C.id, TRUE)
 
 /datum/chemical_simulator_modes
@@ -754,26 +754,26 @@
 	var/icon_type
 
 /datum/chemical_simulator_modes/create
-	name = "CREATE"
-	desc = "Create a new custom chemical from the known properties discovered earlier."
+	name = "创建"
+	desc = "根据先前发现的已知特性，创建一种新的自定义化学品。"
 	mode_id = MODE_CREATE
 	icon_type = "bolt"
 
 /datum/chemical_simulator_modes/supress
-	name = "SUPRESS"
-	desc = "Supress one level in the choosen property. This operation lowers the OD level."
+	name = "抑制"
+	desc = "将所选特性降低一级。此操作会降低过量阈值。"
 	mode_id = MODE_SUPPRESS
 	icon_type = "square-minus"
 
 /datum/chemical_simulator_modes/amplify
-	name = "AMPLIFY"
-	desc = "Amplify one level in the choosen property. This operation lowers the OD level."
+	name = "增幅"
+	desc = "将所选特性提高一级。此操作会降低过量阈值。"
 	mode_id = MODE_AMPLIFY
 	icon_type = "square-plus"
 
 /datum/chemical_simulator_modes/relate
-	name = "RELATE"
-	desc = "Use the reference chemical to replace one choosen property in the target chemical. The target and reference target property level must be equal, This operation lowers the OD level."
+	name = "替换"
+	desc = "使用参考化学品的特性替换目标化学品的一项特性。目标特性与参考特性的等级必须相同。此操作会降低过量阈值。"
 	mode_id = MODE_RELATE
 	icon_type = "repeat"
 

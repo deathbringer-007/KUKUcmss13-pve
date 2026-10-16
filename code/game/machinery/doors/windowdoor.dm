@@ -1,6 +1,6 @@
 /obj/structure/machinery/door/window
-	name = "Glass door"
-	desc = "A window, that is also a door. A windoor if you will."
+	name = "玻璃门"
+	desc = "既是窗户也是门，也可以叫风窗门。"
 	icon = 'icons/obj/structures/doors/windoor.dmi'
 	icon_state = "left"
 	layer = WINDOW_LAYER
@@ -138,7 +138,7 @@
 /obj/structure/machinery/door/window/hitby(atom/movable/AM)
 
 	..()
-	visible_message(SPAN_DANGER("<B>The glass door was hit by [AM].</B>"), null, null, 1)
+	visible_message(SPAN_DANGER("<B>玻璃门被[AM]击中了。</B>"), null, null, 1)
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 40
@@ -158,7 +158,7 @@
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
 			playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
-			visible_message(SPAN_DANGER("<B>[user] smashes against the [src.name].</B>"), 1)
+			visible_message(SPAN_DANGER("<B>[user]猛撞在[src.name]上。</B>"), 1)
 			take_damage(25)
 			return
 	return try_to_activate_door(user)
@@ -172,16 +172,16 @@
 	//If it's emagged, crowbar can pry electronics out.
 	if (operating == -1 && HAS_TRAIT(I, TRAIT_TOOL_CROWBAR))
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-		user.visible_message("[user] removes the electronics from the windoor.", "You start to remove electronics from the windoor.")
+		user.visible_message("[user]正在拆除风窗门的电子元件。", "你开始拆除风窗门的电子元件。")
 		if (do_after(user, 40, INTERRUPT_ALL, BUSY_ICON_BUILD))
-			to_chat(user, SPAN_NOTICE(" You removed the windoor electronics!"))
+			to_chat(user, SPAN_NOTICE("你拆除了风窗门的电子元件！"))
 
 			var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)
 			if (istype(src, /obj/structure/machinery/door/window/brigdoor))
 				wa.secure = "secure_"
-				wa.name = "Secure Wired Windoor Assembly"
+				wa.name = "已布线的加固风窗门组件"
 			else
-				wa.name = "Wired Windoor Assembly"
+				wa.name = "已布线的风窗门组件"
 			if (src.base_state == "right" || src.base_state == "rightsecure")
 				wa.facing = "r"
 			wa.setDir(src.dir)
@@ -212,7 +212,7 @@
 	if(!(I.flags_item & NOBLUDGEON) && I.force && density) //trying to smash windoor with item
 		var/aforce = I.force
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
-		visible_message(SPAN_DANGER("<B>[src] was hit by [I].</B>"))
+		visible_message(SPAN_DANGER("<B>[src]被[I]击中了。</B>"))
 		if(I.damtype == BRUTE || I.damtype == BURN)
 			take_damage(aforce)
 		return 1
@@ -220,8 +220,8 @@
 		return try_to_activate_door(user)
 
 /obj/structure/machinery/door/window/brigdoor
-	name = "Secure glass door"
-	desc = "A thick chunk of tempered glass on metal track. Probably more robust than you."
+	name = "加固玻璃门"
+	desc = "厚实的钢化玻璃沿金属轨道滑动，大概比你还结实。"
 	req_access = list(ACCESS_MARINE_BRIG)
 	health = 300 //Stronger doors for prison (regular window door health is 150)
 
@@ -294,8 +294,8 @@
 	opacity = TRUE
 
 /obj/structure/machinery/door/window/ultra
-	name = "Ultra-reinforced glass door"
-	desc = "A window, that is also a door. A windoor if you will. It is indestructible."
+	name = "超加固玻璃门"
+	desc = "既是窗户也是门，也可以叫风窗门。坚不可摧。"
 
 /obj/structure/machinery/door/window/ultra/Initialize(mapload, ...)
 	. = ..()

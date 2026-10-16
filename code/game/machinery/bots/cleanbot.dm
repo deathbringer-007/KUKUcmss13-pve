@@ -1,8 +1,8 @@
 
 //Cleanbot
 /obj/structure/machinery/bot/cleanbot
-	name = "Cleanbot"
-	desc = "A little cleaning robot, he looks so excited!"
+	name = "清洁机器人"
+	desc = "小巧的清洁机器人，看起来兴奋极了！"
 	icon = 'icons/obj/structures/machinery/aibots.dmi'
 	icon_state = "cleanbot0"
 	density = FALSE
@@ -79,23 +79,23 @@
 /obj/structure/machinery/bot/cleanbot/interact(mob/user as mob)
 	var/dat
 	dat += text({"
-<TT><B>Automatic Station Cleaner v1.0</B></TT><BR><BR>
-Status: []<BR>
-Behaviour controls are [src.locked ? "locked" : "unlocked"]<BR>
-Maintenance panel is [src.open ? "opened" : "closed"]"},
-text("<A href='byond://?src=\ref[src];operation=start'>[src.on ? "On" : "Off"]</A>"))
+<TT><B>自动清洁机器人v1.0</B></TT><BR><BR>
+状态：[]<BR>
+行为控制[src.locked ? "已锁定" : "已解锁"]<BR>
+维护面板[src.open ? "已打开" : "已关闭"]"},
+text("<A href='byond://?src=\ref[src];operation=start'>[src.on ? "开启" : "关闭"]</A>"))
 	if(!src.locked || isRemoteControlling(user))
-		dat += text({"<BR>Cleans Blood: []<BR>"}, text("<A href='byond://?src=\ref[src];operation=blood'>[src.blood ? "Yes" : "No"]</A>"))
-		dat += text({"<BR>Patrol station: []<BR>"}, text("<A href='byond://?src=\ref[src];operation=patrol'>[src.should_patrol ? "Yes" : "No"]</A>"))
+		dat += text({"<BR>清理血迹：[]<BR>"}, text("<A href='byond://?src=\ref[src];operation=blood'>[src.blood ? "是" : "否"]</A>"))
+		dat += text({"<BR>巡逻：[]<BR>"}, text("<A href='byond://?src=\ref[src];operation=patrol'>[src.should_patrol ? "是" : "否"]</A>"))
 	// dat += text({"<BR>Beacon frequency: []<BR>"}, text("<A href='byond://?src=\ref[src];operation=freq'>[src.beacon_freq]</A>"))
 	if(src.open && !src.locked)
 		dat += text({"
-Odd looking screw twiddled: []<BR>
-Weird button pressed: []"},
-text("<A href='byond://?src=\ref[src];operation=screw'>[src.screwloose ? "Yes" : "No"]</A>"),
-text("<A href='byond://?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"]</A>"))
+拨弄古怪螺丝：[]<BR>
+按下奇怪按钮：[]"},
+text("<A href='byond://?src=\ref[src];operation=screw'>[src.screwloose ? "是" : "否"]</A>"),
+text("<A href='byond://?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "是" : "否"]</A>"))
 
-	show_browser(user, dat, "Cleaner v1.0 controls", "autocleaner")
+	show_browser(user, dat, "清洁机器人v1.0控制", "autocleaner")
 	onclose(user, "autocleaner")
 	return
 
@@ -119,29 +119,29 @@ text("<A href='byond://?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes
 			src.patrol_path = null
 			src.updateUsrDialog()
 		if("freq")
-			var/freq = text2num(input("Select frequency for  navigation beacons", "Frequnecy", num2text(beacon_freq / 10))) * 10
+			var/freq = text2num(input("选择导航信标的频率", "频率", num2text(beacon_freq / 10))) * 10
 			if (freq > 0)
 				src.beacon_freq = freq
 			src.updateUsrDialog()
 		if("screw")
 			src.screwloose = !src.screwloose
-			to_chat(usr, SPAN_NOTICE("You twiddle the screw."))
+			to_chat(usr, SPAN_NOTICE("你拨弄了螺丝。"))
 			src.updateUsrDialog()
 		if("oddbutton")
 			src.oddbutton = !src.oddbutton
-			to_chat(usr, SPAN_NOTICE("You press the weird button."))
+			to_chat(usr, SPAN_NOTICE("你按下了奇怪的按钮。"))
 			src.updateUsrDialog()
 
 /obj/structure/machinery/bot/cleanbot/attackby(obj/item/W, mob/user as mob)
 	if (istype(W, /obj/item/card/id))
 		if(src.allowed(usr) && !open)
 			src.locked = !src.locked
-			to_chat(user, SPAN_NOTICE("You [ src.locked ? "lock" : "unlock"] the [src] behaviour controls."))
+			to_chat(user, SPAN_NOTICE("你[ src.locked ? "锁定" : "解锁"]了[src]的行为控制。"))
 		else
 			if(open)
-				to_chat(user, SPAN_WARNING("Please close the access panel before locking it."))
+				to_chat(user, SPAN_WARNING("锁定前请先关上维护面板。"))
 			else
-				to_chat(user, SPAN_NOTICE("This [src] doesn't seem to respect your authority."))
+				to_chat(user, SPAN_NOTICE("[src]似乎并不买你的账。"))
 	else
 		return ..()
 
@@ -154,14 +154,14 @@ text("<A href='byond://?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes
 		return
 
 	if(!src.screwloose && !src.oddbutton && prob(5))
-		visible_message("[src] makes an excited beeping booping sound!")
+		visible_message("[src]兴奋地发出一串哔哔嘟嘟声！")
 
 	if(src.screwloose && prob(5))
 		if(isturf(loc))
 			var/turf/T = loc
 			T.wet_floor(FLOOR_WET_WATER)
 	if(src.oddbutton && prob(5))
-		visible_message("Something flies out of [src]. He seems to be acting oddly.")
+		visible_message("有什么东西从[src]里飞了出来，它的表现似乎有些古怪。")
 		var/obj/effect/decal/cleanable/blood/gibs/gib = new /obj/effect/decal/cleanable/blood/gibs(src.loc)
 		src.oldtarget = gib
 	if(!src.target || src.target == null)
@@ -281,7 +281,7 @@ text("<A href='byond://?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes
 /obj/structure/machinery/bot/cleanbot/proc/clean(obj/effect/decal/cleanable/target)
 	anchored = TRUE
 	icon_state = "cleanbot-c"
-	visible_message(SPAN_DANGER("[src] begins to clean up the [target]"))
+	visible_message(SPAN_DANGER("[src]开始清理[target]。"))
 	cleaning = 1
 	var/cleantime = 50
 	if(istype(target,/obj/effect/decal/cleanable/dirt)) // Clean Dirt much faster
@@ -295,7 +295,7 @@ text("<A href='byond://?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes
 
 /obj/structure/machinery/bot/cleanbot/explode()
 	src.on = 0
-	src.visible_message(SPAN_DANGER("<B>[src] blows apart!</B>"), null, null, 1)
+	src.visible_message(SPAN_DANGER("<B>[src]炸得四分五裂！</B>"), null, null, 1)
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/reagent_container/glass/bucket(Tsec)

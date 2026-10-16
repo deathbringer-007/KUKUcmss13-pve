@@ -1,6 +1,6 @@
 /obj/structure/window
-	name = "window"
-	desc = "A glass window. It looks thin and flimsy. A few knocks with anything should shatter it."
+	name = "窗户"
+	desc = "玻璃窗，看起来又薄又脆，随便拿点什么敲几下就会碎。"
 	icon = 'icons/turf/walls/windows.dmi'
 	icon_state = "window"
 	density = TRUE
@@ -492,7 +492,7 @@
 //Framed windows
 
 /obj/structure/window/framed
-	name = "theoretical window"
+	name = "窗户原型"
 	layer = TABLE_LAYER
 	static_frame = 1
 	flags_atom = FPRINT
@@ -563,8 +563,8 @@
 	return ..()
 
 /obj/structure/window/framed/almayer
-	name = "reinforced window"
-	desc = "A glass window with a special rod matrix inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
+	name = "强化窗"
+	desc = "墙框内嵌有特殊杆状骨架的玻璃窗，看起来相当坚固，可能需要几次重击才能打碎。"
 	icon_state = "alm_rwindow0"
 	basestate = "alm_rwindow"
 	health = 100 //Was 600

@@ -88,7 +88,7 @@
 		playsound(user, reload_sound, 25, TRUE)
 		current_mag.current_rounds--
 		if(user)
-			to_chat(user, SPAN_NOTICE("你从\the [src]中取出了[unloaded_flare]。"))
+			to_chat(user, SPAN_NOTICE("你从[src]中取出了[unloaded_flare]。"))
 			user.put_in_hands(unloaded_flare)
 		update_icon()
 
@@ -124,7 +124,7 @@
 
 	var/obj/item/device/flashlight/flare/fired_flare = new explicit_ammo.flare_type(get_turf(src))
 	to_chat(user, SPAN_NOTICE("你将[fired_flare]射向空中！"))
-	fired_flare.visible_message(SPAN_WARNING("\A [fired_flare]在空中绽放出耀眼光芒！"))
+	fired_flare.visible_message(SPAN_WARNING("[fired_flare]在空中绽放出耀眼光芒！"))
 	fired_flare.invisibility = INVISIBILITY_MAXIMUM
 	fired_flare.mouse_opacity = FALSE
 	fired_flare.indestructible = TRUE

@@ -190,8 +190,8 @@
 		. = ..()
 
 /obj/item/reagent_container/glass/beaker
-	name = "beaker"
-	desc = "A beaker. Can hold up to 60 units."
+	name = "烧杯"
+	desc = "一个烧杯，最多容纳 60 单位。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "beaker"
 	item_state = "beaker"
@@ -237,8 +237,8 @@
 		overlays += lid
 
 /obj/item/reagent_container/glass/minitank
-	name = "\improper MS-11 Smart Refill Tank"
-	desc = "A robust little tank capable of refilling autoinjectors that previously required a nanomed system to refill. Using the wonders of microchips, it automatically sorts the correct chemicals into most single reagent autoinjectors. It is unable to partially fill them however. A valve exists on the top to transfer reagents to another container or to flush it entirely."
+	name = "MS-11 智能补充罐"
+	desc = "坚固的小型储罐，可补充原本需要纳米医疗系统才能补充的自动注射器。依靠微芯片技术，它能自动将合适的药剂注入大多数单药剂自动注射器，但无法只补充一部分。顶部阀门可将试剂转移至其他容器，或彻底排空。"
 	icon = 'icons/obj/items/tank.dmi'
 	icon_state = "mini_reagent_tank"
 	matter = list("metal" = 500)
@@ -317,8 +317,8 @@
 		overlays += filling
 
 /obj/item/reagent_container/glass/beaker/large
-	name = "large beaker"
-	desc = "A large beaker. Can hold up to 120 units."
+	name = "大型烧杯"
+	desc = "一个大烧杯，最多容纳 120 单位。"
 	icon_state = "beakerlarge"
 	matter = list("glass" = 5000)
 	volume = 120
@@ -355,8 +355,8 @@
 
 
 /obj/item/reagent_container/glass/beaker/vial
-	name = "vial"
-	desc = "A small glass vial. Can hold up to 30 units."
+	name = "小药瓶"
+	desc = "小玻璃试管，最多容纳 30 单位。"
 	icon_state = "vial"
 	volume = 30
 	amount_per_transfer_from_this = 10
@@ -574,8 +574,8 @@
 	..()
 
 /obj/item/reagent_container/glass/bucket
-	desc = "It's a bucket. Holds 120 units."
-	name = "bucket"
+	desc = "一个水桶，容量 120 单位。"
+	name = "水桶"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "bucket"
 	item_state = "bucket"
@@ -641,8 +641,8 @@
 		overlays += lid
 
 /obj/item/reagent_container/glass/bucket/mopbucket
-	name = "mop bucket"
-	desc = "A larger bucket, typically used with a mop. Holds 240 units"
+	name = "拖把桶"
+	desc = "较大的水桶，通常搭配拖把使用，容量 240 单位。"
 	icon_state = "mopbucket"
 	matter = list("metal" = 4000)
 	w_class = SIZE_LARGE

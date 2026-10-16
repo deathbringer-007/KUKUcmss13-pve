@@ -5,8 +5,8 @@
 */
 
 /obj/item/reagent_container/food/snacks
-	name = "snack"
-	desc = "yummy"
+	name = "零食"
+	desc = "美味。"
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = null
 	var/bitesize = 1
@@ -344,8 +344,8 @@
 	bitesize = 2
 
 /obj/item/reagent_container/food/snacks/chips
-	name = "chips"
-	desc = "Commander Riker's What-The-Crisps"
+	name = "薯片"
+	desc = "赖克指挥官的“这什么薯片”。"
 	icon_state = "chips"
 	trash = /obj/item/trash/chips
 	filling_color = "#E8C31E"
@@ -356,8 +356,8 @@
 	reagents.add_reagent("blackpepper", 1)
 
 /obj/item/reagent_container/food/snacks/wy_chips/pepper
-	name = "Weyland-Yutani Pepper Chips"
-	desc = "Premium high-quality chips, now with 0% trans fat and added black pepper."
+	name = "维兰德-汤谷胡椒薯片"
+	desc = "优质高档薯片，现含 0% 反式脂肪，并添加黑胡椒。"
 	icon_state = "wy_chips_pepper"
 	item_state = "wy_chips_pepper"
 	trash = /obj/item/trash/wy_chips_pepper
@@ -406,16 +406,16 @@
 	bitesize = 2
 
 /obj/item/reagent_container/food/snacks/donut
-	name = "donut"
-	desc = "A donut pastry, which is a common snack on Earth. Goes great with coffee."
+	name = "甜甜圈"
+	desc = "地球上常见的甜甜圈点心，与咖啡绝配。"
 	icon_state = "donut1"
 	filling_color = "#D9C386"
 	var/overlay_state = "donut"
 	w_class = SIZE_TINY
 
 /obj/item/reagent_container/food/snacks/donut/normal
-	name = "donut"
-	desc = "A donut. Rare on the frontier, so take care of it."
+	name = "甜甜圈"
+	desc = "一个甜甜圈。在边疆很少见，珍惜它吧。"
 	icon_state = "donut1"
 
 /obj/item/reagent_container/food/snacks/donut/normal/Initialize()
@@ -425,8 +425,8 @@
 	if(prob(40))
 		icon_state = "donut2"
 		overlay_state = "fdonut"
-		name = "frosted donut"
-		desc = "A pink frosted donut. Even more rare on the frontier."
+		name = "糖霜甜甜圈"
+		desc = "裹着粉红糖霜的甜甜圈，在边疆更是罕见。"
 		reagents.add_reagent("sprinkles", 2)
 
 /obj/item/reagent_container/food/snacks/donut/chaos
@@ -503,8 +503,8 @@
 		reagents.add_reagent("sprinkles", 2)
 
 /obj/item/reagent_container/food/snacks/egg
-	name = "egg"
-	desc = "An egg!"
+	name = "鸡蛋"
+	desc = "一颗鸡蛋！"
 	icon_state = "egg"
 	filling_color = "#FDFFD1"
 	var/egg_color
@@ -592,8 +592,8 @@
 	reagents.add_reagent("egg", 2)
 
 /obj/item/reagent_container/food/snacks/flour
-	name = "flour"
-	desc = "A small bag filled with some flour."
+	name = "面粉"
+	desc = "一小袋面粉。"
 	icon_state = "flour"
 
 /obj/item/reagent_container/food/snacks/flour/Initialize()
@@ -649,8 +649,8 @@
 	reagents.add_reagent("blackpepper",1)
 
 /obj/item/reagent_container/food/snacks/carpmeat
-	name = "carp fillet"
-	desc = "A fillet of spess carp meat"
+	name = "鲤鱼片"
+	desc = "一片太空鲤鱼肉。"
 	icon_state = "fishfillet"
 	filling_color = "#FFDEFE"
 
@@ -2005,8 +2005,8 @@
 	reagents.add_reagent("cherryjelly", 5)
 
 /obj/item/reagent_container/food/snacks/mint
-	name = "mint"
-	desc = "it is only wafer thin."
+	name = "薄荷"
+	desc = "只有薄薄的一片。"
 	icon_state = "mint"
 	filling_color = "#F2F2F2"
 
@@ -3180,8 +3180,8 @@
 	reagents.add_reagent("potato", 3)
 
 /obj/item/reagent_container/food/snacks/microwavable
-	name = "Microwavable snack"
-	desc = "Some food you could microwave. It won't be tastier if you do, though."
+	name = "微波即热零食"
+	desc = "可以放进微波炉的食物，不过加热也不会更好吃。"
 	var/warm_desc = "Some microwaved food."
 	icon_state = "donkpocket"
 	bitesize = 3
@@ -3197,8 +3197,8 @@
 				name = name
 
 /obj/item/reagent_container/food/snacks/microwavable/donkpocket
-	name = "Donk-pocket"
-	desc = "The food of choice for the seasoned traitor. Packaged by the Weyland-Yutani Corporation."
+	name = "咚咚馅饼"
+	desc = "老练叛徒的首选食物。由维兰德-汤谷公司包装。"
 	warm_desc = "The food of choice for the seasoned traitor. Warmed unevenly and rock hard."
 	icon_state = "donkpocket_wr2"
 	filling_color = "#DEDEAB"
@@ -3226,8 +3226,8 @@
 		icon_state = "donkpocket_wr1"
 
 /obj/item/reagent_container/food/snacks/microwavable/packaged_burrito
-	name = "Packaged Burrito"
-	desc = "A hard microwavable burrito. There's no time given for how long to cook it, but you can try microwaving it anyways. Packaged by the Weyland-Yutani Corporation."
+	name = "包装卷饼"
+	desc = "硬邦邦的微波卷饼。没标加热时间，但你还是可以试着微波一下。由维兰德-汤谷公司包装。"
 	warm_desc = "A hard microwaved burrito. Molten on the outside, barely cooked on the inside."
 	icon_state = "packaged-burrito"
 	package = 1
@@ -3250,8 +3250,8 @@
 		icon_state = "open-burrito"
 
 /obj/item/reagent_container/food/snacks/microwavable/packaged_burger
-	name = "Packaged Cheeseburger"
-	desc = "A soggy microwavable burger. There's no time given for how long to cook it, but you can try microwaving it anyways. Packaged by the Weyland-Yutani Corporation."
+	name = "包装芝士汉堡"
+	desc = "湿软的微波汉堡。没标加热时间，但你还是可以试着微波一下。由维兰德-汤谷公司包装。"
 	warm_desc = "A soggy microwaved burger. It's not any less soggy then it was before, it's just hot now."
 	icon_state = "burger"
 	package = 1
@@ -3275,8 +3275,8 @@
 		item_state = "burger"
 
 /obj/item/reagent_container/food/snacks/microwavable/packaged_hdogs
-	name = "Packaged Hotdog"
-	desc = "A singular squishy, room temperature, hot dog. There's no time given for how long to cook it, but you can try microwaving it anyways. Packaged by the Weyland-Yutani Corporation."
+	name = "包装热狗"
+	desc = "一根软塌塌的常温热狗。没标加热时间，但你还是可以试着微波一下。由维兰德-汤谷公司包装。"
 	warm_desc = "A singular squishy, steaming, hot dog. The casing seems to have burst, and the bun is dried out."
 	icon_state = "packaged-hotdog"
 	flags_obj = OBJ_NO_HELMET_BAND|OBJ_IS_HELMET_GARB
@@ -3329,8 +3329,8 @@
 */
 
 /obj/item/reagent_container/food/snacks/eat_bar
-	name = "MEAT Bar"
-	desc = "It is a vacuum sealed tube of suspicious meat. Artificially packed full of nutrients you can't pronounce. The M is printed on the side, so it just reads EAT. Guess that's where the slogan comes from."
+	name = "肉食能量棒"
+	desc = "一管真空封装的可疑肉食，人工塞满了你念不出名字的营养物质。M 字印在侧面，正面只剩 EAT。广告口号大概就是这么来的。"
 	icon_state = "eat_bar"
 	bitesize = 2
 	w_class = SIZE_TINY
@@ -3343,8 +3343,8 @@
 
 
 /obj/item/reagent_container/food/snacks/kepler_crisps
-	name = "Kepler Crisps"
-	desc = "'They're disturbingly good!' Now with 0% trans fat and added genuine sea salts."
+	name = "开普勒薯片"
+	desc = "“好吃得令人不安！”现含 0% 反式脂肪，并添加真正的海盐。"
 	icon_state = "kepler"
 	bitesize = 2
 	trash = /obj/item/trash/kepler
@@ -3355,8 +3355,8 @@
 	reagents.add_reagent("sodiumchloride", 12)
 
 /obj/item/reagent_container/food/snacks/kepler_crisps/flamehot
-	name = "Kepler Flamehot"
-	desc = "'They're disturbingly good!' Due to an exceptionally well-timed ad campaign with the release of Kepler Flamehot in 2165, the Kepler brand was able to overtake other confectionary Weyland products by quarter three of that year. Contains 0% trans fat."
+	name = "开普勒烈焰辣味薯片"
+	desc = "“好吃得令人不安！”开普勒烈焰辣味在 2165 年上市时配合了一场时机绝佳的广告活动，使开普勒品牌在当年第三季度超越了维兰的其他零食产品。含 0% 反式脂肪。"
 	icon_state = "flamehotkepler"
 	bitesize = 2
 	trash = /obj/item/trash/kepler/flamehot
@@ -3389,8 +3389,8 @@
 
 //CM SNACKS
 /obj/item/reagent_container/food/snacks/wrapped/booniebars
-	name = "Boonie Bars"
-	desc = "Two delicious bars of minty chocolate. <i>\"Sometimes things are just... out of reach.\"</i>"
+	name = "丛林能量棒"
+	desc = "两块美味的薄荷巧克力。<i>“有些东西总是……遥不可及。”</i>"
 	icon_state = "boonie"
 	wrapper = /obj/item/trash/boonie
 
@@ -3400,8 +3400,8 @@
 	reagents.add_reagent("coco", 4)
 
 /obj/item/reagent_container/food/snacks/wrapped/chunk
-	name = "CHUNK box"
-	desc = "A bar of \"The <b>CHUNK</b>\" brand chocolate. <i>\"The densest chocolate permitted to exist according to federal law. We are legally required to ask you not to use this blunt object for anything other than nutrition.\"</i>"
+	name = "CHUNK 箱"
+	desc = "一块“<b>大块</b>”牌巧克力。<i>“联邦法律允许存在的最致密巧克力。依法提醒：除食用补充营养外，请勿将此钝器用于其他用途。”</i>"
 	icon_state = "chunk"
 	hitsound = "swing_hit"
 	force = 15
@@ -3417,8 +3417,8 @@
 	reagents.add_reagent("coco", 10)
 
 /obj/item/reagent_container/food/snacks/wrapped/chunk/hunk
-	name = "HUNK crate"
-	desc = "A 'crate', as the marketing called it, of \"The <b>HUNK</b>\" brand chocolate. An early version of the CHUNK box, the HUNK bar was hit by a class action lawsuit and forced to go into bankruptcy and get bought out by the Company when hundreds of customers had their teeth crack from simply attempting to eat the bar."
+	name = "巨块能量棒箱"
+	desc = "一“箱”——至少广告这么说——“<b>巨块</b>”牌巧克力。它是大块巧克力盒的早期版本，数百名顾客仅仅尝试咬下一口就崩裂牙齿，随后集体诉讼使品牌破产，并被公司收购。"
 	icon_state = "hunk"
 	w_class = SIZE_MEDIUM
 	force = 35
@@ -3433,8 +3433,8 @@
 	reagents.add_reagent("coco", 5)
 
 /obj/item/reagent_container/food/snacks/wrapped/barcardine
-	name = "Barcardine Bars"
-	desc = "A bar of chocolate, it smells like the medical bay. <i>\"Chocolate always helps the pain go away.\"</i>"
+	name = "巴卡定能量棒"
+	desc = "一块闻起来像医务室的巧克力。<i>“巧克力总能赶走疼痛。”</i>"
 	icon_state = "barcardine"
 	wrapper = /obj/item/trash/barcardine
 
@@ -3458,8 +3458,8 @@
 	reagents.add_reagent("sugar", 1)
 
 /obj/item/reagent_container/food/snacks/wrapped/upp_biscuits
-	name = "IRP army biscuits"
-	desc = "Also known as army galets. An oven baked, crunchy and salty biscuits, can be combined with some spread or eaten on themselves."
+	name = "IRP 军用饼干"
+	desc = "也称军用薄脆饼干。烘烤而成，酥脆咸香，可搭配抹酱或直接食用。"
 	icon = 'icons/obj/items/food/mre_food/upp.dmi'
 	icon_state = "Biscuits_package"
 	wrapper = null

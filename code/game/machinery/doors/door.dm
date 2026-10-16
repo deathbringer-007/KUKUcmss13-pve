@@ -1,6 +1,6 @@
 /obj/structure/machinery/door
-	name = "\improper Door"
-	desc = "It opens and closes."
+	name = "\improper 门"
+	desc = "可以打开，也可以关上。"
 	icon = 'icons/obj/structures/doors/Door1.dmi'
 	icon_state = "door1"
 	anchored = TRUE
@@ -309,17 +309,17 @@
 	var/move_dir = get_dir(simple_user, loc)
 	for(var/atom/movable/cycled_atom in get_turf(src))
 		if(cycled_atom != src && cycled_atom.density && cycled_atom.BlockedPassDirs(src, move_dir))
-			to_chat(simple_user, SPAN_WARNING("[cycled_atom] prevents you from squeezing under [src]!"))
+			to_chat(simple_user, SPAN_WARNING("[cycled_atom]挡住了你，无法从[src]下方挤过去！"))
 			return FALSE
 
 	if(istype(src, /obj/structure/machinery/door/airlock))
 		var/obj/structure/machinery/door/airlock/current_airlock = src
 		if(current_airlock.locked || current_airlock.welded) //Can't pass through airlocks that have been bolted down or welded
-			to_chat(simple_user, SPAN_WARNING("[current_airlock] is locked down tight. You can't squeeze underneath!"))
+			to_chat(simple_user, SPAN_WARNING("[current_airlock]已牢牢锁定，你无法从下方挤过去！"))
 			return FALSE
 
-	simple_user.visible_message(SPAN_WARNING("[simple_user] squeezes underneath [src]!"), \
-	SPAN_WARNING("You squeeze underneath [src]."), max_distance = 5)
+	simple_user.visible_message(SPAN_WARNING("[simple_user]从[src]下方挤了过去！"), \
+	SPAN_WARNING("你从[src]下方挤了过去。"), max_distance = 5)
 	simple_user.forceMove(src.loc)
 	return TRUE
 

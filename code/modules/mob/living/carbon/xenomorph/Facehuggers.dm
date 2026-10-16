@@ -5,8 +5,8 @@
 #define MAX_ACTIVE_TIME 15 SECONDS
 
 /obj/item/clothing/mask/facehugger
-	name = "facehugger"
-	desc = "It has some sort of a tube at the end of its tail."
+	name = "抱脸虫"
+	desc = "它的尾部末端长着某种管状器官。"
 	icon = 'icons/mob/xenos/effects.dmi'
 	icon_state = "facehugger"
 	item_state = "facehugger"
@@ -97,7 +97,7 @@
 		if(F.stat == CONSCIOUS)
 			count++
 		if(count > 2) //Was 5, our rules got much tighter
-			visible_message(SPAN_XENOWARNING("The facehugger is furiously cannibalized by the nearby horde of other ones!"))
+			visible_message(SPAN_XENOWARNING("附近成群的抱脸虫疯狂地吞食了这只抱脸虫！"))
 			qdel(src)
 			return
 
@@ -114,13 +114,13 @@
 /obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/xenomorph/user)
 	if(user.hivenumber != hivenumber)
 		user.animation_attack_on(src)
-		user.visible_message(SPAN_XENOWARNING("[user] crushes \the [src]"), SPAN_XENOWARNING("You crush \the [src]"))
+		user.visible_message(SPAN_XENOWARNING("[user]捏碎了[src]。"), SPAN_XENOWARNING("你捏碎了[src]。"))
 		die()
 		return XENO_ATTACK_ACTION
 
 	if(user.caste.can_hold_facehuggers)
 		if(user.on_fire)
-			to_chat(user, SPAN_WARNING("Touching \the [src] while you're on fire would burn it!"))
+			to_chat(user, SPAN_WARNING("你身上还着火，触碰[src]会把它烧伤！"))
 		else
 			// TODO: Refactor how pickups work so you do not need to go through attack_hand
 			attack_hand(user)//Not a carrier, or already full? Just pick it up.
@@ -128,7 +128,7 @@
 
 /obj/item/clothing/mask/facehugger/attack(mob/living/M, mob/user)
 	if(!can_hug(M, hivenumber) || !(M.is_mob_incapacitated() || M.body_position == LYING_DOWN || M.buckled && !isyautja(M)))
-		to_chat(user, SPAN_WARNING("The facehugger refuses to attach."))
+		to_chat(user, SPAN_WARNING("抱脸虫拒绝附着。"))
 		..()
 		return
 
@@ -158,11 +158,11 @@
 	. = ..()
 	switch(stat)
 		if(DEAD, UNCONSCIOUS)
-			. += SPAN_DANGER("[src] is not moving.")
+			. += SPAN_DANGER("[src]一动不动。")
 		if(CONSCIOUS)
-			. += SPAN_DANGER("[src] seems to be active.")
+			. += SPAN_DANGER("[src]似乎还很活跃。")
 	if(sterile)
-		. += SPAN_DANGER("It looks like the proboscis has been removed.")
+		. += SPAN_DANGER("它的口器似乎被切除了。")
 
 /obj/item/clothing/mask/facehugger/attackby(obj/item/W, mob/user)
 	if(W.flags_item & NOBLUDGEON)
@@ -259,8 +259,8 @@
 	if(!target)
 		return FALSE
 
-	target.visible_message(SPAN_WARNING("[src] leaps at [target]!"), \
-	SPAN_WARNING("[src] leaps at [target]!"))
+	target.visible_message(SPAN_WARNING("[src]扑向[target]！"), \
+	SPAN_WARNING("[src]扑向[target]！"))
 	leaping = TRUE
 	throw_atom(target, 3, SPEED_FAST)
 	return TRUE
@@ -272,7 +272,7 @@
 	// This is always going to be valid because of the can_hug check above
 	var/mob/living/carbon/human/human = living_mob
 	if(!silent)
-		human.visible_message(SPAN_DANGER("[src] leaps at [human]'s face!"))
+		human.visible_message(SPAN_DANGER("[src]扑向[human]的脸！"))
 
 	if(isxeno(loc)) //Being carried? Drop it
 		var/mob/living/carbon/xenomorph/X = loc
@@ -304,16 +304,16 @@
 	var/name = hugger ? "[hugger]" : "\a [src]"
 	if(hivenumber != XENO_HIVE_TUTORIAL) // prevent hugs from any tutorial huggers from showing up in dchat
 		if(hug_area)
-			notify_ghosts(header = "Hugged", message = "[human] has been hugged by [name] at [hug_area]!", source = human, action = NOTIFY_ORBIT)
-			to_chat(src, SPAN_DEADSAY("<b>[human]</b> has been facehugged by <b>[name]</b> at \the <b>[hug_area]</b>"))
+			notify_ghosts(header = "遭到抱脸", message = "[human]在[hug_area]被[name]抱脸了！", source = human, action = NOTIFY_ORBIT)
+			to_chat(src, SPAN_DEADSAY("<b>[human]</b>在<b>[hug_area]</b>被<b>[name]</b>抱脸了。"))
 		else
-			notify_ghosts(header = "Hugged", message = "[human] has been hugged by [name]!", source = human, action = NOTIFY_ORBIT)
-			to_chat(src, SPAN_DEADSAY("<b>[human]</b> has been facehugged by <b>[name]</b>"))
+			notify_ghosts(header = "遭到抱脸", message = "[human] has been hugged by [name]!", source = human, action = NOTIFY_ORBIT)
+			to_chat(src, SPAN_DEADSAY("<b>[human]</b>被<b>[name]</b>抱脸了。"))
 
 	if(hug_area)
-		xeno_message(SPAN_XENOMINORWARNING("We sense that [name] has facehugged a host at \the [hug_area]!"), 1, hivenumber)
+		xeno_message(SPAN_XENOMINORWARNING("我们感应到[name]在[hug_area]抱住了一个宿主的脸！"), 1, hivenumber)
 	else
-		xeno_message(SPAN_XENOMINORWARNING("We sense that [name] has facehugged a host!"), 1, hivenumber)
+		xeno_message(SPAN_XENOMINORWARNING("我们感应到[name]抱住了一个宿主的脸！"), 1, hivenumber)
 
 	addtimer(CALLBACK(src, PROC_REF(impregnate), human, hugger?.client?.ckey), rand(MIN_IMPREGNATION_TIME, MAX_IMPREGNATION_TIME))
 
@@ -345,10 +345,10 @@
 
 			icon_state = "[initial(icon_state)]_impregnated"
 			impregnated = TRUE
-		target.visible_message(SPAN_DANGER("[src] falls limp after violating [target]'s face!"))
+		target.visible_message(SPAN_DANGER("[src]抱住[target]的脸并完成寄生后瘫软下来！"))
 		die()
 	else
-		target.visible_message(SPAN_DANGER("[src] violates [target]'s face!"))
+		target.visible_message(SPAN_DANGER("[src]抱住[target]的脸，开始寄生！"))
 
 	if(GLOB.round_statistics && ishuman(target))
 		GLOB.round_statistics.total_huggers_applied++
@@ -402,14 +402,14 @@
 			return
 		var/obj/effect/alien/resin/trap/T = locate() in loc
 		if(T && T.trap_type == RESIN_TRAP_EMPTY)
-			visible_message(SPAN_XENOWARNING("[src] crawls into [T]!"))
+			visible_message(SPAN_XENOWARNING("[src]爬进了[T]！"))
 			T.hivenumber = hivenumber
 			T.set_state(RESIN_TRAP_HUGGER)
 			qdel(src)
 			return
 		var/obj/effect/alien/resin/special/eggmorph/M = locate() in loc
 		if(istype(M) && M.stored_huggers < M.huggers_to_grow_max)
-			visible_message(SPAN_XENOWARNING("[src] crawls back into [M]!"))
+			visible_message(SPAN_XENOWARNING("[src]爬回了[M]！"))
 			M.stored_huggers++
 			qdel(src)
 			return
@@ -434,7 +434,7 @@
 		icon_state = "[initial(icon_state)]_dead"
 	stat = DEAD
 	flags_inventory &= ~CANTSTRIP
-	visible_message("[icon2html(src, viewers(src))] <span class='danger'>\The [src] curls up into a ball!</span>")
+	visible_message("[icon2html(src, viewers(src))] <span class='danger'>[src]蜷缩成一团！</span>")
 	playsound(src.loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
 
 	if(ismob(loc)) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
@@ -449,7 +449,7 @@
 		addtimer(CALLBACK(src, PROC_REF(decay)), 3 MINUTES)
 
 /obj/item/clothing/mask/facehugger/proc/decay()
-	visible_message("[icon2html(src, viewers(src))] <span class='danger'>\The [src] decays into a mass of acid and chitin.</span>")
+	visible_message("[icon2html(src, viewers(src))] <span class='danger'>[src]腐化成了一团酸液与几丁质。</span>")
 	qdel(src)
 
 /proc/can_hug(mob/living/carbon/M, hivenumber)
@@ -482,7 +482,7 @@
 	die()
 
 /obj/item/clothing/mask/facehugger/proc/return_to_egg(obj/effect/alien/egg/E)
-	visible_message(SPAN_XENOWARNING("[src] crawls back into [E]!"))
+	visible_message(SPAN_XENOWARNING("[src]爬回了[E]！"))
 	E.status = EGG_GROWN
 	E.icon_state = "Egg"
 	E.deploy_egg_triggers()
@@ -494,7 +494,7 @@
 /mob/living/carbon/human/proc/handle_hugger_attachment(obj/item/clothing/mask/facehugger/hugger, mob/living/carbon/xenomorph/facehugger/mob_hugger)
 	var/can_infect = TRUE
 	if(!has_limb("head"))
-		hugger.visible_message(SPAN_WARNING("[hugger] looks for a face to hug on [src], but finds none!"))
+		hugger.visible_message(SPAN_WARNING("[hugger]试图抱住[src]的脸，却发现根本没有脸！"))
 		hugger.go_idle()
 		return FALSE
 
@@ -505,14 +505,14 @@
 		var/obj/item/clothing/head/D = head
 		if(istype(D))
 			if(D.anti_hug >= 1)
-				visible_message(SPAN_DANGER("[hugger] smashes against [src]'s [D.name]!"))
+				visible_message(SPAN_DANGER("[hugger]撞上了[src]的[D.name]！"))
 				D.anti_hug = max(0, --D.anti_hug)
 				if(prob(15)) // 15% chance the hugger will go idle after ripping off a helmet. Otherwise it will keep going.
 					hugger.go_idle()
 					return FALSE
 				can_infect = FALSE
 			else
-				visible_message(SPAN_DANGER("[hugger] smashes against [src]'s [D.name] and rips it off!"))
+				visible_message(SPAN_DANGER("[hugger]撞上[src]的[D.name]，将其扯了下来！"))
 				drop_inv_item_on_ground(D)
 				if(istype(D, /obj/item/clothing/head/helmet/marine)) //Marine helmets now get a fancy overlay.
 					var/obj/item/clothing/head/helmet/marine/m_helmet = D
@@ -533,14 +533,14 @@
 				return FALSE
 
 		if(W.anti_hug >= 1)
-			visible_message(SPAN_DANGER("[hugger] smashes against [src]'s [W.name]!"))
+			visible_message(SPAN_DANGER("[hugger]撞上了[src]的[W.name]！"))
 			W.anti_hug = max(0, --W.anti_hug)
 			if(prob(15)) //15% chance the hugger will go idle after ripping off a mask. Otherwise it will keep going.
 				hugger.go_idle()
 				return FALSE
 			can_infect = FALSE
 		else
-			visible_message(SPAN_DANGER("[hugger] smashes against [src]'s [W.name] and rips it off!"))
+			visible_message(SPAN_DANGER("[hugger]撞上[src]的[W.name]，将其扯了下来！"))
 			drop_inv_item_on_ground(W)
 
 	return can_infect
@@ -561,7 +561,7 @@
 		catch_chance  -= 25
 
 	if(!target.stat && target.dir != hugger.dir && prob(catch_chance)) //Not facing away
-		target.visible_message(SPAN_NOTICE("[target] snatches [hugger] out of the air and squashes it!"))
+		target.visible_message(SPAN_NOTICE("[target]从空中抓住[hugger]，将其捏扁了！"))
 		if(mob_hugger)
 			mob_hugger.death(create_cause_data("squished"))
 		else

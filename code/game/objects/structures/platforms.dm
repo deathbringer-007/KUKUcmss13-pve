@@ -68,16 +68,16 @@
 	if(user.pulling)
 		if(!can_climb(user))
 			return
-		user.visible_message(SPAN_WARNING("[user]开始将\the [user.pulling]拖上\the [src]。"),\
-		SPAN_WARNING("你开始将\the [user.pulling]拖上\the [src]。"))
+		user.visible_message(SPAN_WARNING("[user]开始将[user.pulling]拖上[src]。"),\
+		SPAN_WARNING("你开始将[user.pulling]拖上[src]。"))
 		if(!do_after(user, 3 SECONDS * user.get_skill_duration_multiplier(SKILL_FIREMAN), INTERRUPT_ALL, BUSY_ICON_HOSTILE, user.pulling, INTERRUPT_MOVED, BUSY_ICON_HOSTILE))
 			return
 		if(user.pulling)
 			if(!can_climb(user))
 				return
 			var/turf/move_to_turf = get_step(get_turf(src), dir)
-			user.visible_message(SPAN_WARNING("[user]将\the [user.pulling]拖上了\the [src]。"),\
-			SPAN_WARNING("你将\the [user.pulling]拖上了\the [src]。"))
+			user.visible_message(SPAN_WARNING("[user]将[user.pulling]拖上了[src]。"),\
+			SPAN_WARNING("你将[user.pulling]拖上了[src]。"))
 			user.pulling.forceMove(move_to_turf)
 
 /obj/structure/platform_decoration

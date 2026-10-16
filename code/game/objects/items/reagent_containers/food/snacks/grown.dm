@@ -50,8 +50,8 @@
 		bitesize = 1+round(reagents.total_volume / 2, 1)
 
 /obj/item/reagent_container/food/snacks/grown/corn
-	name = "ear of corn"
-	desc = "Needs some butter!"
+	name = "玉米棒"
+	desc = "还缺点黄油！"
 	plantname = "corn"
 	icon_state = "corn"
 	potency = 40
@@ -59,8 +59,8 @@
 	trash = /obj/item/corncob
 
 /obj/item/reagent_container/food/snacks/grown/cherries
-	name = "cherries"
-	desc = "Great for toppings!"
+	name = "樱桃"
+	desc = "很适合当配料！"
 	icon_state = "cherry"
 	filling_color = COLOR_RED
 	gender = PLURAL
@@ -84,8 +84,8 @@
 	plantname = "harebells"
 
 /obj/item/reagent_container/food/snacks/grown/potato
-	name = "potato"
-	desc = "Boil 'em! Mash 'em! Stick 'em in a stew!"
+	name = "土豆"
+	desc = "煮着吃！捣成泥！丢进炖锅里！"
 	icon_state = "potato"
 	potency = 25
 	filling_color = "#E6E8DA"
@@ -115,8 +115,8 @@
 	plantname = "peanut"
 
 /obj/item/reagent_container/food/snacks/grown/cabbage
-	name = "cabbage"
-	desc = "Ewwwwwwwwww. Cabbage."
+	name = "卷心菜"
+	desc = "呕——卷心菜。"
 	icon_state = "cabbage"
 	potency = 25
 	filling_color = "#A2B5A1"
@@ -249,16 +249,16 @@
 	plantname = "ambrosiadeus"
 
 /obj/item/reagent_container/food/snacks/grown/apple
-	name = "apple"
-	desc = "It's a little piece of Eden."
+	name = "苹果"
+	desc = "一小块伊甸园的滋味。"
 	icon_state = "apple"
 	potency = 15
 	filling_color = "#DFE88B"
 	plantname = "apple"
 
 /obj/item/reagent_container/food/snacks/grown/apple/poisoned
-	name = "apple"
-	desc = "It's a little piece of Eden."
+	name = "苹果"
+	desc = "一小块伊甸园的滋味。"
 	icon_state = "apple"
 	potency = 15
 	filling_color = "#B3BD5E"
@@ -300,40 +300,40 @@
 		return ..()
 
 /obj/item/reagent_container/food/snacks/grown/lime
-	name = "lime"
-	desc = "It's so sour, your face will twist."
+	name = "青柠"
+	desc = "酸得能让你的脸皱成一团。"
 	icon_state = "lime"
 	potency = 20
 	filling_color = "#28FA59"
 	plantname = "lime"
 
 /obj/item/reagent_container/food/snacks/grown/lemon
-	name = "lemon"
-	desc = "When life gives you lemons, be grateful they aren't limes."
+	name = "柠檬"
+	desc = "生活给你柠檬时，庆幸它没给你青柠吧。"
 	icon_state = "lemon"
 	potency = 20
 	filling_color = "#FAF328"
 	plantname = "lemon"
 
 /obj/item/reagent_container/food/snacks/grown/orange
-	name = "orange"
-	desc = "It's a tangy fruit."
+	name = "橙子"
+	desc = "一种酸甜的水果。"
 	icon_state = "orange"
 	potency = 20
 	filling_color = "#FAAD28"
 	plantname = "orange"
 
 /obj/item/reagent_container/food/snacks/grown/whitebeet
-	name = "white-beet"
-	desc = "You can't beat white-beet."
+	name = "白甜菜"
+	desc = "白甜菜，无可比拟。"
 	icon_state = "whitebeet"
 	potency = 15
 	filling_color = "#FFFCCC"
 	plantname = "whitebeet"
 
 /obj/item/reagent_container/food/snacks/grown/banana
-	name = "banana"
-	desc = "It's an excellent prop for a comedy."
+	name = "香蕉"
+	desc = "喜剧的绝佳道具。"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "banana"
 	item_state = "banana"
@@ -342,15 +342,15 @@
 	plantname = "banana"
 
 /obj/item/reagent_container/food/snacks/grown/chili
-	name = "chili"
-	desc = "It's spicy! Wait... IT'S BURNING ME!!"
+	name = "辣椒"
+	desc = "好辣！等等……烧起来了！！"
 	icon_state = "chilipepper"
 	filling_color = COLOR_RED
 	plantname = "chili"
 
 /obj/item/reagent_container/food/snacks/grown/eggplant
-	name = "eggplant"
-	desc = "Maybe there's a chicken inside?"
+	name = "茄子"
+	desc = "也许里面藏着只鸡？"
 	icon_state = "eggplant"
 	filling_color = "#550F5C"
 	plantname = "eggplant"
@@ -364,8 +364,8 @@
 	plantname = "soybean"
 
 /obj/item/reagent_container/food/snacks/grown/tomato
-	name = "tomato"
-	desc = "I say to-mah-to, you say tom-mae-to."
+	name = "番茄"
+	desc = "你叫它西红柿，我叫它番茄。"
 	icon_state = "tomato"
 	filling_color = COLOR_RED
 	potency = 10
@@ -470,8 +470,8 @@
 	plantname = "icechili"
 
 /obj/item/reagent_container/food/snacks/grown/carrot
-	name = "carrot"
-	desc = "It's good for the eyes!"
+	name = "胡萝卜"
+	desc = "对眼睛有好处！"
 	icon_state = "carrot"
 	potency = 10
 	filling_color = "#FFC400"
@@ -517,8 +517,8 @@
 	plantname = "plumphelmet"
 
 /obj/item/reagent_container/food/snacks/grown/mushroom/chanterelle
-	name = "chanterelle cluster"
-	desc = "<I>Cantharellus Cibarius</I>: These jolly yellow little shrooms sure look tasty!"
+	name = "一簇鸡油菌"
+	desc = "<I>鸡油菌</I>：这些讨喜的黄色小蘑菇看起来真好吃！"
 	icon_state = "chanterelle"
 	filling_color = "#FFE991"
 	plantname = "mushrooms"

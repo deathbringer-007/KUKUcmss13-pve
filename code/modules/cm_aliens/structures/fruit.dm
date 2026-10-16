@@ -2,7 +2,7 @@
 
 /obj/effect/alien/resin/fruit
 	name = XENO_FRUIT_LESSER
-	desc = "A fruit that can be eaten to immediately recover health."
+	desc = "一种可食用的果实，能立即恢复生命值。"
 	icon = 'icons/mob/xenos/fruits.dmi'
 	icon_state = "fruit_lesser_immature"
 	density = FALSE
@@ -32,16 +32,16 @@
 
 /obj/effect/alien/resin/fruit/attack_hand(mob/living/user)
 	. = ..()
-	to_chat(user, SPAN_WARNING("You start uprooting \the [src].."))
+	to_chat(user, SPAN_WARNING("你开始拔除[src]……"))
 	if(!do_after(user, 1.5 SECONDS, INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
 		return
 	var/n_color = color
 	qdel(src)
 	playsound(src, "alien_resin_break", 25, FALSE)
 	if(!mature)
-		to_chat(user, SPAN_WARNING("[src] disintegrates in your hands as you uproot it."))
+		to_chat(user, SPAN_WARNING("你将[src]拔起时，它在你手中散架了。"))
 		return
-	to_chat(user, SPAN_WARNING("You uproot [src]."))
+	to_chat(user, SPAN_WARNING("你拔除了[src]。"))
 	var/obj/item/reagent_container/food/snacks/resin_fruit/new_fruit = new fruit_type()
 	new_fruit.color = n_color
 	user.put_in_hands(new_fruit)
@@ -123,7 +123,7 @@
 /obj/effect/alien/resin/fruit/proc/consume_effect(mob/living/carbon/xenomorph/recipient, do_consume = TRUE)
 	if(mature) // Someone might've eaten it before us!
 		recipient.gain_health(75)
-		to_chat(recipient, SPAN_XENONOTICE("We recover a bit from our injuries."))
+		to_chat(recipient, SPAN_XENONOTICE("我们的伤势稍有好转。"))
 		if(do_consume)
 			finish_consume(recipient)
 
@@ -135,12 +135,12 @@
 	icon_state = consumed_icon_state
 	update_icon()
 	if(!QDELETED(bound_xeno))
-		to_chat(bound_xeno, SPAN_XENOHIGHDANGER("One of our picked resin fruits has been consumed."))
+		to_chat(bound_xeno, SPAN_XENOHIGHDANGER("我们采摘的一个树脂果实被吃掉了。"))
 	QDEL_IN(src, 1 SECONDS)
 
 /obj/effect/alien/resin/fruit/attack_alien(mob/living/carbon/xenomorph/affected_xeno)
 	if(picked)
-		to_chat(affected_xeno, SPAN_XENODANGER("This fruit is already being picked!"))
+		to_chat(affected_xeno, SPAN_XENODANGER("已经有人在采摘这个果实了！"))
 		return
 
 	if(affected_xeno.a_intent != INTENT_HARM && (affected_xeno.can_not_harm(bound_xeno) || affected_xeno.hivenumber == hivenumber))
@@ -149,23 +149,23 @@
 			return cant_consume
 
 		if(mature)
-			to_chat(affected_xeno, SPAN_XENOWARNING("We prepare to consume [name]."))
+			to_chat(affected_xeno, SPAN_XENOWARNING("我们准备吃下[name]。"))
 			xeno_noncombat_delay(affected_xeno)
 			if(!do_after(affected_xeno, consume_delay, INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
 				return XENO_NO_DELAY_ACTION
 
 			cant_consume = prevent_consume(affected_xeno) // Check again after the delay incase they have eaten another fruit
 			if(cant_consume)
-				to_chat(affected_xeno, SPAN_XENOWARNING("We can no longer consume [name]."))
+				to_chat(affected_xeno, SPAN_XENOWARNING("我们已经无法吃下[name]了。"))
 				return cant_consume
 			consume_effect(affected_xeno)
 		else
-			to_chat(affected_xeno, SPAN_XENOWARNING("[name] isn't ripe yet. We need to wait a little longer."))
+			to_chat(affected_xeno, SPAN_XENOWARNING("[name]尚未成熟。我们还得再等一会儿。"))
 
 	if(affected_xeno.a_intent == INTENT_HARM && isxeno_builder(affected_xeno) || (!affected_xeno.can_not_harm(bound_xeno) && affected_xeno.hivenumber != hivenumber))
 		affected_xeno.animation_attack_on(src)
-		affected_xeno.visible_message(SPAN_XENODANGER("[affected_xeno] removes [name]!"),
-		SPAN_XENODANGER("You remove [name]!"))
+		affected_xeno.visible_message(SPAN_XENODANGER("[affected_xeno]取下了[name]！"),
+		SPAN_XENODANGER("你取下了[name]！"))
 		playsound(loc, "alien_resin_break", 25)
 		qdel(src)
 		return XENO_ATTACK_ACTION
@@ -173,7 +173,7 @@
 
 /obj/effect/alien/resin/fruit/proc/prevent_consume(mob/living/carbon/xenomorph/xeno)
 	if(!(flags & CAN_CONSUME_AT_FULL_HEALTH) && xeno.health >= xeno.maxHealth)
-		to_chat(xeno, SPAN_XENODANGER("We are at full health! This would be a waste..."))
+		to_chat(xeno, SPAN_XENODANGER("我们的生命值已满！现在吃会浪费……"))
 		return XENO_NO_DELAY_ACTION
 	return FALSE
 
@@ -181,7 +181,7 @@
 	//Notify and update the xeno count
 	if(!QDELETED(bound_xeno))
 		if(!picked)
-			to_chat(bound_xeno, SPAN_XENOHIGHDANGER("We sense one of our fruit has been destroyed."))
+			to_chat(bound_xeno, SPAN_XENOHIGHDANGER("我们感应到一个果实被摧毁了。"))
 		bound_xeno.current_fruits.Remove(src)
 
 		var/number_of_fruit = length(bound_xeno.current_fruits)
@@ -197,7 +197,7 @@
 
 /obj/effect/alien/resin/fruit/greater
 	name = XENO_FRUIT_GREATER
-	desc = "A fruit that can be eaten to immediately recover health, and give a strong regeneration effect for a few seconds."
+	desc = "一种可食用的果实，能立即恢复生命值，并在数秒内提供强力再生效果。"
 	time_to_mature = 30 SECONDS
 	heal_amount = 75
 	regeneration_amount_total = 100
@@ -212,7 +212,7 @@
 		return
 	if(recipient && !QDELETED(recipient))
 		recipient.gain_health(heal_amount)
-		to_chat(recipient, SPAN_XENONOTICE("We recover a bit from our injuries, and begin to regenerate rapidly."))
+		to_chat(recipient, SPAN_XENONOTICE("我们的伤势稍有好转，并开始快速再生。"))
 		// Every second, heal him for 15.
 		new /datum/effects/heal_over_time(recipient, regeneration_amount_total, regeneration_ticks, 1)
 	if(do_consume)
@@ -221,7 +221,7 @@
 //Unstable
 /obj/effect/alien/resin/fruit/unstable
 	name = XENO_FRUIT_UNSTABLE
-	desc = "A fruit that can be eaten to gain a strong overshield effect, and give a small regeneration for several seconds."
+	desc = "一种可食用的果实，能提供强力额外护盾，并在数秒内提供少量再生效果。"
 	time_to_mature = 45 SECONDS
 	heal_amount = 0
 	regeneration_amount_total = 75
@@ -240,7 +240,7 @@
 /obj/effect/alien/resin/fruit/unstable/consume_effect(mob/living/carbon/xenomorph/recipient, do_consume = TRUE)
 	if(mature && recipient && !QDELETED(recipient))
 		recipient.add_xeno_shield(clamp(overshield_amount, 0, recipient.maxHealth * 0.3), XENO_SHIELD_SOURCE_GARDENER, duration = shield_duration, decay_amount_per_second = shield_decay)
-		to_chat(recipient, SPAN_XENONOTICE("We feel our defense being bolstered, and begin to regenerate rapidly."))
+		to_chat(recipient, SPAN_XENONOTICE("我们的防御得到强化，并开始快速再生。"))
 		// Every seconds, heal him for 5.
 		new /datum/effects/heal_over_time(recipient, regeneration_amount_total, regeneration_ticks, 1)
 	if(do_consume)
@@ -248,7 +248,7 @@
 
 //Spore
 /obj/effect/alien/resin/fruit/spore
-	desc = "A fruit that can be eaten to reenergize cooldowns. It also passively emits weak recovery pheromones."
+	desc = "一种可食用的果实，能加快技能冷却。它也会持续释放微弱的恢复信息素。"
 	name = XENO_FRUIT_SPORE
 	time_to_mature = 15 SECONDS
 	icon_state = "fruit_spore_immature"
@@ -270,7 +270,7 @@
 			if(E.effect_source == "spore")
 				qdel(E)
 		new /datum/effects/gain_xeno_cooldown_reduction_on_slash(recipient, bound_xeno, max_cooldown_reduction, cooldown_per_slash, 60 SECONDS, "spore")
-		to_chat(recipient, SPAN_XENONOTICE("We feel a frenzy coming onto us! Our abilities will cool off faster as we slash!"))
+		to_chat(recipient, SPAN_XENONOTICE("我们感到狂暴涌上心头！抓挠敌人将加快技能冷却！"))
 	if(do_consume)
 		finish_consume(recipient)
 
@@ -292,7 +292,7 @@
 
 /obj/effect/alien/resin/fruit/speed
 	name = XENO_FRUIT_SPEED
-	desc = "A fruit that can be eaten to move faster for a short amount of time."
+	desc = "一种可食用的果实，能短暂提高移动速度。"
 	time_to_mature = 35 SECONDS
 	icon_state = "fruit_speed_immature"
 	mature_icon_state = "fruit_speed"
@@ -306,20 +306,20 @@
 
 /obj/effect/alien/resin/fruit/speed/prevent_consume(mob/living/carbon/xenomorph/xeno)
 	if(LAZYISIN(xeno.modifier_sources, XENO_FRUIT_SPEED))
-		to_chat(xeno, SPAN_XENOWARNING("We are already under the effects of this fruit, go out and kill!"))
+		to_chat(xeno, SPAN_XENOWARNING("我们已经受到这种果实的影响，快去杀戮！"))
 		return XENO_NO_DELAY_ACTION
 	return ..()
 
 /obj/effect/alien/resin/fruit/speed/consume_effect(mob/living/carbon/xenomorph/recipient, do_consume = TRUE)
 	if(mature && recipient && !QDELETED(recipient))
-		to_chat(recipient, SPAN_XENONOTICE("The [name] invigorates us to move faster!"))
-		new /datum/effects/xeno_speed(recipient, ttl = speed_duration, set_speed_modifier = speed_buff_amount, set_modifier_source = XENO_FRUIT_SPEED, set_end_message = SPAN_XENONOTICE("We feel the effects of the [name] wane..."))
+		to_chat(recipient, SPAN_XENONOTICE("[name]使我们精神振奋，移动得更快！"))
+		new /datum/effects/xeno_speed(recipient, ttl = speed_duration, set_speed_modifier = speed_buff_amount, set_modifier_source = XENO_FRUIT_SPEED, set_end_message = SPAN_XENONOTICE("我们感到[name]的效果正在消退……"))
 	if(do_consume)
 		finish_consume(recipient)
 
 /obj/effect/alien/resin/fruit/plasma
 	name = XENO_FRUIT_PLASMA
-	desc = "A fruit that can be eaten to boost plasma generation."
+	desc = "一种可食用的果实，能提高等离子体生成速度。"
 	time_to_mature = 25 SECONDS
 	icon_state = "fruit_plasma_immature"
 	mature_icon_state = "fruit_plasma"
@@ -333,7 +333,7 @@
 
 /obj/effect/alien/resin/fruit/plasma/consume_effect(mob/living/carbon/xenomorph/recipient, do_consume = TRUE)
 	if(mature && recipient && recipient.plasma_max > 0 && !QDELETED(recipient))
-		to_chat(recipient, SPAN_XENONOTICE("The [name] boosts our plasma regeneration!"))
+		to_chat(recipient, SPAN_XENONOTICE("[name]提高了我们的等离子体恢复速度！"))
 		// with the current values (240, 15, 3), this will give the recipient 48 plasma every 3 seconds, for a total of 240 in 15 seconds
 		new /datum/effects/plasma_over_time(recipient, plasma_amount, plasma_time, time_between_plasmas)
 	if(do_consume)
@@ -343,7 +343,7 @@
 
 /obj/item/reagent_container/food/snacks/resin_fruit
 	name = XENO_FRUIT_LESSER
-	desc = "A strange fruit that you could eat... if you REALLY wanted to. Its roots seem to twitch every so often."
+	desc = "一种奇怪的果实，你可以吃掉它……如果你真的想吃的话。它的根须似乎不时会抽动。"
 	icon = 'icons/mob/xenos/fruits.dmi'
 	icon_state = "fruit_lesser_item"
 	w_class = SIZE_MEDIUM
@@ -360,7 +360,7 @@
 	pixel_y = 0
 
 /obj/item/reagent_container/food/snacks/resin_fruit/proc/link_xeno(mob/living/carbon/xenomorph/X)
-	to_chat(X, SPAN_XENOHIGHDANGER("One of our resin fruits has been picked."))
+	to_chat(X, SPAN_XENOHIGHDANGER("我们的一个树脂果实被采摘了。"))
 	X.current_fruits.Add(src)
 	bound_xeno = X
 	RegisterSignal(X, COMSIG_PARENT_QDELETING, PROC_REF(handle_xeno_qdel))
@@ -388,28 +388,28 @@
 	if(istype(user, /mob/living/carbon/xenomorph)) // Prevents xenos from feeding capped/dead marines fruit
 		var/mob/living/carbon/xenomorph/feeding_xeno = user
 		if(!feeding_xeno.can_not_harm(affected_xeno))
-			to_chat(feeding_xeno, SPAN_WARNING("[affected_xeno] refuses to eat [src]."))
+			to_chat(feeding_xeno, SPAN_WARNING("[affected_xeno]拒绝吃下[src]。"))
 			return
 
 	if(!istype(affected_xeno))
 		return ..()
 
 	if(affected_xeno.stat == DEAD)
-		to_chat(user, SPAN_WARNING("That sister is already dead, they won't benefit from the fruit now..."))
+		to_chat(user, SPAN_WARNING("那位姐妹已经死了，现在吃果实也无济于事……"))
 		return
 
 	var/obj/effect/alien/resin/fruit/current_fruit = new fruit_type(affected_xeno)
 	var/cant_consume = current_fruit.prevent_consume(affected_xeno)
 	if(cant_consume)
 		user.affected_message(affected_xeno,
-			SPAN_HELPFUL("You <b>fail to [user == affected_xeno ? "eat" : "feed [affected_xeno]"] [current_fruit]</b>."),
-			SPAN_HELPFUL("[user] <b>fails to feed</b> you <b>[current_fruit]</b>."),
-			SPAN_NOTICE("[user] fails to [user == affected_xeno ? "eat" : "feed [affected_xeno]"] [current_fruit]."))
+			SPAN_HELPFUL("你<b>没能[user == affected_xeno ? "吃下" : "给[affected_xeno]喂下"][current_fruit]</b>。"),
+			SPAN_HELPFUL("[user]<b>没能</b>给你<b>喂下[current_fruit]</b>。"),
+			SPAN_NOTICE("[user]没能[user == affected_xeno ? "吃下" : "给[affected_xeno]喂下"][current_fruit]。"))
 		return
 	user.affected_message(affected_xeno,
-		SPAN_HELPFUL("You <b>start [user == affected_xeno ? "eating" : "feeding [affected_xeno]"] [current_fruit]</b>."),
-		SPAN_HELPFUL("[user] <b>starts feeding</b> you <b>[current_fruit]</b>."),
-		SPAN_NOTICE("[user] starts [user == affected_xeno ? "eating" : "feeding [affected_xeno]"] <b>[current_fruit]</b>."))
+		SPAN_HELPFUL("你<b>开始[user == affected_xeno ? "吃" : "给[affected_xeno]喂"][current_fruit]</b>。"),
+		SPAN_HELPFUL("[user]<b>开始</b>给你<b>喂[current_fruit]</b>。"),
+		SPAN_NOTICE("[user]开始[user == affected_xeno ? "吃" : "给[affected_xeno]喂"]<b>[current_fruit]</b>。"))
 
 	if(!do_after(user, consume_delay, INTERRUPT_ALL, BUSY_ICON_FRIENDLY, affected_xeno, INTERRUPT_MOVED, BUSY_ICON_MEDICAL))
 		return FALSE
@@ -417,21 +417,21 @@
 	cant_consume = current_fruit.prevent_consume(affected_xeno)
 	if(cant_consume) //Check again after the timer incase they ate another fruit
 		user.affected_message(affected_xeno,
-			SPAN_HELPFUL("You <b>fail to [user == affected_xeno ? "eat" : "feed [affected_xeno]"] [current_fruit]</b>."),
-			SPAN_HELPFUL("[user] <b>fails to feed</b> you <b>[current_fruit]</b>."),
-			SPAN_NOTICE("[user] fails to [user == affected_xeno ? "eat" : "feed [affected_xeno]"] [current_fruit]."))
+			SPAN_HELPFUL("你<b>没能[user == affected_xeno ? "吃下" : "给[affected_xeno]喂下"][current_fruit]</b>。"),
+			SPAN_HELPFUL("[user]<b>没能</b>给你<b>喂下[current_fruit]</b>。"),
+			SPAN_NOTICE("[user]没能[user == affected_xeno ? "吃下" : "给[affected_xeno]喂下"][current_fruit]。"))
 		return
 
 	user.affected_message(affected_xeno,
-		SPAN_HELPFUL("You [user == affected_xeno ? "<b>eat</b>" : "<b>fed</b> [affected_xeno]"] <b>[current_fruit]</b>."),
-		SPAN_HELPFUL("[user] <b>fed</b> you <b>[current_fruit]</b>."),
-		SPAN_NOTICE("[user] [user == affected_xeno ? "ate" : "fed [affected_xeno]"] <b>[current_fruit]</b>."))
+		SPAN_HELPFUL("你[user == affected_xeno ? "<b>吃下了</b>" : "给[affected_xeno]<b>喂下了</b>"]<b>[current_fruit]</b>。"),
+		SPAN_HELPFUL("[user]给你<b>喂下了[current_fruit]</b>。"),
+		SPAN_NOTICE("[user][user == affected_xeno ? "吃下了" : "给[affected_xeno]喂下了"]<b>[current_fruit]</b>。"))
 	current_fruit.mature = TRUE
 	current_fruit.consume_effect(affected_xeno)
 
 	//Notify the fruit's bound xeno if they exist
 	if(!QDELETED(bound_xeno))
-		to_chat(bound_xeno, SPAN_XENOHIGHDANGER("One of our picked resin fruits has been consumed."))
+		to_chat(bound_xeno, SPAN_XENOHIGHDANGER("我们采摘的一个树脂果实被吃掉了。"))
 	qdel(src)
 	return TRUE
 
@@ -451,14 +451,14 @@
 /mob/living/carbon/xenomorph/proc/pickup_fruit(obj/effect/alien/resin/fruit/F)
 
 	if(F.bound_xeno && !can_not_harm(F.bound_xeno))
-		to_chat(src, SPAN_XENODANGER("We crush [F]."))
+		to_chat(src, SPAN_XENODANGER("我们捏碎了[F]。"))
 		qdel(F)
 		return
 	if(!F.mature)
-		to_chat(src, SPAN_XENODANGER("[F] isn't mature yet!"))
+		to_chat(src, SPAN_XENODANGER("[F]还未成熟！"))
 		return
 	if(F.picked)
-		to_chat(src, SPAN_XENODANGER("[F] is already being picked!"))
+		to_chat(src, SPAN_XENODANGER("已经有人在采摘[F]了！"))
 		return
 	// Indicates the fruit is being picked, so other xenos can't eat it at the same time
 	F.picked = TRUE
@@ -468,7 +468,7 @@
 	if(!F.mature)
 		F.picked = FALSE
 		return
-	to_chat(src, SPAN_XENONOTICE("You uproot [F]."))
+	to_chat(src, SPAN_XENONOTICE("你拔除了[F]。"))
 	var/obj/item/reagent_container/food/snacks/resin_fruit/new_fruit = new F.fruit_type()
 	new_fruit.color = F.color
 	put_in_hands(new_fruit)
@@ -478,16 +478,16 @@
 	qdel(F)
 
 /mob/living/carbon/xenomorph/larva/pickup_fruit(obj/effect/alien/resin/fruit/F)
-	to_chat(src, SPAN_XENODANGER("We are too small to pick up \the [F]!"))
+	to_chat(src, SPAN_XENODANGER("我们太小了，拿不起[F]！"))
 	return
 
 /mob/living/carbon/xenomorph/facehugger/pickup_fruit(obj/effect/alien/resin/fruit/F)
-	to_chat(src, SPAN_XENODANGER("We are too small to pick up \the [F]!"))
+	to_chat(src, SPAN_XENODANGER("我们太小了，拿不起[F]！"))
 	return
 
 /obj/item/reagent_container/food/snacks/resin_fruit/greater
 	name = XENO_FRUIT_GREATER
-	desc = "A strange large fruit that you could eat... if you REALLY wanted to. Its roots seem to twitch every so often."
+	desc = "一种奇怪的大果实，你可以吃掉它……如果你真的想吃的话。它的根须似乎不时会抽动。"
 	icon_state = "fruit_greater_item"
 	bitesize = 4
 	fruit_type = /obj/effect/alien/resin/fruit/greater
@@ -497,7 +497,7 @@
 
 /obj/item/reagent_container/food/snacks/resin_fruit/unstable
 	name = XENO_FRUIT_UNSTABLE
-	desc = "A strange volatile fruit that you could eat... if you REALLY wanted to. Its roots seem to twitch every so often."
+	desc = "一种奇怪而不稳定的果实，你可以吃掉它……如果你真的想吃的话。它的根须似乎不时会抽动。"
 	icon_state = "fruit_unstable_item"
 	bitesize = 4
 	fruit_type = /obj/effect/alien/resin/fruit/unstable
@@ -508,7 +508,7 @@
 
 /obj/item/reagent_container/food/snacks/resin_fruit/spore
 	name = XENO_FRUIT_SPORE
-	desc = "A strange spore-filled fruit that you could eat... if you REALLY wanted to. Its roots seem to twitch every so often."
+	desc = "一种奇怪的果实，里面充满孢子，你可以吃掉它……如果你真的想吃的话。它的根须似乎不时会抽动。"
 	icon_state = "fruit_spore_item"
 	fruit_type = /obj/effect/alien/resin/fruit/spore
 
@@ -518,7 +518,7 @@
 
 /obj/item/reagent_container/food/snacks/resin_fruit/speed
 	name = XENO_FRUIT_SPEED
-	desc = "A strange plasma-filled fruit that you could eat... if you REALLY wanted to. Its roots seem to twitch every so often."
+	desc = "一种奇怪的果实，里面充满等离子体，你可以吃掉它……如果你真的想吃的话。它的根须似乎不时会抽动。"
 	icon_state = "fruit_speed_item"
 	fruit_type = /obj/effect/alien/resin/fruit/speed
 

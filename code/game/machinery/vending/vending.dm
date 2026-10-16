@@ -8,10 +8,10 @@
 #define VENDING_WIRE_SHOOT_INV 4
 
 GLOBAL_LIST_INIT(vending_wire_descriptions, flatten_numeric_alist(alist(
-		VENDING_WIRE_EXTEND = "Inventory control computer",
-		VENDING_WIRE_IDSCAN = "ID scanner",
-		VENDING_WIRE_SHOCK = "Ground safety",
-		VENDING_WIRE_SHOOT_INV = "Dispenser motor control",
+		VENDING_WIRE_EXTEND = "库存控制计算机",
+		VENDING_WIRE_IDSCAN = "身份卡扫描器",
+		VENDING_WIRE_SHOCK = "接地保护",
+		VENDING_WIRE_SHOOT_INV = "出货电机控制",
 	)))
 
 #define VEND_HAND 1
@@ -28,8 +28,8 @@ GLOBAL_LIST_INIT(vending_wire_descriptions, flatten_numeric_alist(alist(
 GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending)
 
 /obj/structure/machinery/vending
-	name = "\improper Vendomat"
-	desc = "A generic vending machine."
+	name = "自动售货机"
+	desc = "一台普通的售货机。"
 	icon = 'icons/obj/structures/machinery/vending.dmi'
 	icon_state = "generic"
 	anchored = TRUE
@@ -188,51 +188,51 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 	if(!stat)
 		return
 
-	var/possessive = include_name ? "[src]'s" : "Its"
-	var/nominative = include_name ? "[src]" : "It"
+	var/possessive = include_name ? "[src]的" : "它的"
+	var/nominative = include_name ? "[src]" : "它"
 
 	if(stat & BROKEN)
-		return "[possessive] broken panel still needs to be <b>unscrewed</b> and removed."
+		return "[possessive]损坏面板仍需<b>拧松</b>并拆下。"
 	else if(stat & REPAIR_STEP_ONE)
-		return "[possessive] broken wires still need to be <b>cut</b> and removed from the vendor."
+		return "[possessive]断裂电线仍需<b>剪断</b>并从售货机中移除。"
 	else if(stat & REPAIR_STEP_TWO)
-		return "[nominative] needs to have <b>new wiring</b> installed."
+		return "[nominative]需要安装<b>新电线</b>。"
 	else if(stat & REPAIR_STEP_THREE)
-		return "[nominative] needs to have a <b>metal</b> panel installed."
+		return "[nominative]需要安装<b>金属</b>面板。"
 	else if(stat & REPAIR_STEP_FOUR)
-		return "[possessive] new panel needs to be <b>fastened</b> to it."
+		return "[possessive]新面板需要<b>拧紧固定</b>。"
 	else
-		return "[nominative] is being affected by some power-related issue."
+		return "[nominative]存在供电问题。"
 
 /obj/structure/machinery/vending/attackby(obj/item/item, mob/user)
 	if(is_tipped_over)
-		to_chat(user, "Tip it back upright first!")
+		to_chat(user, "先把它扶正！")
 		return FALSE
 
 	if(HAS_TRAIT(item, TRAIT_TOOL_SCREWDRIVER))
 		if(stat == WORKING)
 			panel_open = !panel_open
-			to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
+			to_chat(user, "你[panel_open ? "打开" : "关闭"]了维护面板。")
 			update_icon()
 			return TRUE
 		else if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You do not understand how to repair the broken [src.name]."))
+			to_chat(user, SPAN_WARNING("你不知道如何修理损坏的[src.name]。"))
 			return FALSE
 		else if(stat & BROKEN)
-			to_chat(user, SPAN_NOTICE("You start to unscrew [src]'s broken panel."))
+			to_chat(user, SPAN_NOTICE("你开始拧松[src]损坏的面板。"))
 			if(!do_after(user, 3 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, numticks = 3))
-				to_chat(user, SPAN_WARNING("You stop unscrewing [src]'s broken panel."))
+				to_chat(user, SPAN_WARNING("你停止拧松[src]损坏的面板。"))
 				return FALSE
-			to_chat(user, SPAN_NOTICE("You unscrew [src]'s broken panel and remove it, exposing many broken wires."))
+			to_chat(user, SPAN_NOTICE("你拧松并拆下[src]损坏的面板，露出了许多断裂的电线。"))
 			stat &= ~BROKEN
 			stat |= REPAIR_STEP_ONE
 			return TRUE
 		else if(stat & REPAIR_STEP_FOUR)
-			to_chat(user, SPAN_NOTICE("You start to fasten [src]'s new panel."))
+			to_chat(user, SPAN_NOTICE("你开始固定[src]的新面板。"))
 			if(!do_after(user, 3 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, numticks = 3))
-				to_chat(user, SPAN_WARNING("You stop fastening [src]'s new panel."))
+				to_chat(user, SPAN_WARNING("你停止固定[src]的新面板。"))
 				return FALSE
-			to_chat(user, SPAN_NOTICE("You fasten [src]'s new panel, fully repairing the vendor."))
+			to_chat(user, SPAN_NOTICE("你固定好了[src]的新面板，售货机已完全修复。"))
 			stat &= ~REPAIR_STEP_FOUR
 			stat |= FULLY_REPAIRED
 			update_icon()
@@ -243,17 +243,17 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 			return FALSE
 	else if(HAS_TRAIT(item, TRAIT_TOOL_WIRECUTTERS))
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You do not understand how to repair the broken [src.name]."))
+			to_chat(user, SPAN_WARNING("你不知道如何修理损坏的[src.name]。"))
 			return FALSE
 		else if(stat == WORKING && panel_open)
 			attack_hand(user)
 			return
 		else if(stat & REPAIR_STEP_ONE)
-			to_chat(user, SPAN_NOTICE("You start to remove [src]'s broken wires."))
+			to_chat(user, SPAN_NOTICE("你开始移除[src]断裂的电线。"))
 			if(!do_after(user, 3 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, numticks = 3))
-				to_chat(user, SPAN_WARNING("You stop removing [src]'s broken wires."))
+				to_chat(user, SPAN_WARNING("你停止移除[src]断裂的电线。"))
 				return FALSE
-			to_chat(user, SPAN_NOTICE("You remove [src]'s broken broken wires."))
+			to_chat(user, SPAN_NOTICE("你移除了[src]断裂的电线。"))
 			stat &= ~REPAIR_STEP_ONE
 			stat |= REPAIR_STEP_TWO
 			return TRUE
@@ -263,20 +263,20 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 			return FALSE
 	else if(istype(item, /obj/item/stack/cable_coil))
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You do not understand how to repair the broken [src.name]."))
+			to_chat(user, SPAN_WARNING("你不知道如何修理损坏的[src.name]。"))
 			return FALSE
 		var/obj/item/stack/cable_coil/CC = item
 		if(stat & REPAIR_STEP_TWO)
 			if(CC.amount < 5)
-				to_chat(user, SPAN_WARNING("You need more cable coil to replace the removed wires."))
-			to_chat(user, SPAN_NOTICE("You start to replace [src]'s removed wires."))
+				to_chat(user, SPAN_WARNING("需要更多电缆卷才能替换拆下的电线。"))
+			to_chat(user, SPAN_NOTICE("你开始替换[src]拆下的电线。"))
 			if(!do_after(user, 3 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, numticks = 3))
-				to_chat(user, SPAN_WARNING("You stop replacing [src]'s removed wires."))
+				to_chat(user, SPAN_WARNING("你停止替换[src]拆下的电线。"))
 				return FALSE
 			if(!CC || !CC.use(5))
-				to_chat(user, SPAN_WARNING("You need more cable coil to replace the removed wires."))
+				to_chat(user, SPAN_WARNING("需要更多电缆卷才能替换拆下的电线。"))
 				return FALSE
-			to_chat(user, SPAN_NOTICE("You remove [src]'s broken broken wires."))
+			to_chat(user, SPAN_NOTICE("你移除了[src]断裂的电线。"))
 			stat &= ~REPAIR_STEP_TWO
 			stat |= REPAIR_STEP_THREE
 			return TRUE
@@ -286,18 +286,18 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 			return
 	else if(istype(item, /obj/item/stack/sheet/metal))
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You do not understand how to repair the broken [src.name]."))
+			to_chat(user, SPAN_WARNING("你不知道如何修理损坏的[src.name]。"))
 			return FALSE
 		var/obj/item/stack/sheet/metal/M = item
 		if(stat & REPAIR_STEP_THREE)
-			to_chat(user, SPAN_NOTICE("You start to construct a new panel for [src]."))
+			to_chat(user, SPAN_NOTICE("你开始为[src]制作新面板。"))
 			if(!do_after(user, 3 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, numticks = 3))
-				to_chat(user, SPAN_WARNING("You stop constructing a new panel for [src]."))
+				to_chat(user, SPAN_WARNING("你停止为[src]制作新面板。"))
 				return FALSE
 			if(!M || !M.use(1))
-				to_chat(user, SPAN_WARNING("You a sheet of metal to construct a new panel."))
+				to_chat(user, SPAN_WARNING("你需要一块金属板来制作新面板。"))
 				return FALSE
-			to_chat(user, SPAN_NOTICE("You construct a new panel for [src]."))
+			to_chat(user, SPAN_NOTICE("你为[src]制作了新面板。"))
 			stat &= ~REPAIR_STEP_THREE
 			stat |= REPAIR_STEP_FOUR
 			return TRUE
@@ -314,9 +314,9 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 			switch (anchored)
 				if (0)
 					anchored = TRUE
-					user.visible_message("[user] tightens the bolts securing [src] to the floor.", "You tighten the bolts securing [src] to the floor.")
+					user.visible_message("[user]拧紧了将[src]固定在地板上的螺栓。", "你拧紧了将[src]固定在地板上的螺栓。")
 				if (1)
-					user.visible_message("[user] unfastens the bolts securing [src] to the floor.", "You unfasten the bolts securing [src] to the floor.")
+					user.visible_message("[user]松开了将[src]固定在地板上的螺栓。", "你松开了将[src]固定在地板上的螺栓。")
 					anchored = FALSE
 		return
 	else if(HAS_TRAIT(item, TRAIT_TOOL_MULTITOOL) || HAS_TRAIT(item, TRAIT_TOOL_WIRECUTTERS))
@@ -325,11 +325,11 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 		return
 	else if(istype(item, /obj/item/coin))
 		if(coin)
-			user.balloon_alert(user, "already a coin!")
+			user.balloon_alert(user, "已经有硬币了！")
 			return
 		if(user.drop_inv_item_to_loc(item, src))
 			coin = item
-			to_chat(user, SPAN_NOTICE("You insert [item] into [src]"))
+			to_chat(user, SPAN_NOTICE("你将[item]投入[src]。"))
 			tgui_interact(user)
 		return
 	else if(istype(item, /obj/item/spacecash))
@@ -346,24 +346,24 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 /obj/structure/machinery/vending/proc/scan_card(obj/item/card/card)
 	if(!currently_vending) return
 	if (istype(card, /obj/item/card/id))
-		visible_message(SPAN_INFO("[usr] swipes a card through [src]."))
+		visible_message(SPAN_INFO("[usr]在[src]上刷了一张卡。"))
 		var/datum/money_account/CH = get_account(card.associated_account_number)
 		if (CH) // Only proceed if card contains proper account number.
 			if(!CH.suspended)
 				if(CH.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
 					if(GLOB.vendor_account)
-						var/attempt_pin = tgui_input_number(usr, "Enter pin code", "Vendor transaction")
+						var/attempt_pin = tgui_input_number(usr, "输入密码", "售货机交易")
 						var/datum/money_account/D = attempt_account_access(card.associated_account_number, attempt_pin, 2)
 						transfer_and_vend(D)
 					else
-						to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Unable to access account. Check security settings and try again.")]")
+						to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("无法访问账户。请检查安全设置后重试。")]")
 				else
 					//Just Vend it.
 					transfer_and_vend(CH)
 			else
-				to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Connected account has been suspended.")]")
+				to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("关联账户已被冻结。")]")
 		else
-			to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Error: Unable to access your account. Please contact technical support if problem persists.")]")
+			to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("错误：无法访问你的账户。若问题持续，请联系技术支持。")]")
 
 /obj/structure/machinery/vending/proc/transfer_and_vend(datum/money_account/acc)
 	if(acc)
@@ -376,8 +376,8 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 
 			//create entries in the two account transaction logs
 			var/datum/transaction/T = new()
-			T.target_name = "[GLOB.vendor_account.owner_name] (via [name])"
-			T.purpose = "Purchase of [currently_vending.product_name]"
+			T.target_name = "[GLOB.vendor_account.owner_name]（通过[name]）"
+			T.purpose = "购买[currently_vending.product_name]"
 			if(transaction_amount > 0)
 				T.amount = "([transaction_amount])"
 			else
@@ -389,7 +389,7 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 							//
 			T = new()
 			T.target_name = acc.owner_name
-			T.purpose = "Purchase of [currently_vending.product_name]"
+			T.purpose = "购买[currently_vending.product_name]"
 			T.amount = "[transaction_amount]"
 			T.source_terminal = name
 			T.date = GLOB.current_date_string
@@ -400,9 +400,9 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 			vend(currently_vending, usr)
 			currently_vending = null
 		else
-			to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("You don't have that much money!")]")
+			to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("你的钱不够！")]")
 	else
-		to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Error: Unable to access your account. Please contact technical support if problem persists.")]")
+		to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("错误：无法访问你的账户。若问题持续，请联系技术支持。")]")
 
 /obj/structure/machinery/vending/proc/GetProductIndex(datum/data/vending_product/product)
 	var/list/plist
@@ -430,9 +430,9 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 	if(is_tipped_over)
 		if(user.action_busy)
 			return
-		user.visible_message(SPAN_NOTICE("[user] begins to heave [src] back into place!"), SPAN_NOTICE("You start heaving [src] back into place..."))
+		user.visible_message(SPAN_NOTICE("[user]开始用力将[src]扶回原位！"), SPAN_NOTICE("你开始用力将[src]扶回原位……"))
 		if(do_after(user, 80, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY))
-			user.visible_message(SPAN_NOTICE("[user] rights [src]!"), SPAN_NOTICE("You right [src]!"))
+			user.visible_message(SPAN_NOTICE("[user]扶正了[src]！"), SPAN_NOTICE("你扶正了[src]！"))
 			flip_back()
 		return
 
@@ -467,7 +467,7 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 				return FALSE
 			var/obj/item/held_item = user.get_held_item()
 			if (!held_item || !HAS_TRAIT(held_item, TRAIT_TOOL_WIRECUTTERS))
-				to_chat(user, "You need some wirecutters!")
+				to_chat(user, "你需要剪线钳！")
 				return TRUE
 
 			var/wire = params["wire"]
@@ -478,7 +478,7 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 				return FALSE
 			var/obj/item/held_item = user.get_held_item()
 			if (!held_item || !HAS_TRAIT(held_item, TRAIT_TOOL_WIRECUTTERS))
-				to_chat(user, "You need some wirecutters!")
+				to_chat(user, "你需要剪线钳！")
 				return TRUE
 			var/wire = params["wire"]
 			mend(wire)
@@ -488,11 +488,11 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 				return FALSE
 			var/obj/item/held_item = user.get_held_item()
 			if (!held_item || !HAS_TRAIT(held_item, TRAIT_TOOL_MULTITOOL))
-				to_chat(user, "You need a multitool!")
+				to_chat(user, "你需要多功能工具！")
 				return TRUE
 			var/wire = params["wire"]
 			if (isWireCut(wire))
-				to_chat(usr, "You can't pulse a cut wire.")
+				to_chat(usr, "无法向剪断的电线发送脉冲。")
 				return TRUE
 			pulse(wire)
 			return TRUE
@@ -502,7 +502,7 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 	if(!vend_ready)
 		return
 	if(panel_open)
-		to_chat(user, SPAN_WARNING("The vending machine cannot dispense products while its service panel is open!"))
+		to_chat(user, SPAN_WARNING("售货机的维护面板打开时无法出货！"))
 		return
 	return TRUE
 
@@ -530,22 +530,22 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 		message_admins("Vending machine exploit attempted by [key_name_admin(user)]!")
 		return
 	if(record.amount <= 0)
-		speak("Sold out of [record.name].")
+		speak("[record.name]已售罄。")
 		flick(icon_deny, src)
 		vend_ready = TRUE
 		return
 
 	if(coin_records.Find(record))
 		if(!coin)
-			speak("Coin required.")
+			speak("需要硬币。")
 			vend_ready = TRUE
 			return
 		if(coin.string_attached)
 			if(prob(50))
-				to_chat(user, SPAN_NOTICE("You successfully pull the coin out before [src] could swallow it."))
+				to_chat(user, SPAN_NOTICE("你赶在[src]吞下硬币前成功把它拉了出来。"))
 				user.put_in_hands(coin)
 			else
-				to_chat(user, SPAN_NOTICE("You weren't able to pull the coin out fast enough, the machine ate it, string and all."))
+				to_chat(user, SPAN_NOTICE("你没能及时拉出硬币，机器把它连同绳子一起吞了下去。"))
 				QDEL_NULL(coin)
 		else
 			QDEL_NULL(coin)
@@ -567,13 +567,13 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 			user_id = human_user.get_idcard()
 
 		if(!allowed(user))
-			speak("Access denied.")
+			speak("访问被拒绝。")
 			flick(icon_deny, src)
 			vend_ready = TRUE
 			return
 
 		if(!user_id && !sufficent_cash)
-			speak("No card found.")
+			speak("未找到身份卡。")
 			flick(icon_deny, src)
 			vend_ready = TRUE
 			return
@@ -584,14 +584,14 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 				account = get_account(user_id.associated_account_number)
 
 			if(!account && !sufficent_cash)
-				speak("No account found.")
+				speak("未找到账户。")
 				flick(icon_deny, src)
 				vend_ready = TRUE
 				return
 
 			if(!account || !transfer_money(account, record))
 				if (!sufficent_cash)
-					speak("You do not possess the funds to purchase [record.product_name].")
+					speak("你的余额不足以购买[record.product_name]。")
 					flick(icon_deny, src)
 					vend_ready = TRUE
 					return
@@ -610,13 +610,13 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 	record.amount--
 	playsound(src, "sound/machines/vending.ogg", 40, TRUE)
 	if(user.Adjacent(src) && user.put_in_hands(vended_item))
-		to_chat(user, SPAN_NOTICE("You take \the [record.product_name] out of the slot."))
+		to_chat(user, SPAN_NOTICE("你从出货口取出[record.product_name]。"))
 	else
-		to_chat(user, SPAN_WARNING("\The [record.product_name] falls onto the floor!"))
+		to_chat(user, SPAN_WARNING("[record.product_name]掉到了地上！"))
 	if(ripped_off)
 		flick(icon_deny, src)
 		addtimer(VARSET_CALLBACK(src, vend_ready, TRUE), 1 SECONDS)
-		addtimer(CALLBACK(src, PROC_REF(speak), "Insufficient change. Please contact a supervisor."), 1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(speak), "找零不足，请联系主管。"), 1 SECONDS)
 		return
 	vend_ready = TRUE
 
@@ -634,8 +634,8 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 
 	//create entries in the two account transaction logs
 	var/datum/transaction/new_transaction = new()
-	new_transaction.target_name = "[GLOB.vendor_account.owner_name] (via [name])"
-	new_transaction.purpose = "Purchase of [currently_vending.product_name]"
+	new_transaction.target_name = "[GLOB.vendor_account.owner_name]（通过[name]）"
+	new_transaction.purpose = "购买[currently_vending.product_name]"
 	if(transaction_amount > 0)
 		new_transaction.amount = "([transaction_amount])"
 	else
@@ -647,7 +647,7 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 
 	new_transaction = new()
 	new_transaction.target_name = user_account.owner_name
-	new_transaction.purpose = "Purchase of [currently_vending.product_name]"
+	new_transaction.purpose = "购买[currently_vending.product_name]"
 	new_transaction.amount = "[transaction_amount]"
 	new_transaction.source_terminal = name
 	new_transaction.date = GLOB.current_date_string
@@ -672,7 +672,7 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 	//create entries in the account transaction logs
 	var/datum/transaction/new_transaction = new()
 	new_transaction.target_name = "CASH"
-	new_transaction.purpose = "Purchase of [currently_vending.product_name]"
+	new_transaction.purpose = "购买[currently_vending.product_name]"
 	new_transaction.amount = "[transaction_amount]"
 	new_transaction.source_terminal = name
 	new_transaction.date = GLOB.current_date_string
@@ -846,37 +846,37 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 			if(isgun(item_to_stock))
 				var/obj/item/weapon/gun/gun = item_to_stock
 				if(gun.in_chamber || (gun.current_mag && !istype(gun.current_mag, /obj/item/ammo_magazine/internal)) || (istype(gun.current_mag, /obj/item/ammo_magazine/internal) && gun.current_mag.current_rounds > 0) )
-					to_chat(user, SPAN_WARNING("\The [gun] is still loaded. Unload it before you can restock it."))
+					to_chat(user, SPAN_WARNING("[gun]仍装有弹药。请先退弹再回存。"))
 					return
 				for(var/obj/item/attachable/attach in gun.contents) //Search for attachments on the gun. This is the easier method
 					if((attach.flags_attach_features & ATTACH_REMOVABLE) && !(is_type_in_list(attach, gun.starting_attachment_types))) //There are attachments that are default and others that can't be removed
-						to_chat(user, SPAN_WARNING("\The [gun] has non-standard attachments equipped. Detach them before you can restock it."))
+						to_chat(user, SPAN_WARNING("[gun]装有非标准配件。请先拆除再回存。"))
 						return
 
 			if(istype(item_to_stock, /obj/item/ammo_magazine))
 				var/obj/item/ammo_magazine/mag = item_to_stock
 				if(mag.current_rounds < mag.max_rounds)
-					to_chat(user, SPAN_WARNING("\The [mag] isn't full. Fill it before you can restock it."))
+					to_chat(user, SPAN_WARNING("[mag]未装满。请先装满再回存。"))
 					return
 			if(istype(item_to_stock, /obj/item/device/walkman))
 				var/obj/item/device/walkman/item = item_to_stock
 				if(item.tape)
-					to_chat(user, SPAN_WARNING("Remove the tape first!"))
+					to_chat(user, SPAN_WARNING("先取下磁带！"))
 					return
 
 			if(istype(item_to_stock, /obj/item/device/defibrillator))
 				var/obj/item/device/defibrillator/defib = item_to_stock
 				if(!defib.dcell)
-					to_chat(user, SPAN_WARNING("\The [item_to_stock] needs a cell in it to be restocked!"))
+					to_chat(user, SPAN_WARNING("[item_to_stock]必须装有电池才能回存！"))
 					return
 				if(defib.dcell.charge < defib.dcell.maxcharge)
-					to_chat(user, SPAN_WARNING("\The [item_to_stock] needs to be fully charged to restock it!"))
+					to_chat(user, SPAN_WARNING("[item_to_stock]必须充满电才能回存！"))
 					return
 
 			if(istype(item_to_stock, /obj/item/cell))
 				var/obj/item/cell/cell = item_to_stock
 				if(cell.charge < cell.maxcharge)
-					to_chat(user, SPAN_WARNING("\The [item_to_stock] needs to be fully charged to restock it!"))
+					to_chat(user, SPAN_WARNING("[item_to_stock]必须充满电才能回存！"))
 					return
 
 			if(item_to_stock.loc == user) //Inside the mob's inventory
@@ -889,8 +889,8 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 				S.remove_from_storage(item_to_stock, user.loc)
 
 			qdel(item_to_stock)
-			user.visible_message(SPAN_NOTICE("[user] stocks [src] with \a [product.product_name]."),
-			SPAN_NOTICE("You stock [src] with \a [product.product_name]."))
+			user.visible_message(SPAN_NOTICE("[user]向[src]补充了[product.product_name]。"),
+			SPAN_NOTICE("你向[src]补充了[product.product_name]。"))
 			product.amount++
 			return //We found our item, no reason to go on.
 
@@ -923,7 +923,7 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 		return
 
 	for(var/mob/mob in hearers(src, null))
-		mob.show_message("<span class='game say'><span class='name'>[src]</span> beeps, \"[message]\"</span>", SHOW_MESSAGE_AUDIBLE)
+		mob.show_message("<span class='game say'><span class='name'>[src]</span>发出电子提示音：“[message]”</span>", SHOW_MESSAGE_AUDIBLE)
 	return
 
 //Oh no we're malfunctioning!  Dump out some product and break.
@@ -967,7 +967,7 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 	if (!throw_item)
 		return 0
 	INVOKE_ASYNC(throw_item, /atom/movable/proc/throw_atom, target, 16, SPEED_AVERAGE, src)
-	visible_message(SPAN_WARNING("[src] launches [throw_item] at [target]!"))
+	visible_message(SPAN_WARNING("[src]向[target]发射了[throw_item]！"))
 	playsound(src, "sound/machines/vending.ogg", 40, TRUE)
 	return 1
 
@@ -980,14 +980,14 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 	switch(wire)
 		if(VENDING_WIRE_EXTEND)
 			extended_inventory = TRUE
-			visible_message(SPAN_NOTICE("A weak yellow light turns off underneath [src]."))
+			visible_message(SPAN_NOTICE("[src]底部微弱的黄灯熄灭了。"))
 		if(VENDING_WIRE_SHOCK)
 			seconds_electrified = -1
-			visible_message(SPAN_DANGER("Electric arcs shoot off from [src]!"))
+			visible_message(SPAN_DANGER("[src]迸射出电弧！"))
 		if (VENDING_WIRE_SHOOT_INV)
 			if(!shoot_inventory)
 				shoot_inventory = TRUE
-				visible_message(SPAN_WARNING("[src] begins whirring noisily."))
+				visible_message(SPAN_WARNING("[src]开始发出嘈杂的嗡鸣声。"))
 
 /obj/structure/machinery/vending/proc/mend(wire)
 	wires |= getWireFlag(wire)
@@ -995,24 +995,24 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 	switch(wire)
 		if(VENDING_WIRE_EXTEND)
 			extended_inventory = FALSE
-			visible_message(SPAN_NOTICE("A weak yellow light turns on underneath [src]."))
+			visible_message(SPAN_NOTICE("[src]底部亮起了微弱的黄灯。"))
 		if(VENDING_WIRE_SHOCK)
 			seconds_electrified = 0
 		if (VENDING_WIRE_SHOOT_INV)
 			shoot_inventory = FALSE
-			visible_message(SPAN_NOTICE("[src] stops whirring."))
+			visible_message(SPAN_NOTICE("[src]停止了嗡鸣。"))
 
 /obj/structure/machinery/vending/proc/pulse(wire)
 	switch(wire)
 		if(VENDING_WIRE_EXTEND)
 			extended_inventory = !extended_inventory
-			visible_message(SPAN_NOTICE("A weak yellow light turns [extended_inventory ? "on" : "off"] underneath [src]."))
+			visible_message(SPAN_NOTICE("[src]底部微弱的黄灯[extended_inventory ? "亮起" : "熄灭"]了。"))
 		if (VENDING_WIRE_SHOCK)
 			seconds_electrified = 30
-			visible_message(SPAN_DANGER("Electric arcs shoot off from [src]!"))
+			visible_message(SPAN_DANGER("[src]迸射出电弧！"))
 		if (VENDING_WIRE_SHOOT_INV)
 			shoot_inventory = !shoot_inventory
 			if(shoot_inventory)
-				visible_message(SPAN_WARNING("[src] begins whirring noisily."))
+				visible_message(SPAN_WARNING("[src]开始发出嘈杂的嗡鸣声。"))
 			else
-				visible_message(SPAN_NOTICE("[src] stops whirring."))
+				visible_message(SPAN_NOTICE("[src]停止了嗡鸣。"))

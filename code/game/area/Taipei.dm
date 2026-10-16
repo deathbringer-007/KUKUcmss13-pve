@@ -13,128 +13,128 @@
 
 /area/taipei/underground
 	always_unpowered = 1
-	name = "\improper Asteroid"
+	name = "\improper 小行星"
 	icon_state = "caves"
 
 /area/taipei/club
-	name = "\improper Velvet Tassle"
+	name = "\improper 天鹅绒流苏"
 	icon_state = "blue"
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 
 /area/taipei/maints
-	name = "Maintenance Tunnels"
+	name = "维护隧道"
 	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 	soundscape_interval = 0
 
 /area/taipei/maints/south
-	name = "\improper Southern Maintenance Tunnels"
+	name = "\improper 南侧维护隧道"
 	icon_state = "south"
 
 /area/taipei/maints/north
-	name = "\improper Northern Maintenance Tunnels"
+	name = "\improper 北侧维护隧道"
 	icon_state = "north"
 
 /area/taipei/atrium
-	name = "\improper Main Atrium"
+	name = "\improper 主中庭"
 	sound_environment = SOUND_ENVIRONMENT_PARKING_LOT
 	soundscape_playlist = SCAPE_PL_ELEVATOR_MUSIC
 	soundscape_interval = 120
 	icon_state = "green"
 
 /area/taipei/atrium/medbay
-	name = "\improper Clinic"
+	name = "\improper 诊所"
 	icon_state = "medbay"
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 	soundscape_playlist = SCAPE_PL_ELEVATOR_MUSIC
 	soundscape_interval = 120
 
 /area/taipei/cmb
-	name = "\improper Colonial Marshall Bureau"
+	name = "\improper 殖民地执法局"
 	icon_state = "security"
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 
 /area/taipei/cargo
-	name = "\improper Cargo Access"
+	name = "\improper 货运通道"
 	icon_state = "primarystorage"
 	sound_environment = SOUND_ENVIRONMENT_HANGAR
 
 /area/taipei/hangar
-	name = "\improper Access Hangar"
+	name = "\improper 出入机库"
 	icon_state = "yellow"
 	sound_environment = SOUND_ENVIRONMENT_HANGAR
 	soundscape_playlist = SCAPE_PL_HANGAR
 	soundscape_interval = 30
 
 /area/taipei/hangar/landingzone
-	name = "\improper Landing Zone One"
+	name = "\improper 一号降落区"
 	is_landing_zone = TRUE
 	icon_state = "lv-626"
 
 /area/taipei/telecomms
-	name = "\improper Telecommunications"
+	name = "\improper 通讯区"
 	icon_state = "purple"
 	soundscape_playlist = SCAPE_PL_AICORE
 	soundscape_interval = 5
 	sound_environment = SOUND_ENVIRONMENT_GENERIC
 
 /area/taipei/atrium/laundry
-	name = "\improper Laundromat"
+	name = "\improper 自助洗衣店"
 	icon_state = "gruntrnr"
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 
 /area/taipei/atrium/store
-	name = "\improper Conveniance-Mart"
+	name = "\improper 便利店"
 	icon_state = "req"
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 
 /area/taipei/theatre
-	name = "\improper Movie Star"
+	name = "\improper 电影之星"
 	icon_state = "almayer"
 	sound_environment = SOUND_ENVIRONMENT_AUDITORIUM
 
 /area/taipei/atrium/offices
-	name = "\improper Management Office"
+	name = "\improper 管理办公室"
 	icon_state = "livingspace"
 	sound_environment = SOUND_ENVIRONMENT_LIVINGROOM
 
 /area/taipei/reactor
-	name = "\improper Reactor Control Room"
+	name = "\improper 反应堆控制室"
 	icon_state = "upperengineering"
 	sound_environment = SOUND_ENVIRONMENT_GENERIC
 	soundscape_playlist = SCAPE_PL_ENG
 	soundscape_interval = 15
 
 /area/taipei/reactor/chamber
-	name = "\improper Reactor Chamber"
+	name = "\improper 反应堆室"
 	icon_state = "green"
 	sound_environment = SOUND_ENVIRONMENT_MOUNTAINS
 
 /area/taipei/atrium/restaurant
-	name = "\improper Sal's Noodles"
+	name = "\improper 萨尔面馆"
 	icon_state = "pink"
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 
 /area/taipei/atrium/bookstore
-	name = "\improper Lots'o'Books"
+	name = "\improper 满屋书书店"
 	icon_state = "yellow"
 	sound_environment = SOUND_ENVIRONMENT_LIVINGROOM
 
 /area/taipei/hangar/cargoshuttle
-	name = "\improper Cargo Skiff"
+	name = "\improper 货运驳船"
 	icon_state = "green"
 	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/taipei/elevator
-	name = "Elevator"
+	name = "电梯"
 	icon_state = "yellow"
 
 /area/taipei/elevator/arrivals
-	name = "\improper Arrivals Elevator"
+	name = "\improper 入站电梯"
 
 /area/taipei/elevator/departures
-	name = "\improper Departures Elevator"
+	name = "\improper 离站电梯"
 
 /area/taipei/atrium/hotel
-	name = "\improper Short Stay Room and Board"
+	name = "\improper 短期食宿区"
 	icon_state = "green"
 	sound_environment = SOUND_ENVIRONMENT_CARPETED_HALLWAY

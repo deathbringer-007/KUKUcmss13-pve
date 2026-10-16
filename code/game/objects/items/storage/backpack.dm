@@ -3,8 +3,8 @@
  */
 
 /obj/item/storage/backpack
-	name = "backpack"
-	desc = "You wear this on your back and put items into it."
+	name = "背包"
+	desc = "背在背上，用来装东西。"
 	icon = 'icons/obj/items/clothing/backpacks.dmi'
 	icon_state = "backpack"
 	w_class = SIZE_LARGE
@@ -293,8 +293,8 @@
 	icon_state = "securitypack"
 
 /obj/item/storage/backpack/industrial
-	name = "industrial backpack"
-	desc = "It's a tough backpack lookin' backpack used by engineers and the like."
+	name = "工业背包"
+	desc = "工程人员等使用的结实背包，看起来就很像个背包。"
 	icon_state = "engiepack"
 	item_state = "engiepack"
 
@@ -328,8 +328,8 @@
  */
 
 /obj/item/storage/backpack/satchel
-	name = "leather satchel"
-	desc = "A very fancy satchel made of fine leather. Looks pretty pricey."
+	name = "皮革挎包"
+	desc = "优质皮革制成的精美挎包，看起来价格不菲。"
 	icon_state = "satchel"
 	worn_accessible = TRUE
 	storage_slots = null
@@ -351,8 +351,8 @@
 	new /obj/item/storage/wallet/random( src )
 
 /obj/item/storage/backpack/satchel/lockable
-	name = "secure leather satchel"
-	desc = "A very fancy satchel made of fine leather. It's got a lock on it."
+	name = "安全皮革挎包"
+	desc = "优质皮革制成的精美挎包，带有锁具。"
 	is_id_lockable = TRUE
 
 /obj/item/storage/backpack/satchel/lockable/liaison
@@ -375,8 +375,8 @@
 	icon_state = "satchel-eng"
 
 /obj/item/storage/backpack/satchel/med
-	name = "medical satchel"
-	desc = "A sterile satchel used in medical departments."
+	name = "医疗挎包"
+	desc = "医疗部门使用的无菌挎包。"
 	icon_state = "satchel-med"
 
 /obj/item/storage/backpack/satchel/vir
@@ -413,8 +413,8 @@
 //=======================================================================\\
 
 /obj/item/storage/backpack/marine
-	name = "\improper lightweight IMP backpack"
-	desc = "The standard-issue pack of the USCM and US Army forces. Designed to lug gear into the battlefield using the Intuitive Mounting Point system on M3 armor."
+	name = "轻型 IMP 背包"
+	desc = "USCM 与美国陆军的制式背包，利用 M3 护甲的直觉式挂载点系统将装备带入战场。"
 	icon_state = "imp"
 	item_state = "imp"
 	has_gamemode_skin = FALSE //replace this with the atom_flag NO_SNOW_TYPE at some point, just rename it to like, NO_MAP_VARIANT_SKIN
@@ -423,8 +423,8 @@
 	has_gamemode_skin = FALSE
 
 /obj/item/storage/backpack/marine/ammo_rack
-	name = "\improper IMP ammo rack"
-	desc = "A bare IMP frame with buckles designed to hold multiple ammo cans, but can fit any cumbersome box thanks to Marine ingenuity. Helps you lug around extra rounds or supplies."
+	name = "IMP 弹药架"
+	desc = "带有固定扣的裸露 IMP 框架，原本用于挂载多个弹药箱；凭借陆战队员的巧思，任何笨重箱子也能装上。方便携带额外弹药或物资。"
 	has_gamemode_skin = FALSE
 	storage_slots = 3
 	icon_state = "ammo_pack_0"
@@ -453,8 +453,8 @@
 	UnregisterSignal(user, COMSIG_HUMAN_POST_MOVE_DELAY)
 
 /obj/item/storage/backpack/marine/medic
-	name = "\improper USCM corpsman backpack"
-	desc = "A standard-issue backpack worn by USCM medics."
+	name = "USCM 医疗兵背包"
+	desc = "USCM 医疗兵使用的制式背包。"
 	icon_state = "marinepack_medic"
 	item_state = "marinepack_medic"
 	xeno_icon_state = "medicpack"
@@ -464,32 +464,32 @@
 	has_gamemode_skin = FALSE
 
 /obj/item/storage/backpack/marine/medic/upp
-	name = "\improper UPP corpsman backpack"
-	desc = "Uncommon issue backpack worn by UPP medics from isolated sectors. You can swear you can see a faded USCM symbol."
+	name = "UPP 医疗兵背包"
+	desc = "偏远星区 UPP 医疗兵使用的少见配发背包。你敢肯定，上面有个褪色的 USCM 标志。"
 
 /obj/item/storage/backpack/marine/tech
-	name = "\improper USCM technician backpack"
-	desc = "A standard-issue backpack worn by USCM technicians."
+	name = "USCM 技术员背包"
+	desc = "USCM 技术员使用的制式背包。"
 	icon_state = "marinepack_techi"
 	item_state = "marinepack_techi"
 	xeno_icon_state = "marinepack"
 	xeno_types = list(/mob/living/carbon/xenomorph/runner, /mob/living/carbon/xenomorph/praetorian, /mob/living/carbon/xenomorph/drone, /mob/living/carbon/xenomorph/warrior, /mob/living/carbon/xenomorph/defender, /mob/living/carbon/xenomorph/sentinel, /mob/living/carbon/xenomorph/spitter)
 
 /obj/item/storage/backpack/marine/satchel/intel
-	name = "\improper USCM lightweight expedition pack"
-	desc = "A heavy-duty IMP based backpack that can be slung around the front or to the side, and can quickly be accessed with only one hand. Usually issued to USCM intelligence officers."
+	name = "USCM 轻型远征包"
+	desc = "基于 IMP 系统的重型背包，可挂在胸前或身侧，单手即可快速取用。通常配发给 USCM 情报官。"
 	icon_state = "marinebigsatch"
 	max_storage_space = 20
 
 /obj/item/storage/backpack/marine/satchel/intel/chestrig
-	name = "\improper USCM expedition chestrig"
-	desc = "A heavy-duty IMP based chestrig, can quickly be accessed with only one hand. Usually issued to USCM intelligence officers."
+	name = "USCM 远征胸挂"
+	desc = "基于 IMP 系统的重型胸挂，单手即可快速取用。通常配发给 USCM 情报官。"
 	icon_state = "intel_chestrig"
 	max_storage_space = 20
 
 /obj/item/storage/backpack/marine/satchel
-	name = "\improper USCM satchel"
-	desc = "A heavy-duty satchel carried by some USCM soldiers and support personnel."
+	name = "USCM 挎包"
+	desc = "部分 USCM 士兵与支援人员携带的重型挎包。"
 	icon_state = "marinesatch"
 	worn_accessible = TRUE
 	storage_slots = null
@@ -508,29 +508,29 @@
 	max_storage_space = 21 //backpack size
 
 /obj/item/storage/backpack/marine/satchel/medic
-	name = "\improper USCM corpsman satchel"
-	desc = "A heavy-duty satchel used by USCM medics. It sacrifices capacity for usability. A small patch is sewn to the top flap."
+	name = "USCM 医疗兵挎包"
+	desc = "USCM 医疗兵使用的重型挎包，牺牲容量以提高便利性。顶盖缝有一块小标章。"
 	icon_state = "marinesatch_medic"
 
 /obj/item/storage/backpack/marine/satchel/medic/standard
 	has_gamemode_skin = FALSE
 
 /obj/item/storage/backpack/marine/satchel/tech
-	name = "\improper USCM technician chestrig"
-	desc = "A heavy-duty chestrig used by some USCM technicians."
+	name = "USCM 技术员胸挂"
+	desc = "部分 USCM 技术员使用的重型胸挂。"
 	icon_state = "marinesatch_techi"
 
 /obj/item/storage/backpack/marine/satchel/chestrig
-	name = "\improper USCM chestrig"
-	desc = "A chestrig used by some USCM personnel."
+	name = "USCM 胸挂"
+	desc = "部分 USCM 人员使用的胸挂。"
 	icon_state = "chestrig"
 	has_gamemode_skin = FALSE
 
 GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/rto)
 
 /obj/item/storage/backpack/marine/satchel/rto
-	name = "\improper USCM Radio Telephone Pack"
-	desc = "A heavy-duty pack, used for telecommunications between central command. Commonly carried by RTOs."
+	name = "USCM 无线电话背包"
+	desc = "用于与中央指挥部通讯的重型背包，通常由无线电话员携带。"
 	icon_state = "rto_backpack"
 	item_state = "rto_backpack"
 	has_gamemode_skin = FALSE
@@ -599,31 +599,31 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 	phone_category = PHONE_IO
 
 /obj/item/storage/backpack/marine/smock
-	name = "\improper M3 sniper's smock"
-	desc = "A specially-designed smock with pockets for all your sniper needs."
+	name = "M3 狙击手罩衣"
+	desc = "专门设计的罩衣，口袋可满足狙击手的各种需要。"
 	icon_state = "smock"
 	worn_accessible = TRUE
 	xeno_types = null
 
 /obj/item/storage/backpack/marine/marsoc
-	name = "\improper USCM SOF IMP tactical rucksack"
+	name = "USCM SOF IMP 战术行军背包"
 	icon_state = "tacrucksack"
-	desc = "With a backpack like this, you'll forget you're on a hell march designed to kill you."
+	desc = "背上这样的背包，你会忘记自己正走在要命的地狱行军路上。"
 	worn_accessible = TRUE
 	has_gamemode_skin = FALSE
 	xeno_types = null
 
 /obj/item/storage/backpack/marine/rocketpack
-	name = "\improper USCM IMP M22 rocket bags"
-	desc = "A specially-designed backpack that fits to the IMP mounting frame on standard USCM pattern M3 armors. It's made of two waterproofed reinforced tubes and one smaller satchel slung at the bottom. The two silos are for rockets, but no one is stopping you from cramming other things in there."
+	name = "USCM IMP M22 火箭弹携行袋"
+	desc = "专门适配 USCM 标准 M3 式护甲 IMP 挂架的背包，由两根防水加强筒和底部的小挎包组成。两根筒原本装火箭弹，但也没人阻止你塞别的东西。"
 	icon_state = "rocketpack"
 	worn_accessible = TRUE
 	has_gamemode_skin = FALSE //monkeysfist101 never sprited a snowtype but included duplicate icons. Why?? Recolor and touch up sprite at a later date.
 	xeno_types = null
 
 /obj/item/storage/backpack/marine/grenadepack
-	name = "\improper USCM IMP M63A1 grenade satchel"
-	desc = "A secure satchel with dedicated grenade pouches meant to minimize risks of secondary ignition."
+	name = "USCM IMP M63A1 手榴弹挎包"
+	desc = "带有专用手榴弹袋的安全挎包，可降低二次引燃风险。"
 	icon_state = "grenadierpack"
 	overlays = list("+grenadierpack_unlocked")
 	worn_accessible = TRUE
@@ -641,8 +641,8 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 		return ..()
 
 /obj/item/storage/backpack/marine/mortarpack
-	name = "\improper USCM mortar shell backpack"
-	desc = "A backpack specifically designed to hold ammunition for the M402 mortar."
+	name = "USCM 迫击炮弹背包"
+	desc = "专门用于携带 M402 迫击炮弹药的背包。"
 	icon_state = "mortarpack"
 	max_w_class = SIZE_HUGE
 	storage_slots = 12
@@ -665,8 +665,8 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 
 /// G-8-a general pouch belt
 /obj/item/storage/backpack/general_belt
-	name = "\improper G8-A general utility pouch"
-	desc = "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor to provide additional storage. The newer G8-A model, while uncomfortable, can also be clipped around the waist."
+	name = "G8-A 通用杂物袋"
+	desc = "轻便的小袋，可夹在阿玛特系统 M3 式护甲上增加储物空间。新款 G8-A 也能固定在腰间，只是不太舒服。"
 	max_storage_space = 10
 	w_class = SIZE_LARGE
 	max_w_class = SIZE_MEDIUM
@@ -691,8 +691,8 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 	can_hold_skill = FALSE
 
 /obj/item/storage/backpack/general_belt/upp
-	name = "\improper Type 48-M general utility pouch"
-	desc = "A small, lightweight pouch that can be clipped onto U-pattern UPP armor to provide additional storage. The newer 48-M model, while uncomfortable, can also be clipped around the waist."
+	name = "式 48-M 通用杂物袋"
+	desc = "轻便的小袋，可夹在 UPP U 式护甲上增加储物空间。新款 48-M 也能固定在腰间，只是不太舒服。"
 	icon_state = "upp_g8pouch"
 	item_state = "upp_g8pouch"
 	has_gamemode_skin = FALSE
@@ -884,8 +884,8 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 // Welder Backpacks //
 
 /obj/item/storage/backpack/marine/engineerpack
-	name = "\improper USCM technician welderpack"
-	desc = "A specialized backpack worn by USCM technicians. It carries a fueltank for quick welder refueling and use."
+	name = "USCM 技术员焊接背包"
+	desc = "USCM 技术员使用的专用背包，内置燃料罐，便于快速补充和使用焊炬。"
 	icon_state = "welderbackpack"
 	item_state = "welderbackpack"
 	var/max_fuel = 260
@@ -964,8 +964,8 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 	. += "[reagents.total_volume] units of fuel left!"
 
 /obj/item/storage/backpack/marine/engineerpack/satchel
-	name = "\improper USCM technician welder-satchel"
-	desc = "A specialized satchel worn by USCM technicians and engineers. It carries two small fuel tanks for quick welder refueling and use."
+	name = "USCM 技术员焊接挎包"
+	desc = "USCM 技术员和工兵使用的专用挎包，内置两个小燃料罐，便于快速补充和使用焊炬。"
 	icon_state = "satchel_marine_welder"
 	item_state = "satchel_marine_welder"
 	max_storage_space = 12
@@ -974,8 +974,8 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 	worn_accessible = TRUE
 
 /obj/item/storage/backpack/marine/engineerpack/welder_chestrig
-	name = "\improper Technician Welder Chestrig"
-	desc = "A specialized Chestrig worn by technicians and engineers. It carries one medium fuel tank for quick welder refueling and use."
+	name = "技术员焊接胸挂"
+	desc = "技术员与工兵使用的专用胸挂，带有一个中型燃料罐，便于快速补充和使用焊炬。"
 	icon_state = "welder_chestrig"
 	item_state = "welder_chestrig"
 	max_storage_space = 12
@@ -985,8 +985,8 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 
 // Pyrotechnician Spec backpack fuel tank
 /obj/item/storage/backpack/marine/engineerpack/flamethrower
-	name = "\improper USCM Pyrotechnician G6-2 fueltank"
-	desc = "A specialized fueltank worn by USCM Pyrotechnicians for use with the M240-T incinerator unit. A small general storage compartment is installed."
+	name = "USCM 火焰兵 G6-2 燃料罐"
+	desc = "USCM 火焰兵使用的专用燃料背罐，配合 M240-T 火焰喷射器使用，并装有一个小型通用储物格。"
 	icon_state = "flamethrower_tank"
 	max_fuel = 500
 	fuel_type = "utnapthal"
@@ -1045,8 +1045,8 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 	. = ..()
 
 /obj/item/storage/backpack/marine/engineerpack/flamethrower/kit
-	name = "\improper USCM Pyrotechnician G4-1 fueltank"
-	desc = "A much older-generation back rig that holds fuel in two tanks. A small regulator sits between them. Has a few straps for holding up to three of the actual flamer tanks you'll be refilling."
+	name = "USCM 火焰兵 G4-1 燃料罐"
+	desc = "老得多的双罐燃料背架，中间有一个小型调压器。附有几条绑带，最多可挂三个待补充的喷火器燃料罐。"
 	icon_state = "flamethrower_backpack"
 	item_state = "flamethrower_backpack"
 	max_fuel = 350
@@ -1060,8 +1060,8 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 //----------OTHER FACTIONS AND ERTS----------
 
 /obj/item/storage/backpack/lightpack
-	name = "\improper lightweight combat pack"
-	desc = "A small, lightweight pack for expeditions and short-range operations."
+	name = "轻型战斗背包"
+	desc = "适合远征和短程行动的小型轻便背包。"
 	icon_state = "ERT_satchel"
 	worn_accessible = TRUE
 
@@ -1083,8 +1083,8 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 	worn_accessible = TRUE
 
 /obj/item/storage/backpack/mcommander
-	name = "marine commanding officer backpack"
-	desc = "The contents of this backpack are top secret."
+	name = "陆战队指挥官背包"
+	desc = "这个背包里的东西属于绝密。"
 	icon_state = "marinepack"
 	storage_slots = null
 	max_storage_space = 30
@@ -1135,8 +1135,8 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 //----------UPP SECTION----------
 
 /obj/item/storage/backpack/lightpack/upp
-	name = "\improper UCP3 combat pack"
-	desc = "A UPP military standard-issue Union Combat Pack MK3."
+	name = "UCP3 战斗包"
+	desc = "UPP 军方制式“联盟战斗背包 MK3”。"
 	icon_state = "satchel_upp"
 	worn_accessible = TRUE
 	max_storage_space = 15
@@ -1171,31 +1171,31 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 	has_gamemode_skin = FALSE
 
 /obj/item/storage/backpack/rmc/heavy
-	name = "heavyweight RMC backpack"
-	desc = "The heavy-carry pack of the RMC forces. Designed to lug the most amount of gear into the battlefield."
+	name = "重型 RMC 背包"
+	desc = "RMC 部队的重载背包，旨在将尽可能多的装备带入战场。"
 	icon_state = "backpack_large"
 	item_state = "backpack_large"
 	max_storage_space = 24
 	bag_open_time = 3 SECONDS
 
 /obj/item/storage/backpack/rmc/medic
-	name = "RMC medical backpack"
-	desc = "A TWE military standard-carry RMC combat pack MK3. Modified by Medical Assistants to fit their needs better."
+	name = "RMC 医疗背包"
+	desc = "TWE 军方标准载荷 RMC 战斗背包 MK3，经医疗助理改造，更符合他们的需要。"
 	icon_state = "backpack_medium_medic"
 	item_state = "backpack_medium_medic"
 	worn_accessible = TRUE
 	max_storage_space = 21
 
 /obj/item/storage/backpack/rmc/medium
-	name = "standard RMC backpack"
-	desc = "A TWE military standard-carry RMC combat pack MK3."
+	name = "标准 RMC 背包"
+	desc = "TWE 军方标准载荷 RMC 战斗背包 MK3。"
 	icon_state = "backpack_medium"
 	item_state = "backpack_medium"
 	max_storage_space = 18
 
 /obj/item/storage/backpack/marine/engineerpack/satchel/rmc
-	name = "RMC engineering backpack"
-	desc = "A TWE military standard-carry RMC combat pack MK3. Modified by ingenious Royal Engineers to better fit their requirements."
+	name = "RMC 工程背包"
+	desc = "TWE 军方制式 RMC 战斗背包 MK3，经心灵手巧的皇家工兵改造，更符合他们的需求。"
 	icon_state = "backpack_sapper"
 	item_state = "backpack_sapper"
 	max_storage_space = 18
@@ -1203,8 +1203,8 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 	worn_accessible = TRUE
 
 /obj/item/storage/backpack/rmc/light
-	name = "lightweight RMC backpack"
-	desc = "A TWE military light-carry RMC combat pack MK3."
+	name = "轻型 RMC 背包"
+	desc = "TWE 军方轻载型 RMC 战斗背包 MK3。"
 	icon_state = "backpack_small"
 	item_state = "backpack_small"
 	worn_accessible = TRUE
@@ -1235,8 +1235,8 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 	icon_state = "[base_icon_state]_[length(contents)]"
 
 /obj/item/storage/backpack/general_belt/rmc
-	name = "\improper L26 pattern general utility belt"
-	desc = "A small, lightweight pouch that can be clipped onto armor to provide additional storage. This new RMC model, while uncomfortable, can also be clipped around the waist."
+	name = "L26 式通用杂物腰带"
+	desc = "轻便的小袋，可夹在护甲上增加储物空间。这款 RMC 新型号也能固定在腰间，只是不太舒服。"
 	icon_state = "rmc_general"
 	item_state = "rmc_general"
 	has_gamemode_skin = FALSE

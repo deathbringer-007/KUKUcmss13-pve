@@ -80,15 +80,15 @@
 		is_chamber_empty = 1
 		processing_chamber = "空无一物。"
 	if (!beaker)
-		beaker_contents = "\The [src]上没有安装烧杯。"
+		beaker_contents = "[src]上没有安装烧杯。"
 	else if (!beaker.reagents.total_volume)
-		beaker_contents = "\The [src]上装着一个空烧杯。"
+		beaker_contents = "[src]上装着一个空烧杯。"
 		is_beaker_ready = 1
 	else if (beaker.reagents.total_volume < beaker.reagents.maximum_volume)
-		beaker_contents = "\The [src]上装着一个盛有液体的烧杯。"
+		beaker_contents = "[src]上装着一个盛有液体的烧杯。"
 		is_beaker_ready = 1
 	else
-		beaker_contents = "\The [src]上的烧杯已经满了！"
+		beaker_contents = "[src]上的烧杯已经满了！"
 
 	var/dat = {"
 <b>加工室内有：</b><br>

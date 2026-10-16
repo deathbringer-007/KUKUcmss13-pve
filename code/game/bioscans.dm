@@ -89,23 +89,23 @@ GLOBAL_DATUM_INIT(bioscan_data, /datum/bioscan_data, new)
 
 /// Inform Yautja and Ghosts exactly what's what.
 /datum/bioscan_data/proc/yautja_bioscan()
-	var/xeno_planet_location_string = "[xenos_planet_location ? ", including one in [xenos_planet_location]" : ""]"
-	var/xeno_ship_location_string = "[xenos_ship_location ? ", including one in [xenos_ship_location]." : "."]"
-	var/marine_planet_location_string = "[marine_planet_location ? ", including one in [marine_planet_location]." : "."]"
-	var/marine_ship_location_string = "[marine_ship_location ? ", including one in [marine_ship_location]." : "."]"
+	var/xeno_planet_location_string = "[xenos_planet_location ? "，其中一个位于[xenos_planet_location]" : ""]"
+	var/xeno_ship_location_string = "[xenos_ship_location ? "，其中一个位于[xenos_ship_location]。" : "。"]"
+	var/marine_planet_location_string = "[marine_planet_location ? "，其中一个位于[marine_planet_location]。" : "。"]"
+	var/marine_ship_location_string = "[marine_ship_location ? "，其中一个位于[marine_ship_location]。" : "。"]"
 
-	var/ghost_scan = SPAN_ALERT("[xenos_on_planet] xenos on planet, with [larva] larva.\n[xenos_on_ship] xenos on the ship.\n[marines_on_planet] humans on the planet.\n[marines_on_ship] humans on the ship.")
-	var/yautja_scan = SPAN_ALERT("[xenos_on_planet] serpents present in the hunting ground[xeno_planet_location_string], with [larva] larva.\n[xenos_on_ship] serpents present on the human ship[xeno_ship_location_string]\n[marines_on_planet] humans present in the hunting ground[marine_planet_location_string]\n[marines_on_ship] humans present on the human ship[marine_ship_location_string]")
+	var/ghost_scan = SPAN_ALERT("星球上有[xenos_on_planet]只异形，其中[larva]只为幼虫。\n舰上有[xenos_on_ship]只异形。\n星球上有[marines_on_planet]名人类。\n舰上有[marines_on_ship]名人类。")
+	var/yautja_scan = SPAN_ALERT("猎场中有[xenos_on_planet]只巨蛇[xeno_planet_location_string]，其中[larva]只为幼虫。\n人类舰船上有[xenos_on_ship]只巨蛇[xeno_ship_location_string]\n猎场中有[marines_on_planet]名人类[marine_planet_location_string]\n人类舰船上有[marines_on_ship]名人类[marine_ship_location_string]")
 	log_game("BIOSCAN: A Yautja/Ghost bioscan has completed. [ghost_scan]")
 
 	//Announce the numbers to Yautja, they have good scanners
 	for(var/mob/living/carbon/human/yautja as anything in GLOB.yautja_mob_list)
-		to_chat(yautja, "<h2 class='alert'>Bioscan complete</h2>")
+		to_chat(yautja, "<h2 class='alert'>生命扫描完成</h2>")
 		to_chat(yautja, yautja_scan)
 
 	//Let the ghosts know what's up, they also get good numbers
 	for(var/mob/dead/observer/ghost as anything in GLOB.observer_list)
-		to_chat(ghost, "<h2 class='alert'>Bioscan complete</h2>")
+		to_chat(ghost, "<h2 class='alert'>生命扫描完成</h2>")
 		to_chat(ghost, ghost_scan)
 
 
@@ -121,16 +121,16 @@ GLOBAL_DATUM_INIT(bioscan_data, /datum/bioscan_data, new)
 /datum/bioscan_data/proc/ares_bioscan(forced = FALSE, variance = 2)
 	if(!forced && !ares_can_bioscan())
 		message_admins("An ARES Bioscan has failed.")
-		var/name = "[MAIN_AI_SYSTEM] Bioscan Status"
-		var/input = "Bioscan failed. \n\nInvestigation into Bioscan subsystem recommended."
+		var/name = "[MAIN_AI_SYSTEM]生命扫描状态"
+		var/input = "生命扫描失败。\n\n建议检查生命扫描子系统。"
 		log_ares_bioscan(name, input, forced)
 		if(ares_can_interface() || forced)
 			marine_announcement(input, name, 'sound/misc/interference.ogg', logging = ARES_LOG_NONE)
 		return
 	//Adjust the randomness there so everyone gets the same thing
 	var/fake_xenos_on_planet = max(0, xenos_on_planet + rand(-variance, variance))
-	var/name = "[MAIN_AI_SYSTEM] Bioscan Status"
-	var/input = "Bioscan complete.\n\nSensors indicate [xenos_on_ship_uncontained ? "[xenos_on_ship_uncontained]" : "no"] unknown lifeform signature[!xenos_on_ship_uncontained || xenos_on_ship_uncontained > 1 ? "s":""] present on the ship[xenos_on_ship_uncontained && xenos_ship_location ? ", including one in [xenos_ship_location]," : ""] and [fake_xenos_on_planet ? "approximately [fake_xenos_on_planet]" : "no"] signature[!fake_xenos_on_planet || fake_xenos_on_planet > 1 ? "s":""] located elsewhere[fake_xenos_on_planet && xenos_planet_location ? ", including one in [xenos_planet_location]":""]."
+	var/name = "[MAIN_AI_SYSTEM]生命扫描状态"
+	var/input = "生命扫描完成。\n\n传感器在舰上检测到[xenos_on_ship_uncontained ? "[xenos_on_ship_uncontained]个" : "0个"]未知生命信号[xenos_on_ship_uncontained && xenos_ship_location ? "，其中一个位于[xenos_ship_location]" : ""]；其他位置检测到[fake_xenos_on_planet ? "约[fake_xenos_on_planet]个" : "0个"]信号[fake_xenos_on_planet && xenos_planet_location ? "，其中一个位于[xenos_planet_location]":""]。"
 
 	log_game("BIOSCAN: ARES bioscan completed. [input]")
 
@@ -144,14 +144,14 @@ GLOBAL_DATUM_INIT(bioscan_data, /datum/bioscan_data, new)
 /datum/bioscan_data/proc/qm_bioscan(variance = 2)
 	/// Adjust the randomness there so everyone gets the same thing
 	var/fake_marines_on_ship = max(0, marines_on_ship + rand(-variance, variance))
-	var/metalhive_hosts = "[fake_marines_on_ship ? "approximately [fake_marines_on_ship]":"no"]"
-	var/plural = "[!fake_marines_on_ship || fake_marines_on_ship > 1 ? "s":""]"
-	var/metalhive_location = "[fake_marines_on_ship && marine_ship_location?", including one in [marine_ship_location]," : ""]"
-	var/planet_hosts = "[marines_on_planet ? "[marines_on_planet]" : "none"]"
-	var/planet_location = "[marines_on_planet && marine_planet_location ? ", including one in [marine_planet_location]" : ""]"
+	var/metalhive_hosts = "[fake_marines_on_ship ? "约[fake_marines_on_ship]":"0"]"
 
-	var/title = SPAN_XENOANNOUNCE("The Queen Mother reaches into your mind from worlds away.")
-	var/content = SPAN_XENOANNOUNCE("To my children and their Queen: I sense [metalhive_hosts] host[plural] in the metal hive[metalhive_location] and [planet_hosts] scattered elsewhere[planet_location].")
+	var/metalhive_location = "[fake_marines_on_ship && marine_ship_location?"，其中一个位于[marine_ship_location]" : ""]"
+	var/planet_hosts = "[marines_on_planet ? "[marines_on_planet]" : "0"]"
+	var/planet_location = "[marines_on_planet && marine_planet_location ? "，其中一个位于[marine_planet_location]" : ""]"
+
+	var/title = SPAN_XENOANNOUNCE("母皇从遥远的世界触及你的心灵。")
+	var/content = SPAN_XENOANNOUNCE("致我的孩子们和它们的女皇：我感知到金属虫巢里有[metalhive_hosts]个宿主[metalhive_location]，其他地方还散布着[planet_hosts]个[planet_location]。")
 
 	log_game("BIOSCAN: Queen Mother bioscan completed. [content]")
 	/// Shout it at everyone

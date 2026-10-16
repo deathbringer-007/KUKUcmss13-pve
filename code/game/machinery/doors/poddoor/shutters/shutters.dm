@@ -1,5 +1,5 @@
 /obj/structure/machinery/door/poddoor/shutters
-	name = "\improper Shutters"
+	name = "\improper 卷闸门"
 	icon = 'icons/obj/structures/doors/rapid_pdoor.dmi'
 	icon_state = "shutter1"
 	base_icon_state = "shutter"
@@ -102,7 +102,7 @@
 	relativewall_neighbours()
 
 /obj/structure/machinery/door/poddoor/shutters/almayer/yautja
-	name = "Armory Shutter"
+	name = "军械库闸门"
 	id = "Yautja Armory"
 	needs_power = FALSE
 	unacidable = TRUE
@@ -126,8 +126,8 @@
 
 //transit shutters used by marine dropships
 /obj/structure/machinery/door/poddoor/shutters/transit
-	name = "Transit shutters"
-	desc = "Safety shutters to prevent dangerous depressurization during flight"
+	name = "航行安全闸门"
+	desc = "防止飞行期间发生危险失压的安全闸门。"
 	icon = 'icons/obj/structures/doors/blastdoors_shutters.dmi'
 	unacidable = TRUE
 
@@ -138,7 +138,7 @@
 	density = FALSE
 
 /obj/structure/machinery/door/poddoor/shutters/almayer/pressure
-	name = "pressure shutters"
+	name = "压力闸门"
 	density = FALSE
 	opacity = FALSE
 	unacidable = TRUE
@@ -150,7 +150,7 @@
 	return
 
 /obj/structure/machinery/door/poddoor/shutters/almayer/uniform_vendors
-	name = "\improper Uniform Vendor Shutters"
+	name = "\improper 制服售货机闸门"
 	id = "bot_uniforms"
 	unacidable = TRUE
 	unslashable = TRUE
@@ -164,8 +164,8 @@
 	..()
 
 /obj/structure/machinery/door/poddoor/shutters/almayer/uniform_vendors/antitheft
-	name = "Anti-Theft Shutters"
-	desc = "Secure Storage shutters, they're reinforced against entry attempts."
+	name = "防盗闸门"
+	desc = "安全储物区闸门，经过加固以抵御闯入。"
 	var/req_level = SEC_LEVEL_RED
 
 /obj/structure/machinery/door/poddoor/shutters/almayer/uniform_vendors/antitheft/Initialize()
@@ -186,7 +186,7 @@
 
 //make a subtype for CL office so it as a proper name.
 /obj/structure/machinery/door/poddoor/shutters/almayer/cl
-		name = "\improper Corporate Liaison Privacy Shutters"
+		name = "\improper 公司联络员隐私闸门"
 //adding a subtype for CL office to use to secure access to cl office.
 /obj/structure/machinery/door/poddoor/shutters/almayer/cl/office
 /obj/structure/machinery/door/poddoor/shutters/almayer/cl/office/door

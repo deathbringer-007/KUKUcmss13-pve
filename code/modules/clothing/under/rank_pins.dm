@@ -1,8 +1,8 @@
 //ranks
 /obj/item/clothing/accessory/ranks
-	name = "rank pins"
+	name = "军衔徽章"
 	gender = PLURAL
-	desc = "A set of rank pins, used to denote the paygrade of someone within the military."
+	desc = "一套军衔徽章，用于标明军人的薪级。"
 	icon_state = "ranks_enlisted"
 	var/rank = "Private"
 	var/rank_short = PAY_SHORT_ME1
@@ -14,7 +14,7 @@
 /obj/item/clothing/accessory/ranks/New()
 	..()
 	name = "[initial(name)] ([rank_short])"
-	desc = "[initial(desc)] This one is for the rank <b>[get_paygrades(rank_short)]</b>."
+	desc = "[initial(desc)]此款适用于<b>[get_paygrades(rank_short)]</b>军衔。"
 
 /*################################################
 ################ MARINE  ###################

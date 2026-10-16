@@ -3,8 +3,8 @@
 
 
 /obj/item/clothing/under/marine
-	name = "\improper USCM uniform"
-	desc = "Standard-issue Marine uniform, with venlar armor inserts at critical areas to protect from blades and ballistics."
+	name = "USCM 制服"
+	desc = "陆战队制式制服，在要害处装有文拉纤维护甲内衬，可抵御刀刃与枪弹。"
 	siemens_coefficient = 0.9
 	icon_state = "marine_jumpsuit"
 	worn_state = "marine_jumpsuit"
@@ -30,9 +30,9 @@
 	if(!(flags_atom & NO_NAME_OVERRIDE))
 		name = "[specialty]"
 		if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
-			name += " cold-weather uniform"
+			name += "寒区制服"
 		else
-			name += " uniform"
+			name += "制服"
 	if(!(flags_atom & NO_SNOW_TYPE))
 		select_gamemode_skin(type, override_icon_state, new_protection)
 	. = ..() //Done after above in case gamemode skin is missing sprites.
@@ -47,8 +47,8 @@
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/under/marine/medic
-	name = "\improper USCM corpsman uniform"
-	desc = "Standard-issue Marine hospital corpsman fatigues with venlar armor inserts at critical areas to protect from blades and ballistics."
+	name = "USCM 医疗兵制服"
+	desc = "陆战队医疗兵制式作训服，在要害处装有文拉纤维护甲内衬，可抵御刀刃与枪弹。"
 	icon_state = "marine_medic"
 	worn_state = "marine_medic"
 	specialty = "USCM Hospital Corpsman"
@@ -57,8 +57,8 @@
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/under/marine/engineer
-	name = "\improper USCM combat technician uniform"
-	desc = "USCMC combat technician's fatigues, shielded by venlar panels and no longer electrically insulated due to 'budget reprioritization'."
+	name = "USCM 战斗技术员制服"
+	desc = "USCMC 战斗技术员作训服，带有文拉纤维护板。由于“预算优先级调整”，已不再具备电气绝缘功能。"
 	icon_state = "marine_engineer"
 	worn_state = "marine_engineer"
 	specialty = "USCM Combat Technician"
@@ -97,8 +97,8 @@
 	..(loc, new_protection, override_icon_state)
 
 /obj/item/clothing/under/marine/chef
-	name = "\improper USCM Mess Technician uniform"
-	desc = "The stain resistant uniform of a mess technician. Why the USCMC requires them to wear the venlar armor inserts is unknown."
+	name = "USCM 炊事员制服"
+	desc = "食堂技术员的防污制服。没人知道 USCMC 为什么还要求他们穿文拉纤维护甲内衬。"
 	icon_state = "chef_uniform"
 	worn_state = "chef_uniform"
 	flags_jumpsuit = FALSE
@@ -106,8 +106,8 @@
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/under/marine/mp
-	name = "USCMC military police uniform"
-	desc = "Cut and stab resistant USCMC military police uniform. The venlar liner also offers marginal ballistic defense."
+	name = "USCMC 宪兵制服"
+	desc = "耐割防刺的 USCMC 宪兵制服。文拉纤维内衬也能提供少量弹道防护。"
 	icon_state = "MP_jumpsuit"
 	worn_state = "MP_jumpsuit"
 	suit_restricted = list(/obj/item/clothing/suit/storage/marine, /obj/item/clothing/suit/armor/riot/marine, /obj/item/clothing/suit/storage/jacket/marine/service/mp)
@@ -123,8 +123,8 @@
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/under/marine/warden
-	name = "military warden jumpsuit"
-	desc = "Military Police Warden's jumpsuit. Armored as per usual."
+	name = "军事监狱长连体服"
+	desc = "宪兵监狱长的连体服，照例带有护甲。"
 	icon_state = "warden_jumpsuit"
 	worn_state = "warden_jumpsuit"
 	suit_restricted = list(/obj/item/clothing/suit/storage/marine, /obj/item/clothing/suit/armor/riot/marine, /obj/item/clothing/suit/storage/jacket/marine/service/warden)
@@ -133,8 +133,8 @@
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/under/marine/officer
-	name = "marine officer uniform"
-	desc = "Substantially comfier officer's uniform. Still has the protection of a sheet of paper against actual threats but at least you won't be uncomfortable while bleeding out."
+	name = "陆战队军官制服"
+	desc = "舒适得多的军官制服。面对真正的威胁时防护仍和一张纸差不多，但至少失血时不会穿得难受。"
 	icon_state = "officertanclothes"
 	item_state = "officertanclothes"
 	worn_state = "officertanclothes"
@@ -152,8 +152,8 @@
 	specialty = "marine intelligence officer"
 
 /obj/item/clothing/under/marine/officer/warrant
-	name = "\improper USCM MP chief uniform"
-	desc = "USCMC Military Police Chief's uniform. Alongside the standard armor panels, it has an uncomfortable energy dispersive polymer lining, and is also rated for low MOPP conditions."
+	name = "USCM 宪兵长制服"
+	desc = "USCMC 宪兵长制服。除标准护板外，还配有不太舒适的能量分散聚合物内衬，并具备低等级任务导向防护姿态（MOPP）环境适用等级。"
 	icon_state = "WO_jumpsuit"
 	item_state = "WO_jumpsuit"
 	worn_state = "WO_jumpsuit"
@@ -170,8 +170,8 @@
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/under/marine/officer/pilot
-	name = "pilot bodysuit"
-	desc = "A bodysuit worn by pilots of the USCM & USASF, good for operating express elevators to hell. Some armor protection provided by the venlar armor weave against shrapnel and ballistics."
+	name = "飞行员紧身服"
+	desc = "USCM 与 USASF 飞行员穿着的紧身服，适合驾驶通往地狱的高速电梯。文拉纤维护甲织层能提供一定的弹片和枪弹防护。"
 	icon_state = "pilot_flightsuit"
 	item_state = "pilot_flightsuit"
 	worn_state = "pilot_flightsuit"
@@ -181,8 +181,8 @@
 	suit_restricted = list(/obj/item/clothing/suit/armor/vest/pilot, /obj/item/clothing/suit/storage/marine/light/vest/dcc, /obj/item/clothing/suit/storage/jacket/marine/pilot, /obj/item/clothing/suit/storage/marine/light/vest)
 
 /obj/item/clothing/under/marine/officer/pilot/flight
-	name = "tactical pilot flightsuit"
-	desc = "A flightsuit worn by pilots of the USCM & USASF, with plenty of leather straps, pouches, and other essential gear you will never use. Looks badass."
+	name = "战术飞行员飞行服"
+	desc = "USCM 与 USASF 飞行员穿着的飞行服，带有大量皮带、收纳袋和其他你永远用不上的必备装备。看起来很酷。"
 	icon_state = "pilot_flightsuit_alt"
 	item_state = "pilot_flightsuit_alt"
 	worn_state = "pilot_flightsuit_alt"
@@ -200,8 +200,8 @@
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 
 /obj/item/clothing/under/marine/officer/tanker
-	name = "vehicle crewman uniform"
-	desc = "Armored vehicle crew uniform worn by tankers and cav crew of the USCMC. Shrapnel protection provided by venlar panels, badassery hinges on how well the operator works their vehicle. Do the Corps proud."
+	name = "载具乘员制服"
+	desc = "USCMC 坦克兵与装甲骑兵乘员穿着的装甲载具制服。文拉纤维护板负责防弹片，帅不帅则取决于驾驶技术。给陆战队争光吧。"
 	icon_state = "marine_tanker"
 	worn_state = "marine_tanker"
 	suit_restricted = list(/obj/item/clothing/suit/storage/marine/tanker, /obj/item/clothing/suit/storage/jacket/marine/service/tanker)
@@ -210,8 +210,8 @@
 	item_state_slots = list(WEAR_BODY = "marine_tanker")
 
 /obj/item/clothing/under/marine/officer/bridge
-	name = "marine service uniform"
-	desc = "Officer's uniform, a little outdated. Why it needs to be frag rated is beyond everyone."
+	name = "陆战队常服"
+	desc = "有些过时的军官制服。没人明白为什么它需要防破片等级。"
 	icon_state = "service_uniform"
 	item_state = "service_uniform"
 	worn_state = "service_uniform"
@@ -220,8 +220,8 @@
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/under/marine/officer/boiler
-	name = "\improper multi-branch operations boilersuit"
-	desc = "A uniform favoured by those in the UA armed forces who are rarely on the field. Looks a little outdated."
+	name = "多军种作战连体服"
+	desc = "深受很少上前线的美洲联盟军人喜爱的制服，看起来有些过时。"
 	icon_state = "command_jumpsuit"
 	item_state = "command_jumpsuit"
 	worn_state = "command_jumpsuit"
@@ -229,8 +229,8 @@
 	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
 
 /obj/item/clothing/under/marine/officer/qm_suit
-	name = "logistics officer uniform"
-	desc = "A nicely-fitting military uniform for a logistics officer, combining style & practicality. It has shards of light Kevlar to help protect against stabbing weapons and bullets."
+	name = "后勤军官制服"
+	desc = "合身的后勤军官制服，兼顾风格与实用性。含有轻型凯夫拉护片，可辅助抵御刺击和枪弹。"
 	icon_state = "RO_jumpsuit"
 	worn_state = "RO_jumpsuit"
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
@@ -245,23 +245,23 @@
 	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
 
 /obj/item/clothing/under/marine/officer/command
-	name = "\improper USCM officer uniform"
-	desc = "A USCMC commanding officer's uniform, custom cut for maximum comfort while staying within regulation."
+	name = "USCM 军官制服"
+	desc = "USCMC 指挥官制服，在符合规定的前提下定制剪裁，尽可能舒适。"
 	icon_state = "CO_jumpsuit"
 	worn_state = "CO_jumpsuit"
 	specialty = "USCM officer"
 
 /obj/item/clothing/under/marine/officer/general
-	name = "general uniform"
-	desc = "A uniform worn by a fleet general. It comes in a shade of deep black, and has a light shimmer to it. The weave looks strong enough to provide some light protections."
+	name = "将官制服"
+	desc = "舰队将军穿着的深黑制服，带有淡淡光泽。织物看起来足够坚韧，能提供轻度防护。"
 	item_state = "general_jumpsuit"
 	worn_state = "general_jumpsuit"
 	specialty = "general"
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/under/marine/officer/ce
-	name = "chief engineer uniform"
-	desc = "The uniform of the chief engineer. Specially treated for hazardous conditions work, high density layers provide some level of radiation protection."
+	name = "总工程师制服"
+	desc = "总工程师制服。经过特殊处理，适合危险环境作业；高密度夹层还可提供一定辐射防护。"
 	armor_bio = CLOTHING_ARMOR_MEDIUMLOW
 	armor_rad = CLOTHING_ARMOR_MEDIUMLOW
 	icon_state = "EC_jumpsuit"
@@ -271,8 +271,8 @@
 	item_state_slots = list(WEAR_BODY = "EC_jumpsuit")
 
 /obj/item/clothing/under/marine/officer/engi
-	name = "crew uniform"
-	desc = "The uniform of a UA space-vessel crew member. Specially treated for hazardous materials handing and hostile conditions."
+	name = "船员制服"
+	desc = "美洲联盟太空舰船船员的制服，经过特殊处理，适合接触危险物质和恶劣环境。"
 	armor_bio = CLOTHING_ARMOR_LOW
 	armor_rad = CLOTHING_ARMOR_LOW
 	icon_state = "mt_jumpsuit"
@@ -291,8 +291,8 @@
 	item_state_slots = list(WEAR_BODY = "ot_jumpsuit")
 
 /obj/item/clothing/under/marine/officer/researcher
-	name = "researcher clothes"
-	desc = "A simple set of civilian clothes worn by researchers."
+	name = "研究员服装"
+	desc = "研究员穿着的一套普通便服。"
 	armor_bio = CLOTHING_ARMOR_LOW
 	armor_rad = CLOTHING_ARMOR_LOW
 	icon_state = "research_jumpsuit"
@@ -301,32 +301,32 @@
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/under/marine/officer/formal/servicedress
-	name = "commanding officer's dress shirt"
-	desc = "The shirt and tie of a two-piece Navy service dress uniform for high-ranking officers. Wear with style and substance."
+	name = "指挥官礼服衬衫"
+	desc = "高级军官两件式海军常礼服的衬衫与领带。穿出风度，也穿出分量。"
 	specialty = "captain's service dress"
 	icon_state = "CO_service"
 	worn_state = "CO_service"
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/under/marine/officer/formal/white
-	name = "Commanding Officer's white formal uniform"
-	desc = "A well-ironed USCM officer uniform in brilliant white with gold accents, intended for parades or hot weather. Wear this with pride."
+	name = "指挥官白色礼服"
+	desc = "熨烫整齐的 USCM 军官制服，亮白色配金色饰边，适合阅兵或炎热天气。自豪地穿上它吧。"
 	icon_state = "CO_formal_white"
 	worn_state = "CO_formal_white"
 	specialty = "captain's white formal"
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/under/marine/officer/formal/black
-	name = "Commanding Officer's gray formal uniform"
-	desc = "A well-ironed USCM officer uniform in subdued gray with gold accents, intended for more formal or somber events. Wear this with pride."
+	name = "指挥官灰色礼服"
+	desc = "熨烫整齐的 USCM 军官制服，低调灰色配金色饰边，适合正式或肃穆场合。自豪地穿上它吧。"
 	icon_state = "CO_formal_black"
 	worn_state = "CO_formal_black"
 	specialty = "captain's gray formal"
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/under/marine/dress
-	name = "marine formal service uniform"
-	desc = "A formal service uniform typically worn by marines of the USCM. Still practicable while still being more formal than the standard service uniform."
+	name = "陆战队正式常服"
+	desc = "USCM 陆战队员常穿的正式常服。比标准常服更正式，同时仍然实用。"
 	icon_state = "formal_jumpsuit"
 	worn_state = "formal_jumpsuit"
 	specialty = "marine formal"
@@ -346,8 +346,8 @@
 //=======================================================================\\
 
 /obj/item/clothing/under/marine/dress/blues
-	name = "marine enlisted dress blues uniform"
-	desc = "The undershirt and trousers of the legendary Marine dress blues, virtually unchanged since the 19th century. This unadorned variant is for enlisted personnel, E-1 thru E-3."
+	name = "陆战队士兵蓝色礼服制服"
+	desc = "传奇陆战队蓝色礼服的衬衣和长裤，自 19 世纪以来几乎没有改变。这款朴素型号供 E-1 至 E-3 级士兵穿着。"
 	icon = 'icons/mob/humans/onmob/contained/marinedressblues.dmi'
 	icon_state = "enlisted"
 	item_state = "enlisted"
@@ -356,15 +356,15 @@
 	item_state_slots = null
 
 /obj/item/clothing/under/marine/dress/blues/senior
-	name = "marine senior dress blues uniform"
-	desc = "The undershirt and trousers of the legendary Marine dress blues, virtually unchanged since the 19th century. This variant features the iconic Blood Stripe, worn by NCOs and officers."
+	name = "陆战队高级军官蓝色礼服制服"
+	desc = "传奇陆战队蓝色礼服的衬衣和长裤，自 19 世纪以来几乎没有改变。此型号带有标志性的血红裤线，供士官与军官穿着。"
 	icon_state = "senior"
 	item_state = "senior"
 	worn_state = "senior"
 
 /obj/item/clothing/under/marine/dress/blues/general
-	name = "marine senior dress blues uniform"
-	desc = "The undershirt and trousers of the legendary Marine dress blues, virtually unchanged since the 19th century. This variant features black trousers and a large Blood Stripe, worn by general officers."
+	name = "陆战队高级军官蓝色礼服制服"
+	desc = "传奇陆战队蓝色礼服的衬衣和长裤，自 19 世纪以来几乎没有改变。这款将官型号采用黑色长裤和宽大的血红裤线。"
 	icon_state = "general"
 	item_state = "general"
 	worn_state = "general"
@@ -444,8 +444,8 @@
 //=========================//PMC\\================================\\
 
 /obj/item/clothing/under/marine/veteran/pmc
-	name = "\improper PMC fatigues"
-	desc = "A white set of fatigues, designed for private security operators. The symbol of the Weyland-Yutani corporation is emblazed on the suit."
+	name = "PMC 作训服"
+	desc = "为私人安保人员设计的白色作训服，印有维兰德-汤谷公司标志。"
 	icon_state = "pmc_jumpsuit"
 	worn_state = "pmc_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROT
@@ -498,8 +498,8 @@
 	)
 
 /obj/item/clothing/under/marine/veteran/UPP
-	name = "\improper UPP fatigues"
-	desc = "It's a set of standard-issue UPP Armed Collective combat fatigues featuring venlar armor inserts at critical areas to protect from blades and low caliber ballistics."
+	name = "UPP 作训服"
+	desc = "UPP 联合武装制式作训服，在要害处装有文拉纤维护甲内衬，可抵御刀刃和小口径枪弹。"
 	icon_state = "upp_uniform"
 	worn_state = "upp_uniform"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROT
@@ -660,27 +660,27 @@
 	has_sensor = UNIFORM_NO_SENSORS
 
 /obj/item/clothing/under/colonist
-	name = "abstract colonist"
-	desc = "Don't spawn this!"
+	name = "殖民者服装原型"
+	desc = "不要生成这个！"
 	has_sensor = UNIFORM_HAS_SENSORS
 	sensor_faction = FACTION_COLONIST
 
 /obj/item/clothing/under/colonist/workwear
-	name = "grey workwear"
-	desc = "A pair of black slacks and a short-sleeve grey workshirt. Standard uniform for Weyland Yutani employees working in colony operations and administration."
+	name = "灰色工作服"
+	desc = "黑色休闲裤搭配灰色短袖工作衫。维兰德-汤谷殖民地运营和行政人员的标准制服。"
 	icon_state = "workwear_grey"
 	worn_state = "workwear_grey"
 
 /obj/item/clothing/under/colonist/workwear/khaki
-	name = "khaki workwear"
-	desc = "A pair of jeans paired with a khaki workshirt. A common pairing among blue-collar workers due to its drab look."
+	name = "卡其色工作服"
+	desc = "牛仔裤搭配卡其色工作衫，低调的外观深受蓝领工人喜爱。"
 	icon_state = "workwear_khaki"
 	worn_state = "workwear_khaki"
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE|UNIFORM_JACKET_REMOVABLE
 
 /obj/item/clothing/under/colonist/workwear/pink
-	name = "pink workwear"
-	desc = "A pair of jeans paired with a pink workshirt. Pink? Your wife might not think so, but such outlandish attire deserves questioning by corporate security. What are you, some kind of free-thinking anarchist?"
+	name = "粉红色工作服"
+	desc = "牛仔裤搭配粉红色工作衫。粉红色？你妻子或许不觉得，但这种离经叛道的打扮足以招来公司安保盘问。你是什么崇尚自由思想的无政府主义者吗？"
 	icon_state = "workwear_pink"
 	worn_state = "workwear_pink"
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE|UNIFORM_JACKET_REMOVABLE
@@ -693,8 +693,8 @@
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE|UNIFORM_JACKET_REMOVABLE
 
 /obj/item/clothing/under/colonist/workwear/green
-	name = "green workwear"
-	desc = "A pair of brown canvas workpants paired with a green workshirt. An common pairing among blue-collar workers."
+	name = "绿色工作服"
+	desc = "棕色帆布工装裤搭配绿色工作衫，是蓝领工人常见的穿搭。"
 	icon_state = "workwear_green"
 	worn_state = "workwear_green"
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE|UNIFORM_JACKET_REMOVABLE
@@ -737,8 +737,8 @@
 	worn_state = "boilersuit_steel"
 
 /obj/item/clothing/under/colonist/clf
-	name = "\improper Colonial Liberation Front uniform"
-	desc = "A stylish grey-green jumpsuit - standard issue for colonists. This version appears to have the symbol of the Colonial Liberation Front emblazoned in select areas."
+	name = "殖民地解放阵线制服"
+	desc = "时髦的灰绿色殖民者制式连体服。这一款在部分位置印有殖民地解放阵线标志。"
 	icon_state = "clf_uniform"
 	worn_state = "clf_uniform"
 	sensor_faction = FACTION_CLF
@@ -751,44 +751,44 @@
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE|UNIFORM_JACKET_REMOVABLE
 
 /obj/item/clothing/under/colonist/ua_civvies
-	name = "\improper UA gray utility uniform"
-	desc = "A stylish gray jumpsuit - standard issue for UA civilian support personnel."
+	name = "UA 灰色勤务服"
+	desc = "时髦的灰色连体服，美洲联盟平民支援人员的制式服装。"
 	icon_state = "ua_civvies"
 	worn_state = "ua_civvies"
 	has_sensor = UNIFORM_HAS_SENSORS
 	sensor_faction = FACTION_MARINE
 
 /obj/item/clothing/under/colonist/wy_davisone
-	name = "\improper UA brown utility uniform"
-	desc = "A stylish brown jumpsuit - standard issue for UA civilian support personnel."
+	name = "UA 棕色勤务服"
+	desc = "时髦的棕色连体服，美洲联盟平民支援人员的制式服装。"
 	icon_state = "wy_davisone"
 	worn_state = "wy_davisone"
 	has_sensor = UNIFORM_HAS_SENSORS
 	sensor_faction = FACTION_MARINE
 
 /obj/item/clothing/under/colonist/white_service
-	name = "white service uniform"
-	desc = "A white dress shirt and tie with sleek pants. Standard clothing for anyone on professional business."
+	name = "白色常服"
+	desc = "白色正装衬衫、领带配上利落长裤，是商务人士的标准着装。"
 	icon_state = "CO_service"
 	worn_state = "CO_service"
 	has_sensor = UNIFORM_HAS_SENSORS
 	sensor_faction = FACTION_MARINE
 
 /obj/item/clothing/under/colonist/wy_joliet_shopsteward
-	name = "steward utilities"
-	desc = "A stylish brown vest and shorts - uniforms like this are often worn by clerks and shop stewards."
+	name = "勤务员勤务服"
+	desc = "时髦的棕色背心和短裤，职员与工会代表常穿这种制服。"
 	icon_state = "wy_joliet_shopsteward"
 	worn_state = "wy_joliet_shopsteward"
 	has_sensor = UNIFORM_HAS_SENSORS
 	sensor_faction = FACTION_MARINE
 
 /obj/item/clothing/under/tshirt
-	name = "T-shirt parent object"
+	name = "T恤原型"
 	has_sensor = UNIFORM_NO_SENSORS
 
 /obj/item/clothing/under/tshirt/w_br
-	name = "white T-shirt and brown pants"
-	desc = "A comfortable white T-shirt and brown jeans."
+	name = "白色 T恤与棕色长裤"
+	desc = "舒适的白色 T 恤和棕色牛仔裤。"
 	icon_state = "tshirt_w_br"
 	worn_state = "tshirt_w_br"
 	displays_id = FALSE
@@ -796,8 +796,8 @@
 	sensor_faction = FACTION_MARINE
 
 /obj/item/clothing/under/tshirt/gray_blu
-	name = "gray T-shirt and jeans"
-	desc = "A comfortable gray T-shirt and blue jeans."
+	name = "灰色 T恤与牛仔裤"
+	desc = "舒适的灰色 T 恤和蓝色牛仔裤。"
 	icon_state = "tshirt_gray_blu"
 	worn_state = "tshirt_gray_blu"
 	displays_id = FALSE
@@ -805,8 +805,8 @@
 	sensor_faction = FACTION_MARINE
 
 /obj/item/clothing/under/tshirt/r_bla
-	name = "red T-shirt and black pants"
-	desc = "A comfortable red T-shirt and black jeans."
+	name = "红色 T恤与黑色长裤"
+	desc = "舒适的红色 T 恤和黑色牛仔裤。"
 	icon_state = "tshirt_r_bla"
 	worn_state = "tshirt_r_bla"
 	displays_id = FALSE
@@ -821,14 +821,14 @@
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE|UNIFORM_JACKET_REMOVABLE
 
 /obj/item/clothing/under/liaison_suit
-	name = "liaison's tan suit"
-	desc = "A stiff, stylish tan suit commonly worn by businessmen from the Weyland-Yutani corporation. Expertly crafted to make you look like a prick."
+	name = "联络员棕褐色外套"
+	desc = "维兰德-汤谷商务人士常穿的挺括时髦棕褐色西装。精心剪裁，让你一看就像个混蛋。"
 	icon_state = "liaison_regular"
 	worn_state = "liaison_regular"
 
 /obj/item/clothing/under/liaison_suit/charcoal
-	name = "liaison's charcoal suit"
-	desc = "A stiff, stylish charcoal suit commonly worn by businessmen from the Weyland-Yutani corporation. Expertly crafted to make you look like a prick."
+	name = "联络员炭灰色外套"
+	desc = "维兰德-汤谷商务人士常穿的挺括时髦炭灰色西装。精心剪裁，让你一看就像个混蛋。"
 	icon_state = "liaison_charcoal"
 	worn_state = "liaison_charcoal"
 
@@ -843,62 +843,62 @@
 	worn_state = "liaison_outing_red"
 
 /obj/item/clothing/under/liaison_suit/formal
-	name = "liaison's white suit"
-	desc = "A formal, white suit. Looks like something you'd wear to a funeral, a Weyland-Yutani corporate dinner, or both. Stiff as a board, but makes you feel like rolling out of a Rolls-Royce."
+	name = "联络员白色外套"
+	desc = "正式的白色西装，适合出席葬礼、维兰德-汤谷公司晚宴，或者两者兼有。硬得像块板，却让你感觉刚从劳斯莱斯里走出来。"
 	icon_state = "liaison_formal"
 	worn_state = "liaison_formal"
 
 /obj/item/clothing/under/liaison_suit/suspenders
-	name = "liaison's suspenders"
-	desc = "A collared shirt, complimented by a pair of suspenders. Worn by Weyland-Yutani employees who ask the tough questions. Smells faintly of cigars and bad acting."
+	name = "联络员背带装"
+	desc = "有领衬衫配背带，供维兰德-汤谷负责追问棘手问题的员工穿着。隐约散发着雪茄和拙劣演技的气息。"
 	icon_state = "liaison_suspenders"
 	worn_state = "liaison_suspenders"
 
 /obj/item/clothing/under/liaison_suit/blazer
-	name = "liaison's blue blazer"
-	desc = "A stiff but casual blue blazer. Similar can be found in any Weyland-Yutani office. Only the finest wear for the galaxy's most cunning."
+	name = "联络员蓝色西装上衣"
+	desc = "挺括又不失休闲的蓝色西装上衣，在维兰德-汤谷的任何办公室都能见到。银河系最精明的人，当然只穿最好的。"
 	icon_state = "liaison_blue_blazer"
 	worn_state = "liaison_blue_blazer"
 
 /obj/item/clothing/under/liaison_suit/field
-	name = "corporate casual"
-	desc = "A pair of dark brown slacks paired with a dark blue button-down shirt. A popular look among those in the corporate world that conduct the majority of their business from night clubs."
+	name = "商务便装"
+	desc = "深棕色休闲裤搭配深蓝色纽扣衬衫，深受那些主要在夜总会谈生意的商界人士喜爱。"
 	icon_state = "corporate_field"
 	worn_state = "corporate_field"
 
 /obj/item/clothing/under/liaison_suit/ivy
-	name = "country club outfit"
-	desc = "A pair of khaki slacks paired with a light blue button-down shirt. A popular look with those in the corporate world that conduct the majority of their business from country clubs."
+	name = "乡村俱乐部服装"
+	desc = "卡其色休闲裤搭配浅蓝色纽扣衬衫，深受那些主要在乡村俱乐部谈生意的商界人士喜爱。"
 	icon_state = "corporate_ivy"
 	worn_state = "corporate_ivy"
 
 /obj/item/clothing/under/liaison_suit/orange
-	name = "orange outfit"
-	desc = "A pair of black pants paired with a very Wey-Yu orange shirt. A popular look with those in the corporate world that conduct the majority of their business from Weyland Yutani offices."
+	name = "橙色套装"
+	desc = "黑色长裤搭配很有维兰德-汤谷风格的橙色衬衫，深受那些主要在维兰德-汤谷办公室谈生意的商界人士喜爱。"
 	icon_state = "corporate_orange"
 	worn_state = "corporate_orange"
 
 /obj/item/clothing/under/liaison_suit/corporate_formal
-	name = "white suit pants"
-	desc = "A pair of ivory slacks paired with a white shirt. A popular pairing for formal corporate events."
+	name = "白色西装裤"
+	desc = "象牙白休闲裤搭配白衬衫，是正式公司活动中的热门穿搭。"
 	icon_state = "corporate_formal"
 	worn_state = "corporate_formal"
 
 /obj/item/clothing/under/liaison_suit/black
-	name = "black suit pants"
-	desc = "A pair of black slacks paired with a white shirt. The most common pairing among corporate workers."
+	name = "黑色西装裤"
+	desc = "黑色休闲裤搭配白衬衫，公司职员最常见的穿搭。"
 	icon_state = "corporate_black"
 	worn_state = "corporate_black"
 
 /obj/item/clothing/under/liaison_suit/brown
-	name = "brown suit pants"
-	desc = "A pair of brown slacks paired with a white shirt. A common pairing among corporate workers."
+	name = "棕色西装裤"
+	desc = "棕色休闲裤搭配白衬衫，公司职员常见的穿搭。"
 	icon_state = "corporate_brown"
 	worn_state = "corporate_brown"
 
 /obj/item/clothing/under/liaison_suit/blue
-	name = "blue suit pants"
-	desc = "A pair of blue slacks paired with a white shirt. A common pairing among corporate workers."
+	name = "蓝色西装裤"
+	desc = "蓝色休闲裤搭配白衬衫，公司职员常见的穿搭。"
 	icon_state = "corporate_blue"
 	worn_state = "corporate_blue"
 
@@ -915,8 +915,8 @@
 	worn_state = "corporate_khaki"
 
 /obj/item/clothing/under/marine/reporter
-	name = "combat correspondent uniform"
-	desc = "A relaxed and robust uniform fit for any potential reporting needs."
+	name = "战地记者制服"
+	desc = "宽松耐穿的制服，能满足各种报道任务的需求。"
 	icon_state = "cc_white"
 	worn_state = "cc_white"
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
@@ -954,41 +954,41 @@
 	flags_jumpsuit = FALSE
 
 /obj/item/clothing/under/rank/synthetic
-	name = "\improper USCM Support Uniform"
-	desc = "A simple uniform made for Synthetic crewmembers."
+	name = "USCM 支援制服"
+	desc = "为合成人船员制作的简单制服。"
 	icon_state = "rdalt"
 	worn_state = "rdalt"
 	flags_jumpsuit = FALSE
 
 /obj/item/clothing/under/rank/synthetic/frontier
-	name = "\improper frontier jumpsuit"
-	desc = "A cargo jumpsuit dressed down for full range of motion and state-of-the-art frontier temperature control. It's the best thing an engineer can wear in the Outer Veil."
+	name = "边疆连体服"
+	desc = "经过轻便化改造的货运连体服，可保障全幅活动范围，并采用先进的边疆温控技术。工程师在外帷幕地区能穿到的最佳服装。"
 	icon_state = "synth_cargo_light"
 	worn_state = "synth_cargo_light"
 	displays_id = FALSE
 
 /obj/item/clothing/under/rank/synthetic/utility
-	name = "\improper UA utility uniform"
-	desc = "A green-on-green utility uniform, popularly issued to UA contract workers on the frontier."
+	name = "UA 勤务服"
+	desc = "深浅绿色搭配的勤务服，常配发给美洲联盟边疆合同工。"
 	icon_state = "synth_green_utility"
 	worn_state = "synth_green_utility"
 	displays_id = FALSE
 
 /obj/item/clothing/under/rank/synthetic/utility/yellow
-	name = "\improper utility uniform"
-	desc = "A grey utility uniform with yellow suspenders, made for shipside crew."
+	name = "勤务服"
+	desc = "灰色勤务服，搭配黄色背带，供舰内船员使用。"
 	icon_state = "synth_yellow_utility"
 	worn_state = "synth_yellow_utility"
 
 /obj/item/clothing/under/rank/synthetic/utility/red
-	name = "\improper utility uniform"
-	desc = "A grey utility uniform with red suspenders and blue jeans, the sign of a veteran laborer, or someone not paid by the hour."
+	name = "勤务服"
+	desc = "灰色勤务服，搭配红色背带与蓝色牛仔裤，是老练工人或不按小时计酬者的标志。"
 	icon_state = "synth_red_utility"
 	worn_state = "synth_red_utility"
 
 /obj/item/clothing/under/rank/synthetic/utility/blue
-	name = "\improper utility uniform"
-	desc = "A blue utility uniform with teal suspenders and rugged pants."
+	name = "勤务服"
+	desc = "蓝色勤务服，配有青绿色背带和耐磨长裤。"
 	icon_state = "synth_blue_utility"
 	worn_state = "synth_blue_utility"
 
@@ -1000,8 +1000,8 @@
 	displays_id = FALSE
 
 /obj/item/clothing/under/rank/synthetic/flight
-	name = "tactical flightsuit"
-	desc = "A flightsuit with plenty of leather straps, pouches, and other essential gear."
+	name = "战术飞行服"
+	desc = "带有大量皮带、收纳袋和其他必备装备的飞行服。"
 	icon_state = "pilot_flightsuit_alt"
 	item_state = "pilot_flightsuit_alt"
 	worn_state = "pilot_flightsuit_alt"
@@ -1014,8 +1014,8 @@
 	worn_state = "rdalt_s"
 
 /obj/item/clothing/under/rank/synthetic/joe
-	name = "\improper Working Joe Uniform"
-	desc = "A cheap uniform made for Synthetic labor. Tomorrow, Together."
+	name = "工作乔制服"
+	desc = "为合成人劳工制作的廉价制服。共创明天。"
 	icon_state = "working_joe"
 	worn_state = "working_joe"
 	flags_item = NO_CRYO_STORE
@@ -1069,8 +1069,8 @@
 //=ROYAL MARINES=\\
 
 /obj/item/clothing/under/marine/veteran/royal_marine
-	name = "marine commando uniform"
-	desc = "Subdued-camouflage field uniform of the royal marine commandos. Has venlar armor inserts at critical areas to protect from blades and ballistics."
+	name = "陆战队突击队制服"
+	desc = "皇家陆战突击队的低调迷彩野战服，在要害处装有文拉纤维护甲内衬，可抵御刀刃与枪弹。"
 	icon_state = "rmc_uniform"
 	worn_state = "rmc_uniform"
 	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE

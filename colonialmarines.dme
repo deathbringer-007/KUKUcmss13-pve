@@ -1660,6 +1660,7 @@
 #include "code\modules\client\flavor_text_editor.dm"
 #include "code\modules\client\player_details.dm"
 #include "code\modules\client\preferences.dm"
+#include "code\modules\client\preferences_localization.dm"
 #include "code\modules\client\preferences_factions.dm"
 #include "code\modules\client\preferences_gear.dm"
 #include "code\modules\client\preferences_savefile.dm"

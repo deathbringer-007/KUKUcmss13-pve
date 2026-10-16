@@ -230,7 +230,7 @@
 					return
 				var/obj/item/tool/weldingtool/WT = W
 				if(!WT.isOn())
-					to_chat(user, SPAN_WARNING("需要先开启\the [WT]！"))
+					to_chat(user, SPAN_WARNING("需要先开启[WT]！"))
 					return
 				if(!WT.remove_fuel(0 ,user))
 					to_chat(user, SPAN_NOTICE("你需要更多焊接燃料才能完成这项工作。"))
@@ -240,7 +240,7 @@
 					return
 				new /obj/item/stack/sheet/metal(src.loc)
 				for(var/mob/M as anything in viewers(src))
-					M.show_message(SPAN_NOTICE("[user]用[WT]切开了\the [src]。"), SHOW_MESSAGE_VISIBLE, "你听见焊接声。", SHOW_MESSAGE_AUDIBLE)
+					M.show_message(SPAN_NOTICE("[user]用[WT]切开了[src]。"), SHOW_MESSAGE_VISIBLE, "你听见焊接声。", SHOW_MESSAGE_AUDIBLE)
 				qdel(src)
 				return
 		if(material == MATERIAL_WOOD)
@@ -265,7 +265,7 @@
 			return FALSE
 		var/obj/item/tool/weldingtool/WT = W
 		if(!WT.isOn())
-			to_chat(user, SPAN_WARNING("需要先开启\the [WT]！"))
+			to_chat(user, SPAN_WARNING("需要先开启[WT]！"))
 			return FALSE
 		if(!WT.remove_fuel(0, user))
 			to_chat(user, SPAN_NOTICE("你需要更多焊接燃料才能完成这项工作。"))

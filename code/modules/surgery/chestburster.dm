@@ -5,7 +5,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery/chestburster_removal
-	name = "Experimental Xenomorph Parasite Removal"
+	name = "实验性异形寄生体移除术"
 	priority = SURGERY_PRIORITY_MAXIMUM
 	possible_locs = list("chest")
 	invasiveness = list(SURGERY_DEPTH_DEEP)
@@ -25,8 +25,8 @@
 //------------------------------------
 
 /datum/surgery_step/cut_larval_pseudoroots
-	name = "Cut Larval Pseudoroots"
-	desc = "sever the xenomorph larva's pseudoroots"
+	name = "切断幼体假根"
+	desc = "切断异形幼体的假根"
 	//Similar to INCISION, but including the PICT also. Using the PICT prevents acid spray.
 	tools = list(
 		/obj/item/tool/surgery/scalpel = SURGERY_TOOL_MULT_IDEAL,
@@ -52,8 +52,8 @@
 			splash_chance -= 70 //Preds know to avoid the splashback.
 		if(splash_chance > 0 && prob(splash_chance)) //Success!
 			i++
-			victim.visible_message(SPAN_DANGER("\The [victim] is scalded with hissing green blood!"), \
-			SPAN_DANGER("You are splattered with sizzling blood! IT BURNS!"))
+			victim.visible_message(SPAN_DANGER("[victim]被嘶嘶作响的绿色血液灼伤了！"), \
+			SPAN_DANGER("滚烫的血液溅了你一身！好烫！"))
 			if(prob(60) && !victim.stat && victim.pain.feels_pain)
 				INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob, emote), "scream") //Topkek
 			victim.take_limb_damage(0, 12) //Sizzledam! This automagically burns a random existing body part.
@@ -63,22 +63,22 @@
 
 /datum/surgery_step/cut_larval_pseudoroots/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("You start carefully cutting the larva's pseudoroots away from [target]'s vital organs with \the [tool]."),
-		SPAN_NOTICE("[user] starts to carefully cut the tubes connecting the alien larva to your vital organs with \the [tool]."),
-		SPAN_NOTICE("[user] starts to carefully cut the tubes connecting the alien larva to [target]'s vital organs with \the [tool]."))
+		SPAN_NOTICE("你开始用[tool]小心地将幼体假根与[target]的重要器官分离。"),
+		SPAN_NOTICE("[user]开始用[tool]小心切断连接异形幼体与你重要器官的管道。"),
+		SPAN_NOTICE("[user]开始用[tool]小心切断连接异形幼体与[target]重要器官的管道。"))
 
 	log_interact(user, target, "[key_name(user)] began cutting the roots of a larva in [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool], attempting to begin [surgery].")
 
 /datum/surgery_step/cut_larval_pseudoroots/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(tool_type == /obj/item/tool/surgery/scalpel/pict_system)
-		user.visible_message(SPAN_NOTICE("[user] severs the last of the pseudoroots with \the [tool], without spilling any of the larva's acid blood."),
-			SPAN_NOTICE("You sever the last of the pseudoroots with \the [tool], without spilling any of the larva's acid blood."))
+		user.visible_message(SPAN_NOTICE("[user]用[tool]切断了最后的假根，没有洒出幼体的酸血。"),
+			SPAN_NOTICE("你用[tool]切断了最后的假根，没有洒出幼体的酸血。"))
 	else
-		user.visible_message(SPAN_WARNING("Pressurised acid sprays everywhere as [user] severs the larva's tubes!"),
-			SPAN_WARNING("As you sever the larva's pseudoroots, acid sprays through the air, pools in [target]'s [surgery.affected_limb.cavity], and spills sizzling across \his organs!"))
+		user.visible_message(SPAN_WARNING("[user]切断幼体管道时，受压的酸液四处喷溅！"),
+			SPAN_WARNING("你切断幼体假根时，酸液喷向空中，积在[target]的[surgery.affected_limb.cavity]内，又嘶嘶作响地流过内脏！"))
 
 		if(target.stat == CONSCIOUS)
-			to_chat(target, SPAN_HIGHDANGER("Your organs are melting!"))
+			to_chat(target, SPAN_HIGHDANGER("你的器官正在融化！"))
 			target.emote("scream")
 
 		larva_blood_spray(user, target)
@@ -94,8 +94,8 @@
 	log_interact(user, target, "[key_name(user)] cut the roots of a larva in [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool], starting [surgery].")
 
 /datum/surgery_step/cut_larval_pseudoroots/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
-	user.visible_message(SPAN_WARNING("[user]'s hand slips and a jet of acid spurts as \he slices the larva with \the [tool]!"),
-		SPAN_WARNING("Your hand slips and a jet of acid spurts as you slice the larva with \the [tool]!"))
+	user.visible_message(SPAN_WARNING("[user]手一滑，用[tool]切到了幼体，一股酸液喷了出来！"),
+		SPAN_WARNING("你手一滑，用[tool]切到了幼体，一股酸液喷了出来！"))
 
 	if(target.stat == CONSCIOUS)
 		target.emote("scream")
@@ -108,8 +108,8 @@
 //------------------------------------
 
 /datum/surgery_step/remove_larva
-	name = "Remove Larva"
-	desc = "extract the xenomorph larva"
+	name = "取出幼体"
+	desc = "取出异形幼体"
 	accept_hand = TRUE
 	/*Using the hands to forcefully rip out the larva will be faster at the cost of damaging both the doctor and the patient, with the addition of organ damage.
 	Unlike before, the hemostat is now the best tool for removing removing the larva, as opposed to wirecutters and the fork.*/
@@ -126,16 +126,16 @@
 /datum/surgery_step/remove_larva/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(tool)
 		user.affected_message(target,
-			SPAN_NOTICE("You try to extract the larva from [target]'s chest with \the [tool]."),
-			SPAN_NOTICE("[user] tries to extract the larva from your chest with \the [tool]."),
-			SPAN_NOTICE("[user] tries to extract the larva from [target]'s chest with \the [tool]."))
+			SPAN_NOTICE("你试图用[tool]从[target]胸腔中取出幼体。"),
+			SPAN_NOTICE("[user]试图用[tool]从你的胸腔中取出幼体。"),
+			SPAN_NOTICE("[user]试图用[tool]从[target]胸腔中取出幼体。"))
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("You try to forcefully rip the larva from [target]'s chest with your bare hand."),
-			SPAN_NOTICE("[user] tries to forcefully rip the larva from your chest."),
-			SPAN_NOTICE("[user] tries to forcefully rip the larva from [target]'s chest."))
+			SPAN_NOTICE("你试图徒手将幼体从[target]胸腔中强行扯出。"),
+			SPAN_NOTICE("[user]试图将幼体从你的胸腔中强行扯出。"),
+			SPAN_NOTICE("[user]试图将幼体从[target]胸腔中强行扯出。"))
 
-	target.custom_pain("Something hurts horribly in your chest!",1)
+	target.custom_pain("你的胸腔里一阵剧痛！",1)
 	log_interact(user, target, "[key_name(user)] started to remove an embryo from [key_name(target)]'s ribcage.")
 
 /datum/surgery_step/remove_larva/success(mob/living/carbon/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
@@ -143,14 +143,14 @@
 	if(A)
 		if(tool)
 			user.affected_message(target,
-				SPAN_WARNING("You pull a wriggling parasite out of [target]'s ribcage!"),
-				SPAN_WARNING("[user] pulls a wriggling parasite out of [target]'s ribcage!"),
-				SPAN_WARNING("[user] pulls a wriggling parasite out of [target]'s ribcage!"))
+				SPAN_WARNING("你从[target]胸腔中取出了一只蠕动的寄生体！"),
+				SPAN_WARNING("[user]从[target]胸腔中取出了一只蠕动的寄生体！"),
+				SPAN_WARNING("[user]从[target]胸腔中取出了一只蠕动的寄生体！"))
 		else
 			user.affected_message(target,
-				SPAN_WARNING("Your hands and your patient's insides are burned by acid as you forcefully rip a wriggling parasite out of [target]'s ribcage!"),
-				SPAN_WARNING("[user]'s hands are burned by acid as \he rips a wriggling parasite out of your ribcage!"),
-				SPAN_WARNING("[user]'s hands are burned by acid as \he rips a wriggling parasite out of [target]'s ribcage!"))
+				SPAN_WARNING("你将蠕动的寄生体从[target]胸腔中强行扯出，酸液灼伤了你的双手和病人的内脏！"),
+				SPAN_WARNING("[user]将蠕动的寄生体从你的胸腔中扯出，双手被酸液灼伤了！"),
+				SPAN_WARNING("[user]将蠕动的寄生体从[target]胸腔中扯出，双手被酸液灼伤了！"))
 			var/datum/internal_organ/impacted_organ = pick(surgery.affected_limb.internal_organs)
 			impacted_organ.take_damage(5, FALSE)
 			if(target.stat == CONSCIOUS)
@@ -178,9 +178,9 @@
 
 /datum/surgery_step/remove_larva/failure(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_WARNING("Your hand slips, bruising [target]'s organs and spilling acid in \his [surgery.affected_limb.cavity]!"),
-		SPAN_WARNING("[user]'s hand slips, bruising your organs and spilling acid in your [surgery.affected_limb.cavity]!"),
-		SPAN_WARNING("[user]'s hand slips, bruising [target]'s organs and spilling acid in \his [surgery.affected_limb.cavity]!"))
+		SPAN_WARNING("你手一滑，挫伤了[target]的器官，酸液洒进了[surgery.affected_limb.cavity]内！"),
+		SPAN_WARNING("[user]手一滑，挫伤了你的器官，酸液洒进了你的[surgery.affected_limb.cavity]内！"),
+		SPAN_WARNING("[user]手一滑，挫伤了[target]的器官，酸液洒进了[surgery.affected_limb.cavity]内！"))
 
 	var/datum/internal_organ/I = pick(surgery.affected_limb.internal_organs)
 	I.take_damage(5,0)

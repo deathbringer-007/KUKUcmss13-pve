@@ -47,7 +47,7 @@ const MenuActions = (props: {
           disabled={historicalSelected === ''}
           onClick={() => act('watch', { type: historicalSelected })}
         >
-          Watch
+          观察
         </Button>
       </Flex.Item>
       <Flex.Item>
@@ -56,7 +56,7 @@ const MenuActions = (props: {
           disabled={historicalSelected === ''}
           onClick={() => act('track', { type: historicalSelected })}
         >
-          Track
+          追踪
         </Button>
       </Flex.Item>
       {data.is_leader !== 0 && (
@@ -69,7 +69,7 @@ const MenuActions = (props: {
               setHistoricalSelected('');
             }}
           >
-            Destroy
+            摧毁
           </Button>
         </Flex.Item>
       )}
@@ -81,7 +81,7 @@ const MenuActions = (props: {
             disabled={historicalSelected === ''}
             onClick={() => act('force', { type: historicalSelected })}
           >
-            Force Tracking
+            强制追踪
           </Button>
         </Flex.Item>
       )}
@@ -115,9 +115,7 @@ const MarkSelection = (props) => {
         <Stack.Item>
           <Stack vertical>
             <Stack.Item>
-              <span className="MarkName">
-                New Mark - {mark_prototype.name}{' '}
-              </span>
+              <span className="MarkName">新标记 - {mark_prototype.name} </span>
             </Stack.Item>
             <Stack.Item>
               <span>{mark_prototype.desc}</span>
@@ -194,7 +192,7 @@ const HistoricalMark = (props: {
                 </Stack.Item>
                 <Stack.Item>
                   <span>
-                    Owner: {mark.owner_name} - {mark.time}
+                    创建者：{mark.owner_name} - {mark.time}
                   </span>
                 </Stack.Item>
               </Stack>
@@ -256,7 +254,7 @@ const MarkHistory = (props) => {
 
 export const MarkMenu = (props) => {
   return (
-    <Window title={'Mark Menu'} theme="hive_status" width={560} height={680}>
+    <Window title={'标记菜单'} theme="hive_status" width={560} height={680}>
       <Window.Content scrollable className="MarkMenu">
         <Stack vertical>
           <Stack.Item>

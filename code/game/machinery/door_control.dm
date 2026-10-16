@@ -131,7 +131,7 @@
 	use_power(5)
 	icon_state = initial(icon_state) + "1"
 	add_fingerprint(user)
-	to_chat(user, SPAN_NOTICE("你按下了\the [name]按钮。"))
+	to_chat(user, SPAN_NOTICE("你按下了[name]按钮。"))
 
 	switch(normaldoorcontrol)
 		if(CONTROL_NORMAL_DOORS)
@@ -220,12 +220,12 @@
 
 /obj/structure/machinery/door_control/airlock/use_button(mob/living/user, force = FALSE)
 	if(inoperable())
-		to_chat(user, SPAN_WARNING("\The [src]似乎没有正常工作。"))
+		to_chat(user, SPAN_WARNING("[src]似乎没有正常工作。"))
 		return
 
 	use_power(5)
 	add_fingerprint(user)
-	to_chat(user, SPAN_NOTICE("你按下了\the [name]按钮。"))
+	to_chat(user, SPAN_NOTICE("你按下了[name]按钮。"))
 
 	switch(normaldoorcontrol)
 		if(CONTROL_NORMAL_DOORS)

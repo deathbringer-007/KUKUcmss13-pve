@@ -391,11 +391,11 @@
 
 	switch(prefs.dual_wield_pref)
 		if(DUAL_WIELD_FIRE)
-			to_chat(src, SPAN_BOLDNOTICE("Dual-wielding now fires both guns simultaneously."))
+			to_chat(src, SPAN_BOLDNOTICE("双持时现在会同时发射两把枪。"))
 		if(DUAL_WIELD_SWAP)
-			to_chat(src, SPAN_BOLDNOTICE("Dual-wielding now switches between guns, as long as the other gun is loaded."))
+			to_chat(src, SPAN_BOLDNOTICE("双持时现在会交替使用两把枪，前提是另一把枪有弹药。"))
 		if(DUAL_WIELD_NONE)
-			to_chat(src, SPAN_BOLDNOTICE("Dual-wielding now has no effect on how you fire."))
+			to_chat(src, SPAN_BOLDNOTICE("双持现在不会影响射击方式。"))
 
 	prefs.save_preferences()
 
@@ -416,19 +416,19 @@
 	switch(prefs.item_animation_pref_level)
 		if(SHOW_ITEM_ANIMATIONS_NONE)
 			prefs.item_animation_pref_level = SHOW_ITEM_ANIMATIONS_HALF
-			to_chat(src, SPAN_BOLDNOTICE("You will now see all item animations, except for those that occur on their own tile."))
+			to_chat(src, SPAN_BOLDNOTICE("现在显示所有物品动画，但不显示在物品自身所在格内发生的动画。"))
 			prefs.save_preferences()
 			return "On"
 
 		if(SHOW_ITEM_ANIMATIONS_HALF)
 			prefs.item_animation_pref_level = SHOW_ITEM_ANIMATIONS_ALL
-			to_chat(src, SPAN_BOLDNOTICE("You will now see all item animations."))
+			to_chat(src, SPAN_BOLDNOTICE("现在显示所有物品动画。"))
 			prefs.save_preferences()
 			return "Not Same Tile"
 
 		if(SHOW_ITEM_ANIMATIONS_ALL)
 			prefs.item_animation_pref_level = SHOW_ITEM_ANIMATIONS_NONE
-			to_chat(src, SPAN_BOLDNOTICE("You will no longer see item animations."))
+			to_chat(src, SPAN_BOLDNOTICE("现在不再显示物品动画。"))
 			prefs.save_preferences()
 			return "Off"
 
@@ -436,20 +436,20 @@
 	//Entirely for code readability.
 	var/meme_toggle = prefs.toggles_sound & SOUND_ADMIN_MEME ? TRUE : FALSE
 	var/atmospheric_toggle = prefs.toggles_sound & SOUND_ADMIN_ATMOSPHERIC ? TRUE : FALSE
-	var/result = tgui_alert(src, "Which sound type do you want to toggle? Meme sounds are currently [meme_toggle ? "enabled" : "disabled"], Atmospheric sounds are currently [atmospheric_toggle ? "enabled" : "disabled"].", "Toggle MIDI/Internet sound type to play", list("Meme", "Atmospheric"))
-	if(result == "Meme")
+	var/result = tgui_alert(src, "要切换哪类音效？趣味音效当前[meme_toggle ? "已启用" : "已禁用"]，氛围音效当前[atmospheric_toggle ? "已启用" : "已禁用"]。", "切换 MIDI／网络音效类型", list("趣味", "氛围"))
+	if(result == "趣味")
 		prefs.toggles_sound ^= SOUND_ADMIN_MEME
 		//Update the variables so it doesn't output the outdated toggle.
 		meme_toggle = prefs.toggles_sound & SOUND_ADMIN_MEME ? TRUE : FALSE
-		to_chat(src, SPAN_NOTICE("You will [meme_toggle ? "now" : "no longer"] hear meme admin sounds."))
-	if(result == "Atmospheric")
+		to_chat(src, SPAN_NOTICE("现在[meme_toggle ? "会" : "不会"]播放管理员的趣味音效。"))
+	if(result == "氛围")
 		prefs.toggles_sound ^= SOUND_ADMIN_ATMOSPHERIC
 		//Ditto.
 		atmospheric_toggle = prefs.toggles_sound & SOUND_ADMIN_ATMOSPHERIC ? TRUE : FALSE
-		to_chat(src, SPAN_NOTICE("You will [atmospheric_toggle ? "now" : "no longer"] hear atmospheric admin sounds."))
+		to_chat(src, SPAN_NOTICE("现在[atmospheric_toggle ? "会" : "不会"]播放管理员的氛围音效。"))
 
 /client/proc/receive_random_tip()
-	var/picked_type = tgui_alert(src, "What kind of tip?", "Tip Type", list("Marine", "Meta")) //no memetips for them joker imp
+	var/picked_type = preference_input_list(mob, "想阅读哪类提示？", "提示类型", list("Marine", "Meta")) //no memetips for them joker imp
 	var/message
 	var/static/list/types_to_pick = list(
 		"Marine" = "strings/pvetips.txt"
@@ -461,45 +461,45 @@
 		CRASH("receive_random_tip() failed: empty list")
 
 	if(message)
-		to_chat(src, SPAN_PURPLE("<b>Random Tip: </b>[html_encode(message)]"))
+		to_chat(src, SPAN_PURPLE("<b>随机提示：</b>[html_encode(message)]"))
 		return TRUE
 	else
 		CRASH("receive_random_tip() failed: null message")
 
 /// Toggle in character preferences and toggle preferences to configure what kind of blur overlay is used in game; Either blurry, impaired, or legacy.
 /client/proc/set_eye_blur_type()
-	var/result = tgui_alert(src, "What type of eye blur do you want?", "What type of eye blur do you want?", list("Blurry", "Impair", "Legacy"))
-	if(result == "Blurry")
+	var/result = tgui_alert(src, "选择视线模糊效果：", "视线模糊效果", list("模糊", "视野受限", "旧版"))
+	if(result == "模糊")
 		prefs.pain_overlay_pref_level = PAIN_OVERLAY_BLURRY
-		to_chat(src, SPAN_NOTICE("Your vision will now be directly blurred."))
-	if(result == "Impair")
+		to_chat(src, SPAN_NOTICE("现在使用直接模糊画面的效果。"))
+	if(result == "视野受限")
 		prefs.pain_overlay_pref_level = PAIN_OVERLAY_IMPAIR
-		to_chat(src, SPAN_NOTICE("Your vision will now be impaired on blur."))
-	if(result == "Legacy")
+		to_chat(src, SPAN_NOTICE("视线模糊时现在使用限制视野的效果。"))
+	if(result == "旧版")
 		prefs.pain_overlay_pref_level = PAIN_OVERLAY_LEGACY
-		to_chat(src, SPAN_NOTICE("Your vision will now have a legacy blurring effect. This is not recommended!"))
+		to_chat(src, SPAN_NOTICE("现在使用旧版视线模糊效果。不推荐使用此选项！"))
 	prefs.save_preferences()
 
 /// Toggle in character preferences and toggle preferences to configure what kind of flash overlay is used in game; Either white or black.
 /client/proc/set_flash_type()
-	var/result = tgui_alert(src, "What type of flash overlay do you want?", "What type of flash overlay do you want?", list("White", "Dark"))
-	if(result == "White")
+	var/result = tgui_alert(src, "选择闪光遮罩效果：", "闪光遮罩效果", list("白色", "深色"))
+	if(result == "白色")
 		prefs.flash_overlay_pref = FLASH_OVERLAY_WHITE
-		to_chat(src, SPAN_NOTICE("If flashed your vision will now be white."))
-	else if(result == "Dark")
+		to_chat(src, SPAN_NOTICE("被闪光致盲时，现在会显示白色画面。"))
+	else if(result == "深色")
 		prefs.flash_overlay_pref = FLASH_OVERLAY_DARK
-		to_chat(src, SPAN_NOTICE("If flashed your vision will now be dark."))
+		to_chat(src, SPAN_NOTICE("被闪光致盲时，现在会显示深色画面。"))
 	prefs.save_preferences()
 
 /// Toggle in character preferences and toggle preferences to configure what kind of crit overlay is used in game; Either white or grey.
 /client/proc/set_crit_type()
-	var/result = tgui_alert(src, "What type of crit overlay do you want?", "What type of crit overlay do you want?", list("White", "Dark"))
-	if(result == "White")
+	var/result = tgui_alert(src, "选择濒危遮罩效果：", "濒危遮罩效果", list("白色", "深色"))
+	if(result == "白色")
 		prefs.crit_overlay_pref = CRIT_OVERLAY_WHITE
-		to_chat(src, SPAN_NOTICE("If in critical condition your vision will now be white."))
-	else if(result == "Dark")
+		to_chat(src, SPAN_NOTICE("处于濒危状态时，现在会显示白色画面。"))
+	else if(result == "深色")
 		prefs.crit_overlay_pref = CRIT_OVERLAY_DARK
-		to_chat(src, SPAN_NOTICE("If in critical condition your vision will now be dark."))
+		to_chat(src, SPAN_NOTICE("处于濒危状态时，现在会显示深色画面。"))
 	prefs.save_preferences()
 
 /client/verb/toggle_tgui_say()
@@ -545,15 +545,15 @@
 	do_toggle_custom_cursors()
 
 /client/proc/do_toggle_custom_cursors(mob/user)
-	var/result = tgui_alert(user, "Do you want custom cursors enabled?", "Custom Cursors", list("Yes", "No"))
+	var/result = tgui_alert(user, "是否启用自定义鼠标指针？", "自定义鼠标指针", list("是", "否"))
 	if(!result)
 		return
-	if(result == "Yes")
+	if(result == "是")
 		prefs.custom_cursors = TRUE
-		to_chat(src, SPAN_NOTICE("You're now using custom cursors."))
+		to_chat(src, SPAN_NOTICE("已启用自定义鼠标指针。"))
 	else
 		prefs.custom_cursors = FALSE
-		to_chat(src, SPAN_NOTICE("You're no longer using custom cursors."))
+		to_chat(src, SPAN_NOTICE("已禁用自定义鼠标指针。"))
 		mouse_pointer_icon = initial(mouse_pointer_icon)
 
 	prefs.save_preferences()

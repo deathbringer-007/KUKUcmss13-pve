@@ -1,8 +1,8 @@
 
 
 /obj/item/storage/large_holster
-	name = "\improper Rifle Holster"
-	desc = "holster"
+	name = "步枪枪套"
+	desc = "枪套。"
 	icon = 'icons/obj/items/storage/holsters.dmi'
 	icon_state = "m37_holster"
 	w_class = SIZE_LARGE
@@ -57,8 +57,8 @@
 		playsound(src, drawSound, 15, TRUE)
 
 /obj/item/storage/large_holster/m37
-	name = "\improper L44 M37A2 scabbard"
-	desc = "A large leather holster fitted for USCM-issue shotguns. It has harnesses that allow it to be secured to the back for easy storage."
+	name = "L44 M37A2 刀鞘"
+	desc = "适配 USCM 制式霰弹枪的大型皮革枪套，带有背部固定带，便于收纳。"
 	icon_state = "m37_holster"
 	max_w_class = SIZE_HUGE
 	can_hold = list(
@@ -78,8 +78,8 @@
 	new /obj/item/weapon/gun/shotgun/pump/unloaded (src)
 
 /obj/item/storage/large_holster/machete
-	name = "\improper H5 pattern M2132 machete scabbard"
-	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back or the armor."
+	name = "H5 式 M2132 砍刀鞘"
+	desc = "用于携带 M2132 砍刀的大型皮革刀鞘，可固定在背部或护甲上。"
 	icon_state = "machete_holster"
 	flags_equip_slot = SLOT_WAIST|SLOT_BACK
 	can_hold = list(/obj/item/weapon/sword/machete)
@@ -88,23 +88,23 @@
 	new /obj/item/weapon/sword/machete(src)
 
 /obj/item/storage/large_holster/machete/arnold
-	name = "\improper QH20 pattern M2100 custom machete scabbard"
-	desc = "A large leather scabbard used to carry a M2100 \"Ngájhe\" machete. It can be strapped to the back or the armor."
+	name = "QH20 式 M2100 定制砍刀鞘"
+	desc = "用于携带 M2100“恩加杰”砍刀的大型皮革刀鞘，可固定在背部或护甲上。"
 	icon_state = "arnold-machete-pouch"
 
 /obj/item/storage/large_holster/machete/arnold/full/fill_preset_inventory()
 	new /obj/item/weapon/sword/machete/arnold(src)
 
 /obj/item/storage/large_holster/machete/arnold/weak
-	name = "\improper QH20 pattern M2100 machete scabbard"
-	desc = "A large leather scabbard used to carry a M2100 machete. It can be strapped to the back or the armor."
+	name = "QH20 式 M2100 砍刀鞘"
+	desc = "用于携带 M2100 砍刀的大型皮革刀鞘，可固定在背部或护甲上。"
 
 /obj/item/storage/large_holster/machete/arnold/weak/fill_preset_inventory()
 	new /obj/item/weapon/sword/machete/arnold/weak(src)
 
 /obj/item/storage/large_holster/machete/smartgunner
-	name = "\improper M56 harness machete scabbard"
-	desc = "A scabbard that connects to the M56 combat harness for carrying a M2132 machete."
+	name = "M56 背带砍刀鞘"
+	desc = "连接在 M56 战斗背带上的刀鞘，用于携带 M2132 砍刀。"
 	icon_state = "smartgun_machete_holster"
 	flags_equip_slot = SLOT_BACK
 	flags_item = SMARTGUNNER_BACKPACK_OVERRIDE
@@ -125,8 +125,8 @@
 	new /obj/item/weapon/sword/machete(src)
 
 /obj/item/storage/large_holster/katana
-	name = "\improper katana scabbard"
-	desc = "A large, vibrantly colored katana scabbard used to carry a Japanese sword. It can be strapped to the back or worn at the belt. Because of the sturdy wood casing of the scabbard, it makes an okay defensive weapon in a pinch."
+	name = "武士刀鞘"
+	desc = "用于携带日本刀的大型鲜艳刀鞘，可背在背上或挂在腰间。坚固木壳使它在紧急时也能充当不错的防身武器。"
 	icon_state = "katana_holster"
 	force = 12
 	attack_verb = list("bludgeoned", "struck", "cracked")
@@ -137,8 +137,8 @@
 	new /obj/item/weapon/sword/katana(src)
 
 /obj/item/storage/large_holster/ceremonial_sword
-	name = "ceremonial sword scabbard"
-	desc = "A large, vibrantly colored scabbard used to carry a ceremonial sword."
+	name = "礼仪剑鞘"
+	desc = "用于携带礼仪剑的大型鲜艳剑鞘。"
 	icon_state = "ceremonial_sword_holster"//object icon is duplicate of katana holster, needs new icon at some point.
 	force = 12
 	flags_equip_slot = SLOT_WAIST
@@ -148,8 +148,8 @@
 	new /obj/item/weapon/sword/ceremonial(src)
 
 /obj/item/storage/large_holster/m39
-	name = "\improper M276 pattern M39 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This holster features a larger frame and stiff backboard to support a submachinegun. It's designed for the M39, but the clips are adjustable enough to fit most compact submachineguns. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	name = "M276 式 M39 枪套挂具"
+	desc = "M276 是 USCM 的标准携行装备，由模块化腰带与多种挂扣组成。此枪套用较大框架和硬质背板支撑冲锋枪，原为 M39 设计，但可调挂扣也适配大多数紧凑型冲锋枪。设计较特殊，仅作特别配发，因此并不常见。"
 	icon_state = "m39_holster"
 	icon = 'icons/obj/items/clothing/belts.dmi'
 	flags_equip_slot = SLOT_WAIST|SLOT_SUIT_STORE
@@ -212,8 +212,8 @@
 
 
 /obj/item/storage/large_holster/fuelpack
-	name = "\improper Broiler-T flexible refueling system"
-	desc = "A specialized back harness that carries the Broiler-T flexible refueling system. Designed by and for USCM Pyrotechnicians."
+	name = "炙炉-T 柔性补燃系统"
+	desc = "承载炙炉-T 柔性补油系统的专用背带，由 USCM 火焰兵为自己设计。"
 	icon = 'icons/obj/items/clothing/backpacks.dmi'
 	icon_state = "flamethrower_broiler"
 	flags_atom = FPRINT|CONDUCT

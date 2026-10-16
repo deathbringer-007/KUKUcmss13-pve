@@ -1,7 +1,7 @@
 
 /obj/item/storage/box/m56_system
-	name = "\improper M56 smartgun system case"
-	desc = "A large case containing an M56A2 Smartgun, M56 combat harness, head mounted sight and powerpack.\nDrag this sprite into you to open it up! NOTE: You cannot put items back inside this case."
+	name = "\improper M56智能机枪系统箱"
+	desc = "大号装备箱，内装M56A2智能机枪、M56作战背带、头戴式瞄具和供能背包。\n将箱子的图标拖到自己身上即可打开！注意：物品取出后无法放回箱内。"
 	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "kit_case"
 	w_class = SIZE_HUGE
@@ -29,8 +29,8 @@
 		icon_state = "kit_case_e"
 
 /obj/item/storage/box/m56c_system
-	name = "\improper M56C smartgun system case"
-	desc = "A large case containing an M56C Smartgun, M56 combat harness, head mounted sight, M280 Smartgunner Drum Belt and powerpack.\nDrag this sprite into you to open it up! NOTE: You cannot put items back inside this case."
+	name = "\improper M56C智能机枪系统箱"
+	desc = "大号装备箱，内装M56C智能机枪、M56作战背带、头戴式瞄具、M280智能机枪弹鼓腰带和供能背包。\n将箱子的图标拖到自己身上即可打开！注意：物品取出后无法放回箱内。"
 	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "kit_case"
 	w_class = SIZE_HUGE
@@ -57,8 +57,8 @@
 		icon_state = "kit_case_e"
 
 /obj/item/storage/box/m56_dirty_system
-	name = "\improper M56D 'Dirty' smartgun system case"
-	desc = "A large case containing an M56D 'Dirty' Smartgun, M56D PMC combat harness and helmet, head mounted sight, M280 Smartgunner Drum Belt and powerpack.\nDrag this sprite into you to open it up! NOTE: You cannot put items back inside this case."
+	name = "\improper M56D“脏活”智能机枪系统箱"
+	desc = "大号装备箱，内装M56D“脏活”智能机枪、M56D雇佣兵作战背带和头盔、头戴式瞄具、M280智能机枪弹鼓腰带和供能背包。\n将箱子的图标拖到自己身上即可打开！注意：物品取出后无法放回箱内。"
 	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "kit_case"
 	w_class = SIZE_HUGE
@@ -86,8 +86,8 @@
 		icon_state = "kit_case_e"
 
 /obj/item/storage/box/personalcase
-	name = "personal weapon case"
-	desc = "A secure case with dactyle lock containing someone's valuable personal weapon."
+	name = "个人武器箱"
+	desc = "带指纹锁的安全箱，装着某人的贵重私人武器。"
 	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "personalcase"
 	w_class = SIZE_HUGE
@@ -105,19 +105,19 @@
 	if(!locked)
 		..()
 	else
-		to_chat(user, SPAN_DANGER("[src] is locked!"))
+		to_chat(user, SPAN_DANGER("[src]锁着！"))
 
 /obj/item/storage/box/personalcase/show_to(mob/user as mob)
 	if(!locked)
 		..()
 	else if(user.real_name == owner)
 		locked = FALSE
-		to_chat(user, SPAN_NOTICE("You unlock your personal weapon case."))
+		to_chat(user, SPAN_NOTICE("你解锁了自己的个人武器箱。"))
 		..()
 	else
-		to_chat(user, SPAN_DANGER("[src] is locked!"))
+		to_chat(user, SPAN_DANGER("[src]锁着！"))
 
 /obj/item/storage/box/personalcase/proc/assign_owner(new_owner)
 	owner = new_owner
-	name = "\improper [owner]'s personal weapon case"
-	desc = "A secure case with dactyle lock containing [owner]'s valuable personal weapon."
+	name = "\improper [owner]的个人武器箱"
+	desc = "带指纹锁的安全箱，装着[owner]的贵重私人武器。"

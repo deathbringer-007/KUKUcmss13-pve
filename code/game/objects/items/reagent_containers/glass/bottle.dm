@@ -1,8 +1,8 @@
 //Not to be confused with /obj/item/reagent_container/food/drinks/bottle
 
 /obj/item/reagent_container/glass/bottle
-	name = "bottle"
-	desc = "A small bottle."
+	name = "瓶"
+	desc = "一个小瓶子。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = null
 	item_state = "atoxinbottle"
@@ -56,8 +56,8 @@
 		overlays += lid
 
 /obj/item/reagent_container/glass/bottle/inaprovaline
-	name = "\improper Inaprovaline bottle"
-	desc = "A small glossy bottle of inaprovaline, a drug that artificially stimulates the respiratory reflex, reducing oxygen starvation during unconsciousness."
+	name = "因纳普罗伐林瓶"
+	desc = "一小瓶瓶身光亮的因纳普罗伐林，能人工刺激呼吸反射，减轻昏迷时的缺氧。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle19"
 	volume = 140
@@ -68,8 +68,8 @@
 	reagents.add_reagent("inaprovaline", 140)
 
 /obj/item/reagent_container/glass/bottle/bicaridine
-	name = "\improper Bicaridine bottle"
-	desc = "A small glossy bottle full of bicaridine, a substance that stimulates regeneration of tissue damage."
+	name = "比卡定瓶"
+	desc = "一小瓶瓶身光亮的比卡定，能促进受损组织再生。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle17"
 	amount_per_transfer_from_this = 180
@@ -79,8 +79,8 @@
 	reagents.add_reagent("bicaridine", 180)
 
 /obj/item/reagent_container/glass/bottle/peridaxon
-	name = "\improper Peridaxon bottle"
-	desc = "A small glossy bottle full of Peridaxon, the novel blend of drugs that TEMPORARILY halts the symptoms of organ damage."
+	name = "佩里达酮瓶"
+	desc = "一小瓶瓶身光亮的佩里达酮，新型复方药，可暂时抑制器官损伤的症状。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle4"
 	volume = 140
@@ -91,8 +91,8 @@
 	reagents.add_reagent("peridaxon", 140)
 
 /obj/item/reagent_container/glass/bottle/tramadol
-	name = "\improper Tramadol bottle"
-	desc = "A small glossy bottle full of tramadol, an OTC synthetic analgesic."
+	name = "曲马多瓶"
+	desc = "一小瓶瓶身光亮的曲马多，非处方合成镇痛药。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle1"
 	amount_per_transfer_from_this = 180
@@ -102,8 +102,8 @@
 	reagents.add_reagent("tramadol", 180)
 
 /obj/item/reagent_container/glass/bottle/oxycodone
-	name = "\improper Oxycodone bottle"
-	desc = "A small glossy bottle full of oxycodone, an aggressive analgesic. May be habit forming."
+	name = "羟考酮瓶"
+	desc = "一小瓶瓶身光亮的羟考酮，强效镇痛药，可能成瘾。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle2"
 	volume = 140
@@ -114,8 +114,8 @@
 	reagents.add_reagent("oxycodone", 140)
 
 /obj/item/reagent_container/glass/bottle/tricordrazine
-	name = "\improper Tricordrazine bottle"
-	desc = "A small glossy bottle full of tricordrazine, a drug that slowly treats minor injuries of all kinds."
+	name = "广效康复嗪瓶"
+	desc = "一小瓶瓶身光亮的广效康复嗪，可缓慢治疗各种轻伤。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle18"
 	volume = 180
@@ -125,8 +125,8 @@
 	reagents.add_reagent("tricordrazine", 180)
 
 /obj/item/reagent_container/glass/bottle/kelotane
-	name = "\improper Kelotane bottle"
-	desc = "A small glossy bottle filled with kelotane, a burn regrowth drug."
+	name = "克洛坦瓶"
+	desc = "一小瓶瓶身光亮的克洛坦，用于烧伤组织修复。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle16"
 	amount_per_transfer_from_this = 180
@@ -136,8 +136,8 @@
 	reagents.add_reagent("kelotane", 180)
 
 /obj/item/reagent_container/glass/bottle/dexalin
-	name = "\improper Dexalin bottle"
-	desc = "A small glossy bottle filled with dexalin. Microcapsules slowly release oxygen into the bloodstream, offsetting the effects of O2 deprivation."
+	name = "右氧林瓶"
+	desc = "一小瓶瓶身光亮的右氧林。微胶囊缓慢向血液释放氧气，缓解缺氧影响。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle10"
 	amount_per_transfer_from_this = 180
@@ -147,8 +147,8 @@
 	reagents.add_reagent("dexalin", 180)
 
 /obj/item/reagent_container/glass/bottle/dexalinplus
-	name = "\improper Dexalin+ bottle"
-	desc = "A small bottle filled with dexalin+. Hyper-condensed microcapsules quickly release oxygen into the bloodstream, immediately offsetting the effects of O2 deprivation."
+	name = "强化右氧林瓶"
+	desc = "一小瓶强化右氧林。高度浓缩的微胶囊迅速向血液释放氧气，立即缓解缺氧影响。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle10"
 	volume = 140
@@ -211,8 +211,8 @@
 	reagents.add_reagent("chloralhydrate", 30) //Intentionally low since it is so strong. Still enough to knock someone out.
 
 /obj/item/reagent_container/glass/bottle/antitoxin
-	name = "\improper Dylovene bottle"
-	desc = "A small glossy bottle of dylovene, the new broadspectrum antitoxic."
+	name = "迪洛文瓶"
+	desc = "一小瓶瓶身光亮的迪洛文，新型广谱抗毒药。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle7"
 	amount_per_transfer_from_this = 150
@@ -222,8 +222,8 @@
 	reagents.add_reagent("anti_toxin", 150)
 
 /obj/item/reagent_container/glass/bottle/imialk
-	name = "\improper Imidazoline-Alkysine bottle"
-	desc = "A small bottle of imidazoline and alkysine, used to heal brain and eye damage."
+	name = "咪唑啉-神经修复素瓶"
+	desc = "一小瓶咪唑啉与神经修复素，用于治疗脑部和眼部损伤。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle19"
 	volume = 140
@@ -235,8 +235,8 @@
 	reagents.add_reagent("alkysine", 70)
 
 /obj/item/reagent_container/glass/bottle/merabica
-	name = "\improper Meralyne-Bicaridine bottle"
-	desc = "A small bottle of meralyne and bicaridine. Rapidly heals brute damage."
+	name = "美拉林-比卡定瓶"
+	desc = "一小瓶美拉林与比卡定，可快速治疗钝伤。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle17"
 	volume = 140
@@ -248,8 +248,8 @@
 	reagents.add_reagent("meralyne", 70)
 
 /obj/item/reagent_container/glass/bottle/keloderm
-	name = "\improper Kelotane-Dermaline bottle"
-	desc = "A small bottle of kelotane & dermaline, a pair of burn regrowth drugs."
+	name = "克洛坦-德玛林瓶"
+	desc = "一小瓶克洛坦与德玛林，两种用于烧伤组织修复的药物。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle15"
 	volume = 140
@@ -271,8 +271,8 @@
 	reagents.add_reagent("mutagen", 150)
 
 /obj/item/reagent_container/glass/bottle/ammonia
-	name = "ammonia bottle"
-	desc = "A small bottle."
+	name = "氨水瓶"
+	desc = "一个小瓶子。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle20"
 
@@ -281,8 +281,8 @@
 	reagents.add_reagent("ammonia", 150)
 
 /obj/item/reagent_container/glass/bottle/diethylamine
-	name = "diethylamine bottle"
-	desc = "A small bottle. Contains a potent fertiliser."
+	name = "二乙胺瓶"
+	desc = "一个小瓶子，内装强效肥料。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle17"
 

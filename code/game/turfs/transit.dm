@@ -1,5 +1,5 @@
 /turf/open/space/transit
-	name = "\proper hyperspace"
+	name = "\proper 超空间"
 	icon_state = "black"
 	dir = SOUTH
 	baseturfs = /turf/open/space/transit
@@ -105,7 +105,7 @@
 
 	//we didn't find a turf to drop them... This shouldn't happen usually
 	if(crosser.can_paradrop()) //don't delete them if they were supposed to paradrop
-		to_chat(crosser, SPAN_BOLDWARNING("Your harness got stuck and you got thrown back in the dropship."))
+		to_chat(crosser, SPAN_BOLDWARNING("你的安全带卡住了，把你拽回了运输艇。"))
 		var/turf/projected = get_ranged_target_turf(crosser.loc, turn(dir, 180), 15)
 		INVOKE_ASYNC(crosser, TYPE_PROC_REF(/atom/movable, throw_atom), projected, 50, SPEED_FAST, null, TRUE)
 		return
@@ -240,7 +240,7 @@
 	Stun(3)
 	// take a little bit more damage otherwise
 	take_overall_damage(400, used_weapon = "falling", limb_damage_chance = 100)
-	visible_message(SPAN_WARNING("[src] falls out of the sky."), SPAN_HIGHDANGER("As you fall out of the [dropship_name], you plummet towards the ground."))
+	visible_message(SPAN_WARNING("[src]从空中坠落。"), SPAN_HIGHDANGER("你从[dropship_name]中跌出，朝地面直坠而去。"))
 
 /mob/living/carbon/human/handle_airdrop(turf/target, dropship_name)
 	..()

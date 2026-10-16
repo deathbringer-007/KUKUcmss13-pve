@@ -1,6 +1,6 @@
 /obj/item/storage/belt
-	name = "belt"
-	desc = "Can hold various things."
+	name = "腰带"
+	desc = "可以容纳各种物品。"
 	icon = 'icons/obj/items/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	item_icons = list(
@@ -84,8 +84,8 @@
 
 
 /obj/item/storage/belt/utility
-	name = "\improper M276 pattern toolbelt rig" //Carn: utility belt is nicer, but it bamboozles the text parsing.
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version lacks any combat functionality, and is commonly used by engineers to transport important tools."
+	name = "M276 式工具携行腰带" //Carn: utility belt is nicer, but it bamboozles the text parsing.
+	desc = "M276 是 USCM 的标准携行装备，由模块化腰带与多种挂扣组成。此型号没有战斗功能，常用于工程人员携带重要工具。"
 	icon_state = "utilitybelt"
 	item_state = "utility"
 	max_w_class = SIZE_MEDIUM
@@ -137,8 +137,8 @@
 	new /obj/item/device/t_scanner(src)
 
 /obj/item/storage/belt/utility/construction
-	name = "\improper M277 pattern construction rig"
-	desc = "The M277 is an uncommon rig used by specialist combat engineers to carry around materials and other supplies. It consists of a modular belt with various clips. This version sarafices storage space for specialized material loading clips."
+	name = "M277 式建筑工具挂具"
+	desc = "M277 是专业战斗工兵携带材料和其他物资使用的少见挂具，由模块化腰带与多种挂扣组成。此型号牺牲储物空间，换取专用材料装载夹。"
 	storage_slots = 6
 	can_hold = list(
 		/obj/item/tool/crowbar,
@@ -198,8 +198,8 @@
 	item_state = "utility"
 
 /obj/item/storage/belt/medical
-	name = "\improper M276 pattern medical storage rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport bulkier medical supplies. \nRight click its sprite and click \"toggle belt mode\" to take pills out of bottles by simply clicking them."
+	name = "M276 式医疗携行挂具"
+	desc = "M276 是 USCM 的标准携行装备，由模块化腰带与多种挂扣组成。此型号较少见，用于运输体积较大的医疗用品。\n右键点击图标，选择“切换腰带模式”，即可通过点击药瓶直接取出药片。"
 	icon_state = "medicalbelt"
 	item_state = "medical"
 	storage_slots = 14
@@ -275,8 +275,8 @@
 	. += SPAN_NOTICE("The belt is currently set to [mode ? "take pills directly from bottles": "NOT take pills directly from bottles"].")
 
 /obj/item/storage/belt/medical/upp
-	name = "\improper Type 41 pattern medical storage rig"
-	desc = "The Type 41 is the standard load-bearing equipment of UPP military. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport medical supplies and pistol ammunition. \nRight click its sprite and click \"toggle belt mode\" to take pills out of bottles by simply clicking them."
+	name = "41 式医疗携行挂具"
+	desc = "41 式是 UPP 军方的标准携行装备，由模块化腰带与多种挂扣组成。此配置较少见，用于运输医疗用品与手枪弹药。\n右键点击图标，选择“切换腰带模式”，即可通过点击药瓶直接取出药片。"
 	icon_state = "medicalbelt_upp"
 	item_state = "upp_belt"
 
@@ -294,8 +294,8 @@
 	new /obj/item/reagent_container/hypospray/autoinjector/iron(src)
 
 /obj/item/storage/belt/medical/lifesaver
-	name = "\improper M276 pattern lifesaver bag"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies, and is common among medics. \nRight click its sprite and click \"toggle belt mode\" to take pills out of bottles by simply clicking them."
+	name = "M276 式救生医疗包"
+	desc = "M276 是 USCM 的标准携行装备。此配置带有装满各类注射器和轻便医疗用品的提包，在医疗兵中很常见。\n右键点击图标，选择“切换腰带模式”，即可通过点击药瓶直接取出药片。"
 	icon_state = "medicbag"
 	item_state = "medicbag"
 	storage_slots = 21 //can hold 3 "rows" of very limited medical equipment, but it *should* give a decent boost to squad medics.
@@ -399,8 +399,8 @@
 	new /obj/item/reagent_container/hypospray/autoinjector/iron(src)
 
 /obj/item/storage/belt/medical/lifesaver/upp
-	name = "\improper Type 41 pattern lifesaver bag"
-	desc = "The Type 41 load rig is the standard load-bearing equipment of the UPP military. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies, and is common among medics."
+	name = "41 式救生医疗包"
+	desc = "41 式携行挂具是 UPP 军方的标准携行装备。此配置带有装满各类注射器和轻便医疗用品的提包，在医疗兵中很常见。"
 	icon_state = "medicbag_u"
 	item_state = "medicbag_u"
 	has_gamemode_skin = FALSE
@@ -482,8 +482,8 @@
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 
 /obj/item/storage/belt/security
-	name = "\improper duty belt"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This configuration is commonly seen among USCM Military Police and peacekeepers, though it can hold some light munitions."
+	name = "执勤腰带"
+	desc = "M276 是 USCM 的标准携行装备，由模块化腰带与多种挂扣组成。此配置常见于 USCM 宪兵和维和人员，也能携带少量轻型弹药。"
 	icon_state = "securitybelt"
 	item_state = "security"//Could likely use a better one.
 	item_state_slots = list(
@@ -517,8 +517,8 @@
 	new /obj/item/ammo_magazine/pistol(src)
 
 /obj/item/storage/belt/security/MP
-	name = "\improper M276 pattern military police rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is filled with an array of small pouches, meant to carry non-lethal equipment and restraints."
+	name = "M276 式宪兵挂具"
+	desc = "M276 是 USCM 的标准携行装备，由模块化腰带与多种挂扣组成。此型号布满小袋，用于携带非致命装备和束缚器材。"
 	storage_slots = 8
 	max_w_class = SIZE_MEDIUM
 	max_storage_space = 30
@@ -542,8 +542,8 @@
 	new /obj/item/restraint/handcuffs(src)
 
 /obj/item/storage/belt/security/MP/UPP
-	name = "\improper Type 43 military police rig"
-	desc = "The Type 43 is the standard load-bearing equipment of the UPP. It consists of a modular belt with various clips. This version is filled with an array of small pouches, meant to carry non-lethal equipment and restraints."
+	name = "43 式宪兵挂具"
+	desc = "43 式是 UPP 的标准携行装备，由模块化腰带与多种挂扣组成。此型号布满小袋，用于携带非致命装备和束缚器材。"
 
 /obj/item/storage/belt/security/MP/UPP/full/fill_preset_inventory()
 	new /obj/item/weapon/gun/energy/taser(src)
@@ -556,8 +556,8 @@
 	new /obj/item/ammo_magazine/pistol/t73(src)
 
 /obj/item/storage/belt/security/MP/CMB
-	name = "police duty belt"
-	desc = "A high quality black duty belt utilized by the Colonial Marshal's Bureau and various other law-enforcement organizations."
+	name = "警务执勤腰带"
+	desc = "殖民地执法局及其他执法机构使用的优质黑色执勤腰带。"
 	storage_slots = 6
 	max_w_class = SIZE_MEDIUM
 	max_storage_space = 30
@@ -597,8 +597,8 @@
 	new /obj/item/notepad/black(src)
 
 /obj/item/storage/belt/marine
-	name = "\improper M276 pattern ammo load rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This is the standard variant, designed for bulk ammunition-carrying operations."
+	name = "M276 式弹药携行挂具"
+	desc = "M276 是 USCM 的标准携行装备，由模块化腰带与多种挂扣组成。这是标准型号，用于大量携带弹药。"
 	icon_state = "marinebelt"
 	item_state = "marinebelt"
 	w_class = SIZE_LARGE
@@ -726,8 +726,8 @@
 		new /obj/item/ammo_magazine/sniper/svd/pve(src)
 
 /obj/item/storage/belt/marine/smartgunner
-	name = "\improper M280 pattern smartgunner drum belt"
-	desc = "Despite the fact that 1. drum magazines are incredibly non-ergonomical, and 2. require incredibly precise machining in order to fit universally (spoiler, they don't, adding further to the myth of 'Smartgun Personalities'), the USCM decided to issue a modified marine belt (more formally known by the designation M280) with hooks and dust covers (overly complex for the average jarhead) for the M56B system's drum munitions. When the carry catch on the drum isn't getting stuck in the oiled up velcro, the rig actually does do a decent job at holding a plentiful amount of drums. But at the end of the day, compared to standard rigs... it sucks, but isn't that what being a Marine is all about?"
+	name = "M280 式智能机枪手弹鼓腰带"
+	desc = "尽管弹鼓既不符合人体工学，又需要极高加工精度才能通用（剧透：实际做不到，这还助长了“智能机枪有脾气”的传言），USCM 仍决定配发改良陆战队腰带，正式编号 M280。它带有适配 M56B 弹鼓的挂钩与防尘盖，对普通大兵来说过于复杂。只要弹鼓提扣没被油腻的魔术贴卡住，这套挂具确实能装不少弹鼓。可到头来，与标准挂具相比……还是难用。不过，当陆战队员不就是这么回事吗？"
 	icon_state = "sgbelt_ammo"
 	storage_slots = 6
 	bypass_w_limit = list(
@@ -807,8 +807,8 @@
 	has_gamemode_skin = FALSE
 
 /obj/item/storage/belt/marine/upp
-	name = "\improper Type 41 pattern load rig"
-	desc = "The Type 41 load rig is the standard-issue load-bearing equipment of the UPP military. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."
+	name = "41 式携行挂具"
+	desc = "41 式携行挂具是 UPP 军方制式携行装备，主要方便在行动中取用 71 式弹匣。虽然为 71 式武器系统设计，模块化收纳袋也足以容纳其他弹药与装备。"
 	icon_state = "upp_belt"
 	item_state = "upp_belt"
 	has_gamemode_skin = FALSE
@@ -832,8 +832,8 @@
 
 // M56E HMG gunner belt
 /obj/item/storage/belt/marine/m2c
-	name = "\improper M804 heavygunner storage rig"
-	desc = "The M804 heavygunner storage rig is an M276 pattern toolbelt rig modified to carry ammunition for heavy machinegun systems, and engineering tools for the gunner."
+	name = "M804 重机枪手储物挂具"
+	desc = "M804 重机枪手储物挂具由 M276 式工具腰带改装而成，用于携带重机枪系统弹药和机枪手的工程工具。"
 	icon_state = "m2c_ammo_rig"
 	item_state = "m2c_ammo_rig"
 	item_state_slots = list(
@@ -857,8 +857,8 @@
 	has_gamemode_skin = FALSE
 
 /obj/item/storage/belt/shotgun
-	name = "\improper M276 pattern shotgun shell loading rig"
-	desc = "An ammunition belt designed to hold shotgun shells or individual bullets."
+	name = "M276 式霰弹装填挂具"
+	desc = "用于装载霰弹或散装子弹的弹药腰带。"
 	icon_state = "shotgunbelt"
 	item_state = "marinebelt"
 	w_class = SIZE_LARGE
@@ -971,8 +971,8 @@
 		return ..()
 
 /obj/item/storage/belt/shotgun/xm88
-	name = "\improper M300 pattern .458 SOCOM loading rig"
-	desc = "An ammunition belt designed to hold the large .458 SOCOM caliber bullets for the XM88 heavy rifle."
+	name = "M300 式 .458 SOCOM 装弹挂具"
+	desc = "专为携带 XM88 重型步枪使用的大口径 .458 SOCOM 子弹设计的弹药腰带。"
 	icon_state = "boomslang-belt"
 	item_state = "marinebelt"
 	w_class = SIZE_LARGE
@@ -999,8 +999,8 @@
 	has_gamemode_skin = FALSE
 
 /obj/item/storage/belt/knifepouch
-	name="\improper M276 pattern knife rig"
-	desc="The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is specially designed to store knives. Not commonly issued, but kept in service."
+	name="M276 式刀具携行挂具"
+	desc="M276 是 USCM 的标准携行装备，由模块化腰带与多种挂扣组成。此型号专门存放刀具，配发不常见，但仍在服役。"
 	icon_state = "knifebelt"
 	item_state = "marinebelt" // aslo temp, maybe somebody update these icons with better ones?
 	w_class = SIZE_LARGE
@@ -1039,8 +1039,8 @@
 		return FALSE
 
 /obj/item/storage/belt/grenade
-	name="\improper M276 pattern M40 Grenade rig"
-	desc="The M276 is the standard load-bearing equipment of the UA armed forces. It consists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 pattern and AGM pattern Grenades."
+	name="M276 式 M40 手榴弹携行挂具"
+	desc="M276 是美洲联盟武装部队的标准携行装备，由模块化腰带与多种挂扣组成。此型号专为大量携带 M40 式及 AGM 式手榴弹设计。"
 	icon_state = "grenadebelt" // temp
 	item_state = "grenadebelt"
 	item_state_slots = list(
@@ -1073,8 +1073,8 @@
 		return ..()
 
 /obj/item/storage/belt/grenade/large
-	name="\improper M276 pattern M40 Grenade rig Mk. II"
-	desc="The M276 Mk. II is is an upgraded version of the M276 grenade rig, with more storage capacity."
+	name="M276 式 M40 手榴弹携行挂具 Mk. II"
+	desc="M276 Mk. II 是 M276 手榴弹挂具的升级版，储物容量更大。"
 	storage_slots = 18
 	max_storage_space = 54
 
@@ -1113,8 +1113,8 @@
 ////////////////////////////// GUN BELTS /////////////////////////////////////
 
 /obj/item/storage/belt/gun
-	name = "pistol belt"
-	desc = "A belt-holster assembly that allows one to hold a pistol and two magazines."
+	name = "手枪腰带"
+	desc = "腰带枪套组件，可容纳一把手枪和两个弹匣。"
 	icon_state = "m4a3_holster"
 	item_state = "marinebelt" //see post_skin_selection() - this is used for inhand states, the belt sprites use the same filename as the icon state.
 	use_sound = null
@@ -1309,8 +1309,8 @@
 
 
 /obj/item/storage/belt/gun/m4a3
-	name = "\improper M276 pattern general pistol holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the most common pistols. It also contains side pouches that can store most pistol magazines."
+	name = "M276 式通用手枪枪套挂具"
+	desc = "M276 是 USCM 的标准携行装备，由模块化腰带与多种挂扣组成。此型号的枪套可携带最常见的手枪，侧袋可存放大多数手枪弹匣。"
 	storage_slots = 7
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
@@ -1437,8 +1437,8 @@
 		new /obj/item/ammo_magazine/pistol/b92fs(src)
 
 /obj/item/storage/belt/gun/m4a3/nailgun
-	name = "customized nailgun holster"
-	desc = "Combination of a M276 pistol holster and engineering toolbelt that have been cannibalized into a unique belt that can holster a compact nailgun and two spare nailgun magazines."
+	name = "定制射钉枪枪套"
+	desc = "拆解 M276 手枪枪套和工程工具腰带后拼成的独特腰带，可收纳一把紧凑型射钉枪和两个备用射钉枪弹匣。"
 	icon_state = "nailgun_holster"
 	storage_slots = 3
 	can_hold = list(
@@ -1453,8 +1453,8 @@
 		new /obj/item/ammo_magazine/smg/nailgun(src)
 
 /obj/item/storage/belt/gun/m39
-	name = "\improper M276 pattern M39 holster rig"
-	desc = "Special issue variant of the M276 designed to holster a M39 submachine gun and two spare magazines. Uncommonly issued to USCM support and specialist personnel."
+	name = "M276 式 M39 枪套挂具"
+	desc = "M276 特别配发型号，可携带一把 M39 冲锋枪和两个备用弹匣。少量配发给 USCM 支援及专家人员。"
 	icon_state = "m39_armor"
 	item_state = "s_marinebelt"
 	storage_slots = 3
@@ -1476,8 +1476,8 @@
 #define MAXIMUM_MAGAZINE_COUNT 2
 
 /obj/item/storage/belt/gun/xm51
-	name = "\improper M276 pattern XM51 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is for the XM51 breaching scattergun, allowing easier storage of the weapon. It features pouches for storing two magazines along with extra shells."
+	name = "M276 式 XM51 枪套挂具"
+	desc = "M276 是 USCM 的标准携行装备，由模块化腰带与多种挂扣组成。此型号便于收纳 XM51 破障霰弹枪，另有可放两个弹匣和额外霰弹的袋子。"
 	icon_state = "xm51_holster"
 	has_gamemode_skin = FALSE
 	gun_has_gamemode_skin = FALSE
@@ -1546,8 +1546,8 @@
 			"icon_y" = -1))
 
 /obj/item/storage/belt/gun/m44
-	name = "\improper M276 pattern general revolver holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is universal and adjustable for different revolvers, along with six small pouches for speedloaders. It smells faintly of hay."
+	name = "M276 式通用左轮手枪枪套挂具"
+	desc = "M276 是 USCM 的标准携行装备，由模块化腰带与多种挂扣组成。此型号通用可调，适配不同左轮手枪，并带有六个快速装弹器小袋。隐约有股干草味。"
 	icon_state = "m44r_holster"
 	storage_slots = 7
 	can_hold = list(
@@ -1662,8 +1662,8 @@
 	)
 
 /obj/item/storage/belt/gun/mateba
-	name = "\improper M276 pattern Mateba holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with five small pouches for speedloaders. This one is aging poorly, and seems to be surplus equipment. It's stamped '3rd 'Dust Raiders' Battalion'."
+	name = "M276 式马特巴枪套挂具"
+	desc = "M276 是 USCM 的标准携行装备，由模块化腰带与多种挂扣组成。此型号供威力强大的马特巴马格南左轮手枪使用，并有五个快速装弹器袋。这一件老化严重，似乎是库存剩余装备，上面盖着“第三‘沙尘突袭者’营”的印记。"
 	icon_state = "s_cmateba_holster"
 	item_state = "s_marinebelt"
 	storage_slots = 7
@@ -1687,7 +1687,7 @@
 	new /obj/item/ammo_magazine/revolver/mateba/highimpact/ap(src)
 
 /obj/item/storage/belt/gun/mateba/cmateba
-	name = "\improper M276 pattern Mateba holster rig"
+	name = "M276 式马特巴枪套挂具"
 	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with five small pouches for speedloaders. It was included with the mail-order USCM edition of the Mateba autorevolver in the early 2170s."
 	icon_state = "cmateba_holster"
 	item_state = "marinebelt"
@@ -1780,8 +1780,8 @@
 	new /obj/item/ammo_magazine/revolver/mateba/highimpact(src)
 
 /obj/item/storage/belt/gun/type47
-	name = "\improper Type 47 pistol holster rig"
-	desc = "This UPP-designed sidearm rig can very snugly and securely fit a Type-73, NP92, or a ZHNK-72, and their magazines or speedloaders. However, it lacks versatility in stored weaponry."
+	name = "47 式手枪枪套挂具"
+	desc = "UPP 设计的副武器挂具，可稳妥贴合地容纳 73 式、NP92 或 ZHNK-72 及其弹匣或快速装弹器，但对其他武器缺乏通用性。"
 	icon_state = "korovin_holster"
 	item_state = "upp_belt"
 	storage_slots = 7
@@ -1864,8 +1864,8 @@
 		random_mag = pick(picklist)
 
 /obj/item/storage/belt/gun/smartpistol
-	name = "\improper M276 pattern SU-6 Smartpistol holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is for the SU-6 smartpistol."
+	name = "M276 式 SU-6 智能手枪枪套挂具"
+	desc = "M276 是 USCM 的标准携行装备，由模块化腰带与多种挂扣组成。此型号供 SU-6 智能手枪使用。"
 	icon_state = "smartpistol_holster"
 	storage_slots = 7
 	holster_slots = list(
@@ -1888,8 +1888,8 @@
 		new /obj/item/ammo_magazine/pistol/smart(src)
 
 /obj/item/storage/belt/gun/flaregun
-	name = "\improper M276 pattern M82F flare gun holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is for the M82F flare gun."
+	name = "M276 式 M82F 信号枪枪套挂具"
+	desc = "M276 是 USCM 的标准携行装备，由模块化腰带与多种挂扣组成。此型号供 M82F 信号枪使用。"
 	storage_slots = 28
 	max_storage_space = 31
 	icon_state = "m82f_holster"
@@ -1940,8 +1940,8 @@
 		new /obj/item/ammo_magazine/revolver/webley(src)
 
 /obj/item/storage/belt/gun/smartgunner
-	name = "\improper M802 pattern smartgunner sidearm rig"
-	desc = "The M802 is a limited-issue mark of USCM load-bearing equipment, designed to carry smartgun ammunition and a sidearm."
+	name = "M802 式智能机枪手副武器挂具"
+	desc = "M802 是 USCM 限量配发的携行装备型号，专为携带智能机枪弹药和副武器设计。"
 	icon_state = "sgbelt"
 	flags_equip_slot = SLOT_WAIST
 	holster_slots = list(
@@ -2131,8 +2131,8 @@
 
 
 /obj/item/storage/belt/gun/mortarbelt
-	name="\improper M276 pattern mortar operator belt"
-	desc="An M276 load-bearing rig configured to carry ammunition for the M402 mortar, along with a sidearm."
+	name="M276 式迫击炮手腰带"
+	desc="配置为携带 M402 迫击炮弹药及一把副武器的 M276 携行挂具。"
 	icon_state="mortarbelt"
 	holster_slots = list("1" = list("icon_x" = 11))
 	can_hold = list(
@@ -2156,8 +2156,8 @@
 	new /obj/item/mortar_shell/incendiary(src)
 
 /obj/item/storage/belt/gun/utility
-	name = "\improper M276 pattern combat toolbelt rig"
-	desc = "The M276 pattern combat toolbelt rig is an alternative load-bearing equipment of the USCM for engineers conducting repairs within combat zones. It consists of a modular belt with various clips and pouches for tools along with a holster for a sidearm. Due to the bulk of the sidearm, it is unable to hold as many tools as its standard counterpart."
+	name = "M276 式战斗工具携行腰带"
+	desc = "M276 式战斗工具腰带是 USCM 工兵在战区维修时使用的替代携行装备。模块化腰带带有多种工具挂扣、收纳袋及副武器枪套。由于副武器占用空间，能装的工具少于标准型号。"
 	storage_slots = 9
 	icon_state = "combatutility"
 	item_state= "utility"
@@ -2205,8 +2205,8 @@
 ////////////OTHER BELTS//////////////
 
 /obj/item/storage/belt/tank
-	name = "\improper M103 pattern vehicle ammo rig"
-	desc = "The M103 is a limited-issue mark of USCM load-bearing equipment, made specially for crewmen to carry their vehicle's ammunition."
+	name = "M103 式载具弹药挂具"
+	desc = "M103 是 USCM 限量配发的携行装备型号，专供乘员携带载具弹药。"
 	icon_state = "tankbelt"
 	item_state = "tankbelt"
 	item_state_slots = list(
@@ -2258,8 +2258,8 @@
 //ROYAL MARINES COMMNADO
 
 /obj/item/storage/belt/marine/rmc
-	name = "\improper L70 pattern ammo load rig"
-	desc = "Good for carrying around extra ammo in the heat of the jungle. Made of special rot-resistant fabric."
+	name = "L70 式弹药携行挂具"
+	desc = "适合在炎热丛林中携带额外弹药，采用特殊防腐面料。"
 	icon_state = "rmc_ammo"
 	item_state = "rmc_ammo"
 	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
@@ -2270,8 +2270,8 @@
 		new /obj/item/ammo_magazine/rifle/nsg23(src)
 
 /obj/item/storage/belt/medical/rmc
-	name = "\improper L75 pattern medical storage rig"
-	desc = "The L75 is the standard load-bearing equipment of the RMC. It consists of a modular belt with spacious pouches attached that are designed to transport bulkier medical supplies. \nRight click its sprite and click \"toggle belt mode\" to take pills out of bottles by simply clicking them."
+	name = "L75 式医疗携行挂具"
+	desc = "L75 是 RMC 的标准携行装备，由模块化腰带和宽敞收纳袋组成，用于运输体积较大的医疗用品。\n右键点击图标，选择“切换腰带模式”，即可通过点击药瓶直接取出药片。"
 	icon_state = "rmc_medical"
 	item_state = "rmc_medical"
 	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
@@ -2293,8 +2293,8 @@
 	new /obj/item/stack/medical/advanced/ointment(src)
 
 /obj/item/storage/belt/gun/l905
-	name = "\improper L165 gunbelt"
-	desc = "A belt of finely-tooled leather, with holster & pouches for most kinds of sidearms and corresponding ammo."
+	name = "L165 枪械腰带"
+	desc = "精细加工的皮革腰带，配有枪套与收纳袋，可携带大多数副武器及相应弹药。"
 	icon_state = "rmc_pistol"
 	item_state = "rmc_pistol"
 	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
@@ -2313,8 +2313,8 @@
 #define MAXIMUM_MORTARSHELL_COUNT 3
 
 /obj/item/storage/belt/gun/mortarbelt/rmc
-	name = "\improper L84 pattern ammo load rig"
-	desc = "An L84 pattern load-bearing rig configured to carry support ammunition for either the L53A1 light mortar or L164A3 multiple grenade launcher, along with a sidearm & magazine. Made of special rot-resistant fabric."
+	name = "L84 式弹药携行挂具"
+	desc = "配置为携带 L53A1 轻型迫击炮或 L164A3 多发榴弹发射器支援弹药的 L84 式携行挂具，还能带一把副武器和弹匣。采用特殊防腐面料。"
 	icon_state = "mortarutility"
 	item_state = "s_mortarbelt"
 	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE

@@ -147,5 +147,5 @@
 		sleep(P.time)
 		P.process(src.loc, O)
 		src.processing = 0
-	src.visible_message(SPAN_NOTICE("\the [src]完成了加工。"), \
+	src.visible_message(SPAN_NOTICE("[src]完成了加工。"), \
 		"你听见食品加工机停了下来。")

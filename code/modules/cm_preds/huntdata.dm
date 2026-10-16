@@ -64,7 +64,7 @@
 	if(hunted)
 		if(hunter)
 			hunter.hunter_data.prey = null
-			to_chat(hunter, SPAN_YAUTJABOLD("Your Prey has been utterly destroyed!"))
+			to_chat(hunter, SPAN_YAUTJABOLD("你的猎物已经被彻底摧毁了！"))
 			hunter = null
 		hunted = FALSE
 	if(prey)
@@ -75,8 +75,8 @@
 	if(thralled)
 		if(thralled_set)
 			thralled_set.hunter_data.thrall = null
-			to_chat(thralled_set, SPAN_YAUTJABOLD("Your Thrall has been utterly destroyed!"))
-			message_all_yautja("[thralled_set.real_name]'s Thrall, [owner.real_name], has been utterly destroyed!")
+			to_chat(thralled_set, SPAN_YAUTJABOLD("你的仆从已经被彻底摧毁了！"))
+			message_all_yautja("[thralled_set.real_name]的仆从[owner.real_name]已经被彻底摧毁了！")
 			thralled_set = null
 		thralled = FALSE
 	if(thrall)

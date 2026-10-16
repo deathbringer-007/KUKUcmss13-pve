@@ -21,9 +21,9 @@
 		user.drop_held_item(B)
 		B.forceMove(src)
 		configuration = B
-		to_chat(user, SPAN_NOTICE("你将\the [src]配置为模拟[B]。"))
+		to_chat(user, SPAN_NOTICE("你将[src]配置为模拟[B]。"))
 	else
-		to_chat(user, "\The [src]不兼容[B]。")
+		to_chat(user, "[src]不兼容[B]。")
 
 /obj/structure/machinery/computer/demo_sim/attack_hand(mob/user as mob)
 	if(..())

@@ -1,5 +1,5 @@
 /obj/item/ammo_magazine/smg
-	name = "\improper default SMG magazine"
+	name = "默认冲锋枪弹匣"
 	desc = "一个冲锋枪弹匣。"
 	item_state = "generic_mag"
 	default_ammo = /datum/ammo/bullet/smg

@@ -21,41 +21,41 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 /datum/resin_construction/proc/can_build_here(turf/T, mob/living/carbon/xenomorph/X)
 	if(!istype(T) || T.is_weedable() < FULLY_WEEDABLE)
-		to_chat(X, SPAN_WARNING("You can't do that here."))
+		to_chat(X, SPAN_WARNING("你不能在这里这样做。"))
 		return FALSE
 
 	var/area/AR = get_area(T)
 	if(isnull(AR) || !(AR.is_resin_allowed))
 		if(AR.flags_area & AREA_UNWEEDABLE)
-			to_chat(X, SPAN_XENOWARNING("This area is unsuited to host the hive!"))
+			to_chat(X, SPAN_XENOWARNING("这片区域不适合虫巢生长！"))
 			return
-		to_chat(X, SPAN_XENOWARNING("It's too early to spread the hive this far."))
+		to_chat(X, SPAN_XENOWARNING("现在还太早，无法将虫巢扩展到这么远。"))
 		return FALSE
 
 	if(!(AR.resin_construction_allowed)) //disable resin walls not weed, in special circumstances EG. Stairs and Dropship turfs
-		to_chat(X, SPAN_WARNING("You sense this is not a suitable area for expanding the hive."))
+		to_chat(X, SPAN_WARNING("你感觉这片区域不适合扩展虫巢。"))
 		return FALSE
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in T
 	if(!alien_weeds)
-		to_chat(X, SPAN_WARNING("You can only shape on weeds. Find some resin before you start building!"))
+		to_chat(X, SPAN_WARNING("你只能在菌毯上塑形，建造前先找一片树脂菌毯！"))
 		return FALSE
 
 	if(alien_weeds?.block_structures >= BLOCK_ALL_STRUCTURES)
-		to_chat(X, SPAN_WARNING("\The [alien_weeds] block the construction of any structures!"))
+		to_chat(X, SPAN_WARNING("[alien_weeds]阻止了所有建筑的建造！"))
 		return FALSE
 
 	var/obj/vehicle/V = locate() in T
 	if(V)
-		to_chat(X, SPAN_WARNING("You cannot build under \the [V]!"))
+		to_chat(X, SPAN_WARNING("你不能在[V]下方建造！"))
 		return FALSE
 
 	if(alien_weeds.linked_hive.hivenumber != X.hivenumber)
-		to_chat(X, SPAN_WARNING("These weeds do not belong to your hive!"))
+		to_chat(X, SPAN_WARNING("这些菌毯不属于你的虫巢！"))
 		return FALSE
 
 	if(istype(T, /turf/closed/wall)) // Can't build in walls with no density
-		to_chat(X, SPAN_WARNING("This area is too unstable to support a construction"))
+		to_chat(X, SPAN_WARNING("这片区域太不稳定，无法支撑建筑。"))
 		return FALSE
 
 	if(!X.check_alien_construction(T, check_doors = !can_build_on_doors))
@@ -65,7 +65,7 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 		for(var/i in urange(range_between_constructions, T))
 			var/atom/A = i
 			if(A.type == build_path)
-				to_chat(X, SPAN_WARNING("This is too close to another similar structure!"))
+				to_chat(X, SPAN_WARNING("这里离另一座同类建筑太近了！"))
 				return FALSE
 
 	return TRUE
@@ -109,8 +109,8 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 // Resin Walls
 /datum/resin_construction/resin_turf/wall
 	name = "Resin Wall"
-	desc = "A resin wall, able to block passage."
-	construction_name = "resin wall"
+	desc = "能阻挡通行的树脂墙。"
+	construction_name = "树脂墙"
 	cost = XENO_RESIN_WALL_COST
 
 	build_path = /turf/closed/wall/resin
@@ -118,8 +118,8 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 /datum/resin_construction/resin_turf/wall/thick
 	name = "Thick Resin Wall"
-	desc = "A thick resin wall, stronger than regular walls."
-	construction_name = "thick resin wall"
+	desc = "比普通树脂墙更坚固的厚实树脂墙。"
+	construction_name = "厚实树脂墙"
 	cost = XENO_RESIN_WALL_THICK_COST
 
 	build_path = /turf/closed/wall/resin/thick
@@ -127,8 +127,8 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 /datum/resin_construction/resin_turf/wall/queen
 	name = "Queen Resin Wall"
-	desc = "A resin wall, able to block passage. Constructed type depends on weeds."
-	construction_name = "queen resin wall"
+	desc = "能阻挡通行的树脂墙，建造类型取决于菌毯。"
+	construction_name = "女皇树脂墙"
 
 	cost = XENO_RESIN_WALL_QUEEN_COST
 
@@ -139,8 +139,8 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 /datum/resin_construction/resin_turf/wall/reflective
 	name = "Reflective Resin Wall"
-	desc = "A reflective resin wall, able to reflect any and all projectiles back to the shooter."
-	construction_name = "reflective resin wall"
+	desc = "能将所有弹丸反射回射手的反射树脂墙。"
+	construction_name = "反射树脂墙"
 	cost = XENO_RESIN_WALL_REFLECT_COST
 	max_per_xeno = 5
 
@@ -149,8 +149,8 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 // Resin Membrane
 /datum/resin_construction/resin_turf/membrane
 	name = "Resin Membrane"
-	desc = "Resin membrane that can be seen through."
-	construction_name = "resin membrane"
+	desc = "能透过它观察另一侧的树脂膜。"
+	construction_name = "树脂膜"
 	cost = XENO_RESIN_MEMBRANE_COST
 
 	build_path = /turf/closed/wall/resin/membrane
@@ -158,8 +158,8 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 /datum/resin_construction/resin_turf/membrane/queen
 	name = "Queen Resin Membrane"
-	desc = "Resin membrane that can be seen through. Constructed type depends on weeds."
-	construction_name = "queen resin membrane"
+	desc = "能透过它观察另一侧的树脂膜，建造类型取决于菌毯。"
+	construction_name = "女皇树脂膜"
 	cost = XENO_RESIN_MEMBRANE_QUEEN_COST
 
 	build_path = /turf/closed/wall/resin/membrane
@@ -169,8 +169,8 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 /datum/resin_construction/resin_turf/membrane/thick
 	name = "Thick Resin Membrane"
-	desc = "Strong resin membrane that can be seen through."
-	construction_name = "thick resin membrane"
+	desc = "坚固且能透过它观察另一侧的树脂膜。"
+	construction_name = "厚实树脂膜"
 	cost = XENO_RESIN_MEMBRANE_THICK_COST
 
 	build_path = /turf/closed/wall/resin/membrane/thick
@@ -179,8 +179,8 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 // Resin Doors
 /datum/resin_construction/resin_obj/door
 	name = "Resin Door"
-	desc = "A resin door that only sisters may pass."
-	construction_name = "resin door"
+	desc = "只有姐妹们才能通过的树脂门。"
+	construction_name = "树脂门"
 	cost = XENO_RESIN_DOOR_COST
 
 	build_path = /obj/structure/mineral_door/resin
@@ -202,15 +202,15 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 				break
 
 	if(!wall_support)
-		to_chat(X, SPAN_WARNING("Resin doors need a wall or resin door next to them to stand up."))
+		to_chat(X, SPAN_WARNING("树脂门旁边必须有墙或另一扇树脂门才能成形。"))
 		return FALSE
 
 	return TRUE
 
 /datum/resin_construction/resin_obj/door/queen
 	name = "Queen Resin Door"
-	desc = "A resin door that only sisters may pass. Constructed type depends on weeds."
-	construction_name = "queen resin door"
+	desc = "只有姐妹们才能通过的树脂门，建造类型取决于菌毯。"
+	construction_name = "女皇树脂门"
 	cost = XENO_RESIN_DOOR_QUEEN_COST
 
 	build_path = /obj/structure/mineral_door/resin
@@ -220,8 +220,8 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 /datum/resin_construction/resin_obj/door/thick
 	name = "Thick Resin Door"
-	desc = "A thick resin door, which is more durable, that only sisters may pass."
-	construction_name = "thick resin door"
+	desc = "更耐用的厚实树脂门，只有姐妹们才能通过。"
+	construction_name = "厚实树脂门"
 	cost = XENO_RESIN_DOOR_THICK_COST
 
 	build_path = /obj/structure/mineral_door/resin/thick
@@ -230,8 +230,8 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 // Sticky Resin
 /datum/resin_construction/resin_obj/sticky_resin
 	name = "Sticky Resin"
-	desc = "Resin that slows down any tallhosts when they walk over it."
-	construction_name = "sticky resin"
+	desc = "高个宿主走过时会被减速的树脂。"
+	construction_name = "黏性树脂"
 	cost = XENO_RESIN_STICKY_COST
 	build_time = 1 SECONDS
 
@@ -240,8 +240,8 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 // Fast Resin
 /datum/resin_construction/resin_obj/fast_resin
 	name = "Fast Resin"
-	desc = "Resin that speeds up other sisters when they walk over it."
-	construction_name = "fast resin"
+	desc = "姐妹们走过时会加速的树脂。"
+	construction_name = "加速树脂"
 	cost = XENO_RESIN_FAST_COST
 	build_time = 1 SECONDS
 
@@ -249,8 +249,8 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 /datum/resin_construction/resin_obj/resin_spike
 	name = "Resin Spike"
-	desc = "Resin that harms any tallhosts when they walk over it."
-	construction_name = "resin spike"
+	desc = "高个宿主走过时会受到伤害的树脂。"
+	construction_name = "树脂尖刺"
 	cost = XENO_RESIN_SPIKE_COST
 	max_per_xeno = 15
 
@@ -258,8 +258,8 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 /datum/resin_construction/resin_obj/acid_pillar
 	name = "Acid Pillar"
-	desc = "A tall, green pillar that is capable of firing at multiple targets at once. Fires weak acid."
-	construction_name = "acid pillar"
+	desc = "高大的绿色柱体，能同时向多个目标发射弱酸液。"
+	construction_name = "酸液柱"
 	cost = XENO_RESIN_ACID_PILLAR_COST
 	max_per_xeno = 1
 
@@ -272,8 +272,8 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 /datum/resin_construction/resin_obj/shield_dispenser
 	name = "Shield Pillar"
-	desc = "A tall, strange pillar that gives shield to the interactor. Has a hefty cooldown."
-	construction_name = "shield pillar"
+	desc = "高大而奇异的柱体，能为与其互动的成员提供护盾，冷却时间较长。"
+	construction_name = "护盾柱"
 	cost = XENO_RESIN_SHIELD_PILLAR_COST
 	max_per_xeno = 1
 
@@ -287,8 +287,8 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 /datum/resin_construction/resin_obj/grenade
 	name = "Resin Acid Grenade"
-	desc = "An acid grenade."
-	construction_name = "acid grenade"
+	desc = "一枚酸液手榴弹。"
+	construction_name = "酸液手榴弹"
 	cost = XENO_RESIN_ACID_GRENADE_COST
 	max_per_xeno = 1
 
@@ -299,14 +299,14 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 /datum/resin_construction/resin_obj/festivizer
 	name = "Christmas Festivizer"
-	desc = "Merry Christmas! Hit anything with this to create the jolliest of festivities!"
-	construction_name = "christmas festivizer"
+	desc = "圣诞快乐！用它敲打任何东西，营造最欢乐的节日气氛！"
+	construction_name = "圣诞气氛棒"
 	max_per_xeno = 5
 	build_path = /obj/item/toy/festivizer/xeno
 	build_time = 2 SECONDS
 
 /datum/resin_construction/resin_obj/movable
-	construction_name = "resin wall"
+	construction_name = "树脂墙"
 
 	max_per_xeno = 7
 	cost = XENO_RESIN_WALL_MOVABLE_COST
@@ -314,33 +314,33 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 /datum/resin_construction/resin_obj/movable/wall
 	name = "Movable Resin Wall"
-	desc = "A resin wall that can be moved onto any adjacent tile, as long as there are weeds."
-	construction_name = "resin wall"
+	desc = "只要有菌毯，就能移到任意相邻地格上的树脂墙。"
+	construction_name = "树脂墙"
 	build_path = /obj/structure/alien/movable_wall
 
 /datum/resin_construction/resin_obj/movable/membrane
 	name = "Movable Resin Membrane"
-	desc = "A resin membrane that can be moved onto any adjacent tile, as long as there are weeds."
-	construction_name = "resin wall"
+	desc = "只要有菌毯，就能移到任意相邻地格上的树脂膜。"
+	construction_name = "树脂墙"
 	build_path = /obj/structure/alien/movable_wall/membrane
 
 /datum/resin_construction/resin_obj/movable/thick_wall
 	name = "Movable Thick Resin Wall"
-	desc = "A thick resin wall that can be moved onto any adjacent tile, as long as there are weeds."
-	construction_name = "thick resin wall"
+	desc = "只要有菌毯，就能移到任意相邻地格上的厚实树脂墙。"
+	construction_name = "厚实树脂墙"
 	build_path = /obj/structure/alien/movable_wall/thick
 
 /datum/resin_construction/resin_obj/movable/thick_membrane
 	name = "Movable Thick Membrane Wall"
-	desc = "A thick resin membrane that can be moved onto any adjacent tile, as long as there are weeds."
-	construction_name = "thick resin membrane"
+	desc = "只要有菌毯，就能移到任意相邻地格上的厚实树脂膜。"
+	construction_name = "厚实树脂膜"
 	build_path = /obj/structure/alien/movable_wall/membrane/thick
 
 // Remote Weed Nodes for originally coded for Resin Whisperers
 /datum/resin_construction/resin_obj/resin_node
 	name = "Weed Node"
-	desc = "Channel energy to spread our influence."
-	construction_name = "weed node"
+	desc = "引导能量，扩散我们的影响。"
+	construction_name = "菌毯节点"
 	cost = (XENO_RESIN_MEMBRANE_THICK_COST * 2) // 3x the cost of a thick membrane. At the time of coding that is 95*2 = 190
 
 	build_path = /obj/effect/alien/weeds/node

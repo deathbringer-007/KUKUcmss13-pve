@@ -204,7 +204,7 @@
 		else return //just in case
 
 		if(G.antigrief_protection && user.faction == FACTION_MARINE && explosive_antigrief_check(G, user))
-			to_chat(user, SPAN_WARNING("\The [G.name]的安全区事故抑制器阻止了你激活手雷！"))
+			to_chat(user, SPAN_WARNING("[G.name]的安全区事故抑制器阻止了你激活手雷！"))
 			// Let staff know, in case someone's actually about to try to grief
 			msg_admin_niche("[key_name(user)] attempted to prime \a [G.name] in [get_area(src)] [ADMIN_JMP(src.loc)]")
 			return

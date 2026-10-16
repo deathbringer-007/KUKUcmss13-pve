@@ -18,7 +18,7 @@
 /mob/living/silicon/decoy/ship_ai/Initialize()
 	. = ..()
 	name = MAIN_AI_SYSTEM
-	desc = "This is the artificial intelligence system for the [MAIN_SHIP_NAME]. Like many other military-grade AI systems, this one was manufactured by Weyland-Yutani."
+	desc = "这是[MAIN_SHIP_NAME]的人工智能系统。与许多军用级AI系统一样，它由维兰德-汤谷制造。"
 	ai_headset = new(src)
 	GLOB.ai_mob_list += src
 	real_name = MAIN_AI_SYSTEM
@@ -44,7 +44,7 @@
 	else
 		health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
 
-/mob/living/silicon/decoy/death(cause, gibbed, deathmessage = "sparks up and falls silent...")
+/mob/living/silicon/decoy/death(cause, gibbed, deathmessage = "冒出火花，随后归于沉寂……")
 	if(stat == DEAD)
 		return FALSE
 
@@ -68,7 +68,7 @@
 		if("broadcast") message_mode = "headset"
 		else message = copytext(message, 3)
 
-	ai_headset.talk_into(src, message, message_mode, "states", languages[1])
+	ai_headset.talk_into(src, message, message_mode, "说道", languages[1])
 	return TRUE
 
 /mob/living/silicon/decoy/parse_message_mode(message)

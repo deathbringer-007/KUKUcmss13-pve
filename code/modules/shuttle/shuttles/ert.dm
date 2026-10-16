@@ -4,7 +4,7 @@
 
 // Base ERT Shuttle
 /obj/docking_port/mobile/emergency_response
-	name = "ERT Shuttle"
+	name = "紧急响应穿梭机"
 	ignitionTime = DROPSHIP_WARMUP_TIME
 	area_type = /area/shuttle/ert
 	width = 7
@@ -79,7 +79,7 @@
 
 /obj/docking_port/mobile/emergency_response/proc/lockdown_door_launch(obj/structure/machinery/door/airlock/air)
 	for(var/mob/living/blocking_mob in air.loc) // Bump all mobs outta the way for outside airlocks of shuttles
-		to_chat(blocking_mob, SPAN_HIGHDANGER("You get thrown back as the dropship doors slam shut!"))
+		to_chat(blocking_mob, SPAN_HIGHDANGER("登陆艇舱门猛然关闭，将你弹了回去！"))
 		blocking_mob.KnockDown(4)
 		for(var/turf/target_turf in orange(1, air)) // Forcemove to a non shuttle turf
 			if(!istype(target_turf, /turf/open/shuttle) && !istype(target_turf, /turf/closed/shuttle))
@@ -101,21 +101,21 @@
 
 // ERT Shuttle 1
 /obj/docking_port/mobile/emergency_response/ert1
-	name = "Response Shuttle"
+	name = "响应穿梭机"
 	id = MOBILE_SHUTTLE_ID_ERT1
 	preferred_direction = SOUTH
 	port_direction = NORTH
 
 // ERT Shuttle 2
 /obj/docking_port/mobile/emergency_response/ert2
-	name = "PMC Shuttle"
+	name = "私人军事承包商穿梭机"
 	id = MOBILE_SHUTTLE_ID_ERT2
 	preferred_direction = SOUTH
 	port_direction = NORTH
 
 // ERT Shuttle 3
 /obj/docking_port/mobile/emergency_response/ert3
-	name = "UPP Shuttle"
+	name = "进步人民联盟穿梭机"
 	id = MOBILE_SHUTTLE_ID_ERT3
 	preferred_direction = SOUTH
 	port_direction = NORTH
@@ -123,13 +123,13 @@
 // ERT Shuttle 4
 
 /obj/docking_port/mobile/emergency_response/ert4
-	name = "TWE Shuttle"
+	name = "三世界帝国穿梭机"
 	id = MOBILE_SHUTTLE_ID_ERT4
 	preferred_direction = SOUTH
 	port_direction = NORTH
 
 /obj/docking_port/mobile/emergency_response/small
-	name = "Rescue Shuttle"
+	name = "救援穿梭机"
 	id = MOBILE_SHUTTLE_ID_ERT_SMALL
 	preferred_direction = SOUTH
 	port_direction = NORTH
@@ -163,7 +163,7 @@
 
 
 /obj/docking_port/mobile/emergency_response/big
-	name = "Boarding Shuttle"
+	name = "登舰穿梭机"
 	id = MOBILE_SHUTTLE_ID_ERT_BIG
 	preferred_direction = SOUTH
 	port_direction = NORTH
@@ -215,18 +215,18 @@
 		lockdown_on_land = FALSE
 
 /obj/docking_port/stationary/emergency_response/port1
-	name = "Almayer starboard landing pad"
+	name = "阿尔迈耶号右舷着陆平台"
 	dir = NORTH
 	id = "almayer-ert1"
 
 
 /obj/docking_port/stationary/emergency_response/port2
-	name = "Almayer port landing pad"
+	name = "阿尔迈耶号左舷着陆平台"
 	dir = NORTH
 	id = "almayer-ert2"
 
 /obj/docking_port/stationary/emergency_response/port3
-	name = "Almayer stern landing pad"
+	name = "阿尔迈耶号舰尾着陆平台"
 	dir = NORTH
 	id = "almayer-ert3"
 
@@ -255,7 +255,7 @@
 		INVOKE_ASYNC(door, TYPE_PROC_REF(/obj/structure/machinery/door, close))
 
 /obj/docking_port/stationary/emergency_response/external/port4
-	name = "Almayer port external airlock"
+	name = "阿尔迈耶号左舷外部气闸"
 	dir = EAST
 	id = "almayer-ert4"
 	width  = 6
@@ -264,7 +264,7 @@
 	airlock_area = /area/almayer/engineering/upper_engineering/notunnel
 
 /obj/docking_port/stationary/emergency_response/external/port5
-	name = "Almayer starboard external airlock"
+	name = "阿尔迈耶号右舷外部气闸"
 	dir = EAST
 	id = "almayer-ert5"
 	width  = 6
@@ -273,7 +273,7 @@
 	airlock_area = /area/almayer/engineering/upper_engineering/notunnel
 
 /obj/docking_port/stationary/emergency_response/external/hangar_port
-	name = "Almayer hanger port external airlock"
+	name = "阿尔迈耶号机库左舷外部气闸"
 	dir = EAST
 	id = "almayer-ert-hangar-port"
 	width  = 17
@@ -282,7 +282,7 @@
 	airlock_area = /area/almayer/hallways/lower/port_umbilical
 
 /obj/docking_port/stationary/emergency_response/external/hangar_starboard
-	name = "Almayer hanger starboard external airlock"
+	name = "阿尔迈耶号机库右舷外部气闸"
 	dir = EAST
 	id = "almayer-ert-hangar-starboard"
 	width  = 17
@@ -292,25 +292,25 @@
 
 // These are docking ports not on the almayer
 /obj/docking_port/stationary/emergency_response/idle_port1
-	name = "Response Station Landing Pad 1"
+	name = "响应空间站1号着陆平台"
 	dir = NORTH
 	id = ADMIN_LANDING_PAD_1
 	roundstart_template = /datum/map_template/shuttle/response_ert
 
 /obj/docking_port/stationary/emergency_response/idle_port2
-	name = "Response Station Landing Pad 2"
+	name = "响应空间站2号着陆平台"
 	dir = NORTH
 	id = ADMIN_LANDING_PAD_2
 	roundstart_template = /datum/map_template/shuttle/pmc_ert
 
 /obj/docking_port/stationary/emergency_response/idle_port3
-	name = "Response Station Landing Pad 3"
+	name = "响应空间站3号着陆平台"
 	dir = NORTH
 	id = ADMIN_LANDING_PAD_3
 	roundstart_template = /datum/map_template/shuttle/upp_ert
 
 /obj/docking_port/stationary/emergency_response/idle_port4
-	name = "Response Station Landing Pad 4"
+	name = "响应空间站4号着陆平台"
 	dir = EAST
 	id = ADMIN_LANDING_PAD_4
 	width  = 6
@@ -318,7 +318,7 @@
 	roundstart_template = /datum/map_template/shuttle/small_ert
 
 /obj/docking_port/stationary/emergency_response/idle_port5
-	name = "Response Station Landing Pad 5"
+	name = "响应空间站5号着陆平台"
 	dir = EAST
 	id = ADMIN_LANDING_PAD_5
 	width  = 17
@@ -326,7 +326,7 @@
 	roundstart_template = /datum/map_template/shuttle/big_ert
 
 /obj/docking_port/stationary/emergency_response/idle_port6
-	name = "Response Station Landing Pad 6"
+	name = "响应空间站6号着陆平台"
 	dir = NORTH
 	id = ADMIN_LANDING_PAD_5
 	width  = 17
@@ -334,25 +334,25 @@
 	roundstart_template = /datum/map_template/shuttle/twe_ert
 
 /datum/map_template/shuttle/response_ert
-	name = "Response Shuttle"
+	name = "响应穿梭机"
 	shuttle_id = MOBILE_SHUTTLE_ID_ERT1
 
 /datum/map_template/shuttle/pmc_ert
-	name = "PMC Shuttle"
+	name = "私人军事承包商穿梭机"
 	shuttle_id = MOBILE_SHUTTLE_ID_ERT2
 
 /datum/map_template/shuttle/upp_ert
-	name = "UPP Shuttle"
+	name = "进步人民联盟穿梭机"
 	shuttle_id = MOBILE_SHUTTLE_ID_ERT3
 
 /datum/map_template/shuttle/twe_ert
-	name = "TWE Shuttle"
+	name = "三世界帝国穿梭机"
 	shuttle_id = MOBILE_SHUTTLE_ID_ERT4
 
 /datum/map_template/shuttle/small_ert
-	name = "Rescue Shuttle"
+	name = "救援穿梭机"
 	shuttle_id = MOBILE_SHUTTLE_ID_ERT_SMALL
 
 /datum/map_template/shuttle/big_ert
-	name = "Boarding Shuttle"
+	name = "登舰穿梭机"
 	shuttle_id = MOBILE_SHUTTLE_ID_ERT_BIG

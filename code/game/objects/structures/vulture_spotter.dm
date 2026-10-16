@@ -1,6 +1,6 @@
 /obj/structure/vulture_spotter_tripod
-	name = "\improper M707 spotting tripod"
-	desc = "A tripod for an M707 anti-materiel rifle's spotting scope."
+	name = "\improper M707观测三脚架"
+	desc = "用于架设M707反器材步枪观测镜的三脚架。"
 	icon_state = "vulture_tripod"
 	density = TRUE
 	anchored = TRUE
@@ -26,7 +26,7 @@
 
 /obj/structure/vulture_spotter_tripod/Initialize(mapload)
 	. = ..()
-	desc = initial(desc) + " Though, it doesn't seem to have one attached yet."
+	desc = initial(desc) + "不过，上面似乎还没有安装观测镜。"
 
 /obj/structure/vulture_spotter_tripod/Destroy()
 	if(scope_user)
@@ -47,10 +47,10 @@
 /obj/structure/vulture_spotter_tripod/get_examine_text(mob/user)
 	. = ..()
 	if(scope_attached)
-		. += SPAN_NOTICE("You can remove the scope from [src] with a <b>screwdriver</b>.")
+		. += SPAN_NOTICE("你可以用<b>螺丝刀</b>从[src]上拆下观测镜。")
 	else
-		. += SPAN_NOTICE("You can pick up [src] by <b>dragging it to your sprite</b>.")
-	. += SPAN_NOTICE("You can rotate [src] with <b>Alt-click</b>.")
+		. += SPAN_NOTICE("将[src]<b>拖到你的角色身上</b>即可将其拾起。")
+	. += SPAN_NOTICE("按住<b>Alt点击</b>可以旋转[src]。")
 
 /obj/structure/vulture_spotter_tripod/attackby(obj/item/thing, mob/user)
 	if(istype(thing, /obj/item/device/vulture_spotter_scope))
@@ -69,7 +69,7 @@
 	var/mob/living/carbon/human/user = usr //this is us
 
 	if(!HAS_TRAIT(user, TRAIT_VULTURE_USER) && !skillless)
-		to_chat(user, SPAN_WARNING("You don't know how to use this!"))
+		to_chat(user, SPAN_WARNING("你不知道如何使用它！"))
 		return
 
 	if(!scope_attached)
@@ -81,7 +81,7 @@
 /obj/structure/vulture_spotter_tripod/on_set_interaction(mob/living/user)
 	var/obj/item/attachable/vulture_scope/scope = get_vulture_scope()
 	scope.spotter_spotting = TRUE
-	to_chat(scope.scope_user, SPAN_NOTICE("You notice that [scope] drifts less."))
+	to_chat(scope.scope_user, SPAN_NOTICE("你注意到[scope]的晃动减小了。"))
 	RegisterSignal(scope, COMSIG_VULTURE_SCOPE_MOVED, PROC_REF(on_vulture_move))
 	RegisterSignal(scope, COMSIG_VULTURE_SCOPE_UNSCOPED, PROC_REF(on_vulture_unscope))
 	if(user.client)
@@ -94,7 +94,7 @@
 	user.overlay_fullscreen("vulture_spotter", /atom/movable/screen/fullscreen/vulture/spotter)
 	ADD_TRAIT(user, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Vulture spotter"))
 	user.status_flags |= IMMOBILE_ACTION
-	user.visible_message(SPAN_NOTICE("[user] looks through [src]."),SPAN_NOTICE("You look through [src], ready to go!"))
+	user.visible_message(SPAN_NOTICE("[user]透过[src]观察。"),SPAN_NOTICE("你透过[src]观察，已经准备就绪！"))
 	user.forceMove(loc)
 	user.setDir(dir)
 	scope_user = WEAKREF(user)
@@ -104,7 +104,7 @@
 
 /obj/structure/vulture_spotter_tripod/on_unset_interaction(mob/living/user)
 	user.status_flags &= ~IMMOBILE_ACTION
-	user.visible_message(SPAN_NOTICE("[user] looks up from [src]."),SPAN_NOTICE("You look up from [src]."))
+	user.visible_message(SPAN_NOTICE("[user]从[src]上抬起头。"),SPAN_NOTICE("你从[src]上抬起头。"))
 	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Vulture spotter"))
 	user.reset_view(null)
 	user.Move(get_step(src, reverse_direction(src.dir)))
@@ -124,11 +124,11 @@
 /// Rotates the tripod 90* counter-clockwise
 /obj/structure/vulture_spotter_tripod/proc/rotate(mob/user)
 	if(scope_using)
-		to_chat(user, SPAN_WARNING("You can't rotate [src] while someone is using it!"))
+		to_chat(user, SPAN_WARNING("有人正在使用[src]，无法旋转！"))
 		return FALSE
 
 	playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
-	user.visible_message("[user] rotates [src].","You rotate [src].")
+	user.visible_message("[user]旋转了[src]。","You rotate [src].")
 	setDir(turn(dir, -90))
 	update_pixels(TRUE)
 
@@ -165,7 +165,7 @@
 	if(istype(scope, /obj/item/device/vulture_spotter_scope/skillless))
 		skillless = TRUE
 
-	user.visible_message(SPAN_NOTICE("[user] attaches [scope] to [src]."), SPAN_NOTICE("You attach [scope] to [src]."))
+	user.visible_message(SPAN_NOTICE("[user]将[scope]安装在[src]上。"), SPAN_NOTICE("你将[scope]安装在[src]上。"))
 	icon_state = "vulture_scope"
 	setDir(user.dir)
 	bound_rifle = scope.bound_rifle
@@ -176,13 +176,13 @@
 /// Handler for when the scope is being detached from the tripod by screwdriver
 /obj/structure/vulture_spotter_tripod/proc/on_screwdriver(mob/user)
 	if(!scope_attached)
-		to_chat(user, SPAN_NOTICE("You don't need a screwdriver to pick this up!"))
+		to_chat(user, SPAN_NOTICE("拾起它不需要螺丝刀！"))
 		return
-	user.visible_message(SPAN_NOTICE("[user] unscrews the scope from [src] before detaching it."), SPAN_NOTICE("You unscrew the scope from [src], detaching it."))
+	user.visible_message(SPAN_NOTICE("[user]拧松螺丝，从[src]上拆下了观测镜。"), SPAN_NOTICE("你拧松螺丝，从[src]上拆下了观测镜。"))
 	icon_state = initial(icon_state)
 	unscope()
 	scope_attached = FALSE
-	desc = initial(desc) + " Though, it doesn't seem to have one attached yet."
+	desc = initial(desc) + "不过，上面似乎还没有安装观测镜。"
 	if(skillless)
 		new /obj/item/device/vulture_spotter_scope/skillless(get_turf(src), bound_rifle)
 	else
@@ -190,7 +190,7 @@
 
 /// Handler for user folding up the tripod, picking it up
 /obj/structure/vulture_spotter_tripod/proc/fold_up(mob/user)
-	user.visible_message(SPAN_NOTICE("[user] folds up [src]."), SPAN_NOTICE("You fold up [src]."))
+	user.visible_message(SPAN_NOTICE("[user]折叠收起了[src]。"), SPAN_NOTICE("你折叠收起了[src]。"))
 	var/obj/item/device/vulture_spotter_tripod/tripod = new(get_turf(src))
 	user.put_in_hands(tripod, TRUE)
 	qdel(src)
@@ -201,7 +201,7 @@
 		return
 
 	if(user.l_hand || user.r_hand)
-		to_chat(user, SPAN_WARNING("Your hands need to be free to use [src]!"))
+		to_chat(user, SPAN_WARNING("你必须空出双手才能使用[src]！"))
 		return
 
 	var/obj/item/attachable/vulture_scope/scope = get_vulture_scope()
@@ -209,11 +209,11 @@
 		return
 
 	if(get_dist(get_turf(scope), get_turf(src)) > max_sniper_distance)
-		to_chat(user, SPAN_WARNING("[src] needs to be closer to the M707 to be used!"))
+		to_chat(user, SPAN_WARNING("[src]必须更靠近M707才能使用！"))
 		return
 
 	if(!scope.scoping)
-		to_chat(user, SPAN_WARNING("The M707's sight needs to be in use to be able to look through [src]!"))
+		to_chat(user, SPAN_WARNING("必须有人正在使用M707的瞄准镜，才能透过[src]观察！"))
 		return
 
 	user.set_interaction(src)
@@ -249,7 +249,7 @@
 	var/obj/item/attachable/vulture_scope/scope = get_vulture_scope()
 	if(scope)
 		scope.spotter_spotting = FALSE
-		to_chat(scope.scope_user, SPAN_NOTICE("You notice that [scope] starts drifting more."))
+		to_chat(scope.scope_user, SPAN_NOTICE("你注意到[scope]的晃动加大了。"))
 		UnregisterSignal(scope, list(COMSIG_VULTURE_SCOPE_MOVED, COMSIG_VULTURE_SCOPE_UNSCOPED))
 
 	QDEL_NULL(unscope_action)
@@ -283,7 +283,7 @@
 
 	var/mob/user = scope_user.resolve()
 
-	to_chat(user, SPAN_WARNING("[src]'s sight disengages as the linked rifle unscopes."))
+	to_chat(user, SPAN_WARNING("关联的步枪退出瞄准，[src]的观测视野也随之关闭。"))
 	unscope()
 
 /// Getter for the vulture scope on the sniper
@@ -303,7 +303,7 @@
 		do_unscope()
 
 /datum/action/vulture_tripod_unscope
-	name = "Stop Using Scope"
+	name = "停止使用观测镜"
 	action_icon_state = "vulture_tripod_close"
 	/// Weakref to the tripod that this is linked to
 	var/datum/weakref/tripod

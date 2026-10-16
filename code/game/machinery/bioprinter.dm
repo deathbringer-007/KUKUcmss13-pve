@@ -40,7 +40,7 @@
 /obj/structure/machinery/bioprinter/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/sheet/metal))
 		if(stored_metal == max_metal)
-			to_chat(user, SPAN_WARNING("\The [src]已经满了！"))
+			to_chat(user, SPAN_WARNING("[src]已经满了！"))
 			return
 		var/obj/item/stack/sheet/metal/M = W
 		var/sheets_to_eat = (round((max_metal - stored_metal), 100))/100
@@ -54,7 +54,7 @@
 			M.use(M.amount)
 		if(stored_metal > max_metal)
 			stored_metal = max_metal
-		to_chat(user, SPAN_NOTICE("\The [src]处理了\the [W]。"))
+		to_chat(user, SPAN_NOTICE("[src]处理了[W]。"))
 	else
 		return..()
 
@@ -133,7 +133,7 @@
 				QDEL_NULL(recipe_datum)
 				return FALSE
 			stored_metal -= recipe_datum.metal
-			to_chat(usr, SPAN_NOTICE("\The [src]正在打印所选器官，请稍候。"))
+			to_chat(usr, SPAN_NOTICE("[src]正在打印所选器官，请稍候。"))
 			working = TRUE
 			update_icon()
 			var/new_organ = recipe_datum.path
@@ -147,7 +147,7 @@
 			sheets_to_print -= 0.5
 			sheets_to_print = round(sheets_to_print, 1)
 			stored_metal -= sheets_to_print*100
-			visible_message("\The [src]从储料仓中吐出了[sheets_to_print]块金属板。")
+			visible_message("[src]从储料仓中吐出了[sheets_to_print]块金属板。")
 			new /obj/item/stack/sheet/metal(get_turf(src), sheets_to_print)
 			return TRUE
 
@@ -161,7 +161,7 @@
 	working = FALSE
 	update_icon()
 	printing_item = null
-	visible_message("\The [src]吐出了一个新器官。")
+	visible_message("[src]吐出了一个新器官。")
 	return
 
 

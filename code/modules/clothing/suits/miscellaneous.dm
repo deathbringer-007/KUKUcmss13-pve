@@ -284,8 +284,8 @@
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_ARMS
 
 /obj/item/clothing/suit/storage/webbing
-	name = "external webbing"
-	desc = "Designed to be worn over a jumpsuit rather than clipped on."
+	name = "外挂携行带"
+	desc = "设计为套在连体服外穿着，而不是夹挂在上面。"
 	icon_state = "webbing"
 	item_state = "webbing"
 	allowed = list(
@@ -312,8 +312,8 @@
 	)
 
 /obj/item/clothing/suit/storage/utility_vest
-	name = "utility vest"
-	desc = "A utility vest to hold tools in."
+	name = "多用途背心"
+	desc = "用于收纳工具的多用途背心。"
 	icon_state = "synth_utility_vest"
 	item_state = "synth_utility_vest"
 	allowed = list(
@@ -446,8 +446,8 @@
 	icon_state = "redponcho"
 
 /obj/item/clothing/suit/storage/bomber
-	name = "brown bomber jacket"
-	desc = "A well-worn leather bomber jacket."
+	name = "棕色飞行夹克"
+	desc = "一件磨损明显的皮革飞行夹克。"
 	icon_state = "bomber"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_ARMS
 	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_ARMS
@@ -482,7 +482,7 @@
 	restricted_accessory_slots = list(ACCESSORY_SLOT_ARMBAND)
 
 /obj/item/clothing/suit/storage/bomber/alt
-	name = "black bomber jacket"
+	name = "黑色飞行夹克"
 	icon_state = "bomber_2"
 
 /obj/item/clothing/suit/storage/manager

@@ -3,8 +3,8 @@
 #define BLOCK_ALL_STRUCTURES 2
 
 /obj/effect/alien/weeds
-	name = "weeds"
-	desc = "Weird black weeds..."
+	name = "菌毯"
+	desc = "怪异的黑色菌毯……"
 	icon = 'icons/mob/xenos/weeds.dmi'
 	icon_state = "base"
 
@@ -41,13 +41,13 @@
 			weed_strength = node.weed_strength
 		node_range = node.node_range
 		if(weed_strength >= WEED_LEVEL_HIVE)
-			name = "hive [name]"
+			name = "虫巢[name]"
 			health = WEED_HEALTH_HIVE
 		node.add_child(src)
 		hivenumber = linked_hive.hivenumber
 		spread_on_semiweedable = node.spread_on_semiweedable
 		if(weed_strength < WEED_LEVEL_HIVE && spread_on_semiweedable)
-			name = "hardy [name]"
+			name = "强韧的[name]"
 			health = WEED_HEALTH_HARDY
 		block_structures = node.block_structures
 		fruit_growth_multiplier = node.fruit_growth_multiplier
@@ -112,7 +112,7 @@
 		SEND_SIGNAL(parent, COMSIG_WEEDNODE_CANNOT_EXPAND_FURTHER)
 
 /obj/effect/alien/weeds/weak
-	name = "weak weeds"
+	name = "薄弱菌毯"
 	alpha = 127
 
 /obj/effect/alien/weeds/weak/Initialize(mapload, obj/effect/alien/weeds/node/node)
@@ -123,7 +123,7 @@
 	update_icon()
 
 /obj/effect/alien/weeds/node/weak
-	name = "weak weed node"
+	name = "薄弱菌毯节点"
 	health = WEED_HEALTH_STANDARD
 	alpha = 127
 
@@ -179,7 +179,7 @@
 
 	if(crossing_mob.ally_of_hivenumber(linked_hive.hivenumber))
 		if( (crossing_mob.hivenumber != linked_hive.hivenumber) && prob(7)) // small chance for allied mobs to get a message indicating this
-			to_chat(crossing_mob, SPAN_NOTICE("The weeds seem to reshape themselves around your feet as you walk on them."))
+			to_chat(crossing_mob, SPAN_NOTICE("你走在菌毯上时，它们似乎会自行变形，为你的双脚让出位置。"))
 		return
 
 	var/list/slowdata = list("movement_slowdown" = weed_slow)
@@ -359,8 +359,8 @@
 /obj/effect/alien/weeds/attack_alien(mob/living/carbon/xenomorph/attacking_xeno)
 	if(!indestructible && !HIVE_ALLIED_TO_HIVE(attacking_xeno.hivenumber, hivenumber))
 		attacking_xeno.animation_attack_on(src)
-		attacking_xeno.visible_message(SPAN_DANGER("\The [attacking_xeno] slashes [src]!"), \
-		SPAN_DANGER("You slash [src]!"), null, 5)
+		attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno]抓挠[src]！"), \
+		SPAN_DANGER("你抓挠[src]！"), null, 5)
 		playsound(loc, "alien_resin_break", 25)
 		take_damage(attacking_xeno.melee_damage_lower*WEED_XENO_DAMAGEMULT)
 		return XENO_ATTACK_ACTION
@@ -376,18 +376,18 @@
 		var/obj/item/tool/weldingtool/WT = attacking_item
 		if(WT.remove_fuel(2))
 			if(istype(src, /obj/effect/alien/weeds/node))
-				to_chat(user, SPAN_WARNING("You hit [src] with [attacking_item]."))
+				to_chat(user, SPAN_WARNING("你用[attacking_item]击打[src]。"))
 			else
-				to_chat(user, SPAN_WARNING("You cut [src] away with [attacking_item]."))
+				to_chat(user, SPAN_WARNING("你用[attacking_item]切除了[src]。"))
 			playsound(loc, "alien_resin_break", 25)
 			playsound(loc, 'sound/items/Welder.ogg', 25, 1)
 			user.animation_attack_on(src)
 			take_damage(WEED_HEALTH_STANDARD)
 	else
 		if(!attacking_item.force)
-			to_chat(user, SPAN_WARNING("You scrape ineffectively at [src] with [attacking_item]."))
+			to_chat(user, SPAN_WARNING("你用[attacking_item]刮擦[src]，毫无效果。"))
 			return
-		to_chat(user, SPAN_NOTICE("You start clearing [src] away with [attacking_item]..."))
+		to_chat(user, SPAN_NOTICE("你开始用[attacking_item]清除[src]……"))
 		var/duration = (20 SECONDS) * (health / attacking_item.force * attacking_item.demolition_mod) //effectively applying attack damage to weed's health spread over 20 seconds
 		if(!do_after(user, duration, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			return
@@ -472,7 +472,7 @@
 
 
 /obj/effect/alien/weeds/node
-	desc = "Weird black weeds, slightly thicker than the rest..."
+	desc = "怪异的黑色菌毯，比周围的略厚一些……"
 	// Weed nodes start out with normal weed health and become stronger once they've stopped spreading
 	health = NODE_HEALTH_GROWING
 	flags_atom = OPENCONTAINER
@@ -554,7 +554,7 @@
 
 		node_range = node_range + weed_strength - 1//stronger weeds expand further!
 		if(weed_strength >= WEED_LEVEL_HIVE)
-			name = "hive node sac"
+			name = "虫巢节点囊"
 
 	node_image = new(node_overlay_icon, src, node_overlay_icon_state, layer = ABOVE_FLY_LAYER)
 

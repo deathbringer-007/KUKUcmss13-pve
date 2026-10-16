@@ -4,8 +4,8 @@
 
 
 /obj/structure/machinery/bot/medbot
-	name = "Medibot"
-	desc = "A little medical robot. He looks somewhat underwhelmed."
+	name = "医疗机器人"
+	desc = "一个小型医疗机器人，看起来似乎兴致不高。"
 	icon = 'icons/obj/structures/machinery/aibots.dmi'
 	icon_state = "medibot0"
 	density = FALSE
@@ -39,8 +39,8 @@
 	var/shut_up = 0 //self explanatory :)
 
 /obj/structure/machinery/bot/medbot/mysterious
-	name = "Mysterious Medibot"
-	desc = "International Medibot of mystery."
+	name = "神秘医疗机器人"
+	desc = "一位神秘的国际医疗机器人。"
 	skin = "bezerk"
 	treatment_oxy = "dexalinp"
 	treatment_brute = "bicaridine"
@@ -96,17 +96,17 @@
 	if (.)
 		return
 	var/dat
-	dat += "<TT><B>Automatic Medical Unit v1.0</B></TT><BR><BR>"
-	dat += "Status: <A href='byond://?src=\ref[src];power=1'>[src.on ? "On" : "Off"]</A><BR>"
-	dat += "Maintenance panel is [src.open ? "opened" : "closed"]<BR>"
-	dat += "Beaker: "
+	dat += "<TT><B>自动医疗单元 v1.0</B></TT><BR><BR>"
+	dat += "状态：<A href='byond://?src=\ref[src];power=1'>[src.on ? "开启" : "关闭"]</A><BR>"
+	dat += "维护面板：[src.open ? "已打开" : "已关闭"]<BR>"
+	dat += "烧杯："
 	if (src.reagent_glass)
-		dat += "<A href='byond://?src=\ref[src];eject=1'>Loaded \[[src.reagent_glass.reagents.total_volume]/[src.reagent_glass.reagents.maximum_volume]\]</a>"
+		dat += "<A href='byond://?src=\ref[src];eject=1'>已装载 \[[src.reagent_glass.reagents.total_volume]/[src.reagent_glass.reagents.maximum_volume]\]</a>"
 	else
-		dat += "None Loaded"
-	dat += "<br>Behaviour controls are [src.locked ? "locked" : "unlocked"]<hr>"
+		dat += "未装载"
+	dat += "<br>行为控制面板：[src.locked ? "已锁定" : "已解锁"]<hr>"
 	if(!src.locked || isRemoteControlling(user))
-		dat += "<TT>Healing Threshold: "
+		dat += "<TT>治疗阈值： "
 		dat += "<a href='byond://?src=\ref[src];adj_threshold=-10'>--</a> "
 		dat += "<a href='byond://?src=\ref[src];adj_threshold=-5'>-</a> "
 		dat += "[src.heal_threshold] "
@@ -114,25 +114,25 @@
 		dat += "<a href='byond://?src=\ref[src];adj_threshold=10'>++</a>"
 		dat += "</TT><br>"
 
-		dat += "<TT>Injection Level: "
+		dat += "<TT>注射量： "
 		dat += "<a href='byond://?src=\ref[src];adj_inject=-5'>-</a> "
 		dat += "[src.injection_amount] "
 		dat += "<a href='byond://?src=\ref[src];adj_inject=5'>+</a> "
 		dat += "</TT><br>"
 
-		dat += "<TT>OD Protection: "
-		dat += "<b>[safety_checks ? "On" : "Off"]</b> : "
-		dat += "<a href='byond://?src=\ref[src];togglesafety=1'>Toggle?</a>"
+		dat += "<TT>过量保护： "
+		dat += "<b>[safety_checks ? "开启" : "关闭"]</b> : "
+		dat += "<a href='byond://?src=\ref[src];togglesafety=1'>切换</a>"
 		dat += "</TT><br>"
 
-		dat += "Reagent Source: "
-		dat += "<a href='byond://?src=\ref[src];use_beaker=1'>[src.use_beaker ? "Loaded Beaker (When available)" : "Internal Synthesizer"]</a><br>"
+		dat += "试剂来源： "
+		dat += "<a href='byond://?src=\ref[src];use_beaker=1'>[src.use_beaker ? "已装载烧杯（如有）" : "内部合成器"]</a><br>"
 
-		dat += "Treatment report is [src.declare_treatment ? "on" : "off"]. <a href='byond://?src=\ref[src];declaretreatment=[1]'>Toggle</a><br>"
+		dat += "治疗报告：[src.declare_treatment ? "开启" : "关闭"]. <a href='byond://?src=\ref[src];declaretreatment=[1]'>切换</a><br>"
 
-		dat += "The speaker switch is [src.shut_up ? "off" : "on"]. <a href='byond://?src=\ref[src];togglevoice=[1]'>Toggle</a><br>"
+		dat += "语音开关：[src.shut_up ? "关闭" : "开启"]. <a href='byond://?src=\ref[src];togglevoice=[1]'>切换</a><br>"
 
-	show_browser(user, dat, "Medibot v1.0 controls", "automed")
+	show_browser(user, dat, "医疗机器人 v1.0 控制面板", "automed")
 	return
 
 /obj/structure/machinery/bot/medbot/Topic(href, href_list)
@@ -173,7 +173,7 @@
 			src.reagent_glass.forceMove(get_turf(src))
 			src.reagent_glass = null
 		else
-			to_chat(usr, SPAN_NOTICE("You cannot eject the beaker because the panel is locked."))
+			to_chat(usr, SPAN_NOTICE("面板已锁定，无法取出烧杯。"))
 
 	else if ((href_list["togglevoice"]) && (!src.locked || isRemoteControlling(usr)))
 		src.shut_up = !src.shut_up
@@ -188,25 +188,25 @@
 	if (istype(W, /obj/item/card/id))
 		if (src.allowed(user) && !open)
 			src.locked = !src.locked
-			to_chat(user, SPAN_NOTICE("Controls are now [src.locked ? "locked." : "unlocked."]"))
+			to_chat(user, SPAN_NOTICE("控制面板现已[src.locked ? "锁定。" : "解锁。"]"))
 			src.updateUsrDialog()
 		else
 			if(open)
-				to_chat(user, SPAN_WARNING("Please close the access panel before locking it."))
+				to_chat(user, SPAN_WARNING("请先关闭维护面板，再将其锁定。"))
 			else
-				to_chat(user, SPAN_WARNING("Access denied."))
+				to_chat(user, SPAN_WARNING("访问被拒绝。"))
 
 	else if (istype(W, /obj/item/reagent_container/glass))
 		if(src.locked)
-			to_chat(user, SPAN_NOTICE("You cannot insert a beaker because the panel is locked."))
+			to_chat(user, SPAN_NOTICE("面板已锁定，无法插入烧杯。"))
 			return
 		if(!isnull(src.reagent_glass))
-			to_chat(user, SPAN_NOTICE("There is already a beaker loaded."))
+			to_chat(user, SPAN_NOTICE("已经装有烧杯了。"))
 			return
 
 		if(user.drop_inv_item_to_loc(W, src))
 			reagent_glass = W
-			to_chat(user, SPAN_NOTICE("You insert [W]."))
+			to_chat(user, SPAN_NOTICE("你插入了[W]。"))
 			src.updateUsrDialog()
 		return
 
@@ -244,7 +244,7 @@
 
 	if(!src.patient)
 		if(!src.shut_up && prob(1))
-			var/message = pick("Radar, put a mask on!","There's always a catch, and it's the best there is.","I knew it, I should've been a plastic surgeon.","What kind of medbay is this? Everyone's dropping like dead flies.","Delicious!")
+			var/message = pick("雷达，把面罩戴上！","总有个陷阱，而且还是最厉害的那种。","我就知道，我当初该去当整形医生。","这是什么医务室？大家都像苍蝇一样接连倒下。","真美味！")
 			src.speak(message)
 
 		for (var/mob/living/carbon/C in view(7,src)) //Time to find a patient!
@@ -259,9 +259,9 @@
 				src.oldpatient = C
 				src.last_found = world.time
 				if((src.last_newpatient_speak + 300) < world.time) //Don't spam these messages!
-					var/message = pick("Hey, [C.name]! Hold on, I'm coming.","Wait [C.name]! I want to help!","[C.name], you appear to be injured!")
+					var/message = pick("嘿，[C.name]！坚持住，我来了。","等等，[C.name]！我想帮你！","[C.name]，你看起来受伤了！")
 					src.speak(message)
-					src.visible_message("<b>[src]</b> points at [C.name]!")
+					src.visible_message("<b>[src]</b>指向[C.name]！")
 					src.last_newpatient_speak = world.time
 // if(declare_treatment)
 // var/area/location = get_area(src)
@@ -359,7 +359,7 @@
 		return
 
 	if(C.stat == 2)
-		var/death_message = pick("No! NO!","Live, damnit! LIVE!","I...I've never lost a patient before. Not today, I mean.")
+		var/death_message = pick("不！不！","活下去，该死的！活下去！","我……我以前从没失去过病人。我是说，今天还没有。")
 		src.speak(death_message)
 		src.oldpatient = src.patient
 		src.patient = null
@@ -408,22 +408,22 @@
 		src.patient = null
 		src.currently_healing = 0
 		src.last_found = world.time
-		var/message = pick("All patched up!","An apple a day keeps me away.","Feel better soon!")
+		var/message = pick("全都治好了！","一天一苹果，让我远离你。","祝你早日康复！")
 		src.speak(message)
 		return
 	else
 		src.icon_state = "medibots"
-		visible_message(SPAN_DANGER("<B>[src] is trying to inject [src.patient]!</B>"))
+		visible_message(SPAN_DANGER("<B>[src]正试图给[src.patient]注射！</B>"))
 		spawn(30)
 			if ((get_dist(src, src.patient) <= 1) && (src.on))
 				if (!assess_patient(C))
-					visible_message(SPAN_DANGER("<B>[src] pulls the syringe away. Safety protocol engaged!</B>"))
+					visible_message(SPAN_DANGER("<B>[src]收回注射器。安全协议已启动！</B>"))
 				else if (reagent_id == "internal_beaker" && reagent_glass && reagent_glass.reagents.total_volume)
 					src.reagent_glass.reagents.trans_to(src.patient,src.injection_amount) //Inject from beaker instead.
 					src.reagent_glass.reagents.reaction(src.patient, 2)
 				else
 					src.patient.reagents.add_reagent(reagent_id,src.injection_amount)
-				visible_message(SPAN_DANGER("<B>[src] injects [src.patient] with the syringe!</B>"))
+				visible_message(SPAN_DANGER("<B>[src]用注射器给[src.patient]注射！</B>"))
 
 			src.icon_state = "medibot[src.on]"
 			src.currently_healing = 0
@@ -437,12 +437,12 @@
 /obj/structure/machinery/bot/medbot/proc/speak(message)
 	if((!src.on) || (!message))
 		return
-	visible_message("[src] beeps, \"[message]\"")
+	visible_message("[src]发出哔声：\"[message]\"")
 	return
 
 /obj/structure/machinery/bot/medbot/explode()
 	src.on = 0
-	visible_message(SPAN_DANGER("<B>[src] blows apart!</B>"), null, null, 1)
+	visible_message(SPAN_DANGER("<B>[src]炸得四分五裂！</B>"), null, null, 1)
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/storage/firstaid(Tsec)
@@ -488,7 +488,7 @@
 
 	//Making a medibot!
 	if(length(src.contents) >= 1)
-		to_chat(user, SPAN_NOTICE("You need to empty [src] out first."))
+		to_chat(user, SPAN_NOTICE("你需要先清空[src]。"))
 		return
 
 	var/obj/item/frame/firstaid_arm_assembly/A = new /obj/item/frame/firstaid_arm_assembly
@@ -501,6 +501,6 @@
 
 	qdel(S)
 	user.put_in_hands(A)
-	to_chat(user, SPAN_NOTICE("You add the robot arm to the first aid kit."))
+	to_chat(user, SPAN_NOTICE("你将机械臂装到了急救箱上。"))
 	user.temp_drop_inv_item(src)
 	qdel(src)

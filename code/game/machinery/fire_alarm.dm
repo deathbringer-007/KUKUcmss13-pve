@@ -102,7 +102,7 @@ FIRE ALARM
 					else
 						user.visible_message(SPAN_DANGER("[user]断开了[src]的探测单元！"), "你断开了[src]的探测单元。")
 				else if (HAS_TRAIT(held_object, TRAIT_TOOL_WIRECUTTERS))
-					user.visible_message(SPAN_DANGER("[user]剪断了\the [src]内部的电线！"), "你剪断了\the [src]内部的电线。")
+					user.visible_message(SPAN_DANGER("[user]剪断了[src]内部的电线！"), "你剪断了[src]内部的电线。")
 					playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 					buildstage = 1
 					update_icon()
@@ -110,12 +110,12 @@ FIRE ALARM
 				if(istype(held_object, /obj/item/stack/cable_coil))
 					var/obj/item/stack/cable_coil/cable = held_object
 					if (cable.use(5))
-						to_chat(user, SPAN_NOTICE("你给\the [src]接好了电线。"))
+						to_chat(user, SPAN_NOTICE("你给[src]接好了电线。"))
 						buildstage = 2
 						update_icon()
 						return
 					else
-						to_chat(user, SPAN_WARNING("你需要5段电线才能给\the [src]接线。"))
+						to_chat(user, SPAN_WARNING("你需要5段电线才能给[src]接线。"))
 						return
 				else if(HAS_TRAIT(held_object, TRAIT_TOOL_CROWBAR))
 					to_chat(user, "你撬出了电路板！")

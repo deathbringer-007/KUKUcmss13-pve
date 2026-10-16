@@ -8,8 +8,8 @@
 /*M2C HEAVY MACHINEGUN AND ITS COMPONENTS */
 // AMMO
 /obj/item/ammo_magazine/m2c
-	name = "M2C Ammunition Box (.50 BMG rounds)"
-	desc = "A box of 150 .50 BMG rounds for the M2 Heavy Machinegun System. Click the heavy machinegun while there's no ammo box loaded to reload the M2C."
+	name = "M2C 弹药箱 (.50 BMG 弹药)"
+	desc = "装有 150 发 .50 BMG 弹药的弹箱，供 M2 重机枪系统使用。在 M2C 未装弹箱时，用它点击机枪即可装填。"
 	caliber = ".50"
 	w_class = SIZE_LARGE
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/uscm.dmi'
@@ -38,9 +38,9 @@
 // THE GUN ITSELF
 
 /obj/item/device/m2c_gun
-	name = "\improper M2C heavy machine gun"
-	desc = "The disassembled M2C HMG, with its telescopic tripods folded up and unable to fire."
-	desc_lore = "Initially requested by the Department of Defense to substantially reinforce Colonial Guard units with high-caliber weaponry for a cheap price, this mean killing machine soon found its way into hands of mercenaries, colonists and rebels by the means of warehouse raiding or plain ole' corruption. If you're a marine and somehow found it and for some reason decided to use it... well, you better reconsider, since this thing has NO place on the modern battlefield. It requires being in a static position, takes up valuable kit space and isn't really much better than modern 10x28 caliber machineguns. Seriously, its 2182, just use a smartgun."
+	name = "M2C 重机枪"
+	desc = "拆卸状态的 M2C 重机枪，伸缩三脚架已折叠，无法开火。"
+	desc_lore = "国防部最初希望用廉价的大口径武器显著增强殖民地卫队的火力，才订购了这台凶悍的杀戮机器。随后，雇佣兵、殖民者和叛军通过劫掠仓库或老套的贪污手段，也得到了它。如果你是一名陆战队员，偶然找到它，还莫名其妙地决定使用它……最好再想想，这东西在现代战场上根本没有位置。它要求固定部署，挤占宝贵的装备空间，性能也没比现代 10x28 口径机枪强多少。说真的，已经 2182 年了，用智能机枪吧。"
 	w_class = SIZE_HUGE
 	flags_equip_slot = SLOT_BACK
 	icon = 'icons/turf/whiskeyoutpost.dmi'

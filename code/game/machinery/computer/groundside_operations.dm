@@ -1,8 +1,8 @@
 #define COMMAND_SQUAD "Command"
 
 /obj/structure/machinery/computer/groundside_operations
-	name = "groundside operations console"
-	desc = "This can be used for various important functions."
+	name = "地面行动控制台"
+	desc = "可用于执行多种重要功能。"
 	icon_state = "comm"
 	req_access = list(ACCESS_MARINE_SENIOR)
 	unslashable = TRUE
@@ -221,18 +221,18 @@
 			else if(!idcard.check_biometrics(human_user))
 				bio_fail = TRUE
 			if(bio_fail)
-				to_chat(human_user, SPAN_WARNING("Biometrics failure! You require an authenticated ID card to perform this action!"))
+				to_chat(human_user, SPAN_WARNING("生物特征验证失败！你需要一张通过认证的身份卡才能执行此操作！"))
 				return FALSE
 
 			if(usr.client.prefs.muted & MUTE_IC)
-				to_chat(usr, SPAN_DANGER("You cannot send Announcements (muted)."))
+				to_chat(usr, SPAN_DANGER("你已被禁言，无法发送公告。"))
 				return
 
 			if(!is_announcement_active)
-				to_chat(usr, SPAN_WARNING("Please allow at least [COOLDOWN_COMM_MESSAGE*0.1] second\s to pass between announcements."))
+				to_chat(usr, SPAN_WARNING("两次公告之间至少需要间隔[COOLDOWN_COMM_MESSAGE*0.1]秒。"))
 				return FALSE
 			if(announcement_faction != FACTION_MARINE && usr.faction != announcement_faction)
-				to_chat(usr, SPAN_WARNING("Access denied."))
+				to_chat(usr, SPAN_WARNING("访问被拒绝。"))
 				return
 			var/input = stripped_multiline_input(usr, "Please write a message to announce to the station crew.", "Priority Announcement", "")
 			if(!input || !is_announcement_active || !(usr in dview(1, src)))
@@ -260,7 +260,7 @@
 			if(SSticker.mode.active_lz)
 				return
 			var/lz_choices = list("lz1", "lz2")
-			var/new_lz = tgui_input_list(usr, "Select primary LZ", "LZ Select", lz_choices)
+			var/new_lz = tgui_input_list(usr, "选择主要着陆区", "选择着陆区", lz_choices)
 			if(!new_lz)
 				return
 			if(new_lz == "lz1")
@@ -275,7 +275,7 @@
 					squad_list += S.name
 			squad_list += COMMAND_SQUAD
 
-			var/name_sel = tgui_input_list(usr, "Which squad would you like to look at?", "Pick Squad", squad_list)
+			var/name_sel = tgui_input_list(usr, "你想查看哪个小队？", "选择小队", squad_list)
 			if(!name_sel)
 				return
 
@@ -290,25 +290,25 @@
 				if(selected)
 					current_squad = selected
 				else
-					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Invalid input. Aborting.")]")
+					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("输入无效，操作已中止。")]")
 
 		if("use_cam")
 			if(isRemoteControlling(usr))
-				to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Unable to override console camera viewer. Track with camera instead. ")]")
+				to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("无法覆盖控制台的摄像头视角，请改用摄像头追踪。")]")
 				return
 
 			if(current_squad || show_command_squad)
 				var/mob/cam_target = locate(href_list["cam_target"])
 				var/obj/structure/machinery/camera/new_cam = get_camera_from_target(cam_target)
 				if(!new_cam || !new_cam.can_use())
-					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Searching for helmet cam. No helmet cam found for this marine! Tell your squad to put their helmets on!")]")
+					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("正在搜索头盔摄像头。未找到这名陆战队员的头盔摄像头！请让你的小队戴上头盔！")]")
 				else if(cam && cam == new_cam)//click the camera you're watching a second time to stop watching.
-					visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("Stopping helmet cam view of [cam_target].")]")
+					visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("已停止查看[cam_target]的头盔摄像头。")]")
 					usr.UnregisterSignal(cam, COMSIG_PARENT_QDELETING)
 					cam = null
 					usr.reset_view(null)
 				else if(usr.client.view != GLOB.world_view_size)
-					to_chat(usr, SPAN_WARNING("You're too busy peering through binoculars."))
+					to_chat(usr, SPAN_WARNING("你正忙于透过双筒望远镜观察。"))
 				else
 					if(cam)
 						usr.UnregisterSignal(cam, COMSIG_PARENT_QDELETING)
@@ -327,7 +327,7 @@
 			else if(!idcard.check_biometrics(human_user))
 				bio_fail = TRUE
 			if(bio_fail)
-				to_chat(human_user, SPAN_WARNING("Biometrics failure! You require an authenticated ID card to perform this action!"))
+				to_chat(human_user, SPAN_WARNING("生物特征验证失败！你需要一张通过认证的身份卡才能执行此操作！"))
 				return FALSE
 
 			var/reason = strip_html(input(usr, "What is the purpose of Echo Squad?", "Activation Reason"))
@@ -336,7 +336,7 @@
 			if(alert(usr, "Confirm activation of Echo Squad for [reason]", "Confirm Activation", "Yes", "No") != "Yes") return
 			var/datum/squad/marine/echo/echo_squad = locate() in GLOB.RoleAuthority.squads
 			if(!echo_squad)
-				visible_message(SPAN_BOLDNOTICE("ERROR: Unable to locate Echo Squad database."))
+				visible_message(SPAN_BOLDNOTICE("错误：无法找到回声小队数据库。"))
 				return
 			echo_squad.engage_squad(TRUE)
 			message_admins("[key_name(usr)] activated Echo Squad for '[reason]'.")

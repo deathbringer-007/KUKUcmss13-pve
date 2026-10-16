@@ -1,7 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 /obj/structure/machinery/recharger
-	name = "\improper recharger"
+	name = "\improper 充电器"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "recharger"
 	anchored = TRUE
@@ -25,22 +25,22 @@
 
 	if(allowed)
 		if(charging)
-			to_chat(user, SPAN_DANGER("\A [charging] is already charging here."))
+			to_chat(user, SPAN_DANGER("这里已经有[charging]在充电了。"))
 			return
 		// Checks to make sure he's not in space doing it, and that the area got proper power.
 		var/area/a = get_area(src)
 		if(!isarea(a) || (a.power_equip == 0 && !a.unlimited_power))
-			to_chat(user, SPAN_DANGER("\The [name] blinks red as you try to insert the item!"))
+			to_chat(user, SPAN_DANGER("你试图放入物品时，[name]闪烁红光！"))
 			return
 		if(istype(G, /obj/item/device/defibrillator))
 			var/obj/item/device/defibrillator/D = G
 			if(D.ready)
-				to_chat(user, SPAN_WARNING("It won't fit, put the paddles back into \the [D] first!"))
+				to_chat(user, SPAN_WARNING("放不进去，先将电极板放回[D]！"))
 				return
 		if(istype(G, /obj/item/tool/portadialysis))
 			var/obj/item/tool/portadialysis/P = G
 			if(P.attached)
-				to_chat(user, SPAN_WARNING("It won't fit, detach it from [P.attached] first!"))
+				to_chat(user, SPAN_WARNING("放不进去，先将它从[P.attached]上拆下来！"))
 				return
 		if(user.drop_inv_item_to_loc(G, src))
 			charging = G
@@ -48,10 +48,10 @@
 			update_icon()
 	else if(HAS_TRAIT(G, TRAIT_TOOL_WRENCH))
 		if(charging)
-			to_chat(user, SPAN_DANGER("Remove \the [charging] first!"))
+			to_chat(user, SPAN_DANGER("先取出[charging]！"))
 			return
 		anchored = !anchored
-		to_chat(user, "You [anchored ? "attached" : "detached"] the recharger.")
+		to_chat(user, "你[anchored ? "固定" : "松开"]了充电器。")
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 
 /obj/structure/machinery/recharger/attack_hand(mob/user as mob)
@@ -249,11 +249,11 @@
 
 /obj/structure/machinery/recharger/get_examine_text(mob/user)
 	. = ..()
-	. += "There's [charging ? "[charging]" : "nothing"] in the charger."
+	. += "充电器内[charging ? "装着[charging]" : "空无一物"]。"
 	if(charging)
 		if(istype(charging, /obj/item/cell))
 			var/obj/item/cell/C = charging
-			. += "Current charge: [C.charge] ([C.percent()]%)"
+			. += "当前电量：[C.charge]（[C.percent()]%）"
 
 /obj/structure/machinery/recharger/unanchored
 	anchored = FALSE

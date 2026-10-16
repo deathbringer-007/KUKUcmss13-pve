@@ -1,8 +1,8 @@
 //-----------------------MISC SUPPLIES BOXES-----------------------
 
 /obj/item/ammo_box/magazine/misc
-	name = "\improper miscellaneous equipment box"
-	desc = "A box for miscellaneous equipment."
+	name = "\improper 杂项装备箱"
+	desc = "用来装杂项装备的箱子。"
 	icon_state = "supply_crate"
 	overlay_ammo_type = "blank"
 	overlay_gun_type = "blank"
@@ -35,11 +35,11 @@
 	if(host_box)
 		host_box.apply_fire_overlay()
 		host_box.set_light(3)
-		host_box.visible_message(SPAN_WARNING("\The [src] catches on fire!"))
+		host_box.visible_message(SPAN_WARNING("[src]着火了！"))
 	else
 		apply_fire_overlay()
 		set_light(3)
-		visible_message(SPAN_WARNING("\The [src] catches on fire!"))
+		visible_message(SPAN_WARNING("[src]着火了！"))
 
 /obj/item/ammo_box/magazine/misc/apply_fire_overlay(will_explode = FALSE)
 	var/offset_x = 1
@@ -56,8 +56,8 @@
 //------------------------MRE Box--------------------------
 
 /obj/item/ammo_box/magazine/misc/mre
-	name = "\improper box of MREs"
-	desc = "A box of MREs. Nutritious, but not delicious."
+	name = "\improper MRE即食军粮箱"
+	desc = "一箱即食军粮。有营养，但不好吃。"
 	magazine_type = /obj/item/storage/box/mre
 	num_of_magazines = 12
 	overlay_content = "_mre"
@@ -66,8 +66,8 @@
 	empty = TRUE
 
 /obj/item/ammo_box/magazine/misc/mre/upp
-	name = "\improper box of UPP military rations"
-	desc = "A box of rations. Tastes like homeland."
+	name = "\improper UPP军用口粮箱"
+	desc = "一箱口粮，吃起来有家乡的味道。"
 	icon_state = "upp_food_crate"
 	magazine_type = /obj/item/storage/box/mre/upp
 	overlay_content = "_upp_mre"
@@ -76,8 +76,8 @@
 	empty = TRUE
 
 /obj/item/ammo_box/magazine/misc/mre/pmc
-	name = "\improper box of PMC CFR rations"
-	desc = "A box of expensive rations. You don't need a restaurant to eat nicely."
+	name = "\improper PMC战地作战口粮箱"
+	desc = "一箱昂贵的口粮。不去餐厅也能吃得不错。"
 	icon_state = "pmc_food_crate"
 	magazine_type = /obj/item/storage/box/mre/pmc
 	overlay_content = "_colony_mre"
@@ -86,8 +86,8 @@
 	empty = TRUE
 
 /obj/item/ammo_box/magazine/misc/mre/wy
-	name = "\improper box of W-Y brand rations"
-	desc = "A box of basic packed foods, comes with all sorts of W-Y branded snacks. \nOn the box is the Weyland-Yutani logo, with a slogan surrounding it: \n<b>WEYLAND-YUTANI. FEEDING BETTER WORLDS</b>."
+	name = "\improper 维兰德-汤谷牌口粮箱"
+	desc = "一箱基础包装食品，配有各种维兰德-汤谷牌零食。\n箱上印着维兰德-汤谷标志，周围环绕着一句口号：\n<b>维兰德-汤谷，喂养更美好的世界</b>。"
 	icon_state = "wy_food_crate"
 	magazine_type = /obj/item/storage/box/mre/wy
 	overlay_content = "_wy_mre"
@@ -96,8 +96,8 @@
 	empty = TRUE
 
 /obj/item/ammo_box/magazine/misc/mre/twe
-	name = "\improper box of TWE ORP rations"
-	desc = "A box of expensive rations. You don't need a restaurant to eat nicely."
+	name = "\improper TWE作战口粮包箱"
+	desc = "一箱昂贵的口粮。不去餐厅也能吃得不错。"
 	icon_state = "twe_food_crate"
 	magazine_type = /obj/item/storage/box/mre/twe
 	overlay_content = "_twe_mre"
@@ -106,8 +106,8 @@
 	empty = TRUE
 
 /obj/item/ammo_box/magazine/misc/mre/emergency
-	name = "\improper box of emergency rations"
-	desc = "A box of emergency rations. Designed to withstand."
+	name = "\improper 紧急口粮箱"
+	desc = "一箱紧急口粮，专为恶劣条件设计。"
 	icon_state = "colony_food_crate"
 	magazine_type = /obj/item/mre_food_packet/wy/cookie_brick
 	num_of_magazines = 20
@@ -117,8 +117,8 @@
 	empty = TRUE
 
 /obj/item/ammo_box/magazine/misc/mre/fsr
-	name = "\improper box of FSR rations"
-	desc = "A box of First Strike Rations. Nutritious, but not delicious, cigarettes not included."
+	name = "\improper FSR突击口粮箱"
+	desc = "一箱突击口粮。有营养，但不好吃，不含香烟。"
 	icon_state = "merc_food_crate"
 	magazine_type = /obj/item/storage/box/mre/fsr
 
@@ -126,8 +126,8 @@
 	empty = TRUE
 
 /obj/item/ammo_box/magazine/misc/mre/hdr
-	name = "\improper box of HDR rations"
-	desc = "A box of Humanitarian Daily Rations. Give these out to hungry colonist kids, will you?"
+	name = "\improper HDR人道主义救济口粮箱"
+	desc = "一箱人道主义救济口粮。分给挨饿的殖民地孩子们吧，好吗？"
 	icon_state = "hdr_food_crate"
 	magazine_type = /obj/item/storage/box/mre/hdr
 	overlay_content = "_hdr_mre"
@@ -138,16 +138,16 @@
 //------------------------M94 Marking Flare Packs Box--------------------------
 
 /obj/item/ammo_box/magazine/misc/flares
-	name = "\improper box of M94 marking flare packs"
-	desc = "A box of M94 marking flare packs, to brighten up your day."
+	name = "\improper M94标记照明棒包箱"
+	desc = "一箱M94标记照明棒包，让你的日子亮堂起来。"
 	magazine_type = /obj/item/storage/box/flare
 	num_of_magazines = 10
 	overlay_gun_type = "_m94"
 	overlay_content = "_flares"
 
 /obj/item/ammo_box/magazine/misc/flares/upp
-	name = "\improper box of R52 marking flare packs"
-	desc = "A box of R52 marking flare packs, to brighten up your day."
+	name = "\improper R52标记照明棒包箱"
+	desc = "一箱R52标记照明棒包，让你的日子亮堂起来。"
 	icon_state = "upp_supply_crate_black"
 	magazine_type = /obj/item/storage/box/flare/upp
 	num_of_magazines = 10
@@ -157,8 +157,8 @@
 //------------------------M89 Signal Flare Packs Box--------------------------
 
 /obj/item/ammo_box/magazine/misc/flares/signal
-	name = "\improper box of M89 signal flare packs"
-	desc = "A box of M89 signal flare packs, to mark up the way."
+	name = "\improper M89信号照明棒包箱"
+	desc = "一箱M89信号照明棒包，用于标示路线。"
 	magazine_type = /obj/item/storage/box/flare/signal
 	overlay_gun_type = "_m89"
 	overlay_content = "_flares_signal"
@@ -197,9 +197,9 @@
 	return
 
 /obj/item/ammo_box/magazine/misc/flares/handle_side_effects(obj/structure/magazine_box/host_box, will_explode = FALSE)
-	var/shown_message = "\The [src] catches on fire!"
+	var/shown_message = "[src]着火了！"
 	if(will_explode)
-		shown_message = "\The [src] catches on fire and starts shooting out flares!"
+		shown_message = "[src]着火了，开始向外喷射照明棒！"
 
 	if(host_box)
 		host_box.apply_fire_overlay()
@@ -231,8 +231,8 @@
 //------------------------Flashlight Box--------------------------
 
 /obj/item/ammo_box/magazine/misc/flashlight
-	name = "\improper box of flashlights"
-	desc = "A box of flashlights to brighten your day!"
+	name = "\improper 手电筒箱"
+	desc = "一箱手电筒，照亮你的每一天！"
 	magazine_type = /obj/item/device/flashlight
 	num_of_magazines = 8
 	icon_state = "flashlightbox"
@@ -243,8 +243,8 @@
 	empty = TRUE
 
 /obj/item/ammo_box/magazine/misc/flashlight/combat
-	name = "\improper box of combat flashlights"
-	desc = "A box of flashlights to brighten your day!"
+	name = "\improper 战术手电筒箱"
+	desc = "一箱手电筒，照亮你的每一天！"
 	magazine_type = /obj/item/device/flashlight/combat
 	num_of_magazines = 8
 	icon_state = "flashlightbox_combat"
@@ -258,8 +258,8 @@
 //------------------------Battery Box--------------------------
 
 /obj/item/ammo_box/magazine/misc/power_cell
-	name = "\improper box of High-Capacity Power Cells"
-	desc = "A box of High-Capacity Power Cells to keep your electronics going all night long!"
+	name = "\improper 高容量电池箱"
+	desc = "一箱高容量电池，让你的电子设备彻夜运转！"
 	magazine_type = /obj/item/cell/high
 	num_of_magazines = 8
 	icon_state = "batterybox"

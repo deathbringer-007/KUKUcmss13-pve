@@ -202,8 +202,8 @@
 //############################ Taser ##################
 // Lots of bits for it so splitting off an area
 /obj/item/weapon/gun/energy/taser
-	name = "disabler gun"
-	desc = "An advanced stun device capable of firing balls of ionized electricity. Used for nonlethal takedowns. "
+	name = "失能枪"
+	desc = "能够发射电离电球的先进电击装置，用于非致命制服目标。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "taser"
 	item_state = "taser"

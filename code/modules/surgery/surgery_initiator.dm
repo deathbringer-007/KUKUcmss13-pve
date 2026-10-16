@@ -115,7 +115,7 @@
 					else
 						hint_msg += "，[current_step.desc]"
 				else
-					hint_msg = "你无法用\the [tool]来[current_step.desc]"
+					hint_msg = "你无法用[tool]来[current_step.desc]"
 			if(!isnull(hint_msg))
 				to_chat(user, SPAN_WARNING("[hint_msg]."))
 		return FALSE

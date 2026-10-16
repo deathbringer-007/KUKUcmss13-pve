@@ -1,6 +1,6 @@
 /obj/item/hardpoint/holder
-	name = "holder hardpoint"
-	desc = "Holder for other hardpoints"
+	name = "挂架挂载点"
+	desc = "用于承载其他挂载组件的支架。"
 
 	// List of types of hardpoints that this hardpoint can hold
 	var/list/accepted_hardpoints

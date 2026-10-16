@@ -104,7 +104,7 @@
 		return FALSE
 
 	playsound(loc, 'sound/effects/runedsanddoor.ogg', 25, 0)
-	visible_message(SPAN_NOTICE("隐藏的机关拉开\the [src]，发出刺耳的摩擦声。"))
+	visible_message(SPAN_NOTICE("隐藏的机关拉开[src]，发出刺耳的摩擦声。"))
 	operating = DOOR_OPERATING_OPENING
 	do_animate("opening")
 	icon_state = "door0"

@@ -171,8 +171,8 @@
  * Water flower
  */
 /obj/item/toy/waterflower
-	name = "Water Flower"
-	desc = "A seemingly innocent sunflower...with a twist."
+	name = "喷水花"
+	desc = "一朵看似无害的向日葵……另有玄机。"
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "sunflower"
 	item_state = "sunflower"
@@ -210,7 +210,7 @@
 
 
 		var/obj/effect/decal/D = new/obj/effect/decal/(get_turf(src))
-		D.name = "water"
+		D.name = "水"
 		D.icon = 'icons/obj/items/chemistry.dmi'
 		D.icon_state = "chempuff"
 		D.create_reagents(5)
@@ -348,7 +348,7 @@
 
 /obj/item/toy/dice
 	name = "d6"
-	desc = "A die with six sides."
+	desc = "一枚六面骰子。"
 	icon = 'icons/obj/items/dice.dmi'
 	icon_state = "d66"
 	w_class = SIZE_TINY
@@ -361,7 +361,7 @@
 
 /obj/item/toy/dice/d20
 	name = "d20"
-	desc = "A die with twenty sides."
+	desc = "一枚二十面骰子。"
 	icon_state = "d2020"
 	sides = 20
 

@@ -9,42 +9,42 @@
 	ceiling_muffle = FALSE
 
 /area/firefly/medical
-	name = "Medical"
+	name = "医疗区"
 
 /area/firefly/cryo_cell
-	name = "Cryo Cell"
+	name = "冷冻休眠舱"
 
 /area/firefly/engineer
-	name = "Engineering"
+	name = "工程区"
 
 /area/firefly/squad_theta
-	name = "Theta Squad Prep"
+	name = "西塔小队整备区"
 
 /area/firefly/squad_omega
-	name = "Omega Squad Prep"
+	name = "欧米伽小队整备区"
 
 /area/firefly/cafeteria
-	name = "Cafeteria"
+	name = "餐厅"
 
 /area/firefly/briefing
-	name = "Briefing"
+	name = "简报室"
 
 /area/firefly/ares
-	name = "OVERLORD Restricted Area"
+	name = "统御者禁区"
 	soundscape_playlist = SCAPE_PL_ARES
 	soundscape_interval = 120
 
 /area/firefly/supply
-	name = "Supply"
+	name = "补给区"
 
 /area/firefly/ptsgt
-	name = "Operational Leaders' Room"
+	name = "作战指挥员室"
 
 /area/firefly/co
-	name = "OVERWATCH Center"
+	name = "战术监控中心"
 
 /area/firefly/hangar
-	name = "\improper Hangar"
+	name = "\improper 机库"
 	icon_state = "hangar"
 	soundscape_playlist = SCAPE_PL_HANGAR
 	soundscape_interval = 50

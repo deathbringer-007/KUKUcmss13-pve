@@ -17,14 +17,14 @@
 	if(istype(I, /obj/item/lightstick))
 		var/obj/item/lightstick/L = I
 		if(locate(/obj/item/lightstick) in get_turf(src))
-			to_chat(user, "这个位置已经有\a [L]了！")
+			to_chat(user, "这个位置已经有[L]了！")
 			return
 
-		to_chat(user, "正在插放\the [L]。")
+		to_chat(user, "正在插放[L]。")
 		if(!do_after(user,20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			return
 
-		user.visible_message("\blue[user.name]将\the [L]插在了[src]中。")
+		user.visible_message("\blue[user.name]将[L]插在了[src]中。")
 		L.anchored = TRUE
 		L.icon_state = "lightstick_[L.s_color][L.anchored]"
 		user.drop_held_item()

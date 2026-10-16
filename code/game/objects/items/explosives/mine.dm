@@ -2,8 +2,8 @@
 //Mines have an invisible "tripwire" atom that explodes when crossed
 //Stepping directly on the mine will also blow it up
 /obj/item/explosive/mine
-	name = "\improper M20 Claymore anti-personnel mine"
-	desc = "The M20 Claymore is a directional anti-personnel smart mine of the USCMC. Generates 120 degree cone of shrapnel if a valid target crosses before or over it. On its face, it reads \"FRONT TOWARD ENEMY\"."
+	name = "M20 阔剑反步兵地雷"
+	desc = "M20 阔剑是 USCMC 的定向反步兵智能地雷。当有效目标从其前方或上方经过时，会喷出 120 度锥形弹片。正面写着“此面向敌”。"
 	icon = 'icons/obj/items/weapons/grenade.dmi'
 	icon_state = "m20"
 	force = 5
@@ -302,7 +302,7 @@
 
 //Player-given claymore. More lethal than the other sort.
 /obj/item/explosive/mine/strong
-	name = "\improper M20A2 Claymore anti-personnel mine"
+	name = "M20A2 阔剑反步兵地雷"
 	shrapnel_type = /datum/ammo/bullet/shrapnel/claymore/strong
 	explosive_power = 90
 	explosive_falloff = 35

@@ -78,7 +78,7 @@
 
 	var/obj/limb/parent = owner.get_limb(parent_limb)
 	if(!silent)
-		owner.custom_pain("Something inside your [parent.display_name] hurts a lot.", 1)
+		owner.custom_pain("你的[parent.display_name]内部一阵剧痛。", 1)
 	set_organ_status()
 
 /datum/internal_organ/proc/heal_damage(amount)
@@ -152,10 +152,10 @@
 		return
 	if(organ_status >= ORGAN_BRUISED)
 		if(prob(2))
-			spawn owner.emote("me", 1, "coughs up blood!")
+			spawn owner.emote("me", 1, "咳出鲜血！")
 			owner.drip(10)
 		if(prob(4))
-			spawn owner.emote("me", 1, "gasps for air!")
+			spawn owner.emote("me", 1, "大口喘气！")
 			owner.losebreath += 15
 
 /datum/internal_organ/lungs/rejuvenate()
@@ -264,13 +264,13 @@
 		if(!(owner.buckled || owner.pulledby) && owner.stat == CONSCIOUS && !(locate(/datum/effects/crit) in owner.effects_list))
 			var/dir_choice = pick(list(NORTH, SOUTH, EAST, WEST))
 			owner.Move(get_step(get_turf(owner), dir_choice))
-		to_chat(owner, SPAN_DANGER("Your mind wanders and goes blank for a moment..."))
+		to_chat(owner, SPAN_DANGER("你精神恍惚，脑海一时间空白……"))
 
 	if(organ_status >= ORGAN_BROKEN && prob(5 * delta_time))
 		owner.apply_effect(1, PARALYZE)
 		if(owner.jitteriness < 100)
 			owner.make_jittery(50)
-		to_chat(owner, SPAN_DANGER("Your body seizes up!"))
+		to_chat(owner, SPAN_DANGER("你的身体突然僵住了！"))
 
 /datum/internal_organ/brain/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT

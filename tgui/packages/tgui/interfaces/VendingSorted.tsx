@@ -28,6 +28,17 @@ const VENDOR_ITEM_REGULAR = 1;
 const VENDOR_ITEM_MANDATORY = 2;
 const VENDOR_ITEM_RECOMMENDED = 3;
 
+const UNIFORM_CATEGORY_LABELS: Record<string, string> = {
+  UTILITY: '勤务服',
+  'UTILITY EXTRAS': '勤务服配件',
+  SERVICE: '常服',
+  'SERVICE HEADWEAR': '常服帽饰',
+  'SERVICE EXTRAS': '常服配件',
+  DRESS: '礼服',
+  'DRESS HEADWEAR': '礼服帽饰',
+  'DRESS EXTRAS': '礼服配件',
+};
+
 interface VendingRecord {
   prod_index: number;
   prod_name: string;
@@ -200,7 +211,7 @@ const VendableClothingItemRow = (props: {
       {hasCost && (
         <TableCell className="Cost">
           <span className={classes(['Text'])}>
-            {cost === 0 ? '' : `${cost}P`}
+            {cost === 0 ? '' : `${cost}点`}
           </span>
         </TableCell>
       )}
@@ -244,10 +255,10 @@ const ItemDescriptionViewer = (props: DescriptionProps, _) => {
   const { name, desc, isMandatory, isRecommended } = props;
   const generateTitle = () => {
     if (isMandatory) {
-      return `Mandatory: ${name}`;
+      return `必选：${name}`;
     }
     if (isRecommended) {
-      return `Recommended: ${name}`;
+      return `推荐：${name}`;
     }
     return name;
   };
@@ -271,7 +282,8 @@ export const ViewVendingCategory = (props: VendingCategoryProps) => {
     return null;
   }
 
-  const displayName = category.name ?? '';
+  const displayName =
+    UNIFORM_CATEGORY_LABELS[category.name] ?? category.name ?? '';
   const displayCost =
     vendor_type === 'clothing' || vendor_type === 'gear'
       ? filteredCategories.find((x) => x.prod_cost !== 0) !== undefined
@@ -323,7 +335,7 @@ export const VendingSorted = () => {
   if (data === undefined) {
     return (
       <Window height={800} width={450}>
-        no data!
+        没有数据！
       </Window>
     );
   }
@@ -355,7 +367,7 @@ export const VendingSorted = () => {
               className="Section__title"
             >
               <Flex.Item>
-                <span className="Section__titleText">Search</span>
+                <span className="Section__titleText">搜索</span>
               </Flex.Item>
               <Flex.Item>
                 <Input
@@ -372,11 +384,11 @@ export const VendingSorted = () => {
                 align-items="stretch"
               >
                 <Flex.Item>
-                  <span className="Section__content">Reagents</span>
+                  <span className="Section__content">试剂</span>
                 </Flex.Item>
                 <Flex.Item grow>
                   <ProgressBar value={reagents} maxValue={reagents_max}>
-                    {toFixed(reagents) + ' units'}
+                    {toFixed(reagents) + ' 单位'}
                   </ProgressBar>
                 </Flex.Item>
               </Flex>
@@ -393,7 +405,7 @@ export const VendingSorted = () => {
               className="Section__title"
             >
               <Flex.Item>
-                <span className="Section__titleText">Points Remaining</span>
+                <span className="Section__titleText">剩余点数</span>
               </Flex.Item>
               <Flex.Item>
                 <span>{points}</span>
@@ -404,8 +416,7 @@ export const VendingSorted = () => {
 
         {isEmpty && (
           <NoticeBox danger className="ItemContainer">
-            Nothing in here seems to be for you. If this is a mistake contact
-            your local administrator.
+            这里似乎没有适合你的物品。如果情况有误，请联系管理员。
           </NoticeBox>
         )}
 

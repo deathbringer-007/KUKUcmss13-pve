@@ -113,9 +113,9 @@
 				return TRUE
 		if(tool && is_surgery_tool(tool)) //Just because you used the wrong tool doesn't mean you meant to whack the patient with it...
 			if(next_step)
-				to_chat(user, SPAN_WARNING("你无法用\the [tool]来[current_step.desc]，也无法[next_step.desc]。"))
+				to_chat(user, SPAN_WARNING("你无法用[tool]来[current_step.desc]，也无法[next_step.desc]。"))
 			else
-				to_chat(user, SPAN_WARNING("你无法用\the [tool]来[current_step.desc]。"))
+				to_chat(user, SPAN_WARNING("你无法用[tool]来[current_step.desc]。"))
 			return FALSE //...but you might be wanting to use it on them anyway. If on help intent, the help-intent safety will apply for this attack.
 	return FALSE
 

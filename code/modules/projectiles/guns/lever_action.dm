@@ -5,8 +5,8 @@ their unique feature is that a direct hit will buff your damage and firerate
 */
 
 /obj/item/weapon/gun/lever_action
-	name = "lever-action rifle"
-	desc = "Welcome to the Wild West!\nThis gun is levered via Unique-Action, but it has a bonus feature: Hitting a target directly will grant you a fire rate and damage buff for your next shot during a short interval. Combo precision hits for massive damage."
+	name = "杠杆式步枪"
+	desc = "欢迎来到狂野西部！\n通过“特殊动作”扳动杠杆上膛。它还有额外特性：直接命中目标后，短时间内的下一发可获得射速与伤害加成。连续精准命中可造成巨额伤害。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "r4t-placeholder" //placeholder for a 'base' leveraction
 	item_state = "r4t-placeholder"
@@ -326,9 +326,9 @@ their unique feature is that a direct hit will buff your damage and firerate
 #define FLOATING_PENETRATION_TIER_4 4
 
 /obj/item/weapon/gun/lever_action/xm88
-	name = "\improper XM88 heavy rifle"
-	desc = "An experimental man-portable anti-material rifle chambered in .458 SOCOM. It must be manually chambered for every shot.\nIt has a special property - when you obtain multiple direct hits in a row, its armor penetration and damage will increase."
-	desc_lore = "Originally developed by ARMAT Battlefield Systems for the government of the state of Greater Brazil for use in the Favela Wars (2161 - Ongoing) against mechanized infantry. The platform features an onboard computerized targeting system, sensor array, and an electronic autoloader; these features work in tandem to reduce and render inert armor on the users target with successive hits. The Almayer was issued a small amount of XM88s while preparing for Operation Swamp Hopper with the USS Nan-Shan."
+	name = "XM88 重型步枪"
+	desc = "使用 .458 SOCOM 弹药的实验型单兵反器材步枪，每发都必须手动上膛。\n具有特殊性质：连续多次直接命中后，穿甲能力和伤害都会提高。"
+	desc_lore = "阿玛特战场系统最初为大巴西政府研制此武器，用于在贫民窟战争（2161 年至今）中对抗机械化步兵。该平台配备计算机瞄准系统、传感器阵列和电子自动装弹机，协同作用可通过连续命中逐步削弱目标护甲，使其失去防护作用。阿尔迈耶号在准备与 USS 南山号共同执行“沼泽跳跃者”行动时，获配了少量 XM88。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi' // overridden with camos anyways
 	icon_state = "boomslang"
 	item_state = "boomslang"

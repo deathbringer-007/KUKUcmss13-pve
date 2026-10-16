@@ -22,42 +22,42 @@
 	return TRUE
 
 /area/shuttle/drop1/sulaco
-	name = "\improper Dropship Alamo"
+	name = "\improper 阿拉莫号运输机"
 	icon_state = "shuttlered"
 	base_muffle = MUFFLE_HIGH
 	base_lighting_alpha = 255
 
 /area/shuttle/drop1/LV624
-	name = "\improper Dropship Alamo"
+	name = "\improper 阿拉莫号运输机"
 	ambience_exterior = AMBIENCE_LV624
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/prison
-	name = "\improper Dropship Alamo"
+	name = "\improper 阿拉莫号运输机"
 	ambience_exterior = AMBIENCE_PRISON
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/BigRed
-	name = "\improper Dropship Alamo"
+	name = "\improper 阿拉莫号运输机"
 	ambience_exterior = AMBIENCE_BIGRED
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/ice_colony
-	name = "\improper Dropship Alamo"
+	name = "\improper 阿拉莫号运输机"
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/DesertDam
-	name = "\improper Dropship Alamo"
+	name = "\improper 阿拉莫号运输机"
 	ambience_exterior = AMBIENCE_TRIJENT
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/transit
 	ambience_exterior = 'sound/ambience/dropship_ambience_loop.ogg'
-	name = "\improper Dropship Alamo Transit"
+	name = "\improper 阿拉莫号运输机航行区"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop1/lz1
-	name = "\improper Alamo Landing Zone"
+	name = "\improper 阿拉莫号降落区"
 	icon_state = "away1"
 
 
@@ -78,46 +78,46 @@
 	return TRUE
 
 /area/shuttle/drop2/sulaco
-	name = "\improper Dropship Normandy"
+	name = "\improper 诺曼底号运输机"
 	icon_state = "shuttle"
 	base_muffle = MUFFLE_HIGH
 	base_lighting_alpha = 255
 
 /area/shuttle/drop2/LV624
-	name = "\improper Dropship Normandy"
+	name = "\improper 诺曼底号运输机"
 	ambience_exterior = AMBIENCE_LV624
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/prison
-	name = "\improper Dropship Normandy"
+	name = "\improper 诺曼底号运输机"
 	ambience_exterior = AMBIENCE_PRISON
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/BigRed
-	name = "\improper Dropship Normandy"
+	name = "\improper 诺曼底号运输机"
 	ambience_exterior = AMBIENCE_BIGRED
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/ice_colony
-	name = "\improper Dropship Normandy"
+	name = "\improper 诺曼底号运输机"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/DesertDam
-	name = "\improper Dropship Normandy"
+	name = "\improper 诺曼底号运输机"
 	ambience_exterior = AMBIENCE_TRIJENT
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/transit
 	ambience_exterior = 'sound/ambience/dropship_ambience_loop.ogg'
-	name = "\improper Dropship Normandy Transit"
+	name = "\improper 诺曼底号运输机航行区"
 	icon_state = "shuttlered"
 
 /area/shuttle/drop2/lz2
-	name = "\improper Normandy Landing Zone"
+	name = "\improper 诺曼底号降落区"
 	icon_state = "away2"
 
 /area/shuttle/midway
-	name = "\improper Dropship Midway"
+	name = "\improper 中途岛号运输机"
 	icon_state = "shuttlered"
 	base_muffle = MUFFLE_HIGH
 	soundscape_interval = 30
@@ -130,7 +130,7 @@
 	return TRUE
 
 /area/shuttle/ds_upp
-	name = "dropship Akademia Nauk"
+	name = "科学院号运输机"
 	icon_state = "shuttlered"
 	base_muffle = MUFFLE_HIGH
 	soundscape_interval = 30
@@ -143,7 +143,7 @@
 	return TRUE
 
 /area/shuttle/cyclone
-	name = "dropship Cyclone"
+	name = "旋风号运输机"
 	icon_state = "shuttlered"
 	base_muffle = MUFFLE_HIGH
 	soundscape_interval = 30
@@ -156,7 +156,7 @@
 	return TRUE
 
 /area/shuttle/pmc
-	name = "dropship Cash Flow"
+	name = "现金流号运输机"
 	icon_state = "shuttlered"
 	base_muffle = MUFFLE_HIGH
 	soundscape_interval = 30
@@ -169,7 +169,7 @@
 	return TRUE
 
 /area/shuttle/tornado
-	name = "command dropship Tornado"
+	name = "龙卷风号指挥运输机"
 	icon_state = "shuttlered"
 	base_muffle = MUFFLE_HIGH
 	soundscape_interval = 30
@@ -182,7 +182,7 @@
 	return TRUE
 
 /area/shuttle/typhoon
-	name = "heavy-lift dropship Typhoon"
+	name = "台风号重型运输机"
 	icon_state = "shuttlered"
 	base_muffle = MUFFLE_HIGH
 	soundscape_interval = 30
@@ -195,7 +195,7 @@
 	return TRUE
 
 /area/shuttle/tripoli
-	name = "dropship Tripoli"
+	name = "的黎波里号运输机"
 	icon_state = "shuttlered"
 	base_muffle = MUFFLE_HIGH
 	soundscape_interval = 30
@@ -208,7 +208,7 @@
 	return TRUE
 
 /area/shuttle/gibraltar
-	name = "\improper Dropship Gibraltar"
+	name = "\improper 直布罗陀号运输机"
 	icon_state = "shuttlered"
 	base_muffle = MUFFLE_HIGH
 	soundscape_interval = 30
@@ -235,42 +235,42 @@
 	return TRUE
 
 /area/shuttle/drop3/sulaco
-	name = "\improper Dropship Saipan"
+	name = "\improper 塞班号运输机"
 	icon_state = "shuttle"
 	base_muffle = MUFFLE_HIGH
 	base_lighting_alpha = 255
 
 /area/shuttle/drop3/LV624
-	name = "\improper Dropship Saipan"
+	name = "\improper 塞班号运输机"
 	ambience_exterior = AMBIENCE_LV624
 	icon_state = "shuttle2"
 
 /area/shuttle/drop3/prison
-	name = "\improper Dropship Saipan"
+	name = "\improper 塞班号运输机"
 	ambience_exterior = AMBIENCE_PRISON
 	icon_state = "shuttle2"
 
 /area/shuttle/drop3/BigRed
-	name = "\improper Dropship Saipan"
+	name = "\improper 塞班号运输机"
 	ambience_exterior = AMBIENCE_BIGRED
 	icon_state = "shuttle2"
 
 /area/shuttle/drop3/ice_colony
-	name = "\improper Dropship Saipan"
+	name = "\improper 塞班号运输机"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop3/DesertDam
-	name = "\improper Dropship Saipan"
+	name = "\improper 塞班号运输机"
 	ambience_exterior = AMBIENCE_TRIJENT
 	icon_state = "shuttle2"
 
 /area/shuttle/drop3/transit
 	ambience_exterior = 'sound/ambience/dropship_ambience_loop.ogg'
-	name = "\improper Dropship Saipan Transit"
+	name = "\improper 塞班号运输机航行区"
 	icon_state = "shuttlered"
 
 /area/shuttle/drop3/lz3
-	name = "\improper Saipan Landing Zone"
+	name = "\improper 塞班号降落区"
 	icon_state = "away2"
 
 
@@ -281,77 +281,77 @@
 	unique = TRUE
 
 /area/shuttle/distress/start
-	name = "\improper Distress Shuttle"
+	name = "\improper 救援穿梭机"
 	icon_state = "away1"
 	flags_atom = AREA_ALLOW_XENO_JOIN
 
 /area/shuttle/distress/transit
-	name = "\improper Distress Shuttle Transit"
+	name = "\improper 救援穿梭机航行区"
 	icon_state = "away2"
 
 
 /area/shuttle/distress/start_pmc
-	name = "\improper Distress Shuttle PMC"
+	name = "\improper PMC救援穿梭机"
 	icon_state = "away1"
 
 /area/shuttle/distress/transit_pmc
-	name = "\improper Distress Shuttle PMC Transit"
+	name = "\improper PMC救援穿梭机航行区"
 	icon_state = "away2"
 
 
 /area/shuttle/distress/start_upp
-	name = "\improper Distress Shuttle UPP"
+	name = "\improper UPP救援穿梭机"
 	icon_state = "away1"
 
 
 /area/shuttle/distress/transit_upp
-	name = "\improper Distress Shuttle UPP Transit"
+	name = "\improper UPP救援穿梭机航行区"
 	icon_state = "away2"
 
 
 /area/shuttle/distress/start_big
-	name = "\improper Distress Shuttle Big"
+	name = "\improper 大型救援穿梭机"
 	icon_state = "away1"
 
 
 /area/shuttle/distress/transit_big
-	name = "\improper Distress Shuttle Big Transit"
+	name = "\improper 大型救援穿梭机航行区"
 	icon_state = "away2"
 
 
 /area/shuttle/distress/arrive_1
-	name = "\improper Distress Shuttle"
+	name = "\improper 救援穿梭机"
 	icon_state = "away3"
 
 /area/shuttle/distress/arrive_2
-	name = "\improper Distress Shuttle"
+	name = "\improper 救援穿梭机"
 	icon_state = "away4"
 
 /area/shuttle/distress/arrive_3
-	name = "\improper Distress Shuttle"
+	name = "\improper 救援穿梭机"
 	icon_state = "away"
 
 
 /area/shuttle/distress/arrive_n_hangar
-	name = "\improper Distress Shuttle"
+	name = "\improper 救援穿梭机"
 	icon_state = "away"
 
 /area/shuttle/distress/arrive_s_hangar
-	name = "\improper Distress Shuttle"
+	name = "\improper 救援穿梭机"
 	icon_state = "away3"
 
 /area/shuttle/distress/start_small
-	name = "\improper VIP Shuttle"
+	name = "\improper 贵宾穿梭机"
 	icon_state = "away3"
 
 /area/shuttle/distress/transit_small
-	name = "\improper VIP Shuttle Transit"
+	name = "\improper 贵宾穿梭机航行区"
 	icon_state = "away2"
 
 /area/shuttle/distress/arrive_n_engi
-	name = "\improper VIP Shuttle"
+	name = "\improper 贵宾穿梭机"
 	icon_state = "away"
 
 /area/shuttle/distress/arrive_s_engi
-	name = "\improper VIP Shuttle"
+	name = "\improper 贵宾穿梭机"
 	icon_state = "away2"

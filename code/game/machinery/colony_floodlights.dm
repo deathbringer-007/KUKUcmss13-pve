@@ -1,9 +1,9 @@
 //Putting these here since it's power-related
 /obj/structure/machinery/colony_floodlight_switch
-	name = "colony floodlight switch"
+	name = "殖民地泛光灯开关"
 	icon = 'icons/obj/structures/machinery/power.dmi'
 	icon_state = "panelnopower"
-	desc = "This switch controls the floodlights surrounding the archaeology complex. It only functions when there is power."
+	desc = "控制考古设施周围泛光灯的开关，仅在有电时工作。"
 	density = FALSE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
@@ -65,10 +65,10 @@
 
 /obj/structure/machinery/colony_floodlight_switch/attack_hand(mob/user as mob)
 	if(!ishuman(user))
-		to_chat(user, "Nice try.")
+		to_chat(user, "想得美。")
 		return FALSE
 	if(!ispowered)
-		to_chat(user, "Nothing happens.")
+		to_chat(user, "什么也没发生。")
 		return FALSE
 	playsound(src,'sound/items/Deconstruct.ogg', 30, 1)
 	use_power(5)
@@ -85,7 +85,7 @@
 #define FLOODLIGHT_REPAIR_SCREW 4
 
 /obj/structure/machinery/colony_floodlight
-	name = "colony floodlight"
+	name = "殖民地泛光灯"
 	icon = 'icons/obj/structures/machinery/big_floodlight.dmi'
 	icon_state = "flood_s_off"
 	density = TRUE
@@ -125,25 +125,25 @@
 	if(damaged)
 		if(HAS_TRAIT(I, TRAIT_TOOL_SCREWDRIVER))
 			if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-				to_chat(user, SPAN_WARNING("You have no clue how to repair [src]."))
+				to_chat(user, SPAN_WARNING("你完全不知道该如何修理[src]。"))
 				return FALSE
 
 			if(repair_state == FLOODLIGHT_REPAIR_UNSCREW)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				user.visible_message(SPAN_NOTICE("[user] starts unscrewing [src]'s maintenance hatch."), \
-				SPAN_NOTICE("You start unscrewing [src]'s maintenance hatch."))
+				user.visible_message(SPAN_NOTICE("[user]开始拧开[src]的维护舱盖。"), \
+				SPAN_NOTICE("你开始拧开[src]的维护舱盖。"))
 				if(do_after(user, 2 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					if(QDELETED(src) || repair_state != FLOODLIGHT_REPAIR_UNSCREW)
 						return
 					playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 					repair_state = FLOODLIGHT_REPAIR_CROWBAR
-					user.visible_message(SPAN_NOTICE("[user] unscrews [src]'s maintenance hatch."), \
-					SPAN_NOTICE("You unscrew [src]'s maintenance hatch."))
+					user.visible_message(SPAN_NOTICE("[user]拧开了[src]的维护舱盖。"), \
+					SPAN_NOTICE("你拧开了[src]的维护舱盖。"))
 
 			else if(repair_state == FLOODLIGHT_REPAIR_SCREW)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				user.visible_message(SPAN_NOTICE("[user] starts screwing [src]'s maintenance hatch closed."), \
-				SPAN_NOTICE("You start screwing [src]'s maintenance hatch closed."))
+				user.visible_message(SPAN_NOTICE("[user]开始拧紧[src]的维护舱盖。"), \
+				SPAN_NOTICE("你开始拧紧[src]的维护舱盖。"))
 				if(do_after(user, 2 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					if(QDELETED(src) || repair_state != FLOODLIGHT_REPAIR_SCREW)
 						return
@@ -151,8 +151,8 @@
 					damaged = FALSE
 					repair_state = FLOODLIGHT_REPAIR_UNSCREW
 					health = initial(health)
-					user.visible_message(SPAN_NOTICE("[user] screws [src]'s maintenance hatch closed."), \
-					SPAN_NOTICE("You screw [src]'s maintenance hatch closed."))
+					user.visible_message(SPAN_NOTICE("[user]拧紧了[src]的维护舱盖。"), \
+					SPAN_NOTICE("你拧紧了[src]的维护舱盖。"))
 					if(is_lit)
 						set_light(lum_value)
 					update_icon()
@@ -160,82 +160,82 @@
 
 		else if(HAS_TRAIT(I, TRAIT_TOOL_CROWBAR))
 			if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-				to_chat(user, SPAN_WARNING("You have no clue how to repair [src]."))
+				to_chat(user, SPAN_WARNING("你完全不知道该如何修理[src]。"))
 				return FALSE
 
 			if(repair_state == FLOODLIGHT_REPAIR_CROWBAR)
 				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
-				user.visible_message(SPAN_NOTICE("[user] starts prying [src]'s damaged lighting assembly out."),\
-				SPAN_NOTICE("You start prying [src]'s damaged lighting assembly out."))
+				user.visible_message(SPAN_NOTICE("[user]开始撬出[src]损坏的照明组件。"),\
+				SPAN_NOTICE("你开始撬出[src]损坏的照明组件。"))
 				if(do_after(user, 2 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					if(QDELETED(src) || repair_state != FLOODLIGHT_REPAIR_CROWBAR)
 						return
 					playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 					repair_state = FLOODLIGHT_REPAIR_WELD
-					user.visible_message(SPAN_NOTICE("[user] pries [src]'s damaged lighting assembly out."),\
-					SPAN_NOTICE("You pry [src]'s damaged lighting assembly out."))
+					user.visible_message(SPAN_NOTICE("[user]撬出了[src]损坏的照明组件。"),\
+					SPAN_NOTICE("你撬出了[src]损坏的照明组件。"))
 			return TRUE
 
 		else if(iswelder(I))
 			if(!HAS_TRAIT(I, TRAIT_TOOL_BLOWTORCH))
-				to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+				to_chat(user, SPAN_WARNING("你需要功率更大的喷灯！"))
 				return
 			var/obj/item/tool/weldingtool/welder = I
 
 			if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-				to_chat(user, SPAN_WARNING("You have no clue how to repair [src]."))
+				to_chat(user, SPAN_WARNING("你完全不知道该如何修理[src]。"))
 				return FALSE
 
 			if(repair_state == FLOODLIGHT_REPAIR_WELD)
 				if(welder.remove_fuel(1, user))
 					playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-					user.visible_message(SPAN_NOTICE("[user] starts welding [src]'s damage."),
-					SPAN_NOTICE("You start welding [src]'s damage."))
+					user.visible_message(SPAN_NOTICE("[user]开始焊接修复[src]的损伤。"),
+					SPAN_NOTICE("你开始焊接修复[src]的损伤。"))
 					if(do_after(user, 4 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 						if(QDELETED(src) || !welder.isOn() || repair_state != FLOODLIGHT_REPAIR_WELD)
 							return
 						playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 						repair_state = FLOODLIGHT_REPAIR_CABLE
-						user.visible_message(SPAN_NOTICE("[user] welds [src]'s damage."),
-						SPAN_NOTICE("You weld [src]'s damage."))
+						user.visible_message(SPAN_NOTICE("[user]焊接修复了[src]的损伤。"),
+						SPAN_NOTICE("你焊接修复了[src]的损伤。"))
 						return TRUE
 				else
-					to_chat(user, SPAN_WARNING("You need more welding fuel to complete this task."))
+					to_chat(user, SPAN_WARNING("你需要更多焊接燃料才能完成这项工作。"))
 			return TRUE
 
 		else if(iscoil(I))
 			var/obj/item/stack/cable_coil/coil = I
 			if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-				to_chat(user, SPAN_WARNING("You have no clue how to repair [src]."))
+				to_chat(user, SPAN_WARNING("你完全不知道该如何修理[src]。"))
 				return FALSE
 
 			if(repair_state == FLOODLIGHT_REPAIR_CABLE)
 				if(coil.get_amount() < 2)
-					to_chat(user, SPAN_WARNING("You need two coils of wire to replace the damaged cables."))
+					to_chat(user, SPAN_WARNING("更换损坏的电缆需要两段电线。"))
 					return
 				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-				user.visible_message(SPAN_NOTICE("[user] starts replacing [src]'s damaged cables."),\
-				SPAN_NOTICE("You start replacing [src]'s damaged cables."))
+				user.visible_message(SPAN_NOTICE("[user]开始更换[src]损坏的电缆。"),\
+				SPAN_NOTICE("你开始更换[src]损坏的电缆。"))
 				if(do_after(user, 2 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC))
 					if(QDELETED(src) || repair_state != FLOODLIGHT_REPAIR_CABLE)
 						return
 					if(coil.use(2))
 						playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 						repair_state = FLOODLIGHT_REPAIR_SCREW
-						user.visible_message(SPAN_NOTICE("[user] replaces [src]'s damaged cables."),\
-						SPAN_NOTICE("You replace [src]'s damaged cables."))
+						user.visible_message(SPAN_NOTICE("[user]更换了[src]损坏的电缆。"),\
+						SPAN_NOTICE("你更换了[src]损坏的电缆。"))
 			return TRUE
 
 		else if(istype(I, /obj/item/device/lightreplacer))
 			if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-				to_chat(user, SPAN_WARNING("You have no clue how to repair [src]."))
+				to_chat(user, SPAN_WARNING("你完全不知道该如何修理[src]。"))
 				return FALSE
 
 			if(repair_state == FLOODLIGHT_REPAIR_UNSCREW)
-				to_chat(user, SPAN_WARNING("You need to unscrew [src]'s maintenance hatch."))
+				to_chat(user, SPAN_WARNING("你需要拧开[src]的维护舱盖。"))
 				return FALSE
 			if(repair_state == FLOODLIGHT_REPAIR_SCREW)
-				to_chat(user, SPAN_WARNING("You need to screw [src]'s maintenance hatch."))
+				to_chat(user, SPAN_WARNING("你需要拧紧[src]的维护舱盖。"))
 				return FALSE
 
 			var/obj/item/device/lightreplacer/replacer = I
@@ -243,15 +243,15 @@
 				to_chat(user, replacer.failmsg)
 				return FALSE
 			playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
-			user.visible_message(SPAN_NOTICE("[user] starts replacing [src]'s damaged lighting assembly."),\
-			SPAN_NOTICE("You start replacing [src]'s damaged lighting assembly."))
+			user.visible_message(SPAN_NOTICE("[user]开始更换[src]损坏的照明组件。"),\
+			SPAN_NOTICE("你开始更换[src]损坏的照明组件。"))
 			if(do_after(user, 2 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC))
 				if(QDELETED(src) || repair_state == FLOODLIGHT_REPAIR_SCREW)
 					return
 				replacer.Use(user)
 				repair_state = FLOODLIGHT_REPAIR_SCREW
-				user.visible_message(SPAN_NOTICE("[user] replaces [src]'s damaged lighting assembly."),\
-				SPAN_NOTICE("You replace [src]'s damaged lighting assembly."))
+				user.visible_message(SPAN_NOTICE("[user]更换了[src]损坏的照明组件。"),\
+				SPAN_NOTICE("你更换了[src]损坏的照明组件。"))
 			return TRUE
 
 	return ..()
@@ -259,9 +259,9 @@
 /obj/structure/machinery/colony_floodlight/attack_hand(mob/user)
 	if(ishuman(user))
 		if(damaged)
-			to_chat(user, SPAN_WARNING("[src] is damaged."))
+			to_chat(user, SPAN_WARNING("[src]损坏了。"))
 		else if(!is_lit)
-			to_chat(user, SPAN_WARNING("Nothing happens. Looks like it's powered elsewhere."))
+			to_chat(user, SPAN_WARNING("什么也没发生，看起来它的电源在别处。"))
 		return FALSE
 	return ..()
 
@@ -269,16 +269,16 @@
 	. = ..()
 	if(ishuman(user))
 		if(damaged)
-			. += SPAN_WARNING("It is damaged.")
+			. += SPAN_WARNING("它损坏了。")
 			if(skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
 				switch(repair_state)
-					if(FLOODLIGHT_REPAIR_UNSCREW) . += SPAN_INFO("You must first unscrew its maintenance hatch.")
-					if(FLOODLIGHT_REPAIR_CROWBAR) . += SPAN_INFO("You must crowbar its lighting assembly out or use a light replacer.")
-					if(FLOODLIGHT_REPAIR_WELD) . += SPAN_INFO("You must weld the damage to it.")
-					if(FLOODLIGHT_REPAIR_CABLE) . += SPAN_INFO("You must replace its damaged cables.")
-					if(FLOODLIGHT_REPAIR_SCREW) . += SPAN_INFO("You must screw its maintenance hatch closed.")
+					if(FLOODLIGHT_REPAIR_UNSCREW) . += SPAN_INFO("你必须先拧开维护舱盖。")
+					if(FLOODLIGHT_REPAIR_CROWBAR) . += SPAN_INFO("你必须用撬棍撬出照明组件，或使用灯具更换器。")
+					if(FLOODLIGHT_REPAIR_WELD) . += SPAN_INFO("你必须焊接修复损伤。")
+					if(FLOODLIGHT_REPAIR_CABLE) . += SPAN_INFO("你必须更换损坏的电缆。")
+					if(FLOODLIGHT_REPAIR_SCREW) . += SPAN_INFO("你必须拧紧维护舱盖。")
 		else if(!is_lit)
-			. += SPAN_INFO("It doesn't seem powered.")
+			. += SPAN_INFO("它似乎没有通电。")
 
 /obj/structure/machinery/colony_floodlight/ex_act(severity)
 	switch(severity)

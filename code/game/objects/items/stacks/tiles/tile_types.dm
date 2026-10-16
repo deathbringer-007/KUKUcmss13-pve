@@ -6,9 +6,9 @@
  */
 
 /obj/item/stack/tile
-	name = "abstract tile"
-	singular_name = "abstract tile"
-	desc = "If you're seeing this, then a Dev made a mistake. Report it on Github."
+	name = "抽象地砖"
+	singular_name = "抽象地砖"
+	desc = "如果你看见了这段文字，说明开发者出了差错，请在 GitHub 上报告。"
 	w_class = SIZE_MEDIUM
 	force = 1
 	throwforce = 1

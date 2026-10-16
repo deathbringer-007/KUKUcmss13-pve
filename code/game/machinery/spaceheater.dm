@@ -131,7 +131,7 @@
 
 			if("cellremove")
 				if(open && cell && !usr.get_active_hand())
-					usr.visible_message(SPAN_NOTICE("[usr]从\the [src]中取出了\the [cell]。"), SPAN_NOTICE("你从\the [src]中取出了\the [cell]。"))
+					usr.visible_message(SPAN_NOTICE("[usr]从[src]中取出了[cell]。"), SPAN_NOTICE("你从[src]中取出了[cell]。"))
 					cell.update_icon()
 					usr.put_in_hands(cell)
 					cell.add_fingerprint(usr)
@@ -147,7 +147,7 @@
 							C.forceMove(src)
 							C.add_fingerprint(usr)
 
-							usr.visible_message(SPAN_NOTICE("[usr]将\the [C]装入了\the [src]。"), SPAN_NOTICE("你将\the [C]装入了\the [src]。"))
+							usr.visible_message(SPAN_NOTICE("[usr]将[C]装入了[src]。"), SPAN_NOTICE("你将[C]装入了[src]。"))
 
 		updateDialog()
 	else

@@ -4,8 +4,8 @@
 /obj/structure/machinery/conveyor
 	icon = 'icons/obj/structures/machinery/recycling.dmi'
 	icon_state = "conveyor0"
-	name = "conveyor belt"
-	desc = "A conveyor belt."
+	name = "传送带"
+	desc = "一条传送带。"
 	layer = CONVEYOR_LAYER // so they appear under stuff
 	anchored = TRUE
 	var/operating = 0 // 1 if running forward, -1 if backwards, 0 if off
@@ -173,8 +173,8 @@
 
 /obj/structure/machinery/conveyor_switch
 
-	name = "conveyor switch"
-	desc = "A conveyor control switch."
+	name = "传送带开关"
+	desc = "传送带控制开关。"
 	icon = 'icons/obj/structures/machinery/recycling.dmi'
 	icon_state = "switch-off"
 	var/position = 0 // 0 off, -1 reverse, 1 forward
@@ -227,7 +227,7 @@
 // attack with hand, switch position
 /obj/structure/machinery/conveyor_switch/attack_hand(mob/user)
 	if(!allowed(user))
-		to_chat(user, SPAN_WARNING("Access denied."))
+		to_chat(user, SPAN_WARNING("拒绝访问。"))
 		return
 
 	if(position == 0)
@@ -252,7 +252,7 @@
 
 /obj/structure/machinery/conveyor_switch/oneway
 	var/convdir = 1 //Set to 1 or -1 depending on which way you want the convayor to go. (In other words keep at 1 and set the proper dir on the belts.)
-	desc = "A conveyor control switch. It appears to only go in one direction."
+	desc = "传送带控制开关，似乎只能让传送带朝一个方向运转。"
 
 // attack with hand, switch position
 /obj/structure/machinery/conveyor_switch/oneway/attack_hand(mob/user)

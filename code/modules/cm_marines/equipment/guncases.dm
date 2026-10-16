@@ -1,6 +1,6 @@
 /obj/item/storage/box/guncase
-	name = "\improper gun case"
-	desc = "It has space for firearm(s). Sometimes magazines or other munitions as well."
+	name = "枪械箱"
+	desc = "可存放枪械，有时也能放弹匣或其他弹药。"
 	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "guncase"
 	w_class = SIZE_HUGE
@@ -24,8 +24,8 @@
 
 //------------
 /obj/item/storage/box/guncase/vp78
-	name = "\improper VP78 pistol case"
-	desc = "A gun case containing a VP78. Comes with two magazines."
+	name = "VP78 手枪箱"
+	desc = "装有 VP78 的枪械箱，附带两个弹匣。"
 	can_hold = list(/obj/item/weapon/gun/pistol/vp78, /obj/item/ammo_magazine/pistol/vp78)
 	storage_slots = 3
 
@@ -36,8 +36,8 @@
 
 //------------
 /obj/item/storage/box/guncase/smartpistol
-	name = "\improper SU-6 pistol case"
-	desc = "A gun case containing a SU-6 smart pistol. Comes with a full belt holster."
+	name = "SU-6 手枪箱"
+	desc = "装有 SU-6 智能手枪的枪械箱，附带满装腰带枪套。"
 	can_hold = list(/obj/item/storage/belt/gun/smartpistol, /obj/item/weapon/gun/pistol/smart, /obj/item/ammo_magazine/pistol/smart)
 	storage_slots = 2
 
@@ -47,8 +47,8 @@
 
 //------------
 /obj/item/storage/box/guncase/mou53
-	name = "\improper MOU53 shotgun case"
-	desc = "A gun case containing a MOU53 shotgun. It does come loaded, but you'll still have to find ammunition as you go."
+	name = "MOU53 霰弹枪箱"
+	desc = "装有 MOU53 霰弹枪的枪械箱。出厂时已装填，但后续弹药仍需自行寻找。"
 	storage_slots = 2
 	can_hold = list(/obj/item/weapon/gun/shotgun/double/mou53, /obj/item/attachable/stock/mou53)
 
@@ -58,8 +58,8 @@
 
 //------------
 /obj/item/storage/box/guncase/lmg
-	name = "\improper M41AE2 heavy pulse rifle case"
-	desc = "A plastic hard weapon case containing the M41AE2 Heavy Pulse Rifle and three magazines."
+	name = "M41AE2 重型脉冲步枪箱"
+	desc = "装有 M41AE2 重型脉冲步枪和三个弹匣的塑料硬质武器箱。"
 	storage_slots = 4
 	can_hold = list(/obj/item/weapon/gun/rifle/lmg, /obj/item/ammo_magazine/hpr_box)
 
@@ -71,8 +71,8 @@
 
 //------------
 /obj/item/storage/box/guncase/m41aMK1
-	name = "\improper M41A pulse rifle MK1 case"
-	desc = "A gun case containing a loaded M41A pulse rifle MK1 and two additional magazines."
+	name = "M41A 脉冲步枪 MK1 箱"
+	desc = "装有已装填的 M41A MK1 脉冲步枪及两个备用弹匣的枪械箱。"
 	storage_slots = 3
 	can_hold = list(/obj/item/weapon/gun/rifle/m41aMK1, /obj/item/ammo_magazine/rifle/m41aMK1)
 
@@ -83,8 +83,8 @@
 
 
 /obj/item/storage/box/guncase/m41aMK1AP
-	name = "\improper M41A pulse rifle MK1 AP case"
-	desc = "A gun case containing a M41A pulse rifle MK1 loaded with AP rounds and two additional magazines."
+	name = "M41A 脉冲步枪 MK1 AP 箱"
+	desc = "装有已装填穿甲弹的 M41A MK1 脉冲步枪及两个备用弹匣的枪械箱。"
 	storage_slots = 3
 	can_hold = list(/obj/item/weapon/gun/rifle/m41aMK1, /obj/item/ammo_magazine/rifle/m41aMK1)
 
@@ -96,8 +96,8 @@
 //------------
 //M79 grenade launcher
 /obj/item/storage/box/guncase/m79
-	name = "\improper M79 grenade launcher case"
-	desc = "A gun case containing a modernized M79 grenade launcher. Comes with 3 baton slugs, 3 hornet shells and 3 star shell grenades."
+	name = "M79 榴弹发射器箱"
+	desc = "装有现代化改装 M79 榴弹发射器的枪械箱，附带 3 枚警棍弹、3 枚蜂群弹和 3 枚照明榴弹。"
 	storage_slots = 4
 	can_hold = list(/obj/item/weapon/gun/launcher/grenade/m81/m79, /obj/item/storage/box/packet)
 
@@ -159,8 +159,8 @@
 	new /obj/item/storage/belt/gun/m44/lever_action/attach_holster(src)
 
 /obj/item/storage/box/guncase/xm88
-	name = "\improper XM88 heavy rifle case"
-	desc = "A gun case containing a XM88 Heavy Rifle, a prototype weapon designed for use against heavily armored infantry targets and light vehicles. Contains an ammunition belt, two boxes of ammunition, the XS-9 Targeting Relay attachment, and the stock for the rifle."
+	name = "XM88 重型步枪箱"
+	desc = "装有 XM88 重型步枪的枪械箱。这种原型武器用于对付重装步兵和轻型载具。箱内含弹药腰带、两盒弹药、XS-9 目标中继配件及步枪枪托。"
 	storage_slots = 6
 	can_hold = list(/obj/item/weapon/gun/lever_action/xm88, /obj/item/attachable/stock/xm88, /obj/item/attachable/scope/mini/xm88, /obj/item/ammo_magazine/lever_action/xm88, /obj/item/storage/belt/shotgun/xm88)
 
@@ -174,8 +174,8 @@
 
 //------------
 /obj/item/storage/box/guncase/flamer
-	name = "\improper M240A1 incinerator case"
-	desc = "A gun case containing a M240A1 incinerator unit. It does come loaded, but you'll still have to find extra tanks as you go."
+	name = "M240A1 喷火器箱"
+	desc = "装有 M240A1 火焰喷射器的枪械箱。出厂时已装填，但后续燃料罐仍需自行寻找。"
 	storage_slots = 4
 	can_hold = list(/obj/item/weapon/gun/flamer, /obj/item/ammo_magazine/flamer_tank, /obj/item/attachable/attached_gun/extinguisher)
 
@@ -893,8 +893,8 @@
 
 //------------
 /obj/item/storage/box/guncase/m56d
-	name = "\improper M56D heavy machine gun case"
-	desc = "A gun case containing a M56D heavy machine gun. You'll need to order resupplies from requisitions or scavenge them on the field. How do they fit all this into a case? Wouldn't you need a crate."
+	name = "M56D 重机枪箱"
+	desc = "装有 M56D 重机枪的枪械箱。后续补给需向军需部门订购，或在战场上寻找。怎么把这些全塞进一个箱子的？不该用个大货箱吗？"
 	storage_slots = 8
 	can_hold = list(/obj/item/device/m56d_gun, /obj/item/ammo_magazine/m56d, /obj/item/device/m56d_post, /obj/item/tool/wrench, /obj/item/tool/screwdriver, /obj/item/ammo_magazine/m56d, /obj/item/pamphlet/skill/machinegunner, /obj/item/storage/belt/marine/m2c)
 
@@ -910,8 +910,8 @@
 
 //------------
 /obj/item/storage/box/guncase/m2c
-	name = "\improper M2C heavy machine gun case"
-	desc = "A gun case containing a M2C heavy machine gun. It doesn't come loaded, but it does have spare ammunition. You'll have to order extras from requisitions."
+	name = "M2C 重机枪箱"
+	desc = "装有 M2C 重机枪的枪械箱。机枪尚未装填，但附有备用弹药；更多弹药需向军需部门订购。"
 	storage_slots = 7
 	can_hold = list(/obj/item/pamphlet/skill/machinegunner, /obj/item/device/m2c_gun, /obj/item/ammo_magazine/m2c, /obj/item/storage/belt/marine/m2c, /obj/item/pamphlet/skill/machinegunner)
 
@@ -926,8 +926,8 @@
 
 //------------
 /obj/item/storage/box/guncase/m41a
-	name = "\improper M41A pulse rifle MK2 case"
-	desc = "A gun case containing a M41A pulse rifle MK2."
+	name = "M41A 脉冲步枪 MK2 箱"
+	desc = "装有 M41A MK2 脉冲步枪的枪械箱。"
 	storage_slots = 5
 	can_hold = list(/obj/item/weapon/gun/rifle/m41a, /obj/item/ammo_magazine/rifle)
 
@@ -939,8 +939,8 @@
 
 //------------
 /obj/item/storage/box/guncase/shotguncombat
-	name = "\improper M120 tactical shotgun case"
-	desc = "A gun case containing an unloaded M120 tactical shotgun, two boxes of 12 gauge buckshot, and one box of 12 gauge slug."
+	name = "M120 战术霰弹枪箱"
+	desc = "装有未装填的 M120 战术霰弹枪、两盒 12 号鹿弹和一盒 12 号独头弹的枪械箱。"
 	icon_state = "guncase"
 	storage_slots = 3
 	can_hold = list(/obj/item/weapon/gun/shotgun/combat, /obj/item/ammo_magazine/shotgun/buckshot, /obj/item/ammo_magazine/shotgun/slugs)
@@ -1174,8 +1174,8 @@
 
 
 /obj/item/storage/box/guncase/xm51
-	name = "\improper M1771 shotgun case"
-	desc = "A gun case containing the Model 1771 Cobra Max Tactical shotgun. Comes with two spare magazines, two spare shell boxes, an optional stock and a belt to holster the weapon."
+	name = "M1771 霰弹枪箱"
+	desc = "装有 1771 型眼镜蛇极限战术霰弹枪的枪械箱，附带两个备用弹匣、两盒备用霰弹、可选枪托和收纳武器的腰带。"
 	storage_slots = 7
 	can_hold = list(/obj/item/weapon/gun/rifle/xm51, /obj/item/ammo_magazine/rifle/xm51, /obj/item/storage/belt/gun/xm51, /obj/item/attachable/stock/xm51)
 
@@ -1192,8 +1192,8 @@
 
 //VP70 Combat Pistol
 /obj/item/storage/box/guncase/vp70
-	name = "\improper VP70 Combat Pistol case"
-	desc = "A gun case containing a VP70 Combat Pistol."
+	name = "VP70 战斗手枪箱"
+	desc = "装有 VP70 战斗手枪的枪械箱。"
 	storage_slots = 8
 	can_hold = list(/obj/item/attachable/flashlight, /obj/item/weapon/gun/pistol/vp70, /obj/item/ammo_magazine/pistol/vp70)
 
@@ -1209,8 +1209,8 @@
 
 //M44 Combat Revolver
 /obj/item/storage/box/guncase/m44
-	name = "\improper M44 Combat Revolver case"
-	desc = "A gun case containing a M44 Combat Revolver loaded with marksman ammo."
+	name = "M44 战斗左轮手枪箱"
+	desc = "装有已装填精确射击弹药的 M44 战斗左轮手枪的枪械箱。"
 	storage_slots = 8
 	can_hold = list(/obj/item/attachable/flashlight, /obj/item/weapon/gun/revolver/m44, /obj/item/ammo_magazine/revolver)
 
@@ -1226,8 +1226,8 @@
 
 //M4A3 Service Pistol
 /obj/item/storage/box/guncase/m4a3
-	name = "\improper M4A3 Service Pistol case"
-	desc = "A gun case containing a M4A3 Service Pistol."
+	name = "M4A3 制式手枪箱"
+	desc = "装有 M4A3 制式手枪的枪械箱。"
 	storage_slots = 8
 	can_hold = list(/obj/item/attachable/flashlight, /obj/item/weapon/gun/pistol/m4a3, /obj/item/ammo_magazine/pistol)
 

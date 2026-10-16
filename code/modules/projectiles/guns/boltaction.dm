@@ -3,8 +3,8 @@
 // For internally fed bolt actions, it'd be more advised to use pump shotgun code, or obj/item/weapon/gun/shotgun/pump, to create that type of variant of bolt action rifle.
 
 /obj/item/weapon/gun/boltaction
-	name = "\improper Basira-Armstrong bolt-action hunting rifle"
-	desc = "Named after its eccentric designers, the Basira-Armstrong is a cheap but reliable civilian bolt-action rifle frequently found in the outer colonies. Despite its legally-mandated limited magazine capacity, its light weight and legendary accuracy makes it popular among hunters and competitive shooters."
+	name = "巴西拉-阿姆斯特朗栓动猎枪"
+	desc = "以古怪设计师们命名的巴西拉-阿姆斯特朗，是廉价可靠的民用栓动步枪，常见于外缘殖民地。虽然弹匣容量受法律限制，但轻便和传奇般的精度使它深受猎人与竞技射手欢迎。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "boltaction"
 	item_state = "hunting"

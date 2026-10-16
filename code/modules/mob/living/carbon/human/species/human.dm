@@ -45,29 +45,29 @@
 			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 				if(species.flags & IS_SYNTHETIC)
 					if(prob(1))
-						to_chat(src, SPAN_DANGER("Subdermal damage detected in critical region. Operational impact minimal. Diagnosis queued for maintenance cycle."))
+						to_chat(src, SPAN_DANGER("检测到关键部位皮下损伤。对运作影响较小。已将诊断任务加入维护周期队列。"))
 				else
 					if(prob(1))
-						var/word = pick("dizzy","woozy","faint")
-						to_chat(src, SPAN_DANGER("You feel [word]."))
+						var/word = pick("头晕","眩晕","昏沉")
+						to_chat(src, SPAN_DANGER("你感到[word]。"))
 			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
 				if(species.flags & IS_SYNTHETIC)
 					if(prob(3))
 						apply_effect(rand(1, 2), WEAKEN)
-						to_chat(src, SPAN_DANGER("Internal power cell fault detected.\nSeek nearest recharging station."))
+						to_chat(src, SPAN_DANGER("检测到内部电池故障。\n请前往最近的充电站。"))
 				else
 					if(eye_blurry < 50)
 						AdjustEyeBlur(6)
 						oxyloss += 3
 					if(prob(15))
 						apply_effect(rand(1,3), PARALYZE)
-						var/word = pick("dizzy","woozy","faint")
-						to_chat(src, SPAN_DANGER("You feel very [word]."))
+						var/word = pick("头晕","眩晕","昏沉")
+						to_chat(src, SPAN_DANGER("你感到十分[word]。"))
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 				if(species.flags & IS_SYNTHETIC)
 					if(prob(5))
 						apply_effect(rand(1, 2), PARALYZE)
-						to_chat(src, SPAN_DANGER("Critical power cell failure detected.\nSeek recharging station immediately."))
+						to_chat(src, SPAN_DANGER("检测到电池严重故障。\n请立即前往充电站。"))
 				else
 					if(eye_blurry < 50)
 						AdjustEyeBlur(6)
@@ -75,8 +75,8 @@
 						toxloss += 3
 					if(prob(15))
 						apply_effect(rand(1, 3), PARALYZE)
-						var/word = pick("dizzy", "woozy", "faint")
-						to_chat(src, SPAN_DANGER("You feel extremely [word]."))
+						var/word = pick("头晕", "眩晕", "昏沉")
+						to_chat(src, SPAN_DANGER("你感到极度[word]。"))
 			if(0 to BLOOD_VOLUME_SURVIVE)
 				death(create_cause_data(species.flags & IS_SYNTHETIC ? "power failure" : "blood loss"))
 
@@ -132,7 +132,7 @@
 	flags = HAS_SKIN_COLOR|NO_BREATHE|NO_POISON|HAS_LIPS|NO_CLONE_LOSS|NO_POISON|NO_BLOOD|NO_SLIP|NO_CHEM_METABOLIZATION
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
-	death_message = "doubles over, unleashes a horrible, ear-shattering scream, then falls motionless and still..."
+	death_message = "弯下腰，发出可怕而刺耳的尖叫，随后倒下，一动不动……"
 	death_sound = 'sound/voice/scream_horror1.ogg'
 
 	darksight = 8

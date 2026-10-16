@@ -15,7 +15,7 @@
 	return mappings
 
 /obj/item/reagent_container/pill
-	name = "pill"
+	name = "药片"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = null
 	item_state = "pill"
@@ -164,7 +164,7 @@
 	pill_icon_class = "tox"
 
 /obj/item/reagent_container/pill/cyanide
-	desc = "A cyanide pill. Don't swallow this!"
+	desc = "一颗氰化物药丸。别吞下去！"
 	pill_desc = null//so even non medics can see what this pill is.
 	pill_initial_reagents = list("cyanide" = 50)
 	pill_icon_class = "tox"

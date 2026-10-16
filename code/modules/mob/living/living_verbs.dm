@@ -151,7 +151,7 @@
 			SC.update_icon()
 			to_chat(src, SPAN_DANGER("你成功挣脱了！"))
 			for(var/mob/O in viewers(loc))
-				O.show_message(SPAN_DANGER("<B>\the [src]成功逃出了\the [SC]！</B>"), SHOW_MESSAGE_VISIBLE)
+				O.show_message(SPAN_DANGER("<B>[src]成功逃出了[SC]！</B>"), SHOW_MESSAGE_VISIBLE)
 			if(istype(SC.loc, /obj/structure/bigDelivery)) //Do this to prevent contents from being opened into nullspace (read: bluespace)
 				var/obj/structure/bigDelivery/BD = SC.loc
 				BD.attack_hand(src)
@@ -162,7 +162,7 @@
 			C.update_icon()
 			to_chat(src, SPAN_DANGER("你成功挣脱了！"))
 			for(var/mob/O in viewers(loc))
-				O.show_message(SPAN_DANGER("<B>\the [src]成功逃出了\the [C]！</B>"), SHOW_MESSAGE_VISIBLE)
+				O.show_message(SPAN_DANGER("<B>[src]成功逃出了[C]！</B>"), SHOW_MESSAGE_VISIBLE)
 			if(istype(C.loc, /obj/structure/bigDelivery)) //nullspace ect... read the comment above
 				var/obj/structure/bigDelivery/BD = C.loc
 				BD.attack_hand(src)

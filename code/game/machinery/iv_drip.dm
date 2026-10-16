@@ -65,8 +65,8 @@
 			return
 
 		if(attached)
-			user.visible_message("[user]断开了\the [src]与\the [attached]的连接。", \
-			"你断开了\the [src]与\the [attached]的连接。")
+			user.visible_message("[user]断开了[src]与[attached]的连接。", \
+			"你断开了[src]与[attached]的连接。")
 			attached.active_transfusions -= src
 			attached = null
 			update_beam()
@@ -75,8 +75,8 @@
 			return
 
 		if(in_range(src, usr) && iscarbon(over_object) && get_dist(over_object, src) <= 1)
-			user.visible_message("[user]将\the [src]接在了\the [over_object]身上。", \
-			"你将\the [src]接在了\the [over_object]身上。")
+			user.visible_message("[user]将[src]接在了[over_object]身上。", \
+			"你将[src]接在了[over_object]身上。")
 			attached = over_object
 			attached.active_transfusions += src
 			update_beam()
@@ -103,7 +103,7 @@
 
 			log_admin("[key_name(user)] put \a [beaker] into [src], containing [reagentnames] at ([src.loc.x],[src.loc.y],[src.loc.z]).")
 
-			to_chat(user, "你将\the [container]装到了\the [src]上。")
+			to_chat(user, "你将[container]装到了[src]上。")
 			update_beam()
 			update_icon()
 		return
@@ -143,7 +143,7 @@
 			amount = min(amount, 4)
 			// If the beaker is full, ping
 			if(amount == 0)
-				if(prob(5)) visible_message("\The [src]发出叮的一声。")
+				if(prob(5)) visible_message("[src]发出叮的一声。")
 				return
 
 			var/mob/living/carbon/patient = attached
@@ -157,7 +157,7 @@
 
 			// If the human is losing too much blood, beep.
 			if(patient.blood_volume < BLOOD_VOLUME_SAFE) if(prob(5))
-				visible_message("\The [src]大声鸣叫。")
+				visible_message("[src]大声鸣叫。")
 
 			patient.take_blood(beaker,amount)
 			update_icon()
@@ -191,7 +191,7 @@
 
 	if(beaker)
 		if(beaker.reagents && length(beaker.reagents.reagent_list))
-			. += SPAN_NOTICE("装有\a [beaker]，内含[beaker.reagents.total_volume]单位液体。")
+			. += SPAN_NOTICE("装有[beaker]，内含[beaker.reagents.total_volume]单位液体。")
 		else
 			. += SPAN_NOTICE("装有一个空的[beaker]。")
 	else

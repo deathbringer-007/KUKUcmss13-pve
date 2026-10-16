@@ -529,8 +529,8 @@ GLOBAL_LIST_EMPTY(alldepartments)
 
 ///The wearable and deployable part of the fax machine backpack
 /obj/item/device/fax_backpack
-	name = "\improper Portable Press Fax Machine"
-	desc = "A standard issue portable fax machine for civilian reporters. Functions off of an internal battery. Cannot receive faxes while being worn. It is currently undeployed. Activate the device inhand to deploy it."
+	name = "便携式新闻传真机"
+	desc = "民用记者的制式便携传真机，由内置电池供电。穿戴时无法接收传真。目前尚未展开，拿在手中激活即可部署。"
 	icon = 'icons/obj/structures/machinery/library.dmi'
 	icon_state = "fax_backpack"
 	item_state = "fax_backpack"

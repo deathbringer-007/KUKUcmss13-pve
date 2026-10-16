@@ -6,7 +6,7 @@
 
 
 /obj/item/storage
-	name = "storage"
+	name = "储物容器"
 	w_class = SIZE_MEDIUM
 	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
@@ -786,19 +786,19 @@ W is always an item. stop_warning prevents messaging. user may be null.**/
 		verbs -= /obj/item/storage/verb/shake_verb
 
 	boxes = new
-	boxes.name = "storage"
+	boxes.name = "储物容器"
 	boxes.master = src
 	boxes.icon_state = "block"
 	boxes.screen_loc = "7,7 to 10,8"
 	boxes.layer = HUD_LAYER
 
 	storage_start = new /atom/movable/screen/storage()
-	storage_start.name = "storage"
+	storage_start.name = "储物容器"
 	storage_start.master = src
 	storage_start.icon_state = "storage_start"
 	storage_start.screen_loc = "7,7 to 10,8"
 	storage_end = new /atom/movable/screen/storage()
-	storage_end.name = "storage"
+	storage_end.name = "储物容器"
 	storage_end.master = src
 	storage_end.icon_state = "storage_end"
 	storage_end.screen_loc = "7,7 to 10,8"

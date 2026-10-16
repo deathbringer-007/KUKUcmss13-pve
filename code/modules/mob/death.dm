@@ -44,12 +44,12 @@
 /mob/proc/dust_animation()
 	return
 
-/mob/proc/death(datum/cause_data/cause_data, gibbed = 0, deathmessage = "seizes up and falls limp...", should_deathmessage = TRUE)
+/mob/proc/death(datum/cause_data/cause_data, gibbed = 0, deathmessage = "身体一僵，软倒下去……", should_deathmessage = TRUE)
 	if(stat == DEAD)
 		return 0
 
 	if(!gibbed && should_deathmessage)
-		visible_message("<b>\The [src.name]</b> [deathmessage]")
+		visible_message("<b>[src.name]</b>[deathmessage]")
 
 	if(cause_data && !istype(cause_data))
 		stack_trace("death called with string cause ([cause_data]) instead of datum")
@@ -83,7 +83,7 @@
 
 	timeofdeath = world.time
 	life_time_total = world.time - life_time_start
-	if(mind) mind.store_memory("Time of death: [worldtime2text()]", 0)
+	if(mind) mind.store_memory("死亡时间：[worldtime2text()]", 0)
 	GLOB.alive_mob_list -= src
 	GLOB.dead_mob_list += src
 

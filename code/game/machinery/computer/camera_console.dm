@@ -1,8 +1,8 @@
 #define DEFAULT_MAP_SIZE 15
 
 /obj/structure/machinery/computer/cameras
-	name = "security cameras console"
-	desc = "Used to access the various cameras on the station."
+	name = "监控摄像头控制台"
+	desc = "用于访问空间站的各种摄像头。"
 	icon_state = "cameras"
 	var/obj/structure/machinery/camera/current
 	var/list/network = list(CAMERA_NET_MILITARY)
@@ -48,7 +48,7 @@
 
 /obj/structure/machinery/computer/cameras/attack_hand(mob/user)
 	if(!admin_console && should_block_game_interaction(src))
-		to_chat(user, SPAN_DANGER("<b>Unable to establish a connection</b>: \black You're too far away from the ship!"))
+		to_chat(user, SPAN_DANGER("<b>无法建立连接</b>：\black 你离舰船太远了！"))
 		return
 	if(inoperable())
 		return
@@ -172,8 +172,8 @@
 	return D
 
 /obj/structure/machinery/computer/cameras/telescreen
-	name = "Telescreen"
-	desc = "Used for watching an empty arena."
+	name = "远程监视屏"
+	desc = "用于观看空荡荡的竞技场。"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "telescreen"
 	network = list("thunder")
@@ -187,30 +187,30 @@
 	return
 
 /obj/structure/machinery/computer/cameras/telescreen/entertainment
-	name = "entertainment monitor"
-	desc = "Damn, why do they never have anything interesting on these things?"
+	name = "娱乐显示屏"
+	desc = "真是的，为什么这些东西从来不播点有意思的？"
 	icon = 'icons/obj/structures/machinery/status_display.dmi'
 	icon_state = "entertainment"
 	circuit = null
 
 /obj/structure/machinery/computer/cameras/wooden_tv
-	name = "Security Cameras"
-	desc = "An old TV hooked into the station's camera network."
+	name = "监控摄像头"
+	desc = "一台接入空间站摄像头网络的旧电视。"
 	icon_state = "security_det"
 	circuit = null
 
 /obj/structure/machinery/computer/cameras/wooden_tv/almayer
-	name = "Ship Security Cameras"
+	name = "舰船监控摄像头"
 	network = list(CAMERA_NET_ALMAYER)
 
 /obj/structure/machinery/computer/cameras/wooden_tv/prop
-	name = "Television Set"
-	desc = "An old TV hooked up to a video cassette recorder, you can even use it to time shift WOW."
+	name = "电视机"
+	desc = "一台接着录像机的旧电视，甚至可以时移播放，真厉害。"
 	network = null
 
 /obj/structure/machinery/computer/cameras/wooden_tv/broadcast
-	name = "Television Set"
-	desc = "An old TV hooked up to a video cassette recorder, you can even use it to time shift WOW."
+	name = "电视机"
+	desc = "一台接着录像机的旧电视，甚至可以时移播放，真厉害。"
 	network = list(CAMERA_NET_CORRESPONDENT)
 	stay_connected = TRUE
 	circuit = /obj/item/circuitboard/computer/cameras/tv
@@ -292,30 +292,30 @@
 	current.c_tag = broadcastingcamera.get_broadcast_name()
 
 /obj/structure/machinery/computer/cameras/wooden_tv/ot
-	name = "Mortar Monitoring Set"
-	desc = "A Console linked to Mortar launched cameras."
+	name = "迫击炮监视终端"
+	desc = "一台连接迫击炮发射式摄像头的控制台。"
 	network = list(CAMERA_NET_MORTAR)
 
 /obj/structure/machinery/computer/cameras/mining
-	name = "Outpost Cameras"
+	name = "前哨站摄像头"
 	icon = 'icons/obj/structures/machinery/computer.dmi'
-	desc = "Used to access the various cameras on the outpost."
+	desc = "用于访问前哨站的各种摄像头。"
 	icon_state = "cameras"
 	network = list("MINE")
 	circuit = /obj/item/circuitboard/computer/cameras/mining
 
 /obj/structure/machinery/computer/cameras/engineering
-	name = "Engineering Cameras"
+	name = "工程摄像头"
 	icon = 'icons/obj/structures/machinery/computer.dmi'
-	desc = "Used to monitor fires and breaches."
+	desc = "用于监视火灾和破口。"
 	icon_state = "cameras"
 	network = list("Engineering","Power Alarms","Atmosphere Alarms","Fire Alarms")
 	circuit = /obj/item/circuitboard/computer/cameras/engineering
 
 /obj/structure/machinery/computer/cameras/nuclear
-	name = "Mission Monitor"
+	name = "任务监视器"
 	icon = 'icons/obj/structures/machinery/computer.dmi'
-	desc = "Used to access the built-in cameras in helmets."
+	desc = "用于访问头盔内置摄像头。"
 	icon_state = "syndicam"
 	network = list("NUKE")
 	circuit = null
@@ -327,30 +327,30 @@
 	network = list(CAMERA_NET_ALMAYER)
 
 /obj/structure/machinery/computer/cameras/almayer/containment
-	name = "Containment Cameras"
+	name = "收容区摄像头"
 	network = list(CAMERA_NET_CONTAINMENT)
 
 /obj/structure/machinery/computer/cameras/almayer/ares
-	name = "ARES Core Cameras"
+	name = "阿瑞斯核心摄像头"
 	network = list(CAMERA_NET_ARES)
 
 /obj/structure/machinery/computer/cameras/almayer/vehicle
-	name = "Ship Security Cameras"
+	name = "舰船监控摄像头"
 	network = list(CAMERA_NET_ALMAYER, CAMERA_NET_VEHICLE)
 
 /obj/structure/machinery/computer/cameras/almayer/vehicle/tank
-	name = "Vehicle Cam-View Terminal"
+	name = "载具摄像头监视终端"
 	icon = 'icons/obj/vehicles/interiors/general.dmi'
 	icon_state = "viewport"
 
 /obj/structure/machinery/computer/cameras/hangar
-	name = "Dropship Security Cameras Console"
+	name = "运输艇监控摄像头控制台"
 	icon_state = "security_cam"
 	density = FALSE
 	network = list(CAMERA_NET_ALAMO, CAMERA_NET_NORMANDY)
 
 /obj/structure/machinery/computer/cameras/containment
-	name = "Containment Cameras"
+	name = "收容区摄像头"
 	network = list(CAMERA_NET_CONTAINMENT, CAMERA_NET_RESEARCH)
 
 /obj/structure/machinery/computer/cameras/containment/hidden
@@ -363,11 +363,11 @@
 	network = list(CAMERA_NET_ALMAYER, CAMERA_NET_VEHICLE)
 
 /obj/structure/machinery/computer/cameras/almayer_brig
-	name = "Brig Cameras Console"
+	name = "禁闭室摄像头控制台"
 	network = list(CAMERA_NET_BRIG)
 
 /obj/structure/machinery/computer/cameras/mortar
-	name = "Mortar Camera Interface"
+	name = "迫击炮摄像头界面"
 	alpha = 0
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	density = FALSE
@@ -383,8 +383,8 @@
 	return
 
 /obj/structure/machinery/computer/cameras/dropship
-	name = "abstract dropship camera computer"
-	desc = "A computer to monitor cameras linked to the dropship."
+	name = "运输艇摄像头计算机基类"
+	desc = "用于监视与运输艇关联的摄像头。"
 	density = TRUE
 	icon = 'icons/obj/structures/machinery/shuttle-parts.dmi'
 	icon_state = "consoleleft"
@@ -395,35 +395,35 @@
 
 
 /obj/structure/machinery/computer/cameras/dropship/one
-	name = "\improper 'Alamo' camera controls"
+	name = "\improper 阿拉莫号摄像头控制台"
 	network = list(CAMERA_NET_ALAMO, CAMERA_NET_LASER_TARGETS)
 
 /obj/structure/machinery/computer/cameras/dropship/two
-	name = "\improper 'Normandy' camera controls"
+	name = "\improper 诺曼底号摄像头控制台"
 	network = list(CAMERA_NET_NORMANDY, CAMERA_NET_LASER_TARGETS)
 
 /obj/structure/machinery/computer/cameras/dropship/three
-	name = "\improper 'Saipan' camera controls"
+	name = "\improper 塞班号摄像头控制台"
 	network = list(CAMERA_NET_RESEARCH, CAMERA_NET_LASER_TARGETS)
 
 /obj/structure/machinery/computer/cameras/dropship/midway
-	name = "\improper 'Midway' camera controls"
+	name = "\improper 中途岛号摄像头控制台"
 	network = list(CAMERA_NET_MIDWAY, CAMERA_NET_LASER_TARGETS)
 
 /obj/structure/machinery/computer/cameras/dropship/cyclone
-	name = "\improper 'Cyclone' camera controls"
+	name = "\improper 旋风号摄像头控制台"
 	network = list(CAMERA_NET_CYCLONE, CAMERA_NET_LASER_TARGETS)
 
 /obj/structure/machinery/computer/cameras/dropship/tornado
-	name = "\improper 'Tornado' camera controls"
+	name = "\improper 龙卷风号摄像头控制台"
 	network = list(CAMERA_NET_TORNADO, CAMERA_NET_LASER_TARGETS)
 
 /obj/structure/machinery/computer/cameras/dropship/typhoon
-	name = "\improper 'Typhoon' camera controls"
+	name = "\improper 台风号摄像头控制台"
 	network = list(CAMERA_NET_TYPHOON, CAMERA_NET_LASER_TARGETS)
 
 /obj/structure/machinery/computer/cameras/dropship/tripoli
-	name = "\improper 'Tripoli' camera controls"
+	name = "\improper 的黎波里号摄像头控制台"
 	network = list(CAMERA_NET_TRIPOLI, CAMERA_NET_LASER_TARGETS)
 
 #undef DEFAULT_MAP_SIZE

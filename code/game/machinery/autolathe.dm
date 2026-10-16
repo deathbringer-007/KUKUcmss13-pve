@@ -8,8 +8,8 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 	)))
 
 /obj/structure/machinery/autolathe
-	name = "\improper autolathe"
-	desc = "It produces items using metal and glass."
+	name = "\improper 自动加工机"
+	desc = "使用金属和玻璃制造物品。"
 	icon_state = "autolathe"
 	var/base_state = "autolathe"
 	unacidable = TRUE
@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 
 /obj/structure/machinery/autolathe/proc/electrify(seconds_to_unshock)
 	shocked = TRUE
-	visible_message(SPAN_WARNING("Electric arcs begin to fly off \the [src]!"), SPAN_WARNING("You hear zaps!"), 3)
+	visible_message(SPAN_WARNING("[src]开始向外迸射电弧！"), SPAN_WARNING("你听见电击的噼啪声！"), 3)
 	addtimer(VARSET_CALLBACK(src, shocked, FALSE), seconds_to_unshock)
 
 /obj/structure/machinery/autolathe/Initialize(mapload, ...)
@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 			for (var/material in making.resources)
 				projected_stored_material[material] = min(projected_stored_material[material]+(making.resources[material]*multiplier), storage_capacity[material])
 
-			to_chat(usr, SPAN_NOTICE("Removed the item \"[making.name]\" from the queue."))
+			to_chat(usr, SPAN_NOTICE("已从队列中移除物品\"[making.name]\"。"))
 			queue -= list(to_del)
 			update_printables()
 			. = TRUE
@@ -229,11 +229,11 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 			if(!panel_open)
 				return FALSE
 			if(!skillcheck(usr, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-				to_chat(usr, SPAN_WARNING("You don't understand anything about this wiring..."))
+				to_chat(usr, SPAN_WARNING("你完全看不懂这些线路……"))
 				return FALSE
 			var/obj/item/held_item = usr.get_held_item()
 			if (!held_item || !HAS_TRAIT(held_item, TRAIT_TOOL_WIRECUTTERS))
-				to_chat(usr, SPAN_WARNING("You need wirecutters!"))
+				to_chat(usr, SPAN_WARNING("你需要剪线钳！"))
 				return TRUE
 
 			var/wire = params["wire"]
@@ -243,11 +243,11 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 			if(!panel_open)
 				return FALSE
 			if(!skillcheck(usr, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-				to_chat(usr, SPAN_WARNING("You don't understand anything about this wiring..."))
+				to_chat(usr, SPAN_WARNING("你完全看不懂这些线路……"))
 				return FALSE
 			var/obj/item/held_item = usr.get_held_item()
 			if (!held_item || !HAS_TRAIT(held_item, TRAIT_TOOL_WIRECUTTERS))
-				to_chat(usr, SPAN_WARNING("You need wirecutters!"))
+				to_chat(usr, SPAN_WARNING("你需要剪线钳！"))
 				return TRUE
 			var/wire = params["wire"]
 			mend(wire)
@@ -256,15 +256,15 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 			if(!panel_open)
 				return FALSE
 			if(!skillcheck(usr, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-				to_chat(usr, SPAN_WARNING("You don't understand anything about this wiring..."))
+				to_chat(usr, SPAN_WARNING("你完全看不懂这些线路……"))
 				return FALSE
 			var/obj/item/held_item = usr.get_held_item()
 			if (!held_item || !HAS_TRAIT(held_item, TRAIT_TOOL_MULTITOOL))
-				to_chat(usr, "You need multitool!")
+				to_chat(usr, "你需要多用工具！")
 				return TRUE
 			var/wire = params["wire"]
 			if (isWireCut(wire))
-				to_chat(usr, SPAN_WARNING("You can't pulse a cut wire."))
+				to_chat(usr, SPAN_WARNING("你无法向已剪断的电线发送脉冲。"))
 				return TRUE
 			pulse(wire)
 			return TRUE
@@ -274,11 +274,11 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 /obj/structure/machinery/autolathe/attackby(obj/item/O as obj, mob/user as mob)
 	if(HAS_TRAIT(O, TRAIT_TOOL_SCREWDRIVER))
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You are not trained to dismantle machines..."))
+			to_chat(user, SPAN_WARNING("你没有接受过拆卸机器的训练……"))
 			return
 		panel_open = !panel_open
 		icon_state = (panel_open ? "[base_state]_t": "[base_state]")
-		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance hatch of [src].")
+		to_chat(user, "你[panel_open ? "打开了" : "关闭了"][src]的维护舱盖。")
 		return
 
 	if(panel_open)
@@ -298,7 +298,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 	//Resources are being loaded.
 	var/obj/item/eating = O
 	if(!eating.matter)
-		to_chat(user, "\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
+		to_chat(user, "[eating]中没有足够的可用材料，无法接收。")
 		return
 
 	var/filltype = 0    // Used to determine message.
@@ -332,12 +332,12 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 		mass_per_sheet += eating.matter[material]
 
 	if(!filltype)
-		to_chat(user, SPAN_DANGER("\The [src] is full. Please remove material from the [name] in order to insert more."))
+		to_chat(user, SPAN_DANGER("[src]已经装满了。请先从[name]中取出材料，才能继续加入。"))
 		return
 	else if(filltype == 1)
-		to_chat(user, "You fill \the [src] to capacity with \the [eating].")
+		to_chat(user, "你用[eating]将[src]填满了。")
 	else
-		to_chat(user, "You fill \the [src] with \the [eating].")
+		to_chat(user, "你将[eating]填入[src]。")
 
 	flick("[base_state]_o",src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
 
@@ -363,7 +363,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 
 /obj/structure/machinery/autolathe/proc/try_queue(mob/living/carbon/human/user, datum/autolathe/recipe/making, turf/make_loc, multiplier = 1)
 	if(length(queue) >= queue_max)
-		to_chat(usr, SPAN_DANGER("The [name] has queued the maximum number of operations. Please wait for completion of current operation."))
+		to_chat(usr, SPAN_DANGER("[name]的排队任务数已达上限，请等待当前任务完成。"))
 		return AUTOLATHE_FAILED
 
 	//This needs some work.
@@ -373,7 +373,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 	for(var/material in making.resources)
 		if(projected_stored_material[material] && projected_stored_material[material] >= (making.resources[material]*multiplier))
 			continue
-		to_chat(user, SPAN_DANGER("The [name] does not have the materials to create \the [making.name]."))
+		to_chat(user, SPAN_DANGER("[name]没有足够的材料制造[making.name]。"))
 		return AUTOLATHE_FAILED
 
 	for (var/material in making.resources)
@@ -383,7 +383,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 	queue += list(print_params) // This notation is necessary because of how adding to lists works
 
 	if(busy)
-		to_chat(usr, SPAN_NOTICE("Added the item \"[making.name]\" to the queue."))
+		to_chat(usr, SPAN_NOTICE("已将物品\"[making.name]\"加入队列。"))
 		update_printables()
 		return AUTOLATHE_QUEUED
 
@@ -407,7 +407,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 	// Make sure autolathe can print the item
 	for(var/material in making.resources)
 		if(isnull(stored_material[material]) || stored_material[material] < (making.resources[material]*multiplier))
-			visible_message("The [name] beeps rapidly, unable to print the current item \"[making.name]\".")
+			visible_message("[name]急促地鸣响，无法打印当前物品\"[making.name]\"。")
 			return
 
 	//Consume materials.
@@ -458,13 +458,13 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 	switch (wire)
 		if(AUTOLATHE_WIRE_HACK)
 			hacked = TRUE
-			visible_message(SPAN_NOTICE("A blue light turns on in the panel of \the [src]."))
+			visible_message(SPAN_NOTICE("[src]面板上的蓝灯亮了。"))
 			update_printables()
 		if(AUTOLATHE_WIRE_SHOCK)
 			shock(user, 50)
 			shocked = TRUE
-			visible_message(SPAN_DANGER("A green light turns on in the panel of \the [src] \
-				as electric arcs continuously shoot off from it!"))
+			visible_message(SPAN_DANGER("[src]面板上的绿灯亮了，\
+				同时不断向外迸射电弧！"))
 
 /obj/structure/machinery/autolathe/proc/mend(wire, mob/user)
 	wires |= getWireFlag(wire)
@@ -472,18 +472,18 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 	switch (wire)
 		if(AUTOLATHE_WIRE_HACK)
 			hacked = FALSE
-			visible_message(SPAN_NOTICE("A blue light turns off in the panel of \the [src]."))
+			visible_message(SPAN_NOTICE("[src]面板上的蓝灯灭了。"))
 			update_printables()
 		if(AUTOLATHE_WIRE_SHOCK)
 			shock(user, 50)
 			shocked = FALSE
-			visible_message(SPAN_DANGER("A green light turns off in the panel of \the [src]."))
+			visible_message(SPAN_DANGER("[src]面板上的绿灯灭了。"))
 
 /obj/structure/machinery/autolathe/proc/pulse(wire, mob/user)
 	switch (wire)
 		if(AUTOLATHE_WIRE_HACK)
 			hacked = !hacked
-			visible_message(SPAN_NOTICE("A blue light flickers [hacked ? "on" : "off"] in the panel of \the [src]."))
+			visible_message(SPAN_NOTICE("[src]面板上的蓝灯闪烁着[hacked ? "亮起" : "熄灭"]。"))
 			update_printables()
 			addtimer(CALLBACK(src, PROC_REF(flip_hacked)), 10 SECONDS)
 		if(AUTOLATHE_WIRE_SHOCK)
@@ -491,8 +491,8 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 			electrify(10 SECONDS)
 			if(!machine_processing)
 				start_processing()
-			visible_message(SPAN_DANGER("A green light flashes in the panel of \the [src] \
-				as electric arcs shoot off from it!"))
+			visible_message(SPAN_DANGER("[src]面板上的绿灯闪烁，\
+				同时向外迸射电弧！"))
 
 /obj/structure/machinery/autolathe/proc/flip_hacked()
 	hacked = !hacked
@@ -561,8 +561,8 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 	stored_material =  list("metal" = 40000, "glass" = 20000)
 
 /obj/structure/machinery/autolathe/armylathe
-	name = "\improper Armylathe"
-	desc = "A specialized autolathe made for printing USCM weaponry and parts."
+	name = "\improper 军械加工机"
+	desc = "用于打印美国殖民地海军陆战队武器与零件的专用自动加工机。"
 	icon_state = "armylathe"
 	base_state = "armylathe"
 	recipes = null
@@ -585,13 +585,13 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 
 /obj/structure/machinery/autolathe/armylathe/attack_hand(mob/user)
 	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-		to_chat(user, SPAN_WARNING("You have no idea how to operate the [name]."))
+		to_chat(user, SPAN_WARNING("你完全不知道如何操作[name]。"))
 		return FALSE
 	. = ..()
 
 /obj/structure/machinery/autolathe/medilathe
-	name = "\improper Medilathe"
-	desc = "A specialized autolathe made for printing medical items."
+	name = "\improper 医疗加工机"
+	desc = "用于打印医疗物品的专用自动加工机。"
 	icon = 'icons/obj/structures/machinery/science_machines_64x32.dmi'
 	icon_state = "medilathe"
 	base_state = "medilathe"
@@ -612,7 +612,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 
 /obj/structure/machinery/autolathe/medilathe/attack_hand(mob/user)
 	if(!skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_DOCTOR))
-		to_chat(user, SPAN_WARNING("You have no idea how to operate \the [name]."))
+		to_chat(user, SPAN_WARNING("你完全不知道如何操作[name]。"))
 		return FALSE
 	. = ..()
 

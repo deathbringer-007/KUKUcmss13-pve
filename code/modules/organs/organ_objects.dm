@@ -217,7 +217,7 @@
 	if(robotic)
 		return
 
-	to_chat(user, SPAN_NOTICE("你试探着咬了一口\the [src]。"))
+	to_chat(user, SPAN_NOTICE("你试探着咬了一口[src]。"))
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
 	if(B)
 		var/turf/TU = get_turf(src)

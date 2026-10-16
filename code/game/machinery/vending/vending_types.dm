@@ -17,8 +17,8 @@
 */
 
 /obj/structure/machinery/vending/coffee
-	name = "\improper Hot Drinks machine"
-	desc = "A vending machine which dispenses hot drinks."
+	name = "热饮售货机"
+	desc = "供应热饮的售货机。"
 	//product_ads = "Have a drink!;Drink up!;It's good for you!;Would you like a hot joe?;I'd kill for some coffee!;The best beans in the galaxy.;Only the finest brew for you.;Mmmm. Nothing like a coffee.;I like coffee, don't you?;Coffee helps you work!;Try some tea.;We hope you like the best!;Try our new chocolate!;Admin conspiracies"
 	icon_state = "coffee"
 	icon_vend = "coffee-vend"
@@ -39,16 +39,16 @@
 	product_type = VENDOR_PRODUCT_TYPE_BEVERAGES
 
 /obj/structure/machinery/vending/coffee/simple
-	name = "\improper Hot Coffee Machine"
+	name = "热咖啡机"
 	product_ads = ""
 	products = list(/obj/item/reagent_container/food/drinks/coffee = 40)
 	contraband = list(/obj/item/reagent_container/food/drinks/h_chocolate = 25)
 
 /obj/structure/machinery/vending/snack
-	name = "\improper Hot Foods Machine"
-	desc = "A vending machine full of ready to cook meals, mhmmmm taste the nutritional goodness!"
-	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!;Eat a Weyland-Yutani brand packaged hamburger.;Eat a Weyland-Yutani brand packaged hot dog.;Eat a Weyland-Yutani brand packaged burrito.;"
-	product_ads = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!"
+	name = "热食售货机"
+	desc = "装满即热餐食的售货机，嗯——尝尝这营养美味！"
+	product_slogans = "开普勒薯片！来尝尝这超凡脱俗的零食！;来一根 EAT 能量棒！;来吃维兰德-汤谷牌包装汉堡。;来吃维兰德-汤谷牌包装热狗。;来吃维兰德-汤谷牌包装卷饼。;"
+	product_ads = "开普勒薯片！来尝尝这超凡脱俗的零食！;来一根 EAT 能量棒！"
 	icon_state = "snack"
 	products = list(
 		/obj/item/reagent_container/food/snacks/microwavable/donkpocket = 12,
@@ -90,11 +90,11 @@
 	)
 
 /obj/structure/machinery/vending/cola
-	name = "\improper Souto Softdrinks"
-	desc = "A softdrink vendor provided by Souto Soda Company, Havana."
+	name = "索托汽水售货机"
+	desc = "由哈瓦那索托汽水公司提供的汽水售货机。"
 	icon_state = "Cola_Machine"
-	product_slogans = "Souto Soda: Have a Souto and be taken away to a tropical paradise!;Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Weyland-Yutani Fruit Beer. Nothing came from that lawsuit!"
-	product_ads = "Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Weyland-Yutani Fruit Beer. Nothing came from that lawsuit!"
+	product_slogans = "索托汽水：喝一罐索托，畅游热带天堂！;索托经典，柑橘美味无可比拟！;索托樱桃，冬日清晨的清甜滋味！;索托青柠，你熟悉又喜爱的酸甜口感！;索托葡萄，没有比葡萄汽水更棒的饮料了。;维兰德-汤谷果啤，那场官司什么也没告成！"
+	product_ads = "索托经典，柑橘美味无可比拟！;索托樱桃，冬日清晨的清甜滋味！;索托青柠，你熟悉又喜爱的酸甜口感！;索托葡萄，没有比葡萄汽水更棒的饮料了。;维兰德-汤谷果啤，那场官司什么也没告成！"
 	products = list(
 		/obj/item/reagent_container/food/drinks/cans/souto/classic = 10,
 		/obj/item/reagent_container/food/drinks/cans/souto/cherry = 10,
@@ -142,7 +142,7 @@
 	product_type = VENDOR_PRODUCT_TYPE_SOUTO
 
 /obj/structure/machinery/vending/cola/research
-	desc = "A softdrink vendor provided by Souto Soda Company, Havana. This one is bound to the Research Budget card and doesn't require swiping"
+	desc = "由哈瓦那索托汽水公司提供的汽水售货机。此机已绑定科研预算卡，无需刷卡。"
 	products = list(
 		/obj/item/reagent_container/food/drinks/cans/souto/classic = 10,
 		/obj/item/reagent_container/food/drinks/cans/souto/cherry = 10,
@@ -159,8 +159,8 @@
 
 
 /obj/structure/machinery/vending/generic
-	name = "\improper vending machine"
-	desc = "A generic snack and soft drink vendor with a small plate on the back reading, 'Veni Vendi Vici'"
+	name = "售货机"
+	desc = "普通的零食汽水售货机，背面的小铭牌上写着：“我来，我卖，我征服。”"
 	icon_state = "snackvend"
 	product_slogans = ""
 	product_ads = ""
@@ -195,10 +195,10 @@
 	product_type = VENDOR_PRODUCT_TYPE_FOOD
 
 /obj/structure/machinery/vending/cigarette
-	name = "cigarette machine" //Template
-	desc = "If you want to get cancer, might as well do it in style!"
-	product_slogans = "L.S./M.F.T.! Lucky Strikes Means Fine Tobacco.;For a classic style that lights up every time, there's always Zippo!;The FDA would like to remind you that tobacco products cause cancer and increased fatigue.;Real men smoke Lucky Strikes!;Serving the US Armed Forces for over two-hundred years!;Life's short, smoke a Lucky!;L.S./M.F.T.!;Lucky Strike is first again!;You just can't beat a Lucky Strike!;The preferred cigarette of Carlos Hathcock!;First again with tobacco-men!"
-	product_ads = "Real men smoke Lucky Strikes!;Serving the US Armed Forces for over two-hundred years!;Life's short, smoke a Lucky!;L.S./M.F.T.!;Lucky Strike is first again!;You just can't beat a Lucky Strike!;The preferred cigarette of Carlos Hathcock!;First again with tobacco-men!"
+	name = "香烟售货机" //Template
+	desc = "既然想得癌症，那也得有点格调！"
+	product_slogans = "L.S./M.F.T.！好彩意味着好烟草。;经典格调，一点即燃，尽在芝宝！;食品药品监督管理局提醒您：烟草制品会致癌并加重疲劳。;真男人抽好彩！;为美国武装部队服务逾两百年！;人生苦短，抽根好彩！;L.S./M.F.T.！;好彩再度领先！;好彩香烟，无可比拟！;卡洛斯·海斯科克的首选香烟！;烟草行家的首选，再次领先！"
+	product_ads = "真男人抽好彩！;为美国武装部队服务逾两百年！;人生苦短，抽根好彩！;L.S./M.F.T.！;好彩再度领先！;好彩香烟，无可比拟！;卡洛斯·海斯科克的首选香烟！;烟草行家的首选，再次领先！"
 	vend_delay = 1.4 SECONDS
 	icon_state = "cigs"
 	products = list(
@@ -234,8 +234,8 @@
 	product_type = VENDOR_PRODUCT_TYPE_NICOTINE
 
 /obj/structure/machinery/vending/cigarette/colony
-	product_slogans = "Koorlander Gold, for the refined palate.;Lady Fingers, for the dainty smoker.;Lady Fingers, treat your palete with pink!;The big blue K means a cool fresh day!;For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
-	product_ads = "For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
+	product_slogans = "库尔兰德金装，献给品味不凡的您。;淑女纤指，献给优雅烟客。;淑女纤指，用粉红宠爱您的味蕾！;大大的蓝色 K，带来清凉一整天！;想要清爽好心情，就认准大蓝 K！;讲究的烟客都选金装！;淑女纤指，钟爱清凉烟草的女士之选。;淑女纤指，门户站这一带的头号香烟！;烟草鉴赏家首选库尔兰德金装。;淑女纤指香烟，过滤清凉，口感顺滑冠绝市场。;库尔兰德金装，向世界宣告您的巅峰地位，无人能够否认。;殖民地管理局提醒您：吸烟致死。"
+	product_ads = "想要清爽好心情，就认准大蓝 K！;讲究的烟客都选金装！;淑女纤指，钟爱清凉烟草的女士之选。;淑女纤指，门户站这一带的头号香烟！;烟草鉴赏家首选库尔兰德金装。;淑女纤指香烟，过滤清凉，口感顺滑冠绝市场。;库尔兰德金装，向世界宣告您的巅峰地位，无人能够否认。;殖民地管理局提醒您：吸烟致死。"
 	products = list(
 		/obj/item/storage/fancy/cigarettes/kpack = 20,
 		/obj/item/storage/fancy/cigarettes/spirit = 20,
@@ -272,57 +272,57 @@
 	)
 
 /obj/structure/machinery/vending/cigarette/koorlander //koorlander machine, contains luckies since they either bought Lucky Strikes as a company, or are working together to survive.
-	name = "Koorlander brand cigarette machine"
-	desc = "A Koorlander brand cigarette vending machine. Comes with Lucky Strikes, Lady Fingers, Koorlander Golds of course, and a few smaller brands you've barely heard of."
+	name = "库尔兰德牌香烟售货机"
+	desc = "库尔兰德牌香烟售货机。供应好彩、淑女纤指，当然还有库尔兰德金装，以及几种你几乎没听过的小品牌。"
 	icon_state = "koorcigs"
 	product_slogans = list(
-		"Koorlander Gold, for the refined palate.",
-		"Lady Fingers, for the dainty smoker.",
-		"Lady Fingers, treat your palete with pink!",
-		"The big blue K means a cool fresh day!",
-		"For the taste that cools your mood, look for the big blue K!",
-		"Refined smokers go for Gold!",
-		"Lady Fingers are preferred by women who appreciate a cool smoke.",
-		"Lady Fingers are the number one cigarette this side of Gateway!",
-		"The tobacco connoisseur prefers Koorlander Gold.",
-		"For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.",
-		"For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.",
-		"L.S./M.F.T.! Lucky Strikes Means Fine Tobacco.",
-		"For a classic style that lights up every time, there's always Zippo!",
-		"On a budget? Buy a Bic.",
-		"Bic, making school supplies since 1945.",
-		"Real men smoke Lucky Strikes!",
-		"Serving the US Armed Forces for over two-hundred years!",
-		"Life's short, smoke a Lucky!",
-		"Lucky Strike is first again!",
-		"You just can't beat a Lucky Strike!",
-		"The preferred cigarette of Carlos Hathcock!",
-		"First again with tobacco-men!",
-		"Real. Simple. Different. American Spirit.",
-		"Tobacco Ingredients: Tobacco & Water. American Spirit.",
-		"The Interstellar Commerce Commission would like to remind you that smoking kills.",
-		"The Food and Drug Administration would like to remind you that tobacco products cause cancer and increased fatigue.",
+		"库尔兰德金装，献给品味不凡的您。",
+		"淑女纤指，献给优雅烟客。",
+		"淑女纤指，用粉红宠爱您的味蕾！",
+		"大大的蓝色 K，带来清凉一整天！",
+		"想要清爽好心情，就认准大蓝 K！",
+		"讲究的烟客都选金装！",
+		"淑女纤指，钟爱清凉烟草的女士之选。",
+		"淑女纤指，门户站这一带的头号香烟！",
+		"烟草鉴赏家首选库尔兰德金装。",
+		"淑女纤指香烟，过滤清凉，口感顺滑冠绝市场。",
+		"库尔兰德金装，向世界宣告您的巅峰地位，无人能够否认。",
+		"L.S./M.F.T.！好彩意味着好烟草。",
+		"经典格调，一点即燃，尽在芝宝！",
+		"预算有限？买比克吧。",
+		"比克，自 1945 年起制造文具。",
+		"真男人抽好彩！",
+		"为美国武装部队服务逾两百年！",
+		"人生苦短，抽根好彩！",
+		"好彩再度领先！",
+		"好彩香烟，无可比拟！",
+		"卡洛斯·海斯科克的首选香烟！",
+		"烟草行家的首选，再次领先！",
+		"真实。简单。与众不同。美国精神。",
+		"烟草成分：烟草与水。美国精神。",
+		"星际商务委员会提醒您：吸烟致死。",
+		"食品药品监督管理局提醒您：烟草制品会致癌并加重疲劳。",
 	)
 
 	product_ads = list(
-		"For the taste that cools your mood, look for the big blue K!",
-		"Refined smokers go for Gold!",
-		"Lady Fingers are preferred by women who appreciate a cool smoke.",
-		"Lady Fingers are the number one cigarette this side of Gateway!",
-		"The tobacco connoisseur prefers Koorlander Gold.",
-		"For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.",
-		"For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.",
-		"Real men smoke Lucky Strikes!;Serving the US Armed Forces for over two-hundred years!",
-		"Life's short, smoke a Lucky!",
+		"想要清爽好心情，就认准大蓝 K！",
+		"讲究的烟客都选金装！",
+		"淑女纤指，钟爱清凉烟草的女士之选。",
+		"淑女纤指，门户站这一带的头号香烟！",
+		"烟草鉴赏家首选库尔兰德金装。",
+		"淑女纤指香烟，过滤清凉，口感顺滑冠绝市场。",
+		"库尔兰德金装，向世界宣告您的巅峰地位，无人能够否认。",
+		"真男人抽好彩！;为美国武装部队服务逾两百年！",
+		"人生苦短，抽根好彩！",
 		"L.S./M.F.T.!,",
-		"Lucky Strike is first again!",
-		"You just can't beat a Lucky Strike!",
-		"The preferred cigarette of Carlos Hathcock!",
-		"First again with tobacco-men!",
-		"Real. Simple. Different. American Spirit.",
-		"Tobacco Ingredients: Tobacco & Water. American Spirit.",
-		"The Interstellar Commerce Commission would like to remind you that smoking kills.",
-		"The Food and Drug Administration would like to remind you that tobacco products cause cancer and increased fatigue.",
+		"好彩再度领先！",
+		"好彩香烟，无可比拟！",
+		"卡洛斯·海斯科克的首选香烟！",
+		"烟草行家的首选，再次领先！",
+		"真实。简单。与众不同。美国精神。",
+		"烟草成分：烟草与水。美国精神。",
+		"星际商务委员会提醒您：吸烟致死。",
+		"食品药品监督管理局提醒您：烟草制品会致癌并加重疲劳。",
 	)
 
 	products = list(
@@ -373,56 +373,56 @@
 	)
 
 /obj/structure/machinery/vending/cigarette/wy //WY machine
-	name = "Weyland Yutani brand cigarette machine"
-	desc = "A Weyland Yutani Brand cigarette vending machine, looks like a Wey-Yu Gold pack. Comes with Emerald Greens, Wey-Yu Golds of course, Arcturian Aces, and some Three World Empire brand you've barely heard of. Executive Selects are still out of stock due to shipping issues..."
+	name = "维兰德-汤谷牌香烟售货机"
+	desc = "维兰德-汤谷牌香烟售货机，外形像一盒维兰德-汤谷金装香烟。供应翡翠绿、当然少不了的维兰德-汤谷金装、大角星王牌，以及某个你几乎没听过的三世界帝国品牌。高管精选仍因运输问题缺货……"
 	icon_state = "wycigs"
 	product_slogans = list(
-		"Weyland Yutani Gold, for those high up the chain.",
-		"Arcturian Ace, for those who can't stand bad taste!",
-		"Arcturian Ace, good for the lungs! On account of exotic Arctura flora.", //it's cocaine
-		"Tastes how a cigarette should, smoke Wey-Yu Golds!",
-		"Refined smokers go for Gold!",
-		"Arcturian Aces, minty fresh.",
-		"Aces, keeps your breah as fresh as an Arcturian waterfall!",
-		"Emerald Greens are the number one cigarette this side of New Eden!",
-		"The tobacco aficionado prefers Executive Selects.",
-		"For the minty freshness of another world, try Arcturian Aces!",
-		"For the Executive on top of the world, smoke Exec Selects.",
-		"Arcturian Aces, good for first timers!",
-		"For a classic style that lights up every time, there's always Zippo!",
-		"On a budget? Buy a Bic.",
-		"Bic, making school supplies since 1945.",
-		"Emerald Greens, green as the fields of New Eden.",
-		"Emerald Greens, favored by doctors!",
-		"You just can't beat the green!",
-		"The preferred brand of Richard Nixon!", //:smug:
-		"First again with doctors!",
-		"Balaji Imperials, for King and Country!",
-		"Life's short, smoke a 'laji!",
-		"The Interstellar Commerce Commission would like to remind you that smoking kills.",
-		"The Food and Drug Administration would like to remind you that tobacco products cause cancer and increased fatigue.",
+		"维兰德-汤谷金装，献给身居高位的您。",
+		"大角星王牌，献给无法忍受糟糕口味的您！",
+		"大角星王牌，有益肺部！多亏大角星的异域植物。", //it's cocaine
+		"香烟就该是这个味，来抽维兰德-汤谷金装！",
+		"讲究的烟客都选金装！",
+		"大角星王牌，薄荷清新。",
+		"王牌，让口气像大角星瀑布一样清新！",
+		"翡翠绿，新伊甸这一带的头号香烟！",
+		"烟草鉴赏家首选高管精选。",
+		"想体验异世界的薄荷清新？试试大角星王牌！",
+		"立于世界之巅的高管，就抽高管精选。",
+		"大角星王牌，初次吸烟者的好选择！",
+		"经典格调，一点即燃，尽在芝宝！",
+		"预算有限？买比克吧。",
+		"比克，自 1945 年起制造文具。",
+		"翡翠绿，绿如新伊甸的原野。",
+		"翡翠绿，医生的最爱！",
+		"这份绿意，无可比拟！",
+		"理查德·尼克松的首选品牌！", //:smug:
+		"医生首选，再度领先！",
+		"巴拉吉帝国，为了国王与祖国！",
+		"人生苦短，抽根巴拉吉！",
+		"星际商务委员会提醒您：吸烟致死。",
+		"食品药品监督管理局提醒您：烟草制品会致癌并加重疲劳。",
 	)
 
 	product_ads = list(
-		"Weyland Yutani Gold, for those high up the chain.",
-		"Arcturian Ace, for those who don't like bad taste.",
-		"Arcturian Ace, good for the lungs! On account of local Arctura flora.",
-		"Tastes how a cigarette should, Weyland Yutani Gold!",
-		"Refined smokers go for Gold!",
-		"Arcturian Aces, minty fresh.",
-		"Emerald Greens are the number one cigarette this side of New Eden!",
-		"The tobacco aficionado prefers Executives.",
-		"For the minty freshness of another world, try Arcturian Aces!",
-		"For the Executive on top of the world, smoke Exec Selects.",
-		"Arcturian Aces, good for first timers!",
-		"Emerald Greens, favorited by doctors!",
-		"You just can't beat the green!",
-		"The preferred cigarette of Richard Nixon!",
-		"First again with doctors!",
-		"Balaji Imperials, for King and Country!",
-		"Life's short, smoke a 'laji!",
-		"The Interstellar Commerce Commission would like to remind you that smoking kills.",
-		"The Food and Drug Administration would like to remind you that tobacco products cause cancer and increased fatigue.",
+		"维兰德-汤谷金装，献给身居高位的您。",
+		"大角星王牌，献给讨厌糟糕口味的您。",
+		"大角星王牌，有益肺部！多亏大角星当地的植物。",
+		"香烟就该是这个味，维兰德-汤谷金装！",
+		"讲究的烟客都选金装！",
+		"大角星王牌，薄荷清新。",
+		"翡翠绿，新伊甸这一带的头号香烟！",
+		"烟草鉴赏家首选高管精选。",
+		"想体验异世界的薄荷清新？试试大角星王牌！",
+		"立于世界之巅的高管，就抽高管精选。",
+		"大角星王牌，初次吸烟者的好选择！",
+		"翡翠绿，医生的最爱！",
+		"这份绿意，无可比拟！",
+		"理查德·尼克松的首选香烟！",
+		"医生首选，再度领先！",
+		"巴拉吉帝国，为了国王与祖国！",
+		"人生苦短，抽根巴拉吉！",
+		"星际商务委员会提醒您：吸烟致死。",
+		"食品药品监督管理局提醒您：烟草制品会致癌并加重疲劳。",
 	)
 
 	premium = list(/obj/item/storage/fancy/cigar = 5)
@@ -482,7 +482,7 @@
 
 
 /obj/structure/machinery/vending/cigarette/upp
-	desc = "A state-owned cigarette vendor. Its drab colour was chosen to discourage purchases, but its existence is an admittance to the necessity for such machines to exist in the first place."
+	desc = "一台国营香烟售货机。刻意采用沉闷的配色以劝退买家，但它的存在本身就承认了这类机器的必要性。"
 	product_slogans = ""
 	product_ads = ""
 	icon_state = "china_cig_vending"
@@ -500,9 +500,9 @@
 	)
 
 /obj/structure/machinery/vending/security
-	name = "\improper ColMarTech Military Police Vendor"
-	desc = "A USCM Military Police vendor."
-	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
+	name = "ColMarTech宪兵售货机"
+	desc = "一台 USCM 宪兵售货机。"
+	product_ads = "敲碎资本家的脑袋！;给那些脑袋开开瓢！;别忘了——伤害是好事！;你的武器就在这里。;手铐！;不许动，人渣！;兄弟，别电我！;兄弟，电他们。;何不来个甜甜圈？"
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	req_access = list(ACCESS_MARINE_BRIG)
@@ -524,8 +524,8 @@
 	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,/obj/item/storage/donut_box = 2)
 
 /obj/structure/machinery/vending/security/riot
-	name = "\improper RiotTech"
-	desc = "A security riot equipment vendor."
+	name = "防暴科技售货机"
+	desc = "安保防暴装备售货机。"
 	hacking_safety = TRUE
 	wrenchable = FALSE
 	products = list(
@@ -542,8 +542,8 @@
 	)
 
 /obj/structure/machinery/vending/security/colony
-	name = "\improper SecTech Police Vendor"
-	desc = "A generic police vendor."
+	name = "安保科技警用售货机"
+	desc = "普通的警用售货机。"
 	req_access = list(ACCESS_CIVILIAN_BRIG)
 	products = list(
 		/obj/item/restraint/handcuffs = 8,
@@ -556,8 +556,8 @@
 	)
 
 /obj/structure/machinery/vending/security/upp
-	name = "\improper People's Police Equipment Vendor"
-	desc = "A standard security vendor used by security forces of the UPP."
+	name = "人民警察装备售货机"
+	desc = "UPP 安全部队使用的标准安保装备售货机。"
 	req_access = list(ACCESS_CIVILIAN_BRIG)
 	products = list(
 		/obj/item/restraint/handcuffs = 8,
@@ -570,9 +570,9 @@
 	)
 
 /obj/structure/machinery/vending/sea
-	name = "\improper SeaTech"
-	desc = "An equipment vendor designed to save lives"
-	product_ads = "Semper Fi!;First to Fight!;Ooh Rah.;Leathernecks!;The Few. The Proud.;Esprit de Corps;Jarhead.;Devil Dogs."
+	name = "海事科技售货机"
+	desc = "专为救生而设计的装备售货机。"
+	product_ads = "永远忠诚！;率先迎战！;乌拉！;皮革脖子！;精锐之师，骄傲之师。;军团精神！;罐头脑袋。;恶魔犬。"
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	hacking_safety = TRUE
@@ -594,8 +594,8 @@
 	contraband = list(/obj/item/storage/fancy/cigar = 2,/obj/item/tool/lighter/zippo = 2)
 
 /obj/structure/machinery/vending/hydronutrients
-	name = "\improper NutriMax"
-	desc = "A plant nutrients vendor."
+	name = "营养满分售货机"
+	desc = "植物营养品售货机。"
 	//product_slogans = "Aren't you glad you don't have to fertilize the natural way?;Now with 50% less stink!;Plants are people too!"
 	//product_ads = "We like plants!;Don't you want some?;The greenest thumbs ever.;We like big plants.;Soft soil..."
 	icon_state = "nutri"
@@ -606,8 +606,8 @@
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 /obj/structure/machinery/vending/hydroseeds
-	name = "\improper MegaSeed Servitor"
-	desc = "When you need seeds fast!"
+	name = "超级种子供应机"
+	desc = "急需种子时的好帮手！"
 	//product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the station!;Also certain mushroom varieties available, more for experts! Get certified today!"
 	//product_ads = "We like plants!;Grow some crops!;Grow, baby, growww!;Aw h'yeah son!"
 	icon_state = "seeds"
@@ -629,9 +629,9 @@
 	premium = list(/obj/item/toy/waterflower = 1)
 
 /obj/structure/machinery/vending/dinnerware
-	name = "\improper Dinnerware"
-	desc = "A kitchen and restaurant equipment vendor."
-	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
+	name = "餐具售货机"
+	desc = "厨房与餐厅用品售货机。"
+	product_ads = "嗯，食材！;食品和配套用品。;来拿盘子！;你喜欢叉子吗？;我喜欢叉子。;哇，餐具。;其实你并不需要这些……"
 	icon_state = "dinnerware"
 	products = list(
 		/obj/item/tool/kitchen/tray = 8,
@@ -652,10 +652,10 @@
 	)
 
 /obj/structure/machinery/vending/sovietsoda
-	name = "\improper BODA"
-	desc = "An old sweet water vending machine, how did this end up here?"
+	name = "波达汽水机"
+	desc = "一台老旧的糖水售货机，怎么会出现在这里？"
 	icon_state = "sovietsoda"
-	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
+	product_ads = "为了沙皇与祖国。;你今天完成营养配额了吗？;真不错！;我们朴实无华，因为我们就吃这些。;有人就有问题，没人就没问题。"
 	products = list(/obj/item/reagent_container/food/drinks/cans/boda = 30)
 	contraband = list(/obj/item/reagent_container/food/drinks/cans/bodaplus = 20)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
@@ -719,10 +719,10 @@
 	return
 
 /obj/structure/machinery/vending/walkman
-	name = "\improper Rec-Vend"
-	desc = "Contains Weyland-Yutani approved recreational items, like Walkmans and Cards."
+	name = "休闲用品售货机"
+	desc = "提供维兰德-汤谷批准的休闲用品，如随身听和纸牌。"
 	icon_state = "walkman"
-	product_ads = "The only place to have fun in the entire Marine Corps!;You'll find no better music from here to Arcturus!;Instructions not included with decks of cards!;No volume controls - you don't need them!;All products responsibly made by people having just as much fun as you will be!;Say goodbye to the lucky strike military tobacco monopoly, with the new Weyland Yutani Military Trading Card Gold cigarette pack!"
+	product_ads = "整个陆战队里唯一能找乐子的地方！;从这里到大角星，你都找不到更棒的音乐！;纸牌不附带说明书！;没有音量控制——你不需要！;所有产品都由和你一样快乐的人负责任地制造！;全新维兰德-汤谷军用集换卡金装香烟，向好彩的军用烟草垄断说再见！"
 	vend_delay = 0.5 SECONDS
 	idle_power_usage = 200
 
@@ -791,9 +791,9 @@
 
 //vendor of ingredients for kitchen
 /obj/structure/machinery/vending/ingredients
-	name = "\improper Galley Auxiliary Storage Requisition System"
-	desc = "A vending machine meant to be use for cooks."
-	product_ads = "If your out of ingredients i am here for you;all my organic produce are fresh;don't let my potatoes go stale time for you to cook some fries"
+	name = "厨房辅助仓储领用系统"
+	desc = "供厨师使用的售货机。"
+	product_ads = "食材不够？有我在呢！;我的有机食材全都新鲜！;别让土豆放坏了，快去炸点薯条吧！"
 	icon_state = "snack"
 	hacking_safety = TRUE
 	products = list(

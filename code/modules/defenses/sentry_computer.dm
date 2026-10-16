@@ -2,8 +2,8 @@
  * Sentry gun computer which links to defensive structures.
  */
 /obj/item/device/sentry_computer
-	name = "\improper Sentry Gun Network Laptop"
-	desc = "A laptop loaded with sentry control software."
+	name = "哨戒机枪网络笔记本电脑"
+	desc = "装有哨戒武器控制软件的笔记本电脑。"
 	icon = 'icons/obj/structures/props/sentrycomp.dmi'
 	icon_state = "sentrycomp_cl"
 	w_class = SIZE_SMALL

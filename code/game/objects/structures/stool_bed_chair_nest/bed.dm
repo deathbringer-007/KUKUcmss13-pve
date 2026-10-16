@@ -230,8 +230,8 @@
 	return
 
 /obj/item/roller
-	name = "roller bed"
-	desc = "A collapsed roller bed that can be carried around."
+	name = "轮式担架床"
+	desc = "可随身携带的折叠轮式担架床。"
 	icon = 'icons/obj/structures/rollerbed.dmi'
 	icon_state = "folded"
 	w_class = SIZE_SMALL //Fits in a backpack
@@ -431,8 +431,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	buildstacktype = null
 
 /obj/item/roller/bedroll
-	name = "folded bedroll"
-	desc = "A standard issue bedroll, They've been in service for as long as you can remember. The tag on it states to unfold it before rest, but who needs rules anyway, right?"
+	name = "折叠铺盖卷"
+	desc = "标准配发的铺盖卷，从你记事起就一直在服役。标签说休息前要展开，但谁在乎规矩呢，对吧？"
 	icon = 'icons/obj/structures/rollerbed.dmi'
 	icon_state = "bedroll"
 	rollertype = /obj/structure/bed/bedroll

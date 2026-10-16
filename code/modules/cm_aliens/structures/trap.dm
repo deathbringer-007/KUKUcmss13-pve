@@ -3,8 +3,8 @@
  */
 
 /obj/effect/alien/resin/trap
-	desc = "It looks like a hiding hole."
-	name = "resin trap"
+	desc = "看起来像一个藏身洞。"
+	name = "树脂陷阱"
 	icon_state = "trap0"
 	density = FALSE
 	opacity = FALSE
@@ -44,13 +44,13 @@
 	. = ..()
 	switch(trap_type)
 		if(RESIN_TRAP_EMPTY)
-			. += "It's empty."
+			. += "里面是空的。"
 		if(RESIN_TRAP_HUGGER)
-			. += "There's a little one inside."
+			. += "里面藏着一只幼小同胞。"
 		if(RESIN_TRAP_GAS)
-			. += "It's filled with pressurised gas."
+			. += "里面充满了加压气体。"
 		if(RESIN_TRAP_ACID1, RESIN_TRAP_ACID2, RESIN_TRAP_ACID3)
-			. += "It's filled with pressurised acid."
+			. += "里面充满了加压酸液。"
 
 /obj/effect/alien/resin/trap/proc/forsaken_handling()
 	SIGNAL_HANDLER
@@ -94,8 +94,8 @@
 		if(RESIN_TRAP_HUGGER)
 			if(can_hug(AM, hivenumber) && !isyautja(AM) && !issynth(AM))
 				var/mob/living/L = AM
-				L.visible_message(SPAN_WARNING("[L] trips on [src]!"),\
-								SPAN_DANGER("You trip on [src]!"))
+				L.visible_message(SPAN_WARNING("[L]踩中了[src]！"),\
+								SPAN_DANGER("你踩中了[src]！"))
 				L.apply_effect(1, WEAKEN)
 				trigger_trap()
 		if(RESIN_TRAP_GAS, RESIN_TRAP_ACID1, RESIN_TRAP_ACID2, RESIN_TRAP_ACID3)
@@ -142,7 +142,7 @@
 	clear_tripwires()
 	for(var/mob/living/carbon/xenomorph/X in GLOB.living_xeno_list)
 		if(X.hivenumber == hivenumber)
-			to_chat(X, SPAN_XENOMINORWARNING("We sense one of our Hive's facehugger traps at [A.name] has been burnt!"))
+			to_chat(X, SPAN_XENOMINORWARNING("我们感应到虫巢位于[A.name]的一个抱脸虫陷阱被烧毁了！"))
 
 /obj/effect/alien/resin/trap/proc/get_spray_type(level)
 	switch(level)
@@ -161,25 +161,25 @@
 	var/trap_type_name = ""
 	switch(trap_type)
 		if(RESIN_TRAP_EMPTY)
-			trap_type_name = "empty"
+			trap_type_name = "空置"
 		if(RESIN_TRAP_HUGGER)
-			trap_type_name = "hugger"
+			trap_type_name = "抱脸虫"
 			var/obj/item/clothing/mask/facehugger/FH = new (loc)
 			FH.hivenumber = hivenumber
 			set_hive_data(FH, hivenumber)
 			set_state()
-			visible_message(SPAN_WARNING("[FH] gets out of [src]!"))
+			visible_message(SPAN_WARNING("[FH]从[src]里爬了出来！"))
 			sleep(15)
 			if(FH.stat == CONSCIOUS && FH.loc) //Make sure we're conscious and not idle or dead.
 				FH.leap_at_nearest_target()
 		if(RESIN_TRAP_GAS)
-			trap_type_name = "gas"
+			trap_type_name = "气体"
 			smoke_system.set_up(2, 0, src.loc)
 			smoke_system.start()
 			set_state()
 			clear_tripwires()
 		if(RESIN_TRAP_ACID1, RESIN_TRAP_ACID2, RESIN_TRAP_ACID3)
-			trap_type_name = "acid"
+			trap_type_name = "酸液"
 			var/spray_type = get_spray_type(trap_type)
 
 			new spray_type(loc, cause_data, hivenumber)
@@ -196,9 +196,9 @@
 	for(var/mob/living/carbon/xenomorph/X in GLOB.living_xeno_list)
 		if(X.hivenumber == hivenumber)
 			if(destroyed)
-				to_chat(X, SPAN_XENOMINORWARNING("We sense one of our Hive's [trap_type_name] traps at [A.name] has been destroyed!"))
+				to_chat(X, SPAN_XENOMINORWARNING("我们感应到虫巢位于[A.name]的一个[trap_type_name]陷阱被摧毁了！"))
 			else
-				to_chat(X, SPAN_XENOMINORWARNING("We sense one of our Hive's [trap_type_name] traps at [A.name] has been triggered!"))
+				to_chat(X, SPAN_XENOMINORWARNING("我们感应到虫巢位于[A.name]的一个[trap_type_name]陷阱被触发了！"))
 
 /obj/effect/alien/resin/trap/proc/clear_tripwires()
 	QDEL_NULL_LIST(tripwires)
@@ -219,32 +219,32 @@
 			set_state()
 			var/obj/item/clothing/mask/facehugger/F = new (loc, hivenumber)
 			X.put_in_active_hand(F)
-			to_chat(X, SPAN_XENONOTICE("You remove the facehugger from [src]."))
+			to_chat(X, SPAN_XENONOTICE("你从[src]中取出了抱脸虫。"))
 			return XENO_NONCOMBAT_ACTION
 		else
-			to_chat(X, SPAN_XENONOTICE("[src] is occupied by a child."))
+			to_chat(X, SPAN_XENONOTICE("[src]里已经有一只幼小同胞了。"))
 			return XENO_NO_DELAY_ACTION
 
 	if((!X.acid_level || trap_type == RESIN_TRAP_GAS) && trap_type != RESIN_TRAP_EMPTY)
-		to_chat(X, SPAN_XENONOTICE("Better not risk setting this off."))
+		to_chat(X, SPAN_XENONOTICE("最好别冒险把它触发了。"))
 		return XENO_NO_DELAY_ACTION
 
 	if(!X.acid_level)
-		to_chat(X, SPAN_XENONOTICE("You can't secrete any acid into \the [src]"))
+		to_chat(X, SPAN_XENONOTICE("你无法向[src]中分泌酸液。"))
 		return XENO_NO_DELAY_ACTION
 
 	if(trap_acid_level >= X.acid_level)
-		to_chat(X, SPAN_XENONOTICE("It already has good acid in."))
+		to_chat(X, SPAN_XENONOTICE("里面已经装有足够强的酸液了。"))
 		return XENO_NO_DELAY_ACTION
 
 	if(isboiler(X))
 		var/mob/living/carbon/xenomorph/boiler/B = X
 
 		if(!B.check_plasma(200))
-			to_chat(B, SPAN_XENOWARNING("You must produce more plasma before doing this."))
+			to_chat(B, SPAN_XENOWARNING("你必须先积聚更多等离子体。"))
 			return XENO_NO_DELAY_ACTION
 
-		to_chat(X, SPAN_XENONOTICE("You begin charging the resin trap with acid gas."))
+		to_chat(X, SPAN_XENONOTICE("你开始向树脂陷阱中充入酸性气体。"))
 		xeno_attack_delay(X)
 		if(!do_after(B, 30, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE, src))
 			return XENO_NO_DELAY_ACTION
@@ -265,8 +265,8 @@
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1)
 		set_state(RESIN_TRAP_GAS)
 		cause_data = create_cause_data("resin gas trap", B)
-		B.visible_message(SPAN_XENOWARNING("\The [B] pressurises the resin trap with acid gas!"), \
-		SPAN_XENOWARNING("You pressurise the resin trap with acid gas!"), null, 5)
+		B.visible_message(SPAN_XENOWARNING("[B]向树脂陷阱中充入了加压酸性气体！"), \
+		SPAN_XENOWARNING("你向树脂陷阱中充入了加压酸性气体！"), null, 5)
 	else
 		//Non-boiler acid types
 		var/acid_cost = 70
@@ -276,10 +276,10 @@
 			acid_cost = 200
 
 		if (!X.check_plasma(acid_cost))
-			to_chat(X, SPAN_XENOWARNING("You must produce more plasma before doing this."))
+			to_chat(X, SPAN_XENOWARNING("你必须先积聚更多等离子体。"))
 			return XENO_NO_DELAY_ACTION
 
-		to_chat(X, SPAN_XENONOTICE("You begin charging the resin trap with acid."))
+		to_chat(X, SPAN_XENONOTICE("你开始向树脂陷阱中充入酸液。"))
 		xeno_attack_delay(X)
 		if(!do_after(X, 3 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE, src))
 			return XENO_NO_DELAY_ACTION
@@ -297,8 +297,8 @@
 		else
 			set_state(RESIN_TRAP_ACID1 + X.acid_level - 1)
 
-		X.visible_message(SPAN_XENOWARNING("\The [X] pressurises the resin trap with acid!"), \
-		SPAN_XENOWARNING("You pressurise the resin trap with acid!"), null, 5)
+		X.visible_message(SPAN_XENOWARNING("[X]向树脂陷阱中充入了加压酸液！"), \
+		SPAN_XENOWARNING("你向树脂陷阱中充入了加压酸液！"), null, 5)
 	return XENO_NO_DELAY_ACTION
 
 
@@ -315,29 +315,29 @@
 	if(!(istype(W, /obj/item/clothing/mask/facehugger) && isxeno(user)))
 		return ..()
 	if(trap_type != RESIN_TRAP_EMPTY)
-		to_chat(user, SPAN_XENOWARNING("You can't put a hugger in this trap!"))
+		to_chat(user, SPAN_XENOWARNING("你不能把抱脸虫放进这种陷阱！"))
 		return
 	var/obj/item/clothing/mask/facehugger/FH = W
 	if(FH.stat == DEAD)
-		to_chat(user, SPAN_XENOWARNING("You can't put a dead facehugger in [src]."))
+		to_chat(user, SPAN_XENOWARNING("你不能把死抱脸虫放进[src]。"))
 	else
 		var/mob/living/carbon/xenomorph/X = user
 		if (!istype(X))
 			return
 
 		if (X.hivenumber != hivenumber)
-			to_chat(user, SPAN_XENOWARNING("This resin trap doesn't belong to your hive!"))
+			to_chat(user, SPAN_XENOWARNING("这个树脂陷阱不属于你的虫巢！"))
 			return
 
 		if (FH.hivenumber != hivenumber)
-			to_chat(user, SPAN_XENOWARNING("This facehugger is tainted."))
+			to_chat(user, SPAN_XENOWARNING("这只抱脸虫已被污染。"))
 			return
 
 		if (!do_after(user, 3 SECONDS, INTERRUPT_ALL|INTERRUPT_DAZED, BUSY_ICON_HOSTILE))
 			return
 
 		set_state(RESIN_TRAP_HUGGER)
-		to_chat(user, SPAN_XENONOTICE("You place a facehugger in [src]."))
+		to_chat(user, SPAN_XENONOTICE("你将一只抱脸虫放进[src]。"))
 		qdel(FH)
 
 /obj/effect/alien/resin/trap/healthcheck()
@@ -354,7 +354,7 @@
 	. = ..()
 
 /obj/effect/trap_tripwire
-	name = "trap tripwire"
+	name = "陷阱绊线"
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = 101

@@ -26,7 +26,7 @@
 					return
 				var/obj/item/tool/weldingtool/WT = P
 				if(!WT.isOn())
-					to_chat(user, SPAN_WARNING("需要先开启\the [WT]！"))
+					to_chat(user, SPAN_WARNING("需要先开启[WT]！"))
 					return
 				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
 				if(do_after(user, 20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))

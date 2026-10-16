@@ -131,7 +131,7 @@
 /obj/structure/machinery/airlock_sensor
 	icon = 'icons/obj/structures/machinery/airlock_machines.dmi'
 	icon_state = "airlock_sensor_off"
-	name = "airlock sensor"
+	name = "气闸传感器"
 
 	anchored = TRUE
 	power_channel = POWER_CHANNEL_ENVIRON
@@ -210,7 +210,7 @@
 /obj/structure/machinery/access_button
 	icon = 'icons/obj/structures/machinery/airlock_machines.dmi'
 	icon_state = "access_button_standby"
-	name = "access button"
+	name = "门禁按钮"
 
 	anchored = TRUE
 	power_channel = POWER_CHANNEL_ENVIRON
@@ -240,7 +240,7 @@
 /obj/structure/machinery/access_button/attack_hand(mob/user)
 	add_fingerprint(usr)
 	if(!allowed(user))
-		to_chat(user, SPAN_DANGER("Access Denied"))
+		to_chat(user, SPAN_DANGER("拒绝访问"))
 
 	else if(radio_connection)
 		var/datum/signal/signal = new

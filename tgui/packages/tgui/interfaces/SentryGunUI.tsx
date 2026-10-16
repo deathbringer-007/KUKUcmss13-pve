@@ -20,6 +20,21 @@ import { TimedCallback } from './common/TimedCallback';
 type SelectedState = [string, string];
 type SelectionState = [string, string[]];
 
+const sentryLabels = new Map<string, string>([
+  ['IFF STATUS', '敌我识别状态'],
+  ['RATE OF FIRE', '射击模式'],
+  ['SINGLE', '单发'],
+  ['BURST', '点射'],
+  ['FULL-AUTO', '全自动'],
+  ['USCM', '殖民地陆战队'],
+  ['WY', '维兰德-汤谷'],
+  ['HUMAN', '人类'],
+  ['COLONY', '殖民地'],
+  ['UPP', '进步人民联盟'],
+  ['TWE', '三世界帝国'],
+]);
+const sentryLabel = (value: string) => sentryLabels.get(value) ?? value;
+
 interface ElectricalSpec {
   charge: number;
   max_charge: number;
@@ -62,7 +77,7 @@ const SelectionGroup = (props: {
   return (
     <Flex direction="column" className="SelectionMenu" fill={1}>
       <Flex.Item className="Title">
-        <span>{props.data[0]}</span>
+        <span>{sentryLabel(props.data[0])}</span>
       </Flex.Item>
       {props.data[1].map((x) => {
         const isSelected = comparisonstr.localeCompare(x) === 0;
@@ -74,7 +89,7 @@ const SelectionGroup = (props: {
               }
               className={classes([isSelected && 'Selected'])}
             >
-              {x}
+              {sentryLabel(x)}
             </Button>
           </Flex.Item>
         );
@@ -119,7 +134,7 @@ const TitleSection = (props: { readonly data: SentrySpec }) => {
       <Stack.Item className="TitleText">
         <Stack>
           <Stack.Item>
-            <span>{props.data.active === 0 ? 'INACTIVE' : 'ACTIVE'}</span>
+            <span>{props.data.active === 0 ? '未启动' : '已启动'}</span>
           </Stack.Item>
           <Stack.Item>
             <span>REMOTE SENTRY WEAPON SYSTEM</span>
@@ -167,8 +182,8 @@ const GunMenu = (props: { readonly data: SentrySpec }) => {
               />
             </Flex.Item>
             <Flex.Item>
-              {props.data.active === 0 && <span>Offline</span>}
-              {props.data.active === 1 && <span>Online</span>}
+              {props.data.active === 0 && <span>离线</span>}
+              {props.data.active === 1 && <span>在线</span>}
             </Flex.Item>
             <Flex.Item>
               <Button
@@ -184,7 +199,7 @@ const GunMenu = (props: { readonly data: SentrySpec }) => {
           className={classes(['EngagedBox', isCritical && 'EngagedWarningBox'])}
         >
           <span>
-            Integrity: {props.data.health} / {props.data.health_max}
+            完整度：{props.data.health} / {props.data.health_max}
           </span>
         </Box>
       </Flex.Item>
@@ -194,7 +209,7 @@ const GunMenu = (props: { readonly data: SentrySpec }) => {
             <Box className="EngagedBox">
               <Flex justify="center">
                 <Flex.Item align="center">
-                  <span>Rounds Remaining</span>
+                  <span>剩余弹药</span>
                 </Flex.Item>
                 <Flex.Item>
                   <Box width={1} />
@@ -231,22 +246,22 @@ const GunMenu = (props: { readonly data: SentrySpec }) => {
               isEngaged && 'EngagedWarningBox',
             ])}
           >
-            {!isEngaged && <span>Not Engaged</span>}
-            {isEngaged && <span>ENGAGED</span>}
+            {!isEngaged && <span>未交战</span>}
+            {isEngaged && <span>交战中</span>}
           </Box>
         </Flex.Item>
       )}
       {props.data.engaged !== undefined && (
         <Flex.Item>
           <Box className="EngagedBox">
-            <span>Kills: {props.data.kills}</span>
+            <span>击杀数：{props.data.kills}</span>
           </Box>
         </Flex.Item>
       )}
       {iff_info && (
         <Flex.Item>
           <Box className="IFFBox">
-            <span>IFF: {iff_info}</span>
+            <span>敌我识别：{sentryLabel(iff_info)}</span>
           </Box>
         </Flex.Item>
       )}
@@ -259,13 +274,11 @@ const EmptyDisplay = () => {
     <Box className="EmptyDisplay">
       <Stack vertical>
         <Stack.Item>
-          <span>No sentry detected.</span>
+          <span>未检测到哨戒炮。</span>
         </Stack.Item>
         <Stack.Item>
           <span>
-            Connect the Security Access Tuner with the laptop to load the
-            encryption keys. Then connect the Security Access Tuner to a sentry
-            gun to continue.
+            将安全访问调谐器连接到笔记本电脑以载入加密密钥，然后将调谐器连接到哨戒炮即可继续。
           </span>
         </Stack.Item>
       </Stack>
@@ -302,7 +315,7 @@ const InputGroup = (props: {
             })
           }
         >
-          Commit
+          确认
         </Button>
       </Stack.Item>
     </Stack>
@@ -322,7 +335,7 @@ const SentryGunConfiguration = (props: { readonly data: SentrySpec }) => {
             <TitleSection data={props.data} />
           </Flex.Item>
           <Flex.Item align="center">
-            <Button onClick={() => setShowConfig(false)}>Status</Button>
+            <Button onClick={() => setShowConfig(false)}>状态</Button>
           </Flex.Item>
         </Flex>
       </Stack.Item>
@@ -334,7 +347,7 @@ const SentryGunConfiguration = (props: { readonly data: SentrySpec }) => {
           <Flex.Item>
             <InputGroup
               index={props.data.index}
-              label="Name"
+              label="名称"
               category="nickname"
               startingValue={props.data.nickname}
             />
@@ -358,7 +371,7 @@ const SentryGunStatus = (props: { readonly data: SentrySpec }) => {
             <TitleSection data={props.data} />
           </Flex.Item>
           <Flex.Item align="center">
-            <Button onClick={() => setShowConfig(true)}>Config</Button>
+            <Button onClick={() => setShowConfig(true)}>配置</Button>
           </Flex.Item>
         </Flex>
       </Stack.Item>
@@ -416,8 +429,8 @@ const SentryCamera = (props: { readonly sentry_data: SentrySpec[] }) => {
     const targetIndex = data.camera_target?.toString() ?? '';
     return targetIndex.localeCompare(index) === 0;
   });
-  const sentry_name = sentry?.name ?? 'Unknown';
-  const sentry_area = sentry?.area ?? 'Unknown';
+  const sentry_name = sentry?.name ?? '未知';
+  const sentry_area = sentry?.area ?? '未知';
 
   return (
     <Flex direction="column" align="stretch" className="SentryCameraStack">
@@ -432,7 +445,7 @@ const SentryCamera = (props: { readonly sentry_data: SentrySpec[] }) => {
             </span>
           </Flex.Item>
           <Flex.Item>
-            <Button onClick={() => act('clear-camera')}>Close</Button>
+            <Button onClick={() => act('clear-camera')}>关闭</Button>
           </Flex.Item>
         </Flex>
       </Flex.Item>
@@ -442,7 +455,7 @@ const SentryCamera = (props: { readonly sentry_data: SentrySpec[] }) => {
       {sentry !== undefined && sentry.camera_available === 0 && (
         <>
           <Flex.Item>
-            <span>No camera is available on {sentry.name}</span>
+            <span>{sentry.name}没有可用摄像头</span>
           </Flex.Item>
           <Flex.Item>
             <Box height={1} />
@@ -481,7 +494,7 @@ const SentryTabMenu = (props: {
           act('clear-camera');
         }}
       >
-        All
+        全部
       </Tabs.Tab>
       {props.sentrySpecs.map((x, index) => (
         <Tabs.Tab

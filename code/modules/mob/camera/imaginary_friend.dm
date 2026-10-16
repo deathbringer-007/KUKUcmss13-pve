@@ -1,7 +1,7 @@
 /mob/camera/imaginary_friend
-	name = "imaginary friend"
+	name = "幻想朋友"
 	real_name = "imaginary friend"
-	desc = "A wonderful yet fake friend."
+	desc = "一位美好却并不存在的朋友。"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_invisible = SEE_INVISIBLE_OBSERVER
@@ -57,13 +57,13 @@
 	name = client.prefs.real_name
 	real_name = name
 	gender = client.prefs.gender
-	var/available_appearances = outfit_choices + "Drone"
-	var/outfit_choice = tgui_input_list(usr, "Choose your appearance:", "[src]", available_appearances)
+	var/available_appearances = outfit_choices + "工蜂"
+	var/outfit_choice = tgui_input_list(usr, "选择你的外观：", "[src]", available_appearances)
 	if(!outfit_choice)
 		outfit_choice = outfit_choices[1]
-	if(outfit_choice == "Drone")
+	if(outfit_choice == "工蜂")
 		friend_image = get_xeno_appearance()
-		name = "Helpful Drone"
+		name = "热心工蜂"
 		return
 	friend_image = get_flat_human_icon(null, outfit_choice, client.prefs)
 
@@ -113,8 +113,8 @@
 	return ..()
 
 /mob/camera/imaginary_friend/verb/toggle_darkness()
-	set category = "Imaginary Friend"
-	set name = "Toggle Darkness"
+	set category = "幻想朋友"
+	set name = "切换黑暗视野"
 
 	switch(lighting_alpha)
 		if(LIGHTING_PLANE_ALPHA_VISIBLE)
@@ -127,43 +127,43 @@
 	update_sight()
 
 /mob/camera/imaginary_friend/verb/update_outfit()
-	set category = "Imaginary Friend"
-	set name = "Change Appearance"
+	set category = "幻想朋友"
+	set name = "更改外观"
 
-	var/available_appearances = outfit_choices + "Drone"
-	var/outfit_choice = tgui_input_list(usr, "Choose your appearance:", "[src]", available_appearances)
+	var/available_appearances = outfit_choices + "工蜂"
+	var/outfit_choice = tgui_input_list(usr, "选择你的外观：", "[src]", available_appearances)
 	if(!outfit_choice)
 		outfit_choice = outfit_choices[1]
-	if(outfit_choice == "Drone")
+	if(outfit_choice == "工蜂")
 		friend_image = get_xeno_appearance()
-		name = "Helpful Drone"
+		name = "热心工蜂"
 		return
 	name = client.prefs.real_name
 	friend_image = get_flat_human_icon(null, outfit_choice, client.prefs)
 	update_image()
 
 /mob/camera/imaginary_friend/verb/toggle_hud()
-	set category = "Imaginary Friend"
-	set name = "Toggle HUD"
+	set category = "幻想朋友"
+	set name = "切换抬头显示"
 
-	var/hud_choice = tgui_input_list(usr, "Choose a HUD to toggle", "Toggle HUD prefs", list("Medical HUD", "Security HUD", "Squad HUD", "Xeno Status HUD", "Faction UPP HUD", "Faction Wey-Yu HUD", "Faction RESS HUD", "Faction CLF HUD"))
+	var/hud_choice = tgui_input_list(usr, "选择要切换的抬头显示", "切换抬头显示偏好", list("医疗抬头显示", "安保抬头显示", "小队抬头显示", "异形状态抬头显示", "进步人民联盟阵营抬头显示", "维兰德-汤谷阵营抬头显示", "RESS阵营抬头显示", "殖民地解放阵线阵营抬头显示"))
 	var/datum/mob_hud/hud
 	switch(hud_choice)
-		if("Medical HUD")
+		if("医疗抬头显示")
 			hud = GLOB.huds[MOB_HUD_MEDICAL_OBSERVER]
-		if("Security HUD")
+		if("安保抬头显示")
 			hud = GLOB.huds[MOB_HUD_SECURITY_ADVANCED]
-		if("Squad HUD")
+		if("小队抬头显示")
 			hud = GLOB.huds[MOB_HUD_FACTION_OBSERVER]
-		if("Xeno Status HUD")
+		if("异形状态抬头显示")
 			hud = GLOB.huds[MOB_HUD_XENO_STATUS]
-		if("Faction UPP HUD")
+		if("进步人民联盟阵营抬头显示")
 			hud = GLOB.huds[MOB_HUD_FACTION_UPP]
-		if("Faction Wey-Yu HUD")
+		if("维兰德-汤谷阵营抬头显示")
 			hud = GLOB.huds[MOB_HUD_FACTION_WY]
-		if("Faction TWE HUD")
+		if("三世界帝国阵营抬头显示")
 			hud = GLOB.huds[MOB_HUD_FACTION_TWE]
-		if("Faction CLF HUD")
+		if("殖民地解放阵线阵营抬头显示")
 			hud = GLOB.huds[MOB_HUD_FACTION_CLF]
 
 	if(hud_choice in current_huds)
@@ -179,7 +179,7 @@
 
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, SPAN_DANGER("You cannot send IC messages (muted)."))
+			to_chat(src, SPAN_DANGER("你已被禁言，无法发送角色内讯息。"))
 			return
 
 		if(client.handle_spam_prevention(message, MUTE_IC))
@@ -195,7 +195,7 @@
 		return
 
 	var/rendered = "<span class='game say'><span class='name'>[name]</span> <span class='message'>[say_quote(message)] \"[message]\"</span></span>"
-	var/dead_rendered = "<span class='game say'><span class='name'>[name] (imaginary friend of [owner])</span> <span class='message'>[say_quote(message)] \"[message]\"</span></span>"
+	var/dead_rendered = "<span class='game say'><span class='name'>[name] ([owner]的幻想朋友)</span> <span class='message'>[say_quote(message)] \"[message]\"</span></span>"
 
 	to_chat(owner, "[rendered]")
 	to_chat(src, "[rendered]")
@@ -218,7 +218,7 @@
 		if(isnewplayer(ghost) || src == ghost)
 			continue
 		var/link = "<a href='byond://?src=\ref[ghost];track=\ref[src]'>F</a>"
-		to_chat(ghost, "[dead_rendered] ([link])")
+		to_chat(ghost, "[dead_rendered]（[link]）")
 
 /mob/camera/imaginary_friend/Move(newloc, Dir = 0)
 	if(world.time < move_delay)
@@ -276,7 +276,7 @@
 	return ghost
 
 /datum/action/innate/imaginary_orbit
-	name = "Orbit"
+	name = "环绕"
 	action_icon_state = "joinmob"
 
 /datum/action/innate/imaginary_orbit/action_activate()
@@ -285,7 +285,7 @@
 	friend.recall()
 
 /datum/action/innate/imaginary_hide
-	name = "Hide"
+	name = "隐藏"
 	action_icon_state = "hidemob"
 
 /datum/action/innate/imaginary_hide/action_activate()
@@ -294,13 +294,13 @@
 	if(friend.hidden)
 		friend.hidden = FALSE
 		friend.update_image()
-		name = "Hide"
+		name = "隐藏"
 		action_icon_state = "hidemob"
 		update_button_icon()
 	else
 		friend.hidden = TRUE
 		friend.update_image()
-		name = "Show"
+		name = "显示"
 		action_icon_state = "unhidemob"
 		update_button_icon()
 

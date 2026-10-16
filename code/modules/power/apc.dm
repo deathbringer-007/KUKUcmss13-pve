@@ -2,8 +2,8 @@
 #define APC_WIRE_IDSCAN 2
 
 GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
-		APC_WIRE_MAIN_POWER = "Main power",
-		APC_WIRE_IDSCAN = "ID scanner",
+		APC_WIRE_MAIN_POWER = "主电源",
+		APC_WIRE_IDSCAN = "身份卡扫描器",
 	)))
 
 #define APC_COVER_CLOSED 0
@@ -57,8 +57,8 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 
 //NOTE: STUFF STOLEN FROM AIRLOCK.DM thx
 /obj/structure/machinery/power/apc
-	name = "area power controller"
-	desc = "A control terminal for the area electrical systems."
+	name = "区域电力控制器"
+	desc = "区域电力系统的控制终端。"
 	icon = 'icons/obj/structures/machinery/apc.dmi'
 	icon_state = "apc_mapicon"
 	anchored = TRUE
@@ -150,7 +150,7 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 		area = get_area(src)
 		opened = APC_COVER_OPEN
 		operating = 0
-		name = "\improper [area.name] APC"
+		name = "\improper [area.name]区域电力控制器"
 		stat |= MAINT
 		update_icon()
 		addtimer(CALLBACK(src, PROC_REF(update)), 5)
@@ -180,7 +180,7 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		if(!opened && wiresexposed)
-			ui = new(user, src, "Wires", "[name] Wires")
+			ui = new(user, src, "Wires", "[name]线路")
 			ui.open()
 		else
 			ui = new(user, src, "Apc", name)
@@ -263,7 +263,7 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 		return
 	var/target_wire = params["wire"]
 	if(locked && !target_wire) //wire cutting etc does not require the apc to be unlocked
-		to_chat(usr, SPAN_WARNING("\The [src] is locked! Unlock it by swiping an ID card or dogtag."))
+		to_chat(usr, SPAN_WARNING("[src]锁着！刷身份卡或狗牌即可解锁。"))
 		return
 	add_fingerprint(usr)
 	switch(action)
@@ -308,7 +308,7 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 		if("cut")
 			var/obj/item/held_item = usr.get_held_item()
 			if (!held_item || !HAS_TRAIT(held_item, TRAIT_TOOL_WIRECUTTERS))
-				to_chat(usr, SPAN_WARNING("You need wirecutters!"))
+				to_chat(usr, SPAN_WARNING("你需要剪线钳！"))
 				return TRUE
 
 			if(isWireCut(target_wire))
@@ -320,7 +320,7 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 		if("pulse")
 			var/obj/item/held_item = usr.get_held_item()
 			if (!held_item || !HAS_TRAIT(held_item, TRAIT_TOOL_MULTITOOL))
-				to_chat(usr, SPAN_WARNING("You need a multitool!"))
+				to_chat(usr, SPAN_WARNING("你需要多功能工具！"))
 				return TRUE
 			playsound(src.loc, 'sound/effects/zzzt.ogg', 25, 1)
 			pulse(target_wire, usr)
@@ -357,10 +357,10 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 	//If area isn't specified use current
 	if(isarea(A) && src.areastring == null)
 		area = A
-		name = "\improper [area.name] APC"
+		name = "\improper [area.name]区域电力控制器"
 	else
 		area = get_area_name(areastring)
-		name = "\improper [area.name] APC"
+		name = "\improper [area.name]区域电力控制器"
 
 	update_icon()
 	make_terminal()
@@ -371,23 +371,23 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 	. = list(desc)
 
 	if(stat & BROKEN)
-		. += SPAN_INFO("It appears to be completely broken. Bash it open with any tool.")
+		. += SPAN_INFO("它似乎已经彻底损坏，用任何工具都能敲开。")
 		return
 	if(opened)
 		if(has_electronics && terminal)
-			. += SPAN_INFO("The cover is [opened == APC_COVER_REMOVED ? "removed":"open"] and the power cell is [cell ? "installed":"missing"].")
+			. += SPAN_INFO("盖板[opened == APC_COVER_REMOVED ? "已拆除":"已打开"]，电池[cell ? "已安装":"缺失"]。")
 		else if (!has_electronics && terminal)
-			. += SPAN_INFO("There are some wires but no any electronics.")
+			. += SPAN_INFO("里面有一些电线，但没有电子组件。")
 		else if (has_electronics && !terminal)
-			. += SPAN_INFO("Electronics installed but not wired.")
+			. += SPAN_INFO("已安装电子组件，但尚未接线。")
 		else
-			. += SPAN_INFO("There is no electronics nor connected wires.")
+			. += SPAN_INFO("既没有电子组件，也没有接好的电线。")
 
 	else
 		if(stat & MAINT)
-			. += SPAN_INFO("The cover is closed. Something is wrong with it, it doesn't work.")
+			. += SPAN_INFO("盖板关着，但它出了故障，无法工作。")
 		else
-			. += SPAN_INFO("The cover is closed.")
+			. += SPAN_INFO("盖板关着。")
 
 //Update the APC icon to show the three base states
 //Also add overlays for indicator lights
@@ -580,24 +580,24 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 		if(has_electronics == 1)
 			if(user.action_busy) return
 			if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-				to_chat(user, SPAN_WARNING("You have no idea how to deconstruct [src]."))
+				to_chat(user, SPAN_WARNING("你完全不知道该如何拆卸[src]。"))
 				return
 			if(terminal)
-				to_chat(user, SPAN_WARNING("Disconnect the terminal first."))
+				to_chat(user, SPAN_WARNING("先断开接线端子。"))
 				return
 			playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
-			user.visible_message(SPAN_NOTICE("[user] starts removing [src]'s power control board."),
-			SPAN_NOTICE("You start removing [src]'s power control board.")) //lpeters - fixed grammar issues
+			user.visible_message(SPAN_NOTICE("[user]开始拆卸[src]的电力控制板。"),
+			SPAN_NOTICE("你开始拆卸[src]的电力控制板。")) //lpeters - fixed grammar issues
 			if(do_after(user, 50 * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD) && has_electronics == 1)
 				has_electronics = 0
 				if((stat & BROKEN))
-					user.visible_message(SPAN_NOTICE("[user] breaks [src]'s charred power control board and removes the remains."),
-					SPAN_NOTICE("You break [src]'s charred power control board and remove the remains."))
+					user.visible_message(SPAN_NOTICE("[user]敲碎了[src]烧焦的电力控制板，清除了残骸。"),
+					SPAN_NOTICE("你敲碎了[src]烧焦的电力控制板，清除了残骸。"))
 				else
-					user.visible_message(SPAN_NOTICE("[user] removes [src]'s power control board."),
-					SPAN_NOTICE("You remove [src]'s power control board."))
+					user.visible_message(SPAN_NOTICE("[user]拆下了[src]的电力控制板。"),
+					SPAN_NOTICE("你拆下了[src]的电力控制板。"))
 					new /obj/item/circuitboard/apc(loc)
-				SSclues.create_print(get_turf(user), user, "The fingerprint contains specks of electronics.")
+				SSclues.create_print(get_turf(user), user, "指纹中含有电子元件碎屑。")
 				SEND_SIGNAL(user, COMSIG_MOB_APC_REMOVE_BOARD, src)
 
 		else if(opened != APC_COVER_REMOVED) //Cover isn't removed
@@ -605,58 +605,58 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 			update_icon()
 	else if(HAS_TRAIT(W, TRAIT_TOOL_CROWBAR) && !(stat & BROKEN))
 		if(coverlocked && !(stat & MAINT))
-			to_chat(user, SPAN_WARNING("The cover is locked and cannot be opened."))
+			to_chat(user, SPAN_WARNING("盖板锁住了，无法打开。"))
 			return
 		else
 			opened = APC_COVER_OPEN
 			update_icon()
 	else if(istype(W, /obj/item/cell) && opened) //Trying to put a cell inside
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You have no idea how to fit [W] into [src]."))
+			to_chat(user, SPAN_WARNING("你完全不知道该如何将[W]装入[src]。"))
 			return
 		if(cell)
-			to_chat(user, SPAN_WARNING("There is a power cell already installed."))
+			to_chat(user, SPAN_WARNING("里面已经装有一块电池。"))
 			return
 		else
 			if(stat & MAINT)
-				to_chat(user, SPAN_WARNING("There is no connector for your power cell."))
+				to_chat(user, SPAN_WARNING("没有可连接电池的接口。"))
 				return
 			if(user.drop_inv_item_to_loc(W, src))
 				cell = W
-				user.visible_message(SPAN_NOTICE("[user] inserts [W] into [src]!"), \
-					SPAN_NOTICE("You insert [W] into [src]!"))
+				user.visible_message(SPAN_NOTICE("[user]将[W]装入了[src]！"), \
+					SPAN_NOTICE("你将[W]装入了[src]！"))
 				chargecount = 0
 				update_icon()
 	else if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER)) //Haxing
 		if(opened)
 			if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-				to_chat(user, SPAN_WARNING("\The [src]'s wiring confuses you."))
+				to_chat(user, SPAN_WARNING("[src]的线路让你摸不着头脑。"))
 				return
 			if(cell)
-				to_chat(user, SPAN_WARNING("Close the APC first.")) //Less hints more mystery!
+				to_chat(user, SPAN_WARNING("先关上区域电力控制器。")) //Less hints more mystery!
 				return
 			else
 				if(has_electronics == 1 && terminal)
 					has_electronics = 2
 					stat &= ~MAINT
 					playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-					user.visible_message(SPAN_NOTICE("[user] screws [src]'s circuit electronics into place."),
-					SPAN_NOTICE("You screw [src]'s circuit electronics into place."))
+					user.visible_message(SPAN_NOTICE("[user]拧紧了[src]内的电路组件。"),
+					SPAN_NOTICE("你拧紧了[src]内的电路组件。"))
 				else if(has_electronics == 2)
 					has_electronics = 1
 					stat |= MAINT
 					playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-					user.visible_message(SPAN_NOTICE("[user] unfastens [src]'s circuit electronics."),
-					SPAN_NOTICE("You unfasten [src]'s circuit electronics."))
+					user.visible_message(SPAN_NOTICE("[user]松开了[src]内的电路组件。"),
+					SPAN_NOTICE("你松开了[src]内的电路组件。"))
 				else
-					to_chat(user, SPAN_WARNING("There is nothing to secure."))
+					to_chat(user, SPAN_WARNING("没有需要固定的东西。"))
 					return
 				update_icon()
 		else
 			wiresexposed = !wiresexposed
 			beenhit = wiresexposed ? XENO_HITS_TO_EXPOSE_WIRES_MIN : 0
-			user.visible_message(SPAN_NOTICE("[user] [wiresexposed ? "exposes" : "unexposes"] [src]'s wiring."),
-			SPAN_NOTICE("You [wiresexposed ? "expose" : "unexpose"] [src]'s wiring."))
+			user.visible_message(SPAN_NOTICE("[user][wiresexposed ? "打开了盖板，露出" : "合上了盖板，遮住"][src]的线路。"),
+			SPAN_NOTICE("你[wiresexposed ? "打开了盖板，露出" : "合上了盖板，遮住"][src]的线路。"))
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			update_icon()
 			if(SStgui.close_uis(src)) //if you had UIs open before from this APC...
@@ -664,35 +664,35 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 
 	else if(istype(W, /obj/item/card/id)) //Trying to unlock the interface with an ID card
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You're not sure where to swipe \the [W] on [src]."))
+			to_chat(user, SPAN_WARNING("你不确定该在[src]的哪里刷[W]。"))
 			return
 		if(opened)
-			to_chat(user, SPAN_WARNING("You must close the cover to swipe an ID card."))
+			to_chat(user, SPAN_WARNING("你必须先关上盖板才能刷身份卡。"))
 		else if(wiresexposed)
-			to_chat(user, SPAN_WARNING("You must close the panel."))
+			to_chat(user, SPAN_WARNING("你必须关上面板。"))
 		else if(stat & (BROKEN|MAINT))
-			to_chat(user, SPAN_WARNING("Nothing happens."))
+			to_chat(user, SPAN_WARNING("什么也没发生。"))
 		else
 			if(allowed(usr))
 				locked = !locked
-				user.visible_message(SPAN_NOTICE("[user] [locked ? "locks" : "unlocks"] [src]'s interface."),
-				SPAN_NOTICE("You [locked ? "lock" : "unlock"] [src]'s interface."))
+				user.visible_message(SPAN_NOTICE("[user][locked ? "锁定" : "解锁"]了[src]的界面。"),
+				SPAN_NOTICE("你[locked ? "锁定" : "解锁"]了[src]的界面。"))
 				update_icon()
 			else
-				to_chat(user, SPAN_WARNING("Access denied."))
+				to_chat(user, SPAN_WARNING("拒绝访问。"))
 	else if(iswire(W) && !terminal && opened && has_electronics != 2)
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You have no idea what to do with [src]."))
+			to_chat(user, SPAN_WARNING("你完全不知道该如何操作[src]。"))
 			return
 		if(loc:intact_tile)
-			to_chat(user, SPAN_WARNING("You must remove the floor plating in front of the APC first."))
+			to_chat(user, SPAN_WARNING("你必须先移除区域电力控制器前方的地板铺板。"))
 			return
 		var/obj/item/stack/cable_coil/C = W
 		if(C.get_amount() < 10)
-			to_chat(user, SPAN_WARNING("You need more wires."))
+			to_chat(user, SPAN_WARNING("你需要更多电线。"))
 			return
-		user.visible_message(SPAN_NOTICE("[user] starts wiring [src]'s frame."),
-		SPAN_NOTICE("You start wiring [src]'s frame."))
+		user.visible_message(SPAN_NOTICE("[user]开始为[src]的框架接线。"),
+		SPAN_NOTICE("你开始为[src]的框架接线。"))
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		if(do_after(user, 20 * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD) && !terminal && opened && has_electronics != 2)
 			var/turf/T = get_turf(src)
@@ -703,23 +703,23 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 				spark.start()
 				return
 			if(C.use(10))
-				user.visible_message(SPAN_NOTICE("[user] wires [src]'s frame."),
-				SPAN_NOTICE("You wire [src]'s frame."))
+				user.visible_message(SPAN_NOTICE("[user]给[src]的框架接好了线。"),
+				SPAN_NOTICE("你给[src]的框架接好了线。"))
 				make_terminal()
 				terminal.connect_to_network()
 	else if(HAS_TRAIT(W, TRAIT_TOOL_WIRECUTTERS) && terminal && opened && has_electronics != 2)
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You have no idea what to do with [W]."))
+			to_chat(user, SPAN_WARNING("你完全不知道该如何使用[W]。"))
 			return
 		if(loc:intact_tile)
-			to_chat(user, SPAN_WARNING("You must remove the floor plating in front of the APC first."))
+			to_chat(user, SPAN_WARNING("你必须先移除区域电力控制器前方的地板铺板。"))
 			return
-		user.visible_message(SPAN_NOTICE("[user] starts removing [src]'s wiring and terminal."),
-		SPAN_NOTICE("You start removing [src]'s wiring and terminal."))
+		user.visible_message(SPAN_NOTICE("[user]开始拆除[src]的线路和接线端子。"),
+		SPAN_NOTICE("你开始拆除[src]的线路和接线端子。"))
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		if(do_after(user, 50 * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			if(!terminal)
-				to_chat(user, SPAN_WARNING("\The [src] lacks a terminal to remove."))
+				to_chat(user, SPAN_WARNING("[src]没有可拆除的接线端子。"))
 				return
 			if (prob(50) && electrocute_mob(user, terminal.powernet, terminal))
 				var/datum/effect_system/spark_spread/spark = new /datum/effect_system/spark_spread
@@ -727,60 +727,60 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 				spark.start()
 				return
 			new /obj/item/stack/cable_coil(loc,10)
-			user.visible_message(SPAN_NOTICE("[user] removes [src]'s wiring and terminal."),
-			SPAN_NOTICE("You remove [src]'s wiring and terminal."))
+			user.visible_message(SPAN_NOTICE("[user]拆除了[src]的线路和接线端子。"),
+			SPAN_NOTICE("你拆除了[src]的线路和接线端子。"))
 			qdel(terminal)
 			terminal = null
 	else if(istype(W, /obj/item/circuitboard/apc) && opened && has_electronics == 0 && !(stat & BROKEN))
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You have no idea what to do with [W]."))
+			to_chat(user, SPAN_WARNING("你完全不知道该如何使用[W]。"))
 			return
-		user.visible_message(SPAN_NOTICE("[user] starts inserting the power control board into [src]."),
-		SPAN_NOTICE("You start inserting the power control board into [src]."))
+		user.visible_message(SPAN_NOTICE("[user]开始将电力控制板装入[src]。"),
+		SPAN_NOTICE("你开始将电力控制板装入[src]。"))
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		if(do_after(user, 15, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			has_electronics = 1
-			user.visible_message(SPAN_NOTICE("[user] inserts the power control board into [src]."),
-			SPAN_NOTICE("You insert the power control board into [src]."))
+			user.visible_message(SPAN_NOTICE("[user]将电力控制板装入了[src]。"),
+			SPAN_NOTICE("你将电力控制板装入了[src]。"))
 			qdel(W)
 	else if(istype(W, /obj/item/circuitboard/apc) && opened && has_electronics == 0 && (stat & BROKEN))
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You have no idea what to do with [W]."))
+			to_chat(user, SPAN_WARNING("你完全不知道该如何使用[W]。"))
 			return
-		to_chat(user, SPAN_WARNING("You cannot put the board inside, the frame is damaged."))
+		to_chat(user, SPAN_WARNING("框架损坏，无法装入电路板。"))
 		return
 	else if(iswelder(W) && opened && has_electronics == 0 && !terminal)
 		if(!HAS_TRAIT(W, TRAIT_TOOL_BLOWTORCH))
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要功率更大的喷灯！"))
 			return
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You have no idea what to do with [W]."))
+			to_chat(user, SPAN_WARNING("你完全不知道该如何使用[W]。"))
 			return
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.get_fuel() < 3)
-			to_chat(user, SPAN_WARNING("You need more welding fuel to complete this task."))
+			to_chat(user, SPAN_WARNING("你需要更多焊接燃料才能完成这项工作。"))
 			return
-		user.visible_message(SPAN_NOTICE("[user] starts welding [src]'s frame."),
-		SPAN_NOTICE("You start welding [src]'s frame."))
+		user.visible_message(SPAN_NOTICE("[user]开始焊接[src]的框架。"),
+		SPAN_NOTICE("你开始焊接[src]的框架。"))
 		playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
 		if(do_after(user, 50 * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			if(!src || !WT.remove_fuel(3, user))
 				return
-			user.visible_message(SPAN_NOTICE("[user] welds [src]'s frame apart."), SPAN_NOTICE("You weld [src]'s frame apart."))
+			user.visible_message(SPAN_NOTICE("[user]用焊枪切开了[src]的框架。"), SPAN_NOTICE("你用焊枪切开了[src]的框架。"))
 			deconstruct()
 			return
 	else if(istype(W, /obj/item/frame/apc) && opened && (stat & BROKEN))
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You have no idea what to do with [W]."))
+			to_chat(user, SPAN_WARNING("你完全不知道该如何使用[W]。"))
 			return
 		if(has_electronics)
-			to_chat(user, SPAN_WARNING("You cannot repair this APC until you remove the electronics still inside."))
+			to_chat(user, SPAN_WARNING("必须先取出里面的电子组件，才能修复这台区域电力控制器。"))
 			return
-		user.visible_message(SPAN_NOTICE("[user] begins replacing [src]'s damaged frontal panel with a new one."),
-		SPAN_NOTICE("You begin replacing [src]'s damaged frontal panel with a new one."))
+		user.visible_message(SPAN_NOTICE("[user]开始更换[src]损坏的前面板。"),
+		SPAN_NOTICE("你开始更换[src]损坏的前面板。"))
 		if(do_after(user, 50 * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-			user.visible_message(SPAN_NOTICE("[user] replaces [src]'s damaged frontal panel with a new one."),
-			SPAN_NOTICE("You replace [src]'s damaged frontal panel with a new one."))
+			user.visible_message(SPAN_NOTICE("[user]更换了[src]损坏的前面板。"),
+			SPAN_NOTICE("你更换了[src]损坏的前面板。"))
 			user.count_niche_stat(STATISTICS_NICHE_REPAIR_APC)
 			qdel(W)
 			beenhit = 0
@@ -791,16 +791,16 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 	else
 		if(((stat & BROKEN)) && !opened && W.force >= 5)
 			opened = APC_COVER_REMOVED
-			user.visible_message(SPAN_WARNING("[user] knocks down [src]'s cover with [W]!"), \
-				SPAN_WARNING("You knock down [src]'s cover with [W]!"))
+			user.visible_message(SPAN_WARNING("[user]用[W]砸开了[src]的盖板！"), \
+				SPAN_WARNING("你用[W]砸开了[src]的盖板！"))
 			update_icon()
 		else
 			if(isRemoteControlling(user))
 				return attack_hand(user)
 			if(!opened && wiresexposed && (HAS_TRAIT(W, TRAIT_TOOL_MULTITOOL) || HAS_TRAIT(W, TRAIT_TOOL_WIRECUTTERS)))
 				return attack_hand(user)
-			user.visible_message(SPAN_DANGER("[user] hits [src] with \the [W]!"), \
-			SPAN_DANGER("You hit [src] with \the [W]!"))
+			user.visible_message(SPAN_DANGER("[user]用[W]击打[src]！"), \
+			SPAN_DANGER("你用[W]击打[src]！"))
 
 /obj/structure/machinery/power/apc/deconstruct(disassembled = TRUE)
 	if(disassembled)
@@ -839,7 +839,7 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 					var/datum/effect_system/spark_spread/spark = new()
 					spark.set_up(3, 1, src)
 					spark.start()
-					to_chat(grabber, SPAN_DANGER("The APC's power currents surge eratically, damaging your chassis!"))
+					to_chat(grabber, SPAN_DANGER("区域电力控制器的电流剧烈波动，损伤了你的机体！"))
 					grabber.apply_damage(10,0, BURN)
 				else if(cell && cell.charge > 0)
 					if(!istype(s_pack))
@@ -850,12 +850,12 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 						if(!(cell.use(charge_to_use)))
 							return
 						s_pack.battery_charge += charge_to_use
-						to_chat(user, SPAN_NOTICE("You slot your fingers into the APC interface and siphon off some of the stored charge. [s_pack.name] now has [s_pack.battery_charge]/[SMARTPACK_MAX_POWER_STORED]"))
+						to_chat(user, SPAN_NOTICE("你将手指插入区域电力控制器接口，抽取其中的部分电能。[s_pack.name]现有电量为[s_pack.battery_charge]/[SMARTPACK_MAX_POWER_STORED]。"))
 						charging = APC_CHARGING
 					else
-						to_chat(user, SPAN_WARNING("[s_pack.name] is already fully charged."))
+						to_chat(user, SPAN_WARNING("[s_pack.name]已经充满电了。"))
 				else
-					to_chat(user, SPAN_WARNING("There is no charge to draw from that APC."))
+					to_chat(user, SPAN_WARNING("这台区域电力控制器没有可抽取的电量。"))
 				return
 
 			// Yautja Bracer Recharge
@@ -864,9 +864,9 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 				if(grabber.action_busy)
 					return FALSE
 				if(!COOLDOWN_FINISHED(bracer, bracer_recharge))
-					to_chat(user, SPAN_WARNING("It is too soon for [bracer.name] to siphon power again. Wait [COOLDOWN_SECONDSLEFT(bracer, bracer_recharge)] seconds."))
+					to_chat(user, SPAN_WARNING("[bracer.name]暂时还不能再次抽取电能，请等待[COOLDOWN_SECONDSLEFT(bracer, bracer_recharge)]秒。"))
 					return FALSE
-				to_chat(user, SPAN_NOTICE("You rest your bracer against the APC interface and begin to siphon off some of the stored energy."))
+				to_chat(user, SPAN_NOTICE("你将护腕贴在区域电力控制器接口上，开始抽取部分储存的电能。"))
 				if(!do_after(grabber, 20, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
 					return FALSE
 
@@ -874,16 +874,16 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 					var/datum/effect_system/spark_spread/spark = new()
 					spark.set_up(3, 1, src)
 					spark.start()
-					to_chat(grabber, SPAN_DANGER("The APC's power currents surge eratically, super-heating your bracer!"))
+					to_chat(grabber, SPAN_DANGER("区域电力控制器的电流剧烈波动，让你的护腕变得滚烫！"))
 					playsound(src.loc, 'sound/effects/sparks2.ogg', 25, 1)
 					grabber.apply_damage(10,0, BURN)
 					return FALSE
 				if(!cell || cell.charge <= 0)
-					to_chat(user, SPAN_WARNING("There is no charge to draw from that APC."))
+					to_chat(user, SPAN_WARNING("这台区域电力控制器没有可抽取的电量。"))
 					return FALSE
 
 				if(bracer.charge_max <= bracer.charge)
-					to_chat(user, SPAN_WARNING("[bracer.name] is already fully charged."))
+					to_chat(user, SPAN_WARNING("[bracer.name]已经充满电了。"))
 					return FALSE
 
 				var/charge_to_use = min(cell.charge, bracer.charge_max - bracer.charge)
@@ -892,7 +892,7 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 				playsound(src.loc, 'sound/effects/sparks2.ogg', 25, 1)
 				bracer.charge += charge_to_use
 				COOLDOWN_START(bracer, bracer_recharge, bracer.charge_cooldown)
-				to_chat(grabber, SPAN_YAUTJABOLD("[icon2html(bracer)] \The <b>[bracer]</b> beep: Power siphon complete. Charge at [bracer.charge]/[bracer.charge_max]."))
+				to_chat(grabber, SPAN_YAUTJABOLD("[icon2html(bracer)] <b>[bracer]</b>发出提示音：电能抽取完成，电量为[bracer.charge]/[bracer.charge_max]。"))
 				if(bracer.notification_sound)
 					playsound(bracer.loc, 'sound/items/pred_bracer.ogg', 75, 1)
 				charging = APC_CHARGING
@@ -907,20 +907,20 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 					allcut = FALSE
 					break
 			if(allcut)
-				to_chat(user, SPAN_NOTICE("[src] is already broken!"))
+				to_chat(user, SPAN_NOTICE("[src]已经坏了！"))
 				return
-			user.visible_message(SPAN_WARNING("[user.name] slashes [src]!"),
-			SPAN_WARNING("You slash [src]!"))
+			user.visible_message(SPAN_WARNING("[user.name]挥爪撕抓[src]！"),
+			SPAN_WARNING("你挥爪撕抓[src]！"))
 			playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
 			if(wiresexposed)
 				for(var/wire = 1; wire < length(GLOB.apc_wire_descriptions); wire++)
 					cut(wire, user)
 				update_icon()
-				visible_message(SPAN_WARNING("[src]'s wires are shredded!"))
+				visible_message(SPAN_WARNING("[src]的电线被扯碎了！"))
 			else if(beenhit >= pick(3, 4))
 				wiresexposed = TRUE
 				update_icon()
-				visible_message(SPAN_WARNING("[src]'s cover flies open, exposing the wires!"))
+				visible_message(SPAN_WARNING("[src]的盖板猛地打开，露出了电线！"))
 			else
 				beenhit++
 			return
@@ -929,18 +929,18 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 	if(usr == user && opened && (!isRemoteControlling(user)))
 		if(cell)
 			if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-				to_chat(user, SPAN_WARNING("You have no idea how to remove the power cell from [src]."))
+				to_chat(user, SPAN_WARNING("你完全不知道该如何从[src]中取出电池。"))
 				return
 			user.put_in_hands(cell)
 			cell.add_fingerprint(user)
 			cell.update_icon()
 
 			src.cell = null
-			user.visible_message(SPAN_NOTICE("[user] removes the power cell from [src]!"),
-			SPAN_NOTICE("You remove the power cell from [src]."))
+			user.visible_message(SPAN_NOTICE("[user]从[src]中取出了电池！"),
+			SPAN_NOTICE("你从[src]中取出了电池。"))
 			charging = APC_NOT_CHARGING
 			update_icon()
-			SSclues.create_print(get_turf(user), user, "The fingerprint contains small parts of battery acid.")
+			SSclues.create_print(get_turf(user), user, "指纹中含有少量电池酸液。")
 			SEND_SIGNAL(user, COMSIG_MOB_APC_REMOVE_CELL, src)
 		return
 	if(stat & (BROKEN|MAINT))
@@ -968,17 +968,17 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 		if(APC_WIRE_MAIN_POWER)
 			if(user)
 				shock(usr, 50)
-				visible_message(SPAN_WARNING("\The [src] begins flashing error messages wildly!"))
-				SSclues.create_print(get_turf(user), user, "The fingerprint contains specks of wire.")
+				visible_message(SPAN_WARNING("[src]开始疯狂闪烁错误信息！"))
+				SSclues.create_print(get_turf(user), user, "指纹中含有电线碎屑。")
 				SEND_SIGNAL(user, COMSIG_MOB_APC_CUT_WIRE, src)
 			shorted = 1
 			if(with_message)
-				visible_message(SPAN_WARNING("\The [src] begins flashing error messages wildly!"))
+				visible_message(SPAN_WARNING("[src]开始疯狂闪烁错误信息！"))
 
 		if(APC_WIRE_IDSCAN)
 			locked = 0
 			if(with_message)
-				visible_message(SPAN_NOTICE("\The [src] emits a click."))
+				visible_message(SPAN_NOTICE("[src]发出一声咔哒声。"))
 
 /obj/structure/machinery/power/apc/proc/mend(wire)
 	apcwires |= getWireFlag(wire)
@@ -992,27 +992,27 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 
 		if(APC_WIRE_IDSCAN)
 			locked = 1
-			visible_message(SPAN_NOTICE("\The [src] emits a slight thunk."))
+			visible_message(SPAN_NOTICE("[src]发出轻微的闷响。"))
 
 /obj/structure/machinery/power/apc/proc/pulse(wire, mob/user)
 	if(isWireCut(wire))
 		if(user)
-			to_chat(user, SPAN_WARNING("You can't pulse a cut wire!"))
+			to_chat(user, SPAN_WARNING("你不能向剪断的电线发送脉冲！"))
 		return
 	switch(wire)
 		if(APC_WIRE_IDSCAN) //Unlocks the APC for 30 seconds, if you have a better way to hack an APC I'm all ears
 			locked = 0
-			visible_message(SPAN_NOTICE("\The [src] emits a click."))
+			visible_message(SPAN_NOTICE("[src]发出一声咔哒声。"))
 			spawn(30 SECONDS)
 				locked = 1
-				visible_message(SPAN_NOTICE("\The [src] emits a slight thunk."))
+				visible_message(SPAN_NOTICE("[src]发出轻微的闷响。"))
 
 		if(APC_WIRE_MAIN_POWER)
 			if(shorted == 0)
 				shorted = 1
-				visible_message(SPAN_WARNING("\The [src] begins flashing error messages wildly!"))
+				visible_message(SPAN_WARNING("[src]开始疯狂闪烁错误信息！"))
 				if(user)
-					SSclues.create_print(get_turf(user), user, "The fingerprint looks like it held a multitool?")
+					SSclues.create_print(get_turf(user), user, "从指纹看来，这只手似乎握过多用工具？")
 				SEND_SIGNAL(user, COMSIG_MOB_APC_POWER_PULSE, src)
 			addtimer(VARSET_CALLBACK(src, shorted, FALSE), 2 MINUTES)
 
@@ -1021,25 +1021,25 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 		return TRUE
 
 	if(user.stat)
-		to_chat(user, SPAN_WARNING("You must be conscious to use [src]!"))
+		to_chat(user, SPAN_WARNING("你必须保持清醒才能使用[src]！"))
 		return 0
 	if(!user.client)
 		return 0
 	if(!(ishuman(user) || isRemoteControlling(user)))
-		to_chat(user, SPAN_WARNING("You don't have the dexterity to use [src]!"))
+		to_chat(user, SPAN_WARNING("你的动作不够灵巧，无法使用[src]！"))
 		SSnano.nanomanager.close_user_uis(user, src)
 		return 0
 	if(user.is_mob_restrained())
-		to_chat(user, SPAN_WARNING("You must have free hands to use [src]."))
+		to_chat(user, SPAN_WARNING("你必须空出双手才能使用[src]。"))
 		return 0
 	if(user.body_position == LYING_DOWN)
-		to_chat(user, SPAN_WARNING("You can't reach [src]!"))
+		to_chat(user, SPAN_WARNING("你够不到[src]！"))
 		return 0
 	autoflag = 5
 	if(isRemoteControlling(user))
 		if(aidisabled)
 			if(!loud)
-				to_chat(user, SPAN_WARNING("[src] has AI control disabled!"))
+				to_chat(user, SPAN_WARNING("[src]的AI控制已禁用！"))
 				SSnano.nanomanager.close_user_uis(user, src)
 			return 0
 	else
@@ -1051,14 +1051,14 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 	if(istype(H))
 		if(H.getBrainLoss() >= 60)
 			for(var/mob/M as anything in viewers(src, null))
-				H.visible_message(SPAN_WARNING("[H] stares cluelessly at [src] and drools."),
-				SPAN_WARNING("You stare cluelessly at [src] and drool."))
+				H.visible_message(SPAN_WARNING("[H]茫然地盯着[src]，流着口水。"),
+				SPAN_WARNING("你茫然地盯着[src]，流着口水。"))
 			return 0
 		else if(prob(H.getBrainLoss()))
-			to_chat(user, SPAN_WARNING("You momentarily forget how to use [src]."))
+			to_chat(user, SPAN_WARNING("你一时间忘了如何使用[src]。"))
 			return 0
 		if(!skillcheck(H, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(H, SPAN_WARNING("You don't know how to use \the [src]'s interface."))
+			to_chat(H, SPAN_WARNING("你不知道该如何使用[src]的界面。"))
 			return
 	return 1
 
@@ -1076,7 +1076,7 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 			var/datum/effect_system/spark_spread/spark = new()
 			spark.set_up(1, 1, src)
 			spark.start()
-			visible_message(SPAN_WARNING("[src] suddenly lets out a blast of smoke and some sparks!"))
+			visible_message(SPAN_WARNING("[src]突然喷出一股浓烟和些许火花！"))
 
 /obj/structure/machinery/power/apc/surplus()
 	if(terminal)
@@ -1313,11 +1313,11 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 /obj/structure/machinery/power/apc/proc/set_broken()
 
 	//Aesthetically much better!
-	visible_message(SPAN_WARNING("[src]'s screen flickers with warnings briefly!"))
+	visible_message(SPAN_WARNING("[src]的屏幕短暂闪烁着警告！"))
 	addtimer(CALLBACK(src, PROC_REF(do_set_broken)), rand(2, 5))
 
 /obj/structure/machinery/power/apc/proc/do_set_broken()
-	visible_message(SPAN_DANGER("[src]'s screen suddenly explodes in rain of sparks and small debris!"))
+	visible_message(SPAN_DANGER("[src]的屏幕突然炸开，火花和碎屑四处飞溅！"))
 	stat |= BROKEN
 	operating = 0
 	update_icon()
@@ -1391,8 +1391,8 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 	dir = 8
 
 /obj/structure/machinery/power/apc/almayer/hardened
-	name = "hardened area power controller"
-	desc = "A control terminal for the area electrical systems. This one is hardened against sudden power fluctuations caused by electrical grid damage."
+	name = "加固型区域电力控制器"
+	desc = "区域电力系统的控制终端，经过加固，可抵御电网受损引发的突然电力波动。"
 	crash_break_probability = 0
 
 /obj/structure/machinery/power/apc/almayer/hardened/north
@@ -1451,7 +1451,7 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, flatten_numeric_alist(alist(
 
 // Upgraded APC's with directions
 /obj/structure/machinery/power/apc/upgraded/power
-	desc = "A control terminal for the area electrical systems. This one is upgraded with better power cell to sustain higher power usage."
+	desc = "区域电力系统的控制终端，升级了更好的电池，可维持更高的用电需求。"
 	cell_type = /obj/item/cell/high
 
 

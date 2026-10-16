@@ -15,8 +15,8 @@
 		icon_state = new_icon_state
 
 /obj/item/weapon/gun
-	name = "gun"
-	desc = "It's a gun. It's pretty terrible, though."
+	name = "枪械"
+	desc = "一把枪，不过相当糟糕。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = ""
 	item_state = "gun"
@@ -789,7 +789,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 			return
 
 	flags_item ^= WIELDED
-	name += " (Wielded)"
+	name += "（双手持握）"
 	item_state += "_w"
 	slowdown = initial(slowdown) + aim_slowdown
 	place_offhand(user, initial(name))

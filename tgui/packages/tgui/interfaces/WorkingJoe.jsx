@@ -49,12 +49,12 @@ const Login = (props) => {
       mt="-3rem"
       bold
     >
-      <Box fontFamily="monospace">APOLLO Maintenance Controller</Box>
+      <Box fontFamily="monospace">阿波罗维护控制器</Box>
       <Box mb="2rem" fontFamily="monospace">
-        WY-DOS Executive
+        WY-DOS执行程序
       </Box>
-      <Box fontFamily="monospace">Version 12.8.3</Box>
-      <Box fontFamily="monospace">Copyright © 2182, Weyland Yutani Corp.</Box>
+      <Box fontFamily="monospace">版本12.8.3</Box>
+      <Box fontFamily="monospace">版权所有 © 2182，维兰德-汤谷公司。</Box>
 
       <Button
         icon="id-card"
@@ -65,7 +65,7 @@ const Login = (props) => {
         mt="5rem"
         onClick={() => act('login')}
       >
-        Login
+        登录
       </Button>
     </Flex>
   );
@@ -99,14 +99,14 @@ const MainMenu = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
             <Button
               icon="house"
               ml="auto"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
               disabled={current_menu === 'main'}
             />
@@ -114,7 +114,7 @@ const MainMenu = (props) => {
               icon={soundicon}
               ml="auto"
               mr="1rem"
-              tooltip="Mute/Un-Mute notifcation sounds."
+              tooltip="关闭或开启通知音效。"
               onClick={() => act('toggle_sound')}
             />
           </Box>
@@ -130,21 +130,21 @@ const MainMenu = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Navigation Menu</h1>
+        <h1 align="center">导航菜单</h1>
         <Stack>
           <Stack.Item grow>
-            <h3>Request Submission</h3>
+            <h3>提交申请</h3>
           </Stack.Item>
           {can_request_access === 'Yes' && (
             <Stack.Item>
               <Button
-                tooltip="Request an access ticket to visit ARES."
+                tooltip="申请通行证以访问ARES。"
                 icon="bullhorn"
                 ml="auto"
                 px="2rem"
@@ -152,14 +152,14 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('page_request')}
               >
-                Request Access Ticket
+                申请通行证
               </Button>
             </Stack.Item>
           )}
           {access_level === 3 && (
             <Stack.Item>
               <Button.Confirm
-                tooltip="Return your temporary access."
+                tooltip="交还临时访问权限。"
                 icon="eye"
                 ml="auto"
                 px="2rem"
@@ -167,13 +167,13 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('return_access')}
               >
-                Surrender Access Ticket
+                交还通行证
               </Button.Confirm>
             </Stack.Item>
           )}
           <Stack.Item>
             <Button
-              tooltip="View or Report any maintenance problems."
+              tooltip="查看或报告维护问题。"
               icon="comments"
               ml="auto"
               px="2rem"
@@ -181,7 +181,7 @@ const MainMenu = (props) => {
               bold
               onClick={() => act('page_report')}
             >
-              Maintenance Tickets
+              维修工单
             </Button>
           </Stack.Item>
         </Stack>
@@ -189,11 +189,11 @@ const MainMenu = (props) => {
         {access_level >= 4 && (
           <Stack>
             <Stack.Item grow>
-              <h3>Certified Personnel</h3>
+              <h3>授权人员</h3>
             </Stack.Item>
             <Stack.Item>
               <Button
-                tooltip="Read the Apollo Link logs."
+                tooltip="阅读阿波罗链路记录。"
                 icon="clipboard"
                 ml="auto"
                 px="2rem"
@@ -201,12 +201,12 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('page_apollo')}
               >
-                View Apollo Log
+                查看阿波罗日志
               </Button>
             </Stack.Item>
             <Stack.Item>
               <Button
-                tooltip="View the recent logins."
+                tooltip="查看近期登录记录。"
                 icon="users"
                 ml="auto"
                 px="2rem"
@@ -214,7 +214,7 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('page_logins')}
               >
-                View Access Log
+                查看访问日志
               </Button>
             </Stack.Item>
           </Stack>
@@ -222,11 +222,11 @@ const MainMenu = (props) => {
         {access_level >= 5 && (
           <Stack>
             <Stack.Item grow>
-              <h3>Task Management</h3>
+              <h3>任务管理</h3>
             </Stack.Item>
             <Stack.Item>
               <Button
-                tooltip="Approve, or deny, temporary visitation access to personnel."
+                tooltip="批准或拒绝人员的临时访问申请。"
                 icon="user-shield"
                 ml="auto"
                 px="2rem"
@@ -234,12 +234,12 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('page_tickets')}
               >
-                Manage Access Tickets
+                管理通行申请
               </Button>
             </Stack.Item>
             <Stack.Item>
               <Button
-                tooltip="Claim, Complete, Prioritise or Cancel Maintenance Tickets."
+                tooltip="认领、完成、优先处理或取消维修工单。"
                 icon="cart-shopping"
                 ml="auto"
                 px="2rem"
@@ -247,7 +247,7 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('page_maintenance')}
               >
-                Manage Maintenance Tickets
+                管理维修工单
               </Button>
             </Stack.Item>
           </Stack>
@@ -255,12 +255,12 @@ const MainMenu = (props) => {
       </Section>
       {access_level >= 5 && (
         <Section>
-          <h1 align="center">Core Security Protocols</h1>
+          <h1 align="center">核心安全协议</h1>
           <Stack>
             <Stack.Item grow>
               <Button
                 align="center"
-                tooltip="Release stored CN20-X nerve gas from security vents."
+                tooltip="从安全通风口释放储存的CN20-X神经毒气。"
                 icon="wind"
                 color="red"
                 ml="auto"
@@ -269,13 +269,13 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('page_core_gas')}
               >
-                Nerve Gas Control
+                神经毒气控制
               </Button>
             </Stack.Item>
             <Stack.Item grow>
               <Button.Confirm
                 align="center"
-                tooltip="Activate/Deactivate the AI Core Lockdown."
+                tooltip="启用或解除AI核心封锁。"
                 icon="lock"
                 color="red"
                 ml="auto"
@@ -284,7 +284,7 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('security_lockdown')}
               >
-                AI Core Lockdown
+                AI核心封锁
               </Button.Confirm>
             </Stack.Item>
           </Stack>
@@ -307,7 +307,7 @@ const ApolloLog = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -315,7 +315,7 @@ const ApolloLog = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -331,13 +331,13 @@ const ApolloLog = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Apollo Log</h1>
+        <h1 align="center">阿波罗日志</h1>
 
         {apollo_log.map((apollo_message, i) => {
           return (
@@ -364,7 +364,7 @@ const LoginRecords = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -372,7 +372,7 @@ const LoginRecords = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -388,13 +388,13 @@ const LoginRecords = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Login Records</h1>
+        <h1 align="center">登录记录</h1>
 
         {access_log.map((login, i) => {
           return (
@@ -426,7 +426,7 @@ const MaintReports = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -434,7 +434,7 @@ const MaintReports = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -450,13 +450,13 @@ const MaintReports = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Maintenance Reports</h1>
+        <h1 align="center">维修报告</h1>
         <Flex
           direction="column"
           justify="center"
@@ -475,7 +475,7 @@ const MaintReports = (props) => {
             mt="5rem"
             onClick={() => act('new_report')}
           >
-            New Report
+            新建报告
           </Button>
         </Flex>
 
@@ -491,30 +491,30 @@ const MaintReports = (props) => {
               ID
             </Flex.Item>
             <Flex.Item bold width="6rem" shrink="0" mr="1rem">
-              Time
+              时间
             </Flex.Item>
             <Flex.Item width="12rem" bold>
-              Category
+              类别
             </Flex.Item>
             <Flex.Item width="40rem" bold>
-              Details
+              详情
             </Flex.Item>
           </Flex>
         )}
         {maintenance_tickets.map((ticket, i) => {
-          let view_status = 'Ticket is pending assignment.';
+          let view_status = '工单等待分配。';
           let view_icon = 'circle-question';
           if (ticket.status === 'assigned') {
-            view_status = 'Ticket is assigned.';
+            view_status = '工单已分配。';
             view_icon = 'circle-plus';
           } else if (ticket.status === 'rejected') {
-            view_status = 'Ticket has been rejected.';
+            view_status = '工单已被拒绝。';
             view_icon = 'circle-xmark';
           } else if (ticket.status === 'cancelled') {
-            view_status = 'Ticket was cancelled by reporter.';
+            view_status = '报告人已取消工单。';
             view_icon = 'circle-stop';
           } else if (ticket.status === 'completed') {
-            view_status = 'Ticket has been successfully resolved.';
+            view_status = '工单已成功解决。';
             view_icon = 'circle-check';
           }
           let can_cancel = 'Yes';
@@ -549,7 +549,7 @@ const MaintReports = (props) => {
                 <Button icon={view_icon} tooltip={view_status} />
                 <Button.Confirm
                   icon="file-circle-xmark"
-                  tooltip="Cancel Ticket"
+                  tooltip="取消工单"
                   disabled={can_cancel === 'No'}
                   onClick={() => act('cancel_ticket', { ticket: ticket.ref })}
                 />
@@ -580,7 +580,7 @@ const MaintManagement = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -588,7 +588,7 @@ const MaintManagement = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -604,13 +604,13 @@ const MaintManagement = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Maintenance Reports Management</h1>
+        <h1 align="center">维修报告管理</h1>
 
         {!!maintenance_tickets.length && (
           <Flex
@@ -624,36 +624,36 @@ const MaintManagement = (props) => {
               ID
             </Flex.Item>
             <Flex.Item bold width="6rem" shrink="0" ml="1rem">
-              Time
+              时间
             </Flex.Item>
             <Flex.Item width="12rem" bold>
-              Category
+              类别
             </Flex.Item>
             <Flex.Item width="20rem" bold>
-              Details
+              详情
             </Flex.Item>
             <Flex.Item width="10rem" bold>
-              Submit By
+              提交人
             </Flex.Item>
             <Flex.Item width="10rem" bold ml="0.5rem">
-              Assigned To
+              负责人
             </Flex.Item>
           </Flex>
         )}
         {maintenance_tickets.map((ticket, i) => {
-          let view_status = 'Ticket is pending assignment.';
+          let view_status = '工单等待分配。';
           let view_icon = 'circle-question';
           if (ticket.status === 'assigned') {
-            view_status = 'Ticket is assigned.';
+            view_status = '工单已分配。';
             view_icon = 'circle-plus';
           } else if (ticket.status === 'rejected') {
-            view_status = 'Ticket has been rejected.';
+            view_status = '工单已被拒绝。';
             view_icon = 'circle-xmark';
           } else if (ticket.status === 'cancelled') {
-            view_status = 'Ticket was cancelled by reporter.';
+            view_status = '报告人已取消工单。';
             view_icon = 'circle-stop';
           } else if (ticket.status === 'completed') {
-            view_status = 'Ticket has been successfully resolved.';
+            view_status = '工单已成功解决。';
             view_icon = 'circle-check';
           }
           let can_claim = 'Yes';
@@ -696,13 +696,13 @@ const MaintManagement = (props) => {
                 <Button icon={view_icon} tooltip={view_status} />
                 <Button.Confirm
                   icon="user-lock"
-                  tooltip="Claim Ticket"
+                  tooltip="认领工单"
                   disabled={can_claim === 'No'}
                   onClick={() => act('claim_ticket', { ticket: ticket.ref })}
                 />
                 <Button.Confirm
                   icon="user-gear"
-                  tooltip="Mark Ticket"
+                  tooltip="标记工单"
                   disabled={can_mark === 'No'}
                   onClick={() => act('mark_ticket', { ticket: ticket.ref })}
                 />
@@ -734,7 +734,7 @@ const AccessRequests = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -742,7 +742,7 @@ const AccessRequests = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -758,13 +758,13 @@ const AccessRequests = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Request Access</h1>
+        <h1 align="center">申请访问</h1>
         <Flex
           direction="column"
           justify="center"
@@ -784,7 +784,7 @@ const AccessRequests = (props) => {
             onClick={() => act('new_access')}
             disabled={access_level > 2}
           >
-            Create Ticket
+            创建申请
           </Button>
         </Flex>
 
@@ -800,36 +800,36 @@ const AccessRequests = (props) => {
               ID
             </Flex.Item>
             <Flex.Item bold width="6rem" shrink="0" mr="1rem">
-              Time
+              时间
             </Flex.Item>
             <Flex.Item width="8rem" mr="1rem" bold>
-              For
+              用途
             </Flex.Item>
             <Flex.Item width="40rem" bold>
-              Details
+              详情
             </Flex.Item>
           </Flex>
         )}
         {access_tickets.map((ticket, i) => {
-          let view_status = 'Access Ticket is pending assignment.';
+          let view_status = '通行申请等待分配。';
           let view_icon = 'circle-question';
           if (ticket.status === 'assigned') {
-            view_status = 'Access Ticket is assigned.';
+            view_status = '通行申请已分配。';
             view_icon = 'circle-plus';
           } else if (ticket.status === 'rejected') {
-            view_status = 'Access Ticket has been rejected.';
+            view_status = '通行申请已被拒绝。';
             view_icon = 'circle-xmark';
           } else if (ticket.status === 'cancelled') {
-            view_status = 'Access Ticket was cancelled by reporter.';
+            view_status = '申请人已取消通行申请。';
             view_icon = 'circle-stop';
           } else if (ticket.status === 'granted') {
-            view_status = 'Access ticket has been granted.';
+            view_status = '通行申请已获批准。';
             view_icon = 'circle-check';
           } else if (ticket.status === 'revoked') {
-            view_status = 'Access ticket has been revoked.';
+            view_status = '通行权限已撤销。';
             view_icon = 'circle-minus';
           } else if (ticket.status === 'returned') {
-            view_status = 'Access ticket has been returned.';
+            view_status = '通行权限已交还。';
             view_icon = 'circle-minus';
           }
           let can_cancel = 'Yes';
@@ -864,7 +864,7 @@ const AccessRequests = (props) => {
                 <Button icon={view_icon} tooltip={view_status} />
                 <Button.Confirm
                   icon="file-circle-xmark"
-                  tooltip="Cancel Ticket"
+                  tooltip="取消工单"
                   disabled={can_cancel === 'No'}
                   onClick={() => act('cancel_ticket', { ticket: ticket.ref })}
                 />
@@ -891,7 +891,7 @@ const AccessTickets = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -899,7 +899,7 @@ const AccessTickets = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -915,13 +915,13 @@ const AccessTickets = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Access Ticket Management</h1>
+        <h1 align="center">通行申请管理</h1>
         {!!access_tickets.length && (
           <Flex
             mt="2rem"
@@ -934,16 +934,16 @@ const AccessTickets = (props) => {
               ID
             </Flex.Item>
             <Flex.Item bold width="6rem" shrink="0" mr="1rem">
-              Time
+              时间
             </Flex.Item>
             <Flex.Item width="8rem" mr="1rem" bold>
-              Submitter
+              提交人
             </Flex.Item>
             <Flex.Item width="8rem" mr="1rem" bold>
-              For
+              用途
             </Flex.Item>
             <Flex.Item width="30rem" bold>
-              Reason
+              理由
             </Flex.Item>
           </Flex>
         )}
@@ -958,30 +958,29 @@ const AccessTickets = (props) => {
           if (ticket.lock_status === 'CLOSED') {
             can_update = 'No';
           }
-          let view_status = 'Ticket is pending assignment.';
+          let view_status = '工单等待分配。';
           let view_icon = 'circle-question';
-          let update_tooltip = 'Grant Access';
+          let update_tooltip = '授予权限';
           if (ticket.status === 'rejected') {
-            view_status = 'Ticket has been rejected.';
+            view_status = '工单已被拒绝。';
             view_icon = 'circle-xmark';
-            update_tooltip = 'Ticket rejected. No further changes possible.';
+            update_tooltip = '申请已被拒绝，无法继续更改。';
           } else if (ticket.status === 'cancelled') {
-            view_status = 'Ticket was cancelled by reporter.';
+            view_status = '报告人已取消工单。';
             view_icon = 'circle-stop';
-            update_tooltip = 'Ticket cancelled. No further changes possible.';
+            update_tooltip = '申请已取消，无法继续更改。';
           } else if (ticket.status === 'granted') {
-            view_status = 'Access ticket has been granted.';
+            view_status = '通行申请已获批准。';
             view_icon = 'circle-check';
-            update_tooltip = 'Revoke Access';
+            update_tooltip = '撤销权限';
           } else if (ticket.status === 'revoked') {
-            view_status = 'Access ticket has been revoked.';
+            view_status = '通行权限已撤销。';
             view_icon = 'circle-minus';
-            update_tooltip = 'Access revoked. No further changes possible.';
+            update_tooltip = '权限已撤销，无法继续更改。';
           } else if (ticket.status === 'returned') {
-            view_status = 'Access ticket has been returned.';
+            view_status = '通行权限已交还。';
             view_icon = 'circle-minus';
-            update_tooltip =
-              'Access self-returned. No further changes possible.';
+            update_tooltip = '权限已由本人交还，无法继续更改。';
           }
           let can_reject = 'Yes';
           if (can_update === 'No') {
@@ -1019,7 +1018,7 @@ const AccessTickets = (props) => {
                 {can_reject === 'Yes' && (
                   <Button.Confirm
                     icon="user-minus"
-                    tooltip="Reject Ticket"
+                    tooltip="拒绝申请"
                     disabled={can_reject === 'No'}
                     onClick={() => act('reject_access', { ticket: ticket.ref })}
                   />
@@ -1053,7 +1052,7 @@ const CoreSecGas = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -1061,7 +1060,7 @@ const CoreSecGas = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -1077,20 +1076,20 @@ const CoreSecGas = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Nerve Gas Release</h1>
+        <h1 align="center">神经毒气释放</h1>
         {security_vents.map((vent, i) => {
           return (
             <Button.Confirm
               key={i}
               align="center"
               icon="wind"
-              tooltip="Release Gas"
+              tooltip="释放毒气"
               width="100%"
               disabled={access_level < 5 || !vent.available}
               onClick={() => act('trigger_vent', { vent: vent.ref })}

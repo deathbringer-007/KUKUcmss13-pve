@@ -73,23 +73,23 @@
 
 //Marine service & tanker jacket + MP themed variants
 /obj/item/clothing/suit/storage/jacket/marine/service
-	name = "marine service jacket"
-	desc = "A USCMC service jacket, usually officer issue. While technically armored to frag/handgun ammunition, it's best if you don't try your luck."
+	name = "陆战队常服外套"
+	desc = "USCMC 常服外套，通常配发给军官。理论上能防破片和手枪弹，但最好别拿命试。"
 	has_buttons = TRUE
 	flags_atom = NO_SNOW_TYPE
 	icon_state = "coat_officer"
 	initial_icon_state = "coat_officer"
 
 /obj/item/clothing/suit/storage/jacket/marine/pilot
-	name = "\improper M70B1 light flak jacket"
-	desc = "M70 variant that reduces bulk and protective for ergonomics. Consider this to have the same amount of protection from flak as an officer's service jacket."
+	name = "M70B1 轻型防破片夹克"
+	desc = "牺牲体积与防护来改善人体工学的 M70 变体。对破片的防护大致相当于军官常服外套。"
 	icon_state = "pilot_alt"
 	has_buttons = TRUE
 	initial_icon_state = "pilot_alt"
 
 /obj/item/clothing/suit/storage/jacket/marine/RO
-	name = "quartermaster jacket"
-	desc = "A green jacket worn by USCM personnel. The back has the flag of the United Americas on it."
+	name = "军需官夹克"
+	desc = "USCM 人员穿着的绿色夹克，背部印有美洲联盟旗帜。"
 	icon_state = "RO_jacket"
 	icon = 'icons/obj/items/clothing/suits.dmi'
 	item_icons = list(
@@ -98,8 +98,8 @@
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/suit/storage/jacket/marine/service/mp
-	name = "military police service jacket"
-	desc = "Marine service jacket in USCMC Military Police scheme. Usually not used due to local standards requiring service armor instead."
+	name = "宪兵常服外套"
+	desc = "采用 USCMC 宪兵配色的陆战队常服外套。由于当地规定要求穿着执勤护甲，通常用不上。"
 	has_buttons = TRUE
 	icon_state = "coat_mp"
 	flags_atom = NO_SNOW_TYPE
@@ -114,16 +114,16 @@
 	initial_icon_state = "coat_warden"
 
 /obj/item/clothing/suit/storage/jacket/marine/service/cmp
-	name = "chief military police service jacket"
-	desc = "A marine service jacket adopted for use by Military Police personnel on board USCM ships. Ironically most ships require their MP departments to use full armor, making these barely used by on duty MPs. Very popular among those who want to inexplicably smell like donuts."
+	name = "宪兵长常服夹克"
+	desc = "USCM 舰上宪兵使用的陆战队常服外套。讽刺的是，大多数舰船要求宪兵穿全套护甲，执勤时几乎用不上它。深受那些莫名想让自己闻起来像甜甜圈的人喜爱。"
 	has_buttons = TRUE
 	icon_state = "coat_cmp"
 	flags_atom = NO_SNOW_TYPE
 	initial_icon_state = "coat_cmp"
 
 /obj/item/clothing/suit/storage/jacket/marine/service/tanker
-	name = "tanker jacket"
-	desc = "A comfortable jacket provided to anyone expected to operate near or inside heavy machinery. Special material within the arms jams up any machinery it gets caught up in, protecting the wearer from injury."
+	name = "坦克乘员夹克"
+	desc = "为需在重型机械内外工作的人提供的舒适夹克。袖内特殊材料一旦卷入机器就会将其卡停，保护穿戴者免受伤害。"
 	has_buttons = TRUE
 	flags_atom = NO_SNOW_TYPE
 	icon_state = "jacket_tanker"
@@ -144,8 +144,8 @@
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/suit/storage/jacket/marine/dress
-	name = "marine formal service jacket"
-	desc = "Smells like vanilla. Signifies prestige and power, if a little flashy."
+	name = "陆战队正式常服外套"
+	desc = "散发着香草味，象征地位与权力，虽然有点招摇。"
 	icon_state = "coat_formal"
 	initial_icon_state = "coat_formal"
 	armor_melee = CLOTHING_ARMOR_LOW
@@ -160,33 +160,33 @@
 	has_buttons = TRUE
 
 /obj/item/clothing/suit/storage/jacket/marine/dress/officer
-	name = "marine officer dress jacket"
-	desc = "Dress Jacket worn by Commanding Officers of the USCM."
+	name = "陆战队军官礼服夹克"
+	desc = "USCM 指挥官穿着的礼服外套。"
 	icon_state = "co_jacket"
 	has_buttons = FALSE
 	valid_accessory_slots = list(ACCESSORY_SLOT_ARMBAND, ACCESSORY_SLOT_DECOR, ACCESSORY_SLOT_MEDAL)
 	restricted_accessory_slots = list(ACCESSORY_SLOT_ARMBAND)
 
 /obj/item/clothing/suit/storage/jacket/marine/dress/officer/bomber
-	name = "commanding officer bomber jacket"
-	desc = "A bomber jacket resembling those worn by airmen of old. A classic, stylish choice for those in the higher ranks."
+	name = "指挥官飞行夹克"
+	desc = "仿照旧时代飞行员服装的飞行夹克，是高阶人员经典而时髦的选择。"
 	has_buttons = TRUE
 	icon_state = "co_bomber"
 	initial_icon_state = "co_bomber"
 
 /obj/item/clothing/suit/storage/jacket/marine/dress/officer/white
-	name = "commanding officer white dress jacket"
-	desc = "A white dress tunic for hot-weather parades. Bright, unstained, and immaculate with gold accents."
+	name = "指挥官白色礼服夹克"
+	desc = "适合炎热天气阅兵的白色礼服上衣，明亮、洁净、无瑕，带有金色装饰。"
 	icon_state = "co_formal_white"
 
 /obj/item/clothing/suit/storage/jacket/marine/dress/officer/black
-	name = "commanding officer gray dress jacket"
-	desc = "A gray dress tunic for those occasions that mandate darker, more subdued colors. Combines sleek and subdued with gold accents."
+	name = "指挥官灰色礼服夹克"
+	desc = "适合需要深沉低调配色场合的灰色礼服上衣，将利落克制的风格与金色装饰结合。"
 	icon_state = "co_formal_black"
 
 /obj/item/clothing/suit/storage/jacket/marine/dress/officer/suit
-	name = "commanding officer dress blue coat"
-	desc = "A Navy regulation dress blues coat for high-ranking officers. For those who wish for style and authority."
+	name = "指挥官蓝色礼服大衣"
+	desc = "高级军官的海军制式蓝色礼服外套，献给追求风度与威严的人。"
 	icon_state = "co_suit"
 
 /obj/item/clothing/suit/storage/jacket/marine/dress/officer/falcon
@@ -195,8 +195,8 @@
 	icon_state = "co_falcon"
 
 /obj/item/clothing/suit/storage/jacket/marine/dress/general
-	name = "general's jacket"
-	desc = "A black trench coat with gold metallic trim. Flashy, highly protective, and over-the-top. Fit for a king - or, in this case, a General. Has quite a few pockets."
+	name = "将官夹克"
+	desc = "带有金色金属饰边的黑色风衣，华丽、防护出色、夸张至极。适合国王——或者这里的将军。口袋还不少。"
 	icon = 'icons/obj/items/clothing/suits.dmi'
 	icon_state = "general_jacket"
 	item_icons = list(
@@ -233,8 +233,8 @@
 	valid_accessory_slots = list(ACCESSORY_SLOT_ARMBAND, ACCESSORY_SLOT_RANK, ACCESSORY_SLOT_MEDAL)
 
 /obj/item/clothing/suit/storage/jacket/marine/service/aso
-	name = "auxiliary support officer jacket"
-	desc = "A comfortable vest for officers who are expected to work long hours staring at rows of numbers and inspecting equipment from knives to torpedos to entire dropships."
+	name = "辅助支援军官夹克"
+	desc = "舒适的军官背心，适合那些长时间盯着一排排数字、检查从刀具到鱼雷再到整架运输艇的人员。"
 	icon_state = "aso_jacket"
 	blood_overlay_type = "coat"
 	flags_armor_protection = BODY_FLAG_CHEST
@@ -270,8 +270,8 @@
 //=======================================================================\\
 
 /obj/item/clothing/suit/storage/jacket/marine/dress/blues
-	name = "marine enlisted dress blues jacket"
-	desc = "The jacket of the legendary Marine dress blues, virtually unchanged since the 19th century. You're wearing history, Marine. Don't let your ancestors down."
+	name = "陆战队士兵蓝色礼服夹克"
+	desc = "传奇陆战队蓝色礼服的外套，自 19 世纪以来几乎没有改变。陆战队员，你穿的是历史，别让先辈失望。"
 	icon = 'icons/mob/humans/onmob/contained/marinedressblues.dmi'
 	icon_state = "e_jacket"
 	item_state = "e_jacket"
@@ -280,22 +280,22 @@
 	contained_sprite = TRUE
 
 /obj/item/clothing/suit/storage/jacket/marine/dress/blues/nco
-	name = "marine NCO dress blues jacket"
-	desc = "The jacket of the legendary Marine dress blues, virtually unchanged since the 19th century. Features the adornments of a decorated non-commissioned officer. Heritage, embodied."
+	name = "陆战队士官蓝色礼服夹克"
+	desc = "传奇陆战队蓝色礼服的外套，自 19 世纪以来几乎没有改变。配有功勋士官的装饰，传承尽显其中。"
 	icon_state = "nco_jacket"
 	item_state = "nco_jacket"
 
 /obj/item/clothing/suit/storage/jacket/marine/dress/blues/officer
-	name = "marine officer dress blues jacket"
-	desc = "The jacket of the legendary Marine dress blues, virtually unchanged since the 19th century. Features the sleek dark design of the uniform worn by a commissioned officer."
+	name = "陆战队军官蓝色礼服夹克"
+	desc = "传奇陆战队蓝色礼服的外套，自 19 世纪以来几乎没有改变。采用军官制服利落的深色设计。"
 	icon_state = "o_jacket"
 	item_state = "o_jacket"
 
 //==================Combat Correspondent==================\\
 
 /obj/item/clothing/suit/storage/jacket/marine/reporter
-	name = "combat correspondent jacket"
-	desc = "A jacket for the most fashionable war correspondents."
+	name = "战地记者夹克"
+	desc = "献给最讲究时尚的战地记者的夹克。"
 	icon_state = "cc_brown"
 	item_state = "cc_brown"
 	flags_atom = NO_SNOW_TYPE
@@ -318,59 +318,59 @@
 //==================Corporate Liaison==================\\
 
 /obj/item/clothing/suit/storage/jacket/marine/vest
-	name = "brown vest"
-	desc = "A casual brown vest."
+	name = "棕色背心"
+	desc = "一件棕色休闲背心。"
 	icon_state = "vest_brown"
 	item_state = "vest_brown"
 	flags_atom = NO_SNOW_TYPE
 	has_buttons = FALSE
 
 /obj/item/clothing/suit/storage/jacket/marine/vest/tan
-	name = "tan vest"
-	desc = "A casual tan vest."
+	name = "棕褐色背心"
+	desc = "一件棕褐色休闲背心。"
 	icon_state = "vest_tan"
 	item_state = "vest_tan"
 	has_buttons = FALSE
 
 /obj/item/clothing/suit/storage/jacket/marine/vest/grey
-	name = "grey vest"
-	desc = "A casual grey vest."
+	name = "灰色背心"
+	desc = "一件灰色休闲背心。"
 	icon_state = "vest_grey"
 	item_state = "vest_grey"
 	has_buttons = FALSE
 
 /obj/item/clothing/suit/storage/jacket/marine/corporate
-	name = "khaki suit jacket"
-	desc = "A khaki suit jacket."
+	name = "卡其色西装外套"
+	desc = "一件卡其色西装外套。"
 	icon_state = "corporate_ivy"
 	item_state = "corporate_ivy"
 	flags_atom = NO_SNOW_TYPE
 	has_buttons = FALSE
 
 /obj/item/clothing/suit/storage/jacket/marine/corporate/formal
-	name = "formal suit jacket"
-	desc = "An ivory suit jacket; a Weyland-Yutani corporate badge is attached to the right lapel."
+	name = "正式西装外套"
+	desc = "一件象牙白西装外套，右侧翻领别着维兰德-汤谷公司徽章。"
 	icon_state = "corporate_formal"
 	item_state = "corporate_formal"
 	has_buttons = FALSE
 
 /obj/item/clothing/suit/storage/jacket/marine/corporate/black
-	name = "black suit jacket"
-	desc = "A black suit jacket."
+	name = "黑色西装外套"
+	desc = "一件黑色西装外套。"
 	icon_state = "corporate_black"
 	item_state = "corporate_black"
 	has_buttons = FALSE
 
 /obj/item/clothing/suit/storage/jacket/marine/corporate/brown
-	name = "brown suit jacket"
-	desc = "A brown suit jacket."
+	name = "棕色西装外套"
+	desc = "一件棕色西装外套。"
 	icon_state = "corporate_brown"
 	item_state = "corporate_brown"
 	has_buttons = FALSE
 
 /obj/item/clothing/suit/storage/jacket/marine/corporate/blue
-	name = "blue suit jacket"
-	desc = "A blue suit jacket."
+	name = "蓝色西装外套"
+	desc = "一件蓝色西装外套。"
 	icon_state = "corporate_blue"
 	item_state = "corporate_blue"
 	has_buttons = FALSE
@@ -383,23 +383,23 @@
 	has_buttons = FALSE
 
 /obj/item/clothing/suit/storage/jacket/marine/bomber
-	name = "khaki bomber jacket"
-	desc = "A khaki bomber jacket popular among stationeers and blue-collar workers everywhere."
+	name = "卡其色飞行夹克"
+	desc = "深受各地空间站工作人员与蓝领工人喜爱的卡其色飞行夹克。"
 	icon_state = "jacket_khaki"
 	item_state = "jacket_khaki"
 	flags_atom = NO_SNOW_TYPE
 	has_buttons = FALSE
 
 /obj/item/clothing/suit/storage/jacket/marine/bomber/red
-	name = "red bomber jacket"
-	desc = "A reddish-brown bomber jacket popular among stationeers and blue-collar workers everywhere."
+	name = "红色飞行夹克"
+	desc = "深受各地空间站工作人员与蓝领工人喜爱的红棕色飞行夹克。"
 	icon_state = "jacket_red"
 	item_state = "jacket_red"
 	has_buttons = FALSE
 
 /obj/item/clothing/suit/storage/jacket/marine/bomber/grey
-	name = "grey bomber jacket"
-	desc = "A blue-grey bomber jacket popular among stationeers and blue-collar workers everywhere."
+	name = "灰色飞行夹克"
+	desc = "深受各地空间站工作人员与蓝领工人喜爱的蓝灰色飞行夹克。"
 	icon_state = "jacket_grey"
 	item_state = "jacket_grey"
 	has_buttons = FALSE

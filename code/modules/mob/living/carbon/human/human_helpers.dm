@@ -176,7 +176,7 @@
 /mob/living/carbon/human/can_inject(mob/user, error_msg, target_zone)
 	if(species?.flags & IS_SYNTHETIC)
 		if(user && error_msg)
-			to_chat(user, SPAN_WARNING("[src] has no flesh to inject."))
+			to_chat(user, SPAN_WARNING("[src]没有可供注射的血肉。"))
 		return FALSE
 	. = TRUE
 	if(!user)
@@ -193,7 +193,7 @@
 				. = 0
 	if(!. && error_msg && user)
 		// Might need re-wording.
-		to_chat(user, SPAN_WARNING("There is no exposed flesh or thin material [target_zone == "head" ? "on their head" : "on their body"] to inject into."))
+		to_chat(user, SPAN_WARNING("[target_zone == "head" ? "头部" : "身体"]没有暴露的皮肤或可穿透的薄料，无法注射。"))
 
 
 /mob/living/carbon/human/has_brain()
@@ -294,17 +294,17 @@ f
 			if(Z.turn_off(src))
 				goes_out++
 	if(goes_out && light_off)
-		to_chat(src, SPAN_NOTICE("Your sources of light short and fizzle out."))
+		to_chat(src, SPAN_NOTICE("你的光源短路，闪烁几下后熄灭了。"))
 	else if(goes_out)
 		if(goes_out > 1)
-			to_chat(src, SPAN_NOTICE("Your sources of light fizzle out."))
+			to_chat(src, SPAN_NOTICE("你的光源闪烁几下后熄灭了。"))
 		else
-			to_chat(src, SPAN_NOTICE("Your source of light fizzles out."))
+			to_chat(src, SPAN_NOTICE("你的光源闪烁几下后熄灭了。"))
 	else if(light_off)
 		if(light_off > 1)
-			to_chat(src, SPAN_NOTICE("Your sources of light short out."))
+			to_chat(src, SPAN_NOTICE("你的光源短路了。"))
 		else
-			to_chat(src, SPAN_NOTICE("Your source of light shorts out."))
+			to_chat(src, SPAN_NOTICE("你的光源短路了。"))
 
 
 /mob/living/carbon/human/a_intent_change(intent as num)
@@ -413,7 +413,7 @@ f
 		var/mob/living/carbon/human/H = M
 		ignores_stripdrag_flag = H.species.ignores_stripdrag_flag
 	if(MODE_HAS_TOGGLEABLE_FLAG(MODE_NO_STRIPDRAG_ENEMY) && !ignores_stripdrag_flag && (stat == DEAD || health < HEALTH_THRESHOLD_CRIT) && !get_target_lock(M.faction_group))
-		to_chat(M, SPAN_WARNING("You can't pull a crit or dead member of another faction!"))
+		to_chat(M, SPAN_WARNING("你不能拖拽其他阵营重伤或死亡的人员！"))
 		return FALSE
 	return TRUE
 

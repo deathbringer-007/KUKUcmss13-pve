@@ -9,8 +9,8 @@
 #define GRENADE_FIRE_RESISTANCE_MAX 40
 
 /obj/item/explosive/grenade/high_explosive
-	name = "\improper M40 HEDP grenade"
-	desc = "High-Explosive Dual-Purpose. A small, but deceptively strong grenade that has been phasing out the M15 HE grenade. Explodes with a powerful blast, releasing shrapnel in a casualty radius of five meters. Can be fired from a PN 30mm UGL for impact detonation, or primed in-hand and thrown to detonate after 4 seconds."
+	name = "M40 HEDP 手榴弹"
+	desc = "高爆两用手榴弹。体积小，威力却不容小觑，正逐步取代 M15 高爆手榴弹。爆炸猛烈，弹片杀伤半径为五米。可由 PN 30mm 下挂榴弹发射器发射并撞击引爆，也可手动拉火投掷，4 秒后爆炸。"
 	icon_state = "grenade"
 	det_time = 40
 	item_state = "grenade_hedp"
@@ -72,16 +72,16 @@
 		prime()
 
 /obj/item/explosive/grenade/high_explosive/super
-	name = "\improper M40/2 HEDP grenade"
-	desc = "High-Explosive Dual-Purpose. A small, but deceptively strong grenade that has been phasing out the M15 HE grenade. This version is stronger."
+	name = "M40/2 HEDP 手榴弹"
+	desc = "高爆两用手榴弹，体积小，威力却不容小觑，正逐步取代 M15 高爆手榴弹。此型号威力更强。"
 	icon_state = "m40_2"
 	item_state = "grenade_hedp2"
 	explosion_power = 150
 	explosion_falloff = 50
 
 /obj/item/explosive/grenade/high_explosive/pmc
-	name = "\improper M12 blast grenade"
-	desc = "A high-explosive grenade produced for private security firms. It explodes around 3 seconds after the pin has been pulled."
+	name = "M12 爆破手榴弹"
+	desc = "为私人安保公司制造的高爆手榴弹，拔销后约 3 秒爆炸。"
 	icon_state = "grenade_pmc"
 	item_state = "grenade_ex"
 	caliber = "non-standard"
@@ -131,8 +131,8 @@
 //================================================
 */
 /obj/item/explosive/grenade/high_explosive/frag
-	name = "\improper M40 HEFA grenade"
-	desc = "High-Explosive Fragmenting-Antipersonnel. A small, but deceptively strong fragmentation grenade that has been phasing out the M15 fragmentation grenades alongside the M40 HEDP. Capable of being loaded in the M92 Launcher, or thrown by hand."
+	name = "M40 HEFA 手榴弹"
+	desc = "高爆破片反步兵手榴弹。体积小，威力却不容小觑，正与 M40 HEDP 一同逐步取代 M15 破片手榴弹。可装入 M92 发射器，也可手投。"
 	icon_state = "grenade_hefa"
 	item_state = "grenade_hefa"
 	explosion_power = 40
@@ -150,8 +150,8 @@
 	dual_purpose = FALSE
 
 /obj/item/explosive/grenade/high_explosive/m15
-	name = "\improper M15 fragmentation grenade"
-	desc = "An outdated USCM Fragmentation Grenade. With decades of service in the USCM, the old M15 Fragmentation Grenade is slowly being replaced by the slightly safer M40-series grenades. It is set to detonate in 4 seconds."
+	name = "M15 破片手榴弹"
+	desc = "老式 USCM 破片手榴弹。服役数十年后，M15 正逐步被稍安全一些的 M40 系列手榴弹取代。设定为 4 秒后引爆。"
 	icon_state = "grenade_ex"
 	item_state = "grenade_ex"
 	caliber = "non-standard"
@@ -171,8 +171,8 @@
 +*/
 
 /obj/item/explosive/grenade/high_explosive/airburst/canister
-	name = "\improper M108 canister grenade"
-	desc = "30mm canister grenade, effectively low velocity buckshot. Substantial close combat impact when paired with the 5 round PN pump action grenade launcher. No, you can't set it off with a hammer, moron. Not a hand-grenade, as marked by the yellow color-band on its hull, launcher-fired only."
+	name = "M108 罐式榴弹"
+	desc = "30mm 霰弹榴弹，实际相当于低速鹿弹。配合五发 PN 泵动榴弹发射器时，近战威力可观。不能用锤子敲响它，笨蛋。弹体黄色色带表明它不是手投弹，只能由发射器发射。"
 	icon_state = "grenade_buck"
 	item_state = "grenade_buck"
 	hand_throwable = FALSE
@@ -204,8 +204,8 @@
 */
 // M74 are the launcher-only variant. Flag with hand_throwable = FALSE.
 /obj/item/explosive/grenade/high_explosive/airburst
-	name = "\improper M74 AGM-F 40mm Grenade"
-	desc = "M74 - Airburst Grenade Munition - Fragmentation. This grenade must be launched with a grenade launcher, and detonates once it reaches its destination. It disperses jagged shrapnel in a cone in front of itself, tearing through sinews and armor alike. Dispersion pattern is optimized against large target. Suffers from overpenetration on a direct hit."
+	name = "M74 AGM-F 40mm 手榴弹"
+	desc = "M74 空爆榴弹弹药——破片型。必须使用榴弹发射器发射，到达目标位置后引爆。向前方锥形区域抛撒锋利弹片，撕裂肌腱与护甲。散布专为大型目标优化，直接命中时容易过穿。"
 	icon_state = "grenade_m74_airburst_f"
 	item_state = "grenade_m74_airburst_f_active"
 	caliber = "40x53mm"
@@ -245,8 +245,8 @@
 		qdel(src)
 
 /obj/item/explosive/grenade/high_explosive/airburst/hornet_shell
-	name = "\improper M74 AGM-H 40mm Hornet Shell"
-	desc = "Functions identically to the standard AGM-F 40mm grenade, except instead of exploding into shrapnel, the hornet shell shoots off holo-targeting .22lr rounds. The equivalent to buckshot at-range."
+	name = "M74 AGM-H 40mm 蜂群弹"
+	desc = "工作方式与标准 AGM-F 40mm 榴弹相同，但蜂群弹射出的是具有全息标记功能的 .22lr 子弹，而非爆炸弹片。相当于远距离鹿弹。"
 	icon_state = "grenade_hornet"
 	item_state = "grenade_hornet_active"
 	dual_purpose = FALSE
@@ -256,8 +256,8 @@
 	dispersion_angle = 15//tight cone
 
 /obj/item/explosive/grenade/high_explosive/airburst/starshell
-	name = "\improper M74 AGM-S Star Shell"
-	desc = "Functions identically to the standard AGM-F 40mm grenade, except instead of exploding into shrapnel, the star shells bursts into burning phosphor that illuminates the area."
+	name = "M74 AGM-S 照明弹"
+	desc = "工作方式与标准 AGM-F 40mm 榴弹相同，但照明弹释放燃烧的磷来照亮周围，而不是炸成弹片。"
 	icon_state = "grenade_starshell"
 	item_state = "grenade_starshell_active"
 	dual_purpose = FALSE
@@ -416,8 +416,8 @@
 */
 
 /obj/item/explosive/grenade/high_explosive/impact/heap
-	name = "\improper M38 HEAP blast grenade"
-	desc = "High-Explosive, Armour Piercing. A small, but deceptively strong blast grenade that can penetrate appreciable quantities of armor, whilst retaining a similar casualty radius as the standard M40. Not a hand-grenade, as marked by the yellow color-band on its hull, launcher-fired only. Due to faulty primers, it is inadvisable to fire them directly at hard surfaces like walls, landing them just in front is recommended."
+	name = "M38 HEAP 爆破手榴弹"
+	desc = "高爆穿甲榴弹。体积小，威力却不容小觑，可穿透可观厚度的装甲，同时保持与标准 M40 相近的杀伤半径。黄色色带表明它不是手投弹，只能由发射器发射。底火存在缺陷，不建议直接打向墙壁等硬表面，最好落在其前方。"
 	icon_state = "grenade_heap"
 	item_state = "grenade_chem"
 	caliber = "30mm"
@@ -433,8 +433,8 @@
 +*/
 
 /obj/item/explosive/grenade/high_explosive/impact/tmfrag
-	name = "\improper M51A BFAB grenade"
-	desc = "Bounding Fragmentation, Air-Burst. Rather than traditionally detonating on impact, this round propels itself up into the air prior to exploding into a lethal hail of shrapnel a second later. Effective against troops in the open or in foxholes. Not a hand-grenade, as marked by the yellow color-band on its hull, launcher-fired only."
+	name = "M51A BFAB 手榴弹"
+	desc = "跳跃式空爆破片榴弹。不同于传统撞击引爆，它会先弹向空中，一秒后炸成致命弹雨。适合攻击开阔地或散兵坑中的部队。黄色色带表明它不是手投弹，只能由发射器发射。"
 	icon_state = "grenade_bfab"
 	item_state = "grenade_bfab"
 	caliber = "30mm"
@@ -471,8 +471,8 @@
 */
 
 /obj/item/explosive/grenade/high_explosive/impact/flare
-	name = "\improper M72A2 HIPF starshell grenade"
-	desc = "High-Illumination, Parachute-Flare. Fired into the air, the M72A2 releases a parachute and ignites, illuminating the surrounding area for several minutes. Longer lasting than the A1 models, is is unfortunately not as bright. Can also be fired into ceilings where it will partially embed and serve as an overhead light source until it burns out."
+	name = "M72A2 HIPF 照明弹手榴弹"
+	desc = "高亮降落伞照明弹。M72A2 发射升空后打开降落伞并点燃，可照亮周围数分钟。比 A1 型持续更久，但亮度较低。也可射向天花板，部分嵌入后作为顶灯，直至燃尽。"
 	icon_state = "grenade_hipf"
 	item_state = "grenade_hipf"
 	caliber = "30mm"
@@ -503,8 +503,8 @@
 */
 
 /obj/item/explosive/grenade/incendiary
-	name = "\improper M77 HIAM incendiary grenade"
-	desc = "High-explosive-Incendiary, Anti-Mobility. The M77 is a small, but deceptively strong incendiary grenade designed to disrupt enemy mobility with long-lasting Type B napalm spread by a small explosive charge within the casing. It is set to detonate in 4 seconds."
+	name = "M77 HIAM 燃烧手榴弹"
+	desc = "高爆燃烧阻行手榴弹。M77 体积小，威力却不容小觑，利用壳内少量炸药散布持久燃烧的 B 型凝固汽油，阻碍敌方机动。设定为 4 秒后引爆。"
 	icon_state = "grenade_fire"
 	det_time = 40
 	item_state = "grenade_fire"
@@ -560,8 +560,8 @@
 	new /obj/flamer_fire(T, cause_data, R, R.rangefire, null, flameshape, target, , , fire_type)
 
 /obj/item/explosive/grenade/incendiary/molotov
-	name = "\improper improvised firebomb"
-	desc = "A potent, improvised firebomb, coupled with a pinch of gunpowder. Cheap, very effective, and deadly in confined spaces. Commonly found in the hands of rebels and terrorists. It can be difficult to predict how many seconds you have before it goes off, so be careful. Chances are, it might explode in your face."
+	name = "简易燃烧弹"
+	desc = "强力的简易燃烧弹，掺有少量火药。廉价、高效，在狭小空间中尤其致命，常见于叛军与恐怖分子手中。引爆延时难以预测，请小心，它可能在你面前炸开。"
 	icon_state = "molotov"
 	item_state = "molotov"
 	caliber = "non-standard"
@@ -586,8 +586,8 @@
 */
 // M74 are the launcher-only variant. Flag with hand_throwable = FALSE.
 /obj/item/explosive/grenade/incendiary/airburst
-	name = "\improper M74 AGM-I 40mm Grenade"
-	desc = "M74 - Airburst Grenade Munition - Incendiary. This grenade must be launched with a grenade launcher, and detonates once it reaches its destination. It disperses a cone of lingering flames in a small area in front of it. The warped pieces of the grenade can also set fire as they fly away."
+	name = "M74 AGM-I 40mm 手榴弹"
+	desc = "M74 空爆榴弹弹药——燃烧型。必须使用榴弹发射器发射，到达目标位置后引爆。在前方小片锥形区域散布持续燃烧的火焰，飞散的扭曲碎片也能引燃物体。"
 	icon_state = "grenade_m74_airburst_i"
 	item_state = "grenade_m74_airburst_i_active"
 	caliber = "40x53mm"
@@ -632,8 +632,8 @@
 */
 
 /obj/item/explosive/grenade/smokebomb
-	name = "\improper M47 HSDP smoke grenade"
-	desc = "The M47 HSDP is a small, but powerful smoke grenade. Based off the same platform as the M40 HEDP. Can be fired from a PN 30mm UGL for impact detonation, or primed in-hand and thrown to detonate after 2 seconds."
+	name = "M47 HSDP 烟幕手榴弹"
+	desc = "M47 HSDP 是小巧而强力的烟幕手榴弹，基于 M40 HEDP 平台。可由 PN 30mm 下挂榴弹发射器发射并撞击引爆，也可手动拉火投掷，2 秒后引爆。"
 	icon_state = "grenade_smoke"
 	det_time = 20
 	item_state = "grenade_smoke"
@@ -686,15 +686,15 @@
 		qdel(src)
 
 /obj/item/explosive/grenade/smokebomb/green
-	name = "\improper M47-G HSDP smoke grenade"
-	desc = "The M47 HSDP is a small, but powerful smoke grenade. Based off the same platform as the M40 HEDP. Can be fired from a PN 30mm UGL for impact detonation, or primed in-hand and thrown to detonate after 2 seconds. The G subtype erupts into a cloud of green smoke upon detonation."
+	name = "M47-G HSDP 烟幕手榴弹"
+	desc = "M47 HSDP 是小巧而强力的烟幕手榴弹，基于 M40 HEDP 平台。可由 PN 30mm 下挂榴弹发射器发射并撞击引爆，也可手动拉火投掷，2 秒后引爆。G 型引爆后释放绿色烟幕。"
 	icon_state = "grenade_smoke_green"
 	smoke_type = /datum/effect_system/smoke_spread/bad/green
 	smoke_radius = 2
 
 /obj/item/explosive/grenade/smokebomb/red
-	name = "\improper M47-R HSDP smoke grenade"
-	desc = "The M47 HSDP is a small, but powerful smoke grenade. Based off the same platform as the M40 HEDP. Can be fired from a PN 30mm UGL for impact detonation, or primed in-hand and thrown to detonate after 2 seconds. The R subtype erupts into a cloud of red smoke upon detonation."
+	name = "M47-R HSDP 烟幕手榴弹"
+	desc = "M47 HSDP 是小巧而强力的烟幕手榴弹，基于 M40 HEDP 平台。可由 PN 30mm 下挂榴弹发射器发射并撞击引爆，也可手动拉火投掷，2 秒后引爆。R 型引爆后释放红色烟幕。"
 	icon_state = "grenade_smoke_red"
 	smoke_type = /datum/effect_system/smoke_spread/bad/red
 	smoke_radius = 2
@@ -707,8 +707,8 @@
 	arm_sound = 'sound/weapons/pinpull.ogg'
 
 /obj/item/explosive/grenade/phosphorus
-	name = "\improper M60 WPSI grenade"
-	desc = "The M60 WPSI is a small, but powerful chemical compound grenade, designated as such with a white cap. Usable for both smoke-screen purposes and as an incendiary device. Two second fuse."
+	name = "M60 WPSI 手榴弹"
+	desc = "M60 WPSI 是小巧而强力的化合物手榴弹，以白色顶盖识别。既可制造烟幕，也可用作燃烧装置。引信为 2 秒。"
 	icon_state = "grenade_phos"
 	det_time = 20
 	item_state = "grenade_training"
@@ -769,8 +769,8 @@
 	caliber = "non-standard"
 
 /obj/item/explosive/grenade/phosphorus/clf
-	name = "\improper improvised phosphorus bomb"
-	desc = "An improvised version of gas grenade designed to spill white phosphorus on the target. It explodes 2 seconds after the pin has been pulled."
+	name = "简易磷弹"
+	desc = "简易气体手榴弹改型，用于向目标泼洒白磷。拔销后 2 秒爆炸。"
 	underslug_launchable = FALSE
 	dual_purpose = FALSE
 	arm_sound = 'sound/weapons/pinpull.ogg'
@@ -785,10 +785,8 @@
 */
 
 /obj/item/explosive/grenade/sebb
-	name = "\improper G2 Electroshock grenade"
-	desc = "This is a G2 Electroshock Grenade. Produced by Armat Battlefield Systems, it's sometimes referred to as the Sonic Electric Ball Breaker, \
-		after a rash of incidents where the intense 1.2 gV sonic payload caused... rupturing. \
-		A bounding landmine mode is available for this weapon which activates a small drill to self-bury itself when planted. Simply plant it at your feet and walk away."
+	name = "G2 电击手榴弹"
+	desc = "G2 电击手榴弹，由阿玛特战场系统制造。一系列事故中，强劲的 1.2 gV 声波载荷造成了某些部位……破裂，因此它有时被称作“声电碎蛋器”。此武器还具备跳雷模式，部署后会启动小型钻头自行埋入地下。将它放在脚边后离开即可。"
 	icon_state = "grenade_sebb"
 	item_state = "grenade_sebb"
 	caliber = "non-standard"
@@ -1050,8 +1048,8 @@
 //================================================
 */
 /obj/item/explosive/grenade/tear
-	name = "\improper tear gas grenade"
-	desc = "A canister grenade of nonlethal Tear gas. It is set to detonate in 4 seconds."
+	name = "催泪瓦斯手榴弹"
+	desc = "装有非致命催泪瓦斯的罐式手榴弹，设定为 4 秒后引爆。"
 	icon_state = "flashbang2"//temp icon
 	det_time = 40
 	item_state = "grenade_phos_clf"//temp icon
@@ -1081,8 +1079,8 @@
 	qdel(src)
 
 /obj/item/explosive/grenade/tear/marine
-	name = "\improper M66 teargas grenade"
-	desc = "Tear gas grenade used for nonlethal riot control. Please wear adequate gas protection."
+	name = "M66 催泪瓦斯手榴弹"
+	desc = "用于非致命防暴的催泪瓦斯手榴弹。请佩戴合适的防毒装备。"
 	icon_state = "grenade_gas"
 	det_time = 40
 	item_state = "grenade_phos"//temp icon
@@ -1099,8 +1097,8 @@
 */
 
 /obj/item/explosive/grenade/smokebomb/airburst
-	name = "\improper M74 AGM-S 40mm Grenade"
-	desc = "M74 - Airburst Grenade Munition - Smoke. This grenade must be launched with a grenade launcher, and detonates once it reaches its destination. Upon detonation, instantly combines multiple chemicals inside its casing to form a smoke cloud."
+	name = "M74 AGM-S 40mm 手榴弹"
+	desc = "M74 空爆榴弹弹药——烟幕型。必须使用榴弹发射器发射，到达目标位置后引爆。引爆时会瞬间混合弹体内的多种化学物质，形成烟幕。"
 	icon_state = "grenade_m74_airburst_s"
 	item_state = "grenade_m74_airburst_s_active"
 	det_time = 0 // Unused, because we don't use prime.
@@ -1124,8 +1122,8 @@
 */
 
 /obj/item/explosive/grenade/slug
-	name = "slug shell"
-	desc = "It doesn't actually explode. Fancy that."
+	name = "独头弹弹"
+	desc = "它其实不会爆炸。真稀奇。"
 	icon_state = "chemg"
 	hand_throwable = FALSE
 	var/impact_damage = 10
@@ -1190,8 +1188,8 @@
 	qdel(src)
 
 /obj/item/explosive/grenade/slug/baton
-	name = "\improper M230 LLRB grenade"
-	desc = "Rarely issued to the Colonial Marines, the M230 less-than-lethal rounds are primarily used during civil disturbances. Can still be lethal if fired against particularly soft tissue."
+	name = "M230 LLRB 手榴弹"
+	desc = "M230 低致命弹药很少配发给殖民地陆战队，主要用于应对民众骚乱。射中特别脆弱的组织时仍可能致命。"
 	icon_state = "grenade_ltl"
 	item_state = "baton_slug"
 	inactive_icon = "grenade_ltl"
@@ -1216,8 +1214,8 @@
 */
 
 /obj/item/explosive/grenade/high_explosive/training
-	name = "M07 training grenade"
-	desc = "A harmless reusable version of the M40 HEDP, used for training. Capable of being loaded in the M92 Launcher, or thrown by hand."
+	name = "M07 训练手榴弹"
+	desc = "用于训练的无害、可重复使用版 M40 HEDP。可装入 M92 发射器，也可手投。"
 	icon_state = "grenade_training"
 	item_state = "grenade_training"
 	dangerous = TRUE
@@ -1245,8 +1243,8 @@
 	icon_state = initial(icon_state)
 
 /obj/item/explosive/grenade/high_explosive/m15/rubber
-	name = "\improper M15 rubber pellet grenade"
-	desc = "A relatively harmless version of the M15 grenade designed for riot control and combat exercises."
+	name = "M15 橡胶弹丸手榴弹"
+	desc = "用于防暴和战斗演习的低伤害版 M15 手榴弹。"
 	icon_state = "rubber_grenade"
 	item_state = "rubber_grenade"
 	explosion_power = 0
@@ -1290,8 +1288,8 @@
 	falloff_mode = EXPLOSION_FALLOFF_SHAPE_LINEAR
 
 /obj/item/explosive/grenade/metal_foam
-	name = "\improper M42 MFHS grenade"
-	desc = "A Metal-Foam Hull-Sealant grenade originally used for emergency repairs but have found other practical applications on the field. Based off the same hull as the M40 HEDP. Has a 2 second fuse."
+	name = "M42 MFHS 手榴弹"
+	desc = "金属泡沫船体密封手榴弹，原用于应急维修，后来在战场上也找到了其他实用用途。采用与 M40 HEDP 相同的弹体，装有 2 秒引信。"
 	icon_state = "grenade_metal_foam"
 	item_state = "grenade_metal_foam"
 	caliber = "30mm"
@@ -1327,8 +1325,8 @@
 //Royal marine grenades
 
 /obj/item/explosive/grenade/high_explosive/rmc
-	name = "\improper R2175/A HEDP grenade"
-	desc = "High-Explosive Dual-Purpose. A small, but deceptively strong blast grenade that has recently been added to the arsenal of the RMC."
+	name = "R2175/A HEDP 手榴弹"
+	desc = "高爆两用手榴弹，体积小，威力却不容小觑，最近才加入 RMC 的武器库。"
 	icon_state = "rmc_grenade"
 	item_state = "grenade_hedp"
 	caliber = "30mm"
@@ -1336,8 +1334,8 @@
 	explosion_falloff = 30
 
 /obj/item/explosive/grenade/incendiary/rmc
-	name = "\improper R2175/B HIDP grenade"
-	desc = "The R2175/B HIDP is a small, but deceptively strong incendiary grenade designed to rapidly clear areas with fast-acting potent fire. It is set to detonate in 4 seconds."
+	name = "R2175/B HIDP 手榴弹"
+	desc = "R2175/B HIDP 是小巧而强力的燃烧手榴弹，以迅速猛烈的火焰清理区域。设定为 4 秒后引爆。"
 	icon_state = "rmc_grenade_fire"
 	item_state = "grenade_fire"
 	caliber = "30mm"
@@ -1384,8 +1382,8 @@
 // RMC 20mm baby-nades
 
 /obj/item/explosive/grenade/high_explosive/impact/rmc20mm
-	name = "\improper L103A1 20mm HE grenade"
-	desc = "A 20mm grenade that explodes upon impact. Less powerful than full-sized grenades."
+	name = "L103A1 20mm 高爆榴弹"
+	desc = "撞击后爆炸的 20mm 榴弹，威力弱于全尺寸榴弹。"
 	icon_state = "grenade_20mm_he"
 	item_state = "grenade_hedp"
 	caliber = "20mm"
@@ -1393,8 +1391,8 @@
 	shrapnel_count = 8
 
 /obj/item/explosive/grenade/high_explosive/airburst/rmc20mm
-	name = "\improper L104A1 20mm fragmentation grenade"
-	desc = "A 20mm grenade that explodes into shrapnel upon impact."
+	name = "L104A1 20mm 破片手榴弹"
+	desc = "撞击后爆散弹片的 20mm 榴弹。"
 	icon_state = "grenade_20mm_frag"
 	item_state = "grenade_hefa"
 	caliber = "20mm"
@@ -1405,8 +1403,8 @@
 	dispersion_angle = 45
 
 /obj/item/explosive/grenade/incendiary/airburst/rmc20mm
-	name = "\improper L103A1/I 20mm incendiary grenade"
-	desc = "A 20mm grenade that explodes into flaming shrapnel & a pool of incendiary compound upon impact."
+	name = "L103A1/I 20mm 燃烧手榴弹"
+	desc = "撞击后爆散燃烧弹片，并形成燃烧化合物液池的 20mm 榴弹。"
 	icon_state = "grenade_20mm_inc"
 	item_state = "grenade_fire"
 	caliber = "20mm"
@@ -1418,8 +1416,8 @@
 	shrapnel_type = /datum/ammo/bullet/shrapnel/incendiary/heavy
 
 /obj/item/explosive/grenade/smokebomb/airburst/rmc20mm
-	name = "\improper L101A2 20mm nerve-agent grenade"
-	desc = "A 20mm grenade that explodes into a voluminous cloud of nerve gas upon impact."
+	name = "L101A2 20mm 神经毒剂榴弹"
+	desc = "撞击后释放大量神经毒气的 20mm 榴弹。"
 	icon_state = "grenade_20mm_gas"
 	item_state = "grenade_smoke"
 	caliber = "20mm"
@@ -1433,8 +1431,8 @@
 	smoke.attach(src)
 
 /obj/item/explosive/grenade/high_explosive/impact/rmc20mm/holo
-	name = "\improper L104A1/H 20mm holo-targetting grenade"
-	desc = "A 20mm grenade that explodes into shrapnel upon impact. The shrapenl of this one douses the target in a chemical compound which aids in target acquisition by sensors."
+	name = "L104A1/H 20mm 全息标记榴弹"
+	desc = "撞击后爆散弹片的 20mm 榴弹。这一型号的弹片会将化合物洒在目标上，帮助传感器捕获目标。"
 	icon_state = "grenade_20mm_holo"
 	item_state = "grenade_phos"
 	caliber = "20mm"
@@ -1443,8 +1441,8 @@
 	shrapnel_type = /datum/ammo/bullet/shrapnel/hornet_rounds/rmc
 
 /obj/item/explosive/grenade/high_explosive/impact/heap/rmc20mm
-	name = "\improper L108A1 HESH grenade"
-	desc = "A powerful high-explosive squash-head 20mm grenade that explodes upon impact."
+	name = "L108A1 HESH 手榴弹"
+	desc = "强力的 20mm 高爆碎甲榴弹，撞击后爆炸。"
 	icon_state = "grenade_20mm_squash"
 	item_state = "grenade_training"
 	caliber = "20mm"

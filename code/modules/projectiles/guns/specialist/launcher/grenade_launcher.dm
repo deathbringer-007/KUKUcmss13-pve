@@ -271,8 +271,8 @@
 //M92 GRENADE LAUNCHER
 
 /obj/item/weapon/gun/launcher/grenade/m92
-	name = "\improper M92 grenade launcher"
-	desc = "A heavy, 6-shot grenade launcher used by the Colonial Marines for area denial and big explosions."
+	name = "M92 榴弹发射器"
+	desc = "殖民地陆战队用于区域封锁和制造大爆炸的重型六发榴弹发射器。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "m92"
 	item_state = "m92"
@@ -335,8 +335,8 @@
 //RMC GRENADE LAUNCHER
 
 /obj/item/weapon/gun/launcher/grenade/m92/rmc
-	name = "\improper L164A3 multi-shot grenade launcher"
-	desc = "A lightweight support weapon fielded by the Royal Marines. Chambered in small 20mm grenades, it lacks the punch of larger bore grenade launchers, but makes up for that in rate of fire."
+	name = "L164A3 多发榴弹发射器"
+	desc = "皇家陆战队配发的轻型支援武器，使用小口径 20mm 榴弹。威力不及大口径榴弹发射器，但以射速弥补。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/twe_guns.dmi'
 	icon_state = "rmcgl"
 	item_state = "rmcgl"
@@ -382,8 +382,8 @@
 //M81 GRENADE LAUNCHER
 
 /obj/item/weapon/gun/launcher/grenade/m81
-	name = "\improper M81 grenade launcher"
-	desc = "A lightweight, single-shot low-angle grenade launcher used by the Colonial Marines for area denial and big explosions."
+	name = "M81 榴弹发射器"
+	desc = "殖民地陆战队用于区域封锁和制造大爆炸的轻型单发低弹道榴弹发射器。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "m81"
 	item_state = "m81" //needs a wield sprite.

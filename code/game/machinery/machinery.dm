@@ -92,7 +92,7 @@ Class Procs:
 //  ACTIVE -- machine is using power at its active power level
 
 /obj/structure/machinery
-	name = "machinery"
+	name = "机械设备"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	var/stat = 0
 	var/use_power = USE_POWER_IDLE
@@ -168,7 +168,7 @@ Class Procs:
 	if(!stat)
 		return
 
-	. += "It does not appear to be working."
+	. += "它似乎没有在运转。"
 	var/msg = get_repair_move_text(FALSE)
 	if(msg && skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
 		. += SPAN_WARNING("[msg]")
@@ -235,7 +235,7 @@ Class Procs:
 	if(usr.is_mob_restrained())
 		return 1
 	if(!is_valid_user(usr))
-		to_chat(usr, SPAN_DANGER("You don't have the dexterity to do this!"))
+		to_chat(usr, SPAN_DANGER("你的手不够灵巧，无法这样做！"))
 		return 1
 
 	src.add_fingerprint(usr)
@@ -255,10 +255,10 @@ Class Procs:
 		return TRUE
 	if(!(istype(user, /mob/living/carbon/human) || isRemoteControlling(user) || istype(user, /mob/living/carbon/xenomorph)))
 		if(!HAS_TRAIT(user, TRAIT_OPPOSABLE_THUMBS))
-			to_chat(usr, SPAN_DANGER("You don't have the dexterity to do this!"))
+			to_chat(usr, SPAN_DANGER("你的手不够灵巧，无法这样做！"))
 			return TRUE
 	if(!is_valid_user(user))
-		to_chat(usr, SPAN_DANGER("You don't have the dexterity to do this!"))
+		to_chat(usr, SPAN_DANGER("你的手不够灵巧，无法这样做！"))
 		return TRUE
 /*
 	//distance checks are made by atom/proc/clicked()
@@ -268,10 +268,10 @@ Class Procs:
 	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 60)
-			visible_message(SPAN_DANGER("[H] stares cluelessly at [src] and drools."))
+			visible_message(SPAN_DANGER("[H]茫然地盯着[src]，流下口水。"))
 			return TRUE
 		else if(prob(H.getBrainLoss()))
-			to_chat(user, SPAN_DANGER("You momentarily forget how to use [src]."))
+			to_chat(user, SPAN_DANGER("你一时忘了如何使用[src]。"))
 			return TRUE
 
 	src.add_fingerprint(user)
@@ -328,37 +328,37 @@ Class Procs:
 //made into "prop" from an old destilery project abandon 9 year ago.
 
 /obj/structure/machinery/mill
-	name = "\improper Mill"
-	desc = "It is a machine that grinds produce."
+	name = "\improper 研磨机"
+	desc = "用于研磨农产品的机器。"
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE
 
 /obj/structure/machinery/fermenter
-	name = "\improper Fermenter"
-	desc = "It is a machine that ferments produce into alcoholic drinks."
+	name = "\improper 发酵机"
+	desc = "用于将农产品发酵成酒精饮料的机器。"
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE
 
 /obj/structure/machinery/still
-	name = "\improper Still"
-	desc = "It is a machine that produces hard liquor from alcoholic drinks."
+	name = "\improper 蒸馏器"
+	desc = "用于从酒精饮料中提炼烈酒的机器。"
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE
 
 /obj/structure/machinery/squeezer
-	name = "\improper Squeezer"
-	desc = "It is a machine that squeezes extracts from produce."
+	name = "\improper 榨汁机"
+	desc = "用于从农产品中榨取提取液的机器。"
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE
 
 /obj/structure/machinery/fuelpump
-	name = "\improper Fuel Pump"
+	name = "\improper 燃油泵"
 	layer = ABOVE_MOB_LAYER
-	desc = "It is a machine that pumps fuel around the ship."
+	desc = "用于在舰船各处输送燃油的机器。"
 	icon = 'icons/obj/structures/machinery/fuelpump.dmi'
 	icon_state = "fuelpump_off"
 	health = null
@@ -412,14 +412,14 @@ Class Procs:
 		return
 	switch(SShijack.current_progress)
 		if(-INFINITY to 24)
-			. += SPAN_NOTICE("It looks like it barely has any fuel yet.")
+			. += SPAN_NOTICE("看起来几乎还没有燃油。")
 		if(25 to 49)
-			. += SPAN_NOTICE("It looks like it has accumulated some fuel.")
+			. += SPAN_NOTICE("看起来已经积存了一些燃油。")
 		if(50 to 74)
-			. += SPAN_NOTICE("It looks like the fuel tank is a little over half full.")
+			. += SPAN_NOTICE("看起来油箱略超过半满。")
 		if(75 to 99)
-			. += SPAN_NOTICE("It looks like the fuel tank is almost full.")
+			. += SPAN_NOTICE("看起来油箱快满了。")
 		if(100 to INFINITY)
-			. += SPAN_NOTICE("It looks like the fuel tank is full.")
+			. += SPAN_NOTICE("看起来油箱已经满了。")
 		else
-			. += SPAN_NOTICE("It looks like something is wrong!") // Never should happen
+			. += SPAN_NOTICE("似乎出了什么问题！") // Never should happen

@@ -1,5 +1,5 @@
 /obj/item/paper_bundle
-	name = "paper bundle"
+	name = "纸张束"
 	gender = PLURAL
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "paper"
@@ -9,7 +9,7 @@
 	throw_range = 2
 	throw_speed = SPEED_FAST
 	layer = MOB_LAYER
-	attack_verb = list("bapped")
+	attack_verb = list("拍打")
 	var/amount = 0 //Amount of items clipped to the paper
 	var/page = 1
 	var/screen = 0
@@ -22,7 +22,7 @@
 		if (istype(P, /obj/item/paper/carbon))
 			var/obj/item/paper/carbon/C = P
 			if (!C.iscopy && !C.copied)
-				to_chat(user, SPAN_NOTICE("Take off the carbon copy first."))
+				to_chat(user, SPAN_NOTICE("先取下复写副本。"))
 				add_fingerprint(user)
 				return
 		if(loc == user)
@@ -39,7 +39,7 @@
 			user.drop_inv_item_on_ground(W)
 			for(var/obj/O in W)
 				attach_doc(O, user, TRUE)
-			to_chat(user, SPAN_NOTICE("You add \the [W.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name]."))
+			to_chat(user, SPAN_NOTICE("你将[W.name]加入了[(src.name == "纸张束") ? "纸张束" : src.name]。"))
 			qdel(W)
 	else
 		if(HAS_TRAIT(W, TRAIT_TOOL_PEN) || istype(W, /obj/item/toy/crayon))
@@ -60,13 +60,13 @@
 		if(istype(P, /obj/item/tool/lighter/zippo))
 			class = "<span class='rose'>"
 
-		user.visible_message("[class][user] holds \the [P] up to \the [src], it looks like \he's trying to burn it!</span>", \
-		"[class]You hold \the [P] up to \the [src], burning it slowly.</span>")
+		user.visible_message("[class][user]将[P]凑近[src]，似乎正打算点燃它！</span>", \
+		"[class]你将[P]凑近[src]，慢慢将其点燃。</span>")
 
 		spawn(20)
 			if(get_dist(src, user) < 2 && user.get_active_hand() == P && P.heat_source)
-				user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
-				"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
+				user.visible_message("[class][user]烧穿了[src]，将它化为灰烬。灰烬在空中飘散，最后堆落在地板上。</span>", \
+				"[class]你烧穿了[src]，将它化为灰烬。灰烬在空中飘散，最后堆落在地板上。</span>")
 
 				if(user.get_inactive_hand() == src)
 					user.drop_inv_item_on_ground(src)
@@ -75,14 +75,14 @@
 				qdel(src)
 
 			else
-				to_chat(user, SPAN_DANGER("You must hold \the [P] steady to burn \the [src]."))
+				to_chat(user, SPAN_DANGER("你必须拿稳[P]才能点燃[src]。"))
 
 /obj/item/paper_bundle/get_examine_text(mob/user)
 	. = list(desc)
 	if(in_range(user, src) || isobserver(user))
 		src.attack_self(user)
 	else
-		. += SPAN_NOTICE("It is too far away.")
+		. += SPAN_NOTICE("距离太远了。")
 
 /obj/item/paper_bundle/attack_self(mob/user)
 	..()
@@ -95,15 +95,15 @@
 	switch(screen)
 		if(0)
 			dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'></DIV>"
-			dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='byond://?src=\ref[src];remove=1'>Remove [(istype(src[page], /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
-			dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='byond://?src=\ref[src];next_page=1'>Next Page</A></DIV><BR><HR>"
+			dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='byond://?src=\ref[src];remove=1'>取出[(istype(src[page], /obj/item/paper)) ? "纸张" : "照片"]</A></DIV>"
+			dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='byond://?src=\ref[src];next_page=1'>下一页</A></DIV><BR><HR>"
 		if(1)
-			dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='byond://?src=\ref[src];prev_page=1'>Previous Page</A></DIV>"
-			dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='byond://?src=\ref[src];remove=1'>Remove [(istype(src[page], /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
-			dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='byond://?src=\ref[src];next_page=1'>Next Page</A></DIV><BR><HR>"
+			dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='byond://?src=\ref[src];prev_page=1'>上一页</A></DIV>"
+			dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='byond://?src=\ref[src];remove=1'>取出[(istype(src[page], /obj/item/paper)) ? "纸张" : "照片"]</A></DIV>"
+			dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='byond://?src=\ref[src];next_page=1'>下一页</A></DIV><BR><HR>"
 		if(2)
-			dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='byond://?src=\ref[src];prev_page=1'>Previous Page</A></DIV>"
-			dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='byond://?src=\ref[src];remove=1'>Remove [(istype(src[page], /obj/item/paper)) ? "paper" : "photo"]</A></DIV><BR><HR>"
+			dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='byond://?src=\ref[src];prev_page=1'>上一页</A></DIV>"
+			dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='byond://?src=\ref[src];remove=1'>取出[(istype(src[page], /obj/item/paper)) ? "纸张" : "照片"]</A></DIV><BR><HR>"
 			dat+= "<DIV STYLE='float;left; text-align:right; with:33.33333%'></DIV>"
 	if(istype(src[page], /obj/item/paper))
 		var/obj/item/paper/P = src[page]
@@ -119,7 +119,7 @@
 		dat += "<html>" \
 		+ "<body style='overflow:hidden'>" \
 		+ "<div> <img src='tmp_photo.png' width = '180'" \
-		+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : null]"\
+		+ "[P.scribble ? "<div> 背面写着：<br><i>[P.scribble]</i>" : null]"\
 		+ "</body></html>"
 		show_browser(human_user, dat, P.name, name)
 		P.add_fingerprint(usr)
@@ -152,7 +152,7 @@
 				page = length(contents)
 			var/obj/item/W = contents[page]
 			usr.put_in_hands(W)
-			to_chat(usr, SPAN_NOTICE("You remove the [W.name] from the bundle."))
+			to_chat(usr, SPAN_NOTICE("你从纸张束中取出了[W.name]。"))
 			amount--
 			if(amount == 1)
 				var/obj/item/paper/P = contents[1]
@@ -171,29 +171,29 @@
 		src.attack_self(src.loc)
 		updateUsrDialog()
 	else if(isobserver(usr))
-		to_chat(usr, SPAN_NOTICE("Ghosts don't have hands, you can't flip the page!"))
+		to_chat(usr, SPAN_NOTICE("幽灵没有手，你无法翻页！"))
 	else
-		to_chat(usr, SPAN_NOTICE("You need to hold it in your hands!"))
+		to_chat(usr, SPAN_NOTICE("你得将它拿在手中！"))
 
 /obj/item/paper_bundle/proc/operator[](index_num)
 	return contents[index_num]
 
 /obj/item/paper_bundle/verb/rename()
-	set name = "Rename bundle"
+	set name = "重命名纸张束"
 	set category = "Object"
 	set src in usr
 
-	var/n_name = strip_html(input(usr, "What would you like to label the bundle?", "Bundle Labelling", null)  as text)
+	var/n_name = strip_html(input(usr, "你想给这束纸张起什么名字？", "纸张束标签", null)  as text)
 	if((loc == usr && usr.stat == 0))
-		name = "[(n_name ? text("[n_name]") : "paper")]"
+		name = "[(n_name ? text("[n_name]") : "纸张")]"
 	add_fingerprint(usr)
 
 /obj/item/paper_bundle/verb/remove_all()
-	set name = "Loose bundle"
+	set name = "拆散纸张束"
 	set category = "Object"
 	set src in usr
 
-	to_chat(usr, SPAN_NOTICE("You loosen the bundle."))
+	to_chat(usr, SPAN_NOTICE("你拆散了纸张束。"))
 	for(var/obj/O in src)
 		O.forceMove(usr.loc)
 		O.add_fingerprint(usr)
@@ -224,14 +224,14 @@
 			photo++
 			overlays += IMG
 	if(i>1)
-		desc =  "[i] papers clipped to each other."
+		desc =  "[i]张纸夹在一起。"
 	else
-		desc = "A single sheet of paper."
+		desc = "单独的一张纸。"
 	if(photo)
 		if(photo > 1)
-			desc += "\nThere are also [photo] photos attached to it."
+			desc += "\n此外还夹着[photo]张照片。"
 		else
-			desc += "\nThere is also a photo attached to it."
+			desc += "\n此外还夹着一张照片。"
 	overlays += image('icons/obj/items/paper.dmi', "clip")
 
 /obj/item/paper_bundle/proc/attach_doc(obj/item/I, mob/living/user, no_message)
@@ -241,7 +241,7 @@
 	I.add_fingerprint(user)
 	amount++
 	if(!no_message)
-		to_chat(user, SPAN_NOTICE("You add [I] to [src]."))
+		to_chat(user, SPAN_NOTICE("你将[I]加入了[src]。"))
 	if(screen == 2)
 		screen = 1
 	update_icon()

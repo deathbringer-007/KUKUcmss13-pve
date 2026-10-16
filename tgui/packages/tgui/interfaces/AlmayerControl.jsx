@@ -36,49 +36,49 @@ export const AlmayerControl = (_props) => {
   let distress_reason;
   let destruct_reason;
   if (AlertLevel === 3) {
-    distress_reason = 'Self-destruct in progress. Beacon disabled.';
-    destruct_reason = 'Self-destruct is already active!';
+    distress_reason = '正在自毁，信标已停用。';
+    destruct_reason = '自毁程序已经启动！';
   } else if (AlertLevel !== 2) {
-    distress_reason = 'Ship is not under an active emergency.';
-    destruct_reason = 'Ship is not under an active emergency.';
+    distress_reason = '舰船当前未处于紧急状态。';
+    destruct_reason = '舰船当前未处于紧急状态。';
   } else if (data.time_request < worldTime) {
     distress_reason =
-      'Beacon is currently recharging. Time remaining: ' +
+      '信标正在充能，剩余时间：' +
       Math.ceil((data.time_message - worldTime) / 10) +
-      'secs.';
+      '秒。';
   } else if (data.time_destruct < worldTime) {
     destruct_reason =
-      'A request has already been sent to HC. Please wait: ' +
+      '请求已发送至高级指挥部。再次发送前请等待：' +
       Math.ceil((data.time_destruct - worldTime) / 10) +
-      'secs to send another.';
+      '秒。';
   } else if (!minimumTimeElapsed) {
-    distress_reason = "It's too early to launch a distress beacon.";
-    destruct_reason = "It's too early to initiate the self-destruct.";
+    distress_reason = '现在还太早，无法启动求救信标。';
+    destruct_reason = '现在还太早，无法启动自毁。';
   }
 
   let alertLevelString;
   let alertLevelColor;
   if (AlertLevel === 3) {
-    alertLevelString = 'DELTA';
+    alertLevelString = '德尔塔';
     alertLevelColor = 'purple';
   }
   if (AlertLevel === 2) {
-    alertLevelString = 'RED';
+    alertLevelString = '红色';
     alertLevelColor = 'red';
   }
   if (AlertLevel === 1) {
-    alertLevelString = 'BLUE';
+    alertLevelString = '蓝色';
     alertLevelColor = 'blue';
   }
   if (AlertLevel === 0) {
-    alertLevelString = 'GREEN';
+    alertLevelString = '绿色';
     alertLevelColor = 'green';
   }
 
   return (
     <Window width={450} height={700}>
       <Window.Content scrollable>
-        <Section title="Ship Control">
+        <Section title="舰船控制">
           <Flex height="100%" direction="column">
             <Flex.Item>
               <Button
@@ -88,13 +88,13 @@ export const AlmayerControl = (_props) => {
                 disabled={AlertLevel === 3}
                 onClick={() => act('change_sec_level')}
               >
-                Change alert level; current alert level: {alertLevelString}.
+                更改警戒等级；当前警戒等级：{alertLevelString}。
               </Button>
             </Flex.Item>
             <Flex.Item>
               {!canMessage && (
                 <Button color="bad" warning={1} fluid icon="ban">
-                  Shipwide announcement recharging:{' '}
+                  全舰广播正在冷却：{' '}
                   {Math.ceil((data.time_message - worldTime) / 10)} secs
                 </Button>
               )}
@@ -102,18 +102,18 @@ export const AlmayerControl = (_props) => {
                 <Button
                   fluid
                   icon="bullhorn"
-                  title="Make a shipwide announcement"
+                  title="发布全舰广播"
                   onClick={() => act('ship_announce')}
                   disabled={!canMessage}
                 >
-                  Make a shipwide announcement
+                  发布全舰广播
                 </Button>
               )}
             </Flex.Item>
             <Flex.Item>
               {!canCentral && (
                 <Button color="bad" warning={1} fluid icon="ban">
-                  Quantum relay re-cycling :{' '}
+                  量子中继器正在恢复：{' '}
                   {Math.ceil((data.time_message - worldTime) / 10)} secs
                 </Button>
               )}
@@ -121,11 +121,11 @@ export const AlmayerControl = (_props) => {
                 <Button
                   fluid
                   icon="paper-plane"
-                  title="Send a message to USCM High Command"
+                  title="向殖民地陆战队高级指挥部发送消息"
                   onClick={() => act('messageUSCM')}
                   disabled={!canCentral}
                 >
-                  Send a message to USCM High Command
+                  向殖民地陆战队高级指挥部发送消息
                 </Button>
               )}
             </Flex.Item>
@@ -133,17 +133,16 @@ export const AlmayerControl = (_props) => {
               <Button
                 fluid
                 icon="medal"
-                title="Give a medal"
+                title="授予勋章"
                 onClick={() => act('award')}
               >
-                Give a medal
+                授予勋章
               </Button>
             </Flex.Item>
-            <Section title="Emergency measures">
+            <Section title="应急措施">
               {AlertLevel < 2 && (
                 <NoticeBox color="bad" warning={1} textAlign="center">
-                  The ship must be under red alert in order to enact evacuation
-                  procedures.
+                  舰船必须处于红色警戒才能启动疏散程序。
                 </NoticeBox>
               )}
               {evacstatus === 0 && (
@@ -153,41 +152,41 @@ export const AlmayerControl = (_props) => {
                     color="orange"
                     icon="door-open"
                     confirmColor="bad"
-                    confirmContent="Confirm?"
+                    confirmContent="确认？"
                     confirmIcon="question"
                     onClick={() => act('evacuation_start')}
                     disabled={!canEvac}
                   >
-                    Initiate Evacuation
+                    启动疏散
                   </Button.Confirm>
                 </Flex.Item>
               )}
               {evacstatus === 1 && (
                 <Flex.Item>
                   <NoticeBox color="good" info={1} textAlign="center">
-                    Evacuation ongoing. Time until escape pod launch: {evacEta}.
+                    疏散进行中，逃生舱发射倒计时：{evacEta}。
                   </NoticeBox>
                   <Button.Confirm
                     fluid
                     color="red"
                     icon="ban"
                     confirmColor="bad"
-                    confirmContent="Confirm?"
+                    confirmContent="确认？"
                     confirmIcon="question"
                     onClick={() => act('evacuation_cancel')}
                   >
-                    Cancel Evacuation
+                    取消疏散
                   </Button.Confirm>
                 </Flex.Item>
               )}
               {evacstatus === 2 && (
                 <NoticeBox color="good" info={1} textAlign="center">
-                  Escape pods launching.
+                  逃生舱正在发射。
                 </NoticeBox>
               )}
               {evacstatus === 3 && (
                 <NoticeBox color="good" success={1} textAlign="center">
-                  Evacuation complete.
+                  疏散完成。
                 </NoticeBox>
               )}
               <Flex.Item>
@@ -198,7 +197,7 @@ export const AlmayerControl = (_props) => {
                     fluid
                     icon="ban"
                   >
-                    Self-destruct disabled!
+                    自毁已禁用！
                   </Button>
                 )}
                 {canDestruct && (
@@ -207,11 +206,11 @@ export const AlmayerControl = (_props) => {
                     color="red"
                     icon="explosion"
                     confirmColor="bad"
-                    confirmContent="Confirm Self-destruct?"
+                    confirmContent="确认启动自毁？"
                     confirmIcon="question"
                     onClick={() => act('destroy')}
                   >
-                    Request to initiate Self-destruct
+                    请求启动自毁
                   </Button.Confirm>
                 )}
               </Flex.Item>
@@ -223,7 +222,7 @@ export const AlmayerControl = (_props) => {
                     fluid
                     icon="ban"
                   >
-                    Distress Beacon disabled
+                    求救信标已禁用
                   </Button>
                 )}
                 {canRequest && (
@@ -232,11 +231,11 @@ export const AlmayerControl = (_props) => {
                     color="orange"
                     icon="phone-volume"
                     confirmColor="bad"
-                    confirmContent="Confirm?"
+                    confirmContent="确认？"
                     confirmIcon="question"
                     onClick={() => act('distress')}
                   >
-                    Send Distress Beacon
+                    发送求救信标
                   </Button.Confirm>
                 )}
               </Flex.Item>
@@ -246,7 +245,7 @@ export const AlmayerControl = (_props) => {
         {messages && (
           <>
             <Divider />
-            <Collapsible title="Messages">
+            <Collapsible title="消息">
               <Flex>
                 {messages.map((entry) => {
                   return (
@@ -261,7 +260,7 @@ export const AlmayerControl = (_props) => {
                               act('delmessage', { number: entry.number })
                             }
                           >
-                            Delete message
+                            删除消息
                           </Button>
                         }
                       >

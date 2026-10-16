@@ -44,22 +44,22 @@ type AlternateAction = {
 const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
   remove_splints: {
     icon: 'crutch',
-    text: 'Remove splints',
+    text: '移除夹板',
   },
 
   remove_accessory: {
     icon: 'tshirt',
-    text: 'Remove accessory',
+    text: '取下配饰',
   },
 
   retrieve_tag: {
     icon: 'tags',
-    text: 'Retrieve info tag',
+    text: '取出信息牌',
   },
 
   toggle_internals: {
     icon: 'mask-face',
-    text: 'Toggle internals',
+    text: '切换供气系统',
   },
 };
 
@@ -73,117 +73,117 @@ type Slot = {
 
 const SLOTS: Record<string, Slot> = {
   glasses: {
-    displayName: 'glasses',
+    displayName: '眼镜',
     gridSpot: getGridSpotKey([0, 1]),
     image: 'inventory-glasses.png',
   },
 
   head: {
-    displayName: 'headwear',
+    displayName: '头饰',
     gridSpot: getGridSpotKey([0, 2]),
     image: 'inventory-head.png',
   },
 
   wear_mask: {
-    displayName: 'mask',
+    displayName: '面罩',
     gridSpot: getGridSpotKey([1, 2]),
     image: 'inventory-mask.png',
   },
 
   wear_r_ear: {
-    displayName: 'right earwear',
+    displayName: '右耳装备',
     gridSpot: getGridSpotKey([0, 3]),
     image: 'inventory-ears.png',
   },
 
   wear_l_ear: {
-    displayName: 'left earwear',
+    displayName: '左耳装备',
     gridSpot: getGridSpotKey([1, 3]),
     image: 'inventory-ears.png',
   },
 
   handcuffs: {
-    displayName: 'handcuffs',
+    displayName: '手铐',
     gridSpot: getGridSpotKey([1, 4]),
     hideEmpty: true,
   },
 
   legcuffs: {
-    displayName: 'legcuffs',
+    displayName: '脚铐',
     gridSpot: getGridSpotKey([1, 5]),
     hideEmpty: true,
   },
 
   w_uniform: {
-    displayName: 'uniform',
+    displayName: '制服',
     gridSpot: getGridSpotKey([2, 1]),
     image: 'inventory-uniform.png',
   },
 
   wear_suit: {
-    displayName: 'suit',
+    displayName: '外套',
     gridSpot: getGridSpotKey([2, 2]),
     image: 'inventory-suit.png',
   },
 
   gloves: {
-    displayName: 'gloves',
+    displayName: '手套',
     gridSpot: getGridSpotKey([2, 3]),
     image: 'inventory-gloves.png',
   },
 
   r_hand: {
-    displayName: 'right hand',
+    displayName: '右手',
     gridSpot: getGridSpotKey([2, 4]),
     image: 'inventory-hand_r.png',
-    additionalComponent: <CornerText align="left">R</CornerText>,
+    additionalComponent: <CornerText align="left">右</CornerText>,
   },
 
   l_hand: {
-    displayName: 'left hand',
+    displayName: '左手',
     gridSpot: getGridSpotKey([2, 5]),
     image: 'inventory-hand_l.png',
-    additionalComponent: <CornerText align="right">L</CornerText>,
+    additionalComponent: <CornerText align="right">左</CornerText>,
   },
 
   shoes: {
-    displayName: 'shoes',
+    displayName: '鞋子',
     gridSpot: getGridSpotKey([3, 2]),
     image: 'inventory-shoes.png',
   },
 
   j_store: {
-    displayName: 'suit storage item',
+    displayName: '外套储物槽',
     gridSpot: getGridSpotKey([4, 0]),
     image: 'inventory-suit_storage.png',
   },
 
   id: {
-    displayName: 'ID',
+    displayName: '身份卡',
     gridSpot: getGridSpotKey([4, 1]),
     image: 'inventory-id.png',
   },
 
   belt: {
-    displayName: 'belt',
+    displayName: '腰带',
     gridSpot: getGridSpotKey([4, 2]),
     image: 'inventory-belt.png',
   },
 
   back: {
-    displayName: 'backpack',
+    displayName: '背包',
     gridSpot: getGridSpotKey([4, 3]),
     image: 'inventory-back.png',
   },
 
   l_store: {
-    displayName: 'left pocket',
+    displayName: '左口袋',
     gridSpot: getGridSpotKey([4, 4]),
     image: 'inventory-pocket.png',
   },
 
   r_store: {
-    displayName: 'right pocket',
+    displayName: '右口袋',
     gridSpot: getGridSpotKey([4, 5]),
     image: 'inventory-pocket.png',
   },
@@ -272,7 +272,7 @@ export const StripMenu = (props) => {
   }
 
   return (
-    <Window title={`Stripping ${data.name}`} width={430} height={400}>
+    <Window title={`查看${data.name}的装备`} width={430} height={400}>
       <Window.Content>
         <Stack fill vertical>
           {range(0, ROWS).map((row) => (
@@ -306,7 +306,7 @@ export const StripMenu = (props) => {
                     alternateAction = ALTERNATE_ACTIONS[item.alternate];
                     tooltip = item.name;
                   } else if ('obscured' in item) {
-                    tooltip = `obscured ${slot.displayName}`;
+                    tooltip = `被遮挡的${slot.displayName}`;
                   } else if ('no_item_action' in item) {
                     tooltip = slot.displayName;
                     alternateAction = ALTERNATE_ACTIONS[item.no_item_action];

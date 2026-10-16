@@ -1,10 +1,10 @@
 /obj/effect/step_trigger/ares_alert
-	name = "ARES Apollo Sensor"
+	name = "ARES APOLLO传感器"
 	layer = 5
 	/// Link alerts to ARES Link
 	var/datum/ares_link/link
 	/// Alert message to report unless area based.
-	var/alert_message = "ALERT: Unauthorized movement detected in ARES Core!"
+	var/alert_message = "警报：ARES核心内检测到未经授权的活动！"
 	/// Connect alerts to use same cooldowns
 	var/alert_id
 	/// Set to true if it should report area name and not specific alert.
@@ -67,13 +67,13 @@
 	var/broadcast_message = alert_message
 	if(area_based)
 		var/area_name = get_area_name(src, TRUE)
-		broadcast_message = "ALERT: Unauthorized movement detected in [area_name]!"
+		broadcast_message = "警报：[area_name]内检测到未经授权的活动！"
 
 	var/datum/ares_link/link = GLOB.ares_link
 	if(!ares_can_apollo())
 		return FALSE
 
-	to_chat(passer, SPAN_BOLDWARNING("You hear a soft beeping sound as you cross the threshold."))
+	to_chat(passer, SPAN_BOLDWARNING("你跨过门槛时听见轻柔的哔声。"))
 	ares_apollo_talk(broadcast_message)
 	COOLDOWN_START(src, sensor_cooldown, cooldown_duration)
 	if(alert_id && link)
@@ -90,11 +90,11 @@
 
 /obj/effect/step_trigger/ares_alert/mainframe
 	alert_id = "AresMainframe"
-	alert_message = "ALERT: Unauthorized movement detected in ARES Mainframe!"
+	alert_message = "警报：ARES主机室内检测到未经授权的活动！"
 
 /obj/effect/step_trigger/ares_alert/terminals
 	alert_id = "AresTerminals"
-	alert_message = "ALERT: Unauthorized movement detected in ARES' Operations Center!"
+	alert_message = "警报：ARES操作中心内检测到未经授权的活动！"
 
 /obj/effect/step_trigger/ares_alert/comms
 	area_based = TRUE
@@ -104,7 +104,7 @@
 
 /// Trigger will remove ACCESS_MARINE_AI_TEMP unless ACCESS_MARINE_AI is also present.
 /obj/effect/step_trigger/ares_alert/access_control
-	name = "ARES Access Control Sensor"
+	name = "ARES门禁传感器"
 	alert_message = "HARDCODED"
 	alert_id = "ARES Access"
 	cooldown_duration = COOLDOWN_ARES_ACCESS_CONTROL
@@ -156,7 +156,7 @@
 	if(!ares_can_apollo())
 		return FALSE
 
-	to_chat(passer, SPAN_BOLDWARNING("You hear a harsh buzzing sound as you cross the threshold!"))
+	to_chat(passer, SPAN_BOLDWARNING("你跨过门槛时听见刺耳的蜂鸣！"))
 	if(COOLDOWN_FINISHED(src, sensor_cooldown))//Don't want alerts spammed.
 		ares_apollo_talk(broadcast_message)
 	if(idcard)
@@ -166,7 +166,7 @@
 				continue
 			idcard.access -= ACCESS_MARINE_AI_TEMP
 			link.active_ids -= idcard
-			idcard.modification_log += "Temporary AI access revoked by [MAIN_AI_SYSTEM]"
+			idcard.modification_log += "临时AI访问权限已由[MAIN_AI_SYSTEM]撤销"
 		/// Updates the related access ticket.
 		for(var/datum/ares_ticket/access/access_ticket in link.tickets_access)
 			if(access_ticket.user_id_num != idcard.registered_gid)
@@ -181,15 +181,15 @@
 
 /obj/effect/step_trigger/ares_alert/access_control/proc/get_broadcast(atom/passer, obj/item/card/id/idcard, failure = FALSE)
 	if(isxeno(passer))
-		return "Unidentified lifeform detected departing AI Chamber."
+		return "检测到不明生命体离开AI机房。"
 	if(ishuman(passer))
 		var/mob/living/carbon/human/human_passer = passer
 		if(failure)
-			return "CAUTION: [human_passer.name] left the AI Chamber without a locatable ID card."
-		return "ALERT: [human_passer.name] left the AI Chamber with a temporary access ticket. Removing access."
+			return "注意：[human_passer.name]离开AI机房时未携带可定位的身份卡。"
+		return "警报：[human_passer.name]持临时通行证离开AI机房，正在撤销权限。"
 
 	if(idcard)
-		return "ALERT: ID Card assigned to [idcard.registered_name] left the AI Chamber with a temporary access ticket. Removing access."
+		return "警报：登记于[idcard.registered_name]名下的身份卡携带临时通行权限离开AI机房，正在撤销权限。"
 
 	log_debug("ARES ERROR 337: Passer: '[passer]', ID: '[idcard]', F Status: '[failure]'")
-	return "Warning: Error 337 - Access Control Anomaly."
+	return "警告：错误337——门禁控制异常。"

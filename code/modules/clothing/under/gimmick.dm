@@ -17,34 +17,34 @@
 
 //JASON
 /obj/item/clothing/under/gimmick/jason
-	name = "dirty work attire"
-	desc = "Perfect thing to wear when digging graves."
+	name = "脏工作服"
+	desc = "挖坟时穿再合适不过。"
 	icon_state = "jason_suit"
 
 /obj/item/clothing/mask/gimmick/jason
-	name = "hockey mask"
-	desc = "It smells like teenage spirit."
+	name = "曲棍球面具"
+	desc = "散发着青春的气息。"
 	icon_state = "jason_mask"
 	anti_hug = 100
 
 /obj/item/clothing/suit/gimmick/jason
-	name = "musty jacket"
-	desc = "A killer fashion statement."
+	name = "霉味夹克"
+	desc = "杀气十足的时尚宣言。"
 	icon_state = "jason_jacket"
 	item_state = "jason_jacket"
 
 //RAMBO
 /obj/item/clothing/under/gimmick/rambo
-	name = "combat pants"
-	desc = "The only thing a man needs when he's up against the world."
+	name = "作战长裤"
+	desc = "一个男人与全世界为敌时所需的唯一衣物。"
 	icon_state = "rambo_suit"
 	flags_armor_protection = BODY_FLAG_LEGS|BODY_FLAG_GROIN
 	flags_cold_protection = BODY_FLAG_LEGS|BODY_FLAG_GROIN
 	flags_heat_protection = BODY_FLAG_LEGS|BODY_FLAG_GROIN
 
 /obj/item/clothing/suit/gimmick/rambo
-	name = "pendant"
-	desc = "It's a precious stone and something of a talisman of protection."
+	name = "吊坠"
+	desc = "镶有宝石，也算是一件护身符。"
 	flags_armor_protection = BODY_FLAG_CHEST
 	flags_cold_protection = BODY_FLAG_CHEST
 	flags_heat_protection = BODY_FLAG_CHEST
@@ -52,8 +52,8 @@
 
 //MCCLANE
 /obj/item/clothing/under/gimmick/mcclane
-	name = "holiday attire"
-	desc = "The perfect outfit for a Christmas holiday with family. Shoes not included."
+	name = "节日服装"
+	desc = "与家人共度圣诞假日的完美装束。不含鞋子。"
 	icon_state = "mcclane_suit"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_LEGS
 	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_LEGS
@@ -61,16 +61,16 @@
 
 //DUTCH
 /obj/item/clothing/under/gimmick/dutch
-	name = "combat fatigues"
-	desc = "Just another pair of military fatigues for a grueling tour in a jungle."
+	name = "作战服"
+	desc = "一套普通军用作战服，陪你熬过艰苦的丛林战。"
 	icon_state = "dutch_suit"
 	flags_armor_protection = BODY_FLAG_LEGS|BODY_FLAG_GROIN
 	flags_cold_protection = BODY_FLAG_LEGS|BODY_FLAG_GROIN
 	flags_heat_protection = BODY_FLAG_LEGS|BODY_FLAG_GROIN
 
 /obj/item/clothing/suit/armor/gimmick/dutch
-	name = "armored jacket"
-	desc = "It's hot in the jungle. Sometimes it's hot and heavy, and sometimes it's hell on earth."
+	name = "装甲夹克"
+	desc = "丛林很热。有时闷热难耐，有时简直就是人间地狱。"
 	icon_state = "dutch_armor"
 	flags_armor_protection = BODY_FLAG_CHEST
 	flags_cold_protection = BODY_FLAG_CHEST
@@ -98,14 +98,14 @@
 
 //ROBOCOP
 /obj/item/clothing/under/gimmick/robocop
-	name = "metal body"
-	desc = "It may be metallic, but it contains the heart and soul of Alex J. Murphy."
+	name = "金属躯体"
+	desc = "躯体虽是金属，里面却有亚历克斯·J·墨菲的心灵与灵魂。"
 	icon_state = "robocop_suit"
 	flags_atom = FPRINT|CONDUCT
 
 /obj/item/clothing/shoes/gimmick/robocop
-	name = "polished metal boots"
-	desc = "The perfect size to stomp on the scum of Detroit."
+	name = "抛光金属靴"
+	desc = "用来踩扁底特律人渣，大小正合适。"
 	icon_state = "robocop_shoes"
 	armor_melee = CLOTHING_ARMOR_HIGH
 	armor_bullet = CLOTHING_ARMOR_VERYHIGH
@@ -118,8 +118,8 @@
 	flags_inventory = FPRINT|CONDUCT|NOSLIPPING
 
 /obj/item/clothing/gloves/gimmick/robocop
-	name = "metal hands"
-	desc = "The cold, unfeeling hands of the law."
+	name = "金属手掌"
+	desc = "法律冰冷而无情的双手。"
 	icon_state = "robocop_gloves"
 	flags_atom = FPRINT|CONDUCT
 	armor_melee = CLOTHING_ARMOR_HIGH
@@ -132,8 +132,8 @@
 	armor_internaldamage = CLOTHING_ARMOR_HARDCORE
 
 /obj/item/clothing/head/helmet/gimmick/robocop
-	name = "polished metal helm"
-	desc = "The impersonal face of the law. Titanium alloy frame backed with ballistic polymer layers."
+	name = "抛光金属头盔"
+	desc = "法律铁面无私的面孔。钛合金框架内衬多层防弹聚合物。"
 	icon_state = "robocop_helmet"
 	item_state = "robocop_helmet"
 	armor_melee = CLOTHING_ARMOR_HIGH
@@ -149,8 +149,8 @@
 	anti_hug = 100
 
 /obj/item/clothing/suit/armor/gimmick/robocop
-	name = "polished metal armor"
-	desc = "Clean and well maintained, unlike the ugly streets of Detroit. Titanium alloy shell, molybdenum armor plating backed with ballistic polymer."
+	name = "抛光金属装甲"
+	desc = "干净且保养良好，与底特律肮脏的街道截然不同。钛合金外壳、钼装甲板和防弹聚合物内衬。"
 	icon_state = "robocop_armor"
 	item_state = "robocop_armor"
 	slowdown = 1
@@ -171,31 +171,31 @@
 
 //LUKE
 /obj/item/clothing/under/gimmick/skywalker
-	name = "black jumpsuit"
-	desc = "A simple, utilitarian jumpsuit worn by one who has mastered the force."
+	name = "黑色连体服"
+	desc = "简单实用的连体服，由一位掌握了原力的人穿着。"
 	icon_state = "skywalker_suit"
 
 /obj/item/clothing/shoes/gimmick/skywalker
-	name = "black boots"
-	desc = "Perfectly functional, this pair of boots has stomped on many planets and starships."
+	name = "黑色靴子"
+	desc = "功能完备，这双靴子踏过无数行星与星舰。"
 	icon_state = "skywalker_shoes"
 	flags_inventory = FPRINT|NOSLIPPING
 
 /obj/item/clothing/gloves/gimmick/skywalker
-	name = "black glove"
-	desc = "Something to cover up that artificial hand... Who says heroes can't be self-conscious?"
+	name = "黑色手套"
+	desc = "用来遮住那只义手……谁说英雄就不会在意外表？"
 	icon_state = "skywalker_gloves"
 
 
 
 /obj/item/clothing/under/gimmick/rank/captain/suit
-	name = "captain's suit"
-	desc = "A green suit and yellow necktie. Exemplifies authority."
+	name = "舰长西装"
+	desc = "绿色西装配黄色领带，尽显权威。"
 	icon_state = "green_suit"
 	item_state = "dg_suit"
 
 /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit
-	name = "head of personnel's suit"
-	desc = "A teal suit and yellow necktie. An authoritative yet tacky ensemble."
+	name = "人事主管西装"
+	desc = "青绿色西装配黄色领带。既显权威，又有点俗气。"
 	icon_state = "teal_suit"
 	item_state = "g_suit"

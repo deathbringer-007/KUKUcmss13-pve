@@ -105,8 +105,8 @@
 			if(checked_xeno.stat == DEAD)
 				continue
 
-			var/name = "Unidentified Lifesigns"
-			var/input = "Unidentified lifesigns detected onboard. Recommendation: lockdown of exterior access ports, including ducting and ventilation."
+			var/name = "不明生命信号"
+			var/input = "艇内检测到不明生命信号，建议封锁所有外部出入口，包括管线和通风管道。"
 			shipwide_ai_announcement(input, name, 'sound/AI/unidentified_lifesigns.ogg', ares_logging = ARES_LOG_SECURITY)
 			set_security_level(SEC_LEVEL_RED)
 			return
@@ -118,7 +118,7 @@
 			air.handle_multidoor(old_dir, new_dir)
 
 /obj/docking_port/mobile/marine_dropship/midway
-	name = "Midway"
+	name = "中途岛号"
 	id = DROPSHIP_MIDWAY
 	width = 9
 	height = 18
@@ -130,7 +130,7 @@
 	return /turf/open/space/transit/dropship/midway
 
 /obj/docking_port/mobile/marine_dropship/upp
-	name = "Akademia Nauk"
+	name = "科学院号"
 	id = DROPSHIP_UPP
 	width = 9
 	height = 18
@@ -142,7 +142,7 @@
 	return /turf/open/space/transit/dropship/upp
 
 /obj/docking_port/mobile/marine_dropship/cyclone
-	name = "Cyclone"
+	name = "旋风号"
 	id = DROPSHIP_CYCLONE
 	width = 9
 	height = 18
@@ -155,7 +155,7 @@
 	return /turf/open/space/transit/dropship/cyclone
 
 /obj/docking_port/mobile/marine_dropship/tornado
-	name = "HLD-Tornado"
+	name = "HLD-龙卷风号"
 	id = DROPSHIP_TORNADO
 	width = 11
 	height = 18
@@ -167,7 +167,7 @@
 	return /turf/open/space/transit/dropship/tornado
 
 /obj/docking_port/mobile/marine_dropship/typhoon
-	name = "CMD-Typhoon"
+	name = "CMD-台风号"
 	id = DROPSHIP_TYPHOON
 	width = 11
 	height = 18
@@ -179,7 +179,7 @@
 	return /turf/open/space/transit/dropship/typhoon
 
 /obj/docking_port/mobile/marine_dropship/tripoli
-	name = "Tripoli"
+	name = "的黎波里号"
 	id = DROPSHIP_TRIPOLI
 	width = 9
 	height = 18
@@ -191,7 +191,7 @@
 	return /turf/open/space/transit/dropship/tripoli
 
 /obj/docking_port/mobile/marine_dropship/pmc
-	name = "Cash Flow"
+	name = "现金流号"
 	id = DROPSHIP_PMC
 
 	width = 9
@@ -204,7 +204,7 @@
 	return /turf/open/space/transit/dropship/pmc
 
 /obj/docking_port/mobile/marine_dropship/gibraltar
-	name = "Gibraltar"
+	name = "直布罗陀号"
 	id = DROPSHIP_GIBRALTAR
 	width = 9
 	height = 18
@@ -216,7 +216,7 @@
 	return /turf/open/space/transit/dropship/gibraltar
 
 /obj/docking_port/mobile/marine_dropship/alamo
-	name = "Alamo"
+	name = "阿拉莫号"
 	id = DROPSHIP_ALAMO
 	preferred_direction = SOUTH // If you are changing this, please update the dir of the path below as well
 
@@ -224,7 +224,7 @@
 	return /turf/open/space/transit/dropship/alamo
 
 /obj/docking_port/mobile/marine_dropship/normandy
-	name = "Normandy"
+	name = "诺曼底号"
 	id = DROPSHIP_NORMANDY
 	preferred_direction = SOUTH // If you are changing this, please update the dir of the path below as well
 
@@ -232,7 +232,7 @@
 	return /turf/open/space/transit/dropship/normandy
 
 /obj/docking_port/mobile/marine_dropship/saipan
-	name = "Saipan"
+	name = "塞班号"
 	id = DROPSHIP_SAIPAN
 	preferred_direction = SOUTH // If you are changing this, please update the dir of the path below as well
 
@@ -265,7 +265,7 @@
 		return
 
 	if(automated_hangar_id && automated_lz_id && automated_delay && !automated_timer && mode == SHUTTLE_IDLE)
-		ai_silent_announcement("The [name] will automatically depart in [automated_delay * 0.1] seconds")
+		ai_silent_announcement("[name]将在[automated_delay * 0.1]秒后自动出发。")
 		automated_timer = addtimer(CALLBACK(src, PROC_REF(automated_fly)), automated_delay, TIMER_STOPPABLE)
 
 /obj/docking_port/mobile/marine_dropship/proc/automated_fly()
@@ -282,7 +282,7 @@
 		SSshuttle.moveShuttle(id, automated_lz_id, TRUE)
 	else
 		SSshuttle.moveShuttle(id, automated_hangar_id, TRUE)
-	ai_silent_announcement("Dropship '[name]' departing.")
+	ai_silent_announcement("登陆艇“[name]”正在出发。")
 
 /obj/docking_port/stationary/marine_dropship
 	dir = NORTH
@@ -352,7 +352,7 @@
 			SSticker.mode.flags_round_type |= MODE_DS_LANDED
 
 	if(xeno_announce)
-		xeno_announcement(SPAN_XENOANNOUNCE("The dropship has landed."), "everything")
+		xeno_announcement(SPAN_XENOANNOUNCE("登陆艇已着陆。"), "everything")
 		xeno_announce = FALSE
 
 /obj/docking_port/stationary/marine_dropship/on_dock_ignition(obj/docking_port/mobile/departing_shuttle)
@@ -367,29 +367,29 @@
 		eq.on_launch()
 
 /obj/docking_port/stationary/marine_dropship/lz1
-	name = "LZ1 Landing Zone"
+	name = "LZ1着陆区"
 	id = DROPSHIP_LZ1
 	auto_open = TRUE
 
 /obj/docking_port/stationary/marine_dropship/lz2
-	name = "LZ2 Landing Zone"
+	name = "LZ2着陆区"
 	id = DROPSHIP_LZ2
 	auto_open = TRUE
 
 /obj/docking_port/stationary/marine_dropship/almayer_hangar_1
-	name = "Almayer Hangar bay 1"
+	name = "阿尔迈耶号1号机库"
 	id = ALMAYER_DROPSHIP_LZ1
 	auto_open = TRUE
 	roundstart_template = /datum/map_template/shuttle/alamo
 
 /obj/docking_port/stationary/marine_dropship/almayer_hangar_2
-	name = "Almayer Hangar bay 2"
+	name = "阿尔迈耶号2号机库"
 	id = ALMAYER_DROPSHIP_LZ2
 	auto_open = TRUE
 	roundstart_template = /datum/map_template/shuttle/normandy
 
 /obj/docking_port/stationary/marine_dropship/golden_arrow_hangar
-	name = "Hangar Bay"
+	name = "机库"
 	id = GOLDEN_ARROW_LZ
 	auto_open = TRUE
 	roundstart_template = /datum/map_template/shuttle/midway
@@ -410,10 +410,10 @@
 		if(affected_mob.z != z)
 			continue
 		if(affected_mob.buckled)
-			to_chat(affected_mob, SPAN_WARNING("You are jolted against [affected_mob.buckled]!"))
+			to_chat(affected_mob, SPAN_WARNING("颠簸让你撞在[affected_mob.buckled]上！"))
 			// shake_camera(affected_mob, 3, 1)
 		else
-			to_chat(affected_mob, SPAN_WARNING("The floor jolts under your feet!"))
+			to_chat(affected_mob, SPAN_WARNING("脚下的地板猛地一颠！"))
 			// shake_camera(affected_mob, 10, 1)
 			affected_mob.apply_effect(3, WEAKEN)
 
@@ -421,45 +421,45 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HIJACK_LANDED)
 
 /datum/map_template/shuttle/midway
-	name = "Midway"
+	name = "中途岛号"
 	shuttle_id = DROPSHIP_MIDWAY
 
 /datum/map_template/shuttle/alamo
-	name = "Alamo"
+	name = "阿拉莫号"
 	shuttle_id = DROPSHIP_ALAMO
 
 /datum/map_template/shuttle/normandy
-	name = "Normandy"
+	name = "诺曼底号"
 	shuttle_id = DROPSHIP_NORMANDY
 
 /datum/map_template/shuttle/saipan
-	name = "Saipan"
+	name = "塞班号"
 	shuttle_id = DROPSHIP_SAIPAN
 
 /datum/map_template/shuttle/upp
-	name = "Akademia Nauk"
+	name = "科学院号"
 	shuttle_id = DROPSHIP_UPP
 
 /datum/map_template/shuttle/cyclone
-	name = "Cyclone"
+	name = "旋风号"
 	shuttle_id = DROPSHIP_CYCLONE
 
 /datum/map_template/shuttle/pmc
-	name = "Cash Flow"
+	name = "现金流号"
 	shuttle_id = DROPSHIP_PMC
 
 /datum/map_template/shuttle/gibraltar
-	name = "Gibraltar"
+	name = "直布罗陀号"
 	shuttle_id = DROPSHIP_GIBRALTAR
 
 /datum/map_template/shuttle/typhoon
-	name = "CMD-Typhoon"
+	name = "CMD-台风号"
 	shuttle_id = DROPSHIP_TYPHOON
 
 /datum/map_template/shuttle/tornado
-	name = "HLD-Tornado"
+	name = "HLD-龙卷风号"
 	shuttle_id = DROPSHIP_TORNADO
 
 /datum/map_template/shuttle/tripoli
-	name = "Tripoli"
+	name = "的黎波里号"
 	shuttle_id = DROPSHIP_TRIPOLI

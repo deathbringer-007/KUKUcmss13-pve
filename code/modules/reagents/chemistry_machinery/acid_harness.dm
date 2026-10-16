@@ -45,8 +45,8 @@
 	)
 
 /obj/item/clothing/accessory/storage/black_vest/acid_harness
-	name = "A.C.I.D. Harness"
-	desc = "Automated Chemical Integrated Delivery Harness, or really just a franken webbing made by a researcher with poor tailoring skills. Can be configured with a multitool."
+	name = "A.C.I.D.自动给药携行带"
+	desc = "自动化学综合给药携行带，说白了就是裁缝手艺欠佳的研究员拼凑出来的怪东西。可用多用工具配置。"
 	icon_state = "vest_acid_black"
 	hold = /obj/item/storage/internal/accessory/black_vest/acid_harness
 	var/obj/item/reagent_container/glass/beaker/vial/vial
@@ -197,7 +197,7 @@
 			. = TRUE
 
 /obj/structure/machinery/acid_core
-	name = "A.C.I.D. CORE"
+	name = "A.C.I.D.核心"
 	use_power = FALSE
 	var/obj/item/clothing/accessory/storage/black_vest/acid_harness/acid_harness
 	var/mob/living/carbon/human/user
@@ -230,26 +230,26 @@
 /obj/structure/machinery/acid_core/proc/boot_sequence()
 	if(!user || !acid_harness.battery)
 		return
-	var/text = SPAN_HELPFUL("A.C.I.D. states: ")
+	var/text = SPAN_HELPFUL("A.C.I.D.播报：")
 	switch(boot_status)
 		if(0)
 			if(acid_harness.battery.charge <= 100)
-				to_chat(user, SPAN_HELPFUL("A.C.I.D. states: ") + SPAN_WARNING("Insufficient power, booting sequence aborted."))
+				to_chat(user, SPAN_HELPFUL("A.C.I.D.播报：") + SPAN_WARNING("电量不足，启动流程已中止。"))
 				return
-			text += SPAN_NOTICE("Welcome, to the Automated Chemical Integrated Delivery harness.")
+			text += SPAN_NOTICE("欢迎使用自动化学综合给药携行带。")
 		if(1)
-			text += SPAN_NOTICE("Core systems, initialized.")
+			text += SPAN_NOTICE("核心系统已初始化。")
 		if(2)
-			text += SPAN_NOTICE("Communication interface, online.")
+			text += SPAN_NOTICE("通信界面已上线。")
 			playsound_client(user.client, 'sound/handling/toggle_nv1.ogg', null, ITEM_EQUIP_VOLUME)
 		if(3)
-			text += SPAN_NOTICE("Vital signs monitoring, activated.")
+			text += SPAN_NOTICE("生命体征监测已启用。")
 			playsound_client(user.client, 'sound/items/detector_turn_on.ogg', null, ITEM_EQUIP_VOLUME)
 		if(4)
-			text += SPAN_NOTICE("Automated medical systems, engaged.")
+			text += SPAN_NOTICE("自动医疗系统已启动。")
 			playsound_client(user.client, 'sound/items/healthanalyzer.ogg', null, ITEM_EQUIP_VOLUME)
 		if(5)
-			text += SPAN_NOTICE("Bootup sequence finalized. Have a very healthy operation.")
+			text += SPAN_NOTICE("启动流程完成。祝您行动平安。")
 		else
 			return
 	to_chat(user, text)
@@ -258,35 +258,35 @@
 /obj/structure/machinery/acid_core/proc/voice(voiceline, report_vitals = FALSE)
 	if(!user)
 		return
-	var/text = SPAN_HELPFUL("A.C.I.D. states: ")
+	var/text = SPAN_HELPFUL("A.C.I.D.播报：")
 	if(report_vitals)
 		switch(voiceline)
 			if(ACID_VITALS_OPTIMAL)
-				text += SPAN_NOTICE("Vital signs are in optimal condition.")
+				text += SPAN_NOTICE("生命体征处于最佳状态。")
 			if(ACID_VITALS_NOMINAL)
-				text += SPAN_NOTICE("Vital signs nominal.")
+				text += SPAN_NOTICE("生命体征正常。")
 			if(ACID_VITALS_DROPPING)
-				text += SPAN_WARNING("Vital signs dropping. Medical attention is adviced.")
+				text += SPAN_WARNING("生命体征正在下降。建议接受医疗救治。")
 			if(ACID_VITALS_LOW)
-				text += SPAN_WARNING("Vital signs low. Seek medical attention.")
+				text += SPAN_WARNING("生命体征偏低。请寻求医疗救治。")
 			if(ACID_VITALS_CRITICAL)
-				text += SPAN_DANGER("Warning: Vitals signs critical. Seek medical attention immediately.")
+				text += SPAN_DANGER("警告：生命体征危急。请立即寻求医疗救治。")
 			if(ACID_VITALS_EMERGENCY)
-				text += SPAN_HIGHDANGER("EMERGENCY. USER. DEATH. IMMINENT.")
+				text += SPAN_HIGHDANGER("紧急情况。使用者。濒临死亡。")
 	else
 		switch(voiceline)
 			if(ACID_SCAN_CONDITION_BLEEDING)
-				text += SPAN_WARNING("Warning: Blood loss detected.")
+				text += SPAN_WARNING("警告：检测到失血。")
 			if(ACID_SCAN_CONDITION_BLEEDING_INTERNAL)
-				text += SPAN_DANGER("Warning: Internal bleeding detected.")
+				text += SPAN_DANGER("警告：检测到内出血。")
 			if(ACID_SCAN_CONDITION_BLOODLOSS_HIGH)
-				text += SPAN_DANGER("Warning: Extreme blood loss detected.")
+				text += SPAN_DANGER("警告：检测到严重失血。")
 			if(ACID_SCAN_CONDITION_FRACTURE)
-				text += SPAN_WARNING("Warning: Major fracture detected.")
+				text += SPAN_WARNING("警告：检测到严重骨折。")
 			if(ACID_SCAN_CONDITION_ORGAN_DAMAGED)
-				text += SPAN_DANGER("Warning: Organ damage detected.")
+				text += SPAN_DANGER("警告：检测到器官损伤。")
 			if(ACID_SCAN_CONDITION_ORGAN_FAILURE)
-				text += SPAN_DANGER("Warning: Organ failure imminent.")
+				text += SPAN_DANGER("警告：器官即将衰竭。")
 			else
 				text += SPAN_NOTICE(voiceline)
 	to_chat(user, text)
@@ -326,7 +326,7 @@
 	var/charge = battery.charge / battery.maxcharge * 100
 	if(charge + 20 < battery_level || charge > battery_level)
 		battery_level = charge
-		voice("Energy is at, [charge]%.")
+		voice("剩余电量为[charge]%。")
 
 /obj/structure/machinery/acid_core/proc/recheck_conditions()
 	rechecking = TRUE
@@ -471,16 +471,16 @@
 
 /obj/structure/machinery/acid_core/proc/inject()
 	if(!acid_harness.vial || !acid_harness.vial.reagents)
-		voice("Warning: Medicinal capsule missing.")
+		voice("警告：缺少药剂胶囊。")
 		return
 	for(var/datum/reagent/R in acid_harness.vial.reagents.reagent_list)
 		if(user.reagents.get_reagent_amount(R.id) + inject_amount > R.overdose) //Don't overdose our boi
-			voice("Notice: Injection trigger cancelled to avoid overdose.")
+			voice("注意：为避免过量，已取消本次注射。")
 			addtimer(CALLBACK(src, PROC_REF(recheck_conditions)), 20 SECONDS * inject_amount)
 			return
 	if(acid_harness.vial.reagents.trans_to(user, inject_amount))
 		playsound_client(user.client, 'sound/items/hypospray.ogg', null, ITEM_EQUIP_VOLUME)
-		voice("Medicine administered. [acid_harness.vial.reagents.total_volume] units remaining.")
+		voice("药物已注射。剩余[acid_harness.vial.reagents.total_volume]单位。")
 		addtimer(CALLBACK(src, PROC_REF(recheck_conditions)), 20 SECONDS * inject_amount)
 	if(!acid_harness.vial.reagents.total_volume)
-		voice("Warning: Medicinal capsule is empty, resupply required.")
+		voice("警告：药剂胶囊已空，需要补充。")

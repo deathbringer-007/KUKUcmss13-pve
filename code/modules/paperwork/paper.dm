@@ -6,7 +6,7 @@
 #define MAX_FIELDS 51
 
 /obj/item/paper
-	name = "paper"
+	name = "纸"
 	gender = PLURAL
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "paper"
@@ -910,8 +910,8 @@
 /obj/item/paper/colonial_grunts
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "paper_stack_words"
-	name = "Colonial Space Grunts"
-	desc = "A tabletop game based around the USCM, easy to get into, simple to play, and most inportantly fun for the whole squad."
+	name = "殖民地太空大兵"
+	desc = "以 USCM 为主题的桌面游戏，容易上手、玩法简单，最重要的是全小队都能玩得开心。"
 
 /obj/item/paper/colonial_grunts/Initialize(mapload, ...)
 	. = ..()

@@ -1,8 +1,8 @@
 /obj/item/reagent_container/hypospray/autoinjector
-	name = "inaprovaline autoinjector"
+	name = "因纳普罗伐林自动注射器"
 	var/chemname = "inaprovaline"
 	//desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
-	desc = "An autoinjector containing Inaprovaline.  Useful for saving lives."
+	desc = "装有因纳普罗伐林的自动注射器，可用于挽救生命。"
 	icon_state = "empty"
 	item_state = "empty"
 	flags_atom = FPRINT
@@ -91,43 +91,43 @@
 	attack(target, user)
 
 /obj/item/reagent_container/hypospray/autoinjector/tricord
-	name = "tricordrazine autoinjector"
+	name = "广效康复嗪自动注射器"
 	chemname = "tricordrazine"
-	desc = "An autoinjector loaded with 3 uses of Tricordrazine, a weak general use medicine for treating damage."
+	desc = "装有 3 次剂量广效康复嗪的自动注射器。这种温和的通用药物可用于治疗损伤。"
 	amount_per_transfer_from_this = REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD
 	volume = (REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD) * INJECTOR_USES
 	display_maptext = TRUE
 	maptext_label = "Tc"
 
 /obj/item/reagent_container/hypospray/autoinjector/tricord/skillless
-	name = "tricordrazine EZ autoinjector"
-	desc = "An EZ autoinjector loaded with 3 uses of Tricordrazine, a weak general use medicine for treating damage. Doesn't require any training to use."
+	name = "广效康复嗪 EZ 自动注射器"
+	desc = "装有 3 次剂量广效康复嗪的 EZ 自动注射器。这种温和的通用药物可用于治疗损伤，无需训练即可使用。"
 	icon_state = "emptyskill"
 	item_state = "emptyskill"
 	skilllock = SKILL_MEDICAL_DEFAULT
 
 /obj/item/reagent_container/hypospray/autoinjector/adrenaline
-	name = "epinephrine autoinjector"
+	name = "肾上腺素自动注射器"
 	chemname = "adrenaline"
-	desc = "An autoinjector loaded with 3 uses of Epinephrine, better known as Adrenaline, a nerve stimulant useful in restarting the heart."
+	desc = "装有 3 次剂量肾上腺素的自动注射器。这种神经兴奋剂有助于恢复心跳。"
 	amount_per_transfer_from_this = LOWM_REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD
 	volume = (LOWM_REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD) * INJECTOR_USES
 	display_maptext = TRUE
 	maptext_label = "Ep"
 
 /obj/item/reagent_container/hypospray/autoinjector/adrenaline_concentrated
-	name = "concentrated adrenaline autoinjector"
+	name = "浓缩肾上腺素自动注射器"
 	chemname = "adrenaline_concentrated"
-	desc = "An autoinjector loaded with 3 uses of Concentrated Adrenaline, a stimulant that prevents unconsciousness but causes serious cardiovascular strain. <B>WARNING: Do not inject an individual more than twice!</B>"
+	desc = "装有 3 次剂量浓缩肾上腺素的自动注射器。这种兴奋剂可防止昏迷，但会给心血管系统带来严重负担。<B>警告：同一人不得注射超过两次！</B>"
 	amount_per_transfer_from_this = LOWM_REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD
 	volume = (LOWM_REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD) * INJECTOR_USES
 	display_maptext = TRUE
 	maptext_label = "Ad"
 
 /obj/item/reagent_container/hypospray/autoinjector/dexalinp
-	name = "dexalin plus autoinjector"
+	name = "强化右氧林自动注射器"
 	chemname = "dexalinp"
-	desc = "An autoinjector loaded with 3 uses of Dexalin+, designed to immediately oxygenate the entire body."
+	desc = "装有 3 次剂量强化右氧林的自动注射器，可立即为全身供氧。"
 	amount_per_transfer_from_this = 1
 	volume = 3
 	display_maptext = TRUE
@@ -154,17 +154,17 @@
 	update_icon()
 
 /obj/item/reagent_container/hypospray/autoinjector/tramadol
-	name = "tramadol autoinjector"
+	name = "曲马多自动注射器"
 	chemname = "tramadol"
-	desc = "An auto-injector loaded with 3 uses of Tramadol, a weak but effective painkiller for normal wounds."
+	desc = "装有 3 次剂量曲马多的自动注射器。这种较温和的止痛药对普通伤口有效。"
 	amount_per_transfer_from_this = REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD
 	volume = (REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD) * INJECTOR_USES
 	display_maptext = TRUE
 	maptext_label = "Tr"
 
 /obj/item/reagent_container/hypospray/autoinjector/tramadol/skillless
-	name = "tramadol EZ autoinjector"
-	desc = "An EZ autoinjector loaded with 3 uses of Tramadol, a weak but effective painkiller for normal wounds. Doesn't require any training to use."
+	name = "曲马多 EZ 自动注射器"
+	desc = "装有 3 次剂量曲马多的 EZ 自动注射器。这种较温和的止痛药对普通伤口有效，无需训练即可使用。"
 	icon_state = "emptyskill"
 	item_state = "emptyskill"
 	skilllock = SKILL_MEDICAL_DEFAULT
@@ -176,26 +176,26 @@
 	uses_left = 1
 
 /obj/item/reagent_container/hypospray/autoinjector/oxycodone
-	name = "oxycodone autoinjector (EXTREME PAINKILLER)"
+	name = "羟考酮自动注射器 (EXTREME PAINKILLER)"
 	chemname = "oxycodone"
-	desc = "An auto-injector loaded with 3 uses of Oxycodone, a powerful painkiller intended for life-threatening situations."
+	desc = "装有 3 次剂量羟考酮的自动注射器。这种强效镇痛药供危及生命时使用。"
 	amount_per_transfer_from_this = MED_REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD
 	volume = (MED_REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD) * INJECTOR_USES
 	display_maptext = TRUE
 	maptext_label = "Ox"
 
 /obj/item/reagent_container/hypospray/autoinjector/kelotane
-	name = "kelotane autoinjector"
+	name = "克洛坦自动注射器"
 	chemname = "kelotane"
-	desc = "An auto-injector loaded with 3 uses of Kelotane, a common burn medicine."
+	desc = "装有 3 次剂量克洛坦的自动注射器。克洛坦是常用烧伤药。"
 	amount_per_transfer_from_this = REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD
 	volume = (REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD) * INJECTOR_USES
 	display_maptext = TRUE
 	maptext_label = "Kl"
 
 /obj/item/reagent_container/hypospray/autoinjector/kelotane/skillless
-	name = "kelotane EZ autoinjector"
-	desc = "An EZ autoinjector loaded with 3 uses of Kelotane, a common burn medicine. Doesn't require any training to use."
+	name = "克洛坦 EZ 自动注射器"
+	desc = "装有 3 次剂量克洛坦的 EZ 自动注射器。克洛坦是常用烧伤药，无需训练即可使用。"
 	icon_state = "emptyskill"
 	item_state = "emptyskill"
 	skilllock = SKILL_MEDICAL_DEFAULT
@@ -207,17 +207,17 @@
 	uses_left = 1
 
 /obj/item/reagent_container/hypospray/autoinjector/bicaridine
-	name = "bicaridine autoinjector"
+	name = "比卡定自动注射器"
 	chemname = "bicaridine"
-	desc = "An auto-injector loaded with 3 uses of Bicaridine, a common brute and circulatory damage medicine."
+	desc = "装有 3 次剂量比卡定的自动注射器。比卡定是常用的钝伤及循环系统损伤治疗药。"
 	amount_per_transfer_from_this = REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD
 	volume = (REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD) * INJECTOR_USES
 	display_maptext = TRUE
 	maptext_label = "Bi"
 
 /obj/item/reagent_container/hypospray/autoinjector/bicaridine/skillless
-	name = "bicaridine EZ autoinjector"
-	desc = "An EZ autoinjector loaded with 3 uses of Bicaridine, a common brute and circulatory damage medicine.  Doesn't require any training to use."
+	name = "比卡定 EZ 自动注射器"
+	desc = "装有 3 次剂量比卡定的 EZ 自动注射器。比卡定是常用的钝伤及循环系统损伤治疗药，无需训练即可使用。"
 	icon_state = "emptyskill"
 	item_state = "emptyskill"
 	skilllock = SKILL_MEDICAL_DEFAULT
@@ -229,17 +229,17 @@
 	uses_left = 1
 
 /obj/item/reagent_container/hypospray/autoinjector/inaprovaline
-	name = "inaprovaline autoinjector"
+	name = "因纳普罗伐林自动注射器"
 	chemname = "inaprovaline"
-	desc = "An auto-injector loaded with 3 uses of Inaprovaline, an emergency stabilization medicine for patients in critical condition."
+	desc = "装有 3 次剂量因纳普罗伐林的自动注射器，用于紧急稳定危重患者。"
 	amount_per_transfer_from_this = HIGH_REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD
 	volume = (HIGH_REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD) * INJECTOR_USES
 	display_maptext = TRUE
 	maptext_label = "In"
 
 /obj/item/reagent_container/hypospray/autoinjector/emergency
-	name = "emergency autoinjector (CAUTION)"
-	desc = "An auto-injector loaded with a special cocktail of chemicals, to be used in life-threatening situations. Doesn't require any training to use."
+	name = "应急自动注射器 (CAUTION)"
+	desc = "装有特殊复方药剂的自动注射器，供危及生命时使用，无需训练即可操作。"
 	icon_state = "emptyskill"
 	item_state = "emptyskill"
 	chemname = "emergency"
@@ -261,9 +261,9 @@
 	update_icon()
 
 /obj/item/reagent_container/hypospray/autoinjector/ultrazine
-	name = "ultrazine autoinjector"
+	name = "超能嗪自动注射器"
 	chemname = "ultrazine"
-	desc = "An auto-injector loaded with a special illegal muscle stimulant, do not administer more than twice at a time. Highly addictive."
+	desc = "装有特殊非法肌肉兴奋剂的自动注射器，一次使用不得超过两针，极易成瘾。"
 	amount_per_transfer_from_this = 5
 	volume = 25
 	uses_left = 5
@@ -274,8 +274,8 @@
 	maptext_label = "UZ"
 
 /obj/item/reagent_container/hypospray/autoinjector/ultrazine/liaison
-	name = "white autoinjector"
-	desc = "You know what they say, don't jab yourself with suspicious syringes."
+	name = "白色自动注射器"
+	desc = "老话说得好，别拿可疑针管扎自己。"
 	maptext_label = "??"
 
 /obj/item/reagent_container/hypospray/autoinjector/yautja
@@ -296,9 +296,9 @@
 		to_chat(user, SPAN_DANGER("You have no idea where to inject [src]."))
 
 /obj/item/reagent_container/hypospray/autoinjector/skillless
-	name = "first-aid autoinjector"
+	name = "急救自动注射器"
 	chemname = "tricordrazine"
-	desc = "An autoinjector loaded with a small dose of medicine for marines to treat themselves with."
+	desc = "装有小剂量药物的自动注射器，供陆战队员自救使用。"
 	icon_state = "tricord"
 	amount_per_transfer_from_this = 15
 	volume = 15
@@ -311,7 +311,7 @@
 	if(.)
 		if(!uses_left) //Prevents autoinjectors to be refilled.
 			icon_state += "0"
-			name += " expended"
+			name += "（已耗尽）"
 			flags_atom &= ~OPENCONTAINER
 
 /obj/item/reagent_container/hypospray/autoinjector/skillless/attackby()
@@ -327,9 +327,9 @@
 		. += SPAN_NOTICE("It is empty.")
 
 /obj/item/reagent_container/hypospray/autoinjector/skillless/tramadol
-	name = "pain-stop autoinjector"
+	name = "止痛自动注射器"
 	chemname = "tramadol"
-	desc = "An auto-injector loaded with a small amount of painkiller for marines to self-administer."
+	desc = "装有少量止痛药的自动注射器，供陆战队员自行使用。"
 	icon_state = "tramadol"
 
 /obj/item/reagent_container/hypospray/autoinjector/dylovene
@@ -349,9 +349,9 @@
 	skilllock = SKILL_MEDICAL_DEFAULT
 
 /obj/item/reagent_container/hypospray/autoinjector/iron
-	name = "iron autoinjector"
+	name = "铁自动注射器"
 	chemname = "iron"
-	desc = "An autoinjector loaded with 3 uses of iron, to restore blood volume."
+	desc = "装有 3 次剂量铁剂的自动注射器，用于恢复血容量。"
 	amount_per_transfer_from_this = REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD
 	volume = (REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD) * INJECTOR_USES
 	display_maptext = TRUE
@@ -366,8 +366,8 @@
 	skilllock = SKILL_MEDICAL_DEFAULT
 
 /obj/item/reagent_container/hypospray/autoinjector/empty
-	name = "autoinjector (C-T)"
-	desc = "A custom-made auto-injector, likely from research."
+	name = "自动注射器 (C-T)"
+	desc = "一支定制自动注射器，大概出自科研部门。"
 	chemname = "custom"
 	mixed_chem = TRUE
 	amount_per_transfer_from_this = 5
@@ -443,8 +443,8 @@
 	amount_per_transfer_from_this = 60
 
 /obj/item/reagent_container/hypospray/autoinjector/empty/medic
-	name = "Medic Autoinjector (M-M)"
-	desc = "A custom-made professional injector, likely from research. Has a similar lock to pill bottles, and fits up to 6 injections."
+	name = "医护自动注射器 (M-M)"
+	desc = "一支定制专业注射器，大概出自科研部门。带有类似药瓶的锁定装置，最多可注射 6 次。"
 	skilllock = SKILL_MEDICAL_MEDIC
 	volume = 90
 	amount_per_transfer_from_this = 15

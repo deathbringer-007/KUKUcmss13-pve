@@ -1,7 +1,7 @@
 //Research stuff to extract stuff from xenomorphs for goodies. In other words, to extract useful material that could be used to upgrade marines etc.
 
 /datum/surgery/xenomorph
-	name = "Experimental Harvesting Surgery"
+	name = "实验性器官采集术"
 	invasiveness = list(SURGERY_DEPTH_SURFACE)
 	required_surgery_skill = SKILL_SURGERY_TRAINED
 	possible_locs = list("head")
@@ -18,18 +18,18 @@
 
 /datum/surgery/xenomorph/can_start(mob/user, mob/living/carbon/xenomorph/patient, obj/limb/L, obj/item/tool)
 	if(islarva(patient) || isfacehugger(patient))
-		to_chat(user, SPAN_DANGER("This race is probably too small to have a mature organ worthy to extract..."))
+		to_chat(user, SPAN_DANGER("这个种类的体型可能太小，没有值得提取的成熟器官……"))
 		return FALSE
 	if((patient.tier > 2 || isqueen(patient)) && !istype(tool, /obj/item/tool/surgery/scalpel/laser/advanced))
-		to_chat(user, SPAN_DANGER("Chitin of this kind is too thick for an ordinary tool, you would need something special."))
+		to_chat(user, SPAN_DANGER("这种几丁质对普通工具而言太厚了，你需要特殊工具。"))
 		return FALSE
 	if(patient.stat == DEAD && !patient.organ_removed)
 		return TRUE
 	return FALSE
 
 /datum/surgery_step/xenomorph/cut_exoskeleton
-	name = "Cut Exoskeleton Carapace"
-	desc = "cut the carapace open"
+	name = "切开外骨骼甲壳"
+	desc = "切开甲壳"
 	tools = list(
 		/obj/item/tool/surgery/scalpel/laser/advanced = SURGERY_TOOL_MULT_IDEAL,
 		/obj/item/tool/surgery/circular_saw = SURGERY_TOOL_MULT_IDEAL,
@@ -48,45 +48,45 @@
 /datum/surgery_step/xenomorph/cut_exoskeleton/preop(mob/living/carbon/human/user, mob/living/carbon/xenomorph/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(tool_type == /obj/item/tool/surgery/circular_saw || tool_type == /obj/item/tool/surgery/scalpel/laser/advanced)
 		user.affected_message(target,
-			SPAN_NOTICE("You start to cut [target.caste_type] carapace apart using [tool], carefully, trying to prevent acid leaks."),
-			SPAN_NOTICE("[user] starts to cut your carapace apart using [tool], carefully, trying to prevent acid leaks."),
-			SPAN_NOTICE("[user] starts to cut [target.caste_type] carapace. [tool], carefully, trying to prevent acid leaks."))
+			SPAN_NOTICE("你开始用[tool]小心切开[target.caste_type]的甲壳，尽量避免酸液泄漏。"),
+			SPAN_NOTICE("[user]开始用[tool]小心切开你的甲壳，尽量避免酸液泄漏。"),
+			SPAN_NOTICE("[user]开始用[tool]小心切开[target.caste_type]的甲壳，尽量避免酸液泄漏。"))
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("You start to [pick("smash", "crack", "break")] [target.caste_type] carapace apart using [tool], Recklessly, with acid splashing on you!"),
-			SPAN_NOTICE("[user] starts to [pick("smash", "crack", "break")] your carapace apart using [tool], recklessly splashing acid everywhere!"),
-			SPAN_NOTICE("[user] starts to [pick("smash", "crack", "break")] [target.caste_type] carapace with [tool], recklessly splashing acid everywhere!"))
+			SPAN_NOTICE("你开始用[tool]鲁莽地[pick("砸碎", "敲裂", "打破")][target.caste_type]的甲壳，酸液溅到了你身上！"),
+			SPAN_NOTICE("[user]开始用[tool]鲁莽地[pick("砸碎", "敲裂", "打破")]你的甲壳，酸液四处飞溅！"),
+			SPAN_NOTICE("[user]开始用[tool]鲁莽地[pick("砸碎", "敲裂", "打破")][target.caste_type]的甲壳，酸液四处飞溅！"))
 		//we dont really need log interact since we're working with dead body... I hope
 
 /datum/surgery_step/xenomorph/cut_exoskeleton/success(mob/living/carbon/human/user, mob/living/carbon/xenomorph/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(tool_type == /obj/item/tool/surgery/circular_saw)
 		user.affected_message(target,
-			SPAN_NOTICE("You succesfully cut through [target.caste_type] carapace apart using [tool]."),
-			SPAN_NOTICE("[user] successfully cuts through your carapace using [tool]."),
-			SPAN_NOTICE("[user] successfully cuts [target.caste_type] carapace using [tool]."))
+			SPAN_NOTICE("你用[tool]成功切开了[target.caste_type]的甲壳。"),
+			SPAN_NOTICE("[user]用[tool]成功切开了你的甲壳。"),
+			SPAN_NOTICE("[user]用[tool]成功切开了[target.caste_type]的甲壳。"))
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("You successfully destroy [target.caste_type] carapace into bits and pieces using [tool]."),
-			SPAN_NOTICE("[user] successfully destroys your carapace into bits and pieces using [tool]."),,
-			SPAN_NOTICE("[user] successfully destroys [target.caste_type] carapace into bits and pieces using [tool]."))
+			SPAN_NOTICE("你用[tool]成功将[target.caste_type]的甲壳打成了碎片。"),
+			SPAN_NOTICE("[user]用[tool]成功将你的甲壳打成了碎片。"),,
+			SPAN_NOTICE("[user]用[tool]成功将[target.caste_type]的甲壳打成了碎片。"))
 	for(var/mob/living/carbon/human/victim in orange(1, target))
 		if(istype(victim.wear_suit, /obj/item/clothing/suit/bio_suit) && istype(victim.head, /obj/item/clothing/head/bio_hood))
 			continue
-		to_chat(victim, SPAN_HIGHDANGER("You are covered in acid as you feel agonizing pain!"))
+		to_chat(victim, SPAN_HIGHDANGER("酸液覆盖了你全身，带来难以忍受的剧痛！"))
 		victim.apply_damage(rand(75, 125), BURN) // you WILL wear biosuit.
 		playsound(victim, "acid_sizzle", 25, TRUE)
 		animation_flash_color(victim, "#FF0000")
 
 /datum/surgery_step/xenomorph/cut_exoskeleton/failure(mob/living/carbon/human/user, mob/living/carbon/xenomorph/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_WARNING("Your hand slips, failing to cut [target.caste_type] carapace apart using [tool]!"),
-		SPAN_WARNING("[user]'s hand slips, failing to cut your carapace apart using [tool]!"),
-		SPAN_WARNING("[user] hand slips, failing to cut [target.caste_type] carapace using [tool]!"))
+		SPAN_WARNING("你手一滑，未能用[tool]切开[target.caste_type]的甲壳！"),
+		SPAN_WARNING("[user]手一滑，未能用[tool]切开你的甲壳！"),
+		SPAN_WARNING("[user]手一滑，未能用[tool]切开[target.caste_type]的甲壳！"))
 	return FALSE
 
 /datum/surgery_step/xenomorph/open_exoskeleton
-	name = "Pry exoskeleton open"
-	desc = "open the exoskeleton in the incision"
+	name = "撬开外骨骼"
+	desc = "从切口处撬开外骨骼"
 	tools = SURGERY_TOOLS_PRY_ENCASED
 	time = 2 SECONDS
 	preop_sound = 'sound/surgery/retractor1.ogg'
@@ -95,39 +95,39 @@
 
 /datum/surgery_step/xenomorph/open_exoskeleton/preop(mob/living/carbon/human/user, mob/living/carbon/xenomorph/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 			user.affected_message(target,
-				SPAN_NOTICE("You start to pry [target.caste_type] carapace open using [tool]"),
-				SPAN_NOTICE("[user] starts to pry your carapace open with [tool] very carefully"),
-				SPAN_NOTICE("[user] starts to pry [target.caste_type] carapace open with [tool] very carefully"))
+				SPAN_NOTICE("你开始用[tool]撬开[target.caste_type]的甲壳。"),
+				SPAN_NOTICE("[user]开始用[tool]十分小心地撬开你的甲壳。"),
+				SPAN_NOTICE("[user]开始用[tool]十分小心地撬开[target.caste_type]的甲壳。"))
 
 /datum/surgery_step/xenomorph/open_exoskeleton/success(mob/living/carbon/human/user, mob/living/carbon/xenomorph/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(tool_type == /obj/item/tool/surgery/retractor)
 		user.affected_message(target,
-			SPAN_NOTICE("You hold [target.caste_type] carapace and exoskeleton open using [tool], exposing [target.caste_type] vital organs"),
-			SPAN_NOTICE("[user] holds your carapace and exoskeleton open with [tool], exposing [target.caste_type] vital organs "),
-			SPAN_NOTICE("[user] holds [target.caste_type] carapace and exoskeleton open with [tool], exposing [target.caste_type] vital organs "))
+			SPAN_NOTICE("你用[tool]撑开[target.caste_type]的甲壳与外骨骼，暴露出[target.caste_type]的重要器官。"),
+			SPAN_NOTICE("[user]用[tool]撑开你的甲壳与外骨骼，暴露出[target.caste_type]的重要器官。"),
+			SPAN_NOTICE("[user]用[tool]撑开[target.caste_type]的甲壳与外骨骼，暴露出[target.caste_type]的重要器官。"))
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("You hold [target.caste_type] carapace open using [tool] like a medieval doctor, exposing [target.caste_type] vital organs"),
-			SPAN_NOTICE("[user] starts to open your carapace with [tool] very carefully"),
-			SPAN_NOTICE("[user] starts to open [target.caste_type] carapace with [tool] very carefully"))
+			SPAN_NOTICE("你像中世纪医生一样用[tool]撑开[target.caste_type]的甲壳，暴露出[target.caste_type]的重要器官。"),
+			SPAN_NOTICE("[user]开始用[tool]十分小心地打开你的甲壳。"),
+			SPAN_NOTICE("[user]开始用[tool]十分小心地打开[target.caste_type]的甲壳。"))
 
 /datum/surgery_step/xenomorph/open_exoskeleton/failure(mob/living/carbon/human/user, mob/living/carbon/xenomorph/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_WARNING("Your hand slips, letting go of [target.caste_type] carapace and exoskeleton, slaming it back into place and splashing acid everywhere!"),
-		SPAN_WARNING("[user] hand slips, letting go of [target.caste_type] carapace and exoskeleton, slaming it back into place and splashing acid everywhere!"),
-		SPAN_WARNING("[user] hand slips, letting go of [target.caste_type] carapace and exoskeleton, slaming it back into place and splashing acid everywhere!"))
+		SPAN_WARNING("你手一滑，松开了[target.caste_type]的甲壳与外骨骼，它们猛地合拢，酸液四处飞溅！"),
+		SPAN_WARNING("[user]手一滑，松开了[target.caste_type]的甲壳与外骨骼，它们猛地合拢，酸液四处飞溅！"),
+		SPAN_WARNING("[user]手一滑，松开了[target.caste_type]的甲壳与外骨骼，它们猛地合拢，酸液四处飞溅！"))
 	for(var/mob/living/carbon/human/victim in orange(1, target))
 		if(istype(victim.wear_suit, /obj/item/clothing/suit/bio_suit) && istype(victim.head, /obj/item/clothing/head/bio_hood))
 			continue
-		to_chat(victim, SPAN_DANGER("You are covered in blood gushing out from [target.caste_type]"))
+		to_chat(victim, SPAN_DANGER("从[target.caste_type]体内涌出的血液溅了你一身。"))
 		victim.apply_damage(rand(50, 75), BURN) // still dangerous
 		playsound(victim, "acid_sizzle", 25, TRUE)
 		animation_flash_color(victim, "#FF0000")
 	return FALSE
 
 /datum/surgery_step/xenomorph/severe_connections
-	name = "Sever Organ Connections"
-	desc = "detach tubes and connections from organ"
+	name = "切断器官连接"
+	desc = "断开器官的管道与连接组织"
 	tools = list(
 		/obj/item/tool/surgery/scalpel = SURGERY_TOOL_MULT_IDEAL,
 		/obj/item/tool/surgery/scalpel/pict_system = SURGERY_TOOL_MULT_IDEAL,
@@ -142,38 +142,38 @@
 
 /datum/surgery_step/xenomorph/severe_connections/preop(mob/living/carbon/human/user, mob/living/carbon/xenomorph/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("You start to sever [target.caste_type] organ links using [tool], with confidence"),
-		SPAN_NOTICE("[user] start to sever your organ links using [tool], with confidence"),
-		SPAN_NOTICE("[user] starts to sever [target.caste_type] organ links using [tool], with confidence"))
+		SPAN_NOTICE("你开始用[tool]熟练地切断[target.caste_type]的器官连接。"),
+		SPAN_NOTICE("[user]开始用[tool]熟练地切断你的器官连接。"),
+		SPAN_NOTICE("[user]开始用[tool]熟练地切断[target.caste_type]的器官连接。"))
 
 /datum/surgery_step/xenomorph/severe_connections/success(mob/living/carbon/human/user, mob/living/carbon/xenomorph/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(tool_type == /obj/item/tool/surgery/scalpel || tool_type == /obj/item/tool/surgery/scalpel/pict_system)
 		user.affected_message(target,
-			SPAN_NOTICE("You severed [target.caste_type] connections and links to vital organs using [tool]"),
-			SPAN_NOTICE("[user] severed your connections and links to vital organs using [tool]"),
-			SPAN_NOTICE("[user] severed [target.caste_type] connections and links to vital organs using [tool]"))
+			SPAN_NOTICE("你用[tool]切断了[target.caste_type]与重要器官相连的连接组织。"),
+			SPAN_NOTICE("[user]用[tool]切断了你与重要器官相连的连接组织。"),
+			SPAN_NOTICE("[user]用[tool]切断了[target.caste_type]与重要器官相连的连接组织。"))
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("You rip [target.caste_type] connections and links to vital organs apart using [tool]"),
-			SPAN_NOTICE("[user] rips your connections and links to vital organs apart using [tool]"),
-			SPAN_NOTICE("[user] rips [target.caste_type] connections and links to vital organs apart using [tool]"))
+			SPAN_NOTICE("你用[tool]扯断了[target.caste_type]与重要器官相连的连接组织。"),
+			SPAN_NOTICE("[user]用[tool]扯断了你与重要器官相连的连接组织。"),
+			SPAN_NOTICE("[user]用[tool]扯断了[target.caste_type]与重要器官相连的连接组织。"))
 
 /datum/surgery_step/xenomorph/severe_connections/failure(mob/living/carbon/human/user, mob/living/carbon/xenomorph/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_WARNING("Your hand slips, damaging one of [target.caste_type] [pick("arteries", "viens")], gushing acid blood everywhere!"),
-		SPAN_WARNING("[user] hand slips, damaging one of your [pick("arteries", "viens")], gushing acid blood everywhere!"),
-		SPAN_WARNING("[user] hand slips, damaging one of [target.caste_type] [pick("arteries", "viens")], gushing acid blood everywhere!"))
+		SPAN_WARNING("你手一滑，损伤了[target.caste_type]的一条[pick("动脉", "静脉")]，酸血四处喷涌！"),
+		SPAN_WARNING("[user]手一滑，损伤了你的一条[pick("动脉", "静脉")]，酸血四处喷涌！"),
+		SPAN_WARNING("[user]手一滑，损伤了[target.caste_type]的一条[pick("动脉", "静脉")]，酸血四处喷涌！"))
 	for(var/mob/living/carbon/human/victim in orange(1, target))
 		if(istype(victim.wear_suit, /obj/item/clothing/suit/bio_suit) && istype(victim.head, /obj/item/clothing/head/bio_hood))
 			continue
-		to_chat(victim, SPAN_DANGER("You are covered in blood gushing out from [target.caste_type]"))
+		to_chat(victim, SPAN_DANGER("从[target.caste_type]体内涌出的血液溅了你一身。"))
 		victim.apply_damage(rand(50, 75), BURN) // not SO dangerous but still is
 		playsound(victim, "acid_sizzle", 25, TRUE)
 		animation_flash_color(victim, "#FF0000")
 
 /datum/surgery_step/xenomorph/remove_organ
-	name = "Remove Xenomorph Organ"
-	desc = "grab a hold of it and pull the organ out"
+	name = "取出异形器官"
+	desc = "抓牢并取出器官"
 	accept_hand = TRUE
 	tools = list(
 		/obj/item/tool/surgery/hemostat = SURGERY_TOOL_MULT_IDEAL,
@@ -188,32 +188,32 @@
 /datum/surgery_step/xenomorph/remove_organ/preop(mob/living/carbon/human/user, mob/living/carbon/xenomorph/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(tool)
 		user.affected_message(target,
-		SPAN_NOTICE("You start to get a firm grip on the [target.caste_type] organ using [tool] "),
-		SPAN_NOTICE("[user] start to get a firm grip on your insides using [tool]"),
-		SPAN_NOTICE("[user] starts to get a firm grip on the [target.caste_type] organ using [tool] "))
+		SPAN_NOTICE("你开始用[tool]牢牢夹住[target.caste_type]的器官。"),
+		SPAN_NOTICE("[user]开始用[tool]牢牢夹住你的内脏。"),
+		SPAN_NOTICE("[user]开始用[tool]牢牢夹住[target.caste_type]的器官。"))
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("You start to get a firm grip on the [target.caste_type] organ"),
-			SPAN_NOTICE("[user] starts to get a firm grip on your insides"),
-			SPAN_NOTICE("[user] starts to get a firm grip on the [target.caste_type] organ"))
+			SPAN_NOTICE("你开始牢牢抓住[target.caste_type]的器官。"),
+			SPAN_NOTICE("[user]开始牢牢抓住你的内脏。"),
+			SPAN_NOTICE("[user]开始牢牢抓住[target.caste_type]的器官。"))
 
 /datum/surgery_step/xenomorph/remove_organ/success(mob/living/carbon/human/user, mob/living/carbon/xenomorph/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(tool)
 		user.affected_message(target,
-			SPAN_NOTICE("You pulled the [target.caste_type] organ out using [tool]"),
-			SPAN_NOTICE("[user] pulled your organ out using [tool]"),
-			SPAN_NOTICE("[user] pulled the [target.caste_type] organ out using [tool]"))
+			SPAN_NOTICE("你用[tool]取出了[target.caste_type]的器官。"),
+			SPAN_NOTICE("[user]用[tool]取出了你的器官。"),
+			SPAN_NOTICE("[user]用[tool]取出了[target.caste_type]的器官。"))
 	else
 		if(istype(user.wear_suit, /obj/item/clothing/suit/bio_suit))
 			user.affected_message(target,
-				SPAN_NOTICE("You pulled the [target.caste_type] organ out!"),
-				SPAN_NOTICE("[user] pulles your insides out!"),
-				SPAN_NOTICE("[user] pulled the [target.caste_type] organ out."))
+				SPAN_NOTICE("你取出了[target.caste_type]的器官！"),
+				SPAN_NOTICE("[user]扯出了你的内脏！"),
+				SPAN_NOTICE("[user]取出了[target.caste_type]的器官。"))
 		else
 			user.affected_message(target,
-				SPAN_NOTICE("You burn your hands as you pulled the [target.caste_type] organ out!"),
-				SPAN_NOTICE("[user] burns their hands as they pulled your insides out!"),
-				SPAN_NOTICE("[user] burns [user.p_their()] hands as [user.p_they()] pulled the [target.caste_type] organ out."))
+				SPAN_NOTICE("你取出[target.caste_type]的器官时烫伤了双手！"),
+				SPAN_NOTICE("[user]取出你的内脏时烫伤了双手！"),
+				SPAN_NOTICE("[user]取出[target.caste_type]的器官时烫伤了双手。"))
 			user.emote("pain")
 			if(user.hand)
 				user.apply_damage(rand(30,50), BURN, "l_hand")
@@ -230,8 +230,8 @@
 /datum/surgery_step/xenomorph/remove_organ/failure(mob/living/carbon/human/user, mob/living/carbon/xenomorph/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(tool)
 		user.affected_message(target,
-			SPAN_NOTICE("You fail to pull the [target.caste_type] organ out using [tool]"),
-			SPAN_NOTICE("[user] fails to pull your organ out using [tool]"),
-			SPAN_NOTICE("[user] fails to pull the [target.caste_type] organ out using [tool]"))
+			SPAN_NOTICE("你未能用[tool]取出[target.caste_type]的器官。"),
+			SPAN_NOTICE("[user]未能用[tool]取出你的器官。"),
+			SPAN_NOTICE("[user]未能用[tool]取出[target.caste_type]的器官。"))
 	return FALSE
 

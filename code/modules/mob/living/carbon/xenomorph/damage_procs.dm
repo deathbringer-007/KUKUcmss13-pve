@@ -4,17 +4,17 @@
 	if(HAS_TRAIT(item, TRAIT_TOOL_MULTITOOL) && ishuman(user))
 		var/mob/living/carbon/human/programmer = user
 		if(!iff_tag)
-			to_chat(user, SPAN_WARNING("\The [src] doesn't have an IFF tag to reprogram."))
+			to_chat(user, SPAN_WARNING("[src]没有可重新编程的敌我识别标签。"))
 			return
-		programmer.visible_message(SPAN_NOTICE("[programmer] starts reprogramming \the [src]'s IFF tag..."), SPAN_NOTICE("You start reprogramming \the [src]'s IFF tag..."), max_distance = 3)
+		programmer.visible_message(SPAN_NOTICE("[programmer]开始重新编程[src]的敌我识别标签……"), SPAN_NOTICE("你开始重新编程[src]的敌我识别标签……"), max_distance = 3)
 		if(!do_after(programmer, 5 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC, src, INTERRUPT_DIFF_LOC, BUSY_ICON_GENERIC))
 			return
 		if(!iff_tag)
-			to_chat(programmer, SPAN_WARNING("\The [src]'s tag got removed while you were reprogramming it!"))
+			to_chat(programmer, SPAN_WARNING("在你重新编程期间，[src]的标签被移除了！"))
 			return
 		if(!iff_tag.handle_reprogramming(programmer, src))
 			return
-		programmer.visible_message(SPAN_NOTICE("[programmer] reprograms \the [src]'s IFF tag."), SPAN_NOTICE("You reprogram \the [src]'s IFF tag."), max_distance = 3)
+		programmer.visible_message(SPAN_NOTICE("[programmer]重新编程了[src]的敌我识别标签。"), SPAN_NOTICE("你重新编程了[src]的敌我识别标签。"), max_distance = 3)
 		return
 	if(stat == DEAD)
 		if(!istype(item, /obj/item/reagent_container/syringe))
@@ -28,19 +28,19 @@
 		return
 	if(item.type in SURGERY_TOOLS_PINCH)
 		if(!iff_tag)
-			to_chat(user, SPAN_WARNING("\The [src] doesn't have an IFF tag to remove."))
+			to_chat(user, SPAN_WARNING("[src]没有可移除的敌我识别标签。"))
 			return
-		user.visible_message(SPAN_NOTICE("[user] starts removing \the [src]'s IFF tag..."), SPAN_NOTICE("You start removing \the [src]'s IFF tag..."), max_distance = 3)
+		user.visible_message(SPAN_NOTICE("[user]开始移除[src]的敌我识别标签……"), SPAN_NOTICE("你开始移除[src]的敌我识别标签……"), max_distance = 3)
 		if(!do_after(user, 5 SECONDS * SURGERY_TOOLS_PINCH[item.type], INTERRUPT_ALL, BUSY_ICON_GENERIC, src, INTERRUPT_DIFF_LOC, BUSY_ICON_GENERIC))
 			return
 		if(!iff_tag)
-			to_chat(user, SPAN_WARNING("\The [src]'s tag got removed while you were removing it!"))
+			to_chat(user, SPAN_WARNING("在你拆除期间，[src]的标签已被移除了！"))
 			return
 		user.put_in_hands(iff_tag)
 		iff_tag = null
-		user.visible_message(SPAN_NOTICE("[user] removes \the [src]'s IFF tag."), SPAN_NOTICE("You remove \the [src]'s IFF tag."), max_distance = 3)
+		user.visible_message(SPAN_NOTICE("[user]移除了[src]的敌我识别标签。"), SPAN_NOTICE("你移除了[src]的敌我识别标签。"), max_distance = 3)
 		if(hive.hivenumber == XENO_HIVE_RENEGADE) //it's important to know their IFF settings for renegade
-			to_chat(src, SPAN_NOTICE("With the removal of the device, your instincts have returned to normal."))
+			to_chat(src, SPAN_NOTICE("随着装置被移除，你的本能恢复了正常。"))
 		return
 	return ..()
 
@@ -281,8 +281,8 @@
 				if(SEND_SIGNAL(src, COMSIG_XENO_DEAL_ACID_DAMAGE, victim, dmg) & COMPONENT_BLOCK_DAMAGE)
 					continue
 				i++
-				victim.visible_message(SPAN_DANGER("\The [victim] is scalded with hissing green blood!"), \
-				SPAN_DANGER("You are splattered with sizzling blood! IT BURNS!"))
+				victim.visible_message(SPAN_DANGER("嘶嘶作响的绿色血液烫伤了[victim]！"), \
+				SPAN_DANGER("灼热的血液溅到你身上！好烫！"))
 				if(prob(60) && !victim.stat && victim.pain.feels_pain)
 					INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob, emote), "scream") //Topkek
 				victim.apply_armoured_damage(dmg["damage"], ARMOR_BIO, BURN) //Sizzledam! This automagically burns a random existing body part.
@@ -328,4 +328,4 @@
 			fire.set_on_fire(src) //Deals an extra proc of fire when you're crossing it. 30 damage per tile crossed, plus 15 per Process().
 			next_move_slowdown = next_move_slowdown + (SLOWDOWN_AMT_GREENFIRE * resist_modifier)
 			if(resist_modifier > 0)
-				to_chat(src, SPAN_DANGER("We feel pieces of our exoskeleton fusing with the viscous fluid below and tearing off as we struggle to move through the flames!"))
+				to_chat(src, SPAN_DANGER("我们挣扎着穿过火焰，感觉外骨骼碎片与脚下的黏稠液体黏合在一起，被撕扯下来！"))

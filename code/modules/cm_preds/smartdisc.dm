@@ -174,14 +174,14 @@
 	return 1
 
 /mob/living/simple_animal/hostile/smartdisc/death()
-	visible_message("\The [src]停止嗡鸣，旋转着落在地板上。")
+	visible_message("[src]停止嗡鸣，旋转着落在地板上。")
 	new /obj/item/explosive/grenade/spawnergrenade/smartdisc(src.loc)
 	..()
 	spawn(1)
 		if(src) qdel(src)
 
 /mob/living/simple_animal/hostile/smartdisc/gib(datum/cause_data/cause = create_cause_data("gibbing", src))
-	visible_message("\The [src]爆炸了！")
+	visible_message("[src]爆炸了！")
 	..(cause, icon_gib,1)
 	spawn(1)
 		if(src)
@@ -231,7 +231,7 @@
 
 	lifetime--
 	if(lifetime <= 0 || time_idle > 3)
-		visible_message("\The [src]停止嗡鸣，旋转着落在地板上。")
+		visible_message("[src]停止嗡鸣，旋转着落在地板上。")
 		new /obj/item/explosive/grenade/spawnergrenade/smartdisc(src.loc)
 		qdel(src)
 		return
@@ -267,7 +267,7 @@
 		L.attack_animal(src)
 		if(prob(5))
 			L.apply_effect(3, WEAKEN)
-			L.visible_message(SPAN_DANGER("\The [src]凶狠地切向\the [L]！"))
+			L.visible_message(SPAN_DANGER("[src]凶狠地切向[L]！"))
 			log_attack("[key_name(L)] was knocked down by [src]")
 		log_attack("[key_name(L)] was attacked by [src]")
 		return L

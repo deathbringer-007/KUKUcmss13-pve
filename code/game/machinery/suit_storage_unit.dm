@@ -4,8 +4,8 @@
 
 
 /obj/structure/machinery/suit_storage_unit
-	name = "Suit Storage Unit"
-	desc = "An industrial U-Stor-It Storage unit designed to accommodate all kinds of space suits. Its on-board equipment also allows the user to decontaminate the contents through a UV-ray purging cycle. There's a warning label dangling from the control pad, reading \"STRICTLY NO BIOLOGICALS IN THE CONFINES OF THE UNIT\"."
+	name = "太空服储存柜"
+	desc = "工业级U-Stor-It随存储物柜，能容纳各种太空服。内置设备还能通过紫外线消毒循环为柜内物品去污。控制面板上垂着一张警告标签，写着：\"严禁将生物置于柜内\"。"
 	icon = 'icons/obj/structures/machinery/suitstorage.dmi'
 	icon_state = "closed" //order is: [has helmet][has suit][has human][is open][is locked][is UV cycling][is powered][is dirty/broken] [is superUVcycling]
 	anchored = TRUE
@@ -90,39 +90,39 @@
 	if(..())
 		return
 	if(stat & NOPOWER)
-		dat+= "<HR><BR><A href='byond://?src=\ref[user];mach_close=suit_storage_unit'>Close panel</A>"
+		dat+= "<HR><BR><A href='byond://?src=\ref[user];mach_close=suit_storage_unit'>关闭面板</A>"
 		return
 	if(isUV) //The thing is running its cauterisation cycle. You have to wait.
-		dat += SET_CLASS("<B>Unit is cauterising contents with UV ray. Please wait.</B>", INTERFACE_RED)
+		dat += SET_CLASS("<B>正在用紫外线为柜内物品消毒，请稍候。</B>", INTERFACE_RED)
 		dat += "<BR>"
 
 	else
-		dat+= SET_CLASS("<font size = 4><B>U-Stor-It Suit Storage Unit, model DS1900</B></FONT>", INTERFACE_BLUE)
+		dat+= SET_CLASS("<font size = 4><B>U-Stor-It随存太空服储存柜，DS1900型</B></FONT>", INTERFACE_BLUE)
 		dat += "<BR>"
-		dat+= "<B>Welcome to the Unit control panel.</B><HR>"
+		dat+= "<B>欢迎使用储存柜控制面板。</B><HR>"
 
-		dat += "<font color='black'>Helmet storage compartment: <B>[inserted_helmet ? inserted_helmet.name : "</font><font color ='grey'>No helmet detected."]</B></font><BR>"
+		dat += "<font color='black'>头盔储物舱： <B>[inserted_helmet ? inserted_helmet.name : "</font><font color ='grey'>未检测到头盔。"]</B></font><BR>"
 		if(inserted_helmet && isopen)
-			dat += "<A href='byond://?src=\ref[src];dispense_helmet=1'>Dispense helmet</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];dispense_helmet=1'>取出头盔</A><BR>"
 
-		dat += "<font color='black'>Suit storage compartment: <B>[inserted_suit ? inserted_suit.name : "</font><font color ='grey'>No exosuit detected."]</B></font><BR>"
+		dat += "<font color='black'>太空服储物舱： <B>[inserted_suit ? inserted_suit.name : "</font><font color ='grey'>未检测到太空服。"]</B></font><BR>"
 		if(inserted_suit && isopen)
-			dat += "<A href='byond://?src=\ref[src];dispense_suit=1'>Dispense suit</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];dispense_suit=1'>取出太空服</A><BR>"
 
-		dat += "<font color='black'>Breathmask storage compartment: <B>[inserted_mask ? inserted_mask.name : "</font><font color ='grey'>No breathmask detected."]</B></font><BR>"
+		dat += "<font color='black'>呼吸面罩储物舱： <B>[inserted_mask ? inserted_mask.name : "</font><font color ='grey'>未检测到呼吸面罩。"]</B></font><BR>"
 		if(inserted_mask  && isopen)
-			dat += "<A href='byond://?src=\ref[src];dispense_mask=1'>Dispense mask</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];dispense_mask=1'>取出面罩</A><BR>"
 
-		dat += "<font color='black'>Tank storage compartment: <B>[inserted_tank ? inserted_tank.name : "</font><font color ='grey'>No tank detected."]</B></font><BR>"
+		dat += "<font color='black'>气瓶储物舱： <B>[inserted_tank ? inserted_tank.name : "</font><font color ='grey'>未检测到气瓶。"]</B></font><BR>"
 		if(inserted_tank  && isopen)
-			dat += "<A href='byond://?src=\ref[src];dispense_tank=1'>Dispense tank</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];dispense_tank=1'>取出气瓶</A><BR>"
 
-		dat+= "<HR><font color='black'>Unit is: [isopen ? "Open" : "Closed"] - <A href='byond://?src=\ref[src];toggle_open=1'>[isopen ? "Close" : "Open"] Unit</A></font><BR>"
+		dat+= "<HR><font color='black'>储存柜状态：[isopen ? "已打开" : "已关闭"] - <A href='byond://?src=\ref[src];toggle_open=1'>[isopen ? "关闭" : "打开"]储存柜</A></font><BR>"
 
-		dat += "<A href='byond://?src=\ref[src];start_UV=1'>Start Disinfection cycle</A><BR>"
-		dat += "<BR><BR><A href='byond://?src=\ref[user];mach_close=suit_storage_unit'>Close control panel</A>"
+		dat += "<A href='byond://?src=\ref[src];start_UV=1'>启动消毒循环</A><BR>"
+		dat += "<BR><BR><A href='byond://?src=\ref[user];mach_close=suit_storage_unit'>关闭控制面板</A>"
 
-	show_browser(user, dat, "Suit Storage Unit", "suit_storage_unit", width = 400, height = 500)
+	show_browser(user, dat, "太空服储存柜", "suit_storage_unit", width = 400, height = 500)
 	return
 
 
@@ -196,7 +196,7 @@
 
 /obj/structure/machinery/suit_storage_unit/proc/toggle_open(mob/user as mob)
 	if(isUV)
-		to_chat(user, "<font color='red'>Unable to open unit.</font>")
+		to_chat(user, "<font color='red'>无法打开储存柜。</font>")
 		return
 	isopen = !isopen
 	update_icon()
@@ -206,16 +206,16 @@
 	set waitfor = 0
 
 	if(isopen)
-		to_chat(user, "<font color='red'>Unit storage is not closed -- Aborting.</font>")
+		to_chat(user, "<font color='red'>储存柜尚未关闭，操作已中止。</font>")
 		return
 
 	if(isUV)
 		return
 
 	if(!inserted_helmet && !inserted_mask && !inserted_suit) //shit's empty yo
-		to_chat(user, "<font color='red'>Unit storage bays empty. Nothing to disinfect -- Aborting.</font>")
+		to_chat(user, "<font color='red'>储存柜内没有物品，无需消毒，操作已中止。</font>")
 		return
-	to_chat(user, SPAN_NOTICE("You start the Unit's cauterisation cycle."))
+	to_chat(user, SPAN_NOTICE("你启动了储存柜的紫外线消毒循环。"))
 	isUV = 1
 	update_icon()
 	updateUsrDialog()
@@ -248,10 +248,10 @@
 			if( istype(I,/obj/item/clothing/suit/space) )
 				var/obj/item/clothing/suit/space/S = I
 				if(inserted_suit)
-					to_chat(user, SPAN_WARNING("The unit already contains a suit."))
+					to_chat(user, SPAN_WARNING("储存柜里已经有一件太空服了。"))
 					return
 				if(user.drop_inv_item_to_loc(S, src))
-					to_chat(user, SPAN_NOTICE("You load the [S.name] into the storage compartment."))
+					to_chat(user, SPAN_NOTICE("你将[S.name]放入储物舱。"))
 					inserted_suit = S
 					update_icon()
 					updateUsrDialog()
@@ -260,9 +260,9 @@
 			if( istype(I,/obj/item/clothing/head/helmet) )
 				var/obj/item/clothing/head/helmet/H = I
 				if(inserted_helmet)
-					to_chat(user, SPAN_WARNING("The unit already contains a helmet."))
+					to_chat(user, SPAN_WARNING("储存柜里已经有一顶头盔了。"))
 					return
-				to_chat(user, SPAN_NOTICE("You load the [H.name] into the storage compartment."))
+				to_chat(user, SPAN_NOTICE("你将[H.name]放入储物舱。"))
 				if(user.drop_inv_item_to_loc(H, src))
 					inserted_helmet = H
 					update_icon()
@@ -272,9 +272,9 @@
 			if( istype(I,/obj/item/clothing/mask) )
 				var/obj/item/clothing/mask/M = I
 				if(inserted_mask)
-					to_chat(user, SPAN_WARNING("The unit already contains a mask."))
+					to_chat(user, SPAN_WARNING("储存柜里已经有一个面罩了。"))
 					return
-				to_chat(user, SPAN_NOTICE("You load the [M.name] into the storage compartment."))
+				to_chat(user, SPAN_NOTICE("你将[M.name]放入储物舱。"))
 				if(user.drop_inv_item_to_loc(M, src))
 					inserted_mask = M
 					update_icon()
@@ -284,9 +284,9 @@
 			if( istype(I,/obj/item/tank) )
 				var/obj/item/tank/T = I
 				if(inserted_tank)
-					to_chat(user, SPAN_WARNING("The unit already contains a tank."))
+					to_chat(user, SPAN_WARNING("储存柜里已经有一个气瓶了。"))
 					return
-				to_chat(user, SPAN_NOTICE("You load the [T.name] into the storage compartment."))
+				to_chat(user, SPAN_NOTICE("你将[T.name]放入储物舱。"))
 				if(user.drop_inv_item_to_loc(T, src))
 					inserted_tank = T
 					update_icon()

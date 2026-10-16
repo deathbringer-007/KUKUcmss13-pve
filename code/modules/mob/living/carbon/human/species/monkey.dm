@@ -11,7 +11,7 @@
 	pain_type = /datum/pain/monkey
 	unarmed_type = /datum/unarmed_attack/bite
 	secondary_unarmed_type = /datum/unarmed_attack
-	death_message = "lets out a faint chimper as it collapses and stops moving..."
+	death_message = "发出微弱的吱叫，随后倒下，不再动弹……"
 	knock_down_reduction = 0.5
 	stun_reduction = 0.5
 	tail = "chimptail"

@@ -316,31 +316,30 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 	dat += "</style>"
 	dat += "<body onselectstart='return false;'>"
 
-	if(!path)
-		dat += "Please create an account to save your preferences."
-		return
-
 	dat += "<center>"
-	dat += "<a href=\"byond://?src=\ref[user];preference=open_load_dialog\"><b>Load Slot</b></a> - "
-	dat += "<a href=\"byond://?src=\ref[user];preference=save\"><b>Save Slot</b></a> - "
-	dat += "<a href=\"byond://?src=\ref[user];preference=reload\"><b>Reload Slot</b></a>"
+	if(path)
+		dat += "<a href=\"byond://?src=\ref[user];preference=open_load_dialog\"><b>载入角色槽</b></a> - "
+		dat += "<a href=\"byond://?src=\ref[user];preference=save\"><b>保存角色槽</b></a> - "
+		dat += "<a href=\"byond://?src=\ref[user];preference=reload\"><b>重新载入角色槽</b></a>"
+	else
+		dat += "访客设置仅在本次会话中有效。登录 BYOND 账号即可保存角色。"
 	dat += "</center>"
 
 	dat += "<hr>"
 
 	dat += "<center>"
-	dat += "<a[current_menu == MENU_MARINE ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_MARINE]\"><b>Human</b></a> - "
-	dat += "<a[current_menu == MENU_PLTCO ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_PLTCO]\"><b>Platoon Commander</b></a> - "
-	dat += "<a[current_menu == MENU_XENOMORPH ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_XENOMORPH]\"><b>Xenomorph</b></a> - "
+	dat += "<a[current_menu == MENU_MARINE ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_MARINE]\"><b>人类</b></a> - "
+	dat += "<a[current_menu == MENU_PLTCO ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_PLTCO]\"><b>排指挥官</b></a> - "
+	dat += "<a[current_menu == MENU_XENOMORPH ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_XENOMORPH]\"><b>异形</b></a> - "
 	if(owner.check_whitelist_status(WHITELIST_COMMANDER))
-		dat += "<a[current_menu == MENU_CO ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_CO]\"><b>Commanding Officer</b></a> - "
-	dat += "<a[current_menu == MENU_SYNTHETIC ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SYNTHETIC]\"><b>Synthetic</b></a> - "
+		dat += "<a[current_menu == MENU_CO ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_CO]\"><b>指挥官</b></a> - "
+	dat += "<a[current_menu == MENU_SYNTHETIC ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SYNTHETIC]\"><b>合成人</b></a> - "
 	if(owner.check_whitelist_status(WHITELIST_PREDATOR))
-		dat += "<a[current_menu == MENU_YAUTJA ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_YAUTJA]\"><b>Yautja</b></a> - "
+		dat += "<a[current_menu == MENU_YAUTJA ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_YAUTJA]\"><b>铁血战士</b></a> - "
 	if(owner.check_whitelist_status(WHITELIST_MENTOR))
-		dat += "<a[current_menu == MENU_MENTOR ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_MENTOR]\"><b>Mentor</b></a> - "
-	dat += "<a[current_menu == MENU_SETTINGS ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SETTINGS]\"><b>Settings</b></a> - "
-	dat += "<a[current_menu == MENU_SPECIAL ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SPECIAL]\"><b>Special Roles</b></a>"
+		dat += "<a[current_menu == MENU_MENTOR ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_MENTOR]\"><b>导师</b></a> - "
+	dat += "<a[current_menu == MENU_SETTINGS ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SETTINGS]\"><b>设置</b></a> - "
+	dat += "<a[current_menu == MENU_SPECIAL ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SPECIAL]\"><b>特殊角色</b></a>"
 	dat += "</center>"
 
 	dat += "<hr>"
@@ -348,77 +347,78 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 	switch(current_menu)
 		if(MENU_MARINE)
 			dat += "<div id='column1'>"
-			dat += "<h1><u><b>Name:</b></u> "
+			dat += "<h1><u><b>姓名：</b></u> "
 			dat += "<a href='byond://?_src_=prefs;preference=name;task=input'><b>[real_name]</b></a>"
 			dat += "<a href='byond://?_src_=prefs;preference=name;task=random'>&reg</A></h1>"
-			dat += "<u><b>Slot label:</b></u> "
+			dat += "<u><b>角色槽标签：</b></u> "
 			dat += "<a href='byond://?_src_=prefs;preference=slot_label;task=input'><b>[slot_label ? "[slot_label]" : "---"]</b></a><br> "
-			dat += "<b>Always Pick Random Name:</b> <a href='byond://?_src_=prefs;preference=rand_name'><b>[be_random_name ? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Always Pick Random Appearance:</b> <a href='byond://?_src_=prefs;preference=rand_body'><b>[be_random_body ? "Yes" : "No"]</b></a><br><br>"
+			dat += "<b>始终随机姓名：</b> <a href='byond://?_src_=prefs;preference=rand_name'><b>[be_random_name ? "是" : "否"]</b></a><br>"
+			dat += "<b>始终随机外观：</b> <a href='byond://?_src_=prefs;preference=rand_body'><b>[be_random_body ? "是" : "否"]</b></a><br><br>"
 
-			dat += "<h2><b><u>Physical Information:</u></b>"
+			dat += "<h2><b><u>身体信息：</u></b>"
 			dat += "<a href='byond://?_src_=prefs;preference=all;task=random'>&reg;</A></h2>"
-			dat += "<b>Age:</b> <a href='byond://?_src_=prefs;preference=age;task=input'><b>[age]</b></a><br>"
-			dat += "<b>Gender:</b> <a href='byond://?_src_=prefs;preference=gender'><b>[gender == MALE ? "Male" : "Female"]</b></a><br>"
-			dat += "<b>Skin Color:</b> <a href='byond://?_src_=prefs;preference=skin_color;task=input'><b>[skin_color]</b></a><br>"
-			dat += "<b>Body Size:</b> <a href='byond://?_src_=prefs;preference=body_size;task=input'><b>[body_size]</b></a><br>"
-			dat += "<b>Body Muscularity:</b> <a href='byond://?_src_=prefs;preference=body_type;task=input'><b>[body_type]</b></a><br>"
-			dat += "<b>Traits:</b> <a href='byond://?src=\ref[user];preference=traits;task=open'><b>Character Traits</b></a>"
+			dat += "<b>年龄：</b> <a href='byond://?_src_=prefs;preference=age;task=input'><b>[age]</b></a><br>"
+			dat += "<b>性别：</b> <a href='byond://?_src_=prefs;preference=gender'><b>[gender == MALE ? "男性" : "女性"]</b></a><br>"
+			dat += "<b>肤色：</b> <a href='byond://?_src_=prefs;preference=skin_color;task=input'><b>[preference_label(skin_color)]</b></a><br>"
+			dat += "<b>体格：</b> <a href='byond://?_src_=prefs;preference=body_size;task=input'><b>[preference_label(body_size)]</b></a><br>"
+			dat += "<b>肌肉发达程度：</b> <a href='byond://?_src_=prefs;preference=body_type;task=input'><b>[preference_label(body_type)]</b></a><br>"
+			dat += "<b>特质：</b> <a href='byond://?src=\ref[user];preference=traits;task=open'><b>角色特质</b></a>"
 			dat += "<br>"
 
-			dat += "<h2><b><u>Occupation Choices:</u></b></h2>"
+			dat += "<h2><b><u>职业选择：</u></b></h2>"
 			dat += "<br>"
-			dat += "\t<a href='byond://?_src_=prefs;preference=job;task=menu'><b>Set Role Preferences</b></a>"
+			dat += "\t<a href='byond://?_src_=prefs;preference=job;task=menu'><b>设置职业偏好</b></a>"
 			dat += "<br>"
-			dat += "\t<a href='byond://?_src_=prefs;preference=job_slot;task=menu'><b>Assign Character Slots to Roles</b></a>"
+			if(path)
+				dat += "\t<a href='byond://?_src_=prefs;preference=job_slot;task=menu'><b>为职业分配角色槽</b></a>"
 			dat += "</div>"
 
 			dat += "<div id='column2'>"
-			dat += "<h2><b><u>Hair and Eyes:</u></b></h2>"
-			dat += "<b>Hair:</b> "
-			dat += "<a href='byond://?_src_=prefs;preference=h_style;task=input'><b>[h_style]</b></a>"
+			dat += "<h2><b><u>毛发与眼睛：</u></b></h2>"
+			dat += "<b>发型：</b> "
+			dat += "<a href='byond://?_src_=prefs;preference=h_style;task=input'><b>[preference_label(h_style)]</b></a>"
 			dat += " | "
 			dat += "<a href='byond://?_src_=prefs;preference=hair;task=input'>"
-			dat += "<b>Color</b> <span class='square' style='background-color: #[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair)];'></span>"
+			dat += "<b>颜色</b> <span class='square' style='background-color: #[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair)];'></span>"
 			dat += "</a>"
 			dat += "<br>"
 
 			if(/datum/character_trait/hair_dye in traits)
-				dat += "<b>Hair Gradient:</b> "
-				dat += "<a href='byond://?_src_=prefs;preference=grad_style;task=input'><b>[grad_style]</b></a>"
+				dat += "<b>渐变染发：</b> "
+				dat += "<a href='byond://?_src_=prefs;preference=grad_style;task=input'><b>[preference_label(grad_style)]</b></a>"
 				dat += " | "
 				dat += "<a href='byond://?_src_=prefs;preference=grad;task=input'>"
-				dat += "<b>Color</b> <span class='square' style='background-color: #[num2hex(r_gradient, 2)][num2hex(g_gradient, 2)][num2hex(b_gradient)];'></span>"
+				dat += "<b>颜色</b> <span class='square' style='background-color: #[num2hex(r_gradient, 2)][num2hex(g_gradient, 2)][num2hex(b_gradient)];'></span>"
 				dat += "</a>"
 				dat += "<br>"
 
-			dat += "<b>Facial Hair:</b> "
-			dat += "<a href='byond://?_src_=prefs;preference=f_style;task=input'><b>[f_style]</b></a>"
+			dat += "<b>胡须：</b> "
+			dat += "<a href='byond://?_src_=prefs;preference=f_style;task=input'><b>[preference_label(f_style)]</b></a>"
 			dat += " | "
 			dat += "<a href='byond://?_src_=prefs;preference=facial;task=input'>"
-			dat += "<b>Color</b> <span class='square' style='background-color: #[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial)];'></span>"
+			dat += "<b>颜色</b> <span class='square' style='background-color: #[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial)];'></span>"
 			dat += "</a>"
 			dat += "<br>"
 
-			dat += "<b>Eye:</b> "
+			dat += "<b>眼睛：</b> "
 			dat += "<a href='byond://?_src_=prefs;preference=eyes;task=input'>"
-			dat += "<b>Color</b> <span class='square' style='background-color: #[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes)];'></span>"
+			dat += "<b>颜色</b> <span class='square' style='background-color: #[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes)];'></span>"
 			dat += "</a>"
 			dat += "<br><br>"
 
-			dat += "<h2><b><u>Marine Gear:</u></b></h2>"
-			dat += "<b>Personal Weapon:</b> <a href ='byond://?_src_=prefs;preference=personalweapon;task=input'><b>[personal_weapon]</b></a><br>"
-			dat += "<b>Underwear:</b> <a href ='byond://?_src_=prefs;preference=underwear;task=input'><b>[underwear]</b></a><br>"
-			dat += "<b>Undershirt:</b> <a href='byond://?_src_=prefs;preference=undershirt;task=input'><b>[undershirt]</b></a><br>"
+			dat += "<h2><b><u>陆战队装备：</u></b></h2>"
+			dat += "<b>个人武器：</b> <a href ='byond://?_src_=prefs;preference=personalweapon;task=input'><b>[preference_label(personal_weapon)]</b></a><br>"
+			dat += "<b>内衣：</b> <a href ='byond://?_src_=prefs;preference=underwear;task=input'><b>[preference_label(underwear)]</b></a><br>"
+			dat += "<b>贴身上衣：</b> <a href='byond://?_src_=prefs;preference=undershirt;task=input'><b>[preference_label(undershirt)]</b></a><br>"
 
-			dat += "<b>Backpack Type:</b> <a href ='byond://?_src_=prefs;preference=bag;task=input'><b>[GLOB.backbaglist[backbag]]</b></a><br>"
+			dat += "<b>背包类型：</b> <a href ='byond://?_src_=prefs;preference=bag;task=input'><b>[preference_label(GLOB.backbaglist[backbag])]</b></a><br>"
 
-			dat += "<b>Preferred Armor:</b> <a href ='byond://?_src_=prefs;preference=prefarmor;task=input'><b>[preferred_armor]</b></a><br>"
+			dat += "<b>偏好护甲样式：</b> <a href ='byond://?_src_=prefs;preference=prefarmor;task=input'><b>[preference_label(preferred_armor)]</b></a><br>"
 
-			dat += "<b>Show Job Gear:</b> <a href ='byond://?_src_=prefs;preference=toggle_job_gear'><b>[show_job_gear ? "True" : "False"]</b></a><br>"
-			dat += "<b>Background:</b> <a href ='byond://?_src_=prefs;preference=cycle_bg'><b>Cycle Background</b></a><br>"
+			dat += "<b>显示职业装备：</b> <a href ='byond://?_src_=prefs;preference=toggle_job_gear'><b>[show_job_gear ? "是" : "否"]</b></a><br>"
+			dat += "<b>背景：</b> <a href ='byond://?_src_=prefs;preference=cycle_bg'><b>切换背景</b></a><br>"
 
-			dat += "<b>Custom Loadout:</b> "
+			dat += "<b>自选装备：</b> "
 			var/total_cost = 0
 
 			if(!islist(gear))
@@ -430,66 +430,66 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 					var/datum/gear/G = GLOB.gear_datums_by_name[gear[i]]
 					if(G)
 						total_cost += G.cost
-						dat += "[gear[i]] ([G.cost] points) <a href='byond://?src=\ref[user];preference=loadout;task=remove;gear=[i]'><b>Remove</b></a><br>"
+						dat += "[preference_label(gear[i])] ([G.cost] 点) <a href='byond://?src=\ref[user];preference=loadout;task=remove;gear=[i]'><b>移除</b></a><br>"
 
-				dat += "<b>Used:</b> [total_cost] points"
+				dat += "<b>已用：</b> [total_cost] 点"
 			else
-				dat += "None"
+				dat += "无"
 
 			if(total_cost < MAX_GEAR_COST)
-				dat += " <a href='byond://?src=\ref[user];preference=loadout;task=input'><b>Add</b></a>"
+				dat += " <a href='byond://?src=\ref[user];preference=loadout;task=input'><b>添加</b></a>"
 				if(LAZYLEN(gear))
-					dat += " <a href='byond://?src=\ref[user];preference=loadout;task=clear'><b>Clear</b></a>"
+					dat += " <a href='byond://?src=\ref[user];preference=loadout;task=clear'><b>清空</b></a>"
 
 			dat += "</div>"
 
 			dat += "<div id='column3'>"
-			dat += "<h2><b><u>Background Information:</u></b></h2>"
-			dat += "<b>Origin:</b> <a href='byond://?_src_=prefs;preference=origin;task=input'><b>[origin]</b></a><br/>"
-			dat += "<b>Religion:</b> <a href='byond://?_src_=prefs;preference=religion;task=input'><b>[religion]</b></a><br/>"
+			dat += "<h2><b><u>背景信息：</u></b></h2>"
+			dat += "<b>出身：</b> <a href='byond://?_src_=prefs;preference=origin;task=input'><b>[preference_label(origin)]</b></a><br/>"
+			dat += "<b>宗教：</b> <a href='byond://?_src_=prefs;preference=religion;task=input'><b>[preference_label(religion)]</b></a><br/>"
 
-			dat += "<b>Corporate Relation:</b> <a href='byond://?_src_=prefs;preference=wy_relation;task=input'><b>[weyland_yutani_relation]</b></a><br>"
-			dat += "<b>Preferred Squad:</b> <a href='byond://?_src_=prefs;preference=prefsquad;task=input'><b>[preferred_squad]</b></a><br>"
+			dat += "<b>与公司的关系：</b> <a href='byond://?_src_=prefs;preference=wy_relation;task=input'><b>[preference_label(weyland_yutani_relation)]</b></a><br>"
+			dat += "<b>偏好小队：</b> <a href='byond://?_src_=prefs;preference=prefsquad;task=input'><b>[preference_label(preferred_squad)]</b></a><br>"
 
-			dat += "<h2><b><u>Fluff Information:</u></b></h2>"
+			dat += "<h2><b><u>角色设定：</u></b></h2>"
 			if(jobban_isbanned(user, "Records"))
-				dat += "<b>You are banned from using character records.</b><br>"
+				dat += "<b>你已被禁止使用角色档案。</b><br>"
 			else
-				dat += "<b>Records:</b> <a href=\"byond://?src=\ref[user];preference=records;record=1\"><b>Character Records</b></a><br>"
+				dat += "<b>档案：</b> <a href=\"byond://?src=\ref[user];preference=records;record=1\"><b>角色档案</b></a><br>"
 
-			dat += "<b>Flavor Text:</b> <a href='byond://?src=\ref[user];preference=flavor_text;task=open'><b>[TextPreview(flavor_texts["general"], 15)]</b></a><br>"
+			dat += "<b>外观描述：</b> <a href='byond://?src=\ref[user];preference=flavor_text;task=open'><b>[TextPreview(flavor_texts["general"], 15)]</b></a><br>"
 			dat += "</div>"
 
 		if(MENU_PLTCO)
 			dat += "<div id='column1'>"
-			dat += "<h2><b><u>Platoon Settings:</u></b></h2>"
-			dat += "<b>Platoon Name:</b> <a href='byond://?_src_=prefs;preference=plat_name;task=input'><b>[platoon_name]</b></a><br>"
-			dat += "<b>Dropship Camo:</b> <a href='byond://?_src_=prefs;preference=dropship_camo;task=input'><b>[dropship_camo]</b></a><br>"
-			dat += "<b>Dropship Name:</b> <a href='byond://?_src_=prefs;preference=dropship_name;task=input'><b>[dropship_name]</b></a><br>"
+			dat += "<h2><b><u>排设置：</u></b></h2>"
+			dat += "<b>排名称：</b> <a href='byond://?_src_=prefs;preference=plat_name;task=input'><b>[platoon_name]</b></a><br>"
+			dat += "<b>运输艇涂装：</b> <a href='byond://?_src_=prefs;preference=dropship_camo;task=input'><b>[preference_label(dropship_camo)]</b></a><br>"
+			dat += "<b>运输艇名称：</b> <a href='byond://?_src_=prefs;preference=dropship_name;task=input'><b>[dropship_name]</b></a><br>"
 			dat += "</div>"
 
 		if(MENU_XENOMORPH)
 			dat += "<div id='column1'>"
-			dat += "<h2><b><u>Xenomorph Information:</u></b></h2>"
+			dat += "<h2><b><u>异形信息：</u></b></h2>"
 			var/display_prefix = xeno_prefix ? xeno_prefix : "------"
 			var/display_postfix = xeno_postfix ? xeno_postfix : "------"
-			dat += "<b>Xeno prefix:</b> <a href='byond://?_src_=prefs;preference=xeno_prefix;task=input'><b>[display_prefix]</b></a><br>"
-			dat += "<b>Xeno postfix:</b> <a href='byond://?_src_=prefs;preference=xeno_postfix;task=input'><b>[display_postfix]</b></a><br>"
+			dat += "<b>异形编号前缀：</b> <a href='byond://?_src_=prefs;preference=xeno_prefix;task=input'><b>[display_prefix]</b></a><br>"
+			dat += "<b>异形编号后缀：</b> <a href='byond://?_src_=prefs;preference=xeno_postfix;task=input'><b>[display_postfix]</b></a><br>"
 
-			dat += "<b>Enable Playtime Perks:</b> <a href='byond://?_src_=prefs;preference=playtime_perks'><b>[playtime_perks? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Default Xeno Night Vision Level:</b> <a href='byond://?_src_=prefs;preference=xeno_vision_level_pref;task=input'><b>[xeno_vision_level_pref]</b></a><br>"
+			dat += "<b>启用游玩时长奖励：</b> <a href='byond://?_src_=prefs;preference=playtime_perks'><b>[playtime_perks? "是" : "否"]</b></a><br>"
+			dat += "<b>默认异形夜视等级：</b> <a href='byond://?_src_=prefs;preference=xeno_vision_level_pref;task=input'><b>[preference_label(xeno_vision_level_pref)]</b></a><br>"
 
 			var/tempnumber = rand(1, 999)
 			var/postfix_text = xeno_postfix ? ("-"+xeno_postfix) : ""
 			var/prefix_text = xeno_prefix ? xeno_prefix : "XX"
 			var/xeno_text = "[prefix_text]-[tempnumber][postfix_text]"
 
-			dat += "<b>Xeno sample name:</b> [xeno_text]<br>"
+			dat += "<b>异形名称示例：</b> [xeno_text]<br>"
 			dat += "<br>"
 			dat += "</div>"
 
 			dat += "<div id='column2'>"
-			dat += "<h2><b><u>Occupation Choices:</u></b></h2>"
+			dat += "<h2><b><u>职业选择：</u></b></h2>"
 			var/n = 0
 			var/list/special_roles = list(
 			"Xenomorph after<br>unrevivably dead" = 1,
@@ -508,183 +508,183 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 						ban_check_name = "Agent"
 
 				if(jobban_isbanned(user, ban_check_name))
-					dat += "<b>Be [role_name]:</b> <font color=red><b>\[BANNED]</b></font><br>"
+					dat += "<b>扮演 [preference_label(role_name)]：</b> <font color=red><b>\[已封禁]</b></font><br>"
 				else if(!can_play_special_job(user.client, ban_check_name))
-					dat += "<b>Be [role_name]:</b> <font color=red><b>\[TIMELOCKED]</b></font><br>"
+					dat += "<b>扮演 [preference_label(role_name)]：</b> <font color=red><b>\[时长不足]</b></font><br>"
 					for(var/r in missing_requirements)
 						var/datum/timelock/T = r
-						dat += "\t[T.name] - [duration2text(missing_requirements[r])] Hours<br>"
+						dat += "\t[preference_label(T.name)] - [duration2text(missing_requirements[r])] 小时<br>"
 				else
-					dat += "<b>Be [role_name]:</b> <a href='byond://?_src_=prefs;preference=be_special;num=[n]'><b>[be_special & (1<<n) ? "Yes" : "No"]</b></a><br>"
+					dat += "<b>扮演 [preference_label(role_name)]：</b> <a href='byond://?_src_=prefs;preference=be_special;num=[n]'><b>[be_special & (1<<n) ? "是" : "否"]</b></a><br>"
 
 				n++
 		if(MENU_CO)
 			if(owner.check_whitelist_status(WHITELIST_COMMANDER))
 				dat += "<div id='column1'>"
-				dat += "<h2><b><u>Commander Settings:</u></b></h2>"
-				dat += "<b>Commander Whitelist Status:</b> <a href='byond://?_src_=prefs;preference=commander_status;task=input'><b>[commander_status]</b></a><br>"
-				dat += "<b>Commander Sidearm:</b> <a href='byond://?_src_=prefs;preference=co_sidearm;task=input'><b>[commander_sidearm]</b></a><br>"
-				dat += "<b>Commander Affiliation:</b> <a href='byond://?_src_=prefs;preference=co_affiliation;task=input'><b>[affiliation]</b></a><br>"
+				dat += "<h2><b><u>指挥官设置：</u></b></h2>"
+				dat += "<b>指挥官白名单等级：</b> <a href='byond://?_src_=prefs;preference=commander_status;task=input'><b>[preference_label(commander_status)]</b></a><br>"
+				dat += "<b>指挥官配枪：</b> <a href='byond://?_src_=prefs;preference=co_sidearm;task=input'><b>[preference_label(commander_sidearm)]</b></a><br>"
+				dat += "<b>指挥官所属阵营：</b> <a href='byond://?_src_=prefs;preference=co_affiliation;task=input'><b>[preference_label(affiliation)]</b></a><br>"
 				dat += "</div>"
 			else
-				dat += "<b>You do not have the whitelist for this role.</b>"
+				dat += "<b>你尚未获得此角色的白名单资格。</b>"
 		if(MENU_SYNTHETIC)
 			dat += "<div id='column1'>"
-			dat += "<h2><b><u>Synthetic Settings:</u></b></h2>"
-			dat += "<b>Synthetic Name:</b> <a href='byond://?_src_=prefs;preference=synth_name;task=input'><b>[synthetic_name]</b></a><br>"
-			dat += "<b>Synthetic Type:</b> <a href='byond://?_src_=prefs;preference=synth_type;task=input'><b>[synthetic_type]</b></a><br>"
-			dat += "<b>Synthetic Whitelist Status:</b> <a href='byond://?_src_=prefs;preference=synth_status;task=input'><b>[synth_status]</b></a><br>"
+			dat += "<h2><b><u>合成人设置：</u></b></h2>"
+			dat += "<b>合成人姓名：</b> <a href='byond://?_src_=prefs;preference=synth_name;task=input'><b>[synthetic_name]</b></a><br>"
+			dat += "<b>合成人型号：</b> <a href='byond://?_src_=prefs;preference=synth_type;task=input'><b>[preference_label(synthetic_type)]</b></a><br>"
+			dat += "<b>合成人白名单等级：</b> <a href='byond://?_src_=prefs;preference=synth_status;task=input'><b>[preference_label(synth_status)]</b></a><br>"
 			dat += "</div>"
 		if(MENU_YAUTJA)
 			if(owner.check_whitelist_status(WHITELIST_PREDATOR))
 				dat += "<div id='column1'>"
-				dat += "<h2><b><u>Yautja Information:</u></b></h2>"
-				dat += "<b>Yautja Name:</b> <a href='byond://?_src_=prefs;preference=pred_name;task=input'><b>[predator_name]</b></a><br>"
-				dat += "<b>Yautja Gender:</b> <a href='byond://?_src_=prefs;preference=pred_gender;task=input'><b>[predator_gender == MALE ? "Male" : "Female"]</b></a><br>"
-				dat += "<b>Yautja Age:</b> <a href='byond://?_src_=prefs;preference=pred_age;task=input'><b>[predator_age]</b></a><br>"
-				dat += "<b>Yautja Quill Style:</b> <a href='byond://?_src_=prefs;preference=pred_hair;task=input'><b>[predator_h_style]</b></a><br>"
-				dat += "<b>Yautja Skin Color:</b> <a href='byond://?_src_=prefs;preference=pred_skin;task=input'><b>[predator_skin_color]</b></a><br>"
-				dat += "<b>Yautja Flavor Text:</b> <a href='byond://?_src_=prefs;preference=pred_flavor_text;task=input'><b>[TextPreview(predator_flavor_text, 15)]</b></a><br>"
-				dat += "<b>Yautja Whitelist Status:</b> <a href='byond://?_src_=prefs;preference=yautja_status;task=input'><b>[yautja_status]</b></a>"
+				dat += "<h2><b><u>铁血战士信息：</u></b></h2>"
+				dat += "<b>铁血战士姓名：</b> <a href='byond://?_src_=prefs;preference=pred_name;task=input'><b>[predator_name]</b></a><br>"
+				dat += "<b>铁血战士性别：</b> <a href='byond://?_src_=prefs;preference=pred_gender;task=input'><b>[predator_gender == MALE ? "男性" : "女性"]</b></a><br>"
+				dat += "<b>铁血战士年龄：</b> <a href='byond://?_src_=prefs;preference=pred_age;task=input'><b>[predator_age]</b></a><br>"
+				dat += "<b>铁血战士棘发样式：</b> <a href='byond://?_src_=prefs;preference=pred_hair;task=input'><b>[preference_label(predator_h_style)]</b></a><br>"
+				dat += "<b>铁血战士肤色：</b> <a href='byond://?_src_=prefs;preference=pred_skin;task=input'><b>[preference_label(predator_skin_color)]</b></a><br>"
+				dat += "<b>铁血战士外观描述：</b> <a href='byond://?_src_=prefs;preference=pred_flavor_text;task=input'><b>[TextPreview(predator_flavor_text, 15)]</b></a><br>"
+				dat += "<b>铁血战士白名单等级：</b> <a href='byond://?_src_=prefs;preference=yautja_status;task=input'><b>[preference_label(yautja_status)]</b></a>"
 				dat += "</div>"
 
 				dat += "<div id='column2'>"
-				dat += "<h2><b><u>Equipment Setup:</u></b></h2>"
+				dat += "<h2><b><u>装备设置：</u></b></h2>"
 				if(owner.check_whitelist_status(WHITELIST_YAUTJA_LEGACY))
-					dat += "<b>Legacy Gear:</b> <a href='byond://?_src_=prefs;preference=pred_use_legacy;task=input'><b>[predator_use_legacy]</b></a><br>"
-				dat += "<b>Translator Type:</b> <a href='byond://?_src_=prefs;preference=pred_trans_type;task=input'><b>[predator_translator_type]</b></a><br>"
-				dat += "<b>Mask Style:</b> <a href='byond://?_src_=prefs;preference=pred_mask_type;task=input'><b>([predator_mask_type])</b></a><br>"
-				dat += "<b>Armor Style:</b> <a href='byond://?_src_=prefs;preference=pred_armor_type;task=input'><b>([predator_armor_type])</b></a><br>"
-				dat += "<b>Greave Style:</b> <a href='byond://?_src_=prefs;preference=pred_boot_type;task=input'><b>([predator_boot_type])</b></a><br>"
-				dat += "<b>Mask Material:</b> <a href='byond://?_src_=prefs;preference=pred_mask_mat;task=input'><b>[predator_mask_material]</b></a><br>"
-				dat += "<b>Armor Material:</b> <a href='byond://?_src_=prefs;preference=pred_armor_mat;task=input'><b>[predator_armor_material]</b></a><br>"
-				dat += "<b>Greave Material:</b> <a href='byond://?_src_=prefs;preference=pred_greave_mat;task=input'><b>[predator_greave_material]</b></a><br>"
-				dat += "<b>Caster Material:</b> <a href='byond://?_src_=prefs;preference=pred_caster_mat;task=input'><b>[predator_caster_material]</b></a>"
+					dat += "<b>传承装备：</b> <a href='byond://?_src_=prefs;preference=pred_use_legacy;task=input'><b>[preference_label(predator_use_legacy)]</b></a><br>"
+				dat += "<b>翻译器类型：</b> <a href='byond://?_src_=prefs;preference=pred_trans_type;task=input'><b>[preference_label(predator_translator_type)]</b></a><br>"
+				dat += "<b>面具样式：</b> <a href='byond://?_src_=prefs;preference=pred_mask_type;task=input'><b>([predator_mask_type])</b></a><br>"
+				dat += "<b>护甲样式：</b> <a href='byond://?_src_=prefs;preference=pred_armor_type;task=input'><b>([predator_armor_type])</b></a><br>"
+				dat += "<b>护胫样式：</b> <a href='byond://?_src_=prefs;preference=pred_boot_type;task=input'><b>([predator_boot_type])</b></a><br>"
+				dat += "<b>面具材质：</b> <a href='byond://?_src_=prefs;preference=pred_mask_mat;task=input'><b>[preference_label(predator_mask_material)]</b></a><br>"
+				dat += "<b>护甲材质：</b> <a href='byond://?_src_=prefs;preference=pred_armor_mat;task=input'><b>[preference_label(predator_armor_material)]</b></a><br>"
+				dat += "<b>护胫材质：</b> <a href='byond://?_src_=prefs;preference=pred_greave_mat;task=input'><b>[preference_label(predator_greave_material)]</b></a><br>"
+				dat += "<b>肩炮材质：</b> <a href='byond://?_src_=prefs;preference=pred_caster_mat;task=input'><b>[preference_label(predator_caster_material)]</b></a>"
 				dat += "</div>"
 
 				dat += "<div id='column3'>"
-				dat += "<h2><b><u>Clothing Setup:</u></b></h2>"
-				dat += "<b>Cape Type:</b> <a href='byond://?_src_=prefs;preference=pred_cape_type;task=input'><b>[capitalize_first_letters(predator_cape_type)]</b></a><br>"
-				dat += "<b>Cape Color:</b> "
+				dat += "<h2><b><u>服饰设置：</u></b></h2>"
+				dat += "<b>披风类型：</b> <a href='byond://?_src_=prefs;preference=pred_cape_type;task=input'><b>[preference_label(capitalize_first_letters(predator_cape_type))]</b></a><br>"
+				dat += "<b>披风颜色：</b> "
 				dat += "<a href='byond://?_src_=prefs;preference=pred_cape_color;task=input'>"
-				dat += "<b>Color</b> <span class='square' style='background-color: [predator_cape_color];'></span>"
+				dat += "<b>颜色</b> <span class='square' style='background-color: [predator_cape_color];'></span>"
 				dat += "</a><br><br>"
-				dat += "<b>Background:</b> <a href='byond://?_src_=prefs;preference=cycle_bg'><b>Cycle Background</b></a>"
+				dat += "<b>背景：</b> <a href='byond://?_src_=prefs;preference=cycle_bg'><b>切换背景</b></a>"
 				dat += "</div>"
 			else
-				dat += "<b>You do not have the whitelist for this role.</b>"
+				dat += "<b>你尚未获得此角色的白名单资格。</b>"
 		if(MENU_MENTOR)
 			if(owner.check_whitelist_status(WHITELIST_MENTOR))
-				dat += "<b>Nothing here. For now.</b>"
+				dat += "<b>这里暂时没有内容。</b>"
 			else
-				dat += "<b>You do not have the whitelist for this role.</b>"
+				dat += "<b>你尚未获得此角色的白名单资格。</b>"
 		if(MENU_SETTINGS)
 			dat += "<div id='column1'>"
-			dat += "<h2><b><u>Input Settings:</u></b></h2>"
-			dat += "<b>Mode:</b> <a href='byond://?_src_=prefs;preference=hotkeys'><b>[(hotkeys) ? "Hotkeys Mode" : "Send to Chat"]</b></a><br>"
-			dat += "<b>Keybinds:</b> <a href='byond://?_src_=prefs;preference=viewmacros'><b>View Keybinds</b></a><br>"
-			dat += "<br><b>Say Input Style:</b> <a href='byond://?_src_=prefs;preference=inputstyle'><b>[tgui_say ? "Modern (default)" : "Legacy"]</b></a><br>"
-			dat += "<b>Say Input Color:</b> <a href='byond://?_src_=prefs;preference=inputcolor'><b>[tgui_say_light_mode ? "Lightmode" : "Darkmode (default)"]</b></a><br>"
+			dat += "<h2><b><u>输入设置：</u></b></h2>"
+			dat += "<b>模式：</b> <a href='byond://?_src_=prefs;preference=hotkeys'><b>[(hotkeys) ? "快捷键模式" : "直接输入聊天"]</b></a><br>"
+			dat += "<b>按键绑定：</b> <a href='byond://?_src_=prefs;preference=viewmacros'><b>查看按键绑定</b></a><br>"
+			dat += "<br><b>聊天输入框样式：</b> <a href='byond://?_src_=prefs;preference=inputstyle'><b>[tgui_say ? "现代（默认）" : "旧版"]</b></a><br>"
+			dat += "<b>聊天输入框配色：</b> <a href='byond://?_src_=prefs;preference=inputcolor'><b>[tgui_say_light_mode ? "浅色模式" : "深色模式（默认）"]</b></a><br>"
 
-			dat += "<h2><b><u>UI Customization:</u></b></h2>"
-			dat += "<b>Style:</b> <a href='byond://?_src_=prefs;preference=ui'><b>[UI_style]</b></a><br>"
-			dat += "<b>Color:</b> <a href='byond://?_src_=prefs;preference=UIcolor'><b>[UI_style_color]</b> <table style='display:inline;' bgcolor='[UI_style_color]'><tr><td>__</td></tr></table></a><br>"
-			dat += "<b>Alpha:</b> <a href='byond://?_src_=prefs;preference=UIalpha'><b>[UI_style_alpha]</b></a><br><br>"
-			dat += "<b>Stylesheet:</b> <a href='byond://?_src_=prefs;preference=stylesheet'><b>[stylesheet]</b></a><br>"
-			dat += "<b>Hide Statusbar:</b> <a href='byond://?_src_=prefs;preference=hide_statusbar'><b>[hide_statusbar ? "TRUE" : "FALSE"]</b></a><br>"
-			dat += "<b>Prefer input drop down menus to radial menus, where possible:</b> <a href='byond://?_src_=prefs;preference=no_radials_preference'><b>[no_radials_preference ? "TRUE" : "FALSE"]</b></a><br>"
+			dat += "<h2><b><u>界面自定义：</u></b></h2>"
+			dat += "<b>样式：</b> <a href='byond://?_src_=prefs;preference=ui'><b>[preference_label(UI_style)]</b></a><br>"
+			dat += "<b>颜色：</b> <a href='byond://?_src_=prefs;preference=UIcolor'><b>[UI_style_color]</b> <table style='display:inline;' bgcolor='[UI_style_color]'><tr><td>__</td></tr></table></a><br>"
+			dat += "<b>不透明度：</b> <a href='byond://?_src_=prefs;preference=UIalpha'><b>[UI_style_alpha]</b></a><br><br>"
+			dat += "<b>样式表：</b> <a href='byond://?_src_=prefs;preference=stylesheet'><b>[preference_label(stylesheet)]</b></a><br>"
+			dat += "<b>隐藏状态栏：</b> <a href='byond://?_src_=prefs;preference=hide_statusbar'><b>[hide_statusbar ? "是" : "否"]</b></a><br>"
+			dat += "<b>可用时优先使用下拉菜单：</b> <a href='byond://?_src_=prefs;preference=no_radials_preference'><b>[no_radials_preference ? "是" : "否"]</b></a><br>"
 			if(!no_radials_preference)
-				dat += "<b>Hide Radial Menu Labels:</b> <a href='byond://?_src_=prefs;preference=no_radial_labels_preference'><b>[no_radial_labels_preference ? "TRUE" : "FALSE"]</b></a><br>"
-			dat += "<b>Custom Cursors:</b> <a href='byond://?_src_=prefs;preference=customcursors'><b>[custom_cursors ? "Enabled" : "Disabled"]</b></a><br>"
+				dat += "<b>隐藏环形菜单标签：</b> <a href='byond://?_src_=prefs;preference=no_radial_labels_preference'><b>[no_radial_labels_preference ? "是" : "否"]</b></a><br>"
+			dat += "<b>自定义鼠标指针：</b> <a href='byond://?_src_=prefs;preference=customcursors'><b>[custom_cursors ? "已启用" : "已禁用"]</b></a><br>"
 
-			dat += "<h2><b><u>Chat Settings:</u></b></h2>"
+			dat += "<h2><b><u>聊天设置：</u></b></h2>"
 			if(CONFIG_GET(flag/ooc_country_flags))
-				dat += "<b>OOC Country Flag:</b> <a href='byond://?_src_=prefs;preference=ooc_flag'><b>[(toggle_prefs & TOGGLE_OOC_FLAG) ? "Enabled" : "Disabled"]</b></a><br>"
+				dat += "<b>OOC 国旗：</b> <a href='byond://?_src_=prefs;preference=ooc_flag'><b>[(toggle_prefs & TOGGLE_OOC_FLAG) ? "已启用" : "已禁用"]</b></a><br>"
 			if(user.client.admin_holder && user.client.admin_holder.rights & R_DEBUG)
-				dat += "<b>View Master Controller Tab:</b> <a href='byond://?_src_=prefs;preference=ViewMC'><b>[View_MC ? "TRUE" : "FALSE"]</b></a>"
+				dat += "<b>显示主控制器标签页：</b> <a href='byond://?_src_=prefs;preference=ViewMC'><b>[View_MC ? "是" : "否"]</b></a>"
 			if(unlock_content)
-				dat += "<b>BYOND Membership Publicity:</b> <a href='byond://?_src_=prefs;preference=publicity'><b>[(toggle_prefs & TOGGLE_MEMBER_PUBLIC) ? "Public" : "Hidden"]</b></a><br>"
-			dat += "<b>Ghost Ears:</b> <a href='byond://?_src_=prefs;preference=ghost_ears'><b>[(toggles_chat & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</b></a><br>"
-			dat += "<b>Ghost Sight:</b> <a href='byond://?_src_=prefs;preference=ghost_sight'><b>[(toggles_chat & CHAT_GHOSTSIGHT) ? "All Emotes" : "Nearest Creatures"]</b></a><br>"
-			dat += "<b>Ghost Radio:</b> <a href='byond://?_src_=prefs;preference=ghost_radio'><b>[(toggles_chat & CHAT_GHOSTRADIO) ? "All Chatter" : "Nearest Speakers"]</b></a><br>"
-			dat += "<b>Ghost Spy Radio:</b> <a href='byond://?_src_=prefs;preference=ghost_spyradio'><b>[(toggles_chat & CHAT_LISTENINGBUG) ? "Hear" : "Silence"] listening devices</b></a><br>"
-			dat += "<b>Ghost Hivemind:</b> <a href='byond://?_src_=prefs;preference=ghost_hivemind'><b>[(toggles_chat & CHAT_GHOSTHIVEMIND) ? "Show Hivemind" : "Hide Hivemind"]</b></a><br>"
-			dat += "<b>Abovehead Chat:</b> <a href='byond://?_src_=prefs;preference=lang_chat_disabled'><b>[lang_chat_disabled ? "Hide" : "Show"]</b></a><br>"
-			dat += "<b>Abovehead Emotes:</b> <a href='byond://?_src_=prefs;preference=langchat_emotes'><b>[(toggles_langchat & LANGCHAT_SEE_EMOTES) ? "Show" : "Hide"]</b></a><br>"
+				dat += "<b>BYOND 会员身份可见性：</b> <a href='byond://?_src_=prefs;preference=publicity'><b>[(toggle_prefs & TOGGLE_MEMBER_PUBLIC) ? "公开" : "隐藏"]</b></a><br>"
+			dat += "<b>幽灵听觉：</b> <a href='byond://?_src_=prefs;preference=ghost_ears'><b>[(toggles_chat & CHAT_GHOSTEARS) ? "所有对话" : "附近生物"]</b></a><br>"
+			dat += "<b>幽灵视觉：</b> <a href='byond://?_src_=prefs;preference=ghost_sight'><b>[(toggles_chat & CHAT_GHOSTSIGHT) ? "所有表情动作" : "附近生物"]</b></a><br>"
+			dat += "<b>幽灵无线电：</b> <a href='byond://?_src_=prefs;preference=ghost_radio'><b>[(toggles_chat & CHAT_GHOSTRADIO) ? "所有通讯" : "附近扬声器"]</b></a><br>"
+			dat += "<b>幽灵窃听：</b> <a href='byond://?_src_=prefs;preference=ghost_spyradio'><b>[(toggles_chat & CHAT_LISTENINGBUG) ? "收听" : "静音"]窃听设备</b></a><br>"
+			dat += "<b>幽灵虫巢意志：</b> <a href='byond://?_src_=prefs;preference=ghost_hivemind'><b>[(toggles_chat & CHAT_GHOSTHIVEMIND) ? "显示虫巢意志" : "隐藏虫巢意志"]</b></a><br>"
+			dat += "<b>头顶聊天：</b> <a href='byond://?_src_=prefs;preference=lang_chat_disabled'><b>[lang_chat_disabled ? "隐藏" : "显示"]</b></a><br>"
+			dat += "<b>头顶表情动作：</b> <a href='byond://?_src_=prefs;preference=langchat_emotes'><b>[(toggles_langchat & LANGCHAT_SEE_EMOTES) ? "显示" : "隐藏"]</b></a><br>"
 			dat += "</div>"
 
 			dat += "<div id='column2'>"
-			dat += "<h2><b><u>Game Settings:</u></b></h2>"
-			dat += "<b>Ambient Occlusion:</b> <a href='byond://?_src_=prefs;preference=ambientocclusion'><b>[toggle_prefs & TOGGLE_AMBIENT_OCCLUSION ? "Enabled" : "Disabled"]</b></a><br>"
-			dat += "<b>Fit Viewport:</b> <a href='byond://?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
-			dat += "<b>Adaptive Zoom:</b> <a href='byond://?_src_=prefs;preference=adaptive_zoom'>[adaptive_zoom ? "[adaptive_zoom * 2]x" : "Disabled"]</a><br>"
-			dat += "<b>Tooltips:</b> <a href='byond://?_src_=prefs;preference=tooltips'><b>[tooltips ? "Enabled" : "Disabled"]</b></a><br>"
-			dat += "<b>tgui Window Mode:</b> <a href='byond://?_src_=prefs;preference=tgui_fancy'><b>[(tgui_fancy) ? "Fancy (default)" : "Compatible (slower)"]</b></a><br>"
-			dat += "<b>tgui Window Placement:</b> <a href='byond://?_src_=prefs;preference=tgui_lock'><b>[(tgui_lock) ? "Primary monitor" : "Free (default)"]</b></a><br>"
-			dat += "<b>Window Scaling:</b> <a href='byond://?_src_=prefs;preference=window_scale'><b>[window_scale ? "Larger windows (default)" : "Smaller zoom"]</b></a><br>"
-			dat += "<b>Play Admin Sounds:</b> <a href='byond://?_src_=prefs;preference=hear_admin_sounds'><b>[(toggles_sound & SOUND_MIDI) ? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Play Announcement Sounds As Ghost:</b> <a href='byond://?_src_=prefs;preference=hear_observer_announcements'><b>[(toggles_sound & SOUND_OBSERVER_ANNOUNCEMENTS) ? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Play Fax Sounds As Ghost:</b> <a href='byond://?_src_=prefs;preference=hear_faxes'><b>[(toggles_sound & SOUND_FAX_MACHINE) ? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Toggle Meme or Atmospheric Sounds:</b> <a href='byond://?src=\ref[src];action=proccall;procpath=/client/proc/toggle_admin_sound_types'>Toggle</a><br>"
-			dat += "<b>Set Eye Blur Type:</b> <a href='byond://?src=\ref[src];action=proccall;procpath=/client/proc/set_eye_blur_type'>Set</a><br>"
-			dat += "<b>Set Flash Type:</b> <a href='byond://?src=\ref[src];action=proccall;procpath=/client/proc/set_flash_type'>Set</a><br>"
-			dat += "<b>Set Crit Type:</b> <a href='byond://?src=\ref[src];action=proccall;procpath=/client/proc/set_crit_type'>Set</a><br>"
-			dat += "<b>Play Lobby Music:</b> <a href='byond://?_src_=prefs;preference=lobby_music'><b>[(toggles_sound & SOUND_LOBBY) ? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Play VOX Announcements:</b> <a href='byond://?_src_=prefs;preference=sound_vox'><b>[(hear_vox) ? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Default Ghost Night Vision Level:</b> <a href='byond://?_src_=prefs;preference=ghost_vision_pref;task=input'><b>[ghost_vision_pref]</b></a><br>"
-			dat += "<b>Button To Activate Xenomorph Abilities:</b> <a href='byond://?_src_=prefs;preference=mouse_button_activation;task=input'><b>[xeno_ability_mouse_pref_to_string(xeno_ability_click_mode)]</b></a><br>"
-			dat += "<a href='byond://?src=\ref[src];action=proccall;procpath=/client/proc/receive_random_tip'>Read Random Tip of the Round</a><br>"
+			dat += "<h2><b><u>游戏设置：</u></b></h2>"
+			dat += "<b>环境光遮蔽：</b> <a href='byond://?_src_=prefs;preference=ambientocclusion'><b>[toggle_prefs & TOGGLE_AMBIENT_OCCLUSION ? "已启用" : "已禁用"]</b></a><br>"
+			dat += "<b>视口适配：</b> <a href='byond://?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "自动" : "手动"]</a><br>"
+			dat += "<b>自适应缩放：</b> <a href='byond://?_src_=prefs;preference=adaptive_zoom'>[adaptive_zoom ? "[adaptive_zoom * 2]x" : "已禁用"]</a><br>"
+			dat += "<b>悬浮提示：</b> <a href='byond://?_src_=prefs;preference=tooltips'><b>[tooltips ? "已启用" : "已禁用"]</b></a><br>"
+			dat += "<b>tgui 窗口模式：</b> <a href='byond://?_src_=prefs;preference=tgui_fancy'><b>[(tgui_fancy) ? "精美（默认）" : "兼容（较慢）"]</b></a><br>"
+			dat += "<b>tgui 窗口位置：</b> <a href='byond://?_src_=prefs;preference=tgui_lock'><b>[(tgui_lock) ? "主显示器" : "自由放置（默认）"]</b></a><br>"
+			dat += "<b>窗口缩放：</b> <a href='byond://?_src_=prefs;preference=window_scale'><b>[window_scale ? "较大窗口（默认）" : "较小缩放"]</b></a><br>"
+			dat += "<b>播放管理员音效：</b> <a href='byond://?_src_=prefs;preference=hear_admin_sounds'><b>[(toggles_sound & SOUND_MIDI) ? "是" : "否"]</b></a><br>"
+			dat += "<b>幽灵状态播放公告音效：</b> <a href='byond://?_src_=prefs;preference=hear_observer_announcements'><b>[(toggles_sound & SOUND_OBSERVER_ANNOUNCEMENTS) ? "是" : "否"]</b></a><br>"
+			dat += "<b>幽灵状态播放传真音效：</b> <a href='byond://?_src_=prefs;preference=hear_faxes'><b>[(toggles_sound & SOUND_FAX_MACHINE) ? "是" : "否"]</b></a><br>"
+			dat += "<b>趣味或氛围音效：</b> <a href='byond://?src=\ref[src];action=proccall;procpath=/client/proc/toggle_admin_sound_types'>切换</a><br>"
+			dat += "<b>视线模糊效果：</b> <a href='byond://?src=\ref[src];action=proccall;procpath=/client/proc/set_eye_blur_type'>设置</a><br>"
+			dat += "<b>闪光效果：</b> <a href='byond://?src=\ref[src];action=proccall;procpath=/client/proc/set_flash_type'>设置</a><br>"
+			dat += "<b>濒危效果：</b> <a href='byond://?src=\ref[src];action=proccall;procpath=/client/proc/set_crit_type'>设置</a><br>"
+			dat += "<b>播放大厅音乐：</b> <a href='byond://?_src_=prefs;preference=lobby_music'><b>[(toggles_sound & SOUND_LOBBY) ? "是" : "否"]</b></a><br>"
+			dat += "<b>播放 VOX 语音公告：</b> <a href='byond://?_src_=prefs;preference=sound_vox'><b>[(hear_vox) ? "是" : "否"]</b></a><br>"
+			dat += "<b>默认幽灵夜视等级：</b> <a href='byond://?_src_=prefs;preference=ghost_vision_pref;task=input'><b>[preference_label(ghost_vision_pref)]</b></a><br>"
+			dat += "<b>异形技能激活按键：</b> <a href='byond://?_src_=prefs;preference=mouse_button_activation;task=input'><b>[preference_label(xeno_ability_mouse_pref_to_string(xeno_ability_click_mode))]</b></a><br>"
+			dat += "<a href='byond://?src=\ref[src];action=proccall;procpath=/client/proc/receive_random_tip'>阅读随机回合提示</a><br>"
 			if(CONFIG_GET(flag/allow_Metadata))
-				dat += "<b>OOC Notes:</b> <a href='byond://?_src_=prefs;preference=metadata;task=input'> Edit </a>"
+				dat += "<b>角色外备注：</b> <a href='byond://?_src_=prefs;preference=metadata;task=input'>编辑</a>"
 			dat += "</div>"
 
 			dat += "<div id='column3'>"
-			dat += "<h2><b><u>Gameplay Toggles:</u></b></h2>"
-			dat += "<b>Toggle Being Able to Hurt Yourself: \
-					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_IGNORE_SELF]'><b>[toggle_prefs & TOGGLE_IGNORE_SELF ? "Off" : "On"]</b></a><br>"
-			dat += "<b>Toggle Help Intent Safety: \
-					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_HELP_INTENT_SAFETY]'><b>[toggle_prefs & TOGGLE_HELP_INTENT_SAFETY ? "On" : "Off"]</b></a><br>"
-			dat += "<b>Toggle Ability Deactivation: \
-					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_ABILITY_DEACTIVATION_OFF]'><b>[toggle_prefs & TOGGLE_ABILITY_DEACTIVATION_OFF ? "Off" : "On"]</b></a><br>"
-			dat += "<b>Toggle Directional Assist: \
-					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_DIRECTIONAL_ATTACK]'><b>[toggle_prefs & TOGGLE_DIRECTIONAL_ATTACK ? "On" : "Off"]</b></a><br>"
-			dat += "<b>Toggle Magazine Auto-Ejection: \
-					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_AUTO_EJECT_MAGAZINE_OFF];flag_undo=[TOGGLE_AUTO_EJECT_MAGAZINE_TO_HAND]'><b>[!(toggle_prefs & TOGGLE_AUTO_EJECT_MAGAZINE_OFF) ? "On" : "Off"]</b></a><br>"
-			dat += "<b>Toggle Magazine Auto-Ejection to Offhand: \
-					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_AUTO_EJECT_MAGAZINE_TO_HAND];flag_undo=[TOGGLE_AUTO_EJECT_MAGAZINE_OFF]'><b>[toggle_prefs & TOGGLE_AUTO_EJECT_MAGAZINE_TO_HAND ? "On" : "Off"]</b></a><br>"
-			dat += "<b>Toggle Magazine Manual Ejection to Offhand: \
-					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_EJECT_MAGAZINE_TO_HAND]'><b>[toggle_prefs & TOGGLE_EJECT_MAGAZINE_TO_HAND ? "On" : "Off"]</b></a><br>"
-			dat += "<b>Toggle Automatic Punctuation: \
-					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_AUTOMATIC_PUNCTUATION]'><b>[toggle_prefs & TOGGLE_AUTOMATIC_PUNCTUATION ? "On" : "Off"]</b></a><br>"
-			dat += "<b>Toggle Combat Click-Drag Override: \
-					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_COMBAT_CLICKDRAG_OVERRIDE]'><b>[toggle_prefs & TOGGLE_COMBAT_CLICKDRAG_OVERRIDE ? "On" : "Off"]</b></a><br>"
-			dat += "<b>Toggle Combat Point-Blank Override: \
-					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_COMBAT_POINTBLANK_OVERRIDE]'><b>[toggle_prefs & TOGGLE_COMBAT_POINTBLANK_OVERRIDE ? "On" : "Off"]</b></a><br>"
-			dat += "<b>Toggle Middle-Click Swap Hands: \
-					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_MIDDLE_MOUSE_SWAP_HANDS]'><b>[toggle_prefs & TOGGLE_MIDDLE_MOUSE_SWAP_HANDS ? "On" : "Off"]</b></a><br>"
-			dat += "<b>Toggle Vendors Vending to Hands: \
-					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_VEND_ITEM_TO_HAND]'><b>[toggle_prefs & TOGGLE_VEND_ITEM_TO_HAND ? "On" : "Off"]</b></a><br>"
-			dat += "<b>Toggle Semi-Auto Ammo Display Limiter: \
-					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_AMMO_DISPLAY_TYPE]'><b>[toggle_prefs & TOGGLE_AMMO_DISPLAY_TYPE ? "On" : "Off"]</b></a><br>"
-			dat += "<a href='byond://?src=\ref[src];action=proccall;procpath=/client/proc/switch_item_animations'>Toggle Item Animations Detail Level</a><br>"
-			dat += "<a href='byond://?src=\ref[src];action=proccall;procpath=/client/proc/toggle_dualwield'>Toggle Dual Wield Functionality</a><br>"
+			dat += "<h2><b><u>操作设置：</u></b></h2>"
+			dat += "<b>允许伤害自己： \
+					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_IGNORE_SELF]'><b>[toggle_prefs & TOGGLE_IGNORE_SELF ? "关闭" : "开启"]</b></a><br>"
+			dat += "<b>帮助意图安全保护： \
+					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_HELP_INTENT_SAFETY]'><b>[toggle_prefs & TOGGLE_HELP_INTENT_SAFETY ? "开启" : "关闭"]</b></a><br>"
+			dat += "<b>允许取消激活技能： \
+					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_ABILITY_DEACTIVATION_OFF]'><b>[toggle_prefs & TOGGLE_ABILITY_DEACTIVATION_OFF ? "关闭" : "开启"]</b></a><br>"
+			dat += "<b>方向辅助： \
+					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_DIRECTIONAL_ATTACK]'><b>[toggle_prefs & TOGGLE_DIRECTIONAL_ATTACK ? "开启" : "关闭"]</b></a><br>"
+			dat += "<b>自动退出弹匣： \
+					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_AUTO_EJECT_MAGAZINE_OFF];flag_undo=[TOGGLE_AUTO_EJECT_MAGAZINE_TO_HAND]'><b>[!(toggle_prefs & TOGGLE_AUTO_EJECT_MAGAZINE_OFF) ? "开启" : "关闭"]</b></a><br>"
+			dat += "<b>自动将弹匣退到副手： \
+					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_AUTO_EJECT_MAGAZINE_TO_HAND];flag_undo=[TOGGLE_AUTO_EJECT_MAGAZINE_OFF]'><b>[toggle_prefs & TOGGLE_AUTO_EJECT_MAGAZINE_TO_HAND ? "开启" : "关闭"]</b></a><br>"
+			dat += "<b>手动将弹匣退到副手： \
+					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_EJECT_MAGAZINE_TO_HAND]'><b>[toggle_prefs & TOGGLE_EJECT_MAGAZINE_TO_HAND ? "开启" : "关闭"]</b></a><br>"
+			dat += "<b>自动添加标点： \
+					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_AUTOMATIC_PUNCTUATION]'><b>[toggle_prefs & TOGGLE_AUTOMATIC_PUNCTUATION ? "开启" : "关闭"]</b></a><br>"
+			dat += "<b>战斗模式点击拖拽替代操作： \
+					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_COMBAT_CLICKDRAG_OVERRIDE]'><b>[toggle_prefs & TOGGLE_COMBAT_CLICKDRAG_OVERRIDE ? "开启" : "关闭"]</b></a><br>"
+			dat += "<b>战斗模式抵近射击替代操作： \
+					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_COMBAT_POINTBLANK_OVERRIDE]'><b>[toggle_prefs & TOGGLE_COMBAT_POINTBLANK_OVERRIDE ? "开启" : "关闭"]</b></a><br>"
+			dat += "<b>鼠标中键切换双手： \
+					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_MIDDLE_MOUSE_SWAP_HANDS]'><b>[toggle_prefs & TOGGLE_MIDDLE_MOUSE_SWAP_HANDS ? "开启" : "关闭"]</b></a><br>"
+			dat += "<b>售货机物品直接入手： \
+					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_VEND_ITEM_TO_HAND]'><b>[toggle_prefs & TOGGLE_VEND_ITEM_TO_HAND ? "开启" : "关闭"]</b></a><br>"
+			dat += "<b>半自动武器弹药显示限制： \
+					</b> <a href='byond://?_src_=prefs;preference=toggle_prefs;flag=[TOGGLE_AMMO_DISPLAY_TYPE]'><b>[toggle_prefs & TOGGLE_AMMO_DISPLAY_TYPE ? "开启" : "关闭"]</b></a><br>"
+			dat += "<a href='byond://?src=\ref[src];action=proccall;procpath=/client/proc/switch_item_animations'>切换物品动画细节等级</a><br>"
+			dat += "<a href='byond://?src=\ref[src];action=proccall;procpath=/client/proc/toggle_dualwield'>切换双持功能</a><br>"
 		if(MENU_SPECIAL) //wart
 			dat += "<div id='column1'>"
-			dat += "<h2><b><u>ERT Settings:</u></b></h2>"
-			dat += "<b>Spawn as Leader:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_LEADER]'><b>[toggles_ert & PLAY_LEADER ? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Spawn as Medic:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_MEDIC]'><b>[toggles_ert & PLAY_MEDIC ? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Spawn as Engineer:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_ENGINEER]'><b>[toggles_ert & PLAY_ENGINEER ? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Spawn as Specialist:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_HEAVY]'><b>[toggles_ert & PLAY_HEAVY ? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Spawn as Smartgunner:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_SMARTGUNNER]'><b>[toggles_ert & PLAY_SMARTGUNNER ? "Yes" : "No"]</b></a><br>"
+			dat += "<h2><b><u>应急响应小队设置：</u></b></h2>"
+			dat += "<b>作为队长加入：</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_LEADER]'><b>[toggles_ert & PLAY_LEADER ? "是" : "否"]</b></a><br>"
+			dat += "<b>作为医疗兵加入：</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_MEDIC]'><b>[toggles_ert & PLAY_MEDIC ? "是" : "否"]</b></a><br>"
+			dat += "<b>作为工兵加入：</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_ENGINEER]'><b>[toggles_ert & PLAY_ENGINEER ? "是" : "否"]</b></a><br>"
+			dat += "<b>作为武器专家加入：</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_HEAVY]'><b>[toggles_ert & PLAY_HEAVY ? "是" : "否"]</b></a><br>"
+			dat += "<b>作为智能机枪手加入：</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_SMARTGUNNER]'><b>[toggles_ert & PLAY_SMARTGUNNER ? "是" : "否"]</b></a><br>"
 			if(owner.check_whitelist_status(WHITELIST_SYNTHETIC))
-				dat += "<b>Spawn as Synth:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_SYNTH]'><b>[toggles_ert & PLAY_SYNTH ? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Spawn as Miscellaneous:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_MISC]'><b>[toggles_ert & PLAY_MISC ? "Yes" : "No"]</b></a><br>"
+				dat += "<b>作为合成人加入：</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_SYNTH]'><b>[toggles_ert & PLAY_SYNTH ? "是" : "否"]</b></a><br>"
+			dat += "<b>作为其他角色加入：</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_MISC]'><b>[toggles_ert & PLAY_MISC ? "是" : "否"]</b></a><br>"
 			dat += "</div>"
 
 	dat += "</div></body>"
 
 	winshow(user, "preferencewindow", TRUE)
-	show_browser(user, dat, "Preferences", "preferencebrowser", width = 1000, height = 800, existing_container = "preferencewindow")
+	show_browser(user, dat, "偏好设置", "preferencebrowser", width = 1000, height = 800, existing_container = "preferencewindow")
 	onclose(user, "preferencewindow", src)
 
 /**
@@ -706,8 +706,8 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 
 	var/HTML = "<body>"
 	HTML += "<tt><center>"
-	HTML += "<b>Choose occupation chances</b><br>Unavailable occupations are crossed out.<br><br>"
-	HTML += "<center><a href='byond://?_src_=prefs;preference=job;task=close'>Done</a></center><br>" // Easier to press up here.
+	HTML += "<b>设置职业分配优先级</b><br>不可用的职业已划除。<br><br>"
+	HTML += "<center><a href='byond://?_src_=prefs;preference=job;task=close'>完成</a></center><br>" // Easier to press up here.
 	HTML += "<table width='100%' cellpadding='1' cellspacing='0' style='color: black;'><tr><td valign='top' width='20%'>" // Table within a table for alignment, also allows you to easily add more colomns.
 	HTML += "<table width='100%' cellpadding='1' cellspacing='0'>"
 	var/index = -1
@@ -731,20 +731,20 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 		HTML += "<tr class='[job.selection_class]'><td width='30%' align='center'>"
 
 		if(jobban_isbanned(user, job.title))
-			HTML += "<b><del>[job.disp_title]</del></b></td><td width='10%' align='center'></td><td><b>BANNED</b></td></tr>"
+			HTML += "<b><del>[preference_label(job.disp_title)]</del></b></td><td width='10%' align='center'></td><td><b>已封禁</b></td></tr>"
 			continue
 		else if(!job.check_whitelist_status(user))
-			HTML += "<b><del>[job.disp_title]</del></b></td><td width='10%' align='center'></td><td>WHITELISTED</td></tr>"
+			HTML += "<b><del>[preference_label(job.disp_title)]</del></b></td><td width='10%' align='center'></td><td>需要白名单</td></tr>"
 			continue
 		else if(!job.can_play_role(user.client))
 			var/list/missing_requirements = job.get_role_requirements(user.client)
-			HTML += "<b><del>[job.disp_title]</del></b></td><td width='10%' align='center'></td><td>TIMELOCKED</td></tr>"
+			HTML += "<b><del>[preference_label(job.disp_title)]</del></b></td><td width='10%' align='center'></td><td>时长不足</td></tr>"
 			for(var/r in missing_requirements)
 				var/datum/timelock/T = r
-				HTML += "<tr class='[job.selection_class]'><td width='40%' align='middle'>[T.name]</td><td width='10%' align='center'></td><td>[duration2text(missing_requirements[r])] Hours</td></tr>"
+				HTML += "<tr class='[job.selection_class]'><td width='40%' align='middle'>[preference_label(T.name)]</td><td width='10%' align='center'></td><td>[duration2text(missing_requirements[r])] 小时</td></tr>"
 			continue
 
-		HTML += "<b>[job.disp_title]</b></td><td width='10%' align='center'>"
+		HTML += "<b>[preference_label(job.disp_title)]</b></td><td width='10%' align='center'>"
 
 		if(job.job_options)
 			if(pref_special_job_options)
@@ -753,7 +753,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 				pref_special_job_options[role_name] = job.job_options[1]
 
 			var/txt = job.job_options[pref_special_job_options[role_name]]
-			HTML += "<a href='byond://?_src_=prefs;preference=special_job_select;task=input;text=[job.title]'><b>[txt]</b></a>"
+			HTML += "<a href='byond://?_src_=prefs;preference=special_job_select;task=input;text=[job.title]'><b>[preference_label(txt)]</b></a>"
 
 		HTML += "</td><td width='50%'>"
 
@@ -765,19 +765,19 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 			switch (j)
 				if(NEVER_PRIORITY)
 					b_color = "red"
-					priority_text = "NEVER"
+					priority_text = "从不"
 				if(PRIME_PRIORITY)
 					b_color = "purple"
-					priority_text = "PRIME"
+					priority_text = "首选"
 				if(HIGH_PRIORITY)
 					b_color = "blue"
-					priority_text = "HIGH"
+					priority_text = "高"
 				if(MED_PRIORITY)
 					b_color = "green"
-					priority_text = "MEDIUM"
+					priority_text = "中"
 				if(LOW_PRIORITY)
 					b_color = "orange"
-					priority_text = "LOW"
+					priority_text = "低"
 
 			if(j == PRIME_PRIORITY && !host_bypass && (!job.prime_priority || user.client?.get_total_human_playtime() < JOB_PLAYTIME_TIER_2))
 				continue
@@ -793,22 +793,22 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 
 	if(user.client?.prefs) //Just makin sure
 		var/b_color = "green"
-		var/msg = "Get random job if preferences unavailable"
+		var/msg = "偏好职业不可用时随机分配职业"
 
 		if(user.client.prefs.alternate_option == BE_MARINE)
 			b_color = "red"
-			msg = "Be marine if preference unavailable"
+			msg = "偏好职业不可用时成为陆战队员"
 		else if(user.client.prefs.alternate_option == RETURN_TO_LOBBY)
 			b_color = "purple"
-			msg = "Return to lobby if preference unavailable"
+			msg = "偏好职业不可用时返回大厅"
 
 		HTML += "<center><br><a class='[b_color]' href='byond://?_src_=prefs;preference=job;task=random'>[msg]</a></center><br>"
 
-	HTML += "<center><a href='byond://?_src_=prefs;preference=job;task=reset'>Reset</a></center>"
+	HTML += "<center><a href='byond://?_src_=prefs;preference=job;task=reset'>重置</a></center>"
 	HTML += "</tt></body>"
 
 	close_browser(user, "preferences")
-	show_browser(user, HTML, "Job Preferences", "mob_occupation", width = width, height = height)
+	show_browser(user, HTML, "职业偏好", "mob_occupation", width = width, height = height)
 	onclose(user, "mob_occupation", user.client, list("_src_" = "prefs", "preference" = "job", "task" = "close"))
 	return
 
@@ -827,8 +827,8 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 
 	var/HTML = "<body>"
 	HTML += "<tt><center>"
-	HTML += "<b>Assign character slots to jobs.</b><br>Unavailable occupations are crossed out.<br><br>"
-	HTML += "<center><a href='byond://?_src_=prefs;preference=job_slot;task=close'>Done</a></center><br>" // Easier to press up here.
+	HTML += "<b>为职业分配角色槽。</b><br>不可用的职业已划除。<br><br>"
+	HTML += "<center><a href='byond://?_src_=prefs;preference=job_slot;task=close'>完成</a></center><br>" // Easier to press up here.
 	HTML += "<table width='100%' cellpadding='1' cellspacing='0' style='color: black;'><tr><td valign='top' width='20%'>" // Table within a table for alignment, also allows you to easily add more colomns.
 	HTML += "<table width='100%' cellpadding='1' cellspacing='0'>"
 	var/index = -1
@@ -851,16 +851,16 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 
 		HTML += "<tr class='[job.selection_class]'><td width='40%' align='right'>"
 		if(jobban_isbanned(user, job.title))
-			HTML += "<b><del>[job.disp_title]</del></b></td><td width='60%'><b>BANNED</b></td></tr>"
+			HTML += "<b><del>[preference_label(job.disp_title)]</del></b></td><td width='60%'><b>已封禁</b></td></tr>"
 			continue
 		else if(!job.check_whitelist_status(user))
-			HTML += "<b><del>[job.disp_title]</del></b></td><td width='60%'>WHITELISTED</td></tr>"
+			HTML += "<b><del>[preference_label(job.disp_title)]</del></b></td><td width='60%'>需要白名单</td></tr>"
 			continue
 		else if(!job.can_play_role(user.client))
-			HTML += "<b><del>[job.disp_title]</del></b></td><td width='60%'>TIMELOCKED</td></tr>"
+			HTML += "<b><del>[preference_label(job.disp_title)]</del></b></td><td width='60%'>时长不足</td></tr>"
 			continue
 
-		HTML += "<b>[job.disp_title]</b></td>"
+		HTML += "<b>[preference_label(job.disp_title)]</b></td>"
 
 		var/slot_name = get_job_slot_name(job.title)
 		HTML += "<td width='60%'><a href='byond://?_src_=prefs;preference=job_slot;task=assign;target_job=[job.title];'>[slot_name]</a>"
@@ -873,50 +873,50 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 	var/msg
 	if(toggle_prefs & TOGGLE_START_JOIN_CURRENT_SLOT)
 		b_color = "red"
-		msg = "This preference is ignored when joining at the start of the round."
+		msg = "回合开始时加入将忽略此设置。"
 	else
 		b_color = "green"
-		msg = "This preference is used when joining at the start of the round."
+		msg = "回合开始时加入将使用此设置。"
 	HTML += "<center><a class='[b_color]' href='byond://?_src_=prefs;preference=job_slot;task=start_join'>[msg]</a></center>"
 	if(toggle_prefs & TOGGLE_LATE_JOIN_CURRENT_SLOT)
 		b_color = "red"
-		msg = "This preference is ignored when joining a round in progress."
+		msg = "中途加入回合将忽略此设置。"
 	else
 		b_color = "green"
-		msg = "This preference is used when joining a round in progress."
+		msg = "中途加入回合将使用此设置。"
 	HTML += "<center><a class='[b_color]' href='byond://?_src_=prefs;preference=job_slot;task=late_join'>[msg]</a></center>"
 
-	HTML += "<center><a href='byond://?_src_=prefs;preference=job_slot;task=reset'>Reset</a></center>"
+	HTML += "<center><a href='byond://?_src_=prefs;preference=job_slot;task=reset'>重置</a></center>"
 	HTML += "</tt></body>"
 
 	close_browser(user, "preferences")
-	show_browser(user, HTML, "Job Assignment", "job_slots_assignment", width = width, height = height)
+	show_browser(user, HTML, "职业分配", "job_slots_assignment", width = width, height = height)
 	onclose(user, "job_slots_assignment", user.client, list("_src_" = "prefs", "preference" = "job_slot", "task" = "close"))
 	return
 
 /datum/preferences/proc/SetRecords(mob/user)
 	var/HTML = "<body onselectstart='return false;'>"
 	HTML += "<tt><center>"
-	HTML += "<b>Set Character Records</b><br>"
+	HTML += "<b>设置角色档案</b><br>"
 
-	HTML += "<a href=\"byond://?src=\ref[user];preference=records;task=med_record\">Medical Records</a><br>"
+	HTML += "<a href=\"byond://?src=\ref[user];preference=records;task=med_record\">医疗档案</a><br>"
 
 	HTML += TextPreview(med_record,40)
 
-	HTML += "<br><br><a href=\"byond://?src=\ref[user];preference=records;task=gen_record\">Employment Records</a><br>"
+	HTML += "<br><br><a href=\"byond://?src=\ref[user];preference=records;task=gen_record\">雇佣档案</a><br>"
 
 	HTML += TextPreview(gen_record,40)
 
-	HTML += "<br><br><a href=\"byond://?src=\ref[user];preference=records;task=sec_record\">Security Records</a><br>"
+	HTML += "<br><br><a href=\"byond://?src=\ref[user];preference=records;task=sec_record\">安保档案</a><br>"
 
 	HTML += TextPreview(sec_record,40)
 
 	HTML += "<br>"
-	HTML += "<a href=\"byond://?src=\ref[user];preference=records;records=-1\">Done</a>"
+	HTML += "<a href=\"byond://?src=\ref[user];preference=records;records=-1\">完成</a>"
 	HTML += "</center></tt>"
 
 	close_browser(user, "preferences")
-	show_browser(user, HTML, "Set Records", "records", width = 350, height = 300)
+	show_browser(user, HTML, "设置档案", "records", width = 350, height = 300)
 	return
 
 /datum/preferences/proc/SetJob(mob/user, role, priority)
@@ -1002,31 +1002,31 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 	return TRUE
 
 /datum/preferences/proc/assign_job_slot(mob/user, target_job)
-	var/list/slot_options = list(JOB_SLOT_RANDOMISED_TEXT = JOB_SLOT_RANDOMISED_SLOT, JOB_SLOT_CURRENT_TEXT = JOB_SLOT_CURRENT_SLOT)
+	var/list/slot_options = list("随机姓名与外观" = JOB_SLOT_RANDOMISED_SLOT, "当前角色槽" = JOB_SLOT_CURRENT_SLOT)
 	var/savefile/S = new /savefile(path)
 	var/slot_name
 	for(var/slot in 1 to MAX_SAVE_SLOTS)
 		S.cd = "/character[slot]"
 		S["real_name"] >> slot_name
 		if(slot_name)
-			slot_options["[slot_name] (slot #[slot])"] = slot
-	var/chosen_slot = tgui_input_list(user, "Assign character for [target_job] job", "Slot assignment", slot_options)
+			slot_options["[slot_name]（角色槽 #[slot]）"] = slot
+	var/chosen_slot = preference_input_list(user, "为 [preference_label(target_job)] 职业分配角色", "分配角色槽", slot_options)
 	if(chosen_slot)
 		pref_job_slots[target_job] = slot_options[chosen_slot]
 	set_job_slots(user)
 
 /datum/preferences/proc/get_job_slot_name(job_title)
-	. = JOB_SLOT_CURRENT_TEXT
+	. = "当前角色槽"
 	if(!(job_title in pref_job_slots))
 		return
 	var/slot_number = pref_job_slots[job_title]
 	switch(slot_number)
 		if(JOB_SLOT_RANDOMISED_SLOT)
-			return JOB_SLOT_RANDOMISED_TEXT
+			return "随机姓名与外观"
 		if(1 to MAX_SAVE_SLOTS)
 			var/savefile/S = new /savefile(path)
 			S.cd = "/character[slot_number]"
-			return "[S["real_name"]] (slot #[slot_number])"
+			return "[S["real_name"]]（角色槽 #[slot_number]）"
 
 /datum/preferences/proc/reset_job_slots()
 	pref_job_slots = list()
@@ -1083,10 +1083,10 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 		if("loadout")
 			switch(href_list["task"])
 				if("input")
-					var/gear_category = tgui_input_list(user, "Select gear category: ", "Gear to add", GLOB.gear_datums_by_category)
+					var/gear_category = preference_input_list(user, "选择装备类别：", "添加装备", GLOB.gear_datums_by_category)
 					if(!gear_category)
 						return
-					var/choice = tgui_input_list(user, "Select gear to add: ", gear_category, GLOB.gear_datums_by_category[gear_category])
+					var/choice = preference_input_list(user, "选择要添加的装备：", gear_category, GLOB.gear_datums_by_category[gear_category])
 					if(!choice)
 						return
 
@@ -1103,9 +1103,9 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 					total_cost += G.cost
 					if(total_cost <= MAX_GEAR_COST)
 						gear += G.display_name
-						to_chat(user, SPAN_NOTICE("Added \the '[G.display_name]' for [G.cost] points ([MAX_GEAR_COST - total_cost] points remaining)."))
+						to_chat(user, SPAN_NOTICE("已添加“[preference_label(G.display_name)]”，消耗 [G.cost] 点（剩余 [MAX_GEAR_COST - total_cost] 点）。"))
 					else
-						to_chat(user, SPAN_WARNING("Adding \the '[choice]' will exceed the maximum loadout cost of [MAX_GEAR_COST] points."))
+						to_chat(user, SPAN_WARNING("添加“[preference_label(choice)]”将超出自选装备的 [MAX_GEAR_COST] 点上限。"))
 
 				if("remove")
 					var/i_remove = text2num(href_list["gear"])
@@ -1128,7 +1128,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 
 			switch(href_list["task"])
 				if("med_record")
-					var/medmsg = input(usr,"Set your medical notes here. Character limit is [MAX_RECORDS_MESSAGE_LEN].","Medical Records",html_decode(med_record)) as message
+					var/medmsg = input(usr,"在此填写医疗档案。字数上限为 [MAX_RECORDS_MESSAGE_LEN]。","医疗档案",html_decode(med_record)) as message
 
 					if(medmsg != null)
 						medmsg = copytext(medmsg, 1, MAX_RECORDS_MESSAGE_LEN)
@@ -1138,7 +1138,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 						SetRecords(user)
 
 				if("sec_record")
-					var/secmsg = input(usr,"Set your security notes here. Character limit is [MAX_RECORDS_MESSAGE_LEN].","Security Records",html_decode(sec_record)) as message
+					var/secmsg = input(usr,"在此填写安保档案。字数上限为 [MAX_RECORDS_MESSAGE_LEN]。","安保档案",html_decode(sec_record)) as message
 
 					if(secmsg != null)
 						secmsg = copytext(secmsg, 1, MAX_RECORDS_MESSAGE_LEN)
@@ -1147,7 +1147,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 						sec_record = secmsg
 						SetRecords(user)
 				if("gen_record")
-					var/genmsg = input(usr,"Set your employment notes here. Character limit is [MAX_RECORDS_MESSAGE_LEN].","Employment Records",html_decode(gen_record)) as message
+					var/genmsg = input(usr,"在此填写雇佣档案。字数上限为 [MAX_RECORDS_MESSAGE_LEN]。","雇佣档案",html_decode(gen_record)) as message
 
 					if(genmsg != null)
 						genmsg = copytext(genmsg, 1, MAX_RECORDS_MESSAGE_LEN)
@@ -1260,34 +1260,34 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 			switch(href_list["preference"])
 				if("name")
 					if(human_name_ban)
-						to_chat(user, SPAN_NOTICE("You are banned from custom human names."))
+						to_chat(user, SPAN_NOTICE("你已被禁止自定义人类姓名。"))
 						return
-					var/raw_name = input(user, "Choose your character's name:", "Character Preference")  as text|null
+					var/raw_name = input(user, "请输入角色姓名：", "角色偏好")  as text|null
 					if (!isnull(raw_name)) // Check to ensure that the user entered text (rather than cancel.)
 						var/new_name = reject_bad_name(raw_name)
 						if(new_name)
 							real_name = new_name
 						else
-							to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
+							to_chat(user, "<font color='red'>姓名无效。长度应为 2 至 [MAX_NAME_LEN] 个字符，仅可包含 A-Z、a-z、-、' 和 .。</font>")
 
 				if("slot_label")
-					var/raw_name = input(user, "Choose a short label or identifier for this character slot. This is not an in-character nickname:", "Character Preference")  as text|null
+					var/raw_name = input(user, "为此角色槽设置简短标签或标识。这不是角色在游戏内的昵称：", "角色偏好")  as text|null
 					if (raw_name) // Check to ensure that the user entered text (rather than cancel.)
 						var/new_name = reject_bad_name(raw_name)
 						if(new_name)
 							slot_label = new_name
 						else
-							to_chat(user, "<font color='red'>Invalid name. Your slot name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
+							to_chat(user, "<font color='red'>角色槽标签无效。长度应为 2 至 [MAX_NAME_LEN] 个字符，仅可包含 A-Z、a-z、-、' 和 .。</font>")
 
 				if("xeno_vision_level_pref")
 					var/static/list/vision_level_choices = list(XENO_VISION_LEVEL_NO_NVG, XENO_VISION_LEVEL_MID_NVG, XENO_VISION_LEVEL_FULL_NVG)
-					var/choice = tgui_input_list(user, "Choose your default xeno vision level", "Vision level", vision_level_choices, theme="hive_status")
+					var/choice = preference_input_list(user, "选择默认异形夜视等级", "夜视等级", vision_level_choices, theme="hive_status")
 					if(!choice)
 						return
 					xeno_vision_level_pref = choice
 				if("ghost_vision_pref")
 					var/static/list/vision_level_choices = list(GHOST_VISION_LEVEL_NO_NVG, GHOST_VISION_LEVEL_MID_NVG, GHOST_VISION_LEVEL_FULL_NVG)
-					var/choice = tgui_input_list(user, "Choose your default ghost vision level", "Vision level", vision_level_choices)
+					var/choice = preference_input_list(user, "选择默认幽灵夜视等级", "夜视等级", vision_level_choices)
 					if(!choice)
 						return
 					ghost_vision_pref = choice
@@ -1297,7 +1297,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 						xeno_ability_mouse_pref_to_string(XENO_ABILITY_CLICK_SHIFT) = XENO_ABILITY_CLICK_SHIFT,
 						xeno_ability_mouse_pref_to_string(XENO_ABILITY_CLICK_RIGHT) = XENO_ABILITY_CLICK_RIGHT
 					)
-					var/choice = tgui_input_list(user, "Choose how you will activate your xenomorph and human abilities.", "Mouse Activation Button", mouse_button_list)
+					var/choice = preference_input_list(user, "选择激活异形和人类技能的按键。", "技能激活鼠标按键", mouse_button_list)
 					if(!choice)
 						return
 					xeno_ability_click_mode = mouse_button_list[choice]
@@ -1317,82 +1317,82 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 							human.set_selected_ability(null)
 							human.set_selected_ability(ability)
 				if("plat_name")
-					var/raw_name = input(user, "Choose your Platoon's name:", "Character Preference")  as text|null
+					var/raw_name = input(user, "请输入排名称：", "角色偏好")  as text|null
 					if(length(raw_name) > 16 || !length(raw_name)) // Check to ensure that the user entered text (rather than cancel.)
-						to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
+						to_chat(user, "<font color='red'>姓名无效。长度应为 2 至 [MAX_NAME_LEN] 个字符，仅可包含 A-Z、a-z、-、' 和 .。</font>")
 					else
 						platoon_name = raw_name
 
 				if ("dropship_camo")
-					var/new_camo = tgui_input_list(user, "Choose your platoon's dropship camo:", "Character Preferences", GLOB.dropship_camos)
+					var/new_camo = preference_input_list(user, "选择排属运输艇的涂装：", "角色偏好", GLOB.dropship_camos)
 
 					if (new_camo)
 						dropship_camo = new_camo
 
 				if("dropship_name")
-					var/raw_name = input(user, "Choose your Platoon's Dropship name:", "Character Preference")  as text|null
+					var/raw_name = input(user, "请输入排属运输艇的名称：", "角色偏好")  as text|null
 					if(length(raw_name) > 10 || !length(raw_name)) // Check to ensure that the user entered text (rather than cancel.)
-						to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
+						to_chat(user, "<font color='red'>姓名无效。长度应为 2 至 [MAX_NAME_LEN] 个字符，仅可包含 A-Z、a-z、-、' 和 .。</font>")
 					else
 						dropship_name = raw_name
 
 				if("synth_name")
-					var/raw_name = input(user, "Choose your Synthetic's name:", "Character Preference")  as text|null
+					var/raw_name = input(user, "请输入合成人姓名：", "角色偏好")  as text|null
 					if(raw_name) // Check to ensure that the user entered text (rather than cancel.)
 						var/new_name = reject_bad_name(raw_name)
 						if(new_name) synthetic_name = new_name
-						else to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
+						else to_chat(user, "<font color='red'>姓名无效。长度应为 2 至 [MAX_NAME_LEN] 个字符，仅可包含 A-Z、a-z、-、' 和 .。</font>")
 				if("synth_type")
-					var/new_synth_type = tgui_input_list(user, "Choose your model of synthetic:", "Make and Model", PLAYER_SYNTHS)
+					var/new_synth_type = preference_input_list(user, "选择合成人型号：", "制造商与型号", PLAYER_SYNTHS)
 					if(new_synth_type) synthetic_type = new_synth_type
 				if("pred_name")
-					var/raw_name = input(user, "Choose your Predator's name:", "Character Preference")  as text|null
+					var/raw_name = input(user, "请输入铁血战士姓名：", "角色偏好")  as text|null
 					if(raw_name) // Check to ensure that the user entered text (rather than cancel.)
 						var/new_name = reject_bad_name(raw_name)
 						if(new_name) predator_name = new_name
-						else to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
+						else to_chat(user, "<font color='red'>姓名无效。长度应为 2 至 [MAX_NAME_LEN] 个字符，仅可包含 A-Z、a-z、-、' 和 .。</font>")
 				if("pred_gender")
 					predator_gender = predator_gender == MALE ? FEMALE : MALE
 				if("pred_age")
-					var/new_predator_age = tgui_input_number(user, "Choose your Predator's age(175 to 3000):", "Character Preference", 1234, 3000, 175)
+					var/new_predator_age = tgui_input_number(user, "设置铁血战士年龄（175 至 3000）：", "角色偏好", 1234, 3000, 175)
 					if(new_predator_age)
 						predator_age = max(min( floor(text2num(new_predator_age)), 3000),175)
 				if("pred_use_legacy")
-					var/legacy_choice = tgui_input_list(user, "What legacy set do you wish to use?", "Legacy Set", PRED_LEGACIES)
+					var/legacy_choice = preference_input_list(user, "选择要使用的传承套装：", "传承套装", PRED_LEGACIES)
 					if(!legacy_choice)
 						return
 					predator_use_legacy = legacy_choice
 				if("pred_trans_type")
-					var/new_translator_type = tgui_input_list(user, "Choose your translator type.", "Translator Type", PRED_TRANSLATORS)
+					var/new_translator_type = preference_input_list(user, "选择翻译器类型。", "翻译器类型", PRED_TRANSLATORS)
 					if(!new_translator_type)
 						return
 					predator_translator_type = new_translator_type
 				if("pred_mask_type")
-					var/new_predator_mask_type = tgui_input_number(user, "Choose your mask type:\n(1-12)", "Mask Selection", 1, 12, 1)
+					var/new_predator_mask_type = tgui_input_number(user, "选择面具样式：\n（1–12）", "选择面具", 1, 12, 1)
 					if(new_predator_mask_type) predator_mask_type = floor(text2num(new_predator_mask_type))
 				if("pred_armor_type")
-					var/new_predator_armor_type = tgui_input_number(user, "Choose your armor type:\n(1-7)", "Armor Selection", 1, 7, 1)
+					var/new_predator_armor_type = tgui_input_number(user, "选择护甲样式：\n（1–7）", "选择护甲", 1, 7, 1)
 					if(new_predator_armor_type) predator_armor_type = floor(text2num(new_predator_armor_type))
 				if("pred_boot_type")
-					var/new_predator_boot_type = tgui_input_number(user, "Choose your greaves type:\n(1-4)", "Greave Selection", 1, 4, 1)
+					var/new_predator_boot_type = tgui_input_number(user, "选择护胫样式：\n（1–4）", "选择护胫", 1, 4, 1)
 					if(new_predator_boot_type) predator_boot_type = floor(text2num(new_predator_boot_type))
 				if("pred_mask_mat")
-					var/new_pred_mask_mat = tgui_input_list(user, "Choose your mask material:", "Mask Material", PRED_MATERIALS)
+					var/new_pred_mask_mat = preference_input_list(user, "选择面具材质：", "面具材质", PRED_MATERIALS)
 					if(!new_pred_mask_mat)
 						return
 					predator_mask_material = new_pred_mask_mat
 				if("pred_armor_mat")
-					var/new_pred_armor_mat = tgui_input_list(user, "Choose your armor material:", "Armor Material", PRED_MATERIALS)
+					var/new_pred_armor_mat = preference_input_list(user, "选择护甲材质：", "护甲材质", PRED_MATERIALS)
 					if(!new_pred_armor_mat)
 						return
 					predator_armor_material = new_pred_armor_mat
 				if("pred_greave_mat")
-					var/new_pred_greave_mat = tgui_input_list(user, "Choose your greave material:", "Greave Material", PRED_MATERIALS)
+					var/new_pred_greave_mat = preference_input_list(user, "选择护胫材质：", "护胫材质", PRED_MATERIALS)
 					if(!new_pred_greave_mat)
 						return
 					predator_greave_material = new_pred_greave_mat
 				if("pred_caster_mat")
-					var/new_pred_caster_mat = tgui_input_list(user, "Choose your caster material:", "Caster Material", PRED_MATERIALS + "retro")
+					var/new_pred_caster_mat = preference_input_list(user, "选择肩炮材质：", "肩炮材质", PRED_MATERIALS + "retro")
 					if(!new_pred_caster_mat)
 						return
 					predator_caster_material = new_pred_caster_mat
@@ -1406,27 +1406,27 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 						if(whitelist_status >= initial(cape.clan_rank_required) || (initial(cape.councillor_override) && (whitelist_flags & (WHITELIST_YAUTJA_COUNCIL|WHITELIST_YAUTJA_COUNCIL_LEGACY))))
 							options += list(capitalize_first_letters(cape_name) = cape_name)
 
-					var/new_cape = tgui_input_list(user, "Choose your cape type:", "Cape Type", options)
+					var/new_cape = preference_input_list(user, "选择披风类型：", "披风类型", options)
 					if(!new_cape)
 						return
 					predator_cape_type = options[new_cape]
 				if("pred_cape_color")
-					var/new_cape_color = input(user, "Choose your cape color:", "Cape Color", predator_cape_color) as color|null
+					var/new_cape_color = input(user, "选择披风颜色：", "披风颜色", predator_cape_color) as color|null
 					if(!new_cape_color)
 						return
 					predator_cape_color = new_cape_color
 				if("pred_hair")
-					var/new_h_style = input(user, "Choose your quill style:", "Quill Style") as null|anything in GLOB.yautja_hair_styles_list
+					var/new_h_style = preference_input_list(user, "选择棘发样式：", "棘发样式", GLOB.yautja_hair_styles_list)
 					if(!new_h_style)
 						return
 					predator_h_style = new_h_style
 				if("pred_skin")
-					var/new_skin_color = tgui_input_list(user, "Choose your skin color:", "Skin Color", PRED_SKIN_COLOR)
+					var/new_skin_color = preference_input_list(user, "选择肤色：", "肤色", PRED_SKIN_COLOR)
 					if(!new_skin_color)
 						return
 					predator_skin_color = new_skin_color
 				if("pred_flavor_text")
-					var/pred_flv_raw = input(user, "Choose your Predator's flavor text. Character limit is [MAX_FLAVOR_MESSAGE_LEN]:", "Flavor Text", predator_flavor_text) as message
+					var/pred_flv_raw = input(user, "填写铁血战士的外观描述。字数上限为 [MAX_FLAVOR_MESSAGE_LEN]：", "外观描述", predator_flavor_text) as message
 					if(!pred_flv_raw)
 						predator_flavor_text = ""
 						return
@@ -1440,7 +1440,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 					if(whitelist_flags & (WHITELIST_COMMANDER_LEADER|WHITELIST_COMMANDER_COLONEL))
 						options += list("Leader" = WHITELIST_LEADER)
 
-					var/new_commander_status = tgui_input_list(user, "Choose your new Commander Whitelist Status.", "Commander Status", options)
+					var/new_commander_status = preference_input_list(user, "选择指挥官白名单等级。", "指挥官白名单等级", options)
 
 					if(!new_commander_status)
 						return
@@ -1455,13 +1455,13 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 					else
 						options -= COUNCIL_CO_GUNS
 
-					var/new_co_sidearm = tgui_input_list(user, "Choose your preferred sidearm.", "Commanding Officer's Sidearm", options)
+					var/new_co_sidearm = preference_input_list(user, "选择偏好的配枪。", "指挥官配枪", options)
 					if(!new_co_sidearm)
 						return
 					commander_sidearm = new_co_sidearm
 
 				if("co_affiliation")
-					var/new_co_affiliation = tgui_input_list(user, "Choose your faction affiliation.", "Commanding Officer's Affiliation", FACTION_ALLEGIANCE_USCM_COMMANDER)
+					var/new_co_affiliation = preference_input_list(user, "选择所属阵营。", "指挥官所属阵营", FACTION_ALLEGIANCE_USCM_COMMANDER)
 					if(!new_co_affiliation)
 						return
 					affiliation = new_co_affiliation
@@ -1475,7 +1475,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 					if(whitelist_flags & WHITELIST_YAUTJA_LEADER)
 						options += list("Leader" = WHITELIST_LEADER)
 
-					var/new_yautja_status = tgui_input_list(user, "Choose your new Yautja Whitelist Status.", "Yautja Status", options)
+					var/new_yautja_status = preference_input_list(user, "选择铁血战士白名单等级。", "铁血战士白名单等级", options)
 
 					if(!new_yautja_status)
 						return
@@ -1490,7 +1490,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 					if(whitelist_flags & WHITELIST_SYNTHETIC_LEADER)
 						options += list("Leader" = WHITELIST_LEADER)
 
-					var/new_synth_status = tgui_input_list(user, "Choose your new Synthetic Whitelist Status.", "Synthetic Status", options)
+					var/new_synth_status = preference_input_list(user, "选择合成人白名单等级。", "合成人白名单等级", options)
 
 					if(!new_synth_status)
 						return
@@ -1499,22 +1499,22 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 
 				if("xeno_prefix")
 					if(xeno_name_ban)
-						to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("You are banned from xeno name picking.")))
+						to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("你已被禁止自定义异形名称。")))
 						xeno_prefix = ""
 						return
 
-					var/new_xeno_prefix = input(user, "Choose your xenomorph prefix. One or two letters capitalized. Put empty text if you want to default it to 'XX'", "Xenomorph Prefix") as text|null
+					var/new_xeno_prefix = input(user, "设置异形编号前缀，使用一到两个大写字母。留空则使用默认值“XX”。", "异形编号前缀") as text|null
 					new_xeno_prefix = uppertext(new_xeno_prefix)
 
 					var/prefix_length = length(new_xeno_prefix)
 
 					if(prefix_length > 3)
-						to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("Invalid Xeno Prefix. Your Prefix can only be up to 3 letters long.")))
+						to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("异形编号前缀无效，最多只能包含 3 个字母。")))
 						return
 
 					if(prefix_length == 3)
 						if(xeno_postfix)
-							to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("You can't use three letter prefix with any postfix.")))
+							to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("使用三个字母的前缀时不能添加后缀。")))
 							return
 
 					if(length(new_xeno_prefix)==0)
@@ -1530,22 +1530,22 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 							xeno_prefix = new_xeno_prefix
 							owner.load_xeno_name()
 						else
-							to_chat(user, "<font color='red'>Invalid Xeno Prefix. Your Prefix can contain either single letter or two letters.</font>")
+							to_chat(user, "<font color='red'>异形编号前缀无效，应包含一到两个字母。</font>")
 
 				if("xeno_postfix")
 					if(xeno_name_ban)
-						to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("You are banned from xeno name picking.")))
+						to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("你已被禁止自定义异形名称。")))
 						xeno_postfix = ""
 						return
 
 					if(length(xeno_prefix) == 3)
-						to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("You can't use three letter prefix with any postfix.")))
+						to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("使用三个字母的前缀时不能添加后缀。")))
 						return
 
-					var/new_xeno_postfix = input(user, "Choose your xenomorph postfix. One capital letter with or without a digit at the end. Put empty text if you want to remove postfix", "Xenomorph Postfix") as text|null
+					var/new_xeno_postfix = input(user, "设置异形编号后缀：一个大写字母，后面可附一位数字。留空则移除后缀。", "异形编号后缀") as text|null
 					new_xeno_postfix = uppertext(new_xeno_postfix)
 					if(length(new_xeno_postfix)>2)
-						to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("Invalid Xeno Postfix. Your Postfix can only be up to 2 letters long.")))
+						to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("异形编号后缀无效，最多只能包含 2 个字符。")))
 						return
 					else if(length(new_xeno_postfix)==0)
 						xeno_postfix = ""
@@ -1560,7 +1560,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 								// A  .. Z
 								if(65 to 90) //Uppercase Letters will work on first char
 									if(length(xeno_prefix)!=2)
-										to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("You can't use three letter prefix with any postfix.")))
+										to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("使用三个字母的前缀时不能添加后缀。")))
 										return
 
 								// 0  .. 9
@@ -1576,21 +1576,21 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 							xeno_postfix = new_xeno_postfix
 							owner.load_xeno_name()
 						else
-							to_chat(user, "<font color='red'>Invalid Xeno Postfix. Your Postfix can contain single letter and an optional digit after it.</font>")
+							to_chat(user, "<font color='red'>异形编号后缀无效，应为一个字母，后面可附一位数字。</font>")
 
 				if("age")
-					var/new_age = tgui_input_number(user, "Choose your character's age:\n([AGE_MIN]-[AGE_MAX])", "Character Preference", 19, AGE_MAX, AGE_MIN)
+					var/new_age = tgui_input_number(user, "设置角色年龄：\n（[AGE_MIN]–[AGE_MAX]）", "角色偏好", 19, AGE_MAX, AGE_MIN)
 					if(new_age)
 						age = max(min( floor(text2num(new_age)), AGE_MAX),AGE_MIN)
 
 				if("metadata")
-					var/new_metadata = input(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , metadata)  as message|null
+					var/new_metadata = input(user, "填写希望其他玩家看到的信息，例如角色扮演偏好：", "游戏偏好" , metadata)  as message|null
 					if(new_metadata)
 						metadata = strip_html(new_metadata)
 
 				if("hair")
 					if(species == "Human")
-						var/new_hair = input(user, "Choose your character's hair color:", "Character Preference", rgb(r_hair, g_hair, b_hair)) as color|null
+						var/new_hair = input(user, "选择角色发色：", "角色偏好", rgb(r_hair, g_hair, b_hair)) as color|null
 						if(new_hair)
 							r_hair = hex2num(copytext(new_hair, 2, 4))
 							g_hair = hex2num(copytext(new_hair, 4, 6))
@@ -1608,13 +1608,13 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 						valid_hairstyles[hairstyle] = GLOB.hair_styles_list[hairstyle]
 					valid_hairstyles = sortList(valid_hairstyles)
 
-					var/new_h_style = input(user, "Choose your character's hair style:", "Character Preference")  as null|anything in valid_hairstyles
+					var/new_h_style = preference_input_list(user, "选择角色发型：", "角色偏好", valid_hairstyles)
 					if(new_h_style)
 						h_style = new_h_style
 
 				if("grad")
 					if(species == "Human")
-						var/new_hair_grad = input(user, "Choose your character's hair gradient color:", "Character Preference", rgb(r_gradient, g_gradient, b_gradient)) as color|null
+						var/new_hair_grad = input(user, "选择角色渐变染发颜色：", "角色偏好", rgb(r_gradient, g_gradient, b_gradient)) as color|null
 						if(new_hair_grad)
 							r_gradient = hex2num(copytext(new_hair_grad, 2, 4))
 							g_gradient = hex2num(copytext(new_hair_grad, 4, 6))
@@ -1631,36 +1631,36 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 						valid_hair_gradients[hair_gradient] = GLOB.hair_gradient_list[hair_gradient]
 					valid_hair_gradients = sortList(valid_hair_gradients)
 
-					var/new_h_gradient_style = input(user, "Choose your character's hair gradient style:", "Character Preference")  as null|anything in valid_hair_gradients
+					var/new_h_gradient_style = preference_input_list(user, "选择角色渐变染发样式：", "角色偏好", valid_hair_gradients)
 					if(new_h_gradient_style)
 						grad_style = new_h_gradient_style
 
 				if ("skin_color")
-					var/new_skin_color = tgui_input_list(user, "Choose your character's skin color:", "Character Preferences", GLOB.skin_color_list)
+					var/new_skin_color = preference_input_list(user, "选择角色肤色：", "角色偏好", GLOB.skin_color_list)
 
 					if (new_skin_color)
 						skin_color = new_skin_color
 
 				if ("body_size")
-					var/new_body_size = tgui_input_list(user, "Choose your character's body size:", "Character Preferences", GLOB.body_size_list)
+					var/new_body_size = preference_input_list(user, "选择角色体格：", "角色偏好", GLOB.body_size_list)
 
 					if (new_body_size)
 						body_size = new_body_size
 
 				if ("body_type")
-					var/new_body_type = tgui_input_list(user, "Choose your character's body type:", "Character Preferences", GLOB.body_type_list)
+					var/new_body_type = preference_input_list(user, "选择角色肌肉发达程度：", "角色偏好", GLOB.body_type_list)
 
 					if (new_body_type)
 						body_type = new_body_type
 
 				if ("body_size")
-					var/new_body_size = tgui_input_list(user, "Choose your character's body size:", "Character Preferences", GLOB.body_size_list)
+					var/new_body_size = preference_input_list(user, "选择角色体格：", "角色偏好", GLOB.body_size_list)
 
 					if (new_body_size)
 						body_size = new_body_size
 
 				if("facial")
-					var/new_facial = input(user, "Choose your character's facial-hair color:", "Character Preference", rgb(r_facial, g_facial, b_facial)) as color|null
+					var/new_facial = input(user, "选择角色胡须颜色：", "角色偏好", rgb(r_facial, g_facial, b_facial)) as color|null
 					if(new_facial)
 						r_facial = hex2num(copytext(new_facial, 2, 4))
 						g_facial = hex2num(copytext(new_facial, 4, 6))
@@ -1682,12 +1682,12 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 						valid_facialhairstyles[facialhairstyle] = GLOB.facial_hair_styles_list[facialhairstyle]
 					valid_facialhairstyles = sortList(valid_facialhairstyles)
 
-					var/new_f_style = input(user, "Choose your character's facial-hair style:", "Character Preference")  as null|anything in valid_facialhairstyles
+					var/new_f_style = preference_input_list(user, "选择角色胡须样式：", "角色偏好", valid_facialhairstyles)
 					if(new_f_style)
 						f_style = new_f_style
 
 				if("personalweapon")
-					var/new_weapon = tgui_input_list(user, "Choose your character's personal weapon:", "Character Preference (USCM Only)", GLOB.personal_weapons_list+"None")
+					var/new_weapon = preference_input_list(user, "选择角色个人武器：", "角色偏好（仅限 USCM）", GLOB.personal_weapons_list+"None")
 					if(new_weapon)
 						personal_weapon = new_weapon
 					ShowChoices(user)
@@ -1695,7 +1695,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 				if("underwear")
 					var/list/underwear_options = gender == MALE ? GLOB.underwear_m : GLOB.underwear_f
 					var/old_gender = gender
-					var/new_underwear = tgui_input_list(user, "Choose your character's underwear:", "Character Preference", underwear_options-GLOB.underwear_restricted)
+					var/new_underwear = preference_input_list(user, "选择角色内衣：", "角色偏好", underwear_options-GLOB.underwear_restricted)
 					if(old_gender != gender)
 						return
 					if(new_underwear)
@@ -1705,7 +1705,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 				if("undershirt")
 					var/list/undershirt_options = gender == MALE ? GLOB.undershirt_m : GLOB.undershirt_f
 					var/old_gender = gender
-					var/new_undershirt = tgui_input_list(user, "Choose your character's undershirt:", "Character Preference", undershirt_options-GLOB.undershirt_restricted)
+					var/new_undershirt = preference_input_list(user, "选择角色贴身上衣：", "角色偏好", undershirt_options-GLOB.undershirt_restricted)
 					if(old_gender != gender)
 						return
 					if(new_undershirt)
@@ -1713,7 +1713,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 					ShowChoices(user)
 
 				if("eyes")
-					var/new_eyes = input(user, "Choose your character's eye color:", "Character Preference", rgb(r_eyes, g_eyes, b_eyes)) as color|null
+					var/new_eyes = input(user, "选择角色眼睛颜色：", "角色偏好", rgb(r_eyes, g_eyes, b_eyes)) as color|null
 					if(new_eyes)
 						r_eyes = hex2num(copytext(new_eyes, 2, 4))
 						g_eyes = hex2num(copytext(new_eyes, 4, 6))
@@ -1721,34 +1721,34 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 
 
 				if("ooccolor")
-					var/new_ooccolor = input(user, "Choose your OOC color:", "Game Preference", ooccolor) as color|null
+					var/new_ooccolor = input(user, "选择 OOC 聊天颜色：", "游戏偏好", ooccolor) as color|null
 					if(new_ooccolor)
 						ooccolor = new_ooccolor
 
 				if("bag")
-					var/new_backbag = input(user, "Choose your character's style of bag:", "Character Preference")  as null|anything in GLOB.backbaglist
+					var/new_backbag = preference_input_list(user, "选择角色背包类型：", "角色偏好", GLOB.backbaglist)
 					if(new_backbag)
 						backbag = GLOB.backbaglist.Find(new_backbag)
 
 				if("wy_relation")
-					var/new_relation = input(user, "Choose your relation to the Weyland-Yutani company. Note that this represents what others can find out about your character by researching your background, not what your character actually thinks.", "Character Preference")  as null|anything in list("Loyal", "Supportive", "Neutral", "Skeptical", "Opposed")
+					var/new_relation = preference_input_list(user, "选择与维兰德-汤谷公司的关系。这表示其他人调查角色背景后能够得知的立场，而非角色内心的真实想法。", "角色偏好", list("Loyal", "Supportive", "Neutral", "Skeptical", "Opposed"))
 					if(new_relation)
 						weyland_yutani_relation = new_relation
 
 				if("prefsquad")
-					var/new_pref_squad = input(user, "Choose your preferred squad.", "Character Preference")  as null|anything in list("Alpha", "Bravo", "Charlie", "Delta", "None")
+					var/new_pref_squad = preference_input_list(user, "选择偏好的小队。", "角色偏好", list("Alpha", "Bravo", "Charlie", "Delta", "None"))
 					if(new_pref_squad)
 						preferred_squad = new_pref_squad
 
 				if("prefarmor")
-					var/new_pref_armor = tgui_input_list(user, "Choose your character's default style of armor:", "Character Preferences", GLOB.armor_style_list)
+					var/new_pref_armor = preference_input_list(user, "选择角色默认护甲样式：", "角色偏好", GLOB.armor_style_list)
 					if(new_pref_armor)
 						preferred_armor = new_pref_armor
 						// Update the dummy with the new armor style.
 						update_preview_icon()
 
 				if("limbs")
-					var/limb_name = tgui_input_list(user, "Which limb do you want to change?", list("Left Leg","Right Leg","Left Arm","Right Arm","Left Foot","Right Foot","Left Hand","Right Hand"))
+					var/limb_name = preference_input_list(user, "选择要更改的肢体：", "肢体", list("Left Leg","Right Leg","Left Arm","Right Arm","Left Foot","Right Foot","Left Hand","Right Hand"))
 					if(!limb_name) return
 
 					var/limb = null
@@ -1780,7 +1780,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 							limb = "r_hand"
 							third_limb = "r_arm"
 
-					var/new_state = tgui_input_list(user, "What state do you wish the limb to be in?", list("Normal","Prothesis")) //"Amputated")
+					var/new_state = preference_input_list(user, "选择肢体状态：", "肢体状态", list("Normal","Prothesis")) //"Amputated")
 					if(!new_state) return
 
 					switch(new_state)
@@ -1795,7 +1795,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 							if(third_limb && organ_data[third_limb] == "amputated")
 								organ_data[third_limb] = null
 				if("organs")
-					var/organ_name = tgui_input_list(user, "Which internal function do you want to change?", list("Heart", "Eyes"))
+					var/organ_name = preference_input_list(user, "选择要更改的器官：", "器官", list("Heart", "Eyes"))
 					if(!organ_name) return
 
 					var/organ = null
@@ -1805,7 +1805,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 						if("Eyes")
 							organ = "eyes"
 
-					var/new_state = tgui_input_list(user, "What state do you wish the organ to be in?", "Organ state", list("Normal","Assisted","Mechanical"))
+					var/new_state = preference_input_list(user, "选择器官状态：", "器官状态", list("Normal","Assisted","Mechanical"))
 					if(!new_state) return
 
 					switch(new_state)
@@ -1817,25 +1817,25 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 							organ_data[organ] = "mechanical"
 
 				if("skin_style")
-					var/skin_style_name = tgui_input_list(user, "Select a new skin style", "Skin style", list("default1", "default2", "default3"))
+					var/skin_style_name = preference_input_list(user, "选择新的皮肤样式", "皮肤样式", list("default1", "default2", "default3"))
 					if(!skin_style_name) return
 
 				if("origin")
-					var/choice = tgui_input_list(user, "Please choose your character's origin.", "Origin Selection", GLOB.player_origins)
+					var/choice = preference_input_list(user, "选择角色出身。", "选择出身", GLOB.player_origins)
 					var/datum/origin/picked_choice = GLOB.origins[choice]
 					if(!picked_choice)
 						return
-					if(tgui_alert(user, "You've selected [picked_choice.name]. [picked_choice.desc]", "Selected Origin", list("Confirm", "Cancel")) == "Cancel")
+					if(tgui_alert(user, "你选择了 [preference_label(picked_choice.name)]。[picked_choice.desc]", "所选出身", list("确认", "取消")) == "取消")
 						return
 					if(choice)
 						origin = choice
 
 				if("religion")
-					var/choice = tgui_input_list(user, "Please choose a religion.", "Religion choice", GLOB.religion_choices + "Other")
+					var/choice = preference_input_list(user, "选择宗教。", "选择宗教", GLOB.religion_choices + "Other")
 					if(!choice)
 						return
 					if(choice == "Other")
-						var/raw_choice = input(user, "Please enter a religon.")  as text|null
+						var/raw_choice = input(user, "请输入宗教名称。")  as text|null
 						if(raw_choice)
 							religion = strip_html(raw_choice) // This only updates itself in the UI when another change is made, eg. save slot or changing other char settings.
 						return
@@ -1850,7 +1850,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 
 					var/list/filtered_options = job.filter_job_option(user)
 
-					var/new_special_job_variant = tgui_input_list(user, "Choose your preferred job variant:", "Preferred Job Variant", filtered_options)
+					var/new_special_job_variant = preference_input_list(user, "选择偏好的职业分支：", "偏好职业分支", filtered_options)
 					if(!new_special_job_variant)
 						return
 					pref_special_job_options[job.title] = new_special_job_variant
@@ -1867,7 +1867,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 					if(CONFIG_GET(flag/ooc_country_flags))
 						toggle_prefs ^= TOGGLE_OOC_FLAG
 					else
-						to_chat(user, SPAN_WARNING("Country Flags in OOC are disabled in the current server configuration!"))
+						to_chat(user, SPAN_WARNING("当前服务器配置已禁用 OOC 国旗！"))
 
 				if("gender")
 					if(gender == MALE)
@@ -1881,23 +1881,23 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 					toggles_sound ^= SOUND_ADMINHELP
 
 				if("ui")
-					var/ui_style_choice = tgui_input_list(user, "Choose your UI style", "UI style", GLOB.custom_human_huds)
+					var/ui_style_choice = preference_input_list(user, "选择界面样式", "界面样式", GLOB.custom_human_huds)
 					if(ui_style_choice)
 						UI_style = ui_style_choice
 
 				if("UIcolor")
-					var/UI_style_color_new = input(user, "Choose your UI color, dark colors are not recommended!", UI_style_color) as color|null
+					var/UI_style_color_new = input(user, "选择界面颜色，不建议使用深色！", UI_style_color) as color|null
 					if(UI_style_color_new)
 						UI_style_color = UI_style_color_new
 
 				if("UIalpha")
-					var/UI_style_alpha_new = tgui_input_number(user, "Select a new alpha (transparency) parameter for your UI, between 50 and 255", "Select alpha", 255, 255, 50)
+					var/UI_style_alpha_new = tgui_input_number(user, "设置界面不透明度，范围为 50 至 255", "设置不透明度", 255, 255, 50)
 					if(!UI_style_alpha_new || !(UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50))
 						return
 					UI_style_alpha = UI_style_alpha_new
 
 				if("stylesheet")
-					var/stylesheet_new = tgui_input_list(user, "Select a stylesheet to use (affects non-NanoUI interfaces)", "Select a stylesheet", GLOB.stylesheets)
+					var/stylesheet_new = preference_input_list(user, "选择样式表（影响非 NanoUI 界面）", "选择样式表", GLOB.stylesheets)
 					stylesheet = stylesheet_new
 
 				if("hide_statusbar")
@@ -1986,7 +1986,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 
 				if("switch_prefs") //wart
 					var/list/pref_list = list(text2num(href_list["flag1"]), text2num(href_list["flag2"]), text2num(href_list["flag3"]))
-					var/pref_new = tgui_input_list(user, "Select the preference tier you need", "Select preference tier", pref_list)
+					var/pref_new = preference_input_list(user, "选择所需的偏好等级", "选择偏好等级", pref_list)
 					for(var/flag in pref_list)
 						//remove all flags in list
 						if(CHECK_BITFIELD(toggle_prefs, flag))
@@ -2028,28 +2028,28 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 						owner.tooltips = new(owner)
 
 				if("inputstyle")
-					var/result = tgui_alert(user, "Which input style do you want?", "Input Style", list("Modern", "Legacy"))
+					var/result = tgui_alert(user, "选择聊天输入框样式：", "输入框样式", list("现代", "旧版"))
 					if(!result)
 						return
-					if(result == "Legacy")
+					if(result == "旧版")
 						tgui_say = FALSE
-						to_chat(user, SPAN_NOTICE("You're now using the old interface."))
+						to_chat(user, SPAN_NOTICE("你现在使用旧版界面。"))
 					else
 						tgui_say = TRUE
-						to_chat(user, SPAN_NOTICE("You're now using the new interface."))
+						to_chat(user, SPAN_NOTICE("你现在使用新版界面。"))
 					user?.client.update_special_keybinds()
 					save_preferences()
 
 				if("inputcolor")
-					var/result = tgui_alert(user, "Which input color do you want?", "Input Style", list("Darkmode", "Lightmode"))
+					var/result = tgui_alert(user, "选择聊天输入框配色：", "输入框样式", list("深色模式", "浅色模式"))
 					if(!result)
 						return
-					if(result == "Lightmode")
+					if(result == "浅色模式")
 						tgui_say_light_mode = TRUE
-						to_chat(user, SPAN_NOTICE("You're now using the say interface whitemode."))
+						to_chat(user, SPAN_NOTICE("聊天输入框已切换为浅色模式。"))
 					else
 						tgui_say_light_mode = FALSE
-						to_chat(user, SPAN_NOTICE("You're now using the say interface darkmode."))
+						to_chat(user, SPAN_NOTICE("聊天输入框已切换为深色模式。"))
 					user?.client.tgui_say?.load()
 					save_preferences()
 
@@ -2058,12 +2058,12 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 
 				if("save")
 					if(save_cooldown > world.time)
-						to_chat(user, SPAN_WARNING("You need to wait [floor((save_cooldown-world.time)/10)] seconds before you can do that again."))
+						to_chat(user, SPAN_WARNING("请等待 [floor((save_cooldown-world.time)/10)] 秒后再试。"))
 						return
 					var/datum/origin/character_origin = GLOB.origins[origin]
 					var/name_error = character_origin.validate_name(real_name)
 					if(name_error)
-						tgui_alert(user, name_error, "Invalid Name", list("OK"))
+						tgui_alert(user, name_error, "姓名无效", list("确认"))
 						return
 					save_preferences()
 					save_character()
@@ -2074,7 +2074,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 
 				if("reload")
 					if(reload_cooldown > world.time)
-						to_chat(user, SPAN_WARNING("You need to wait [floor((reload_cooldown-world.time)/10)] seconds before you can do that again."))
+						to_chat(user, SPAN_WARNING("请等待 [floor((reload_cooldown-world.time)/10)] 秒后再试。"))
 						return
 					load_preferences()
 					load_character()
@@ -2324,21 +2324,21 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 
 	var/savefile/S = new /savefile(path)
 	if(S)
-		dat += "<b>Select a character slot to load</b><hr>"
+		dat += "<b>选择要载入的角色槽</b><hr>"
 		var/name
 		for(var/i=1, i<=MAX_SAVE_SLOTS, i++)
 			S.cd = "/character[i]"
 			S["real_name"] >> name
 			S["slot_label"] >> slot_label
-			if(!name) name = "Character[i]"
+			if(!name) name = "角色[i]"
 			if(i==default_slot)
 				name = "<b>[name]</b>"
 			dat += "<a href='byond://?_src_=prefs;preference=changeslot;num=[i];'>[name] ([slot_label])</a><br>"
 
 	dat += "<hr>"
-	dat += "<a href='byond://?src=\ref[user];preference=close_load_dialog'>Close</a><br>"
+	dat += "<a href='byond://?src=\ref[user];preference=close_load_dialog'>关闭</a><br>"
 	dat += "</center></tt>"
-	show_browser(user, dat, "Load Character", "saves")
+	show_browser(user, dat, "载入角色", "saves")
 
 /datum/preferences/proc/close_load_dialog(mob/user)
 	close_browser(user, "saves")
@@ -2378,7 +2378,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 	// Store the old macro set being used (gonna load back after key_buf is set)
 	var/old = params2list(winget(owner, "mainwindow", "macro"))[1]
 
-	alert("Press OK below, and then input the key sequence!")
+	alert("点击下方确认，然后输入组合键！")
 
 	RegisterSignal(owner, COMSIG_CLIENT_KEY_DOWN, PROC_REF(parse_key_down))
 	RegisterSignal(owner, COMSIG_CLIENT_KEY_UP, PROC_REF(set_key_buf))
@@ -2390,7 +2390,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 		COMSIG_CLIENT_KEY_UP,
 	))
 
-	alert("The key sequence is [key_buf].")
+	alert("组合键为 [key_buf]。")
 	return key_buf
 
 /datum/preferences/proc/open_character_traits(mob/user, character_trait_group)
@@ -2431,12 +2431,12 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 			dat += "</a>"
 		else
 			dat += "<i>[character_trait.trait_name]</i>"
-		var/cost_text = character_trait.cost ? " ([character_trait.cost] points)" : ""
+		var/cost_text = character_trait.cost ? "（[character_trait.cost] 点）" : ""
 		dat += "</td><td>[character_trait.trait_desc][cost_text]</td></tr>"
 		dat += ""
 	dat += "</table>"
 	dat += "</body>"
-	show_browser(user, dat, "Character Traits", "character_traits")
+	show_browser(user, dat, "角色特质", "character_traits")
 	update_preview_icon(TRUE)
 
 /// Converts a client's list of completed tutorials into a string for saving

@@ -1,5 +1,5 @@
 /obj/docking_port/mobile/crashable
-	name = "crashable shuttle"
+	name = "可坠毁穿梭机"
 
 	/// Whether or not this shuttle is crash landing
 	var/crash_land = FALSE
@@ -12,7 +12,7 @@
 	if(!crash_land)
 		return
 
-	notify_ghosts(header = "Crashing shuttle!", message = "<b>[name]</b> has catastrophically failed and is crashing at <b>[get_area(destination)]</b>.", source = src)
+	notify_ghosts(header = "穿梭机正在坠毁！", message = "<b>[name]</b>发生灾难性故障，正在坠向<b>[get_area(destination)]</b>。", source = src)
 
 	for(var/area/shuttle_area as anything in shuttle_areas)
 		shuttle_area.flags_alarm_state |= ALARM_WARNING_FIRE
@@ -27,8 +27,9 @@
 
 	for(var/mob/current_mob as anything in get_mobs_in_z_level_range(destination.return_center_turf(), 18))
 		var/relative_dir = Get_Compass_Dir(current_mob, destination.return_center_turf())
-		var/final_dir = dir2text(relative_dir)
-		to_chat(current_mob, SPAN_HIGHDANGER("You hear something crashing down from above [final_dir ? "to the [final_dir]" : "nearby"]!"))
+		var/list/direction_names = list("north" = "北", "south" = "南", "east" = "东", "west" = "西", "northeast" = "东北", "northwest" = "西北", "southeast" = "东南", "southwest" = "西南")
+		var/final_dir = direction_names[dir2text(relative_dir)]
+		to_chat(current_mob, SPAN_HIGHDANGER("你听见[final_dir ? "[final_dir]方向" : "附近"]上空有东西坠落！"))
 
 	if(fires_on_crash)
 		handle_fires()
@@ -163,7 +164,7 @@
 	return
 
 /obj/docking_port/stationary/crashable
-	name = "Crashable Dock"
+	name = "坠毁停靠点"
 
 /obj/docking_port/stationary/crashable/on_arrival(obj/docking_port/mobile/arriving_shuttle)
 	. = ..()

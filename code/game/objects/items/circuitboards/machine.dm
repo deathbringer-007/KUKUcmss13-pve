@@ -21,7 +21,7 @@ to destroy them and players will be able to make replacements.
 	)
 
 /obj/item/circuitboard/machine/autolathe
-	name = "Circuit board (Autolathe)"
+	name = "电路板 (自动车床)"
 	build_path = /obj/structure/machinery/autolathe
 
 	frame_desc = "Requires 2 Matter Bins, 1 Micro Manipulator, and 1 Console Screen."
@@ -66,7 +66,7 @@ to destroy them and players will be able to make replacements.
 	)
 
 /obj/item/circuitboard/machine/pacman
-	name = "Circuit Board (PACMAN-type Generator)"
+	name = "电路板 (PACMAN-式发电机)"
 	build_path = /obj/structure/machinery/power/port_gen/pacman
 
 	frame_desc = "Requires 1 Matter Bin, 1 Micro-Laser, 2 Pieces of Cable, and 1 Capacitor."
@@ -202,7 +202,7 @@ to destroy them and players will be able to make replacements.
 	)
 
 /obj/item/circuitboard/machine/telecomms/relay
-	name = "Circuit Board (Relay Mainframe)"
+	name = "电路板 (中继主机)"
 	build_path = /obj/structure/machinery/telecomms/relay
 
 	frame_desc = "Requires 2 Micro Manipulators, 2 Cable Coil and 2 Hyperwave Filters."
@@ -213,7 +213,7 @@ to destroy them and players will be able to make replacements.
 	)
 
 /obj/item/circuitboard/machine/telecomms/relay/tower
-	name = "\improper TC-4T Telecommunications Circuit Board"
+	name = "TC-4T 通讯电路板"
 	build_path = /obj/structure/machinery/telecomms/relay/preset/tower
 
 	frame_desc = "A TC-4T telecommunications circuit board. Requires 2 Power Cells, 2 Cable Coils and a Subspace Communications Dish."
@@ -285,8 +285,8 @@ to destroy them and players will be able to make replacements.
 
 
 /obj/item/circuitboard/machine/ghettosmes
-	name = "Circuit board (makeshift PSU)"
-	desc = "An APC circuit repurposed into some power storage device controller"
+	name = "电路板 (简易电源组)"
+	desc = "由区域电力控制器电路改造而成的储能设备控制器。"
 	build_path = /obj/structure/machinery/power/smes/batteryrack/makeshift
 	frame_desc = "Requires 3 power cells."
 	req_components = list(/obj/item/cell = 3)

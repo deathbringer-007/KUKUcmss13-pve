@@ -15,7 +15,7 @@ GLOBAL_LIST_EMPTY(gear_datums_by_name)
 			continue
 		if(!G.special_conditions())
 			continue
-		LAZYSET(GLOB.gear_datums_by_category[G.category], "[G.display_name] [G.cost == 1 ? "(1 point)" : "([G.cost] points)"]", G)
+		LAZYSET(GLOB.gear_datums_by_category[G.category], "[preference_label(G.display_name)]（[G.cost] 点）", G)
 		GLOB.gear_datums_by_name[G.display_name] = G
 
 /datum/gear

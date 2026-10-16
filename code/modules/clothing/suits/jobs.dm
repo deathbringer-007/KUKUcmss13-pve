@@ -438,8 +438,8 @@
 
 //Windbreakers
 /obj/item/clothing/suit/storage/windbreaker
-	name = "windbreaker parent object"
-	desc = "This shouldn't be here..."
+	name = "防风夹克原型"
+	desc = "这东西不该在这里……"
 	blood_overlay_type = "armor"
 	allowed = list(
 		/obj/item/storage/fancy/cigarettes,

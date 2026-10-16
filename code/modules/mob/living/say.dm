@@ -53,11 +53,11 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	if(config.word_filter_regex.Find(message))
 		to_chat(user,
-			html = "\n<font color='red' size='4'><b>-- Word Filter Message --</b></font>",
+			html = "\n<font color='red' size='4'><b>——言语过滤提示——</b></font>",
 			)
 		to_chat(user,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = "\n<font color='red' size='4'><b>Your message has been automatically filtered due to its contents. Trying to circumvent this filter will get you banned.</b></font>",
+			html = "\n<font color='red' size='4'><b>你的消息因内容问题已被自动过滤。试图绕过过滤器将导致封禁。</b></font>",
 			)
 		SEND_SOUND(user, sound('sound/effects/adminhelp_new.ogg'))
 		log_admin("[user.ckey] triggered the chat filter with the following message: [message].")
@@ -79,7 +79,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 /mob/living/proc/remove_speech_bubble(mutable_appearance/speech_bubble, list_of_mobs)
 	overlays -= speech_bubble
 
-/mob/living/say(message, datum/language/speaking = null, verb="says", alt_name="", italics=0, message_range = GLOB.world_view_size, sound/speech_sound, sound_vol, nolog = 0, message_mode = null, bubble_type = bubble_icon)
+/mob/living/say(message, datum/language/speaking = null, verb="说道", alt_name="", italics=0, message_range = GLOB.world_view_size, sound/speech_sound, sound_vol, nolog = 0, message_mode = null, bubble_type = bubble_icon)
 	var/turf/T
 
 	if(SEND_SIGNAL(src, COMSIG_LIVING_SPEAK, message, speaking, verb, alt_name, italics, message_range, speech_sound, sound_vol, nolog, message_mode) & COMPONENT_OVERRIDE_SPEAK) return
@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			var/old_message = message
 			message = lisp_replace(message)
 			if(old_message != message)
-				verb = "lisps"
+				verb = "含混地说道"
 
 		if(T)
 			var/list/hearturfs = list()
@@ -179,7 +179,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	return 1
 
-/mob/living/proc/say_signlang(message, verb="gestures", datum/language/language)
+/mob/living/proc/say_signlang(message, verb="比划道", datum/language/language)
 	for (var/mob/O in viewers(src, null))
 		O.hear_signlang(message, verb, language, src)
 

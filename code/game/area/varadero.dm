@@ -2,7 +2,7 @@
 //areas for New  Varadero (waterworld), aka Ice Underground revamped.
 
 /area/varadero
-	name = "New Varadero"
+	name = "新巴拉德罗"
 	icon = 'icons/turf/area_varadero.dmi'
 	ambience_exterior = AMBIENCE_NV
 	icon_state = "varadero"
@@ -14,7 +14,7 @@
 //shuttle stuff
 
 /area/shuttle/drop1/varadero
-	name = "New Varadero - Dropship Alamo Landing Zone"
+	name = "新巴拉德罗 - 阿拉莫号运输机降落区"
 	icon_state = "shuttle"
 	icon = 'icons/turf/area_varadero.dmi'
 	is_resin_allowed = FALSE
@@ -22,7 +22,7 @@
 
 
 /area/shuttle/drop2/varadero
-	name = "New Varadero - Dropship Normandy Landing Zone"
+	name = "新巴拉德罗 - 诺曼底号运输机降落区"
 	icon_state = "shuttle2"
 	icon = 'icons/turf/area_varadero.dmi'
 	is_resin_allowed = FALSE
@@ -31,42 +31,42 @@
 //Parent areas
 
 /area/varadero/exterior
-	name = "New Varadero - Exterior"
+	name = "新巴拉德罗 - 外部"
 	ceiling = CEILING_NONE
 	ambience_exterior = AMBIENCE_NV
 	//soundscape_playlist
 
 /area/varadero/interior
-	name = "New Varadero - Interior"
+	name = "新巴拉德罗 - 内部"
 	ceiling = CEILING_GLASS
 	ambience_exterior = AMBIENCE_PRISON
 	//soundscape_playlist
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 
 /area/varadero/interior_protected
-	name = "New Varadero - Interior"
+	name = "新巴拉德罗 - 内部"
 	ceiling = CEILING_UNDERGROUND_BLOCK_CAS
 	sound_environment = SOUND_ENVIRONMENT_AUDITORIUM
 	icon_state = "NV_no_CAS"
 
 /area/varadero/interior/comms1
-	name = "New Varadero - Cargo Generator"
+	name = "新巴拉德罗 - 货运区发电机"
 	is_resin_allowed = FALSE
 	icon_state = "comms1"
 	minimap_color = MINIMAP_AREA_ENGI_CAVE
 
 /area/varadero/interior/comms2
-	name = "New Varadero - Communications Project Site"
+	name = "新巴拉德罗 - 通讯工程场地"
 	icon_state = "comms2"
 	minimap_color = MINIMAP_AREA_ENGI_CAVE
 
 /area/varadero/interior/comms3
-	name = "New Varadero - Engineering Communications"
+	name = "新巴拉德罗 - 工程通讯区"
 	icon_state = "comms3"
 	minimap_color = MINIMAP_AREA_ENGI_CAVE
 
 /area/varadero/exterior/comms4
-	name = "New Varadero - Walkway Extension"
+	name = "新巴拉德罗 - 延伸步道"
 	is_resin_allowed = FALSE
 	icon_state = "comms4"
 	minimap_color = MINIMAP_AREA_ENGI_CAVE
@@ -81,14 +81,14 @@
 //landing zone computers
 
 /area/varadero/exterior/lz1_console
-	name = "New Varadero - Pontoon Dock"
+	name = "新巴拉德罗 - 浮筒码头"
 	requires_power = FALSE
 	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 	is_landing_zone = TRUE
 
 /area/varadero/exterior/lz1_console/two
-	name = "New Varadero - Palm Airfield"
+	name = "新巴拉德罗 - 棕榈机场"
 	requires_power = FALSE
 	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_LZ
@@ -96,21 +96,21 @@
 //exterior areas
 
 /area/varadero/exterior/lz1_near
-	name = "New Varadero - Pontoon Airfield"
+	name = "新巴拉德罗 - 浮筒机场"
 	icon_state = "lz1"
 	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 	is_landing_zone = TRUE
 
 /area/varadero/exterior/lz2_near
-	name = "New Varadero - Palm Airfield"
+	name = "新巴拉德罗 - 棕榈机场"
 	icon_state = "lz2"
 	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 	is_landing_zone = TRUE
 
 /area/varadero/exterior/pontoon_beach
-	name = "New Varadero - Rockabilly Beach"
+	name = "新巴拉德罗 - 山地摇滚海滩"
 	icon_state = "varadero0"
 	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_JUNGLE
@@ -119,30 +119,30 @@
 	is_landing_zone = TRUE
 
 /area/varadero/exterior/eastbeach
-	name = "New Varadero - East Beach"
+	name = "新巴拉德罗 - 东侧海滩"
 	is_resin_allowed = FALSE
 	icon_state = "varadero1"
 	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/varadero/exterior/monsoon
-	name = "New Varadero - Monsoon"
+	name = "新巴拉德罗 - 季风区"
 	icon_state = "varadero1"
 	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/varadero/exterior/pool
-	name = "New Varadero - Interior Pool"
+	name = "新巴拉德罗 - 室内泳池"
 	icon_state = "varadero1"
 	minimap_color = MINIMAP_AREA_COMMAND_CAVE
 
 /area/varadero/exterior/eastocean
-	name = "New Varadero - East Ocean"
+	name = "新巴拉德罗 - 东侧海洋"
 	is_resin_allowed = FALSE
 	flags_area = AREA_NOTUNNEL
 	icon_state = "varadero2"
 	minimap_color = MINIMAP_AREA_CONTESTED_ZONE
 
 /area/varadero/exterior/farocean
-	name = "New Varadero - Far Ocean"
+	name = "新巴拉德罗 - 远洋"
 	is_resin_allowed = FALSE
 	flags_area = AREA_NOTUNNEL
 	icon_state = "varadero3"
@@ -152,14 +152,14 @@
 
 
 /area/varadero/interior/beach_bar
-	name = "New Varadero - Beach Bar"
+	name = "新巴拉德罗 - 海滩酒吧"
 	icon_state = "varadero4"
 	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_JUNGLE
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 
 /area/varadero/interior/dock_control
-	name = "New Varadero - Dock Control"
+	name = "新巴拉德罗 - 码头控制室"
 	icon_state = "varadero3"
 	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_JUNGLE
@@ -167,125 +167,125 @@
 	is_landing_zone = TRUE
 
 /area/varadero/interior/cargo
-	name = "New Varadero - Cargo"
+	name = "新巴拉德罗 - 货运区"
 	icon_state = "req0"
 	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/varadero/interior/hall_NW
-	name = "New Varadero - Hallway NW"
+	name = "新巴拉德罗 - 西北走廊"
 	icon_state = "hall0"
 
 /area/varadero/interior/hall_N
-	name = "New Varadero - Hallway N"
+	name = "新巴拉德罗 - 北侧走廊"
 	icon_state = "hall2"
 	is_resin_allowed = FALSE
 
 /area/varadero/interior/hall_SE
-	name = "New Varadero - Hallway SE"
+	name = "新巴拉德罗 - 东南走廊"
 	icon_state = "hall1"
 
 /area/varadero/interior/chapel
-	name = "New Vardero - Chapel"
+	name = "新巴拉德罗 - 礼拜堂"
 	icon_state = "offices1"
 	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_COMMAND_CAVE
 
 /area/varadero/interior/morgue
-	name = "New Varadero - Morgue"
+	name = "新巴拉德罗 - 停尸间"
 	icon_state = "offices0"
 	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
 
 /area/varadero/interior/medical
-	name = "New Varadero - Medical"
+	name = "新巴拉德罗 - 医疗区"
 	icon_state = "offices2"
 	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/varadero/interior/maintenance
-	name = "New Varadero - Central Maintenance"
+	name = "新巴拉德罗 - 中央维护区"
 	icon_state = "tunnels0"
 
 /area/varadero/interior/maintenance/north
-	name = "New Varadero - Northern Maintenance"
+	name = "新巴拉德罗 - 北侧维护区"
 	icon_state = "tunnels1"
 	is_resin_allowed = FALSE
 
 /area/varadero/interior/maintenance/research
-	name = "New Varadero - Research Maintenance"
+	name = "新巴拉德罗 - 科研维护区"
 	icon_state = "tunnels1"
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/varadero/interior/maintenance/security
-	name = "New Varadero - Security Maintenance"
+	name = "新巴拉德罗 - 安保维护区"
 	icon_state = "tunnels2"
 	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /area/varadero/interior/research
-	name = "New Varadero - Research Offices"
+	name = "新巴拉德罗 - 科研办公室"
 	icon_state = "offices4"
 	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/varadero/interior/electrical
-	name = "New Varadero - Electrical Annex"
+	name = "新巴拉德罗 - 电气附属区"
 	icon_state = "req4"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/varadero/interior/toilets
-	name = "New Varadero - Restrooms"
+	name = "新巴拉德罗 - 卫生间"
 	icon_state = "req0"
 
 /area/varadero/interior/technical_storage
-	name = "New Varadero - Technical Storage"
+	name = "新巴拉德罗 - 技术储物间"
 	icon_state = "req3"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/varadero/interior/laundry
-	name = "New Varadero - Laundry"
+	name = "新巴拉德罗 - 洗衣房"
 	icon_state = "req2"
 
 /area/varadero/interior/disposals
-	name = "New Varadero - Disposals"
+	name = "新巴拉德罗 - 垃圾处理区"
 	icon_state = "offices4"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/varadero/interior/administration
-	name = "New Varadero - Administrative Offices"
+	name = "新巴拉德罗 - 行政办公室"
 	icon_state = "offices2"
 	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/varadero/interior/library
-	name = "New Varadero - Library"
+	name = "新巴拉德罗 - 图书馆"
 	icon_state = "offices0"
 	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_COMMAND_CAVE
 
 /area/varadero/interior/court
-	name = "New Varadero - Basketball Court"
+	name = "新巴拉德罗 - 篮球场"
 	icon_state = "req4"
 	minimap_color = MINIMAP_AREA_COMMAND_CAVE
 
 /area/varadero/interior/mess
-	name = "New Varadero - Mess Hall"
+	name = "新巴拉德罗 - 食堂"
 	icon_state = "req2"
 	minimap_color = MINIMAP_AREA_COMMAND_CAVE
 
 /area/varadero/interior/bunks
-	name = "New Varadero - Level 1 Quarters"
+	name = "新巴拉德罗 - 一层住舱"
 	icon_state = "req3"
 	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/varadero/interior/security
-	name = "New Varadero - Security Offices"
+	name = "新巴拉德罗 - 安保办公室"
 	icon_state = "offices0"
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/varadero/interior/records
-	name = "New Varadero - Records"
+	name = "新巴拉德罗 - 档案室"
 	icon_state = "offices2"
 
 /area/varadero/interior/rear_elevator
-	name = "New Varadero - Main Lift"
+	name = "新巴拉德罗 - 主升降机"
 	icon_state = "req3"
 
 /area/varadero/interior/caves
@@ -298,15 +298,15 @@
 	minimap_color = MINIMAP_AREA_CAVES
 
 /area/varadero/interior/caves/north_research
-	name = "New Varadero - North Research Caves"
+	name = "新巴拉德罗 - 科研区北侧洞穴"
 	icon_state = "tunnels4"
 
 /area/varadero/interior/caves/east
-	name = "New Varadero - Beach Caves"
+	name = "新巴拉德罗 - 海滩洞穴"
 	icon_state = "tunnels2"
 
 /area/varadero/interior_protected/caves
-	name = "New Varadero - South Research Caves"
+	name = "新巴拉德罗 - 科研区南侧洞穴"
 	icon_state = "deepcaves0"
 	power_light = FALSE
 	power_equip = FALSE
@@ -315,25 +315,25 @@
 
 
 /area/varadero/interior_protected/caves/central
-	name = "New Varadero - Grass Caves"
+	name = "新巴拉德罗 - 草地洞穴"
 	icon_state = "deepcaves2"
 	minimap_color = MINIMAP_AREA_CAVES
 
 /area/varadero/interior_protected/caves/digsite
-	name = "New Varadero - Dig Site"
+	name = "新巴拉德罗 - 挖掘场"
 	icon_state = "deepcaves3"
 
 /area/varadero/interior_protected/caves/swcaves
-	name = "New Varadero - Southwest Caves"
+	name = "新巴拉德罗 - 西南洞穴"
 	icon_state = "deepcaves3"
 
 /area/varadero/interior_protected/maintenance/south
-	name = "New Varadero - Southern Maintenance"
+	name = "新巴拉德罗 - 南侧维护区"
 	icon_state = "deepcaves4"
 	minimap_color = MINIMAP_AREA_CAVES
 
 /area/varadero/interior_protected/vessel
-	name = "New Varadero - Unknown Vessel"
+	name = "新巴拉德罗 - 未知舰船"
 	icon_state = "predship"
 	minimap_color = MINIMAP_AREA_SHIP
 

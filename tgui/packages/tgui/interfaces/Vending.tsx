@@ -135,9 +135,7 @@ export const UserDetails = (props) => {
   const { user, checking_id } = data;
 
   if (!user) {
-    return (
-      <NoticeBox>No ID detected! Contact your nearest supervisor.</NoticeBox>
-    );
+    return <NoticeBox>未检测到身份卡！请联系附近的主管。</NoticeBox>;
   }
   return (
     <Section>
@@ -147,11 +145,11 @@ export const UserDetails = (props) => {
         </Stack.Item>
         <Stack.Item>
           <LabeledList>
-            <LabeledList.Item label="User">
-              {checking_id ? user.name : 'UNKNOWN'}
+            <LabeledList.Item label="用户">
+              {checking_id ? user.name : '未知'}
             </LabeledList.Item>
-            <LabeledList.Item label="Occupation">
-              {checking_id ? user.job || 'Unemployed' : 'UNKNOWN'}
+            <LabeledList.Item label="职业">
+              {checking_id ? user.job || '无业' : '未知'}
             </LabeledList.Item>
           </LabeledList>
         </Stack.Item>
@@ -176,7 +174,7 @@ const ProductDisplay = (props: {
     <Section
       fill
       scrollable
-      title="Products"
+      title="商品"
       buttons={
         !!display_value && (
           <Box fontSize="16px" color="green">
@@ -258,7 +256,7 @@ const ProductStock = (props) => {
         'good'
       }
     >
-      {remaining} left
+      剩余 {remaining}
     </Box>
   );
 };
@@ -269,19 +267,19 @@ const ProductButton = (props) => {
   const { denied, disabled, product } = props;
   const { checking_id } = data;
 
-  const price = product.price && checking_id ? '$' + product.price : 'FREE';
+  const price = product.price && checking_id ? '$' + product.price : '免费';
   return (
     <Button
       fluid
       disabled={disabled}
-      tooltip={denied ? 'Access Denied' : ''}
+      tooltip={denied ? '拒绝访问' : ''}
       onClick={() =>
         act('vend', {
           ref: product.ref,
         })
       }
     >
-      {product.category === 'Premium' ? 'COIN' : price}
+      {product.category === 'Premium' ? '硬币' : price}
     </Button>
   );
 };
@@ -289,6 +287,12 @@ const ProductButton = (props) => {
 const CATEGORY_COLORS = {
   Contraband: 'red',
   Premium: 'yellow',
+};
+
+const CATEGORY_LABELS: Record<string, string> = {
+  Products: '商品',
+  Contraband: '违禁品',
+  Premium: '高级商品',
 };
 
 const CategorySelector = (props: {
@@ -310,7 +314,7 @@ const CategorySelector = (props: {
               icon={category.icon}
               onClick={() => onSelect(name)}
             >
-              {name}
+              {CATEGORY_LABELS[name] || name}
             </Button>
           ))}
         </Stack.Item>

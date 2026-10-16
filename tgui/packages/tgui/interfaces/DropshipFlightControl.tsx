@@ -71,7 +71,7 @@ const DropshipDoorControl = () => {
     <Section
       m="0"
       mb="6px"
-      title="Door Controls"
+      title="舱门控制"
       buttons={data.door_status
         .filter((x) => x.id === 'all')
         .map((x) => (
@@ -88,7 +88,7 @@ const DropshipDoorControl = () => {
                 }
                 icon="triangle-exclamation"
               >
-                Lockdown
+                封锁
               </Button>
             )}
 
@@ -104,7 +104,7 @@ const DropshipDoorControl = () => {
                 }
                 icon="triangle-exclamation"
               >
-                Lift Lockdown
+                解除封锁
               </Button>
             )}
           </>
@@ -114,13 +114,15 @@ const DropshipDoorControl = () => {
         {data.door_status
           .filter((x) => x.id !== 'all')
           .map((x) => {
-            const name = x.id.substr(0, 1).toLocaleUpperCase() + x.id.substr(1);
+            const name =
+              { port: '左舷门', starboard: '右舷门', aft: '后舱门' }[x.id] ??
+              x.id.substr(0, 1).toLocaleUpperCase() + x.id.substr(1);
             return (
               <Stack.Item key={x.id} grow>
                 <>
                   {x.value === DoorStatusEnum.SHUTTLE_DOOR_BROKEN && (
                     <Button disabled icon="ban" width="100%" textAlign="center">
-                      No response
+                      无响应
                     </Button>
                   )}
                   {x.value === DoorStatusEnum.SHUTTLE_DOOR_UNLOCKED && (
@@ -136,7 +138,7 @@ const DropshipDoorControl = () => {
                       }
                       icon="door-closed"
                     >
-                      Lock {name}
+                      锁定{name}
                     </Button>
                   )}
                   {x.value === DoorStatusEnum.SHUTTLE_DOOR_LOCKED && (
@@ -152,7 +154,7 @@ const DropshipDoorControl = () => {
                       }
                       icon="door-open"
                     >
-                      Unlock {name}
+                      解锁{name}
                     </Button>
                   )}
                 </>
@@ -171,7 +173,7 @@ export const DropshipDestinationSelection = () => {
     undefined,
   );
   return (
-    <Section m="0" mb="6px" title="Flight Controls">
+    <Section m="0" mb="6px" title="飞行控制">
       <Stack justify="space-evenly">
         <Stack.Item align="center">
           <CancelLaunchButton />
@@ -247,16 +249,12 @@ const DestinationSelector = (props: DestinationProps) => {
 export const TouchdownCooldown = () => {
   const { data } = useBackend<NavigationProps>();
   return (
-    <Section
-      m="0"
-      mb="6px"
-      title={`Final Approach: ${data.target_destination}`}
-    >
+    <Section m="0" mb="6px" title={`着陆进近：${data.target_destination}`}>
       <div className="InFlightCountdown">
         <Stack vertical>
           <Stack.Item>
             <span>
-              Time until landing: <u>T-{data.flight_time}s</u>.
+              距离着陆还有<u>T-{data.flight_time}秒</u>。
             </span>
           </Stack.Item>
           <Stack.Item>
@@ -264,7 +262,7 @@ export const TouchdownCooldown = () => {
               maxValue={data.max_pre_arrival_duration}
               value={data.flight_time}
             >
-              T-{data.flight_time}s
+              T-{data.flight_time}秒
             </ProgressBar>
           </Stack.Item>
         </Stack>
@@ -286,7 +284,7 @@ const AutopilotConfig = () => {
     <Section
       m="0"
       mb="6px"
-      title="Autopilot Control"
+      title="自动驾驶控制"
       buttons={
         <>
           {data.automated_control.is_automated === 0 && (
@@ -299,17 +297,17 @@ const AutopilotConfig = () => {
                 })
               }
             >
-              Enable
+              启用
             </Button>
           )}
           {data.automated_control.is_automated === 1 && (
-            <Button onClick={() => act('disable-automate')}>Disable</Button>
+            <Button onClick={() => act('disable-automate')}>停用</Button>
           )}
         </>
       }
     >
       <Stack vertical className="DestinationSelector">
-        <Stack.Item>From</Stack.Item>
+        <Stack.Item>起点</Stack.Item>
         <DestinationSelector
           options={data.destinations.filter((x) =>
             data.automated_control.is_automated
@@ -327,7 +325,7 @@ const AutopilotConfig = () => {
         <Stack.Item>
           <hr />
         </Stack.Item>
-        <Stack.Item>To</Stack.Item>
+        <Stack.Item>终点</Stack.Item>
         <DestinationSelector
           options={data.destinations.filter((x) =>
             data.automated_control.is_automated
@@ -357,7 +355,7 @@ const StopLaunchAnnouncementAlarm = () => {
         act('button-push');
       }}
     >
-      Stop Alarm
+      停止警报
     </Button>
   );
 };
@@ -372,7 +370,7 @@ const PlayLaunchAnnouncementAlarm = () => {
         act('button-push');
       }}
     >
-      Start Alarm
+      启动警报
     </Button>
   );
 };
@@ -383,7 +381,7 @@ const LaunchAnnouncementAlarm = () => {
     <Section
       m="0"
       fitted
-      title="Launch Announcement Alarm"
+      title="起飞通告警报"
       buttons={
         !data.playing_launch_announcement_alarm ? (
           <PlayLaunchAnnouncementAlarm />
@@ -436,7 +434,7 @@ const DropshipSelector = () => {
   }, [refreshTimeout]);
 
   return (
-    <Section m="0" mb="6px" title="Select Dropship">
+    <Section m="0" mb="6px" title="选择运输机">
       <Stack justify="space-evenly">
         {data.alternative_shuttles
           .sort((a, b) => a.id.localeCompare(b.id))

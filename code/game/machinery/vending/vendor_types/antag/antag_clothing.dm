@@ -2,8 +2,8 @@
 //Spawn one of these bad boys and you will have a proper automated closet for CLF/UPP players (for now, more can be always added later)
 
 /obj/structure/machinery/cm_vending/clothing/antag
-	name = "\improper Suspicious Automated Equipment Rack"
-	desc = "While similar in function to ColMarTech automated racks, this one is clearly not of USCM origin. Contains various equipment."
+	name = "可疑的自动装备架"
+	desc = "功能类似ColMarTech自动装备架，但显然并非 USCM 产品。内含各类装备。"
 	icon_state = "antag_clothing"
 	req_one_access = list(ACCESS_ILLEGAL_PIRATE, ACCESS_UPP_GENERAL, ACCESS_CLF_GENERAL)
 	req_access = null

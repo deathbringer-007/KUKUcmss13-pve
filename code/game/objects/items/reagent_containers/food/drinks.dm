@@ -2,8 +2,8 @@
 /// Drinks.
 ////////////////////////////////////////////////////////////////////////////////
 /obj/item/reagent_container/food/drinks
-	name = "drink"
-	desc = "yummy"
+	name = "饮品"
+	desc = "美味。"
 	icon = 'icons/obj/items/drinks.dmi'
 	icon_state = null
 	flags_atom = FPRINT|OPENCONTAINER
@@ -149,8 +149,8 @@
 // Formatting is the same as food.
 
 /obj/item/reagent_container/food/drinks/milk
-	name = "milk carton"
-	desc = "A carton of 2% cow milk."
+	name = "盒装牛奶"
+	desc = "一盒脂肪含量 2% 的牛奶。"
 	icon_state = "milk"
 	item_state = "carton"
 	center_of_mass = "x=16;y=9"
@@ -175,8 +175,8 @@
 */
 
 /obj/item/reagent_container/food/drinks/soymilk
-	name = "soy milk carton"
-	desc = "A carton of soy milk."
+	name = "盒装豆奶"
+	desc = "一盒豆奶。"
 	icon_state = "soymilk"
 	item_state = "carton"
 	center_of_mass = "x=16;y=9"
@@ -197,8 +197,8 @@
 	reagents.add_reagent("chocolatemilk", 50)
 
 /obj/item/reagent_container/food/drinks/coffee
-	name = "\improper Coffee"
-	desc = "Careful, the beverage you're about to enjoy is extremely hot."
+	name = "咖啡"
+	desc = "小心，你即将享用的饮品非常烫。"
 	icon_state = "coffee"
 	center_of_mass = "x=15;y=10"
 
@@ -207,11 +207,11 @@
 	reagents.add_reagent("coffee", 20)
 
 /obj/item/reagent_container/food/drinks/coffee/marine
-	desc = "Recycled water, lab-grown coffee plants genetically designed for minimum expense and maximum production, and re-recycled coffee grounds have mixed together to create this insultingly cheap USCM culinary 'wonder'. You're just glad the troops get issued water for free."
+	desc = "循环水、为最低成本最高产量而基因改造的实验室咖啡植株，以及再次回收的咖啡渣，混成了这廉价得侮辱人的 USCM 餐饮“奇迹”。你只庆幸部队配发的水是免费的。"
 
 /obj/item/reagent_container/food/drinks/tea
-	name = "\improper Duke Purple Tea"
-	desc = "An insult to Duke Purple is an insult to the Space Queen! Any proper gentleman will fight you, if you sully this tea."
+	name = "紫公爵茶"
+	desc = "侮辱紫公爵就是侮辱太空女王！若你诋毁这款茶，任何正派绅士都会与你决斗。"
 	icon_state = "tea"
 	item_state = "coffee"
 	center_of_mass = "x=16;y=14"
@@ -221,8 +221,8 @@
 	reagents.add_reagent("tea", 30)
 
 /obj/item/reagent_container/food/drinks/tea/upp
-	name = "\improper insulated container"
-	desc = "A small, reusable, insulated container for holding liquids with a sip lid."
+	name = "保温容器"
+	desc = "小巧、可重复使用的保温饮料容器，配有啜饮杯盖。"
 	icon_state = "tea_upp"
 	item_state = "coffee"
 	center_of_mass = "x=16;y=14"
@@ -232,8 +232,8 @@
 	reagents.add_reagent("tea", 30)
 
 /obj/item/reagent_container/food/drinks/water
-	name = "\improper insulated container"
-	desc = "A small, reusable, insulated container for holding liquids with a sip lid."
+	name = "保温容器"
+	desc = "小巧、可重复使用的保温饮料容器，配有啜饮杯盖。"
 	icon_state = "tea_upp"
 	item_state = "coffee"
 	center_of_mass = "x=16;y=14"
@@ -243,8 +243,8 @@
 	reagents.add_reagent("water", 30)
 
 /obj/item/reagent_container/food/drinks/ice
-	name = "ice cup"
-	desc = "Careful, cold ice, do not chew."
+	name = "冰杯"
+	desc = "小心，冰很冷，请勿咀嚼。"
 	icon_state = "coffee_nolid"
 	item_state = "coffee"
 	center_of_mass = "x=15;y=10"
@@ -254,8 +254,8 @@
 	reagents.add_reagent("ice", 30)
 
 /obj/item/reagent_container/food/drinks/h_chocolate
-	name = "\improper Dutch hot coco"
-	desc = "Made in Space South America."
+	name = "荷兰热可可"
+	desc = "太空南美洲制造。"
 	icon_state = "hot_coco"
 	item_state = "coffee"
 	center_of_mass = "x=15;y=13"
@@ -293,8 +293,8 @@
 		icon_state = "water_cup_e"
 
 /obj/item/reagent_container/food/drinks/cup
-	name = "plastic cup"
-	desc = "A generic red cup. Beer pong, anyone?"
+	name = "塑料杯"
+	desc = "普通的红色杯子。有人想玩啤酒乒乓吗？"
 	icon = 'icons/obj/items/cup.dmi'
 	icon_state = "solocup"
 	throwforce = 0
@@ -338,15 +338,15 @@
 	center_of_mass = "x=17;y=10"
 
 /obj/item/reagent_container/food/drinks/flask
-	name = "metal flask"
-	desc = "A metal flask with a decent liquid capacity."
+	name = "金属随身水壶"
+	desc = "容量不错的金属随身水壶。"
 	icon_state = "flask"
 	volume = 120
 	center_of_mass = "x=17;y=8"
 
 /obj/item/reagent_container/food/drinks/flask/marine
-	name = "\improper USCM flask"
-	desc = "A metal flask embossed with the USCM logo and probably filled with a slurry of water, motor oil, and medicinal alcohol."
+	name = "USCM 随身水壶"
+	desc = "压有 USCM 标志的金属水壶，里面多半装着水、机油和医用酒精的混合物。"
 	icon_state = "flask_uscm"
 	volume = 120
 	center_of_mass = "x=17;y=8"
@@ -357,8 +357,8 @@
 	reagents.add_reagent("hooch", 2)
 
 /obj/item/reagent_container/food/drinks/flask/weylandyutani
-	name = "\improper Weyland-Yutani flask"
-	desc = "A metal flask embossed with Weyland-Yutani's signature logo that some corporate bootlicker probably ordered to be stocked in USS military vessels' canteen vendors."
+	name = "维兰德-汤谷随身水壶"
+	desc = "压有维兰德-汤谷经典标志的金属水壶，多半是哪个公司马屁精下令塞进 USS 军舰餐厅售货机的。"
 	icon_state = "flask_wy"
 	volume = 120
 	center_of_mass = "x=17;y=8"
@@ -368,8 +368,8 @@
 	reagents.add_reagent("fruit_beer", 60)
 
 /obj/item/reagent_container/food/drinks/flask/canteen
-	name = "canteen"
-	desc = "A ruggedized metal alloy flask. Can hold a good amount of water... Or other liquids."
+	name = "军用水壶"
+	desc = "坚固的金属合金水壶，可以装不少水……或其他液体。"
 	icon_state = "canteen"
 	volume = 120
 	center_of_mass = "x=17;y=8"
@@ -397,22 +397,22 @@
 		reagents.add_reagent("whiskey", 30)
 
 /obj/item/reagent_container/food/drinks/flask/barflask
-	name = "black leather flask"
-	desc = "A flask with a slick black leather band around the sides. For those who can't be bothered to hang out at the bar to drink."
+	name = "黑色皮革随身水壶"
+	desc = "侧面包着光滑黑色皮革带的随身水壶，适合懒得去酒吧喝酒的人。"
 	icon_state = "blackflask"
 	volume = 120
 	center_of_mass = "x=17;y=7"
 
 /obj/item/reagent_container/food/drinks/flask/vacuumflask
-	name = "vacuum flask"
-	desc = "Keeping your drinks at the perfect temperature since 1892."
+	name = "保温壶"
+	desc = "自 1892 年起，让饮品始终保持理想温度。"
 	icon_state = "vacuumflask"
 	volume = 120
 	center_of_mass = "x=15;y=4"
 
 /obj/item/reagent_container/food/drinks/coffeecup
-	name = "coffee mug"
-	desc = "A ceramic coffee mug. Practically guaranteed to fall and spill scalding-hot drink onto your brand-new shirt. Ouch."
+	name = "咖啡杯"
+	desc = "陶瓷咖啡杯，几乎注定会摔倒，把滚烫的饮料泼在你的新衬衫上。嘶！"
 	icon_state = "coffeecup"
 	volume = 30
 	center_of_mass = "x=15;y=13"
@@ -423,8 +423,8 @@
 	icon_state = "uscmcup"
 
 /obj/item/reagent_container/food/drinks/coffeecup/wy
-	name = "Weyland-Yutani coffee mug"
-	desc = "A matte gray coffee mug bearing the Weyland-Yutani logo on its front. Either issued as corporate standard, or bought as a souvenir for people who love the Company oh so dearly. Probably the former."
+	name = "维兰德-汤谷咖啡杯"
+	desc = "正面印有维兰德-汤谷标志的哑光灰咖啡杯。可能是公司制式配发品，也可能是热爱公司的人的纪念品。大概是前者。"
 	icon_state = "wycup"
 
 /obj/item/reagent_container/food/drinks/plasticcup

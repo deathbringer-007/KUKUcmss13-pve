@@ -25,6 +25,25 @@ const KEY_CODE_TO_BYOND = {
   UP: 'North',
 };
 
+const categoryLabels = new Map([
+  ['ALL', '全部'],
+  ['CLIENT', '客户端'],
+  ['EMOTE', '动作'],
+  ['XENO', '异形'],
+  ['CARBON', '碳基生物'],
+  ['HUMAN', '人类'],
+  ['HUMAN COMBAT', '人类战斗'],
+  ['HUMAN INVENTORY', '人类装备'],
+  ['YAUTJA', '铁血战士'],
+  ['VEHICLES', '载具'],
+  ['MOVEMENT', '移动'],
+  ['COMMUNICATION', '通讯'],
+  ['XENO EMOTE', '异形动作'],
+  ['HUMAN EMOTE', '人类动作'],
+  ['YAUTJA EMOTE', '铁血战士动作'],
+]);
+const categoryLabel = (value) => categoryLabels.get(value) ?? value;
+
 const getAllKeybinds = (glob_keybinds) => {
   const all_keybinds = new Array();
   Object.keys(glob_keybinds).map((x) => all_keybinds.push(...glob_keybinds[x]));
@@ -53,7 +72,7 @@ export const KeyBinds = (props) => {
         <Flex direction="column">
           <Flex.Item>
             <Section
-              title="Settings"
+              title="设置"
               buttons={
                 <Flex.Item>
                   <Button
@@ -61,7 +80,7 @@ export const KeyBinds = (props) => {
                     icon="undo"
                     onClick={() => act('clear_all_keybinds')}
                   >
-                    Reset to Default
+                    恢复默认
                   </Button>
                 </Flex.Item>
               }
@@ -75,13 +94,13 @@ export const KeyBinds = (props) => {
                         onInput={(_, value) =>
                           setSearchTerm(value.toLowerCase())
                         }
-                        placeholder="Search..."
+                        placeholder="搜索……"
                         fluid
                       />
                     </Flex.Item>
                     <Flex.Item>
                       <ButtonKeybind
-                        tooltip="Search by key"
+                        tooltip="按按键搜索"
                         tooltipPosition="bottom-start"
                         icon="keyboard"
                         onFinish={(keysDown) => {
@@ -124,7 +143,7 @@ export const KeyBinds = (props) => {
             {selectedTab === 'ALL' && !searchTerm.length
               ? Object.keys(glob_keybinds).map((category) => (
                   <Flex.Item key={category}>
-                    <Section title={category}>
+                    <Section title={categoryLabel(category)}>
                       <Flex direction="column">
                         {glob_keybinds[category].map((keybind) => (
                           <Flex.Item key={keybind}>
@@ -171,7 +190,11 @@ const KeybindsDropdown = (props) => {
       width="360px"
       menuWidth="360px"
       selected={selectedTab}
-      options={dropdownOptions}
+      displayText={categoryLabel(selectedTab)}
+      options={dropdownOptions.map((value) => ({
+        value,
+        displayText: categoryLabel(value),
+      }))}
       disabled={searchTerm.length}
       onSelected={(value) => setSelectedTab(value)}
     />
@@ -255,7 +278,7 @@ export const KeybindElement = (props) => {
             })
           }
         >
-          Clear
+          清除
         </Button>
       </Flex.Item>
     </Flex>

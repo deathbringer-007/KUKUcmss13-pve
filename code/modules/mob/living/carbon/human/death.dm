@@ -92,15 +92,15 @@
 			last_living_human = cur_human
 
 		if(!see_humans_on_tacmap && shipside_humans_count < (main_hive.get_real_total_xeno_count() * HIJACK_RATIO_FOR_TACMAP))
-			xeno_announcement("There is only a handful of tallhosts left, they are now visible on our hive mind map.", XENO_HIVE_NORMAL, SPAN_ANNOUNCEMENT_HEADER_BLUE("[QUEEN_MOTHER_ANNOUNCE]"))
+			xeno_announcement("高大宿主已所剩无几，现在可以在虫巢意志地图上看到它们。", XENO_HIVE_NORMAL, SPAN_ANNOUNCEMENT_HEADER_BLUE("[QUEEN_MOTHER_ANNOUNCE]"))
 			main_hive.see_humans_on_tacmap = TRUE
 		if(last_living_human && shipside_humans_count <= 1 && (GLOB.last_qm_callout + 2 MINUTES) < world.time)
 			GLOB.last_qm_callout = world.time
 			// Tell the xenos where the human is.
-			xeno_announcement("I sense the last tallhost hiding in [get_area(last_living_human)].", XENO_HIVE_NORMAL, SPAN_ANNOUNCEMENT_HEADER_BLUE("[QUEEN_MOTHER_ANNOUNCE]"))
+			xeno_announcement("我感知到最后一个高大宿主正藏在[get_area(last_living_human)]。", XENO_HIVE_NORMAL, SPAN_ANNOUNCEMENT_HEADER_BLUE("[QUEEN_MOTHER_ANNOUNCE]"))
 			// Tell the human he is the last guy.
 			if(last_living_human.client)
-				to_chat(last_living_human, SPAN_ANNOUNCEMENT_HEADER_BLUE("Panic creeps up your spine. You realize that you are the last survivor."))
+				to_chat(last_living_human, SPAN_ANNOUNCEMENT_HEADER_BLUE("恐慌沿着脊背蔓延，你意识到自己已是最后的幸存者。"))
 			//disable delaycloaks
 			var/mob/living/carbon/human/delayer = last_living_human
 			if(istype(delayer.back, /obj/item/storage/backpack/marine/satchel/scout_cloak))
@@ -108,19 +108,19 @@
 				if(delayer_cloak.camo_active)
 					delayer_cloak.deactivate_camouflage(delayer)
 				delayer_cloak.cloak_cooldown = world.time + 1 HOURS //fuck you
-				to_chat(delayer, SPAN_WARNING("Your [delayer_cloak] fizzles out and breaks!"))
+				to_chat(delayer, SPAN_WARNING("你的[delayer_cloak]嘶嘶作响，坏掉了！"))
 			if(istype(delayer.wear_suit, /obj/item/clothing/suit/storage/marine/ghillie))
 				var/obj/item/clothing/suit/storage/marine/ghillie/delayer_armour = delayer.wear_suit
 				if(delayer_armour.camo_active)
 					delayer_armour.deactivate_camouflage(delayer)
 				delayer_armour.can_camo = FALSE //fuck you
-				to_chat(delayer, SPAN_WARNING("Your [delayer_armour]'s camo system breaks!"))
+				to_chat(delayer, SPAN_WARNING("你的[delayer_armour]的伪装系统坏掉了！"))
 			//tell the ghosts
-			notify_ghosts(header = "Last Human", message = "There is only one person left: [last_living_human.real_name]!", source = last_living_human, action = NOTIFY_ORBIT)
+			notify_ghosts(header = "最后的人类", message = "只剩最后一人：[last_living_human.real_name]！", source = last_living_human, action = NOTIFY_ORBIT)
 
 	var/death_message = species.death_message
 	if(HAS_TRAIT(src, TRAIT_HARDCORE))
-		death_message = "valiantly falls to the ground, dead, unable to continue."
+		death_message = "英勇地倒在地上，生命已逝，再也无法继续。"
 
 	. = ..(cause, gibbed, death_message, should_deathmessage)
 

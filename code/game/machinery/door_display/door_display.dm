@@ -7,10 +7,10 @@
 //  Programmer: Veryinky
 /////////////////////////////////////////////////////////////////////////////////////////////////
 /obj/structure/machinery/door_display
-	name = "Door Display"
+	name = "舱门显示器"
 	icon = 'icons/obj/structures/machinery/status_display.dmi'
 	icon_state = "frame"
-	desc = "A remote control for a door."
+	desc = "用于远程控制舱门的装置。"
 	anchored = TRUE // can't pick it up
 	density = FALSE // can walk through it.
 	var/open = 0 // If door should be open.
@@ -83,18 +83,18 @@
 /obj/structure/machinery/door_display/proc/display_contents(mob/user as mob)
 	var/data = "<HTML><BODY><TT>"
 
-	data += "<HR>Linked Door:</hr>"
+	data += "<HR>关联舱门：</hr>"
 	data += " <b> [id]</b><br/>"
 
 	// Open/Close Door
 	if (open)
-		data += "<a href='byond://?src=\ref[src];open=0'>Close Door</a><br/>"
+		data += "<a href='byond://?src=\ref[src];open=0'>关闭舱门</a><br/>"
 	else
-		data += "<a href='byond://?src=\ref[src];open=1'>Open Door</a><br/>"
+		data += "<a href='byond://?src=\ref[src];open=1'>开启舱门</a><br/>"
 
 	data += "<br/>"
 
-	data += "<br/><a href='byond://?src=\ref[user];mach_close=computer'>Close Display</a>"
+	data += "<br/><a href='byond://?src=\ref[user];mach_close=computer'>关闭显示</a>"
 	data += "</TT></BODY></HTML>"
 
 	return data
@@ -139,9 +139,9 @@
 
 	var/display
 	if (open)
-		display = "OPEN"
+		display = "开启"
 	else
-		display = "CLOSED"
+		display = "关闭"
 
 	update_display(display)
 	return
@@ -297,7 +297,7 @@
 /obj/structure/machinery/door_display/research_cell/attack_hand(mob/user)
 	. = ..()
 	if(!allowed(user))
-		to_chat(user, SPAN_WARNING("Access denied!"))
+		to_chat(user, SPAN_WARNING("拒绝访问！"))
 
 	tgui_interact(user)
 

@@ -117,7 +117,7 @@ const GeneralInfo = (props) => {
 const WeaponInfo = (props) => {
   const { data } = useBackend();
   return (
-    <Section title="Weapon Info">
+    <Section title="武器信息">
       <Recoil />
       <Scatter />
       <Firerate />
@@ -131,7 +131,7 @@ const Recoil = (props) => {
   return (
     <>
       <ProgressBar value={recoil / recoil_max} ranges={GreedRedRange}>
-        Wielded recoil: {recoil} / {recoil_max}
+        双手握持后坐力： {recoil} / {recoil_max}
       </ProgressBar>
       {!two_handed_only ? (
         <>
@@ -140,7 +140,7 @@ const Recoil = (props) => {
             value={unwielded_recoil / recoil_max}
             ranges={GreedRedRange}
           >
-            Unwielded recoil: {unwielded_recoil} / {recoil_max}
+            单手持用后坐力： {unwielded_recoil} / {recoil_max}
           </ProgressBar>
         </>
       ) : null}
@@ -161,7 +161,7 @@ const Scatter = (props) => {
   return (
     <>
       <ProgressBar value={scatter / scatter_max} ranges={GreedRedRange}>
-        Wielded scatter: {scatter} / {scatter_max}
+        双手握持散布： {scatter} / {scatter_max}
       </ProgressBar>
       {!two_handed_only ? (
         <>
@@ -170,14 +170,14 @@ const Scatter = (props) => {
             value={unwielded_scatter / scatter_max}
             ranges={GreedRedRange}
           >
-            Unwielded scatter: {unwielded_scatter} / {scatter_max}
+            单手持用散布： {unwielded_scatter} / {scatter_max}
           </ProgressBar>
           <Box height="5px" />
           <ProgressBar
             value={burst_scatter / scatter_max}
             ranges={GreedRedRange}
           >
-            Burst scatter multiplier: {burst_scatter} / {scatter_max}
+            点射散布倍率： {burst_scatter} / {scatter_max}
           </ProgressBar>
         </>
       ) : null}
@@ -199,16 +199,16 @@ const Firerate = (props) => {
   return (
     <>
       <ProgressBar value={firerate / firerate_max} ranges={RedGreenRange}>
-        Single fire: {firerate}rpm, {firerate_second} per second
+        单发射速：{firerate}发/分，每秒{firerate_second}发
       </ProgressBar>
       <Box height="5px" />
       <ProgressBar value={burst_firerate / firerate_max} ranges={RedGreenRange}>
-        Burst fire: {burst_firerate}rpm, {burst_firerate_second} per second
+        点射射速：{burst_firerate}发/分，每秒{burst_firerate_second}发
       </ProgressBar>
       <Box height="5px" />
       {burst_amount > 1 ? (
         <ProgressBar value={burst_amount / 6}>
-          Shots per burst: {burst_amount}
+          每次点射发数： {burst_amount}
         </ProgressBar>
       ) : null}
     </>
@@ -219,8 +219,8 @@ const AmmoInfo = (props) => {
   const { data } = useBackend();
   const { ammo_name } = data;
   return (
-    <Section title="Ammo Info">
-      <Box textAlign="center">Loaded ammo: {ammo_name}</Box>
+    <Section title="弹药信息">
+      <Box textAlign="center">已装填弹药： {ammo_name}</Box>
       <Box height="5px" />
       <Damage />
       <Accuracy />
@@ -235,7 +235,7 @@ const Damage = (props) => {
   const { damage, damage_max } = data;
   return (
     <>
-      <ProgressBar value={damage / damage_max}>Damage: {damage}</ProgressBar>
+      <ProgressBar value={damage / damage_max}>伤害：{damage}</ProgressBar>
       <Box height="5px" />
     </>
   );
@@ -253,7 +253,7 @@ const Accuracy = (props) => {
   return (
     <>
       <ProgressBar value={accuracy / accuracy_max} ranges={RedGreenRange}>
-        Wielded accurate range: {accuracy} / {accuracy_max}
+        双手握持精准射程： {accuracy} / {accuracy_max}
       </ProgressBar>
       {!two_handed_only ? (
         <>
@@ -262,7 +262,7 @@ const Accuracy = (props) => {
             value={unwielded_accuracy / accuracy_max}
             ranges={RedGreenRange}
           >
-            Unwielded accurate range: {unwielded_accuracy} / {accuracy_max}
+            单手持用精准射程： {unwielded_accuracy} / {accuracy_max}
           </ProgressBar>
         </>
       ) : null}
@@ -270,7 +270,7 @@ const Accuracy = (props) => {
         <>
           <Box height="5px" />
           <ProgressBar value={min_accuracy / accuracy_max}>
-            Minimum accurate range: {min_accuracy}
+            最小精准射程： {min_accuracy}
           </ProgressBar>
         </>
       ) : null}
@@ -292,18 +292,18 @@ const Range = (props) => {
   return (
     <>
       <ProgressBar value={max_range / range_max} ranges={RedGreenRange}>
-        Max range: {max_range} / {range_max}
+        最大射程： {max_range} / {range_max}
       </ProgressBar>
       <Box height="5px" />
       <ProgressBar
         value={effective_range / effective_range_max}
         ranges={RedGreenRange}
       >
-        Effective range: {effective_range}
+        有效射程： {effective_range}
       </ProgressBar>
       <Box height="5px" />
       <ProgressBar value={falloff / falloff_max} ranges={GreedRedRange}>
-        Falloff: {falloff} / {falloff_max}
+        伤害衰减： {falloff} / {falloff_max}
       </ProgressBar>
       <Box height="5px" />
     </>
@@ -316,7 +316,7 @@ const ArmourPen = (props) => {
   return (
     <>
       <ProgressBar value={penetration / penetration_max} ranges={RedGreenRange}>
-        Armour penetration: {penetration} / {penetration_max}
+        护甲穿透： {penetration} / {penetration_max}
       </ProgressBar>
       <Box height="5px" />
     </>
@@ -331,11 +331,11 @@ const DamageTable = (props) => {
     damage_armor_profile_headers,
   } = data;
   return (
-    <Section title="Damage table">
+    <Section title="伤害表">
       <Table>
         <Table.Row>
           <Table.Cell bold textAlign="left">
-            Armour Value
+            护甲值
           </Table.Cell>
           {map(damage_armor_profile_headers, (entry, i) => (
             <Table.Cell bold key={i}>
@@ -344,13 +344,13 @@ const DamageTable = (props) => {
           ))}
         </Table.Row>
         <Table.Row>
-          <Table.Cell textAlign="left">Bioform</Table.Cell>
+          <Table.Cell textAlign="left">异形生物</Table.Cell>
           {map(damage_armor_profile_xeno, (entry, i) => (
             <Table.Cell key={i}>{entry}</Table.Cell>
           ))}
         </Table.Row>
         <Table.Row>
-          <Table.Cell textAlign="left">Humanoid</Table.Cell>
+          <Table.Cell textAlign="left">人形生物</Table.Cell>
           {map(damage_armor_profile_marine, (entry, i) => (
             <Table.Cell key={i}>{entry}</Table.Cell>
           ))}

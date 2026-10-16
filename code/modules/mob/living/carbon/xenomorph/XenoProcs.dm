@@ -41,29 +41,29 @@
 /mob/living/carbon/xenomorph/get_status_tab_items()
 	. = ..()
 
-	. += "Name: [name]"
+	. += "名称：[name]"
 
 	. += ""
 
-	. += "Health: [floor(health)]/[floor(maxHealth)]"
-	. += "Armor: [floor(0.01*armor_integrity*armor_deflection)+(armor_deflection_buff-armor_deflection_debuff)]/[floor(armor_deflection)]"
-	. += "Plasma: [floor(plasma_stored)]/[floor(plasma_max)]"
-	. += "Slash Damage: [floor((melee_damage_lower+melee_damage_upper)/2)]"
+	. += "生命值：[floor(health)]/[floor(maxHealth)]"
+	. += "护甲：[floor(0.01*armor_integrity*armor_deflection)+(armor_deflection_buff-armor_deflection_debuff)]/[floor(armor_deflection)]"
+	. += "等离子体：[floor(plasma_stored)]/[floor(plasma_max)]"
+	. += "抓挠伤害：[floor((melee_damage_lower+melee_damage_upper)/2)]"
 
 	var/shieldtotal = 0
 	for (var/datum/xeno_shield/XS in xeno_shields)
 		shieldtotal += XS.amount
 
-	. += "Shield: [shieldtotal]"
+	. += "护盾：[shieldtotal]"
 
 	if(selected_ability)
 		. += ""
-		. += "Selected Ability: [selected_ability.name]"
+		. += "已选技能：[selected_ability.get_display_name()]"
 		if(selected_ability.charges != NO_ACTION_CHARGES)
-			. += "Charges Left: [selected_ability.charges]"
+			. += "剩余次数：[selected_ability.charges]"
 
 		if(selected_ability.cooldown_timer_id != TIMER_ID_NULL)
-			. += "On Cooldown: [DisplayTimeText(timeleft(selected_ability.cooldown_timer_id))]"
+			. += "冷却中：[DisplayTimeText(timeleft(selected_ability.cooldown_timer_id))]"
 
 	. += ""
 
@@ -79,9 +79,9 @@
 				evolve_progress += " (NO OVIPOSITOR)"
 
 	if(evolve_progress)
-		. += "Evolve Progress: [evolve_progress]"
+		. += "演化进度：[evolve_progress]"
 	if(stored_evolution > evolution_threshold)
-		. += "Bonus Evolution: [stored_evolution - evolution_threshold]"
+		. += "额外演化能量：[stored_evolution - evolution_threshold]"
 
 	. += ""
 
@@ -100,50 +100,50 @@
 		var/msg_holder = "-"
 		if(frenzy_aura)
 			msg_holder = get_pheromone_aura_strength(frenzy_aura)
-		. += "Frenzy: [msg_holder]"
+		. += "狂暴：[msg_holder]"
 		msg_holder = "-"
 		if(warding_aura)
 			msg_holder = get_pheromone_aura_strength(warding_aura)
-		. += "Warding: [msg_holder]"
+		. += "守护：[msg_holder]"
 		msg_holder = "-"
 		if(recovery_aura)
 			msg_holder = get_pheromone_aura_strength(recovery_aura)
-		. += "Recovery: [msg_holder]"
+		. += "恢复：[msg_holder]"
 		. += ""
 
 	if(hive)
 		if(!hive.living_xeno_queen)
-			. += "Queen's Location: NO QUEEN"
+			. += "女皇位置：无女皇"
 		else if(!(caste_type == XENO_CASTE_QUEEN))
-			. += "Queen's Location: [hive.living_xeno_queen.loc.loc.name]"
+			. += "女皇位置：[hive.living_xeno_queen.loc.loc.name]"
 
 		if(hive.slashing_allowed == XENO_SLASH_ALLOWED)
-			. += "Slashing: PERMITTED"
+			. += "抓挠：允许"
 		else
-			. += "Slashing: FORBIDDEN"
+			. += "抓挠：禁止"
 
 		if(hive.construction_allowed == XENO_LEADER)
-			. += "Construction Placement: LEADERS"
+			. += "建筑放置权限：领袖"
 		else if(hive.construction_allowed == NORMAL_XENO)
-			. += "Construction Placement: ANYONE"
+			. += "建筑放置权限：所有同胞"
 		else if(hive.construction_allowed == XENO_NOBODY)
-			. += "Construction Placement: NOBODY"
+			. += "建筑放置权限：无人"
 		else
-			. += "Construction Placement: QUEEN"
+			. += "建筑放置权限：女皇"
 
 		if(hive.destruction_allowed == XENO_LEADER)
-			. += "Special Structure Destruction: LEADERS"
+			. += "特殊结构拆除权限：领袖"
 		else if(hive.destruction_allowed == NORMAL_XENO)
-			. += "Special Structure Destruction: BUILDERS and LEADERS"
+			. += "特殊结构拆除权限：建造者与领袖"
 		else if(hive.construction_allowed == XENO_NOBODY)
-			. += "Construction Placement: NOBODY"
+			. += "建筑放置权限：无人"
 		else
-			. += "Special Structure Destruction: QUEEN"
+			. += "特殊结构拆除权限：女皇"
 
 		if(hive.hive_orders)
-			. += "Hive Orders: [hive.hive_orders]"
+			. += "虫巢命令：[hive.hive_orders]"
 		else
-			. += "Hive Orders: -"
+			. += "虫巢命令：无"
 
 	. += ""
 
@@ -151,14 +151,14 @@
 /mob/living/carbon/xenomorph/proc/check_state(permissive = FALSE)
 	if(!permissive)
 		if(is_mob_incapacitated() || body_position == LYING_DOWN || buckled || evolving || !isturf(loc))
-			to_chat(src, SPAN_WARNING("We cannot do this in our current state."))
+			to_chat(src, SPAN_WARNING("我们现在无法这样做。"))
 			return FALSE
 		else if(caste_type != XENO_CASTE_QUEEN && observed_xeno)
-			to_chat(src, SPAN_WARNING("We cannot do this in our current state."))
+			to_chat(src, SPAN_WARNING("我们现在无法这样做。"))
 			return FALSE
 	else
 		if(is_mob_incapacitated() || buckled || evolving)
-			to_chat(src, SPAN_WARNING("We cannot do this in our current state."))
+			to_chat(src, SPAN_WARNING("我们现在无法这样做。"))
 			return FALSE
 
 	return TRUE
@@ -166,12 +166,12 @@
 //Checks your plasma levels and gives a handy message.
 /mob/living/carbon/xenomorph/proc/check_plasma(value)
 	if(stat)
-		to_chat(src, SPAN_WARNING("We cannot do this in our current state."))
+		to_chat(src, SPAN_WARNING("我们现在无法这样做。"))
 		return FALSE
 
 	if(value)
 		if(plasma_stored < value)
-			to_chat(src, SPAN_WARNING("We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored."))
+			to_chat(src, SPAN_WARNING("我们的等离子体不足。需要[value]点，目前仅储有[plasma_stored]点。"))
 			return FALSE
 	return TRUE
 
@@ -274,8 +274,8 @@
 		if(ishuman(M) && (M.dir in reverse_nearby_direction(dir)))
 			var/mob/living/carbon/human/H = M
 			if(H.check_shields(15, "the pounce")) //Human shield block.
-				visible_message(SPAN_DANGER("[src] slams into [H]!"),
-					SPAN_XENODANGER("We slam into [H]!"), null, 5)
+				visible_message(SPAN_DANGER("[src]撞上了[H]！"),
+					SPAN_XENODANGER("我们撞上了[H]！"), null, 5)
 				KnockDown(1)
 				Stun(1)
 				throwing = FALSE //Reset throwing manually.
@@ -284,28 +284,28 @@
 
 			if(isyautja(H))
 				if(H.check_shields(0, "the pounce", 1))
-					visible_message(SPAN_DANGER("[H] blocks the pounce of [src] with the combistick!"), SPAN_XENODANGER("[H] blocks our pouncing form with the combistick!"), null, 5)
+					visible_message(SPAN_DANGER("[H]用组合长矛挡住了[src]的扑击！"), SPAN_XENODANGER("[H]用组合长矛挡住了我们的扑击！"), null, 5)
 					apply_effect(3, WEAKEN)
 					throwing = FALSE
 					playsound(H, "bonk", 75, FALSE)
 					return
 				else if(prob(75)) //Body slam the fuck out of xenos jumping at your front.
-					visible_message(SPAN_DANGER("[H] body slams [src]!"),
-						SPAN_XENODANGER("[H] body slams us!"), null, 5)
+					visible_message(SPAN_DANGER("[H]用身体猛撞[src]！"),
+						SPAN_XENODANGER("[H]用身体猛撞我们！"), null, 5)
 					KnockDown(3)
 					Stun(3)
 					throwing = FALSE
 					return
 			if(issynth(H) && prob(80))
-				visible_message(SPAN_DANGER("[H] withstands being pounced and slams down [src]!"),
-					SPAN_XENODANGER("[H] throws us down after withstanding the pounce!"), null, 5)
+				visible_message(SPAN_DANGER("[H]扛住了扑击，将[src]摔倒在地！"),
+					SPAN_XENODANGER("[H]扛住了扑击后，将我们摔倒在地！"), null, 5)
 				KnockDown(3.5)
 				Stun(3.5)
 				throwing = FALSE
 				return
 
 
-	visible_message(SPAN_DANGER("[src] [pounceAction.ability_name] onto [M]!"), SPAN_XENODANGER("We [pounceAction.ability_name] onto [M]!"), null, 5)
+	visible_message(SPAN_DANGER("[src]以[pounceAction.get_display_name()]扑向[M]！"), SPAN_XENODANGER("我们以[pounceAction.get_display_name()]扑向[M]！"), null, 5)
 
 	if (pounceAction.knockdown)
 		M.KnockDown(pounceAction.knockdown_duration)
@@ -341,7 +341,7 @@
 	if (pounceAction.should_destroy_objects)
 		if(istype(O, /obj/structure/surface/table) || istype(O, /obj/structure/surface/rack) || istype(O, /obj/structure/window_frame))
 			var/obj/structure/S = O
-			visible_message(SPAN_DANGER("[src] plows straight through [S]!"), null, null, 5)
+			visible_message(SPAN_DANGER("[src]径直冲穿了[S]！"), null, null, 5)
 			S.deconstruct(FALSE) //We want to continue moving, so we do not reset throwing.
 		else
 			O.hitby(src) //This resets throwing.
@@ -393,15 +393,15 @@
 			victim.acid_damage = 0
 			victim.forceMove(get_true_turf(loc))
 
-			visible_message(SPAN_XENOWARNING("[src] hurls out the contents of their stomach!"), \
-			SPAN_XENOWARNING("We hurl out the contents of our stomach!"), null, 5)
+			visible_message(SPAN_XENOWARNING("[src]把胃里的东西吐了出来！"), \
+			SPAN_XENOWARNING("我们把胃里的东西吐了出来！"), null, 5)
 			playsound(get_true_location(loc), 'sound/voice/alien_drool2.ogg', 50, 1)
 			log_interact(src, victim, "[key_name(src)] regurgitated [key_name(victim)] at [get_area_name(loc)]")
 
 			if (stuns)
 				victim.adjust_effect(2, STUN)
 	else
-		to_chat(src, SPAN_WARNING("There's nothing in our belly that needs regurgitating."))
+		to_chat(src, SPAN_WARNING("我们肚子里没有需要吐出的东西。"))
 
 /mob/living/carbon/xenomorph/proc/check_alien_construction(turf/current_turf, check_blockers = TRUE, silent = FALSE, check_doors = TRUE, ignore_nest = FALSE)
 	var/has_obstacle
@@ -409,20 +409,20 @@
 		if(check_blockers && istype(O, /obj/effect/build_blocker))
 			var/obj/effect/build_blocker/bb = O
 			if(!silent)
-				to_chat(src, SPAN_WARNING("This is too close to \a [bb.linked_structure]!"))
+				to_chat(src, SPAN_WARNING("这里离[bb.linked_structure]太近了！"))
 			return
 		if(check_doors)
 			if(istype(O, /obj/structure/machinery/door))
 				if(!silent)
-					to_chat(src, SPAN_WARNING("[O] is blocking the resin! There's not enough space to build that here."))
+					to_chat(src, SPAN_WARNING("[O]挡住了树脂！这里没有足够空间建造。"))
 				return
 		if(istype(O, /obj/item/clothing/mask/facehugger))
 			if(!silent)
-				to_chat(src, SPAN_WARNING("There is a little one here already. Best move it."))
+				to_chat(src, SPAN_WARNING("这里已经有一只幼小同胞了。最好先把它移开。"))
 			return
 		if(istype(O, /obj/effect/alien/egg))
 			if(!silent)
-				to_chat(src, SPAN_WARNING("There's already an egg."))
+				to_chat(src, SPAN_WARNING("这里已经有一枚卵了。"))
 			return
 		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin))
 			has_obstacle = TRUE
@@ -454,7 +454,7 @@
 
 	if(current_turf.density || has_obstacle)
 		if(!silent)
-			to_chat(src, SPAN_WARNING("There's something built here already."))
+			to_chat(src, SPAN_WARNING("这里已经建造了其他东西。"))
 		return
 
 	return TRUE
@@ -464,7 +464,7 @@
 	if(istype(F))
 		var/turf/TU = loc
 		if(!isturf(TU) || TU.density)
-			to_chat(src, SPAN_WARNING("You decide not to drop [F] after all."))
+			to_chat(src, SPAN_WARNING("你最终决定不放下[F]。"))
 			return
 
 	. = ..()
@@ -502,11 +502,11 @@
 	if(!Q || !Q.ovipositor || hive_pos == NORMAL_XENO || !Q.current_aura || Q.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
 		leader_aura_strength = 0
 		leader_current_aura = ""
-		to_chat(src, SPAN_XENOWARNING("Our pheromones wane. The Queen is no longer granting us her pheromones."))
+		to_chat(src, SPAN_XENOWARNING("我们的信息素消退了。女皇不再向我们提供她的信息素。"))
 	else
 		leader_aura_strength = Q.aura_strength
 		leader_current_aura = Q.current_aura
-		to_chat(src, SPAN_XENOWARNING("Our pheromones have changed. The Queen has new plans for the Hive."))
+		to_chat(src, SPAN_XENOWARNING("我们的信息素发生了变化。女皇对虫巢有了新的计划。"))
 	hud_set_pheromone()
 
 /mob/living/carbon/xenomorph/proc/nocrit(wowave)
@@ -540,8 +540,8 @@
 
 // Vent Crawl
 /mob/living/carbon/xenomorph/proc/vent_crawl()
-	set name = "Crawl through Vent"
-	set desc = "Enter an air vent and crawl through the pipe system."
+	set name = "钻入通风管道"
+	set desc = "进入通风口，在管道系统中爬行。"
 	set category = "Alien"
 	if(!check_state() || !can_ventcrawl())
 		return
@@ -594,7 +594,7 @@
 		burn_amount *= 0.5
 
 	apply_damage(burn_amount, BURN)
-	to_chat(src, SPAN_DANGER("Our flesh, it melts!"))
+	to_chat(src, SPAN_DANGER("我们的血肉正在融化！"))
 	updatehealth()
 	return TRUE
 
@@ -618,12 +618,12 @@
 
 /mob/living/carbon/xenomorph/proc/start_tracking_resin_mark(obj/effect/alien/resin/marker/target)
 	if(!target)
-		to_chat(src, SPAN_XENONOTICE("This resin mark no longer exists!"))
+		to_chat(src, SPAN_XENONOTICE("这个树脂标记已不存在！"))
 		return
 	target.xenos_tracking |= src
 	tracked_marker = target
-	to_chat(src, SPAN_XENONOTICE("We start tracking the [target.mark_meaning.name] resin mark."))
-	to_chat(src, SPAN_INFO("Shift click the compass to watch the mark, alt click to stop tracking"))
+	to_chat(src, SPAN_XENONOTICE("我们开始追踪[target.mark_meaning.name]树脂标记。"))
+	to_chat(src, SPAN_INFO("按住Shift点击罗盘可观察标记，按住Alt点击可停止追踪。"))
 
 /mob/living/carbon/xenomorph/proc/stop_tracking_resin_mark(destroyed, silent = FALSE) //tracked_marker shouldnt be nulled outside this PROC!! >:C
 	if(QDELETED(src))
@@ -638,9 +638,9 @@
 	if(tracked_marker)
 		if(!silent)
 			if(destroyed)
-				to_chat(src, SPAN_XENONOTICE("The [tracked_marker.mark_meaning.name] resin mark has ceased to exist."))
+				to_chat(src, SPAN_XENONOTICE("[tracked_marker.mark_meaning.name]树脂标记已不存在。"))
 			else
-				to_chat(src, SPAN_XENONOTICE("We stop tracking the [tracked_marker.mark_meaning.name] resin mark."))
+				to_chat(src, SPAN_XENONOTICE("我们停止追踪[tracked_marker.mark_meaning.name]树脂标记。"))
 		tracked_marker.xenos_tracking -= src
 
 	tracked_marker = null
@@ -653,11 +653,11 @@
 	var/list/xeno_hands = list(get_active_hand(), get_inactive_hand())
 
 	if(!ishuman(current_mob))
-		to_chat(src, SPAN_XENONOTICE("This is not a host."))
+		to_chat(src, SPAN_XENONOTICE("这不是宿主。"))
 		return
 
 	if(current_mob.stat == DEAD)
-		to_chat(src, SPAN_XENONOTICE("This host is dead."))
+		to_chat(src, SPAN_XENONOTICE("这个宿主已经死了。"))
 		return
 
 	var/mob/living/carbon/human/host_to_nest = current_mob
@@ -669,36 +669,36 @@
 			break
 
 	if(!found_grab)
-		to_chat(src, SPAN_XENONOTICE("To nest the host here, a sure grip is needed to lift them up onto it!"))
+		to_chat(src, SPAN_XENONOTICE("要把宿主抬起固定在这里，必须先牢牢抓住对方！"))
 		return
 
 	var/turf/supplier_turf = get_turf(nest_structural_base)
 	var/obj/effect/alien/weeds/supplier_weeds = locate(/obj/effect/alien/weeds) in supplier_turf
 	if(!supplier_weeds)
-		to_chat(src, SPAN_XENOBOLDNOTICE("There are no weeds here! Nesting hosts requires any sort of weeds."))
+		to_chat(src, SPAN_XENOBOLDNOTICE("这里没有菌毯！固定宿主需要任意一种菌毯。"))
 		return
 
 	if(!supplier_turf.density)
 		var/obj/structure/window/framed/framed_window = locate(/obj/structure/window/framed/) in supplier_turf
 		if(!framed_window)
-			to_chat(src, SPAN_XENOBOLDNOTICE("Hosts need a vertical surface to be nested upon!"))
+			to_chat(src, SPAN_XENOBOLDNOTICE("需要将宿主固定在竖直表面上！"))
 			return
 
 	var/dir_to_nest = get_dir(host_to_nest, nest_structural_base)
 
 	if(!host_to_nest.Adjacent(supplier_turf))
-		to_chat(src, SPAN_XENONOTICE("The host must be directly next to the wall its being nested on!"))
+		to_chat(src, SPAN_XENONOTICE("宿主必须紧挨着要固定的墙壁！"))
 		step(host_to_nest, dir_to_nest)
 		return
 
 	if(!locate(dir_to_nest) in GLOB.cardinals)
-		to_chat(src, SPAN_XENONOTICE("The host must be directly next to the wall its being nested on!"))
+		to_chat(src, SPAN_XENONOTICE("宿主必须紧挨着要固定的墙壁！"))
 		step_to(host_to_nest, src)
 		return
 
 	for(var/obj/structure/bed/nest/preexisting_nest in get_turf(host_to_nest))
 		if(preexisting_nest.dir == dir_to_nest)
-			to_chat(src, SPAN_XENONOTICE("There is already a host nested here!"))
+			to_chat(src, SPAN_XENONOTICE("这里已经固定了一个宿主！"))
 			step_to(host_to_nest, src)
 			return
 

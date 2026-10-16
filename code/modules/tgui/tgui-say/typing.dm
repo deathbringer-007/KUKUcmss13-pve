@@ -20,12 +20,12 @@
 
 /// Whether or not to show a typing indicator when speaking. Defaults to on.
 /client/verb/typing_indicator()
-	set name = "Show/Hide Typing Indicator"
+	set name = "显示／隐藏输入指示"
 	set category = "Preferences.Chat"
-	set desc = "Toggles showing an indicator when you are typing emote or say message."
+	set desc = "切换输入动作或对话时是否显示输入指示。"
 	prefs.toggles_chat ^= SHOW_TYPING
 	prefs.save_preferences()
-	to_chat(src, "You will [(prefs.toggles_chat & SHOW_TYPING) ? "no longer" : "now"] display a typing indicator.")
+	to_chat(src, "你[(prefs.toggles_chat & SHOW_TYPING) ? "不再" : "现在会"]显示输入指示。")
 
 	if(prefs.toggles_chat & SHOW_TYPING)
 		typing_indicators = FALSE

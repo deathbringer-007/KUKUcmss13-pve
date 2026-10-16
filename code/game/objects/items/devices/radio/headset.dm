@@ -2,8 +2,8 @@
 #define HIGH_MULTIBROADCAST_COOLDOWN 3 MINUTES
 
 /obj/item/device/radio/headset
-	name = "radio headset"
-	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
+	name = "无线电耳机"
+	desc = "可戴在头上的新式模块化通讯器，能够安装加密密钥。"
 	icon_state = "generic_headset"
 	item_state = "headset"
 	matter = list("metal" = 75)
@@ -423,8 +423,8 @@
 //MARINE HEADSETS
 
 /obj/item/device/radio/headset/almayer
-	name = "marine radio headset"
-	desc = "A standard military radio headset. Bulkier than combat models."
+	name = "陆战队无线电耳机"
+	desc = "标准军用无线电耳机，比战斗型号更笨重。"
 	icon_state = "generic_headset"
 	item_state = "headset"
 	frequency = PUB_FREQ
@@ -468,24 +468,24 @@
 		to_chat(usr, SPAN_NOTICE("Recommendation successfully submitted."))
 
 /obj/item/device/radio/headset/almayer/ce
-	name = "chief engineer's headset"
-	desc = "The headset of the guy in charge of spooling engines, managing MTs, and tearing up the floor for scrap metal. Of robust and sturdy construction. Channels are as follows: :n - engineering, :v - marine command, :m - medical, :u - requisitions, :a - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad."
+	name = "总工程师耳机"
+	desc = "供负责启动引擎、管理维护技术员、拆地板找废金属的人使用的耳机，结构结实可靠。频道如下：:n - 工程，:v - 陆战队指挥，:m - 医疗，:u - 军需，:a - 阿尔法小队，:b - 布拉沃小队，:c - 查理小队，:d - 德尔塔小队。"
 	icon_state = "ce_headset"
 	initial_keys = list(/obj/item/device/encryptionkey/ce)
 	volume = RADIO_VOLUME_CRITICAL
 	multibroadcast_cooldown = LOW_MULTIBROADCAST_COOLDOWN
 
 /obj/item/device/radio/headset/almayer/cmo
-	name = "chief medical officer's headset"
-	desc = "A headset issued to the top brass of medical professionals. Channels are as follows: :m - medical, :v - marine command."
+	name = "首席医疗官耳机"
+	desc = "配发给医疗部门最高负责人的耳机。频道如下：:m - 医疗，:v - 陆战队指挥。"
 	icon_state = "cmo_headset"
 	initial_keys = list(/obj/item/device/encryptionkey/cmo)
 	volume = RADIO_VOLUME_CRITICAL
 	multibroadcast_cooldown = LOW_MULTIBROADCAST_COOLDOWN
 
 /obj/item/device/radio/headset/almayer/mt
-	name = "engineering radio headset"
-	desc = "Useful for coordinating maintenance bars and orbital bombardments. Of robust and sturdy construction. To access the engineering channel, use :n."
+	name = "工程无线电耳机"
+	desc = "适合协调用于维护的酒吧和轨道轰炸，结构结实可靠。使用 :n 进入工程频道。"
 	icon_state = "eng_headset"
 	initial_keys = list(/obj/item/device/encryptionkey/engi)
 
@@ -496,14 +496,14 @@
 	initial_keys = list(/obj/item/device/encryptionkey/req/mst)
 
 /obj/item/device/radio/headset/almayer/doc
-	name = "medical radio headset"
-	desc = "A headset used by the highly trained staff of the medbay. To access the medical channel, use :m."
+	name = "医疗无线电耳机"
+	desc = "供医务室训练有素的工作人员使用的耳机。使用 :m 进入医疗频道。"
 	icon_state = "med_headset"
 	initial_keys = list(/obj/item/device/encryptionkey/med)
 
 /obj/item/device/radio/headset/almayer/research
-	name = "researcher radio headset"
-	desc = "A headset used by medbay's skilled researchers. Channels are as follows: :m - medical, :t - intel."
+	name = "研究员无线电耳机"
+	desc = "医务室熟练研究员使用的耳机。频道如下：:m - 医疗，:t - 情报。"
 	icon_state = "med_headset"
 	initial_keys = list(/obj/item/device/encryptionkey/medres)
 
@@ -514,16 +514,16 @@
 	initial_keys = list(/obj/item/device/encryptionkey/req/ct)
 
 /obj/item/device/radio/headset/almayer/qm
-	desc = "A headset used by the quartermaster for controlling their slave(s). Channels are as follows: :u - requisitions, :v - marine command, :a - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad."
-	name = "requisition officer radio headset"
+	desc = "军需官用来指挥手下苦力的耳机。频道如下：:u - 军需，:v - 陆战队指挥，:a - 阿尔法小队，:b - 布拉沃小队，:c - 查理小队，:d - 德尔塔小队。"
+	name = "军需官无线电耳机"
 	icon_state = "ro_headset"
 	initial_keys = list(/obj/item/device/encryptionkey/qm)
 	volume = RADIO_VOLUME_CRITICAL
 	multibroadcast_cooldown = LOW_MULTIBROADCAST_COOLDOWN
 
 /obj/item/device/radio/headset/almayer/mmpo
-	name = "marine military police radio headset"
-	desc = "This is used by marine military police members. Channels are as follows: :p - military police, :v - marine command. :a - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad."
+	name = "陆战队宪兵无线电耳机"
+	desc = "陆战队宪兵使用的耳机。频道如下：:p - 宪兵，:v - 陆战队指挥，:a - 阿尔法小队，:b - 布拉沃小队，:c - 查理小队，:d - 德尔塔小队。"
 	icon_state = "sec_headset"
 	initial_keys = list(/obj/item/device/encryptionkey/mmpo)
 
@@ -548,15 +548,15 @@
 	)
 
 /obj/item/device/radio/headset/almayer/cmpcom
-	name = "marine chief MP radio headset"
-	desc = "For discussing the purchase of donuts and arresting of hooligans. Channels are as follows: :v - marine command, :p - military police, :n - engineering, :m - medbay, :u - requisitions, :a - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad."
+	name = "陆战队宪兵长无线电耳机"
+	desc = "用来讨论采购甜甜圈和抓捕流氓。频道如下：:v - 陆战队指挥，:p - 宪兵，:n - 工程，:m - 医疗，:u - 军需，:a - 阿尔法小队，:b - 布拉沃小队，:c - 查理小队，:d - 德尔塔小队。"
 	icon_state = "sec_headset"
 	initial_keys = list(/obj/item/device/encryptionkey/cmpcom)
 	volume = RADIO_VOLUME_CRITICAL
 
 /obj/item/device/radio/headset/almayer/mcom
-	name = "marine command radio headset"
-	desc = "Used by CIC staff and higher-ups, features a non-standard brace. Channels are as follows: :v - marine command, :a - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad, :n - engineering, :m - medbay, :u - requisitions, :j - JTAC, :t - intel."
+	name = "陆战队指挥无线电耳机"
+	desc = "供战斗情报中心人员和高层使用，配有非制式支架。频道如下：:v - 陆战队指挥，:a - 阿尔法小队，:b - 布拉沃小队，:c - 查理小队，:d - 德尔塔小队，:n - 工程，:m - 医疗，:u - 军需，:j - JTAC，:t - 情报。"
 	icon_state = "mcom_headset"
 	initial_keys = list(/obj/item/device/encryptionkey/mcom)
 	volume = RADIO_VOLUME_CRITICAL
@@ -604,8 +604,8 @@
 	initial_keys = list(/obj/item/device/encryptionkey/mcom/rep)
 
 /obj/item/device/radio/headset/almayer/mcom/cdrcom
-	name = "marine senior command headset"
-	desc = "Issued only to senior command staff. Channels are as follows: :v - marine command, :p - military police, :a - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad, :n - engineering, :m - medbay, :u - requisitions, :j - JTAC,  :t - intel"
+	name = "陆战队高级指挥耳机"
+	desc = "仅配发给高级指挥人员。频道如下：:v - 陆战队指挥，:p - 宪兵，:a - 阿尔法小队，:b - 布拉沃小队，:c - 查理小队，:d - 德尔塔小队，:n - 工程，:m - 医疗，:u - 军需，:j - JTAC，:t - 情报。"
 	icon_state = "mco_headset"
 	initial_keys = list(/obj/item/device/encryptionkey/cmpcom/cdrcom)
 	volume = RADIO_VOLUME_CRITICAL
@@ -627,8 +627,8 @@
 	)
 
 /obj/item/device/radio/headset/almayer/mcom/synth
-	name = "marine synth headset"
-	desc = "Issued only to USCM synthetics. Channels are as follows: :v - marine command, :p - military police, :a - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad, :n - engineering, :m - medbay, :u - requisitions, :j - JTAC,  :t - intel"
+	name = "陆战队合成人耳机"
+	desc = "仅配发给 USCM 合成人。频道如下：:v - 陆战队指挥，:p - 宪兵，:a - 阿尔法小队，:b - 布拉沃小队，:c - 查理小队，:d - 德尔塔小队，:n - 工程，:m - 医疗，:u - 军需，:j - JTAC，:t - 情报。"
 	icon_state = "ms_headset"
 	initial_keys = list(/obj/item/device/encryptionkey/cmpcom/synth)
 	volume = RADIO_VOLUME_CRITICAL
@@ -649,16 +649,16 @@
 	volume = RADIO_VOLUME_CRITICAL
 
 /obj/item/device/radio/headset/almayer/marine
-	name = "marine radio headset"
-	desc = "A standard marine radio headset. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队无线电耳机"
+	desc = "标准陆战队无线电耳机。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	icon_state = "generic_headset"
 	item_state = "headset"
 	frequency = ALPHA_FREQ
 
 //############################## VISIBLE HEADSETS ###############################
 /obj/item/device/radio/headset/almayer/marine/solardevils
-	name = "marine radio headset"
-	desc = "A standard marine radio headset. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队无线电耳机"
+	desc = "标准陆战队无线电耳机。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	icon_state = "uscm_headset"
 	item_state = "uscm_headset"
 	item_icons = list(
@@ -677,8 +677,8 @@
 	initial_keys = list(/obj/item/device/encryptionkey/bravo, /obj/item/device/encryptionkey/squadlead)
 
 /obj/item/device/radio/headset/almayer/marine/solardevils/forecon
-	name = "USCM SOF headset"
-	desc = "Issued exclusively to Marine Raiders and members of the USCM's Force Reconnaissance."
+	name = "USCM SOF 耳机"
+	desc = "仅配发给陆战突袭队和 USCM 武装侦察部队成员。"
 	frequency = SOF_FREQ
 	initial_keys = list(/obj/item/device/encryptionkey/soc/forecon)
 	volume = RADIO_VOLUME_QUIET
@@ -698,8 +698,8 @@
 	)
 
 /obj/item/device/radio/headset/almayer/marine/solardevils/rmc
-	name = "Royal Marine Commando headset"
-	desc = "A special headset used by the TWE's elite Royal Marine Commandos."
+	name = "皇家陆战突击队耳机"
+	desc = "TWE 精锐皇家陆战突击队使用的专用耳机。"
 	icon_state = "rmc_headset"
 	item_state = "rmc_headset"
 	minimap_type = MINIMAP_FLAG_TWE
@@ -716,8 +716,8 @@
 	frequency = CRYO_FREQ
 
 /obj/item/device/radio/headset/almayer/marine/solardevils/upp
-	name = "UPP Naval Infantry headset"
-	desc = "A special headset used by UPP military."
+	name = "UPP 海军步兵耳机"
+	desc = "UPP 军方使用的专用耳机。"
 	icon_state = "upp_headset"
 	item_state = "upp_headset"
 	frequency = UPP_FREQ
@@ -772,118 +772,118 @@
 
 //############################## ALPHA ###############################
 /obj/item/device/radio/headset/almayer/marine/alpha
-	name = "marine alpha radio headset"
-	desc = "This is used by Alpha squad members. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队阿尔法无线电耳机"
+	desc = "阿尔法小队成员使用的耳机。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	icon_state = "alpha_headset"
 	frequency = ALPHA_FREQ //default frequency is alpha squad channel, not PUB_FREQ
 
 /obj/item/device/radio/headset/almayer/marine/alpha/lead
-	name = "marine alpha leader radio headset"
-	desc = "This is used by the marine Alpha squad leader. Channels are as follows: :v - marine command, :j - JTAC. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队阿尔法小队长无线电耳机"
+	desc = "陆战队阿尔法小队长使用的耳机。频道如下：:v - 陆战队指挥，:j - JTAC。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/squadlead)
 	volume = RADIO_VOLUME_CRITICAL
 
 /obj/item/device/radio/headset/almayer/marine/alpha/tl
-	name = "marine alpha team leader radio headset"
-	desc = "This is used by the marine Alpha team leader. Channels are as follows: :u - requisitions, :j - JTAC. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队阿尔法战斗组长无线电耳机"
+	desc = "陆战队阿尔法小队战斗组长使用的耳机。频道如下：:u - 军需，:j - JTAC。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/jtac)
 	volume = RADIO_VOLUME_RAISED
 
 /obj/item/device/radio/headset/almayer/marine/alpha/engi
-	name = "marine alpha engineer radio headset"
-	desc = "This is used by the marine Alpha combat engineers. To access the engineering channel, use :n. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队阿尔法工兵无线电耳机"
+	desc = "陆战队阿尔法小队战斗工兵使用的耳机。使用 :n 进入工程频道。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/engi)
 
 /obj/item/device/radio/headset/almayer/marine/alpha/med
-	name = "marine alpha corpsman radio headset"
-	desc = "This is used by the marine Alpha combat medics. To access the medical channel, use :m. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队阿尔法医疗兵无线电耳机"
+	desc = "陆战队阿尔法小队战斗医疗兵使用的耳机。使用 :m 进入医疗频道。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/med)
 
 //############################## BRAVO ###############################
 /obj/item/device/radio/headset/almayer/marine/bravo
-	name = "marine bravo radio headset"
-	desc = "This is used by Bravo squad members. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队布拉沃无线电耳机"
+	desc = "布拉沃小队成员使用的耳机。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	icon_state = "bravo_headset"
 	frequency = BRAVO_FREQ
 
 /obj/item/device/radio/headset/almayer/marine/bravo/lead
-	name = "marine bravo leader radio headset"
-	desc = "This is used by the marine Bravo squad leader. Channels are as follows: :v - marine command, :j - JTAC. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队布拉沃小队长无线电耳机"
+	desc = "陆战队布拉沃小队长使用的耳机。频道如下：:v - 陆战队指挥，:j - JTAC。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/squadlead)
 	volume = RADIO_VOLUME_CRITICAL
 
 /obj/item/device/radio/headset/almayer/marine/bravo/tl
-	name = "marine bravo team leader radio headset"
-	desc = "This is used by the marine Bravo team leader. Channels are as follows: :u - requisitions, :j - JTAC. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队布拉沃战斗组长无线电耳机"
+	desc = "陆战队布拉沃小队战斗组长使用的耳机。频道如下：:u - 军需，:j - JTAC。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/jtac)
 	volume = RADIO_VOLUME_RAISED
 
 /obj/item/device/radio/headset/almayer/marine/bravo/engi
-	name = "marine bravo engineer radio headset"
-	desc = "This is used by the marine Bravo combat engineers. To access the engineering channel, use :n. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队布拉沃工兵无线电耳机"
+	desc = "陆战队布拉沃小队战斗工兵使用的耳机。使用 :n 进入工程频道。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/engi)
 
 /obj/item/device/radio/headset/almayer/marine/bravo/med
-	name = "marine bravo corpsman radio headset"
-	desc = "This is used by the marine Bravo combat medics. To access the medical channel, use :m. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队布拉沃医疗兵无线电耳机"
+	desc = "陆战队布拉沃小队战斗医疗兵使用的耳机。使用 :m 进入医疗频道。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/med)
 
 //############################## CHARLIE ###############################
 /obj/item/device/radio/headset/almayer/marine/charlie
-	name = "marine charlie radio headset"
-	desc = "This is used by Charlie squad members. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队查理无线电耳机"
+	desc = "查理小队成员使用的耳机。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	icon_state = "charlie_headset"
 	frequency = CHARLIE_FREQ
 
 /obj/item/device/radio/headset/almayer/marine/charlie/lead
-	name = "marine charlie leader radio headset"
-	desc = "This is used by the marine Charlie squad leader. Channels are as follows: :v - marine command, :j - JTAC. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队查理小队长无线电耳机"
+	desc = "陆战队查理小队长使用的耳机。频道如下：:v - 陆战队指挥，:j - JTAC。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/squadlead)
 	volume = RADIO_VOLUME_CRITICAL
 
 /obj/item/device/radio/headset/almayer/marine/charlie/tl
-	name = "marine charlie team leader radio headset"
-	desc = "This is used by the marine Charlie team leader. Channels are as follows: :u - requisitions, :j - JTAC. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队查理战斗组长无线电耳机"
+	desc = "陆战队查理小队战斗组长使用的耳机。频道如下：:u - 军需，:j - JTAC。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/jtac)
 	volume = RADIO_VOLUME_RAISED
 
 /obj/item/device/radio/headset/almayer/marine/charlie/engi
-	name = "marine charlie engineer radio headset"
-	desc = "This is used by the marine Charlie combat engineers. To access the engineering channel, use :n. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队查理工兵无线电耳机"
+	desc = "陆战队查理小队战斗工兵使用的耳机。使用 :n 进入工程频道。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/engi)
 
 /obj/item/device/radio/headset/almayer/marine/charlie/med
-	name = "marine charlie corpsman radio headset"
-	desc = "This is used by the marine Charlie combat medics. To access the medical channel, use :m. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队查理医疗兵无线电耳机"
+	desc = "陆战队查理小队战斗医疗兵使用的耳机。使用 :m 进入医疗频道。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/med)
 
 //############################## DELTA ###############################
 /obj/item/device/radio/headset/almayer/marine/delta
-	name = "marine delta radio headset"
-	desc = "This is used by Delta squad members. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队德尔塔无线电耳机"
+	desc = "德尔塔小队成员使用的耳机。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	icon_state = "delta_headset"
 	frequency = DELTA_FREQ
 
 /obj/item/device/radio/headset/almayer/marine/delta/lead
-	name = "marine delta leader radio headset"
-	desc = "This is used by the marine Delta squad leader. Channels are as follows: :v - marine command, :j - JTAC. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队德尔塔小队长无线电耳机"
+	desc = "陆战队德尔塔小队长使用的耳机。频道如下：:v - 陆战队指挥，:j - JTAC。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/squadlead)
 	volume = RADIO_VOLUME_CRITICAL
 
 /obj/item/device/radio/headset/almayer/marine/delta/tl
-	name = "marine delta team leader radio headset"
-	desc = "This is used by the marine Delta team leader. Channels are as follows: :u - requisitions, :j - JTAC. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队德尔塔战斗组长无线电耳机"
+	desc = "陆战队德尔塔小队战斗组长使用的耳机。频道如下：:u - 军需，:j - JTAC。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/jtac)
 	volume = RADIO_VOLUME_RAISED
 
 /obj/item/device/radio/headset/almayer/marine/delta/engi
-	name = "marine delta engineer radio headset"
-	desc = "This is used by the marine Delta combat engineers. To access the engineering channel, use :n. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队德尔塔工兵无线电耳机"
+	desc = "陆战队德尔塔小队战斗工兵使用的耳机。使用 :n 进入工程频道。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/engi)
 
 /obj/item/device/radio/headset/almayer/marine/delta/med
-	name = "marine delta corpsman radio headset"
-	desc = "This is used by the marine Delta combat medics. To access the medical channel, use :m. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	name = "陆战队德尔塔医疗兵无线电耳机"
+	desc = "陆战队德尔塔小队战斗医疗兵使用的耳机。使用 :m 进入医疗频道。佩戴后可使用小队长追踪器，空手点击追踪器可打开小队信息窗口。"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/med)
 
 //############################## ECHO ###############################
@@ -1020,8 +1020,8 @@
 //Distress (ERT) headsets.
 
 /obj/item/device/radio/headset/distress
-	name = "colony headset"
-	desc = "A standard headset used by colonists."
+	name = "殖民地耳机"
+	desc = "殖民者使用的标准耳机。"
 	frequency = COLONY_FREQ
 
 /obj/item/device/radio/headset/distress/WY
@@ -1031,15 +1031,15 @@
 	initial_keys = list(/obj/item/device/encryptionkey/colony, /obj/item/device/encryptionkey/WY)
 
 /obj/item/device/radio/headset/distress/dutch
-	name = "Dutch's Dozen headset"
-	desc = "A special headset used by small groups of trained operatives. Or terrorists. To access the colony channel, use :h."
+	name = "达奇十二人组耳机"
+	desc = "小队受训行动人员使用的专用耳机，也可能是恐怖分子使用的。用 :h 进入殖民地频道。"
 	frequency = DUT_FREQ
 	initial_keys = list(/obj/item/device/encryptionkey/colony)
 	ignore_z = TRUE
 
 /obj/item/device/radio/headset/distress/pmc
-	name = "PMC headset"
-	desc = "A special headset used by corporate personnel. Channels are as follows: :g - public, :v - marine command, :a - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad, :n - engineering, :m - medbay, :u - requisitions, :j - JTAC, :t - intel, :y - Corporate."
+	name = "PMC 耳机"
+	desc = "公司人员使用的专用耳机。频道如下：:g - 公共，:v - 陆战队指挥，:a - 阿尔法小队，:b - 布拉沃小队，:c - 查理小队，:d - 德尔塔小队，:n - 工程，:m - 医疗，:u - 军需，:j - JTAC，:t - 情报，:y - 公司。"
 	frequency = PMC_FREQ
 	icon_state = "pmc_headset"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/mcom/cl)
@@ -1053,7 +1053,7 @@
 	)
 
 /obj/item/device/radio/headset/distress/pmc/platoon
-	desc = "A special headset used by corporate PMCs.  Channels are as follows: #p - general, #y - WY."
+	desc = "公司私人军事承包商使用的专用耳机。频道如下：#p - 通用，#y - 维兰德-汤谷。"
 	initial_keys = list(/obj/item/device/encryptionkey/pmc)
 	locate_setting = TRACKER_SL
 	inbuilt_tracking_options = list(
@@ -1100,7 +1100,7 @@
 	has_hud = TRUE
 
 /obj/item/device/radio/headset/distress/pmc/hvh
-	desc = "A special headset used by corporate personnel. Channels are as follows: :o - colony."
+	desc = "公司人员使用的专用耳机。频道如下：:o - 殖民地。"
 	initial_keys = list(/obj/item/device/encryptionkey/colony, /obj/item/device/encryptionkey/WY)
 	misc_tracking = FALSE
 

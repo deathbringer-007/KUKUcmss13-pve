@@ -103,7 +103,7 @@
 	user.remove_temp_pass_flags(PASS_MOB_THRU|PASS_OVER_THROW_MOB)
 
 	if(blocker)
-		to_chat(user, SPAN_WARNING("\The [blocker]挡住了你，无法攀爬[src]。"))
+		to_chat(user, SPAN_WARNING("[blocker]挡住了你，无法攀爬[src]。"))
 		return FALSE
 
 	return TRUE
@@ -117,7 +117,7 @@
 	var/final_climb_delay = climbdata["climb_delay"] //so it doesn't set structure's climb_delay to permanently be modified
 
 	var/climb_over_string = final_climb_delay < 1 SECONDS ? "翻越" : "爬上"
-	user.visible_message(SPAN_WARNING("[user]开始[flags_atom & ON_BORDER ? "跃过" : climb_over_string]\the [src]！"))
+	user.visible_message(SPAN_WARNING("[user]开始[flags_atom & ON_BORDER ? "跃过" : climb_over_string][src]！"))
 
 	if(!do_after(user, final_climb_delay, INTERRUPT_NO_NEEDHAND, BUSY_ICON_GENERIC, numticks = 2))
 		return
@@ -131,11 +131,11 @@
 		if(user.loc == TT)
 			TT = get_turf(src)
 
-	var/climb_string = final_climb_delay < 1 SECONDS ? "[user]翻越了\the [src]！" : "[user]爬上了\the [src]！"
+	var/climb_string = final_climb_delay < 1 SECONDS ? "[user]翻越了[src]！" : "[user]爬上了[src]！"
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(skillcheck(H, SKILL_ENDURANCE, SKILL_ENDURANCE_MASTER))
-			climb_string = "[user]战术性地翻越了\the [src]！"
+			climb_string = "[user]战术性地翻越了[src]！"
 	user.visible_message(SPAN_WARNING(climb_string))
 
 	var/list/grabbed_things = list()
@@ -154,7 +154,7 @@
 			return //No spamming this on people.
 
 		M.apply_effect(5, WEAKEN)
-		to_chat(M, SPAN_WARNING("脚下的\the [src]发生移动，你摔倒了！"))
+		to_chat(M, SPAN_WARNING("脚下的[src]发生移动，你摔倒了！"))
 
 		if(prob(25))
 

@@ -53,7 +53,7 @@ const MaterialsData = (props) => {
   } = data;
 
   return (
-    <Section title="Materials">
+    <Section title="材料">
       <Flex direction="row" grow>
         {Object.keys(materials).map((category) => (
           <Flex.Item key={category} grow>
@@ -62,8 +62,9 @@ const MaterialsData = (props) => {
               value={materials[category] / capacity[category]}
             >
               <Box textAlign="center">
-                {capitalize(category)}: {materials[category]}/
-                {capacity[category]}
+                {{ metal: '金属', glass: '玻璃' }[category] ??
+                  capitalize(category)}
+                : {materials[category]}/{capacity[category]}
               </Box>
             </ProgressBar>
           </Flex.Item>
@@ -79,7 +80,7 @@ const CurrentlyMaking = (props) => {
   const { currently_making } = data;
 
   const MakingName =
-    'Currently making:' +
+    '正在制造：' +
     capitalize(currently_making.name) +
     (currently_making.multiplier > 1
       ? ' (x' + currently_making.multiplier + ')'
@@ -107,7 +108,7 @@ const QueueList = (props) => {
   } = data;
 
   return (
-    <Section title="Queue">
+    <Section title="制造队列">
       <Flex direction="column">
         {queued.map((item, index) => (
           <Flex.Item key={index}>
@@ -124,7 +125,7 @@ const QueueList = (props) => {
               <Flex.Item>
                 <Button
                   icon="xmark"
-                  tooltip="Remove"
+                  tooltip="移除"
                   onClick={() =>
                     act('cancel', {
                       index: item.index,
@@ -184,7 +185,19 @@ const PrintablesSection = (props) => {
                   onClick={() => setCategory(val)}
                   key={val}
                 >
-                  {val}
+                  {{
+                    All: '全部',
+                    General: '通用',
+                    Tools: '工具',
+                    Engineering: '工程',
+                    Surgery: '手术',
+                    Glassware: '玻璃器皿',
+                    'Devices and Components': '设备与组件',
+                    Explosives: '爆炸物',
+                    Medical: '医疗',
+                    Injectors: '注射器',
+                    'Medical Containers': '医疗容器',
+                  }[val] ?? val}
                 </Tabs.Tab>
               ))}
             </Tabs>
@@ -194,7 +207,7 @@ const PrintablesSection = (props) => {
           <Input
             fluid
             value={currentSearch}
-            placeholder="Search for an item"
+            placeholder="搜索物品"
             onInput={(e, value) => setSearch(value.toLowerCase())}
           />
         </Stack.Item>

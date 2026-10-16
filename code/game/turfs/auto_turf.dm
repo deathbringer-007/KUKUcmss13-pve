@@ -1,5 +1,5 @@
 /turf/open/auto_turf
-	name = "auto-sand"
+	name = "沙地"
 	icon = 'icons/turf/floors/auto_sand.dmi'
 	icon_state = "sand_1"//editor icon
 	is_groundmap_turf = TRUE
@@ -134,7 +134,7 @@
 
 //Ice Colony permafrost
 /turf/open/auto_turf/ice
-	name = "auto-ice"
+	name = "冰面"
 	icon = 'icons/turf/floors/auto_ice.dmi'
 	icon_state = "ice_0"
 	icon_prefix = "ice"
@@ -160,7 +160,7 @@
 //Ice colony snow
 /turf/open/auto_turf/snow
 	scorchable = TRUE
-	name = "auto-snow"
+	name = "雪地"
 	icon = 'icons/turf/floors/snow2.dmi'
 	icon_state = "snow_0"
 	icon_prefix = "snow"
@@ -183,14 +183,14 @@
 	if(istype(I, /obj/item/lightstick))
 		var/obj/item/lightstick/L = I
 		if(locate(/obj/item/lightstick) in get_turf(src))
-			to_chat(user, "There's already \a [L] at this position!")
+			to_chat(user, "这里已经有[L]了！")
 			return
 
-		to_chat(user, "Now planting \the [L].")
+		to_chat(user, "现在开始种植[L]。")
 		if(!do_after(user,20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			return
 
-		user.visible_message("\blue[user.name] planted \the [L] into [src].")
+		user.visible_message("\blue[user.name]将[L]种在了[src]里。")
 		L.anchored = TRUE
 		L.icon_state = "lightstick_[L.s_color][L.anchored]"
 		user.drop_held_item()
@@ -207,7 +207,7 @@
 	if(M.a_intent == INTENT_HELP || !bleed_layer)
 		return ..()
 
-	M.visible_message(SPAN_NOTICE("[M] starts clearing out \the [src]..."), SPAN_NOTICE("You start clearing out \the [src]..."), null, 5, CHAT_TYPE_XENO_COMBAT)
+	M.visible_message(SPAN_NOTICE("[M]开始清理[src]……"), SPAN_NOTICE("你开始清理[src]……"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 
 	while(bleed_layer > 0)
@@ -217,7 +217,7 @@
 			return XENO_NO_DELAY_ACTION
 
 		if(!bleed_layer)
-			to_chat(M, SPAN_WARNING("There is nothing to clear out!"))
+			to_chat(M, SPAN_WARNING("没有需要清理的东西！"))
 			return XENO_NO_DELAY_ACTION
 
 		var/new_layer = bleed_layer - 1
@@ -236,9 +236,9 @@
 				can_stuck = 0
 			var/new_slowdown = C.next_move_slowdown + (slow_amount * bleed_layer)
 			if(prob(2))
-				to_chat(C, SPAN_WARNING("Moving through [src] slows you down.")) //Warning only
+				to_chat(C, SPAN_WARNING("穿过[src]会减慢你的速度。")) //Warning only
 			else if(can_stuck && bleed_layer == 4 && prob(2))
-				to_chat(C, SPAN_WARNING("You get stuck in [src] for a moment!"))
+				to_chat(C, SPAN_WARNING("你在[src]里短暂地陷住了！"))
 				new_slowdown += 10
 			C.next_move_slowdown = new_slowdown
 	..()
@@ -293,12 +293,12 @@
 	icon_state = "snow_b_4" //Add sorokyne rock decals to this one
 	bleed_layer = 4
 /turf/open/auto_turf/strata_grass
-	name = "matted grass"
+	name = "杂乱草地"
 	icon = 'icons/turf/floors/auto_strata_grass.dmi'
 	icon_state = "grass_0"
 	icon_prefix = "grass"
 	layer_name = list("ground","lush thick grass")
-	desc = "grass, dirt, mud, and other assorted high moisture cave flooring."
+	desc = "草、泥土、淤泥以及其他含水量很高的洞穴地面。"
 
 /turf/open/auto_turf/strata_grass/insert_self_into_baseturfs()
 	baseturfs += /turf/open/auto_turf/strata_grass/layer0

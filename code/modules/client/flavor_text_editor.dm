@@ -17,7 +17,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, "FlavorTextEditor", "Flavor Text Editor")
+		ui = new(user, src, "FlavorTextEditor", "外观描述编辑器")
 		ui.open()
 		ui.set_autoupdate(FALSE)
 

@@ -1,7 +1,7 @@
 /obj/structure/machinery/embedded_controller
 	var/datum/computer/file/embedded_program/program //the currently executing program
 
-	name = "Embedded Controller"
+	name = "嵌入式控制器"
 	anchored = TRUE
 
 	use_power = USE_POWER_IDLE

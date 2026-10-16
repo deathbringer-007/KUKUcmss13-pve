@@ -252,7 +252,7 @@
 					return
 				playsound(get_turf(target_window),'sound/effects/glassbreak3.ogg', 30, TRUE)
 				target_window.shatter_window(TRUE)
-				xeno.visible_message(SPAN_XENOWARNING("\The [xeno]用尾巴猛击窗户！"), SPAN_XENOWARNING("我们用尾巴猛击窗户！"))
+				xeno.visible_message(SPAN_XENOWARNING("[xeno]用尾巴猛击窗户！"), SPAN_XENOWARNING("我们用尾巴猛击窗户！"))
 				apply_cooldown(cooldown_modifier = 0.5)
 				return
 			if(current_structure.density && !current_structure.throwpass)
@@ -272,7 +272,7 @@
 		else
 			to_chat(xeno, SPAN_XENODANGER("我们用尾巴挥斩[hit_target]！"))
 	else
-		xeno.visible_message(SPAN_XENOWARNING("\The [xeno]挥动尾巴划过空中！"), SPAN_XENOWARNING("我们挥动尾巴划过空中！"))
+		xeno.visible_message(SPAN_XENOWARNING("[xeno]挥动尾巴划过空中！"), SPAN_XENOWARNING("我们挥动尾巴划过空中！"))
 		apply_cooldown(cooldown_modifier = 0.2)
 		playsound(xeno, 'sound/effects/alien_tail_swipe1.ogg', 50, TRUE)
 		return

@@ -42,6 +42,7 @@ interface TacMapProps {
 const PAGES = [
   {
     title: 'Live Tacmap',
+    label: '实时战术地图',
     canOpen: (data: TacMapProps) => {
       return true;
     },
@@ -53,6 +54,7 @@ const PAGES = [
   },
   {
     title: 'Map View',
+    label: '地图视图',
     canOpen: (data: TacMapProps) => {
       return true;
     },
@@ -64,6 +66,7 @@ const PAGES = [
   },
   {
     title: 'Canvas',
+    label: '画布',
     canOpen: (data: TacMapProps) => {
       return data.tacmapReady;
     },
@@ -84,6 +87,16 @@ const colorOptions = [
   'green',
   'brown',
 ];
+
+const colorLabels: Record<string, string> = {
+  black: '黑色',
+  red: '红色',
+  orange: '橙色',
+  blue: '蓝色',
+  purple: '紫色',
+  green: '绿色',
+  brown: '棕色',
+};
 
 const colors: Record<string, string> = {
   black: '#000000',
@@ -121,7 +134,7 @@ export const TacticalMap = (props) => {
               width="100%"
               fontSize="20px"
               textAlign="center"
-              title="Tactical Map Options"
+              title="战术地图选项"
             >
               <Stack fontSize="15px">
                 <Stack.Item width="100%">
@@ -143,7 +156,7 @@ export const TacticalMap = (props) => {
                               : null
                           }
                         >
-                          {page.canOpen(data) ? page.title : 'loading'}
+                          {page.canOpen(data) ? page.label : '正在载入'}
                         </Tabs.Tab>
                       );
                     })}
@@ -197,7 +210,7 @@ const OldMapPanel = (props) => {
         />
       ) : (
         <Box my="40%">
-          <h1>Unauthorized.</h1>
+          <h1>未获授权。</h1>
         </Box>
       )}
     </Section>
@@ -247,7 +260,7 @@ const DrawMapPanel = (props) => {
               className="text-center"
               onClick={() => act('updateCanvas')}
             >
-              Update Canvas
+              更新画布
             </Button>
           )) || (
             <Button
@@ -262,7 +275,7 @@ const DrawMapPanel = (props) => {
                 })
               }
             >
-              Announce
+              发布
             </Button>
           )}
         </Stack.Item>
@@ -275,7 +288,7 @@ const DrawMapPanel = (props) => {
             className="text-center"
             onClick={() => act('clearCanvas')}
           >
-            Clear Canvas
+            清空画布
           </Button>
         </Stack.Item>
         <Stack.Item grow>
@@ -287,18 +300,24 @@ const DrawMapPanel = (props) => {
             className="text-center"
             onClick={() => act('undoChange')}
           >
-            Undo
+            撤销
           </Button>
         </Stack.Item>
         <Stack.Item>
           <Dropdown
             className="TacticalMapColorPicker"
             menuWidth="15rem"
-            options={colorOptions}
+            options={colorOptions.map((value) => ({
+              value,
+              displayText: colorLabels[value] ?? value,
+            }))}
             selected={data.toolbarColorSelection}
             color={data.toolbarColorSelection}
             onSelected={(value) => act('selectColor', { color: value })}
-            displayText={data.toolbarColorSelection}
+            displayText={
+              colorLabels[data.toolbarColorSelection] ??
+              data.toolbarColorSelection
+            }
           />
         </Stack.Item>
       </Stack>
@@ -322,8 +341,7 @@ const DrawMapPanel = (props) => {
               }}
             >
               <Box textAlign="center" fontSize="15px" textColor="white">
-                {Math.ceil(data.canvasCooldown / 10)} seconds until the canvas
-                changes can be updated
+                距离允许更新画布还有{Math.ceil(data.canvasCooldown / 10)}秒
               </Box>
             </ProgressBar>
           )}

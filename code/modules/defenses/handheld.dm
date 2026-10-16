@@ -1,6 +1,6 @@
 /obj/item/defenses/handheld
-	name = "Don't see this."
-	desc = "A compact version of the USCM defenses. Designed for quick deployment of the associated type in the field."
+	name = "你不该看到这个。"
+	desc = "USCM 防御设施的紧凑版，便于在战场上快速部署对应设施。"
 	icon = 'icons/obj/structures/machinery/defenses/sentry.dmi'
 	icon_state = "DMR uac_sentry_handheld"
 
@@ -103,7 +103,7 @@
 
 // SENTRY BASE AND UPGRADES
 /obj/item/defenses/handheld/sentry
-	name = "handheld UA 571-C sentry gun"
+	name = "手提式 UA 571-C 哨戒机枪"
 	icon = 'icons/obj/structures/machinery/defenses/sentry.dmi'
 	icon_state = "Normal uac_sentry_handheld"
 	defense_type = /obj/structure/machinery/defenses/sentry
@@ -184,7 +184,7 @@
 
 // FLAMER BASE AND UPGRADES
 /obj/item/defenses/handheld/sentry/flamer
-	name = "handheld UA 42-F sentry flamer"
+	name = "手提式 UA 42-F 哨戒喷火器"
 	icon = 'icons/obj/structures/machinery/defenses/flamer.dmi'
 	icon_state = "Normal uac_flamer_handheld"
 	defense_type = /obj/structure/machinery/defenses/sentry/flamer
@@ -249,7 +249,7 @@
 
 // TESLA BASE AND UPGRADES
 /obj/item/defenses/handheld/tesla_coil
-	name = "handheld 21S tesla coil"
+	name = "手提式 21S 特斯拉线圈"
 	icon = 'icons/obj/structures/machinery/defenses/tesla.dmi'
 	icon_state = "Normal tesla_coil_handheld"
 	defense_type = /obj/structure/machinery/defenses/tesla_coil
@@ -268,12 +268,12 @@
 			return /obj/item/defenses/handheld/tesla_coil/micro
 
 /obj/item/defenses/handheld/tesla_coil/stun
-	name = "handheld 21S overclocked tesla coil"
+	name = "手提式 21S 超频特斯拉线圈"
 	icon_state = "Stun tesla_coil_handheld"
 	defense_type = /obj/structure/machinery/defenses/tesla_coil/stun
 
 /obj/item/defenses/handheld/tesla_coil/stun/rmc
-	name = "handheld L33A1 TED device"
+	name = "手提式 L33A1 TED 装置"
 	defense_type = /obj/structure/machinery/defenses/tesla_coil/stun/rmc
 
 /obj/item/defenses/handheld/tesla_coil/micro
@@ -317,7 +317,7 @@
 
 // JIMA TOWER BASE AND UPGRADES
 /obj/item/defenses/handheld/planted_flag
-	name = "handheld JIMA planted flag"
+	name = "手提式 JIMA 立式旗帜"
 	icon = 'icons/obj/structures/machinery/defenses/planted_flag.dmi'
 	icon_state = "Normal planted_flag_handheld"
 	defense_type = /obj/structure/machinery/defenses/planted_flag

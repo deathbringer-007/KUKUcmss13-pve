@@ -10,14 +10,14 @@
 	return 1000000
 
 /turf/closed/void
-	name = "void"
+	name = "虚空"
 	icon = 'icons/turf/floors/space.dmi'
 	icon_state = "black"
 	mouse_opacity = FALSE
 
 /// Cordon turf marking z-level boundaries and surrounding reservations
 /turf/closed/cordon
-	name = "world border"
+	name = "世界边界"
 	icon = 'icons/turf/shuttle.dmi'
 	icon_state = "pclosed"
 	layer = ABOVE_TURF_LAYER
@@ -25,13 +25,13 @@
 
 /// Used as placeholder turf when something went really wrong, as per /tg/ string lists handler
 /turf/closed/cordon/debug
-	name = "debug turf"
-	desc = "This turf shouldn't be here and probably result of incorrect turf replacement. Adminhelp about it or report it in an issue."
+	name = "异常地块"
+	desc = "这个地块不应出现在这里，可能是地块替换错误导致的。请通过管理员求助报告，或提交问题反馈。"
 	color = "#660088"
 	baseturfs = /turf/closed/cordon/debug
 
 /turf/closed/mineral //mineral deposits
-	name = "Rock"
+	name = "岩石"
 	icon = 'icons/turf/walls/walls.dmi'
 	icon_state = "rock"
 
@@ -47,10 +47,10 @@
 
 //Ground map dense jungle
 /turf/closed/gm
-	name = "dense jungle"
+	name = "茂密丛林"
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "wall2"
-	desc = "Some thick jungle."
+	desc = "一片茂密的丛林。"
 	baseturfs = /turf/open/gm/grass
 
 	//Not yet
@@ -61,7 +61,7 @@
 
 
 /turf/closed/gm/dense
-	name = "dense jungle wall"
+	name = "茂密丛林屏障"
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "wall2"
 
@@ -77,7 +77,7 @@
 
 //desertdam rock
 /turf/closed/desert_rock
-	name = "rockwall"
+	name = "岩壁"
 	icon = 'icons/turf/walls/cave.dmi'
 	icon_state = "cavewall1"
 
@@ -86,10 +86,10 @@
 
 //Ice Wall
 /turf/closed/ice
-	name = "dense ice wall"
+	name = "厚冰墙"
 	icon = 'icons/turf/walls/icewall.dmi'
 	icon_state = "Single"
-	desc = "It is very thick."
+	desc = "它非常厚。"
 
 /turf/closed/ice/single
 	icon_state = "Single"
@@ -111,7 +111,7 @@
 
 //Ice Secret Wall
 /turf/closed/ice/secret
-	desc = "There is something inside..."
+	desc = "里面似乎有什么东西……"
 
 /turf/closed/ice/secret/single
 	icon_state = "Single"
@@ -134,10 +134,10 @@
 
 //Ice Thin Wall
 /turf/closed/ice/thin
-	name = "thin ice wall"
+	name = "薄冰墙"
 	icon = 'icons/turf/walls/icewalllight.dmi'
 	icon_state = "Single"
-	desc = "It is very thin."
+	desc = "它非常薄。"
 	opacity = FALSE
 
 /turf/closed/ice/thin/single
@@ -160,7 +160,7 @@
 
 //Thin Ice Secret Wall
 /turf/closed/ice/thin/secret
-	desc = "There is something inside..."
+	desc = "里面似乎有什么东西……"
 
 /turf/closed/ice/thin/secret/single
 	icon_state = "Single"
@@ -185,7 +185,7 @@
 
 //Icy Rock
 /turf/closed/ice_rock
-	name = "Icy rock"
+	name = "覆冰岩石"
 	icon = 'icons/turf/walls/rockwall.dmi'
 
 /turf/closed/ice_rock/single
@@ -242,7 +242,7 @@
 //not a child of turf/closed/wall because shuttle walls are magical, don't smoothes with normal walls, etc
 
 /turf/closed/shuttle
-	name = "wall"
+	name = "墙壁"
 	icon_state = "wall1"
 	icon = 'icons/turf/shuttle.dmi'
 	layer = ABOVE_TURF_LAYER
@@ -260,7 +260,7 @@
 	icon_state = "stan4"
 
 /turf/closed/shuttle/dropship1
-	name = "\improper Alamo"
+	name = "\improper 阿拉莫号"
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 
@@ -268,7 +268,7 @@
 	opacity = FALSE
 
 /turf/closed/shuttle/dropship2
-	name = "\improper Normandy"
+	name = "\improper 诺曼底号"
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "1"
 
@@ -276,7 +276,7 @@
 	opacity = FALSE
 
 /turf/closed/shuttle/midway
-	name = "\improper Midway"
+	name = "\improper 中途岛号"
 	icon = 'icons/turf/dropship4.dmi'
 	icon_state = "1"
 
@@ -284,7 +284,7 @@
 	opacity = FALSE
 
 /turf/closed/shuttle/cyclone
-	name = "\improper Cyclone"
+	name = "\improper 旋风号"
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "1"
 
@@ -292,7 +292,7 @@
 	opacity = FALSE
 
 /turf/closed/shuttle/pmc
-	name = "\improper Cash Flow"
+	name = "\improper 现金流号"
 	icon = 'icons/turf/dropship_pmc.dmi'
 	icon_state = "1"
 
@@ -300,7 +300,7 @@
 	opacity = FALSE
 
 /turf/closed/shuttle/typhoon
-	name = "\improper Typhoon"
+	name = "\improper 台风号"
 	icon = 'icons/turf/dropship3.dmi'
 	icon_state = "1"
 
@@ -308,7 +308,7 @@
 	opacity = FALSE
 
 /turf/closed/shuttle/tornado
-	name = "\improper Tornado"
+	name = "\improper 龙卷风号"
 	icon = 'icons/turf/dropship3.dmi'
 	icon_state = "1"
 
@@ -316,7 +316,7 @@
 	opacity = FALSE
 
 /turf/closed/shuttle/tripoli
-	name = "\improper Tripoli"
+	name = "\improper 的黎波里号"
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 
@@ -332,7 +332,7 @@
 	opacity = FALSE
 
 /turf/closed/shuttle/gibraltar
-	name = "\improper Gibraltar"
+	name = "\improper 直布罗陀号"
 	icon = 'icons/turf/dropship_rmc.dmi'
 	icon_state = "1"
 
@@ -340,7 +340,7 @@
 	opacity = FALSE
 
 /turf/closed/shuttle/dropship3
-	name = "\improper Saipan"
+	name = "\improper 塞班号"
 	icon = 'icons/turf/dropship3.dmi'
 	icon_state = "1"
 
@@ -348,19 +348,19 @@
 	opacity = FALSE
 
 /turf/closed/shuttle/dropship3/tornado
-	name = "\improper Tornado"
+	name = "\improper 龙卷风号"
 
 /turf/closed/shuttle/dropship3/tornado/typhoon
-	name = "\improper Typhoon"
+	name = "\improper 台风号"
 
 /turf/closed/shuttle/escapepod
-	name = "wall"
+	name = "墙壁"
 	icon = 'icons/turf/escapepods.dmi'
 	icon_state = "wall0"
 
 /turf/closed/shuttle/lifeboat
-	name = "Lifeboat"
-	desc = "Separates you from certain death."
+	name = "救生艇"
+	desc = "将你与必死的险境隔开。"
 	icon = 'icons/turf/lifeboat.dmi'
 	icon_state = "2,0"
 
@@ -402,7 +402,7 @@
 
 // Elevator Buttons
 /turf/closed/shuttle/elevator/button
-	name = "elevator buttons"
+	name = "电梯按钮"
 
 /turf/closed/shuttle/elevator/button/research
 	icon_state = "wall_button_research"

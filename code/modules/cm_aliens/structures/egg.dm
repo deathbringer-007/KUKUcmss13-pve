@@ -3,8 +3,8 @@
  */
 
 /obj/effect/alien/egg
-	desc = "It looks like a weird egg."
-	name = "egg"
+	desc = "看起来像一枚怪异的卵。"
+	name = "异形卵"
 	icon_state = "Egg Growing"
 	density = FALSE
 	anchored = TRUE
@@ -54,25 +54,25 @@
 /obj/effect/alien/egg/get_examine_text(mob/user)
 	. = ..()
 	if(isxeno(user) && status == EGG_GROWN)
-		. += "Ctrl + Click egg to retrieve child into your empty hand if you can carry it."
+		. += "若你有能力携带幼小同胞，可按住Ctrl点击卵，将其取到空手中。"
 	if(isobserver(user) && status == EGG_GROWN)
 		var/datum/hive_status/hive = GLOB.hive_datum[hivenumber]
 		var/current_hugger_count = hive.get_current_playable_facehugger_count();
-		. += "There are currently [SPAN_NOTICE("[current_hugger_count]")] facehuggers in the hive. The hive can support a total of [SPAN_NOTICE("[hive.playable_hugger_limit]")] facehuggers at present."
+		. += "虫巢目前有[SPAN_NOTICE("[current_hugger_count]")]只抱脸虫，目前最多可容纳[SPAN_NOTICE("[hive.playable_hugger_limit]")]只。"
 
 /obj/effect/alien/egg/attack_alien(mob/living/carbon/xenomorph/M)
 	if(status == EGG_BURST || status == EGG_DESTROYED)
 		M.animation_attack_on(src)
-		M.visible_message(SPAN_XENONOTICE("[M] clears the hatched egg."), \
-		SPAN_XENONOTICE("We clear the hatched egg."))
+		M.visible_message(SPAN_XENONOTICE("[M]清除了孵化后的卵。"), \
+		SPAN_XENONOTICE("我们清除了孵化后的卵。"))
 		playsound(src.loc, "alien_resin_break", 25)
 		qdel(src)
 		return XENO_NONCOMBAT_ACTION
 
 	if(M.hivenumber != hivenumber)
 		M.animation_attack_on(src)
-		M.visible_message(SPAN_XENOWARNING("[M] crushes \the [src]"),
-			SPAN_XENOWARNING("We crush \the [src]"))
+		M.visible_message(SPAN_XENOWARNING("[M]碾碎了[src]。"),
+			SPAN_XENOWARNING("我们碾碎了[src]。"))
 		Burst(TRUE)
 		return XENO_ATTACK_ACTION
 
@@ -81,13 +81,13 @@
 
 	switch(status)
 		if(EGG_GROWING)
-			to_chat(M, SPAN_XENOWARNING("The child is not developed yet."))
+			to_chat(M, SPAN_XENOWARNING("幼小同胞尚未发育成熟。"))
 			return XENO_NO_DELAY_ACTION
 		if(EGG_GROWN)
 			if(islarva(M))
-				to_chat(M, SPAN_XENOWARNING("We nudge the egg, but nothing happens."))
+				to_chat(M, SPAN_XENOWARNING("我们轻推了一下卵，但什么也没发生。"))
 				return
-			to_chat(M, SPAN_XENONOTICE("We retrieve the child."))
+			to_chat(M, SPAN_XENONOTICE("我们取出了幼小同胞。"))
 			Burst(FALSE)
 	return XENO_NONCOMBAT_ACTION
 
@@ -172,16 +172,16 @@
 	if(istype(W,/obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/F = W
 		if(F.stat == DEAD)
-			to_chat(user, SPAN_XENOWARNING("This child is dead."))
+			to_chat(user, SPAN_XENOWARNING("这只幼小同胞已经死了。"))
 			return
 		switch(status)
 			if(EGG_BURST)
 				if(user)
-					visible_message(SPAN_XENOWARNING("[user] slides [F] back into [src]."), \
-						SPAN_XENONOTICE("We place the child back in to [src]."))
+					visible_message(SPAN_XENOWARNING("[user]将[F]塞回[src]。"), \
+						SPAN_XENONOTICE("我们将幼小同胞放回[src]。"))
 					user.temp_drop_inv_item(F)
 				else
-					visible_message(SPAN_XENOWARNING("[F] crawls back into [src]!")) //Not sure how, but let's roll with it for now.
+					visible_message(SPAN_XENOWARNING("[F]爬回了[src]！")) //Not sure how, but let's roll with it for now.
 				status = EGG_GROWN
 				icon_state = "Egg"
 
@@ -191,9 +191,9 @@
 
 				addtimer(CALLBACK(src, PROC_REF(deploy_egg_triggers)), 30 SECONDS)
 			if(EGG_DESTROYED)
-				to_chat(user, SPAN_XENOWARNING("This egg is no longer usable."))
+				to_chat(user, SPAN_XENOWARNING("这枚卵已经无法使用。"))
 			if(EGG_GROWING, EGG_GROWN)
-				to_chat(user, SPAN_XENOWARNING("This one is occupied with a child."))
+				to_chat(user, SPAN_XENOWARNING("这枚卵里已经有一只幼小同胞了。"))
 		return
 
 	if(W.flags_item & NOBLUDGEON)
@@ -201,9 +201,9 @@
 
 	user.animation_attack_on(src)
 	if(length(W.attack_verb))
-		visible_message(SPAN_DANGER("\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]"))
+		visible_message(SPAN_DANGER("[src]遭到[W]的[pick(W.attack_verb)]攻击[(user ? "，攻击者是[user]。" : "。")]"))
 	else
-		visible_message(SPAN_DANGER("\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]"))
+		visible_message(SPAN_DANGER("[src]遭到[W]的攻击[(user ? "，攻击者是[user]。" : "。")]"))
 	var/damage = W.force
 	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
@@ -241,27 +241,27 @@
 /obj/effect/alien/egg/attack_ghost(mob/dead/observer/user)
 	. = ..() //Do a view printout as needed just in case the observer doesn't want to join as a Hugger but wants info
 	if(is_mainship_level(src) && !SSticker.mode.is_in_endgame) // if we're not in hijack don't allow this
-		to_chat(user, SPAN_WARNING("The hive's influence doesn't reach that far!"))
+		to_chat(user, SPAN_WARNING("虫巢的影响力还无法抵达那里！"))
 		return
 	if(status == EGG_GROWING)
-		to_chat(user, SPAN_WARNING("\The [src] is still growing, give it some time!"))
+		to_chat(user, SPAN_WARNING("[src]仍在生长，再给它一些时间！"))
 		return
 	if(status != EGG_GROWN)
-		to_chat(user, SPAN_WARNING("\The [src] doesn't have any facehuggers to inhabit."))
+		to_chat(user, SPAN_WARNING("[src]里没有可供入住的抱脸虫。"))
 		return
 
 	if(!GLOB.hive_datum[hivenumber].can_spawn_as_hugger(user))
 		return
 	//Need to check again because time passed due to the confirmation window
 	if(status != EGG_GROWN)
-		to_chat(user, SPAN_WARNING("\The [src] doesn't have any facehuggers to inhabit."))
+		to_chat(user, SPAN_WARNING("[src]里没有可供入住的抱脸虫。"))
 		return
 	GLOB.hive_datum[hivenumber].spawn_as_hugger(user, src)
 	Burst(FALSE, FALSE, null, TRUE)
 
 //The invisible traps around the egg to tell it there's a mob right next to it.
 /obj/effect/egg_trigger
-	name = "egg trigger"
+	name = "异形卵触发器"
 	icon = 'icons/effects/effects.dmi'
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -297,8 +297,8 @@ SPECIAL EGG USED BY EGG CARRIER
 #define CARRIER_EGG_MAXIMUM_LIFE 5 MINUTES
 
 /obj/effect/alien/egg/carrier_egg
-	name = "fragile egg"
-	desc = "It looks like a weird, fragile egg."
+	name = "脆弱的异形卵"
+	desc = "看起来像一枚怪异而脆弱的卵。"
 	///Owner of the fragile egg, must be a mob/living/carbon/xenomorph/carrier
 	var/mob/living/carbon/xenomorph/carrier/owner = null
 	///Time that the carrier was last within refresh range of the egg (14 tiles)

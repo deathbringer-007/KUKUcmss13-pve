@@ -250,8 +250,8 @@
 //SODA
 
 /obj/item/reagent_container/food/drinks/cans/classcola
-	name = "\improper Coca-Cola"
-	desc = "Victor of the Cola Wars, this beverage is the most popular soft drink in the UA and much of the TWE."
+	name = "可口可乐"
+	desc = "可乐战争的胜者，也是美洲联盟和三世界帝国大部分地区最受欢迎的汽水。"
 	icon_state = "cola"
 	center_of_mass = "x=16;y=10"
 
@@ -269,8 +269,8 @@
 	reagents.add_reagent("pepsi", 30)
 
 /obj/item/reagent_container/food/drinks/cans/space_mountain_wind
-	name = "\improper Mountain Dew"
-	desc = "For the discerning gamer."
+	name = "激浪"
+	desc = "献给讲究的游戏玩家。"
 	icon_state = "space_mountain_wind"
 	center_of_mass = "x=16;y=10"
 
@@ -290,8 +290,8 @@
 	reagents.add_reagent("thirteenloko", 30)
 
 /obj/item/reagent_container/food/drinks/cans/dr_gibb
-	name = "\improper Dr Pepper"
-	desc = "A mixture of 23 different flavors, proving its not about quantity."
+	name = "胡椒博士"
+	desc = "混合了 23 种口味，证明数量并不代表质量。"
 	icon_state = "dr_gibb"
 	center_of_mass = "x=16;y=10"
 
@@ -331,8 +331,8 @@
 	reagents.add_reagent("lemon_lime", 30)
 
 /obj/item/reagent_container/food/drinks/cans/iced_tea
-	name = "Lipton iced tea"
-	desc = "It doesn't hold a candle to meemaw's sweet tea, but it does the trick in a pinch."
+	name = "立顿冰茶"
+	desc = "比不上外婆做的甜茶，但应急时也能凑合。"
 	icon_state = "ice_tea_can"
 	center_of_mass = "x=16;y=10"
 
@@ -351,8 +351,8 @@
 	reagents.add_reagent("grapejuice", 30)
 
 /obj/item/reagent_container/food/drinks/cans/tonic
-	name = "tonic water"
-	desc = "Step One: Tonic. Check. Step Two: Gin."
+	name = "汤力水"
+	desc = "第一步：汤力水，完成。第二步：金酒。"
 	icon_state = "tonic"
 	center_of_mass = "x=16;y=10"
 
@@ -361,8 +361,8 @@
 	reagents.add_reagent("tonic", 30)
 
 /obj/item/reagent_container/food/drinks/cans/sodawater
-	name = "soda water"
-	desc = "A can of soda water. Tap water's more refreshing cousin...according to those Europe-folk."
+	name = "苏打水"
+	desc = "一罐苏打水。据那些欧洲人说，这是自来水更清爽的亲戚。"
 	icon_state = "sodawater"
 	center_of_mass = "x=16;y=10"
 
@@ -373,9 +373,9 @@
 //BODA
 
 /obj/item/reagent_container/food/drinks/cans/boda
-	name = "\improper Boda"
-	desc = "State regulated soda beverage. Enjoy comrades."
-	desc_lore = "Designed back in 2159, the advertising campaign for BODA started out as an attempt by the UPP to win the hearts and minds of colonists and settlers across the galaxy. Soon after, the ubiquitous cyan vendors and large supplies of the drink began to crop up in UA warehouses with seemingly no clear origin. Despite some concerns, after initial testing determined that the stored products were safe for consumption and surprisingly popular when blind-tested with focus groups, the strange surplus of BODA was authorized for usage within the UA-associated colonies. Subsequently, it enjoyed a relative popularity before falling into obscurity in the coming decades as supplies dwindled."
+	name = "波达汽水"
+	desc = "国家监管的汽水饮料。同志们，尽情享用。"
+	desc_lore = "波达的广告宣传活动始于 2159 年，最初是进步人民联盟为了赢得银河各地殖民者和拓荒者民心而开展的尝试。不久后，随处可见的青色售货机和大批饮料开始出现在美洲联盟各处仓库，来源似乎无人知晓。尽管有人心存疑虑，但初步检测证明库存产品可以安全饮用，而且在受试小组的盲测中出乎意料地受欢迎，因此这批来历不明的波达获准在美洲联盟所属殖民地使用。此后它一度颇受欢迎，但在随后的几十年中，随着供应减少而逐渐淡出人们视野。"
 	icon_state = "boda"
 	center_of_mass = "x=16;y=10"
 
@@ -384,8 +384,8 @@
 	reagents.add_reagent("sodawater", 30)
 
 /obj/item/reagent_container/food/drinks/cans/bodaplus
-	name = "\improper Boda-Plyus"
-	desc = "State regulated soda beverage, now with added surplus flavoring. Enjoy comrades."
+	name = "波达加强型汽水"
+	desc = "国家监管的汽水饮料，现已添加过剩调味剂。同志们，尽情享用。"
 	icon_state = "blank_can"
 	center_of_mass = "x=16;y=10"
 
@@ -396,8 +396,8 @@
 //WEYLAND-YUTANI
 
 /obj/item/reagent_container/food/drinks/cans/cola
-	name = "\improper Fruit-Beer"
-	desc = "In theory, Mango flavored root beer sounds like a pretty good idea. Weyland-Yutani has disproved yet another theory with its latest line of cola. Canned by the Weyland-Yutani Corporation."
+	name = "果啤"
+	desc = "理论上，芒果味根汁汽水听起来挺不错。维兰德-汤谷用最新可乐系列再次推翻了一个理论。由维兰德-汤谷公司罐装。"
 	icon_state = "fruit_beer"
 	center_of_mass = "x=16;y=10"
 
@@ -406,8 +406,8 @@
 	reagents.add_reagent("fruit_beer", 30)
 
 /obj/item/reagent_container/food/drinks/cans/waterbottle
-	name = "\improper Mountain Spring"
-	desc = "One of the most popular brands of bottled water in UA and TWE space, thanks to aggressive marketing abroad and in-house contracting with company colonies."
+	name = "山泉"
+	desc = "凭借海外大力营销和公司殖民地内部采购合同，成为美洲联盟与三世界帝国宙域最受欢迎的瓶装水品牌之一。"
 	icon_state = "water"
 	crushed_icon = "water_crushed"
 	item_icons = list(
@@ -483,8 +483,8 @@
 	reagents.add_reagent("bugjuice", 30)
 
 /obj/item/reagent_container/food/drinks/cans/beer
-	name = "\improper Weyland-Yutani Lite"
-	desc = "Beer. You've dialed in your target. Time to fire for effect."
+	name = "维兰德-汤谷淡啤"
+	desc = "啤酒。目标已经锁定，是时候火力全开了。"
 	icon_state = "beer"
 	center_of_mass = "x=16;y=12"
 
@@ -493,8 +493,8 @@
 	reagents.add_reagent("beer", 30)
 
 /obj/item/reagent_container/food/drinks/cans/ale
-	name = "\improper Weyland-Yutani IPA"
-	desc = "Beer's misunderstood cousin."
+	name = "维兰德-汤谷 IPA"
+	desc = "啤酒那位被误解的亲戚。"
 	icon_state = "ale"
 	item_state = "beer"
 	center_of_mass = "x=16;y=10"
@@ -506,22 +506,22 @@
 //SOUTO
 
 /obj/item/reagent_container/food/drinks/cans/souto
-	name = "\improper Souto Can"
-	desc = "Canned in Havana."
+	name = "索托饮料罐"
+	desc = "在哈瓦那罐装。"
 	icon_state = "souto_classic"
 	item_state = "souto_classic"
 	center_of_mass = "x=16;y=10"
 	embeddable = 1
 
 /obj/item/reagent_container/food/drinks/cans/souto/diet
-	name = "\improper Diet Souto"
-	desc = "Now with 0% fruit juice! Canned in Havana"
+	name = "无糖索托"
+	desc = "现含 0% 果汁！在哈瓦那罐装。"
 	icon_state = "souto_diet_classic"
 	item_state = "souto_diet_classic"
 
 /obj/item/reagent_container/food/drinks/cans/souto/classic
-	name = "\improper Souto Classic"
-	desc = "The can boldly proclaims it to be tangerine flavored. You can't help but think that's a lie. Canned in Havana."
+	name = "索托经典"
+	desc = "罐身大胆宣称这是柑橘味，你却忍不住怀疑它在撒谎。在哈瓦那罐装。"
 	icon_state = "souto_classic"
 	item_state = "souto_classic"
 
@@ -532,8 +532,8 @@
 	reagents.add_reagent("souto_classic", 20)
 
 /obj/item/reagent_container/food/drinks/cans/souto/diet/classic
-	name = "\improper Diet Souto"
-	desc = "Now with 0% fruit juice! Canned in Havana"
+	name = "无糖索托"
+	desc = "现含 0% 果汁！在哈瓦那罐装。"
 	icon_state = "souto_diet_classic"
 	item_state = "souto_diet_classic"
 
@@ -544,8 +544,8 @@
 	reagents.add_reagent("souto_classic", 20)
 
 /obj/item/reagent_container/food/drinks/cans/souto/cherry
-	name = "\improper Cherry Souto"
-	desc = "Now with more artificial flavors! Canned in Havana"
+	name = "樱桃索托"
+	desc = "现在含有更多人工香料！在哈瓦那罐装。"
 	icon_state = "souto_cherry"
 	item_state = "souto_cherry"
 
@@ -556,8 +556,8 @@
 	reagents.add_reagent("souto_cherry", 20)
 
 /obj/item/reagent_container/food/drinks/cans/souto/diet/cherry
-	name = "\improper Diet Cherry Souto"
-	desc = "It's neither diet nor cherry flavored. Canned in Havanna."
+	name = "无糖樱桃索托"
+	desc = "既不无糖，也不是樱桃味。在哈瓦那罐装。"
 	icon_state = "souto_diet_cherry"
 	item_state = "souto_diet_cherry"
 
@@ -568,8 +568,8 @@
 	reagents.add_reagent("souto_cherry", 20)
 
 /obj/item/reagent_container/food/drinks/cans/souto/lime
-	name = "\improper Lime Souto"
-	desc = "It's not bad. It's not good either, but it's not bad. Canned in Havana."
+	name = "青柠索托"
+	desc = "不难喝，也不好喝，但至少不难喝。在哈瓦那罐装。"
 	icon_state = "souto_lime"
 	item_state = "souto_lime"
 
@@ -580,8 +580,8 @@
 	reagents.add_reagent("souto_lime", 20)
 
 /obj/item/reagent_container/food/drinks/cans/souto/diet/lime
-	name = "\improper Diet Lime Souto"
-	desc = "Ten kinds of acid, two cups of fake sugar, almost a full tank of carbon dioxide, and about 210 kPa all crammed into an aluminum can. What's not to love? Canned in Havana."
+	name = "无糖青柠索托"
+	desc = "十种酸、两杯代糖、近一整罐二氧化碳和约 210 kPa 压力，全塞进一个铝罐。有谁能不爱呢？在哈瓦那罐装。"
 	icon_state = "souto_diet_lime"
 	item_state = "souto_diet_lime"
 
@@ -592,8 +592,8 @@
 	reagents.add_reagent("souto_lime", 20)
 
 /obj/item/reagent_container/food/drinks/cans/souto/grape
-	name = "\improper Grape Souto"
-	desc = "An old standby for soda flavors. This, however, tastes like grape flavored cough syrup. Canned in Havana."
+	name = "葡萄索托"
+	desc = "汽水的经典口味。不过这一罐喝起来像葡萄味止咳糖浆。在哈瓦那罐装。"
 	icon_state = "souto_grape"
 	item_state = "souto_grape"
 
@@ -604,8 +604,8 @@
 	reagents.add_reagent("souto_grape", 20)
 
 /obj/item/reagent_container/food/drinks/cans/souto/diet/grape
-	name = "\improper Diet Grape Souto"
-	desc = "You're fairly certain that this is just grape cough syrup and carbonated water. Canned in Havana."
+	name = "无糖葡萄索托"
+	desc = "你相当肯定这只是葡萄味止咳糖浆兑碳酸水。在哈瓦那罐装。"
 	icon_state = "souto_diet_grape"
 	item_state = "souto_diet_grape"
 
@@ -616,8 +616,8 @@
 	reagents.add_reagent("souto_grape", 20)
 
 /obj/item/reagent_container/food/drinks/cans/souto/blue
-	name = "\improper Blue Raspberry Souto"
-	desc = "It tastes like the color blue. Technology really is amazing. Canned in Havana."
+	name = "蓝树莓索托"
+	desc = "喝起来就是蓝色的味道。科技真神奇。在哈瓦那罐装。"
 	icon_state = "souto_blueraspberry"
 	item_state = "souto_blueraspberry"
 	black_market_value = 10 //mendoza likes blue souto
@@ -629,8 +629,8 @@
 	reagents.add_reagent("souto_blueraspberry", 20)
 
 /obj/item/reagent_container/food/drinks/cans/souto/diet/blue
-	name = "\improper Diet Blue Raspberry Souto"
-	desc = "WHAT A SCAM! It doesn't even taste like blue! At best, it tastes like cyan. Canned in Havana."
+	name = "无糖蓝树莓索托"
+	desc = "骗子！这根本不是蓝色的味道，最多算青色。在哈瓦那罐装。"
 	icon_state = "souto_diet_blueraspberry"
 	item_state = "souto_diet_blueraspberry"
 
@@ -641,8 +641,8 @@
 	reagents.add_reagent("souto_blueraspberry", 20)
 
 /obj/item/reagent_container/food/drinks/cans/souto/peach
-	name = "\improper Peach Souto"
-	desc = "On one hand, it tastes pretty good. On the other hand, you think you can hear a peach pit rattling on the inside. Canned in Havana."
+	name = "蜜桃索托"
+	desc = "一方面，味道确实不错；另一方面，你好像听见一颗桃核在里面咔哒作响。在哈瓦那罐装。"
 	icon_state = "souto_peach"
 	item_state = "souto_peach"
 
@@ -653,8 +653,8 @@
 	reagents.add_reagent("souto_peach", 20)
 
 /obj/item/reagent_container/food/drinks/cans/souto/diet/peach
-	name = "\improper Diet Peach Souto"
-	desc = "On one hand, it tastes pretty good. On the other hand, you think you can hear half of a peach pit rattling on the inside. Canned in Havana."
+	name = "无糖蜜桃索托"
+	desc = "一方面，味道确实不错；另一方面，你好像听见半颗桃核在里面咔哒作响。在哈瓦那罐装。"
 	icon_state = "souto_diet_peach"
 	item_state = "souto_diet_peach"
 
@@ -665,8 +665,8 @@
 	reagents.add_reagent("souto_peach", 20)
 
 /obj/item/reagent_container/food/drinks/cans/souto/cranberry
-	name = "\improper Cranberry Souto"
-	desc = "On closer inspection, the can reads, 'CRAMberry Souto.' What the Hell is a Cramberry? Canned in Havana."
+	name = "蔓越莓索托"
+	desc = "仔细一看，罐身写的是“蔓塞莓索托”。蔓塞莓到底是什么鬼？在哈瓦那罐装。"
 	icon_state = "souto_cranberry"
 	item_state = "souto_cranberry"
 
@@ -677,8 +677,8 @@
 	reagents.add_reagent("souto_cranberry", 20)
 
 /obj/item/reagent_container/food/drinks/cans/souto/diet/cranberry
-	name = "\improper Diet Cranberry Souto"
-	desc = "This tastes more like prunes than cranberries. It's not bad; it's just wrong. Canned in Havana."
+	name = "无糖蔓越莓索托"
+	desc = "喝起来更像西梅而不是蔓越莓。不难喝，就是不对劲。在哈瓦那罐装。"
 	icon_state = "souto_diet_cranberry"
 	item_state = "souto_diet_cranberry"
 
@@ -689,8 +689,8 @@
 	reagents.add_reagent("souto_cranberry", 20)
 
 /obj/item/reagent_container/food/drinks/cans/souto/vanilla
-	name = "\improper Vanilla Souto"
-	desc = "When most soft drinks say 'vanilla,' they really mean their classic flavor with a bit of vanilla added. NOT THE SOUTO CORPORATION, BABY! This bad boy is filled to the brim with 100% pure carbonated vanilla extract! It tastes terrible. Canned in Havana."
+	name = "香草索托"
+	desc = "多数汽水所谓的“香草味”，只是经典口味里加一点香草。索托公司可不这么干，宝贝！这一罐装满了 100% 纯碳酸香草精！难喝透顶。在哈瓦那罐装。"
 	icon_state = "souto_vanilla"
 	item_state = "souto_canilla"
 
@@ -699,8 +699,8 @@
 	reagents.add_reagent("souto_vanilla", 50)
 
 /obj/item/reagent_container/food/drinks/cans/souto/diet/vanilla
-	name = "\improper Diet Vanilla Souto"
-	desc = "This is a can of watery bitter vanilla extract. You can't possibly imagine who would greenlight such a concept. Canned in Havana."
+	name = "无糖香草索托"
+	desc = "一罐稀薄苦涩的香草精。你完全想不出谁会批准这种产品。在哈瓦那罐装。"
 	icon_state = "souto_diet_vanilla"
 	item_state = "souto_diet_vanilla"
 
@@ -710,8 +710,8 @@
 	reagents.add_reagent("souto_vanilla", 25)
 
 /obj/item/reagent_container/food/drinks/cans/souto/pineapple
-	name = "\improper Pineapple Souto"
-	desc = "This tastes like battery acid with a full cup of corn syrup mixed in. Canned in Havana."
+	name = "菠萝索托"
+	desc = "喝起来像电池酸液里兑了一整杯玉米糖浆。在哈瓦那罐装。"
 	icon_state = "souto_pineapple"
 	item_state = "souto_pineapple"
 
@@ -722,8 +722,8 @@
 	reagents.add_reagent("souto_pineapple", 20)
 
 /obj/item/reagent_container/food/drinks/cans/souto/diet/pineapple
-	name = "\improper Diet Pineapple Souto"
-	desc = "This tastes like battery acid with a full cup of sugar substitute mixed in. Canned in Havana."
+	name = "无糖菠萝索托"
+	desc = "喝起来像电池酸液里兑了一整杯代糖。在哈瓦那罐装。"
 	icon_state = "souto_diet_pineapple"
 	item_state = "souto_diet_pineapple"
 
@@ -736,8 +736,8 @@
 //ASPEN
 
 /obj/item/reagent_container/food/drinks/cans/aspen
-	name = "\improper Weyland-Yutani Aspen Beer"
-	desc = "Pretty good when you get past the fact that it tastes like piss. Canned by the Weyland-Yutani Corporation."
+	name = "维兰德-汤谷阿斯彭啤酒"
+	desc = "只要忽略那股尿味，其实还挺不错。由维兰德-汤谷公司罐装。"
 	icon_state = "6_pack_1"
 	center_of_mass = "x=16;y=10"
 

@@ -26,8 +26,8 @@ GLOBAL_REFERENCE_LIST_INDEXED(character_traits, /datum/character_trait, type)
 /// Character traits
 /// Similar to the traits from Project Zomboid
 /datum/character_trait
-	var/trait_name = "Character Trait"
-	var/trait_desc = "A character trait"
+	var/trait_name = "角色特质"
+	var/trait_desc = "一项角色特质"
 	/// Whether the trait can be applied to mobs
 	/// Do not forget to override this var for any child types
 	/// Only set this to TRUE for "abstract" parent types
@@ -106,7 +106,7 @@ GLOBAL_REFERENCE_LIST_INDEXED(character_traits, /datum/character_trait, type)
 /// Character trait groups for constraints (if any)
 /datum/character_trait_group
 	/// For player prefs menu
-	var/trait_group_name = "Trait Group"
+	var/trait_group_name = "特质类别"
 	var/group_visible = TRUE //Set this to false so the group doesn't show up in preferences
 
 	// CONSTRAINTS

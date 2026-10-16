@@ -64,7 +64,7 @@
 //Similar to repairing stuff, down to the time delay
 /obj/vehicle/multitile/proc/install_hardpoint(obj/item/O, mob/user)
 	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-		to_chat(user, SPAN_WARNING("You don't know what to do with [O] on \the [src]."))
+		to_chat(user, SPAN_WARNING("你不知道该如何在[src]上使用[O]。"))
 		return
 
 	var/obj/item/hardpoint/HP = O
@@ -80,21 +80,21 @@
 			return
 
 	if(health < initial(health) * 0.75)
-		to_chat(user, SPAN_WARNING("All the mounting points on \the [src] are broken!"))
+		to_chat(user, SPAN_WARNING("[src]上所有安装点都损坏了！"))
 		return
 
 	if(LAZYLEN(hardpoints))
 		for(var/obj/item/hardpoint/H in hardpoints)
 			if(HP.slot == H.slot)
-				to_chat(user, SPAN_WARNING("There is already something installed there!"))
+				to_chat(user, SPAN_WARNING("那里已经安装了东西！"))
 				return
 
 	if(!(HP.type in hardpoints_allowed))
-		to_chat(user, SPAN_WARNING("You don't know what to do with [HP] on \the [src]."))
+		to_chat(user, SPAN_WARNING("你不知道该如何在[src]上使用[HP]。"))
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] begins installing \the [HP] on the [HP.slot] hardpoint slot of \the [src]."),
-		SPAN_NOTICE("You begin installing \the [HP] on the [HP.slot] hardpoint slot of \the [src]."))
+	user.visible_message(SPAN_NOTICE("[user]开始将[HP]安装到[src]的[HP.slot]挂点槽。"),
+		SPAN_NOTICE("你开始将[HP]安装到[src]的[HP.slot]挂点槽。"))
 
 	var/num_delays = 1
 
@@ -106,21 +106,21 @@
 		if(HDPT_TREADS, HDPT_WHEELS) num_delays = 7
 
 	if(!do_after(user, 30*num_delays * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL, BUSY_ICON_FRIENDLY, numticks = num_delays))
-		user.visible_message(SPAN_WARNING("[user] stops installing \the [HP] on \the [src]."), SPAN_WARNING("You stop installing \the [HP] on \the [src]."))
+		user.visible_message(SPAN_WARNING("[user]停止将[HP]安装到[src]上。"), SPAN_WARNING("你停止将[HP]安装到[src]上。"))
 		return
 
 	//check to prevent putting two modules on same slot
 	for(var/obj/item/hardpoint/H in hardpoints)
 		if(HP.slot == H.slot)
-			to_chat(user, SPAN_WARNING("There is already something installed there!"))
+			to_chat(user, SPAN_WARNING("那里已经安装了东西！"))
 			return
 
-	user.visible_message(SPAN_NOTICE("[user] installs \the [HP] on \the [src]."), SPAN_NOTICE("You install \the [HP] on \the [src]."))
+	user.visible_message(SPAN_NOTICE("[user]将[HP]安装到了[src]上。"), SPAN_NOTICE("你将[HP]安装到了[src]上。"))
 
 	if(ispowerclamp(O))
 		var/obj/item/powerloader_clamp/PC = O
 		PC.loaded.forceMove(src)
-		to_chat(user, SPAN_NOTICE("You install \the [PC.loaded] on \the [src] with \the [PC]."))
+		to_chat(user, SPAN_NOTICE("你用[PC]将[PC.loaded]安装到了[src]上。"))
 		PC.loaded = null
 		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		PC.update_icon()
@@ -133,7 +133,7 @@
 //Again, similar to the above ones
 /obj/vehicle/multitile/proc/uninstall_hardpoint(obj/item/O, mob/user)
 	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-		to_chat(user, SPAN_WARNING("You don't know what to do with \the [O] on \the [src]."))
+		to_chat(user, SPAN_WARNING("你不知道该如何在[src]上使用[O]。"))
 		return
 
 	if(ispowerclamp(O))
@@ -148,14 +148,14 @@
 			continue
 		hps += H
 
-	var/chosen_hp = tgui_input_list(usr, "Select a hardpoint to remove", "Hardpoint Removal", (hps + "Cancel"))
-	if(chosen_hp == "Cancel" || !chosen_hp || (get_dist(src, user) > 2)) //get_dist uses 2 because the vehicle is 3x3
+	var/chosen_hp = tgui_input_list(usr, "选择要拆除的挂点", "拆除挂点", (hps + "取消"))
+	if(chosen_hp == "取消" || !chosen_hp || (get_dist(src, user) > 2)) //get_dist uses 2 because the vehicle is 3x3
 		return
 
 	var/obj/item/hardpoint/old = chosen_hp
 
 	if(!old)
-		to_chat(user, SPAN_WARNING("There is nothing installed there."))
+		to_chat(user, SPAN_WARNING("那里没有安装任何东西。"))
 		return
 
 	if(!old.can_be_removed(user))
@@ -169,8 +169,8 @@
 				update_icon()
 				return
 
-	user.visible_message(SPAN_NOTICE("[user] begins removing [old] on the [old.slot] hardpoint slot on \the [src]."),
-		SPAN_NOTICE("You begin removing [old] on the [old.slot] hardpoint slot on \the [src]."))
+	user.visible_message(SPAN_NOTICE("[user]开始拆卸[src]的[old.slot]挂点槽上的[old]。"),
+		SPAN_NOTICE("你开始拆卸[src]的[old.slot]挂点槽上的[old]。"))
 
 	var/num_delays = 1
 
@@ -182,10 +182,10 @@
 		if(HDPT_TREADS) num_delays = 7
 
 	if(!do_after(user, 30*num_delays * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL, BUSY_ICON_FRIENDLY, numticks = num_delays))
-		user.visible_message(SPAN_WARNING("[user] stops removing \the [old] on \the [src]."), SPAN_WARNING("You stop removing \the [old] on \the [src]."))
+		user.visible_message(SPAN_WARNING("[user]停止从[src]上拆卸[old]。"), SPAN_WARNING("你停止从[src]上拆卸[old]。"))
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] removes \the [old] on \the [src]."), SPAN_NOTICE("You remove \the [old] on \the [src]."))
+	user.visible_message(SPAN_NOTICE("[user]从[src]上拆下了[old]。"), SPAN_NOTICE("你从[src]上拆下了[old]。"))
 
 	remove_hardpoint(old, user)
 
@@ -233,7 +233,7 @@
 	old.owner = null
 
 	if(old.health <= 0 && !old.gc_destroyed) // Make sure it's not already being deleted.
-		visible_message(SPAN_WARNING("\The [src] disintegrates into useless pile of scrap under the damage it suffered."))
+		visible_message(SPAN_WARNING("[src]因遭受重创而崩解，化为一堆无用的废料。"))
 		qdel(old)
 
 	update_icon()

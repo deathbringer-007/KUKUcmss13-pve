@@ -12,8 +12,8 @@
  * DATA CARDS - Used for the teleporter
  */
 /obj/item/card
-	name = "card"
-	desc = "Does card things."
+	name = "卡片"
+	desc = "具备卡片应有的功能。"
 	icon = 'icons/obj/items/card.dmi'
 	w_class = SIZE_TINY
 	var/associated_account_number = 0
@@ -57,8 +57,8 @@
  */
 
 /obj/item/card/id
-	name = "identification holo-badge"
-	desc = "A slice of encoded compressed fiber glass. Used for identification and access control."
+	name = "全息身份徽章"
+	desc = "一片编码压缩玻璃纤维，用于身份识别与门禁控制。"
 	icon_state = "id"
 	item_state = "red-id"
 	var/list/access

@@ -125,7 +125,7 @@
 
 	for(var/obj/structure/barricade/B in usr.loc)
 		if(B.dir == user.dir)
-			to_chat(user, SPAN_WARNING("这个方向已经有\a [B]了！"))
+			to_chat(user, SPAN_WARNING("这个方向已经有[B]了！"))
 			return
 
 	var/turf/open/OT = usr.loc
@@ -149,7 +149,7 @@
 
 	for(var/obj/structure/barricade/B in usr.loc) //second check so no memery
 		if(B.dir == user.dir)
-			to_chat(user, SPAN_WARNING("这个方向已经有\a [B]了！"))
+			to_chat(user, SPAN_WARNING("这个方向已经有[B]了！"))
 			return
 
 	user.visible_message(SPAN_NOTICE("[user]完成了[singular_name]的部署。"),

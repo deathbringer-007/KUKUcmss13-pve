@@ -109,14 +109,14 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 		return
 
 	if(!ispowered)
-		to_chat(user, SPAN_NOTICE("\The [src]没有供电，无法使用。"))
+		to_chat(user, SPAN_NOTICE("[src]没有供电，无法使用。"))
 		return
 
 	if(accept_check(O))
 		if(user.drop_held_item())
 			add_local_item(O)
-			user.visible_message(SPAN_NOTICE("[user]将\the [O]放入了\the [src]。"), \
-								SPAN_NOTICE("你将\the [O]放入了\the [src]。"))
+			user.visible_message(SPAN_NOTICE("[user]将[O]放入了[src]。"), \
+								SPAN_NOTICE("你将[O]放入了[src]。"))
 
 	else if(istype(O, /obj/item/storage/bag/plants))
 		var/obj/item/storage/bag/plants/P = O
@@ -129,13 +129,13 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 		if(plants_loaded)
 
 			user.visible_message( \
-				SPAN_NOTICE("[user]将\the [P]装进了\the [src]。"), \
-				SPAN_NOTICE("你将\the [P]装进了\the [src]。"))
+				SPAN_NOTICE("[user]将[P]装进了[src]。"), \
+				SPAN_NOTICE("你将[P]装进了[src]。"))
 			if(length(P.contents) > 0)
 				to_chat(user, SPAN_NOTICE("有些物品未被接收。"))
 
 	else if(!(O.flags_item & NOBLUDGEON)) //so we can spray, scan, c4 the machine.
-		to_chat(user, SPAN_NOTICE("\The [src]明智地拒收了[O]。"))
+		to_chat(user, SPAN_NOTICE("[src]明智地拒收了[O]。"))
 		return 1
 
 /obj/structure/machinery/smartfridge/attack_remote(mob/user)
@@ -286,7 +286,7 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 	switch(action)
 		if("vend")
 			if(inoperable())
-				to_chat(user, SPAN_WARNING("\The [src]没有供电。"))
+				to_chat(user, SPAN_WARNING("[src]没有供电。"))
 				return FALSE
 			if(is_secure_fridge)
 				if(locked == FRIDGE_LOCK_COMPLETE)
@@ -320,7 +320,7 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 					return TRUE
 		if("transfer")
 			if(inoperable())
-				to_chat(user, SPAN_WARNING("\The [src]没有供电。"))
+				to_chat(user, SPAN_WARNING("[src]没有供电。"))
 				return FALSE
 			if(is_secure_fridge)
 				if(locked == FRIDGE_LOCK_COMPLETE)
@@ -407,14 +407,14 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 	switch(wire)
 		if(FRIDGE_WIRE_SHOCK)
 			COOLDOWN_START(src, electrified_cooldown, 12 HOURS)
-			visible_message(SPAN_DANGER("\the [src]迸出一道道电弧！"))
+			visible_message(SPAN_DANGER("[src]迸出一道道电弧！"))
 		if (FRIDGE_WIRE_SHOOT_INV)
 			if(!shoot_inventory)
 				shoot_inventory = TRUE
-				visible_message(SPAN_WARNING("\The [src]开始发出嘈杂的嗡鸣。"))
+				visible_message(SPAN_WARNING("[src]开始发出嘈杂的嗡鸣。"))
 		if(FRIDGE_WIRE_IDSCAN)
 			locked = FRIDGE_LOCK_COMPLETE //totally lock it down
-			visible_message(SPAN_NOTICE("\The [src]发出轻微的咚声。"))
+			visible_message(SPAN_NOTICE("[src]发出轻微的咚声。"))
 
 /obj/structure/machinery/smartfridge/proc/mend(wire)
 	wires |= getWireFlag(wire)
@@ -423,25 +423,25 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 			COOLDOWN_RESET(src, electrified_cooldown)
 		if (FRIDGE_WIRE_SHOOT_INV)
 			shoot_inventory = FALSE
-			visible_message(SPAN_NOTICE("\The [src]停止了嗡鸣。"))
+			visible_message(SPAN_NOTICE("[src]停止了嗡鸣。"))
 		if(FRIDGE_WIRE_IDSCAN)
 			locked = FRIDGE_LOCK_ID //back to normal
-			visible_message(SPAN_NOTICE("\The [src]发出咔嗒声。"))
+			visible_message(SPAN_NOTICE("[src]发出咔嗒声。"))
 
 /obj/structure/machinery/smartfridge/proc/pulse(wire)
 	switch(wire)
 		if(FRIDGE_WIRE_SHOCK)
 			COOLDOWN_START(src, electrified_cooldown, 30 SECONDS)
-			visible_message(SPAN_DANGER("\the [src]迸出一道道电弧！"))
+			visible_message(SPAN_DANGER("[src]迸出一道道电弧！"))
 		if(FRIDGE_WIRE_SHOOT_INV)
 			shoot_inventory = !shoot_inventory
 			if(shoot_inventory)
-				visible_message(SPAN_WARNING("\The [src]开始发出嘈杂的嗡鸣。"))
+				visible_message(SPAN_WARNING("[src]开始发出嘈杂的嗡鸣。"))
 			else
-				visible_message(SPAN_NOTICE("\The [src]停止了嗡鸣。"))
+				visible_message(SPAN_NOTICE("[src]停止了嗡鸣。"))
 		if(FRIDGE_WIRE_IDSCAN)
 			locked = FRIDGE_LOCK_NOLOCK //open sesame
-			visible_message(SPAN_NOTICE("\The [src]发出咔嗒声。"))
+			visible_message(SPAN_NOTICE("[src]发出咔嗒声。"))
 
 /obj/structure/machinery/smartfridge/proc/isWireCut(wire)
 	return !(wires & getWireFlag(wire))

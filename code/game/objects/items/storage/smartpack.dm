@@ -10,8 +10,8 @@
 #define IMMOBILE_FORM_COLOR "#2B719E"
 
 /obj/item/storage/backpack/marine/smartpack
-	name = "\improper S-V42 prototype smartpack"
-	desc = "A joint project between the USCM and Wey-Yu. It is said to be top-class engineering and state of the art technology. Given to USCM deployed synthetic units and the intended usage involve assisting in battlefield support. Can be recharged by grabbing onto an APC and completing the circuit with one's fingers (procedure not advised for non-synthetic personnel). WARNING - User is advised to take precautions."
+	name = "\improper S-V42原型智能背包"
+	desc = "美国殖民地海军陆战队与维兰德-汤谷的联合项目，据说采用了顶尖工程技术。它配发给部署中的陆战队合成人，用于提供战场支援。握住区域电力控制器，以手指接通电路即可充电（不建议非合成人员尝试）。警告：建议使用者采取防护措施。"
 	item_state = "smartpack"
 	icon_state = "smartpack"
 	has_gamemode_skin = FALSE
@@ -38,16 +38,16 @@
 	var/saved_gun_allowed = TRUE
 
 /obj/item/storage/backpack/marine/smartpack/verb/toggle_exoskeleton()
-	set name = "Toggle Exoskeleton"
+	set name = "切换外骨骼"
 	set category = "Object"
 	set src in usr
 
 	if(!issynth(usr))
-		to_chat(usr, SPAN_WARNING("You have no idea how to do that!"))
+		to_chat(usr, SPAN_WARNING("你完全不知道该怎么做！"))
 		return
 
 	show_exoskeleton = !show_exoskeleton
-	to_chat(usr, SPAN_NOTICE("\The [src] will [show_exoskeleton ? "now" : "no longer"] have an exoskeleton."))
+	to_chat(usr, SPAN_NOTICE("[src][show_exoskeleton ? "现在会显示" : "将不再显示"]外骨骼。"))
 	playsound(src, 'sound/machines/click.ogg', 15, TRUE)
 	update_icon(usr)
 
@@ -63,7 +63,7 @@
 
 /obj/item/storage/backpack/marine/smartpack/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_INFO("The current charge reads [battery_charge]/[SMARTPACK_MAX_POWER_STORED]")
+	. += SPAN_INFO("当前电量为[battery_charge]/[SMARTPACK_MAX_POWER_STORED]。")
 
 /obj/item/storage/backpack/marine/smartpack/update_icon(mob/user)
 	overlays.Cut()
@@ -129,7 +129,7 @@
 
 			give_action(M, action_type)
 	else
-		to_chat(M, SPAN_DANGER("[name] beeps, \"Unathorized user!\""))
+		to_chat(M, SPAN_DANGER("[name]发出哔声：\"未授权的使用者！\""))
 
 	..()
 
@@ -180,7 +180,7 @@
 		return
 
 	if(battery_charge < PROTECTIVE_COST)
-		to_chat(user, SPAN_DANGER("There is a lack of charge for that action. Charge: [battery_charge]/[PROTECTIVE_COST]"))
+		to_chat(user, SPAN_DANGER("电量不足，无法执行该操作。电量：[battery_charge]/[PROTECTIVE_COST]"))
 		return
 
 	activated_form = TRUE
@@ -194,10 +194,10 @@
 	user.melee_allowed = FALSE
 	user.allow_gun_usage = FALSE
 	user.throw_allowed = FALSE
-	to_chat(user, SPAN_DANGER("[name] beeps, \"You are now protected, but unable to attack.\""))
+	to_chat(user, SPAN_DANGER("[name]发出哔声：\"你现在受到保护，但无法攻击。\""))
 	battery_charge -= PROTECTIVE_COST
 	playsound(loc, 'sound/mecha/mechmove04.ogg', 25, TRUE)
-	to_chat(user, SPAN_INFO("The current charge reads [battery_charge]/[SMARTPACK_MAX_POWER_STORED]"))
+	to_chat(user, SPAN_INFO("当前电量为[battery_charge]/[SMARTPACK_MAX_POWER_STORED]。"))
 	update_icon(user)
 
 	var/filter_color = PROTECTIVE_FORM_COLOR
@@ -217,7 +217,7 @@
 	user.allow_gun_usage = saved_gun_allowed
 	LAZYREMOVE(user.brute_mod_override, src)
 	LAZYREMOVE(user.burn_mod_override, src)
-	to_chat(user, SPAN_DANGER("[name] beeps, \"The protection wears off.\""))
+	to_chat(user, SPAN_DANGER("[name]发出哔声：\"保护效果已结束。\""))
 	playsound(loc, 'sound/mecha/mechmove04.ogg', 25, TRUE)
 	update_icon(user)
 	user.remove_filter("synth_protective_form")
@@ -228,7 +228,7 @@
 		return
 
 	if(battery_charge < IMMOBILE_COST && !immobile_form)
-		to_chat(user, SPAN_DANGER("There is a lack of charge for that action. Charge: [battery_charge]/[IMMOBILE_COST]"))
+		to_chat(user, SPAN_DANGER("电量不足，无法执行该操作。电量：[battery_charge]/[IMMOBILE_COST]"))
 		return
 
 	immobile_form = !immobile_form
@@ -237,8 +237,8 @@
 		user.status_flags &= ~CANPUSH
 		user.anchored = TRUE
 		ADD_TRAIT(user, TRAIT_IMMOBILIZED, TRAIT_SOURCE_EQUIPMENT(WEAR_BACK))
-		to_chat(user, SPAN_DANGER("[name] beeps, \"You are anchored in place and cannot be moved.\""))
-		to_chat(user, SPAN_INFO("The current charge reads [battery_charge]/[SMARTPACK_MAX_POWER_STORED]"))
+		to_chat(user, SPAN_DANGER("[name]发出哔声：\"你已被固定在原地，无法移动。\""))
+		to_chat(user, SPAN_INFO("当前电量为[battery_charge]/[SMARTPACK_MAX_POWER_STORED]。"))
 
 		var/filter_color = IMMOBILE_FORM_COLOR
 		var/filter_size = EXOSKELETON_OFF_FILTER_SIZE
@@ -249,7 +249,7 @@
 		user.status_flags |= CANPUSH
 		user.anchored = FALSE
 		REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, TRAIT_SOURCE_EQUIPMENT(WEAR_BACK))
-		to_chat(user, SPAN_DANGER("[name] beeps, \"You can now move again.\""))
+		to_chat(user, SPAN_DANGER("[name]发出哔声：\"你现在又能移动了。\""))
 		user.remove_filter("synth_immobile_form")
 
 	playsound(loc, 'sound/mecha/mechmove04.ogg', 25, TRUE)
@@ -267,27 +267,27 @@
 		return
 
 	if(battery_charge < REPAIR_COST)
-		to_chat(user, SPAN_DANGER("There is a lack of charge for that action. Charge: [battery_charge]/[REPAIR_COST]"))
+		to_chat(user, SPAN_DANGER("电量不足，无法执行该操作。电量：[battery_charge]/[REPAIR_COST]"))
 		return
 
 	var/mob/living/carbon/human/H = user
 
 	if(H.getBruteLoss() <= 0 && H.getFireLoss() <= 0)
-		to_chat(user, SPAN_DANGER("[name] beeps, \"No noticeable damage. Procedure cancelled.\""))
+		to_chat(user, SPAN_DANGER("[name]发出哔声：\"未检测到明显损伤，操作已取消。\""))
 		return
 
 	repair_form = TRUE
 	repairing = TRUE
 	update_icon(user)
 
-	H.visible_message(SPAN_WARNING("[name] beeps, \"Engaging the repairing process.\""), \
-		SPAN_WARNING("[name] beeps, \"Beginning to carefully examine your sustained damage.\""))
+	H.visible_message(SPAN_WARNING("[name]发出哔声：\"正在启动修复程序。\""), \
+		SPAN_WARNING("[name]发出哔声：\"开始仔细检查你受到的损伤。\""))
 	playsound(loc, 'sound/mecha/mechmove04.ogg', 25, TRUE)
 	if(!do_after(H, 100, INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
 		repair_form = FALSE
 		repairing = FALSE
 		update_icon(user)
-		to_chat(user, SPAN_DANGER("[name] beeps, \"Repair process was cancelled.\""))
+		to_chat(user, SPAN_DANGER("[name]发出哔声：\"修复程序已取消。\""))
 		return
 
 	playsound(loc, 'sound/items/Welder2.ogg', 25, TRUE)
@@ -296,8 +296,8 @@
 	H.pain.recalculate_pain()
 	repair_form = FALSE
 	update_icon(user)
-	to_chat(user, SPAN_INFO("The current charge reads [battery_charge]/[SMARTPACK_MAX_POWER_STORED]"))
-	H.visible_message(SPAN_DANGER("[name] beeps, \"Completed the repairing process. Charge now reads [battery_charge]/[SMARTPACK_MAX_POWER_STORED].\""))
+	to_chat(user, SPAN_INFO("当前电量为[battery_charge]/[SMARTPACK_MAX_POWER_STORED]。"))
+	H.visible_message(SPAN_DANGER("[name]发出哔声：\"修复程序已完成。当前电量为[battery_charge]/[SMARTPACK_MAX_POWER_STORED]。\""))
 
 	addtimer(CALLBACK(src, PROC_REF(repair_form_cooldown), user), repair_form_cooldown)
 

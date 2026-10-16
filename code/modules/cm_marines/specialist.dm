@@ -128,7 +128,7 @@
 	return available_vendor_num
 
 /datum/specialist_set/rpg
-	name = "Rocketeer Set"
+	name = "火箭筒手套装"
 	role_name = "火箭兵"
 	trait_to_give = "demo"
 	kit_typepath = /obj/item/storage/box/spec/rocketeer
@@ -143,7 +143,7 @@
 	return TRUE
 
 /datum/specialist_set/spotter
-	name = "Scout-Sniper (Spotter) Set"
+	name = "侦察狙击手（观测手）套装"
 	role_name = "侦察狙击手"
 	trait_to_give = "scout"
 	kit_typepath = /obj/item/storage/box/spec/spotter
@@ -158,7 +158,7 @@
 	return TRUE
 
 /datum/specialist_set/sniper
-	name = "Scout-Sniper (Shooter) Set"
+	name = "侦察狙击手（射手）套装"
 	role_name = "狙击手"
 	trait_to_give = "sniper"
 	kit_typepath = /obj/item/storage/box/spec/sniper
@@ -167,7 +167,7 @@
 	)
 
 /datum/specialist_set/anti_mat_sniper
-	name = "Scout-Sniper (Anti-Materiel Shooter) Set"
+	name = "侦察狙击手（反器材步枪射手）套装"
 	role_name = "重型狙击手"
 	trait_to_give = "antimat_sniper"
 	kit_typepath = /obj/item/storage/box/spec/sniper/anti_materiel
@@ -176,14 +176,14 @@
 	)
 
 /datum/specialist_set/grenadier
-	name = "Heavy Grenadier Set"
+	name = "重型榴弹兵套装"
 	role_name = "榴弹兵"
 	skill_to_give = SKILL_SPEC_GRENADIER
 	trait_to_give = "grenadier"
 	kit_typepath = /obj/item/storage/box/spec/heavy_grenadier
 
 /datum/specialist_set/pyro
-	name = "Pyro Set"
+	name = "火焰兵套装"
 	role_name = "火焰兵"
 	skill_to_give = SKILL_SPEC_PYRO
 	trait_to_give = "pyro"

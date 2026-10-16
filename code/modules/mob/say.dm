@@ -9,7 +9,7 @@
 	var/cost = max(CHAT_CPM_MINIMUM, length(text))
 	src.talked_at = world.time
 	if(src.talked_sum + cost > max_budget)
-		to_chat(src, SPAN_NOTICE("You just said something, take a breath."))
+		to_chat(src, SPAN_NOTICE("你刚说过话，先喘口气。"))
 		return FALSE
 	src.talked_sum += cost
 	return TRUE
@@ -70,11 +70,11 @@
 
 	if(!src.client.admin_holder || !(client.admin_holder.rights & R_MOD))
 		if(!GLOB.dsay_allowed)
-			to_chat(src, SPAN_DANGER("Deadchat is globally muted"))
+			to_chat(src, SPAN_DANGER("亡者聊天已被全局禁言。"))
 			return
 
 	if(client && client.prefs && !(client.prefs.toggles_chat & CHAT_DEAD))
-		to_chat(usr, SPAN_DANGER("You have deadchat muted."))
+		to_chat(usr, SPAN_DANGER("你已屏蔽亡者聊天。"))
 		return
 
 	if(!client?.attempt_talking(message))
@@ -98,10 +98,10 @@
 				langchat_listeners += observer
 
 		if(M.stat == DEAD)
-			to_chat(M, "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name] (<a href='byond://?src=\ref[M];track=\ref[src]'>F</a>)</span> says, <span class='message'>\"[message]\"</span></span>")
+			to_chat(M, "<span class='game deadsay'><span class='prefix'>亡者：</span> <span class='name'>[name]（<a href='byond://?src=\ref[M];track=\ref[src]'>跟随</a>）</span>说：<span class='message'>\"[message]\"</span></span>")
 
 		else if(M.client && M.client.admin_holder && (M.client.admin_holder.rights & R_MOD) && M.client.prefs && (M.client.prefs.toggles_chat & CHAT_DEAD) ) // Show the message to admins/mods with deadchat toggled on
-			to_chat(M, "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span> says, <span class='message'>\"[message]\"</span></span>") //Admins can hear deadchat, if they choose to, no matter if they're blind/deaf or not.
+			to_chat(M, "<span class='game deadsay'><span class='prefix'>亡者：</span> <span class='name'>[name]</span>说：<span class='message'>\"[message]\"</span></span>") //Admins can hear deadchat, if they choose to, no matter if they're blind/deaf or not.
 
 	if(length(langchat_listeners))
 		langchat_speech(message, langchat_listeners, GLOB.all_languages, skip_language_check = TRUE)

@@ -37,23 +37,23 @@ export const InfoPanel = () => {
               bad: [-Infinity, 15],
             }}
           >
-            <h4>RESEARCH CREDITS: {credits}</h4>
+            <h4>科研点数： {credits}</h4>
           </ProgressBar>
         </Flex.Item>
         <Flex.Item fontSize={'13px'} bold mt={1}>
-          STATUS: {status}
+          状态：{status}
         </Flex.Item>
         <Flex.Item fontSize={'13px'} mt={0.5}>
-          ESTIMATED SIMULATING COST: {estimated_cost}
+          预计模拟费用： {estimated_cost}
         </Flex.Item>
         <Flex.Item fontSize={'13px'} mt={0.5}>
-          TARGET NAME: {chemical_name}
+          目标名称： {chemical_name}
         </Flex.Item>
         <Flex.Item fontSize={'13px'} mt={0.5}>
-          REFERENCE NAME: {reference_name}
+          参考物名称： {reference_name}
         </Flex.Item>
         <Flex.Item fontSize={'13px'} mt={0.5}>
-          OVERDOSE LEVEL AFTER SIMULATION: {od_level}
+          模拟后的过量阈值： {od_level}
         </Flex.Item>
       </Flex>
     </Section>
@@ -92,7 +92,7 @@ export const Controls = (props) => {
                 disabled={!can_simulate}
                 icon={'radiation'}
               >
-                SIMULATE
+                开始模拟
               </Button>
             ) : (
               <Button
@@ -103,7 +103,7 @@ export const Controls = (props) => {
                   act('cancel_simulation');
                 }}
               >
-                CANCEL
+                取消
               </Button>
             )}
           </Stack.Item>
@@ -117,7 +117,7 @@ export const Controls = (props) => {
               disabled={!can_eject_target || lock_control}
               icon={can_eject_target ? 'eject' : 'file-import'}
             >
-              EJECT TARGET
+              弹出目标
             </Button>
           </Stack.Item>
           <Stack.Item>
@@ -130,7 +130,7 @@ export const Controls = (props) => {
               disabled={!can_eject_reference || lock_control}
               icon={can_eject_reference ? 'eject' : 'file-import'}
             >
-              EJECT REFERENCE
+              弹出参考物
             </Button>
           </Stack.Item>
           <Stack.Item>
@@ -143,7 +143,7 @@ export const Controls = (props) => {
               selected={complexityMenu}
               icon={'hard-drive'}
             >
-              COMPLEXITY
+              复杂度
             </Button>
           </Stack.Item>
         </Stack>
@@ -194,7 +194,7 @@ export const RecipeOptions = () => {
             setSelectedRecipe(null);
           }}
         >
-          <h3>FINALIZE</h3>
+          <h3>完成</h3>
         </Button>
         {map(reagent_option_data, (recipe, id) => (
           <Button
@@ -235,7 +235,7 @@ export const ModeChange = (props) => {
             mx={1}
             textAlign="center"
           >
-            Target Data
+            目标数据
           </Stack.Item>
           <Stack.Item>
             <Flex.Item width={20} textAlign="center">
@@ -273,7 +273,7 @@ export const ModeChange = (props) => {
                     <Section title={property.name}>{property.desc}</Section>
                   </Stack.Item>
                   <Stack.Item bold backgroundColor={'#191b22'} p={1}>
-                    Price of the operation : {property.cost}
+                    操作费用： {property.cost}
                   </Stack.Item>
                 </Stack>
               ),
@@ -282,7 +282,7 @@ export const ModeChange = (props) => {
       </Flex>
     )) || (
       <Box m={3}>
-        <NoticeBox>No data inserted!</NoticeBox>
+        <NoticeBox>未插入数据！</NoticeBox>
       </Box>
     )
   );
@@ -309,7 +309,7 @@ export const ModeRelate = (props) => {
             mx={1}
             textAlign="center"
           >
-            Target Data
+            目标数据
           </Stack.Item>
           <Stack.Item>
             <Flex.Item
@@ -357,7 +357,7 @@ export const ModeRelate = (props) => {
               opacity={0.8}
               textAlign="center"
             >
-              Reference Data
+              参考数据
             </Stack.Item>
             <Stack.Item>
               <Flex.Item
@@ -401,7 +401,7 @@ export const ModeRelate = (props) => {
                     <Section title={property.name}>{property.desc}</Section>
                   </Stack.Item>
                   <Stack.Item bold backgroundColor={'#191b22'} p={1}>
-                    Price of the operation : {property.cost}
+                    操作费用： {property.cost}
                   </Stack.Item>
                 </Stack>
               ),
@@ -410,7 +410,7 @@ export const ModeRelate = (props) => {
       </Flex>
     )) || (
       <Box m={3} height={10}>
-        <NoticeBox bold>No data inserted!</NoticeBox>
+        <NoticeBox bold>未插入数据！</NoticeBox>
       </Box>
     )
   );
@@ -499,7 +499,7 @@ export const CreateControl = (props) => {
           onClick={() => act('select_overdose')}
           disabled={lock_control}
         >
-          Set OD
+          设置过量阈值
         </Button>
       </Flex.Item>
       <Flex.Item ml={2}>
@@ -512,7 +512,7 @@ export const CreateControl = (props) => {
             act('change_name');
           }}
         >
-          Set Name
+          设置名称
         </Button>
       </Flex.Item>
       <Flex.Item ml={2} bold>
@@ -523,7 +523,7 @@ export const CreateControl = (props) => {
             act('change_create_target_level');
           }}
         >
-          Set LEVEL
+          设置等级
         </Button>
       </Flex.Item>
       {map(template_filters, (flag, name) => (
@@ -540,7 +540,14 @@ export const CreateControl = (props) => {
             bold
             italic={flag[0]}
           >
-            {name}
+            {{
+              MED: '医疗',
+              TOX: '毒素',
+              STI: '兴奋',
+              REA: '反应',
+              IRR: '刺激',
+              MET: '代谢',
+            }[name] ?? name}
           </Button>
         </Flex.Item>
       ))}
@@ -559,7 +566,9 @@ export const CreateControl = (props) => {
             fontSize={'14px'}
             bold
           >
-            {rarity}
+            {{ BASIC: '基础', COMMON: '常见', UNCOMMON: '少见', RARE: '稀有' }[
+              rarity
+            ] ?? rarity}
           </Button>
         </Flex.Item>
       ))}

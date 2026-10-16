@@ -110,13 +110,13 @@ Contains most of the procs that are called when a mob is attacked by something
 				shield_blocked_l = TRUE
 
 			if(shield_blocked_l)
-				visible_message(SPAN_DANGER("<B>[src] blocks [attack_text] with the [l_hand.name]!</B>"), null, null, 5)
+				visible_message(SPAN_DANGER("<B>[src]用[l_hand.name]挡住了[attack_text]！</B>"), null, null, 5)
 				return TRUE
 			// We cannot return FALSE on fail here, because we haven't checked r_hand yet. Dual-wielding shields perhaps!
 
 		var/obj/item/weapon/I = l_hand
 		if(I.IsShield() && !istype(I, /obj/item/weapon/shield) && (prob(50 - floor(damage / 3)))) // 'other' shields, like predweapons. Make sure that item/weapon/shield does not apply here, no double-rolls.
-			visible_message(SPAN_DANGER("<B>[src] blocks [attack_text] with the [l_hand.name]!</B>"), null, null, 5)
+			visible_message(SPAN_DANGER("<B>[src]用[l_hand.name]挡住了[attack_text]！</B>"), null, null, 5)
 			return TRUE
 
 	if(r_hand && istype(r_hand, /obj/item/weapon))
@@ -135,22 +135,22 @@ Contains most of the procs that are called when a mob is attacked by something
 				shield_blocked_r = TRUE
 
 			if(shield_blocked_r)
-				visible_message(SPAN_DANGER("<B>[src] blocks [attack_text] with the [r_hand.name]!</B>"), null, null, 5)
+				visible_message(SPAN_DANGER("<B>[src]用[r_hand.name]挡住了[attack_text]！</B>"), null, null, 5)
 				return TRUE
 
 		var/obj/item/weapon/I = r_hand
 		if(I.IsShield() && !istype(I, /obj/item/weapon/shield) && (prob(50 - floor(damage / 3)))) // other shields. Don't doublecheck activable here.
-			visible_message(SPAN_DANGER("<B>[src] blocks [attack_text] with the [r_hand.name]!</B>"), null, null, 5)
+			visible_message(SPAN_DANGER("<B>[src]用[r_hand.name]挡住了[attack_text]！</B>"), null, null, 5)
 			return TRUE
 
 	if(back && istype(back, /obj/item/weapon/shield/riot) && prob(20))
 		var/obj/item/weapon/shield/riot/shield = back
 		if(shield.blocks_on_back)
-			visible_message(SPAN_DANGER("<B>The [back] on [src]'s back blocks [attack_text]!</B>"), null, null, 5)
+			visible_message(SPAN_DANGER("<B>[src]背上的[back]挡住了[attack_text]！</B>"), null, null, 5)
 			return TRUE
 
 	if(attack_text == "the pounce" && wear_suit && wear_suit.flags_inventory & BLOCK_KNOCKDOWN)
-		visible_message(SPAN_DANGER("<B>[src] withstands [attack_text] with their [wear_suit.name]!</B>"), null, null, 5)
+		visible_message(SPAN_DANGER("<B>[src]身上的[wear_suit.name]承受住了[attack_text]！</B>"), null, null, 5)
 		return TRUE
 	return FALSE
 
@@ -180,14 +180,14 @@ Contains most of the procs that are called when a mob is attacked by something
 	//IF there is an override, use that, otherwise, check if selected zone is valid, if it is, use that, otherwise use chest
 
 	if(!target_zone) //this should NEVER happen
-		visible_message(SPAN_DANGER("[user] misses [src] with \the [I]!"), null, null, 5)
+		visible_message(SPAN_DANGER("[user]用[I]攻击[src]，却没有命中！"), null, null, 5)
 		return FALSE
 
 	var/obj/limb/affecting = get_limb(target_zone)
 	if (!affecting)
 		return FALSE
 	if(affecting.status & LIMB_DESTROYED)
-		to_chat(user, "What [affecting.display_name]?")
+		to_chat(user, "哪来的[affecting.display_name]？")
 		return FALSE
 	var/hit_area = affecting.display_name
 
@@ -195,9 +195,9 @@ Contains most of the procs that are called when a mob is attacked by something
 		return FALSE
 
 	if(LAZYLEN(I.attack_verb))
-		visible_message(SPAN_DANGER("<B>[src] has been [pick(I.attack_verb)] in the [hit_area] with [I.name] by [user]!</B>"), null, null, 5)
+		visible_message(SPAN_DANGER("<B>[user]用[I.name]对[src]的[hit_area]使出了[pick(I.attack_verb)]！</B>"), null, null, 5)
 	else
-		visible_message(SPAN_DANGER("<B>[src] has been attacked in the [hit_area] with [I.name] by [user]!</B>"), null, null, 5)
+		visible_message(SPAN_DANGER("<B>[user]用[I.name]攻击了[src]的[hit_area]！</B>"), null, null, 5)
 
 	var/armor = getarmor(affecting, ARMOR_MELEE)
 
@@ -277,7 +277,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if (throw_mode && can_catch && !get_active_hand() && cur_speed <= SPEED_VERY_FAST && \
 		!is_mob_incapacitated() && isturf(O.loc) && put_in_active_hand(O)
 	)
-		visible_message(SPAN_WARNING("[src] catches [O]!"), null, null, 5)
+		visible_message(SPAN_WARNING("[src]接住了[O]！"), null, null, 5)
 		toggle_throw_mode(THROW_MODE_OFF)
 		return
 
@@ -295,7 +295,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		zone = rand_zone("chest", 75) //Hits a random part of the body, geared towards the chest
 
 	if (!zone)
-		visible_message(SPAN_NOTICE("\The [O] misses [src] narrowly!"), null, null, 5)
+		visible_message(SPAN_NOTICE("[O]险些击中[src]！"), null, null, 5)
 		return
 	O.throwing = FALSE //it hit, so stop moving
 
@@ -305,7 +305,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/obj/limb/affecting = get_limb(zone)
 	var/hit_area = affecting.display_name
 
-	src.visible_message(SPAN_DANGER("[src] has been hit in the [hit_area] by [O]."), null, null, 5)
+	src.visible_message(SPAN_DANGER("[O]击中了[src]的[hit_area]。"), null, null, 5)
 
 	var/armor = getarmor(affecting, ARMOR_MELEE)
 
@@ -399,4 +399,4 @@ Contains most of the procs that are called when a mob is attacked by something
 			if(HAS_TRAIT(src, TRAIT_SUPER_STRONG))
 				resist_modifier = 0.25
 			next_move_slowdown = next_move_slowdown + (SLOWDOWN_AMT_GREENFIRE * resist_modifier)
-			to_chat(src, SPAN_DANGER("The viscous napalm clings to your limbs as you struggle to move through the flames!"))
+			to_chat(src, SPAN_DANGER("黏稠的凝固汽油附着在你的四肢上，你挣扎着穿过火焰！"))

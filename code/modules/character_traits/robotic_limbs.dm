@@ -1,5 +1,5 @@
 /datum/character_trait_group/robo_limb
-	trait_group_name = "Robotic Limb"
+	trait_group_name = "机械义肢"
 	mutually_exclusive = TRUE
 	base_type = /datum/character_trait_group/robo_limb
 
@@ -12,8 +12,8 @@
 
 /datum/character_trait/robo_limb/New()
 	..()
-	trait_name = "Prosthetic [robo_limb_name]"
-	trait_desc = "Has their [robo_limb_name] replaced with a prosthetic."
+	trait_name = "[preference_label(robo_limb_name)]义肢"
+	trait_desc = "[preference_label(robo_limb_name)]已替换为义肢。"
 
 /datum/character_trait/robo_limb/apply_trait(mob/living/carbon/human/target, datum/equipment_preset/preset)
 	var/obj/limb/limb = target.get_limb(code_limb)

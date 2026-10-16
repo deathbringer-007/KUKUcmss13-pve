@@ -120,8 +120,8 @@
 
 ///Alcohol bottles and their contents.
 /obj/item/reagent_container/food/drinks/bottle/gin
-	name = "\improper Tanqueray Gin"
-	desc = "A bottle of high-quality London gin."
+	name = "添加利金酒"
+	desc = "一瓶优质伦敦金酒。"
 	icon_state = "ginbottle"
 	center_of_mass = "x=16;y=4"
 
@@ -130,8 +130,8 @@
 	reagents.add_reagent("gin", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/whiskey
-	name = "\improper Uncle Git's Special Reserve"
-	desc = "A premium single-malt whiskey, gently matured for four years by hillbillies in the backwaters of Alabama."
+	name = "老混蛋叔叔特藏威士忌"
+	desc = "优质单一麦芽威士忌，由阿拉巴马偏远乡下的乡巴佬精心陈酿四年。"
 	icon_state = "whiskeybottle"
 	center_of_mass = "x=16;y=3"
 
@@ -140,8 +140,8 @@
 	reagents.add_reagent("whiskey", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/sake
-	name = "\improper Weyland-Yutani Sake"
-	desc = "Sake made with ancient techniques passed down for thousands of years. Fermented in Iowa by the Weyland-Yutani Corporation."
+	name = "维兰德-汤谷清酒"
+	desc = "使用传承数千年的古老工艺酿制的清酒，由维兰德-汤谷公司在艾奥瓦州发酵生产。"
 	icon_state = "sakebottle"
 	center_of_mass = "x=17;y=7"
 
@@ -150,8 +150,8 @@
 	reagents.add_reagent("sake", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/vodka
-	name = "\improper Red Star Vodka"
-	desc = "A cheap, popular vodka brand with a Soviet theme. The bottle reads, 'Ra Ra Red Star Man: Lover of the Finer Things.'"
+	name = "红星伏特加"
+	desc = "便宜又流行的苏维埃风格伏特加。瓶身写着：“啦啦红星人：美好事物的爱好者。”"
 	icon_state = "red_star_vodka"
 	center_of_mass = "x=17;y=3"
 
@@ -167,57 +167,57 @@
 //chess bottles
 
 /obj/item/reagent_container/food/drinks/bottle/vodka/chess
-	name = "\improper Red Star Vodka promotional bottle"
-	desc = "A promotional chess themed bottle of Red Star Vodka."
+	name = "红星伏特加促销装酒瓶"
+	desc = "红星伏特加的国际象棋主题促销酒瓶。"
 	icon_state = "chess"
 	black_market_value = 15
 
 /obj/item/reagent_container/food/drinks/bottle/vodka/chess/b_pawn
-	name = "\improper Black Pawn bottle"
+	name = "黑色兵瓶"
 	icon_state = "b_pawn"
 
 /obj/item/reagent_container/food/drinks/bottle/vodka/chess/w_pawn
-	name = "\improper White Pawn bottle"
+	name = "白色兵瓶"
 	icon_state = "w_pawn"
 
 /obj/item/reagent_container/food/drinks/bottle/vodka/chess/b_bishop
-	name = "\improper Black Bishop bottle"
+	name = "黑色象瓶"
 	icon_state = "b_bishop"
 
 /obj/item/reagent_container/food/drinks/bottle/vodka/chess/w_bishop
-	name = "\improper White Bishop bottle"
+	name = "白色象瓶"
 	icon_state = "w_bishop"
 
 /obj/item/reagent_container/food/drinks/bottle/vodka/chess/b_knight
-	name = "\improper Black Knight bottle"
+	name = "黑色马瓶"
 	icon_state = "b_knight"
 
 /obj/item/reagent_container/food/drinks/bottle/vodka/chess/w_knight
-	name = "\improper White Knight bottle"
+	name = "白色马瓶"
 	icon_state = "w_knight"
 
 /obj/item/reagent_container/food/drinks/bottle/vodka/chess/b_rook
-	name = "\improper Black Rook bottle"
+	name = "黑色车瓶"
 	icon_state = "b_rook"
 
 /obj/item/reagent_container/food/drinks/bottle/vodka/chess/w_rook
-	name = "\improper White Rook bottle"
+	name = "白色车瓶"
 	icon_state = "w_rook"
 
 /obj/item/reagent_container/food/drinks/bottle/vodka/chess/b_king
-	name = "\improper Black King bottle"
+	name = "黑色王瓶"
 	icon_state = "b_king"
 
 /obj/item/reagent_container/food/drinks/bottle/vodka/chess/w_king
-	name = "\improper White King bottle"
+	name = "白色王瓶"
 	icon_state = "w_king"
 
 /obj/item/reagent_container/food/drinks/bottle/vodka/chess/b_queen
-	name = "\improper Black Queen bottle"
+	name = "黑色后瓶"
 	icon_state = "b_queen"
 
 /obj/item/reagent_container/food/drinks/bottle/vodka/chess/w_queen
-	name = "\improper White Queen bottle"
+	name = "白色后瓶"
 	icon_state = "w_queen"
 
 /obj/item/reagent_container/food/drinks/bottle/vodka/chess/random/Initialize()
@@ -228,8 +228,8 @@
 
 
 /obj/item/reagent_container/food/drinks/bottle/tequila
-	name = "\improper Caccavo Guaranteed Quality tequila"
-	desc = "Made from premium petroleum distillates, pure thalidomide and other fine quality ingredients!"
+	name = "卡卡沃品质保证龙舌兰酒"
+	desc = "采用优质石油馏出物、纯沙利度胺及其他上等原料制作！"
 	icon_state = "tequilabottle"
 	center_of_mass = "x=16;y=3"
 
@@ -238,8 +238,8 @@
 	reagents.add_reagent("tequila", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/davenport
-	name = "\improper Davenport Rye Whiskey"
-	desc = "An expensive whiskey with a distinct flavor. The bottle proudly proclaims that it's, 'A True Classic.'"
+	name = "达文波特黑麦威士忌"
+	desc = "风味独特的昂贵威士忌。酒瓶自豪地宣称它是“真正的经典”。"
 	icon_state = "davenport"
 	center_of_mass = "x=16;y=3"
 
@@ -268,8 +268,8 @@
 	reagents.add_reagent("patron", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/rum
-	name = "Captain Pete's Cuban Spiced Rum"
-	desc = "Named after the famed Captain 'Cuban' Pete, this rum is about as volatile as his final mission."
+	name = "皮特船长古巴香料朗姆酒"
+	desc = "以著名的“古巴人”皮特船长命名的朗姆酒，和他最后一次任务一样火爆。"
 	icon_state = "rumbottle"
 	center_of_mass = "x=16;y=8"
 
@@ -288,8 +288,8 @@
 	reagents.add_reagent("holywater", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/vermouth
-	name = "Goldeneye Vermouth"
-	desc = "Sweet, sweet dryness~"
+	name = "金眼味美思"
+	desc = "甜美，甜美的干爽口感～"
 	icon_state = "vermouthbottle"
 	center_of_mass = "x=17;y=3"
 
@@ -298,8 +298,8 @@
 	reagents.add_reagent("vermouth", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/kahlua
-	name = "Robert Robust's Coffee Liqueur"
-	desc = "A widely known, Mexican coffee-flavoured liqueur. In production since 1936, HONK"
+	name = "罗伯特硬汉咖啡利口酒"
+	desc = "知名的墨西哥咖啡味利口酒，自 1936 年起生产。叭！"
 	icon_state = "kahluabottle"
 	center_of_mass = "x=17;y=3"
 
@@ -318,8 +318,8 @@
 	reagents.add_reagent("goldschlager", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/cognac
-	name = "Chateau De Baton Premium Cognac"
-	desc = "A sweet and strongly alcoholic drink, made after numerous distillations and years of maturing. You might as well not scream 'SHITCURITY' this time."
+	name = "巴顿酒庄珍藏干邑"
+	desc = "经过多次蒸馏和多年陈酿的甜烈酒。这次不妨别再嚷嚷“狗屁安保”了。"
 	icon_state = "cognacbottle"
 	center_of_mass = "x=16;y=6"
 
@@ -328,8 +328,8 @@
 	reagents.add_reagent("cognac", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/wine
-	name = "Doublebeard Bearded Special Wine"
-	desc = "A faint aura of unease and asspainery surrounds the bottle."
+	name = "双胡子特酿葡萄酒"
+	desc = "瓶子周围隐约散发着不安与找茬的气息。"
 	icon_state = "winebottle"
 	center_of_mass = "x=16;y=4"
 
@@ -338,8 +338,8 @@
 	reagents.add_reagent("wine", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/absinthe
-	name = "Jailbreaker Verte"
-	desc = "One sip of this and you just know you're gonna have a good time."
+	name = "越狱者绿苦艾酒"
+	desc = "喝上一口，你就知道好时光要来了。"
 	icon_state = "absinthebottle"
 	center_of_mass = "x=16;y=6"
 
@@ -358,8 +358,8 @@
 	reagents.add_reagent("blackout", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/melonliquor
-	name = "Emeraldine Melon Liquor"
-	desc = "A bottle of 46 proof Emeraldine Melon Liquor. Sweet and light."
+	name = "翡翠蜜瓜利口酒"
+	desc = "一瓶酒精度标为 46 proof 的翡翠蜜瓜利口酒，清甜轻盈。"
 	icon_state = "alco-green" //Placeholder.
 	center_of_mass = "x=16;y=6"
 
@@ -368,8 +368,8 @@
 	reagents.add_reagent("melonliquor", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/bluecuracao
-	name = "Miss Blue Curacao"
-	desc = "A fruity, exceptionally azure drink. Does not allow the imbiber to use the fifth magic."
+	name = "蓝小姐库拉索利口酒"
+	desc = "果香浓郁、蓝得出奇的饮料，并不能让饮用者施展第五魔法。"
 	icon_state = "alco-blue" //Placeholder.
 	center_of_mass = "x=16;y=6"
 
@@ -378,8 +378,8 @@
 	reagents.add_reagent("bluecuracao", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/grenadine
-	name = "Briar Rose Grenadine Syrup"
-	desc = "Sweet and tangy, a bar syrup used to add color or flavor to drinks."
+	name = "野蔷薇石榴糖浆"
+	desc = "酸甜的酒吧糖浆，用于给饮料增色调味。"
 	icon_state = "grenadinebottle"
 	center_of_mass = "x=16;y=6"
 
@@ -400,8 +400,8 @@
 ////////////////////////// BEERS ///////////////////////
 
 /obj/item/reagent_container/food/drinks/bottle/beer/craft
-	name = "Pendleton's Triple Star Lager"
-	desc = "A brand of colonial lager prevalent in the Outer Rim but practically unknown in the inner systems, probably because of health concerns. It tastes like absolutely nothing familiar to you, but is oddly refreshing and has a fruity taste. The label on the back reads, 'Brewed with exotic hops in Costaguana.' You're almost certain that's a fake country."
+	name = "彭德尔顿三星啤酒拉格啤酒"
+	desc = "盛行于外缘殖民地的拉格啤酒品牌，在内星系却几乎无人知晓，大概是出于健康顾虑。味道完全陌生，却意外清爽并带有果香。背标写着“在科斯塔瓜纳使用异域啤酒花酿造”。你几乎肯定那是个虚构国家。"
 	icon_state = "pendleton"
 	center_of_mass = "x=16;y=13"
 
@@ -410,45 +410,45 @@
 	reagents.add_reagent("beer", 30)
 
 /obj/item/reagent_container/food/drinks/bottle/beer/craft/tuxedo
-	name = "Tuxedo Premium"
-	desc = "A craft ale originally brewed in England, the Tuxedo Premium brand is widely advertised as a beer for the gentleman; one not enjoyed in a pub, but rather sipped over a formal dinner. It doesn't sell very well, partially because it doesn't taste much different than any other beer and partially because it is three times as expensive. But cherish it! This is the nectar of the rich."
+	name = "燕尾服精酿"
+	desc = "最初在英国酿造的燕尾服精酿艾尔，广告称它是绅士之酒：应在正式晚宴上细品，而非酒吧畅饮。销量不佳，一是味道与其他啤酒没多大区别，二是价格贵三倍。但请珍惜它，这可是富人的琼浆。"
 	icon_state = "tuxedo"
 
 /obj/item/reagent_container/food/drinks/bottle/beer/craft/ganucci
-	name = "Ganucci's Genuine Light Beer"
-	desc = "A light beer with a watery taste and sour undertones. It's not the best, but it's dirt cheap, and brewed in Italy, so it's naturally popular with the masses. Contrary to popular belief, it is real beer, and not in fact druidic dirt water."
+	name = "加努奇纯正淡啤啤酒"
+	desc = "淡而水感十足、略带酸味的啤酒。算不上好喝，但便宜得要命，又产自意大利，自然受到大众欢迎。与流言不同，它真是啤酒，而非德鲁伊泡的泥水。"
 	icon_state = "ganucci"
 
 /obj/item/reagent_container/food/drinks/bottle/beer/craft/bluemalt
-	name = "Blue Malt"
-	desc = "A malt beer with an alcohol content that toes the line of legality. So-called 'blue' because it's the color face you get when you down so many of these that your heart stops working. The surgeon general's warning is printed in huge letters on the back of the bottle. Do guns count as heavy machinery?"
+	name = "蓝麦啤酒"
+	desc = "酒精度踩在法律边缘的麦芽啤酒。之所以叫“蓝麦”，是因为喝到心脏停跳时脸就会变成蓝色。瓶背用大字印着公共卫生总监的警告。枪械算重型机械吗？"
 	icon_state = "bluemalt"
 
 /obj/item/reagent_container/food/drinks/bottle/beer/craft/partypopper
-	name = "Party Popper Ale"
-	desc = "A fun, exotic craft beer from the colonies that mixes in a tiny bit of sugar along with light, fruity ale. The result makes the taste buds in your mouth do a little dance, presumably of confusion, and is said to make people smile after a sip. Best served at parties, worst served at funerals. Smile over your best friend's grave, why don't you."
+	name = "派对礼炮艾尔啤酒"
+	desc = "来自殖民地的有趣异域精酿，在清淡的果香艾尔中加了少量糖。喝下后味蕾仿佛跳起舞来，大概是因为困惑，据说一口就能让人微笑。最适合派对，最不适合葬礼。难道你要对着挚友的坟墓笑吗？"
 	icon_state = "partypopper"
 
 /obj/item/reagent_container/food/drinks/bottle/beer/craft/tazhushka
-	name = "Tazhushka's Turquoise Beer"
-	desc = "A UPP-originating beer made by the eponymous Tazhushka State Brewery. It singes your throat when you drink it, but it makes you also feel ready for anything. For a time, at least, until the hangover the brand is famous for kicks in and wrecks you inside out."
+	name = "塔祖什卡绿松石啤酒"
+	desc = "来自 UPP，由同名塔祖什卡国营酒厂生产的啤酒。喝下去烧喉咙，却让你觉得无所畏惧——至少在这个品牌闻名的宿醉从里到外击垮你之前如此。"
 	icon_state = "tazhushka"
 
 /obj/item/reagent_container/food/drinks/bottle/beer/craft/reaper
-	name = "Reaper Red"
-	desc = "A strong Japanese beer that is marketed as 'daring' and 'adventurous'. Considering the label is quite literally the universal sign for 'HAZARD', it's safe to say drinking enough of this will be enough of a daring adventure to make you move up your next appointment with your doctor regarding your weeping liver."
+	name = "死神红啤"
+	desc = "标榜“大胆”“冒险”的烈性日本啤酒。标签就是通用的“危险”标志，喝多了绝对够刺激，刺激到你得提前预约医生，看看那颗哀嚎的肝脏。"
 	icon_state = "reaper"
 
 /obj/item/reagent_container/food/drinks/bottle/beer/craft/mono
-	name = "Mono Lager"
-	desc = "This black and white beer bottle does not say where it's from, nor does it say what it is supposed to be. All you know is that it is a beer, and it has a rather bland taste. Makes you feel like you're looking through a photo from four centuries ago. Rumor is if you say the name fast enough, it makes you want to say a long-winded, villainous speech."
+	name = "单色拉格啤酒"
+	desc = "黑白配色的酒瓶既不写产地，也不说是什么酒。你只知道这是啤酒，味道相当寡淡，仿佛在看四百年前的照片。据说把名字念快了，就会想发表一篇冗长的反派演说。"
 	icon_state = "mono"
 
 //////////////////////////JUICES AND STUFF ///////////////////////
 
 /obj/item/reagent_container/food/drinks/bottle/orangejuice
-	name = "Orange Juice"
-	desc = "Full of vitamins and deliciousness!"
+	name = "橙汁"
+	desc = "满满的维生素与美味！"
 	icon_state = "orangejuice"
 	item_state = "carton"
 	center_of_mass = "x=16;y=7"
@@ -460,15 +460,15 @@
 	var/probability = rand(0, 101)
 	switch(probability)
 		if(0 to 49)
-			desc = "Full of vitamins and deliciousness! Contains NO pulp!"
+			desc = "富含维生素，美味可口！不含果肉！"
 		if(50 to 100)
-			desc = "Full of vitamins and deliciousness! Contains pulp!"
+			desc = "富含维生素，美味可口！含有果肉！"
 		else
-			desc = "Full of vitamins and deliciousness! Contains 100% pulp!"
+			desc = "富含维生素，美味可口！百分之百都是果肉！"
 
 /obj/item/reagent_container/food/drinks/bottle/cream
-	name = "Milk Cream"
-	desc = "It's cream. Made from milk. What else did you think you'd find in there?"
+	name = "奶油"
+	desc = "这是奶油，用牛奶做的。你还以为里面会是什么？"
 	icon_state = "cream"
 	item_state = "carton"
 	center_of_mass = "x=16;y=8"
@@ -479,8 +479,8 @@
 	reagents.add_reagent("cream", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/tomatojuice
-	name = "Tomato Juice"
-	desc = "Well, at least it LOOKS like tomato juice. You can't tell with all that redness."
+	name = "番茄汁"
+	desc = "好吧，至少看起来像番茄汁。红成这样，你也分辨不出来。"
 	icon_state = "tomatojuice"
 	item_state = "carton"
 	center_of_mass = "x=16;y=8"
@@ -491,8 +491,8 @@
 	reagents.add_reagent("tomatojuice", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/limejuice
-	name = "Lime Juice"
-	desc = "Sweet-sour goodness."
+	name = "青柠汁"
+	desc = "酸酸甜甜的美味。"
 	icon_state = "limejuice"
 	item_state = "carton"
 	center_of_mass = "x=16;y=8"

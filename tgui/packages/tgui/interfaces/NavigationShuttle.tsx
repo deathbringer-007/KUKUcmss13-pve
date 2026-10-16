@@ -47,7 +47,7 @@ export const CancelLaunchButton = () => {
       disabled={siteselection === undefined}
       onClick={() => setSiteSelection(undefined)}
     >
-      Cancel
+      取消
     </Button>
   );
 };
@@ -67,7 +67,7 @@ export const LaunchButton = () => {
         setSiteSelection(undefined);
       }}
     >
-      Launch
+      起飞
     </Button>
   );
 };
@@ -79,7 +79,7 @@ export const DestionationSelection = () => {
     undefined,
   );
   return (
-    <Section title="Select Destination">
+    <Section title="选择目的地">
       <Stack fill justify="space-evenly">
         <Stack.Item align="center">
           <CancelLaunchButton />
@@ -130,12 +130,12 @@ export const DestionationSelection = () => {
 export const ShuttleRecharge = () => {
   const { data } = useBackend<NavigationProps>();
   return (
-    <Section m="0" title="Refueling in progress">
+    <Section m="0" title="正在补充燃料">
       <div className="LaunchCountdown">
         <Stack vertical>
           <Stack.Item>
             <span>
-              Ready to launch in <u>T-{data.flight_time}s</u>.
+              距离准备就绪还有<u>T-{data.flight_time}秒</u>。
             </span>
           </Stack.Item>
           <Stack.Item>
@@ -143,7 +143,7 @@ export const ShuttleRecharge = () => {
               maxValue={data.max_refuel_duration}
               value={data.flight_time}
             >
-              T-{data.flight_time}s
+              T-{data.flight_time}秒
             </ProgressBar>
           </Stack.Item>
         </Stack>
@@ -155,13 +155,13 @@ export const ShuttleRecharge = () => {
 export const LaunchCountdown = () => {
   const { data } = useBackend<NavigationProps>();
   return (
-    <Section m="0" title="Launch in progress">
+    <Section m="0" title="正在起飞">
       <div className="LaunchCountdown">
         <Stack vertical>
           <Stack.Item>
             <span>
-              Launching in <u>T-{data.flight_time}s</u> to{' '}
-              {data.target_destination}.
+              将在<u>T-{data.flight_time}秒</u>后起飞，前往
+              {data.target_destination}。
             </span>
           </Stack.Item>
           <Stack.Item>
@@ -169,7 +169,7 @@ export const LaunchCountdown = () => {
               maxValue={data.max_engine_start_duration}
               value={data.flight_time}
             >
-              T-{data.flight_time}s
+              T-{data.flight_time}秒
             </ProgressBar>
           </Stack.Item>
         </Stack>
@@ -182,11 +182,11 @@ export const InFlightCountdown = () => {
   const { data, act } = useBackend<NavigationProps>();
   return (
     <Section
-      title={`In flight: ${data.target_destination}`}
+      title={`航行中：${data.target_destination}`}
       m="0"
       buttons={
         data.target_destination === 'Flyby' && (
-          <Button onClick={() => act('cancel-flyby')}>Cancel</Button>
+          <Button onClick={() => act('cancel-flyby')}>取消</Button>
         )
       }
     >
@@ -194,7 +194,7 @@ export const InFlightCountdown = () => {
         <Stack vertical>
           <Stack.Item>
             <span>
-              Time until destination: <u>T-{data.flight_time}s</u>.
+              距离抵达目的地还有<u>T-{data.flight_time}秒</u>。
             </span>
           </Stack.Item>
           <Stack.Item>
@@ -202,7 +202,7 @@ export const InFlightCountdown = () => {
               maxValue={data.max_flight_duration}
               value={data.flight_time}
             >
-              T-{data.flight_time}s
+              T-{data.flight_time}秒
             </ProgressBar>
           </Stack.Item>
         </Stack>
@@ -218,7 +218,7 @@ const DoorControls = () => {
   const disable_normal_control = data.locked_down === 1;
   return (
     <Section
-      title="Door Controls"
+      title="舱门控制"
       buttons={
         <>
           {data.locked_down === 0 && (
@@ -227,7 +227,7 @@ const DoorControls = () => {
               onClick={() => act('lockdown')}
               icon="triangle-exclamation"
             >
-              Lockdown
+              封锁
             </Button>
           )}
           {data.locked_down === 1 && (
@@ -236,7 +236,7 @@ const DoorControls = () => {
               onClick={() => act('unlock')}
               icon="triangle-exclamation"
             >
-              Lift Lockdown
+              解除封锁
             </Button>
           )}
         </>
@@ -251,7 +251,7 @@ const DoorControls = () => {
             width="100%"
             textAlign="center"
           >
-            Force Open
+            强制开启
           </Button>
         </Stack.Item>
         <Stack.Item grow>
@@ -262,7 +262,7 @@ const DoorControls = () => {
             width="100%"
             textAlign="center"
           >
-            Force Close
+            强制关闭
           </Button>
         </Stack.Item>
       </Stack>
@@ -274,8 +274,8 @@ export const DisabledScreen = (props) => {
   const { data } = useBackend<NavigationProps>();
 
   const disabled_text = data.mission_accomplished
-    ? 'Auto-navigation protocol completed - return home complete. Shuttle disabled.'
-    : 'The shuttle has had an error. Contact your nearest system administrator to resolve the issue.';
+    ? '自动导航程序已完成，已返回基地。穿梭机已停用。'
+    : '穿梭机发生故障，请联系附近的系统管理员处理。';
 
   return (
     <Box className="DisabledScreen">
@@ -290,13 +290,13 @@ const LaunchHome = (props) => {
   const { data, act } = useBackend<NavigationProps>();
 
   return (
-    <Section title="Automatic Return Enabled" className="DestinationSelector">
+    <Section title="已启用自动返航" className="DestinationSelector">
       <Button.Confirm
         fluid
-        confirmContent={'One-way navigation enabled - confirm?'}
+        confirmContent={'已启用单程导航，确认返航？'}
         onClick={() => act('launch_home')}
       >
-        Return Home
+        返回基地
       </Button.Confirm>
     </Section>
   );
@@ -309,7 +309,7 @@ const SpoolingDimmer = (props) => {
     <Dimmer>
       <Stack>
         <Stack.Item>
-          <Box>Spooling...</Box>
+          <Box>引擎正在升速……</Box>
         </Stack.Item>
         <Stack.Item>
           <Icon name={'spinner'} spin />

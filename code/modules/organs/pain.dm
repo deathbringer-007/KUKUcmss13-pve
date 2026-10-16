@@ -21,36 +21,36 @@
 		var/obj/limb/right_hand = H.get_limb("r_hand")
 		var/obj/limb/left_hand = H.get_limb("l_hand")
 		if(!H.stat && amount > 50 && prob(amount * 0.05))
-			msg = "You [pick("wince","shiver","grimace")] in pain"
+			msg = "你痛得[pick("直缩身子","浑身发抖","龇牙咧嘴")]"
 			var/i
 			for(var/obj/limb/O in list(right_hand, left_hand))
 				if(!O || !O.is_usable()) continue //Not if the organ can't possibly function.
 				if(O.name == "l_hand") drop_l_hand()
 				else drop_r_hand()
 				i++
-			if(i) msg += ", [pick("fumbling with","struggling with","losing control of")] your [i < 2 ? "hand" : "hands"]"
+			if(i) msg += "，[i < 2 ? "一只手" : "双手"][pick("笨拙地乱动","无力地挣扎","失去了控制")]"
 			to_chat(H, SPAN_WARNING("[msg]."))
 
 	if(burning)
 		switch(amount)
 			if(1 to 10)
-				msg = SPAN_WARNING("Your [partname] burns.")
+				msg = SPAN_WARNING("你的[partname]有灼烧感。")
 			if(11 to 90)
 				flash_weak_pain()
-				msg = SPAN_DANGER("Your [partname] burns badly!")
+				msg = SPAN_DANGER("你的[partname]灼痛难忍！")
 			if(91 to 10000)
 				flash_pain()
-				msg = SPAN_HIGHDANGER("OH GOD! Your [partname] is on fire!")
+				msg = SPAN_HIGHDANGER("天哪！你的[partname]像着了火！")
 	else
 		switch(amount)
 			if(1 to 10)
-				msg = SPAN_WARNING("Your [partname] hurts.")
+				msg = SPAN_WARNING("你的[partname]有些疼。")
 			if(11 to 90)
 				flash_weak_pain()
-				msg = SPAN_DANGER("Your [partname] hurts badly.")
+				msg = SPAN_DANGER("你的[partname]疼痛难忍。")
 			if(91 to 10000)
 				flash_pain()
-				msg = SPAN_HIGHDANGER("OH GOD! Your [partname] is hurting terribly!")
+				msg = SPAN_HIGHDANGER("天哪！你的[partname]痛得要命！")
 	if(msg && (msg != last_pain_message || prob(10)))
 		last_pain_message = msg
 		to_chat(src, msg)
@@ -121,7 +121,7 @@
 	for(var/datum/internal_organ/I as anything in internal_organs)
 		if(I.damage > 2 && prob(2))
 			parent = get_limb(I.parent_limb)
-			custom_pain("You feel a sharp pain in your [parent.display_name]!", 1)
+			custom_pain("你的[parent.display_name]传来一阵剧痛！", 1)
 
 	var/toxDamageMessage = null
 	var/toxMessageProb = 1
@@ -129,19 +129,19 @@
 	switch(toxin_damage)
 		if(1 to 5)
 			toxMessageProb = 1
-			toxDamageMessage = "Your body stings slightly."
+			toxDamageMessage = "你感到身体微微刺痛。"
 		if(6 to 10)
 			toxMessageProb = 2
-			toxDamageMessage = "Your whole body hurts a little."
+			toxDamageMessage = "你感到全身有些疼痛。"
 		if(11 to 15)
 			toxMessageProb = 2
-			toxDamageMessage = "Your whole body hurts."
+			toxDamageMessage = "你感到全身疼痛。"
 		if(15 to 25)
 			toxMessageProb = 3
-			toxDamageMessage = "Your whole body hurts badly."
+			toxDamageMessage = "你感到全身剧痛。"
 		if(26 to INFINITY)
 			toxMessageProb = 5
-			toxDamageMessage = "Your body aches all over, it's driving you mad!"
+			toxDamageMessage = "你全身疼痛，快要被逼疯了！"
 
 	if(toxDamageMessage && prob(toxMessageProb))
 		custom_pain(toxDamageMessage, toxin_damage >= 35)

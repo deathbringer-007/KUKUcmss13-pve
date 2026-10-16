@@ -293,8 +293,8 @@
 //M44 Revolver
 
 /obj/item/weapon/gun/revolver/m44
-	name = "\improper M44 revolver"
-	desc = ".44 Magnum revolver, in limited service with the USCMC for personal defense against larger xenofauna. For best results, aim carefully."
+	name = "M44 左轮手枪"
+	desc = ".44 马格南左轮手枪，在 USCMC 中少量服役，用于防卫大型外星野生动物。仔细瞄准效果最佳。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "m44r"
 	item_state = "m44r"
@@ -455,8 +455,8 @@
 //RUSSIAN REVOLVER //Based on the 7.62mm Russian revolvers.
 
 /obj/item/weapon/gun/revolver/upp
-	name = "\improper ZHNK-72 revolver"
-	desc = "The ZHNK-72 is a UPP designed revolver. The ZHNK-72 is used by the UPP armed forces in a policing role as well as limited numbers in the hands of SNCOs."
+	name = "ZHNK-72 左轮手枪"
+	desc = "ZHNK-72 是 UPP 设计的左轮手枪，由其武装部队执行警务时使用，也少量配发给高级士官。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/upp.dmi'
 	icon_state = "zhnk72"
 	item_state = "zhnk72"
@@ -508,8 +508,8 @@
 //a lean mean machine, pretty inaccurate unless you play its dance.
 
 /obj/item/weapon/gun/revolver/small
-	name = "\improper .38 revolver"
-	desc = "A Frontier Special. Out here, you get a lot of smalltime companies that try to push themselves as better by upping the pressure of their ammo and fiddling with the designs to make it work. It usually means that their accuracy is awful, but the impact is impressive... if you've got the knowhow to shoot them straight."
+	name = ".38 左轮手枪"
+	desc = "边疆特产。这里不少小公司靠提高弹药膛压、再修改设计勉强适配，宣称自家产品更好。通常精度糟糕，但命中冲击很惊人……前提是你知道怎么打准。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "sw357"
 	item_state = "sw357"
@@ -557,8 +557,8 @@
 	attack_verb = list("stabbed")
 
 /obj/item/weapon/gun/revolver/mateba
-	name = "\improper Mateba autorevolver"
-	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It fires heavy .454 rounds."
+	name = "马特巴自动左轮手枪"
+	desc = "马特巴是威力强大、射速很快的左轮手枪，利用自身后坐力转动弹巢，发射重型 .454 子弹。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "mateba"
 	item_state = "mateba"
@@ -708,8 +708,8 @@
 //MARSHALS REVOLVER //Spearhead exists in Alien cannon.
 
 /obj/item/weapon/gun/revolver/spearhead
-	name = "\improper Spearhead Armoury revolver"
-	desc = "A sleek high-quality revolver designed by Spearhead Armoury chambered in .357 commonly issued to Colonial Marshals."
+	name = "矛头军械左轮手枪"
+	desc = "矛头军械设计的精致优质 .357 左轮手枪，常配发给殖民地执法官。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "spearhead"
 	item_state = "spearhead"
@@ -763,7 +763,7 @@
 	current_mag = /obj/item/ammo_magazine/internal/revolver/spearhead/hollowpoint
 
 /obj/item/weapon/gun/revolver/spearhead/black
-	name = "\improper Spearhead Armoury revolver"
+	name = "矛头军械左轮手枪"
 	desc = "A sleek high-quality revolver designed by Spearhead Armoury chambered in .357 commonly issued to Colonial Marshals, though this version has been customized with a black metal finish indicating it is unlikely to be a service weapon."
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "spearhead_black"

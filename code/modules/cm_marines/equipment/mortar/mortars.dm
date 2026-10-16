@@ -416,8 +416,8 @@
 
 //The portable mortar item
 /obj/item/mortar_kit
-	name = "\improper M402 mortar portable kit"
-	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first"
+	name = "M402 迫击炮便携式套件"
+	desc = "由炮组手动操作的迫击炮系统，向瞄准区域倾泻 80mm 的“美好问候”。使用前需先放下部署。"
 	icon = 'icons/obj/structures/mortar.dmi'
 	icon_state = "mortar_m402_carry"
 	unacidable = TRUE
@@ -622,8 +622,8 @@
 	kit_type = /obj/item/mortar_kit/rmc
 
 /obj/item/mortar_kit/rmc
-	name = "\improper L53A1 light mortar portable kit"
-	desc = "A manual, crew-operated light mortar system intended to provide mobile fire support for a troop of Royal Marines. Needs to be set down first"
+	name = "L53A1 轻型迫击炮便携式套件"
+	desc = "由炮组手动操作的轻型迫击炮系统，为皇家陆战队分队提供机动火力支援。使用前需先放下部署。"
 	icon_state = "mortar_l53a1_carry"
 	item_state = "mortar_l53a1_carry"
 	flags_equip_slot = SLOT_BACK

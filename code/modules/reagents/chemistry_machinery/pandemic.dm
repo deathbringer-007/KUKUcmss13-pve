@@ -1,6 +1,6 @@
 //this machine does nothing
 /obj/structure/machinery/disease2/diseaseanalyser
-	name = "Disease Analyser"
+	name = "疾病分析仪"
 	icon = 'icons/obj/structures/machinery/virology.dmi'
 	icon_state = "analyser"
 	anchored = TRUE
@@ -66,7 +66,7 @@
 						D = new vaccine_type(0, null)
 
 				if(D)
-					B.name = "[D.name] vaccine bottle"
+					B.name = "[D.name]疫苗瓶"
 					B.reagents.add_reagent("vaccine",15,vaccine_type)
 					wait = 1
 					var/datum/reagent/blood/Blood = null
@@ -78,7 +78,7 @@
 					spawn(length(res)*200)
 						wait = null
 		else
-			temphtml = "The replicator is not ready yet."
+			temphtml = "复制器尚未就绪。"
 		updateUsrDialog()
 		return
 	else if(href_list["create_virus_culture"])
@@ -97,16 +97,16 @@
 				if(virus_type in GLOB.diseases) // Make sure this is a disease
 					D = new virus_type(0, null)
 			var/list/data = list("viruses"=list(D))
-			var/name = strip_html(input(user,"Name:","Name the culture",D.name))
+			var/name = strip_html(input(user,"名称：","为培养物命名",D.name))
 			if(!name || name == " ") name = D.name
-			B.name = "[name] culture bottle"
-			B.desc = "A small bottle. Contains [D.agent] culture in synthblood medium."
+			B.name = "[name]培养物瓶"
+			B.desc = "一个小瓶，装有以合成血液为培养基的[D.agent]培养物。"
 			B.reagents.add_reagent("blood",20,data)
 			updateUsrDialog()
 			wait = 1
 			addtimer(VARSET_CALLBACK(src, wait, null), 100 SECONDS)
 		else
-			temphtml = "The replicator is not ready yet."
+			temphtml = "复制器尚未就绪。"
 		updateUsrDialog()
 		return
 	else if(href_list["empty_beaker"])
@@ -124,7 +124,7 @@
 		updateUsrDialog()
 		return
 	else if(href_list["name_disease"])
-		var/new_name = stripped_input(user, "Name the Disease", "New Name", "", MAX_NAME_LEN)
+		var/new_name = stripped_input(user, "为疾病命名", "新名称", "", MAX_NAME_LEN)
 		if(inoperable()) return
 		if(user.stat || user.is_mob_restrained()) return
 		if(!in_range(src, user)) return
@@ -151,10 +151,10 @@
 	user.set_interaction(src)
 	var/dat = ""
 	if(temphtml)
-		dat = "[temphtml]<BR><BR><A href='byond://?src=\ref[src];clear=1'>Main Menu</A>"
+		dat = "[temphtml]<BR><BR><A href='byond://?src=\ref[src];clear=1'>主菜单</A>"
 	else if(!beaker)
-		dat += "Please insert beaker.<BR>"
-		dat += "<A href='byond://?src=\ref[user];mach_close=pandemic'>Close</A>"
+		dat += "请插入烧杯。<BR>"
+		dat += "<A href='byond://?src=\ref[user];mach_close=pandemic'>关闭</A>"
 	else
 		var/datum/reagent/blood/Blood = null
 		for(var/datum/reagent/blood/B in beaker.reagents.reagent_list)
@@ -162,14 +162,14 @@
 				Blood = B
 				break
 		if(!beaker.reagents.total_volume||!length(beaker.reagents.reagent_list))
-			dat += "The beaker is empty<BR>"
+			dat += "烧杯是空的<BR>"
 		else if(!Blood)
-			dat += "No blood sample found in beaker"
+			dat += "烧杯中未找到血液样本"
 		else if(!Blood.data_properties)
-			dat += "No blood data found in beaker."
+			dat += "烧杯中未找到血液数据。"
 		else
-			dat += "<h3>Blood sample data:</h3>"
-			dat += "<b>Blood Type:</b> [(Blood.data_properties["blood_type"]||"none")]<BR>"
+			dat += "<h3>血液样本数据：</h3>"
+			dat += "<b>血型：</b> [(Blood.data_properties["blood_type"]||"无")]<BR>"
 
 			if(Blood.data_properties["viruses"])
 				var/list/vir = Blood.data_properties["viruses"]
@@ -187,27 +187,27 @@
 								D = GLOB.archive_diseases[A.GetDiseaseID()]
 								disease_creation = A.GetDiseaseID()
 								if(D.name == "Unknown")
-									dat += "<b><a href='byond://?src=\ref[src];name_disease=[A.GetDiseaseID()]'>Name Disease</a></b><BR>"
+									dat += "<b><a href='byond://?src=\ref[src];name_disease=[A.GetDiseaseID()]'>为疾病命名</a></b><BR>"
 
 							if(!D)
 								CRASH("We weren't able to get the advance disease from the archive.")
 
-							dat += "<b>Disease Agent:</b> [D?"[D.agent] - <A href='byond://?src=\ref[src];create_virus_culture=[disease_creation]'>Create virus culture bottle</A>":"none"]<BR>"
-							dat += "<b>Common name:</b> [(D.name||"none")]<BR>"
-							dat += "<b>Description: </b> [(D.desc||"none")]<BR>"
-							dat += "<b>Spread:</b> [(D.spread||"none")]<BR>"
-							dat += "<b>Possible cure:</b> [(D.cure||"none")]<BR><BR>"
+							dat += "<b>病原体：</b> [D?"[D.agent] - <A href='byond://?src=\ref[src];create_virus_culture=[disease_creation]'>制造病毒培养物瓶</A>":"无"]<BR>"
+							dat += "<b>常用名称：</b> [(D.name||"无")]<BR>"
+							dat += "<b>描述：</b> [(D.desc||"无")]<BR>"
+							dat += "<b>传播途径：</b> [(D.spread||"无")]<BR>"
+							dat += "<b>可能的疗法：</b> [(D.cure||"无")]<BR><BR>"
 
 							if(istype(D, /datum/disease/advance))
 								var/datum/disease/advance/A = D
-								dat += "<b>Symptoms:</b> "
+								dat += "<b>症状：</b> "
 								var/english_symptoms = list()
 								for(var/datum/symptom/S in A.symptoms)
 									english_symptoms += S.name
 								dat += english_list(english_symptoms)
 
 
-			dat += "<BR><b>Contains antibodies to:</b> "
+			dat += "<BR><b>含有针对以下疾病的抗体：</b> "
 			if(Blood.data_properties["resistances"])
 				var/list/res = Blood.data_properties["resistances"]
 				if(length(res))
@@ -225,14 +225,14 @@
 							var/datum/disease/D = new type(0, null)
 							disease_name = D.name
 
-						dat += "<li>[disease_name] - <A href='byond://?src=\ref[src];create_vaccine=[type]'>Create vaccine bottle</A></li>"
+						dat += "<li>[disease_name] - <A href='byond://?src=\ref[src];create_vaccine=[type]'>制造疫苗瓶</A></li>"
 					dat += "</ul><BR>"
 				else
-					dat += "nothing<BR>"
+					dat += "无<BR>"
 			else
-				dat += "nothing<BR>"
-		dat += "<BR><A href='byond://?src=\ref[src];eject=1'>Eject beaker</A>[((beaker.reagents.total_volume && length(beaker.reagents.reagent_list)) ? "-- <A href='byond://?src=\ref[src];empty_beaker=1'>Empty beaker</A>":"")]<BR>"
-		dat += "<A href='byond://?src=\ref[user];mach_close=pandemic'>Close</A>"
+				dat += "无<BR>"
+		dat += "<BR><A href='byond://?src=\ref[src];eject=1'>取出烧杯</A>[((beaker.reagents.total_volume && length(beaker.reagents.reagent_list)) ? "-- <A href='byond://?src=\ref[src];empty_beaker=1'>清空烧杯</A>":"")]<BR>"
+		dat += "<A href='byond://?src=\ref[user];mach_close=pandemic'>关闭</A>"
 
 	show_browser(user, "<TITLE>[name]</TITLE><BR>[dat]", name, "pandemic")
 	return
@@ -243,12 +243,12 @@
 		if(inoperable())
 			return
 		if(beaker)
-			to_chat(user, SPAN_WARNING("A beaker is already loaded into the machine."))
+			to_chat(user, SPAN_WARNING("机器里已经装有烧杯。"))
 			return
 
 		beaker =  I
 		user.drop_inv_item_to_loc(I, src)
-		to_chat(user, SPAN_NOTICE("You add the beaker to the machine!"))
+		to_chat(user, SPAN_NOTICE("你将烧杯放入机器！"))
 		updateUsrDialog()
 		update_icon()
 

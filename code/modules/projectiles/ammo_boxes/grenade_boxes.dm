@@ -1,6 +1,6 @@
 /obj/item/ammo_box/magazine/nade_box
-	name = "\improper M40 HEDP grenade box"
-	desc = "A secure box holding 25 M40 High-Explosive Dual-Purpose grenades. Highly explosive, don't store near the flamer fuel."
+	name = "M40 HEDP 手榴弹箱"
+	desc = "装有 25 枚 M40 高爆两用手榴弹的安全箱。具有强爆炸性，请勿存放在喷火器燃料旁。"
 	icon = 'icons/obj/items/weapons/guns/ammo_boxes/boxes_and_lids.dmi'
 	icon_state = "base_uscm_nade"
 	w_class = SIZE_LARGE
@@ -132,8 +132,8 @@
 	overlay_grenade_type = "hipf"
 
 /obj/item/ammo_box/magazine/nade_box/phophorus
-	name = "\improper M60 WPSI grenade box"
-	desc = "A secure box holding 25 M60 White-Phosphorus, Smoke/Incendiary chemical compound grenades. Highly flammable and explosive, don't store near the flamer fuel."
+	name = "M60 WPSI 手榴弹箱"
+	desc = "装有 25 枚 M60 白磷烟幕／燃烧化合物手榴弹的安全箱。极易燃烧和爆炸，请勿存放在喷火器燃料旁。"
 	magazine_type = /obj/item/explosive/grenade/phosphorus
 	allowed_magazines = list(/obj/item/explosive/grenade/phosphorus)
 	overlay_model_type = "model_m60"
@@ -141,8 +141,8 @@
 	overlay_grenade_type = "phos"
 
 /obj/item/ammo_box/magazine/nade_box/incen
-	name = "\improper M77 HIAM grenade box"
-	desc = "A secure box holding 25 M77 High-explosive-Incendiary, Anti-Mobility grenades. Highly flammable, don't store near the flamer fuel."
+	name = "M77 HIAM 手榴弹箱"
+	desc = "装有 25 枚 M77 高爆燃烧阻行手榴弹的安全箱。极易燃烧，请勿存放在喷火器燃料旁。"
 	magazine_type = /obj/item/explosive/grenade/incendiary
 	allowed_magazines = list(/obj/item/explosive/grenade/incendiary)
 	overlay_model_type = "model_m77"
@@ -230,8 +230,8 @@
 //--------------------40MM GRENADE BOXES
 
 /obj/item/ammo_box/magazine/nade_box/fourtymil
-	name = "\improper 40mm HEDP grenade box"
-	desc = "A secure box holding 25 old-style 40mm High-Explosive, Dual-Purpose grenades."
+	name = "40mm HEDP 手榴弹箱"
+	desc = "装有 25 枚老式 40mm 高爆两用手榴弹的安全箱。"
 	magazine_type = /obj/item/explosive/grenade/high_explosive/impact
 	allowed_magazines = list(/obj/item/explosive/grenade/high_explosive/impact)
 	icon_state = "base_uscm_40mm"
@@ -275,8 +275,8 @@
 //--------------------M74 GRENADE BOXES
 
 /obj/item/ammo_box/magazine/nade_box/fourtymil/airburst
-	name = "\improper M74 AGM-F grenade box"
-	desc = "A secure box holding 25 M74 AGM Fragmentation grenades. Explosive, don't store near the flamer fuel."
+	name = "M74 AGM-F 手榴弹箱"
+	desc = "装有 25 枚 M74 AGM 破片手榴弹的安全箱。内含爆炸物，请勿存放在喷火器燃料旁。"
 	magazine_type = /obj/item/explosive/grenade/high_explosive/airburst
 	allowed_magazines = list(/obj/item/explosive/grenade/high_explosive/airburst)
 	overlay_model_type = "model_m74"
@@ -284,16 +284,16 @@
 	overlay_grenade_type = "40mm_agmf"
 
 /obj/item/ammo_box/magazine/nade_box/fourtymil/airburst/incen
-	name = "\improper M74 AGM-I grenade box"
-	desc = "A secure box holding 25 M74 AGM Incendiary grenades. Highly flammable, don't store near the flamer fuel."
+	name = "M74 AGM-I 手榴弹箱"
+	desc = "装有 25 枚 M74 AGM 燃烧手榴弹的安全箱。极易燃烧，请勿存放在喷火器燃料旁。"
 	magazine_type = /obj/item/explosive/grenade/incendiary/airburst
 	allowed_magazines = list(/obj/item/explosive/grenade/incendiary/airburst)
 	overlay_icon_type = "agmi"
 	overlay_grenade_type = "40mm_agmi"
 
 /obj/item/ammo_box/magazine/nade_box/fourtymil/airburst/smoke
-	name = "\improper M74 AGM-S grenade box"
-	desc = "A secure box holding 25 M74 AGM Smoke grenades. Explosive, don't store near the flamer fuel."
+	name = "M74 AGM-S 手榴弹箱"
+	desc = "装有 25 枚 M74 AGM 烟幕手榴弹的安全箱。内含爆炸物，请勿存放在喷火器燃料旁。"
 	magazine_type = /obj/item/explosive/grenade/smokebomb/airburst
 	allowed_magazines = list(/obj/item/explosive/grenade/smokebomb/airburst)
 	overlay_icon_type = "agms"

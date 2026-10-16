@@ -6,8 +6,8 @@
 */
 
 /obj/vehicle/multitile
-	name = "multitile vehicle"
-	desc = "Get inside to operate the vehicle."
+	name = "多格载具"
+	desc = "进入内部才能操作载具。"
 
 	health = 3000
 
@@ -261,20 +261,20 @@
 /obj/vehicle/multitile/get_examine_text(mob/user)
 	. = ..()
 	for(var/obj/item/hardpoint/attachment in hardpoints)
-		. += "There [attachment.p_are()] \a [attachment] module[attachment.p_s()] installed."
+		. += "已安装[attachment]模块。"
 		if(health <= 0)
-			. += "It's busted!\n"
+			. += "它损坏了！\n"
 		else if(isobserver(user) || (ishuman(user) && (skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_NOVICE) || skillcheck(user, SKILL_VEHICLE, SKILL_VEHICLE_CREWMAN))))
-			. += "It's at [round(attachment.get_integrity_percent(), 1)]% integrity!\n"
+			. += "完整度为[round(attachment.get_integrity_percent(), 1)]%！\n"
 		attachment.examine(user, TRUE)
 	if(clamped)
-		. += "There is a vehicle clamp attached."
+		. += "上面装着一个车轮锁。"
 	if(isxeno(user) && interior)
 		var/passengers_amount = interior.passengers_taken_slots
 		for(var/datum/role_reserved_slots/role_slots in interior.role_reserved_slots)
 			passengers_amount += role_slots.taken
 		if(passengers_amount > 0)
-			. += "You can sense approximately [passengers_amount] host\s inside."
+			. += "你能感觉到里面大约有[passengers_amount]个宿主。"
 
 /obj/vehicle/multitile/proc/load_hardpoints()
 	return

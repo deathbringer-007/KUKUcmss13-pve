@@ -26,7 +26,7 @@
 			else
 				headset.last_multi_broadcast = world.time
 		if(multibroadcast_cooldown)
-			.["fail_with"] = "You've used the multi-broadcast system too recently, wait [floor(multibroadcast_cooldown / 10)] more seconds."
+			.["fail_with"] = "你刚使用过多频道广播系统，请再等[floor(multibroadcast_cooldown / 10)]秒。"
 		return
 
 	if(length(message) >= 2 && (message[1] == "." || message[1] == ":" || message[1] == "#"))
@@ -55,18 +55,18 @@
 
 /mob/living/carbon/human/say(message)
 
-	var/verb = "says"
+	var/verb = "说道"
 	var/alt_name = ""
 	var/message_range = GLOB.world_view_size
 	var/italics = 0
 
 	if(!able_to_speak)
-		to_chat(src, SPAN_DANGER("You try to speak, but nothing comes out!"))
+		to_chat(src, SPAN_DANGER("你试图说话，却发不出声音！"))
 		return
 
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, SPAN_DANGER("You cannot speak in IC (Muted)."))
+			to_chat(src, SPAN_DANGER("你已被禁言，无法发送角色内消息。"))
 			return
 
 	message = trim(strip_html(message))
@@ -82,7 +82,7 @@
 			return emote(lowertext(copytext(message,2)), intentional = TRUE) //TRUE arg means emote was caused by player (e.g. no an auto scream when hurt).
 
 	if(name != GetVoice())
-		alt_name = "(as [get_id_name("Unknown")])"
+		alt_name = "（身份：[get_id_name("未知")]）"
 
 	var/list/parsed = parse_say(message)
 	var/fail_message = parsed["fail_with"]
@@ -117,7 +117,7 @@
 			return
 		//If we've gotten this far, keep going!
 	else
-		verb = "says"
+		verb = "说道"
 	if (istype(wear_mask, /obj/item/clothing/mask/muzzle))
 		return
 
@@ -171,7 +171,7 @@
 
 			for(var/mob/living/M in hearers(message_range, src))
 				if(M != src)
-					M.show_message(SPAN_NOTICE("[src] talks into [length(used_radios) ? used_radios[1] : "the radio."]"), SHOW_MESSAGE_VISIBLE)
+					M.show_message(SPAN_NOTICE("[src]正对着[length(used_radios) ? used_radios[1] : "无线电"]说话。"), SHOW_MESSAGE_VISIBLE)
 			if(ishumansynth_strict(src))
 				playsound(src.loc, 'sound/effects/radiostatic.ogg', 15, 1)
 
@@ -203,9 +203,9 @@
 		if (GRADUAL)
 			say_text += "..."
 		if (PAINFUL)
-			say_text += pick("-OW!", "-UGH!", "-ACK!")
+			say_text += pick("-哎哟！", "-呃啊！", "-啊！")
 		if (EXTREMELY_PAINFUL)
-			say_text += pick("-AAAGH!", "-AAARGH!", "-AAAHH!")
+			say_text += pick("-啊啊啊！", "-啊啊呃！", "-啊啊啊！")
 
 	say(say_text)
 	winset(client, "input", "text=[null]")
@@ -256,13 +256,13 @@ for it but just ignore it.
 */
 
 /mob/living/carbon/human/say_quote(message, datum/language/speaking = null)
-	var/verb = "says"
+	var/verb = "说道"
 	var/ending = copytext(message, length(message))
 
 	if(ending == "!")
-		verb = pick("exclaims","shouts","yells")
+		verb = pick("惊呼道","喊道","吼道")
 	if(ending == "?")
-		verb = "asks"
+		verb = "问道"
 
 	return verb
 
@@ -277,25 +277,25 @@ for it but just ignore it.
 		msg_admin_niche("[key_name(src)] stuttered while saying: \"[message]\"") //Messages that get modified by the 4 reasons below have their original message logged too
 	if(slurring)
 		message = slur(message)
-		verb = pick("stammers","stutters")
+		verb = pick("结结巴巴地说道","磕磕巴巴地说道")
 	if(stuttering)
 		message = NewStutter(message)
-		verb = pick("stammers", "stutters")
+		verb = pick("结结巴巴地说道", "磕磕巴巴地说道")
 	if(HAS_TRAIT(src, TRAIT_DAZED))
 		message = DazedText(message)
-		verb = pick("mumbles", "babbles")
+		verb = pick("咕哝道", "含糊不清地说道")
 	if(braindam >= 60)
 		if(prob(braindam/4))
 			message = stutter(message, stuttering)
-			verb = pick("stammers", "stutters")
+			verb = pick("结结巴巴地说道", "磕磕巴巴地说道")
 		if(prob(braindam))
 			message = uppertext(message)
-			verb = pick("yells like an idiot","says rather loudly")
+			verb = pick("傻乎乎地大喊道","大声说道")
 	if(HAS_TRAIT(src, TRAIT_LISPING))
 		var/old_message = message
 		message = lisp_replace(message)
 		if(old_message != message)
-			verb = "lisps"
+			verb = "含混地说道"
 
 	returns[1] = message
 	returns[2] = verb

@@ -27,7 +27,7 @@
 		if(tool_flags & REMOVE_SCREWDRIVER)
 			tool_output += SPAN_GREEN("螺丝刀")
 		if(length(tool_output))
-			. += SPAN_NOTICE("可以用\a [english_list(tool_output)]拆除\the [src]。")
+			. += SPAN_NOTICE("可以用[english_list(tool_output)]拆除[src]。")
 
 
 /turf/open/floor/is_plasteel_floor()
@@ -155,7 +155,7 @@
 			if(tool_flags & BREAK_CROWBAR)
 				to_chat(user, SPAN_WARNING("你强行撬掉了木板，也将它们弄坏了。"))
 			else
-				to_chat(user, SPAN_WARNING("你移除了\the [src]。"))
+				to_chat(user, SPAN_WARNING("你移除了[src]。"))
 				new tile_type(src, 1, type)
 
 		playsound(src, 'sound/items/Crowbar.ogg', 25, 1)

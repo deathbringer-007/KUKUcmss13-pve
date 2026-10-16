@@ -29,6 +29,23 @@ import {
   splitter,
 } from './types';
 
+const groupLabels = new Map<string, string>([
+  ['Prime', '主虫巢'],
+  ['Corrupted', '腐化虫巢'],
+  ['Forsaken', '遗弃虫巢'],
+  ['Other', '其他'],
+  ['Alpha', '阿尔法'],
+  ['Bravo', '布拉沃'],
+  ['Charlie', '查理'],
+  ['Delta', '德尔塔'],
+  ['Echo', '埃科'],
+  ['Foxtrot', '福克斯特罗特'],
+  ['CBRN', '核生化部队'],
+  ['FORECON', '武装侦察队'],
+  ['SOF', '特种部队'],
+]);
+const groupLabel = (value: string) => groupLabels.get(value) ?? value;
+
 type search = {
   value: string;
   setValue: (value: string) => void;
@@ -40,7 +57,7 @@ export const Orbit = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   return (
-    <Window title="Orbit" width={500} height={700}>
+    <Window title="环绕观察" width={500} height={700}>
       <Window.Content scrollable>
         <SearchContext.Provider
           value={{ value: searchQuery, setValue: setSearchQuery }}
@@ -98,7 +115,7 @@ const ObservableSearch = () => {
             fluid
             onEnter={(event, value) => orbitMostRelevant(value)}
             onInput={(event, value) => setValue(value)}
-            placeholder="Search..."
+            placeholder="搜索……"
             value={value}
           />
         </Stack.Item>
@@ -108,7 +125,7 @@ const ObservableSearch = () => {
             color={auto_observe ? 'good' : 'transparent'}
             icon={auto_observe ? 'toggle-on' : 'toggle-off'}
             onClick={() => act('toggle_auto_observe')}
-            tooltip={`Toggle Full Observe. When active, you'll see the UI / full inventory of whoever you're orbiting.`}
+            tooltip="切换完整观察。启用后可查看环绕目标的界面和完整装备。"
             tooltipPosition="bottom-start"
           />
         </Stack.Item>
@@ -117,7 +134,7 @@ const ObservableSearch = () => {
             color="transparent"
             icon="sync-alt"
             onClick={() => act('refresh')}
-            tooltip="Refresh"
+            tooltip="刷新"
             tooltipPosition="bottom-start"
           />
         </Stack.Item>
@@ -268,7 +285,7 @@ const GroupedObservable = (props: {
           {squads.map((x) => (
             <ObservableSection
               color={x.color}
-              title={x.title}
+              title={groupLabel(x.title)}
               section={props.sorter ? x.members.sort(props.sorter) : x.members}
               key={x.title}
             />
@@ -319,75 +336,55 @@ const ObservableContent = () => {
       <GroupedObservable
         color="blue"
         section={marines}
-        title="Marines"
+        title="陆战队员"
         splitter={marineSplitter}
         platoon={main_platoon_name}
         sorter={marineSort}
       />
-      <ObservableSection color="teal" section={humans} title="Humans" />
+      <ObservableSection color="teal" section={humans} title="人类" />
       <GroupedObservable
         color="xeno"
         section={xenos}
-        title="Xenomorphs"
+        title="异形"
         splitter={xenoSplitter}
       />
-      <ObservableSection color="good" section={survivors} title="Survivors" />
-      <ObservableSection color="red" section={infected} title="Infected" />
+      <ObservableSection color="good" section={survivors} title="幸存者" />
+      <ObservableSection color="red" section={infected} title="感染者" />
       <ObservableSection
         color="average"
         section={ert_members}
-        title="ERT Members"
+        title="紧急响应队成员"
       />
       <ObservableSection
         color="light-grey"
         section={synthetics}
-        title="Synthetics"
+        title="合成人"
       />
-      <ObservableSection
-        color="green"
-        section={upp}
-        title="Union of Progressive Peoples"
-      />
-      <ObservableSection
-        color="teal"
-        section={clf}
-        title="Colonial Liberation Front"
-      />
-      <ObservableSection color="white" section={wy} title="Weyland Yutani" />
-      <ObservableSection
-        color="red"
-        section={twe}
-        title="Royal Marines Commando"
-      />
-      <ObservableSection
-        color="orange"
-        section={freelancer}
-        title="Freelancers"
-      />
-      <ObservableSection
-        color="label"
-        section={mercenary}
-        title="Mercenaries"
-      />
+      <ObservableSection color="green" section={upp} title="进步人民联盟" />
+      <ObservableSection color="teal" section={clf} title="殖民地解放阵线" />
+      <ObservableSection color="white" section={wy} title="维兰德-汤谷" />
+      <ObservableSection color="red" section={twe} title="皇家陆战突击队" />
+      <ObservableSection color="orange" section={freelancer} title="自由佣兵" />
+      <ObservableSection color="label" section={mercenary} title="雇佣兵" />
       <ObservableSection
         color="light-grey"
         section={contractor}
-        title="Military Contractors"
+        title="军事承包商"
       />
-      <ObservableSection color="good" section={dutch} title="Dutchs Dozen" />
+      <ObservableSection color="good" section={dutch} title="达奇十二人组" />
       <ObservableSection
         color="dark-blue"
         section={marshal}
-        title="Colonial Marshal Bureau"
+        title="殖民地执法局"
       />
-      <ObservableSection color="green" section={predators} title="Predators" />
-      <ObservableSection color="olive" section={escaped} title="Escaped" />
-      <ObservableSection section={vehicles} title="Vehicles" />
-      <ObservableSection section={animals} title="Animals" />
-      <ObservableSection section={dead} title="Dead" />
-      <ObservableSection section={ghosts} title="Ghosts" />
-      <ObservableSection section={misc} title="Misc" />
-      <ObservableSection section={npcs} title="NPCs" />
+      <ObservableSection color="green" section={predators} title="铁血战士" />
+      <ObservableSection color="olive" section={escaped} title="已逃生" />
+      <ObservableSection section={vehicles} title="载具" />
+      <ObservableSection section={animals} title="动物" />
+      <ObservableSection section={dead} title="死者" />
+      <ObservableSection section={ghosts} title="幽灵" />
+      <ObservableSection section={misc} title="其他" />
+      <ObservableSection section={npcs} title="非玩家角色" />
     </Stack>
   );
 };
@@ -485,15 +482,15 @@ const ObservableTooltip = (props: { readonly item: Observable }) => {
   } = props;
 
   const displayHealth = typeof health === 'number';
-  const healthText = !!health && health >= 0 ? `${health}%` : 'Critical';
+  const healthText = !!health && health >= 0 ? `${health}%` : '危急';
 
   return (
     <LabeledList>
       {!!full_name && (
-        <LabeledList.Item label="Full Name">{full_name}</LabeledList.Item>
+        <LabeledList.Item label="全名">{full_name}</LabeledList.Item>
       )}
       {!!caste && (
-        <LabeledList.Item label="Caste">
+        <LabeledList.Item label="阶级">
           {!!icon && (
             <ObservableIcon icon={icon} background_color={background_color} />
           )}
@@ -501,7 +498,7 @@ const ObservableTooltip = (props: { readonly item: Observable }) => {
         </LabeledList.Item>
       )}
       {!!job && (
-        <LabeledList.Item label="Job">
+        <LabeledList.Item label="职业">
           {!!icon && (
             <ObservableIcon icon={icon} background_color={background_color} />
           )}
@@ -509,7 +506,7 @@ const ObservableTooltip = (props: { readonly item: Observable }) => {
         </LabeledList.Item>
       )}
       {displayHealth && (
-        <LabeledList.Item label="Health">{healthText}</LabeledList.Item>
+        <LabeledList.Item label="生命值">{healthText}</LabeledList.Item>
       )}
     </LabeledList>
   );

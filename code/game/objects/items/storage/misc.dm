@@ -13,8 +13,8 @@
 /obj/item/storage/donut_box
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = "donutbox"
-	name = "\improper Yum! donuts"
-	desc = "A box of mouth-watering \"<i>Yum!</i>\" brand donuts."
+	name = "好吃！甜甜圈"
+	desc = "一盒令人垂涎的“<i>好吃！</i>”牌甜甜圈。"
 	storage_slots = 6
 	var/startswith = 6
 	var/open = 0

@@ -1,6 +1,6 @@
 /obj/item/hardpoint/secondary
-	name = "secondary hardpoint"
-	desc = "Smaller support gun"
+	name = "副武器挂载点"
+	desc = "较小的支援武器。"
 
 	slot = HDPT_SECONDARY
 

@@ -34,11 +34,11 @@
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(!C.get_active_hand())
-			to_chat(usr, SPAN_DANGER("You have nothing to drop in your hand."))
+			to_chat(usr, SPAN_DANGER("你手中没有可放下的物品。"))
 			return
 		C.drop_held_item()
 	else
-		to_chat(usr, SPAN_DANGER("This mob type cannot drop items."))
+		to_chat(usr, SPAN_DANGER("此类角色无法放下物品。"))
 	return
 
 //This gets called when you press the delete button.
@@ -46,7 +46,7 @@
 	set hidden = TRUE
 
 	if(!usr.pulling)
-		to_chat(usr, SPAN_NOTICE("You are not pulling anything."))
+		to_chat(usr, SPAN_NOTICE("你没有拖拽任何东西。"))
 		return
 	usr.stop_pulling()
 
@@ -153,7 +153,7 @@
 	if(mob.pulledby)
 		if(mob.is_mob_restrained(0))
 			next_movement = world.time + 20 //to reduce the spam
-			to_chat(src, SPAN_WARNING("You're restrained! You can't move!"))
+			to_chat(src, SPAN_WARNING("你被束缚住了，无法移动！"))
 			return
 		else if(!mob.resist_grab(TRUE))
 			return
@@ -242,7 +242,7 @@
 
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)))
-		to_chat(src, SPAN_NOTICE(" <B>You slipped!</B>"))
+		to_chat(src, SPAN_NOTICE("<B>你滑倒了！</B>"))
 		src.inertia_dir = src.last_move_dir
 		step(src, src.inertia_dir)
 		return 0

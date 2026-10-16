@@ -1,7 +1,7 @@
 
 
 /mob/verb/mode()
-	set name = "Activate Held Object"
+	set name = "使用手持物品"
 	set category = "Object"
 	set src = usr
 
@@ -23,31 +23,31 @@
 	return
 
 /mob/verb/toggle_normal_throw()
-	set name = "Toggle Normal Throw"
+	set name = "切换普通投掷"
 	set category = "IC"
 	set hidden = TRUE
 	set src = usr
 
-	to_chat(usr, SPAN_DANGER("This mob type cannot throw items."))
+	to_chat(usr, SPAN_DANGER("此类角色无法投掷物品。"))
 	return
 
 /mob/verb/view_stats()
 	set category = "OOC.Records"
-	set name = "View Playtimes"
-	set desc = "View your playtimes."
+	set name = "查看游玩时长"
+	set desc = "查看你的游玩时长。"
 	if(!SSentity_manager.ready)
-		to_chat(src, "DB is still starting up, please wait")
+		to_chat(src, "数据库仍在启动，请稍候。")
 		return
 	if(client && client.player_entity)
 		client.player_data.tgui_interact(src)
 
 /mob/verb/toggle_high_toss()
-	set name = "Toggle High Toss"
+	set name = "切换高抛"
 	set category = "IC"
 	set hidden = TRUE
 	set src = usr
 
-	to_chat(usr, SPAN_DANGER("This mob type cannot throw items."))
+	to_chat(usr, SPAN_DANGER("此类角色无法投掷物品。"))
 	return
 
 /mob/proc/point_to(atom/target in view())
@@ -79,15 +79,15 @@
 	return TRUE
 
 /mob/verb/memory()
-	set name = "Notes"
+	set name = "笔记"
 	set category = "IC"
 	if(mind)
 		mind.show_memory(src)
 	else
-		to_chat(src, "The game appears to have misplaced your mind datum, so we can't show you your notes.")
+		to_chat(src, "游戏似乎丢失了你的心智数据，无法显示笔记。")
 
 /mob/verb/add_memory(msg as message)
-	set name = "Add Note"
+	set name = "添加笔记"
 	set category = "IC"
 
 	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
@@ -98,12 +98,12 @@
 			mind.store_memory(msg)
 		else
 			message_admins("[key_name(usr)] warned for attempting to exceed mob memory limit.]", loc.x, loc.y, loc.z)
-			to_chat(src, "You have exceeded the maximum memory limit. Sorry!")
+			to_chat(src, "你已达到笔记容量上限！")
 	else
-		to_chat(src, "The game appears to have misplaced your mind datum, so we can't show you your notes.")
+		to_chat(src, "游戏似乎丢失了你的心智数据，无法显示笔记。")
 
 /mob/verb/abandon_mob()
-	set name = "Respawn"
+	set name = "重生"
 	set category = "OOC"
 
 	var/is_admin = 0
@@ -111,33 +111,33 @@
 		is_admin = 1
 
 	if (!CONFIG_GET(flag/respawn) && !is_admin)
-		to_chat(usr, SPAN_NOTICE(" Respawn is disabled."))
+		to_chat(usr, SPAN_NOTICE("重生已禁用。"))
 		return
 	if (stat != 2)
-		to_chat(usr, SPAN_NOTICE(" <B>You must be dead to use this!</B>"))
+		to_chat(usr, SPAN_NOTICE("<B>必须死亡后才能使用此操作！</B>"))
 		return
 	if (SSticker.mode && (SSticker.mode.name == "meteor" || SSticker.mode.name == "epidemic")) //BS12 EDIT
-		to_chat(usr, SPAN_NOTICE(" Respawn is disabled for this roundtype."))
+		to_chat(usr, SPAN_NOTICE("当前回合类型已禁用重生。"))
 		return
 	else
 		var/deathtime = world.time - src.timeofdeath
 		var/deathtimeminutes = floor(deathtime / 600)
-		var/pluralcheck = "minute"
+		var/pluralcheck = "分钟"
 		if(deathtimeminutes == 0)
 			pluralcheck = ""
 		else if(deathtimeminutes == 1)
-			pluralcheck = " [deathtimeminutes] minute and"
+			pluralcheck = "[deathtimeminutes]分钟零"
 		else if(deathtimeminutes > 1)
-			pluralcheck = " [deathtimeminutes] minutes and"
+			pluralcheck = "[deathtimeminutes]分钟零"
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-		to_chat(usr, "You have been dead for[pluralcheck] [deathtimeseconds] seconds.")
+		to_chat(usr, "你已经死亡[pluralcheck][deathtimeseconds]秒。")
 
-	if(alert("Are you sure you want to respawn?",,"Yes","No") != "Yes")
+	if(alert("确定要重生吗？",,"是","否") != "是")
 		return
 
 	log_game("[usr.name]/[usr.key] used abandon mob.")
 
-	to_chat(usr, SPAN_NOTICE(" <B>Make sure to play a different character, and please roleplay correctly!</B>"))
+	to_chat(usr, SPAN_NOTICE("<B>请使用不同的角色，并认真进行角色扮演！</B>"))
 
 	if(!client)
 		log_game("[usr.key] AM failed due to disconnect.")
@@ -159,19 +159,19 @@
 	return
 
 /mob/dead/observer/verb/observe()
-	set name = "Observe"
+	set name = "观察"
 	set category = "Ghost"
 
 	reset_perspective(null)
 
-	var/mob/target = tgui_input_list(usr, "Please select a human mob:", "Observe", GLOB.human_mob_list)
+	var/mob/target = tgui_input_list(usr, "请选择一名人类角色：", "观察", GLOB.human_mob_list)
 	if(!target)
 		return
 
 	do_observe(target)
 
 /mob/verb/cancel_camera()
-	set name = "Cancel Camera View"
+	set name = "退出摄像视角"
 	set category = "Object"
 	reset_view(null)
 	unset_interaction()
@@ -217,7 +217,7 @@
 
 /mob/verb/stop_pulling_verb()
 
-	set name = "Stop Pulling"
+	set name = "停止拖拽"
 	set category = "IC"
 
 	stop_pulling()

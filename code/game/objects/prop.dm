@@ -1,6 +1,6 @@
 /obj/item/prop
-	name = "prop"
-	desc = "Some kind of prop."
+	name = "道具"
+	desc = "某种道具。"
 
 /// A prop that acts as a replacement for another item, mimicking their looks.
 /// Mainly used in Reqs Tutorial to provide the full item selections without side effects.

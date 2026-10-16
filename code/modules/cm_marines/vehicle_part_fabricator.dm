@@ -1,7 +1,7 @@
 
 /obj/structure/machinery/part_fabricator
-	name = "part fabricator"
-	desc = "A large automated 3D printer for producing runtime errors."
+	name = "零件制造机"
+	desc = "用于制造运行时错误的大型自动3D打印机。"
 	density = TRUE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
@@ -57,9 +57,9 @@
 	if(ispath(part_type,/obj/structure/ship_ammo/sentry))
 		cost = omnisentry_price
 	if(get_point_store() < cost)
-		to_chat(user, SPAN_WARNING("You don't have enough points to build that."))
+		to_chat(user, SPAN_WARNING("你的点数不足，无法制造它。"))
 		return
-	visible_message(SPAN_NOTICE("[src] starts printing something."))
+	visible_message(SPAN_NOTICE("[src]开始打印某件东西。"))
 	spend_point_store(cost)
 	if(ispath(part_type,/obj/structure/ship_ammo/sentry))
 		omnisentry_price += omnisentry_price_scale
@@ -79,7 +79,7 @@
 		return
 
 	if(busy)
-		to_chat(usr, SPAN_WARNING("The [name] is busy. Please wait for completion of previous operation."))
+		to_chat(usr, SPAN_WARNING("[name]正忙，请等待上一项操作完成。"))
 		return
 
 	var/mob/user = ui.user
@@ -113,19 +113,19 @@
 
 /obj/structure/machinery/part_fabricator/attack_hand(mob/user)
 	if(!allowed(user))
-		to_chat(user, SPAN_WARNING("Access denied."))
+		to_chat(user, SPAN_WARNING("拒绝访问。"))
 		return TRUE
 	tgui_interact(user)
 
 /obj/structure/machinery/part_fabricator/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "PartFabricator", "Part Fabricator")
+		ui = new(user, src, "PartFabricator", "载具部件制造机")
 		ui.open()
 
 /obj/structure/machinery/part_fabricator/dropship
-	name = "dropship part fabricator"
-	desc = "A large automated 3D printer for producing dropship parts. You can recycle parts or ammo in it, and get 80% of your points back, by clicking it while holding them in a powerloader claw."
+	name = "运输机零件制造机"
+	desc = "用于制造运输机零件的大型自动3D打印机。用动力装载机的夹爪拿着零件或弹药点击它，即可回收物品，返还80%的点数。"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
 
 	unslashable = TRUE
@@ -196,7 +196,7 @@
 
 /obj/structure/machinery/part_fabricator/dropship/proc/recycle_equipment(obj/item/powerloader_clamp/powerloader_clamp_used, mob/living/user)
 	if(!powerloader_clamp_used.loaded)
-		to_chat(user, SPAN_WARNING("There is nothing loaded in \the [powerloader_clamp_used]."))
+		to_chat(user, SPAN_WARNING("[powerloader_clamp_used]里没有装载任何东西。"))
 		return
 
 	var/recycle_points
@@ -206,25 +206,25 @@
 	else if(istype(powerloader_clamp_used.loaded, /obj/structure/ship_ammo))
 		var/obj/structure/ship_ammo/sold_eqipment = powerloader_clamp_used.loaded
 		if(!sold_eqipment.ammo_count)
-			to_chat(user, SPAN_WARNING("\The [sold_eqipment] is empty!"))
+			to_chat(user, SPAN_WARNING("[sold_eqipment]已经空了！"))
 			return
 		if(sold_eqipment.ammo_count != sold_eqipment.max_ammo_count)
 			recycle_points = (sold_eqipment.point_cost * (sold_eqipment.ammo_count / sold_eqipment.max_ammo_count))
-			to_chat(user, SPAN_WARNING("\The [sold_eqipment] is not fully loaded, and less points will be able to be refunded."))
+			to_chat(user, SPAN_WARNING("[sold_eqipment]没有装满，能返还的点数将减少。"))
 		else
 			recycle_points = sold_eqipment.point_cost
 			if(istype(powerloader_clamp_used.loaded, /obj/structure/ship_ammo/sentry))
 				recycle_points = omnisentry_price - omnisentry_price_scale
 
 	if(!recycle_points)
-		to_chat(user, SPAN_WARNING("\The [powerloader_clamp_used.loaded] can't be recycled!"))
+		to_chat(user, SPAN_WARNING("[powerloader_clamp_used.loaded]无法回收！"))
 		return
 
 	var/thing_to_recycle = powerloader_clamp_used.loaded
-	to_chat(user, SPAN_WARNING("You start recycling \the [powerloader_clamp_used.loaded]!"))
+	to_chat(user, SPAN_WARNING("你开始回收[powerloader_clamp_used.loaded]！"))
 	playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
 	if(!user || !do_after(user, (7 SECONDS) * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_HOSTILE, powerloader_clamp_used.loaded, INTERRUPT_ALL))
-		to_chat(user, SPAN_NOTICE("You stop recycling \the [thing_to_recycle]."))
+		to_chat(user, SPAN_NOTICE("你停止回收[thing_to_recycle]。"))
 		return
 	if(istype(powerloader_clamp_used.loaded, /obj/structure/ship_ammo/sentry))
 		omnisentry_price -= omnisentry_price_scale
@@ -233,7 +233,7 @@
 		qdel(thing)
 	qdel(powerloader_clamp_used.loaded)
 	powerloader_clamp_used.loaded = null
-	to_chat(user, SPAN_NOTICE("You recycle \the [thing_to_recycle] into [src], and get back [floor(recycle_points * 0.8)] points."))
+	to_chat(user, SPAN_NOTICE("你将[thing_to_recycle]投入[src]回收，获得了[floor(recycle_points * 0.8)]点。"))
 	msg_admin_niche("[key_name(user)] recycled a [thing_to_recycle] into \the [src] for [floor(recycle_points * 0.8)] points.")
 	add_to_point_store(floor(recycle_points * 0.8))
 	playsound(loc, 'sound/machines/fax.ogg', 40, 1)
@@ -243,8 +243,8 @@
 // WARNING: IF YOU DECIDE TO READD THIS, GIVE THE HARDPOINTS POINT COSTS
 /// Fabricator for individual tank parts
 /obj/structure/machinery/part_fabricator/tank
-	name = "vehicle part fabricator"
-	desc = "A large automated 3D printer for producing vehicle parts."
+	name = "载具零件制造机"
+	desc = "用于制造载具零件的大型自动3D打印机。"
 	req_access = list(ACCESS_MARINE_CREWMAN)
 	generate_points = FALSE
 

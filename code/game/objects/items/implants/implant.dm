@@ -3,7 +3,7 @@
 
 
 /obj/item/implant
-	name = "implant"
+	name = "植入物"
 	icon = 'icons/obj/items/devices.dmi'
 	icon_state = "implant"
 	var/implanted = null

@@ -1,15 +1,15 @@
 /mob/living/carbon/human/verb/quick_equip()
-	set name = "quick-equip"
+	set name = "快速装备"
 	set hidden = TRUE
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		var/obj/item/I = H.get_active_hand()
 		if(!I)
-			to_chat(H, SPAN_NOTICE("You are not holding anything to equip."))
+			to_chat(H, SPAN_NOTICE("你手里没有可装备的物品。"))
 			return
 		if(!H.equip_to_appropriate_slot(I, 0))
-			to_chat(H, SPAN_DANGER("You are unable to equip that."))
+			to_chat(H, SPAN_DANGER("你无法装备这个物品。"))
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
@@ -209,7 +209,7 @@
 	if(!equipping && istype(I,/obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/F = I
 		if(F.stat != DEAD && !F.sterile && !(status_flags & XENO_HOST)) //Huggered but not impregnated, deal damage.
-			visible_message(SPAN_DANGER("[F] frantically claws at [src]'s face!"),SPAN_DANGER("[F] frantically claws at your face! Auugh!"))
+			visible_message(SPAN_DANGER("[F]疯狂地抓挠[src]的脸！"),SPAN_DANGER("[F]疯狂地抓挠你的脸！啊！"))
 			apply_damage(25, BRUTE, "head")
 	name = get_visible_name() // doing this without a check, still cheaper than doing it every Life() tick -spookydonut
 	if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
@@ -421,7 +421,7 @@
 			r_store.update_icon()
 
 		else
-			to_chat(src, SPAN_DANGER("You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it..."))
+			to_chat(src, SPAN_DANGER("这个物品无法装备到该栏位。"))
 			return
 
 	SEND_SIGNAL(src, COMSIG_HUMAN_EQUIPPED_ITEM, equipping_item, slot)

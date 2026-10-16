@@ -7,7 +7,7 @@
 	indestructible = TRUE
 
 /obj/structure/shuttle/part/dropship1
-	name = "\improper Alamo"
+	name = "\improper 阿拉莫号"
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 
@@ -111,7 +111,7 @@
 	icon_state = "6"
 
 /obj/structure/shuttle/part/dropship2
-	name = "\improper Normandy"
+	name = "\improper 诺曼底号"
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "1"
 	opacity = TRUE
@@ -216,7 +216,7 @@
 	icon_state = "6"
 
 /obj/structure/shuttle/part/dropshippmc
-	name = "\improper Cash Flow"
+	name = "\improper 现金流号"
 	icon = 'icons/turf/dropship_pmc.dmi'
 	icon_state = "1"
 
@@ -305,7 +305,7 @@
 	icon_state = "44"
 
 /obj/structure/shuttle/part/dropship3
-	name = "\improper Saipan"
+	name = "\improper 塞班号"
 	icon = 'icons/turf/dropship3.dmi'
 	icon_state = "1"
 	opacity = TRUE
@@ -409,107 +409,107 @@
 /obj/structure/shuttle/part/dropship3/transparent/right_outer_bottom_wing
 	icon_state = "6"
 /obj/structure/shuttle/part/midway
-	name = "\improper Midway"
+	name = "\improper 中途岛号"
 	icon = 'icons/turf/dropship4.dmi'
 	icon_state = "1"
 	opacity = TRUE
 
 /obj/structure/shuttle/part/midway/transparent
-	desc = "The cockpit canopy transparency of a UD-4 gunship. Composed of a composite material that matches the hull's radar absorbency while providing protection against glare and sniping lasers."
+	desc = "UD-4炮艇的透明座舱盖，由复合材料制成，在保持与机身一致的雷达吸波性能的同时，防护眩光和激光狙击。"
 	opacity = FALSE
 
 /obj/structure/shuttle/part/midway/transparent/nosecone
-	desc = "Part of the nose assembly of the UD-4 Cheyenne. Contains the forward sensor complex."
+	desc = "UD-4夏延级机鼻组件的一部分，内置前部传感器组。"
 
 /obj/structure/shuttle/part/midway/gunpod_prop
-	name = "\improper Midway"
-	desc = "The nose of a UD-4 Cheyenne dropship. Contains the AESA radar system and the chin-mounted powered gunpod containing the GAU-113/B 25mm rotary autocannon with a 900 round drum."
+	name = "\improper 中途岛号"
+	desc = "UD-4夏延级登陆艇的机鼻，内置有源相控阵雷达系统，以及下颌式动力炮舱。炮舱装有一门GAU-113/B型25毫米转管自动炮，弹鼓容量900发。"
 	icon = 'icons/turf/dropship4.dmi'
 	icon_state = "101a"
 	opacity = FALSE
 
 /obj/structure/shuttle/part/cyclone
-	name = "\improper Cyclone"
+	name = "\improper 旋风号"
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "1"
 	opacity = TRUE
 
 /obj/structure/shuttle/part/cyclone/transparent
-	desc = "The cockpit canopy transparency of a UD-4 gunship. Composed of a composite material that matches the hull's radar absorbency while providing protection against glare and sniping lasers."
+	desc = "UD-4炮艇的透明座舱盖，由复合材料制成，在保持与机身一致的雷达吸波性能的同时，防护眩光和激光狙击。"
 	opacity = FALSE
 
 /obj/structure/shuttle/part/cyclone/transparent/nosecone
-	desc = "Part of the nose assembly of the UD-4 Cheyenne. Contains the forward sensor complex."
+	desc = "UD-4夏延级机鼻组件的一部分，内置前部传感器组。"
 
 /obj/structure/shuttle/part/cyclone/gunpod_prop
-	name = "\improper Cyclone"
-	desc = "The nose of a UD-4 Cheyenne dropship. Contains the AESA radar system and the chin-mounted powered gunpod containing the GAU-113/B 25mm rotary autocannon with a 900 round drum."
+	name = "\improper 旋风号"
+	desc = "UD-4夏延级登陆艇的机鼻，内置有源相控阵雷达系统，以及下颌式动力炮舱。炮舱装有一门GAU-113/B型25毫米转管自动炮，弹鼓容量900发。"
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "101a"
 	opacity = FALSE
 
 /obj/structure/shuttle/part/tornado
-	name = "\improper Tornado"
+	name = "\improper 龙卷风号"
 	icon = 'icons/turf/dropship3.dmi'
 	icon_state = "1"
 	opacity = TRUE
 
 /obj/structure/shuttle/part/tornado/transparent
-	desc = "The cockpit canopy transparency of a UD-4 gunship. Composed of a composite material that matches the hull's radar absorbency while providing protection against glare and sniping lasers."
+	desc = "UD-4炮艇的透明座舱盖，由复合材料制成，在保持与机身一致的雷达吸波性能的同时，防护眩光和激光狙击。"
 	opacity = FALSE
 
 /obj/structure/shuttle/part/tornado/transparent/nosecone
-	desc = "Part of the nose assembly of the UD-4 Cheyenne. Contains the forward sensor complex."
+	desc = "UD-4夏延级机鼻组件的一部分，内置前部传感器组。"
 
 /obj/structure/shuttle/part/tornado/gunpod_prop
-	name = "\improper Tornado"
-	desc = "The nose of a UD-4 Cheyenne dropship. Contains the AESA radar system and the chin-mounted powered gunpod containing the GAU-113/B 25mm rotary autocannon with a 900 round drum."
+	name = "\improper 龙卷风号"
+	desc = "UD-4夏延级登陆艇的机鼻，内置有源相控阵雷达系统，以及下颌式动力炮舱。炮舱装有一门GAU-113/B型25毫米转管自动炮，弹鼓容量900发。"
 	icon = 'icons/turf/dropship3.dmi'
 	icon_state = "101a"
 	opacity = FALSE
 
 /obj/structure/shuttle/part/typhoon
-	name = "\improper Typhoon"
+	name = "\improper 台风号"
 	icon = 'icons/turf/dropship3.dmi'
 	icon_state = "1"
 	opacity = TRUE
 
 /obj/structure/shuttle/part/typhoon/transparent
-	desc = "The cockpit canopy transparency of a UD-4 gunship. Composed of a composite material that matches the hull's radar absorbency while providing protection against glare and sniping lasers."
+	desc = "UD-4炮艇的透明座舱盖，由复合材料制成，在保持与机身一致的雷达吸波性能的同时，防护眩光和激光狙击。"
 	opacity = FALSE
 
 /obj/structure/shuttle/part/typhoon/transparent/nosecone
-	desc = "Part of the nose assembly of the UD-4 Cheyenne. Contains the forward sensor complex."
+	desc = "UD-4夏延级机鼻组件的一部分，内置前部传感器组。"
 
 /obj/structure/shuttle/part/typhoon/gunpod_prop
-	name = "\improper Typhoon"
-	desc = "The nose of a UD-4 Cheyenne dropship. Contains the AESA radar system and the chin-mounted powered gunpod containing the GAU-113/B 25mm rotary autocannon with a 900 round drum."
+	name = "\improper 台风号"
+	desc = "UD-4夏延级登陆艇的机鼻，内置有源相控阵雷达系统，以及下颌式动力炮舱。炮舱装有一门GAU-113/B型25毫米转管自动炮，弹鼓容量900发。"
 	icon = 'icons/turf/dropship3.dmi'
 	icon_state = "101a"
 	opacity = FALSE
 
 /obj/structure/shuttle/part/tripoli
-	name = "\improper Tripoli"
+	name = "\improper 的黎波里号"
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 	opacity = TRUE
 
 /obj/structure/shuttle/part/tripoli/transparent
-	desc = "The cockpit canopy transparency of a UD-4 gunship. Composed of a composite material that matches the hull's radar absorbency while providing protection against glare and sniping lasers."
+	desc = "UD-4炮艇的透明座舱盖，由复合材料制成，在保持与机身一致的雷达吸波性能的同时，防护眩光和激光狙击。"
 	opacity = FALSE
 
 /obj/structure/shuttle/part/tripoli/transparent/nosecone
-	desc = "Part of the nose assembly of the UD-4 Cheyenne. Contains the forward sensor complex."
+	desc = "UD-4夏延级机鼻组件的一部分，内置前部传感器组。"
 
 /obj/structure/shuttle/part/tripoli/gunpod_prop
-	name = "\improper Tripoli"
-	desc = "The nose of a UD-4 Cheyenne dropship. Contains the AESA radar system and the chin-mounted powered gunpod containing the GAU-113/B 25mm rotary autocannon with a 900 round drum."
+	name = "\improper 的黎波里号"
+	desc = "UD-4夏延级登陆艇的机鼻，内置有源相控阵雷达系统，以及下颌式动力炮舱。炮舱装有一门GAU-113/B型25毫米转管自动炮，弹鼓容量900发。"
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "101a"
 	opacity = FALSE
 
 /obj/structure/shuttle/part/gibraltar
-	name = "\improper Gibraltar"
+	name = "\improper 直布罗陀号"
 	icon = 'icons/turf/dropship_rmc.dmi'
 	icon_state = "1"
 	opacity = TRUE
@@ -554,14 +554,14 @@
 	icon_state = "49"
 
 /obj/structure/shuttle/part/gibraltar/transparent
-	desc = "The cockpit canopy transparency of a DAA.4 Nimrod dropship. Composed of a composite material that matches the hull's radar absorbency while providing protection against glare and sniping lasers."
+	desc = "DAA.4猎迷登陆艇的透明座舱盖，由复合材料制成，在保持与机身一致的雷达吸波性能的同时，防护眩光和激光狙击。"
 	opacity = FALSE
 
 /obj/structure/shuttle/part/gibraltar/transparent/nosecone
-	desc = "Part of the nose assembly of the DAA.4 Nimrod. Contains the forward sensor complex."
+	desc = "DAA.4猎迷的机鼻组件的一部分，内置前部传感器组。"
 
 /obj/structure/shuttle/part/gibraltar/gunpod_prop
-	name = "\improper Gibraltar"
-	desc = "The nose of a TWE produced DAA.4 Nimrod dropship. Contains the AESA radar system and the chin-mounted powered gunpod."
+	name = "\improper 直布罗陀号"
+	desc = "三世界帝国制造的DAA.4猎迷登陆艇的机鼻，内置有源相控阵雷达系统和下颌式动力炮舱。"
 	icon_state = "101a"
 	opacity = FALSE

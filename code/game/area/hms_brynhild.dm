@@ -9,102 +9,102 @@
 	ceiling_muffle = FALSE
 
 /area/hms_brynhild/hangar
-	name = "\improper Hangar"
+	name = "\improper 机库"
 	icon_state = "hangar"
 	soundscape_playlist = SCAPE_PL_HANGAR
 	soundscape_interval = 50
 
 /area/hms_brynhild/lower_hangar
-	name = "\improper Belowdecks Hangar"
+	name = "\improper 下层甲板机库"
 	icon_state = "hangar"
 	soundscape_playlist = SCAPE_PL_HANGAR
 	soundscape_interval = 90
 
 /area/hms_brynhild/platoon_commander_rooms
-	name = "\improper Troop Commander's Rooms"
+	name = "\improper 部队指挥官住舱"
 	icon_state = "livingspace"
 
 /area/hms_brynhild/medical
-	name = "\improper Sick Bay"
+	name = "\improper 医务室"
 	icon_state = "medical"
 
 /area/hms_brynhild/supply
-	name = "\improper Supply"
+	name = "\improper 补给区"
 	icon_state = "req"
 
 /area/hms_brynhild/engineering
-	name = "\improper Engineering"
+	name = "\improper 工程区"
 	icon_state = "upperengineering"
 
 /area/hms_brynhild/briefing
-	name = "\improper Assembly Room"
+	name = "\improper 集合室"
 	icon_state = "briefing"
 
 /area/hms_brynhild/dorms
-	name = "\improper Dorms"
+	name = "\improper 宿舍"
 	icon_state = "gruntrnr"
 
 /area/hms_brynhild/canteen
-	name = "\improper Wardroom"
+	name = "\improper 军官餐厅"
 	icon_state = "food"
 
 /area/hms_brynhild/cryo_cells
-	name = "\improper Hypersleep Cells"
+	name = "\improper 深度休眠舱"
 	icon_state = "cryo"
 
 /area/hms_brynhild/prep_hallway
-	name = "\improper Prep Hallway"
+	name = "\improper 整备区走廊"
 	icon_state = "port"
 
 /area/hms_brynhild/colour_office
-	name = "\improper Troop Commander's Office"
+	name = "\improper 部队指挥官办公室"
 	icon_state = "alpha"
 
 /area/hms_brynhild/shared_office
-	name = "\improper Shared Office"
+	name = "\improper 共用办公室"
 	icon_state = "alpha"
 
 /area/hms_brynhild/Docking
-	name = "\improper Docking Umbilical"
+	name = "\improper 对接通道"
 	icon_state = "charlie"
 
 /area/hms_brynhild/EVA_prep
-	name = "\improper EVA Operations Prep"
+	name = "\improper 舱外作业整备区"
 	icon_state = "delta"
 
 /area/hms_brynhild/synthcloset
-	name = "\improper Synthetic Storage Closet"
+	name = "\improper 合成人存放间"
 	icon_state = "livingspace"
 
 /area/hms_brynhild/firingrange
-	name = "\improper Firing Range"
+	name = "\improper 射击场"
 	icon_state = "firingrange"
 
 /area/hms_brynhild/armoury
-	name = "\improper Troop Armoury"
+	name = "\improper 部队军械库"
 	icon_state = "bravo"
 
 /area/hms_brynhild/armoury_station
-	name = "\improper Weapon-Maintenance Station"
+	name = "\improper 武器维护站"
 	icon_state = "alpha"
 
 /area/hms_brynhild/ai_interface
-	name = "\improper Human AI Interface"
+	name = "\improper 人机交互终端"
 	icon_state = "airoom"
 	soundscape_playlist = SCAPE_PL_AICORE
 	soundscape_interval = 7
 	ambience_exterior = AMBIENCE_AICORE
 
 /area/hms_brynhild/motor_pool
-	name = "\improper Motor Pool"
+	name = "\improper 车辆停放区"
 	icon_state = "workshop"
 
 /area/hms_brynhild/lower_cargo
-	name = "\improper Lower Cargo Bays"
+	name = "\improper 下层货舱"
 	icon_state = "req"
 
 /area/hms_brynhild/supplydrop
-	name = "\improper Supply Drop Bay"
+	name = "\improper 补给空投舱"
 	icon_state = "astronavigation"
 
 /area/hms_brynhild/cargo_shuttle
@@ -112,18 +112,18 @@
 	icon_state = "lifeboat"
 
 /area/hms_brynhild/cargo_shuttle/elevator
-	name = "\improper Cargo Elevator"
+	name = "\improper 货运电梯"
 	unlimited_power = TRUE
 	requires_power = FALSE
 
 /area/hms_brynhild/cargo_shuttle/lower
-	name = "\improper Cargo Elevator Lower Level"
+	name = "\improper 货运电梯下层"
 
 /area/hms_brynhild/cargo_shuttle/upper
-	name = "\improper Cargo Elevator Upper Level"
+	name = "\improper 货运电梯上层"
 
 /area/hms_brynhild/vehicle_shuttle
-	name = "\improper Vehicle Elevator One"
+	name = "\improper 一号车辆电梯"
 
 /area/hms_brynhild/vehicle_shuttle/upper
-	name = "\improper Vehicle Elevator One Upper"
+	name = "\improper 一号车辆电梯上层"

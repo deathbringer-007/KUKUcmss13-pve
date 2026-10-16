@@ -1,6 +1,6 @@
 /turf/closed/wall
-	name = "wall"
-	desc = "A huge chunk of metal used to separate rooms."
+	name = "墙壁"
+	desc = "用于分隔房间的厚重金属墙体。"
 	icon = 'icons/turf/walls/walls.dmi'
 	icon_state = "0"
 	opacity = TRUE
@@ -125,16 +125,16 @@
 	var/can_lean = TRUE
 
 	if(istype(user.l_hand, /obj/item/grab) || istype(user.r_hand, /obj/item/grab))
-		to_chat(user, SPAN_WARNING("You can't lean while grabbing someone!"))
+		to_chat(user, SPAN_WARNING("你抓着别人时无法倚靠墙壁！"))
 		can_lean = FALSE
 	if(current_mob.is_mob_incapacitated())
-		to_chat(user, SPAN_WARNING("You can't lean while incapacitated!"))
+		to_chat(user, SPAN_WARNING("你失去行动能力时无法倚靠墙壁！"))
 		can_lean = FALSE
 	if(current_mob.resting)
-		to_chat(user, SPAN_WARNING("You can't lean while resting!"))
+		to_chat(user, SPAN_WARNING("你休息时无法倚靠墙壁！"))
 		can_lean = FALSE
 	if(current_mob.buckled)
-		to_chat(user, SPAN_WARNING("You can't lean while buckled!"))
+		to_chat(user, SPAN_WARNING("你被固定时无法倚靠墙壁！"))
 		can_lean = FALSE
 
 	var/direction = get_dir(src, current_mob)
@@ -212,40 +212,40 @@
 	. = ..()
 
 	if(hull)
-		.+= SPAN_WARNING("You don't think you have any tools able to even scratch this.")
+		.+= SPAN_WARNING("你觉得自己没有任何工具能在这上面留下划痕。")
 		return //If it's indestructable, we don't want to give the wrong impression by saying "you can decon it with a welder"
 
 	if(!damage)
 		if (acided_hole)
-			. += SPAN_WARNING("It looks fully intact, except there's a large hole that could've been caused by some sort of acid.")
+			. += SPAN_WARNING("它看起来完全完好，只有一个可能被某种酸液腐蚀出的大洞。")
 		else
-			. += SPAN_NOTICE("It looks fully intact.")
+			. += SPAN_NOTICE("它看起来完全完好。")
 	else
 		var/dam = damage / damage_cap
 		if(dam <= 0.3)
-			. += SPAN_WARNING("It looks slightly damaged.")
+			. += SPAN_WARNING("它看起来有轻微损伤。")
 		else if(dam <= 0.6)
-			. += SPAN_WARNING("It looks moderately damaged.")
+			. += SPAN_WARNING("它看起来有中度损伤。")
 		else
-			. += SPAN_DANGER("It looks heavily damaged.")
+			. += SPAN_DANGER("它看起来严重受损。")
 
 		if (acided_hole)
-			. += SPAN_WARNING("There's a large hole in the wall that could've been caused by some sort of acid.")
+			. += SPAN_WARNING("墙上有个大洞，可能是被某种酸液腐蚀出来的。")
 
 	if(turf_flags & TURF_ORGANIC)
 		return // Skip the part below. 'Organic' walls aren't deconstructable with tools.
 
 	switch(d_state)
 		if(WALL_STATE_WELD)
-			. += SPAN_INFO("The outer plating is intact. If you are not on help intent, a blowtorch should slice it open.")
+			. += SPAN_INFO("外层装甲板完好。切换到帮助意图以外的意图后，可用焊炬将其切开。")
 		if(WALL_STATE_SCREW)
-			. += SPAN_INFO("The outer plating has been sliced open. A screwdriver should remove the support lines.")
+			. += SPAN_INFO("外层装甲板已被切开。可用螺丝刀拆除支撑线路。")
 		if(WALL_STATE_WIRECUTTER)
-			. += SPAN_INFO("The support lines have been removed. Wirecutters will take care of the hydraulic lines.")
+			. += SPAN_INFO("支撑线路已被拆除。可用剪线钳处理液压管线。")
 		if(WALL_STATE_WRENCH)
-			. += SPAN_INFO("The hydralic lines have been cut. A wrench will remove the anchor bolts.")
+			. += SPAN_INFO("液压管线已被切断。可用扳手拆除锚固螺栓。")
 		if(WALL_STATE_CROWBAR)
-			. += SPAN_INFO("The anchor bolts have been removed. A crowbar will pry apart the connecting rods.")
+			. += SPAN_INFO("锚固螺栓已被拆除。可用撬棍撬开连接杆。")
 
 //Damage
 /turf/closed/wall/proc/take_damage(dam, mob/M)
@@ -314,7 +314,7 @@
 			exp_damage *= RESIN_EXPLOSIVE_MULTIPLIER
 		else if (prob(25))
 			if(prob(50)) // prevents spam in close corridors etc
-				src.visible_message(SPAN_WARNING("The explosion causes shards to spall off of [src]!"))
+				src.visible_message(SPAN_WARNING("爆炸使[src]表面剥落，飞出碎片！"))
 			create_shrapnel(location, rand(2,5), explosion_direction, , /datum/ammo/bullet/shrapnel/spall, cause_data)
 		take_damage(exp_damage, mob)
 
@@ -328,7 +328,7 @@
 
 /turf/closed/wall/proc/thermitemelt(mob/user)
 	if(melting)
-		to_chat(user, SPAN_WARNING("The wall is already burning with thermite!"))
+		to_chat(user, SPAN_WARNING("墙壁上已经有铝热剂在燃烧了！"))
 		return
 	if(hull)
 		return
@@ -343,7 +343,7 @@
 	O.density = TRUE
 	O.layer = FLY_LAYER
 
-	to_chat(user, SPAN_WARNING("The thermite starts melting through [src]."))
+	to_chat(user, SPAN_WARNING("铝热剂开始熔穿[src]。"))
 
 	var/turf/closed/wall/W = src
 	while(W.thermite > 0)
@@ -376,17 +376,17 @@
 /turf/closed/wall/attack_animal(mob/living/M as mob)
 	if(M.wall_smash)
 		if((istype(src, /turf/closed/wall/r_wall)) || hull)
-			to_chat(M, SPAN_WARNING("This [name] is far too strong for you to destroy."))
+			to_chat(M, SPAN_WARNING("这面[name]太坚固了，你无法将其摧毁。"))
 			return
 		else
 			if((prob(40)))
-				M.visible_message(SPAN_DANGER("[M] smashes through [src]."),
-				SPAN_DANGER("You smash through the wall."))
+				M.visible_message(SPAN_DANGER("[M]砸穿了[src]。"),
+				SPAN_DANGER("你砸穿了墙壁。"))
 				dismantle_wall(1)
 				return
 			else
-				M.visible_message(SPAN_WARNING("[M] smashes against [src]."),
-				SPAN_WARNING("You smash against the wall."))
+				M.visible_message(SPAN_WARNING("[M]猛砸[src]。"),
+				SPAN_WARNING("你猛砸墙壁。"))
 				take_damage(rand(25, 75), M)
 				return
 
@@ -398,14 +398,14 @@
 		user_as_xenomorph.do_nesting_host(attacker_grab.grabbed_thing, src)
 
 	if(!ishuman(user))
-		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
+		to_chat(user, SPAN_WARNING("你的手不够灵巧，无法这样做！"))
 		return
 
 	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
 	if(thermite)
 		if(attacking_item.heat_source >= 1000)
 			if(hull)
-				to_chat(user, SPAN_WARNING("[src] is much too tough for you to do anything to it with [attacking_item]."))
+				to_chat(user, SPAN_WARNING("[src]太坚固了，你无法用[attacking_item]对它做什么。"))
 			else
 				if(iswelder(attacking_item))
 					var/obj/item/tool/weldingtool/WT = attacking_item
@@ -418,17 +418,17 @@
 		if(user.action_busy)
 			return
 		if(!(HAS_TRAIT(user, TRAIT_SUPER_STRONG) || !current_hammer.really_heavy))
-			to_chat(user, SPAN_WARNING("You can't use \the [current_hammer] properly!"))
+			to_chat(user, SPAN_WARNING("你无法正确使用[current_hammer]！"))
 			return
 		if(hull)
-			to_chat(user, SPAN_WARNING("Even with your immense strength, you can't bring down \the [src]."))
+			to_chat(user, SPAN_WARNING("即使你力大无穷，也无法拆毁[src]。"))
 			return
 
-		to_chat(user, SPAN_NOTICE("You start taking down \the [src]."))
+		to_chat(user, SPAN_NOTICE("你开始拆除[src]。"))
 		if(!do_after(user, 5 SECONDS, INTERRUPT_ALL_OUT_OF_RANGE, BUSY_ICON_BUILD))
-			to_chat(user, SPAN_NOTICE("You stop taking down \the [src]."))
+			to_chat(user, SPAN_NOTICE("你停止拆除[src]。"))
 			return
-		to_chat(user, SPAN_NOTICE("You tear down \the [src]."))
+		to_chat(user, SPAN_NOTICE("你拆除了[src]。"))
 
 		playsound(src, 'sound/effects/meteorimpact.ogg', 40, 1)
 		playsound(src, 'sound/effects/ceramic_shatter.ogg', 40, 1)
@@ -467,12 +467,12 @@
 		return
 
 	if(istype(attacking_item, /obj/item/prop/torch_frame))
-		to_chat(user, SPAN_NOTICE("You place the torch down on the wall."))
+		to_chat(user, SPAN_NOTICE("你将火把放在墙上。"))
 		new /obj/structure/prop/brazier/frame/full/torch(src)
 		qdel(attacking_item)
 
 	if(hull)
-		to_chat(user, SPAN_WARNING("[src] is much too tough for you to do anything to it with [attacking_item]."))
+		to_chat(user, SPAN_WARNING("[src]太坚固了，你无法用[attacking_item]对它做什么。"))
 		return
 
 	if(try_weldingtool_usage(attacking_item, user) || try_nailgun_usage(attacking_item, user))
@@ -486,52 +486,52 @@
 		if(WALL_STATE_WELD)
 			if(iswelder(attacking_item))
 				if(!HAS_TRAIT(attacking_item, TRAIT_TOOL_BLOWTORCH))
-					to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+					to_chat(user, SPAN_WARNING("你需要更强力的焊炬！"))
 					return
 				var/obj/item/tool/weldingtool/WT = attacking_item
 				try_weldingtool_deconstruction(WT, user)
 
 		if(WALL_STATE_SCREW)
 			if(HAS_TRAIT(attacking_item, TRAIT_TOOL_SCREWDRIVER))
-				user.visible_message(SPAN_NOTICE("[user] begins removing the support lines."),
-				SPAN_NOTICE("You begin removing the support lines."))
+				user.visible_message(SPAN_NOTICE("[user]开始拆除支撑线路。"),
+				SPAN_NOTICE("你开始拆除支撑线路。"))
 				playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
 				if(!do_after(user, 60 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					return
 				d_state = WALL_STATE_WIRECUTTER
-				user.visible_message(SPAN_NOTICE("[user] removes the support lines."), SPAN_NOTICE("You remove the support lines."))
+				user.visible_message(SPAN_NOTICE("[user]拆除了支撑线路。"), SPAN_NOTICE("你拆除了支撑线路。"))
 				return
 
 		if(WALL_STATE_WIRECUTTER)
 			if(HAS_TRAIT(attacking_item, TRAIT_TOOL_WIRECUTTERS))
-				user.visible_message(SPAN_NOTICE("[user] begins uncrimping the hydraulic lines."),
-				SPAN_NOTICE("You begin uncrimping the hydraulic lines."))
+				user.visible_message(SPAN_NOTICE("[user]开始松开液压管线的压接处。"),
+				SPAN_NOTICE("你开始松开液压管线的压接处。"))
 				playsound(src, 'sound/items/Wirecutter.ogg', 25, 1)
 				if(!do_after(user, 60 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					return
 				d_state = WALL_STATE_WRENCH
-				user.visible_message(SPAN_NOTICE("[user] finishes uncrimping the hydraulic lines."), SPAN_NOTICE("You finish uncrimping the hydraulic lines."))
+				user.visible_message(SPAN_NOTICE("[user]完成了液压管线压接处的拆解。"), SPAN_NOTICE("你完成了液压管线压接处的拆解。"))
 				return
 
 		if(WALL_STATE_WRENCH)
 			if(HAS_TRAIT(attacking_item, TRAIT_TOOL_WRENCH))
-				user.visible_message(SPAN_NOTICE("[user] starts loosening the anchoring bolts securing the support rods."),
-				SPAN_NOTICE("You start loosening the anchoring bolts securing the support rods."))
+				user.visible_message(SPAN_NOTICE("[user]开始松开固定支撑杆的锚固螺栓。"),
+				SPAN_NOTICE("你开始松开固定支撑杆的锚固螺栓。"))
 				playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
 				if(!do_after(user, 60 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					return
 				d_state = WALL_STATE_CROWBAR
-				user.visible_message(SPAN_NOTICE("[user] removes the bolts anchoring the support rods."), SPAN_NOTICE("You remove the bolts anchoring the support rods."))
+				user.visible_message(SPAN_NOTICE("[user]拆除了固定支撑杆的螺栓。"), SPAN_NOTICE("你拆除了固定支撑杆的螺栓。"))
 				return
 
 		if(WALL_STATE_CROWBAR)
 			if(HAS_TRAIT(attacking_item, TRAIT_TOOL_CROWBAR))
-				user.visible_message(SPAN_NOTICE("[user] struggles to pry apart the connecting rods."),
-				SPAN_NOTICE("You struggle to pry apart the connecting rods."))
+				user.visible_message(SPAN_NOTICE("[user]费力地撬动连接杆。"),
+				SPAN_NOTICE("你费力地撬动连接杆。"))
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 				if(!do_after(user, 60 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					return
-				user.visible_message(SPAN_NOTICE("[user] pries apart the connecting rods."), SPAN_NOTICE("You pry apart the connecting rods."))
+				user.visible_message(SPAN_NOTICE("[user]撬开了连接杆。"), SPAN_NOTICE("你撬开了连接杆。"))
 				new /obj/item/stack/rods(src)
 				dismantle_wall()
 				return
@@ -546,37 +546,37 @@
 
 	var/obj/item/tool/weldingtool/WT = W
 	if(WT.remove_fuel(0, user))
-		user.visible_message(SPAN_NOTICE("[user] starts repairing the damage to [src]."),
-		SPAN_NOTICE("You start repairing the damage to [src]."))
+		user.visible_message(SPAN_NOTICE("[user]开始修复[src]上的损伤。"),
+		SPAN_NOTICE("你开始修复[src]上的损伤。"))
 		playsound(src, 'sound/items/Welder.ogg', 25, 1)
 		if(do_after(user, max(5, floor(damage / 5) * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL, BUSY_ICON_FRIENDLY) && istype(src, /turf/closed/wall) && WT && WT.isOn())
-			user.visible_message(SPAN_NOTICE("[user] finishes repairing the damage to [src]."),
-			SPAN_NOTICE("You finish repairing the damage to [src]."))
+			user.visible_message(SPAN_NOTICE("[user]完成了[src]的损伤修复。"),
+			SPAN_NOTICE("你完成了[src]的损伤修复。"))
 			take_damage(-damage)
 	else
-		to_chat(user, SPAN_WARNING("You need more welding fuel to complete this task."))
+		to_chat(user, SPAN_WARNING("你需要更多焊接燃料才能完成这项工作。"))
 
 	return TRUE
 
 /turf/closed/wall/proc/try_weldingtool_deconstruction(obj/item/tool/weldingtool/WT, mob/user)
 	if(!WT.isOn())
-		to_chat(user, SPAN_WARNING("\The [WT] needs to be on!"))
+		to_chat(user, SPAN_WARNING("必须先开启[WT]！"))
 		return
 	if(!(WT.remove_fuel(0, user)))
-		to_chat(user, SPAN_WARNING("You need more welding fuel!"))
+		to_chat(user, SPAN_WARNING("你需要更多焊接燃料！"))
 		return
 	if(user.a_intent == INTENT_HELP)
 		return
 
 	playsound(src, 'sound/items/Welder.ogg', 25, 1)
-	user.visible_message(SPAN_NOTICE("[user] begins slicing through the outer plating."),
-	SPAN_NOTICE("You begin slicing through the outer plating."))
+	user.visible_message(SPAN_NOTICE("[user]开始切开外层装甲板。"),
+	SPAN_NOTICE("你开始切开外层装甲板。"))
 	if(!WT || !WT.isOn())
 		return
 	if(!do_after(user, 60 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		return
 	d_state = WALL_STATE_SCREW
-	user.visible_message(SPAN_NOTICE("[user] slices through the outer plating."), SPAN_NOTICE("You slice through the outer plating."))
+	user.visible_message(SPAN_NOTICE("[user]切开了外层装甲板。"), SPAN_NOTICE("你切开了外层装甲板。"))
 	return
 
 /turf/closed/wall/proc/try_nailgun_usage(obj/item/W, mob/user)
@@ -587,7 +587,7 @@
 	var/amount_needed = acided_hole ? 3 : 1
 
 	if(!NG.in_chamber || !NG.current_mag || NG.current_mag.current_rounds < (4*amount_needed-1))
-		to_chat(user, SPAN_WARNING("You require at least [4*amount_needed] nails to complete this task!"))
+		to_chat(user, SPAN_WARNING("你至少需要[4*amount_needed]枚钉子才能完成这项工作！"))
 		return FALSE
 
 	// Check if either hand has a metal stack by checking the weapon offhand
@@ -599,7 +599,7 @@
 		material = user.l_hand
 
 	if(!istype(material, /obj/item/stack/sheet/))
-		to_chat(user, SPAN_WARNING("You'll need some adequate repair material in your other hand to patch up [src]!"))
+		to_chat(user, SPAN_WARNING("你需要用另一只手拿着合适的修复材料，才能修补[src]！"))
 		return FALSE
 
 	var/repair_value = 0
@@ -609,11 +609,11 @@
 			break
 
 	if(repair_value == 0)
-		to_chat(user, SPAN_WARNING("You'll need some adequate repair material in your other hand to patch up [src]!"))
+		to_chat(user, SPAN_WARNING("你需要用另一只手拿着合适的修复材料，才能修补[src]！"))
 		return FALSE
 
 	if(!material || material.amount < amount_needed)
-		to_chat(user, SPAN_WARNING("You need [amount_needed] sheets of material to fix this!"))
+		to_chat(user, SPAN_WARNING("你需要[amount_needed]片材料才能修好它！"))
 		return FALSE
 
 	for(var/i = 1 to amount_needed)
@@ -625,21 +625,21 @@
 
 	// Check again for presence of objects
 	if(!material || (material != user.l_hand && material != user.r_hand) || material.amount <= 0)
-		to_chat(user, SPAN_WARNING("You seem to have misplaced the repair material!"))
+		to_chat(user, SPAN_WARNING("你的修复材料似乎不见了！"))
 		return FALSE
 
 	if(!NG.in_chamber || !NG.current_mag || NG.current_mag.current_rounds < (4*amount_needed-1))
-		to_chat(user, SPAN_WARNING("You require at least [4*amount_needed] nails to complete this task!"))
+		to_chat(user, SPAN_WARNING("你至少需要[4*amount_needed]枚钉子才能完成这项工作！"))
 		return FALSE
 
 	if(acided_hole)
 		qdel(acided_hole)
 		acided_hole = null
 		take_damage(-0.05*damage_cap)
-		to_chat(user, SPAN_WARNING("You barricade the hole with [material], slightly raising the integrity of [src], and blocking the hole!"))
+		to_chat(user, SPAN_WARNING("你用[material]封堵了洞口，稍微提高了[src]的结构完整度！"))
 	else
 		take_damage(-repair_value*damage_cap)
-		to_chat(user, SPAN_WARNING("You reinforce the fissures in [src], raising its integrity!"))
+		to_chat(user, SPAN_WARNING("你加固了[src]的裂缝，提高了它的结构完整度！"))
 
 	material.use(amount_needed)
 	NG.current_mag.current_rounds -= (4*amount_needed-1)
@@ -665,7 +665,7 @@
 	to_unhide.apply_effect(2, SLOW)
 	hiding_humans -= to_unhide
 	UnregisterSignal(to_unhide, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_SET_BODY_POSITION, COMSIG_MOB_RESISTED, COMSIG_MOB_ANIMATING))
-	to_chat(to_unhide, SPAN_WARNING("You couldn't sit still so you stop leaning on the wall!"))
+	to_chat(to_unhide, SPAN_WARNING("你无法保持不动，停止倚靠墙壁！"))
 	to_unhide.remove_filter("cutout")
 
 /turf/closed/wall/Destroy()

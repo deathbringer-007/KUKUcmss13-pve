@@ -80,7 +80,7 @@
 	target_ship_section = ship_section
 	var/turf/target = get_crashsite_turf(ship_section)
 	if(!target)
-		to_chat(usr, SPAN_WARNING("No area available"))
+		to_chat(usr, SPAN_WARNING("没有可用区域。"))
 		return
 
 	var/obj/docking_port/stationary/marine_dropship/crash_site/target_site = new()
@@ -90,7 +90,7 @@
 		offset_target = target // Welp the offsetting failed so...
 	target_site.forceMove(offset_target)
 
-	target_site.name = "[shuttle] crash site"
+	target_site.name = "[shuttle]坠毁地点"
 	target_site.id = "crash_site_[shuttle.id]"
 
 /datum/dropship_hijack/almayer/proc/check()
@@ -122,8 +122,8 @@
 		for(var/area/internal_area in shuttle.shuttle_areas)
 			for(var/turf/internal_turf in internal_area)
 				for(var/mob/M in internal_turf)
-					to_chat(M, SPAN_DANGER("The ship jostles violently as explosions rock the ship!"))
-					to_chat(M, SPAN_DANGER("You feel the ship turning sharply as it adjusts its course!"))
+					to_chat(M, SPAN_DANGER("爆炸震撼舰体，整艘船剧烈颠簸！"))
+					to_chat(M, SPAN_DANGER("你感觉舰船正在急转，调整航向！"))
 					shake_camera(M, 60, 2)
 			playsound_area(internal_area, 'sound/effects/antiair_explosions.ogg')
 
@@ -144,7 +144,7 @@
 
 	marine_announcement("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT." , "EMERGENCY", 'sound/AI/dropship_emergency.ogg', logging = ARES_LOG_SECURITY)
 
-	notify_ghosts(header = "Dropship Collision", message = "The dropship is about to impact [get_area_name(crash_site)]!", source = crash_site, extra_large = TRUE)
+	notify_ghosts(header = "登陆艇撞击", message = "登陆艇即将撞上[get_area_name(crash_site)]！", source = crash_site, extra_large = TRUE)
 	final_announcement = TRUE
 
 	playsound_area(get_area(crash_site), 'sound/effects/engine_landing.ogg', 100)

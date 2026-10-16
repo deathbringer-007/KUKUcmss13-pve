@@ -336,8 +336,8 @@
 // end of actions sniper spe can take.
 
 /obj/item/weapon/gun/rifle/sniper/M42A
-	name = "\improper M42A scoped rifle"
-	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 15-round magazine.\n'Peace Through Superior Firepower'"
+	name = "M42A 带镜步枪"
+	desc = "阿玛特系统制造的重型狙击步枪，配有瞄准镜系统，使用 15 发弹匣发射穿甲弹。\n“以优势火力换取和平。”"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "m42a"
 	item_state = "m42a"
@@ -391,8 +391,8 @@
 	current_mag = /obj/item/ammo_magazine/sniper/basic
 
 /obj/item/weapon/gun/rifle/sniper/M42A/silenced
-	name = "\improper M42A2 SSR"
-	desc = "The M42A2 Suppressed Scoped Rifle (SSR for short), is a heavy sniper rifle manufactured by Armat Systems. Modified with an integral suppressor, it has a scope system and fires armor penetrating rounds out of a 15-round magazine.\n'Peace Through Superior Firepower'"
+	name = "M42A2 SSR 狙击步枪"
+	desc = "M42A2 消音带镜步枪，简称 SSR，是阿玛特系统制造的重型狙击步枪。改装了集成消音器，配有瞄准镜系统，使用 15 发弹匣发射穿甲弹。\n“以优势火力换取和平。”"
 	starting_attachment_types = list(/obj/item/attachable/supsniperbarrel)
 	loud = FALSE
 
@@ -401,8 +401,8 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_TRIGGER_SAFETY
 
 /obj/item/weapon/gun/rifle/sniper/XM43E1
-	name = "\improper XM43E1 experimental anti-materiel rifle"
-	desc = "An experimental anti-materiel rifle produced by Armat Systems, recently reacquired from the deep storage of an abandoned prototyping facility. This one in particular is currently undergoing field testing. Chambered in 10x99mm Caseless.\n\nThis weapon can punch through thin metal plating and walls, though it'll lose most of its lethality in the process. It can even work for demolitions, with experienced users known to disassemble segments of solid, reinforced walls in the field with just a single standard magazine of 10x99mm. In lieu of explosives or an engineer, they instead use each of the 8 shots to break down vital structural supports, taking the wall apart in the process."
+	name = "XM43E1 实验型反器材步枪"
+	desc = "阿玛特系统制造的实验型反器材步枪，最近从一座废弃原型设施的深层仓库中重新取出。这一把正在进行实地测试，使用 10x99mm 无壳弹。\n\n可穿透薄金属板和墙壁，但会因此损失大部分杀伤力。它甚至能用于拆毁建筑：熟练使用者只需一只标准 10x99mm 弹匣，就能拆掉一段坚固的强化墙。没有炸药或工兵时，他们用 8 发子弹逐一破坏关键承重结构，使墙体解体。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "xm43e1"
 	item_state = "xm43e1"
@@ -517,8 +517,8 @@
 //Type 88 //Based on the actual Dragunov DMR rifle.
 
 /obj/item/weapon/gun/rifle/sniper/svd
-	name = "\improper Type 88 designated marksman rifle"
-	desc = "The standard issue DMR of the UPP, the Type 88 is sought after by competitive shooters and terrorists alike for its high degree of accuracy. Typically loaded with armor-piercing 7.62x54mmR rounds in a 12 round magazine."
+	name = "88 式精确射手步枪"
+	desc = "UPP 制式精确射手步枪。88 式的高精度让竞技射手与恐怖分子都趋之若鹜。通常使用装有 12 发 7.62x54mmR 穿甲弹的弹匣。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/upp.dmi'
 	icon_state = "type88"
 	item_state = "type88"
@@ -637,8 +637,8 @@
 	current_mag = /obj/item/ammo_magazine/sniper/svd/pve
 
 /obj/item/weapon/gun/rifle/sniper/rmc
-	name = "\improper L64A3 designated marksman rifle"
-	desc = "A lightweight designated marksman rifle developed by Howatomo Precision Machining for the Royal Marines. Designed to provide commandos with responsive long range reach past what the old F903 could manage. A continuous-charge HESH payload removes the requirement for traditional armor piercing steel core ammunition, and improves damage retention at extended range. Faster cycle rate of the breech and a light trigger gives fast and precise followup shots even at thousand meter distances."
+	name = "L64A3 精确射手步枪"
+	desc = "丰友精密机械为皇家陆战队研制的轻型精确射手步枪，旨在提供比旧 F903 更远、更灵敏的远程火力。连续装药碎甲战斗部取代了传统钢芯穿甲弹的需求，并提高远距离伤害保持能力。更快的枪机循环与轻扳机，即使在千米距离也能迅速精准地补射。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/twe_guns.dmi'
 	icon_state = "rmcdmr"
 	item_state = "rmcdmr"

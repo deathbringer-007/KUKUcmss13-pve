@@ -65,7 +65,7 @@
 
 /obj/structure/filingcabinet/attack_hand(mob/user as mob)
 	if(length(contents) <= 0)
-		to_chat(user, SPAN_NOTICE("\The [src]是空的。"))
+		to_chat(user, SPAN_NOTICE("[src]是空的。"))
 		return
 
 	user.set_interaction(src)

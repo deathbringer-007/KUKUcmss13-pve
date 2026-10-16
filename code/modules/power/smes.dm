@@ -5,8 +5,8 @@
 #define SMESMAXOUTPUT 250000
 
 /obj/structure/machinery/power/smes
-	name = "power storage unit"
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
+	name = "储能装置"
+	desc = "高容量超导磁储能装置（SMES）。"
 	icon_state = "smes"
 	density = TRUE
 	anchored = TRUE
@@ -170,7 +170,7 @@
 //Will return 1 on failure
 /obj/structure/machinery/power/smes/proc/make_terminal(const/mob/user)
 	if (user.loc == loc)
-		to_chat(user, SPAN_WARNING("You must not be on the same tile as \the [src]."))
+		to_chat(user, SPAN_WARNING("你不能与[src]站在同一格上。"))
 		return 1
 
 	//Direction the terminal will face to
@@ -184,13 +184,13 @@
 	if(user.dir == tempDir)
 		tempLoc = user.loc
 	if (istype(tempLoc, /turf/open/space))
-		to_chat(user, SPAN_WARNING("You can't build a terminal on space."))
+		to_chat(user, SPAN_WARNING("你不能在太空中建造接线端子。"))
 		return 1
 	else if (istype(tempLoc))
 		if(tempLoc.intact_tile)
-			to_chat(user, SPAN_WARNING("You must remove the floor plating first."))
+			to_chat(user, SPAN_WARNING("你必须先移除地板铺板。"))
 			return 1
-	to_chat(user, SPAN_NOTICE("You start adding cable to \the [src]."))
+	to_chat(user, SPAN_NOTICE("你开始给[src]连接电缆。"))
 	if(do_after(user, 50 * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		terminal = new /obj/structure/machinery/power/terminal(tempLoc)
 		terminal.setDir(tempDir)
@@ -222,22 +222,22 @@
 	if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
 		if(!open_hatch)
 			open_hatch = 1
-			to_chat(user, SPAN_NOTICE("You open the maintenance hatch of [src]."))
+			to_chat(user, SPAN_NOTICE("你打开了[src]的维护舱盖。"))
 			return 0
 		else
 			open_hatch = 0
-			to_chat(user, SPAN_NOTICE("You close the maintenance hatch of [src]."))
+			to_chat(user, SPAN_NOTICE("你关闭了[src]的维护舱盖。"))
 			return 0
 
 	if (!open_hatch)
-		to_chat(user, SPAN_WARNING("You need to open access hatch on [src] first!"))
+		to_chat(user, SPAN_WARNING("你需要先打开[src]的维护舱盖！"))
 		return 0
 
 	if(istype(W, /obj/item/stack/cable_coil) && !terminal && !building_terminal)
 		building_terminal = 1
 		var/obj/item/stack/cable_coil/CC = W
 		if (CC.get_amount() < 10)
-			to_chat(user, SPAN_WARNING("You need more cables."))
+			to_chat(user, SPAN_WARNING("你需要更多电缆。"))
 			building_terminal = 0
 			return 0
 		if (make_terminal(user))
@@ -246,8 +246,8 @@
 		building_terminal = 0
 		CC.use(10)
 		user.visible_message(\
-				SPAN_NOTICE("[user.name] has added cables to \the [src]."),\
-				SPAN_NOTICE("You added cables to \the [src]."))
+				SPAN_NOTICE("[user.name]为[src]接上了电缆。"),\
+				SPAN_NOTICE("你为[src]接上了电缆。"))
 		terminal.connect_to_network()
 		stat = 0
 		return 0
@@ -257,9 +257,9 @@
 		var/turf/tempTDir = terminal.loc
 		if (istype(tempTDir))
 			if(tempTDir.intact_tile)
-				to_chat(user, SPAN_WARNING("You must remove the floor plating first."))
+				to_chat(user, SPAN_WARNING("你必须先移除地板铺板。"))
 			else
-				to_chat(user, SPAN_NOTICE("You begin to cut the cables..."))
+				to_chat(user, SPAN_NOTICE("你开始剪断电缆……"))
 				playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 25, 1)
 				if(do_after(user, 50 * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
@@ -270,8 +270,8 @@
 						return 0
 					new /obj/item/stack/cable_coil(loc,10)
 					user.visible_message(\
-						SPAN_NOTICE("[user.name] cut the cables and dismantled the power terminal."),\
-						SPAN_NOTICE("You cut the cables and dismantle the power terminal."))
+						SPAN_NOTICE("[user.name]剪断了电缆，拆除了电力接线端子。"),\
+						SPAN_NOTICE("你剪断了电缆，拆除了电力接线端子。"))
 					qdel(terminal)
 					terminal = null
 		building_terminal = 0
@@ -373,7 +373,7 @@
 	if(is_ground_level(z))
 		if(prob(1)) //explosion
 			for(var/mob/M as anything in viewers(src))
-				M.show_message(SPAN_DANGER("\The [src.name] is making strange noises!"), SHOW_MESSAGE_VISIBLE, SPAN_DANGER("You hear sizzling electronics."), SHOW_MESSAGE_AUDIBLE)
+				M.show_message(SPAN_DANGER("[src.name]正发出奇怪的响声！"), SHOW_MESSAGE_VISIBLE, SPAN_DANGER("你听见电子元件嘶嘶作响。"), SHOW_MESSAGE_AUDIBLE)
 			sleep(10*pick(4,5,6,7,10,14))
 			var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
 			smoke.set_up(1, 0, src.loc)
@@ -413,8 +413,8 @@
 
 
 /obj/structure/machinery/power/smes/magical
-	name = "magical power storage unit"
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit. Magically produces power."
+	name = "魔法储能装置"
+	desc = "高容量超导磁储能装置（SMES），能够凭空产生电能。"
 	capacity = 9000000
 	output_level = 250000
 	should_be_mapped = 1

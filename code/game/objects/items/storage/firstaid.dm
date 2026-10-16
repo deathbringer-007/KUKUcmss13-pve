@@ -7,8 +7,8 @@
 
 //---------FIRST AID KITS---------
 /obj/item/storage/firstaid
-	name = "first-aid kit"
-	desc = "It's an emergency medical kit for those serious boo-boos."
+	name = "急救套件"
+	desc = "为那些严重“小伤痛”准备的应急医疗箱。"
 	icon = 'icons/obj/items/storage/medical.dmi'
 	icon_state = "firstaid"
 	w_class = SIZE_LARGE
@@ -65,8 +65,8 @@
 		open(user)
 
 /obj/item/storage/firstaid/fire
-	name = "fire first-aid kit"
-	desc = "It's an emergency medical kit for when the dropship ammo storage <i>-spontaneously-</i> burns down."
+	name = "烧伤急救套件"
+	desc = "用于运输艇弹药库<i>“自发”</i>起火时的应急医疗箱。"
 	icon_state = "ointment"
 	item_state = "firstaid-ointment"
 	possible_icons_full = list("ointment","firefirstaid")
@@ -86,7 +86,7 @@
 
 /obj/item/storage/firstaid/regular
 	icon_state = "firstaid"
-	desc = "It's an emergency medical kit containing basic medication and equipment."
+	desc = "装有基础药品和设备的应急医疗箱。"
 
 /obj/item/storage/firstaid/regular/fill_preset_inventory()
 	new /obj/item/reagent_container/blood/saline(src)
@@ -160,8 +160,8 @@
 	return
 
 /obj/item/storage/firstaid/adv
-	name = "advanced first-aid kit"
-	desc = "Contains more effective methods of medical treatment than a basic first-aid kit, such as burn and trauma kits."
+	name = "高级急救套件"
+	desc = "包含比基础急救箱更有效的医疗用品，例如烧伤治疗包和创伤治疗包。"
 	icon_state = "advfirstaid"
 	item_state = "firstaid-advanced"
 
@@ -212,8 +212,8 @@
 	return
 
 /obj/item/storage/firstaid/rad
-	name = "radiation first-aid kit"
-	desc = "Contains treatment for radiation exposure."
+	name = "辐射急救套件"
+	desc = "内含治疗辐射暴露的用品。"
 	icon_state = "purplefirstaid"
 
 /obj/item/storage/firstaid/rad/fill_preset_inventory()
@@ -260,8 +260,8 @@
 
 //---------SOFT PACKS---------
 /obj/item/storage/firstaid/softpack
-	name = "standard-issue first-aid pack"
-	desc = "A soft first-aid pack typically containing essential medical supplies for use in the field."
+	name = "制式急救包"
+	desc = "柔软的急救包，通常装有战地必备医疗用品。"
 	icon_state = "softpack"
 	w_class = SIZE_MEDIUM
 	open_state = "softpack_empty"
@@ -281,8 +281,8 @@
 	open_state = "softpack_empty_upp"
 
 /obj/item/storage/firstaid/softpack/regular
-	name = "general first-aid pack"
-	desc = "A soft first-aid pack containing basic medication and equipment for use in the field."
+	name = "通用急救包"
+	desc = "柔软的急救包，装有战地使用的基础药品与设备。"
 
 /obj/item/storage/firstaid/softpack/regular/fill_preset_inventory()
 	new /obj/item/reagent_container/blood/saline(src)
@@ -298,8 +298,8 @@
 	open_state = "softpack_empty_upp"
 
 /obj/item/storage/firstaid/softpack/adv
-	name = "advanced first-aid pack"
-	desc = "A soft first-aid pack containing sophisticated equipment for all-around treatment in the field."
+	name = "高级急救包"
+	desc = "柔软的急救包，装有可在战地进行全面治疗的先进设备。"
 	icon_state = "softpack_darkred"
 
 /obj/item/storage/firstaid/softpack/adv/fill_preset_inventory()
@@ -334,8 +334,8 @@
 	open_state = "softpack_empty_upp"
 
 /obj/item/storage/firstaid/softpack/fire
-	name = "fire first-aid pack"
-	desc = "A soft first-aid pack containing basic equipment for light burns treatment in the field."
+	name = "烧伤急救包"
+	desc = "柔软的急救包，装有在战地处理轻度烧伤的基础设备。"
 	icon_state = "softpack_orange"
 
 /obj/item/storage/firstaid/softpack/fire/fill_preset_inventory()
@@ -370,8 +370,8 @@
 	open_state = "softpack_empty_upp"
 
 /obj/item/storage/firstaid/softpack/toxin
-	name = "toxin first-aid pack"
-	desc = "A soft first-aid pack containing equipment for toxin treatment in the field."
+	name = "解毒急救包"
+	desc = "柔软的急救包，装有在战地治疗中毒的设备。"
 	icon_state = "softpack_green"
 
 /obj/item/storage/firstaid/softpack/toxin/fill_preset_inventory()
@@ -388,8 +388,8 @@
 	open_state = "softpack_empty_upp"
 
 /obj/item/storage/firstaid/softpack/o2
-	name = "oxygen deprivation first-aid pack"
-	desc = "A soft first-aid pack containing equipment for reoxygenating treatment in the field."
+	name = "缺氧急救包"
+	desc = "柔软的急救包，装有在战地恢复供氧的设备。"
 	icon_state = "softpack_blue"
 
 /obj/item/storage/firstaid/softpack/o2/fill_preset_inventory()
@@ -440,8 +440,8 @@
 	open_state = "softpack_empty_upp"
 
 /obj/item/storage/firstaid/softpack/rad
-	name = "radiation first-aid pack"
-	desc = "A soft first-aid pack containing equipment to treat radiation exposure in the field."
+	name = "辐射急救包"
+	desc = "柔软的急救包，装有在战地治疗辐射暴露的设备。"
 	icon_state = "softpack_darkgreen"
 
 /obj/item/storage/firstaid/softpack/rad/fill_preset_inventory()
@@ -491,8 +491,8 @@
 //---------SYRINGE CASE---------
 
 /obj/item/storage/syringe_case
-	name = "syringe case"
-	desc = "It's a medical case for storing syringes and bottles."
+	name = "注射器箱"
+	desc = "用于存放注射器和药瓶的医疗箱。"
 	icon = 'icons/obj/items/storage/medical.dmi'
 	icon_state = "syringe_case"
 	throw_speed = SPEED_FAST
@@ -541,14 +541,8 @@
 
 
 /obj/item/storage/surgical_case
-	name = "surgical case"
-	desc = "It's a medical case for storing basic surgical tools. It comes with a brief description for treating common internal bleeds.\
-		\nBefore surgery: Verify correct location and patient is adequately numb to pain.\
-		\nStep one: Open an incision at the site with the scalpel.\
-		\nStep two: Clamp bleeders with the hemostat.\
-		\nStep three: Draw back the skin with the retracter.\
-		\nStep four: Patch the damaged vein with a surgical line.\
-		\nStep five: Close the incision with a surgical line."
+	name = "手术器械箱"
+	desc = "存放基础手术工具的医疗箱，附有常见内出血处理简要说明。\n手术前：确认部位正确，并确保患者已充分镇痛。\n第一步：用手术刀在目标部位切开切口。\n第二步：用止血钳夹住出血点。\n第三步：用牵开器拉开皮肤。\n第四步：用手术缝合线修补受损血管。\n第五步：用手术缝合线闭合切口。"
 	icon = 'icons/obj/items/storage/medical.dmi'
 	icon_state = "surgical_case"
 	throw_speed = SPEED_FAST
@@ -574,8 +568,8 @@
 
 
 /obj/item/storage/surgical_case/rmc_surgical_case
-	name = "\improper RMC surgical case"
-	desc = "It's a medical case for storing basic surgical tools. This one was made specifically for Royal Marine Commandos, allowing them to suture their wounds during prolonged operations or perform emergency surgeries. Given the lack of tools, non-standard methods may need to be employed for the latter."
+	name = "RMC 手术器械箱"
+	desc = "存放基础手术工具的医疗箱。这一款专为皇家陆战突击队制作，便于在长期行动中缝合伤口或实施应急手术。工具不足时，后者可能需要采用非标准方法。"
 	icon_state = "rmc_surgical_case"
 	storage_slots = 5
 
@@ -589,8 +583,8 @@
 //---------PILL BOTTLES---------
 
 /obj/item/storage/pill_bottle
-	name = "pill bottle"
-	desc = "It's an airtight container for storing medication."
+	name = "药瓶"
+	desc = "用于储存药物的密封容器。"
 	icon_state = "pill_canister"
 	icon = 'icons/obj/items/chemistry.dmi'
 	item_state = "contsolid"
@@ -843,7 +837,7 @@
 		update_icon()
 
 /obj/item/storage/pill_bottle/kelotane
-	name = "\improper Kelotane pill bottle"
+	name = "克洛坦药瓶"
 	icon_state = "pill_canister2"
 	pill_type_to_fill = /obj/item/reagent_container/pill/kelotane
 	maptext_label = "Kl"
@@ -852,13 +846,13 @@
 	skilllock = SKILL_MEDICAL_DEFAULT
 
 /obj/item/storage/pill_bottle/keloderm
-	name = "\improper Kelotane-Dermaline pill bottle"
+	name = "克洛坦-德玛林药瓶"
 	icon_state = "pill_canister15"
 	pill_type_to_fill = /obj/item/reagent_container/pill/keloderm
 	maptext_label = "KD"
 
 /obj/item/storage/pill_bottle/antitox
-	name = "\improper Dylovene pill bottle"
+	name = "迪洛文药瓶"
 	icon_state = "pill_canister6"
 	pill_type_to_fill = /obj/item/reagent_container/pill/antitox
 	maptext_label = "Dy"
@@ -868,7 +862,7 @@
 	skilllock = SKILL_MEDICAL_DEFAULT
 
 /obj/item/storage/pill_bottle/inaprovaline
-	name = "\improper Inaprovaline pill bottle"
+	name = "因纳普罗伐林药瓶"
 	icon_state = "pill_canister3"
 	pill_type_to_fill = /obj/item/reagent_container/pill/inaprovaline
 	maptext_label = "In"
@@ -877,7 +871,7 @@
 	skilllock = SKILL_MEDICAL_DEFAULT
 
 /obj/item/storage/pill_bottle/tramadol
-	name = "\improper Tramadol pill bottle"
+	name = "曲马多药瓶"
 	icon_state = "pill_canister5"
 	pill_type_to_fill = /obj/item/reagent_container/pill/tramadol
 	maptext_label = "Tr"
@@ -895,7 +889,7 @@
 	skilllock = SKILL_MEDICAL_DEFAULT
 
 /obj/item/storage/pill_bottle/bicaridine
-	name = "\improper Bicaridine pill bottle"
+	name = "比卡定药瓶"
 	icon_state = "pill_canister11"
 	pill_type_to_fill = /obj/item/reagent_container/pill/bicaridine
 	maptext_label = "Bi"
@@ -904,13 +898,13 @@
 	skilllock = SKILL_MEDICAL_DEFAULT
 
 /obj/item/storage/pill_bottle/merabica
-	name = "\improper Meralyne-Bicaridine pill bottle"
+	name = "美拉林-比卡定药瓶"
 	icon_state = "pill_canister8"
 	pill_type_to_fill = /obj/item/reagent_container/pill/merabica
 	maptext_label = "MB"
 
 /obj/item/storage/pill_bottle/dexalin
-	name = "\improper Dexalin pill bottle"
+	name = "右氧林药瓶"
 	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_container/pill/dexalin
 	maptext_label = "Dx"
@@ -919,14 +913,14 @@
 	skilllock = SKILL_MEDICAL_DEFAULT
 
 /obj/item/storage/pill_bottle/dexalinplus
-	name = "\improper Dexalin+ pill bottle"
+	name = "强化右氧林药瓶"
 	icon_state = "pill_canister13"
 	pill_type_to_fill = /obj/item/reagent_container/pill/dexalinplus
 	maptext_label = "D+"
 
 //Alkysine
 /obj/item/storage/pill_bottle/alkysine
-	name = "\improper Alkysine pill bottle"
+	name = "神经修复素药瓶"
 	icon_state = "pill_canister7"
 	pill_type_to_fill = /obj/item/reagent_container/pill/alkysine
 	maptext_label = "Al"
@@ -936,7 +930,7 @@
 
 //imidazoline
 /obj/item/storage/pill_bottle/imidazoline
-	name = "\improper Imidazoline pill bottle"
+	name = "咪唑啉药瓶"
 	icon_state = "pill_canister9"
 	pill_type_to_fill = /obj/item/reagent_container/pill/imidazoline
 	maptext_label = "Im"
@@ -946,7 +940,7 @@
 
 //PERIDAXON
 /obj/item/storage/pill_bottle/peridaxon
-	name = "\improper Peridaxon pill bottle"
+	name = "佩里达酮药瓶"
 	icon_state = "pill_canister10"
 	pill_type_to_fill = /obj/item/reagent_container/pill/peridaxon
 	maptext_label = "Pr"
@@ -956,7 +950,7 @@
 
 //RUSSIAN RED ANTI-RAD
 /obj/item/storage/pill_bottle/russianRed
-	name = "\improper Russian red pill bottle"
+	name = "俄罗斯红药片瓶"
 	icon_state = "pill_canister"
 	pill_type_to_fill = /obj/item/reagent_container/pill/russianRed
 	maptext_label = "Rr"
@@ -1054,33 +1048,33 @@
 	maptext_label = "Pc"
 
 /obj/item/storage/pill_bottle/imialk
-	name = "\improper Imidazoline-Alkysine pill bottle"
+	name = "咪唑啉-神经修复素药瓶"
 	icon_state = "pill_canister14"
 	pill_type_to_fill = /obj/item/reagent_container/pill/imialk
 	maptext_label = "IA"
 
 /obj/item/storage/pill_bottle/iron
-	name = "\improper Iron pill bottle"
+	name = "铁药瓶"
 	icon_state = "pill_canister4"
 	pill_type_to_fill = /obj/item/reagent_container/pill/iron
 	maptext_label = "FE"
 
 /obj/item/storage/pill_bottle/nitrogenwater
-	name = "\improper Nitrogen-Water pill bottle"
+	name = "氮-水药瓶"
 	icon_state = "pill_canister12"
 	pill_type_to_fill = /obj/item/reagent_container/pill/nitrogenwater
 	maptext_label = "NW"
 
 /obj/item/storage/pill_bottle/tricord
-	name = "\improper Tricordazine pill bottle"
+	name = "广效康复嗪药瓶"
 	icon_state = "pill_canister"
 	pill_type_to_fill = /obj/item/reagent_container/pill/tricordrazine
 	maptext_label = "Ti"
 
 //---------PILL PACKETS---------
 /obj/item/storage/pill_bottle/packet
-	name = "\improper pill packet"
-	desc = "Contains pills. Once you take them out, they don't go back in."
+	name = "药片包"
+	desc = "内含药片，取出后无法放回。"
 	icon_state = "pill_packet"
 	bottle_lid = FALSE
 	storage_slots = 4
@@ -1097,21 +1091,21 @@
 	pill_type_to_fill = /obj/item/reagent_container/pill/tricordrazine
 
 /obj/item/storage/pill_bottle/packet/tramadol
-	name = "Tramadol pill packet"
+	name = "曲马多药片包"
 	icon_state = "tramadol_packet"
-	desc = "This packet contains tramadol pills, a mild painkiller. Once you take them out, they don't go back in. Don't take more than 2 pills in a short period."
+	desc = "内含温和止痛药曲马多的药片。取出后无法放回，短时间内不要服用超过 2 片。"
 	pill_type_to_fill = /obj/item/reagent_container/pill/tramadol
 
 /obj/item/storage/pill_bottle/packet/bicaridine
-	name = "Bicaridine pill packet"
+	name = "比卡定药片包"
 	icon_state = "bicaridine_packet"
-	desc = "This packet contains bicaridine pills. Heals brute damage effectively. Once you take them out, they don't go back in. Don't take more than 2 pills in a short period."
+	desc = "内含比卡定药片，可有效治疗钝伤。取出后无法放回，短时间内不要服用超过 2 片。"
 	pill_type_to_fill = /obj/item/reagent_container/pill/bicaridine
 
 /obj/item/storage/pill_bottle/packet/kelotane
-	name = "kelotane pill packet"
+	name = "克洛坦药片包"
 	icon_state = "kelotane_packet"
-	desc = "This packet contains kelotane pills. Heals burn damage effectively. Once you take them out, they don't go back in. Don't take more than 2 pills in a short period."
+	desc = "内含克洛坦药片，可有效治疗烧伤。取出后无法放回，短时间内不要服用超过 2 片。"
 	pill_type_to_fill = /obj/item/reagent_container/pill/kelotane
 
 /obj/item/storage/pill_bottle/packet/oxycodone

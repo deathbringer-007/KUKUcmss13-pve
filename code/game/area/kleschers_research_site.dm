@@ -1,205 +1,205 @@
 //==================================================================KLESCHERS RESEARCH SITE
 //BASE
 /area/kleschers
-	name = "Kleschers Research"
+	name = "克莱舍科研区"
 	icon_state = "lv626"
 	can_build_special = TRUE
 	powernet_name = "ground"
 	minimap_color = MINIMAP_AREA_COLONY
 //============================================================PARENTS
 /area/kleschers/outside
-	name = "Kleschers Exterior"
+	name = "克莱舍室外区"
 	ceiling = CEILING_NONE
 /area/kleschers/int_glass
-	name = "Kleschers Glass"
+	name = "克莱舍玻璃顶区域"
 	ceiling = CEILING_GLASS
 /area/kleschers/int_reg
-	name = "Kleschers Metal"
+	name = "克莱舍金属顶区域"
 	ceiling = CEILING_METAL
 /area/kleschers/int_heavy
-	name = "Kleschers Reinforced"
+	name = "克莱舍加固顶区域"
 	ceiling = CEILING_REINFORCED_METAL
 /area/kleschers/caves
-	name = "Kleschers Caves"
+	name = "克莱舍洞穴"
 	ceiling = CEILING_DEEP_UNDERGROUND
 //============================================================SHUTTLES
 /area/kleschers/shuttles/drop1
-	name = "Kleschers - Spaceport"
+	name = "克莱舍 - 太空港"
 	icon_state = "shuttle"
 	icon = 'icons/turf/area_varadero.dmi'
 	minimap_color = MINIMAP_AREA_LZ
 /area/kleschers/shuttles/drop2
-	name = "Kleschers - Cargo"
+	name = "克莱舍 - 货运区"
 	icon_state = "shuttle2"
 	icon = 'icons/turf/area_varadero.dmi'
 	minimap_color = MINIMAP_AREA_LZ
 //============================================================Northwest Portion (viro,marshal,clinic)
 /area/kleschers/outside/spaceport
-	name = "Kleschers Spaceport"
+	name = "克莱舍太空港"
 	icon_state = "away1"
 /area/kleschers/int_reg/roofed_spaceport
-	name = "Kleschers Spaceport"
+	name = "克莱舍太空港"
 	icon_state = "blueold"
 /area/kleschers/int_reg/clinic
-	name = "Saint Mikaels Clinic"
+	name = "圣米凯尔诊所"
 	icon_state = "medbay"
 /area/kleschers/int_reg/marshals
-	name = "Colonial Marshals Complex"
+	name = "殖民地执法局综合楼"
 	icon_state = "security"
 /area/kleschers/int_heavy/marshals_armory
-	name = "Armory"
+	name = "军械库"
 	icon_state = "secure_armory"
 /area/kleschers/int_reg/virology
-	name = "Virology"
+	name = "病毒学区"
 	icon_state = "virology"
 /area/kleschers/outside/northwest
-	name = "Kleschers Northwestern Sector"
+	name = "克莱舍西北区"
 	icon_state = "northwest"
 /area/kleschers/int_reg/telecomms
-	name = "Spaceport Telecommunication Hub"
+	name = "太空港通讯中心"
 	icon_state = "yellow"
 /area/kleschers/outside/telecomms_yard
-	name = "Spaceport Telecommunication Yard"
+	name = "太空港通讯场区"
 	icon_state = "blue-red"
 /area/kleschers/int_reg/garage
-	name = "Spaceport Garage"
+	name = "太空港车库"
 	icon_state = "storage"
 /area/kleschers/caves/north_river
-	name = "Northern Caves"
+	name = "北侧洞穴"
 	icon_state = "cave"
 //============================================================Western Portion (Cargo, Fitness, Engineering)
 /area/kleschers/int_glass/fitness
-	name = "Fitness & Rehabilitation Center"
+	name = "健身与康复中心"
 	icon_state = "fitness"
 /area/kleschers/int_reg/cargo
-	name = "Cargo Bay"
+	name = "货舱"
 	icon_state = "cargo"
 /area/kleschers/int_reg/engineering
-	name = "Engineering Complex"
+	name = "工程综合区"
 	icon_state = "SMES"
 /area/kleschers/caves/western_cave
-	name = "Western Caves"
+	name = "西侧洞穴"
 	icon_state = "caves"
 /area/kleschers/outside/western
-	name = "Kleschers Western Sector"
+	name = "克莱舍西区"
 	icon_state = "west"
 //============================================================Central Portion (Admin, Bar, Dorms)
 /area/kleschers/int_reg/admin
-	name = "Kleschers Administration Complex"
+	name = "克莱舍行政综合区"
 	icon_state = "command"
 /area/kleschers/int_glass/admin_open
-	name = "Kleschers Administration Complex"
+	name = "克莱舍行政综合区"
 	icon_state = "command"
 /area/kleschers/int_reg/dorms
-	name = "Dormitory Complex"
+	name = "宿舍综合区"
 	icon_state = "yellow"
 /area/kleschers/int_heavy/sec_armory
-	name = "Secured Storage"
+	name = "安全仓库"
 	icon_state = "secure_armory"
 /area/kleschers/int_glass/bar
-	name = "Bar Complex"
+	name = "酒吧综合区"
 	icon_state = "away1"
 /area/kleschers/outside/central_road
-	name = "Klescher Central Sector"
+	name = "克莱舍中央区"
 	icon_state = "away2"
 /area/kleschers/int_reg/connector
-	name = "Engineering-Filtration Connector Hallway"
+	name = "工程区与过滤区连接走廊"
 	icon_state = "yellow"
 //============================================================Northeastern Portion (Diner, Library, Control, Hydro)
 /area/kleschers/int_reg/control_cover
-	name = "Klescher Northeastern Sector"
+	name = "克莱舍东北区"
 	icon_state = "cave"
 /area/kleschers/int_reg/diner
-	name = "Diner Complex"
+	name = "餐馆综合区"
 	icon_state = "red"
 /area/kleschers/int_glass/library
-	name = "Library Complex"
+	name = "图书馆综合区"
 	icon_state = "yellow"
 /area/kleschers/int_reg/library
-	name = "Library Complex"
+	name = "图书馆综合区"
 	icon_state = "away1"
 /area/kleschers/outside/northeast
-	name = "Kleschers Northeastern Sector"
+	name = "克莱舍东北区"
 	icon_state = "northeast"
 /area/kleschers/int_reg/control_tower
-	name = "Control Tower Complex"
+	name = "控制塔综合区"
 	icon_state = "command"
 /area/kleschers/int_reg/hydroponics
-	name = "Hydroponics Complex"
+	name = "水培综合区"
 	icon_state = "green"
 /area/kleschers/int_glass/hydroponics
-	name = "Hydroponics Complex"
+	name = "水培综合区"
 	icon_state = "green"
 //============================================================Eastern Portion (filtration, offices)
 /area/kleschers/int_reg/filtration
-	name = "Filtration Complex"
+	name = "过滤综合区"
 	icon_state = "robotics"
 /area/kleschers/int_reg/offices
-	name = "General Office Complex"
+	name = "综合办公区"
 	icon_state = "hallE1"
 /area/kleschers/int_heavy/filtration_locks
-	name = "Filtration Gate"
+	name = "过滤区大门"
 	icon_state = "red"
 /area/kleschers/outside/east
-	name = "Kleschers Eastern Sector"
+	name = "克莱舍东区"
 	icon_state = "east"
 /area/kleschers/outside/construction
-	name = "Construction Site"
+	name = "建筑工地"
 	icon_state = "yellow"
 /area/kleschers/caves/east
-	name = "Eastern Caves"
+	name = "东侧洞穴"
 	icon_state = "away3"
 //============================================================ETA LABS
 /area/kleschers/outside/eta_courtyard
-	name = "Eta Courtyard"
+	name = "伊塔庭院"
 	icon_state = "south"
 /area/kleschers/int_heavy/eta
-	name = "Eta Labs"
+	name = "伊塔实验室"
 	icon_state = "research"
 /area/kleschers/caves/southern_caves
-	name = "Southern Caves"
+	name = "南侧洞穴"
 	icon_state = "cave"
 /area/kleschers/int_heavy/reactor_excess
-	name = "Kleschers Reactor Cooling Pipeline"
+	name = "克莱舍反应堆冷却管道"
 	icon_state = "engine_smes"
 //============================================================LAMBDA LABS
 /area/kleschers/int_reg/checkpoint
-	name = "Lambda Entry Checkpoint"
+	name = "兰姆达入口检查站"
 	icon_state = "security"
 /area/kleschers/outside/lambda_entry
-	name = "Lambda Entry Zone"
+	name = "兰姆达入口区"
 	icon_state = "away1"
 /area/kleschers/int_heavy/lambda_north_wing
-	name = "Lambda North Wing"
+	name = "兰姆达北翼"
 	icon_state = "north"
 /area/kleschers/int_heavy/lambda_south_wing
-	name = "Lambda South Wing"
+	name = "兰姆达南翼"
 	icon_state = "south"
 /area/kleschers/int_heavy/lambda_virology
-	name = "Lambda Virology"
+	name = "兰姆达病毒学区"
 	icon_state = "research"
 /area/kleschers/int_heavy/lambda_center
-	name = "Lambda Central"
+	name = "兰姆达中央区"
 	icon_state = "yellow"
 /area/kleschers/int_heavy/lambda_saferoom
-	name = "Emergency Safe Room"
+	name = "应急避难室"
 	icon_state = "blue-red2"
 /area/kleschers/caves/northeast_caves
-	name = "Northeastern Caves"
+	name = "东北洞穴"
 	icon_state = "cave"
 //============================================================SOUTHWEST PORTION
 /area/kleschers/int_reg/shuttle
-	name = "Crusader Light-Hauler"
+	name = "轻型货船十字军号"
 	icon_state = "shuttle"
 /area/kleschers/outside/rebel_landing
-	name = "Exterior Landing Site"
+	name = "室外降落点"
 	icon_state = "away3"
 /area/kleschers/caves/southwest_caves
-	name = "Southwestern Caves"
+	name = "西南洞穴"
 	icon_state = "southwest"
 /area/kleschers/int_reg/buildings
-	name = "Landing Site Building"
+	name = "降落点建筑"
 	icon_state = "away2"
 /area/kleschers/outside/southern_path
-	name = "Southern Path"
+	name = "南侧小径"
 	icon_state = "away1"

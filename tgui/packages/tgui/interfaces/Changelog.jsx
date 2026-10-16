@@ -18,43 +18,43 @@ import {
 import { Window } from '../layouts';
 
 const changeTypes = {
-  bugfix: { icon: 'bug', color: 'green', desc: 'Fix' },
-  fix: { icon: 'bug', color: 'green', desc: 'Fix' },
-  wip: { icon: 'hammer', color: 'orange', desc: 'WIP' },
-  qol: { icon: 'hand-holding-heart', color: 'green', desc: 'QOL' },
-  soundadd: { icon: 'tg-sound-plus', color: 'green', desc: 'Sound add' },
-  sounddel: { icon: 'tg-sound-minus', color: 'red', desc: 'Sound del' },
-  soundtweak: { icon: 'wrench', color: 'green', desc: 'Sound tweak' },
-  add: { icon: 'check-circle', color: 'green', desc: 'Addition' },
-  expansion: { icon: 'check-circle', color: 'green', desc: 'Addition' },
-  rscadd: { icon: 'check-circle', color: 'green', desc: 'Addition' },
-  rscdel: { icon: 'times-circle', color: 'red', desc: 'Removal' },
-  del: { icon: 'times-circle', color: 'red', desc: 'Removal' },
-  imageadd: { icon: 'tg-image-plus', color: 'green', desc: 'Sprite add' },
-  imagedel: { icon: 'tg-image-minus', color: 'red', desc: 'Sprite del' },
-  imagetweak: { icon: 'wrench', color: 'green', desc: 'Sprite tweak' },
-  spellcheck: { icon: 'spell-check', color: 'green', desc: 'Spellcheck' },
-  experiment: { icon: 'radiation', color: 'yellow', desc: 'Experiment' },
-  balance: { icon: 'balance-scale-right', color: 'yellow', desc: 'Balance' },
-  code: { icon: 'code', color: 'green', desc: 'Code improvement' },
-  code_imp: { icon: 'code', color: 'green', desc: 'Code improvement' },
-  refactor: { icon: 'tools', color: 'green', desc: 'Code refactor' },
-  config: { icon: 'cogs', color: 'purple', desc: 'Config' },
-  admin: { icon: 'user-shield', color: 'purple', desc: 'Admin' },
-  server: { icon: 'server', color: 'purple', desc: 'Server' },
-  tgs: { icon: 'toolbox', color: 'purple', desc: 'Server (TGS)' },
-  tweak: { icon: 'wrench', color: 'green', desc: 'Tweak' },
-  ui: { icon: 'desktop', color: 'blue', desc: 'UI' },
-  mapadd: { icon: 'earth-africa', color: 'yellow', desc: 'Map add' },
-  maptweak: { icon: 'map-location-dot', color: 'green', desc: 'Map tweak' },
-  unknown: { icon: 'info-circle', color: 'label', desc: 'Unknown' },
+  bugfix: { icon: 'bug', color: 'green', desc: '修复' },
+  fix: { icon: 'bug', color: 'green', desc: '修复' },
+  wip: { icon: 'hammer', color: 'orange', desc: '开发中' },
+  qol: { icon: 'hand-holding-heart', color: 'green', desc: '体验改进' },
+  soundadd: { icon: 'tg-sound-plus', color: 'green', desc: '新增音效' },
+  sounddel: { icon: 'tg-sound-minus', color: 'red', desc: '移除音效' },
+  soundtweak: { icon: 'wrench', color: 'green', desc: '调整音效' },
+  add: { icon: 'check-circle', color: 'green', desc: '新增内容' },
+  expansion: { icon: 'check-circle', color: 'green', desc: '新增内容' },
+  rscadd: { icon: 'check-circle', color: 'green', desc: '新增内容' },
+  rscdel: { icon: 'times-circle', color: 'red', desc: '移除内容' },
+  del: { icon: 'times-circle', color: 'red', desc: '移除内容' },
+  imageadd: { icon: 'tg-image-plus', color: 'green', desc: '新增图像' },
+  imagedel: { icon: 'tg-image-minus', color: 'red', desc: '移除图像' },
+  imagetweak: { icon: 'wrench', color: 'green', desc: '调整图像' },
+  spellcheck: { icon: 'spell-check', color: 'green', desc: '文本修正' },
+  experiment: { icon: 'radiation', color: 'yellow', desc: '实验性改动' },
+  balance: { icon: 'balance-scale-right', color: 'yellow', desc: '平衡性调整' },
+  code: { icon: 'code', color: 'green', desc: '代码改进' },
+  code_imp: { icon: 'code', color: 'green', desc: '代码改进' },
+  refactor: { icon: 'tools', color: 'green', desc: '代码重构' },
+  config: { icon: 'cogs', color: 'purple', desc: '配置' },
+  admin: { icon: 'user-shield', color: 'purple', desc: '管理功能' },
+  server: { icon: 'server', color: 'purple', desc: '服务器' },
+  tgs: { icon: 'toolbox', color: 'purple', desc: '服务器（TGS）' },
+  tweak: { icon: 'wrench', color: 'green', desc: '调整' },
+  ui: { icon: 'desktop', color: 'blue', desc: '界面' },
+  mapadd: { icon: 'earth-africa', color: 'yellow', desc: '新增地图' },
+  maptweak: { icon: 'map-location-dot', color: 'green', desc: '地图调整' },
+  unknown: { icon: 'info-circle', color: 'label', desc: '未知' },
 };
 
 export class Changelog extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: 'Loading changelog data...',
+      data: '正在载入更新日志……',
       selectedDate: '',
       selectedIndex: 0,
     };
@@ -79,9 +79,7 @@ export class Changelog extends Component {
     const maxAttempts = 6;
 
     if (attemptNumber > maxAttempts) {
-      return this.setData(
-        'Failed to load data after ' + maxAttempts + ' attempts',
-      );
+      return this.setData('尝试' + maxAttempts + '次后仍无法载入数据');
     }
 
     act('get_month', { date });
@@ -93,7 +91,7 @@ export class Changelog extends Component {
       if (errorRegex.test(result)) {
         const timeout = 50 + attemptNumber * 50;
 
-        self.setData('Loading changelog data' + '.'.repeat(attemptNumber + 3));
+        self.setData('正在载入更新日志' + '.'.repeat(attemptNumber + 3));
         setTimeout(() => {
           self.getData(date, attemptNumber + 1);
         }, timeout);
@@ -110,7 +108,7 @@ export class Changelog extends Component {
 
     if (dates) {
       dates.forEach((date) =>
-        this.dateChoices.push(dateformat(date, 'mmmm yyyy', true)),
+        this.dateChoices.push(dateformat(date, 'yyyy年m月', true)),
       );
       this.setSelectedDate(this.dateChoices[0]);
       this.getData(dates[0]);
@@ -134,7 +132,7 @@ export class Changelog extends Component {
             onClick={() => {
               const index = selectedIndex - 1;
 
-              this.setData('Loading changelog data...');
+              this.setData('正在载入更新日志……');
               this.setSelectedIndex(index);
               this.setSelectedDate(dateChoices[index]);
               window.scrollTo(
@@ -153,7 +151,7 @@ export class Changelog extends Component {
             onSelected={(value) => {
               const index = dateChoices.indexOf(value);
 
-              this.setData('Loading changelog data...');
+              this.setData('正在载入更新日志……');
               this.setSelectedIndex(index);
               this.setSelectedDate(value);
               window.scrollTo(
@@ -175,7 +173,7 @@ export class Changelog extends Component {
             onClick={() => {
               const index = selectedIndex + 1;
 
-              this.setData('Loading changelog data...');
+              this.setData('正在载入更新日志……');
               this.setSelectedIndex(index);
               this.setSelectedDate(dateChoices[index]);
               window.scrollTo(
@@ -192,24 +190,23 @@ export class Changelog extends Component {
 
     const header = (
       <Section>
-        <h1>Colonial Marines Space Station 13</h1>
+        <h1>殖民地陆战队：空间站13</h1>
         <p>
-          <b>Thanks to: </b>
-          Baystation 12, /tg/station, /vg/station, NTstation, CDK Station devs,
-          FacepunchStation, GoonStation devs, the original Space Station 13
-          developers, Invisty for the title image and the countless others who
-          have contributed to the game, issue tracker or wiki over the years.
+          <b>致谢：</b>
+          感谢Baystation 12、/tg/station、/vg/station、NTstation、CDK Station、
+          FacepunchStation和GoonStation的开发者，空间站13的最初开发者，
+          提供标题图的Invisty，以及多年来为游戏、问题追踪和维基作出贡献的无数参与者。
         </p>
         <p>
-          {'Current project maintainers can be found '}
-          <a href="https://github.com/orgs/cmss13-devs/people">here</a>
-          {', recent GitHub contributors can be found '}
-          <a href="https://github.com/cmss13-devs/cmss13/pulse/monthly">here</a>
+          {'项目当前维护者名单见'}
+          <a href="https://github.com/orgs/cmss13-devs/people">此处</a>
+          {'，近期GitHub贡献者见'}
+          <a href="https://github.com/cmss13-devs/cmss13/pulse/monthly">此处</a>
           .
         </p>
         <p>
-          {'You can also join our discord '}
-          <a href="https://discord.gg/cmss13">here</a>.
+          {'你也可以加入我们的Discord：'}
+          <a href="https://discord.gg/cmss13">此处</a>。
         </p>
         {dateDropdown}
       </Section>
@@ -218,35 +215,35 @@ export class Changelog extends Component {
     const footer = (
       <Section>
         {dateDropdown}
-        <h3>CM 13 Development Team</h3>
-        <h3>Colonial Marines Space Station 13 License</h3>
+        <h3>CM 13开发团队</h3>
+        <h3>殖民地陆战队：空间站13许可协议</h3>
         <p>
-          {'All code after '}
+          {'在'}
           <a
             href={
               'https://github.com/cmss13-devs/cmss13/commit/' +
               '9a001bf520f889b434acd295253a1052420860af'
             }
           >
-            commit 9a001bf520f889b434acd295253a1052420860af on 2020/14/9
+            2020/14/9的提交9a001bf520f889b434acd295253a1052420860af
           </a>
-          {' is licensed under '}
+          {'之后的所有代码采用'}
           <a href="https://www.gnu.org/licenses/agpl-3.0.html">GNU AGPL v3</a>
-          {'. All code before that commit is licensed under '}
+          {'许可协议。该提交之前的所有代码采用'}
           <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GPL v3</a>
-          {', including tools unless their readme specifies otherwise. See '}
+          {'许可协议，工具也包括在内，除非其自述文件另有说明。详情请参阅'}
           <a href="https://github.com/cmss13-devs/cmss13/blob/master/LICENSE">
             LICENSE
           </a>
-          {' and '}
+          {'和'}
           <a href="https://github.com/cmss13-devs/cmss13/blob/master/LICENSE-GPL3">
             GPLv3.txt
           </a>
-          {' for more details.'}
+          {'。'}
         </p>
         <p>
-          The TGS DMAPI API is licensed as a subproject under the MIT license.
-          {' See the footer of '}
+          TGS DMAPI API作为子项目采用MIT许可协议。
+          {'MIT许可协议见'}
           <a
             href={
               'https://github.com/tgstation/tgstation/blob/master' +
@@ -255,7 +252,7 @@ export class Changelog extends Component {
           >
             code/__DEFINES/tgs.dm
           </a>
-          {' and '}
+          {'和'}
           <a
             href={
               'https://github.com/tgstation/tgstation/blob/master' +
@@ -264,14 +261,14 @@ export class Changelog extends Component {
           >
             code/modules/tgs/LICENSE
           </a>
-          {' for the MIT license.'}
+          {'底部的说明。'}
         </p>
         <p>
-          {'All assets including icons and sound are under a '}
+          {'所有资源（包括图标和音效）均采用'}
           <a href="https://creativecommons.org/licenses/by-sa/3.0/">
-            Creative Commons 3.0 BY-SA license
+            知识共享署名-相同方式共享3.0许可协议
           </a>
-          {' unless otherwise indicated.'}
+          {'，除非另有说明。'}
         </p>
       </Section>
     );
@@ -282,7 +279,7 @@ export class Changelog extends Component {
       Object.entries(data)
         .reverse()
         .map(([date, authors]) => (
-          <Section key={date} title={dateformat(date, 'd mmmm yyyy', true)}>
+          <Section key={date} title={dateformat(date, 'yyyy年m月d日', true)}>
             <Box ml={3}>
               {Object.entries(authors).map(([name, changes]) => (
                 <Fragment key={name}>
@@ -326,7 +323,7 @@ export class Changelog extends Component {
         ));
 
     return (
-      <Window title="Changelog" width={675} height={650}>
+      <Window title="更新日志" width={675} height={650}>
         <Window.Content scrollable>
           {header}
           {changes}

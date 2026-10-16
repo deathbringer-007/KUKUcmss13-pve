@@ -30,7 +30,7 @@
 /mob/living/carbon/xenomorph
 	//// ALL OLD SS13 VARS
 	name = "Drone"
-	desc = "What the hell is THAT?"
+	desc = "那到底是什么鬼东西？"
 	layer = BIG_XENO_LAYER
 	voice_name = "xenomorph"
 	speak_emote = list("hisses")
@@ -645,42 +645,42 @@
 		. += caste.caste_desc
 
 	if(l_hand)
-		. += "It's holding[l_hand.get_examine_line(user)] in its left hand."
+		. += "它的左手拿着[l_hand.get_examine_line(user)]。"
 
 	if(r_hand)
-		. += "It's holding[r_hand.get_examine_line(user)] in its right hand."
+		. += "它的右手拿着[r_hand.get_examine_line(user)]。"
 
 	if(stat == DEAD)
-		. += "It is DEAD. Kicked the bucket. Off to that great hive in the sky."
+		. += "它死了。彻底咽气了。前往天上那伟大的虫巢了。"
 	else if(stat == UNCONSCIOUS)
-		. += "It quivers a bit, but barely moves."
+		. += "它微微颤动，但几乎无法移动。"
 	else
 		var/percent = (health / maxHealth * 100)
 		switch(percent)
 			if(95 to 101)
-				. += "It looks quite healthy."
+				. += "它看起来很健康。"
 			if(75 to 94)
-				. += "It looks slightly injured."
+				. += "它看起来受了轻伤。"
 			if(50 to 74)
-				. += "It looks injured."
+				. += "它看起来受伤了。"
 			if(25 to 49)
-				. += "It bleeds with sizzling wounds."
+				. += "它的伤口流着嘶嘶作响的血液。"
 			if(1 to 24)
-				. += "It is heavily injured and limping badly."
+				. += "它身受重伤，走路一瘸一拐。"
 
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/xeno = user
 		if(hivenumber != xeno.hivenumber)
-			. += "It appears to belong to [hive?.name ? "the [hive.name]" : "a different hive"]."
+			. += "它似乎属于[hive?.name ? "[hive.name]" : "另一个虫巢"]。"
 
 	if(isxeno(user) || isobserver(user))
 		if(strain)
-			. += "It has specialized into a [strain.name]."
+			. += "它已特化为[strain.name]。"
 
 	if(iff_tag)
-		. += SPAN_NOTICE("It has an IFF tag sticking out of its carapace.")
+		. += SPAN_NOTICE("它的甲壳上露出一枚敌我识别标签。")
 	if(organ_removed)
-		. += "It seems to have its carapace cut open."
+		. += "它的甲壳似乎被切开了。"
 
 /mob/living/carbon/xenomorph/Destroy()
 	GLOB.living_xeno_list -= src
@@ -763,7 +763,7 @@
 			return TRUE
 		puller.apply_effect(rand(caste.tacklestrength_min,caste.tacklestrength_max), STUTTER)
 		playsound(puller.loc, 'sound/weapons/pierce.ogg', 25, 1)
-		puller.visible_message(SPAN_WARNING("[puller] tried to pull [src] but instead gets a tail swipe to the head!"))
+		puller.visible_message(SPAN_WARNING("[puller]试图拖拽[src]，结果脑袋挨了一记尾击！"))
 		return FALSE
 	return TRUE
 
@@ -771,7 +771,7 @@
 	if(!pulledby)
 		return
 	if(pulledby.grab_level)
-		visible_message(SPAN_DANGER("[src] has broken free of [pulledby]'s grip!"), null, null, 5)
+		visible_message(SPAN_DANGER("[src]挣脱了[pulledby]的抓握！"), null, null, 5)
 	pulledby.stop_pulling()
 	. = 1
 
@@ -961,7 +961,7 @@
 		caste.aura_strength = 0
 	if(aura_strength == 0 && current_aura)
 		current_aura = null
-		to_chat(src, SPAN_XENOWARNING("We lose our pheromones."))
+		to_chat(src, SPAN_XENOWARNING("我们的信息素消失了。"))
 
 	// Also recalculate received pheros now
 	for(var/capped_aura in received_phero_caps)
@@ -995,8 +995,8 @@
 /mob/living/carbon/xenomorph/resist_fire()
 	adjust_fire_stacks(XENO_FIRE_RESIST_AMOUNT, min_stacks = 0)
 	apply_effect(4, WEAKEN)
-	visible_message(SPAN_DANGER("[src] rolls on the floor, trying to put themselves out!"), \
-		SPAN_NOTICE("You stop, drop, and roll!"), null, 5)
+	visible_message(SPAN_DANGER("[src]在地上打滚，试图扑灭身上的火！"), \
+		SPAN_NOTICE("你停下脚步，倒地打滚！"), null, 5)
 
 	if(istype(get_turf(src), /turf/open/gm/river))
 		ExtinguishMob()
@@ -1004,8 +1004,8 @@
 	if(fire_stacks > 0)
 		return
 
-	visible_message(SPAN_DANGER("[src] has successfully extinguished themselves!"), \
-		SPAN_NOTICE("We extinguish ourselves."), null, 5)
+	visible_message(SPAN_DANGER("[src]成功扑灭了身上的火！"), \
+		SPAN_NOTICE("我们扑灭了身上的火。"), null, 5)
 
 /mob/living/carbon/xenomorph/proc/get_organ_icon()
 	return "heart_t[tier]"
@@ -1019,13 +1019,13 @@
 	last_special = world.time + 1 SECONDS
 
 	var/displaytime = max(1, floor(breakouttime / 600)) //Minutes
-	visible_message(SPAN_DANGER("<b>[src] attempts to remove [legcuffed]!</b>"),
-		SPAN_WARNING("We attempt to remove [legcuffed]. (This will take around [displaytime] minute\s and we must stand still)"))
+	visible_message(SPAN_DANGER("<b>[src]试图挣脱[legcuffed]！</b>"),
+		SPAN_WARNING("我们试图挣脱[legcuffed]。（大约需要[displaytime]分钟，期间必须保持不动）"))
 	if(!do_after(src, breakouttime, INTERRUPT_NO_NEEDHAND ^ INTERRUPT_RESIST, BUSY_ICON_HOSTILE))
 		return
 	if(!legcuffed || buckled)
 		return
-	visible_message(SPAN_DANGER("<b>[src] manages to remove [legcuffed]!</b>"), SPAN_NOTICE("We successfully remove [legcuffed]."))
+	visible_message(SPAN_DANGER("<b>[src]成功挣脱了[legcuffed]！</b>"), SPAN_NOTICE("我们成功挣脱了[legcuffed]。"))
 	drop_inv_item_on_ground(legcuffed)
 
 /mob/living/carbon/xenomorph/IgniteMob()
@@ -1083,16 +1083,16 @@
 	var/move_dir = get_dir(src, loc)
 	for(var/atom/movable/atom in get_turf(current_structure))
 		if(atom != current_structure && atom.density && atom.BlockedPassDirs(src, move_dir))
-			to_chat(src, SPAN_WARNING("[atom] prevents us from squeezing under [current_structure]!"))
+			to_chat(src, SPAN_WARNING("[atom]挡住了去路，我们无法从[current_structure]下方挤过去！"))
 			return FALSE
 	// Is it an airlock?
 	if(istype(current_structure, /obj/structure/machinery/door/airlock))
 		var/obj/structure/machinery/door/airlock/current_airlock = current_structure
 		if(current_airlock.locked || current_airlock.welded) //Can't pass through airlocks that have been bolted down or welded
-			to_chat(src, SPAN_WARNING("[current_airlock] is locked down tight. We can't squeeze underneath!"))
+			to_chat(src, SPAN_WARNING("[current_airlock]已被严密锁闭，我们无法从下方挤过去！"))
 			return FALSE
-	visible_message(SPAN_WARNING("[src] scuttles underneath [current_structure]!"), \
-	SPAN_WARNING("We squeeze and scuttle underneath [current_structure]."), max_distance = 2)
+	visible_message(SPAN_WARNING("[src]从[current_structure]下方钻了过去！"), \
+	SPAN_WARNING("我们挤进[current_structure]下方，钻了过去。"), max_distance = 2)
 	forceMove(current_structure.loc)
 	return TRUE
 

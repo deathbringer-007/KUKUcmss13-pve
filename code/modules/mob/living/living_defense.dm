@@ -46,10 +46,10 @@
 	var/miss_chance = min(15*(dist - 2), 0)
 
 	if (prob(miss_chance))
-		visible_message(SPAN_NOTICE("\The [O] misses [src] narrowly!"), null, null, 5)
+		visible_message(SPAN_NOTICE("[O]险些击中[src]！"), null, null, 5)
 		return
 
-	src.visible_message(SPAN_DANGER("[src] has been hit by [O]."), null, null, 5)
+	src.visible_message(SPAN_DANGER("[src]被[O]击中了。"), null, null, 5)
 	var/damage_done = apply_armoured_damage(impact_damage, ARMOR_MELEE, dtype, null, , is_sharp(O), has_edge(O), null)
 
 	var/last_damage_source
@@ -91,7 +91,7 @@
 	if(!rebounding && LM.thrower != src)
 		var/impact_damage = (1 + MOB_SIZE_COEFF/(mob_size + 1))*THROW_SPEED_DENSE_COEFF*cur_speed
 		apply_damage(impact_damage)
-		visible_message(SPAN_DANGER("\The [name] slams into [O]!"), null, null, 5) //feedback to know that you got slammed into a wall and it hurt
+		visible_message(SPAN_DANGER("[name]猛撞在[O]上！"), null, null, 5) //feedback to know that you got slammed into a wall and it hurt
 		playsound(O,"slam", 50, 1)
 	..()
 
@@ -103,7 +103,7 @@
 			last_damage_data = create_cause_data("wall tossing", LM.thrower)
 		var/impact_damage = (1 + MOB_SIZE_COEFF/(mob_size + 1))*THROW_SPEED_DENSE_COEFF*cur_speed
 		apply_damage(impact_damage)
-		visible_message(SPAN_DANGER("\The [name] slams into [T]!"), null, null, 5) //feedback to know that you got slammed into a wall and it hurt
+		visible_message(SPAN_DANGER("[name]猛撞在[T]上！"), null, null, 5) //feedback to know that you got slammed into a wall and it hurt
 		playsound(T,"slam", 50, 1)
 	..()
 
@@ -132,7 +132,7 @@
 		if(on_fire)
 			return IGNITE_ON_FIRE
 		on_fire = TRUE
-		to_chat(src, SPAN_DANGER("You are on fire! Use Resist to put yourself out!"))
+		to_chat(src, SPAN_DANGER("你着火了！使用“挣脱”扑灭身上的火！"))
 		update_fire()
 		SEND_SIGNAL(src, COMSIG_LIVING_IGNITION)
 		return IGNITE_IGNITED

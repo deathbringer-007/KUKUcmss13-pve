@@ -4,7 +4,7 @@ Boxes of ammo. Certain weapons have internal boxes of ammo that cannot be remove
 They're all essentially identical when it comes to getting the job done.
 */
 /obj/item/ammo_magazine
-	name = "generic ammo"
+	name = "通用弹药"
 	desc = "一盒弹药。"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/uscm.dmi'
 	icon_state = null
@@ -219,8 +219,8 @@ They're all essentially identical when it comes to getting the job done.
 
 //Magazines that actually cannot be removed from the firearm. Functionally the same as the regular thing, but they do have three extra vars.
 /obj/item/ammo_magazine/internal
-	name = "internal chamber"
-	desc = "You should not be able to examine it."
+	name = "内置弹膛"
+	desc = "你不应该能查看它。"
 	//For revolvers and shotguns.
 	var/chamber_contents[] //What is actually in the chamber. Initiated on New().
 	var/chamber_position = 1 //Where the firing pin is located. We usually move this instead of the contents.
@@ -244,7 +244,7 @@ bullets/shells. ~N
 /obj/item/ammo_magazine/handful
 	AUTOWIKI_SKIP(TRUE)
 
-	name = "generic handful"
+	name = "散装弹药"
 	desc = "一把便于随时装填的子弹。"
 	icon = 'icons/obj/items/weapons/guns/handful.dmi'
 	icon_state = "bullet_1"

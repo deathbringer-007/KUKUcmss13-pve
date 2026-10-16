@@ -36,11 +36,11 @@
 
 	if(istype(A, /obj/structure/reagent_dispensers) && get_dist(src,A) <= 1) //this block copypasted from reagent_containers/glass, for lack of a better solution
 		if(!A.reagents.total_volume && A.reagents)
-			to_chat(user, SPAN_NOTICE("\The [A]是空的。"))
+			to_chat(user, SPAN_NOTICE("[A]是空的。"))
 			return
 
 		if(reagents.total_volume >= reagents.maximum_volume)
-			to_chat(user, SPAN_NOTICE("\The [src]已经满了。"))
+			to_chat(user, SPAN_NOTICE("[src]已经满了。"))
 			return
 
 		var/trans = A.reagents.trans_to(src, A:amount_per_transfer_from_this)
@@ -49,14 +49,14 @@
 			to_chat(user, SPAN_DANGER("你没能将[A]中的试剂装入[src]。"))
 			return
 
-		to_chat(user, SPAN_NOTICE("你将\the [A]中的[trans]单位内容物装入了\the [src]。"))
+		to_chat(user, SPAN_NOTICE("你将[A]中的[trans]单位内容物装入了[src]。"))
 		return
 
 	if(world.time < last_use + use_delay)
 		return
 
 	if(reagents.total_volume < amount_per_transfer_from_this)
-		to_chat(user, SPAN_NOTICE("\The [src]是空的！"))
+		to_chat(user, SPAN_NOTICE("[src]是空的！"))
 		return
 
 	if(safety)
@@ -99,7 +99,7 @@
 	if (alert(usr, "确定要倒空它吗？", "倒空瓶子", "是", "否") != "是")
 		return
 	if(isturf(usr.loc))
-		to_chat(usr, SPAN_NOTICE("你将\the [src]的内容物倒在了地上。"))
+		to_chat(usr, SPAN_NOTICE("你将[src]的内容物倒在了地上。"))
 		reagents.reaction(usr.loc)
 		spawn(5) src.reagents.clear_reagents()
 

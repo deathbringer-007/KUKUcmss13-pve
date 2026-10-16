@@ -138,7 +138,7 @@
 
 	transfer_identity(H)
 
-	name = "[H.real_name]'s head"
+	name = "[H.real_name]的头颅"
 
 	H.regenerate_icons()
 
@@ -167,16 +167,16 @@
 	if(istype(W,/obj/item/tool/surgery/scalpel))
 		switch(brain_op_stage)
 			if(0)
-				user.visible_message(SPAN_WARNING("[brainmob] is beginning to have \his head cut open with [W] by [user]."), \
-									SPAN_WARNING("You cut [brainmob]'s head open with [W]!"))
-				to_chat(brainmob, SPAN_WARNING("[user] begins to cut open your head with [W]!"))
+				user.visible_message(SPAN_WARNING("[user]开始用[W]切开[brainmob]的头颅。"), \
+									SPAN_WARNING("你用[W]切开了[brainmob]的头颅！"))
+				to_chat(brainmob, SPAN_WARNING("[user]开始用[W]切开你的头颅！"))
 
 				brain_op_stage = 1
 
 			if(2)
-				user.visible_message(SPAN_WARNING("[brainmob] is having \his connections to the brain delicately severed with [W] by [user]."), \
-									SPAN_WARNING("You cut [brainmob]'s head open with [W]!"))
-				to_chat(brainmob, SPAN_WARNING("[user] begins to cut open your head with [W]!"))
+				user.visible_message(SPAN_WARNING("[user]正用[W]小心地切断[brainmob]脑部的连接组织。"), \
+									SPAN_WARNING("你用[W]切开了[brainmob]的头颅！"))
+				to_chat(brainmob, SPAN_WARNING("[user]开始用[W]切开你的头颅！"))
 
 				brain_op_stage = 3
 			else
@@ -184,14 +184,14 @@
 	else if(istype(W,/obj/item/tool/surgery/circular_saw))
 		switch(brain_op_stage)
 			if(1)
-				user.visible_message(SPAN_WARNING("[brainmob] has \his head sawed open with [W] by [user]."), \
-							SPAN_WARNING("You saw [brainmob]'s head open with [W]!"))
-				to_chat(brainmob, SPAN_WARNING("[user] saw open your head with [W]!"))
+				user.visible_message(SPAN_WARNING("[user]用[W]锯开了[brainmob]的头颅。"), \
+							SPAN_WARNING("你用[W]锯开了[brainmob]的头颅！"))
+				to_chat(brainmob, SPAN_WARNING("[user]用[W]锯开了你的头颅！"))
 				brain_op_stage = 2
 			if(3)
-				user.visible_message(SPAN_WARNING("[brainmob] has \his spine's connection to the brain severed with [W] by [user]."), \
-									SPAN_WARNING("You sever [brainmob]'s brain's connection to the spine with [W]!"))
-				to_chat(brainmob, SPAN_WARNING("[user] severs your brain's connection to the spine with [W]!"))
+				user.visible_message(SPAN_WARNING("[user]用[W]切断了[brainmob]脊柱与大脑的连接。"), \
+									SPAN_WARNING("你用[W]切断了[brainmob]大脑与脊柱的连接！"))
+				to_chat(brainmob, SPAN_WARNING("[user]用[W]切断了你大脑与脊柱的连接！"))
 
 				user.attack_log += "\[[time_stamp()]\]<font color='red'> Debrained [brainmob.name] ([brainmob.ckey]) with [W.name] (INTENT: [uppertext(intent_text(user.a_intent))])</font>"
 				brainmob.attack_log += "\[[time_stamp()]\]<font color='orange'> Debrained by [user.name] ([user.ckey]) with [W.name] (INTENT: [uppertext(intent_text(user.a_intent))])</font>"

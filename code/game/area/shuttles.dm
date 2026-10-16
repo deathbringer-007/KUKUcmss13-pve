@@ -1,5 +1,5 @@
 /area/shuttle
-	name = "Shuttle"
+	name = "穿梭机"
 	requires_power = FALSE
 	unlimited_power = TRUE
 	always_unpowered = FALSE
@@ -36,20 +36,20 @@
 //========== Single-area shuttles ============//
 
 /area/shuttle/transit
-	name = "Hyperspace"
-	desc = "Weeeeee"
+	name = "超空间"
+	desc = "呜呼——"
 	ambience_exterior = 'sound/ambience/shuttle_fly_loop.ogg'
 	base_lighting_alpha = 255
 
 /area/shuttle/vehicle_elevator
-	name = "Vehicle ASRS"
+	name = "车辆自动仓储系统"
 
 /area/shuttle/ert
 	icon = 'icons/turf/area_almayer.dmi'
 	icon_state = "lifeboat"
 
 /area/shuttle/trijent_shuttle
-	name = "Trijent Elevator"
+	name = "特里金特电梯"
 	icon = 'icons/turf/area_almayer.dmi'
 	icon_state = "lifeboat"
 
@@ -59,16 +59,16 @@
 	powernet_name = "ground"
 
 /area/shuttle/trijent_shuttle/lz1
-	name = "Trijent LZ1"
+	name = "特里金特一号降落区"
 
 /area/shuttle/trijent_shuttle/lz2
-	name = "Trijent LZ2"
+	name = "特里金特二号降落区"
 
 /area/shuttle/trijent_shuttle/engi
-	name = "Trijent Engineering"
+	name = "特里金特工程区"
 
 /area/shuttle/trijent_shuttle/omega
-	name = "Trijent Omega"
+	name = "特里金特欧米伽区"
 
 /area/shuttle/escape_pod
 	icon = 'icons/turf/area_almayer.dmi'

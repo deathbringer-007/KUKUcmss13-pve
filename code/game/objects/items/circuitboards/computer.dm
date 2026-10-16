@@ -12,7 +12,7 @@
 
 //TODO: Move these into computer/camera.dm
 /obj/item/circuitboard/computer/cameras
-	name = "Circuit board (security camera monitor)"
+	name = "电路板 (安保摄像监视器)"
 	build_path = /obj/structure/machinery/computer/cameras
 	var/network = list(CAMERA_NET_MILITARY)
 	req_access = list(ACCESS_MARINE_BRIG)
@@ -27,7 +27,7 @@
 		network = C.network
 
 /obj/item/circuitboard/computer/cameras/tv
-	name = "Circuit board (Television Set)"
+	name = "电路板 (电视机)"
 	build_path = /obj/structure/machinery/computer/cameras/wooden_tv/broadcast
 	network = list(CAMERA_NET_CORRESPONDENT)
 	req_access = list()
@@ -64,7 +64,7 @@
 	build_path = /obj/structure/machinery/computer/communications
 
 /obj/item/circuitboard/computer/card
-	name = "Circuit board (ID Computer)"
+	name = "电路板 (身份卡计算机)"
 	build_path = /obj/structure/machinery/computer/card
 
 /obj/item/circuitboard/computer/teleporter
@@ -72,7 +72,7 @@
 	build_path = /obj/structure/machinery/computer/teleporter
 
 /obj/item/circuitboard/computer/secure_data
-	name = "Circuit board (Security Records)"
+	name = "电路板 (安保档案)"
 	build_path = /obj/structure/machinery/computer/secure_data
 
 /obj/item/circuitboard/computer/skills
@@ -80,13 +80,13 @@
 	build_path = /obj/structure/machinery/computer/skills
 
 /obj/item/circuitboard/computer/stationalert
-	name = "Circuit board (Station Alerts)"
+	name = "电路板 (空间站警报)"
 	build_path = /obj/structure/machinery/computer/station_alert
 
 
 
 /obj/item/circuitboard/computer/air_management
-	name = "Circuit board (Atmospheric Monitor)"
+	name = "电路板 (大气监测仪)"
 	build_path = /obj/structure/machinery/computer/general_air_control
 
 /obj/item/circuitboard/computer/air_management/tank_control
@@ -114,7 +114,7 @@
 	build_path = /obj/structure/machinery/computer/drone_control
 
 /obj/item/circuitboard/computer/arcade
-	name = "Circuit board (Arcade)"
+	name = "电路板 (街机)"
 	build_path = /obj/structure/machinery/computer/arcade
 
 /obj/item/circuitboard/computer/turbine_control
@@ -136,11 +136,11 @@
 	name = "Circuit Board (R&D Server Control)"
 	build_path = /obj/structure/machinery/computer/rdservercontrol
 /obj/item/circuitboard/computer/crew
-	name = "Circuit board (Crew monitoring computer)"
+	name = "电路板 (人员监测计算机)"
 	build_path = /obj/structure/machinery/computer/crew
 
 /obj/item/circuitboard/computer/ordercomp
-	name = "Circuit board (Supply ordering console)"
+	name = "电路板 (补给订购控制台)"
 	build_path = /obj/structure/machinery/computer/ordercomp
 
 /obj/item/circuitboard/computer/supply_drop_console
@@ -263,7 +263,7 @@
 	build_path = /obj/structure/machinery/computer/area_atmos
 
 /obj/item/circuitboard/computer/research_terminal
-	name = "Circuit board (Research Data Terminal)"
+	name = "电路板 (科研数据终端)"
 	build_path = /obj/structure/machinery/computer/research/main_terminal
 
 

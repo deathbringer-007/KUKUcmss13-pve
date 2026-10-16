@@ -1,6 +1,6 @@
 /obj/item/mortar_shell
-	name = "\improper 80mm mortar shell"
-	desc = "An unlabeled 80mm mortar shell, probably a casing."
+	name = "80mm 迫击炮弹"
+	desc = "无标签的 80mm 迫击炮弹，大概只是个弹壳。"
 	icon = 'icons/obj/structures/mortar.dmi'
 	icon_state = "mortar_ammo_cas"
 	w_class = SIZE_HUGE
@@ -26,16 +26,16 @@
 	new /obj/structure/machinery/camera/mortar(T)
 
 /obj/item/mortar_shell/he
-	name = "\improper 80mm high explosive mortar shell"
-	desc = "An 80mm mortar shell, loaded with a high explosive charge."
+	name = "80mm 高爆迫击炮弹"
+	desc = "80mm 迫击炮弹，内装高爆战斗部。"
 	icon_state = "mortar_ammo_he"
 
 /obj/item/mortar_shell/he/detonate(turf/T)
 	explosion(T, 0, 3, 5, 7, explosion_cause_data = cause_data)
 
 /obj/item/mortar_shell/frag
-	name = "\improper 80mm fragmentation mortar shell"
-	desc = "An 80mm mortar shell, loaded with a fragmentation charge."
+	name = "80mm 破片迫击炮弹"
+	desc = "80mm 迫击炮弹，内装破片战斗部。"
 	icon_state = "mortar_ammo_frag"
 
 /obj/item/mortar_shell/frag/detonate(turf/T)
@@ -44,8 +44,8 @@
 	cell_explosion(T, 60, 20, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, cause_data)
 
 /obj/item/mortar_shell/incendiary
-	name = "\improper 80mm incendiary mortar shell"
-	desc = "An 80mm mortar shell, loaded with a Type B napalm charge. Perfect for long-range area denial."
+	name = "80mm 燃烧迫击炮弹"
+	desc = "80mm 迫击炮弹，内装 B 型凝固汽油战斗部，是远程区域封锁的理想选择。"
 	icon_state = "mortar_ammo_inc"
 	var/radius = 5
 	var/flame_level = BURN_TIME_TIER_5 + 5 //Type B standard, 50 base + 5 from chemfire code.
@@ -72,8 +72,8 @@
 	playsound(src.loc, 'sound/effects/smoke.ogg', 35, 1, 4)
 
 /obj/item/mortar_shell/phosphorus
-	name = "\improper 80mm white-phosphorus mortar shell"
-	desc = "An 80mm mortar shell, loaded to the brim with white phosphorus. Used for both concealment via smoke and as an incendiary device."
+	name = "80mm 白磷迫击炮弹"
+	desc = "80mm 迫击炮弹，装满白磷。既可用烟幕提供掩护，也可用作燃烧装置。"
 	icon_state = "mortar_ammo_wp"
 	var/radius = 3
 	var/flame_level = BURN_TIME_TIER_4
@@ -93,8 +93,8 @@
 	create_shrapnel(T, 40, , ,/datum/ammo/bullet/shrapnel/incendiary/heavy, null)
 
 /obj/item/mortar_shell/smoke
-	name = "\improper 80mm smoke mortar shell"
-	desc = "An 80mm mortar shell, loaded with smoke-producing substance. Used for wide-area concealment"
+	name = "80mm 烟幕迫击炮弹"
+	desc = "80mm 迫击炮弹，内装发烟物质，用于大范围遮蔽。"
 	icon_state = "mortar_ammo_smk"
 
 /obj/item/mortar_shell/smoke/detonate(turf/T)
@@ -106,8 +106,8 @@
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 9)
 
 /obj/item/mortar_shell/flare
-	name = "\improper 80mm flare/camera mortar shell"
-	desc = "An 80mm mortar shell, loaded with an illumination flare / camera combo, attached to a parachute."
+	name = "80mm 照明／摄像迫击炮弹"
+	desc = "80mm 迫击炮弹，内装照明弹与摄像机组合，并配有降落伞。"
 	icon_state = "mortar_ammo_flr"
 
 /obj/item/mortar_shell/flare/detonate(turf/T)

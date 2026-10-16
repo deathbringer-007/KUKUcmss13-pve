@@ -1,6 +1,6 @@
 //a docking port that uses a single door
 /obj/structure/machinery/embedded_controller/radio/simple_docking_controller
-	name = "docking hatch controller"
+	name = "对接舱门控制器"
 	var/tag_door
 	var/datum/computer/file/embedded_program/docking/simple/docking_program
 

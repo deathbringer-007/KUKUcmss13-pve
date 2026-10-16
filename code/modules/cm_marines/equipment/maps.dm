@@ -1,7 +1,7 @@
 GLOBAL_LIST_INIT(mapless_maps, list(MAP_RUNTIME, MAP_CHINOOK, MAIN_SHIP_DEFAULT_NAME) | SHIP_MAP_NAMES)
 
 /obj/item/map
-	name = "map"
+	name = "地图"
 	icon = 'icons/obj/items/marine-items.dmi'
 	icon_state = "map"
 	item_state = "map"

@@ -54,7 +54,7 @@ const FireTeamLeadLabel = (props: { readonly ftl: SquadMarineEntry }) => {
   return (
     <>
       <Stack.Item>
-        <span>Squad Leader:</span>
+        <span>小队长：</span>
       </Stack.Item>
       <Stack.Item>
         <span
@@ -93,7 +93,7 @@ const FireTeamLead = (props: {
         <Stack>
           {isNotAssigned && (
             <Stack.Item>
-              <span>Squad Leader: Unassigned</span>
+              <span>小队长：未指派</span>
             </Stack.Item>
           )}
           {!isNotAssigned && <FireTeamLeadLabel ftl={assignedFireteamLead} />}
@@ -151,7 +151,7 @@ const FireTeam = (props: { readonly sqldr: string }) => {
   }
 
   return (
-    <FireteamBox name={fireteam?.name ?? 'Unassigned'} isEmpty={isEmpty}>
+    <FireteamBox name={fireteam?.name ?? '未分配'} isEmpty={isEmpty}>
       <Flex direction="column">
         {!isEmpty && (
           <>
@@ -163,12 +163,12 @@ const FireTeam = (props: { readonly sqldr: string }) => {
             <Flex.Item>
               <Table className="FireteamMembersTable">
                 <TableRow>
-                  <TableCell className="RoleCell">Role</TableCell>
-                  <TableCell className="RankCell">Rank</TableCell>
-                  <TableCell className="MemberCell">Member</TableCell>
+                  <TableCell className="RoleCell">职责</TableCell>
+                  <TableCell className="RankCell">军衔</TableCell>
+                  <TableCell className="MemberCell">成员</TableCell>
                   {data.is_lead === 'sctsgt' && (
                     <TableCell className="ActionCell">
-                      {props.sqldr === 'Unassigned' ? 'Assign FT' : 'Actions'}
+                      {props.sqldr === 'Unassigned' ? '分配至战斗组' : '操作'}
                     </TableCell>
                   )}
                 </TableRow>
@@ -274,15 +274,15 @@ const FireTeamMember = (props: {
 
 const SquadObjectives = (props) => {
   const { data } = useBackend<SquadProps>();
-  const primaryObjective = data.objective?.primary ?? 'Unset';
-  const secondaryObjective = data.objective?.secondary ?? 'Unset';
+  const primaryObjective = data.objective?.primary ?? '未设置';
+  const secondaryObjective = data.objective?.secondary ?? '未设置';
   return (
     <Stack vertical>
       <Stack.Item>
-        <span>Primary Objective: {primaryObjective}</span>
+        <span>主要目标：{primaryObjective}</span>
       </Stack.Item>
       <Stack.Item>
-        <span>Secondary Objective: {secondaryObjective}</span>
+        <span>次要目标：{secondaryObjective}</span>
       </Stack.Item>
     </Stack>
   );
@@ -298,15 +298,13 @@ export const SquadInfo = () => {
         <Flex fill={1} justify="space-around" direction="column">
           <Flex.Item>
             <Section
-              title={`${data.squad} Section Sergeant: ${
-                data.sctsgt?.name ?? 'None'
-              }`}
+              title={`${data.squad}分队军士：${data.sctsgt?.name ?? '无'}`}
             >
               <SquadObjectives />
             </Section>
           </Flex.Item>
           <Flex.Item>
-            <Section title="Squads">
+            <Section title="小队">
               <Box width="100%" className="ftlFlex" fillPositionedParent>
                 {fireteams.map((x) => (
                   <FireTeam sqldr={x} key={x} />

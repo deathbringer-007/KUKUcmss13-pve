@@ -3,8 +3,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/reagent_container/hypospray
-	name = "hypospray"
-	desc = "The DeForest Medical Corporation hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients."
+	name = "无针注射器"
+	desc = "德福雷斯特医疗公司的无针注射器，采用无菌气针式自动注射技术，可快速给患者用药。"
 	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "hypo"
 	icon_state = "hypo"

@@ -125,12 +125,12 @@
 			apply_damage(damage, BRUTE)
 			for(var/mob/M as anything in viewers(src, null))
 				if ((M.client && !( M.blinded )))
-					M.show_message(SPAN_DANGER("[user]用\the [O]攻击了[src]。"), SHOW_MESSAGE_VISIBLE)
+					M.show_message(SPAN_DANGER("[user]用[O]攻击了[src]。"), SHOW_MESSAGE_VISIBLE)
 		else
 			to_chat(usr, SPAN_DANGER("这武器毫无效果，无法造成伤害。"))
 			for(var/mob/M as anything in viewers(src, null))
 				if ((M.client && !( M.blinded )))
-					M.show_message(SPAN_DANGER("[user]用\the [O]轻轻敲了敲[src]。"), SHOW_MESSAGE_VISIBLE)
+					M.show_message(SPAN_DANGER("[user]用[O]轻轻敲了敲[src]。"), SHOW_MESSAGE_VISIBLE)
 
 /mob/living/simple_animal/spiderbot/proc/transfer_personality(obj/item/device/mmi/M as obj)
 
@@ -207,14 +207,14 @@
 		return 0
 
 	if(istype(held_item, /obj/item/explosive/grenade))
-		visible_message(SPAN_DANGER("[src]抛出了\the [held_item]！"), SPAN_DANGER("你抛出了\the [held_item]！"), "你听见一阵疾走声和砰的一声！")
+		visible_message(SPAN_DANGER("[src]抛出了[held_item]！"), SPAN_DANGER("你抛出了[held_item]！"), "你听见一阵疾走声和砰的一声！")
 		var/obj/item/explosive/grenade/G = held_item
 		G.forceMove(loc)
 		G.prime()
 		held_item = null
 		return 1
 
-	visible_message(SPAN_NOTICE("[src]放下了\the [held_item]！"), SPAN_NOTICE("你放下了\the [held_item]！"), "你听见一阵疾走声和轻轻落地的声音。")
+	visible_message(SPAN_NOTICE("[src]放下了[held_item]！"), SPAN_NOTICE("你放下了[held_item]！"), "你听见一阵疾走声和轻轻落地的声音。")
 
 	held_item.forceMove(loc)
 	held_item = null
@@ -230,7 +230,7 @@
 		return -1
 
 	if(held_item)
-		to_chat(src, SPAN_DANGER("你已经拿着\the [held_item]了。"))
+		to_chat(src, SPAN_DANGER("你已经拿着[held_item]了。"))
 		return 1
 
 	var/list/items = list()
@@ -245,9 +245,9 @@
 			if(selection == I)
 				held_item = selection
 				selection.forceMove(src)
-				visible_message(SPAN_NOTICE("[src]捞起了\the [held_item]！"), SPAN_NOTICE("你抓起了\the [held_item]！"), "你听见一阵疾走声和叮当声。")
+				visible_message(SPAN_NOTICE("[src]捞起了[held_item]！"), SPAN_NOTICE("你抓起了[held_item]！"), "你听见一阵疾走声和叮当声。")
 				return held_item
-		to_chat(src, SPAN_DANGER("\The [selection]离得太远了。"))
+		to_chat(src, SPAN_DANGER("[selection]离得太远了。"))
 		return 0
 
 	to_chat(src, SPAN_DANGER("没有值得拿取的东西。"))
@@ -256,4 +256,4 @@
 /mob/living/simple_animal/spiderbot/get_examine_text(mob/user)
 	. = ..()
 	if(held_item)
-		. += "它正拿着\a [held_item] [icon2html(held_item, user)]。"
+		. += "它正拿着[held_item] [icon2html(held_item, user)]。"

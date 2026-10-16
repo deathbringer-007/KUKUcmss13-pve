@@ -1,8 +1,8 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 /obj/structure/machinery/computer/skills//TODO:SANITY
-	name = "Employment Records"
-	desc = "Used to view personnel's employment records"
+	name = "任职档案"
+	desc = "用于查看人员的任职档案。"
 	icon_state = "medlaptop"
 	req_one_access = list(ACCESS_MARINE_DATABASE)
 	circuit = /obj/item/circuitboard/computer/skills
@@ -27,7 +27,7 @@
 		if(usr.drop_held_item())
 			O.forceMove(src)
 			scan = O
-			to_chat(user, "You insert [O].")
+			to_chat(user, "你插入了[O]。")
 	..()
 
 /obj/structure/machinery/computer/skills/attack_remote(mob/user as mob)
@@ -38,7 +38,7 @@
 	if(..())
 		return
 	if (src.z > 6)
-		to_chat(user, SPAN_DANGER("<b>Unable to establish a connection</b>: \black You're too far away from the station!"))
+		to_chat(user, SPAN_DANGER("<b>无法建立连接</b>：\black 你离空间站太远了！"))
 		return
 	var/dat
 

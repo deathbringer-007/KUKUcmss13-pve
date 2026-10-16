@@ -37,12 +37,12 @@
 	dir = SOUTHWEST
 
 /turf/open/floor/strata/faux_wood
-	desc = "Faux wooden floor boards, certified fire resistant. Begrudgingly put in place of actual wood due to concerns about 'fire safety'. Whatever that means."
+	desc = "仿木地板，通过了耐火认证。因为所谓的“消防安全”，只好勉强用它代替实木。谁知道那是什么意思。"
 	icon = 'icons/turf/floors/floors.dmi'
 	icon_state = "wood"
 
 /turf/open/floor/strata/faux_metal
-	desc = "This metal floor has been painted to look like one made of wood. Unfortunately, wood and high pressure internal atmosphere don't mix well. Wood is a major fire hazard don't'cha know."
+	desc = "这块金属地板被涂装成了木地板的样子。可惜木材不适合高压室内环境。木头可是严重的火灾隐患，你知道吧。"
 	icon = 'icons/turf/floors/floors.dmi'
 	icon_state = "wood"
 

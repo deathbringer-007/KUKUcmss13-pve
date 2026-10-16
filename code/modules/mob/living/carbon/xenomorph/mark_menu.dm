@@ -1,5 +1,5 @@
 /datum/mark_menu_ui
-	var/name = "Mark Menu"
+	var/name = "标记菜单"
 	var/data_initialized = FALSE //for the UI interaction
 
 /datum/mark_menu_ui/proc/open_mark_menu(mob/user)
@@ -92,7 +92,7 @@
 /datum/mark_menu_ui/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "MarkMenu", "Mark Menu")
+		ui = new(user, src, "MarkMenu", "标记菜单")
 		ui.set_autoupdate(FALSE)
 		ui.open()
 
@@ -120,7 +120,7 @@
 				return
 			var/datum/xeno_mark_define/x = new selected_type
 			var/datum/action/xeno_action/activable/info_marker/Xenos_mark_info_action
-			to_chat(X, SPAN_NOTICE("You will now declare '<b>[x.name]</b>!' when marking resin."))
+			to_chat(X, SPAN_NOTICE("现在你标记树脂时会宣告：“<b>[x.name]</b>！”"))
 			//update the button's overlay with new choice
 			for(var/datum/action/xeno_action/XA in X.actions)
 				if(istype(XA, /datum/action/xeno_action/activable/info_marker))
@@ -134,7 +134,7 @@
 			var/obj/effect/alien/resin/marker/mark_to_watch = locate(params["type"])
 			if(!mark_to_watch)
 				return
-			to_chat(X, SPAN_XENONOTICE("You psychically observe the [mark_to_watch.mark_meaning.name] resin mark in [get_area_name(mark_to_watch)]."))
+			to_chat(X, SPAN_XENONOTICE("你通过灵能观察位于[get_area_name(mark_to_watch)]的[mark_to_watch.mark_meaning.name]树脂标记。"))
 			X.overwatch(mark_to_watch) //this is so scuffed, sorry if this causes errors
 			update_all_data()
 			. = TRUE
@@ -151,44 +151,44 @@
 			if(!mark_to_destroy)
 				return
 			if(mark_to_destroy.createdby == X.nicknumber)
-				to_chat(X, SPAN_XENONOTICE("You psychically command the [mark_to_destroy.mark_meaning.name] resin mark to be destroyed."))
+				to_chat(X, SPAN_XENONOTICE("你通过灵能下令摧毁[mark_to_destroy.mark_meaning.name]树脂标记。"))
 				qdel(mark_to_destroy)
 				update_all_data()
 				. = TRUE
 				return
 			else if(isqueen(X))
 				var/mob/living/carbon/xenomorph/mark_to_destroy_owner
-				to_chat(X, SPAN_XENONOTICE("You psychically command the [mark_to_destroy.mark_meaning.name] resin mark to be destroyed."))
+				to_chat(X, SPAN_XENONOTICE("你通过灵能下令摧毁[mark_to_destroy.mark_meaning.name]树脂标记。"))
 				for(var/mob/living/carbon/xenomorph/XX in X.hive.totalXenos)
 					if(XX.nicknumber == mark_to_destroy.createdby)
 						mark_to_destroy_owner = XX
-				to_chat(mark_to_destroy_owner, SPAN_XENONOTICE("Your [mark_to_destroy.mark_meaning.name] resin mark was commanded to be destroyed by [X.name]."))
+				to_chat(mark_to_destroy_owner, SPAN_XENONOTICE("[X.name]下令摧毁了你的[mark_to_destroy.mark_meaning.name]树脂标记。"))
 				qdel(mark_to_destroy)
 				update_all_data()
 				. = TRUE
 				return
-			to_chat(X, SPAN_XENONOTICE("You lack the permissions to do this."))
+			to_chat(X, SPAN_XENONOTICE("你没有权限这样做。"))
 			return
 		if("force")
 			var/obj/effect/alien/resin/marker/mark_to_force = locate(params["type"])
 			if(!mark_to_force)
 				return
 			if(!isqueen(X))
-				to_chat(X, SPAN_XENONOTICE("You lack the permissions to do this."))
+				to_chat(X, SPAN_XENONOTICE("你没有权限这样做。"))
 				return
-			var/FunkTownOhyea = "Force all to track"
+			var/FunkTownOhyea = "命令全体追踪"
 			var/list/possible_xenos = list()
 			possible_xenos |= FunkTownOhyea
 			for(var/mob/living/carbon/xenomorph/T in GLOB.living_xeno_list)
 				if (T != X && !should_block_game_interaction(T) && X.hivenumber == T.hivenumber)
 					possible_xenos += T
 
-			var/mob/living/carbon/xenomorph/selected_xeno = tgui_input_list(X, "Target", "Watch which xenomorph?", possible_xenos, theme="hive_status")
+			var/mob/living/carbon/xenomorph/selected_xeno = tgui_input_list(X, "目标", "观察哪只异形？", possible_xenos, theme="hive_status")
 
 			if(selected_xeno == FunkTownOhyea)
 				for(var/mob/living/carbon/xenomorph/forced_xeno in X.hive.totalXenos)
 					forced_xeno.stop_tracking_resin_mark(FALSE, TRUE)
-					to_chat(forced_xeno, SPAN_XENOANNOUNCE("Hive! Your queen commands: [mark_to_force.mark_meaning.desc] in [get_area_name(mark_to_force)]. (<a href='byond://?src=\ref[X];overwatch=1;target=\ref[mark_to_force]'>Watch</a>) (<a href='byond://?src=\ref[X];track=1;target=\ref[mark_to_force]'>Track</a>)"))
+					to_chat(forced_xeno, SPAN_XENOANNOUNCE("虫巢！女皇命令：在[get_area_name(mark_to_force)]，[mark_to_force.mark_meaning.desc]。（<a href='byond://?src=\ref[X];overwatch=1;target=\ref[mark_to_force]'>观察</a>）（<a href='byond://?src=\ref[X];track=1;target=\ref[mark_to_force]'>追踪</a>）"))
 					forced_xeno.start_tracking_resin_mark(mark_to_force)
 					forced_xeno.hud_used.locate_marker.overlays.Cut()
 					flick("marker_alert", forced_xeno.hud_used.locate_marker)
@@ -199,7 +199,7 @@
 				return
 			else
 				selected_xeno.stop_tracking_resin_mark(FALSE, TRUE)
-				to_chat(selected_xeno, SPAN_XENOBOLDNOTICE("Your queen commands you to follow: [mark_to_force.mark_meaning.desc] in [get_area_name(mark_to_force)]. (<a href='byond://?src=\ref[X];overwatch=1;target=\ref[mark_to_force]'>Watch</a>) (<a href='byond://?src=\ref[X];track=1;target=\ref[mark_to_force]'>Track</a>)"))
+				to_chat(selected_xeno, SPAN_XENOBOLDNOTICE("女皇命令你跟随标记：在[get_area_name(mark_to_force)]，[mark_to_force.mark_meaning.desc]。（<a href='byond://?src=\ref[X];overwatch=1;target=\ref[mark_to_force]'>观察</a>）（<a href='byond://?src=\ref[X];track=1;target=\ref[mark_to_force]'>追踪</a>）"))
 				selected_xeno.start_tracking_resin_mark(mark_to_force)
 				update_all_data()
 				. = TRUE

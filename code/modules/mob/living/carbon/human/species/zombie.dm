@@ -13,7 +13,7 @@
 	eyes = "blank_s"
 	pain_type = /datum/pain/zombie
 	stamina_type = /datum/stamina/none
-	death_message = "seizes up and falls limp..."
+	death_message = "僵住了，随后瘫软倒下……"
 	flags = NO_BREATHE|NO_CLONE_LOSS|NO_POISON|NO_NEURO|NO_SHRAPNEL
 	mob_inherent_traits = list(TRAIT_FOREIGN_BIO)
 	brute_mod = 0.6 //Minor bullet resistance
@@ -95,15 +95,15 @@
 		var/obj/limb/head/head = zombie.get_limb("head")
 		if(!QDELETED(head) && !(head.status & LIMB_DESTROYED))
 			if(zombie.client)
-				zombie.play_screen_text("<span class='langchat' style=font-size:16pt;text-align:center valign='top'><u>You are dead...</u></span><br>You will rise again in three minutes.", /atom/movable/screen/text/screen_text/command_order, rgb(155, 0, 200))
-			to_chat(zombie, SPAN_XENOWARNING("You fall... but your body is slowly regenerating itself."))
+				zombie.play_screen_text("<span class='langchat' style=font-size:16pt;text-align:center valign='top'><u>你死了……</u></span><br>你将在三分钟后再次站起来。", /atom/movable/screen/text/screen_text/command_order, rgb(155, 0, 200))
+			to_chat(zombie, SPAN_XENOWARNING("你倒下了……但你的身体正在缓慢再生。"))
 			var/weak_ref = WEAKREF(zombie)
 			to_revive[weak_ref] = addtimer(CALLBACK(src, PROC_REF(revive_from_death), zombie, "[REF(zombie)]"), ZOMBIE_REVIVE_TIME, TIMER_STOPPABLE|TIMER_OVERRIDE|TIMER_UNIQUE|TIMER_NO_HASH_WAIT)
 			revive_times[weak_ref] = world.time + 3 MINUTES
 		else
 			if(zombie.client)
-				zombie.play_screen_text("<span class='langchat' style=font-size:16pt;text-align:center valign='top'><u>You are dead...</u></span><br>You lost your head. No reviving for you.", /atom/movable/screen/text/screen_text/command_order, rgb(155, 0, 200))
-			to_chat(zombie, SPAN_XENOWARNING("You fall... headless, you will no longer rise."))
+				zombie.play_screen_text("<span class='langchat' style=font-size:16pt;text-align:center valign='top'><u>你死了……</u></span><br>你失去了头颅，无法复活。", /atom/movable/screen/text/screen_text/command_order, rgb(155, 0, 200))
+			to_chat(zombie, SPAN_XENOWARNING("你倒下了……失去了头颅，你将无法再次站起来。"))
 			zombie.undefibbable = TRUE // really only for weed_food
 			SEND_SIGNAL(zombie, COMSIG_HUMAN_SET_UNDEFIBBABLE)
 
@@ -117,7 +117,7 @@
 		zombie.apply_effect(4, STUN)
 
 		zombie.make_jittery(500)
-		zombie.visible_message(SPAN_WARNING("[zombie] rises from the ground!"))
+		zombie.visible_message(SPAN_WARNING("[zombie]从地上站了起来！"))
 		remove_from_revive(zombie)
 
 		handle_alert_ghost(zombie)
@@ -128,7 +128,7 @@
 	var/mob/dead/observer/ghost = zombie.get_ghost()
 	if(ghost?.client)
 		playsound_client(ghost.client, 'sound/effects/revive_notify.ogg')
-		to_chat(ghost, SPAN_BOLDNOTICE(FONT_SIZE_LARGE("Your body has risen! (Verbs -> Ghost -> Re-enter corpse, or <a href='byond://?src=\ref[ghost];reentercorpse=1'>click here!</a>)")))
+		to_chat(ghost, SPAN_BOLDNOTICE(FONT_SIZE_LARGE("你的身体复苏了！（使用幽灵栏中的重返尸体命令，或<a href='byond://?src=\ref[ghost];reentercorpse=1'>点击此处！</a>）")))
 
 /datum/species/zombie/proc/remove_from_revive(mob/living/carbon/human/zombie)
 	var/weak_ref = WEAKREF(zombie)
@@ -144,7 +144,7 @@
 		if(revive_time)
 			var/revive_time_left = revive_time - world.time
 			static_tab_items += ""
-			static_tab_items += "Time Till Revive: [duration2text_sec(revive_time_left)]"
+			static_tab_items += "距离复活：[duration2text_sec(revive_time_left)]"
 	return static_tab_items
 
 /datum/species/zombie/handle_head_loss(mob/living/carbon/human/zombie)
@@ -158,5 +158,5 @@
 			var/mob/dead/observer/ghost = zombie.get_ghost()
 			if(ghost) receiving_client = ghost.client
 		if(receiving_client)
-			receiving_client.mob.play_screen_text("<span class='langchat' style=font-size:16pt;text-align:center valign='top'><u>Beheaded...</u></span><br>Your corpse will no longer rise.", /atom/movable/screen/text/screen_text/command_order, rgb(155, 0, 200))
-			to_chat(receiving_client, SPAN_BOLDNOTICE(FONT_SIZE_LARGE("You've been beheaded! Your body will no longer rise.")))
+			receiving_client.mob.play_screen_text("<span class='langchat' style=font-size:16pt;text-align:center valign='top'><u>头颅已被斩下……</u></span><br>你的尸体无法再次站起来。", /atom/movable/screen/text/screen_text/command_order, rgb(155, 0, 200))
+			to_chat(receiving_client, SPAN_BOLDNOTICE(FONT_SIZE_LARGE("你的头颅被斩下了！你的身体无法再次站起来。")))

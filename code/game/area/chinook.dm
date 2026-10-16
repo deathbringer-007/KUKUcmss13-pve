@@ -3,7 +3,7 @@
 //Sparse but gets the job done.
 
 /area/adminlevel/chinook
-	name = "Chinook 91 GSO Station"
+	name = "奇努克91号地球同步轨道站"
 	icon = 'icons/turf/area_almayer.dmi'
 	icon_state = "almayer"
 	requires_power = TRUE
@@ -17,40 +17,40 @@
 	ceiling_muffle = FALSE
 
 /area/adminlevel/chinook/offices
-	name = "Chinook 91 GSO Station - Office Sector"
+	name = "奇努克91号地球同步轨道站 - 办公区"
 	icon_state = "officerstudy"
 
 /area/adminlevel/chinook/event
-	name = "Chinook 91 GSO Station - Convention Sector"
+	name = "奇努克91号地球同步轨道站 - 会议区"
 	icon_state = "officerrnr"
 
 /area/adminlevel/chinook/sec
-	name = "Chinook 91 GSO Station - Security Sector"
+	name = "奇努克91号地球同步轨道站 - 安保区"
 	icon_state = "brig"
 
 /area/adminlevel/chinook/engineering
-	name = "Chinook 91 GSO Station - Engineering Sector"
+	name = "奇努克91号地球同步轨道站 - 工程区"
 	icon_state = "engineering"
 
 /area/adminlevel/chinook/medical
-	name = "Chinook 91 GSO Station - Medical Sector"
+	name = "奇努克91号地球同步轨道站 - 医疗区"
 	soundscape_playlist = SCAPE_PL_ELEVATOR_MUSIC
 	icon_state = "medical"
 	soundscape_interval = 60
 
 /area/adminlevel/chinook/cryo
-	name = "Chinook 91 GSO Station - Cryogenics Bay"
+	name = "奇努克91号地球同步轨道站 - 冷冻休眠区"
 	icon_state = "cryo"
 
 /area/adminlevel/chinook/shuttle
-	name = "Chinook 91 GSO Station - Shuttle Bay"
+	name = "奇努克91号地球同步轨道站 - 穿梭机库"
 	icon_state = "upperhull"
 
 /area/adminlevel/chinook/shuttle/unpowered
-	name = "Chinook 91 GSO Station - Shuttle Pad"
+	name = "奇努克91号地球同步轨道站 - 穿梭机停机坪"
 	icon_state = "lowerhull"
 	requires_power = FALSE
 
 /area/adminlevel/chinook/cargo
-	name = "Chinook 91 GSO Station - Cargo Bay"
+	name = "奇努克91号地球同步轨道站 - 货舱"
 	icon_state = "req"

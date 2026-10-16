@@ -1,5 +1,5 @@
 /obj/structure/machinery/cm_vending
-	name = "\improper Theoretical Marine selector"
+	name = "陆战队装备选择器原型"
 
 	//for the sake of consistency: "small storage" = small limited amount of items (squad req),
 	//"big storage" - Req vendors,"colossal storage" - infinite vendors (points and flag-based)
@@ -150,20 +150,20 @@ GLOBAL_LIST_EMPTY(vending_products)
 	. = ..()
 
 	if(skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED) && hackable)
-		. += SPAN_NOTICE("You believe you can hack this one to remove the access requirements.")
+		. += SPAN_NOTICE("你觉得可以破解这台机器，移除使用权限限制。")
 
 /obj/structure/machinery/cm_vending/proc/hack_access(mob/user)
 	if(!hackable)
-		to_chat(user, SPAN_WARNING("[src] cannot be hacked."))
+		to_chat(user, SPAN_WARNING("[src]无法被破解。"))
 		return
 
 	hacked = !hacked
 	if(hacked)
-		to_chat(user, SPAN_WARNING("You have successfully removed access restrictions in [src]."))
+		to_chat(user, SPAN_WARNING("你成功移除了[src]的权限限制。"))
 		if(user && is_mainship_level(z))
-			SSclues.create_print(get_turf(user), user, "A small piece of cut wire is found on the fingerprint.")
+			SSclues.create_print(get_turf(user), user, "指纹上发现了一小截剪断的电线。")
 	else
-		to_chat(user, SPAN_WARNING("You have restored access restrictions in [src]."))
+		to_chat(user, SPAN_WARNING("你恢复了[src]的权限限制。"))
 	return
 
 
@@ -228,23 +228,23 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(isgun(item_to_stock))
 		var/obj/item/weapon/gun/G = item_to_stock
 		if(G.in_chamber || (G.current_mag && !istype(G.current_mag, /obj/item/ammo_magazine/internal)) || (istype(G.current_mag, /obj/item/ammo_magazine/internal) && G.current_mag.current_rounds > 0) )
-			to_chat(user, SPAN_WARNING("[G] is still loaded. Unload it before you can restock it."))
+			to_chat(user, SPAN_WARNING("[G]仍装有弹药。请先退弹再回存。"))
 			return
 		for(var/obj/item/attachable/A in G.contents) //Search for attachments on the gun. This is the easier method
 			if((A.flags_attach_features & ATTACH_REMOVABLE) && !(is_type_in_list(A, G.starting_attachment_types))) //There are attachments that are default and others that can't be removed
-				to_chat(user, SPAN_WARNING("[G] has non-standard attachments equipped. Detach them before you can restock it."))
+				to_chat(user, SPAN_WARNING("[G]装有非标准配件。请先拆除再回存。"))
 				return
 	//various stacks handling
 	else if(istype(item_to_stock, /obj/item/stack/folding_barricade))
 		var/obj/item/stack/folding_barricade/B = item_to_stock
 		if(B.amount != 3)
-			to_chat(user, SPAN_WARNING("[B]s are being stored in [SPAN_HELPFUL("stacks of 3")] for convenience. Add to \the [B] stack to make it a stack of 3 before restocking."))
+			to_chat(user, SPAN_WARNING("为方便存放，[B]按[SPAN_HELPFUL("每组 3 个")]储存。请将[B]补足 3 个后再回存。"))
 			return
 	//M94 flare packs handling
 	else if(istype(item_to_stock, /obj/item/storage/box/flare))
 		var/obj/item/storage/box/flare/flare_pack = item_to_stock
 		if(length(flare_pack.contents) < flare_pack.max_storage_space)
-			to_chat(user, SPAN_WARNING("\The [item_to_stock] is not full."))
+			to_chat(user, SPAN_WARNING("[item_to_stock]未装满。"))
 			return
 		var/flare_type
 		if(istype(item_to_stock, /obj/item/storage/box/flare/signal))
@@ -253,24 +253,24 @@ GLOBAL_LIST_EMPTY(vending_products)
 			flare_type = /obj/item/device/flashlight/flare
 		for(var/obj/item/device/flashlight/flare/F in flare_pack.contents)
 			if(F.fuel < 1)
-				to_chat(user, SPAN_WARNING("Some flares in \the [F] are used."))
+				to_chat(user, SPAN_WARNING("[F]中有使用过的照明弹。"))
 				return
 			if(F.type != flare_type)
-				to_chat(user, SPAN_WARNING("Some flares in \the [F] are not of the correct type."))
+				to_chat(user, SPAN_WARNING("[F]中有类型不符的照明弹。"))
 				return
 	//Machete holsters handling
 	else if(istype(item_to_stock, /obj/item/storage/large_holster/machete))
 		var/obj/item/weapon/sword/machete/mac = locate(/obj/item/weapon/sword/machete) in item_to_stock
 		if(!mac)
 			if(user)
-				to_chat(user, SPAN_WARNING("\The [item_to_stock] is empty."))
+				to_chat(user, SPAN_WARNING("[item_to_stock]是空的。"))
 			return FALSE
 	//Machete holsters handling
 	else if(istype(item_to_stock, /obj/item/clothing/suit/storage/marine))
 		var/obj/item/clothing/suit/storage/marine/AR = item_to_stock
 		if(AR.pockets && length(AR.pockets.contents))
 			if(user)
-				to_chat(user, SPAN_WARNING("\The [AR] has something inside it. Empty it before restocking."))
+				to_chat(user, SPAN_WARNING("[AR]里面还有东西。请先清空再回存。"))
 			return FALSE
 	//magazines handling
 	else if(istype(item_to_stock, /obj/item/ammo_magazine))
@@ -278,11 +278,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(istype(item_to_stock, /obj/item/ammo_magazine/flamer_tank))
 			var/obj/item/ammo_magazine/flamer_tank/FT = item_to_stock
 			if(FT.flamer_chem != initial(FT.flamer_chem))
-				to_chat(user, SPAN_WARNING("\The [FT] contains non-standard fuel."))
+				to_chat(user, SPAN_WARNING("[FT]中装有非标准燃料。"))
 				return
 		var/obj/item/ammo_magazine/A = item_to_stock
 		if(A.current_rounds < A.max_rounds)
-			to_chat(user, SPAN_WARNING("\The [A] isn't full. You need to fill it before you can restock it."))
+			to_chat(user, SPAN_WARNING("[A]未装满。请先装满再回存。"))
 			return
 	//magazine ammo boxes handling
 	else if(istype(item_to_stock, /obj/item/ammo_box/magazine))
@@ -291,38 +291,38 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(A.handfuls)
 			var/obj/item/ammo_magazine/AM = locate(/obj/item/ammo_magazine) in item_to_stock.contents
 			if(!AM)
-				to_chat(user, SPAN_WARNING("Something is wrong with \the [A], tell a coder."))
+				to_chat(user, SPAN_WARNING("[A]出现异常，请向开发者报告。"))
 				return
 			if(AM.current_rounds != AM.max_rounds)
-				to_chat(user, SPAN_WARNING("\The [A] isn't full. You need to fill it before you can restock it."))
+				to_chat(user, SPAN_WARNING("[A]未装满。请先装满再回存。"))
 				return
 		else if(length(A.contents) < A.num_of_magazines)
-			to_chat(user, SPAN_WARNING("[A] is not full."))
+			to_chat(user, SPAN_WARNING("[A]未装满。"))
 			return
 		else
 			for(var/obj/item/ammo_magazine/M in A.contents)
 				if(M.current_rounds != M.max_rounds)
-					to_chat(user, SPAN_WARNING("Not all magazines in \the [A] are full."))
+					to_chat(user, SPAN_WARNING("[A]中并非所有弹匣都已装满。"))
 					return
 	//loose rounds ammo box handling
 	else if(istype(item_to_stock, /obj/item/ammo_box/rounds))
 		var/obj/item/ammo_box/rounds/A = item_to_stock
 		if(A.bullet_amount < A.max_bullet_amount)
-			to_chat(user, SPAN_WARNING("[A] is not full."))
+			to_chat(user, SPAN_WARNING("[A]未装满。"))
 			return
 	//Marine armor handling
 	else if(istype(item_to_stock, /obj/item/clothing/suit/storage/marine))
 		var/obj/item/clothing/suit/storage/marine/AR = item_to_stock
 		if(AR.pockets && length(AR.pockets.contents))
 			if(user)
-				to_chat(user, SPAN_WARNING("\The [AR] has something inside it. Empty it before restocking."))
+				to_chat(user, SPAN_WARNING("[AR]里面还有东西。请先清空再回存。"))
 			return FALSE
 	//Marine helmet handling
 	else if(istype(item_to_stock, /obj/item/clothing/head/helmet/marine))
 		var/obj/item/clothing/head/helmet/marine/H = item_to_stock
 		if(H.pockets && length(H.pockets.contents))
 			if(user)
-				to_chat(user, SPAN_WARNING("\The [H] has something inside it. Empty it before restocking."))
+				to_chat(user, SPAN_WARNING("[H]里面还有东西。请先清空再回存。"))
 			return FALSE
 	return TRUE //Item IS good to restock!
 
@@ -355,40 +355,40 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(!stat)
 		return
 
-	var/possessive = include_name ? "[src]'s" : "Its"
-	var/nominative = include_name ? "[src]" : "It"
+	var/possessive = include_name ? "[src]的" : "它的"
+	var/nominative = include_name ? "[src]" : "它"
 
 	if(stat & MAINT)
-		return "[possessive] broken panel still needs to be <b>unscrewed</b> and removed."
+		return "[possessive]损坏面板仍需<b>拧松</b>并拆下。"
 	else if(stat & REPAIR_STEP_ONE)
-		return "[possessive] broken wires still need to be <b>cut</b> and removed from the vendor."
+		return "[possessive]断裂电线仍需<b>剪断</b>并从售货机中移除。"
 	else if(stat & REPAIR_STEP_TWO)
-		return "[nominative] needs to have <b>new wiring</b> installed."
+		return "[nominative]需要安装<b>新电线</b>。"
 	else if(stat & REPAIR_STEP_THREE)
-		return "[nominative] needs to have a <b>metal</b> panel installed."
+		return "[nominative]需要安装<b>金属</b>面板。"
 	else if(stat & REPAIR_STEP_FOUR)
-		return "[possessive] new panel needs to be <b>fastened</b> to it."
+		return "[possessive]新面板需要<b>拧紧固定</b>。"
 	else
-		return "[nominative] is being affected by some power-related issue."
+		return "[nominative]存在供电问题。"
 
 //------------INTERACTION PROCS---------------
 
 /obj/structure/machinery/cm_vending/attack_alien(mob/living/carbon/xenomorph/user)
 	if(stat & TIPPED_OVER || indestructible)
-		to_chat(user, SPAN_WARNING("There's no reason to bother with that old piece of trash."))
+		to_chat(user, SPAN_WARNING("没必要理会那堆破烂。"))
 		return XENO_NO_DELAY_ACTION
 
 	if(user.a_intent == INTENT_HARM && !unslashable)
 		user.animation_attack_on(src)
 		if(prob(user.melee_damage_lower))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-			user.visible_message(SPAN_DANGER("[user] smashes [src] beyond recognition!"), \
-			SPAN_DANGER("You enter a frenzy and smash [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+			user.visible_message(SPAN_DANGER("[user]将[src]砸得面目全非！"), \
+			SPAN_DANGER("你狂暴地将[src]砸得粉碎！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 			malfunction()
 			tip_over()
 		else
-			user.visible_message(SPAN_DANGER("[user] slashes [src]!"), \
-			SPAN_DANGER("You slash [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+			user.visible_message(SPAN_DANGER("[user]抓挠了[src]！"), \
+			SPAN_DANGER("你抓挠了[src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 		return XENO_ATTACK_ACTION
 
@@ -398,13 +398,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 		user.set_interaction(src)
 		tgui_interact(user)
 		if(!hacked)
-			to_chat(user, SPAN_WARNING("You slash open [src]'s front panel, revealing the items within."))
+			to_chat(user, SPAN_WARNING("你划开[src]的前面板，露出了里面的物品。"))
 			var/datum/effect_system/spark_spread/spark_system = new
 			spark_system.set_up(5, 5, get_turf(src))
 			hacked = TRUE
 		return XENO_ATTACK_ACTION
-	user.visible_message(SPAN_WARNING("[user] begins to lean against [src]."), \
-	SPAN_WARNING("You begin to lean against [src]."), null, 5, CHAT_TYPE_XENO_COMBAT)
+	user.visible_message(SPAN_WARNING("[user]开始用身体顶住[src]。"), \
+	SPAN_WARNING("你开始用身体顶住[src]。"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	var/shove_time = 80
 	if(user.mob_size >= MOB_SIZE_BIG)
 		shove_time = 30
@@ -415,8 +415,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 	if(do_after(user, shove_time, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
 		user.animation_attack_on(src)
-		user.visible_message(SPAN_DANGER("[user] knocks [src] down!"), \
-		SPAN_DANGER("You knock [src] down!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		user.visible_message(SPAN_DANGER("[user]推倒了[src]！"), \
+		SPAN_DANGER("你推倒了[src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		tip_over()
 	return XENO_NO_DELAY_ACTION
 
@@ -424,9 +424,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(stat & TIPPED_OVER)
 		if(user.action_busy)
 			return
-		user.visible_message(SPAN_NOTICE("[user] begins to heave the vending machine back into place!"),SPAN_NOTICE("You start heaving the vending machine back into place."))
+		user.visible_message(SPAN_NOTICE("[user]开始用力将售货机扶回原位！"),SPAN_NOTICE("你开始用力将售货机扶回原位。"))
 		if(do_after(user, 80, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY))
-			user.visible_message(SPAN_NOTICE("[user] rights \the [src]!"),SPAN_NOTICE("You right \the [src]!"))
+			user.visible_message(SPAN_NOTICE("[user]扶正了[src]！"),SPAN_NOTICE("你扶正了[src]！"))
 			flip_back()
 		return
 
@@ -453,16 +453,16 @@ GLOBAL_LIST_EMPTY(vending_products)
 	var/reward_typepath
 	switch(token.token_type)
 		if(VEND_TOKEN_VOID)
-			to_chat(user, SPAN_WARNING("ERROR: TOKEN NOT RECOGNISED."))
+			to_chat(user, SPAN_WARNING("错误：无法识别兑换凭证。"))
 			return FALSE
 		if(VEND_TOKEN_SPEC)
 			reward_typepath = /obj/item/spec_kit/rifleman
 		else
-			to_chat(user, SPAN_WARNING("ERROR: INCORRECT TOKEN."))
+			to_chat(user, SPAN_WARNING("错误：兑换凭证不符。"))
 			return FALSE
 
 	if(reward_typepath && user.drop_inv_item_to_loc(token, src))
-		to_chat(user, SPAN_NOTICE("You insert \the [token] into \the [src]."))
+		to_chat(user, SPAN_NOTICE("你将[token]插入[src]。"))
 		var/obj/new_item = new reward_typepath(get_turf(src))
 		user.put_in_any_hand_if_possible(new_item)
 		return TRUE
@@ -538,7 +538,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			var/turf/target_turf = get_appropriate_vend_turf(user)
 			if(vend_flags & VEND_CLUTTER_PROTECTION)
 				if(length(target_turf.contents) > 25)
-					to_chat(usr, SPAN_WARNING("The floor is too cluttered, make some space."))
+					to_chat(usr, SPAN_WARNING("地面堆放的东西太多，请腾出一些空间。"))
 					vend_fail()
 					return FALSE
 			if(HAS_TRAIT(user,TRAIT_OPPOSABLE_THUMBS)) // the big monster 7 ft with thumbs does not care for squads
@@ -546,7 +546,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				add_fingerprint(usr)
 				return TRUE
 			if((!human_user.assigned_squad && squad_tag) || (!human_user.assigned_squad?.omni_squad_vendor && (squad_tag && human_user.assigned_squad.name != squad_tag)))
-				to_chat(user, SPAN_WARNING("This machine isn't for your squad."))
+				to_chat(user, SPAN_WARNING("这台机器不供你的小队使用。"))
 				vend_fail()
 				return FALSE
 
@@ -558,12 +558,12 @@ GLOBAL_LIST_EMPTY(vending_products)
 						if(vendor_role.Find(JOB_SQUAD_SPECIALIST))
 							// handle specalist essential gear assignment
 							if(user.job != JOB_SQUAD_SPECIALIST)
-								to_chat(user, SPAN_WARNING("Only specialists can take specialist sets."))
+								to_chat(user, SPAN_WARNING("只有武器专家才能领取专家套装。"))
 								vend_fail()
 								return FALSE
 
 							else if(!user.skills || user.skills.get_skill_level(SKILL_SPEC_WEAPONS) != SKILL_SPEC_TRAINED)
-								to_chat(user, SPAN_WARNING("You already have a specialization."))
+								to_chat(user, SPAN_WARNING("你已经选定了专精。"))
 								vend_fail()
 								return FALSE
 
@@ -572,38 +572,38 @@ GLOBAL_LIST_EMPTY(vending_products)
 								return
 
 							if(GLOB.specialist_set_name_dict[p_name].get_available_vendor_num() <= 0)
-								to_chat(user, SPAN_WARNING("That set is already taken."))
+								to_chat(user, SPAN_WARNING("该套装已被领取。"))
 								vend_fail()
 								return FALSE
 
 							var/obj/item/card/id/card = human_user.get_idcard()
 							if(!istype(card) || !card.check_biometrics(user))
-								to_chat(user, SPAN_WARNING("You must be wearing your [SPAN_INFO("dog tags")] to select a specialization!"))
+								to_chat(user, SPAN_WARNING("必须佩戴你的[SPAN_INFO("身份牌")]才能选择专精！"))
 								return FALSE
 
 							GLOB.specialist_set_name_dict[p_name].redeem_set(human_user)
 
 						else if(vendor_role.Find(JOB_SYNTH))
 							if(user.job != JOB_SYNTH)
-								to_chat(user, SPAN_WARNING("Only USCM Synthetics may vend experimental tool tokens."))
+								to_chat(user, SPAN_WARNING("只有 USCM 合成人可以领取实验工具兑换凭证。"))
 								vend_fail()
 								return FALSE
 
 					if(!handle_vend(itemspec, user))
-						to_chat(user, SPAN_WARNING("You can't buy things from this category anymore."))
+						to_chat(user, SPAN_WARNING("你不能再从此类别购买物品。"))
 						vend_fail()
 						return FALSE
 
 			if(use_points || use_snowflake_points)
 				if(!handle_points(user, itemspec))
-					to_chat(user, SPAN_WARNING("Not enough points."))
+					to_chat(user, SPAN_WARNING("点数不足。"))
 					vend_fail()
 					return FALSE
 			else
 				// if vendor has no costs and is inventory limited
 				var/inventory_count = itemspec[2]
 				if(inventory_count <= 0) //to avoid dropping more than one product when there's
-					to_chat(usr, SPAN_WARNING("[itemspec[1]] is out of stock."))
+					to_chat(usr, SPAN_WARNING("[itemspec[1]]已售罄。"))
 					vend_fail()
 					return TRUE // one left and the player spam click during a lagspike.
 
@@ -651,27 +651,27 @@ GLOBAL_LIST_EMPTY(vending_products)
 /obj/structure/machinery/cm_vending/attackby(obj/item/W, mob/user)
 	// Repairing process
 	if(stat & TIPPED_OVER)
-		to_chat(user, SPAN_WARNING("You need to set [src] back upright first."))
+		to_chat(user, SPAN_WARNING("你需要先扶正[src]。"))
 		return
 	if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You do not understand how to repair the broken [src]."))
+			to_chat(user, SPAN_WARNING("你不知道如何修理损坏的[src]。"))
 			return FALSE
 		else if(stat & MAINT)
-			to_chat(user, SPAN_NOTICE("You start to unscrew \the [src]'s broken panel."))
+			to_chat(user, SPAN_NOTICE("你开始拧松[src]损坏的面板。"))
 			if(!do_after(user, 3 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, numticks = 3))
-				to_chat(user, SPAN_WARNING("You stop unscrewing \the [src]'s broken panel."))
+				to_chat(user, SPAN_WARNING("你停止拧松[src]损坏的面板。"))
 				return FALSE
-			to_chat(user, SPAN_NOTICE("You unscrew \the [src]'s broken panel and remove it, exposing many broken wires."))
+			to_chat(user, SPAN_NOTICE("你拧松并拆下[src]损坏的面板，露出了许多断裂的电线。"))
 			stat &= ~MAINT
 			stat |= REPAIR_STEP_ONE
 			return TRUE
 		else if(stat & REPAIR_STEP_FOUR)
-			to_chat(user, SPAN_NOTICE("You start to fasten \the [src]'s new panel."))
+			to_chat(user, SPAN_NOTICE("你开始固定[src]的新面板。"))
 			if(!do_after(user, 3 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, numticks = 3))
-				to_chat(user, SPAN_WARNING("You stop fastening \the [src]'s new panel."))
+				to_chat(user, SPAN_WARNING("你停止固定[src]的新面板。"))
 				return FALSE
-			to_chat(user, SPAN_NOTICE("You fasten \the [src]'s new panel, fully repairing the vendor."))
+			to_chat(user, SPAN_NOTICE("你固定好了[src]的新面板，售货机已完全修复。"))
 			stat &= ~(REPAIR_STEP_FOUR|MAINT|BROKEN)
 			stat |= WORKING
 			update_icon()
@@ -682,14 +682,14 @@ GLOBAL_LIST_EMPTY(vending_products)
 			return FALSE
 	else if(HAS_TRAIT(W, TRAIT_TOOL_WIRECUTTERS))
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You do not understand how to repair the broken [src]."))
+			to_chat(user, SPAN_WARNING("你不知道如何修理损坏的[src]。"))
 			return FALSE
 		else if(stat & REPAIR_STEP_ONE)
-			to_chat(user, SPAN_NOTICE("You start to remove \the [src]'s broken wires."))
+			to_chat(user, SPAN_NOTICE("你开始移除[src]断裂的电线。"))
 			if(!do_after(user, 3 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, numticks = 3))
-				to_chat(user, SPAN_WARNING("You stop removing \the [src]'s broken wires."))
+				to_chat(user, SPAN_WARNING("你停止移除[src]断裂的电线。"))
 				return FALSE
-			to_chat(user, SPAN_NOTICE("You remove \the [src]'s broken broken wires."))
+			to_chat(user, SPAN_NOTICE("你移除了[src]断裂的电线。"))
 			stat &= ~REPAIR_STEP_ONE
 			stat |= REPAIR_STEP_TWO
 			return TRUE
@@ -699,20 +699,20 @@ GLOBAL_LIST_EMPTY(vending_products)
 			return FALSE
 	else if(iswire(W))
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You do not understand how to repair the broken [src]."))
+			to_chat(user, SPAN_WARNING("你不知道如何修理损坏的[src]。"))
 			return FALSE
 		var/obj/item/stack/cable_coil/CC = W
 		if(stat & REPAIR_STEP_TWO)
 			if(CC.amount < 5)
-				to_chat(user, SPAN_WARNING("You need more cable coil to replace the removed wires."))
-			to_chat(user, SPAN_NOTICE("You start to replace \the [src]'s removed wires."))
+				to_chat(user, SPAN_WARNING("需要更多电缆卷才能替换拆下的电线。"))
+			to_chat(user, SPAN_NOTICE("你开始替换[src]拆下的电线。"))
 			if(!do_after(user, 3 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, numticks = 3))
-				to_chat(user, SPAN_WARNING("You stop replacing \the [src]'s removed wires."))
+				to_chat(user, SPAN_WARNING("你停止替换[src]拆下的电线。"))
 				return FALSE
 			if(!CC || !CC.use(5))
-				to_chat(user, SPAN_WARNING("You need more cable coil to replace the removed wires."))
+				to_chat(user, SPAN_WARNING("需要更多电缆卷才能替换拆下的电线。"))
 				return FALSE
-			to_chat(user, SPAN_NOTICE("You remove \the [src]'s broken broken wires."))
+			to_chat(user, SPAN_NOTICE("你移除了[src]断裂的电线。"))
 			stat &= ~REPAIR_STEP_TWO
 			stat |= REPAIR_STEP_THREE
 			return TRUE
@@ -722,18 +722,18 @@ GLOBAL_LIST_EMPTY(vending_products)
 			return
 	else if(istype(W, /obj/item/stack/sheet/metal))
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You do not understand how to repair the broken [src]."))
+			to_chat(user, SPAN_WARNING("你不知道如何修理损坏的[src]。"))
 			return FALSE
 		var/obj/item/stack/sheet/metal/M = W
 		if(stat & REPAIR_STEP_THREE)
-			to_chat(user, SPAN_NOTICE("You start to construct a new panel for \the [src]."))
+			to_chat(user, SPAN_NOTICE("你开始为[src]制作新面板。"))
 			if(!do_after(user, 3 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, numticks = 3))
-				to_chat(user, SPAN_WARNING("You stop constructing a new panel for \the [src]."))
+				to_chat(user, SPAN_WARNING("你停止为[src]制作新面板。"))
 				return FALSE
 			if(!M || !M.use(1))
-				to_chat(user, SPAN_WARNING("You a sheet of metal to construct a new panel."))
+				to_chat(user, SPAN_WARNING("你需要一块金属板来制作新面板。"))
 				return FALSE
-			to_chat(user, SPAN_NOTICE("You construct a new panel for \the [src]."))
+			to_chat(user, SPAN_NOTICE("你为[src]制作了新面板。"))
 			stat &= ~REPAIR_STEP_THREE
 			stat |= REPAIR_STEP_FOUR
 			return TRUE
@@ -745,17 +745,17 @@ GLOBAL_LIST_EMPTY(vending_products)
 		var/obj/item/device/multitool/MT = W
 
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED) && !skillcheckexplicit(user, SKILL_ANTAG, SKILL_ANTAG_AGENT))
-			to_chat(user, SPAN_WARNING("You do not understand how tweak access requirements in [src]."))
+			to_chat(user, SPAN_WARNING("你不知道如何调整[src]的权限限制。"))
 			return FALSE
 		if(stat != WORKING)
-			to_chat(user, SPAN_WARNING("[src] must be in working condition and powered for you to hack it."))
+			to_chat(user, SPAN_WARNING("[src]必须通电且运转正常，才能进行破解。"))
 			return FALSE
 		if(!hackable)
-			to_chat(user, SPAN_WARNING("You are unable to hack access restrictions in [src]."))
+			to_chat(user, SPAN_WARNING("你无法破解[src]的权限限制。"))
 			return FALSE
-		to_chat(user, SPAN_WARNING("You start tweaking access restrictions in [src]."))
+		to_chat(user, SPAN_WARNING("你开始调整[src]的权限限制。"))
 		if(!do_after(user, MT.hack_speed * sqrt(user.get_skill_duration_multiplier(SKILL_ENGINEER)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, numticks = 3))
-			to_chat(user, SPAN_WARNING("You stop tweaking access restrictions in [src]."))
+			to_chat(user, SPAN_WARNING("你停止调整[src]的权限限制。"))
 			return FALSE
 		hack_access(user)
 		return TRUE
@@ -778,7 +778,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(!hacked || ignore_hack)
 		if(!allowed(user))
 			if(display)
-				to_chat(user, SPAN_WARNING("Access denied."))
+				to_chat(user, SPAN_WARNING("访问被拒绝。"))
 				vend_fail()
 			return FALSE
 
@@ -786,19 +786,19 @@ GLOBAL_LIST_EMPTY(vending_products)
 		var/obj/item/card/id/idcard = human_user.get_idcard()
 		if(!idcard)
 			if(display)
-				to_chat(user, SPAN_WARNING("Access denied. No ID card detected"))
+				to_chat(user, SPAN_WARNING("访问被拒绝。未检测到身份卡。"))
 				vend_fail()
 			return FALSE
 
 		if(!idcard.check_biometrics(human_user))
 			if(display)
-				to_chat(user, SPAN_WARNING("Wrong ID card owner detected."))
+				to_chat(user, SPAN_WARNING("检测到身份卡持有者不符。"))
 				vend_fail()
 			return FALSE
 
 		if(LAZYLEN(vendor_role) && !vendor_role.Find(user.job))
 			if(display)
-				to_chat(user, SPAN_WARNING("This machine isn't for you."))
+				to_chat(user, SPAN_WARNING("你无权使用这台机器。"))
 				vend_fail()
 			return FALSE
 	return TRUE
@@ -837,8 +837,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 //for special role-related gear
 
 /obj/structure/machinery/cm_vending/gear
-	name = "ColMarTech Automated Gear Rack"
-	desc = "An automated equipment rack hooked up to a colossal storage of standard-issue gear."
+	name = "ColMarTech自动装备架"
+	desc = "连接着巨型制式装备仓库的自动装备架。"
 	icon_state = "gear"
 	use_points = TRUE
 	vendor_theme = VENDOR_THEME_USCM
@@ -858,8 +858,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 //clothing vendors automatically put item on user. QoL at it's finest.
 
 /obj/structure/machinery/cm_vending/clothing
-	name = "ColMarTech Automated Closet"
-	desc = "An automated closet hooked up to a colossal storage of standard-issue uniform and armor."
+	name = "ColMarTech自动衣柜"
+	desc = "连接着巨型制式制服与护甲仓库的自动衣柜。"
 	icon_state = "clothing"
 	use_points = TRUE
 	show_points = TRUE
@@ -881,8 +881,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 //Hacking can be added if we need it. Do we need it, tho?
 
 /obj/structure/machinery/cm_vending/sorted
-	name = "\improper ColMarTech generic sorted rack/vendor"
-	desc = "This is pure vendor without points system."
+	name = "ColMarTech通用分类售货机"
+	desc = "不使用点数系统的售货机。"
 	icon_state = "guns"
 	vendor_theme = VENDOR_THEME_USCM
 	vend_flags = VEND_CLUTTER_PROTECTION | VEND_LIMITED_INVENTORY | VEND_TO_HAND
@@ -992,7 +992,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 	//Putting Ammo and other boxes on the bottom of the list if they haven't been accounted for already
 	if(length(box_list))
-		listed_products += list(list("BOXES", -1, null, null))
+		listed_products += list(list("箱装物资", -1, null, null))
 		for(var/list/L as anything in box_list)
 			listed_products += list(L)
 
@@ -1017,29 +1017,29 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(!length(container.contents))
 			return
 		if(being_restocked)
-			to_chat(user, SPAN_WARNING("[src] is already being restocked, you will get in the way!"))
+			to_chat(user, SPAN_WARNING("[src]正在补货，你会妨碍操作！"))
 			return
 
-		user.visible_message(SPAN_NOTICE("[user] starts stocking a bunch of supplies into [src]."), \
-		SPAN_NOTICE("You start stocking a bunch of supplies into [src]."))
+		user.visible_message(SPAN_NOTICE("[user]开始向[src]补充一批物资。"), \
+		SPAN_NOTICE("你开始向[src]补充一批物资。"))
 		being_restocked = TRUE
 
 		for(var/obj/item/item in container.contents)
 			if(!do_after(user, 1 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC, src))
 				being_restocked = FALSE
-				user.visible_message(SPAN_NOTICE("[user] stopped stocking [src] with supplies."), \
-				SPAN_NOTICE("You stop stocking [src] with supplies."))
+				user.visible_message(SPAN_NOTICE("[user]停止向[src]补充物资。"), \
+				SPAN_NOTICE("你停止向[src]补充物资。"))
 				return
 			if(QDELETED(item) || item.loc != container)
 				being_restocked = FALSE
-				user.visible_message(SPAN_NOTICE("[user] stopped stocking [src] with supplies."), \
-				SPAN_NOTICE("You stop stocking [src] with supplies."))
+				user.visible_message(SPAN_NOTICE("[user]停止向[src]补充物资。"), \
+				SPAN_NOTICE("你停止向[src]补充物资。"))
 				return
 			stock(item, user)
 
 		being_restocked = FALSE
-		user.visible_message(SPAN_NOTICE("[user] finishes stocking [src] with supplies."), \
-		SPAN_NOTICE("You finish stocking [src] with supplies."))
+		user.visible_message(SPAN_NOTICE("[user]完成了[src]的物资补充。"), \
+		SPAN_NOTICE("你完成了[src]的物资补充。"))
 		return
 
 	if(istype(A, /obj/item))
@@ -1057,16 +1057,16 @@ GLOBAL_LIST_EMPTY(vending_products)
 			if(istype(item_to_stock, /obj/item/device/defibrillator))
 				var/obj/item/device/defibrillator/defib = item_to_stock
 				if(!defib.dcell)
-					to_chat(user, SPAN_WARNING("[item_to_stock] needs a cell in it to be restocked!"))
+					to_chat(user, SPAN_WARNING("[item_to_stock]必须装有电池才能回存！"))
 					return FALSE
 				if(defib.dcell.charge < defib.dcell.maxcharge)
-					to_chat(user, SPAN_WARNING("[item_to_stock] needs to be fully charged to restock it!"))
+					to_chat(user, SPAN_WARNING("[item_to_stock]必须充满电才能回存！"))
 					return FALSE
 
 			else if(istype(item_to_stock, /obj/item/cell))
 				var/obj/item/cell/cell = item_to_stock
 				if(cell.charge < cell.maxcharge)
-					to_chat(user, SPAN_WARNING("[item_to_stock] needs to be fully charged to restock it!"))
+					to_chat(user, SPAN_WARNING("[item_to_stock]必须充满电才能回存！"))
 					return FALSE
 
 			else if(istype(item_to_stock, /obj/item/stack))
@@ -1087,8 +1087,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 				container.remove_from_storage(item_to_stock, user.loc)
 
 			qdel(item_to_stock)
-			user.visible_message(SPAN_NOTICE("[user] stocks [src] with \a [vendspec[1]]."), \
-			SPAN_NOTICE("You stock [src] with \a [vendspec[1]]."))
+			user.visible_message(SPAN_NOTICE("[user]向[src]补充了[vendspec[1]]。"), \
+			SPAN_NOTICE("你向[src]补充了[vendspec[1]]。"))
 			if(partial_stacks)
 				var/obj/item/stack/item_stack = item_to_stock
 				var/existing_stacks = partial_product_stacks[item_to_stock.type]
@@ -1110,14 +1110,14 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(dynamic_metadata)
 		if(vendspec[2] >= dynamic_metadata[2])
 			if(!istype(item_to_stock, /obj/item/stack))
-				to_chat(user, SPAN_WARNING("[src] is already full of [vendspec[1]]!"))
+				to_chat(user, SPAN_WARNING("[src]中的[vendspec[1]]已经满了！"))
 				return FALSE
 			var/obj/item/stack/item_stack = item_to_stock
 			if(partial_product_stacks[item_to_stock.type] == 0)
-				to_chat(user, SPAN_WARNING("[src] is already full of [vendspec[1]]!"))
+				to_chat(user, SPAN_WARNING("[src]中的[vendspec[1]]已经满了！"))
 				return FALSE // No partial stack to fill
 			if((partial_product_stacks[item_to_stock.type] + item_stack.amount) > item_stack.max_amount)
-				to_chat(user, SPAN_WARNING("[src] is already full of [vendspec[1]]!"))
+				to_chat(user, SPAN_WARNING("[src]中的[vendspec[1]]已经满了！"))
 				return FALSE // Exceeds partial stack to fill
 	else
 		stack_trace("[src] could not find dynamic_stock_multipliers for [vendspec[1]]!")
@@ -1133,8 +1133,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 //------------GEAR VENDORS---------------
 //For vendors with their own points available
 /obj/structure/machinery/cm_vending/own_points
-	name = "\improper ColMarTech generic vendor"
-	desc = "This is a vendor with its own points system."
+	name = "ColMarTech通用售货机"
+	desc = "配备独立点数系统的售货机。"
 	icon_state = "gear"
 	vendor_theme = VENDOR_THEME_USCM
 	use_points = TRUE
@@ -1377,7 +1377,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_corresponding_types_list, list(
 			SEND_SIGNAL(src, COMSIG_VENDOR_SUCCESSFUL_VEND, src, itemspec, user)
 
 	else
-		to_chat(user, SPAN_WARNING("ERROR: itemspec is missing. Please report this to admins."))
+		to_chat(user, SPAN_WARNING("错误：缺少商品信息（itemspec），请向管理员报告。"))
 		sleep(15)
 
 	stat &= ~IN_USE

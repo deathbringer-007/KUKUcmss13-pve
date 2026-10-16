@@ -1,6 +1,6 @@
 #define HAT_GARB_RELAY_ICON_STATE "icon_state"
 /obj/item/clothing/head
-	name = "head"
+	name = "头部装备"
 	icon = 'icons/obj/items/clothing/hats.dmi'
 	flags_armor_protection = BODY_FLAG_HEAD
 	flags_bodypart_hidden = BODY_FLAG_HEAD

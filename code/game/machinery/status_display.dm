@@ -16,8 +16,8 @@
 /obj/structure/machinery/status_display
 	icon = 'icons/obj/structures/machinery/status_display.dmi'
 	icon_state = "frame"
-	name = "status display"
-	desc = "A monitor depicting the ship's current status. It flickers every so often."
+	name = "状态显示屏"
+	desc = "显示舰船当前状态的监视器，时不时闪烁一下。"
 	anchored = TRUE
 	density = FALSE
 	use_power = FALSE
@@ -77,10 +77,10 @@
 			remove_display()
 			return 1
 		if(STATUS_DISPLAY_TRANSFER_SHUTTLE_TIME) //emergency shuttle timer
-			message1 = "EVAC"
+			message1 = "疏散"
 			message2 = SShijack.get_evac_eta()
 			if(message2)
-				if(length(message2) > CHARS_PER_LINE) message2 = "Error"
+				if(length(message2) > CHARS_PER_LINE) message2 = "错误"
 				update_display(message1, message2)
 			else remove_display()
 			return 1
@@ -108,7 +108,7 @@
 			update_display(line1, line2)
 			return 1
 		if(STATUS_DISPLAY_TIME)
-			message1 = "TIME"
+			message1 = "时间"
 			message2 = worldtime2text()
 			update_display(message1, message2)
 			return 1
@@ -117,7 +117,7 @@
 /obj/structure/machinery/status_display/get_examine_text(mob/user)
 	. = ..()
 	if(mode != STATUS_DISPLAY_BLANK && mode != STATUS_DISPLAY_ALERT)
-		. += "The display says:<br>\t[strip_html(message1)]<br>\t[strip_html(message2)]"
+		. += "屏幕上显示：<br>\t[strip_html(message1)]<br>\t[strip_html(message2)]"
 
 /obj/structure/machinery/status_display/proc/set_message(m1, m2)
 	if(m1)
@@ -148,12 +148,12 @@
 /obj/structure/machinery/status_display/proc/get_supply_shuttle_timer()
 	var/datum/shuttle/ferry/supply/shuttle = GLOB.supply_controller.shuttle
 	if (!shuttle)
-		return "Error"
+		return "错误"
 
 	if(shuttle.has_arrive_time())
 		var/timeleft = round((shuttle.arrive_time - world.time) / 10,1)
 		if(timeleft < 0)
-			return "Late"
+			return "超时"
 		return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"
 	return ""
 
@@ -174,7 +174,7 @@
 /obj/structure/machinery/ai_status_display
 	icon = 'icons/obj/structures/machinery/status_display.dmi'
 	icon_state = "frame"
-	name = "AI display"
+	name = "AI显示屏"
 	anchored = TRUE
 	density = FALSE
 

@@ -1,5 +1,5 @@
 /obj/item
-	name = "item"
+	name = "物品"
 	icon = 'icons/obj/items/items.dmi'
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	layer = ITEM_LAYER

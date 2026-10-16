@@ -1,6 +1,6 @@
 /obj/item/storage/pouch
-	name = "abstract pouch"
-	desc = "The physical manifestation of a concept of a pouch. Woah."
+	name = "原型收纳袋"
+	desc = "“收纳袋”这一概念的实体化。哇。"
 	icon = 'icons/obj/items/clothing/pouches.dmi'
 	icon_state = "small_drop"
 	w_class = SIZE_LARGE //does not fit in backpack
@@ -51,8 +51,8 @@
 
 
 /obj/item/storage/pouch/general
-	name = "light general pouch"
-	desc = "A general-purpose pouch used to carry a small item, or two tiny ones."
+	name = "轻型杂物袋"
+	desc = "通用收纳袋，可携带一个小型物品或两个微型物品。"
 	icon_state = "small_drop"
 	storage_flags = STORAGE_FLAGS_DEFAULT
 	max_w_class = SIZE_MEDIUM
@@ -65,22 +65,22 @@
 	max_storage_space = 2
 
 /obj/item/storage/pouch/general/medium
-	name = "medium general pouch"
-	desc = "A general-purpose pouch used to carry a variety of differently sized items."
+	name = "中型杂物袋"
+	desc = "通用收纳袋，可携带多种不同尺寸的物品。"
 	icon_state = "medium_drop"
 	storage_slots = null
 	max_storage_space = 4
 
 /obj/item/storage/pouch/general/large
-	name = "large general pouch"
-	desc = "A general-purpose pouch used to carry more differently sized items."
+	name = "大型杂物袋"
+	desc = "通用收纳袋，可携带更多不同尺寸的物品。"
 	icon_state = "large_drop"
 	storage_slots = null
 	max_storage_space = 6
 
 /obj/item/storage/pouch/flamertank
-	name = "fuel tank strap pouch"
-	desc = "Two ring straps to loop around M240-pattern napalm tanks. Handle with care."
+	name = "燃料罐绑带袋"
+	desc = "用于环绕固定 M240 式凝固汽油罐的两条环形带。请小心使用。"
 	storage_slots = 2
 	icon_state = "fueltank_pouch"
 	storage_flags = STORAGE_FLAGS_POUCH
@@ -107,8 +107,8 @@
 		new /obj/item/ammo_magazine/smg/m39/ap(src)
 
 /obj/item/storage/pouch/bayonet
-	name = "bayonet sheath"
-	desc = "Knife to meet you!"
+	name = "刺刀鞘"
+	desc = "见到你真是“刀”喜！"
 	can_hold = list(
 		/obj/item/weapon/throwing_knife,
 		/obj/item/attachable/bayonet,
@@ -196,8 +196,8 @@
 	new /obj/item/attachable/bayonet(src)
 
 /obj/item/storage/pouch/firstaid
-	name = "first-aid pouch"
-	desc = "A first aid pouch capable of storing a variety of basic medical supplies. It can hold ointments, bandages, injectors, splints and pill packets."
+	name = "急救袋"
+	desc = "可存放多种基础医疗用品的急救袋，包括烧伤药膏、绷带、注射器、夹板和药片包。"
 	icon_state = "firstaid"
 	storage_slots = 4
 	can_hold = list(
@@ -209,7 +209,7 @@
 	)
 
 /obj/item/storage/pouch/firstaid/full
-	desc = "Contains some basic first aid supplies."
+	desc = "装有一些基础急救用品。"
 
 /obj/item/storage/pouch/firstaid/full/fill_preset_inventory()
 	new /obj/item/reagent_container/hypospray/autoinjector/bicaridine(src)
@@ -244,8 +244,8 @@
 
 ///Pistol pouch.
 /obj/item/storage/pouch/pistol
-	name = "sidearm pouch"
-	desc = "You could carry a pistol in this; more importantly, you could draw it quickly. Useful for emergencies."
+	name = "副武器袋"
+	desc = "可以装一把手枪，更重要的是可以快速拔出，适合紧急情况。"
 	icon_state = "pistol"
 	use_sound = null
 	max_w_class = SIZE_MEDIUM
@@ -395,8 +395,8 @@
 //// MAGAZINE POUCHES /////
 
 /obj/item/storage/pouch/magazine
-	name = "magazine pouch"
-	desc = "It can carry magazines."
+	name = "弹匣袋"
+	desc = "可携带弹匣。"
 	icon_state = "medium_ammo_mag"
 	max_w_class = SIZE_MEDIUM
 	storage_slots = 3
@@ -433,14 +433,14 @@
 		return ..()
 
 /obj/item/storage/pouch/magazine/large
-	name = "large magazine pouch"
-	desc = "It can carry many magazines."
+	name = "大型弹匣袋"
+	desc = "可携带许多弹匣。"
 	icon_state = "large_ammo_mag"
 	storage_slots = 4
 
 /obj/item/storage/pouch/magazine/pistol
-	name = "pistol magazine pouch"
-	desc = "It can carry pistol magazines and revolver speedloaders."
+	name = "手枪弹匣袋"
+	desc = "可携带手枪弹匣和左轮手枪快速装弹器。"
 	max_w_class = SIZE_SMALL
 	icon_state = "pistol_mag"
 	storage_slots = 4
@@ -452,8 +452,8 @@
 	)
 
 /obj/item/storage/pouch/magazine/pistol/large
-	name = "large pistol magazine pouch"
-	desc = "It can carry many pistol magazines or revolver speedloaders."
+	name = "大型手枪弹匣袋"
+	desc = "可携带许多手枪弹匣或左轮手枪快速装弹器。"
 	storage_slots = 6
 	icon_state = "large_pistol_mag"
 
@@ -566,8 +566,8 @@
 		new /obj/item/ammo_magazine/m60(src)
 
 /obj/item/storage/pouch/shotgun
-	name = "shotgun shell pouch"
-	desc = "It can contain handfuls of shells, or bullets if you choose to for some reason."
+	name = "霰弹袋"
+	desc = "可装几把霰弹；如果你非要装子弹，也可以。"
 	icon_state = "medium_shotshells"
 	max_w_class = SIZE_SMALL
 	storage_slots = 5
@@ -597,8 +597,8 @@
 		new /obj/item/ammo_magazine/handful/shotgun/heavy/flechette(src)
 
 /obj/item/storage/pouch/shotgun/large
-	name = "large shotgun shell pouch"
-	desc = "It can contain more handfuls of shells, or bullets if you choose to for some reason."
+	name = "大型霰弹袋"
+	desc = "可装更多把霰弹；如果你非要装子弹，也可以。"
 	icon_state = "large_shotshells"
 	storage_slots = 7
 
@@ -619,8 +619,8 @@
 		new /obj/item/ammo_magazine/handful/shotgun/buckshot(src)
 
 /obj/item/storage/pouch/explosive
-	name = "explosive pouch"
-	desc = "It can carry grenades, plastic explosives, mine boxes, and other explosives."
+	name = "爆炸物袋"
+	desc = "可携带手榴弹、塑性炸药、地雷盒及其他爆炸物。"
 	icon_state = "large_explosive"
 	storage_slots = 6
 	max_w_class = SIZE_MEDIUM
@@ -658,8 +658,8 @@
 		new /obj/item/explosive/grenade/empgrenade/dutch(src)
 
 /obj/item/storage/pouch/medical
-	name = "medical pouch"
-	desc = "It can carry small medical supplies."
+	name = "医疗收纳袋"
+	desc = "可携带小型医疗用品。"
 	icon_state = "medical"
 	storage_slots = 4
 
@@ -763,8 +763,8 @@
 	desc = "A heavy pouch containing everything one needs to get themselves back on their feet. Quite the selection. Somehow, the whole pouch manages to look classified, you feel like you're going to get court-marshalled for even looking at it."
 
 /obj/item/storage/pouch/first_responder
-	name = "first responder pouch"
-	desc = "A pouch designed for carrying supplies to assist medical personnel and quickly respond to injuries on the battlefield without immediately treating them. Can hold supplies such as roller beds, stasis bags, and health analysers."
+	name = "急救响应袋"
+	desc = "用于携带辅助医务人员的物资，让你在战场上快速响应伤情，而非立即实施治疗。可装轮式担架床、停滞袋和健康分析仪等用品。"
 	icon_state = "frt_med"
 	storage_slots = 4
 
@@ -787,8 +787,8 @@
 	new /obj/item/bodybag/cryobag(src)
 
 /obj/item/storage/pouch/first_responder/rmc
-	name = "advanced first aid pouch"
-	desc = "A pouch designed for carrying supplies to assist medical personnel and quickly respond to injuries on the battlefield without immediately treating them."
+	name = "高级急救收纳袋"
+	desc = "用于携带辅助医务人员的物资，让你在战场上快速响应伤情，而非立即实施治疗。"
 	icon_state = "frt_med"
 	storage_slots = 5
 	can_hold = list(
@@ -802,8 +802,8 @@
 
 
 /obj/item/storage/pouch/vials
-	name = "vial pouch"
-	desc = "A pouch for carrying glass vials."
+	name = "试管袋"
+	desc = "用于携带玻璃试管的收纳袋。"
 	icon_state = "vial"
 	storage_slots = 6
 	can_hold = list(/obj/item/reagent_container/glass/beaker/vial)
@@ -820,8 +820,8 @@
 		new /obj/item/reagent_container/glass/beaker/vial(src)
 
 /obj/item/storage/pouch/chem
-	name = "chemist pouch"
-	desc = "A pouch for carrying glass beakers."
+	name = "药剂师袋"
+	desc = "用于携带玻璃烧杯的收纳袋。"
 	icon_state = "chemist"
 	storage_slots = 2
 	can_hold = list(
@@ -834,8 +834,8 @@
 	new /obj/item/reagent_container/glass/beaker(src)
 
 /obj/item/storage/pouch/autoinjector
-	name = "auto-injector pouch"
-	desc = "A pouch specifically for auto-injectors."
+	name = "自动注射器收纳袋"
+	desc = "专门存放自动注射器的袋子。"
 	icon_state = "injectors"
 	storage_slots = 7
 	can_hold = list(/obj/item/reagent_container/hypospray/autoinjector)
@@ -850,8 +850,8 @@
 	new /obj/item/reagent_container/hypospray/autoinjector/emergency(src)
 
 /obj/item/storage/pouch/syringe
-	name = "syringe pouch"
-	desc = "It can carry syringes."
+	name = "注射器收纳袋"
+	desc = "可携带注射器。"
 	icon_state = "syringe"
 	storage_slots = 6
 	can_hold = list(/obj/item/reagent_container/syringe)
@@ -861,10 +861,10 @@
 		new /obj/item/reagent_container/syringe(src)
 
 /obj/item/storage/pouch/engikit
-	name = "engineer kit pouch"
+	name = "工兵工具包袋"
 	storage_flags = STORAGE_FLAGS_POUCH
 	icon_state = "construction"
-	desc = "It's specifically made to hold engineering items."
+	desc = "专门存放工程用品。"
 	storage_slots = 6
 	can_hold = list(
 		/obj/item/circuitboard,
@@ -890,10 +890,10 @@
 	new /obj/item/circuitboard/apc(src)
 
 /obj/item/storage/pouch/medkit
-	name = "medical kit pouch"
+	name = "医疗套件袋"
 	storage_flags = STORAGE_FLAGS_POUCH
 	icon_state = "medkit"
-	desc = "It's specifically made to hold medical items."
+	desc = "专门存放医疗物品。"
 	storage_slots = 7
 	can_hold = list(
 		/obj/item/device/healthanalyzer,
@@ -952,11 +952,11 @@
 
 
 /obj/item/storage/pouch/pressurized_reagent_canister
-	name = "Pressurized Reagent Canister Pouch"
+	name = "加压药剂罐袋"
 	max_w_class = SIZE_SMALL
 	storage_flags = STORAGE_FLAGS_POUCH|STORAGE_USING_DRAWING_METHOD
 	icon_state = "pressurized_reagent_canister"
-	desc = "A pressurized reagent canister pouch. It is used to refill custom injectors, and can also store one. May be refilled with a reagent tank or a Chemical Dispenser."
+	desc = "加压药剂罐袋，用于补充自定义注射器，也能存放一支。可使用试剂罐或化学分配机补充。"
 	can_hold = list(/obj/item/reagent_container/hypospray/autoinjector/empty)
 	var/obj/item/reagent_container/glass/pressurized_canister/inner
 	matter = list("plastic" = 2000, "glass" = 2000)
@@ -1193,8 +1193,8 @@
 	update_icon()
 
 /obj/item/storage/pouch/flare
-	name = "flare pouch"
-	desc = "A pouch designed to hold flares. Refillable with a flare pack."
+	name = "照明弹袋"
+	desc = "用于携带照明弹的收纳袋，可用照明弹包补充。"
 	max_w_class = SIZE_SMALL
 	storage_slots = 21
 	max_storage_space = 21
@@ -1227,8 +1227,8 @@
 
 
 /obj/item/storage/pouch/electronics
-	name = "electronics pouch"
-	desc = "It is designed to hold most electronics, power cells and circuit boards."
+	name = "电子器材袋"
+	desc = "用于携带大多数电子器材、电池和电路板。"
 	icon_state = "electronics"
 	storage_slots = 6
 	can_hold = list(
@@ -1252,8 +1252,8 @@
 	new /obj/item/cell/high(src)
 
 /obj/item/storage/pouch/construction
-	name = "construction pouch"
-	desc = "It's designed to hold construction materials - glass/metal sheets, metal rods, barbed wire, cable coil, and empty sandbags. It also has two hooks for an entrenching tool and light replacer."
+	name = "建材袋"
+	desc = "用于携带建筑材料，包括玻璃板、金属板、金属杆、带刺铁丝、电缆卷和空沙袋。还带有两个挂钩，可挂工兵铲和换灯器。"
 	storage_slots = 3
 	max_w_class = SIZE_MEDIUM
 	icon_state = "construction"
@@ -1286,8 +1286,8 @@
 	new /obj/item/stack/barbed_wire(src, 15)
 
 /obj/item/storage/pouch/tools
-	name = "tools pouch"
-	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool or light replacer."
+	name = "工具袋"
+	desc = "用于携带维修工具，如螺丝刀、扳手、电缆卷等。还带有一个挂钩，可挂工兵铲或换灯器。"
 	storage_slots = 5
 	max_w_class = SIZE_MEDIUM
 	icon_state = "tools"
@@ -1320,8 +1320,8 @@
 	)
 
 /obj/item/storage/pouch/tools/tactical
-	name = "tactical tools pouch"
-	desc = "This particular toolkit full of sharp, heavy objects was designed for breaking into things rather than fixing them. Still does the latter pretty well, though."
+	name = "战术工具袋"
+	desc = "这套装满锋利沉重物件的工具包，设计用途是破拆而非修理。不过修起东西来也相当不错。"
 	icon_state = "soctools"
 	storage_slots = 8
 
@@ -1413,8 +1413,8 @@
 	new /obj/item/stack/cable_coil(src)
 
 /obj/item/storage/pouch/sling
-	name = "sling strap"
-	desc = "Keeps a single item attached to a strap."
+	name = "枪带"
+	desc = "将单个物品固定在绑带上。"
 	storage_slots = 1
 	max_w_class = SIZE_MEDIUM
 	icon_state = "sling"
@@ -1489,8 +1489,8 @@
 	addtimer(CALLBACK(src, PROC_REF(attempt_retrieval), user), 0.3 SECONDS, TIMER_UNIQUE|TIMER_NO_HASH_WAIT)
 
 /obj/item/storage/pouch/cassette
-	name = "cassette pouch"
-	desc = "A finely crafted pouch, made specifically to keep cassettes safe during wartime."
+	name = "磁带收纳袋"
+	desc = "精心制作的收纳袋，专门保护战时携带的磁带。"
 	icon_state = "cassette_pouch_closed"
 	var/base_icon_state = "cassette_pouch"
 	w_class = SIZE_SMALL
@@ -1521,8 +1521,8 @@
 				icon_state = base_icon_state
 
 /obj/item/storage/pouch/machete
-	name = "\improper H6B pattern M2132 machete scabbard"
-	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the pouch slot."
+	name = "H6B 式 M2132 砍刀鞘"
+	desc = "用于携带 M2132 砍刀的大型皮革刀鞘，可固定在收纳袋槽位上。"
 	icon = 'icons/obj/items/storage/holsters.dmi'
 	icon_state = "macheteB_holster"
 	item_state = "machete_holster"
@@ -1551,8 +1551,8 @@
 	new /obj/item/weapon/sword/machete(src)
 
 /obj/item/storage/pouch/etool
-	name = "Type 50 entrenching tool pouch"
-	desc = "A pouch designed to carry the Type 50 entrenching tool. Sadly, not good for much else."
+	name = "50 式工兵铲收纳袋"
+	desc = "专为携带 50 式工兵铲设计的袋子，可惜装不了多少其他东西。"
 	icon_state = "entrench"
 	max_w_class = SIZE_SMALL
 	can_hold = /obj/item/tool/shovel/etool

@@ -141,7 +141,7 @@
 
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	if(!current_location || should_block_game_interaction(current_location))//If turf was not found or they're on z level 2
-		to_chat(user, SPAN_NOTICE("\The [src]发生故障了。"))
+		to_chat(user, SPAN_NOTICE("[src]发生故障了。"))
 		return
 	var/list/L = list(  )
 	for(var/obj/structure/machinery/teleport/hub/R in GLOB.machines)
@@ -167,7 +167,7 @@
 		if(PO.creator == src)
 			count++
 	if(count >= 3)
-		user.show_message(SPAN_NOTICE("\The [src]正在充能！"), SHOW_MESSAGE_VISIBLE)
+		user.show_message(SPAN_NOTICE("[src]正在充能！"), SHOW_MESSAGE_VISIBLE)
 		return
 	var/T = L[t1]
 	for(var/mob/O in hearers(user, null))

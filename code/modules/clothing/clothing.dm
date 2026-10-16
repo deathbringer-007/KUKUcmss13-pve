@@ -1,5 +1,5 @@
 /obj/item/clothing
-	name = "clothing"
+	name = "服装"
 	pickupvol = 40
 	dropvol = 40
 	var/eye_protection = EYE_PROTECTION_NONE //used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
@@ -157,7 +157,7 @@
 //Suit
 /obj/item/clothing/suit
 	icon = 'icons/obj/items/clothing/suits.dmi'
-	name = "suit"
+	name = "外套"
 	var/fire_resist = T0C+100
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
 	flags_bodypart_hidden = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
@@ -213,7 +213,7 @@
 /////////////////////////////////////////////////////////
 //Gloves
 /obj/item/clothing/gloves
-	name = "gloves"
+	name = "手套"
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	w_class = SIZE_SMALL
 	icon = 'icons/obj/items/clothing/gloves.dmi'
@@ -254,7 +254,7 @@
 //////////////////////////////////////////////////////////////////
 //Mask
 /obj/item/clothing/mask
-	name = "mask"
+	name = "面罩"
 	icon = 'icons/obj/items/clothing/masks.dmi'
 	flags_equip_slot = SLOT_FACE
 	flags_armor_protection = BODY_FLAG_HEAD|BODY_FLAG_FACE|BODY_FLAG_EYES
@@ -341,9 +341,9 @@
 ////////////////////////////////////////////////////////////////////////
 //Shoes
 /obj/item/clothing/shoes
-	name = "shoes"
+	name = "鞋子"
 	icon = 'icons/obj/items/clothing/shoes.dmi'
-	desc = "Comfortable-looking shoes."
+	desc = "看起来很舒适的鞋子。"
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	siemens_coefficient = 0.9
 	flags_armor_protection = BODY_FLAG_FEET

@@ -12,8 +12,8 @@
 
 
 /obj/structure/machinery/light_construct
-	name = "light fixture frame"
-	desc = "A light fixture under construction."
+	name = "灯具框架"
+	desc = "正在建造中的灯具。"
 	icon = 'icons/obj/items/lighting.dmi'
 	icon_state = "tube-construct-stage1"
 	anchored = TRUE
@@ -37,11 +37,11 @@
 	. = ..()
 	switch(stage)
 		if(1)
-			. += "It's an empty frame."
+			. += "这是一个空框架。"
 		if(2)
-			. += "It's wired."
+			. += "已经接好线了。"
 		if(3)
-			. += "The casing is closed."
+			. += "外壳已关闭。"
 
 /obj/structure/machinery/light_construct/deconstruct(disassembled = TRUE)
 	if(disassembled)
@@ -53,18 +53,18 @@
 	if (HAS_TRAIT(W, TRAIT_TOOL_WRENCH))
 		if (src.stage == 1)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			to_chat(usr, "You begin deconstructing [src].")
+			to_chat(usr, "你开始拆卸[src]。")
 			if (!do_after(usr, 30, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 				return
-			user.visible_message("[user.name] deconstructs [src].", \
-				"You deconstruct [src].", "You hear a noise.")
+			user.visible_message("[user.name]拆除了[src]。", \
+				"你拆除了[src]。", "你听见一阵响动。")
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 			deconstruct()
 		if (src.stage == 2)
-			to_chat(usr, "You have to remove the wires first.")
+			to_chat(usr, "你得先拆掉电线。")
 			return
 		if (src.stage == 3)
-			to_chat(usr, "You have to unscrew the case first.")
+			to_chat(usr, "你得先拧开外壳。")
 			return
 
 	if(HAS_TRAIT(W, TRAIT_TOOL_WIRECUTTERS))
@@ -76,8 +76,8 @@
 			if("bulb")
 				src.icon_state = "bulb-construct-stage1"
 		new /obj/item/stack/cable_coil(get_turf(src.loc), 1, "red")
-		user.visible_message("[user.name] removes the wiring from [src].", \
-			"You remove the wiring from [src].", "You hear a noise.")
+		user.visible_message("[user.name]拆掉了[src]的电线。", \
+			"你拆掉了[src]的电线。", "你听见一阵响动。")
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 		return
 
@@ -91,8 +91,8 @@
 				if("bulb")
 					src.icon_state = "bulb-construct-stage2"
 			src.stage = 2
-			user.visible_message("[user.name] adds wires to [src].", \
-				"You add wires to [src].")
+			user.visible_message("[user.name]给[src]接上了电线。", \
+				"你给[src]接上了电线。")
 		return
 
 	if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
@@ -103,8 +103,8 @@
 				if("bulb")
 					src.icon_state = "bulb-empty"
 			src.stage = 3
-			user.visible_message("[user.name] closes [src]'s casing.", \
-				"You close [src]'s casing.", "You hear a noise.")
+			user.visible_message("[user.name]关闭了[src]的外壳。", \
+				"你合上了[src]的外壳。", "你听见一阵响动。")
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 
 			switch(fixture_type)
@@ -121,8 +121,8 @@
 	..()
 
 /obj/structure/machinery/light_construct/small
-	name = "small light fixture frame"
-	desc = "A small light fixture under construction."
+	name = "小型灯具框架"
+	desc = "正在建造中的小型灯具。"
 	icon = 'icons/obj/items/lighting.dmi'
 	icon_state = "bulb-construct-stage1"
 	anchored = TRUE
@@ -132,11 +132,11 @@
 
 // the standard tube light fixture
 /obj/structure/machinery/light
-	name = "light fixture"
+	name = "灯具"
 	icon = 'icons/obj/items/lighting.dmi'
 	var/base_state = "tube" // base description and icon_state
 	icon_state = "tube1"
-	desc = "A lighting fixture that is fitted with a bright fluorescent light tube. Looking at it for too long makes your eyes go watery."
+	desc = "装有明亮荧光灯管的灯具，盯着看太久会让你眼泪直流。"
 	anchored = TRUE
 	layer = FLY_LAYER
 	use_power = USE_POWER_IDLE
@@ -161,7 +161,7 @@
 
 // containment lights
 /obj/structure/machinery/light/containment
-	name = "containment light fixture"
+	name = "收容区灯具"
 	unslashable = TRUE
 	unacidable = TRUE
 
@@ -171,7 +171,7 @@
 /obj/structure/machinery/light/blue
 	icon_state = "btube1"
 	base_state = "btube"
-	desc = "A lighting fixture that is fitted with a bright blue fluorescent light tube. Looking at it for too long makes your eyes go watery."
+	desc = "装有明亮蓝色荧光灯管的灯具，盯着看太久会让你眼泪直流。"
 	light_color = LIGHT_COLOR_XENON
 
 // the smaller bulb light fixture
@@ -181,7 +181,7 @@
 	base_state = "bulb"
 	fitting = "bulb"
 	brightness = 4
-	desc = "A small lighting fixture that is fitted with a bright fluorescent light bulb. Looking at it for too long makes your eyes go watery."
+	desc = "装有明亮荧光灯泡的小型灯具，盯着看太久会让你眼泪直流。"
 	light_type = /obj/item/light_bulb/bulb
 
 /obj/structure/machinery/light/small/blue
@@ -189,7 +189,7 @@
 	base_state = "bbulb"
 	fitting = "bulb"
 	brightness = 4
-	desc = "A small lighting fixture that is fitted with a bright blue fluorescent light bulb. Looking at it for too long makes your eyes go watery."
+	desc = "装有明亮蓝色荧光灯泡的小型灯具，盯着看太久会让你眼泪直流。"
 	light_type = /obj/item/light_bulb/bulb
 	light_color = LIGHT_COLOR_XENON
 
@@ -198,7 +198,7 @@
 	base_state = "bbulb"
 	fitting = "bulb"
 	brightness = 4
-	desc = "A small lighting fixture that is fitted with a bright fluorescent light bulb. Looking at it for too long makes your eyes go watery."
+	desc = "装有明亮荧光灯泡的小型灯具，盯着看太久会让你眼泪直流。"
 	light_type = /obj/item/light_bulb/bulb
 	light_color = LIGHT_COLOR_XENON_UA
 
@@ -208,41 +208,41 @@
 	fitting = "bulb"
 	color = "#C02526"
 	brightness = 4
-	desc = "A small red lighting fixture that is dark shade of red. Looking at it for too long makes your eyes go watery."
+	desc = "暗红色的小型红灯，盯着看太久会让你眼泪直流。"
 	light_type = /obj/item/light_bulb/bulb
 	light_color = LIGHT_COLOR_RED_BULB
 
 /obj/structure/machinery/light/double
 	icon_state = "ptube1"
 	base_state = "ptube"
-	desc = "A lighting fixture that can be fitted with two bright blue fluorescent light tubes for that extra eye-watering goodness."
+	desc = "能装入两根明亮蓝色荧光灯管的灯具，让你加倍泪流满面。"
 
 /obj/structure/machinery/light/double/blue
 	icon_state = "bptube1"
 	base_state = "bptube"
-	desc = "A lighting fixture that can be fitted with two bright fluorescent light tubes for that extra eye-watering goodness."
+	desc = "能装入两根明亮荧光灯管的灯具，让你加倍泪流满面。"
 	light_color = LIGHT_COLOR_XENON
 
 /obj/structure/machinery/light/double/blue/golden_arrow
 	icon_state = "bptube1"
 	base_state = "bptube"
-	desc = "A lighting fixture that can be fitted with two bright fluorescent light tubes for that extra eye-watering goodness."
+	desc = "能装入两根明亮荧光灯管的灯具，让你加倍泪流满面。"
 	light_color = LIGHT_COLOR_XENON_UA
 
 /obj/structure/machinery/light/spot
-	name = "spotlight"
+	name = "聚光灯"
 	icon_state = "slight1"
 	base_state = "slight"
-	desc = "A wide light fixture fitted with a large, very bright fluorescent light tube. You want to sneeze just looking at it."
+	desc = "装有粗大高亮荧光灯管的宽型灯具，光是看着就想打喷嚏。"
 	fitting = "large tube"
 	light_type = /obj/item/light_bulb/tube/large
 	brightness = 12
 
 /obj/structure/machinery/light/spot/blue
-	name = "spotlight"
+	name = "聚光灯"
 	icon_state = "bslight1"
 	base_state = "bslight"
-	desc = "A wide light fixture fitted with a large, blue, very bright fluorescent light tube. You want to sneeze just looking at it."
+	desc = "装有粗大高亮蓝色荧光灯管的宽型灯具，光是看着就想打喷嚏。"
 	fitting = "large tube"
 	light_type = /obj/item/light_bulb/tube/large/
 	brightness = 12
@@ -363,13 +363,13 @@
 	. = ..()
 	switch(status)
 		if(LIGHT_OK)
-			to_chat(user, "It is turned [on? "on" : "off"].")
+			to_chat(user, "它目前处于[on? "开启" : "关闭"]状态。")
 		if(LIGHT_EMPTY)
-			to_chat(user, "The [fitting] has been removed.")
+			to_chat(user, "[fitting == "tube" ? "灯管" : (fitting == "bulb" ? "灯泡" : "大型灯管")]已被取下。")
 		if(LIGHT_BURNED)
-			to_chat(user, "The [fitting] is burnt out.")
+			to_chat(user, "[fitting == "tube" ? "灯管" : (fitting == "bulb" ? "灯泡" : "大型灯管")]已经烧坏。")
 		if(LIGHT_BROKEN)
-			to_chat(user, "The [fitting] has been smashed.")
+			to_chat(user, "[fitting == "tube" ? "灯管" : (fitting == "bulb" ? "灯泡" : "大型灯管")]已经被打碎。")
 
 
 
@@ -388,14 +388,14 @@
 	// attempt to insert light
 	if(istype(W, /obj/item/light_bulb))
 		if(status != LIGHT_EMPTY)
-			to_chat(user, "There is a [fitting] already inserted.")
+			to_chat(user, "里面已经装有一个[fitting == "tube" ? "灯管" : (fitting == "bulb" ? "灯泡" : "大型灯管")]。")
 			return
 		else
 			src.add_fingerprint(user)
 			var/obj/item/light_bulb/L = W
 			if(istype(L, light_type))
 				status = L.status
-				to_chat(user, "You insert the [L.name].")
+				to_chat(user, "你装入了[L.name]。")
 				switchcount = L.switchcount
 				rigged = L.rigged
 				brightness = L.brightness
@@ -411,7 +411,7 @@
 
 						explode()
 			else
-				to_chat(user, "This type of light requires a [fitting].")
+				to_chat(user, "这种灯具需要[fitting == "tube" ? "灯管" : (fitting == "bulb" ? "灯泡" : "大型灯管")]。")
 				return
 
 		// attempt to break the light
@@ -422,25 +422,25 @@
 
 		if(prob(1+W.force * W.demolition_mod * 5))
 
-			to_chat(user, "You hit the light, and it smashes!")
+			to_chat(user, "你打中了灯具，将它打碎了！")
 			for(var/mob/M as anything in viewers(src))
 				if(M == user)
 					continue
-				M.show_message("[user.name] smashed the light!", SHOW_MESSAGE_VISIBLE, "You hear a tinkle of breaking glass", SHOW_MESSAGE_AUDIBLE)
+				M.show_message("[user.name]打碎了灯具！", SHOW_MESSAGE_VISIBLE, "你听见玻璃碎裂的清脆声", SHOW_MESSAGE_AUDIBLE)
 			if(on && (W.flags_atom & CONDUCT))
 				if (prob(12))
 					electrocute_mob(user, get_area(src), src, 0.3)
 			broken()
 
 		else
-			to_chat(user, "You hit the light!")
+			to_chat(user, "你打中了灯具！")
 
 	// attempt to stick weapon into light socket
 	else if(status == LIGHT_EMPTY)
 		if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER)) //If it's a screwdriver open it.
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-			user.visible_message("[user.name] opens [src]'s casing.", \
-				"You open [src]'s casing.", "You hear a noise.")
+			user.visible_message("[user.name]打开了[src]的外壳。", \
+				"你打开了[src]的外壳。", "你听见一阵响动。")
 			var/obj/structure/machinery/light_construct/newlight = null
 			switch(fitting)
 				if("tube")
@@ -456,7 +456,7 @@
 			qdel(src)
 			return
 
-		to_chat(user, "You stick \the [W] into the light socket!")
+		to_chat(user, "你将[W]伸进了灯座！")
 		if(has_power() && (W.flags_atom & CONDUCT))
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(3, 1, src)
@@ -500,11 +500,11 @@
 /obj/structure/machinery/light/attack_animal(mob/living/M)
 	if(M.melee_damage_upper == 0) return
 	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
-		to_chat(M, SPAN_WARNING("That object is useless to you."))
+		to_chat(M, SPAN_WARNING("那个物品对你毫无用处。"))
 		return
 	else if (status == LIGHT_OK||status == LIGHT_BURNED)
 		for(var/mob/O in viewers(src))
-			O.show_message(SPAN_DANGER("[M.name] smashed the light!"), SHOW_MESSAGE_VISIBLE, "You hear a tinkle of breaking glass", SHOW_MESSAGE_AUDIBLE)
+			O.show_message(SPAN_DANGER("[M.name]打碎了灯具！"), SHOW_MESSAGE_VISIBLE, "你听见玻璃碎裂的清脆声", SHOW_MESSAGE_AUDIBLE)
 		broken()
 	return
 // attack with hand - remove tube/bulb
@@ -515,14 +515,14 @@
 	add_fingerprint(user)
 
 	if(status == LIGHT_EMPTY)
-		to_chat(user, "There is no [fitting] in this light.")
+		to_chat(user, "这盏灯里没有[fitting == "tube" ? "灯管" : (fitting == "bulb" ? "灯泡" : "大型灯管")]。")
 		return
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
 			for(var/mob/M as anything in viewers(src))
-				M.show_message(SPAN_DANGER("[user.name] smashed the light!"), SHOW_MESSAGE_VISIBLE, "You hear a tinkle of breaking glass", SHOW_MESSAGE_AUDIBLE)
+				M.show_message(SPAN_DANGER("[user.name]打碎了灯具！"), SHOW_MESSAGE_VISIBLE, "你听见玻璃碎裂的清脆声", SHOW_MESSAGE_AUDIBLE)
 			broken()
 			return
 
@@ -541,12 +541,12 @@
 			prot = 1
 
 		if(prot > 0)
-			to_chat(user, "You remove the light [fitting]")
+			to_chat(user, "你取出了灯具中的[fitting == "tube" ? "灯管" : (fitting == "bulb" ? "灯泡" : "大型灯管")]。")
 		else
-			to_chat(user, "You try to remove the light [fitting], but it's too hot and you don't want to burn your hand.")
+			to_chat(user, "你试图取出灯具中的[fitting == "tube" ? "灯管" : (fitting == "bulb" ? "灯泡" : "大型灯管")]，但它太烫了，你可不想烫伤手。")
 			return // if burned, don't remove the light
 	else
-		to_chat(user, "You remove the light [fitting].")
+		to_chat(user, "你取出了灯具中的[fitting == "tube" ? "灯管" : (fitting == "bulb" ? "灯泡" : "大型灯管")]。")
 
 	// create a light tube/bulb item and put it in the user's hand
 	var/obj/item/light_bulb/L = new light_type()
@@ -655,9 +655,9 @@
 
 /obj/structure/machinery/light/handle_tail_stab(mob/living/carbon/xenomorph/stabbing_xeno)
 	if(is_broken())
-		to_chat(stabbing_xeno, SPAN_WARNING("\The [src] is already broken!"))
+		to_chat(stabbing_xeno, SPAN_WARNING("[src]已经坏了！"))
 		return
-	stabbing_xeno.visible_message(SPAN_DANGER("\The [stabbing_xeno] smashes \the [src] with its tail!"), SPAN_DANGER("You smash \the [src] with your tail!"), null, 5)
+	stabbing_xeno.visible_message(SPAN_DANGER("[stabbing_xeno]用尾巴砸碎了[src]！"), SPAN_DANGER("你用尾巴砸碎了[src]！"), null, 5)
 	broken() //Smashola!
 	return TAILSTAB_COOLDOWN_VERY_LOW
 
@@ -682,8 +682,8 @@
 	shatter()
 
 /obj/item/light_bulb/tube
-	name = "light tube"
-	desc = "A replacement light tube."
+	name = "灯管"
+	desc = "备用灯管。"
 	icon_state = "ltube"
 	base_state = "ltube"
 	item_state = "c_tube"
@@ -692,15 +692,15 @@
 
 /obj/item/light_bulb/tube/large
 	w_class = SIZE_SMALL
-	name = "large light tube"
+	name = "大型灯管"
 	icon_state = "largetube"
 	base_state = "largetube"
 	brightness = 15
 	matter = list("glass" = 100)
 
 /obj/item/light_bulb/bulb
-	name = "light bulb"
-	desc = "A replacement light bulb."
+	name = "灯泡"
+	desc = "备用灯泡。"
 	icon_state = "lbulb"
 	base_state = "lbulb"
 	item_state = "contvapour"
@@ -708,8 +708,8 @@
 	brightness = 5
 
 /obj/item/light_bulb/bulb/fire
-	name = "fire bulb"
-	desc = "A replacement fire bulb."
+	name = "火焰灯泡"
+	desc = "备用火焰灯泡。"
 	icon_state = "fbulb"
 	base_state = "fbulb"
 	item_state = "egg4"
@@ -717,8 +717,8 @@
 	brightness = 5
 
 /obj/item/light_bulb/tube/prison
-	name = "light tubes"
-	desc = "Replacement light tubes."
+	name = "灯管"
+	desc = "备用灯管。"
 	icon_state = "ptube0"
 	base_state = "ptube0"
 	item_state = "contvapour"
@@ -731,21 +731,21 @@
 	switch(status)
 		if(LIGHT_OK)
 			icon_state = base_state
-			desc = "A replacement [name]."
+			desc = "备用[name]。"
 		if(LIGHT_BURNED)
 			icon_state = "[base_state]-burned"
-			desc = "A burnt-out [name]."
+			desc = "烧坏的[name]。"
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
-			desc = "A broken [name]."
+			desc = "破损的[name]。"
 
 
 /obj/item/light_bulb/Initialize()
 	. = ..()
 	switch(name)
-		if("light tube")
+		if("灯管")
 			brightness = rand(6,9)
-		if("light bulb")
+		if("灯泡")
 			brightness = rand(4,6)
 	update()
 
@@ -764,7 +764,7 @@
 
 /obj/item/light_bulb/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
-		src.visible_message(SPAN_DANGER("[name] shatters."),SPAN_DANGER("You hear a small glass object shatter."))
+		src.visible_message(SPAN_DANGER("[name]碎裂了。"),SPAN_DANGER("你听见小玻璃物件碎裂的声音。"))
 		status = LIGHT_BROKEN
 		force = 5
 		sharp = IS_SHARP_ITEM_SIMPLE
@@ -772,10 +772,10 @@
 		update()
 
 /obj/structure/machinery/landinglight
-	name = "landing light"
+	name = "着陆引导灯"
 	icon = 'icons/obj/structures/props/landinglights.dmi'
 	icon_state = "landingstripe"
-	desc = "A landing light, if it's flashing stay clear!"
+	desc = "着陆引导灯，闪烁时请避开！"
 	var/id = "" // ID for landing zone
 	anchored = TRUE
 	density = FALSE

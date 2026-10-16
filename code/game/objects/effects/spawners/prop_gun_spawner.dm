@@ -46,8 +46,8 @@
 	qdel(src)
 
 /obj/item/prop/prop_gun
-	name = "prop gun"
-	desc = "A non-functional gun prop. You should not be able to see this."
+	name = "道具枪械"
+	desc = "不能使用的枪械道具，你不该看见它。"
 	icon = 'icons/landmarks.dmi'
 	icon_state = "prop_gun"
 	flags_item = TWOHANDED

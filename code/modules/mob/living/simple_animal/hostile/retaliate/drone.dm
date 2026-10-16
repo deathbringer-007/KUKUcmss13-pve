@@ -1,8 +1,8 @@
 
 //malfunctioning combat drones
 /mob/living/simple_animal/hostile/retaliate/malf_drone
-	name = "combat drone"
-	desc = "An automated combat drone armed with state of the art weaponry and shielding."
+	name = "战斗无人机"
+	desc = "配备先进武器和护盾的自动战斗无人机。"
 	icon_state = "drone3"
 	icon_living = "drone3"
 	icon_dead = "drone_dead"
@@ -10,11 +10,11 @@
 	rapid = 1
 	speak_chance = 5
 	turns_per_move = 3
-	response_help = "pokes the"
-	response_disarm = "gently pushes aside the"
-	response_harm = "hits the"
-	speak = list("ALERT.","Hostile-ile-ile entities dee-twhoooo-wected.","Threat parameterszzzz- szzet.","Bring sub-sub-sub-systems uuuup to combat alert alpha-a-a.")
-	emote_see = list("beeps menacingly","whirrs threateningly","scans its immediate vicinity")
+	response_help = "戳了戳"
+	response_disarm = "轻轻推开了"
+	response_harm = "击打了"
+	speak = list("警报。","检——检测到敌——敌对实体。","威胁参数——已——设定。","子——子——子系统进入阿尔法战斗警——警戒。")
+	emote_see = list("发出威吓的哔声","发出充满威胁的嗡鸣","扫描着周围")
 	a_intent = INTENT_HARM
 	stop_automated_movement_when_pulled = 0
 	health = 300
@@ -85,7 +85,7 @@
 
 	//repair a bit of damage
 	if(prob(1))
-		src.visible_message(SPAN_DANGER("[icon2html(src, viewers(src))] [src] shudders and shakes as some of it's damaged systems come back online."))
+		src.visible_message(SPAN_DANGER("[icon2html(src, viewers(src))] [src]一阵震颤，部分受损系统重新上线了。"))
 		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 		s.set_up(3, 1, src)
 		s.start()
@@ -100,10 +100,10 @@
 	//sometimes our targeting sensors malfunction, and we attack anyone nearby
 	if(prob(disabled ? 0 : 1))
 		if(hostile_drone)
-			src.visible_message(SPAN_NOTICE("[icon2html(src, viewers(src))] [src] retracts several targeting vanes, and dulls it's running lights."))
+			src.visible_message(SPAN_NOTICE("[icon2html(src, viewers(src))] [src]收起几片瞄准翼片，运行灯也暗了下来。"))
 			hostile_drone = 0
 		else
-			src.visible_message(SPAN_DANGER("[icon2html(src, viewers(src))] [src] suddenly lights up, and additional targeting vanes slide into place."))
+			src.visible_message(SPAN_DANGER("[icon2html(src, viewers(src))] [src]突然亮了起来，更多瞄准翼片滑入就位。"))
 			hostile_drone = 1
 
 	if(health / maxHealth > 0.9)
@@ -124,17 +124,17 @@
 		exploding = 0
 		if(!disabled)
 			if(prob(50))
-				src.visible_message(SPAN_NOTICE("[icon2html(src, viewers(src))] [src] suddenly shuts down!"))
+				src.visible_message(SPAN_NOTICE("[icon2html(src, viewers(src))] [src]突然关闭了！"))
 			else
-				src.visible_message(SPAN_NOTICE("[icon2html(src, viewers(src))] [src] suddenly lies still and quiet."))
+				src.visible_message(SPAN_NOTICE("[icon2html(src, viewers(src))] [src]突然静止下来，归于沉寂。"))
 			disabled = rand(150, 600)
 			walk(src,0)
 
 	if(exploding && prob(20))
 		if(prob(50))
-			src.visible_message(SPAN_DANGER("[icon2html(src, viewers(src))] [src] begins to spark and shake violenty!"))
+			src.visible_message(SPAN_DANGER("[icon2html(src, viewers(src))] [src]开始冒出火花，剧烈震颤！"))
 		else
-			src.visible_message(SPAN_DANGER("[icon2html(src, viewers(src))] [src] sparks and shakes like it's about to explode!"))
+			src.visible_message(SPAN_DANGER("[icon2html(src, viewers(src))] [src]冒着火花不停震颤，仿佛即将爆炸！"))
 		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 		s.set_up(3, 1, src)
 		s.start()
@@ -159,7 +159,7 @@
 	walk(src,0)
 
 /mob/living/simple_animal/hostile/retaliate/malf_drone/death()
-	..(null,"suddenly breaks apart.")
+	..(null,"突然散架了。")
 	qdel(src)
 
 /mob/living/simple_animal/hostile/retaliate/malf_drone/Destroy(force)

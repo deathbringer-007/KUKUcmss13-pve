@@ -3,8 +3,8 @@
 
 // First thing we need is the ammo drum for this thing.
 /obj/item/ammo_magazine/m56d
-	name = "M56D drum magazine (10x28mm Caseless)"
-	desc = "A box of 700, 10x28mm caseless tungsten rounds for the M56D heavy machine gun system. Just click the M56D with this to reload it."
+	name = "M56D 弹鼓 (10x28mm 无壳弹)"
+	desc = "装有 700 发 10x28mm 无壳钨芯弹的弹箱，供 M56D 重机枪系统使用。用它点击 M56D 即可装填。"
 	w_class = SIZE_MEDIUM
 	icon_state = "m56d_drum"
 	caliber = "10x28mm"
@@ -34,8 +34,8 @@
 
 // The actual gun itself.
 /obj/item/device/m56d_gun
-	name = "\improper M56D heavy machine gun"
-	desc = "The top half of a M56D heavy machine gun post. However it ain't much use without the tripod."
+	name = "M56D 重机枪"
+	desc = "M56D 重机枪架的上半部分。没有三脚架可派不上什么用场。"
 	unacidable = TRUE
 	w_class = SIZE_HUGE
 	flags_equip_slot = SLOT_BACK
@@ -423,7 +423,7 @@
 
 // The actual Machinegun itself, going to borrow some stuff from current sentry code to make sure it functions. Also because they're similiar.
 /obj/structure/machinery/m56d_hmg
-	name = "\improper M56D heavy machine gun"
+	name = "M56D 重机枪"
 	desc = "A deployable, heavy machine gun. While it is capable of taking the same rounds as the M56..<br>Drag its sprite onto yourself to man it. Ctrl-click it to cycle through firemodes."
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D"

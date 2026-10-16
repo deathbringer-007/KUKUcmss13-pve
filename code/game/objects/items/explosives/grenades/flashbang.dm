@@ -1,5 +1,5 @@
 /obj/item/explosive/grenade/flashbang
-	name = "flashbang"
+	name = "闪光震撼弹"
 	icon_state = "flashbang"
 	item_state = "grenade_flashbang"
 	black_market_value = 10
@@ -218,8 +218,8 @@
 //Knockdowns only within 3x3 area, causes temporary blindness, deafness and daze, depending on range and type of mob. Effects reduced when lying.
 //Makes it perfect support tool, but not an insta win.
 /obj/item/explosive/grenade/flashbang/noskill
-	name = "M40 stun grenade"
-	desc = "A less-lethal explosive device used to temporarily disorient an enemy by producing a flash of light and an intensely loud \"bang\", which cause temporary blindness and deafness. More commonly referred to as a \"flashbang\". Still dangerous if it explodes nearby."
+	name = "M40 震撼手榴弹"
+	desc = "低致命爆炸装置，以强光与巨响造成短暂失明、失聪和迷失方向，通常称为“闪光震撼弹”。在身边爆炸仍很危险。"
 
 	icon_state = "flashbang_noskill"
 	item_state = "grenade_flashbang_noskill"

@@ -21,8 +21,8 @@ Defined in conflicts.dm of the #defines folder.
 */
 
 /obj/item/attachable
-	name = "attachable item"
-	desc = "It's the very theoretical concept of an attachment. You should never see this."
+	name = "可安装物品"
+	desc = "这只是枪械配件的抽象概念，你不该看见它。"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = null
 	item_state = null
@@ -253,8 +253,8 @@ Defined in conflicts.dm of the #defines folder.
 // ======== Muzzle Attachments ======== //
 
 /obj/item/attachable/suppressor
-	name = "suppressor"
-	desc = "Small muzzle device that reduces flash and noise with special internal geometry.\n Reduces noise of the shot, increases accuracy and stability, but penalizes damage marginally."
+	name = "消音器"
+	desc = "利用特殊内部结构降低枪口火光与噪音的小型枪口装置。\n可降低枪声、提高精度和稳定性，但会略微降低伤害。"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "suppressor"
 	slot = "muzzle"
@@ -278,11 +278,11 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "m40sd_suppressor_a"
 
 /obj/item/attachable/bayonet
-	name = "\improper M5 bayonet"
+	name = "M5 刺刀"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "bayonet"
 	item_state = "combat_knife"
-	desc = "An outdated rifle bayonet issued by the USCMC. Neatly fits into boot-mounted holsters, and can- in emergencies- be utilized to dig out shrapnel."
+	desc = "USCMC 配发的老式步枪刺刀。可稳妥收进靴上刀鞘，紧急情况下还能用来挖出弹片。"
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = MELEE_FORCE_NORMAL
 	throwforce = MELEE_FORCE_WEAK
@@ -314,8 +314,8 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_unwielded_mod = -HIT_ACCURACY_MULT_TIER_1
 
 /obj/item/attachable/bayonet/upp
-	name = "\improper Type 80 bayonet"
-	desc = "The standard-issue bayonet of the UPP, the Type 80 is balanced to also function as an effective throwing knife."
+	name = "80 式刺刀"
+	desc = "UPP 制式 80 式刺刀，配重使其也能作为有效的飞刀使用。"
 	icon_state = "upp_bayonet"
 	item_state = "knife"
 	attach_icon = "upp_bayonet_a"
@@ -336,8 +336,8 @@ Defined in conflicts.dm of the #defines folder.
 	var/filled = FALSE
 
 /obj/item/attachable/bayonet/rmc
-	name = "\improper L5 bayonet"
-	desc = "The standard-issue bayonet of the RMC, the L5 is balanced to also function as an effective throwing knife."
+	name = "L5 刺刀"
+	desc = "RMC 制式 L5 刺刀，配重使其也能作为有效的飞刀使用。"
 	icon_state = "upp_bayonet" // PLACEHOLDER PLEASE REPLACE
 	item_state = "combat_knife"
 	attach_icon = "upp_bayonet_a" // PLACEHOLDER PLEASE REPLACE
@@ -389,8 +389,8 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 20
 
 /obj/item/attachable/extended_barrel
-	name = "extended barrel"
-	desc = "Longer barrel reduces unburnt powder, improving muzzle velocity and accuracy."
+	name = "加长枪管"
+	desc = "加长枪管可减少未燃尽火药，提高初速与精度。"
 	slot = "muzzle"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "ebarrel"
@@ -428,8 +428,8 @@ Defined in conflicts.dm of the #defines folder.
 	..()
 
 /obj/item/attachable/compensator
-	name = "recoil compensator"
-	desc = "A muzzle attachment that reduces recoil by diverting expelled gasses upwards. \nIncreases accuracy and reduces recoil."
+	name = "后坐补偿器"
+	desc = "将排出的气体导向上方以抵消后坐力的枪口配件。\n可提高精度并降低后坐力。"
 	slot = "muzzle"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "comp"
@@ -697,8 +697,8 @@ Defined in conflicts.dm of the #defines folder.
 // ======== Rail attachments ======== //
 
 /obj/item/attachable/reddot
-	name = "S5 red-dot sight"
-	desc = "An ARMAT S5 red-dot, type designated as the AN/PVQ-62 Dot Sight. Zero-magnification optic equipped with a sunshade, for better clarity under bright conditions and weather resistance. Unobtrusive and compact, increases wielded accuracy."
+	name = "S5 红点瞄准镜"
+	desc = "阿玛特 S5 红点瞄准镜，制式编号 AN/PVQ-62。无倍率光学镜配有遮光罩，能在强光下保持清晰并抵御恶劣天气。小巧、不挡视野，可提高双手持枪精度。"
 	icon = 'icons/obj/items/weapons/guns/attachments/rail.dmi'
 	icon_state = "reddot"
 	attach_icon = "reddot_a"
@@ -715,8 +715,8 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "Cutting edge UPP sight with automated reticle correction for a fixed zero point. Increases accuracy significantly."
 
 /obj/item/attachable/reflex
-	name = "S6 reflex sight"
-	desc = "An ARMAT S6 reflex sight, type designated as the AN/PVG-72 Reflex. Zero-magnification alternative to irons, decreases scatter during burst fire. Can link with mil-HUDs for a limited CCIP."
+	name = "S6 反射式瞄准镜"
+	desc = "阿玛特 S6 反射式瞄准镜，制式编号 AN/PVG-72。无需放大的机械瞄具替代品，可降低点射散布。可连接军用抬头显示器，提供有限的连续计算命中点功能。"
 	icon = 'icons/obj/items/weapons/guns/attachments/rail.dmi'
 	icon_state = "reflex"
 	attach_icon = "reflex_a"
@@ -735,8 +735,8 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "Reflector type gunsight compatible with most standard issue UPP firearms. Durable but the power supply is notoriously unreliable. Reduces scatter significantly and boosts accuracy slightly."
 
 /obj/item/attachable/flashlight
-	name = "rail flashlight"
-	desc = "Railmounted flashlight. Pretty generic. Surprisingly high intensity, as it's a better light source than the suit lamps of most armor systems."
+	name = "导轨手电筒"
+	desc = "普通的导轨手电筒。亮度出人意料，比大多数护甲系统的内置灯更亮。"
 	icon = 'icons/obj/items/weapons/guns/attachments/rail.dmi'
 	icon_state = "flashlight"
 	attach_icon = "flashlight_a"
@@ -924,8 +924,8 @@ Defined in conflicts.dm of the #defines folder.
 	return
 
 /obj/item/attachable/magnetic_harness
-	name = "magnetic harness"
-	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to any set of USCM armor."
+	name = "磁力枪背带"
+	desc = "通过磁力连接到武器导轨的背带套件。武器掉落时会自动挂回穿戴的任意 USCM 护甲上。"
 	icon = 'icons/obj/items/weapons/guns/attachments/rail.dmi'
 	icon_state = "magnetic"
 	attach_icon = "magnetic_a"
@@ -1003,11 +1003,11 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_unwielded_mod = -SCATTER_AMOUNT_TIER_2
 
 /obj/item/attachable/scope
-	name = "S8 4x telescopic scope"
+	name = "S8 4x 望远瞄准镜"
 	icon = 'icons/obj/items/weapons/guns/attachments/rail.dmi'
 	icon_state = "sniperscope"
 	attach_icon = "sniperscope_a"
-	desc = "An ARMAT S8 scope, type designation AN/PVQ-31. Fixed 4x zoom, increased time to settle on target, but increases accuracy while scoped."
+	desc = "阿玛特 S8 瞄准镜，型号 AN/PVQ-31。固定 4 倍放大，瞄准目标所需时间更长，但开镜时精度更高。"
 	slot = "rail"
 	aim_speed_mod = SLOWDOWN_ADS_SCOPE //Extra slowdown when wielded
 	wield_delay_mod = WIELD_DELAY_FAST
@@ -1214,10 +1214,10 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/scope/mini
-	name = "S4 2x telescopic mini-scope"
+	name = "S4 2x 小型望远瞄准镜"
 	icon_state = "miniscope"
 	attach_icon = "miniscope_a"
-	desc = "An ARMAT S4 scope, type designation AN/PVQ-45. 2x magnification optic, increases accuracy while scoped. \nZero often, first production batch suffered from drifting under heavy use and some of them might be in circulation still."
+	desc = "阿玛特 S4 瞄准镜，型号 AN/PVQ-45。2 倍光学放大，开镜时可提高精度。\n请经常归零校准：首批产品在重度使用后会出现偏移，部分可能仍在流通。"
 	slot = "rail"
 	zoom_offset = 6
 	zoom_viewsize = 7
@@ -1259,10 +1259,10 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_scoped_buff = HIT_ACCURACY_MULT_TIER_8
 
 /obj/item/attachable/scope/mini/hunting
-	name = "2x hunting mini-scope"
+	name = "2 倍狩猎小型瞄准镜"
 	icon_state = "huntingscope"
 	attach_icon = "huntingscope"
-	desc = "Generic fixed-magnification 2x optic. Common just about everywhere in civil hands, and sometimes used by law enforcement too."
+	desc = "普通的固定 2 倍光学瞄准镜，在民间几乎随处可见，有时执法部门也会使用。"
 
 /obj/item/attachable/scope/mini/hunting/upp
 	name = "POS-3 hunting mini-scope"
@@ -1294,8 +1294,8 @@ Defined in conflicts.dm of the #defines folder.
 	zoom_viewsize = 9
 
 /obj/item/attachable/scope/mini/xm88
-	name = "XS-9 targeting relay"
-	desc = "An ARMAT XS-9 optical interface, type designation XAN/PVG-90. Computer controlled 2x magnification with electronic fire control system, interfacing with the rifle's sensors to provide near perfect shooting accuracy... In theory."
+	name = "XS-9 瞄准中继器"
+	desc = "阿玛特 XS-9 光学接口，型号 XAN/PVG-90。计算机控制的 2 倍镜配有电子火控系统，可连接步枪传感器，实现近乎完美的射击精度……理论上如此。"
 	icon_state = "boomslang-scope"
 	zoom_offset = 7
 	dynamic_aim_slowdown = SLOWDOWN_ADS_NONE
@@ -1379,10 +1379,10 @@ Defined in conflicts.dm of the #defines folder.
 	hidden = TRUE
 
 /obj/item/attachable/scope/mini_iff
-	name = "B8 Smart-Scope"
+	name = "B8 智能瞄准镜"
 	icon_state = "iffbarrel"
 	attach_icon = "iffbarrel_a"
-	desc = "An experimental B8 Smart-Scope, type designation XAN/PVG-110. Limited automated IFF trigger interlock system allows for use with the M44 Combat Revolver and M49A Battle Rifle. Reduces damage due to the momentary trigger delay."
+	desc = "实验型 B8 智能瞄准镜，型号 XAN/PVG-110。有限的自动敌我识别扳机联锁系统，可与 M44 战斗左轮手枪及 M49A 战斗步枪配合使用。短暂的扳机延迟会降低伤害。"
 	slot = "rail"
 	zoom_offset = 6
 	zoom_viewsize = 7
@@ -1966,8 +1966,8 @@ Defined in conflicts.dm of the #defines folder.
 	icon = 'icons/obj/items/weapons/guns/attachments/stock.dmi'
 
 /obj/item/attachable/stock/shotgun
-	name = "\improper Ithaca 37 wooden stock"
-	desc = "A standard wooden stock for the Ithaca pump-action shotgun. More cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
+	name = "伊萨卡 37 木制枪托"
+	desc = "伊萨卡泵动霰弹枪的标准木制枪托。比制式短柄更笨重，但可降低后坐力并提高精度。据说打架时也是根不错的棍子。"
 	slot = "stock"
 	icon_state = "stock"
 	wield_delay_mod = WIELD_DELAY_FAST
@@ -2006,8 +2006,8 @@ Defined in conflicts.dm of the #defines folder.
 	..()
 
 /obj/item/attachable/stock/mou53
-	name = "\improper MOU53 tactical stock"
-	desc = "A metal stock fitted specifically for the MOU53 break action shotgun."
+	name = "MOU53 战术枪托"
+	desc = "专为 MOU53 中折式霰弹枪设计的金属枪托。"
 	icon_state = "ou_stock"
 	hud_offset_mod = 5
 
@@ -2036,8 +2036,8 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_unwielded_mod = SCATTER_AMOUNT_TIER_4
 
 /obj/item/attachable/stock/xm88
-	name = "\improper XM88 padded stock"
-	desc = "A polymer framed alloy reinforced stock for the XM88 antimateriel rifle. Helps manage recoil."
+	name = "XM88 缓冲枪托"
+	desc = "XM88 反器材步枪用聚合物框架、合金加强枪托，有助于控制后坐力。"
 	icon_state = "boomslang-stock"
 	wield_delay_mod = WIELD_DELAY_NORMAL
 	hud_offset_mod = 6
@@ -2246,8 +2246,8 @@ Defined in conflicts.dm of the #defines folder.
 	wield_delay_mod = WIELD_DELAY_NONE
 
 /obj/item/attachable/stock/rifle
-	name = "\improper M41A solid stock"
-	desc = "A rare stock distributed in small numbers to USCM forces. Compatible with the M41A, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Also enhances the thwacking of things with the stock-end of the rifle."
+	name = "M41A 固定枪托"
+	desc = "少量配发给 USCM 部队的稀有枪托。兼容 M41A，可降低后坐力、提高精度，但会影响操控性和灵活性。也能增强用枪托砸人的效果。"
 	slot = "stock"
 	melee_mod = 10
 	size_mod = 1
@@ -2273,8 +2273,8 @@ Defined in conflicts.dm of the #defines folder.
 	aim_speed_mod = CONFIG_GET(number/slowdown_med)
 
 /obj/item/attachable/stock/rifle/collapsible
-	name = "\improper M41A extendable stock"
-	desc = "The M41A's standard polymer extendable stock. When extended, it improves scatter, accuracy, and recoil, but slightly hinders agility."
+	name = "M41A 伸缩枪托"
+	desc = "M41A 制式聚合物伸缩枪托。展开后能减小散布、提高精度并降低后坐力，但会略微影响灵活性。"
 	slot = "stock"
 	melee_mod = 5
 	size_mod = 1
@@ -2505,8 +2505,8 @@ Defined in conflicts.dm of the #defines folder.
 	hud_offset_mod = 2
 
 /obj/item/attachable/stock/xm51
-	name = "\improper M1771 stock"
-	desc = "A specialized stock designed for M1771 shotguns. Helps the user absorb the recoil of the weapon while also reducing scatter."
+	name = "M1771 枪托"
+	desc = "专为 M1771 霰弹枪设计的枪托，可帮助吸收后坐力并减小散布。"
 	icon_state = "xm51_stock"
 	attach_icon = "xm51_stock_a"
 	wield_delay_mod = WIELD_DELAY_FAST
@@ -2784,8 +2784,8 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/stock/smg
-	name = "submachinegun stock"
-	desc = "A rare ARMAT stock distributed in small numbers to USCM forces. Compatible with the M39, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
+	name = "冲锋枪枪托"
+	desc = "少量配发给 USCM 部队的稀有阿玛特枪托。兼容 M39，可降低后坐力、提高精度，但会影响操控性和灵活性。似乎还能稍微增强近身搏斗能力。"
 	slot = "stock"
 	melee_mod = 15
 	size_mod = 1
@@ -2807,8 +2807,8 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/stock/smg/collapsible
-	name = "submachinegun folding stock"
-	desc = "A Kirchner brand K2 M39 folding stock, standard issue in the USCM. The stock, when extended, reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl. This stock can collapse in, removing all positive and negative effects."
+	name = "冲锋枪折叠枪托"
+	desc = "基尔希纳牌 K2 M39 折叠枪托，USCM 制式装备。展开后可降低后坐力、提高精度，但会影响操控性和灵活性，似乎还更适合近战。折叠后所有正面和负面效果都会消失。"
 	slot = "stock"
 	melee_mod = 10
 	size_mod = 1
@@ -2874,8 +2874,8 @@ Defined in conflicts.dm of the #defines folder.
 	gun.update_overlays(src, "stock")
 
 /obj/item/attachable/stock/smg/collapsible/brace
-	name = "\improper submachinegun arm brace"
-	desc = "A specialized stock for use on an M39 submachine gun. It makes one handing more accurate at the expense of burst amount. Wielding the weapon with this stock attached confers a major inaccuracy and recoil debuff."
+	name = "冲锋枪臂托"
+	desc = "M39 冲锋枪专用枪托。牺牲点射发数以提高单手射击精度。装上它后双手持枪，会明显恶化精度与后坐力。"
 	size_mod = 1
 	icon_state = "smg_brace"
 	attach_icon = "smg_brace_a"
@@ -2925,8 +2925,8 @@ Defined in conflicts.dm of the #defines folder.
 	G.update_overlays(src, "stock")
 
 /obj/item/attachable/stock/revolver
-	name = "\improper M44 magnum sharpshooter stock"
-	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility. Less effective in melee as well."
+	name = "M44 马格南精确射击枪托"
+	desc = "为 .44 马格南改装的木制枪托。以操控性和灵活性为代价提高精度、降低后坐力，也会降低近战效果。"
 	slot = "stock"
 	melee_mod = -5
 	size_mod = 1
@@ -3134,8 +3134,8 @@ Defined in conflicts.dm of the #defines folder.
 
 //The requirement for an attachable being alt fire is AMMO CAPACITY > 0.
 /obj/item/attachable/attached_gun/grenade
-	name = "Underbarrel grenade launcher"
-	desc = "A weapon-mounted, reloadable grenade launcher."
+	name = "下挂榴弹发射器"
+	desc = "安装在武器上的可装填式榴弹发射器。"
 	icon_state = "grenade"
 	attach_icon = "grenade_a"
 	w_class = SIZE_MEDIUM
@@ -3510,8 +3510,8 @@ Defined in conflicts.dm of the #defines folder.
 	grenade_pass_flags = NO_FLAGS
 
 /obj/item/attachable/attached_gun/grenade/type71
-	name = "\improper Type 83 overslung grenade launcher"
-	desc = "Unorthodox design, this single-round grenade launchers was made specifically for use with Type 71 pulse rifles. It can be quickly connected to electronic firing mechanism of the rifle, albeit wiring is prone to failures."
+	name = "83 式上挂式榴弹发射器"
+	desc = "采用非传统设计的单发榴弹发射器，专供 71 式脉冲步枪使用。可快速接入步枪的电子击发机构，但接线容易故障。"
 	icon_state = "type83"
 	attach_icon = "type83_a"
 	caliber = "40x103mm"
@@ -3553,10 +3553,10 @@ Defined in conflicts.dm of the #defines folder.
 
 //"ammo/flamethrower" is a bullet, but the actual process is handled through fire_attachment, linked through Fire().
 /obj/item/attachable/attached_gun/flamer
-	name = "mini flamethrower"
+	name = "微型喷火器"
 	icon_state = "flamethrower"
 	attach_icon = "flamethrower_a"
-	desc = "A weapon-mounted refillable flamethrower attachment. It has a secondary setting for a more intense flame with far less propulsion ability and heavy fuel usage."
+	desc = "安装在武器上的可补充式喷火器配件。另有一种模式能喷出更猛烈的火焰，但射程明显缩短，耗油量大增。"
 	w_class = SIZE_MEDIUM
 	current_rounds = 40
 	max_rounds = 40
@@ -3697,7 +3697,7 @@ Defined in conflicts.dm of the #defines folder.
 		new/obj/flamer_fire(T, create_cause_data(initial(name), user), R)
 
 /obj/item/attachable/attached_gun/flamer/advanced
-	name = "advanced mini flamethrower"
+	name = "高级微型火焰喷射器"
 	current_rounds = 50
 	max_rounds = 50
 	max_range = 6
@@ -3774,10 +3774,10 @@ Defined in conflicts.dm of the #defines folder.
 	return
 
 /obj/item/attachable/attached_gun/extinguisher
-	name = "HME-12 underbarrel extinguisher"
+	name = "HME-12 下挂灭火器"
 	icon_state = "extinguisher"
 	attach_icon = "extinguisher_a"
-	desc = "A Taiho-Technologies HME-12 underbarrel extinguisher, a miniaturization of a complex used by firefighters. Attaches to the underbarrel of most weapons, point at fire to remove fire."
+	desc = "大丰科技 HME-12 下挂灭火器，由消防员使用的系统微缩而成。可安装在大多数武器下方，对准火焰即可灭火。"
 	w_class = SIZE_MEDIUM
 	slot = "under"
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_WEAPON|ATTACH_MELEE
@@ -3822,9 +3822,9 @@ Defined in conflicts.dm of the #defines folder.
 	internal_extinguisher.reagents.add_reagent("water", internal_extinguisher.max_water)
 
 /obj/item/attachable/attached_gun/flamer_nozzle
-	name = "XM-VESG-1 flamer nozzle"
-	desc = "A special nozzle designed to alter flamethrowers to be used in a more offense orientated manner. As the inside of the nozzle is coated in a special gel and resin substance that takes the fuel that passes through and hardens it. Upon exiting the barrel, a cluster of burning gel is projected instead of a stream of burning naphtha."
-	desc_lore = "The Experimental Volatile-Exothermic-Sphere-Generator clip-on nozzle attachment for the M240A1 incinerator unit was specifically designed to allow marines to launch fireballs into enemy foxholes and bunkers. Despite the gel and resin coating, the flaming ball of naptha tears apart due the drag caused by launching it through the air, leading marines to use the attachment as a makeshift firework launcher during shore leave."
+	name = "XM-VESG-1 喷火器喷嘴"
+	desc = "专为进攻用途改装喷火器的特殊喷嘴。内壁涂有特殊凝胶与树脂，会使流过的燃料硬化。喷出枪口的是一团燃烧凝胶，而非燃烧的石脑油流。"
+	desc_lore = "这款供 M240A1 喷火器使用的实验性挥发放热球发生器外挂喷嘴，专为让陆战队员向敌军散兵坑和地堡发射火球而设计。尽管覆盖了凝胶和树脂，凝固汽油火球仍会在发射后被空气阻力撕散，因此陆战队员常在岸上休假时拿它当临时烟花发射器。"
 	icon_state = "flamer_nozzle"
 	attach_icon = "flamer_nozzle_a_1"
 	w_class = SIZE_MEDIUM
@@ -3906,8 +3906,8 @@ Defined in conflicts.dm of the #defines folder.
 	to_chat(user, SPAN_WARNING("The gauge reads: <b>[floor(gun.current_mag.get_ammo_percent())]</b>% fuel remaining!"))
 
 /obj/item/attachable/verticalgrip
-	name = "vertical grip"
-	desc = "A vertical foregrip that offers better accuracy, less recoil, and less scatter, especially during burst fire."
+	name = "垂直握把"
+	desc = "可提高精度、降低后坐力与散布的垂直前握把，点射时效果尤其明显。"
 	icon = 'icons/obj/items/weapons/guns/attachments/under.dmi'
 	icon_state = "verticalgrip"
 	attach_icon = "verticalgrip_a"
@@ -3929,8 +3929,8 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "Sturdy grip positioned at optimal place offers enhanced stability in rapid fire. Increases weapon size, penalizes one handed fire, improves scatter and accuracy while wielded."
 
 /obj/item/attachable/angledgrip
-	name = "angled grip"
-	desc = "An angled foregrip that improves weapon ergonomics resulting in faster wielding time."
+	name = "倾斜握把"
+	desc = "改善武器人体工学的倾斜前握把，可加快举枪速度。"
 	icon = 'icons/obj/items/weapons/guns/attachments/under.dmi'
 	icon_state = "angledgrip"
 	attach_icon = "angledgrip_a"
@@ -3943,8 +3943,8 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "Ergonomic grip decreases time for shouldering the weapon. Increases weapon size, accelerates wield speed."
 
 /obj/item/attachable/gyro
-	name = "gyroscopic stabilizer"
-	desc = "A set of weights and balances to stabilize the weapon when fired with one hand. Slightly decreases firing speed."
+	name = "陀螺稳定器"
+	desc = "通过配重使武器在单手射击时保持稳定的装置。会略微降低射速。"
 	icon = 'icons/obj/items/weapons/guns/attachments/under.dmi'
 	icon_state = "gyro"
 	attach_icon = "gyro_a"
@@ -3968,8 +3968,8 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/lasersight
-	name = "laser sight"
-	desc = "Standard issue visible-band underbarrel laser module, type designation AN/PEQ-42. Increases accuracy and decreases scatter, especially while one-handed. Also improves handling on the move."
+	name = "激光瞄准器"
+	desc = "制式可见光下挂激光模块，型号 AN/PEQ-42。可提高精度并减小散布，单手持枪时尤为明显，也能改善移动射击表现。"
 	icon = 'icons/obj/items/weapons/guns/attachments/under.dmi'
 	icon_state = "lasersight"
 	attach_icon = "lasersight_a"
@@ -3995,8 +3995,8 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 18
 
 /obj/item/attachable/bipod
-	name = "bipod"
-	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil when properly placed, but also increases weapon size and slows firing speed."
+	name = "两脚架"
+	desc = "一组用于射击时稳定武器的伸缩支脚。\n正确架设后可大幅提高精度并降低后坐力，但会增加武器体积并降低射速。"
 	icon = 'icons/obj/items/weapons/guns/attachments/under.dmi'
 	icon_state = "bipod"
 	attach_icon = "bipod_a"
@@ -4257,8 +4257,8 @@ Defined in conflicts.dm of the #defines folder.
 			attach_icon = new_attach_icon ? new_attach_icon : "u_" + attach_icon
 
 /obj/item/attachable/burstfire_assembly
-	name = "burst fire assembly"
-	desc = "A small angled piece of fine machinery that increases the burst count on some weapons, and grants the ability to others. \nIncreases weapon scatter."
+	name = "点射组件"
+	desc = "一件小巧的精密机械组件，可增加部分武器的点射发数，或让其他武器具备点射能力。\n会增大武器散布。"
 	icon = 'icons/obj/items/weapons/guns/attachments/under.dmi'
 	icon_state = "rapidfire"
 	attach_icon = "rapidfire_a"

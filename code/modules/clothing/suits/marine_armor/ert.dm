@@ -25,8 +25,8 @@
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE //Let's make these keep their name and icon.
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc
-	name = "\improper WY tactical armor"
-	desc = "A contender for service with the Royal Marine Commandos, it is presently, exclusively, field tested by Weyland-Yutani mercenaries."
+	name = "WY 战术护甲"
+	desc = "皇家陆战突击队装备选型的候选产品，目前仅由维兰德-汤谷雇佣兵进行实地测试。"
 	icon_state = "pmc_armor"
 	armor_bullet = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_energy = CLOTHING_ARMOR_MEDIUMLOW
@@ -65,7 +65,7 @@
 	item_state_slots = list(WEAR_JACKET = "pmc_armor")
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/light
-	name = "\improper WY light tactical armor"
+	name = "WY 轻型战术护甲"
 	icon_state = "pmc_sniper"
 	armor_melee = CLOTHING_ARMOR_MEDIUMLOW
 	armor_bullet = CLOTHING_ARMOR_MEDIUM
@@ -258,8 +258,8 @@
 	movement_compensation = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/clothing/suit/marine/faction/UPP
-	name = "\improper 6B90 pattern UPP armor"
-	desc = "Union frontline issue body armor. Part of protective complex Kuija-M, 6B90 is capable of rifle threats with new ultralight alloy plates over the vitals, while ballistic mesh inserts provide torso protection from shrapnel or ricochets. A small transmitter on the lower back supports low resolution video/audio and biotelemetry feeds for the TOC. While designed to be one size fits all, the support system proves difficult to comfortably adjust."
+	name = "6B90 式 UPP 护甲"
+	desc = "联盟前线制式护甲，属于库伊亚-M 防护系统。6B90 在要害部位使用新型超轻合金护板以抵御步枪弹，防弹网衬保护躯干免受弹片和跳弹伤害。后腰的小型发射器向战术作战中心提供低分辨率音视频与生命体征数据。虽号称均码，但支撑系统很难调得舒适。"
 	icon_state = "upp_armor"
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE|FPRINT|CONDUCT
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_LEGS
@@ -333,8 +333,8 @@
 	src.attach_accessory(null, greaves, TRUE)
 
 /obj/item/clothing/suit/marine/faction/UPP/light
-	name = "\improper 6B72-03 pattern UPP armor"
-	desc = "Vintage UPP armor system Vadasz. Provides basic ballistic/shrapnel protection for armor crew or rear echelon forces with wraparound soft armor and ceramic composite chestplate. Lightweight, but lacking protection class and coverage. Still issued to the Territorial Guard and People's Armed Police tactical teams, and utilized by some spetznaz."
+	name = "6B72-03 式 UPP 护甲"
+	desc = "老式 UPP“猎手”护甲系统。环绕式软甲与陶瓷复合胸板为装甲乘员和后方部队提供基础弹道、弹片防护。重量轻，但防护等级与覆盖面积不足。仍配发给领土卫队及人民武装警察战术小队，也有部分特种部队使用。"
 	icon_state = "upp_armor_light"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_LEGS
 	slowdown = SLOWDOWN_ARMOR_LIGHT
@@ -447,8 +447,8 @@
 
 //this one is for CLF
 /obj/item/clothing/suit/storage/militia
-	name = "colonial militia hauberk"
-	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops."
+	name = "殖民地民兵长身护甲"
+	desc = "殖民地民兵的长身护甲，由煮硬皮革和少量现代装甲板制成。虽比大多数现代护甲原始、防护也不算强，却几乎不影响行动，符合当地殖民者的需求。穿戴快、易隐藏，还能在大型工坊中低成本生产。"
 	icon = 'icons/obj/items/clothing/cm_suits.dmi'
 	icon_state = "rebel_armor"
 	item_icons = list(
@@ -497,8 +497,8 @@
 	pockets.max_storage_space = 8
 
 /obj/item/clothing/suit/storage/militia/vest
-	name = "colonial militia vest"
-	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This extremely light variant protects only the chest and abdomen."
+	name = "殖民地民兵背心"
+	desc = "殖民地民兵的长身护甲，由煮硬皮革和少量现代装甲板制成。虽比大多数现代护甲原始、防护也不算强，却几乎不影响行动，符合当地殖民者的需求。穿戴快、易隐藏，还能在大型工坊中低成本生产。这款极轻型变体只保护胸腹。"
 	icon_state = "clf_2"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
 	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
@@ -506,8 +506,8 @@
 	movement_compensation = SLOWDOWN_ARMOR_MEDIUM
 
 /obj/item/clothing/suit/storage/militia/brace
-	name = "colonial militia brace"
-	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This extremely light variant has some of the chest pieces removed."
+	name = "殖民地民兵护臂"
+	desc = "殖民地民兵的长身护甲，由煮硬皮革和少量现代装甲板制成。虽比大多数现代护甲原始、防护也不算强，却几乎不影响行动，符合当地殖民者的需求。穿戴快、易隐藏，还能在大型工坊中低成本生产。这款极轻型变体拆除了部分胸甲。"
 	icon_state = "clf_3"
 	flags_armor_protection = BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
 	flags_cold_protection = BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
@@ -515,8 +515,8 @@
 	movement_compensation = SLOWDOWN_ARMOR_MEDIUM
 
 /obj/item/clothing/suit/storage/militia/partial
-	name = "colonial militia partial hauberk"
-	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This even lighter variant has some of the arm pieces removed."
+	name = "殖民地民兵半身护甲"
+	desc = "殖民地民兵的长身护甲，由煮硬皮革和少量现代装甲板制成。虽比大多数现代护甲原始、防护也不算强，却几乎不影响行动，符合当地殖民者的需求。穿戴快、易隐藏，还能在大型工坊中低成本生产。这款更轻的变体拆除了部分臂甲。"
 	icon_state = "clf_4"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_LEGS
 	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
@@ -757,8 +757,8 @@
 //=======================================================================\\
 
 /obj/item/clothing/suit/marine/veteran/royal_marine
-	name = "\improper Kestrel armoured cuirass"
-	desc = "Standard RMC issue Kestrel Personal Armor designed by Weyland-Yutani subsidary, Lindenthal-Ehrenfeld Militärindustrie. Advanced composite ballistic armor of the latest generation, integral biomonitoring system, and brackets for a load carrying system as well as the TNR Shoulder Lamp."
+	name = "红隼装甲胸甲"
+	desc = "RMC 制式红隼个人护甲，由维兰德-汤谷子公司林登塔尔-埃伦费尔德军工设计。采用最新一代先进复合防弹材料、集成生命监测系统，并配有携行系统和 TNR 肩灯支架。"
 	icon_state = "rmc_standard"
 	item_state = "rmc_standard"
 	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE

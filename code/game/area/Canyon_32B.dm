@@ -8,7 +8,7 @@
 
 /area/canyon32B/OOB
 	icon = 'icons/turf/area_shiva.dmi'
-	name = "Canyon 32B - Under The Ice"
+	name = "32B峡谷 - 冰层下方"
 	ceiling = CEILING_MAX
 
 /area/canyon32B/interior
@@ -25,7 +25,7 @@
 //INTERIOR
 
 /area/canyon32B/interior/bar
-	name = "Canyon 32B - Bar"
+	name = "32B峡谷 - 酒吧"
 	icon_state = "cafeteria"
 
 /area/canyon32B/interior/gatehouse
@@ -33,19 +33,19 @@
 	icon_state = "hangars0"
 
 /area/canyon32B/interior/gatehouse/northern
-	name = "Checkpoint Four - Northern Gatehouse"
+	name = "四号检查站 - 北侧岗楼"
 
 /area/canyon32B/interior/gatehouse/southern
-	name = "Checkpoint Four - Southern Gatehouse"
+	name = "四号检查站 - 南侧岗楼"
 
 /area/canyon32B/interior/gatehouse/pillbox_alpha
-	name = "Checkpoint Four - Pillbox Alpha"
+	name = "四号检查站 - 阿尔法碉堡"
 
 /area/canyon32B/interior/gatehouse/pillbox_bravo
-	name = "Checkpoint Four - Pillbox Bravo"
+	name = "四号检查站 - 布拉沃碉堡"
 
 /area/canyon32B/interior/overhang
-	name = "Checkpoint Four - Bunker Entrance"
+	name = "四号检查站 - 地堡入口"
 	icon_state = "blue"
 	ceiling = CEILING_UNDERGROUND_ALLOW_CAS
 
@@ -53,70 +53,70 @@
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/canyon32B/interior/bunker/entrance
-	name = "Checkpoint Four - Security Airlock"
+	name = "四号检查站 - 安保气闸"
 	icon = 'icons/turf/area_shiva.dmi'
 	icon_state = "caves3"
 
 /area/canyon32B/interior/bunker/hallway
-	name = "Checkpoint Four - Main Hallway"
+	name = "四号检查站 - 主走廊"
 	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 	icon_state = "hallC1"
 
 /area/canyon32B/interior/bunker/unloading
-	name = "Checkpoint Four - Unloading Bay"
+	name = "四号检查站 - 卸货区"
 	icon_state = "ass_line"
 
 /area/canyon32B/interior/bunker/storage
-	name = "Checkpoint Four - Storage Closet"
+	name = "四号检查站 - 储物间"
 	icon_state = "storage"
 
 /area/canyon32B/interior/bunker/medbay
-	name = "Checkpoint Four - Medical Bay"
+	name = "四号检查站 - 医务室"
 	icon_state = "medbay"
 
 /area/canyon32B/interior/bunker/detainment
-	name = "Checkpoint Four - Detainment Cells"
+	name = "四号检查站 - 拘留室"
 	icon_state = "security"
 
 /area/canyon32B/interior/bunker/bathroom
-	name = "Checkpoint Four - Bathroom"
+	name = "四号检查站 - 浴室"
 	icon_state = "toilet"
 
 /area/canyon32B/interior/bunker/armory
-	name = "Checkpoint Four - Armory"
+	name = "四号检查站 - 军械库"
 	icon_state = "armory"
 
 /area/canyon32B/interior/bunker/bunks
-	name = "Checkpoint Four - Bunks"
+	name = "四号检查站 - 铺位区"
 	icon_state = "Sleep"
 
 /area/canyon32B/interior/bunker/mess
-	name = "Checkpoint Four - Mess Hall"
+	name = "四号检查站 - 食堂"
 	icon_state = "kitchen"
 
 /area/canyon32B/interior/bunker/overwatch
-	name = "Checkpoint Four - Overwatch Office"
+	name = "四号检查站 - 战术监控办公室"
 	icon_state = "captain"
 
 /area/canyon32B/interior/bunker/engineering
-	name = "Checkpoint Four - Maintenance"
+	name = "四号检查站 - 维护区"
 	icon_state = "engine_smes"
 
 /area/canyon32B/interior/bunker/engineering/power
-	name = "Checkpoint Four - Generators"
+	name = "四号检查站 - 发电机区"
 //EXTERIOR
 
 /area/canyon32B/exterior/checkpoint
-	name = "Checkpoint Four - Surface"
+	name = "四号检查站 - 地表"
 	icon_state = "blue"
 
 /area/canyon32B/exterior/north
-	name = "Canyon 32B - Northern Canyon"
+	name = "32B峡谷 - 峡谷北段"
 	icon_state = "north"
 
 /area/canyon32B/exterior/south
-	name = "Canyon 32B - Southern Canyon"
+	name = "32B峡谷 - 峡谷南段"
 	icon_state = "south"
 
 /area/canyon32B/exterior/south/bar
-	name = "Canyon 32B - Bar Parking Lot"
+	name = "32B峡谷 - 酒吧停车场"

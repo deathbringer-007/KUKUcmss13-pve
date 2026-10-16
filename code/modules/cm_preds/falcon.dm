@@ -66,7 +66,7 @@
 		return
 
 	if(!istype(human.gloves, /obj/item/clothing/gloves/yautja))
-		to_chat(usr, SPAN_WARNING("你需要护腕才能控制\the [src]！"))
+		to_chat(usr, SPAN_WARNING("你需要护腕才能控制[src]！"))
 		return
 	control_falcon_drone(human, human.gloves)
 

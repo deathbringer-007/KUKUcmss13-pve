@@ -1,7 +1,7 @@
 ///CORE MRE, Just so happens to be the USCM/USA/USASF one
 /obj/item/storage/box/mre
-	name = "\improper US Military MRE"
-	desc = "A Meal, Ready-to-Eat. A single-meal combat ration designed to provide a soldier with enough nutrients for a day of strenuous work. Its expiration date is at least 20 years ahead of your combat life expectancy. Issued to most branches of the US Military."
+	name = "US 军用即食军粮"
+	desc = "即食军粮。单餐作战口粮，旨在为士兵提供一天高强度活动所需的营养。保质期至少比你的战斗预期寿命长 20 年，配发给美国军队大多数军种。"
 	icon = 'icons/obj/items/storage/mre.dmi'
 	item_icons = list(
 		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/items/mres_lefthand.dmi',
@@ -177,8 +177,8 @@
 ///WY PMC RATION
 
 /obj/item/storage/box/mre/pmc
-	name = "\improper PMC CFR ration"
-	desc = "A Combat Field Ration. Uses similar to USCM MRE format, but utilizes cutting-edge preservative chemicals, preservation methods and quality ingredients. Eating better worlds."
+	name = "PMC CFR 战地作战口粮"
+	desc = "战地作战口粮。形式类似 USCM 即食军粮，但使用先进防腐剂、保鲜技术与优质食材。吃出更美好的世界。"
 	icon_state = "pmc_mealpack"
 	icon_closed = "pmc_mealpack"
 	icon_opened = "pmc_mealpackopened"
@@ -220,8 +220,8 @@
 ///TWE RATION
 
 /obj/item/storage/box/mre/twe
-	name = "\improper TWE ORP ration"
-	desc = "An Operation Ration Pack. Uses similar to USCM MRE format, but utilizes utilizes cutting-edge preservative chemicals, preservation methods and relatively lavish meals from TWE cuisine."
+	name = "TWE ORP 作战口粮包"
+	desc = "作战口粮包。形式类似 USCM 即食军粮，但使用先进防腐剂、保鲜技术，以及相对丰盛的三世界帝国菜肴。"
 	icon_state = "twe_mealpack"
 	icon_closed = "twe_mealpack"
 	icon_opened = "twe_mealpackopened"
@@ -269,8 +269,8 @@
 			new /obj/item/reagent_container/food/drinks/cans/tube/blackberry(src)
 
 /obj/item/storage/box/mre/fsr
-	name = "\improper FSR combat ration"
-	desc = "First Strike Ration, produced by the same manufacturere that produces MREs for UA militaries. This is usually issued to long-range recon-patrol units who are expected to be away from resupply for extended periods of time."
+	name = "FSR 突击口粮"
+	desc = "突击口粮，由为美洲联盟军队供应即食军粮的同一家制造商生产。通常配发给需要长期远离补给的远程侦察巡逻单位。"
 	icon_state = "merc_mealpack"
 	icon_closed = "merc_mealpack"
 	icon_opened = "merc_mealpackopened"
@@ -328,8 +328,8 @@
 	return ..()
 
 /obj/item/storage/box/mre/upp
-	name = "\improper UPP IRP ration pack"
-	desc = "An Individual Meal Ration, mainly composed of a selection of canned food, despite being heavier, it has proven to be a lot more reliable."
+	name = "UPP IRP 单兵口粮包"
+	desc = "单兵口粮，主要由多种罐头组成。虽然更重，但事实证明可靠得多。"
 	icon_state = "upp_mealpack"
 	icon_closed = "upp_mealpack"
 	icon_opened = "upp_mealpackopened"

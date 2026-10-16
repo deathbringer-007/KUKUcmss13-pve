@@ -65,12 +65,12 @@ const Login = (props) => {
       mt="-3rem"
       bold
     >
-      <Box fontFamily="monospace">ARES v3.2 Interface</Box>
+      <Box fontFamily="monospace">ARES v3.2界面</Box>
       <Box mb="2rem" fontFamily="monospace">
-        WY-DOS Executive
+        WY-DOS执行程序
       </Box>
-      <Box fontFamily="monospace">Version 8.3.4</Box>
-      <Box fontFamily="monospace">Copyright © 2182, Weyland Yutani Corp.</Box>
+      <Box fontFamily="monospace">版本8.3.4</Box>
+      <Box fontFamily="monospace">版权所有 © 2182，维兰德-汤谷公司。</Box>
 
       <Button
         icon="id-card"
@@ -81,7 +81,7 @@ const Login = (props) => {
         mt="5rem"
         onClick={() => act('login')}
       >
-        Login
+        登录
       </Button>
     </Flex>
   );
@@ -107,7 +107,7 @@ const MainMenu = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -115,7 +115,7 @@ const MainMenu = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
               disabled={current_menu === 'main'}
             />
@@ -132,21 +132,21 @@ const MainMenu = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Navigation Menu</h1>
+        <h1 align="center">导航菜单</h1>
 
         <Stack>
           <Stack.Item grow>
-            <h3>Access Level 1</h3>
+            <h3>一级访问权限</h3>
           </Stack.Item>
           <Stack.Item>
             <Button
-              tooltip="Access the AI Announcement logs."
+              tooltip="查看AI公告日志。"
               icon="bullhorn"
               ml="auto"
               px="2rem"
@@ -154,12 +154,12 @@ const MainMenu = (props) => {
               bold
               onClick={() => act('page_announcements')}
             >
-              Announcement Logs
+              公告日志
             </Button>
           </Stack.Item>
           <Stack.Item>
             <Button
-              tooltip="Direct communication 1:1 with ARES."
+              tooltip="与ARES进行一对一通讯。"
               icon="comments"
               ml="auto"
               px="2rem"
@@ -167,18 +167,18 @@ const MainMenu = (props) => {
               bold
               onClick={() => act('page_1to1')}
             >
-              ARES Communication
+              ARES通讯
             </Button>
           </Stack.Item>
         </Stack>
         {access_level >= 2 && (
           <Stack>
             <Stack.Item grow>
-              <h3>Access Level 2</h3>
+              <h3>二级访问权限</h3>
             </Stack.Item>
             <Stack.Item>
               <Button
-                tooltip="Read the Dropship Flight Control Records."
+                tooltip="阅读运输机飞行控制记录。"
                 icon="jet-fighter-up"
                 ml="auto"
                 px="2rem"
@@ -186,12 +186,12 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('page_flight')}
               >
-                Flight Records
+                飞行记录
               </Button>
             </Stack.Item>
             <Stack.Item>
               <Button
-                tooltip="Access the Bioscan records."
+                tooltip="查看生命扫描记录。"
                 icon="eye"
                 ml="auto"
                 px="2rem"
@@ -199,12 +199,12 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('page_bioscans')}
               >
-                Bioscan Logs
+                生命扫描日志
               </Button>
             </Stack.Item>
             <Stack.Item>
               <Button
-                tooltip="Access Orbital Bombardment logs."
+                tooltip="查看轨道轰炸日志。"
                 icon="meteor"
                 ml="auto"
                 px="2rem"
@@ -212,7 +212,7 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('page_bombardments')}
               >
-                Bombardment Logs
+                轰炸日志
               </Button>
             </Stack.Item>
           </Stack>
@@ -220,11 +220,11 @@ const MainMenu = (props) => {
         {access_level >= 3 && (
           <Stack>
             <Stack.Item grow>
-              <h3>Access Level 3</h3>
+              <h3>三级访问权限</h3>
             </Stack.Item>
             <Stack.Item>
               <Button
-                tooltip="Read the Security Updates."
+                tooltip="阅读安全动态。"
                 icon="file-shield"
                 ml="auto"
                 px="2rem"
@@ -232,12 +232,12 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('page_security')}
               >
-                Security Updates
+                安全动态
               </Button>
             </Stack.Item>
             <Stack.Item>
               <Button
-                tooltip="Read the Apollo Link logs."
+                tooltip="阅读阿波罗链路记录。"
                 icon="clipboard"
                 ml="auto"
                 px="2rem"
@@ -245,7 +245,7 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('page_apollo')}
               >
-                View Apollo Log
+                查看阿波罗日志
               </Button>
             </Stack.Item>
           </Stack>
@@ -253,11 +253,11 @@ const MainMenu = (props) => {
         {access_level >= 5 && (
           <Stack>
             <Stack.Item grow>
-              <h3>Access Level 5</h3>
+              <h3>五级访问权限</h3>
             </Stack.Item>
             <Stack.Item>
               <Button.Confirm
-                tooltip="Access emergency protocols."
+                tooltip="访问应急协议。"
                 icon="shield"
                 color="red"
                 ml="auto"
@@ -266,12 +266,12 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('page_emergency')}
               >
-                Emergency Protocols
+                应急协议
               </Button.Confirm>
             </Stack.Item>
             <Stack.Item>
               <Button
-                tooltip="Review the ASRS Audit Log."
+                tooltip="查看自动仓储系统审计日志。"
                 icon="magnifying-glass-dollar"
                 ml="auto"
                 px="2rem"
@@ -279,12 +279,12 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('page_requisitions')}
               >
-                ASRS Audit Log
+                自动仓储系统审计日志
               </Button>
             </Stack.Item>
             <Stack.Item>
               <Button
-                tooltip="Review the Intel Tech Log."
+                tooltip="查看情报技术日志。"
                 icon="magnifying-glass-chart"
                 ml="auto"
                 px="2rem"
@@ -292,7 +292,7 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('page_tech')}
               >
-                Tech Control Log
+                技术控制日志
               </Button>
             </Stack.Item>
           </Stack>
@@ -300,11 +300,11 @@ const MainMenu = (props) => {
         {access_level >= 6 && (
           <Stack>
             <Stack.Item grow>
-              <h3>Access Level 6</h3>
+              <h3>六级访问权限</h3>
             </Stack.Item>
             <Stack.Item>
               <Button
-                tooltip="View the recent logins."
+                tooltip="查看近期登录记录。"
                 icon="users"
                 ml="auto"
                 px="2rem"
@@ -312,7 +312,7 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('page_access')}
               >
-                View Access Log
+                查看访问日志
               </Button>
             </Stack.Item>
           </Stack>
@@ -320,11 +320,11 @@ const MainMenu = (props) => {
         {access_level >= 9 && (
           <Stack>
             <Stack.Item grow>
-              <h3>Access Level 9</h3>
+              <h3>九级访问权限</h3>
             </Stack.Item>
             <Stack.Item>
               <Button
-                tooltip="View the deletion log."
+                tooltip="查看删除日志。"
                 icon="sd-card"
                 ml="auto"
                 px="2rem"
@@ -332,12 +332,12 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('page_deleted')}
               >
-                View Deletion Log
+                查看删除日志
               </Button>
             </Stack.Item>
             <Stack.Item>
               <Button
-                tooltip="View the deleted 1:1 conversations with ARES."
+                tooltip="查看已删除的ARES一对一对话。"
                 icon="sd-card"
                 ml="auto"
                 px="2rem"
@@ -353,12 +353,12 @@ const MainMenu = (props) => {
         {access_level >= 11 && (
           <Stack>
             <Stack.Item grow>
-              <h3>Maintenance Access</h3>
+              <h3>维护权限</h3>
             </Stack.Item>
             {sudo === 0 && (
               <Stack.Item>
                 <Button
-                  tooltip="Remote Login."
+                  tooltip="远程登录。"
                   icon="user-secret"
                   ml="auto"
                   px="2rem"
@@ -366,14 +366,14 @@ const MainMenu = (props) => {
                   bold
                   onClick={() => act('sudo')}
                 >
-                  Sudo Login
+                  提权登录
                 </Button>
               </Stack.Item>
             )}
             {sudo >= 1 && (
               <Stack.Item>
                 <Button
-                  tooltip="Logout of Sudo mode."
+                  tooltip="退出提权模式。"
                   icon="user-secret"
                   ml="auto"
                   px="2rem"
@@ -381,7 +381,7 @@ const MainMenu = (props) => {
                   bold
                   onClick={() => act('sudo_logout')}
                 >
-                  Sudo Logout
+                  退出提权
                 </Button>
               </Stack.Item>
             )}
@@ -390,12 +390,12 @@ const MainMenu = (props) => {
       </Section>
       {(access_level === 3 || access_level >= 6) && (
         <Section>
-          <h1 align="center">Core Security Protocols</h1>
+          <h1 align="center">核心安全协议</h1>
           <Stack>
             <Stack.Item grow>
               <Button
                 align="center"
-                tooltip="Release stored CN20-X nerve gas from security vents."
+                tooltip="从安全通风口释放储存的CN20-X神经毒气。"
                 icon="wind"
                 color="red"
                 ml="auto"
@@ -404,13 +404,13 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('page_core_sec')}
               >
-                Nerve Gas Control
+                神经毒气控制
               </Button>
             </Stack.Item>
             <Stack.Item grow>
               <Button.Confirm
                 align="center"
-                tooltip="Activate/Deactivate the AI Core Lockdown."
+                tooltip="启用或解除AI核心封锁。"
                 icon="lock"
                 color="red"
                 ml="auto"
@@ -419,7 +419,7 @@ const MainMenu = (props) => {
                 bold
                 onClick={() => act('security_lockdown')}
               >
-                AI Core Lockdown
+                AI核心封锁
               </Button.Confirm>
             </Stack.Item>
           </Stack>
@@ -449,7 +449,7 @@ const AnnouncementLogs = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -457,7 +457,7 @@ const AnnouncementLogs = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -473,13 +473,13 @@ const AnnouncementLogs = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Announcement Logs</h1>
+        <h1 align="center">公告日志</h1>
 
         {!!records_announcement.length && (
           <Flex
@@ -489,13 +489,13 @@ const AnnouncementLogs = (props) => {
             fontSize="1.25rem"
           >
             <Flex.Item bold width="6rem" shrink="0" mr="1rem">
-              Time
+              时间
             </Flex.Item>
             <Flex.Item width="10rem" grow bold>
-              Title
+              标题
             </Flex.Item>
             <Flex.Item width="40rem" textAlign="center">
-              Details
+              详情
             </Flex.Item>
           </Flex>
         )}
@@ -514,7 +514,7 @@ const AnnouncementLogs = (props) => {
               <Flex.Item ml="1rem">
                 <Button.Confirm
                   icon="trash"
-                  tooltip="Delete Record"
+                  tooltip="删除记录"
                   disabled={access_level < 4}
                   onClick={() => act('delete_record', { record: record.ref })}
                 />
@@ -547,7 +547,7 @@ const BioscanLogs = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -555,7 +555,7 @@ const BioscanLogs = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -571,13 +571,13 @@ const BioscanLogs = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Bioscan Logs</h1>
+        <h1 align="center">生命扫描日志</h1>
 
         {!!records_bioscan.length && (
           <Flex
@@ -587,13 +587,13 @@ const BioscanLogs = (props) => {
             fontSize="1.25rem"
           >
             <Flex.Item bold width="6rem" shrink="0" mr="1rem">
-              Time
+              时间
             </Flex.Item>
             <Flex.Item grow bold>
-              Title
+              标题
             </Flex.Item>
             <Flex.Item width="40rem" textAlign="center">
-              Details
+              详情
             </Flex.Item>
           </Flex>
         )}
@@ -612,7 +612,7 @@ const BioscanLogs = (props) => {
               <Flex.Item ml="1rem">
                 <Button.Confirm
                   icon="trash"
-                  tooltip="Delete Record"
+                  tooltip="删除记录"
                   disabled={access_level < 5}
                   onClick={() => act('delete_record', { record: record.ref })}
                 />
@@ -645,7 +645,7 @@ const BombardmentLogs = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -653,7 +653,7 @@ const BombardmentLogs = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -669,13 +669,13 @@ const BombardmentLogs = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Orbital Bombardment Logs</h1>
+        <h1 align="center">轨道轰炸日志</h1>
 
         {!!records_bombardment.length && (
           <Flex
@@ -685,16 +685,16 @@ const BombardmentLogs = (props) => {
             fontSize="1.25rem"
           >
             <Flex.Item bold width="6rem" shrink="0" mr="1rem">
-              Time
+              时间
             </Flex.Item>
             <Flex.Item grow bold>
-              Warhead
+              弹头
             </Flex.Item>
             <Flex.Item grow bold>
-              User
+              用户
             </Flex.Item>
             <Flex.Item width="30rem" textAlign="center">
-              Details
+              详情
             </Flex.Item>
           </Flex>
         )}
@@ -714,7 +714,7 @@ const BombardmentLogs = (props) => {
               <Flex.Item ml="1rem">
                 <Button.Confirm
                   icon="trash"
-                  tooltip="Delete Record"
+                  tooltip="删除记录"
                   disabled={access_level < 5}
                   onClick={() => act('delete_record', { record: record.ref })}
                 />
@@ -740,7 +740,7 @@ const ApolloLog = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -748,7 +748,7 @@ const ApolloLog = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -764,13 +764,13 @@ const ApolloLog = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Apollo Log</h1>
+        <h1 align="center">阿波罗日志</h1>
 
         {apollo_log.map((apollo_message, i) => {
           return (
@@ -797,7 +797,7 @@ const AccessLogs = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -805,7 +805,7 @@ const AccessLogs = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -821,13 +821,13 @@ const AccessLogs = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Access Log</h1>
+        <h1 align="center">访问日志</h1>
 
         {access_log.map((login, i) => {
           return (
@@ -855,7 +855,7 @@ const DeletionLogs = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -863,7 +863,7 @@ const DeletionLogs = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -879,13 +879,13 @@ const DeletionLogs = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Deletion Log</h1>
+        <h1 align="center">删除日志</h1>
 
         {!!records_deletion.length && (
           <Flex
@@ -895,16 +895,16 @@ const DeletionLogs = (props) => {
             fontSize="1.25rem"
           >
             <Flex.Item bold width="6rem" shrink="0" mr="1rem">
-              Deletion Time
+              删除时间
             </Flex.Item>
             <Flex.Item grow bold>
-              Deleted by
+              删除者
             </Flex.Item>
             <Flex.Item grow bold>
-              Title
+              标题
             </Flex.Item>
             <Flex.Item width="30rem" textAlign="center">
-              Details
+              详情
             </Flex.Item>
           </Flex>
         )}
@@ -949,7 +949,7 @@ const ARESTalk = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -957,7 +957,7 @@ const ARESTalk = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -973,13 +973,13 @@ const ARESTalk = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">ARES Communication</h1>
+        <h1 align="center">ARES通讯</h1>
       </Section>
 
       <Section align="center">
@@ -991,7 +991,7 @@ const ARESTalk = (props) => {
             bold
             onClick={() => act('new_conversation')}
           >
-            New Conversation
+            新建对话
           </Button>
         )}
         {active_convo.map((message, i) => {
@@ -1009,14 +1009,14 @@ const ARESTalk = (props) => {
             bold
             onClick={() => act('message_ares', { active_convo: active_ref })}
           >
-            Send Message
+            发送消息
           </Button>
         )}
       </Section>
       <Section align="center">
         <Button.Confirm
           icon="trash"
-          tooltip="Clears the conversation. Please note, your 1:1 conversation is only visible to you."
+          tooltip="清空对话。请注意，一对一对话仅你自己可见。"
           width="30vw"
           textAlign="center"
           fontSize="1.5rem"
@@ -1026,7 +1026,7 @@ const ARESTalk = (props) => {
           }
           disabled={!active_convo.length}
         >
-          Clear Conversation
+          清空对话
         </Button.Confirm>
       </Section>
     </>
@@ -1052,7 +1052,7 @@ const DeletedTalks = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -1060,7 +1060,7 @@ const DeletedTalks = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -1076,13 +1076,13 @@ const DeletedTalks = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Deletion Log</h1>
+        <h1 align="center">删除日志</h1>
         {!!deleted_discussions.length && (
           <Flex
             className="candystripe"
@@ -1091,13 +1091,13 @@ const DeletedTalks = (props) => {
             fontSize="1.25rem"
           >
             <Flex.Item bold width="6rem" shrink="0" mr="1rem">
-              Deletion Time
+              删除时间
             </Flex.Item>
             <Flex.Item grow bold>
-              Title
+              标题
             </Flex.Item>
             <Flex.Item width="30rem" textAlign="center">
-              Read Record
+              阅读记录
             </Flex.Item>
           </Flex>
         )}
@@ -1113,7 +1113,7 @@ const DeletedTalks = (props) => {
               <Flex.Item width="30rem" ml="1rem" shrink="0" textAlign="center">
                 <Button
                   icon="eye"
-                  tooltip="Read Conversation"
+                  tooltip="阅读对话"
                   onClick={() => act('read_record', { record: record.ref })}
                 />
               </Flex.Item>
@@ -1144,7 +1144,7 @@ const ReadingTalks = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -1152,7 +1152,7 @@ const ReadingTalks = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -1168,13 +1168,13 @@ const ReadingTalks = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Deleted Conversation</h1>
+        <h1 align="center">已删除的对话</h1>
         {deleted_conversation.map((message, i) => {
           return (
             <Flex key={i} className="candystripe" p=".75rem" align="center">
@@ -1207,7 +1207,7 @@ const Requisitions = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -1215,7 +1215,7 @@ const Requisitions = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -1231,23 +1231,23 @@ const Requisitions = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">ASRS Audit Log</h1>
+        <h1 align="center">自动仓储系统审计日志</h1>
         <h4 align="center">
           <Button
             icon="print"
             px="2rem"
             textAlign="center"
-            tooltip="Print Audit Log"
+            tooltip="打印审计日志"
             onClick={() => act('print_req')}
             disabled={printer_cooldown}
           >
-            Print Audit Log
+            打印审计日志
           </Button>
         </h4>
 
@@ -1259,16 +1259,16 @@ const Requisitions = (props) => {
             fontSize="1.25rem"
           >
             <Flex.Item bold width="6rem" shrink="0" mr="1rem">
-              Time
+              时间
             </Flex.Item>
             <Flex.Item grow bold>
-              User
+              用户
             </Flex.Item>
             <Flex.Item bold width="9rem" shrink="0" mr="1rem">
-              Source
+              来源
             </Flex.Item>
             <Flex.Item bold width="30rem" textAlign="center">
-              Order
+              订单
             </Flex.Item>
           </Flex>
         )}
@@ -1315,7 +1315,7 @@ const FlightLogs = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -1323,7 +1323,7 @@ const FlightLogs = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -1339,13 +1339,13 @@ const FlightLogs = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Flight Control Logs</h1>
+        <h1 align="center">飞行控制日志</h1>
         {!!records_flight.length && (
           <Flex
             className="candystripe"
@@ -1354,13 +1354,13 @@ const FlightLogs = (props) => {
             fontSize="1.25rem"
           >
             <Flex.Item bold width="6rem" shrink="0" mr="1rem">
-              Time
+              时间
             </Flex.Item>
             <Flex.Item width="10rem" grow bold>
-              User
+              用户
             </Flex.Item>
             <Flex.Item width="40rem" textAlign="center">
-              Details
+              详情
             </Flex.Item>
           </Flex>
         )}
@@ -1379,7 +1379,7 @@ const FlightLogs = (props) => {
               <Flex.Item ml="1rem">
                 <Button.Confirm
                   icon="trash"
-                  tooltip="Delete Record"
+                  tooltip="删除记录"
                   disabled={access_level < 4}
                   onClick={() => act('delete_record', { record: record.ref })}
                 />
@@ -1412,7 +1412,7 @@ const Security = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -1420,7 +1420,7 @@ const Security = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -1436,13 +1436,13 @@ const Security = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Security Updates</h1>
+        <h1 align="center">安全动态</h1>
         {!!records_security.length && (
           <Flex
             className="candystripe"
@@ -1451,13 +1451,13 @@ const Security = (props) => {
             fontSize="1.25rem"
           >
             <Flex.Item bold width="6rem" shrink="0" mr="1rem">
-              Time
+              时间
             </Flex.Item>
             <Flex.Item width="10rem" grow bold>
-              Title
+              标题
             </Flex.Item>
             <Flex.Item width="40rem" textAlign="center">
-              Details
+              详情
             </Flex.Item>
           </Flex>
         )}
@@ -1476,7 +1476,7 @@ const Security = (props) => {
               <Flex.Item ml="1rem">
                 <Button.Confirm
                   icon="trash"
-                  tooltip="Delete Record"
+                  tooltip="删除记录"
                   disabled={access_level < 8}
                   onClick={() => act('delete_record', { record: record.ref })}
                 />
@@ -1510,50 +1510,46 @@ const Emergency = (props) => {
   const distressCooldown = worldtime < distresstime;
   const quartersCooldown = worldtime < quarterstime;
   const canQuarters = !quartersCooldown;
-  let quarters_reason = 'Call for General Quarters.';
+  let quarters_reason = '发布全员战斗部署令。';
   if (quartersCooldown) {
-    quarters_reason =
-      'It has not been long enough since the last General Quarters call.';
+    quarters_reason = '距离上一次全员战斗部署令的时间还不够长。';
   }
   const canDistress = alert_level === 2 && !distressCooldown && minimumEvacTime;
-  let distress_reason = 'Launch a Distress Beacon.';
+  let distress_reason = '发送求救信标。';
   if (alert_level === 3) {
-    distress_reason = 'Self-destruct in progress. Beacon disabled.';
+    distress_reason = '正在自毁，信标已停用。';
   } else if (alert_level !== 2) {
-    distress_reason = 'Ship is not under an active emergency.';
+    distress_reason = '舰船当前未处于紧急状态。';
   } else if (distressCooldown) {
-    distress_reason = 'Beacon is currently on cooldown.';
+    distress_reason = '信标正在冷却。';
   } else if (!minimumEvacTime) {
-    distress_reason = "It's too early to launch a distress beacon.";
+    distress_reason = '现在还太早，无法发送求救信标。';
   }
 
   const canEvac = (evac_status === 0, alert_level >= 2);
-  let evac_reason = 'Begin evacuation procedures. Authorise Lifeboats.';
+  let evac_reason = '启动疏散程序，授权救生艇。';
   if (alert_level !== 2) {
-    evac_reason = 'Ship is not under an active emergency.';
+    evac_reason = '舰船当前未处于紧急状态。';
   } else if (evac_status === 1) {
-    evac_reason = 'Evacuation initiating.';
+    evac_reason = '正在启动疏散。';
   } else if (evac_status === 2) {
-    evac_reason = 'Evacuation in progress.';
+    evac_reason = '正在疏散。';
   } else if (evac_status === 3) {
-    evac_reason = 'Evacuation complete.';
+    evac_reason = '疏散完成。';
   }
 
   const minimumNukeTime = worldtime > nuketimelock;
   const canNuke =
     (nuke_available, !mission_failed, evac_reason === 0, minimumNukeTime);
-  let nuke_reason =
-    'Request a nuclear device to be authorized by USCM High Command.';
+  let nuke_reason = '请求殖民地陆战队高级指挥部授权核装置。';
   if (!nuke_available) {
-    nuke_reason =
-      'No nuclear ordnance is available during this operation, or one has already been provided.';
+    nuke_reason = '本次行动不提供核武器，或已有核武器获发。';
   } else if (mission_failed) {
-    nuke_reason =
-      'You have already lost the objective, you cannot use a nuclear device aboard the ship!';
+    nuke_reason = '行动目标已经失败，你不能在舰上使用核装置！';
   } else if (evac_status !== 0) {
-    nuke_reason = 'You cannot use a nuclear device while abandoning the ship!';
+    nuke_reason = '弃舰期间不能使用核装置！';
   } else if (!minimumNukeTime) {
-    nuke_reason = 'It is too soon to use a nuclear device. Keep fighting!';
+    nuke_reason = '现在还太早，不能使用核装置。继续战斗！';
   }
 
   return (
@@ -1565,7 +1561,7 @@ const Emergency = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -1573,7 +1569,7 @@ const Emergency = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -1589,12 +1585,12 @@ const Emergency = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
-      <h1 align="center">Emergency Protocols</h1>
+      <h1 align="center">应急协议</h1>
       <Flex align="center" justify="center" height="50%" direction="column">
         <Button.Confirm
           tooltip={quarters_reason}
@@ -1609,7 +1605,7 @@ const Emergency = (props) => {
           onClick={() => act('general_quarters')}
           disabled={!canQuarters}
         >
-          Call General Quarters
+          全员战斗部署
         </Button.Confirm>
         <Button.Confirm
           tooltip={evac_reason}
@@ -1624,7 +1620,7 @@ const Emergency = (props) => {
           onClick={() => act('evacuation_start')}
           disabled={!canEvac}
         >
-          Initiate Evacuation
+          启动疏散
         </Button.Confirm>
         <Button.Confirm
           tooltip={distress_reason}
@@ -1639,7 +1635,7 @@ const Emergency = (props) => {
           onClick={() => act('distress')}
           disabled={!canDistress}
         >
-          Launch Distress Beacon
+          发送求救信标
         </Button.Confirm>
         <Button.Confirm
           tooltip={nuke_reason}
@@ -1654,7 +1650,7 @@ const Emergency = (props) => {
           onClick={() => act('nuclearbomb')}
           disabled={!canNuke}
         >
-          Request Nuclear Device
+          申请核装置
         </Button.Confirm>
       </Flex>
     </>
@@ -1681,7 +1677,7 @@ const TechLogs = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -1689,7 +1685,7 @@ const TechLogs = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -1705,13 +1701,13 @@ const TechLogs = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Tech Control Logs</h1>
+        <h1 align="center">技术控制日志</h1>
         {!!records_tech.length && (
           <Flex
             className="candystripe"
@@ -1720,13 +1716,13 @@ const TechLogs = (props) => {
             fontSize="1.25rem"
           >
             <Flex.Item bold width="6rem" shrink="0" mr="1rem">
-              Time
+              时间
             </Flex.Item>
             <Flex.Item width="15rem" grow bold>
-              Authenticator
+              授权者
             </Flex.Item>
             <Flex.Item width="40rem" textAlign="center">
-              Details
+              详情
             </Flex.Item>
           </Flex>
         )}
@@ -1764,7 +1760,7 @@ const TechLogs = (props) => {
               <Flex.Item ml="1rem">
                 <Button.Confirm
                   icon="trash"
-                  tooltip="Delete Record"
+                  tooltip="删除记录"
                   disabled={access_level < 4 || !!record.tier_changer}
                   onClick={() => act('delete_record', { record: record.ref })}
                 />
@@ -1797,7 +1793,7 @@ const CoreSec = (props) => {
               icon="arrow-left"
               px="2rem"
               textAlign="center"
-              tooltip="Go back"
+              tooltip="返回"
               onClick={() => act('go_back')}
               disabled={last_page === current_menu}
             />
@@ -1805,7 +1801,7 @@ const CoreSec = (props) => {
               icon="house"
               ml="auto"
               mr="1rem"
-              tooltip="Navigation Menu"
+              tooltip="导航菜单"
               onClick={() => act('home')}
             />
           </Box>
@@ -1821,23 +1817,23 @@ const CoreSec = (props) => {
             bold
             onClick={() => act('logout')}
           >
-            Logout
+            退出登录
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section>
-        <h1 align="center">Core Security Protocols</h1>
+        <h1 align="center">核心安全协议</h1>
       </Section>
       <Section>
-        <h1 align="center">Nerve Gas Release</h1>
+        <h1 align="center">神经毒气释放</h1>
         {security_vents.map((vent, i) => {
           return (
             <Button.Confirm
               key={i}
               align="center"
               icon="wind"
-              tooltip="Release Gas"
+              tooltip="释放毒气"
               width="100%"
               disabled={
                 (access_level < 5 && access_level !== 3) || !vent.available

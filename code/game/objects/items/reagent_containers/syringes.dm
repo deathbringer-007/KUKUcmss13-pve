@@ -6,8 +6,8 @@
 #define SYRINGE_BROKEN 2
 
 /obj/item/reagent_container/syringe
-	name = "syringe"
-	desc = "A syringe."
+	name = "注射器"
+	desc = "一支注射器。"
 	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "syringe_0"
 	icon_state = "0"
@@ -291,8 +291,8 @@
 
 
 /obj/item/reagent_container/ld50_syringe
-	name = "Lethal Injection Syringe"
-	desc = "A syringe used for lethal injections."
+	name = "致命注射器"
+	desc = "用于执行致命注射的注射器。"
 	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "syringe_0"
 	icon_state = "0"
@@ -513,8 +513,8 @@
 	update_icon()
 
 /obj/item/reagent_container/syringe/leporazine_dermaline
-	name = "syringe (temperature stablization)"
-	desc = "Contains leporazine - used to stabilize body temperature, and dermaline - used to rapidly heal burns"
+	name = "注射器（体温稳定剂）"
+	desc = "内含用于稳定体温的勒泊嗪，以及快速治疗烧伤的德玛林。"
 
 /obj/item/reagent_container/syringe/leporazine_dermaline/Initialize()
 	. = ..()

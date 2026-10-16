@@ -5,8 +5,8 @@
 
 //Food items that aren't eaten normally and leave an empty container behind.
 /obj/item/reagent_container/food/condiment
-	name = "Condiment Container"
-	desc = "Just your average condiment container."
+	name = "调味料容器"
+	desc = "普通的调味料容器。"
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = "emptycondiment"
 	flags_atom = FPRINT|OPENCONTAINER
@@ -88,62 +88,62 @@
 	if(length(reagents.reagent_list) > 0)
 		switch(reagents.get_master_reagent_id())
 			if("ketchup")
-				name = "Ketchup"
-				desc = "You feel more American already."
+				name = "番茄沙司"
+				desc = "你已经觉得自己更像美国人了。"
 				icon_state = "ketchup"
 				center_of_mass = "x=16;y=6"
 			if("enzyme")
-				name = "Universal Enzyme"
-				desc = "Used in cooking various dishes."
+				name = "通用酶"
+				desc = "用于烹调各种菜肴。"
 				icon_state = "enzyme"
 				center_of_mass = "x=16;y=6"
 			if("soysauce")
-				name = "Soy Sauce"
-				desc = "A salty soy-based flavoring."
+				name = "酱油"
+				desc = "咸味的大豆调味汁。"
 				icon_state = "soysauce"
 				center_of_mass = "x=16;y=6"
 			if("frostoil")
-				name = "Coldsauce"
-				desc = "Leaves the tongue numb in its passage."
+				name = "冰辣酱"
+				desc = "流过舌头时会留下麻木的感觉。"
 				icon_state = "coldsauce"
 				center_of_mass = "x=16;y=6"
 			if("sodiumchloride")
-				name = "Salt Shaker"
-				desc = "Salt. From space oceans, presumably."
+				name = "盐瓶"
+				desc = "盐。大概来自太空海洋吧。"
 				icon_state = "saltshaker"
 				center_of_mass = "x=16;y=10"
 			if("blackpepper")
-				name = "Pepper Mill"
-				desc = "Often used to flavor food or make people sneeze."
+				name = "胡椒研磨瓶"
+				desc = "常用来给食物调味，或让人打喷嚏。"
 				icon_state = "peppermill"
 				center_of_mass = "x=16;y=10"
 			if("cornoil")
-				name = "Corn Oil"
-				desc = "A delicious oil used in cooking. Made from corn."
+				name = "玉米油"
+				desc = "烹饪用的美味食用油，由玉米制成。"
 				icon_state = "oliveoil"
 				center_of_mass = "x=16;y=6"
 			if("sugar")
-				name = "Sugar"
-				desc = "Tasty space sugar!"
+				name = "糖"
+				desc = "美味的太空糖！"
 				center_of_mass = "x=16;y=6"
 			else
-				name = "Misc Condiment Bottle"
+				name = "杂项调味料瓶"
 				if (length(reagents.reagent_list)==1)
-					desc = "Looks like it is [reagents.get_master_reagent_name()], but you are not sure."
+					desc = "看起来像是[reagents.get_master_reagent_name()]，但你无法确定。"
 				else
-					desc = "A mixture of various condiments. [reagents.get_master_reagent_name()] is one of them."
+					desc = "多种调味料的混合物，其中包括[reagents.get_master_reagent_name()]。"
 				icon_state = "mixedcondiments"
 				center_of_mass = "x=16;y=6"
 	else
 		icon_state = "emptycondiment"
-		name = "Condiment Bottle"
-		desc = "An empty condiment bottle."
+		name = "调味料瓶"
+		desc = "一个空调味料瓶。"
 		center_of_mass = "x=16;y=6"
 		return
 
 /obj/item/reagent_container/food/condiment/enzyme
-	name = "Universal Enzyme"
-	desc = "Used in cooking various dishes."
+	name = "通用酶"
+	desc = "用于烹制各种菜肴。"
 	icon_state = "enzyme"
 
 /obj/item/reagent_container/food/condiment/enzyme/Initialize()
@@ -169,8 +169,8 @@
 	reagents.add_reagent("sodiumchloride", 20)
 
 /obj/item/reagent_container/food/condiment/peppermill
-	name = "Pepper Mill"
-	desc = "Often used to flavor food or make people sneeze."
+	name = "胡椒研磨瓶"
+	desc = "常用来给食物调味，或让人打喷嚏。"
 	icon_state = "peppermillsmall"
 	possible_transfer_amounts = list(1,20) //for clown turning the lid off
 	amount_per_transfer_from_this = 1
@@ -235,16 +235,16 @@
 	reagents.add_reagent("frostoil", 60)
 
 /obj/item/reagent_container/food/condiment/juice
-	name = "Juice Packet"
-	desc = "A small packet of dehydrated fruit-juice powder. Mix with water for a 'tasty' beverage. This one appears to be missing the label indicating what flavor it is however."
+	name = "果汁冲调包"
+	desc = "一小包脱水果汁粉，加水即可调成“美味”饮料。不过这一包似乎缺了标注口味的标签。"
 	w_class = SIZE_TINY
 	icon_state = "bjpowder"
 	amount_per_transfer_from_this = 1
 	volume = 6
 
 /obj/item/reagent_container/food/condiment/juice/orange
-	name = "Orange Juice Packet"
-	desc = "A small packet of orange flavored drink mix, sweetened with sugar alcohols. For best results, mix with water instead of consuming standalone."
+	name = "橙汁包"
+	desc = "一小包用糖醇增甜的橙味冲调饮料。加水冲调效果最佳，请勿直接干吃。"
 	icon_state = "ojpowder"
 
 /obj/item/reagent_container/food/condiment/juice/orange/Initialize()
@@ -252,8 +252,8 @@
 	reagents.add_reagent("dehydrated_orange_juice", 6)
 
 /obj/item/reagent_container/food/condiment/juice/apple
-	name = "Apple Juice Packet"
-	desc = "A small packet of apple flavored drink mix, sweetened with sugar alcohols. For best results, mix with water instead of consuming standalone."
+	name = "苹果果汁冲调包"
+	desc = "一小包用糖醇增甜的苹果味冲调饮料。加水冲调效果最佳，请勿直接干吃。"
 	icon_state = "ajpowder"
 
 /obj/item/reagent_container/food/condiment/juice/apple/Initialize()
@@ -261,8 +261,8 @@
 	reagents.add_reagent("dehydrated_apple_juice", 6)
 
 /obj/item/reagent_container/food/condiment/juice/watermelon
-	name = "Watermelon Juice Packet"
-	desc = "A small packet of watermelon flavored drink mix, sweetened with sugar alcohols. For best results, mix with water instead of consuming standalone."
+	name = "西瓜果汁冲调包"
+	desc = "一小包用糖醇增甜的西瓜味冲调饮料。加水冲调效果最佳，请勿直接干吃。"
 	icon_state = "wjpowder"
 
 /obj/item/reagent_container/food/condiment/juice/watermelon/Initialize()
@@ -270,8 +270,8 @@
 	reagents.add_reagent("dehydrated_watermelon_juice", 6)
 
 /obj/item/reagent_container/food/condiment/juice/grape
-	name = "Grape Juice Packet"
-	desc = "A small packet of grape flavored drink mix, sweetened with sugar alcohols. For best results, mix with water instead of consuming standalone."
+	name = "葡萄果汁冲调包"
+	desc = "一小包用糖醇增甜的葡萄味冲调饮料。加水冲调效果最佳，请勿直接干吃。"
 	icon_state = "gjpowder"
 
 /obj/item/reagent_container/food/condiment/juice/grape/Initialize()
@@ -279,8 +279,8 @@
 	reagents.add_reagent("dehydrated_grape_juice", 6)
 
 /obj/item/reagent_container/food/condiment/juice/pineapple
-	name = "Pineapple Juice Packet"
-	desc = "A small packet of pineapple flavored drink mix, sweetened with sugar alcohols. For best results, mix with water instead of consuming standalone."
+	name = "菠萝果汁冲调包"
+	desc = "一小包用糖醇增甜的菠萝味冲调饮料。加水冲调效果最佳，请勿直接干吃。"
 	icon_state = "pjpowder"
 
 /obj/item/reagent_container/food/condiment/juice/pineapple/Initialize()

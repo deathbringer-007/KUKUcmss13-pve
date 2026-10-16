@@ -35,8 +35,8 @@
 //M41A PULSE RIFLE
 
 /obj/item/weapon/gun/rifle/m41a
-	name = "\improper M41A pulse rifle MK2"
-	desc = "The standard issue rifle of the Colonial Marines. Commonly carried by most combat personnel. Uses 10x24mm caseless ammunition."
+	name = "M41A 脉冲步枪 MK2"
+	desc = "殖民地陆战队制式步枪，大多数战斗人员都会携带。使用 10x24mm 无壳弹。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "m41a"
 	item_state = "m41a"
@@ -109,8 +109,8 @@
 //NSG 23 ASSAULT RIFLE - RMC PRIMARY RIFLE
 
 /obj/item/weapon/gun/rifle/nsg23
-	name = "\improper NSG 23 pulse rifle"
-	desc = "Pulse action 8.5x33mm caseless assault rifle in use by various W-Y personnel. Comparable performance with the ARMAT M41A series of rifles, with slightly better handling."
+	name = "NSG 23 脉冲步枪"
+	desc = "各类 W-Y 人员使用的脉冲式 8.5x33mm 无壳突击步枪，性能与阿玛特 M41A 系列相近，操控性稍好。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/wy.dmi'
 	icon_state = "nsg23"
 	item_state = "nsg23"
@@ -299,8 +299,8 @@
 //M41A TRUE AND ORIGINAL
 
 /obj/item/weapon/gun/rifle/m41aMK1
-	name = "\improper M41A pulse rifle"
-	desc = "Pulse action 10x24mm caseless assault rifle of the USCMC, personal friend of any Marine. Features an integrated 30mm grenade launcher and ammo tube that can hold four grenades on backup."
+	name = "M41A 脉冲步枪"
+	desc = "USCMC 的脉冲式 10x24mm 无壳突击步枪，每位陆战队员的亲密伙伴。内置 30mm 榴弹发射器和可存放四枚备用榴弹的弹药管。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "m41amk1" //Placeholder.
 	item_state = "m41amk1" //Placeholder.
@@ -393,8 +393,8 @@
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade/mk1/preloaded, /obj/item/attachable/suppressor, /obj/item/attachable/magnetic_harness, /obj/item/attachable/stock/rifle/collapsible)
 
 /obj/item/weapon/gun/rifle/m41aMK1/elite
-	name = "\improper M41A2 pulse rifle"
-	desc = "A modified version M41A pulse rifle re-engineered for better weight and handling, and an high degree of accuracy brought about by a precise two-round burst system."
+	name = "M41A2 脉冲步枪"
+	desc = "重新设计的 M41A 脉冲步枪，重量与操控性更佳，精密的两连发系统带来很高的精度。"
 	icon_state = "m41a2"
 	item_state = "m41a2"
 	current_mag = /obj/item/ammo_magazine/rifle/m41aMK1
@@ -456,8 +456,8 @@
 //=================================================
 
 /obj/item/weapon/gun/rifle/ag80
-	name = "\improper AG80 pulse rifle"
-	desc = "Pulse action 9.7x16mm caseless assault rifle of the UPPAC Naval Infantry. Only recently entered service and has yet to see full integration. The design suggests that it is a carbine sibling to the Type-71's rifle role, rather than an outright replacement."
+	name = "AG80 脉冲步枪"
+	desc = "UPPAC 海军步兵的脉冲式 9.7x16mm 无壳突击步枪，最近才服役，尚未全面整合。设计定位更像与 71 式步枪互补的卡宾枪，而非直接替代品。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/upp.dmi'
 	icon_state = "ag80"
 	item_state = "ag80"
@@ -598,8 +598,8 @@
 //Experimental ARMAT side-grade to the M41A, not standard issue, only used by MARSOC
 
 /obj/item/weapon/gun/rifle/m46c
-	name = "\improper XM46A pulse rifle"
-	desc = "An experimental improvement of the M41A from ARMAT, the XM46 incorporated a hexagonally rifled barrel, improved compensation, refined ergonomics, and the flagship offering, an intelligent fire control system. In trials it was judged to offer too little over the existing weapon at grossly higher cost, and suspiciously low parts interchange. Rarely seen outside of special mission unit service, and even then uncommon."
+	name = "XM46A 脉冲步枪"
+	desc = "阿玛特对 M41A 的实验性改进型号 XM46，采用六边形膛线枪管、改进补偿机构、优化人体工学，以及主打的智能火控系统。试验认为其相对现役武器提升有限，成本却高得离谱，零件通用性也低得可疑。除特种任务单位外极少见到，即便在那里也不常见。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "m46c"
 	item_state = "m46c"
@@ -723,8 +723,8 @@
 
 
 /obj/item/weapon/gun/rifle/mar40
-	name = "\improper MAR-40 battle rifle"
-	desc = "A cheap, reliable assault rifle chambered in 8.8x29mm. Commonly found in the hands of criminals or mercenaries, or in the hands of the UPP or CLF."
+	name = "MAR-40 战斗步枪"
+	desc = "使用 8.8x29mm 弹药的廉价可靠突击步枪，常见于罪犯、雇佣兵、UPP 或 CLF 手中。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "mar40"
 	item_state = "mar40"
@@ -782,8 +782,8 @@
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AUTO_EJECT_CASINGS
 
 /obj/item/weapon/gun/rifle/mar40/carbine
-	name = "\improper MAR-30 battle carbine"
-	desc = "A cheap, reliable carbine chambered in 8.8x29mm. Commonly found in the hands of criminals or mercenaries."
+	name = "MAR-30 战斗卡宾枪"
+	desc = "使用 8.8x29mm 弹药的廉价可靠卡宾枪，常见于罪犯或雇佣兵手中。"
 	icon_state = "mar30"
 	item_state = "mar30"
 	fire_sound = 'sound/weapons/gun_mar40.ogg'
@@ -885,8 +885,8 @@
 //M16 RIFLE
 
 /obj/item/weapon/gun/rifle/m16
-	name = "\improper M16 rifle"
-	desc = "The manufacturer claims that these are Classic 16 assault rifles. It's another one of the clonetypes you see on the Frontier since the AR-15 patent expired over a century ago. Chambered in 5.56x45mm, popular on the Frontier for home defense and hunting. The old cased rounds can also be used till they disintegrate, if you can be bothered to police the brass."
+	name = "M16 步枪"
+	desc = "厂家宣称它是经典 16 型突击步枪。自 AR-15 专利在一个多世纪前到期后，边疆遍地都是此类仿制品。使用 5.56x45mm 弹药，深受边疆家庭防卫者与猎人欢迎。如果你愿意捡弹壳，老式有壳弹还能反复复装，直到弹壳散架。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "m16"
 	item_state = "m16"
@@ -1226,8 +1226,8 @@
 //M41AE2 HEAVY PULSE RIFLE
 
 /obj/item/weapon/gun/rifle/lmg
-	name = "\improper M41AE2 heavy pulse rifle"
-	desc = "Heavy barreled higher capacity variant of the M41A. Greater sustained firepower and total ammunition carried, offset by removal of the grenade launcher and worsened handling."
+	name = "M41AE2 重型脉冲步枪"
+	desc = "M41A 的重枪管高容量变体，持续火力和总载弹量更强，代价是移除榴弹发射器并降低操控性。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "m41ae2"
 	item_state = "m41ae2"
@@ -1377,8 +1377,8 @@
 //UPP TYPE 71 RIFLE
 
 /obj/item/weapon/gun/rifle/type71
-	name = "\improper Type 71 pulse rifle"
-	desc = "The service rifle of the UPP, the Type 71 is an ergonomic, lightweight pulse rifle chambered in 10x27mm, packing a harder punch than the USCM M41A which balances out a lower firerate. Despite lackluster precision, an integrated recoil-dampening mechanism makes the rifle surprisingly controllable in bursts."
+	name = "71 式脉冲步枪"
+	desc = "UPP 制式 71 式脉冲步枪，轻便且符合人体工学，使用 10x27mm 弹药。威力强于 USCM M41A，弥补了较低射速。精度虽一般，集成后坐抑制机构却让点射出乎意料地好控制。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/upp.dmi'
 	icon_state = "type71"
 	item_state = "type71"
@@ -1565,8 +1565,8 @@
 //M49A Battle Rifle, standard USCM DMR
 
 /obj/item/weapon/gun/rifle/m49a
-	name = "\improper M49A battle rifle"
-	desc = "The M49A battle rifle is a designated marksman rifle in service with the USCM. Sporting a bullpup configuration, the M49A battle rifle is perfect for reconnaissance and fire support teams.\nTakes *only* non-high-velocity M49A magazines."
+	name = "M49A 战斗步枪"
+	desc = "M49A 是 USCM 服役中的精确射手战斗步枪。无托布局使它非常适合侦察与火力支援小组。\n仅接受非高速型 M49A 弹匣。"
 	icon_state = "m49a"
 	item_state = "m49a"
 	mouse_pointer = 'icons/effects/mouse_pointer/sniper_mouse.dmi'
@@ -1740,8 +1740,8 @@
 //L42A Battle Rifle
 
 /obj/item/weapon/gun/rifle/l42a
-	name = "\improper L42A pulse rifle"
-	desc = "The L42A pulse rifle, despite its age, remains a common 'sporting' rifle among UA citizens and a reliable alternative to more contemporary rifles for many mercenaries."
+	name = "L42A 脉冲步枪"
+	desc = "L42A 脉冲步枪虽已老旧，却仍是美洲联盟民间常见的“运动”步枪，也是不少雇佣兵替代现代步枪的可靠选择。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "l42mk1"
 	item_state = "l42mk1"
@@ -1799,9 +1799,9 @@
 // Civilian version of the L42A, used for hunting, and also by undersupplied paramilitary groups.
 
 /obj/item/weapon/gun/rifle/l42a/abr40
-	name = "\improper ABR-40 hunting rifle"
-	desc = "The civilian version of the L42A battle rifle. Almost identical and even cross-compatible with L42 magazines, just don't take the stock off.."
-	desc_lore = "The ABR-40 was created along-side the L42A as a hunting rifle for civilians. Sporting faux wooden furniture and a legally-mandated 12 round magazine, it's still highly accurate and deadly, a favored pick of experienced hunters and retired Marines. However, it's very limited in attachment selection, only being able to fit rail attachments, and the differences in design from the L42 force an awkward pose when attempting to hold it one-handed. Removing the stock is not recommended."
+	name = "ABR-40 猎枪"
+	desc = "L42A 战斗步枪的民用版本，几乎完全相同，甚至兼容 L42 弹匣。就是别把枪托拆了……"
+	desc_lore = "ABR-40 与 L42A 同期开发，是面向民用市场的猎枪。它采用仿木制护木和法律规定的十二发弹匣，仍然精准而致命，深受经验丰富的猎人及退役陆战队员喜爱。不过，它只能安装导轨配件，配件选择非常有限；其结构与 L42 的差异也导致单手持枪时姿势十分别扭。不建议拆下枪托。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "abr40"
 	item_state = "abr40"
@@ -1880,8 +1880,8 @@
 //=OLD ROYAL MARINES RIFLES=\\
 
 /obj/item/weapon/gun/rifle/rmc_f90
-	name = "\improper F903A1 Rifle"
-	desc = "The old standard-issue rifle of the royal marines, now commonly seen in the hands of private military contractors or insurgent groups. Prior to the adoption of the L23A1, the royal marines were the only modern military to not use a pulse weapon. Uses 10x24mm caseless ammunition."
+	name = "F903A1 步枪"
+	desc = "皇家陆战队的旧制式步枪，如今常见于私人军事承包商或叛乱组织手中。在采用 L23A1 之前，皇家陆战队是唯一不使用脉冲武器的现代军队。使用 10x24mm 无壳弹。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/twe_guns.dmi'
 	icon_state = "aug"
 	item_state = "aug"
@@ -1924,8 +1924,8 @@
 	recoil_unwielded = RECOIL_AMOUNT_TIER_2
 
 /obj/item/weapon/gun/rifle/rmc_f90/a_grip
-	name = "\improper F903A2 Rifle"
-	desc = "A variant of the old standard-issue rifle of the royal marines, now commonly seen in the hands of private military contractors or insurgent groups. Prior to the adoption of the L23A1, the royal marines were the only modern military to not use a pulse weapon. Uses 10x24mm caseless ammunition."
+	name = "F903A2 步枪"
+	desc = "皇家陆战队旧制式步枪的变体，如今常见于私人军事承包商或叛乱组织手中。在采用 L23A1 之前，皇家陆战队是唯一不使用脉冲武器的现代军队。使用 10x24mm 无壳弹。"
 	icon_state = "aug_com"
 	item_state = "aug_com"
 	attachable_allowed = list(
@@ -1944,8 +1944,8 @@
 	update_attachable(f90_agrip.slot)
 
 /obj/item/weapon/gun/rifle/rmc_f90/scope
-	name = "\improper F903A1 Marksman Rifle"
-	desc = "A variant of the old standard-issue rifle of the royal marines, now commonly seen in the hands of private military contractors or insurgent groups. Prior to the adoption of the L23A1, the royal marines were the only modern military to not use a pulse weapon. Only accepts smaller 20-round magazines of 10x24mm caseless ammunition."
+	name = "F903A1 精确射手步枪"
+	desc = "皇家陆战队旧制式步枪的变体，如今常见于私人军事承包商或叛乱组织手中。在采用 L23A1 之前，皇家陆战队是唯一不使用脉冲武器的现代军队。仅接受较小的 20 发 10x24mm 无壳弹匣。"
 	icon_state = "aug_dmr"
 	item_state = "aug_dmr"
 	attachable_allowed = null
@@ -1982,8 +1982,8 @@
 	update_attachable(f90_dmr_barrel.slot)
 
 /obj/item/weapon/gun/rifle/rmc_f90/shotgun
-	name = "\improper F903A1/B 'Breacher' Rifle"
-	desc = "A variant of the old standard-issue rifle of the royal marines fitted with an underbarrel shotgun, now commonly seen in the hands of private military contractors or insurgent groups. Prior to the adoption of the L23A1, the royal marines were the only modern military to not use a pulse weapon. Uses 10x24mm caseless ammunition."
+	name = "F903A1/B“破门者”步枪"
+	desc = "装有下挂霰弹枪的皇家陆战队旧制式步枪变体，如今常见于私人军事承包商或叛乱组织手中。在采用 L23A1 之前，皇家陆战队是唯一不使用脉冲武器的现代军队。使用 10x24mm 无壳弹。"
 	icon_state = "aug_mkey"
 	item_state = "aug_mkey"
 	attachable_allowed = list(

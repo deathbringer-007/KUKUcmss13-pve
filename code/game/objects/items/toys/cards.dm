@@ -16,8 +16,8 @@
 		sort_index = set_sort_index
 
 /obj/item/toy/deck
-	name = "deck of cards"
-	desc = "A simple deck of playing cards."
+	name = "一副扑克牌"
+	desc = "一副普通扑克牌。"
 	icon = 'icons/obj/items/playing_cards.dmi'
 	icon_state = "deck"
 	w_class = SIZE_TINY
@@ -45,8 +45,8 @@
 			cards += new /datum/playing_card("[number] of [suit]", "[suit]_[number]", "back_[base_icon]", card_id++)
 
 /obj/item/toy/deck/uno
-	name = "deck of UNO cards"
-	desc = "A simple deck of the Weyland-Yutani classic UNO playing cards."
+	name = "一副 UNO 牌"
+	desc = "一副维兰德-汤谷经典 UNO 纸牌。"
 	icon_state = "deck_uno"
 	base_icon = "deck_uno"
 	max_cards = 108

@@ -45,7 +45,7 @@
 			else
 				descriptive = "灼热"
 
-		. += SPAN_NOTICE("\The [icon2html(src, user)][src]摸起来[descriptive]。")
+		. += SPAN_NOTICE("[icon2html(src, user)][src]摸起来[descriptive]。")
 
 
 /obj/item/tank/attackby(obj/item/W as obj, mob/user as mob)
@@ -135,9 +135,9 @@
 				else
 					if(location.wear_mask && (location.wear_mask.flags_inventory & ALLOWINTERNALS))
 						location.internal = src
-						to_chat(usr, SPAN_NOTICE("你打开了\the [src]的阀门。"))
+						to_chat(usr, SPAN_NOTICE("你打开了[src]的阀门。"))
 					else
-						to_chat(usr, SPAN_NOTICE("你需要连接到\the [src]的设备。"))
+						to_chat(usr, SPAN_NOTICE("你需要连接到[src]的设备。"))
 				. = TRUE
 
 /obj/item/tank/return_air()

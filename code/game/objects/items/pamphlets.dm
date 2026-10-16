@@ -1,6 +1,6 @@
 /obj/item/pamphlet
-	name = "instructional pamphlet"
-	desc = "A pamphlet used to quickly impart vital knowledge."
+	name = "技能指导手册"
+	desc = "用于快速传授重要知识的小册子。"
 	icon = 'icons/obj/items/pamphlets.dmi'
 	icon_state = "pamphlet_written"
 	item_state = "pamphlet_written"
@@ -49,14 +49,14 @@
 	trait = /datum/character_trait/skills/medical
 
 /obj/item/pamphlet/skill/engineer
-	name = "engineer instructional pamphlet"
-	desc = "A pamphlet used to quickly impart vital knowledge. This one has an engineering insignia."
+	name = "工兵技能指导手册"
+	desc = "用于快速传授重要知识的小册子，封面印有工程标志。"
 	icon_state = "pamphlet_construction"
 	trait = /datum/character_trait/skills/miniengie
 
 /obj/item/pamphlet/skill/jtac
-	name = "JTAC instructional pamphlet"
-	desc = "A pamphlet used to quickly impart vital knowledge. This one has the image of a radio on it."
+	name = "JTAC 技能指导手册"
+	desc = "用于快速传授重要知识的小册子，封面印着无线电图案。"
 	icon_state = "pamphlet_jtac"
 	trait = /datum/character_trait/skills/jtac
 
@@ -91,8 +91,8 @@
 	GLOB.data_core.manifest_modify(user.real_name, WEAKREF(user), "Spotter")
 
 /obj/item/pamphlet/skill/loader
-	name = "Loader instructional pamphlet"
-	desc = "A pamphlet used to quickly impart vital knowledge. This one has the image of a rocket on it."
+	name = "装填手技能指导手册"
+	desc = "用于快速传授重要知识的小册子，封面印着火箭弹图案。"
 	icon_state = "pamphlet_loader"
 	trait = /datum/character_trait/skills/loader
 	bypass_pamphlet_limit = TRUE
@@ -120,15 +120,15 @@
 	GLOB.data_core.manifest_modify(user.real_name, WEAKREF(user), "Loader")
 
 /obj/item/pamphlet/skill/machinegunner
-	name = "heavy machinegunner instructional pamphlet"
-	desc = "A pamphlet used to quickly impart vital knowledge. This one has an engineering and a machinegun insignia."
+	name = "重机枪手技能指导手册"
+	desc = "用于快速传授重要知识的小册子，封面印有工程和机枪标志。"
 	icon_state = "pamphlet_machinegunner"
 	trait = /datum/character_trait/skills/engineering
 	bypass_pamphlet_limit = TRUE
 
 /obj/item/pamphlet/skill/powerloader
-	name = "powerloader instructional pamphlet"
-	desc = "A pamphlet used to quickly impart vital knowledge. This one has a powerloader insignia. The title reads 'Moving freight and squishing heads - a practical guide to Caterpillar P-5000 Work Loader'."
+	name = "动力装载机技能指导手册"
+	desc = "用于快速传授重要知识的小册子，封面印有动力装载机标志。标题是《搬货与爆头——卡特彼勒 P-5000 动力装载机实用指南》。"
 	icon_state = "pamphlet_powerloader"
 	trait = /datum/character_trait/skills/powerloader
 	/// it's really not necessary to stop people from learning powerloader skill

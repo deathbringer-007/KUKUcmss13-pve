@@ -22,8 +22,8 @@
 		icon_state = "kit_case_e"
 
 /obj/item/storage/box/spec/rocketeer
-	name = "\improper Rocketeer equipment case"
-	desc = "A large case containing a heavy-caliber anti-tank M5 RPG rocket launcher, M10-R bombardier helmet, three spare 84mm rockets, loader equipment and additional pieces of equipment.\nDrag this sprite onto yourself to open it up! NOTE: You cannot put items back inside this case."
+	name = "火箭筒手装备箱"
+	desc = "大型装备箱，内含大口径反坦克 M5 RPG 火箭筒、M10-R 轰击手头盔、三枚备用 84mm 火箭弹、装填手装备及其他装备。\n将图标拖到自己身上即可打开！注意：物品无法放回箱内。"
 	kit_overlay = "demo"
 
 /obj/item/storage/box/spec/rocketeer/fill_preset_inventory()
@@ -39,14 +39,8 @@
 	new /obj/item/storage/box/kit/loader(src)
 
 /obj/item/storage/box/kit/loader
-	name = "\improper Loader Kit"
-	desc = "A large kit containing all the supplies needed to turn a marine into the loading assistant for an M5 RPG operator.\
-	\nA little infographic series shows how reloading should be done:\
-	\nStep One: Grab the Rocket\
-	\nStep Two: Position yourself behind the M5 operator\
-	\nStep Three: Ensure the operator is wielding their Launcher\
-	\nStep Four: Load the Rocket into the Launcher\
-	\nStep Five: Stand clear of the back-blast"
+	name = "装填手套件"
+	desc = "大型套件，包含让一名陆战队员成为 M5 RPG 装填助手所需的全部物资。\n一组小图示说明了装填步骤：\n第一步：拿起火箭弹。\n第二步：站到 M5 射手身后。\n第三步：确保射手正双手握持发射器。\n第四步：将火箭弹装入发射器。\n第五步：避开尾焰喷射区。"
 	pro_case_overlay = "loader"
 
 /obj/item/storage/box/kit/loader/fill_preset_inventory()
@@ -64,8 +58,8 @@
 	new /obj/item/pamphlet/skill/loader(src)
 
 /obj/item/storage/box/spec/sniper
-	name = "\improper Scout-Sniper (Shooter) equipment case"
-	desc = "A large case containing your very own long-range M42A sniper rifle, M45 ghillie armor and helmet, M3 day/night goggles, ammunition and additional pieces of equipment.\nDrag this sprite onto yourself to open it up! NOTE: You cannot put items back inside this case."
+	name = "侦察狙击手 (射手) 装备箱"
+	desc = "大型装备箱，内含你的专属远程 M42A 狙击步枪、M45 吉利护甲与头盔、M3 昼夜护目镜、弹药及其他装备。\n将图标拖到自己身上即可打开！注意：物品无法放回箱内。"
 	kit_overlay = "sniper"
 
 /obj/item/storage/box/spec/sniper/fill_preset_inventory()
@@ -84,8 +78,8 @@
 	new /obj/item/facepaint/sniper(src)
 
 /obj/item/storage/box/spec/sniper/anti_materiel/fill_preset_inventory()
-	name = "\improper Scout-Sniper (AMR Shooter) equipment case"
-	desc = "A large case containing an experimental XM43E1, a set of M45 ghillie armor and helmet, M3 day/night gogglest, ammunition and additional pieces of equipment.\nDrag this sprite onto yourself to open it up! NOTE: You cannot put items back inside this case."
+	name = "侦察狙击手（反器材步枪射手）装备箱"
+	desc = "一个大箱子，内装实验型 XM43E1、M45 吉利伪装护甲与头盔、M3 昼夜两用护目镜、弹药及其他装备。\n将此图标拖到自己身上即可打开！注意：物品取出后无法放回箱内。"
 	kit_overlay = "amr"
 	new /obj/item/clothing/suit/storage/marine/ghillie(src)
 	new /obj/item/clothing/head/helmet/marine/ghillie(src)
@@ -100,8 +94,8 @@
 	new /obj/item/facepaint/sniper(src)
 
 /obj/item/storage/box/spec/spotter
-	name = "\improper Scout-Sniper (Spotter) equipment case"
-	desc = "A large case containing a customised M49A5 battle rifle, a set of M45 ghillie armor and helmet, M49A battle sight, V3 reactive thermal tarp, spotter laser designator, ammunition and additional pieces of equipment.\nDrag this sprite onto yourself to open it up! NOTE: You cannot put items back inside this case."
+	name = "侦察狙击手 (观测手) 装备箱"
+	desc = "大型装备箱，内含定制 M49A5 战斗步枪、M45 吉利护甲与头盔、M49A 战斗瞄准镜、V3 反应式热伪装布、观测手激光目标指示器、弹药及其他装备。\n将图标拖到自己身上即可打开！注意：物品无法放回箱内。"
 	kit_overlay = "spotter"
 
 /obj/item/storage/box/spec/spotter/fill_preset_inventory()
@@ -125,8 +119,8 @@
 
 
 /obj/item/storage/box/spec/pyro
-	name = "\improper Pyrotechnician equipment case"
-	desc = "A large case containing an M240-T incinerator unit, M35 pyrotechnician armor and helmet, Broiler-T flexible refueling system and additional pieces of equipment.\nDrag this sprite onto yourself to open it up! NOTE: You cannot put items back inside this case."
+	name = "火焰兵装备箱"
+	desc = "大型装备箱，内含 M240-T 火焰喷射器、M35 火焰兵护甲与头盔、炙炉-T 柔性补油系统及其他装备。\n将图标拖到自己身上即可打开！注意：物品无法放回箱内。"
 	kit_overlay = "pyro"
 
 /obj/item/storage/box/spec/pyro/fill_preset_inventory()
@@ -140,8 +134,8 @@
 
 
 /obj/item/storage/box/spec/heavy_grenadier
-	name = "\improper Heavy Grenadier equipment case"
-	desc = "A large case containing a heavy-duty multi-shot Armat Systems M92 grenade launcher, M3-G4 grenadier armor and helmet, significant amount of various grenades and additional pieces of equipment.\nDrag this sprite onto yourself to open it up! NOTE: You cannot put items back inside this case."
+	name = "重型榴弹兵装备箱"
+	desc = "大型装备箱，内含重型多发阿玛特系统 M92 榴弹发射器、M3-G4 榴弹兵护甲与头盔、大量各型手榴弹及其他装备。\n将图标拖到自己身上即可打开！注意：物品无法放回箱内。"
 	kit_overlay = "grenadier"
 
 /obj/item/storage/box/spec/heavy_grenadier/fill_preset_inventory()
@@ -188,8 +182,8 @@
 //For events/WO, allows the user to choose a specalist kit out of available ones in spec_kit_boxes_left list in gloabl_lists.dm
 
 /obj/item/spec_kit
-	name = "specialist kit"
-	desc = "A paper box. Open it and get a specialist kit."
+	name = "专家套件"
+	desc = "一个纸盒，打开即可获得专家套件。"
 	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "spec_kit"
 	var/list/allowed_roles_list = list(JOB_SQUAD_SPECIALIST, JOB_WO_SQUAD_SPECIALIST, JOB_WO_CREWMAN)
@@ -221,13 +215,13 @@
 				allowed_roles += ", "
 			allowed_roles += SPAN_HELPFUL("[role]")
 	else
-		allowed_roles = SPAN_HELPFUL("anyone")
-	. += SPAN_INFO("This [name] can be used by [allowed_roles] if they didn't use one of these yet.")
+		allowed_roles = SPAN_HELPFUL("任何人")
+	. += SPAN_INFO("尚未使用过此类套件的[allowed_roles]可以使用这个[name]。")
 
 /obj/item/spec_kit/attack_self(mob/living/carbon/human/user)
 	..()
 	if(!ishuman(user))
-		to_chat(user, SPAN_WARNING("You can't use \the [src]!"))
+		to_chat(user, SPAN_WARNING("你无法使用[src]！"))
 		return
 
 	if(can_use(user))
@@ -235,7 +229,7 @@
 			qdel(src)
 			return
 	else
-		to_chat(user, SPAN_WARNING("You can't use this [name]!"))
+		to_chat(user, SPAN_WARNING("你无法使用这个[name]！"))
 	return
 
 /obj/item/spec_kit/proc/can_use(mob/living/carbon/human/user)
@@ -261,15 +255,15 @@
 		if(specset.get_available_kit_num() >= 1)
 			available_specialist_kits += specset.get_name()
 
-	var/selection = tgui_input_list(user, "Pick your specialist equipment type.", "Specialist Kit Selection", available_specialist_kits, 10 SECONDS)
+	var/selection = tgui_input_list(user, "选择你的专家装备类型。", "专家套件选择", available_specialist_kits, 10 SECONDS)
 	if(!selection || QDELETED(src))
 		return FALSE
 	if(!GLOB.specialist_set_name_dict[selection] || (GLOB.specialist_set_name_dict[selection].get_available_kit_num() <= 0))
-		to_chat(user, SPAN_WARNING("No more kits of this type may be chosen!"))
+		to_chat(user, SPAN_WARNING("此类套件已无剩余可选数量！"))
 		return FALSE
 	var/obj/item/card/id/card = user.get_idcard()
 	if(!card || card.registered_ref != WEAKREF(user))
-		to_chat(user, SPAN_WARNING("You must be wearing your [SPAN_INFO("ID card")] or [SPAN_INFO("dog tags")] to select a specialization!"))
+		to_chat(user, SPAN_WARNING("必须佩戴你的[SPAN_INFO("身份牌")]或[SPAN_INFO("军用身份牌")]才能选择专精！"))
 		return FALSE
 	return GLOB.specialist_set_name_dict[selection].redeem_set(user, TRUE)
 
@@ -352,7 +346,7 @@
 
 
 /obj/item/storage/box/kit/mini_pyro
-	name = "\improper M240 Pyrotechnician Support Kit"
+	name = "M240 火焰兵支援套件"
 	pro_case_overlay = "flamer"
 
 /obj/item/storage/box/kit/mini_pyro/fill_preset_inventory()
@@ -365,7 +359,7 @@
 
 
 /obj/item/storage/box/kit/mini_sniper
-	name = "\improper M49A Marksman Kit"
+	name = "M49A 精确射手套件"
 	pro_case_overlay = "sniper"
 
 /obj/item/storage/box/kit/mini_sniper/fill_preset_inventory()
@@ -377,7 +371,7 @@
 	new /obj/item/ammo_magazine/rifle/m49a/ap(src)
 
 /obj/item/storage/box/kit/m41a_kit
-	name = "\improper M41A Rifle Kit"
+	name = "M41A 步枪套件"
 	pro_case_overlay = "pursuit"
 
 /obj/item/storage/box/kit/m41a_kit/fill_preset_inventory()
@@ -537,7 +531,7 @@
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
 
 /obj/item/storage/box/kit/engineering_supply_kit
-	name = "\improper Engineering Supply Kit"
+	name = "工程补给套件"
 
 /obj/item/storage/box/kit/engineering_supply_kit/fill_preset_inventory()
 	new /obj/item/storage/pouch/construction/low_grade_full(src)

@@ -48,8 +48,8 @@
 //M4A3 PISTOL
 
 /obj/item/weapon/gun/pistol/m4a3
-	name = "\improper M4A3 service pistol"
-	desc = "The recently replaced semi-automatic 9mm service pistol of the USCM. It remains popular among marines due to its light trigger and familiarity."
+	name = "M4A3 制式手枪"
+	desc = "刚被替换下来的 USCM 半自动 9mm 制式手枪，凭借轻巧扳机和熟悉手感，仍深受陆战队员欢迎。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "m4a3"
 	item_state = "m4a3"
@@ -90,8 +90,8 @@
 	current_mag = null
 
 /obj/item/weapon/gun/pistol/m4a3/custom
-	name = "\improper M4A3 custom pistol"
-	desc = "Sporting a nickel finish and possibly faux ivory grips, this 9mm pistol has been customized by a well known gunsmith on Gateway Station. It offers no tactical advantages."
+	name = "M4A3 定制手枪"
+	desc = "这把 9mm 手枪采用镍色表面和可能是仿象牙的握把，由门户站一位知名枪匠定制。没有任何战术优势。"
 	icon_state = "m4a3c"
 	item_state = "m4a3c"
 
@@ -109,8 +109,8 @@
 //L54A2, browning hi-power but in space
 
 /obj/item/weapon/gun/pistol/l54
-	name = "\improper L54A2 service pistol"
-	desc = "Standard issue semi-automatic service pistol of the NSPA. Chambered in 9mm, it is comparable to the popular M4A3 pistol utilized by the USCM. Until recently, it was also the standard issue pistol for the RMC before being replace by the L165A1."
+	name = "L54A2 制式手枪"
+	desc = "NSPA 制式半自动手枪，使用 9mm 弹药，性能与 USCM 广受欢迎的 M4A3 相当。不久前它还是 RMC 的制式手枪，后被 L165A1 取代。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/twe_guns.dmi'
 	icon_state = "l54"
 	item_state = "l54"
@@ -138,8 +138,8 @@
 //VP70
 
 /obj/item/weapon/gun/pistol/vp70
-	name = "\improper VP70 M5 service pistol"
-	desc = "Standard issue semi-automatic USCM service pistol. Recently replacing the M4A3, it retains its predecessor's 9mm chambering but offers both a higher magazine capacity and a 3-round burst selector."
+	name = "VP70 M5 制式手枪"
+	desc = "USCM 制式半自动手枪，近期取代 M4A3。沿用前代 9mm 口径，同时增加弹匣容量并提供三连发模式。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "vp70"
 	item_state = "vp70"
@@ -196,8 +196,8 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/pistol/m1911
-	name = "\improper M1911 pistol"
-	desc = "Despite never being an official service pistol of the USCM, its .45 ACP chambering and cultural connection to the Corps's predecessor keeps it a popular pistol, enough so that a large quantity are kept on backorder."
+	name = "M1911 手枪"
+	desc = "虽然从未成为 USCM 正式制式手枪，但 .45 ACP 口径及其与陆战队前身的文化联系，让它始终广受欢迎，甚至长期积压着大量待交付订单。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "m4a345"
 	item_state = "m4a3"
@@ -218,8 +218,8 @@
 	recoil_unwielded = RECOIL_AMOUNT_TIER_4
 
 /obj/item/weapon/gun/pistol/m1911/socom
-	name = "\improper M48A4 pistol"
-	desc = "A timeless classic since the first World War, the M1911A1 has limited use with the USCM, and is often used as a sidearm by non-governmental bodies due to its reliability. This is a modernized version with an ammo counter and a polymer grip, designated M48A4. Chambered in .45 ACP."
+	name = "M48A4 手枪"
+	desc = "自第一次世界大战以来的永恒经典，M1911A1 在 USCM 中少量服役，也因可靠性而常被非政府组织用作副武器。这是配有弹药计数器和聚合物握把的现代化版本，编号 M48A4，使用 .45 ACP 弹药。"
 	icon_state = "m4a345_s"
 	item_state = "m4a3"
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER|GUN_AUTO_EJECT_CASINGS
@@ -322,8 +322,8 @@
 //Its a makarov
 
 /obj/item/weapon/gun/pistol/np92
-	name = "\improper NP92 pistol"
-	desc = "The standard issue sidearm of the UPP. Chambered in 9x18mm Makarov, The NP92 is a small versatile pistol."
+	name = "NP92 手枪"
+	desc = "UPP 制式副武器。NP92 是小巧多用的手枪，使用 9x18mm 马卡洛夫弹。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/upp.dmi'
 	icon_state = "np92"
 	item_state = "np92"
@@ -377,8 +377,8 @@
 //Its a TT
 
 /obj/item/weapon/gun/pistol/t73
-	name = "\improper Type 73 pistol"
-	desc = "Once the standard issue sidearm of the UPP it has since been replaced by the smaller NP92. Chambered with 7.62x25mm Tokarev, it remains popular with veterans due to its extra firepower."
+	name = "73 式手枪"
+	desc = "曾是 UPP 的制式副武器，现已被更小巧的 NP92 取代。使用 7.62x25mm 托卡列夫弹，因额外火力仍受老兵欢迎。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/upp.dmi'
 	icon_state = "tt"
 	item_state = "tt"
@@ -454,8 +454,8 @@
 // rebalanced - slightly worse stats than the 88 mod, but uses heavy pistol bullets.
 
 /obj/item/weapon/gun/pistol/kt42
-	name = "\improper KT-42 automag"
-	desc = "The KT-42 Automag is an archaic but reliable design, going back many decades. There have been many versions and variations, but the 42 is by far the most common. You can't go wrong with this handcannon."
+	name = "KT-42 自动马格南手枪"
+	desc = "KT-42 自动马格南是可追溯至数十年前的老旧可靠设计。型号和变体众多，但 42 型最常见。选择这门手炮不会错。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "kt42"
 	item_state = "kt42"
@@ -478,8 +478,8 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/pistol/holdout
-	name = "holdout pistol"
-	desc = "A tiny pistol meant for hiding in hard-to-reach areas. Best not ask where it came from."
+	name = "袖珍手枪"
+	desc = "适合藏在难以触及部位的微型手枪。最好别问它是从哪里掏出来的。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "holdout"
 	item_state = "holdout"
@@ -552,8 +552,8 @@
 // ES-4 - Basically a CL-exclusive reskin of the 88 mod 4 that only uses less-lethal ammo.
 
 /obj/item/weapon/gun/pistol/es4
-	name = "\improper ES-4 electrostatic pistol"
-	desc = "A Weyland Corp manufactured less-than-lethal pistol. Originally manufactured in the 2080s, the ES-4 electrostatic pistol fires electrically-charged bullets with high accuracy, though its cost and constant need for cleaning makes it a rare sight."
+	name = "ES-4 静电手枪"
+	desc = "维兰公司制造的低致命手枪。ES-4 静电手枪最初产于 2080 年代，以高精度发射带电子弹，但价格昂贵且需频繁清洁，因此并不常见。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/wy.dmi'
 	icon_state = "es4"
 	item_state = "es4"
@@ -592,8 +592,8 @@
 //VP78 - High power pistol?
 
 /obj/item/weapon/gun/pistol/vp78
-	name = "\improper VP78 pistol"
-	desc = "A massive, formidable semi-automatic handgun based on a Beretta Arms patented design and chambered in overpressured 9mm rounds. A common sight throughout both UA and 3WE space, often held by well-equipped Weyland-Yutani personnel."
+	name = "VP78 手枪"
+	desc = "基于伯莱塔武器专利设计的大型强力半自动手枪，使用超压 9mm 弹药。在美洲联盟和三世界帝国宙域都很常见，装备精良的维兰德-汤谷人员常持有它。"
 	icon_state = "vp78"
 	item_state = "b92fs"
 	fire_sound = 'sound/weapons/gun_vp78_v2.ogg'
@@ -640,8 +640,8 @@
 	current_mag = null
 
 /obj/item/weapon/gun/pistol/vp78/rmc
-	name = "\improper L165A1 service pistol"
-	desc = "Service issue pistol to the Royal Marine Commandos. A sleek, modern, semi-automatic handgun specifically designed to chamber specialized 9x19mm explosive squash-head rounds. Based on a Beretta Arms patented design, this Weyland-Yutani modification has earned its place in the hands of the Three World Empire's best soldiers. Can load normal VP78 magazines with no issue too."
+	name = "L165A1 制式手枪"
+	desc = "皇家陆战突击队制式手枪。现代、利落的半自动手枪，专为 9x19mm 爆破碎甲弹设计。维兰德-汤谷基于伯莱塔武器专利设计的改型，赢得了三世界帝国精锐士兵的信赖，也能正常使用普通 VP78 弹匣。"
 	current_mag = /obj/item/ammo_magazine/pistol/vp78/rmc
 	start_automatic = TRUE
 
@@ -684,8 +684,8 @@ It is a modified Beretta 93R, and can fire three-round burst or single fire. Whe
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
 
 /obj/item/weapon/gun/pistol/b92fs
-	name = "\improper Beretta 92FS M9 pistol"
-	desc = "Semi-automatic 9mm service pistol of the United States Army. Also enjoys popularity in the civilian market among law enforcement and private security."
+	name = "伯莱塔 92FS M9 手枪"
+	desc = "美国陆军的半自动 9mm 制式手枪，在民用市场的执法与私人安保领域也很受欢迎。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "b92fs"
 	item_state = "b92fs"
@@ -695,8 +695,8 @@ It is a modified Beretta 93R, and can fire three-round burst or single fire. Whe
 /obj/item/weapon/gun/pistol/b92fs/Initialize(mapload, spawn_empty)
 	. = ..()
 	if(prob(10))
-		name = "\improper Beretta 93FR burst pistol"
-		desc += " This specific pistol is a burst-fire, limited availability, police-issue 93FR type Beretta. Not too accurate, aftermarket modififcations are recommended."
+		name = "伯莱塔 93FR 点射手枪"
+		desc += "这是一把限量配发警用的伯莱塔 93FR 点射手枪。精度不算高，建议加装配件。"
 		var/obj/item/attachable/burstfire_assembly/BFA = new(src)
 		BFA.flags_attach_features &= ~ATTACH_REMOVABLE
 		BFA.Attach(src)
@@ -824,8 +824,8 @@ It is a modified Beretta 93R, and can fire three-round burst or single fire. Whe
 //Smartpistol. An IFF pistol, pretty much.
 
 /obj/item/weapon/gun/pistol/smart
-	name = "\improper SU-6 Smartpistol"
-	desc = "The SU-6 Smartpistol is an IFF-based sidearm currently undergoing field testing in the Colonial Marines. Uses modified .45 ACP IFF bullets. Capable of firing in bursts."
+	name = "SU-6 智能手枪"
+	desc = "SU-6 智能手枪是基于敌我识别系统的副武器，目前正由殖民地陆战队进行实地测试。使用改装 .45 ACP 敌我识别子弹，可点射。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "smartpistol"
 	item_state = "smartpistol"
@@ -862,8 +862,8 @@ It is a modified Beretta 93R, and can fire three-round burst or single fire. Whe
 //SKORPION //Based on the same thing.
 
 /obj/item/weapon/gun/pistol/skorpion
-	name = "\improper CZ-81 machine pistol"
-	desc = "A robust, 20th century firearm that's a combination of pistol and submachinegun. Fires .32ACP caliber rounds from a 20-round magazine."
+	name = "CZ-81 自动手枪"
+	desc = "坚固的 20 世纪枪械，介于手枪和冲锋枪之间。使用 20 发弹匣发射 .32 ACP 子弹。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "skorpion"
 	item_state = "skorpion"

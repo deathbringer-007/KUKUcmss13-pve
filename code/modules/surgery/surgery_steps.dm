@@ -70,12 +70,12 @@ affected_limb, or location vars. Also, in that case there may be a wait between 
 
 	var/turf/open/T = get_turf(target)
 	if(!istype(user.loc, /turf/open))
-		to_chat(user, SPAN_WARNING("You can't perform surgery here!"))
+		to_chat(user, SPAN_WARNING("你不能在这里进行手术！"))
 		return FALSE
 	else
 		if(!istype(T) || !T.supports_surgery)
 			if(!(tool.type in SURGERY_TOOLS_NO_INIT_MSG))
-				to_chat(user, SPAN_WARNING("You can't perform surgery under these bad conditions!"))
+				to_chat(user, SPAN_WARNING("条件这么差，你无法进行手术！"))
 			return FALSE
 
 	if(!extra_checks(user, target, target_zone, tool, surgery, repeating, skipped))
@@ -85,7 +85,7 @@ affected_limb, or location vars. Also, in that case there may be a wait between 
 	if(surgery_limb)
 		var/obj/item/blocker = target.get_sharp_obj_blocker(surgery_limb)
 		if(blocker)
-			to_chat(user, SPAN_WARNING("[blocker] [target] is wearing restricts your access to the surgical site, take it off!"))
+			to_chat(user, SPAN_WARNING("[target]穿戴的[blocker]挡住了手术部位，请先脱掉它！"))
 			return
 
 	var/step_duration = time
@@ -128,32 +128,32 @@ affected_limb, or location vars. Also, in that case there may be a wait between 
 		var/list/message = new() //Duration hint messages.
 
 		if(self_surgery)
-			message += "[pick("performing surgery", "working")] on [pick("yourself", "your own body")] is [pick("awkward", "tricky")]"
+			message += "对[pick("自己", "自己的身体")][pick("进行手术", "进行操作")]很[pick("别扭", "棘手")]"
 
 		switch(tool_modifier) //Implicitly means tool exists as accept_any_item item or accept_hand would = 1x. No message for 1x - that's the default.
 			if(SURGERY_TOOL_MULT_SUBOPTIMAL)
-				message += "this tool is[pick("n't ideal", " not the best")]"
+				message += "这件工具[pick("不太理想", "并非最佳选择")]"
 			if(SURGERY_TOOL_MULT_SUBSTITUTE)
-				message += "this tool is[pick("n't suitable", " a bad fit", " difficult to use")]"
+				message += "这件工具[pick("不合适", "不太匹配", "难以使用")]"
 			if(SURGERY_TOOL_MULT_BAD_SUBSTITUTE)
-				message += "this tool is [pick("awful", "barely usable")]"
+				message += "这件工具[pick("很糟糕", "勉强能用")]"
 				failure_penalties += 1
 			if(SURGERY_TOOL_MULT_AWFUL)
-				message += "this tool is [pick("awful", "barely usable")]"
+				message += "这件工具[pick("很糟糕", "勉强能用")]"
 				failure_penalties += 2
 
 		switch(surface_modifier)
 			if(SURGERY_SURFACE_MULT_ADEQUATE)
-				message += "[pick("it isn't easy, working", "it's tricky to perform complex surgeries", "this would be quicker if you weren't working")] [pick("in the field", "under these conditions", "without a proper surgical theatre")]"
+				message += "[pick("在野外", "在这种条件下", "在缺乏正规手术室的环境下")][pick("操作并不容易", "进行复杂手术很棘手", "操作会慢得多")]"
 			if(SURGERY_SURFACE_MULT_UNSUITED)
-				message += "[pick("it's difficult to work", "it's slow going, working", "you need to take your time")] in these [pick("primitive", "rough", "crude")] conditions"
+				message += "在这种[pick("原始", "恶劣", "简陋")]的条件下，[pick("操作很困难", "操作进展缓慢", "你需要慢慢来")]"
 				failure_penalties += 1
 			if(SURGERY_SURFACE_MULT_AWFUL)
-				message += "[pick("you need to work slowly and carefully", "you need to be very careful", "this is delicate work, especially")] [pick("in these", "under such")] [pick("terrible", "awful", "utterly unsuitable")] conditions"
+				message += "[pick("面对这些", "处于如此")][pick("糟糕", "恶劣", "完全不适宜")]的条件，[pick("你需要缓慢而谨慎地操作", "你必须格外小心", "这项精细工作尤其需要耐心")]"
 				failure_penalties += 2
 
 		if(length(message))
-			to_chat(user, SPAN_WARNING("[capitalize(english_list(message, final_comma_text = ","))]."))
+			to_chat(user, SPAN_WARNING("[jointext(message, "，")]。"))
 
 	var/advance //Whether to continue to the next step afterwards.
 	var/pain_failure_chance = max(0, (target.pain?.feels_pain ? surgery.pain_reduction_required - target.pain.reduction_pain : 0) * 2 - human_modifiers["pain_reduction"]) //Each extra pain unit increases the chance by 2
@@ -185,8 +185,8 @@ affected_limb, or location vars. Also, in that case there may be a wait between 
 	else if(target.stat == CONSCIOUS && prob(pain_failure_chance)) //Pain can cause a step to fail.
 		do_after(user, max(rand(step_duration * 0.1, step_duration * 0.5), 0.5), INTERRUPT_ALL|INTERRUPT_DIFF_INTENT,
 				BUSY_ICON_FRIENDLY, target, INTERRUPT_MOVED, BUSY_ICON_MEDICAL) //Brief do_after so that the pain interrupt doesn't happen instantly.
-		to_chat(user, SPAN_DANGER("[target] moved during the surgery! Use anesthetics or painkillers!"))
-		to_chat(target, SPAN_DANGER("The pain was too much, you couldn't hold still!"))
+		to_chat(user, SPAN_DANGER("[target]在手术中动了！请使用麻醉药或止痛药！"))
+		to_chat(target, SPAN_DANGER("疼痛太过剧烈，你无法保持不动！"))
 		if(failure(user, target, target_zone, tool, tool_type, surgery)) //Failure returns TRUE if the step should complete anyway.
 			advance = TRUE
 		target.emote("pain")
@@ -195,8 +195,8 @@ affected_limb, or location vars. Also, in that case there may be a wait between 
 	else if(prob(surgery_failure_chance))
 		do_after(user, max(rand(step_duration * 0.1, step_duration * 0.5), 0.5), INTERRUPT_ALL|INTERRUPT_DIFF_INTENT,
 				BUSY_ICON_FRIENDLY, target, INTERRUPT_MOVED, BUSY_ICON_MEDICAL) //Brief do_after so that the interrupt doesn't happen instantly.
-		user.visible_message(SPAN_DANGER("[user] is struggling to perform surgery."),
-		SPAN_DANGER("You are struggling to perform the surgery with these tools and conditions!"))
+		user.visible_message(SPAN_DANGER("[user]正艰难地进行手术。"),
+		SPAN_DANGER("使用这些工具、处在这种环境下，你很难完成手术！"))
 		if(failure(user, target, target_zone, tool, tool_type, surgery)) //Failure returns TRUE if the step should complete anyway.
 			advance = TRUE
 		target.emote("pain")
@@ -235,8 +235,8 @@ affected_limb, or location vars. Also, in that case there may be a wait between 
 
 ///This is used for beginning-step narration. tool_type may be a typepath or simply '1'.
 /datum/surgery_step/proc/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
-	user.visible_message(SPAN_NOTICE("[user] begins to perform surgery on [target]."),
-		SPAN_NOTICE("You begin to perform surgery on [target]..."))
+	user.visible_message(SPAN_NOTICE("[user]开始为[target]做手术。"),
+		SPAN_NOTICE("你开始为[target]做手术……"))
 
 /// Plays Preop Sounds
 /datum/surgery_step/proc/play_preop_sound(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -246,8 +246,8 @@ affected_limb, or location vars. Also, in that case there may be a wait between 
 
 ///This is used for end-step narration and relevant success changes - whatever the step is meant to do, if it isn't just flavour. tool_type may be a typepath or simply '1'.
 /datum/surgery_step/proc/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
-	user.visible_message(SPAN_NOTICE("[user] succeeds!"),
-			SPAN_NOTICE("You succeed."))
+	user.visible_message(SPAN_NOTICE("[user]成功了！"),
+			SPAN_NOTICE("你成功了。"))
 
 /// Plays the selected success sound
 /datum/surgery_step/proc/play_success_sound(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -258,8 +258,8 @@ affected_limb, or location vars. Also, in that case there may be a wait between 
 /**This is used for failed-step narration and relevant failure changes, often damage etc. If it returns TRUE, the step succeeds anyway.
 tool_type may be a typepath or simply '1'. Note that a first step done on help-intent doesn't call failure(), it just ends harmlessly.**/
 /datum/surgery_step/proc/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
-	user.visible_message(SPAN_NOTICE("[user] fails to finish the surgery"),
-			SPAN_NOTICE("You fail to finish the surgery"))
+	user.visible_message(SPAN_NOTICE("[user]未能完成手术。"),
+			SPAN_NOTICE("你未能完成手术。"))
 	return FALSE
 
 /// Plays the failure sound

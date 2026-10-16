@@ -1,6 +1,6 @@
 /obj/item/explosive/plastic
-	name = "plastic explosives"
-	desc = "Used to put holes in specific areas without too much extra hole."
+	name = "塑性炸药"
+	desc = "用于在指定位置开洞，尽量不多开几个洞。"
 	gender = PLURAL
 	icon = 'icons/obj/items/assemblies.dmi'
 	icon_state = "plastic-explosive0"
@@ -313,8 +313,8 @@
 	has_blast_wave_dampener = TRUE
 
 /obj/item/explosive/plastic/breaching_charge
-	name = "breaching charge"
-	desc = "An explosive device used to break into areas while protecting the user from the blast as well as deploying deadly shrapnel on the other side."
+	name = "破障炸药"
+	desc = "用于破门的爆炸装置，可保护使用者免受冲击，并向另一侧喷射致命弹片。"
 	icon_state = "satchel-charge"
 	overlay_image = "satchel-active"
 	w_class = SIZE_SMALL
@@ -360,8 +360,8 @@
 	qdel(src)
 
 /obj/item/explosive/plastic/breaching_charge/rubber
-	name = "X17 riot charge"
-	desc = "An explosive device used to break into areas while protecting the user from the blast. Unlike the standard breaching charge, the X17 deploys a cone spray of rubber pellets to incapacitate rather than kill."
+	name = "X17 防暴炸药"
+	desc = "用于破门的爆炸装置，可保护使用者免受冲击。与标准破障炸药不同，X17 会向锥形区域喷射橡胶弹丸，以制服目标而非杀伤。"
 	icon_state = "riot-charge"
 	overlay_image = "riot-active"
 	shrapnel_volume = 20

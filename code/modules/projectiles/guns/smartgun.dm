@@ -3,8 +3,8 @@
 
 //Come get some.
 /obj/item/weapon/gun/smartgun
-	name = "\improper M56A2 smartgun"
-	desc = "The actual firearm in the 4-piece M56 Smartgun System. Essentially a heavy, mobile machinegun.\nYou may toggle firing restrictions by using a special action.\nAlt-click it to open the feed cover and allow for reloading."
+	name = "M56A2 智能机枪"
+	desc = "M56 智能机枪四件套中的枪械本体，本质上是一挺重型机动机枪。\n可通过特殊动作切换开火限制。\n按住 Alt 点击，可打开供弹机盖进行装填。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "m56"
 	item_state = "m56"
@@ -406,8 +406,8 @@
 
 //CO SMARTGUN
 /obj/item/weapon/gun/smartgun/co
-	name = "\improper M56C 'Cavalier' smartgun"
-	desc = "The actual firearm in the 4-piece M56C Smartgun system. Back order only. Besides a more robust weapons casing, an ID lock system and a fancy paintjob, the gun's performance is identical to the standard-issue M56B.\nAlt-click it to open the feed cover and allow for reloading."
+	name = "M56C“骑兵”智能机枪"
+	desc = "M56C 智能机枪四件套中的枪械本体，只接受预订。除更坚固的机匣、身份锁与华丽涂装外，性能与制式 M56B 相同。\n按住 Alt 点击，可打开供弹机盖进行装填。"
 	icon_state = "m56c"
 	item_state = "m56c"
 	var/mob/living/carbon/human/linked_human
@@ -555,8 +555,8 @@
 	requires_harness = FALSE
 
 /obj/item/smartgun_battery
-	name = "\improper DV9 smartgun battery"
-	desc = "A standard-issue 9-volt lithium dry-cell battery, most commonly used within the USCMC to power smartguns. Per the manual, one battery is good for up to 50000 rounds and plugs directly into the smartgun's power receptacle, which is only compatible with this type of battery. Various auxiliary modes usually bring the round count far lower. While this cell is incompatible with most standard electrical system, it can be charged by common rechargers in a pinch. USCMC smartgunners often guard them jealously."
+	name = "DV9 智能机枪电池"
+	desc = "制式 9 伏锂干电池，USCMC 最常用它为智能机枪供电。手册称每块可支持最多 50,000 发射击，直接接入只兼容此型号的智能机枪电源插口。各种辅助模式通常会大幅缩短续航。虽不兼容大多数标准电气系统，紧急时仍可使用普通充电器充电。USCMC 智能机枪手往往把它们看得很紧。"
 
 	icon = 'icons/obj/structures/machinery/power.dmi'
 	icon_state = "smartguncell"

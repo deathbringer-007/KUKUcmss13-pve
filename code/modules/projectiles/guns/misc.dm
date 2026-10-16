@@ -2,8 +2,8 @@
 //This gun is very powerful, but also has a kick.
 
 /obj/item/weapon/gun/minigun
-	name = "\improper Ol' Painless"
-	desc = "An enormous multi-barreled rotating gatling gun. This thing will no doubt pack a punch."
+	name = "无痛老伙计"
+	desc = "一挺巨大的多管旋转加特林机枪，这家伙的火力毫无疑问会很猛。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/event.dmi'
 	icon_state = "painless"
 	item_state = "painless"
@@ -46,8 +46,8 @@
 
 //Minigun UPP
 /obj/item/weapon/gun/minigun/upp
-	name = "\improper GSh-7.62 rotary machine gun"
-	desc = "A gas-operated rotary machine gun used by UPP heavies. Its enormous volume of fire and ammunition capacity allows the suppression of large concentrations of enemy forces. Heavy weapons training is required control its recoil."
+	name = "GSh-7.62 转管机枪"
+	desc = "UPP 重装部队使用的导气式转管机枪。巨大的火力密度与载弹量足以压制大规模敌军，需要重武器训练才能控制其后坐力。"
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_RECOIL_BUILDUP|GUN_CAN_POINTBLANK|GUN_AUTO_EJECT_CASINGS
 	current_mag = /obj/item/ammo_magazine/minigun/upp
 
@@ -65,8 +65,8 @@
 
 //M60
 /obj/item/weapon/gun/m60
-	name = "\improper H-G Mk70 Machine Gun"
-	desc = "Part of the Henjin-Garcia repro line, the Mk70 found surprising niche in Frontier colony home defense against aggressive, largescale xenofauna. \n<b>Alt-click to open the feed tray cover for handling reloads.</b>"
+	name = "H-G Mk70 机枪"
+	desc = "亨金-加西亚复刻产品线的一员。Mk70 意外地在边疆殖民地抵御大型凶猛外星野生动物的家园防卫中找到了用途。\n<b>按住 Alt 点击，可打开供弹机盖进行装填。</b>"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "m60"
 	item_state = "m60"
@@ -164,8 +164,8 @@
 
 
 /obj/item/weapon/gun/pkp
-	name = "\improper QYJ-72 General Purpose Machine Gun"
-	desc = "The QYJ-72 is the standard GPMG of the Union of Progressive Peoples, chambered in 10x27mm, it fires a hard-hitting round with a high rate of fire. With an extremely large box at 250 rounds, the QJY-72 is designed with suppressing fire and accuracy by volume of fire at its forefront. \nAlt-click it to open the feed cover and allow for reloading."
+	name = "QYJ-72 通用机枪"
+	desc = "QYJ-72 是进步人民联盟的制式通用机枪，使用威力强劲的 10x27mm 弹药，射速很高。配备容量达 250 发的巨大弹箱，设计重点是压制火力和以弹量弥补精度。\n按住 Alt 点击，可打开供弹机盖进行装填。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/upp.dmi'
 	icon_state = "qjy72"
 	item_state = "qjy72"

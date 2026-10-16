@@ -1,6 +1,6 @@
 /obj/structure/machinery/computer/teleporter
-	name = "Teleporter"
-	desc = "Used to control a linked teleportation Hub and Station."
+	name = "传送控制台"
+	desc = "用于控制相连的传送枢纽和传送站。"
 	icon_state = "teleport"
 	circuit = /obj/item/circuitboard/computer/teleporter
 	dir = EAST
@@ -53,15 +53,15 @@
 
 
 		if(istype(L, /obj/effect/landmark/) && istype(L.loc, /turf))
-			to_chat(usr, "You insert the coordinates into the machine.")
-			to_chat(usr, "A message flashes across the screen reminding the traveller that the nuclear authentication disk is to remain on the station at all times.")
+			to_chat(usr, "你将坐标输入了机器。")
+			to_chat(usr, "屏幕上闪过一条消息，提醒旅行者核武认证磁盘必须始终留在空间站上。")
 			user.drop_held_item()
 			qdel(I)
 
 			if(C.data == "Clown Land")
 				//whoops
 				for(var/mob/O in hearers(src, null))
-					O.show_message(SPAN_DANGER("Incoming hyperspace portal detected, unable to lock in."), SHOW_MESSAGE_AUDIBLE)
+					O.show_message(SPAN_DANGER("检测到即将出现的超空间传送门，无法锁定。"), SHOW_MESSAGE_AUDIBLE)
 
 				for(var/obj/structure/machinery/teleport/hub/H in range(1))
 					var/amount = rand(2,5)
@@ -70,7 +70,7 @@
 				//
 			else
 				for(var/mob/O in hearers(src, null))
-					O.show_message(SPAN_NOTICE("Locked In"), SHOW_MESSAGE_AUDIBLE)
+					O.show_message(SPAN_NOTICE("已锁定"), SHOW_MESSAGE_AUDIBLE)
 				src.locked = L
 				one_time_use = 1
 
@@ -123,7 +123,7 @@
 				areaindex[tmpname] = 1
 			L[tmpname] = I
 
-	var/desc = tgui_input_list(usr, "Please select a location to lock in.", "Locking Computer", L)
+	var/desc = tgui_input_list(usr, "请选择要锁定的位置。", "坐标锁定控制台", L)
 	if(!desc)
 		return
 	if(get_dist(src, usr) > 1 && !isRemoteControlling(usr))
@@ -131,15 +131,15 @@
 
 	src.locked = L[desc]
 	for(var/mob/O in hearers(src, null))
-		O.show_message(SPAN_NOTICE("Locked In"), SHOW_MESSAGE_AUDIBLE)
+		O.show_message(SPAN_NOTICE("已锁定"), SHOW_MESSAGE_AUDIBLE)
 	src.add_fingerprint(usr)
 	return
 
 /obj/structure/machinery/computer/teleporter/verb/set_id(t as text)
 	set category = "Object"
-	set name = "Set teleporter ID"
+	set name = "设置传送装置ID"
 	set src in oview(1)
-	set desc = "ID Tag:"
+	set desc = "ID标签："
 
 	if(inoperable() || !istype(usr,/mob/living))
 		return
@@ -156,7 +156,7 @@
 	return T
 
 /obj/structure/machinery/teleport
-	name = "teleport"
+	name = "传送门"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	density = TRUE
 	anchored = TRUE
@@ -164,8 +164,8 @@
 
 
 /obj/structure/machinery/teleport/hub
-	name = "teleporter hub"
-	desc = "It's the hub of a teleporting machine."
+	name = "传送枢纽"
+	desc = "传送装置的枢纽。"
 	icon_state = "tele0"
 	dir = EAST
 	var/accurate = 0
@@ -196,7 +196,7 @@
 		return
 	if (!com.locked)
 		for(var/mob/O in hearers(src, null))
-			O.show_message(SPAN_DANGER("Failure: Cannot authenticate locked on coordinates. Please reinstate coordinate matrix."), SHOW_MESSAGE_AUDIBLE)
+			O.show_message(SPAN_DANGER("失败：无法认证已锁定的坐标，请重新建立坐标矩阵。"), SHOW_MESSAGE_AUDIBLE)
 		return
 	if (istype(M, /atom/movable))
 		if(prob(5) && !accurate) //oh dear a problem, put em in deep space
@@ -214,7 +214,7 @@
 		accurate = 1
 		spawn(5 MINUTES) accurate = 0 //Accurate teleporting for 5 minutes
 		for(var/mob/B in hearers(src, null))
-			B.show_message(SPAN_NOTICE("Test fire completed."), SHOW_MESSAGE_AUDIBLE)
+			B.show_message(SPAN_NOTICE("试射完成。"), SHOW_MESSAGE_AUDIBLE)
 	return
 /*
 /proc/do_teleport(atom/movable/M as mob|obj, atom/destination, precision)
@@ -304,8 +304,8 @@
 */
 
 /obj/structure/machinery/teleport/station
-	name = "station"
-	desc = "It's the station thingy of a teleport thingy." //seriously, wtf.
+	name = "传送站"
+	desc = "传送装置配套的那个站点。" //seriously, wtf.
 	icon_state = "controller"
 	dir = EAST
 	var/active = 0
@@ -344,7 +344,7 @@
 		com.icon_state = "tele1"
 		use_power(5000)
 		for(var/mob/O in hearers(src, null))
-			O.show_message(SPAN_NOTICE("Teleporter engaged!"), SHOW_MESSAGE_AUDIBLE)
+			O.show_message(SPAN_NOTICE("传送装置已启动！"), SHOW_MESSAGE_AUDIBLE)
 	src.add_fingerprint(usr)
 	src.engaged = 1
 	return
@@ -357,13 +357,13 @@
 		com.icon_state = "tele0"
 		com.accurate = 0
 		for(var/mob/O in hearers(src, null))
-			O.show_message(SPAN_NOTICE("Teleporter disengaged!"), SHOW_MESSAGE_AUDIBLE)
+			O.show_message(SPAN_NOTICE("传送装置已关闭！"), SHOW_MESSAGE_AUDIBLE)
 	src.add_fingerprint(usr)
 	src.engaged = 0
 	return
 
 /obj/structure/machinery/teleport/station/verb/testfire()
-	set name = "Test Fire Teleporter"
+	set name = "传送装置试射"
 	set category = "Object"
 	set src in oview(1)
 
@@ -373,7 +373,7 @@
 	if (com && !active)
 		active = 1
 		for(var/mob/O in hearers(src, null))
-			O.show_message(SPAN_NOTICE("Test firing!"), SHOW_MESSAGE_AUDIBLE)
+			O.show_message(SPAN_NOTICE("正在试射！"), SHOW_MESSAGE_AUDIBLE)
 		com.teleport()
 		use_power(5000)
 
@@ -396,8 +396,8 @@
 
 
 /obj/effect/laser
-	name = "laser"
-	desc = "IT BURNS!!!"
+	name = "激光"
+	desc = "烫死了！！！"
 	icon = 'icons/obj/items/weapons/projectiles.dmi'
 	var/damage = 0
 	var/range = 10

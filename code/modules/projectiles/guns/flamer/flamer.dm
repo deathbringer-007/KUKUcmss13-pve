@@ -4,8 +4,8 @@
 //FLAMETHROWER
 
 /obj/item/weapon/gun/flamer
-	name = "\improper M240A1 incinerator unit"
-	desc = "M240A1 incinerator unit has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
+	name = "M240A1 火焰喷射器"
+	desc = "事实证明，M240A1 火焰喷射器是清除软目标最有效的武器之一。它极其致命，值得畏惧与敬重。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "m240"
 	item_state = "m240"
@@ -430,8 +430,8 @@
 	set_fire_delay(FIRE_DELAY_TIER_5) // less full auto
 
 /obj/item/weapon/gun/flamer/M240T
-	name = "\improper M240-T incinerator unit"
-	desc = "An improved version of the M240A1 incinerator unit, the M240-T model is capable of dispersing a larger variety of fuel types."
+	name = "M240-T 火焰喷射器"
+	desc = "M240A1 火焰喷射器的改进版，M240-T 能喷射更多种类的燃料。"
 	icon_state = "m240t"
 	item_state = "m240t"
 	unacidable = TRUE

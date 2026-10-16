@@ -2,7 +2,7 @@
 
 /// Generic Lifeboat definition
 /obj/docking_port/mobile/crashable/lifeboat
-	name = "lifeboat"
+	name = "救生艇"
 	area_type = /area/shuttle/lifeboat
 	ignitionTime = 10 SECONDS
 	width = 27
@@ -24,24 +24,24 @@
 			if(!turf || is_mainship_level(turf.z))
 				continue
 			survivors++
-			to_chat(survived_human, "<br><br>[SPAN_CENTERBOLD("<big>You have successfully left the [MAIN_SHIP_NAME]. You may now ghost and observe the rest of the round.</big>")]<br>")
+			to_chat(survived_human, "<br><br>[SPAN_CENTERBOLD("<big>你已成功离开[MAIN_SHIP_NAME]，现在可以化为幽灵，旁观本回合的后续发展。</big>")]<br>")
 
 /// Port Aft Lifeboat (bottom-right, doors on its left side)
 /obj/docking_port/mobile/crashable/lifeboat/port
-	name = "port-aft lifeboat"
+	name = "左舷后部救生艇"
 	id = MOBILE_SHUTTLE_LIFEBOAT_PORT
 	preferred_direction = WEST
 	port_direction = WEST
 
 /// Starboard Aft Lifeboat (top-right, doors its right side)
 /obj/docking_port/mobile/crashable/lifeboat/starboard
-	name = "starboard-aft lifeboat"
+	name = "右舷后部救生艇"
 	id = MOBILE_SHUTTLE_LIFEBOAT_STARBOARD
 	preferred_direction = EAST
 	port_direction = EAST
 
 /obj/docking_port/mobile/crashable/lifeboat/compact
-	name = "compact lifeboat"
+	name = "紧凑型救生艇"
 	id = MOBILE_SHUTTLE_LIFEBOAT_COMPACT
 	preferred_direction = EAST
 	port_direction = EAST
@@ -79,7 +79,7 @@
 
 /// Generic lifeboat dock
 /obj/docking_port/stationary/lifeboat_dock
-	name   = "Lifeboat docking port"
+	name   = "救生艇停靠接口"
 	width  = 27
 	height = 7
 
@@ -125,21 +125,21 @@
 
 /// Port Aft Lifeboat default dock
 /obj/docking_port/stationary/lifeboat_dock/port
-	name = "Almayer Port Lifeboat Docking Port"
+	name = "阿尔迈耶号左舷救生艇停靠接口"
 	dir = NORTH
 	id = "almayer-lifeboat1"
 	roundstart_template = /datum/map_template/shuttle/lifeboat_port
 
 /// Port Aft Lifeboat default dock
 /obj/docking_port/stationary/lifeboat_dock/starboard
-	name = "Almayer Starboard Lifeboat Docking Port"
+	name = "阿尔迈耶号右舷救生艇停靠接口"
 	dir = NORTH
 	id = "almayer-lifeboat2"
 	roundstart_template = /datum/map_template/shuttle/lifeboat_starboard
 
 /// compact dock
 /obj/docking_port/stationary/lifeboat_dock/compact
-	name = "Compact Lifeboat Docking Port"
+	name = "紧凑型救生艇停靠接口"
 	dir = NORTH
 	width  = 20
 	id = "compact-lifeboat"
@@ -158,15 +158,15 @@
 
 /// Port-door lifeboat, bow east
 /datum/map_template/shuttle/lifeboat_port
-	name = "Port door lifeboat"
+	name = "左舷门救生艇"
 	shuttle_id = MOBILE_SHUTTLE_LIFEBOAT_PORT
 
 /// Starboard-door lifeboat, bow east
 /datum/map_template/shuttle/lifeboat_starboard
-	name = "Starboard door lifeboat"
+	name = "右舷门救生艇"
 	shuttle_id = MOBILE_SHUTTLE_LIFEBOAT_STARBOARD
 
 /// Starboard-door lifeboat, bow east
 /datum/map_template/shuttle/lifeboat_compact
-	name = "Compact lifeboat"
+	name = "紧凑型救生艇"
 	shuttle_id = MOBILE_SHUTTLE_LIFEBOAT_COMPACT

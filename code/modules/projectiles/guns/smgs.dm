@@ -40,8 +40,8 @@
 //M39 SMG
 
 /obj/item/weapon/gun/smg/m39
-	name = "\improper Viper 9 submachinegun"
-	desc = "Made popular through their use by the United States Secret Service, the Armat Battlefield Systems Model-39 submachinegun, marketed as the 'Viper 9', is a common firearm utilized by private security firms. Chambered in 9x19mm."
+	name = "毒蛇9 冲锋枪"
+	desc = "因美国特勤局采用而走红的阿玛特战场系统 39 型冲锋枪，以“毒蛇9”为商品名，在私人安保公司中很常见。使用 9x19mm 弹药。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "m39"
 	item_state = "m39"
@@ -121,8 +121,8 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/smg/m39/elite
-	name = "\improper M39B/2 submachinegun"
-	desc = "A modified version M-39 submachinegun, re-engineered for better weight, handling and accuracy. Given only to elite units."
+	name = "M39B/2 冲锋枪"
+	desc = "M-39 冲锋枪的改进版，重新设计以改善重量、操控性和精度，仅配发给精锐单位。"
 	icon_state = "m39b2"
 	item_state = "m39b2"
 	current_mag = /obj/item/ammo_magazine/smg/m39/ap
@@ -201,8 +201,8 @@
 //M5, a classic SMG used in a lot of action movies.
 
 /obj/item/weapon/gun/smg/mp5
-	name = "\improper MP5 submachinegun"
-	desc = "Knockoff of an antique UPP submachine gun, made somewhere in the former German state. Chambered for 9x19mm cased ammunition."
+	name = "MP5 冲锋枪"
+	desc = "旧式 UPP 冲锋枪的仿制品，产自前德国某地，使用 9x19mm 有壳弹。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "mp5"
 	item_state = "mp5"
@@ -261,8 +261,8 @@
 //MP27, based on the MP27, based on the M7.
 
 /obj/item/weapon/gun/smg/mp27
-	name = "\improper MP27 submachinegun"
-	desc = "Once a respectable weapon, now after the design files were leaked in '67 the cheaply made copies are everywhere. Lightweight and fast firing, but the poor construction of almost every copy severely hampers accuracy."
+	name = "MP27 冲锋枪"
+	desc = "曾是体面的武器，但设计文件于 67 年泄露后，廉价仿品遍地都是。重量轻、射速快，可几乎所有仿品粗劣的做工都严重拖累了精度。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "mp7"
 	item_state = "mp7"
@@ -452,9 +452,9 @@
 //Type 64
 
 /obj/item/weapon/gun/smg/bizon
-	name = "\improper Type 64 Submachinegun"
-	desc = "The standard submachinegun of the UPP, sporting an unusual 64 round helical magazine, it has a high fire-rate, but is unusually accurate. This one has a faux-wood grip, denoting it as civilian use or as an export model."
-	desc_lore = "The Type 64 finds its way into the hands of more than just UPP soldiers, it has an active life with rebel groups, corporate security forces, mercenaries, less well-armed militaries, and just about everything or everyone in between."
+	name = "64 式冲锋枪"
+	desc = "UPP 制式冲锋枪，采用少见的 64 发螺旋弹匣，射速高且精度出众。这一把装有仿木握把，表明是民用或出口型号。"
+	desc_lore = "64 式冲锋枪不仅落在进步人民联盟士兵手中，也广泛出现在叛军、公司安保、雇佣兵、装备较差的军队，以及几乎所有类似组织和人员手里。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/upp.dmi'
 	icon_state = "type64"
 	item_state = "type64"
@@ -496,7 +496,7 @@
 	recoil_unwielded = RECOIL_AMOUNT_TIER_5
 
 /obj/item/weapon/gun/smg/bizon/upp
-	name = "\improper Type 64 Submachinegun"
+	name = "64 式冲锋枪"
 	desc = "The standard submachinegun of the UPP, sporting an unusual 64 round helical magazine, it has a high fire-rate, but is unusually accurate. This one has a black polymer grip, denoting it as in-use by the UPP military."
 	desc_lore = "The Type 64 finds its way into the hands of more than just UPP soldiers, it has an active life with rebel groups, corporate security forces, mercenaries, less well-armed militaries, and just about everything or everyone in between."
 	icon_state = "type64_u"
@@ -511,8 +511,8 @@
 //GENERIC UZI //Based on the uzi submachinegun, of course.
 
 /obj/item/weapon/gun/smg/mac15
-	name = "\improper MAC-15 submachinegun"
-	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age." //Includes proprietary 'full-auto' mode, banned in several Geneva Suggestions rim-wide.
+	name = "MAC-15 冲锋枪"
+	desc = "廉价可靠的设计与制造，使这把随处可见的冲锋枪虽已老旧，仍然实用。" //Includes proprietary 'full-auto' mode, banned in several Geneva Suggestions rim-wide.
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "mac15"
 	item_state = "mac15"
@@ -739,8 +739,8 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/smg/nailgun
-	name = "nailgun"
-	desc = "A carpentry tool, used to drive nails into tough surfaces. Of course, if there isn't anything there, that's just a very sharp nail launching at high velocity..."
+	name = "射钉枪"
+	desc = "将钉子打入坚硬表面的木工工具。当然，如果前面没东西，那就是一根高速飞出的尖钉……"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "nailgun"
 	item_state = "nailgun"
@@ -784,8 +784,8 @@
 	return //Can't remove nails from mags or gun.
 
 /obj/item/weapon/gun/smg/nailgun/compact
-	name = "compact nailgun"
-	desc = "A carpentry tool, used to drive nails into tough surfaces. Cannot fire nails offensively due to a lack of a gas seal around the nail, meaning it cannot build up the pressure to fire."
+	name = "紧凑型射钉枪"
+	desc = "将钉子打入坚硬表面的木工工具。由于钉子周围没有气密结构，无法积累发射所需压力，因此不能用射钉攻击。"
 	icon_state = "cnailgun"
 	item_state = "nailgun"
 	w_class = SIZE_SMALL
@@ -796,8 +796,8 @@
 	return FALSE
 
 /obj/item/weapon/gun/smg/nailgun/compact/tactical
-	name = "tactical compact nailgun"
-	desc = "A carpentry tool, used to drive nails into tough surfaces. This one is military grade, it's olive drab and tacticool. Cannot fire nails as a projectile."
+	name = "战术紧凑型射钉枪"
+	desc = "将钉子打入坚硬表面的木工工具。这一款是军用级，橄榄绿色，战术味十足。不能把钉子当作弹丸发射。"
 	icon_state = "tnailgun"
 	item_state = "tnailgun"
 	w_class = SIZE_SMALL

@@ -3,8 +3,8 @@
 //M5 RPG
 
 /obj/item/weapon/gun/launcher/rocket
-	name = "\improper rocket launcher"
-	desc = "Modelled after the iconic Carl Gustaf recoilless rifle, this heavy piece of kit can still kill things just as well as its forefather could hundreds of years ago."
+	name = "火箭筒"
+	desc = "仿照经典卡尔·古斯塔夫无后坐力炮的重型装备，杀伤能力依旧不逊于数百年前的祖先。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "m5"
 	item_state = "m5"
@@ -211,8 +211,8 @@
 //-------------------------------------------------------
 //Marine M5 RPG, comes with baked in scope unlike the colony-made launcher
 /obj/item/weapon/gun/launcher/rocket/marine
-	name = "\improper M5 RPG"
-	desc = "The M5 RPG is the primary anti-armor weapon of the USCM. Used to take out light-tanks and enemy structures, the M5 RPG is a dangerous weapon with a variety of combat uses."
+	name = "M5 RPG 火箭筒"
+	desc = "M5 RPG 是 USCM 的主要反装甲武器，用于摧毁轻型坦克与敌方建筑，是用途广泛的危险武器。"
 
 /obj/item/weapon/gun/launcher/rocket/marine/handle_starting_attachment()
 	..()
