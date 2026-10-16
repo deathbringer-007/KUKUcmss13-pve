@@ -6,20 +6,20 @@
 
 //basic spider mob, these generally guard nests
 /mob/living/simple_animal/hostile/giant_spider
-	name = "giant spider"
-	desc = "Furry and black, it makes you shudder to look at it. This one has deep red eyes."
+	name = "巨型蜘蛛"
+	desc = "黑色的身躯毛茸茸的，光是看着就让人发抖。这只长着深红色的眼睛。"
 	icon_state = "guard"
 	icon_living = "guard"
 	icon_dead = "guard_dead"
-	speak_emote = list("chitters")
-	emote_hear = list("chitters")
+	speak_emote = list("吱吱作响")
+	emote_hear = list("吱吱作响")
 	speak_chance = 5
 	turns_per_move = 5
 	see_in_dark = 10
 	meat_type = /obj/item/reagent_container/food/snacks/bearmeat
-	response_help  = "pets the"
-	response_disarm = "gently pushes aside the"
-	response_harm   = "pokes the"
+	response_help  = "抚摸"
+	response_disarm = "轻轻推开"
+	response_harm   = "戳了戳"
 	stop_automated_movement_when_pulled = 0
 	maxHealth = 200
 	health = 200
@@ -36,7 +36,7 @@
 
 //nursemaids - these create webs and eggs
 /mob/living/simple_animal/hostile/giant_spider/nurse
-	desc = "Furry and black, it makes you shudder to look at it. This one has brilliant green eyes."
+	desc = "黑色的身躯毛茸茸的，光是看着就让人发抖。这只长着鲜绿色的眼睛。"
 	icon_state = "nurse"
 	icon_living = "nurse"
 	icon_dead = "nurse_dead"
@@ -51,7 +51,7 @@
 
 //hunters have the most poison and move the fastest, so they can find prey
 /mob/living/simple_animal/hostile/giant_spider/hunter
-	desc = "Furry and black, it makes you shudder to look at it. This one has sparkling purple eyes."
+	desc = "黑色的身躯毛茸茸的，光是看着就让人发抖。这只长着闪亮的紫色眼睛。"
 	icon_state = "hunter"
 	icon_living = "hunter"
 	icon_dead = "hunter_dead"
@@ -74,7 +74,7 @@
 		if(L.reagents)
 			L.reagents.add_reagent("toxin", poison_per_bite)
 			if(prob(poison_per_bite))
-				to_chat(L, SPAN_DANGER("You feel a tiny prick."))
+				to_chat(L, SPAN_DANGER("你感到轻微的刺痛。"))
 				L.reagents.add_reagent(poison_type, 5)
 
 /mob/living/simple_animal/hostile/giant_spider/Life(delta_time)
@@ -121,7 +121,7 @@
 				var/obj/effect/spider/stickyweb/W = locate() in get_turf(src)
 				if(!W)
 					busy = SPINNING_WEB
-					src.visible_message(SPAN_NOTICE("\the [src] begins to secrete a sticky substance."))
+					src.visible_message(SPAN_NOTICE("[src]开始分泌黏稠的物质。"))
 					stop_automated_movement = 1
 					spawn(40)
 						if(busy == SPINNING_WEB)
@@ -133,7 +133,7 @@
 					var/obj/effect/spider/eggcluster/E = locate() in get_turf(src)
 					if(!E && fed > 0)
 						busy = LAYING_EGGS
-						src.visible_message(SPAN_NOTICE("\the [src] begins to lay a cluster of eggs."))
+						src.visible_message(SPAN_NOTICE("[src]开始产下一簇卵。"))
 						stop_automated_movement = 1
 						spawn(50)
 							if(busy == LAYING_EGGS)
@@ -161,7 +161,7 @@
 			else if(busy == MOVING_TO_TARGET && cocoon_target)
 				if(get_dist(src, cocoon_target) <= 1)
 					busy = SPINNING_COCOON
-					src.visible_message(SPAN_NOTICE("\the [src] begins to secrete a sticky substance around \the [cocoon_target]."))
+					src.visible_message(SPAN_NOTICE("[src]开始在[cocoon_target]周围分泌黏稠的物质。"))
 					stop_automated_movement = 1
 					walk(src,0)
 					spawn(50)
@@ -176,7 +176,7 @@
 										continue
 									large_cocoon = 1
 									fed++
-									src.visible_message(SPAN_DANGER("\the [src] sticks a proboscis into \the [cocoon_target] and sucks a viscous substance out."))
+									src.visible_message(SPAN_DANGER("[src]将口器刺入[cocoon_target]，吸出黏稠的液体。"))
 									M.forceMove(C)
 									C.pixel_x = M.pixel_x
 									C.pixel_y = M.pixel_y

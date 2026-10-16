@@ -22,13 +22,13 @@ export const PublishedDocsHud = () => {
   return (
     <Window width={500} height={400} theme="ntos">
       <Window.Content scrollable>
-        <Section title="Published Documents">
+        <Section title="已发布文档">
           <Stack vertical>
             <Stack.Item>
               <CompoundTable
                 className="PublishedDocs"
                 docs={published}
-                timeLabel="Published"
+                timeLabel="发布时间"
                 canPrint={false}
               />
             </Stack.Item>

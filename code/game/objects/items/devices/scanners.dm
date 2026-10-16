@@ -10,8 +10,8 @@ REAGENT SCANNER
 FORENSIC SCANNER
 */
 /obj/item/device/t_scanner
-	name = "\improper T-ray scanner"
-	desc = "A terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
+	name = "\improper 太赫兹扫描仪"
+	desc = "一种太赫兹射线发射扫描装置，用于探测地板下的电缆和管道等物体。"
 	icon_state = "t-ray0"
 	var/on = 0
 	flags_atom = FPRINT|CONDUCT
@@ -68,10 +68,10 @@ FORENSIC SCANNER
 
 
 /obj/item/device/healthanalyzer
-	name = "\improper HF2 health analyzer"
+	name = "\improper HF2 健康分析仪"
 	icon_state = "health"
 	item_state = "analyzer"
-	desc = "A hand-held body scanner able to distinguish vital signs of the subject. The front panel is able to provide the basic readout of the subject's status."
+	desc = "能够检测受检者生命体征的手持身体扫描仪，前面板可显示受检者的基本状态数据。"
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_WAIST
 	flags_item = NOBLUDGEON
@@ -104,7 +104,7 @@ FORENSIC SCANNER
 		SStgui.close_user_uis(user, src)
 		last_scan = last_health_display.ui_data(user, DETAIL_LEVEL_HEALTHANALYSER)
 		last_health_display.look_at(user, DETAIL_LEVEL_HEALTHANALYSER, bypass_checks = FALSE, ignore_delay = FALSE, alien = alien, associated_equipment = src)
-	to_chat(user, SPAN_NOTICE("[user] has analyzed [M]'s vitals."))
+	to_chat(user, SPAN_NOTICE("[user]分析了[M]的生命体征。"))
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
 	src.add_fingerprint(user)
 	return
@@ -113,7 +113,7 @@ FORENSIC SCANNER
 	..()
 
 	if(!last_scan)
-		user.show_message("No previous scan found.")
+		user.show_message("未找到此前的扫描记录。")
 		return
 	if(istype(src, /obj/item/device/healthanalyzer/soul))
 		var/obj/item/device/healthanalyzer/soul/disconnect_scanner = src
@@ -138,7 +138,7 @@ FORENSIC SCANNER
 	else
 		ui = SStgui.try_update_ui(user, src, ui)
 		if(!ui)
-			ui = new(user, src, "HealthScan", "Stored Health Scan")
+			ui = new(user, src, "HealthScan", "已存健康扫描")
 			ui.open()
 			ui.set_autoupdate(FALSE)
 
@@ -146,12 +146,12 @@ FORENSIC SCANNER
 	return last_scan
 
 /obj/item/device/healthanalyzer/verb/toggle_hud_mode()
-	set name = "Switch Hud Mode"
-	set category = "Object"
+	set name = "切换 HUD 模式"
+	set category = "物品"
 	set src in usr
 	popup_window = !popup_window
 	last_scan = null // reset the data
-	to_chat(usr, "The scanner [popup_window ? "now" : "no longer"] shows results on the hud.")
+	to_chat(usr, "扫描仪[popup_window ? "现在会" : "不再"]在 HUD 上显示结果。")
 
 /datum/looping_sound/healthanalyzer_oxygen_beeping
 	start_sound = list('sound/items/healthanalyzer_oxygen_alarm.ogg' = 1)
@@ -168,7 +168,7 @@ FORENSIC SCANNER
 	extra_range = 14
 
 /obj/item/device/healthanalyzer/soul
-	name = "\improper Health Diagnostic Equipment"
+	name = "\improper 健康诊断设备"
 	icon = 'icons/obj/items/medical_scanner.dmi'
 	icon_state = "medical_scanner"
 	item_state = "medical_scanner"
@@ -208,62 +208,62 @@ FORENSIC SCANNER
 
 /obj/item/device/healthanalyzer/soul/proc/print_report(mob/living/user)
 	if(!last_scan)
-		to_chat(user, "There is no scan data to print.")
+		to_chat(user, "没有可打印的扫描数据。")
 		return
 	if(paper_left <= 0)
-		to_chat(user, "[src] ran out of paper, and cannot print a report")
+		to_chat(user, "[src]已用完纸张，无法打印报告。")
 		return
 	var/obj/item/paper/print_report = new /obj/item/paper
 	if(connected_to)
 		buffer_for_report += list(last_scan)
 		//buffer_for_report_but_html += list(connected_to.health_scan_table(connected_from, FALSE, TRUE, popup_window, alien, FALSE, last_scan))
 		currently_selected_last_scan = buffer_for_report.len
-	print_report.info += ("Device ID:" + serial_number + "\n" + jointext(health_scan_table(last_scan) + "\n EXTERNAL APPEARANCE AND INJURIES MUST BE \n MANUALLY WRITTEN BY PHYSICIAN: \n","<br>"))
-	print_report.info_links += ("Device ID:" + serial_number + "\n" + jointext(health_scan_table(last_scan) + "\n EXTERNAL APPEARANCE AND INJURIES MUST BE \n MANUALLY WRITTEN BY PHYSICIAN: \n","<br>"))
+	print_report.info += ("设备标识：" + serial_number + "\n" + jointext(health_scan_table(last_scan) + "\n 外观与伤势须由医师手动填写：\n","<br>"))
+	print_report.info_links += ("设备标识：" + serial_number + "\n" + jointext(health_scan_table(last_scan) + "\n 外观与伤势须由医师手动填写：\n","<br>"))
 	print_report.update_icon()
-	print_report.name = "\improper scan print-out of " + buffer_for_report[currently_selected_last_scan]["patient"]
+	print_report.name = "\improper 扫描报告：" + buffer_for_report[currently_selected_last_scan]["patient"]
 	user.put_in_hands(print_report)
 	paper_left--
-	visible_message("\The [src] spits out a piece of paper.")
+	visible_message("[src]吐出一张纸。")
 
 /obj/item/device/healthanalyzer/soul/attackby(obj/item/I, mob/user)
 	. = ..()
 	if(istype(I, /obj/item/paper))
-		if(!findtext(I.name, "scan print-out of"))
+		if(!findtext(I.name, "scan print-out of") && !findtext(I.name, "扫描报告："))
 			if(paper_left != initial(paper_left))
-				to_chat(user, SPAN_NOTICE("You insert [I] into [src]."))
+				to_chat(user, SPAN_NOTICE("你将[I]插入[src]。"))
 				qdel(I) //delete the paper item
 				paper_left = initial(paper_left)
 			else
-				to_chat(user, SPAN_NOTICE("[src] is already full."))
+				to_chat(user, SPAN_NOTICE("[src]已经装满了。"))
 	else if(istype(I, /obj/item/device/quiet_silent_healthanalyzer))
 		if(!has_silence_mode)
 			has_silence_mode = TRUE
 			silence_chip = I
-			to_chat(user, SPAN_NOTICE("You insert [I] into [src], disabling it's alarm system."))
+			to_chat(user, SPAN_NOTICE("你将[I]插入[src]，关闭了它的警报系统。"))
 			user.drop_inv_item_to_loc(I, src)
-			name = "Silenced " + name
+			name = "静音" + name
 		else
-			to_chat(user, SPAN_NOTICE("This [src] already has a [I] installed."))
+			to_chat(user, SPAN_NOTICE("这个[src]已安装了[I]。"))
 	else if(HAS_TRAIT(I, TRAIT_TOOL_SCREWDRIVER))
 		user.put_in_hands(silence_chip)
 		has_silence_mode = FALSE
 		silence_chip = null
-		to_chat(user, SPAN_NOTICE("You remove the [I] from the [src]."))
+		to_chat(user, SPAN_NOTICE("你将[I]从[src]上取下。"))
 		name = initial(name)
 
 /obj/item/device/quiet_silent_healthanalyzer
 	icon_state = "voice0"
-	name = "Health Diagnostic Silencer Chip"
-	desc = "An override chip for the health diagnostic equipment. It disables the loud alarms of the scanner. Can be removed from the scanner with a screwdriver."
+	name = "健康诊断设备静音芯片"
+	desc = "用于健康诊断设备的控制芯片，可关闭扫描仪的响亮警报。可使用螺丝刀从扫描仪上拆下。"
 	w_class = SIZE_TINY
 
 
 /obj/item/device/healthanalyzer/soul/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_NOTICE("A body scanner will provide more comprehensive information than this device.")
-	. += SPAN_NOTICE("It has [paper_left] out of [initial(paper_left)] report print-outs left.")
-	. += SPAN_HELPFUL("Use paper to refill it.")
+	. += SPAN_NOTICE("身体扫描仪可提供比本设备更全面的信息。")
+	. += SPAN_NOTICE("还可打印 [paper_left] 份报告，最大容量为 [initial(paper_left)] 份。")
+	. += SPAN_HELPFUL("使用纸张补充耗材。")
 
 /// proc health_scan was a legacy proc for to_chat messages on health analysers. health_scan_table is retrofitted to have parity with the TGUI scan so it can record info for reports
 /proc/health_scan_table(scan_data) // ahem. FUCK WHOEVER CODED THIS SHIT AS NUMBERS AND NOT DEFINES.
@@ -280,9 +280,9 @@ FORENSIC SCANNER
 
 	// Show overall
 	if(scan_data["dead"])
-		dat += "<table border=1 cellspacing=0 cellpadding=3 style='border: 1px solid black;'><td>[scan_data["patient"]] <b>DEAD<b> at " + scan_data["time"] + "\n"
+		dat += "<table border=1 cellspacing=0 cellpadding=3 style='border: 1px solid black;'><td>[scan_data["patient"]] <b>死亡<b>，记录时间：" + scan_data["time"] + "\n"
 	else
-		dat += "<table border=1 cellspacing=0 cellpadding=3 style='border: 1px solid black;'><td>[scan_data["patient"]] <b>[scan_data["health"]]% at " + scan_data["time"] + "\n"
+		dat += "<table border=1 cellspacing=0 cellpadding=3 style='border: 1px solid black;'><td>[scan_data["patient"]] <b>健康度 [scan_data["health"]]%，记录时间：" + scan_data["time"] + "\n"
 	//dat += "[SET_CLASS("Oxygen", INTERFACE_BLUE)]-[SET_CLASS("Toxin", INTERFACE_GREEN)]-[SET_CLASS("Burns", INTERFACE_ORANGE)]-[SET_CLASS("Brute", INTERFACE_RED)]<td>"
 	dat += "\t[SET_CLASS(BR, INTERFACE_RED)] - [SET_CLASS(BU, INTERFACE_ORANGE)] - [SET_CLASS(TX, INTERFACE_GREEN)] - [SET_CLASS(OX, INTERFACE_BLUE)]\n"
 	//dat += "\tUntreated: {B}=Burns,{T}=Trauma,{F}=Fracture\n"
@@ -295,14 +295,14 @@ FORENSIC SCANNER
 			var/burn_treated = TRUE
 			var/limb_brute = scan_data["limb_data_lists"][limb]["brute"]
 			var/limb_burn = scan_data["limb_data_lists"][limb]["burn"]
-			var/open_incision = scan_data["limb_data_lists"][limb] ? " <span class='scanner'>Open surgical incision</span>" : ""
+			var/open_incision = scan_data["limb_data_lists"][limb] ? " <span class='scanner'>手术切口未闭合</span>" : ""
 
 			if(limb_brute > 0 && !scan_data["limb_data_lists"][limb]["bandaged"] || open_incision)
 				brute_treated = FALSE
 			if(limb_burn > 0 && !scan_data["limb_data_lists"][limb]["salved"])
 				burn_treated = FALSE
 			if(scan_data["limb_data_lists"][limb]["missing"])
-				dat += "[capitalize(scan_data["limb_data_lists"][limb]["name"])]: <span class='scannerb'>Missing!</span>\n"
+				dat += "[capitalize(scan_data["limb_data_lists"][limb]["name"])]：<span class='scannerb'>缺失！</span>\n"
 				continue
 
 			var/bleeding_check = FALSE
@@ -313,12 +313,12 @@ FORENSIC SCANNER
 			var/org_name = "[capitalize(scan_data["limb_data_lists"][limb]["name"])]"
 			if(scan_data["limb_data_lists"][limb]["limb_type"] == "Cybernetic")
 				if(scan_data["limb_data_lists"][limb]["limb_type"] == "Nonfunctional Cybernetic")
-					org_name += " (Nonfunctional Cybernetic)]"
+					org_name += "（机械义肢失效）]"
 					show_limb = TRUE
 				else
-					org_name += " (Cybernetic)"
+					org_name += "（机械义肢）"
 			else if(scan_data["limb_data_lists"][limb]["limb_type"] == "Synthskin")
-				org_name += " (Synthskin)"
+				org_name += "（合成皮肤）"
 
 			var/burn_info = limb_burn > 0 ? "<span class='scannerburnb'>" + "[burn_treated ? "" : "{"]" + "[limb_burn]"  + "[burn_treated ? "" : "}"]" + "</span>" : "<span class='scannerburn'>0</span>"
 			//burn_info += "[burn_treated ? "" : "{B}"]"
@@ -330,44 +330,44 @@ FORENSIC SCANNER
 				show_limb = 1
 			var/org_bleed = ""
 			if(bleeding_check)
-				org_bleed = SPAN_SCANNERB("(Bleeding)")
+				org_bleed = SPAN_SCANNERB("（出血）")
 			if(show_limb)
 				dat += "[org_name]: \t [burn_info] - [brute_info] [fracture_info][org_bleed][scan_data["open_incision"]]"
 				if(scan_data["limb_data_lists"][limb]["internal_bleeding"])
-					dat += SPAN_SCANNERB("(Internal Bleeding)")
+					dat += SPAN_SCANNERB("（内出血）")
 					break
 				if(scan_data["limb_data_lists"][limb]["limb_splint"])
-					dat += "(Splinted)"
+					dat += "（夹板固定）"
 				dat += "\n"
 
 	// Show red messages - broken bokes, etc
 	if (scan_data["clone"])
-		dat += "\t<span class='scanner'> *Subject appears to have been imperfectly cloned.</span>\n"
+		dat += "\t<span class='scanner'> *患者似乎存在克隆缺陷。</span>\n"
 	for(var/disease in scan_data["diseases"])
-		dat += "\t<span class='scannerb'> *Warning: [scan_data["diseases"][disease]["form"]] Detected</span><span class='scanner'>\nName: [scan_data["diseases"][disease]["name"]].\nType: [scan_data["diseases"][disease]["form"]].\nStage: [scan_data["diseases"][disease]["stages"]]/[scan_data["diseases"][disease]["max_stages"]].\nPossible Cure: [scan_data["diseases"][disease]["cure"]]</span>\n"
+		dat += "\t<span class='scannerb'> *警告：检测到[scan_data["diseases"][disease]["form"]]</span><span class='scanner'>\n名称：[scan_data["diseases"][disease]["name"]]。\n类型：[scan_data["diseases"][disease]["form"]]。\n阶段：[scan_data["diseases"][disease]["stages"]]/[scan_data["diseases"][disease]["max_stages"]]。\n可能的疗法：[scan_data["diseases"][disease]["cure"]]</span>\n"
 	if(!scan_data["damaged_organs"] && !scan_data["damaged_organs"]["brain"] && scan_data["damaged_organs"]["brain"]["damage"] >= 100)
-		dat += "\t<span class='scanner'> *Subject has taken extreme amounts of <b>brain damage</b></span>.\n"
+		dat += "\t<span class='scanner'> *患者遭受了极其严重的<b>脑损伤</b></span>。\n"
 	if(scan_data["detail_level"])
 		for(var/organ in scan_data["damaged_organs"])
-			dat += ("\t<span class='scannerb'> [capitalize(organ["name"])]: [num2text(organ["damage"])] Damage.</span> \n")
+			dat += ("\t<span class='scannerb'> [capitalize(organ["name"])]：[num2text(organ["damage"])] 损伤。</span> \n")
 	dat += SPAN_WARNING("\t[scan_data["ssd"]]\n") // SSD
 
 	if(species_of_patient == "Human" || synth_types.Find(species_of_patient))
 
 		if(scan_data["implants"])
-			dat += "\t[SPAN_SCANNER("*<b>Embedded object</b> detected. Advanced scanner required for location.")]\n"
+			dat += "\t[SPAN_SCANNER("*检测到<b>嵌入异物</b>，需要高级扫描仪确定位置。")]\n"
 
 	if(species_of_patient == "Human" || synth_types.Find(species_of_patient))
 		// Show helpful reagents
 		if(scan_data["chemicals_lists"])
-			dat += "\n\tReagents:\n"
+			dat += "\n\t试剂：\n"
 			for(var/A in scan_data["chemicals_lists"])
-				dat += "\t[scan_data["chemicals_lists"][A]["od"] != 0 ? SPAN_WARNING("<b>OD: </b>") : ""] <font color='#9773C4'><b>[scan_data["chemicals_lists"][A]["amount"]]u [scan_data["chemicals_lists"][A]["name"]]\n</b></font>"
+				dat += "\t[scan_data["chemicals_lists"][A]["od"] != 0 ? SPAN_WARNING("<b>过量：</b>") : ""] <font color='#9773C4'><b>[scan_data["chemicals_lists"][A]["amount"]]u [scan_data["chemicals_lists"][A]["name"]]\n</b></font>"
 			if(scan_data["has_unknown_chemicals"])
-				dat += "\t<span class='scanner'> Warning: Unknown substances detected in subject's blood.</span>\n"
+				dat += "\t<span class='scanner'> 警告：患者血液中检测到未知物质。</span>\n"
 
 	// Show body temp
-	dat += "\n\tBody Temperature: [text2num(scan_data["body_temperature"])] Celsius\n"
+	dat += "\n\t体温：[text2num(scan_data["body_temperature"])] 摄氏度\n"
 
 	if (species_of_patient == "Human")
 		// Show blood level
@@ -379,14 +379,14 @@ FORENSIC SCANNER
 			var/blood_type = scan_data["blood_type"]
 			blood_percent *= 100
 			if(blood_volume <= 500 && blood_volume > 336)
-				dat += "\t<span class='scanner'> <b>Blood Level LOW: [blood_percent]% [blood_volume]cl.</span> [SET_CLASS("Type: [blood_type]", INTERFACE_BLUE)]\n"
+				dat += "\t<span class='scanner'> <b>血量偏低：[blood_percent]% [blood_volume]cl。</span> [SET_CLASS("血型：[blood_type]", INTERFACE_BLUE)]\n"
 			else if(blood_volume <= 336)
-				dat += "\t<span class='scanner'> <b>Blood Level CRITICAL: [blood_percent]% [blood_volume]cl.</span> [SET_CLASS("Type: [blood_type]", INTERFACE_BLUE)]\n"
+				dat += "\t<span class='scanner'> <b>血量严重不足：[blood_percent]% [blood_volume]cl。</span> [SET_CLASS("血型：[blood_type]", INTERFACE_BLUE)]\n"
 			else
-				dat += "\tBlood Level normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]\n"
+				dat += "\t血量正常：[blood_percent]% [blood_volume]cl。血型：[blood_type]\n"
 
 		// Show pulse
-		dat += "\tPulse: <span class='[scan_data["pulse"] || scan_data["pulse"] < 1  ? INTERFACE_RED : ""]'>[scan_data["pulse"]].</span> </td></tr></table>"
+		dat += "\t脉搏：<span class='[scan_data["pulse"] || scan_data["pulse"] < 1  ? INTERFACE_RED : ""]'>[scan_data["pulse"]]。</span> </td></tr></table>"
 	dat = replacetext(dat, "\n", "<br>")
 	dat = replacetext(dat, "\t", "&emsp;")
 	dat = replacetext(dat, "class='warning'", "class='[INTERFACE_RED]'")
@@ -472,7 +472,7 @@ FORENSIC SCANNER
 		if(connected_to)
 			disconnect(TRUE)
 			return
-		to_chat(user, SPAN_WARNING("You cannot connect this to yourself! You need someone else to do it for you!"))
+		to_chat(user, SPAN_WARNING("你无法自己连接此设备，需要别人帮忙！"))
 		return
 
 	if(connected_to == M)
@@ -486,7 +486,7 @@ FORENSIC SCANNER
 		return
 
 	if(!do_after(user, skillcheck(user, SKILL_SURGERY, SKILL_SURGERY_NOVICE) ? (0.2 SECONDS) * user.get_skill_duration_multiplier(SKILL_SURGERY) : (1 SECONDS), INTERRUPT_INCAPACITATED, BUSY_ICON_FRIENDLY, M, BUSY_ICON_MEDICAL))
-		to_chat(user, SPAN_WARNING("You were interrupted before you could finish!"))
+		to_chat(user, SPAN_WARNING("你还没完成就被打断了！"))
 		return
 
 	if(istype(M, /mob/living/carbon/human))
@@ -495,8 +495,8 @@ FORENSIC SCANNER
 		//connected_to.base_pixel_x = 5
 		START_PROCESSING(SSobj, src)
 		record_scan_on_connect = TRUE
-		user.visible_message(SPAN_HELPFUL("[user] attaches \the [src] to [connected_to]."), \
-			SPAN_HELPFUL("You attach \the [src] to [connected_to]."))
+		user.visible_message(SPAN_HELPFUL("[user]将[src]连接到[connected_to]身上。"), \
+			SPAN_HELPFUL("你将[src]连接到[connected_to]身上。"))
 		icon_state = "medical_scanner_open"
 		overlays += image(icon, src, "+running")
 		overlays += image(icon, src, "+hooked")
@@ -515,10 +515,10 @@ FORENSIC SCANNER
 	if(!connected_to)
 		return
 	if(bad_disconnect)
-		connected_to.visible_message(SPAN_DANGER("[src] breaks free of [connected_to]!"), SPAN_DANGER("[src] is pulled out of you!"))
+		connected_to.visible_message(SPAN_DANGER("[src]从[connected_to]身上脱落了！"), SPAN_DANGER("[src]被从你身上扯了下来！"))
 	else
-		connected_from.visible_message(SPAN_HELPFUL("[connected_from] detaches [src] from [connected_to]."), \
-			SPAN_HELPFUL("You detach [src] from [connected_to]."))
+		connected_from.visible_message(SPAN_HELPFUL("[connected_from]将[src]从[connected_to]身上卸下。"), \
+			SPAN_HELPFUL("你将[src]从[connected_to]身上卸下。"))
 	//connected_to.base_pixel_x = 0
 	connected_to = null
 	connected_from = null
@@ -540,17 +540,17 @@ FORENSIC SCANNER
 	addtimer(CALLBACK(src, PROC_REF(update_beam), TRUE), 0)
 
 /obj/item/device/healthanalyzer/alien
-	name = "\improper YMX scanner"
+	name = "\improper YMX 扫描仪"
 	icon = 'icons/obj/items/hunter/pred_gear.dmi'
 	icon_state = "scanner"
 	item_state = "analyzer"
-	desc = "An alien design hand-held body scanner able to distinguish vital signs of the subject. The front panel is able to provide the basic readout of the subject's status."
+	desc = "一款外星设计的手持身体扫描仪，能够检测受检者的生命体征。前面板可显示受检者的基本状态数据。"
 	alien = TRUE
 	black_market_value = 35
 
 /obj/item/device/analyzer
-	desc = "A hand-held environmental scanner which reports current gas levels."
-	name = "analyzer"
+	desc = "一种手持环境扫描仪，可报告当前的气体状况。"
+	name = "环境分析仪"
 	icon_state = "atmos"
 	item_state = "analyzer"
 	w_class = SIZE_SMALL
@@ -570,7 +570,7 @@ FORENSIC SCANNER
 	if (user.stat)
 		return
 	if (!(istype(usr, /mob/living/carbon/human) || SSticker) && SSticker.mode.name != "monkey")
-		to_chat(usr, SPAN_DANGER("You don't have the dexterity to do this!"))
+		to_chat(usr, SPAN_DANGER("你的动作不够灵巧，无法进行此操作！"))
 		return
 
 	var/turf/location = user.loc
@@ -580,22 +580,30 @@ FORENSIC SCANNER
 	var/env_pressure = location.return_pressure()
 	var/env_gas = location.return_gas()
 	var/env_temp = location.return_temperature()
+	var/static/list/gas_labels = list(
+		GAS_TYPE_AIR = "空气",
+		GAS_TYPE_OXYGEN = "氧气",
+		GAS_TYPE_NITROGEN = "氮气",
+		GAS_TYPE_N2O = "麻醉气体",
+		GAS_TYPE_PHORON = "弗燃素",
+		GAS_TYPE_CO2 = "二氧化碳",
+	)
 
-	user.show_message(SPAN_NOTICE("<B>Results:</B>"), 1)
+	user.show_message(SPAN_NOTICE("<B>检测结果：</B>"), 1)
 	if(abs(env_pressure - ONE_ATMOSPHERE) < 10)
-		user.show_message(SPAN_NOTICE("Pressure: [round(env_pressure,0.1)] kPa"), 1)
+		user.show_message(SPAN_NOTICE("气压：[round(env_pressure,0.1)] kPa"), 1)
 	else
-		user.show_message(SPAN_DANGER("Pressure: [round(env_pressure,0.1)] kPa"), 1)
+		user.show_message(SPAN_DANGER("气压：[round(env_pressure,0.1)] kPa"), 1)
 	if(env_pressure > 0)
-		user.show_message(SPAN_NOTICE("Gas Type: [env_gas]"), 1)
-		user.show_message(SPAN_NOTICE("Temperature: [floor(env_temp-T0C)]&deg;C"), 1)
+		user.show_message(SPAN_NOTICE("气体类型：[gas_labels[env_gas] || env_gas]"), 1)
+		user.show_message(SPAN_NOTICE("温度：[floor(env_temp-T0C)]&deg;C"), 1)
 
 	src.add_fingerprint(user)
 	return
 
 /obj/item/device/mass_spectrometer
-	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
-	name = "mass-spectrometer"
+	desc = "一种手持质谱仪，可识别血液样本中的微量化学物质。"
+	name = "质谱仪"
 	icon_state = "spectrometer"
 	item_state = "analyzer"
 	w_class = SIZE_SMALL
@@ -627,22 +635,22 @@ FORENSIC SCANNER
 	if (user.stat)
 		return
 	if (crit_fail)
-		to_chat(user, SPAN_DANGER("This device has critically failed and is no longer functional!"))
+		to_chat(user, SPAN_DANGER("此设备发生了严重故障，已无法工作！"))
 		return
 	if (!(istype(user, /mob/living/carbon/human) || SSticker) && SSticker.mode.name != "monkey")
-		to_chat(user, SPAN_DANGER("You don't have the dexterity to do this!"))
+		to_chat(user, SPAN_DANGER("你的动作不够灵巧，无法进行此操作！"))
 		return
 
 
 /obj/item/device/mass_spectrometer/adv
-	name = "advanced mass-spectrometer"
+	name = "高级质谱仪"
 	icon_state = "adv_spectrometer"
 	details = 1
 
 
 /obj/item/device/reagent_scanner
-	name = "reagent scanner"
-	desc = "A hand-held reagent scanner which identifies chemical agents."
+	name = "试剂扫描仪"
+	desc = "一种用于识别化学物质的手持试剂扫描仪。"
 	icon_state = "spectrometer"
 	item_state = "analyzer"
 	w_class = SIZE_SMALL
@@ -663,12 +671,12 @@ FORENSIC SCANNER
 	if (user.stat)
 		return
 	if (!(istype(user, /mob/living/carbon/human) || SSticker) && SSticker.mode.name != "monkey")
-		to_chat(user, SPAN_DANGER("You don't have the dexterity to do this!"))
+		to_chat(user, SPAN_DANGER("你的动作不够灵巧，无法进行此操作！"))
 		return
 	if(!istype(O))
 		return
 	if (crit_fail)
-		to_chat(user, SPAN_DANGER("This device has critically failed and is no longer functional!"))
+		to_chat(user, SPAN_DANGER("此设备发生了严重故障，已无法工作！"))
 		return
 
 	if(!QDELETED(O.reagents))
@@ -686,22 +694,22 @@ FORENSIC SCANNER
 				else
 					recent_fail = 1
 		if(dat)
-			to_chat(user, SPAN_NOTICE(" Chemicals found: [dat]"))
+			to_chat(user, SPAN_NOTICE(" 检测到的化学物质：[dat]"))
 		else
-			to_chat(user, SPAN_NOTICE(" No active chemical agents found in [O]."))
+			to_chat(user, SPAN_NOTICE(" 未在[O]中检测到活性化学物质。"))
 	else
-		to_chat(user, SPAN_NOTICE(" No significant chemical agents found in [O]."))
+		to_chat(user, SPAN_NOTICE(" 未在[O]中检测到明显的化学物质。"))
 
 	return
 
 /obj/item/device/reagent_scanner/adv
-	name = "advanced reagent scanner"
+	name = "高级试剂扫描仪"
 	icon_state = "adv_spectrometer"
 	details = 1
 
 /obj/item/device/demo_scanner
-	name = "demolitions scanner"
-	desc = "A hand-held specially designed reagent scanner meant for analyzing bombs. It can report explosive and fire hazards from chemical containers and explosive casings, including explosive and fire intensity. However, it can not predict effects such as shrapnel or burn duration nor predict hazards caused from immediate chemical reactions."
+	name = "爆破扫描仪"
+	desc = "一种专门用于分析炸弹的手持试剂扫描仪，可报告化学容器和爆炸物外壳内的爆炸及起火风险，包括爆炸威力与火焰强度。但它无法预测弹片、燃烧持续时间等效果，也无法预测即时化学反应产生的危险。"
 	icon_state = "demolitions_scanner"
 	item_state = "analyzer"
 	w_class = SIZE_SMALL
@@ -724,10 +732,10 @@ FORENSIC SCANNER
 	if(user.stat)
 		return
 	if(!(istype(user, /mob/living/carbon/human) || SSticker) && SSticker.mode.name != "monkey")
-		to_chat(user, SPAN_DANGER("You don't have the dexterity to do this!"))
+		to_chat(user, SPAN_DANGER("你的动作不够灵巧，无法进行此操作！"))
 		return
 	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-		to_chat(user, SPAN_WARNING("You do not know how to use the [name]."))
+		to_chat(user, SPAN_WARNING("你不知道如何使用[name]。"))
 		return
 	if(!istype(O))
 		return
@@ -741,21 +749,21 @@ FORENSIC SCANNER
 	if(istype(O, /obj/item/ammo_magazine/flamer_tank))
 		var/obj/item/ammo_magazine/flamer_tank/tank = O
 		if(!length(tank.reagents.reagent_list))
-			to_chat(user, SPAN_NOTICE("No fuel detected in [O]"))
+			to_chat(user, SPAN_NOTICE("未在[O]中检测到燃料。"))
 			return
 		var/result
 		var/datum/reagent/chem = tank.reagents.reagent_list[1]
-		result += SPAN_BLUE("Fuel Statistics:")
-		result += SPAN_BLUE("<br>Intensity: [min(chem.intensityfire, tank.max_intensity)]")
-		result += SPAN_BLUE("<br>Duration: [min(chem.durationfire, tank.max_duration)]")
-		result += SPAN_BLUE("<br>Range: [min(chem.rangefire, tank.max_range)]")
+		result += SPAN_BLUE("燃料参数：")
+		result += SPAN_BLUE("<br>强度：[min(chem.intensityfire, tank.max_intensity)]")
+		result += SPAN_BLUE("<br>持续时间：[min(chem.durationfire, tank.max_duration)]")
+		result += SPAN_BLUE("<br>射程：[min(chem.rangefire, tank.max_range)]")
 		to_chat(user, SPAN_NOTICE("[result]"))
 		return
 
 	if(istype(O,/obj/item/explosive))
 		var/obj/item/explosive/E = O
 		if(!E.customizable)
-			to_chat(user, SPAN_NOTICE("ERROR: This brand of explosive is under data protection. Scan has been cancelled."))
+			to_chat(user, SPAN_NOTICE("错误：该品牌爆炸物的数据受到保护，扫描已取消。"))
 			return
 		holder = E.reagents
 		for(var/obj/container in E.containers)
@@ -763,7 +771,7 @@ FORENSIC SCANNER
 	else if(istype(O,/obj/item/ammo_magazine/rocket/custom))
 		var/obj/item/ammo_magazine/rocket/custom/E = O
 		if(!E.warhead)
-			to_chat(user, SPAN_NOTICE("No warhead detected in [E]."))
+			to_chat(user, SPAN_NOTICE("未在[E]中检测到弹头。"))
 			return
 		holder = E.warhead.reagents
 		for(var/obj/container in E.warhead.containers)
@@ -771,7 +779,7 @@ FORENSIC SCANNER
 	else if(istype(O,/obj/item/mortar_shell/custom))
 		var/obj/item/mortar_shell/custom/E = O
 		if(!E.warhead)
-			to_chat(user, SPAN_NOTICE("No warhead detected in [E]."))
+			to_chat(user, SPAN_NOTICE("未在[E]中检测到弹头。"))
 			return
 		holder = E.warhead.reagents
 		for(var/obj/container in E.warhead.containers)
@@ -782,12 +790,12 @@ FORENSIC SCANNER
 			holder = O.reagents
 	if(dat && holder)
 		if(ex_potential)
-			dat += SPAN_ORANGE("<br>EXPLOSIVE HAZARD: ignition will create explosive detonation.<br>Potential detonation power: [min(ex_potential, holder.max_ex_power)]")
+			dat += SPAN_ORANGE("<br>爆炸危险：点燃将引发爆炸。<br>预计爆炸威力：[min(ex_potential, holder.max_ex_power)]")
 		if(int_potential)
-			dat += SPAN_RED("<br>FIRE HAZARD: ignition will create chemical fire.<br>Expected fire intensity rating of [min(max(int_potential,holder.min_fire_int),holder.max_fire_int)] in a [min(max(rad_potential,holder.min_fire_rad),holder.max_fire_rad)] meter radius.")
-		to_chat(user, SPAN_NOTICE("Chemicals found: [dat]"))
+			dat += SPAN_RED("<br>起火危险：点燃将引发化学火灾。<br>预计火焰强度为 [min(max(int_potential,holder.min_fire_int),holder.max_fire_int)]，影响半径为 [min(max(rad_potential,holder.min_fire_rad),holder.max_fire_rad)] 米。")
+		to_chat(user, SPAN_NOTICE("检测到的化学物质：[dat]"))
 	else
-		to_chat(user, SPAN_NOTICE("No active chemical agents found in [O]."))
+		to_chat(user, SPAN_NOTICE("未在[O]中检测到活性化学物质。"))
 	return
 
 /obj/item/device/demo_scanner/proc/scan(obj/O)
@@ -795,7 +803,7 @@ FORENSIC SCANNER
 		return
 	if(length(O.reagents.reagent_list) > 0)
 		for(var/datum/reagent/R in O.reagents.reagent_list)
-			dat += SPAN_BLUE("<br>[R.name]: [R.volume]u")
+			dat += SPAN_BLUE("<br>[R.name]：[R.volume] 单位")
 			if(R.explosive)
 				ex_potential += R.volume*R.power
 			if(R.chemfiresupp)
@@ -807,17 +815,17 @@ FORENSIC SCANNER
 	..()
 
 	if(!dat)
-		to_chat(user, SPAN_NOTICE("No scan data available."))
+		to_chat(user, SPAN_NOTICE("没有可用的扫描数据。"))
 		return
-	if(alert(user,"Print latest scan?","[scan_name]","Yes","No") == "Yes")
+	if(alert(user,"打印最近一次扫描结果吗？","[scan_name]","是","否") == "是")
 		var/obj/item/paper/printing = new /obj/item/paper/()
 		printing.name = scan_name
-		printing.info = "Chemicals found: [dat]"
+		printing.info = "检测到的化学物质：[dat]"
 		user.put_in_hands(printing)
 
 /obj/item/device/black_market_scanner
-	name = "suspicious device"
-	desc = "This is... seemingly a makeshift combination between an autopsy scanner, an ancient t-ray scanner, and some sort of robotic clamp, but you can see a lightbulb inside it. What the hell is this?"
+	name = "可疑设备"
+	desc = "这东西……看起来像是把尸检扫描仪、老旧的太赫兹扫描仪和某种机械夹钳临时拼在了一起，里面居然还有个灯泡。这到底是什么玩意儿？"
 	icon_state = "mendoza_scanner"
 	item_state = "analyzer"
 	w_class = SIZE_SMALL
@@ -864,14 +872,14 @@ FORENSIC SCANNER
 	if(isnull(market_value))
 		return ..()
 	market_value = POSITIVE(market_value)
-	user.visible_message(SPAN_WARNING("[user] presses a button on [src] and holds it over [hit_atom]..."), SPAN_WARNING("You scan [hit_atom]..."))
+	user.visible_message(SPAN_WARNING("[user]按下[src]上的按钮，将它举到[hit_atom]上方……"), SPAN_WARNING("你扫描了[hit_atom]……"))
 	update_icon(market_value, TRUE)
 	playsound(user, 'sound/machines/twobeep.ogg', 15, TRUE)
-	to_chat(user, SPAN_NOTICE("You scan [hit_atom] and notice a reading on [src]'s pad, it says:<b> ITEM HAS [market_value] VALUE <b>"))
+	to_chat(user, SPAN_NOTICE("你扫描了[hit_atom]，注意到[src]的面板上显示：<b>物品价值为 [market_value]<b>"))
 
 /obj/item/device/black_market_hacking_device
-	name = "modified security access tuner"
-	desc = "A security access tuner with wires and electrical pins sticking out at odd angles. A handwritten label on the bottom says something about the ASRS system."
+	name = "改装安保访问调谐器"
+	desc = "一台伸出各种歪斜电线和接脚的安保访问调谐器。底部的手写标签提到了 ASRS 系统。"
 	icon_state = "bm_hacker"
 	item_state = "analyzer"
 	w_class = SIZE_SMALL
@@ -880,8 +888,8 @@ FORENSIC SCANNER
 	inherent_traits = list(TRAIT_TOOL_BLACKMARKET_HACKER)
 
 /obj/item/device/cmb_black_market_tradeband
-	name = "\improper CMB Tradeband Compliance Device"
-	desc = "A device used to reset any tampering done to trading devices' signal range. Occasionally used to fix any signal chips damaged in an accident, but often for malpractice in trading. Use this with caution, as it will also reset any evidence of potential illicit trade. Created to fulfill a joint-organization requirement for CMB-ICC teams on the frontier, where tampered machinery was difficult to move and refurbish. Smugglers beware."
+	name = "\improper CMB 交易频段合规设备"
+	desc = "一种用于重置交易设备信号范围篡改的装置。有时用于修复意外损坏的信号芯片，但更常用于处理交易中的违规篡改。请谨慎使用，因为它也会清除潜在非法交易的证据。为满足边境地区 CMB-ICC 联合工作组的需求而研发，当地遭篡改的机器难以搬运和翻修。走私者当心了。"
 	icon_state = "cmb_scanner"
 	item_state = "analyzer"
 	w_class = SIZE_SMALL

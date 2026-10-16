@@ -1,6 +1,6 @@
 /obj/structure/extinguisher_cabinet
-	name = "extinguisher cabinet"
-	desc = "A small wall mounted cabinet designed to hold a fire extinguisher."
+	name = "灭火器柜"
+	desc = "用于存放灭火器的小型壁挂柜。"
 	icon = 'icons/obj/structures/closet.dmi'
 	icon_state = "extinguisher"
 	anchored = TRUE
@@ -17,7 +17,7 @@
 	has_extinguisher.forceMove(src)
 
 /obj/structure/extinguisher_cabinet/lifeboat
-	name = "extinguisher cabinet"
+	name = "灭火器柜"
 	icon = 'icons/obj/structures/machinery/lifeboat.dmi'
 	icon_state = "extinguisher"
 
@@ -30,7 +30,7 @@
 			user.drop_held_item()
 			item.forceMove(src)
 			has_extinguisher = item
-			to_chat(user, SPAN_NOTICE("You place [item] in [src]."))
+			to_chat(user, SPAN_NOTICE("你把[item]放进了[src]。"))
 		else
 			opened = !opened
 	else
@@ -41,7 +41,7 @@
 /obj/structure/extinguisher_cabinet/attack_hand(mob/user)
 	if(has_extinguisher)
 		user.put_in_hands(has_extinguisher)
-		to_chat(user, SPAN_NOTICE("You take [has_extinguisher] from [src]."))
+		to_chat(user, SPAN_NOTICE("你从[src]里取出了[has_extinguisher]。"))
 		has_extinguisher = null
 		opened = TRUE
 	else

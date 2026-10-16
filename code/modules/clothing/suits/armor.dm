@@ -21,14 +21,14 @@
 	. = ..()
 	if (.)
 		if(issynth(M) && M.allow_gun_usage == FALSE)
-			M.visible_message(SPAN_DANGER("Your programming prevents you from wearing this!"))
+			M.visible_message(SPAN_DANGER("你的程序禁止你穿戴这件装备！"))
 			return 0
 
 //armored vest
 
 /obj/item/clothing/suit/armor/vest
-	name = "stab-proof vest"
-	desc = "Generic protective vest found in the hands of various private sector security types designed to protect against stabs."
+	name = "防刺背心"
+	desc = "各种私营安保人员使用的通用防护背心，专为抵挡刺击设计。"
 	icon_state = "armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
@@ -57,8 +57,8 @@
 	)
 
 /obj/item/clothing/suit/armor/vest/ballistic
-	name = "ballistic vest"
-	desc = "Generic venlar vest found in the hands of various private sector security types designed to protect against low caliber pistol rounds."
+	name = "防弹背心"
+	desc = "各种私营安保人员使用的通用文拉尔纤维背心，专为抵挡小口径手枪弹设计。"
 	icon = 'icons/obj/items/clothing/cm_suits.dmi'
 	item_icons = list(
 		WEAR_JACKET = 'icons/mob/humans/onmob/suit_1.dmi'
@@ -69,8 +69,8 @@
 	armor_bullet = CLOTHING_ARMOR_MEDIUM
 
 /obj/item/clothing/suit/armor/vest/pilot
-	name = "\improper M70 flak jacket"
-	desc = "Venlar flak jacket worn by combat support personnel such as dropship crew, or occasionally by smartgunners. Despite the name it's actually better at stopping ballistics..."
+	name = "\improper M70防破片背心"
+	desc = "运输艇机组等战斗支援人员穿着的文拉尔纤维防破片背心，智能机枪手偶尔也会使用。虽说叫防破片背心，它其实更擅长挡子弹……"
 	icon = 'icons/obj/items/clothing/cm_suits.dmi'
 	item_icons = list(
 		WEAR_JACKET = 'icons/mob/humans/onmob/suit_1.dmi'
@@ -111,8 +111,8 @@
 	)
 
 /obj/item/clothing/suit/armor/vest/dutch
-	name = "armored jacket"
-	desc = "It's hot in the jungle. Sometimes it's hot and heavy, and sometimes it's hell on earth."
+	name = "装甲夹克"
+	desc = "丛林里很热。有时热得让人喘不过气，有时则如同人间地狱。"
 	icon = 'icons/obj/items/clothing/cm_suits.dmi'
 	icon_state = "dutch_armor"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
@@ -126,8 +126,8 @@
 	armor_internaldamage = CLOTHING_ARMOR_MEDIUMLOW
 
 /obj/item/clothing/suit/armor/vest/security
-	name = "Wey-Yu security armor"
-	desc = "Generic venlar bulletproof vest found in the hands of various private sector security types. This one has a Weyland-Yutani corporate badge."
+	name = "维兰德-汤谷安保护甲"
+	desc = "各种私营安保人员使用的通用文拉尔纤维防弹背心。这件带有维兰德-汤谷公司徽章。"
 	icon_state = "armorsec"
 	item_state = "armor"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
@@ -142,15 +142,15 @@
 
 
 /obj/item/clothing/suit/armor/vest/warden
-	name = "Warden's jacket"
-	desc = "An armored jacket with silver rank pips and livery."
+	name = "典狱长夹克"
+	desc = "带有银色军衔标志和饰纹的装甲夹克。"
 	icon_state = "warden_jacket"
 	item_state = "armor"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS
 
 /obj/item/clothing/suit/armor/laserproof
-	name = "Ablative Armor Vest"
-	desc = "A vest that excels in protecting the wearer against energy projectiles."
+	name = "烧蚀防护背心"
+	desc = "擅长保护穿戴者免受能量弹伤害的背心。"
 	icon_state = "armor_reflec"
 	item_state = "armor_reflec"
 	blood_overlay_type = "armor"
@@ -165,8 +165,8 @@
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/armor/bulletproof
-	name = "bulletproof vest"
-	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
+	name = "防弹背心"
+	desc = "擅长保护穿戴者免受高速实弹伤害的背心。"
 	icon_state = "bulletproof"
 	item_state = "armor"
 	blood_overlay_type = "armor"
@@ -186,8 +186,8 @@
 	valid_accessory_slots = list(ACCESSORY_SLOT_ARMOR_A, ACCESSORY_SLOT_ARMOR_L, ACCESSORY_SLOT_ARMOR_S, ACCESSORY_SLOT_ARMOR_M)
 
 /obj/item/clothing/suit/armor/riot
-	name = "riot suit"
-	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
+	name = "防暴服"
+	desc = "带有厚重衬垫的护甲，用于抵御近战攻击。看起来可能会妨碍行动。"
 	icon_state = "riot"
 	item_state = "swat_suit"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_LEGS|BODY_FLAG_ARMS
@@ -206,8 +206,8 @@
 	time_to_equip = 20
 
 /obj/item/clothing/suit/armor/gladiator
-	name = "gladiator armor"
-	desc = "Are you not entertained? Is that not why you are here?"
+	name = "角斗士护甲"
+	desc = "你们看得不尽兴吗？你们不就是为此而来的吗？"
 	icon_state = "gladiator"
 	item_state = "gladiator"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_LEGS|BODY_FLAG_ARMS
@@ -230,8 +230,8 @@
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL)
 
 /obj/item/clothing/suit/armor/riot/marine
-	name = "\improper M5 riot control armor"
-	desc = "A heavily modified suit of M2 MP Armor used to suppress riots from buckethead marines. Slows you down a lot."
+	name = "\improper M5防暴护甲"
+	desc = "经过大幅改装的M2宪兵护甲，用于镇压铁桶脑袋陆战队员的暴乱。会大幅降低移动速度。"
 	icon_state = "riot"
 	item_state = "swat_suit"
 	slowdown = SLOWDOWN_ARMOR_LOWHEAVY
@@ -247,12 +247,12 @@
 	time_to_equip = 20
 
 /obj/item/clothing/suit/armor/riot/marine/vintage_riot
-	desc = "Barring the slightly off-color plates, it's preserved quite well."
+	desc = "除了装甲板有些褪色之外，保存得相当完好。"
 	icon_state = "old_riot"
 
 /obj/item/clothing/suit/armor/swat
-	name = "swat suit"
-	desc = "A heavily armored suit that protects against moderate damage. Used in special operations."
+	name = "特警作战服"
+	desc = "用于特种作战的重装防护服，可抵御中等程度的伤害。"
 	icon_state = "deathsquad"
 	item_state = "swat_suit"
 	gas_transfer_coefficient = 0.01
@@ -276,8 +276,8 @@
 
 
 /obj/item/clothing/suit/armor/swat/officer
-	name = "officer jacket"
-	desc = "An armored jacket used in special operations."
+	name = "军官夹克"
+	desc = "用于特种作战的装甲夹克。"
 	icon_state = "detective"
 	item_state = "det_suit"
 	blood_overlay_type = "coat"
@@ -287,8 +287,8 @@
 
 
 /obj/item/clothing/suit/armor/det_suit
-	name = "armor"
-	desc = "An armored vest with a detective's badge on it."
+	name = "护甲"
+	desc = "一件带有侦探徽章的装甲背心。"
 	icon_state = "detective-armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
@@ -306,8 +306,8 @@
 //Reactive armor
 //When the wearer gets hit, this armor will teleport the user a short distance away (to safety or to more danger, no one knows. That's the fun of it!)
 /obj/item/clothing/suit/armor/reactive
-	name = "Reactive Teleport Armor"
-	desc = "Someone separated our Research Director from their own head!"
+	name = "反应式传送护甲"
+	desc = "有人让我们的研究主管身首异处了！"
 	var/active = 0
 	icon_state = "reactiveoff"
 	item_state = "reactiveoff"
@@ -333,11 +333,11 @@
 
 	active = !active
 	if (active)
-		to_chat(user, SPAN_NOTICE(" The reactive armor is now active."))
+		to_chat(user, SPAN_NOTICE("反应式护甲已启动。"))
 		icon_state = "reactive"
 		item_state = "reactive"
 	else
-		to_chat(user, SPAN_NOTICE(" The reactive armor is now inactive."))
+		to_chat(user, SPAN_NOTICE("反应式护甲已关闭。"))
 		icon_state = "reactiveoff"
 		item_state = "reactiveoff"
 		add_fingerprint(user)
@@ -357,8 +357,8 @@
 
 
 /obj/item/clothing/suit/armor/centcomm
-	name = "Cent. Com. armor"
-	desc = "A suit that protects against some damage."
+	name = "中央指挥部护甲"
+	desc = "能够抵御一定伤害的护甲。"
 	icon_state = "centcom"
 	item_state = "centcom"
 	w_class = SIZE_LARGE//bulky item
@@ -371,8 +371,8 @@
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/armor/heavy
-	name = "heavy armor"
-	desc = "A heavily armored suit that protects against moderate damage."
+	name = "重型护甲"
+	desc = "一套装甲厚重的防护服，可抵御中等程度的伤害。"
 	icon_state = "heavy"
 	item_state = "swat_suit"
 	w_class = SIZE_LARGE//bulky item
@@ -387,22 +387,22 @@
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 /obj/item/clothing/suit/armor/tdome/red
-	name = "Thunderdome suit (red)"
-	desc = "Reddish armor."
+	name = "雷霆竞技场护甲（红色）"
+	desc = "偏红色的护甲。"
 	icon_state = "tdred"
 	item_state = "tdred"
 	siemens_coefficient = 1
 
 /obj/item/clothing/suit/armor/tdome/green
-	name = "Thunderdome suit (green)"
-	desc = "Pukish armor."
+	name = "雷霆竞技场护甲（绿色）"
+	desc = "颜色像呕吐物的护甲。"
 	icon_state = "tdgreen"
 	item_state = "tdgreen"
 	siemens_coefficient = 1
 
 /obj/item/clothing/suit/armor/tactical
-	name = "tactical armor"
-	desc = "A suit of armor most often used by Special Weapons and Intel squads. Includes padded vest with pockets along with shoulder and kneeguards."
+	name = "战术护甲"
+	desc = "特种武器与情报小队常用的护甲，包括带口袋的衬垫背心，以及护肩和护膝。"
 	icon_state = "swatarmor"
 	item_state = "armor"
 	var/obj/item/weapon/gun/holstered = null
@@ -419,41 +419,41 @@
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/armor/tactical/verb/holster()
-	set name = "Holster"
-	set category = "Object"
+	set name = "收枪／拔枪"
+	set category = "物品"
 	set src in usr
 	if(!istype(usr, /mob/living)) return
 	if(usr.stat) return
 
 	if(!holstered)
 		if(!isgun(usr.get_active_hand()))
-			to_chat(usr, SPAN_NOTICE(" You need your gun equiped to holster it."))
+			to_chat(usr, SPAN_NOTICE("你需要先将枪拿在手中才能收枪。"))
 			return
 		var/obj/item/weapon/gun/W = usr.get_active_hand()
 		if (W.w_class > SIZE_MEDIUM)
-			to_chat(usr, SPAN_DANGER("This gun won't fit in the belt!"))
+			to_chat(usr, SPAN_DANGER("这把枪放不进腰带！"))
 			return
 		holstered = usr.get_active_hand()
 		usr.drop_held_item()
 		holstered.forceMove(src)
-		usr.visible_message(SPAN_NOTICE("\The [usr] holsters \the [holstered]."), "You holster \the [holstered].")
+		usr.visible_message(SPAN_NOTICE("[usr]将[holstered]收进枪套。"), "你将[holstered]收进枪套。")
 	else
 		if(istype(usr.get_active_hand(),/obj) && istype(usr.get_inactive_hand(),/obj))
-			to_chat(usr, SPAN_DANGER("You need an empty hand to draw the gun!"))
+			to_chat(usr, SPAN_DANGER("你需要腾出一只手才能拔枪！"))
 		else
 			if(usr.a_intent == INTENT_HARM)
-				usr.visible_message(SPAN_DANGER("\The [usr] draws \the [holstered], ready to shoot!"), \
-				SPAN_DANGER("You draw \the [holstered], ready to shoot!"))
+				usr.visible_message(SPAN_DANGER("[usr]拔出[holstered]，准备射击！"), \
+				SPAN_DANGER("你拔出[holstered]，准备射击！"))
 			else
-				usr.visible_message(SPAN_NOTICE("\The [usr] draws \the [holstered], pointing it at the ground."), \
-				SPAN_NOTICE("You draw \the [holstered], pointing it at the ground."))
+				usr.visible_message(SPAN_NOTICE("[usr]拔出[holstered]，将枪口指向地面。"), \
+				SPAN_NOTICE("你拔出[holstered]，将枪口指向地面。"))
 			usr.put_in_hands(holstered)
 		holstered = null
 
 //Non-hardsuit ERT armor.
 /obj/item/clothing/suit/armor/vest/ert
-	name = "emergency response team armor"
-	desc = "A set of armor worn by members of the Weyland-Yutani Emergency Response Team."
+	name = "应急响应小队护甲"
+	desc = "维兰德-汤谷应急响应小队成员穿着的护甲。"
 	icon_state = "ertarmor_cmd"
 	item_state = "armor"
 	armor_melee = CLOTHING_ARMOR_MEDIUM
@@ -467,30 +467,30 @@
 
 //Commander
 /obj/item/clothing/suit/armor/vest/ert/command
-	name = "emergency response team commander armor"
-	desc = "A set of armor worn by the commander of a Weyland-Yutani Emergency Response Team. Has blue highlights."
+	name = "应急响应小队指挥官护甲"
+	desc = "维兰德-汤谷应急响应小队指挥官穿着的护甲，带有蓝色饰边。"
 
 //Security
 /obj/item/clothing/suit/armor/vest/ert/security
-	name = "emergency response team security armor"
-	desc = "A set of armor worn by security members of the Weyland-Yutani Emergency Response Team. Has red highlights."
+	name = "应急响应小队安保护甲"
+	desc = "维兰德-汤谷应急响应小队安保成员穿着的护甲，带有红色饰边。"
 	icon_state = "ertarmor_sec"
 
 //Engineer
 /obj/item/clothing/suit/armor/vest/ert/engineer
-	name = "emergency response team engineer armor"
-	desc = "A set of armor worn by engineering members of the Weyland-Yutani Emergency Response Team. Has orange highlights."
+	name = "应急响应小队工程护甲"
+	desc = "维兰德-汤谷应急响应小队工程成员穿着的护甲，带有橙色饰边。"
 	icon_state = "ertarmor_eng"
 
 //Medical
 /obj/item/clothing/suit/armor/vest/ert/medical
-	name = "emergency response team medical armor"
-	desc = "A set of armor worn by medical members of the Weyland-Yutani Emergency Response Team. Has red and white highlights."
+	name = "应急响应小队医疗护甲"
+	desc = "维兰德-汤谷应急响应小队医护成员穿着的护甲，带有红白饰边。"
 	icon_state = "ertarmor_med"
 
 /obj/item/clothing/suit/armor/hos
-	name = "armored coat"
-	desc = "A greatcoat enhanced with a special alloy for some protection and style."
+	name = "装甲大衣"
+	desc = "用特殊合金强化的大衣，兼具一定防护能力与时尚感。"
 	icon_state = "hos"
 	item_state = "hos"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
@@ -507,8 +507,8 @@
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/suit/armor/hos/jensen
-	name = "armored trenchcoat"
-	desc = "A trenchcoat augmented with a special alloy for some protection and style."
+	name = "装甲风衣"
+	desc = "用特殊合金强化的风衣，兼具一定防护能力与时尚感。"
 	icon_state = "jensencoat"
 	item_state = "jensencoat"
 	flags_inv_hide = NO_FLAGS

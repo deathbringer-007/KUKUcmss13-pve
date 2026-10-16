@@ -1,6 +1,6 @@
 /obj/item/frame/matrix_frame
-	name = "matrix frame"
-	desc = "An assembly for the dropship camera matrix, installed into the weapons console. Has a complex series of lenses which allow light to pass through the fluid. \nBecause the fluids of the vial are spread evenly inside, it cannot be removed after it has been inserted. "
+	name = "矩阵框架"
+	desc = "运输艇摄像矩阵的组件，安装于武器控制台内。复杂的透镜组使光线能够穿过其中的液体。\n小瓶中的液体会均匀散布在内部，因此插入后就无法再取出。"
 	icon = 'icons/obj/items/devices.dmi'
 	icon_state = "matrix"
 	matter = list("metal" = 7500)
@@ -22,8 +22,8 @@
 				user.drop_held_item(W)
 				W.forceMove(src)
 				state = ASSEMBLY_UNLOCKED
-				to_chat(user, SPAN_NOTICE("You add the vial to the matrix, and the testing indicator lights up with green"))
-				desc = initial(desc) + "\nThe vial is installed but is not screwed."
+				to_chat(user, SPAN_NOTICE("你把小瓶装入矩阵，检测指示灯亮起了绿光。"))
+				desc = initial(desc) + "\n小瓶已装入，但尚未拧紧。"
 				var/datum/reagent/S = W.reagents.reagent_list[1]
 				if(S.get_property(PROPERTY_PHOTOSENSITIVE) && !S.get_property(PROPERTY_CRYSTALLIZATION))
 					var/datum/chem_property/G = S.get_property(PROPERTY_PHOTOSENSITIVE)
@@ -43,19 +43,19 @@
 					upgrade = MATRIX_DEFAULT
 					return
 			else if(W.reagents.total_volume < 30)
-				to_chat(user, SPAN_WARNING("The testing indicator lights up with red! The container requires to be fully filled!"))
+				to_chat(user, SPAN_WARNING("检测指示灯亮起了红光！容器必须装满！"))
 				return
 			else if (length(W.reagents.reagent_list) > 1)
-				to_chat(user, SPAN_WARNING("The testing indicator lights up with red! The container requires a pure sample!"))
+				to_chat(user, SPAN_WARNING("检测指示灯亮起了红光！容器中必须是纯净样本！"))
 
 		if(ASSEMBLY_UNLOCKED)
 			if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				state = ASSEMBLY_LOCKED
-				to_chat(user, SPAN_NOTICE("You lock the matrix assembly"))
-				desc = initial(desc) + "\n The vial is installed and screwed in place."
+				to_chat(user, SPAN_NOTICE("你锁好了矩阵组件。"))
+				desc = initial(desc) + "\n小瓶已装入并拧紧固定。"
 		if(ASSEMBLY_LOCKED)
 			if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				state = ASSEMBLY_UNLOCKED
-				to_chat(user, SPAN_NOTICE("You unlock the matrix assembly"))
+				to_chat(user, SPAN_NOTICE("你解锁了矩阵组件。"))

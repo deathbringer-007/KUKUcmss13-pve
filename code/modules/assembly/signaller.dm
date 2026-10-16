@@ -1,6 +1,6 @@
 /obj/item/device/assembly/signaller
-	name = "remote signaling device"
-	desc = "Used to remotely activate devices."
+	name = "遥控信号器"
+	desc = "用于远程启动设备。"
 	icon_state = "signaller"
 	item_state = "signaller"
 	matter = list("metal" = 1000, "glass" = 200, "waste" = 100)
@@ -25,7 +25,7 @@
 		set_frequency(S.frequency)
 
 		SStgui.update_uis(src)
-		to_chat(user, SPAN_NOTICE("You set the frequence of [src] to [frequency] and code to [code]."))
+		to_chat(user, SPAN_NOTICE("你将[src]的频率设为[frequency]，代码设为[code]。"))
 		return
 	. = ..()
 
@@ -50,7 +50,7 @@
 
 /obj/item/device/assembly/signaller/interact(mob/user, flag1)
 	if(!secured)
-		to_chat(user, SPAN_WARNING("The [name] is unsecured!"))
+		to_chat(user, SPAN_WARNING("[name]尚未固定好！"))
 		return
 
 	tgui_interact(user)
@@ -59,7 +59,7 @@
 /obj/item/device/assembly/signaller/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "Signaller", "Signaller")
+		ui = new(user, src, "Signaller", "信号器")
 		ui.open()
 		ui.set_autoupdate(FALSE)
 

@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/storage/marine/M35
-	name = "\improper M35 pyrotechnician armor"
-	desc = "A custom set of M35 armor designed for use by USCM Pyrotechnicians. Prototype cooling and heat dissipation systems ensure the wearer is effectively fireproof, but leaves them more susceptible to overpressure waves."
+	name = "\improper M35 火焰兵护甲"
+	desc = "专为 USCM 火焰兵定制的 M35 护甲。原型冷却与散热系统能有效防火，但也使穿戴者更易受到超压冲击波伤害。"
 	icon_state = "pyro_armor"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	armor_internaldamage = CLOTHING_ARMOR_MEDIUMHIGH
@@ -12,7 +12,7 @@
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FEET
 	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FEET
 	flags_heat_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FEET
-	specialty = "M35 pyrotechnician"
+	specialty = "M35 火焰兵"
 	unacidable = TRUE
 	var/shields_from_fire = TRUE
 

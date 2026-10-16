@@ -1,17 +1,17 @@
 /mob/living/simple_animal/hostile/retaliate/clown
-	name = "Clown"
-	desc = "A denizen of clown planet"
+	name = "小丑"
+	desc = "小丑星球的居民。"
 	icon_state = "clown"
 	icon_living = "clown"
 	icon_dead = "clown_dead"
 	icon_gib = "clown_gib"
 	speak_chance = 0
 	turns_per_move = 5
-	response_help = "pokes the"
-	response_disarm = "gently pushes aside the"
-	response_harm = "hits the"
-	speak = list("HONK", "Honk!", "Welcome to clown planet!")
-	emote_see = list("honks")
+	response_help = "戳了戳"
+	response_disarm = "轻轻推开"
+	response_harm = "击打"
+	speak = list("叭叭", "叭！", "欢迎来到小丑星球！")
+	emote_see = list("发出喇叭声")
 	speak_chance = 1
 	a_intent = INTENT_HARM
 	stop_automated_movement_when_pulled = 0
@@ -21,7 +21,7 @@
 	harm_intent_damage = 8
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	attacktext = "attacks"
+	attacktext = "攻击"
 	attack_sound = 'sound/items/bikehorn.ogg'
 
 	min_oxy = 5

@@ -1,7 +1,7 @@
 /obj/item/device/professor_dummy_tablet
 	icon = 'icons/obj/items/devices.dmi'
-	name = "\improper Professor DUMMY tablet"
-	desc = "A Professor DUMMY Control Tablet."
+	name = "\improper 假人教授控制平板"
+	desc = "用于控制假人教授的平板设备。"
 	suffix = "\[3\]"
 	icon_state = "Cotablet"
 	item_state = "Cotablet"
@@ -24,7 +24,7 @@
 		return
 	if(!linked_dummy)
 		return
-	linked_dummy.visible_message(SPAN_WARNING("The [linked_dummy] suddenly disintegrates!"))
+	linked_dummy.visible_message(SPAN_WARNING("[linked_dummy]突然化为粉末！"))
 	linked_dummy.dust(create_cause_data("hijack autodelete"))
 
 /obj/item/device/professor_dummy_tablet/Destroy()
@@ -41,7 +41,7 @@
  */
 /obj/item/device/professor_dummy_tablet/proc/is_adjacent_to_dummy(mob/user)
 	if (get_dist(linked_dummy, user) > 1)
-		to_chat(user, SPAN_WARNING("You are too far away from the dummy to use its tablet."))
+		to_chat(user, SPAN_WARNING("你离假人太远，无法使用它的控制平板。"))
 		return FALSE
 	return TRUE
 
@@ -73,70 +73,70 @@
 		return
 
 	user.set_interaction(src)
-	var/dat = "<head><title>Professor DUMMY Control Tablet</title></head><body>"
+	var/dat = "<head><title>假人教授控制平板</title></head><body>"
 
-	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=brute_damage_limb'>Brute Damage (Limb)</A> \]"
-	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=brute_damage_organ'>Brute Damage (Organ)</A> \]"
-	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=burn_damage'>Burn Damage</A> \]"
-	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=toxin'>Inject Toxins</A> \]"
-	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=bones'>Break Bones</A> \]"
-	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=blood_loss'>Blood Loss</A> \]"
-	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=bleeding'>Internal Bleeding</A> \]"
-	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=shrapnel'>Shrapnel</A> \]"
-	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=delimb'>Delimb</A> \]"
-	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=reset'>Reset</A> \]"
+	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=brute_damage_limb'>物理损伤（身体部位）</A> \]"
+	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=brute_damage_organ'>物理损伤（内脏）</A> \]"
+	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=burn_damage'>烧伤</A> \]"
+	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=toxin'>注入毒素</A> \]"
+	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=bones'>造成骨折</A> \]"
+	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=blood_loss'>造成失血</A> \]"
+	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=bleeding'>造成内出血</A> \]"
+	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=shrapnel'>嵌入弹片</A> \]"
+	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=delimb'>移除肢体</A> \]"
+	dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=reset'>重置</A> \]"
 	dat += "<BR><hr>"
 
-	show_browser(user, dat, "Professor DUMMY Control Tablet", "dummytablet", width = 400, height = 500)
+	show_browser(user, dat, "假人教授控制平板", "dummytablet", width = 400, height = 500)
 	onclose(user, "dummytablet")
 	updateDialog()
 	return
 
 /obj/item/device/professor_dummy_tablet/proc/select_delimb_target()
 	var/list/procedureChoices = list(
-		"Right Hand" = "r_hand",
-		"Left Hand" = "l_hand",
-		"Right Arm" = "r_arm",
-		"Left Arm" = "l_arm",
-		"Right Foot" = "r_foot",
-		"Left Foot" = "l_foot",
-		"Right Leg" = "r_leg",
-		"Left Leg" = "l_leg",
+		"右手" = "r_hand",
+		"左手" = "l_hand",
+		"右臂" = "r_arm",
+		"左臂" = "l_arm",
+		"右脚" = "r_foot",
+		"左脚" = "l_foot",
+		"右腿" = "r_leg",
+		"左腿" = "l_leg",
 	)
 	var/selection = ""
-	selection = tgui_input_list(usr, "Select Organ", "Organ selection", procedureChoices)
+	selection = tgui_input_list(usr, "请选择要移除的肢体。", "选择肢体", procedureChoices)
 	return LAZYACCESS(procedureChoices, selection)
 
 
 /obj/item/device/professor_dummy_tablet/proc/select_internal_organ()
 	var/list/procedureChoices = list(
-		"Heart" = "heart",
-		"Lungs" = "lungs",
-		"Liver" = "liver",
-		"Kidneys" = "kidneys",
-		"Brain" = "brain",
-		"Eyes" = "eyes",
+		"心脏" = "heart",
+		"肺" = "lungs",
+		"肝脏" = "liver",
+		"肾脏" = "kidneys",
+		"大脑" = "brain",
+		"眼睛" = "eyes",
 	)
 	var/selection = ""
-	selection = tgui_input_list(usr, "Select Organ", "Organ selection", procedureChoices)
+	selection = tgui_input_list(usr, "请选择器官。", "选择器官", procedureChoices)
 	return LAZYACCESS(procedureChoices, selection)
 
 /obj/item/device/professor_dummy_tablet/proc/select_body_part()
 	var/list/procedureChoices = list(
-		"Head" = "head",
-		"Chest" = "chest",
-		"Groin" = "groin",
-		"Right Hand" = "r_hand",
-		"Left Hand" = "l_hand",
-		"Right Arm" = "r_arm",
-		"Left Arm" = "l_arm",
-		"Right Foot" = "r_foot",
-		"Left Foot" = "l_foot",
-		"Right Leg" = "r_leg",
-		"Left Leg" = "l_leg",
+		"头部" = "head",
+		"胸部" = "chest",
+		"腹股沟" = "groin",
+		"右手" = "r_hand",
+		"左手" = "l_hand",
+		"右臂" = "r_arm",
+		"左臂" = "l_arm",
+		"右脚" = "r_foot",
+		"左脚" = "l_foot",
+		"右腿" = "r_leg",
+		"左腿" = "l_leg",
 	)
 	var/selection = ""
-	selection = tgui_input_list(usr, "Select Organ", "Organ selection", procedureChoices)
+	selection = tgui_input_list(usr, "请选择身体部位。", "选择身体部位", procedureChoices)
 	return LAZYACCESS(procedureChoices, selection)
 
 
@@ -157,7 +157,7 @@
 			if (!istype(organ))
 				return
 			var/amount = 0
-			amount = tgui_input_real_number(usr, "Amount?")
+			amount = tgui_input_real_number(usr, "请输入损伤量。")
 			if (amount==0)
 				return
 			organ.take_damage(amount)
@@ -171,7 +171,7 @@
 			if(limb.status & LIMB_DESTROYED)
 				return
 			var/amount = 0
-			amount = tgui_input_real_number(usr, "Amount?")
+			amount = tgui_input_real_number(usr, "请输入损伤量。")
 			if (amount==0)
 				return
 			limb.take_damage(amount, 0)
@@ -185,13 +185,13 @@
 			if(limb.status & LIMB_DESTROYED)
 				return
 			var/amount = 0
-			amount = tgui_input_real_number(usr, "Amount?")
+			amount = tgui_input_real_number(usr, "请输入烧伤量。")
 			if (amount==0)
 				return
 			limb.take_damage(0, amount)
 		if ("toxin")
 			var/amount = 0
-			amount = tgui_input_real_number(usr, "Amount?")
+			amount = tgui_input_real_number(usr, "请输入毒素注入量。")
 			if (amount==0)
 				return
 			linked_dummy.reagents.add_reagent("toxin", amount)
@@ -207,7 +207,7 @@
 			limb.fracture(100)
 		if ("blood_loss")
 			var/amount = 0
-			amount = tgui_input_real_number(usr, "Amount?")
+			amount = tgui_input_real_number(usr, "请输入失血量。")
 			if (amount==0)
 				return
 			linked_dummy.drip(amount)

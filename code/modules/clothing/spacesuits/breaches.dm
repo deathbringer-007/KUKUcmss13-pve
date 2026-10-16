@@ -26,19 +26,19 @@
 //Some simple descriptors for breaches. Global because lazy, TODO: work out a better way to do this.
 
 GLOBAL_LIST_INIT(breach_brute_descriptors, list(
-	"tiny puncture",
-	"ragged tear",
-	"large split",
-	"huge tear",
-	"gaping wound"
+	"细小穿孔",
+	"参差的裂口",
+	"大裂缝",
+	"巨大裂口",
+	"敞开的破洞"
 	))
 
 GLOBAL_LIST_INIT(breach_burn_descriptors, list(
-	"small burn",
-	"melted patch",
-	"sizable burn",
-	"large scorched area",
-	"huge scorched area"
+	"小块烧痕",
+	"熔化区域",
+	"明显烧痕",
+	"大片焦痕",
+	"巨大焦痕"
 	))
 
 /datum/breach/proc/update_descriptor()
@@ -55,7 +55,7 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 /obj/item/clothing/suit/space/proc/repair_breaches(damtype, amount, mob/user)
 
 	if(!can_breach || !LAZYLEN(breaches) || !damage)
-		to_chat(user, "There are no breaches to repair on \the [src].")
+		to_chat(user, "[src]上没有需要修补的破损。")
 		return
 
 	var/list/valid_breaches = list()
@@ -65,7 +65,7 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 			valid_breaches += B
 
 	if(!length(valid_breaches))
-		to_chat(user, "There are no breaches to repair on \the [src].")
+		to_chat(user, "[src]上没有需要修补的破损。")
 		return
 
 	var/amount_left = amount
@@ -81,7 +81,7 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 			amount_left = 0
 			B.update_descriptor()
 
-	user.visible_message("<b>[user]</b> patches some of the damage on \the [src].")
+	user.visible_message("<b>[user]</b>修补了[src]的部分破损。")
 	calc_breach_damage()
 
 /obj/item/clothing/suit/space/proc/create_breaches(damtype, amount)
@@ -116,9 +116,9 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 				amount -= needs
 
 			if(existing.damtype == BRUTE)
-				T.visible_message(SPAN_WARNING("\The [existing.descriptor] on [src] gapes wider!"))
+				T.visible_message(SPAN_WARNING("[src]上的[existing.descriptor]裂得更开了！"))
 			else if(existing.damtype == BURN)
-				T.visible_message(SPAN_WARNING("\The [existing.descriptor] on [src] widens!"))
+				T.visible_message(SPAN_WARNING("[src]上的[existing.descriptor]扩大了！"))
 
 	if (amount)
 		//Spawn a new breach.
@@ -132,9 +132,9 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 		B.holder = src
 
 		if(B.damtype == BRUTE)
-			T.visible_message(SPAN_WARNING("\A [B.descriptor] opens up on [src]!"))
+			T.visible_message(SPAN_WARNING("[src]上出现了[B.descriptor]！"))
 		else if(B.damtype == BURN)
-			T.visible_message(SPAN_WARNING("\A [B.descriptor] marks the surface of [src]!"))
+			T.visible_message(SPAN_WARNING("[src]表面出现了[B.descriptor]！"))
 
 	calc_breach_damage()
 
@@ -162,11 +162,11 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 
 	if(damage >= 3)
 		if(brute_damage >= 3 && brute_damage > burn_damage)
-			name = "punctured [base_name]"
+			name = "破洞的[base_name]"
 		else if(burn_damage >= 3 && burn_damage > brute_damage)
-			name = "scorched [base_name]"
+			name = "烧焦的[base_name]"
 		else
-			name = "damaged [base_name]"
+			name = "受损的[base_name]"
 	else
 		name = "[base_name]"
 
@@ -178,11 +178,11 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 	if(istype(W,/obj/item/stack/sheet/mineral/plastic) || istype(W,/obj/item/stack/sheet/metal))
 
 		if(istype(src.loc,/mob/living))
-			to_chat(user, SPAN_DANGER("How do you intend to patch a hardsuit while someone is wearing it?"))
+			to_chat(user, SPAN_DANGER("有人穿着硬式太空服时，你打算怎么修补它？"))
 			return
 
 		if(!damage || !burn_damage)
-			to_chat(user, "There is no surface damage on \the [src] to repair.")
+			to_chat(user, "[src]没有需要修补的表面损伤。")
 			return
 
 		var/obj/item/stack/sheet/P = W
@@ -197,20 +197,20 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 	else if(iswelder(W))
 
 		if(!HAS_TRAIT(W, TRAIT_TOOL_BLOWTORCH))
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要功率更大的喷灯！"))
 			return
 
 		if(istype(src.loc,/mob/living))
-			to_chat(user, SPAN_DANGER("How do you intend to patch a hardsuit while someone is wearing it?"))
+			to_chat(user, SPAN_DANGER("有人穿着硬式太空服时，你打算怎么修补它？"))
 			return
 
 		if (!damage || ! brute_damage)
-			to_chat(user, "There is no structural damage on \the [src] to repair.")
+			to_chat(user, "[src]没有需要修补的结构损伤。")
 			return
 
 		var/obj/item/tool/weldingtool/WT = W
 		if(!WT.remove_fuel(5))
-			to_chat(user, SPAN_DANGER("You need more welding fuel to repair this suit."))
+			to_chat(user, SPAN_DANGER("你需要更多焊接燃料才能修好这件太空服。"))
 			return
 
 		repair_breaches(BRUTE, 3, user)
@@ -222,4 +222,4 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 	. = ..()
 	if(can_breach && LAZYLEN(breaches))
 		for(var/datum/breach/B in breaches)
-			. += SPAN_DANGER("It has \a [B.descriptor].")
+			. += SPAN_DANGER("上面有[B.descriptor]。")

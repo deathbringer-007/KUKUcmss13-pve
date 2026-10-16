@@ -1,5 +1,5 @@
 /obj/item/paper_bin
-	name = "paper bin"
+	name = "纸盒"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "paper_bin1"
 	item_state = "sheet-metal"
@@ -29,7 +29,12 @@
 /obj/item/paper_bin/attack_hand(mob/user)
 	var/response = ""
 	if(!length(papers) > 0)
-		response = alert(user, "What kind of paper?", "Paper type request", "Regular", sec_paper_type, "Cancel")
+		var/list/paper_labels = list("Regular" = "普通纸", "Carbon-Copy" = "复写纸", "Company Document" = "公司文件", "USCM Document" = "USCM 文件", "Cancel" = "取消")
+		var/selection = alert(user, "请选择纸张类型。", "选择纸张类型", paper_labels["Regular"], paper_labels[sec_paper_type] || sec_paper_type, paper_labels["Cancel"])
+		for(var/paper_key in paper_labels)
+			if(paper_labels[paper_key] == selection)
+				response = paper_key
+				break
 		if (response != "Regular" && response != "Carbon-Copy" && response != "Company Document" && response != "USCM Document")
 			add_fingerprint(user)
 			return
@@ -56,9 +61,9 @@
 
 		P.forceMove(user.loc)
 		user.put_in_hands(P)
-		to_chat(user, SPAN_NOTICE("You take [P] out of [src]."))
+		to_chat(user, SPAN_NOTICE("你从[src]中取出了[P]。"))
 	else
-		to_chat(user, SPAN_NOTICE("[src] is empty!"))
+		to_chat(user, SPAN_NOTICE("[src]是空的！"))
 
 	add_fingerprint(user)
 	return
@@ -69,16 +74,16 @@
 		return
 
 	if(user.drop_inv_item_to_loc(i, src))
-		to_chat(user, SPAN_NOTICE("You put [i] in [src]."))
+		to_chat(user, SPAN_NOTICE("你将[i]放入[src]。"))
 		papers.Add(i)
 		amount++
 
 
 /obj/item/paper_bin/get_examine_text(mob/user)
 	if(amount)
-		return list(SPAN_NOTICE("There ") + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.")
+		return list(SPAN_NOTICE("纸盒中有 [amount] 张纸。"))
 	else
-		return list(SPAN_NOTICE("There are no papers in the bin."))
+		return list(SPAN_NOTICE("纸盒中没有纸了。"))
 
 
 /obj/item/paper_bin/update_icon()
@@ -88,11 +93,16 @@
 		icon_state = "paper_bin1"
 
 /obj/item/paper_bin/verb/set_paper_type()
-	set name = "Switch Paper Type"
-	set category = "Object"
+	set name = "切换纸张类型"
+	set category = "物品"
 	set src in view(1)
 	var/response = ""
-	response = alert(usr, "What kind of paper?", "Paper type request", paper_types[1], paper_types[2], "Cancel")
+	var/list/paper_labels = list("Carbon-Copy" = "复写纸", "Company Document" = "公司文件", "USCM Document" = "USCM 文件", "Cancel" = "取消")
+	var/selection = alert(usr, "请选择纸张类型。", "选择纸张类型", paper_labels[paper_types[1]] || paper_types[1], paper_labels[paper_types[2]] || paper_types[2], paper_labels["Cancel"])
+	for(var/paper_key in paper_labels)
+		if(paper_labels[paper_key] == selection)
+			response = paper_key
+			break
 	if (response != "Carbon-Copy" && response != "Company Document" && response != "USCM Document")
 		return
 	sec_paper_type = response
@@ -100,7 +110,7 @@
 /// Relic from the days of cyborgs, kept for flavour, an handheld paper
 /// dispenser that was supposed to print pre-filled forms but never did.
 /obj/item/form_printer
-	name = "paper dispenser"
+	name = "出纸器"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "paper_bin1"
 	item_state = "sheet-metal"
@@ -120,5 +130,5 @@
 	deploy_paper(get_turf(src))
 
 /obj/item/form_printer/proc/deploy_paper(turf/T)
-	T.visible_message(SPAN_NOTICE("\The [src.loc] dispenses a sheet of crisp white paper."))
+	T.visible_message(SPAN_NOTICE("[src.loc]送出一张挺括的白纸。"))
 	new /obj/item/paper(T)

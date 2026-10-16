@@ -1,5 +1,5 @@
 /datum/fire_support/mortar
-	name = "HE mortar"
+	name = "高爆迫击炮弹"
 	fire_support_firer = FIRESUPPORT_ARTY
 	fire_support_type = FIRESUPPORT_TYPE_HE_MORTAR
 	cost = 2
@@ -9,14 +9,14 @@
 	impact_delay = 0.5 SECONDS
 	visual_impact_delay = 0.3 SECONDS
 	icon_state = "he_mortar"
-	initiate_chat_message = "COORDINATES CONFIRMED. MORTAR BARRAGE INCOMING."
+	initiate_chat_message = "坐标已确认。迫击炮弹幕即将抵达。"
 	initiate_screen_message = list(
-		"Artillery brings dignity to what would otherwise be an ugly brawl.",
-		"The world consists of 2 types of people, artillery men and targets.",
-		"Firing for effect, over.",
-		"Shells, on the way!",
+		"炮兵让原本丑陋的混战变得体面。",
+		"世上只有两种人：炮兵和靶子。",
+		"开始效力射，完毕。",
+		"炮弹马上到！",
 	)
-	initiate_title = "Rhino-1"
+	initiate_title = "犀牛一号"
 	initiate_sound = 'sound/weapons/gun_mortar_travel.ogg'
 	portrait_type = "marine_green"
 	start_visual = null
@@ -31,15 +31,15 @@
 	faction = FACTION_UPP
 	fire_support_firer = FIRESUPPORT_ARTY_UPP
 	fire_support_type = FIRESUPPORT_TYPE_HE_MORTAR_UPP
-	initiate_title = "Katyusha-1"
+	initiate_title = "喀秋莎一号"
 	portrait_type = "beret_2_red"
 
 /datum/fire_support/mortar/incendiary
-	name = "INC mortar"
+	name = "燃烧迫击炮弹"
 	fire_support_type = FIRESUPPORT_TYPE_INCENDIARY_MORTAR
 	icon_state = "incendiary_mortar"
-	initiate_chat_message = "COORDINATES CONFIRMED. MORTAR BARRAGE INCOMING."
-	initiate_screen_message = list("Coordinates confirmed, incendiary inbound!")
+	initiate_chat_message = "坐标已确认。迫击炮弹幕即将抵达。"
+	initiate_screen_message = list("坐标已确认，燃烧弹马上到！")
 	impact_start_visual = /obj/effect/temp_visual/falling_obj/incend
 	var/radius = 5
 	var/flame_level = BURN_TIME_TIER_5 + 5 //Type B standard, 50 base + 5 from chemfire code.
@@ -55,17 +55,17 @@
 	faction = FACTION_UPP
 	fire_support_firer = FIRESUPPORT_ARTY_UPP
 	fire_support_type = FIRESUPPORT_TYPE_INCENDIARY_MORTAR_UPP
-	initiate_title = "Katyusha-1"
+	initiate_title = "喀秋莎一号"
 	portrait_type = "beret_2_red"
 
 /datum/fire_support/mortar/flare
-	name = "FLR mortar"
+	name = "照明迫击炮弹"
 	fire_support_type = FIRESUPPORT_TYPE_FLARE_MORTAR
 	cost = 1
 	impact_quantity = 4
 	icon_state = "flare_mortar"
-	initiate_chat_message = "COORDINATES CONFIRMED. FLARE SUPPORT INCOMING."
-	initiate_screen_message = "Coordinates confirmed, illumination inbound!"
+	initiate_chat_message = "坐标已确认。照明支援即将抵达。"
+	initiate_screen_message = "坐标已确认，照明弹马上到！"
 	impact_start_visual = /obj/effect/temp_visual/falling_obj/flare
 
 /datum/fire_support/mortar/flare/do_impact(turf/target_turf)
@@ -76,17 +76,17 @@
 	faction = FACTION_UPP
 	fire_support_firer = FIRESUPPORT_ARTY_UPP
 	fire_support_type = FIRESUPPORT_TYPE_FLARE_MORTAR_UPP
-	initiate_title = "Katyusha-1"
+	initiate_title = "喀秋莎一号"
 	portrait_type = "beret_2_red"
 
 /datum/fire_support/mortar/smoke
-	name = "SMK mortar"
+	name = "烟幕迫击炮弹"
 	fire_support_type = FIRESUPPORT_TYPE_SMOKE_MORTAR
 	cost = 1
 	impact_quantity = 4
 	icon_state = "smoke_mortar"
-	initiate_chat_message = "COORDINATES CONFIRMED. MORTAR BARRAGE INCOMING."
-	initiate_screen_message = "Coordinates confirmed, smoke inbound!"
+	initiate_chat_message = "坐标已确认。迫击炮弹幕即将抵达。"
+	initiate_screen_message = "坐标已确认，烟幕弹马上到！"
 	impact_start_visual = /obj/effect/temp_visual/falling_obj/smoke
 	///smoke type created when the grenade is primed
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
@@ -105,16 +105,16 @@
 	faction = FACTION_UPP
 	fire_support_firer = FIRESUPPORT_ARTY_UPP
 	fire_support_type = FIRESUPPORT_TYPE_SMOKE_MORTAR_UPP
-	initiate_title = "Katyusha-1"
+	initiate_title = "喀秋莎一号"
 	portrait_type = "beret_2_red"
 
 /datum/fire_support/mortar/smoke/cn
-	name = "CN-20 mortar"
+	name = "CN-20神经毒气迫击炮弹"
 	fire_support_type = FIRESUPPORT_TYPE_NERVE_SMOKE_MORTAR
 	cost = 2
 	icon_state = "nerve_mortar"
-	initiate_chat_message = "COORDINATES CONFIRMED. MORTAR BARRAGE INCOMING."
-	initiate_screen_message = list("Coordinates confirmed, nerve gas inbound!")
+	initiate_chat_message = "坐标已确认。迫击炮弹幕即将抵达。"
+	initiate_screen_message = list("坐标已确认，神经毒气弹马上到！")
 	smoketype = /datum/effect_system/smoke_spread/cn20
 	smoke_duration = 30
 
@@ -122,16 +122,16 @@
 	faction = FACTION_UPP
 	fire_support_firer = FIRESUPPORT_ARTY_UPP
 	fire_support_type = FIRESUPPORT_TYPE_NERVE_SMOKE_MORTAR_UPP
-	initiate_title = "Katyusha-1"
+	initiate_title = "喀秋莎一号"
 	portrait_type = "beret_2_red"
 
 /datum/fire_support/mortar/smoke/lsd
-	name = "LSD mortar"
+	name = "LSD致幻气体迫击炮弹"
 	fire_support_type = FIRESUPPORT_TYPE_LSD_SMOKE_MORTAR
 	cost = 1
 	icon_state = "lsd_mortar"
-	initiate_chat_message = "COORDINATES CONFIRMED. MORTAR BARRAGE INCOMING."
-	initiate_screen_message = list("Coordinates confirmed, LSD gas inbound!")
+	initiate_chat_message = "坐标已确认。迫击炮弹幕即将抵达。"
+	initiate_screen_message = list("坐标已确认，LSD致幻气体弹马上到！")
 	smoketype = /datum/effect_system/smoke_spread/LSD
 	smoke_duration = 30
 
@@ -139,11 +139,11 @@
 	faction = FACTION_UPP
 	fire_support_firer = FIRESUPPORT_ARTY_UPP
 	fire_support_type = FIRESUPPORT_TYPE_LSD_SMOKE_MORTAR_UPP
-	initiate_title = "Katyusha-1"
+	initiate_title = "喀秋莎一号"
 	portrait_type = "beret_2_red"
 
 /datum/fire_support/mortar/mlrs
-	name = "HE MLRS"
+	name = "高爆火箭炮齐射"
 	fire_support_type = FIRESUPPORT_TYPE_HE_MLRS
 	cost = 3
 	scatter_range = 11
@@ -152,14 +152,14 @@
 	impact_delay = 0.2 SECONDS
 	visual_impact_delay = 1
 	icon_state = "mlrs"
-	initiate_chat_message = "COORDINATES CONFIRMED. MLRS BARRAGE INCOMING."
+	initiate_chat_message = "坐标已确认。火箭炮弹幕即将抵达。"
 	initiate_screen_message = list(
-		"At my signal, unleash hell!",
-		"Firing for effect, over.",
-		"Full salvo, on the way!",
-		"Their gonna dance to our tune!",
+		"听我信号，火力全开！",
+		"开始效力射，完毕。",
+		"全弹齐射，马上到！",
+		"他们得跟着我们的调子跳舞！",
 	)
-	initiate_title = "Rhino-1"
+	initiate_title = "犀牛一号"
 	initiate_sound = 'sound/weapons/gun_mortar_travel.ogg'
 	impact_start_visual = /obj/effect/temp_visual/falling_obj/mlrs
 	impact_sound = 'sound/weapons/fire_support/rocket_whistle.ogg'
@@ -171,11 +171,11 @@
 	faction = FACTION_UPP
 	fire_support_firer = FIRESUPPORT_ARTY_UPP
 	fire_support_type = FIRESUPPORT_TYPE_HE_MLRS_UPP
-	initiate_title = "Katyusha-1"
+	initiate_title = "喀秋莎一号"
 	portrait_type = "beret_2_red"
 
 /datum/fire_support/mortar/smoke/mlrs_cn
-	name = "CN-20 MLRS"
+	name = "CN-20神经毒气火箭炮齐射"
 	icon_state = "nerve_mlrs"
 	fire_support_type = FIRESUPPORT_TYPE_NERVE_MLRS
 	cost = 2
@@ -185,13 +185,13 @@
 	impact_delay = 0.2 SECONDS
 	visual_impact_delay = 1
 	icon_state = "mlrs"
-	initiate_chat_message = "COORDINATES CONFIRMED. MLRS CN-20 BARRAGE INCOMING."
-	initiate_title = "Rhino-1"
+	initiate_chat_message = "坐标已确认。CN-20神经毒气火箭炮弹幕即将抵达。"
+	initiate_title = "犀牛一号"
 	initiate_screen_message = list(
-		"At my signal, unleash hell!",
-		"Firing for effect, over.",
-		"Full salvo, on the way!",
-		"Their gonna dance to our tune!",
+		"听我信号，火力全开！",
+		"开始效力射，完毕。",
+		"全弹齐射，马上到！",
+		"他们得跟着我们的调子跳舞！",
 	)
 	initiate_sound = 'sound/weapons/gun_mortar_travel.ogg'
 	impact_start_visual = /obj/effect/temp_visual/falling_obj/mlrs_smoke
@@ -204,5 +204,5 @@
 	faction = FACTION_UPP
 	fire_support_firer = FIRESUPPORT_ARTY_UPP
 	fire_support_type = FIRESUPPORT_TYPE_NERVE_MLRS_UPP
-	initiate_title = "Katyusha-1"
+	initiate_title = "喀秋莎一号"
 	portrait_type = "beret_2_red"

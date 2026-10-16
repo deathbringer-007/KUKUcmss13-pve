@@ -1,6 +1,6 @@
 /obj/item/hardpoint/primary/flamer
-	name = "\improper DRG-N Offensive Flamer Unit"
-	desc = "A primary weapon for the tank that spews out ultra-thick napthal in a wide radius. The fuel burns intensely and relatively quickly, which allows for it to be used offensively by armoured vehicles."
+	name = "\improper DRG-N进攻型火焰喷射器"
+	desc = "坦克主武器，可向大范围喷射超稠萘基燃料。燃料燃烧猛烈且持续时间较短，适合装甲车辆在进攻中使用。"
 
 	icon_state = "drgn_flamer"
 	disp_icon = "tank"
@@ -33,7 +33,7 @@
 
 /obj/item/hardpoint/primary/flamer/try_fire(atom/target, mob/living/user, params)
 	if(get_turf(target) in owner.locs)
-		to_chat(user, SPAN_WARNING("The target is too close."))
+		to_chat(user, SPAN_WARNING("目标距离太近。"))
 		return NONE
 
 	return ..()

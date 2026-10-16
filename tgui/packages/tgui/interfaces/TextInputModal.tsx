@@ -120,7 +120,7 @@ const InputArea = (props: {
       }}
       onChange={(_, value) => onType(value)}
       onInput={(_, value) => onType(value)}
-      placeholder="Type something..."
+      placeholder="请输入内容……"
       value={input}
     />
   );

@@ -218,7 +218,7 @@ const ButtonConfirm = (props: ConfirmProps) => {
     children,
     color,
     confirmColor = 'bad',
-    confirmContent = 'Confirm?',
+    confirmContent = '确认？',
     confirmIcon,
     ellipsis = true,
     icon,

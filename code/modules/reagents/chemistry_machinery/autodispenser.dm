@@ -12,8 +12,8 @@
 
 
 /obj/structure/machinery/autodispenser
-	name = "\improper Turing Dispenser"
-	desc = "A chem dispenser variant that can not be operated manually, but will instead automatically dispense chemicals based on a program of chemicals, loaded using a vial box. Despite having a digital screen the machine is mostly analog."
+	name = "图灵自动配药机"
+	desc = "一种无法手动配药的化学分配器，通过试管盒载入配药程序，再按程序自动分配试剂。虽然装有数字屏幕，机器内部却主要采用模拟电路。"
 	icon = 'icons/obj/structures/machinery/science_machines.dmi'
 	icon_state = "autodispenser"
 	active_power_usage = 40
@@ -96,14 +96,14 @@
 
 /obj/structure/machinery/autodispenser/attackby(obj/item/B, mob/living/user)
 	if(!skillcheck(user, SKILL_RESEARCH, SKILL_RESEARCH_TRAINED))
-		to_chat(user, SPAN_WARNING("You have no idea how to use this."))
+		to_chat(user, SPAN_WARNING("你完全不知道该如何使用这台设备。"))
 		return
 	if(istype(B, /obj/item/storage/fancy/vials))
 		if(input_container)
-			to_chat(user, SPAN_WARNING("A vial box is already loaded into \the [src]."))
+			to_chat(user, SPAN_WARNING("[src]中已经装有试管盒。"))
 			return
 		else if(status == AUTODISPENSER_RUNNING)
-			to_chat(user, SPAN_WARNING("You can't insert a box while \the [src] is running."))
+			to_chat(user, SPAN_WARNING("[src]运行时不能装入试管盒。"))
 			return
 		if(user.drop_inv_item_to_loc(B, src))
 			input_container = B
@@ -111,15 +111,15 @@
 		get_program(PROGRAM_BOX)
 	else if(B.is_open_container() || B.flags_atom & CAN_BE_DISPENSED_INTO)
 		if(output_container)
-			to_chat(user, SPAN_WARNING("A container is already loaded into \the [src]."))
+			to_chat(user, SPAN_WARNING("[src]中已经装有容器。"))
 			return
 		if(user.drop_inv_item_to_loc(B, src))
 			output_container = B
 			update_icon()
 	else
-		to_chat(user, SPAN_WARNING("[B] doesn't fit in \the [src]."))
+		to_chat(user, SPAN_WARNING("[B]无法装入[src]。"))
 		return
-	to_chat(user, SPAN_NOTICE("You insert [B] into \the [src]."))
+	to_chat(user, SPAN_NOTICE("你将[B]装入[src]。"))
 	if(input_container && output_container && outputmode == OUTPUT_TO_CONTAINER)
 		if(automode)
 			run_program()
@@ -128,7 +128,7 @@
 	if(inoperable())
 		return
 	if(!skillcheck(user, SKILL_RESEARCH, SKILL_RESEARCH_TRAINED))
-		to_chat(user, SPAN_WARNING("You have no idea how to use this."))
+		to_chat(user, SPAN_WARNING("你完全不知道该如何使用这台设备。"))
 		return
 	tgui_interact(user)
 
@@ -295,7 +295,7 @@
 		connect_storage()
 
 	if(QDELETED(linked_storage) || src.z != linked_storage.z || get_dist(src, linked_storage) > smartfridge_tether_range)
-		visible_message(SPAN_WARNING("Smartfridge is out of range. Connection severed."))
+		visible_message(SPAN_WARNING("智能冰箱超出范围，连接已断开。"))
 		cleanup()
 
 	var/obj/item/reagent_container/container = output_container
@@ -358,7 +358,7 @@
 				continue
 		if(R.chemclass != CHEM_CLASS_BASIC && R.chemclass != CHEM_CLASS_COMMON)
 			//We have to wait until the chem is stored
-			error = R.name + " NOT FOUND"
+			error = R.name + "：未找到"
 			status = -5
 			update_icon()
 
@@ -443,7 +443,7 @@
 		var/obj/item/reagent_container/glass/P
 		while(reagents.total_volume > 0)
 			P = new /obj/item/reagent_container/glass/bottle()
-			P.name = "[name] bottle"
+			P.name = "[name]试剂瓶"
 			P.icon_state = "bottle-1" // Default bottle
 			P.amount_per_transfer_from_this = 60
 			reagents.trans_to(P, 60)

@@ -1,7 +1,7 @@
 //Autodoc
 /obj/structure/machinery/medical_pod/autodoc
-	name = "\improper autodoc emergency medical system"
-	desc = "A fancy machine developed to be capable of operating on people with minimal human intervention. The interface is rather complex and would only be useful to trained Doctors, were it not for the big 'AUTOMATIC MODE' switch and 'START' button, which seem simple enough."
+	name = "\improper 自动手术舱急救系统"
+	desc = "一台只需少量人工干预即可执行手术的先进设备。界面相当复杂，本应只有受过训练的医生才能使用，好在还有显眼的“自动模式”开关和“开始”按钮，看上去足够简单。"
 	icon_state = "autodoc_open"
 
 	entry_timer = 2 SECONDS
@@ -40,7 +40,7 @@
 /obj/structure/machinery/medical_pod/autodoc/get_examine_text(mob/user)
 	. = ..()
 	if(ishuman(user))
-		. += SPAN_NOTICE("It has [stored_metal] metal available for limb replacements.")
+		. += SPAN_NOTICE("它储有 [stored_metal] 单位金属，可用于置换肢体。")
 
 /obj/structure/machinery/medical_pod/autodoc/Initialize()
 	. = ..()
@@ -66,13 +66,13 @@
 /obj/structure/machinery/medical_pod/autodoc/extra_eject_checks()
 	if(usr == occupant)
 		if(surgery)
-			to_chat(usr, SPAN_WARNING("There's no way you're getting out while this thing is operating on you!"))
+			to_chat(usr, SPAN_WARNING("这东西正在给你做手术，你根本出不去！"))
 			return FALSE
 		else
-			visible_message("[usr] engages the internal release mechanism, and climbs out of \the [src].")
+			visible_message("[usr]启动内部解锁装置，从[src]里爬了出来。")
 			return TRUE
 	if(surgery)
-		visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> malfunctions as [usr] aborts the surgery in progress.")
+		visible_message("[icon2html(src, viewers(src))] <b>[src]</b>因[usr]中止正在进行的手术而发生故障。")
 		occupant.take_limb_damage(rand(30,50),rand(30,50))
 		surgery = FALSE
 		// message_admins for now, may change to message_admins later
@@ -108,7 +108,7 @@
 /obj/structure/machinery/medical_pod/autodoc/power_change(area/master_area = null)
 	..()
 	if(stat & NOPOWER)
-		visible_message("\The [src] engages the safety override, ejecting the occupant.")
+		visible_message("[src]启动紧急安全程序，将患者移出。")
 		surgery = 0
 		go_out()
 		return
@@ -134,7 +134,7 @@
 	updateUsrDialog()
 	if(occupant)
 		if(occupant.stat == DEAD)
-			visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Patient has expired.")
+			visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：患者已死亡。")
 			surgery = 0
 			go_out()
 			return
@@ -149,49 +149,49 @@
 					filtered += 3
 				if(!filtered)
 					filtering = 0
-					visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Blood filtering complete.")
+					visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：血液过滤完成。")
 				else if(prob(10))
-					visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> whirrs and gurgles as the dialysis module operates.")
-					to_chat(occupant, SPAN_INFO("You feel slightly better."))
+					visible_message("[icon2html(src, viewers(src))] <b>[src]</b>的透析模块运转着，发出嗡鸣和液体流动声。")
+					to_chat(occupant, SPAN_INFO("你感觉稍微好了一些。"))
 			if(blood_transfer)
 				if(occupant.blood_volume < BLOOD_VOLUME_NORMAL)
 					if(blood_pack.reagents.get_reagent_amount("blood") < 4)
 						blood_pack.reagents.add_reagent("blood", 195, list("viruses"=null,"blood_type"="O-","resistances"=null))
-						visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Blood reserves depleted, switching to fresh container.")
+						visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：血液储备已耗尽，正在更换新容器。")
 					occupant.inject_blood(blood_pack, 8) // double iv stand rate
 					if(prob(10))
-						visible_message("\The [src] whirrs and gurgles as it transfuses blood.")
-						to_chat(occupant, SPAN_INFO("You feel slightly less faint."))
+						visible_message("[src]一边输血，一边发出嗡鸣和液体流动声。")
+						to_chat(occupant, SPAN_INFO("你的晕厥感稍微减轻了一些。"))
 				else
 					blood_transfer = 0
-					visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Blood transfusion complete.")
+					visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：输血完成。")
 			if(heal_brute)
 				if(occupant.getBruteLoss() > 0)
 					heal_limb(occupant, 3, 0)
 					if(prob(10))
-						visible_message("\The [src] whirrs and clicks as it stitches flesh together.")
-						to_chat(occupant, SPAN_INFO("You feel your wounds being stitched and sealed shut."))
+						visible_message("[src]一边缝合伤口，一边发出嗡鸣和咔嗒声。")
+						to_chat(occupant, SPAN_INFO("你感觉自己的伤口正在被缝合封闭。"))
 				else
 					heal_brute = 0
-					visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Trauma repair surgery complete.")
+					visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：创伤修复手术完成。")
 			if(heal_burn)
 				if(occupant.getFireLoss() > 0)
 					heal_limb(occupant, 0, 3)
 					if(prob(10))
-						visible_message("\The [src] whirrs and clicks as it grafts synthetic skin.")
-						to_chat(occupant, SPAN_INFO("You feel your burned flesh being sliced away and replaced."))
+						visible_message("[src]一边移植合成皮肤，一边发出嗡鸣和咔嗒声。")
+						to_chat(occupant, SPAN_INFO("你感觉烧伤的皮肉正被切除并替换。"))
 				else
 					heal_burn = 0
-					visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Skin grafts complete.")
+					visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：皮肤移植完成。")
 			if(heal_toxin)
 				if(occupant.getToxLoss() > 0)
 					occupant.apply_damage(-3, TOX)
 					if(prob(10))
-						visible_message("\The [src] whirrs and gurgles as it chelates the occupant.")
-						to_chat(occupant, SPAN_INFO("You feel slightly less ill."))
+						visible_message("[src]一边为患者进行螯合治疗，一边发出嗡鸣和液体流动声。")
+						to_chat(occupant, SPAN_INFO("你的不适感稍微减轻了一些。"))
 				else
 					heal_toxin = 0
-					visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Toxin removal complete.")
+					visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：毒素清除完成。")
 
 
 #define LIMB_SURGERY 1
@@ -283,7 +283,7 @@
 	set background = 1
 
 	if(M.stat == DEAD||!ishuman(M))
-		visible_message("\The [src] buzzes.")
+		visible_message("[src]发出蜂鸣声。")
 		src.go_out() //kick them out too.
 		return
 
@@ -294,7 +294,7 @@
 		if (R.fields["ref"] == human_ref)
 			N = R
 	if(isnull(N))
-		visible_message("\The [src] buzzes: No records found for occupant.")
+		visible_message("[src]发出蜂鸣声：未找到患者档案。")
 		src.go_out() //kick them out too.
 		return
 
@@ -305,10 +305,10 @@
 		surgery_todo_list = N.fields["autodoc_manual"]
 
 	if(!length(surgery_todo_list))
-		visible_message("\The [src] buzzes, no surgical procedures were queued.")
+		visible_message("[src]发出蜂鸣声，手术队列为空。")
 		return
 
-	visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> begins to operate, loud audible clicks lock the pod.")
+	visible_message("[icon2html(src, viewers(src))] <b>[src]</b>开始运转，舱门伴随着响亮的咔嗒声锁上了。")
 	surgery = 1
 	update_icon()
 
@@ -345,10 +345,10 @@
 				switch(S.surgery_procedure)
 					if("damage")
 						if(prob(30))
-							visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Beginning organ restoration.")
+							visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：开始修复器官。")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
-							visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Procedure has been deemed unnecessary.")
+							visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：判定无需执行此手术。")
 							surgery_todo_list -= S
 							continue
 						open_incision(H,S.limb_ref)
@@ -366,7 +366,7 @@
 						if(istype(S.organ_ref,/datum/internal_organ))
 							S.organ_ref.rejuvenate()
 						else
-							visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Organ is missing.")
+							visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：器官缺失。")
 
 						// close them
 						if(S.limb_ref.name != "groin") // TODO: fix brute damage before closing
@@ -375,10 +375,10 @@
 
 					if("eyes")
 						if(prob(30))
-							visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Beginning corrective eye surgery.")
+							visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：开始眼部矫正手术。")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
-							visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Procedure has been deemed unnecessary.")
+							visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：判定无需执行此手术。")
 							surgery_todo_list -= S
 							continue
 						if(istype(S.organ_ref,/datum/internal_organ/eyes))
@@ -409,10 +409,10 @@
 								E.eye_surgery_stage = 0
 					if("larva")
 						if(prob(30))
-							visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b>beeps: Removing unknown parasites.")
+							visible_message("[icon2html(src, viewers(src))] <b>[src]</b>发出提示音：正在移除未知寄生物。")
 						if(!locate(/obj/item/alien_embryo) in occupant)
 							sleep(UNNEEDED_DELAY)
-							visible_message("[icon2html(src, viewers(src))] <b>[src]</b> speaks: Procedure has been deemed unnecessary.")// >:)
+							visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：判定无需执行此手术。")// >:)
 							surgery_todo_list -= S
 							continue
 						sleep(SCALPEL_MAX_DURATION + HEMOSTAT_MAX_DURATION + REMOVE_OBJECT_MAX_DURATION)
@@ -430,10 +430,10 @@
 				switch(S.surgery_procedure)
 					if("internal")
 						if(prob(30))
-							visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Beginning internal bleeding procedure.")
+							visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：开始内出血治疗手术。")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
-							visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Procedure has been deemed unnecessary.")
+							visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：判定无需执行此手术。")
 							surgery_todo_list -= S
 							continue
 						open_incision(H,S.limb_ref)
@@ -449,10 +449,10 @@
 
 					if("broken")
 						if(prob(30))
-							visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Beginning broken bone procedure.")
+							visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：开始骨折治疗手术。")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
-							visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Procedure has been deemed unnecessary.")
+							visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：判定无需执行此手术。")
 							surgery_todo_list -= S
 							continue
 						open_incision(H,S.limb_ref)
@@ -471,10 +471,10 @@
 
 					if("missing")
 						if(prob(30))
-							visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Beginning limb replacement.")
+							visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：开始肢体置换。")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
-							visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Procedure has been deemed unnecessary.")
+							visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：判定无需执行此手术。")
 							surgery_todo_list -= S
 							continue
 
@@ -483,7 +483,7 @@
 						sleep(CAUTERY_MAX_DURATION*surgery_mod)
 
 						if(stored_metal < LIMB_METAL_AMOUNT)
-							visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> croaks: Metal reserves depleted.")
+							visible_message("[icon2html(src, viewers(src))] <b>[src]</b>发出嘶哑的声音：金属储备已耗尽。")
 							playsound(src.loc, 'sound/machines/buzz-two.ogg', 15, 1)
 							surgery_todo_list -= S
 							continue // next surgery
@@ -491,7 +491,7 @@
 						stored_metal -= LIMB_METAL_AMOUNT
 
 						if(S.limb_ref.parent.status & LIMB_DESTROYED) // there's nothing to attach to
-							visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> croaks: Limb attachment failed.")
+							visible_message("[icon2html(src, viewers(src))] <b>[src]</b>发出嘶哑的声音：肢体接合失败。")
 							playsound(src.loc, 'sound/machines/buzz-two.ogg', 15, 1)
 							surgery_todo_list -= S
 							continue
@@ -511,10 +511,10 @@
 						H.UpdateDamageIcon()
 
 					if("object")
-						if(prob(30)) visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Beginning foreign object removal.");
+						if(prob(30)) visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：开始移除异物。");
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
-							visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Procedure has been deemed unnecessary.");
+							visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：判定无需执行此手术。");
 							surgery_todo_list -= S
 							continue
 
@@ -540,22 +540,22 @@
 						close_incision(H,S.limb_ref)
 
 					if("open")
-						if(prob(30)) visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b>croaks: Closing surgical incision.");
+						if(prob(30)) visible_message("[icon2html(src, viewers(src))] <b>[src]</b>发出嘶哑的声音：正在闭合手术切口。");
 						close_encased(H,S.limb_ref)
 						close_incision(H,S.limb_ref)
 
 
-		if(prob(30)) visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Procedure complete.");
+		if(prob(30)) visible_message("[icon2html(src, viewers(src))] <b>[src]</b>播报：手术完成。");
 		surgery_todo_list -= S
 		continue
 
 	while(heal_brute||heal_burn||heal_toxin||filtering||blood_transfer)
 		if(!surgery) break
 		sleep(20)
-		if(prob(5)) visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> beeps as it continues working.");
+		if(prob(5)) visible_message("[icon2html(src, viewers(src))] <b>[src]</b>继续工作，发出蜂鸣声。");
 
 	H.pain.recalculate_pain()
-	visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> clicks and opens up having finished the requested operations.")
+	visible_message("[icon2html(src, viewers(src))] <b>[src]</b>已完成指定操作，咔嗒一声打开了舱门。")
 	surgery = 0
 	go_out()
 
@@ -605,8 +605,8 @@
 
 //Auto Doc console that links up to it.
 /obj/structure/machinery/autodoc_console
-	name = "\improper autodoc medical system control console"
-	desc = "The control interface used to operate the adjoining autodoc. Requires training to use properly."
+	name = "\improper 自动手术舱医疗系统控制台"
+	desc = "用于操作相邻自动手术舱的控制界面，需要接受培训才能正确使用。"
 	icon = 'icons/obj/structures/machinery/cryogenics.dmi'
 	icon_state = "sleeperconsole"
 	var/obj/structure/machinery/medical_pod/autodoc/connected = null
@@ -661,15 +661,15 @@
 	if(istype(with, /obj/item/research_upgrades/autodoc))
 		var/obj/item/research_upgrades/autodoc/upgrd = with
 		if(!upgrd.value)
-			to_chat(user, SPAN_NOTICE("There is no data loaded in [upgrd]!"))
+			to_chat(user, SPAN_NOTICE("[upgrd]中没有数据！"))
 			return
 		for(var/iter in upgrades)
 			if(iter == upgrd.value)
-				to_chat(user, SPAN_NOTICE("This data is already present in [src]!"))
+				to_chat(user, SPAN_NOTICE("[src]中已存在此数据！"))
 				return
 		if(!user.drop_inv_item_to_loc(with, src))
 			return
-		to_chat(user, SPAN_NOTICE("You insert the data into [src] and the drive whirrs to life, reading the data."))
+		to_chat(user, SPAN_NOTICE("你将数据载体插入[src]，驱动器随即嗡嗡运转，开始读取数据。"))
 		upgrades += upgrd.value
 
 /obj/structure/machinery/autodoc_console/attack_hand(mob/living/user)
@@ -677,35 +677,35 @@
 		return
 	var/dat = ""
 	if(!connected || (connected.inoperable()))
-		dat += "This console is not connected to a Auto-Doc or the Auto-Doc is non-functional."
-		to_chat(user, "This console seems to be powered down.")
+		dat += "此控制台未连接自动手术舱，或所连接的自动手术舱无法工作。"
+		to_chat(user, "此控制台似乎已断电。")
 	else
 		var/mob/living/occupant = connected.occupant
-		dat += "<B>Overall Status:</B><BR>"
+		dat += "<B>总体状态：</B><BR>"
 		if(occupant)
 			var/t1
 			switch(occupant.stat)
-				if(0) t1 = "conscious"
-				if(1) t1 = "<font color='blue'>unconscious</font>"
-				if(2) t1 = "<font color='red'><b>dead</b></font>"
+				if(0) t1 = "清醒"
+				if(1) t1 = "<font color='blue'>昏迷</font>"
+				if(2) t1 = "<font color='red'><b>死亡</b></font>"
 			var/operating
 			switch(connected.surgery)
-				if(0) operating = "Auto-Doc: STANDING BY"
-				if(1) operating = "Auto-Doc: IN SURGERY: DO NOT MANUALLY EJECT"
+				if(0) operating = "自动手术舱：待机"
+				if(1) operating = "自动手术舱：手术中，请勿手动移出患者"
 			var/damageOxy = occupant.getOxyLoss() > 50 ? "<b>[occupant.getOxyLoss()]</b>" : occupant.getOxyLoss()
 			var/damageTox = occupant.getToxLoss() > 50 ? "<b>[occupant.getToxLoss()]</b>" : occupant.getToxLoss()
 			var/damageFire = occupant.getFireLoss() > 50 ? "<b>[occupant.getFireLoss()]</b>" : occupant.getFireLoss()
 			var/damageBrute = occupant.getBruteLoss() > 50 ? "<b>[occupant.getBruteLoss()]</b>" : occupant.getBruteLoss()
-			dat += "Name: [occupant.name]<br>"
-			dat += "Damage: [SET_CLASS("[damageOxy]", INTERFACE_BLUE)] - [SET_CLASS("[damageTox]", INTERFACE_GREEN)] - [SET_CLASS("[damageFire]", INTERFACE_ORANGE)] - [SET_CLASS("[damageBrute]", INTERFACE_RED)]<br>"
-			dat += "The patient is [t1]. <br>"
+			dat += "姓名：[occupant.name]<br>"
+			dat += "伤害：[SET_CLASS("[damageOxy]", INTERFACE_BLUE)] - [SET_CLASS("[damageTox]", INTERFACE_GREEN)] - [SET_CLASS("[damageFire]", INTERFACE_ORANGE)] - [SET_CLASS("[damageBrute]", INTERFACE_RED)]<br>"
+			dat += "患者状态：[t1]。<br>"
 			dat += "[operating]<br>"
 			if(connected.automatic_mode)
-				dat += "<hr><span class='notice'>Automatic Mode</span> | <a href='byond://?src=\ref[src];automatictoggle=1'>Manual Mode</a>"
+				dat += "<hr><span class='notice'>自动模式</span> | <a href='byond://?src=\ref[src];automatictoggle=1'>手动模式</a>"
 			else
-				dat += "<hr><a href='byond://?src=\ref[src];automatictoggle=1'>Automatic Mode</a> | <span class='notice'>Manual Mode</span>"
-			dat += "<a href='byond://?src=\ref[src];ejectify=1'>Eject Patient</a>"
-			dat += "<hr><b>Surgery Queue:</b><br>"
+				dat += "<hr><a href='byond://?src=\ref[src];automatictoggle=1'>自动模式</a> | <span class='notice'>手动模式</span>"
+			dat += "<a href='byond://?src=\ref[src];ejectify=1'>移出患者</a>"
+			dat += "<hr><b>手术队列：</b><br>"
 
 			var/list/surgeryqueue = list()
 			var/datum/data/record/N = null
@@ -719,9 +719,9 @@
 			var/list/autosurgeries = N.fields["autodoc_data"]
 			if(connected.automatic_mode)
 				if(autosurgeries.len)
-					dat += "<span class='danger'>Automatic Mode Ready.</span><br>"
+					dat += "<span class='danger'>自动模式已就绪。</span><br>"
 				else
-					dat += "<span class='danger'>Automatic Mode Unavaliable.</span><br>"
+					dat += "<span class='danger'>自动模式不可用。</span><br>"
 			else
 				if(!isnull(N.fields["autodoc_manual"]))
 					for(var/datum/autodoc_surgery/A in N.fields["autodoc_manual"])
@@ -730,89 +730,89 @@
 								switch(A.surgery_procedure)
 									if("brute")
 										surgeryqueue["brute"] = 1
-										dat += "Brute Damage Treatment"
+										dat += "物理损伤治疗"
 									if("burn")
 										surgeryqueue["burn"] = 1
-										dat += "Burn Damage Treatment"
+										dat += "烧伤治疗"
 									if("toxin")
 										surgeryqueue["toxin"] = 1
-										dat += "Bloodstream Toxin Removal"
+										dat += "血液毒素清除"
 									if("dialysis")
 										surgeryqueue["dialysis"] = 1
-										dat += "Dialysis"
+										dat += "透析"
 									if("blood")
 										surgeryqueue["blood"] = 1
-										dat += "Emergency Blood Transfusion"
+										dat += "紧急输血"
 							if(ORGAN_SURGERY)
 								switch(A.surgery_procedure)
 									if("damage")
 										surgeryqueue["organdamage"] = 1
-										dat += "Organ Damage Treatment"
+										dat += "器官损伤治疗"
 									if("eyes")
 										surgeryqueue["eyes"] = 1
-										dat += "Corrective Eye Surgery"
+										dat += "眼部矫正手术"
 									if("larva")
 										surgeryqueue["larva"] = 1
-										dat += "Experimental Parasite Surgery"
+										dat += "实验性寄生物移除手术"
 							if(LIMB_SURGERY)
 								switch(A.surgery_procedure)
 									if("internal")
 										surgeryqueue["internal"] = 1
-										dat += "Internal Bleeding Surgery"
+										dat += "内出血治疗手术"
 									if("broken")
 										surgeryqueue["broken"] = 1
-										dat += "Bone Repair Treatment"
+										dat += "骨骼修复治疗"
 									if("missing")
 										surgeryqueue["missing"] = 1
-										dat += "Limb Replacement Surgery"
+										dat += "肢体置换手术"
 									if("object")
 										surgeryqueue["object"] = 1
-										dat += "Foreign Object Removal Surgery"
+										dat += "异物移除手术"
 									if("open")
 										surgeryqueue["open"] = 1
-										dat += "Close Open Incisions"
+										dat += "闭合开放切口"
 
 					dat += "<br>"
 
-			dat += "<hr><a href='byond://?src=\ref[src];surgery=1'>Begin Surgery</a> - <a href='byond://?src=\ref[src];refresh=1'>Refresh Menu</a> - <a href='byond://?src=\ref[src];clear=1'>Clear Queue</a><hr>"
+			dat += "<hr><a href='byond://?src=\ref[src];surgery=1'>开始手术</a> - <a href='byond://?src=\ref[src];refresh=1'>刷新菜单</a> - <a href='byond://?src=\ref[src];clear=1'>清空队列</a><hr>"
 			if(!connected.surgery && skillcheck(user, SKILL_SURGERY, connected.skilllock))
-				dat += "<b>Trauma Surgeries</b>"
+				dat += "<b>创伤手术</b>"
 				dat += "<br>"
 				if(isnull(surgeryqueue["brute"]))
-					dat += "<a href='byond://?src=\ref[src];brute=1'>Brute Damage Treatment</a><br>"
+					dat += "<a href='byond://?src=\ref[src];brute=1'>物理损伤治疗</a><br>"
 				if(isnull(surgeryqueue["burn"]))
-					dat += "<a href='byond://?src=\ref[src];burn=1'>Burn Damage Treatment</a><br>"
-				dat += "<b>Orthopedic Surgeries</b>"
+					dat += "<a href='byond://?src=\ref[src];burn=1'>烧伤治疗</a><br>"
+				dat += "<b>骨科手术</b>"
 				dat += "<br>"
 				if(isnull(surgeryqueue["broken"]))
-					dat += "<a href='byond://?src=\ref[src];broken=1'>Broken Bone Surgery</a><br>"
+					dat += "<a href='byond://?src=\ref[src];broken=1'>骨折治疗手术</a><br>"
 				if(isnull(surgeryqueue["internal"]))
-					dat += "<a href='byond://?src=\ref[src];internal=1'>Internal Bleeding Surgery</a><br>"
+					dat += "<a href='byond://?src=\ref[src];internal=1'>内出血治疗手术</a><br>"
 				if(isnull(surgeryqueue["open"]))
-					dat += "<a href='byond://?src=\ref[src];open=1'>Close Open Incisions</a><br>"
+					dat += "<a href='byond://?src=\ref[src];open=1'>闭合开放切口</a><br>"
 				if(isnull(surgeryqueue["object"]))
-					dat += "<a href='byond://?src=\ref[src];object=1'>Foreign Object Removal Surgery</a><br>"
-				dat += "<b>Organ Surgeries</b>"
+					dat += "<a href='byond://?src=\ref[src];object=1'>异物移除手术</a><br>"
+				dat += "<b>器官手术</b>"
 				dat += "<br>"
 				if(isnull(surgeryqueue["eyes"]))
-					dat += "<a href='byond://?src=\ref[src];eyes=1'>Corrective Eye Surgery</a><br>"
+					dat += "<a href='byond://?src=\ref[src];eyes=1'>眼部矫正手术</a><br>"
 				if(isnull(surgeryqueue["organdamage"]))
-					dat += "<a href='byond://?src=\ref[src];organdamage=1'>Organ Damage Treatment</a><br>"
-				dat += "<b>Hematology Treatments</b>"
+					dat += "<a href='byond://?src=\ref[src];organdamage=1'>器官损伤治疗</a><br>"
+				dat += "<b>血液治疗</b>"
 				dat += "<br>"
 				if(isnull(surgeryqueue["blood"]))
-					dat += "<a href='byond://?src=\ref[src];blood=1'>Emergency Blood Transfusion</a><br>"
+					dat += "<a href='byond://?src=\ref[src];blood=1'>紧急输血</a><br>"
 				if(isnull(surgeryqueue["dialysis"]))
-					dat += "<a href='byond://?src=\ref[src];dialysis=1'>Dialysis</a><br>"
+					dat += "<a href='byond://?src=\ref[src];dialysis=1'>透析</a><br>"
 				if(isnull(surgeryqueue["toxin"]))
-					dat += "<a href='byond://?src=\ref[src];toxin=1'>Bloodstream Toxin Removal</a><br>"
+					dat += "<a href='byond://?src=\ref[src];toxin=1'>血液毒素清除</a><br>"
 				dat += "<br>"
 				if(isnull(surgeryqueue["missing"]))
-					dat += "<a href='byond://?src=\ref[src];missing=1'>Limb Replacement Surgery</a><hr>"
+					dat += "<a href='byond://?src=\ref[src];missing=1'>肢体置换手术</a><hr>"
 		else
-			dat += "The autodoc is empty."
-	dat += text("<a href='byond://?src=\ref[];mach_close=sleeper'>Close</a>", user)
-	show_browser(user, dat, "Auto-Doc Medical System", "sleeper", width = 300, height = 400)
+			dat += "自动手术舱内没有患者。"
+	dat += text("<a href='byond://?src=\ref[];mach_close=sleeper'>关闭</a>", user)
+	show_browser(user, dat, "自动手术舱医疗系统", "sleeper", width = 300, height = 400)
 	onclose(user, "sleeper")
 
 /obj/structure/machinery/autodoc_console/Topic(href, href_list)
@@ -947,6 +947,6 @@
 		add_fingerprint(usr)
 
 /obj/structure/machinery/medical_pod/autodoc/unskilled
-	name = "advanced autodoc emergency medical system"
-	desc = "A much more expensive model of autodoc modified with an A.I. diagnostic unit. The result is a much simpler, point-and-click interface that anyone, regardless of training, can use. Often employed in autodoc systems deployed to military front lines for soldiers to use."
+	name = "高级自动手术舱急救系统"
+	desc = "一种加装 AI 诊断单元的自动手术舱型号，价格昂贵得多。它采用更简单的点击式操作界面，无需培训即可使用。常部署在军事前线，供士兵自行使用。"
 	skilllock = null

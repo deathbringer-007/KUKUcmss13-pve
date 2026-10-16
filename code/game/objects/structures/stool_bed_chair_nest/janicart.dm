@@ -2,7 +2,7 @@
 
 //old style retardo-cart
 /obj/structure/bed/chair/janicart
-	name = "janicart"
+	name = "清洁车"
 	icon = 'icons/obj/vehicles/vehicles.dmi'
 	icon_state = "pussywagon"
 	anchored = FALSE
@@ -13,7 +13,7 @@
 	picked_up_item = null
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 	var/obj/item/storage/bag/trash/mybag = null
-	var/callme = "pimpin' ride" //how do people refer to it?
+	var/callme = "拉风座驾" //how do people refer to it?
 	var/move_delay = 2
 
 /obj/structure/bed/chair/janicart/Initialize()
@@ -24,9 +24,9 @@
 
 /obj/structure/bed/chair/janicart/get_examine_text(mob/user)
 	. = list()
-	. += "[icon2html(src, usr)] This [callme] contains [reagents.total_volume] unit\s of water!"
+	. += "[icon2html(src, usr)] 这辆[callme]装有[reagents.total_volume]单位的水！"
 	if(mybag)
-		. += "\A [mybag] is hanging on the [callme]."
+		. += "[mybag]挂在[callme]上。"
 
 
 /obj/structure/bed/chair/janicart/attackby(obj/item/I, mob/user)
@@ -35,14 +35,14 @@
 		if(reagents.total_volume > 1)
 			reagents.trans_to(mop, mop.max_reagent_volume)
 			mop.update_icon()
-			to_chat(user, SPAN_NOTICE("You wet [I] in the [callme]."))
+			to_chat(user, SPAN_NOTICE("你在[callme]里浸湿了[I]。"))
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 		else
-			to_chat(user, SPAN_NOTICE("This [callme] is out of water!"))
+			to_chat(user, SPAN_NOTICE("这辆[callme]没水了！"))
 	else if(istype(I, /obj/item/key))
-		to_chat(user, "Hold [I] in one of your hands while you drive this [callme].")
+		to_chat(user, "驾驶这辆[callme]时，一只手必须拿着[I]。")
 	else if(istype(I, /obj/item/storage/bag/trash))
-		to_chat(user, SPAN_NOTICE("You hook the trashbag onto the [callme]."))
+		to_chat(user, SPAN_NOTICE("你把垃圾袋挂在[callme]上。"))
 		user.drop_held_item()
 		I.forceMove(src)
 		mybag = I
@@ -67,13 +67,13 @@
 	if(istype(user.l_hand, /obj/item/key) || istype(user.r_hand, /obj/item/key))
 		step(src, direction)
 	else
-		to_chat(user, SPAN_NOTICE("You'll need the keys in one of your hands to drive this [callme]."))
+		to_chat(user, SPAN_NOTICE("你需要一只手拿着钥匙，才能驾驶这辆[callme]。"))
 
 
 /obj/structure/bed/chair/janicart/send_buckling_message(mob/M, mob/user)
 	M.visible_message(\
-		SPAN_NOTICE("[M] climbs onto the [callme]!"),\
-		SPAN_NOTICE("You climb onto the [callme]!"))
+		SPAN_NOTICE("[M]爬上了[callme]！"),\
+		SPAN_NOTICE("你爬上了[callme]！"))
 
 
 /obj/structure/bed/chair/janicart/handle_rotation()
@@ -107,12 +107,12 @@
 	if(buckled_mob)
 		if(prob(85))
 			return buckled_mob.bullet_act(Proj)
-	visible_message(SPAN_WARNING("[Proj] ricochets off the [callme]!"))
+	visible_message(SPAN_WARNING("[Proj]被[callme]弹开了！"))
 	return 1
 
 /obj/item/key
-	name = "key"
-	desc = "A keyring with a small steel key, and a pink fob reading \"Pussy Wagon\"."
+	name = "钥匙"
+	desc = "钥匙环上挂着一把小钢钥匙和一个写着“泡妞战车”的粉红色钥匙牌。"
 	icon = 'icons/obj/vehicles/vehicles.dmi'
 	icon_state = "keys"
 	w_class = SIZE_TINY

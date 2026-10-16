@@ -13,7 +13,7 @@
 		return
 	if (istype(W,/obj/item/trash/cigbutt) || istype(W,/obj/item/clothing/mask/cigarette) || istype(W, /obj/item/tool/match))
 		if (length(contents) >= max_butts)
-			to_chat(user, "This ashtray is full.")
+			to_chat(user, "这个烟灰缸已经满了。")
 			return
 		var/drop = TRUE
 
@@ -21,36 +21,36 @@
 			var/obj/item/clothing/mask/cigarette/cig = W
 			if(cig.type_butt)
 				if(cig.heat_source)
-					user.visible_message("[user] crushes \the [cig] in \the [src], putting it out.", "You crush \the [cig] in \the [src], putting it out.")
+					user.visible_message("[user]把[cig]按在[src]里碾灭了。", "你把[cig]按在[src]里碾灭了。")
 					var/obj/item/butt = cig.go_out(user, TRUE)
 					butt.forceMove(src)
 					drop = FALSE
 				else if (cig.heat_source == 0)
-					to_chat(user, "You place \the [cig] in \the [src] without even smoking it. Why would you do that?")
+					to_chat(user, "你连一口都没抽，就把[cig]放进了[src]。何必呢？")
 			else
 				drop = FALSE
 				var/obj/item/clothing/mask/cigarette/pipe/P = W
 				if(P.ash)
-					user.visible_message("[user] empties the ash out of \the [P] into \the [src].", "You empty the ash out of \the [P] into \the [src].")
+					user.visible_message("[user]把[P]里的烟灰倒进了[src]。", "你把[P]里的烟灰倒进了[src]。")
 					P.ash = FALSE
 				else
-					to_chat(user, "There is no ash in \the [P].")
+					to_chat(user, "[P]里没有烟灰。")
 
 		if(drop)
-			user.visible_message("[user] places \the [W] into \the [src].", "You place \the [W] into \the [src].")
+			user.visible_message("[user]把[W]放进了[src]。", "你把[W]放进了[src]。")
 			user.drop_inv_item_to_loc(W, src)
 		user.update_inv_l_hand(0)
 		user.update_inv_r_hand()
 		add_fingerprint(user)
 		if (length(contents) == max_butts)
 			icon_state = icon_full
-			desc = empty_desc + " It's stuffed full."
+			desc = empty_desc + "里面已经塞满了。"
 		else if (length(contents) > max_butts/2)
 			icon_state = icon_half
-			desc = empty_desc + " It's half-filled."
+			desc = empty_desc + "里面已经装了一半。"
 	else
 		health = max(0,health - W.force)
-		to_chat(user, "You hit [src] with [W].")
+		to_chat(user, "你用[W]敲打[src]。")
 		if (health < 1)
 			die()
 	return
@@ -62,21 +62,21 @@
 			die()
 			return
 		if (length(contents))
-			src.visible_message(SPAN_DANGER("[src] slams into [hit_atom] spilling its contents!"))
+			src.visible_message(SPAN_DANGER("[src]猛地撞上[hit_atom]，里面的东西洒了出来！"))
 		for (var/obj/item/clothing/mask/cigarette/O in contents)
 			O.forceMove(src.loc)
 		icon_state = icon_empty
 	return ..()
 
 /obj/item/ashtray/proc/die()
-	src.visible_message(SPAN_DANGER("[src] shatters spilling its contents!"))
+	src.visible_message(SPAN_DANGER("[src]碎裂了，里面的东西洒了一地！"))
 	for (var/obj/item/clothing/mask/cigarette/O in contents)
 		O.forceMove(src.loc)
 	icon_state = icon_broken
 
 /obj/item/ashtray/plastic
-	name = "plastic ashtray"
-	desc = "Cheap plastic ashtray."
+	name = "塑料烟灰缸"
+	desc = "廉价的塑料烟灰缸。"
 	icon_state = "ashtray_bl"
 	icon_empty = "ashtray_bl"
 	icon_half  = "ashtray_half_bl"
@@ -85,19 +85,19 @@
 	max_butts = 14
 	health = 24
 	matter = list("metal" = 30,"glass" = 30)
-	empty_desc = "Cheap plastic ashtray."
+	empty_desc = "廉价的塑料烟灰缸。"
 	throwforce = 3
 
 /obj/item/ashtray/plastic/die()
 	..()
-	name = "pieces of plastic"
-	desc = "Pieces of plastic with ash on them."
+	name = "塑料碎片"
+	desc = "沾着烟灰的塑料碎片。"
 	return
 
 
 /obj/item/ashtray/bronze
-	name = "bronze ashtray"
-	desc = "Massive bronze ashtray."
+	name = "青铜烟灰缸"
+	desc = "厚重的青铜烟灰缸。"
 	icon_state = "ashtray_br"
 	icon_empty = "ashtray_br"
 	icon_half  = "ashtray_half_br"
@@ -106,19 +106,19 @@
 	max_butts = 10
 	health = 72
 	matter = list("metal" = 80)
-	empty_desc = "Massive bronze ashtray."
+	empty_desc = "厚重的青铜烟灰缸。"
 	throwforce = 10
 
 /obj/item/ashtray/bronze/die()
 	..()
-	name = "pieces of bronze"
-	desc = "Pieces of bronze with ash on them."
+	name = "青铜碎片"
+	desc = "沾着烟灰的青铜碎片。"
 	return
 
 
 /obj/item/ashtray/glass
-	name = "glass ashtray"
-	desc = "Glass ashtray. Looks fragile."
+	name = "玻璃烟灰缸"
+	desc = "玻璃烟灰缸。看起来很容易碎。"
 	icon_state = "ashtray_gl"
 	icon_empty = "ashtray_gl"
 	icon_half  = "ashtray_half_gl"
@@ -127,12 +127,12 @@
 	max_butts = 12
 	health = 12
 	matter = list("glass" = 60)
-	empty_desc = "Glass ashtray. Looks fragile."
+	empty_desc = "玻璃烟灰缸。看起来很容易碎。"
 	throwforce = 6
 
 /obj/item/ashtray/glass/die()
 	..()
-	name = "shards of glass"
-	desc = "Shards of glass with ash on them."
+	name = "玻璃碎片"
+	desc = "沾着烟灰的玻璃碎片。"
 	playsound(src, "glassbreak", 25, 1)
 	return

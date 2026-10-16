@@ -1,6 +1,6 @@
 /obj/item/ammo_magazine/hardpoint/ltb_cannon
-	name = "LTB Cannon Magazine"
-	desc = "A magazine of high-explosive, anti-tank cannon rounds."
+	name = "LTB火炮弹箱"
+	desc = "装有高爆反坦克炮弹的弹箱。"
 	caliber = "85mm" //Making this unique on purpose
 	icon_state = "ltbcannon_4"
 	w_class = SIZE_LARGE //Heavy fucker

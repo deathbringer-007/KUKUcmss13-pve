@@ -5,10 +5,10 @@
 //And also take note that some maps use auto_turfs (see auto_turfs.dm)
 
 /obj/structure/prop/rock
-	name = "rock(s)"
+	name = "岩石"
 	icon = 'icons/obj/structures/props/rocks.dmi'
 	icon_state = "rock"//go figure
-	desc = "A solidified collection of local minerals. When melted, becomes a substance best known as lava."
+	desc = "当地矿物凝固形成的集合体。熔化后就成了人们熟知的熔岩。"
 
 	unslashable = TRUE
 	opacity = FALSE
@@ -21,8 +21,8 @@
 
 /obj/structure/prop/rock/brown_degree
 	icon_state = "educated_rock"
-	name = "a smart rock"
-	desc = "Now draw them getting an education."
+	name = "有学问的石头"
+	desc = "现在画一张它接受教育的样子吧。"
 
 /obj/structure/prop/rock/brown/Initialize()//why do we do this on subtypes? Because some people didn't make 4 or 8 version of a single rock, so we either instance or code those individual. Fucking old spriters, I swear.
 	. = ..()
@@ -32,7 +32,7 @@
 
 /obj/structure/prop/rock/black_ground//the colors on these make them kinda look like actual shit, can't lie. Exercise discretion fellow mappers.
 	icon_state = "black_ground"
-	desc = "Loose stones, earth, rubble, slabs, crags, pebbles, quarried detritus, shale, gravel, solidified carbon and other stuff. Y'know, rocks that you can walk over and kick around."
+	desc = "松散的石块、泥土、碎石、石板、岩块、卵石、采石废料、页岩、砂砾、固态碳，还有别的东西。你懂的，就是那些能踩过去、踢着玩的石头。"
 	density = FALSE//these guys don't look like they'd block movement
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT//don't want these to eat clicks, that'd be like... bad (Lookin' at you grass tufts)
 
@@ -43,7 +43,7 @@
 /obj/structure/prop/rock/black_ground/dense//surprise surprise, they made 3 versions of these rocks that are near full tile. Fuck you old spriter.
 	icon_state = "black_ground_alt"
 	density = TRUE
-	desc = "Earth that refuses to yield. Perhaps you should go around or fetch a pickaxe (or a similar implement)."
+	desc = "坚硬得不肯让路的岩土。也许你该绕过去，或者找把镐子之类的工具来。"
 
 /obj/structure/prop/rock/black_ground/dense/Initialize()
 	. = ..()

@@ -1,7 +1,7 @@
 /obj/item/hardpoint/secondary/t60p3m
-	name = "\improper T6OP-3M 'Buzzard' RWS"
-	desc = "A secondary remotely-controlled weapon system for UPP tanks using an older-model machine gun."
-	desc_lore = "An older, albeit modernized remote machinegun seen in use by the Cheetah 2A. This Russo-Polish developed machinegun features robust autonomous fire capability, and was commonly used to intercept low-threat projectiles, though thanks to the superior active and passive systems in most vehicles, tankists now prefer to simply fire it at infantry and soft targets instead. Known for an annoying tendency for drifting off target in certain high temperature environments."
+	name = "\improper T6OP-3M“鵟”遥控武器站"
+	desc = "进步人民联盟坦克用遥控副武器系统，采用老式机枪。"
+	desc_lore = "“猎豹”2A使用的一种经现代化改进的老式遥控机枪，由俄罗斯与波兰联合研发，具备可靠的自主射击能力，过去常用于拦截低威胁弹体。不过，随着大多数载具采用更先进的主动和被动防御系统，坦克兵现在更喜欢直接用它攻击步兵和软目标。它有个恼人的毛病：在某些高温环境下容易偏离目标。"
 
 	icon = 'icons/obj/vehicles/hardpoints/upptank.dmi'
 	icon_state = "t60p3m"

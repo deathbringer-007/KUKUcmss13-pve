@@ -1,7 +1,7 @@
 // STANDARD Sentry
 /obj/item/ammo_magazine/sentry
-	name = "M30 ammo drum (10x28mm Caseless)"
-	desc = "An ammo drum of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	name = "M30 弹鼓（10x28mm 无壳弹）"
+	desc = "UA 571-C 哨戒机枪使用的弹鼓，装有 500 发 10x28mm 无壳弹。机枪弹药耗尽时，将其装入供弹口即可。"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/uscm.dmi'
 	icon_state = "ua571c"
 	w_class = SIZE_MEDIUM
@@ -20,8 +20,8 @@
 	current_rounds = 99999
 
 /obj/item/ammo_magazine/sentry/upp
-	name = "AK-500 ammo drum (10x31mm Caseless)"
-	desc = "An ammo drum of 10x31mm caseless rounds for the UPPA 32-H sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	name = "AK-500 弹鼓（10x31mm 无壳弹）"
+	desc = "UPPA 32-H 哨戒机枪使用的 10x31mm 无壳弹弹鼓。机枪弹药耗尽时，将其装入供弹口即可。"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/upp.dmi'
 	icon_state = "sentry"
 	caliber = "10x31mm"
@@ -29,23 +29,23 @@
 	default_ammo = /datum/ammo/bullet/rifle/heavy/upp
 
 /obj/item/ammo_magazine/sentry/shotgun
-	name = "12g buckshot drum"
-	desc = "An ammo drum of 50 12g buckshot drums for the UA 12-G Shotgun Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	name = "12 号鹿弹弹鼓"
+	desc = "UA 12-G 霰弹哨戒炮使用的弹鼓，装有 50 发 12 号鹿弹。弹药耗尽时，将其装入供弹口即可。"
 	caliber = "12g"
 	max_rounds = 50
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 
 /obj/item/ammo_magazine/sentry/wy
-	name = "H20 ammo drum (10x42mm Caseless)"
-	desc = "An ammo drum of 200 10x42mm caseless rounds for the WY 202-GMA1 Smart Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	name = "H20 弹鼓（10x42mm 无壳弹）"
+	desc = "WY 202-GMA1 智能哨戒炮使用的弹鼓，装有 200 发 10x42mm 无壳弹。弹药耗尽时，将其装入供弹口即可。"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/wy.dmi'
 	icon_state = "wy22e5"
 	caliber = "10x42mm"
 	max_rounds = 200
 
 /obj/item/ammo_magazine/sentry/wy/mini
-	name = "H16 ammo drum (10x12mm Caseless)"
-	desc = "An ammo drum of 1000 10x12mm caseless rounds for the WY 14-GRA2 Mini Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	name = "H16 弹鼓（10x12mm 无壳弹）"
+	desc = "WY 14-GRA2 迷你哨戒炮使用的弹鼓，装有 1000 发 10x12mm 无壳弹。弹药耗尽时，将其装入供弹口即可。"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/wy.dmi'
 	icon_state = "wy22e5"
 	caliber = "10x12mm"
@@ -56,8 +56,8 @@
 
 // FLAMER Sentry
 /obj/item/ammo_magazine/sentry_flamer
-	name = "sentry incinerator tank"
-	desc = "A fuel tank of usually Ultra Thick Napthal Fuel, a sticky combustible liquid chemical, used in the UA 42-F."
+	name = "喷火哨戒炮燃料罐"
+	desc = "供 UA 42-F 使用的燃料罐，通常装有 UT-Napthal 燃料，一种黏稠的易燃液态化学品。"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/uscm.dmi'
 	icon_state = "ua571c"
 	w_class = SIZE_MEDIUM
@@ -68,18 +68,18 @@
 	gun_type = null
 
 /obj/item/ammo_magazine/sentry_flamer/glob
-	name = "plasma sentry incinerator tank"
-	desc = "A fuel tank of compressed Ultra Thick Napthal Fuel, used in the UA 60-FP."
+	name = "等离子喷火哨戒炮燃料罐"
+	desc = "供 UA 60-FP 使用的压缩 UT-Napthal 燃料罐。"
 	default_ammo = /datum/ammo/flamethrower/sentry_flamer/glob
 
 /obj/item/ammo_magazine/sentry_flamer/mini
-	name = "mini sentry incinerator tank"
-	desc = "A fuel tank of Ultra Thick Napthal Fuel, used in the UA 45-FM."
+	name = "迷你喷火哨戒炮燃料罐"
+	desc = "供 UA 45-FM 使用的 UT-Napthal 燃料罐。"
 	default_ammo = /datum/ammo/flamethrower/sentry_flamer/mini
 
 /obj/item/ammo_magazine/sentry_flamer/wy
-	name = "wy sentry incinerator tank"
-	desc = "A fuel tank of Ultra Thick Sticky Napthal Fuel, used in the WY 406-FE2."
+	name = "维兰德-汤谷喷火哨戒炮燃料罐"
+	desc = "供 WY 406-FE2 使用的超稠高黏 Napthal 燃料罐。"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/wy.dmi'
 	icon_state = "wy22e5"
 	caliber = "Sticky Napalm"
@@ -87,8 +87,8 @@
 	default_ammo = /datum/ammo/flamethrower/sentry_flamer/wy
 
 /obj/item/ammo_magazine/sentry_flamer/upp
-	name = "upp sentry incinerator tank"
-	desc = "A fuel tank of Ultra Thick Gel Napthal Fuel, used in the UPP SDS-R5 Sentry Flamer."
+	name = "UPP 喷火哨戒炮燃料罐"
+	desc = "供 UPP SDS-R5 喷火哨戒炮使用的超稠凝胶 Napthal 燃料罐。"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/upp.dmi'
 	icon_state = "uppsds4"
 	caliber = "Sticky Napalm"

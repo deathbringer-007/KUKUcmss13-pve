@@ -1,6 +1,6 @@
 //For closing an open incision first.
 /datum/surgery/suture_incision
-	name = "Suture Incision"
+	name = "缝合切口"
 	possible_locs = ALL_LIMBS
 	invasiveness = list(SURGERY_DEPTH_SHALLOW)
 	required_surgery_skill = SKILL_SURGERY_NOVICE
@@ -12,8 +12,8 @@
 //------------------------------------
 
 /datum/surgery_step/suture_incision
-	name = "Suture Incision"
-	desc = "suture the incision"
+	name = "缝合切口"
+	desc = "缝合切口"
 	tools = SURGERY_TOOLS_SUTURE
 	//Suturing incisions closed is distinctly faster than cauterise-swaphand-suture, but slower than cautery alone, meaning it's only better if wanting to both close and suture the incision.
 	time = 3.5 SECONDS
@@ -23,11 +23,11 @@
 
 /datum/surgery_step/suture_incision/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("You begin to suture the incision on [target]'s [surgery.affected_limb.display_name] with \the [tool]."),
-		SPAN_NOTICE("[user] begins to suture the incision on your [surgery.affected_limb.display_name] with \the [tool]."),
-		SPAN_NOTICE("[user] begins to suture the incision on [target]'s [surgery.affected_limb.display_name] with \the [tool]."))
+		SPAN_NOTICE("你开始用[tool]缝合[target]的[surgery.affected_limb.display_name]上的切口。"),
+		SPAN_NOTICE("[user]开始用[tool]缝合你的[surgery.affected_limb.display_name]上的切口。"),
+		SPAN_NOTICE("[user]开始用[tool]缝合[target]的[surgery.affected_limb.display_name]上的切口。"))
 
-	target.custom_pain("It feels like your [surgery.affected_limb.display_name] is being stabbed with needles - because it is!")
+	target.custom_pain("你的[surgery.affected_limb.display_name]像是正在被针扎——确实如此！")
 	log_interact(user, target, "[key_name(user)] began suturing an incision in [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool].")
 
 /datum/surgery_step/suture_incision/success(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
@@ -38,16 +38,16 @@
 
 	if(added_sutures & SUTURED_FULLY)
 		user.affected_message(target,
-			SPAN_NOTICE("You close the incision on [target]'s [surgery.affected_limb.display_name] with a line of neat sutures."),
-			SPAN_NOTICE("[user] closes the incision on your [surgery.affected_limb.display_name] with a line of neat sutures."),
-			SPAN_NOTICE("[user] closes the incision on [target]'s [surgery.affected_limb.display_name] with a line of neat sutures."))
+			SPAN_NOTICE("你用一排整齐的缝线闭合了[target]的[surgery.affected_limb.display_name]上的切口。"),
+			SPAN_NOTICE("[user]用一排整齐的缝线闭合了你的[surgery.affected_limb.display_name]上的切口。"),
+			SPAN_NOTICE("[user]用一排整齐的缝线闭合了[target]的[surgery.affected_limb.display_name]上的切口。"))
 
 		log_interact(user, target, "[key_name(user)] finished suturing an incision in [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool], ending [surgery].")
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("You close the incision on [target]'s [surgery.affected_limb.display_name] with a line of neat sutures, but some injuries remain."),
-			SPAN_NOTICE("[user] closes the incision on your [surgery.affected_limb.display_name] with a line of neat sutures, but some injuries remain."),
-			SPAN_NOTICE("[user] closes the incision on [target]'s [surgery.affected_limb.display_name] with a line of neat sutures, but some injuries remain."))
+			SPAN_NOTICE("你用一排整齐的缝线闭合了[target]的[surgery.affected_limb.display_name]上的切口，但仍有部分伤口尚未处理。"),
+			SPAN_NOTICE("[user]用一排整齐的缝线闭合了你的[surgery.affected_limb.display_name]上的切口，但仍有部分伤口尚未处理。"),
+			SPAN_NOTICE("[user]用一排整齐的缝线闭合了[target]的[surgery.affected_limb.display_name]上的切口，但仍有部分伤口尚未处理。"))
 
 		log_interact(user, target, "[key_name(user)] finished suturing an incision in [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool], ending [surgery].")
 

@@ -13,7 +13,7 @@ export const Proximity = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Arming Configuration">
+            <LabeledList.Item label="布防设置">
               <Button
                 color={data.is_arming ? 'green' : 'red'}
                 icon="clock"
@@ -21,7 +21,7 @@ export const Proximity = (props) => {
                   act('set_arming', { should_start_arming: !data.is_arming })
                 }
               >
-                {data.is_arming ? 'Arming' : 'Not Arming'}
+                {data.is_arming ? '正在布防' : '未在布防'}
               </Button>
               <Slider
                 maxValue={max_time}
@@ -30,11 +30,11 @@ export const Proximity = (props) => {
                 onChange={(e, value) =>
                   act('set_arm_time', { arm_time: value })
                 }
-                unit="Seconds"
+                unit="秒"
                 stepPixelSize={window_width / max_time} // width / max_time
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Range">
+            <LabeledList.Item label="范围">
               <Knob
                 inline
                 animated={false}
@@ -45,7 +45,7 @@ export const Proximity = (props) => {
                 stepPixelSize={20}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Delay">
+            <LabeledList.Item label="延迟">
               <Knob
                 inline
                 animated={false}
@@ -64,10 +64,10 @@ export const Proximity = (props) => {
             color={data.armed ? 'red' : 'green'}
             icon={data.armed ? 'exclamation-triangle' : 'bomb'}
             onClick={() => act('set_armed', { armed: !data.armed })}
-            tooltip="Begins scanning for potential hostiles. Very dangerous if attached to any volatile materials."
+            tooltip="开始扫描潜在敌人。连接到爆炸性物品时非常危险。"
             tooltipPosition="top"
           >
-            {data.armed ? 'Armed' : 'Unarmed'}
+            {data.armed ? '已布防' : '未布防'}
           </Button>
         </Section>
       </Window.Content>

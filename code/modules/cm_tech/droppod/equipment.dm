@@ -1,5 +1,5 @@
 /obj/structure/droppod/equipment
-	name = "\improper USCM droppod"
+	name = "\improper USCM空投舱"
 	var/obj/equipment_to_spawn
 
 /obj/structure/droppod/equipment/Initialize(mapload, equipment, mob/M)

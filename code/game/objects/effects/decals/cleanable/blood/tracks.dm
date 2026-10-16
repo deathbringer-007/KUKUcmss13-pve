@@ -53,20 +53,20 @@
 		overlay_images = null
 
 /obj/effect/decal/cleanable/blood/tracks/footprints
-	name = "footprints"
+	name = "脚印"
 	gender = PLURAL
-	desc = "Whoops..."
+	desc = "哎呀……"
 	coming_state = "human1"
 	going_state  = "human2"
 	amount = 0
 
 /obj/effect/decal/cleanable/blood/tracks/wheels
-	name = "tracks"
+	name = "车辙"
 	gender = PLURAL
-	desc = "Whoops..."
+	desc = "哎呀……"
 	coming_state = "wheels"
 	going_state  = ""
-	desc = "They look like tracks left by wheels."
+	desc = "看起来像是车轮留下的痕迹。"
 	gender = PLURAL
 	random_icon_states = null
 	amount = 0

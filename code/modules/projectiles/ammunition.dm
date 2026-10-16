@@ -5,7 +5,7 @@ They're all essentially identical when it comes to getting the job done.
 */
 /obj/item/ammo_magazine
 	name = "generic ammo"
-	desc = "A box of ammo."
+	desc = "一盒弹药。"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/uscm.dmi'
 	icon_state = null
 	item_state = "ammo_mag" //PLACEHOLDER. This ensures the mag doesn't use the icon state instead.
@@ -41,7 +41,7 @@ They're all essentially identical when it comes to getting the job done.
 	/// Is the greyscale icon used for the ammo band when it's empty of bullets.
 	var/ammo_band_icon_empty
 
-	var/description_ammo = "rounds"
+	var/description_ammo = "发弹药"
 
 
 /obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
@@ -98,21 +98,21 @@ They're all essentially identical when it comes to getting the job done.
 		return
 	// It should never have negative ammo after spawn. If it does, we need to know about it.
 	if(current_rounds < 0)
-		. += "Something went horribly wrong. Ahelp the following: ERROR CODE R1: negative current_rounds on examine."
+		. += "发生了严重错误。请通过管理员求助报告以下信息：ERROR CODE R1: negative current_rounds on examine."
 		log_debug("ERROR CODE R1: negative current_rounds on examine. User: <b>[usr]</b> Magazine: <b>[src]</b>")
 	else
-		. += "[src] has <b>[current_rounds]</b> [description_ammo] out of <b>[max_rounds]</b>."
+		. += "[src]剩余 <b>[current_rounds]</b> [description_ammo]，容量为 <b>[max_rounds]</b>。"
 
 /obj/item/ammo_magazine/attack_hand(mob/user)
 	if(flags_magazine & AMMUNITION_REFILLABLE) //actual refillable magazine, not just a handful of bullets or a fuel tank.
 		if(src == user.get_inactive_hand()) //Have to be holding it in the hand.
 			if(flags_magazine & AMMUNITION_CANNOT_REMOVE_BULLETS)
-				to_chat(user, SPAN_WARNING("You can't remove ammo from \the [src]!"))
+				to_chat(user, SPAN_WARNING("无法从[src]中取出弹药！"))
 				return
 			if (current_rounds > 0)
 				if(create_handful(user))
 					return
-			else to_chat(user, "[src] is empty. Nothing to grab.")
+			else to_chat(user, "[src]是空的，没有弹药可取。")
 			return
 	return ..() //Do normal stuff.
 
@@ -126,20 +126,20 @@ They're all essentially identical when it comes to getting the job done.
 				if(src == user.get_inactive_hand() || bypass_hold_check) //It has to be held.
 					if(default_ammo == transfer_from.default_ammo)
 						if(transfer_ammo(transfer_from,user,transfer_from.current_rounds)) // This takes care of the rest.
-							to_chat(user, SPAN_NOTICE("You transfer rounds to [src] from [transfer_from]."))
+							to_chat(user, SPAN_NOTICE("你将弹药从[transfer_from]装入[src]。"))
 					else
-						to_chat(user, SPAN_NOTICE("Those aren't the same rounds. Better not mix them up."))
+						to_chat(user, SPAN_NOTICE("弹种不同，最好不要混装。"))
 				else
-					to_chat(user, SPAN_NOTICE("Try holding [src] before you attempt to restock it."))
+					to_chat(user, SPAN_NOTICE("请先拿住[src]，再尝试补充弹药。"))
 
 //Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
 /obj/item/ammo_magazine/proc/transfer_ammo(obj/item/ammo_magazine/source, mob/user, transfer_amount = 1)
 	if(current_rounds == max_rounds) //Does the mag actually need reloading?
-		to_chat(user, "[src] is already full.")
+		to_chat(user, "[src]已经装满了。")
 		return
 
 	if(source.caliber != caliber) //Are they the same caliber?
-		to_chat(user, "The rounds don't match up. Better not mix them up.")
+		to_chat(user, "这些弹药不匹配，最好不要混装。")
 		return
 
 	var/S = min(transfer_amount, max_rounds - current_rounds)
@@ -160,7 +160,7 @@ They're all essentially identical when it comes to getting the job done.
 /// Proc to reload the current_ammo using the items existing inherent ammo, used for Sentry Post
 /obj/item/ammo_magazine/proc/inherent_reload(mob/user)
 	if(current_rounds == max_rounds) //Does the mag actually need reloading?
-		to_chat(user, SPAN_WARNING("[src] is already full."))
+		to_chat(user, SPAN_WARNING("[src]已经装满了。"))
 		return 0
 
 	var/rounds_to_reload = max_rounds - current_rounds
@@ -182,7 +182,7 @@ They're all essentially identical when it comes to getting the job done.
 
 		if(user)
 			user.put_in_hands(new_handful)
-			to_chat(user, SPAN_NOTICE("You grab <b>[amount_to_transfer]</b> round\s from [obj_name]."))
+			to_chat(user, SPAN_NOTICE("你从[obj_name]中取出 <b>[amount_to_transfer]</b> 发弹药。"))
 
 		else new_handful.forceMove(get_turf(src))
 		update_icon(-amount_to_transfer) //Update the other one.
@@ -245,7 +245,7 @@ bullets/shells. ~N
 	AUTOWIKI_SKIP(TRUE)
 
 	name = "generic handful"
-	desc = "A handful of rounds to reload on the go."
+	desc = "一把便于随时装填的子弹。"
 	icon = 'icons/obj/items/weapons/guns/handful.dmi'
 	icon_state = "bullet_1"
 	matter = list("metal" = 50) //This changes based on the ammo ammount. 5k is the base of one shell/bullet.
@@ -287,14 +287,12 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 	if(istype(transfer_from)) // We have a handful. They don't need to hold it.
 		if(default_ammo == transfer_from.default_ammo) //Has to match.
 			transfer_ammo(transfer_from,user, transfer_from.current_rounds) // Transfer it from currently held to src
-		else to_chat(user, "Those aren't the same rounds. Better not mix them up.")
+		else to_chat(user, "弹种不同，最好不要混装。")
 
 /obj/item/ammo_magazine/handful/proc/generate_handful(new_ammo, new_caliber, new_max_rounds, new_rounds, new_gun_type)
 	var/datum/ammo/A = GLOB.ammo_list[new_ammo]
 	var/ammo_name = A.name //Let's pull up the name.
-	var/multiple_handful_name = A.multiple_handful_name
-
-	name = "handful of [ammo_name + (multiple_handful_name ? " ":"s ") + "([new_caliber])"]"
+	name = "一把[ammo_name]（[new_caliber]）"
 
 	default_ammo = new_ammo
 	caliber = new_caliber
@@ -309,7 +307,7 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 //----------------------------------------------------------------//
 
 /obj/item/ammo_box/magazine/lever_action/xm88
-	name = "\improper .458 bullets box (.458 x 300)"
+	name = "\improper .458 子弹箱（.458 x 300）"
 	icon_state = "base_458"
 	overlay_ammo_type = "_blank"
 	overlay_gun_type = "_458"

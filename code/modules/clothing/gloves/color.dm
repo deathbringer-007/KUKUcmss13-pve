@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/yellow
-	desc = "These gloves will protect the wearer from electric shock."
-	name = "insulated gloves"
+	desc = "这副手套能保护佩戴者免遭电击。"
+	name = "绝缘手套"
 	icon_state = "insulated"
 	item_state = "insulated"
 	siemens_coefficient = 0
@@ -11,8 +11,8 @@
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROT
 
 /obj/item/clothing/gloves/fyellow  //Cheap Chinese Crap
-	desc = "These gloves are cheap copies of the coveted gloves, no way this can end badly."
-	name = "budget insulated gloves"
+	desc = "这是那种抢手手套的廉价仿品，戴上肯定不会出什么事吧。"
+	name = "廉价绝缘手套"
 	icon_state = "insulated"
 	item_state = "insulated"
 	siemens_coefficient = 1 //Set to a default of 1, gets overridden in New()
@@ -23,8 +23,8 @@
 	..()
 
 /obj/item/clothing/gloves/black
-	desc = "These gloves are fire-resistant."
-	name = "black gloves"
+	desc = "这副手套具有防火性能。"
+	name = "黑色手套"
 	icon_state = "black"
 	item_state = "bgloves"
 	flags_cold_protection = BODY_FLAG_HANDS
@@ -34,55 +34,55 @@
 
 
 /obj/item/clothing/gloves/orange
-	name = "orange gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "橙色手套"
+	desc = "一副手套，看起来没什么特别之处。"
 	icon_state = "orange"
 	item_state = "orangegloves"
 
 /obj/item/clothing/gloves/red
-	name = "red gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "红色手套"
+	desc = "一副手套，看起来没什么特别之处。"
 	icon_state = "red"
 	item_state = "redgloves"
 
 /obj/item/clothing/gloves/rainbow
-	name = "rainbow gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "彩虹手套"
+	desc = "一副手套，看起来没什么特别之处。"
 	icon_state = "rainbow"
 	item_state = "rainbowgloves"
 
 /obj/item/clothing/gloves/blue
-	name = "blue gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "蓝色手套"
+	desc = "一副手套，看起来没什么特别之处。"
 	icon_state = "blue"
 	item_state = "bluegloves"
 
 /obj/item/clothing/gloves/purple
-	name = "purple gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "紫色手套"
+	desc = "一副手套，看起来没什么特别之处。"
 	icon_state = "purple"
 	item_state = "purplegloves"
 
 /obj/item/clothing/gloves/green
-	name = "green gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "绿色手套"
+	desc = "一副手套，看起来没什么特别之处。"
 	icon_state = "green"
 	item_state = "greengloves"
 
 /obj/item/clothing/gloves/grey
-	name = "grey gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "灰色手套"
+	desc = "一副手套，看起来没什么特别之处。"
 	icon_state = "gray"
 	item_state = "graygloves"
 
 /obj/item/clothing/gloves/light_brown
-	name = "light brown gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "浅棕色手套"
+	desc = "一副手套，看起来没什么特别之处。"
 	icon_state = "lightbrown"
 	item_state = "lightbrowngloves"
 
 /obj/item/clothing/gloves/brown
-	name = "brown gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	name = "棕色手套"
+	desc = "一副手套，看起来没什么特别之处。"
 	icon_state = "brown"
 	item_state = "browngloves"

@@ -1,6 +1,6 @@
 /obj/item/hardpoint/locomotion/treads
-	name = "\improper Treads"
-	desc = "Integral to the movement of the vehicle. Light-steel alloy tracks with rubber pads for road & shipboard usage, they allow the tank to move faster but in turn are more easily damaged compared to other models."
+	name = "\improper 履带"
+	desc = "载具行驶所必需的部件。轻钢合金履带配有橡胶垫，适合公路和舰内使用，能让坦克行驶得更快，但也比其他型号更容易损坏。"
 
 	icon_state = "treads"
 	disp_icon = "tank"
@@ -17,8 +17,8 @@
 	move_turn_momentum_loss_factor = 0.6
 
 /obj/item/hardpoint/locomotion/treads/robust
-	name = "\improper Reinforced Treads"
-	desc = "These treads are made of a tougher steel-composite allow and are more durable. However, the extra weight slows the tank down slightly."
+	name = "\improper 加固履带"
+	desc = "这些履带采用更坚韧的钢基复合材料制成，更加耐用。不过，额外重量会让坦克稍微慢一点。"
 
 	health = 2500
 	acid_resistant = TRUE

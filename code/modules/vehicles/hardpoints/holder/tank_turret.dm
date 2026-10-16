@@ -1,6 +1,6 @@
 /obj/item/hardpoint/holder/tank_turret
-	name = "\improper M34A2-A Multipurpose Turret"
-	desc = "The centerpiece of the tank. Designed to support quick installation and deinstallation of various tank weapon modules. Has inbuilt flare deployment system."
+	name = "\improper M34A2-A多用途炮塔"
+	desc = "坦克的核心部件，支持快速安装和拆卸各种坦克武器模块，内置照明弹发射系统。"
 
 	icon = 'icons/obj/vehicles/tank.dmi'
 	icon_state = "tank_turret_0"
@@ -119,7 +119,7 @@
 			return TRUE
 
 		if(health < 1)
-			visible_message(SPAN_WARNING("\The [src] disintegrates into useless pile of scrap under the damage it suffered!"))
+			visible_message(SPAN_WARNING("[src]因损坏过重而散成了一堆废料！"))
 			qdel(src)
 			return TRUE
 
@@ -133,7 +133,7 @@
 	var/list/data = list()
 
 	data += list(list( // turret smokescreen data
-		"name" = "M34A2-A Turret Flare Mortar",
+		"name" = "M34A2-A炮塔照明弹迫击炮",
 		"health" = health <= 0 ? null : floor(get_integrity_percent()),
 		"uses_ammo" = TRUE,
 		"current_rounds" = ammo.current_rounds / 2,
@@ -150,11 +150,11 @@
 //gyro ON locks the turret in one direction, OFF will make turret turning when tank turns
 /obj/item/hardpoint/holder/tank_turret/proc/toggle_gyro(mob/user)
 	if(health <= 0)
-		to_chat(user, SPAN_WARNING("\The [src]'s stabilization systems are busted!"))
+		to_chat(user, SPAN_WARNING("[src]的稳定系统已损坏！"))
 		return
 
 	gyro = !gyro
-	to_chat(user, SPAN_NOTICE("You toggle \the [src]'s gyroscopic stabilizer [gyro ? "ON" :"OFF"]."))
+	to_chat(user, SPAN_NOTICE("你将[src]的陀螺稳定器[gyro ? "开启" :"关闭"]。"))
 
 /obj/item/hardpoint/holder/tank_turret/proc/user_rotation(mob/user, deg)
 	// no rotating a broken turret
@@ -165,7 +165,7 @@
 		return
 
 	rotating = TRUE
-	to_chat(user, SPAN_NOTICE("You begin rotating the turret towards the [dir2text(turn(dir,deg))]."))
+	to_chat(user, SPAN_NOTICE("你开始将炮塔转向[list("north" = "北", "south" = "南", "east" = "东", "west" = "西", "northeast" = "东北", "southeast" = "东南", "northwest" = "西北", "southwest" = "西南")[dir2text(turn(dir,deg))]]方。"))
 
 	if(!do_after(user, rotation_windup, INTERRUPT_ALL, BUSY_ICON_GENERIC))
 		rotating = FALSE
@@ -230,17 +230,17 @@
 
 //CAMO TURRETS
 /obj/item/hardpoint/holder/tank_turret/desert
-	desc = "The centerpiece of the tank. Designed to support quick installation and deinstallation of various tank weapon modules. Has inbuilt flare deployment system. Painted in an arid-environment camo scheme."
+	desc = "坦克的核心部件，支持快速安装和拆卸各种坦克武器模块，内置照明弹发射系统，采用干旱环境迷彩涂装。"
 	icon_state = "tank_turret_d_0"
 	disp_icon_state = "tank_turret_d"
 
 /obj/item/hardpoint/holder/tank_turret/jungle
-	desc = "The centerpiece of the tank. Designed to support quick installation and deinstallation of various tank weapon modules. Has inbuilt flare deployment system. Painted in a lush-environment camo scheme."
+	desc = "坦克的核心部件，支持快速安装和拆卸各种坦克武器模块，内置照明弹发射系统，采用茂密植被环境迷彩涂装。"
 	icon_state = "tank_turret_j_0"
 	disp_icon_state = "tank_turret_j"
 
 /obj/item/hardpoint/holder/tank_turret/night
-	desc = "The centerpiece of the tank. Designed to support quick installation and deinstallation of various tank weapon modules. Has inbuilt flare deployment system. Painted in a dark-environment camo scheme."
+	desc = "坦克的核心部件，支持快速安装和拆卸各种坦克武器模块，内置照明弹发射系统，采用暗环境迷彩涂装。"
 	icon_state = "tank_turret_n_0"
 	disp_icon_state = "tank_turret_n"
 
@@ -248,8 +248,8 @@
 
 //UPP TURRET
 /obj/item/hardpoint/holder/tank_turret/uppturret
-	name = "\improper VT/CZ 'Condor' Turret"
-	desc = "VT/CZ 'Condor' Turret complex, developed in the Czech Republic with assistance from Austria and Slovakia. Produced as part of the 'A' upgrade package for the Cheetah 2, the VT/CZ follows the familiar philosophy of most UPP equipment: Modularity. Its' ability to mount a wide array of weapon systems both quickly and easily has allowed the vehicle to see wide application from its' intended air-assault role, to indirect fire, anti-air missions and tank hunting."
+	name = "\improper VT/CZ“神鹰”炮塔"
+	desc = "VT/CZ“神鹰”炮塔系统由捷克在奥地利和斯洛伐克的协助下研发，属于“猎豹”2型的“A”升级套件。它遵循进步人民联盟装备常见的模块化理念，能够快速方便地安装多种武器系统，使载具从原定的空中突击用途扩展到间接火力支援、防空和猎杀坦克等任务。"
 
 	icon = 'icons/obj/vehicles/upptank.dmi'
 	icon_state = "tank_turret_0"
@@ -290,7 +290,7 @@
 	var/list/data = list()
 
 	data += list(list( // turret smokescreen data
-		"name" = "VT/CZ Turret Smoke Screen",
+		"name" = "VT/CZ炮塔烟幕系统",
 		"health" = health <= 0 ? null : floor(get_integrity_percent()),
 		"uses_ammo" = TRUE,
 		"current_rounds" = ammo.current_rounds / 2,

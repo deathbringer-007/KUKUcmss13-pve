@@ -7,10 +7,10 @@
 	unacidable = TRUE
 
 /obj/structure/ice/thin
-	name = "thin ice wall"
+	name = "薄冰墙"
 	icon = 'icons/turf/walls/icewalllight.dmi'
 	icon_state = "Single"
-	desc = "It is very thin."
+	desc = "它非常薄。"
 	opacity = FALSE
 
 /obj/structure/ice/thin/indestructible/ex_act(severity, direction)
@@ -37,7 +37,7 @@
 
 //Thin Ice Secret Wall
 /turf/closed/ice/thin/secret
-	desc = "There is something inside..."
+	desc = "里面有什么东西……"
 
 /turf/closed/ice/thin/secret/single
 	icon_state = "Single"
@@ -59,7 +59,7 @@
 
 //ROCK WALLS------------------------------//
 /obj/structure/ice/ice_rock
-	name = "Icy rock"
+	name = "覆冰岩石"
 	icon = 'icons/turf/walls/rockwall.dmi'
 
 /obj/structure/ice/ice_rock/cornerOverlay

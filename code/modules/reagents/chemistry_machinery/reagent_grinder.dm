@@ -1,5 +1,5 @@
 /obj/structure/machinery/reagentgrinder
-	name = "All-In-One Grinder"
+	name = "多功能研磨机"
 	icon = 'icons/obj/structures/machinery/kitchen.dmi'
 	icon_state = "juicer1"
 	layer = ABOVE_TABLE_LAYER
@@ -84,28 +84,28 @@
 		beaker = O
 		user.drop_inv_item_to_loc(O, src)
 		if(old_beaker)
-			to_chat(user, SPAN_NOTICE("You swap out \the [old_beaker] for \the [O]."))
+			to_chat(user, SPAN_NOTICE("你取出[old_beaker]，换上[O]。"))
 			user.put_in_hands(old_beaker)
 		update_icon()
 		updateUsrDialog()
 		return 0
 
 	if(LAZYLEN(holdingitems) >= limit)
-		to_chat(user, SPAN_WARNING("The machine cannot hold anymore items."))
+		to_chat(user, SPAN_WARNING("机器已装不下更多物品。"))
 		return 1
 
 	if(istype(O,/obj/item/storage))
 		var/obj/item/storage/B = O
 		if(length(B.contents) > 0)
-			to_chat(user, SPAN_NOTICE("You start dumping the contents of [B] into [src]."))
+			to_chat(user, SPAN_NOTICE("你开始将[B]中的物品倒入[src]。"))
 			if(!do_after(user, 15, INTERRUPT_ALL, BUSY_ICON_GENERIC)) return
 			for(var/obj/item/I in B)
 				if(LAZYLEN(holdingitems) >= limit)
-					to_chat(user, SPAN_WARNING("The machine cannot hold anymore items."))
+					to_chat(user, SPAN_WARNING("机器已装不下更多物品。"))
 					break
 				else
 					if(!is_type_in_list(I, blend_items) && !is_type_in_list(I, juice_items))
-						to_chat(user, SPAN_WARNING("Cannot refine [I] into a reagent."))
+						to_chat(user, SPAN_WARNING("无法将[I]提炼成试剂。"))
 						break
 					else
 						user.drop_inv_item_to_loc(I, src)
@@ -114,11 +114,11 @@
 			return 0
 
 		else
-			to_chat(user, SPAN_WARNING("[B] is empty."))
+			to_chat(user, SPAN_WARNING("[B]是空的。"))
 			return 1
 
 	else if(!is_type_in_list(O, blend_items) && !is_type_in_list(O, juice_items))
-		to_chat(user, SPAN_WARNING("Cannot refine into a reagent."))
+		to_chat(user, SPAN_WARNING("无法提炼成试剂。"))
 		return 1
 
 	user.drop_inv_item_to_loc(O, src)
@@ -139,40 +139,40 @@
 
 	if(!inuse)
 		for(var/obj/item/O in holdingitems)
-			processing_chamber += "\A [O.name]<BR>"
+			processing_chamber += "[O.name]<BR>"
 
 		if(!processing_chamber)
 			is_chamber_empty = 1
-			processing_chamber = "Nothing."
+			processing_chamber = "空。"
 		if(!beaker)
-			beaker_contents = "<B>No beaker attached.</B><br>"
+			beaker_contents = "<B>未安装烧杯。</B><br>"
 		else
 			is_beaker_ready = 1
-			beaker_contents = "<B>The beaker contains:</B><br>"
+			beaker_contents = "<B>烧杯内容物：</B><br>"
 			var/anything = 0
 			for(var/datum/reagent/R in beaker.reagents.reagent_list)
 				anything = 1
-				beaker_contents += "[R.volume] - [R.name] <A href='byond://?src=\ref[src];bottle=[R.id]'>Bottle</a><A href='byond://?src=\ref[src];dispose=[R.id]'>Dispose</a><br>"
+				beaker_contents += "[R.volume] - [R.name] <A href='byond://?src=\ref[src];bottle=[R.id]'>装瓶</a><A href='byond://?src=\ref[src];dispose=[R.id]'>废弃</a><br>"
 			if(!anything)
-				beaker_contents += "Nothing<br>"
+				beaker_contents += "空<br>"
 
 
 		dat = {"
-	<b>Processing chamber contains:</b><br>
+	<b>加工室内容物：</b><br>
 	[processing_chamber]<br>
 	[beaker_contents]<hr>
 	"}
 		if(is_beaker_ready && !is_chamber_empty && !(inoperable()))
-			dat += "<A href='byond://?src=\ref[src];action=grind'>Grind the reagents</a><BR>"
-			dat += "<A href='byond://?src=\ref[src];action=juice'>Juice the reagents</a><BR><BR>"
+			dat += "<A href='byond://?src=\ref[src];action=grind'>研磨原料</a><BR>"
+			dat += "<A href='byond://?src=\ref[src];action=juice'>榨取汁液</a><BR><BR>"
 		if(LAZYLEN(holdingitems) > 0)
-			dat += "<A href='byond://?src=\ref[src];action=eject'>Eject the reagents</a><BR>"
+			dat += "<A href='byond://?src=\ref[src];action=eject'>取出原料</a><BR>"
 		if(beaker)
-			dat += "<A href='byond://?src=\ref[src];action=detach'>Detach the beaker</a><BR>"
+			dat += "<A href='byond://?src=\ref[src];action=detach'>取下烧杯</a><BR>"
 		if(!linked_storage && tether_range > 0)
-			dat += "<A href='byond://?src=\ref[src];action=connect'>Connect to smartfridge</a><BR>"
+			dat += "<A href='byond://?src=\ref[src];action=connect'>连接智能冰箱</a><BR>"
 	else
-		dat += "Please wait..."
+		dat += "请稍候……"
 	show_browser(user, "<HEAD><TITLE>[name]</TITLE></HEAD><TT>[dat]</TT>", name, "reagentgrinder")
 	onclose(user, "reagentgrinder")
 	return
@@ -188,14 +188,14 @@
 	if(href_list["bottle"])
 		var/id = href_list["bottle"]
 		if(QDELETED(linked_storage) || src.z != linked_storage.z || get_dist(src, linked_storage) > tether_range)
-			visible_message(SPAN_WARNING("Smartfridge is out of range. Connection severed."))
+			visible_message(SPAN_WARNING("智能冰箱超出范围，连接已断开。"))
 			cleanup()
 			return
 
 		var/obj/item/reagent_container/glass/bottle/P = new /obj/item/reagent_container/glass/bottle()
 		P.icon_state = "bottle-1" // Default bottle
 		beaker.reagents.trans_id_to(P, id, P.reagents.maximum_volume)
-		P.name = "[P.reagents.get_master_reagent_name()] bottle"
+		P.name = "[P.reagents.get_master_reagent_name()]试剂瓶"
 		linked_storage.add_local_item(P)
 	else if(href_list["dispose"])
 		var/id = href_list["dispose"]
@@ -241,7 +241,7 @@
 	linked_storage = locate(/obj/structure/machinery/smartfridge/chemistry) in range(tether_range, src)
 	if(linked_storage)
 		RegisterSignal(linked_storage, COMSIG_PARENT_QDELETING, PROC_REF(cleanup))
-		visible_message(SPAN_NOTICE("<b>The [src] beeps:</b> Smartfridge connected."))
+		visible_message(SPAN_NOTICE("<b>[src]鸣响提示：</b>已连接智能冰箱。"))
 
 /obj/structure/machinery/reagentgrinder/proc/is_allowed(obj/item/reagent_container/O)
 	for(var/i in blend_items)
@@ -421,8 +421,8 @@
 
 
 /obj/structure/machinery/reagentgrinder/industrial
-	name = "Industrial Grinder"
-	desc = "a heavy-duty variant of the all-in-one grinder meant for grinding large amounts of industrial material. Not food safe."
+	name = "工业研磨机"
+	desc = "多功能研磨机的重型版本，用于研磨大量工业原料。不适合加工食品。"
 	icon_state = "industry1"
 	limit = 30
 	blend_items = list (

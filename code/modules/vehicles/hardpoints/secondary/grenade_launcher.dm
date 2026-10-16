@@ -1,6 +1,6 @@
 /obj/item/hardpoint/secondary/grenade_launcher
-	name = "\improper M92T Grenade Launcher"
-	desc = "A magazine fed secondary grenade launcher for tanks that shoots M40 grenades."
+	name = "\improper M92T榴弹发射器"
+	desc = "弹箱供弹的坦克副武器榴弹发射器，可发射M40榴弹。"
 
 	icon_state = "glauncher"
 	disp_icon = "tank"
@@ -39,7 +39,7 @@
 
 /obj/item/hardpoint/secondary/grenade_launcher/try_fire(atom/target, mob/living/user, params)
 	if(get_turf(target) in owner.locs)
-		to_chat(user, SPAN_WARNING("The target is too close."))
+		to_chat(user, SPAN_WARNING("目标距离太近。"))
 		return NONE
 
 	return ..()

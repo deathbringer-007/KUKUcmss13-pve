@@ -1,7 +1,7 @@
 /obj/item/device/cotablet
 	icon = 'icons/obj/items/devices.dmi'
-	name = "command tablet"
-	desc = "A portable command interface used by top brass, capable of issuing commands over long ranges to their linked computer. Built to withstand a nuclear bomb."
+	name = "指挥平板"
+	desc = "高级军官使用的便携式指挥终端，能远程向连接的计算机发送指令。坚固得足以承受核弹爆炸。"
 	suffix = "\[3\]"
 	icon_state = "Cotablet"
 	item_state = "Cotablet"
@@ -47,7 +47,7 @@
 	if(allowed(user) && card?.check_biometrics(user))
 		tgui_interact(user)
 	else
-		to_chat(user, SPAN_DANGER("Access denied."))
+		to_chat(user, SPAN_DANGER("访问被拒绝。"))
 
 /obj/item/device/cotablet/ui_static_data(mob/user)
 	var/list/data = list()
@@ -82,7 +82,7 @@
 /obj/item/device/cotablet/tgui_interact(mob/user, datum/tgui/ui, datum/ui_state/state)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "CommandTablet", "Command Tablet")
+		ui = new(user, src, "CommandTablet", "指挥平板")
 		ui.open()
 
 /obj/item/device/cotablet/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -93,14 +93,14 @@
 	switch(action)
 		if("announce")
 			if(user.client.prefs.muted & MUTE_IC)
-				to_chat(user, SPAN_DANGER("You cannot send Announcements (muted)."))
+				to_chat(user, SPAN_DANGER("你无法发布公告（已被禁言）。"))
 				return
 
 			if(!COOLDOWN_FINISHED(src, announcement_cooldown))
-				to_chat(user, SPAN_WARNING("Please wait [COOLDOWN_TIMELEFT(src, announcement_cooldown)/10] second\s before making your next announcement."))
+				to_chat(user, SPAN_WARNING("请等待 [COOLDOWN_TIMELEFT(src, announcement_cooldown)/10] 秒后再发布下一条公告。"))
 				return FALSE
 
-			var/input = stripped_multiline_input(user, "Please write a message to announce to the [MAIN_SHIP_NAME]'s crew and all groundside personnel.", "Priority Announcement", "")
+			var/input = stripped_multiline_input(user, "请输入要向[MAIN_SHIP_NAME]的舰员及全体地面人员发布的公告。", "优先公告", "")
 			if(!input || !COOLDOWN_FINISHED(src, announcement_cooldown) || !(user in dview(1, src)))
 				return FALSE
 
@@ -133,20 +133,20 @@
 				return
 
 			if(GLOB.security_level < SEC_LEVEL_RED)
-				to_chat(user, SPAN_WARNING("The ship must be under red alert in order to enact evacuation procedures."))
+				to_chat(user, SPAN_WARNING("舰船必须处于红色警报状态才能启动疏散程序。"))
 				return FALSE
 
 			if(SShijack.evac_admin_denied)
-				to_chat(user, SPAN_WARNING("The USCM has placed a lock on deploying the evacuation pods."))
+				to_chat(user, SPAN_WARNING("USCM 已锁定逃生舱部署权限。"))
 				return FALSE
 
 			if(!SShijack.initiate_evacuation())
-				to_chat(user, SPAN_WARNING("You are unable to initiate an evacuation procedure right now!"))
+				to_chat(user, SPAN_WARNING("现在无法启动疏散程序！"))
 				return FALSE
 
 			log_game("[key_name(user)] has called for an emergency evacuation.")
 			message_admins("[key_name_admin(user)] has called for an emergency evacuation.")
-			log_ares_security("Initiate Evacuation", "Called for an emergency evacuation.", user)
+			log_ares_security("启动疏散", "已下令紧急疏散。", user)
 			. = TRUE
 
 		if("distress")
@@ -154,19 +154,19 @@
 				return FALSE //Not a game mode?
 
 			if(GLOB.security_level == SEC_LEVEL_DELTA)
-				to_chat(user, SPAN_WARNING("The ship is already undergoing self destruct procedures!"))
+				to_chat(user, SPAN_WARNING("舰船已在执行自毁程序！"))
 				return FALSE
 
 			for(var/client/C in GLOB.admins)
 				if((R_ADMIN|R_MOD) & C.admin_holder.rights)
 					playsound_client(C,'sound/effects/sos-morse-code.ogg',10)
 			SSticker.mode.request_ert(user)
-			to_chat(user, SPAN_NOTICE("A distress beacon request has been sent to USCM Central Command."))
+			to_chat(user, SPAN_NOTICE("已向 USCM 中央司令部发送求救信标请求。"))
 			COOLDOWN_START(src, distress_cooldown, COOLDOWN_COMM_REQUEST)
 			return TRUE
 
 /obj/item/device/cotablet/pmc
-	desc = "A special device used by corporate PMC directors."
+	desc = "公司私人军事承包商主管使用的专用设备。"
 
 	tablet_name = "Site Director's Tablet"
 
@@ -177,7 +177,7 @@
 
 /obj/item/device/cotablet/upp
 
-	desc = "A special device used by field UPP commanders."
+	desc = "UPP 战地指挥官使用的专用设备。"
 
 	tablet_name = "UPP Field Commander's Tablet"
 
@@ -189,7 +189,7 @@
 
 /obj/item/device/cotablet/rmc
 
-	desc = "A special device used by field RMC commanders."
+	desc = "皇家陆战突击队战地指挥官使用的专用设备。"
 
 	tablet_name = "RMC Field Commander's Tablet"
 

@@ -1,6 +1,6 @@
 /obj/item/device/flashlight
-	name = "flashlight"
-	desc = "A hand-held emergency light."
+	name = "手电筒"
+	desc = "手持式应急照明设备。"
 	icon = 'icons/obj/items/lighting.dmi'
 	icon_state = "flashlight"
 	item_state = "flashlight"
@@ -57,11 +57,11 @@
 	..()
 
 	if(!toggleable)
-		to_chat(user, SPAN_WARNING("You cannot toggle \the [src.name] on or off."))
+		to_chat(user, SPAN_WARNING("你无法开关[src.name]。"))
 		return FALSE
 
 	if(!isturf(user.loc))
-		to_chat(user, SPAN_WARNING("You cannot turn the light [on ? "off" : "on"] while in [user.loc].")) //To prevent some lighting anomalies.
+		to_chat(user, SPAN_WARNING("身处[user.loc]时，你无法[on ? "关闭" : "开启"]照明。")) //To prevent some lighting anomalies.
 		return FALSE
 
 	on = !on
@@ -89,7 +89,7 @@
 		if(!raillight_compatible) //No fancy messages, just no
 			return
 		if(on)
-			to_chat(user, SPAN_WARNING("Turn off [src] first."))
+			to_chat(user, SPAN_WARNING("请先关闭[src]。"))
 			return
 		if(isstorage(loc))
 			var/obj/item/storage/container = loc
@@ -98,8 +98,8 @@
 			user.drop_inv_item_on_ground(src) //This part is important to make sure our light sources update, as it calls dropped()
 		var/obj/item/attachable/flashlight/flash = new(src.loc)
 		user.put_in_hands(flash) //This proc tries right, left, then drops it all-in-one.
-		to_chat(user, SPAN_NOTICE("You modify [src]. It can now be mounted on a weapon."))
-		to_chat(user, SPAN_NOTICE("Use a screwdriver on [flash] to change it back."))
+		to_chat(user, SPAN_NOTICE("你改装了[src]，现在可以把它安装到武器上。"))
+		to_chat(user, SPAN_NOTICE("用螺丝刀调整[flash]即可将它改回原样。"))
 		qdel(src) //Delete da old flashlight
 		return
 	else
@@ -113,31 +113,31 @@
 			return ..() //just hit them in the head
 
 		if (!(ishuman(user) || SSticker) && SSticker.mode.name != "monkey") //don't have dexterity
-			to_chat(user, SPAN_NOTICE("You don't have the dexterity to do this!"))
+			to_chat(user, SPAN_NOTICE("你的肢体不够灵巧，无法完成这个操作！"))
 			return
 
 		var/mob/living/carbon/human/beingB = being //mob has protective eyewear
 		if(ishuman(beingB) && ((beingB.head && beingB.head.flags_inventory & COVEREYES) || (beingB.wear_mask && beingB.wear_mask.flags_inventory & COVEREYES) || (beingB.glasses && beingB.glasses.flags_inventory & COVEREYES)))
-			to_chat(user, SPAN_NOTICE("You're going to need to remove [(beingB.head && beingB.head.flags_inventory & COVEREYES) ? "that helmet" : (beingB.wear_mask && beingB.wear_mask.flags_inventory & COVEREYES) ? "that mask": "those glasses"] first."))
+			to_chat(user, SPAN_NOTICE("你需要先取下[(beingB.head && beingB.head.flags_inventory & COVEREYES) ? "头盔" : (beingB.wear_mask && beingB.wear_mask.flags_inventory & COVEREYES) ? "面罩": "眼镜"]。"))
 			return
 
 		if(being == user) //they're using it on themselves
 			being.flash_eyes()
-			being.visible_message(SPAN_NOTICE("[being] directs [src] to [being.p_their()] eyes."), \
-							SPAN_NOTICE("You wave the light in front of your eyes! Wow, that's trippy!"))
+			being.visible_message(SPAN_NOTICE("[being]用[src]照向自己的双眼。"), \
+							SPAN_NOTICE("你在眼前晃动灯光！哇，眼前一阵迷幻！"))
 			return
 
-		user.visible_message(SPAN_NOTICE("[user] directs [src] to [being]'s eyes."), \
-							SPAN_NOTICE("You direct [src] to [being]'s eyes."))
+		user.visible_message(SPAN_NOTICE("[user]用[src]照向[being]的双眼。"), \
+							SPAN_NOTICE("你用[src]照向[being]的双眼。"))
 
 		if(ishuman_strict(being)) //robots and aliens are unaffected
 			var/datum/internal_organ/eyes/eyes = being.internal_organs_by_name["eyes"]
 			var/datum/internal_organ/brain/brain = being.internal_organs_by_name["brain"]
 			if(being.stat == DEAD || being.sdisabilities & DISABILITY_BLIND || eyes.organ_status == ORGAN_BROKEN || brain.organ_status == ORGAN_BROKEN) //mob is dead, fully blind, or their eyes are
-				to_chat(user, SPAN_NOTICE("[being]'s pupils do not react to the light!"))
+				to_chat(user, SPAN_NOTICE("[being]的瞳孔对光没有反应！"))
 			else //they're okay! Well, probably
 				being.flash_eyes()
-				to_chat(user, SPAN_NOTICE("[being]'s pupils narrow."))
+				to_chat(user, SPAN_NOTICE("[being]的瞳孔收缩了。"))
 				return
 	else
 		return ..()
@@ -154,8 +154,8 @@
 	on = TRUE
 
 /obj/item/device/flashlight/pen
-	name = "penlight"
-	desc = "A pen-sized light, used by medical staff to check the condition of eyes, brain, and the overall awareness of patients."
+	name = "医用笔灯"
+	desc = "笔形照明工具，医护人员用它检查患者眼睛、大脑及整体意识状态。"
 	icon_state = "penlight"
 	item_state = ""
 	flags_equip_slot = SLOT_WAIST|SLOT_EAR|SLOT_SUIT_STORE
@@ -175,15 +175,15 @@
 				return
 			var/reaction = null
 			if(isnull(being.internal_organs_by_name))
-				reaction = "discover that indeed [being.p_they()] have nothing to be checked"
+				reaction = "发现对方确实没有可供检查的器官"
 				return // they have no organs somehow
 			if(being == user) //they're using it on themselves
 				being.flash_eyes()
-				being.visible_message(SPAN_NOTICE("[being] directs [src] to [being.p_their()] eyes."), \
-							SPAN_NOTICE("You wave the light in front of your eyes! Wow, that's trippy!"))
+				being.visible_message(SPAN_NOTICE("[being]用[src]照向自己的双眼。"), \
+							SPAN_NOTICE("你在眼前晃动灯光！哇，眼前一阵迷幻！"))
 				return
 			if(being.stat == DEAD || (being.status_flags&FAKEDEATH))
-				reaction = "conclude that [being.p_their()] eyes are completely lifeless, [being.p_they()] must have passed away"
+				reaction = "判断对方双眼毫无生气，看来已经去世"
 			else
 				var/datum/internal_organ/eyes/eyes = being.internal_organs_by_name["eyes"]
 				var/datum/internal_organ/brain/brain = being.internal_organs_by_name["brain"]
@@ -192,41 +192,41 @@
 						switch(eyes.organ_status)
 							if(ORGAN_LITTLE_BRUISED)
 								being.flash_eyes()
-								reaction = "notice that [being.p_their()] eyes are <font color='yellow'>reacting to the light</font>, but [being.p_their()] pupils seen to <font color='yellow'>react sluggishly and with small delays</font>, [being.p_their()] vision is probably <font color='yellow'>a little impaired</font>"
+								reaction = "注意到对方双眼<font color='yellow'>对光有反应</font>，但瞳孔似乎<font color='yellow'>反应迟缓，略有延迟</font>，视力可能<font color='yellow'>轻度受损</font>"
 							if(ORGAN_BRUISED)
 								being.flash_eyes()
-								reaction = "observe that [being.p_their()] eyes are <font color='orange'>unrealiably reacting to the light</font>, with [being.p_their()] pupils <font color='orange'>reacting very sluggishly and with noticeable delays</font>, it is probable that [being.p_their()] vision is <font color='orange'>remarkably impaired</font>"
+								reaction = "观察到对方双眼<font color='orange'>对光反应不稳定</font>，瞳孔<font color='orange'>反应非常迟缓，延迟明显</font>，视力可能<font color='orange'>明显受损</font>"
 							if(ORGAN_BROKEN)
-								reaction = "notice that [being.p_their()] eyes are <font color='red'>not reacting to the light</font>, and the pupils of both eyes are <font color='red'>not constricting with the light</font> shine at all, [being.p_they()] is probably <font color='red'>blind</font>"
+								reaction = "注意到对方双眼<font color='red'>对光没有反应</font>，两眼瞳孔在光照下<font color='red'>完全不收缩</font>，对方可能已经<font color='red'>失明</font>"
 							else
 								being.flash_eyes()
-								reaction = "perceive that [being.p_their()] eyes and pupils are <font color='green'>normally reacting to the light</font>, [being.p_they()] is probably<font color='green'> seeing without problems</font>"
+								reaction = "发现对方双眼和瞳孔<font color='green'>对光反应正常</font>，视力应该<font color='green'>没有问题</font>"
 					if(brain)
 						if(reaction)
-							reaction += ". You also "
+							reaction += "。你还"
 						switch(brain.organ_status)
 							if(ORGAN_LITTLE_BRUISED)
 								being.flash_eyes()
-								reaction += "notice that the pupils are <font color='yellow'>consensually constricting with a significant delay</font> when light is separately applied to each eye, meaning that [being.p_they()] possibly have <font color='yellow'>subtle brain damage</font>"
+								reaction += "注意到分别照射双眼时，瞳孔<font color='yellow'>间接对光反射明显延迟</font>，提示可能存在<font color='yellow'>轻微脑损伤</font>"
 							if(ORGAN_BRUISED)
 								being.flash_eyes()
-								reaction += "notice that the pupils are <font color='orange'>not consensually constricting</font> when light is separately applied to each eye, meaning possible <font color='orange'>brain damage</font>"
+								reaction += "注意到分别照射双眼时，瞳孔<font color='orange'>没有出现间接对光反射</font>，提示可能存在<font color='orange'>脑损伤</font>"
 							if(ORGAN_BROKEN)
-								reaction += "notice that the pupils <font color='red'>have different sizes and are assymmetric</font>, [being.p_they()] possibly have <font color='red'>severe brain damage</font>"
+								reaction += "注意到瞳孔<font color='red'>大小不等且不对称</font>，提示可能存在<font color='red'>严重脑损伤</font>"
 							else
 								being.flash_eyes()
-								reaction += "notice that the pupils are <font color='green'>consensually and normally constricting</font> when light is separately applied to each eye, [being.p_their()] brain is <font color='green'>probably fine</font>"
+								reaction += "注意到分别照射双眼时，瞳孔<font color='green'>间接对光反射正常</font>，大脑<font color='green'>应该没有问题</font>"
 					else
-						reaction = "can't see anything at all, weirdly enough"
+						reaction = "竟然什么也看不出来，真奇怪"
 				else
 					being.flash_eyes()
-					reaction = "don't really know what you are looking for, you don't know anything about medicine"
-			user.visible_message("[user] directs [src] to [being]'s eyes.", "You point [src] to [being.p_their()] eyes to begin analysing them further and... you [reaction].")
+					reaction = "根本不知道该观察什么，你对医学一窍不通"
+			user.visible_message("[user]用[src]照向[being]的双眼。", "你用[src]照向对方双眼，开始进一步检查……你[reaction]。")
 	return ..()
 
 /obj/item/device/flashlight/drone
-	name = "low-power flashlight"
-	desc = "A miniature lamp, that might be used by small robots."
+	name = "低功率手电筒"
+	desc = "可能是小型机器人使用的微型照明灯。"
 	icon_state = "penlight"
 	item_state = ""
 	light_range = 2
@@ -235,8 +235,8 @@
 
 //The desk lamps are a bit special
 /obj/item/device/flashlight/lamp
-	name = "desk lamp"
-	desc = "A desk lamp with an adjustable mount."
+	name = "台灯"
+	desc = "支架可调节的台灯。"
 	icon_state = "lamp"
 	item_state = "lamp"
 	light_range = 5
@@ -251,8 +251,8 @@
 
 //Menorah!
 /obj/item/device/flashlight/lamp/menorah
-	name = "Menorah"
-	desc = "For celebrating Chanukah."
+	name = "光明节烛台"
+	desc = "用于庆祝光明节。"
 	icon_state = "menorah"
 	item_state = "menorah"
 	light_range = 2
@@ -263,8 +263,8 @@
 
 //Generic Candelabra
 /obj/item/device/flashlight/lamp/candelabra
-	name = "candelabra"
-	desc = "A fire hazard that can be used to thwack things with impunity."
+	name = "多枝烛台"
+	desc = "一个火灾隐患，还能让你肆无忌惮地拿它敲打东西。"
 	icon_state = "candelabra"
 	force = 15
 	on = TRUE
@@ -274,14 +274,14 @@
 
 //Green-shaded desk lamp
 /obj/item/device/flashlight/lamp/green
-	desc = "A classic green-shaded desk lamp."
+	desc = "经典的绿色灯罩台灯。"
 	icon_state = "lampgreen"
 	item_state = "lampgreen"
 	light_range = 5
 
 /obj/item/device/flashlight/lamp/tripod
-	name = "tripod lamp"
-	desc = "An emergency light tube mounted onto a tripod. It seemingly lasts forever."
+	name = "三脚架灯"
+	desc = "安装在三脚架上的应急灯管，看起来永远不会熄灭。"
 	icon_state = "tripod_lamp"
 	light_range = 6//pretty good
 	light_color = LIGHT_COLOR_XENON
@@ -292,8 +292,8 @@
 	icon_state = "tripod_lamp_grey"
 
 /obj/item/device/flashlight/lamp/verb/toggle_light()
-	set name = "Toggle light"
-	set category = "Object"
+	set name = "开关灯光"
+	set category = "物品"
 	set src in oview(1)
 
 	if(istype(usr, /mob/living/carbon/xenomorph)) //Sneaky xenos turning off the lights
@@ -306,8 +306,8 @@
 // FLARES
 
 /obj/item/device/flashlight/flare
-	name = "flare"
-	desc = "A red USCM issued flare. There are instructions on the side, it reads 'pull cord, make light'."
+	name = "照明棒"
+	desc = "USCM 配发的红色照明棒，侧面的说明写着“拉绳，发光”。"
 	w_class = SIZE_SMALL
 	light_power = 2
 	light_range = 7
@@ -434,7 +434,7 @@
 
 	// Usual checks
 	if(!fuel)
-		to_chat(user, SPAN_NOTICE("It's out of fuel."))
+		to_chat(user, SPAN_NOTICE("燃料耗尽了。"))
 		return FALSE
 	if(on)
 		if(!do_after(user, 2.5 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE, src, INTERRUPT_MOVED, BUSY_ICON_HOSTILE))
@@ -442,8 +442,8 @@
 		if(!on)
 			return
 		var/hand = user.hand ? "l_hand" : "r_hand"
-		user.visible_message(SPAN_WARNING("[user] snuffs out [src]."),\
-		SPAN_WARNING("You snuff out [src], singing your hand."))
+		user.visible_message(SPAN_WARNING("[user]熄灭了[src]。"),\
+		SPAN_WARNING("你熄灭了[src]，烫伤了自己的手。"))
 		user.apply_damage(7, BURN, hand)
 		burn_out()
 		//TODO: add snuff out sound so guerilla CLF snuffing flares get noticed
@@ -452,7 +452,7 @@
 	. = ..()
 	// All good, turn it on.
 	if(.)
-		user.visible_message(SPAN_NOTICE("[user] activates the flare."), SPAN_NOTICE("You pull the cord on the flare, activating it!"))
+		user.visible_message(SPAN_NOTICE("[user]点燃了照明棒。"), SPAN_NOTICE("你拉动照明棒的拉绳，将它点燃！"))
 		playsound(src,'sound/handling/flare_activate_2.ogg', 50, 1) //cool guy sound
 		turn_on()
 		var/mob/living/carbon/enjoyer = user
@@ -472,8 +472,8 @@
 //Special flare subtype for the illumination flare shell
 //Acts like a flare, just even stronger, and set length
 /obj/item/device/flashlight/flare/on/illumination
-	name = "illumination flare"
-	desc = "It's really bright, and unreachable."
+	name = "照明弹"
+	desc = "亮得耀眼，而且够不着。"
 	icon_state = "" //No sprite
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	show_flame = FALSE
@@ -497,8 +497,8 @@
 	return //Nope
 
 /obj/item/device/flashlight/flare/on/starshell_ash
-	name = "burning star shell ash"
-	desc = "Bright burning ash from a Star Shell 40mm. Don't touch, or it'll burn ya'."
+	name = "燃烧的照明弹灰烬"
+	desc = "40 毫米照明弹留下的明亮燃烧灰烬。别碰，会烫伤的。"
 	icon_state = "starshell_ash"
 	anchored = TRUE//can't be picked up
 	ammo_datum = /datum/ammo/flare/starshell
@@ -528,7 +528,7 @@
 			set_light_power(0.5)
 
 /obj/item/device/flashlight/flare/on/illumination/chemical
-	name = "chemical light"
+	name = "化学发光体"
 	light_range = 0
 
 /obj/item/device/flashlight/flare/on/illumination/chemical/Initialize(mapload, amount, color)
@@ -540,21 +540,21 @@
 	fuel = amount * 5 SECONDS
 
 /obj/item/device/flashlight/flare/upp
-	name = "\improper R52 flare"
-	desc = "A red UPPAC-issued flare."
+	name = "\improper R52 照明棒"
+	desc = "UPPAC 配发的红色照明棒。"
 	icon_state = "upp_flare"
 	item_state = "upp_flare"
 
 /obj/item/device/flashlight/flare/rmc
-	name = "L96 flare"
-	desc = "An RMC issued flare that burns in both the visual and ultraviolet spectrum. There are instructions on the side, it reads 'pull cord, make light'."
+	name = "L96 照明棒"
+	desc = "皇家陆战突击队配发的照明棒，燃烧时同时发出可见光和紫外光。侧面的说明写着“拉绳，发光”。"
 	flame_tint = "#d79be5"
 	flame_base_tint = "#6f00ff"
 
 /obj/item/device/flashlight/slime
 	gender = PLURAL
-	name = "glowing slime"
-	desc = "A glowing ball of what appears to be amber."
+	name = "发光黏液"
+	desc = "一个发光的小球，看上去像琥珀。"
 	icon = 'icons/obj/items/lighting.dmi'
 	// not a slime extract sprite but... something close enough!
 	icon_state = "floor1"
@@ -576,15 +576,15 @@
 //******************************Lantern*******************************/
 
 /obj/item/device/flashlight/lantern
-	name = "lantern"
+	name = "矿灯"
 	icon_state = "lantern"
-	desc = "A mining lantern."
+	desc = "一盏采矿用提灯。"
 	light_range = 6 // luminosity when on
 
 //Signal Flare
 /obj/item/device/flashlight/flare/signal
-	name = "signal flare"
-	desc = "A green USCM issued signal flare. The telemetry computer works on chemical reaction that releases smoke and light and thus works only while the flare is burning."
+	name = "信号照明棒"
+	desc = "USCM 配发的绿色信号照明棒。遥测计算机依靠释放烟雾与光的化学反应工作，因此只能在照明棒燃烧时运行。"
 	icon_state = "cas_flare"
 	item_state = "cas_flare"
 	layer = ABOVE_FLY_LAYER
@@ -618,13 +618,13 @@
 	if(faction && GLOB.cas_groups[faction])
 		signal = new(src)
 		signal.target_id = ++GLOB.cas_tracking_id_increment
-		name = "[user.assigned_squad ? user.assigned_squad.name : "X"]-[signal.target_id] flare"
+		name = "[user.assigned_squad ? user.assigned_squad.name : "X"]-[signal.target_id] 信号照明棒"
 		signal.name = name
 		signal.linked_cam = new(loc, name)
 		GLOB.cas_groups[user.faction].add_signal(signal)
 		anchored = TRUE
 		if(activate_message)
-			visible_message(SPAN_DANGER("[src]'s flame reaches full strength. It's fully active now."), null, 5)
+			visible_message(SPAN_DANGER("[src]的火焰达到最大亮度，现已完全启用。"), null, 5)
 		var/turf/target_turf = get_turf(src)
 		msg_admin_niche("Flare target [src] has been activated by [key_name(user, 1)] at ([target_turf.x], [target_turf.y], [target_turf.z]). (<A href='byond://?_src_=admin_holder;[HrefToken(forceGlobal = TRUE)];adminplayerobservecoodjump=1;X=[target_turf.x];Y=[target_turf.y];Z=[target_turf.z]'>JMP LOC</a>)")
 		log_game("Flare target [src] has been activated by [key_name(user, 1)] at ([target_turf.x], [target_turf.y], [target_turf.z]).")
@@ -634,7 +634,7 @@
 	if (!user) return
 
 	if(anchored)
-		to_chat(user, "[src] is too hot. You will burn your hand if you pick it up.")
+		to_chat(user, "[src]太烫了，捡起来会烫伤你的手。")
 		return
 	..()
 
@@ -653,7 +653,7 @@
 	..()
 
 /obj/effect/landmark/rappel
-	name = "Rappel Point"
+	name = "索降点"
 	var/datum/cas_signal/signal
 	invisibility_value = SEE_INVISIBLE_OBSERVER
 	icon_state = "o_green"
@@ -662,7 +662,7 @@
 	. = ..()
 	signal = new(src)
 	signal.target_id = ++GLOB.cas_tracking_id_increment
-	name = "Rappel Point #[signal.target_id]"
+	name = "索降点 #[signal.target_id]"
 	signal.name = name
 	GLOB.cas_groups[FACTION_MARINE].add_signal(signal)
 
@@ -706,8 +706,8 @@
 	anchored = TRUE
 
 /obj/item/device/flashlight/tnr
-	name = "TNR shoulder lamp"
-	desc = "A dismounted TNR shoulder lamp."
+	name = "TNR 肩灯"
+	desc = "一盏拆下来的 TNR 肩灯。"
 	icon = 'icons/obj/items/lighting.dmi'
 	icon_state = "tnr"
 	item_state = "tnr"

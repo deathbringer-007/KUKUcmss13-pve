@@ -1,5 +1,5 @@
 /obj/effect/rappel_rope
-	name = "rope"
+	name = "绳索"
 	icon = 'icons/obj/structures/props/almayer_props.dmi'
 	icon_state = "rope"
 	layer = ABOVE_LYING_MOB_LAYER

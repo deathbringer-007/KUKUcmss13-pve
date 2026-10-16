@@ -1,6 +1,6 @@
 /obj/item/device/defibrillator
-	name = "emergency defibrillator"
-	desc = "A handheld emergency defibrillator, used to restore fibrillating patients. Can optionally bring people back from the dead."
+	name = "急救除颤器"
+	desc = "用于救治心脏发生纤颤患者的手持式急救除颤器。顺带还能让死人复活。"
 	icon_state = "defib"
 	item_state = "defib"
 	flags_atom = FPRINT|CONDUCT
@@ -68,9 +68,9 @@
 	var/currentuses = 0
 	maxuses = floor(dcell.maxcharge / charge_cost)
 	currentuses = floor(dcell.charge / charge_cost)
-	. += SPAN_INFO("It has [currentuses] out of [maxuses] uses left in its internal battery.")
+	. += SPAN_INFO("内置电池剩余可用次数：[currentuses] / [maxuses]。")
 	if(MODE_HAS_TOGGLEABLE_FLAG(MODE_STRONG_DEFIBS) || !blocked_by_suit)
-		. += SPAN_NOTICE("This defibrillator will ignore worn armor.")
+		. += SPAN_NOTICE("此除颤器可穿透护甲使用。")
 
 /obj/item/device/defibrillator/attack_self(mob/living/carbon/human/user)
 	..()
@@ -81,13 +81,13 @@
 	//Job knowledge requirement
 	if (istype(user))
 		if(!skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_MEDIC))
-			to_chat(user, SPAN_WARNING("You don't seem to know how to use [src]..."))
+			to_chat(user, SPAN_WARNING("你似乎不知道如何使用[src]……"))
 			return
 
 	defib_cooldown = world.time + 10 //1 second cooldown every time the defib is toggled
 	ready = !ready
-	user.visible_message(SPAN_NOTICE("[user] turns [src] [ready? "on and takes the paddles out" : "off and puts the paddles back in"]."),
-	SPAN_NOTICE("You turn [src] [ready? "on and take the paddles out" : "off and put the paddles back in"]."))
+	user.visible_message(SPAN_NOTICE("[user]将[src][ready? "开启，并取出电极板" : "关闭，并收回电极板"]。"),
+	SPAN_NOTICE("你将[src][ready? "开启，并取出电极板" : "关闭，并收回电极板"]。"))
 	playsound(get_turf(src), "sparks", 15, 1, 0)
 	if(ready)
 		w_class = SIZE_LARGE
@@ -120,28 +120,28 @@
 
 /obj/item/device/defibrillator/proc/check_revive(mob/living/carbon/human/H, mob/living/carbon/human/user)
 	if(!ishuman(H) || isyautja(H))
-		to_chat(user, SPAN_WARNING("You can't defibrilate [H]. You don't even know where to put the paddles!"))
+		to_chat(user, SPAN_WARNING("你无法给[H]除颤。你甚至不知道该把电极板放在哪里！"))
 		return
 	if(!ready)
-		to_chat(user, SPAN_WARNING("Take [src]'s paddles out first."))
+		to_chat(user, SPAN_WARNING("请先取出[src]的电极板。"))
 		return
 	if(dcell.charge <= charge_cost)
-		user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] \The [src]'s battery is too low! It needs to recharge."))
+		user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] [src]电量过低！需要充电。"))
 		return
 	if(H.stat != DEAD)
-		user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] \The [src] buzzes: Vital signs detected. Aborting."))
+		user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] [src]嗡嗡提示：检测到生命体征。操作中止。"))
 		return
 
 	if(!H.is_revivable())
-		user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] \The [src] buzzes: Patient's general condition does not allow reviving."))
+		user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] [src]嗡嗡提示：患者整体状况不允许复苏。"))
 		return
 
 	if((!MODE_HAS_TOGGLEABLE_FLAG(MODE_STRONG_DEFIBS) && blocked_by_suit) && H.wear_suit && (istype(H.wear_suit, /obj/item/clothing/suit/armor) || istype(H.wear_suit, /obj/item/clothing/suit/storage/marine)) && prob(95))
-		user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interfering."))
+		user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] [src]嗡嗡提示：电极板测得电阻大于 100,000 欧姆。可能原因：外套或护甲阻隔。"))
 		return
 
 	if((!H.check_tod() && !issynth(H))) //synthetic species have no expiration date
-		user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] \The [src] buzzes: Patient is braindead."))
+		user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] [src]嗡嗡提示：患者已脑死亡。"))
 		return
 
 	return TRUE
@@ -158,7 +158,7 @@
 	//job knowledge requirement
 	if(user.skills)
 		if(!skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_MEDIC))
-			to_chat(user, SPAN_WARNING("You don't seem to know how to use [src]..."))
+			to_chat(user, SPAN_WARNING("你似乎不知道如何使用[src]……"))
 			return
 
 	if(!check_revive(H, user))
@@ -167,17 +167,17 @@
 	var/mob/dead/observer/G = H.get_ghost()
 	if(istype(G) && G.client)
 		playsound_client(G.client, 'sound/effects/revive_notify.ogg')
-		to_chat(G, SPAN_BOLDNOTICE(FONT_SIZE_LARGE("Someone is trying to revive your body. Return to it if you want to be resurrected! \
-			(Verbs -> Ghost -> Re-enter corpse, or <a href='byond://?src=\ref[G];reentercorpse=1'>click here!</a>)")))
+		to_chat(G, SPAN_BOLDNOTICE(FONT_SIZE_LARGE("有人正在尝试复苏你的身体。如果想要复活，请返回身体！ \
+			（菜单 → 幽灵 → 返回尸体，或<a href='byond://?src=\ref[G];reentercorpse=1'>点击此处！</a>）")))
 
-	user.visible_message(SPAN_NOTICE("[user] starts setting up the paddles on [H]'s chest"), \
-		SPAN_HELPFUL("You start <b>setting up</b> the paddles on <b>[H]</b>'s chest."))
+	user.visible_message(SPAN_NOTICE("[user]开始将电极板放到[H]胸前。"), \
+		SPAN_HELPFUL("你开始将电极板<b>放到</b><b>[H]</b>胸前。"))
 	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) //Do NOT vary this tune, it needs to be precisely 7 seconds
 
 	//Taking square root not to make defibs too fast...
 	if(!do_after(user, (4 + (3 * user.get_skill_duration_multiplier(SKILL_MEDICAL))) SECONDS, INTERRUPT_NO_NEEDHAND|BEHAVIOR_IMMOBILE, BUSY_ICON_FRIENDLY, H, INTERRUPT_MOVED, BUSY_ICON_MEDICAL))
-		user.visible_message(SPAN_WARNING("[user] stops setting up the paddles on [H]'s chest."), \
-		SPAN_WARNING("You stop setting up the paddles on [H]'s chest."))
+		user.visible_message(SPAN_WARNING("[user]停止将电极板放到[H]胸前。"), \
+		SPAN_WARNING("你停止将电极板放到[H]胸前。"))
 		return
 
 	if(!check_revive(H, user))
@@ -188,9 +188,9 @@
 	dcell.use(charge_cost)
 	update_icon()
 	playsound(get_turf(src), 'sound/items/defib_release.ogg', 25, 1)
-	user.visible_message(SPAN_NOTICE("[user] shocks [H] with the paddles."),
-		SPAN_HELPFUL("You shock <b>[H]</b> with the paddles."))
-	H.visible_message(SPAN_DANGER("[H]'s body convulses a bit."))
+	user.visible_message(SPAN_NOTICE("[user]用电极板对[H]进行电击。"),
+		SPAN_HELPFUL("你用电极板对<b>[H]</b>进行电击。"))
+	H.visible_message(SPAN_DANGER("[H]的身体抽搐了一下。"))
 	shock_cooldown = world.time + 10 //1 second cooldown before you can shock again
 
 	var/datum/internal_organ/heart/heart = H.internal_organs_by_name["heart"]
@@ -198,15 +198,15 @@
 	if(!H.is_revivable())
 		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 25, 0)
 		if(heart && heart.organ_status >= ORGAN_BROKEN)
-			user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] \The [src] buzzes: Defibrillation failed. Patient's heart is too damaged. Immediate surgery is advised."))
+			user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] [src]嗡嗡提示：除颤失败。患者心脏损伤过重，建议立即手术。"))
 			msg_admin_niche("[key_name_admin(user)] failed an attempt to revive [key_name_admin(H)] with [src] because of heart damage.")
 			return
-		user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] \The [src] buzzes: Defibrillation failed. Patient's general condition does not allow reviving."))
+		user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] [src]嗡嗡提示：除颤失败。患者整体状况不允许复苏。"))
 		msg_admin_niche("[key_name_admin(user)] failed an attempt to revive [key_name_admin(H)] with [src].")
 		return
 
 	if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
-		user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] \The [src] buzzes: No soul detected, Attempting to revive..."))
+		user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] [src]嗡嗡提示：未检测到灵魂，正在尝试复苏……"))
 
 	if(isobserver(H.mind?.current) && !H.client) //Let's call up the correct ghost! Also, bodies with clients only, thank you.
 		H.mind.transfer_to(H, TRUE)
@@ -228,7 +228,7 @@
 				H.reagents.remove_reagent(R.id, 1)
 				break
 	if(H.health > HEALTH_THRESHOLD_DEAD)
-		user.visible_message(SPAN_NOTICE("[icon2html(src, viewers(src))] \The [src] beeps: Defibrillation successful."))
+		user.visible_message(SPAN_NOTICE("[icon2html(src, viewers(src))] [src]哔哔提示：除颤成功。"))
 		msg_admin_niche("[key_name_admin(user)] successfully revived [key_name_admin(H)] with [src].")
 		playsound(get_turf(src), 'sound/items/defib_success.ogg', 25, 0)
 		user.track_life_saved(user.job)
@@ -237,19 +237,19 @@
 		if(heart)
 			heart.take_damage(rand(min_heart_damage_dealt, max_heart_damage_dealt), TRUE) // Make death and revival leave lasting consequences
 
-		to_chat(H, SPAN_NOTICE("You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane."))
+		to_chat(H, SPAN_NOTICE("你突然感到一阵电流，意识随之恢复，将你拉回了人世。"))
 		if(H.client?.prefs.toggles_flashing & FLASH_CORPSEREVIVE)
 			window_flash(H.client)
 	else
-		user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] \The [src] buzzes: Defibrillation failed. Vital signs are too weak, repair damage and try again.")) //Freak case
+		user.visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] [src]嗡嗡提示：除颤失败。生命体征过于微弱，请处理损伤后重试。")) //Freak case
 		msg_admin_niche("[key_name_admin(user)] failed an attempt to revive [key_name_admin(H)] with [src] because of weak vitals.")
 		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 25, 0)
 		if(heart && prob(25))
 			heart.take_damage(rand(min_heart_damage_dealt, max_heart_damage_dealt), TRUE) // Make death and revival leave lasting consequences
 
 /obj/item/device/defibrillator/compact_adv
-	name = "advanced compact defibrillator"
-	desc = "An advanced compact defibrillator that trades capacity for strong immediate power. Ignores armor and heals strongly and quickly, at the cost of very low charge. It does not damage the heart."
+	name = "高级袖珍除颤器"
+	desc = "以续航换取强劲瞬时功率的高级袖珍除颤器。可穿透护甲，治疗效果强且速度快，但可用次数很少。不会损伤心脏。"
 	icon = 'icons/obj/items/experimental_tools.dmi'
 	icon_state = "compact_defib"
 	item_state = "defib"
@@ -261,8 +261,8 @@
 	charge_cost = 198
 
 /obj/item/device/defibrillator/compact
-	name = "compact defibrillator"
-	desc ="This particular defibrillator has halved charge capacity compared to the standard emergency defibrillator, but can fit in your pocket."
+	name = "袖珍除颤器"
+	desc ="这款除颤器的电池续航只有标准急救除颤器的一半，但能装进口袋。"
 	icon = 'icons/obj/items/experimental_tools.dmi'
 	icon_state = "compact_defib"
 	item_state = "defib"

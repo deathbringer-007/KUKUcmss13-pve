@@ -18,8 +18,8 @@
 	icon_state = "tracker_blip"
 
 /obj/item/device/motiondetector
-	name = "M314 motion detector"
-	desc = "A military grade, hand-held motion detection device that can penetrate most anything and has an approximate range of 28 meters. Can also be utilized to scan vehicle interiors. This one is programmed to operate with USCM IFF."
+	name = "M314 运动探测器"
+	desc = "军用手持式运动探测设备，信号几乎可以穿透任何障碍，探测范围约为 28 米，也可扫描载具内部。本机配置了 USCM 敌我识别系统。"
 	icon = 'icons/obj/items/marine-items.dmi'
 	icon_state = "detector"
 	item_state = "motion_detector"
@@ -45,7 +45,7 @@
 	COOLDOWN_DECLARE(ping_cooldown)
 
 /obj/item/device/motiondetector/proc/get_help_text()
-	. = "Blue bubble-like indicators on your HUD will show pings locations or direction to them. The device screen will show the amount of unidentified movements detected (up to 9). Has two modes: slow long-range [SPAN_HELPFUL("([MOTION_DETECTOR_RANGE_LONG] tiles)")] and fast short-range [SPAN_HELPFUL("([MOTION_DETECTOR_RANGE_SHORT] tiles)")]. Use [SPAN_HELPFUL("Alt + Click")] on the device to switch between modes. Using the device on the adjacent multitile vehicle will start the process of recalibrating and scanning vehicle interior for unidentified movements inside."
+	. = "抬头显示中的蓝色气泡状标记会指示探测信号的位置或方向。设备屏幕显示探测到的身份不明运动信号数量（最多 9 个）。本机有两种模式：慢速远程[SPAN_HELPFUL("（[MOTION_DETECTOR_RANGE_LONG] 格）")]和快速近程[SPAN_HELPFUL("（[MOTION_DETECTOR_RANGE_SHORT] 格）")]。按住[SPAN_HELPFUL("Alt 并点击")]设备即可切换模式。对相邻的多格载具使用本设备，会开始重新校准并扫描载具内部的身份不明运动信号。"
 
 /obj/item/device/motiondetector/get_examine_text(mob/user)
 	. = ..()
@@ -89,13 +89,13 @@
 		overlays += "+[initial(icon_state)]_short_switch"
 
 /obj/item/device/motiondetector/verb/toggle_range_mode()
-	set name = "Toggle Range Mode"
-	set category = "Object"
+	set name = "切换探测范围"
+	set category = "物品"
 	set src in usr
 	if(!long_range_locked)
 		toggle_mode(usr)
 	else
-		to_chat(usr, SPAN_WARNING("ERROR: 'SHORT-RANGE' MODE NOT LOCATED."))
+		to_chat(usr, SPAN_WARNING("错误：未找到“近程”模式。"))
 
 /obj/item/device/motiondetector/proc/toggle_mode(mob/user)
 	if(isobserver(user) || isxeno(user) || !Adjacent(user))
@@ -103,10 +103,10 @@
 
 	detector_mode = !detector_mode
 	if(detector_mode)
-		to_chat(user, SPAN_NOTICE("You switch [src] to short-range mode."))
+		to_chat(user, SPAN_NOTICE("你将[src]切换为近程模式。"))
 		detector_range = 7
 	else
-		to_chat(user, SPAN_NOTICE("You switch [src] to long-range mode."))
+		to_chat(user, SPAN_NOTICE("你将[src]切换为远程模式。"))
 		detector_range = 14
 	update_icon()
 	playsound(usr,'sound/machines/click.ogg', 15, TRUE)
@@ -120,7 +120,7 @@
 		if(!long_range_locked)
 			toggle_mode(usr)
 		else
-			to_chat(usr, SPAN_WARNING("ERROR: 'SHORT-RANGE' MODE NOT LOCATED."))
+			to_chat(usr, SPAN_WARNING("错误：未找到“近程”模式。"))
 		return TRUE
 
 	return ..()
@@ -142,17 +142,17 @@
 
 /obj/item/device/motiondetector/proc/turn_on(mob/user, forced = FALSE)
 	if(forced)
-		visible_message(SPAN_NOTICE("\The [src] turns on."), SPAN_NOTICE("You hear a beep."), 3)
+		visible_message(SPAN_NOTICE("[src]启动了。"), SPAN_NOTICE("你听到一声哔声。"), 3)
 	else if(user)
-		to_chat(user, SPAN_NOTICE("You activate \the [src]."))
+		to_chat(user, SPAN_NOTICE("你启动了[src]。"))
 	playsound(loc, 'sound/items/detector_turn_on.ogg', 30, FALSE, 5, 2)
 	START_PROCESSING(SSfastobj, src)
 
 /obj/item/device/motiondetector/proc/turn_off(mob/user, forced = FALSE)
 	if(forced)
-		visible_message(SPAN_NOTICE("\The [src] shorts out."), SPAN_NOTICE("You hear a click."), 3)
+		visible_message(SPAN_NOTICE("[src]短路了。"), SPAN_NOTICE("你听到一声咔哒声。"), 3)
 	else if(user)
-		to_chat(user, SPAN_NOTICE("You deactivate \the [src]."))
+		to_chat(user, SPAN_NOTICE("你关闭了[src]。"))
 	scanning = FALSE // safety if MD runtimes in scan and stops scanning
 	icon_state = "[initial(icon_state)]"
 	playsound(loc, 'sound/items/detector_turn_off.ogg', 30, FALSE, 5, 2)
@@ -302,16 +302,16 @@
 
 
 /obj/item/device/motiondetector/upp
-	name = "UDO-58 motion detector"
-	desc = "Ustroystvo Dalnego Obnaruzhenia/Long Range Detection Device. A military grade, hand-held motion detection device designed not long after its analogue in the USCM was developed. The device can penetrate most anything and has an approximate range of 28 meters. Can also be utilized to scan vehicle interiors. This one is programmed to operate with UPPAC Naval Infantry IFF."
+	name = "UDO-58 运动探测器"
+	desc = "UDO，即“远程探测设备”。这款军用手持式运动探测器在 USCM 同类设备问世后不久研制而成。信号几乎可以穿透任何障碍，探测范围约为 28 米，也可扫描载具内部。本机配置了 UPPAC 海军步兵的敌我识别系统。"
 	icon = 'icons/obj/items/upp-items.dmi'
 	icon_state = "detector"
 	item_state = "upp_motion_detector"
 	iff_signal = FACTION_UPP
 
 /obj/item/device/motiondetector/m717
-	name = "M717 pocket motion detector"
-	desc = "This prototype motion detector sacrifices versatility, having only the long-range mode, for size, being so small it can even fit in pockets."
+	name = "M717 袖珍运动探测器"
+	desc = "这款运动探测器原型以功能换取小巧体积，仅保留远程模式，小到可以放进口袋。"
 	icon_state = "pocket"
 	item_state = "motion_detector"
 	flags_atom = FPRINT| CONDUCT
@@ -321,38 +321,38 @@
 	long_range_locked = TRUE
 
 /obj/item/device/motiondetector/m717/hacked/contractor
-	name = "modified M717 pocket motion detector"
-	desc = "This prototype motion detector sacrifices versatility, having only the long-range mode, for size, being so small it can even fit in pockets. This one has been modified with an after-market IFF sensor to filter out Vanguard's Arrow Incorporated signals instead of USCM ones. Fight fire with fire!"
+	name = "改装型 M717 袖珍运动探测器"
+	desc = "这款运动探测器原型以功能换取小巧体积，仅保留远程模式，小到可以放进口袋。本机加装了非原厂敌我识别传感器，将过滤先锋之箭公司的信号，而非 USCM 的信号。以其人之道，还治其人之身！"
 	iff_signal = FACTION_CONTRACTOR
 
 /obj/item/device/motiondetector/hacked
-	name = "hacked M314 motion detector"
-	desc = "A device that usually picks up non-USCM signals, but this one's been hacked to detect all non-UPP movement instead. Fight fire with fire!"
+	name = "破解型 M314 运动探测器"
+	desc = "这类设备通常探测非 USCM 的信号，但本机已被破解，改为探测所有非 UPP 的运动信号。以其人之道，还治其人之身！"
 	iff_signal = FACTION_UPP
 
 /obj/item/device/motiondetector/hacked/elite_merc
-	name = "hacked M314 motion detector"
-	desc = "A device that usually picks up non-USCM signals, but this one's been hacked to detect all non-freelancer movement instead. Fight fire with fire!"
+	name = "破解型 M314 运动探测器"
+	desc = "这类设备通常探测非 USCM 的信号，但本机已被破解，改为探测所有非自由佣兵的运动信号。以其人之道，还治其人之身！"
 	iff_signal = FACTION_MERCENARY
 
 /obj/item/device/motiondetector/hacked/pmc
-	name = "corporate M314 motion detector"
-	desc = "A device that usually picks up non-USCM signals, but this one's been reprogrammed to detect all non-PMC movement instead. Very corporate."
+	name = "公司型 M314 运动探测器"
+	desc = "这类设备通常探测非 USCM 的信号，但本机已被重新编程，改为探测所有非私人军事承包商的运动信号。很有公司的作风。"
 	iff_signal = FACTION_PMC
 
 /obj/item/device/motiondetector/hacked/dutch
-	name = "hacked M314 motion detector"
-	desc = "A device that usually picks up non-USCM signals, but this one's been hacked to detect all non-Dutch's Dozen movement instead. Fight fire with fire!"
+	name = "破解型 M314 运动探测器"
+	desc = "这类设备通常探测非 USCM 的信号，但本机已被破解，改为探测所有非达奇十二人组的运动信号。以其人之道，还治其人之身！"
 	iff_signal = FACTION_DUTCH
 
 /obj/item/device/motiondetector/hacked/contractor
-	name = "modified M314 motion detector"
-	desc = "A device that usually picks up non-USCM signals, but this one's been modified with after-market IFF sensors to detect all non-Vanguard's Arrow Incorporated movement instead. Fight fire with fire!"
+	name = "改装型 M314 运动探测器"
+	desc = "这类设备通常探测非 USCM 的信号，但本机加装了非原厂敌我识别传感器，改为探测所有非先锋之箭公司的运动信号。以其人之道，还治其人之身！"
 	iff_signal = FACTION_CONTRACTOR
 
 /obj/item/device/motiondetector/hacked/twe
-	name = "L107 motion detector"
-	desc = "A military grade, hand-held motion detection device that can penetrate most anything and has an approximate range of 28 meters. Can also be utilized to scan vehicle interiors. This one is programmed to operate with RMC IFF."
+	name = "L107 运动探测器"
+	desc = "军用手持式运动探测设备，信号几乎可以穿透任何障碍，探测范围约为 28 米，也可扫描载具内部。本机配置了皇家陆战突击队的敌我识别系统。"
 	iff_signal = FACTION_TWE
 
 #undef MOTION_DETECTOR_RANGE_LONG

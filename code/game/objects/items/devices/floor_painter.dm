@@ -1,5 +1,5 @@
 /obj/item/device/floor_painter
-	name = "floor painter"
+	name = "地板喷漆器"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "labeler1"
 	item_state = "flight"
@@ -78,17 +78,92 @@
 				F.setDir(0)
 				F.icon_state = mode
 		else
-			to_chat(usr, "You can't paint that!")
+			to_chat(usr, "无法给它喷漆！")
+
+/obj/item/device/floor_painter/proc/pattern_label(pattern)
+	if(isnull(pattern))
+		return null
+	var/is_corner = copytext(pattern, -7) == " corner"
+	if(is_corner)
+		pattern = copytext(pattern, 1, -7)
+	var/static/list/pattern_labels = list(
+		"solid" = "纯色",
+		"corner" = "边角",
+		"opposite corners" = "对角",
+		"side/three corners" = "侧边／三个角",
+		"special" = "特殊",
+		"letters" = "字母",
+		"standard" = "标准",
+		"dark" = "深色",
+		"red" = "红色",
+		"blue" = "蓝色",
+		"green" = "绿色",
+		"yellow" = "黄色",
+		"purple" = "紫色",
+		"neutral" = "中性色",
+		"white" = "白色",
+		"black" = "黑色",
+		"white-red" = "白红",
+		"white-blue" = "白蓝",
+		"white-green" = "白绿",
+		"white-yellow" = "白黄",
+		"white-purple" = "白紫",
+		"white-grey" = "白灰",
+		"freezer" = "冷库",
+		"hydro" = "水培室",
+		"showroom" = "展示厅",
+		"bar" = "酒吧",
+		"cmo" = "首席医疗官办公室",
+		"yellowpatch" = "黄色色块",
+		"cafeteria" = "食堂",
+		"red-yellow" = "红黄",
+		"red-blue" = "红蓝",
+		"red-green" = "红绿",
+		"green-yellow" = "绿黄",
+		"green-blue" = "绿蓝",
+		"blue-yellow" = "蓝黄",
+		"blue-red" = "蓝红",
+		"white side" = "白色侧边",
+		"arrival" = "抵达区",
+		"escape" = "逃生区",
+		"caution" = "注意",
+		"warning" = "警告",
+		"white-warning" = "白色警告",
+		"warnwhite" = "白色警告",
+		"white-blue-green" = "白蓝绿",
+		"loadingarea" = "装卸区",
+		"delivery" = "配送区",
+		"bot" = "机器人区",
+		"white-delivery" = "白色配送区",
+		"white-bot" = "白色机器人区",
+		"SA (red)" = "SA（红色）",
+		"SB (red)" = "SB（红色）",
+		"SC (red)" = "SC（红色）",
+		"W (red)" = "W（红色）",
+		"V (green)" = "V（绿色）",
+		"Ex (blue)" = "Ex（蓝色）",
+	)
+	var/label = pattern_labels[pattern] || pattern
+	return is_corner ? "[label]边角" : label
+
+/obj/item/device/floor_painter/proc/select_pattern(mob/user, prompt, list/patterns)
+	var/list/display_options = list()
+	for(var/pattern in patterns)
+		display_options[pattern_label(pattern)] = pattern
+	var/selection = tgui_input_list(user, prompt, "地板喷漆器", display_options)
+	if(isnull(selection))
+		return null
+	return display_options[selection]
 
 /obj/item/device/floor_painter/attack_self(mob/user)
 	..()
-	var/type = tgui_input_list(usr, "What type of floor?", "Floor painter", list("solid", "corner", "opposite corners", "side/three corners", "special", "letters"))
+	var/type = select_pattern(usr, "请选择地板图案类型。", list("solid", "corner", "opposite corners", "side/three corners", "special", "letters"))
 	tile_dir_mode = 0
 
 	switch(type)
 		if("solid")
 			tile_dir_mode = 0
-			var/design = tgui_input_list(usr, "Which color?", "Floor painter", list("standard", "dark", "red", "blue", "green", "yellow", "purple", "neutral", "white", "white-red", "white-blue", "white-green", "white-yellow", "white-purple", "freezer", "hydro", "showroom"))
+			var/design = select_pattern(usr, "请选择颜色。", list("standard", "dark", "red", "blue", "green", "yellow", "purple", "neutral", "white", "white-red", "white-blue", "white-green", "white-yellow", "white-purple", "freezer", "hydro", "showroom"))
 			if(design == "standard")
 				mode = "floor"
 				mode_nice = "standard"
@@ -104,12 +179,12 @@
 			mode_nice = design
 			mode = "[replacetext(design, "-", "")]full"
 		if("corner")
-			var/design = tgui_input_list(usr, "Which design?", "Floor painter", list("black", "red", "blue", "green", "yellow", "purple", "neutral", "white", "white-grey", "white-red", "white-blue", "white-green", "white-yellow", "white-purple"))
+			var/design = select_pattern(usr, "请选择图案。", list("black", "red", "blue", "green", "yellow", "purple", "neutral", "white", "white-grey", "white-red", "white-blue", "white-green", "white-yellow", "white-purple"))
 			mode_nice = "[design] corner"
 			mode = "[replacetext(design, "-", "")]corner"
 			tile_dir_mode = 2
 		if("opposite corners")
-			var/design = tgui_input_list(usr, "Which design?", "Floor painter", list("bar", "cmo", "yellowpatch", "cafeteria", "red-yellow", "red-blue", "red-green", "green-yellow", "green-blue", "blue-yellow"))
+			var/design = select_pattern(usr, "请选择图案。", list("bar", "cmo", "yellowpatch", "cafeteria", "red-yellow", "red-blue", "red-green", "green-yellow", "green-blue", "blue-yellow"))
 			mode_nice = design
 			if(design == "bar" || design == "cmo" || design == "yellowpatch" || design == "cafeteria")
 				mode = design
@@ -120,7 +195,7 @@
 			else
 				tile_dir_mode = 0
 		if("side/three corners")
-			var/design = tgui_input_list(usr, "Which design?", "Floor painter", list("black", "red", "blue", "green", "yellow", "purple", "neutral", "white", "white-red", "white-blue", "white-green", "white-yellow", "white-purple", "red-yellow", "red-blue", "blue-red", "red-green", "green-yellow", "green-blue", "blue-yellow"))
+			var/design = select_pattern(usr, "请选择图案。", list("black", "red", "blue", "green", "yellow", "purple", "neutral", "white", "white-red", "white-blue", "white-green", "white-yellow", "white-purple", "red-yellow", "red-blue", "blue-red", "red-green", "green-yellow", "green-blue", "blue-yellow"))
 			if(design == "white")
 				mode = "whitehall"
 				mode_nice = "white side"
@@ -130,7 +205,7 @@
 				mode = replacetext(design, "-", "")
 				tile_dir_mode = 1
 		if("special")
-			var/design = tgui_input_list(usr, "Which design?", "Floor painter", list("arrival", "escape", "caution", "warning", "white-warning", "white-blue-green", "loadingarea", "delivery", "bot", "white-delivery", "white-bot"))
+			var/design = select_pattern(usr, "请选择图案。", list("arrival", "escape", "caution", "warning", "white-warning", "white-blue-green", "loadingarea", "delivery", "bot", "white-delivery", "white-bot"))
 			if(design == "white-blue-green")
 				mode_nice = design
 				mode = "whitebluegreencorners"
@@ -147,7 +222,7 @@
 				if(design == "white-warning")
 					mode_nice = design
 					design = "warnwhite"
-				var/s_corner = alert("Do you want to paint a single corner of the tile?", "Floor painter","Yes","No") == "Yes"
+				var/s_corner = alert("只给地砖的一个角喷漆吗？", "地板喷漆器","是","否") == "是"
 				if(s_corner)
 					mode_nice = "[design] corner"
 					mode = "[design]corner"
@@ -160,7 +235,7 @@
 					mode = design
 					tile_dir_mode = 1
 		if("letters")
-			var/which = tgui_input_list(usr, "Which letters/design?", "Floor painter", list("A1", "A2", "DI", "SA", "SA (red)", "SB", "SB (red)", "SC", "SC (red)", "W (red)", "V (green)", "Psy", "Ex", "Ex (blue)", "CMO", "O (OP)", "P (OP)"))
+			var/which = select_pattern(usr, "请选择字母或图案。", list("A1", "A2", "DI", "SA", "SA (red)", "SB", "SB (red)", "SC", "SC (red)", "W (red)", "V (green)", "Psy", "Ex", "Ex (blue)", "CMO", "O (OP)", "P (OP)"))
 			mode_nice = which
 			switch(which)
 				if("A1")
@@ -206,4 +281,4 @@
 
 /obj/item/device/floor_painter/get_examine_text(mob/user)
 	. = ..()
-	. += "It is in [mode_nice] mode."
+	. += "当前模式：[pattern_label(mode_nice)]。"

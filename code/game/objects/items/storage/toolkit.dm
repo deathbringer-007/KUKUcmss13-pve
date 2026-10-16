@@ -1,6 +1,6 @@
 /obj/item/storage/toolkit
-	name = "engineer kit"
-	desc = "An combat engineering toolkit intended to carry electrical and mechanical supplies into combat."
+	name = "工兵工具包"
+	desc = "用于携带电气和机械物资进入战场的战斗工程工具包。"
 	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "toolkit"
 	item_state = "fulton"

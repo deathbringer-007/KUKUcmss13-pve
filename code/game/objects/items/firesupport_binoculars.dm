@@ -1,6 +1,6 @@
 /obj/item/device/binoculars/fire_support
-	name = "tactical binoculars"
-	desc = "A pair of binoculars, used to mark targets for fire support. Ctrl+Click on binoculars while not zoomed to change mode. Ctrl+Click on a target while zoomed to track and fire at it. Cooldowns between modes are not shared"
+	name = "战术望远镜"
+	desc = "用于标记火力支援目标的望远镜。未放大视野时，按住Ctrl点击望远镜可切换模式；放大视野时，按住Ctrl点击目标可追踪并呼叫火力打击。各模式的冷却时间独立计算。"
 	icon = 'icons/obj/items/binoculars.dmi'
 	icon_state = "advanced_binoculars"
 	w_class = SIZE_SMALL
@@ -69,13 +69,13 @@
 /obj/item/device/binoculars/fire_support/get_examine_text(mob/user)
 	. = ..()
 	if(faction)
-		. += SPAN_BOLDNOTICE("[GLOB.fire_support_points[faction]] points left.")
+		. += SPAN_BOLDNOTICE("剩余[GLOB.fire_support_points[faction]]点火力支援点数。")
 	if(!mode)
 		return
-	. += SPAN_BOLDNOTICE("They are currently set to [mode.name] mode.")
+	. += SPAN_BOLDNOTICE("当前设为[mode.name]模式。")
 	if(!mode.cooldown_timer)
 		return
-	. += SPAN_WARNING("Available in [round(timeleft(mode.cooldown_timer) * 0.10)] seconds.")
+	. += SPAN_WARNING("[round(timeleft(mode.cooldown_timer) * 0.10)]秒后可用。")
 
 /obj/item/device/binoculars/fire_support/Destroy()
 	unset_target()
@@ -125,7 +125,7 @@
 		if(mode_list[option].name != mode_selected)
 			continue
 		mode = mode_list[option]
-		user.balloon_alert(user, "[mode_selected] mode")
+		user.balloon_alert(user, "[mode_selected]模式")
 	update_icon()
 
 ///lases a target and calls fire support on it
@@ -133,24 +133,24 @@
 	set waitfor = 0
 	if(!usable_shipside)
 		if(is_mainship_level(user.z))
-			user.balloon_alert(user, "can't use here")
+			user.balloon_alert(user, "这里无法使用")
 			return
 	if(laser_overlay)
-		to_chat(user, SPAN_WARNING("You're already targeting something."))
+		to_chat(user, SPAN_WARNING("你已经在瞄准一个目标了。"))
 		return
 	if(!bino_checks(target, user))
 		return
 	if(!can_see_target(target, user))
-		balloon_alert_to_viewers("no clear view")
+		balloon_alert_to_viewers("视线受阻")
 		return
 
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
-	to_chat(user, SPAN_NOTICE("INITIATING LASER TARGETING. Stand still."))
+	to_chat(user, SPAN_NOTICE("开始激光瞄准。请保持不动。"))
 	target_atom = target
 	laser_overlay = image('icons/obj/items/weapons/projectiles.dmi', icon_state = "laser_target2", layer =-LASER_LAYER)
 	target_atom.apply_fire_support_laser(laser_overlay)
 	if(!do_after(user, target_acquisition_delay, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_see_target), target, user)))
-		to_chat(user, SPAN_DANGER("You lose sight of your target!"))
+		to_chat(user, SPAN_DANGER("你丢失了目标视野！"))
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 		unset_target()
 		return
@@ -166,28 +166,28 @@
 	mode.initiate_fire_support(get_turf(target_atom), user)
 	if(faction)
 		GLOB.fire_support_points[faction] -= mode.cost
-		balloon_alert_to_viewers("[GLOB.fire_support_points[faction]] points left")
-	notify_ghosts(header = "Fire support", message = "[user] has fired [mode.name] to [target_atom.x],[target_atom.y],[target_atom.z] towards [target_atom]", source = target_atom, action = NOTIFY_JUMP)
+		balloon_alert_to_viewers("剩余[GLOB.fire_support_points[faction]]点火力支援点数")
+	notify_ghosts(header = "火力支援", message = "[user]对坐标[target_atom.x],[target_atom.y],[target_atom.z]的[target_atom]呼叫了[mode.name]打击。", source = target_atom, action = NOTIFY_JUMP)
 	unset_target()
 
 ///Internal bino checks, mainly around firemode
 /obj/item/device/binoculars/fire_support/proc/bino_checks(atom/target, mob/living/user)
 	if(!mode)
-		balloon_alert_to_viewers("select a mode!")
+		balloon_alert_to_viewers("请先选择模式！")
 		return FALSE
 	if(!(mode.fire_support_flags & FIRESUPPORT_AVAILABLE))
-		balloon_alert_to_viewers("[mode.name] unavailable")
+		balloon_alert_to_viewers("[mode.name]不可用")
 		return FALSE
 	if(faction)
 		if(GLOB.fire_support_points[faction] < mode.cost)
-			balloon_alert_to_viewers("not enough fire support points")
+			balloon_alert_to_viewers("火力支援点数不足")
 			return FALSE
 	if(mode.cooldown_timer)
-		balloon_alert_to_viewers("on cooldown")
+		balloon_alert_to_viewers("冷却中")
 		return FALSE
 	var/area/targ_area = get_area(target)
 	if(targ_area.ceiling >= CEILING_UNDERGROUND_BLOCK_CAS)
-		to_chat(user, SPAN_WARNING("DEPTH WARNING: Target too deep for ordnance."))
+		to_chat(user, SPAN_WARNING("深度警告：目标位于地下过深处，弹药无法抵达。"))
 		return FALSE
 	return TRUE
 
@@ -217,7 +217,7 @@
 ///Acquires coords of a target turf
 /obj/item/device/binoculars/fire_support/proc/acquire_coordinates(atom/A, mob/living/carbon/human/user)
 	var/turf/target_turf = get_turf(A)
-	to_chat(user, SPAN_NOTICE("COORDINATES: LONGITUDE [target_turf.x]. LATITUDE [target_turf.y]."))
+	to_chat(user, SPAN_NOTICE("坐标：经度[target_turf.x]，纬度[target_turf.y]。"))
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 
 ///Sets a laser overlay for fire support binos

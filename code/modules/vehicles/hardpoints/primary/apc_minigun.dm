@@ -1,6 +1,6 @@
 /obj/item/hardpoint/primary/gshk_minigun
-	name = "\improper Gshk-5000.K minigun"
-	desc = "Electric rotor Gatling gun. Originating from a man-portable design, the Gshk-5000.K is an anti-personnel system that provides effective fire support and suppression. Unlike the American GAU-8, the Gshk-5000.K uses an electrical pulse action in place of hypergolic liquid fuels."
+	name = "\improper Gshk-5000.K转管机枪"
+	desc = "电动转管加特林机枪。Gshk-5000.K源自单兵携行设计，是提供有效火力支援与压制的反人员系统。与美国GAU-8不同，它使用电脉冲机构，取代了自燃液体燃料。"
 	icon = 'icons/obj/vehicles/hardpoints/uppapc.dmi'
 
 	icon_state = "apc_minigun"

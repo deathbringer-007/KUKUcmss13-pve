@@ -1,8 +1,8 @@
 //Also contains /obj/structure/closet/bodybag because I doubt anyone would think to look for bodybags in /object/structures
 
 /obj/item/bodybag
-	name = "body bag"
-	desc = "A folded bag designed for the storage and transportation of cadavers."
+	name = "裹尸袋"
+	desc = "折叠起来的袋子，用于存放和运输尸体。"
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "bodybag_folded"
 	w_class = SIZE_SMALL
@@ -29,8 +29,8 @@
 
 
 /obj/item/bodybag/cryobag
-	name = "stasis bag"
-	desc = "A folded, reusable bag designed to prevent additional damage to an occupant."
+	name = "休眠袋"
+	desc = "折叠起来的可重复使用袋子，能防止袋内人员的伤势进一步恶化。"
 	icon = 'icons/obj/cryobag.dmi'
 	icon_state = "bodybag_folded"
 	unfolded_path = /obj/structure/closet/bodybag/cryobag
@@ -43,8 +43,8 @@
 		used = CB.used
 
 /obj/item/storage/box/bodybags
-	name = "body bags box"
-	desc = "This box contains body bags."
+	name = "裹尸袋箱"
+	desc = "箱内装有裹尸袋。"
 	icon_state = "bodybags"
 	w_class = SIZE_LARGE
 	can_hold = list(/obj/item/bodybag)
@@ -54,9 +54,9 @@
 		new /obj/item/bodybag(src)
 
 /obj/structure/closet/bodybag
-	name = "body bag"
-	var/bag_name = "body bag"
-	desc = "A plastic bag designed for the storage and transportation of cadavers."
+	name = "裹尸袋"
+	var/bag_name = "裹尸袋"
+	desc = "用于存放和运输尸体的塑料袋。"
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "bodybag_closed"
 	icon_closed = "bodybag_closed"
@@ -88,9 +88,9 @@
 	else
 		var/mob/living/carbon/human/H = locate() in contents
 		if(H)
-			name = "[bag_name] ([H.get_visible_name()])"
+			name = "[bag_name]（[H.get_visible_name()]）"
 		else
-			name = "[bag_name] (empty)"
+			name = "[bag_name]（空）"
 
 /obj/structure/closet/bodybag/attackby(obj/item/W, mob/user)
 	if(HAS_TRAIT(W, TRAIT_TOOL_PEN))
@@ -98,20 +98,20 @@
 		var/datum/component/label/labelcomponent = src.GetComponent(/datum/component/label)
 		if(labelcomponent)
 			prior_label_text = labelcomponent.label_name
-		var/tmp_label = sanitize(input(user, "Enter a label for [name]","Label", prior_label_text))
+		var/tmp_label = sanitize(input(user, "为[name]输入标签内容","标签", prior_label_text))
 		if(tmp_label == "" || !tmp_label)
-			to_chat(user, SPAN_NOTICE("You're going to need to use wirecutters to remove the label."))
+			to_chat(user, SPAN_NOTICE("你需要用剪线钳剪掉标签。"))
 			return
 		if(length(tmp_label) > MAX_NAME_LEN)
-			to_chat(user, SPAN_WARNING("The label can be at most [MAX_NAME_LEN] characters long."))
+			to_chat(user, SPAN_WARNING("标签最多可包含[MAX_NAME_LEN]个字符。"))
 		else
-			user.visible_message(SPAN_NOTICE("[user] labels [src] as \"[tmp_label]\"."), \
-			SPAN_NOTICE("You label [src] as \"[tmp_label]\"."))
+			user.visible_message(SPAN_NOTICE("[user]给[src]贴上了“[tmp_label]”的标签。"), \
+			SPAN_NOTICE("你给[src]贴上了“[tmp_label]”的标签。"))
 			AddComponent(/datum/component/label, tmp_label)
 			playsound(src, "paper_writing", 15, TRUE)
 		return
 	else if(HAS_TRAIT(W, TRAIT_TOOL_WIRECUTTERS))
-		to_chat(user, SPAN_NOTICE("You cut the tag off the bodybag."))
+		to_chat(user, SPAN_NOTICE("你剪掉了裹尸袋上的标签。"))
 		src.overlays.Cut()
 		var/datum/component/label/labelcomponent = src.GetComponent(/datum/component/label)
 		if(labelcomponent)
@@ -149,7 +149,7 @@
 	if(!opened)
 		open_cooldown = world.time + 10 //1s cooldown for opening and closing, stop that spam! - stan_albatross
 	if(opened && open_cooldown > world.time)
-		to_chat(user, SPAN_WARNING("\The [src] has been opened too recently!"))
+		to_chat(user, SPAN_WARNING("[src]刚刚打开，请稍等片刻！"))
 		return
 	. = ..()
 
@@ -170,7 +170,7 @@
 	if(over_object == usr && Adjacent(usr) && !roller_buckled)
 		if(!ishuman(usr)) return
 		if(length(contents)) return 0
-		visible_message(SPAN_NOTICE("[usr] folds up [name]."))
+		visible_message(SPAN_NOTICE("[usr]折起了[name]。"))
 		var/obj/item/I = new item_path(get_turf(src), src)
 		usr.put_in_hands(I)
 		qdel(src)
@@ -206,9 +206,9 @@
 
 
 /obj/structure/closet/bodybag/cryobag
-	name = "stasis bag"
-	bag_name = "stasis bag"
-	desc = "A reusable plastic bag designed to prevent additional damage to an occupant."
+	name = "休眠袋"
+	bag_name = "休眠袋"
+	desc = "可重复使用的塑料袋，能防止袋内人员的伤势进一步恶化。"
 	icon = 'icons/obj/cryobag.dmi'
 	item_path = /obj/item/bodybag/cryobag
 	store_items = FALSE
@@ -229,7 +229,7 @@
 	if(!istype(I, /obj/item/device/healthanalyzer))
 		return
 	if(!stasis_mob)
-		to_chat(user, SPAN_WARNING("The stasis bag is empty!"))
+		to_chat(user, SPAN_WARNING("休眠袋是空的！"))
 		return
 	var/obj/item/device/healthanalyzer/J = I
 	J.attack(stasis_mob, user) // yes this is awful -spookydonut
@@ -295,7 +295,7 @@
 	if(stasis_mob.stat == DEAD)// || !stasis_mob.key || !stasis_mob.client) // stop using cryobags for corpses and SSD/Ghosted
 		STOP_PROCESSING(SSobj, src)
 		open()
-		visible_message(SPAN_NOTICE("\The [src] rejects the corpse."))
+		visible_message(SPAN_NOTICE("[src]将尸体排了出来。"))
 		return
 	if(used > last_use) //cryostasis takes a couple seconds to kick in.
 		if(!stasis_mob.in_stasis)
@@ -311,17 +311,17 @@
 		for(var/datum/data/record/R as anything in GLOB.data_core.medical)
 			if (R.fields["ref"] == stasis_ref)
 				if(!(R.fields["last_scan_time"]))
-					. += "<span class = 'deptradio'>No scan report on record</span>\n"
+					. += "<span class = 'deptradio'>没有已记录的扫描报告</span>\n"
 				else
-					. += "<span class = 'deptradio'><a href='byond://?src=\ref[src];scanreport=1'>Scan from [R.fields["last_scan_time"]]</a></span>\n"
+					. += "<span class = 'deptradio'><a href='byond://?src=\ref[src];scanreport=1'>[R.fields["last_scan_time"]]的扫描报告</a></span>\n"
 				break
 
 
 
 	switch(used)
-		if(0 to 600) . += "It looks new."
-		if(601 to 1200) . += "It looks a bit used."
-		if(1201 to 1800) . += "It looks really used."
+		if(0 to 600) . += "看起来是全新的。"
+		if(601 to 1200) . += "看起来有些使用痕迹。"
+		if(1201 to 1800) . += "看起来已经损耗严重。"
 
 /obj/structure/closet/bodybag/cryobag/Topic(href, href_list)
 	. = ..()
@@ -330,10 +330,10 @@
 	if (href_list["scanreport"])
 		if(hasHUD(usr,"medical"))
 			if(!skillcheck(usr, SKILL_MEDICAL, SKILL_MEDICAL_MEDIC))
-				to_chat(usr, SPAN_WARNING("You're not trained to use this."))
+				to_chat(usr, SPAN_WARNING("你没有受过使用此设备的训练。"))
 				return
 			if(get_dist(usr, src) > 7)
-				to_chat(usr, SPAN_WARNING("[src] is too far away."))
+				to_chat(usr, SPAN_WARNING("[src]离得太远了。"))
 				return
 			if(ishuman(stasis_mob))
 				var/mob/living/carbon/human/H = stasis_mob
@@ -348,7 +348,7 @@
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "HealthScan", "Last Medical Scan of [human]")
+		ui = new(user, src, "HealthScan", "[human]最近一次的医疗扫描")
 		ui.open()
 		ui.set_autoupdate(FALSE)
 
@@ -365,7 +365,7 @@
 	return GLOB.not_incapacitated_state
 
 /obj/item/trash/used_stasis_bag
-	name = "used stasis bag"
+	name = "用过的休眠袋"
 	icon = 'icons/obj/cryobag.dmi'
 	icon_state = "bodybag_used"
-	desc = "It's been ripped open. You will need to find a machine capable of recycling it."
+	desc = "已经被撕开了。你需要找一台能回收它的机器。"

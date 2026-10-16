@@ -1,8 +1,8 @@
 
 
 /obj/item/clothing/shoes/marine
-	name = "\improper USCM combat boots"
-	desc = "A pair of standard issue black United States Colonial Marine combat boots."
+	name = "\improper USCM 作战靴"
+	desc = "一双美国殖民地陆战队制式黑色作战靴。"
 	icon_state = "marine"
 	item_state = "marine"
 	armor_melee = CLOTHING_ARMOR_MEDIUM
@@ -43,32 +43,32 @@
 
 /obj/item/clothing/shoes/marine/brown
 	icon_state = "marine_brown"
-	desc = "A pair of standard issue brown United States Colonial Marine combat boots."
+	desc = "一双美国殖民地陆战队制式棕色作战靴。"
 
 /obj/item/clothing/shoes/marine/brown/knife
 	spawn_item_type = /obj/item/weapon/knife/marine
 
 /obj/item/clothing/shoes/marine/jungle
 	icon_state = "marine_jungle"
-	desc = "A pair of standard issue United States Colonial Marine jungle boots. Don't go walkin' slow, the devil's on the loose."
+	desc = "一双美国殖民地陆战队制式丛林靴。别慢吞吞地走，恶魔已经出笼了。"
 
 /obj/item/clothing/shoes/marine/jungle/knife
 	spawn_item_type = /obj/item/weapon/knife/marine
 
 /obj/item/clothing/shoes/marine/army
-	name = "\improper US Army combat boots"
-	desc = "A pair of standard issue black United States Army combat boots."
+	name = "\improper 美国陆军作战靴"
+	desc = "一双美国陆军制式黑色作战靴。"
 
 /obj/item/clothing/shoes/marine/army/knife
 	spawn_item_type = /obj/item/weapon/knife/marine/baker
 
 /obj/item/clothing/shoes/marine/upp
-	name = "\improper UPP combat boots"
-	desc = "A pair of standard issue black UPP Naval Infantry combat boots."
+	name = "\improper UPP 作战靴"
+	desc = "一双进步人民联盟海军步兵制式黑色作战靴。"
 	spawn_item_type = /obj/item/attachable/bayonet/upp
 
 /obj/item/clothing/shoes/marine/upp/guard
-	desc = "A pair of standard issue brown UPP Territorial Guard combat boots."
+	desc = "一双进步人民联盟国土卫队制式棕色作战靴。"
 	icon_state = "marine_brown"
 	spawn_item_type = /obj/item/attachable/bayonet/upp
 
@@ -76,39 +76,39 @@
 	spawn_item_type = /obj/item/attachable/bayonet/canc
 
 /obj/item/clothing/shoes/marine/pve_mopp
-	name = "\improper M2 MOPP boots"
-	desc = "M2 MOPP boots excel at keeping viscera or other biological contaminants away from your feet."
+	name = "\improper M2 MOPP 防护靴"
+	desc = "M2 MOPP 防护靴能有效阻隔内脏残骸等生物污染物，让你的双脚保持洁净。"
 	icon_state = "cbrn"
 	item_state = "cbrn"
 	armor_rad = CLOTHING_ARMOR_GIGAHIGHPLUS
 	armor_bio = CLOTHING_ARMOR_GIGAHIGHPLUS
 
 /obj/item/clothing/shoes/marine/rmc
-	name = "\improper RMC combat boots"
-	desc = "A pair of standard issue black Royal Marine Commando combat boots."
+	name = "\improper RMC 作战靴"
+	desc = "一双皇家陆战突击队制式黑色作战靴。"
 	icon_state = "marine"
 
 /obj/item/clothing/shoes/marine/rmc/knife
 	spawn_item_type = /obj/item/weapon/knife/marine/sas
 
 /obj/item/clothing/shoes/marine/civilian
-	name = "rugged boots"
-	desc = "A pair of black boots not so dissimilar from military combat boots, a likely culprit for their inspiration. They'll get the job done, whether that's hiking, or kicking in teeth."
+	name = "耐用长靴"
+	desc = "一双很像军用作战靴的黑色长靴，设计灵感大概也来自军靴。无论徒步远行还是踢碎牙齿，它们都能胜任。"
 
 /obj/item/clothing/shoes/marine/civilian/knife
 	spawn_item_type = /obj/item/attachable/bayonet
 
 /obj/item/clothing/shoes/marine/civilian/brown
 	icon_state = "marine_brown"
-	desc = "A pair of brown boots not so dissimilar from military combat boots, a likely culprit for their inspiration. They'll get the job done, whether that's hiking, or kicking in teeth."
+	desc = "一双很像军用作战靴的棕色长靴，设计灵感大概也来自军靴。无论徒步远行还是踢碎牙齿，它们都能胜任。"
 
 /obj/item/clothing/shoes/marine/civilian/jungle
 	icon_state = "marine_jungle"
-	desc = "A pair of jungle boots not so dissimilar from military combat boots, a likely culprit for their inspiration. They'll get the job done, whether that's hiking, or kicking in teeth."
+	desc = "一双很像军用作战靴的丛林靴，设计灵感大概也来自军靴。无论徒步远行还是踢碎牙齿，它们都能胜任。"
 
 /obj/item/clothing/shoes/marine/joe
-	name = "biohazard boots"
-	desc = "A pair of utilitarian biohazard boots."
+	name = "生物危害防护靴"
+	desc = "一双实用的生物危害防护靴。"
 	armor_bullet = CLOTHING_ARMOR_LOW
 	armor_energy = CLOTHING_ARMOR_MEDIUMLOW
 	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
@@ -116,8 +116,8 @@
 	armor_internaldamage = CLOTHING_ARMOR_MEDIUMLOW
 
 /obj/item/clothing/shoes/marine/mopp
-	name = "\improper M3 MOPP boots"
-	desc = "M2 MOPP boots excel at keeping viscera or other biological contaminants away from your feet."
+	name = "\improper M3 MOPP 防护靴"
+	desc = "M2 MOPP 防护靴能有效阻隔内脏残骸等生物污染物，让你的双脚保持洁净。"
 	icon_state = "cbrn"
 	item_state = "cbrn"
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROT
@@ -128,17 +128,17 @@
 	armor_bio = CLOTHING_ARMOR_GIGAHIGHPLUS
 
 /obj/item/clothing/shoes/stompers
-	name = "Reebok Stompers"
-	desc = "A pair of sneakers designed to elicit a morale boosting response within anyone that witnesses them."
+	name = "锐步践踏者运动鞋"
+	desc = "一双专为鼓舞旁观者士气而设计的运动鞋。"
 	icon_state = "stompers"
 	flags_inventory = NOSLIPPING
 
 /obj/item/clothing/shoes/cowboy
-	name = "leather boots"
-	desc = "A pair of leather cowboy boots."
+	name = "皮靴"
+	desc = "一双皮革牛仔靴。"
 	icon_state = "cowboy"
 
 /obj/item/clothing/shoes/lizardskin
-	name = "lizardskin boots"
-	desc = "A pair of lizardskin cowboy boots. Get your disco on, baby."
+	name = "蜥蜴皮靴"
+	desc = "一双蜥蜴皮牛仔靴。跳起迪斯科吧，宝贝。"
 	icon_state = "lizardskin"

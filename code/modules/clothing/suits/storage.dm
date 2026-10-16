@@ -45,8 +45,8 @@
 	..()
 
 /obj/item/clothing/suit/storage/verb/toggle_draw_mode()
-	set name = "Switch Storage Drawing Method"
-	set category = "Object"
+	set name = "切换收纳取物方式"
+	set category = "物品"
 	set src in usr
 
 	if(!istype(src, /obj/item/clothing/suit/storage)) // This will trigger on uniforms, for webbings etc
@@ -61,10 +61,10 @@
 /obj/item/storage/proc/storage_draw_logic(name)
 	if (!(storage_flags & STORAGE_USING_DRAWING_METHOD))
 		storage_flags |= STORAGE_USING_DRAWING_METHOD
-		to_chat(usr, "Clicking [name] with an empty hand now puts the last stored item in your hand.")
+		to_chat(usr, "现在空手点击[name]会取出最后放入的物品。")
 	else if(!(storage_flags & STORAGE_USING_FIFO_DRAWING))
 		storage_flags |= STORAGE_USING_FIFO_DRAWING
-		to_chat(usr, "Clicking [name] with an empty hand now puts the first stored item in your hand.")
+		to_chat(usr, "现在空手点击[name]会取出最先放入的物品。")
 	else
 		storage_flags &= ~(STORAGE_USING_DRAWING_METHOD|STORAGE_USING_FIFO_DRAWING)
-		to_chat(usr, "Clicking [name] with an empty hand now opens the storage menu. Holding Alt will draw the last stored item instead.")
+		to_chat(usr, "现在空手点击[name]会打开收纳菜单。按住 Alt 则会取出最后放入的物品。")

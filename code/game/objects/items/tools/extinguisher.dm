@@ -2,8 +2,8 @@
 #define PYRO_EXTINGUISHER_PWR 48
 
 /obj/item/tool/extinguisher
-	name = "fire extinguisher"
-	desc = "A traditional red fire extinguisher."
+	name = "灭火器"
+	desc = "传统的红色灭火器。"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "fire_extinguisher0"
 	item_state = "fire_extinguisher"
@@ -18,7 +18,7 @@
 	force = 10
 	flags_equip_slot = SLOT_WAIST
 	matter = list("metal" = 90)
-	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
+	attack_verb = list("猛砸", "重击", "猛击", "敲击", "痛击", "钝击", "痛打")
 	var/max_water = 50
 	var/last_use = 1
 	var/safety = 1
@@ -26,8 +26,8 @@
 	var/power = BASE_EXTINGUISHER_PWR
 
 /obj/item/tool/extinguisher/mini
-	name = "fire extinguisher"
-	desc = "A light and compact fibreglass-framed model fire extinguisher."
+	name = "灭火器"
+	desc = "轻巧紧凑的玻璃纤维外壳灭火器。"
 	icon_state = "miniFE0"
 	item_state = "miniFE"
 	/// it is much lighter, after all.
@@ -43,8 +43,8 @@
 
 // A solely internal extinguisher
 /obj/item/tool/extinguisher/pyro
-	name = "fire extinguisher"
-	desc = "A heavy-duty fire extinguisher designed for extreme fires."
+	name = "灭火器"
+	desc = "专为猛烈火情设计的重型灭火器。"
 	w_class = SIZE_MEDIUM
 	force = 3
 	max_water = 500
@@ -61,14 +61,14 @@
 
 /obj/item/tool/extinguisher/get_examine_text(mob/user)
 	. = ..()
-	. += "It contains [reagents.total_volume] units of water left!"
+	. += "里面还剩[reagents.total_volume]单位水！"
 
 /obj/item/tool/extinguisher/attack_self(mob/user)
 	..()
 	safety = !safety
 	src.icon_state = "[sprite_name][!safety]"
-	src.desc = "The safety is [safety ? "on" : "off"]."
-	to_chat(user, "The safety is [safety ? "on" : "off"].")
+	src.desc = "保险已[safety ? "锁定" : "解除"]。"
+	to_chat(user, "保险已[safety ? "锁定" : "解除"]。")
 
 /obj/item/tool/extinguisher/attack(mob/living/M, mob/living/user)
 	if (M == user && !safety && reagents && reagents.total_volume > EXTINGUISHER_WATER_USE_AMT)
@@ -80,7 +80,7 @@
 	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
 		var/obj/o = target
 		o.reagents.trans_to(src, 50)
-		to_chat(user, SPAN_NOTICE(" \The [src] is now refilled"))
+		to_chat(user, SPAN_NOTICE("[src]已重新装满。"))
 		playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 
@@ -88,7 +88,7 @@
 		return ..()
 
 	if(src.reagents.total_volume < 1)
-		to_chat(usr, SPAN_DANGER("\The [src] is empty."))
+		to_chat(usr, SPAN_DANGER("[src]已经空了。"))
 		return
 
 	if(world.time < src.last_use + 20)

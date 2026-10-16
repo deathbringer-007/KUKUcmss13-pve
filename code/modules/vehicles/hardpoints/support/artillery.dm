@@ -1,6 +1,6 @@
 /obj/item/hardpoint/support/artillery_module
-	name = "\improper Artillery Module"
-	desc = "Allows the user to look far into the distance."
+	name = "\improper 炮兵观测模块"
+	desc = "让使用者能够观察远方。"
 
 	icon_state = "artillery"
 	disp_icon = "tank"
@@ -65,7 +65,7 @@
 
 /obj/item/hardpoint/support/artillery_module/try_fire(target, user, params)
 	if(health <= 0)
-		to_chat(usr, SPAN_WARNING("\The [src] is broken!"))
+		to_chat(usr, SPAN_WARNING("[src]已损坏！"))
 		return NONE
 
 	return handle_fire(target, user, params)

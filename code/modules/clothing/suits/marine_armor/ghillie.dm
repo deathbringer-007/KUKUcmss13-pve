@@ -5,13 +5,13 @@
 #define VISIBLE_PVE_CAMOUFLAGE_ALPHA 75
 
 /obj/item/clothing/suit/storage/marine/ghillie
-	name = "\improper M45 pattern ghillie armor"
-	desc = "A lightweight ghillie camouflage suit, used by USCM scout-snipers on recon missions. Very lightweight, but doesn't protect much."
+	name = "\improper M45型吉利伪装护甲"
+	desc = "一套轻便的吉利伪装服，供殖民地陆战队侦察狙击手执行侦察任务时使用。非常轻便，但防护有限。"
 	icon_state = "ghillie_armor"
 	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 	flags_marine_armor = ARMOR_LAMP_OVERLAY
-	specialty = "M45 pattern ghillie"
+	specialty = "M45型吉利伪装"
 	valid_accessory_slots = list(ACCESSORY_SLOT_ARMBAND, ACCESSORY_SLOT_DECOR, ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_PONCHO)
 	restricted_accessory_slots = list(ACCESSORY_SLOT_ARMBAND)
 	unacidable = TRUE
@@ -36,9 +36,9 @@
 	. = ..()
 
 /obj/item/clothing/suit/storage/marine/ghillie/verb/camouflage()
-	set name = "Camoflage Self"
-	set desc = "Use the ghillie suit and the nearby environment to become near invisible."
-	set category = "Object"
+	set name = "伪装隐蔽"
+	set desc = "利用吉利服和周围环境，让自己几乎隐形。"
+	set category = "物品"
 	set src in usr
 	if(!usr || usr.is_mob_incapacitated(TRUE))
 		return
@@ -47,14 +47,14 @@
 		return
 	var/mob/living/carbon/human/H = usr
 	if(H.wear_suit != src)
-		to_chat(H, SPAN_WARNING("You must be wearing the ghillie suit to activate it!"))
+		to_chat(H, SPAN_WARNING("你必须穿上吉利服才能启用伪装！"))
 		return
 
 	if(camo_active)
 		deactivate_camouflage(H)
 		return
 
-	H.visible_message(SPAN_DANGER("[H] begins adjusting \his ghillie suit, blending in with the environment!"), SPAN_NOTICE("You begin adjusting your ghillie suit."), max_distance = 4)
+	H.visible_message(SPAN_DANGER("[H]开始调整吉利服，逐渐融入周围环境！"), SPAN_NOTICE("你开始调整吉利服。"), max_distance = 4)
 	hide_in_progress = TRUE
 	H.unset_interaction() // If we're sticking to a machine gun or what not.
 	if(!do_after(H, camouflage_enter_delay, INTERRUPT_NO_NEEDHAND|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
@@ -113,7 +113,7 @@
 	var/datum/mob_hud/xeno_infection/XI = GLOB.huds[MOB_HUD_XENO_INFECTION]
 	XI.add_to_hud(H)
 
-	H.visible_message(SPAN_DANGER("[H]'s camouflage fails!"), SPAN_WARNING("Your camouflage fails!"), max_distance = 4)
+	H.visible_message(SPAN_DANGER("[H]的伪装失效了！"), SPAN_WARNING("你的伪装失效了！"), max_distance = 4)
 
 /obj/item/clothing/suit/storage/marine/ghillie/proc/fade_in(mob/user)
 	SIGNAL_HANDLER
@@ -125,14 +125,14 @@
 		H.alpha = current_camo
 		if(current_camo > visible_camo_alpha)
 			REMOVE_TRAIT(H, TRAIT_CLOAKED, TRAIT_SOURCE_EQUIPMENT(WEAR_JACKET))
-			to_chat(H, SPAN_BOLDNOTICE("Your ghillie suit can't keep you perfectly hidden anymore!"))
+			to_chat(H, SPAN_BOLDNOTICE("吉利服已经无法让你完全隐蔽！"))
 		addtimer(CALLBACK(src, PROC_REF(fade_out_finish), H), camouflage_break, TIMER_OVERRIDE|TIMER_UNIQUE)
 		animate(H, alpha = full_camo_alpha + 5, time = camouflage_break, easing = LINEAR_EASING, flags = ANIMATION_END_NOW)
 
 /obj/item/clothing/suit/storage/marine/ghillie/proc/fade_out_finish(mob/living/carbon/human/H)
 	if(camo_active && H.wear_suit == src)
 		ADD_TRAIT(H, TRAIT_CLOAKED, TRAIT_SOURCE_EQUIPMENT(WEAR_JACKET))
-		to_chat(H, SPAN_BOLDNOTICE("The smoke clears and your once again hidden completely by your ghillie suit!"))
+		to_chat(H, SPAN_BOLDNOTICE("烟雾散去，吉利服再次让你完全隐蔽！"))
 		animate(H, alpha = full_camo_alpha)
 		current_camo = full_camo_alpha
 
@@ -141,7 +141,7 @@
 
 /datum/action/item_action/specialist/prepare_position/New(mob/living/user, obj/item/holder)
 	..()
-	name = "Camoflage Self"
+	name = "伪装隐蔽"
 	button.name = name
 	button.overlays.Cut()
 	var/image/IMG = image('icons/mob/hud/actions.dmi', button, "prepare_position")
@@ -163,8 +163,8 @@
 	visible_camo_alpha = VISIBLE_CAMOUFLAGE_ALPHA
 
 /obj/item/clothing/suit/storage/marine/ghillie/forecon
-	name = "UDEP Thermal Poncho"
-	desc = "UDEP or the Ultra Diffusive Environmental Poncho is a camouflaged rain-cover worn to protect against the elements and chemical spills. It's commonly treated with an infrared absorbing coating, making a marine almost invisible in the rain. Favoured by USCM specialists for it's comfort and practicality."
+	name = "UDEP热隐蔽雨披"
+	desc = "UDEP，即超扩散环境雨披，是一种用于抵御恶劣天气和化学品泼溅的迷彩雨披。它通常涂有吸收红外线的涂层，让陆战队员在雨中几乎无法被发现。其舒适性与实用性深受殖民地陆战队专业兵喜爱。"
 	icon_state = "mercenary_miner_armor"
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 

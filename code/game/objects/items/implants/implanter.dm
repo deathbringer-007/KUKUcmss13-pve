@@ -1,5 +1,5 @@
 /obj/item/implanter
-	name = "implanter"
+	name = "植入器"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "implanter0"
 	item_state = "syringe_0"
@@ -22,13 +22,13 @@
 	if(isyautja(M))
 		return
 	if (user && src.imp)
-		user.visible_message(SPAN_WARNING("[user] is attemping to implant [M]."), SPAN_NOTICE("You're attemping to implant [M]."))
+		user.visible_message(SPAN_WARNING("[user]正尝试给[M]安装植入物。"), SPAN_NOTICE("你正尝试给[M]安装植入物。"))
 
 		var/turf/T1 = get_turf(M)
 		if (T1 && ((M == user) || do_after(user, 50, INTERRUPT_ALL, BUSY_ICON_GENERIC)))
 			if(user && M && (get_turf(M) == T1) && src && src.imp)
 				if(src.imp.implanted(M, user))
-					M.visible_message(SPAN_WARNING("[M] has been implanted by [user]."))
+					M.visible_message(SPAN_WARNING("[M]已被[user]安装了植入物。"))
 
 					M.attack_log += text("\[[time_stamp()]\] <font color='orange'> Implanted with [src.name] ([src.imp.name]) by [key_name(user)]</font>")
 					user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] ([src.imp.name]) to implant [key_name(M)]</font>")
@@ -46,14 +46,14 @@
 					src.imp = null
 					update()
 				else
-					to_chat(user, SPAN_NOTICE(" You failed to implant [M]."))
+					to_chat(user, SPAN_NOTICE("你没能给[M]安装植入物。"))
 
 	return
 
 
 
 /obj/item/implanter/loyalty
-	name = "implanter-loyalty"
+	name = "忠诚植入器"
 
 /obj/item/implanter/loyalty/Initialize(mapload, ...)
 	. = ..()
@@ -61,7 +61,7 @@
 	update()
 
 /obj/item/implanter/explosive
-	name = "implanter (E)"
+	name = "植入器（爆炸型）"
 
 /obj/item/implanter/explosive/Initialize(mapload, ...)
 	. = ..()
@@ -69,7 +69,7 @@
 	update()
 
 /obj/item/implanter/adrenalin
-	name = "implanter-adrenalin"
+	name = "肾上腺素植入器"
 
 /obj/item/implanter/adrenalin/Initialize(mapload, ...)
 	. = ..()
@@ -77,7 +77,7 @@
 	update()
 
 /obj/item/implanter/compressed
-	name = "implanter (C)"
+	name = "植入器（压缩型）"
 	icon_state = "cimplanter1"
 
 /obj/item/implanter/compressed/Initialize(mapload, ...)
@@ -100,7 +100,7 @@
 	var/obj/item/implant/compressed/c = imp
 	if (!c) return
 	if (c.scanned == null)
-		to_chat(user, "Please scan an object with the implanter first.")
+		to_chat(user, "请先用植入器扫描一件物品。")
 		return
 	..()
 
@@ -110,7 +110,7 @@
 	if(istype(A,/obj/item) && imp)
 		var/obj/item/implant/compressed/c = imp
 		if (c.scanned)
-			to_chat(user, SPAN_DANGER("Something is already scanned inside the implant!"))
+			to_chat(user, SPAN_DANGER("植入物中已经扫描存入了一件物品！"))
 			return
 		c.scanned = A
 		if(istype(A.loc,/mob/living/carbon/human))

@@ -1,8 +1,8 @@
 //Biosuit complete with shoes (in the item sprite)
 /obj/item/clothing/head/bio_hood
-	name = "bio hood"
+	name = "生物防护头罩"
 	icon_state = "bio"
-	desc = "A hood that protects the head and face from biological contaminants."
+	desc = "保护头部和面部免受生物污染的头罩。"
 	permeability_coefficient = 0.2
 	armor_melee = CLOTHING_ARMOR_NONE
 	armor_bullet = CLOTHING_ARMOR_NONE
@@ -18,14 +18,14 @@
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/head/bio_hood/synth
-	desc = "A hood that protects the head and face from biological contaminants, synthetic compliant. Offers no real protection."
+	desc = "适合合成人使用的生物防护头罩，外观用于保护头部和面部免受生物污染，实际上不提供有效防护。"
 	armor_bio = CLOTHING_ARMOR_NONE
 	armor_rad = CLOTHING_ARMOR_NONE
 	armor_internaldamage = CLOTHING_ARMOR_NONE
 
 /obj/item/clothing/suit/bio_suit
-	name = "bio suit"
-	desc = "A suit that protects against biological contamination."
+	name = "生物防护服"
+	desc = "用于防止生物污染的防护服。"
 	icon_state = "bio"
 	item_state = "bio_suit"
 	w_class = SIZE_LARGE//bulky item
@@ -45,8 +45,8 @@
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/suit/storage/synthbio
-	name = "bio suit"
-	desc = "Synthetic compliant bio-hazard suit. Intended to allow a synthetic to offer the illusion of infection control to humans. Has had most of the internal protective lining removed, allowing it to hold equipment and be lighter to move in."
+	name = "生物防护服"
+	desc = "适合合成人使用的生物防护服，旨在让人类觉得合成人采取了感染防控措施。大部分内部防护衬里已拆除，使其能够收纳装备，活动起来也更加轻便。"
 	icon_state = "bio"
 	item_state = "bio_suit"
 	allowed = list(
@@ -124,8 +124,8 @@
 
 //Plague Dr mask can be found in clothing/masks/gasmask.dm
 /obj/item/clothing/suit/bio_suit/plaguedoctorsuit
-	name = "Plague doctor suit"
-	desc = "It protected doctors from the Black Death, back then. You bet your arse it's gonna help you against viruses."
+	name = "瘟疫医生长袍"
+	desc = "当年，它曾保护医生免遭黑死病侵袭。你敢打包票，它也能帮你抵挡病毒。"
 	icon_state = "plaguedoctor"
 	item_state = "bio_suit"
 	flags_inv_hide = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL

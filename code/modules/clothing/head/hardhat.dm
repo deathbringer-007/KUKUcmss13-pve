@@ -1,6 +1,6 @@
 /obj/item/clothing/head/hardhat
-	name = "hard hat"
-	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight."
+	name = "安全帽"
+	desc = "用于危险工作环境中保护头部的帽子，内置手电筒。"
 	icon_state = "hardhat0_yellow"
 	item_state = "hardhat0_yellow"
 	light_range = 4
@@ -41,11 +41,11 @@
 	. = ..()
 
 	if(!toggleable)
-		to_chat(user, SPAN_WARNING("You cannot toggle [src] on or off."))
+		to_chat(user, SPAN_WARNING("你无法开关[src]。"))
 		return FALSE
 
 	if(!isturf(user.loc))
-		to_chat(user, SPAN_WARNING("You cannot turn the light [light_on ? "off" : "on"] while in [user.loc].")) //To prevent some lighting anomalies.
+		to_chat(user, SPAN_WARNING("你在[user.loc]内时无法[light_on ? "关闭" : "打开"]灯光。")) //To prevent some lighting anomalies.
 		return FALSE
 
 	turn_light(user, !light_on)
@@ -85,7 +85,7 @@
 /obj/item/clothing/head/hardhat/red
 	icon_state = "hardhat0_red"
 	hardhat_color = "red"
-	name = "firefighter helmet"
+	name = "消防头盔"
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ|COVERMOUTH|ALLOWINTERNALS|COVEREYES|BLOCKGASEFFECT|ALLOWREBREATH|ALLOWCPR

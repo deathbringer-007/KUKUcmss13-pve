@@ -1,7 +1,7 @@
 
 /obj/item/techtree_advanced_weapon_kit
-	name = "advanced weapon kit"
-	desc = "It seems to be a kit to choose an advanced weapon"
+	name = "先进武器套装"
+	desc = "看起来是供你选择先进武器的套装。"
 
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "wrench"
@@ -23,8 +23,8 @@
 	qdel(src)
 
 /obj/item/techtree_advanced_weapon_kit/railgun
-	name = "advanced weapon kit"
-	desc = "It seems to be a kit to choose an advanced weapon"
+	name = "先进武器套装"
+	desc = "看起来是供你选择先进武器的套装。"
 
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "wrench"
@@ -35,8 +35,8 @@
 
 
 /obj/item/weapon/gun/rifle/techweb_railgun
-	name = "\improper Railgun"
-	desc = "A poggers hellbliterator"
+	name = "\improper 轨道枪"
+	desc = "一把酷毙了的地狱湮灭器。"
 	icon_state = "m42a"
 	item_state = "m42a"
 	unacidable = TRUE
@@ -46,7 +46,7 @@
 	current_mag = /obj/item/ammo_magazine/techweb_railgun
 	force = 12
 	wield_delay = WIELD_DELAY_HORRIBLE //Ends up being 1.6 seconds due to scope
-	zoomdevicename = "scope"
+	zoomdevicename = "瞄准镜"
 	attachable_allowed = list()
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	map_specific_decoration = TRUE
@@ -65,15 +65,15 @@
 
 /obj/item/weapon/gun/rifle/techweb_railgun/proc/start_charging(user)
 	if (charged)
-		to_chat(user, SPAN_WARNING("Your railgun is already charged."))
+		to_chat(user, SPAN_WARNING("你的轨道枪已经充能完毕。"))
 		return
 
-	to_chat(user, SPAN_WARNING("You start charging your railgun."))
+	to_chat(user, SPAN_WARNING("你开始为轨道枪充能。"))
 	if (!do_after(user, 8 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
-		to_chat(user, SPAN_WARNING("You stop charging your railgun."))
+		to_chat(user, SPAN_WARNING("你停止为轨道枪充能。"))
 		return
 
-	to_chat(user, SPAN_WARNING("You finish charging your railgun."))
+	to_chat(user, SPAN_WARNING("你完成了轨道枪的充能。"))
 
 	charged = TRUE
 	return
@@ -88,7 +88,7 @@
 		return
 	charged = FALSE
 	if (user)
-		to_chat(user, SPAN_WARNING("You depower your railgun to store it."))
+		to_chat(user, SPAN_WARNING("你释放了轨道枪的储能，以便收起它。"))
 	return
 
 /obj/item/weapon/gun/rifle/techweb_railgun/handle_starting_attachment()
@@ -110,14 +110,14 @@
 
 /obj/item/weapon/gun/rifle/techweb_railgun/unique_action(mob/user)
 	if (in_chamber)
-		to_chat(user, SPAN_WARNING("There's already a round chambered!"))
+		to_chat(user, SPAN_WARNING("枪膛内已经有一发弹药了！"))
 		return
 
 	var/result = load_into_chamber()
 	if (result)
-		to_chat(user, SPAN_WARNING("You run the bolt on [src], chambering a round!"))
+		to_chat(user, SPAN_WARNING("你拉动[src]的枪栓，将一发弹药送入枪膛！"))
 	else
-		to_chat(user, SPAN_WARNING("You run the bolt on [src], but it's out of rounds!"))
+		to_chat(user, SPAN_WARNING("你拉动[src]的枪栓，但已经没有弹药了！"))
 
 // normally, ready_in_chamber gets called by this proc. However, it never gets called because we override.
 // so we don't need to override ready_in_chamber, which is what makes the bullet and puts it in the chamber var.
@@ -127,7 +127,7 @@
 	return null
 
 /datum/action/item_action/techweb_railgun_start_charge
-	name = "Start Charging"
+	name = "开始充能"
 
 /datum/action/item_action/techweb_railgun_start_charge/action_activate()
 	. = ..()
@@ -136,7 +136,7 @@
 		TR.start_charging(owner)
 
 /datum/action/item_action/techweb_railgun_abort_charge
-	name = "Abort Charge"
+	name = "中止充能"
 
 /datum/action/item_action/techweb_railgun_abort_charge/action_activate()
 	. = ..()
@@ -145,8 +145,8 @@
 		TR.abort_charge(owner)
 
 /obj/item/ammo_magazine/techweb_railgun
-	name = "\improper Railgun Ammunition (5 rounds)"
-	desc = "A magazine ammo for the poggers Railgun."
+	name = "\improper 轨道枪弹药（5发）"
+	desc = "酷炫轨道枪使用的弹匣。"
 	caliber = "14mm"
 	icon_state = "m42c" //PLACEHOLDER
 	w_class = SIZE_MEDIUM
@@ -155,7 +155,7 @@
 	gun_type = /obj/item/weapon/gun/rifle/techweb_railgun
 
 /datum/ammo/bullet/sniper/railgun
-	name = "railgun bullet"
+	name = "轨道枪弹丸"
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_IGNORE_COVER
 	accurate_range_min = 4

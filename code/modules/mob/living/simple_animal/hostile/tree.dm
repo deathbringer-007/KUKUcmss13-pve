@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/tree
-	name = "pine tree"
-	desc = "A pissed off tree-like alien. It seems annoyed with the festivities..."
+	name = "松树"
+	desc = "一种怒气冲冲的树形外星生物，似乎被庆祝活动惹恼了……"
 	icon = 'icons/obj/structures/props/pinetrees.dmi'
 	icon_state = "pine_1"
 	icon_living = "pine_1"
@@ -9,9 +9,9 @@
 	speak_chance = 0
 	turns_per_move = 5
 	meat_type = /obj/item/reagent_container/food/snacks/carpmeat
-	response_help = "brushes the"
-	response_disarm = "pushes the"
-	response_harm = "hits the"
+	response_help = "轻拂"
+	response_disarm = "推了推"
+	response_harm = "击打"
 	speed = -1
 	maxHealth = 250
 	health = 250
@@ -21,7 +21,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 8
 	melee_damage_upper = 12
-	attacktext = "bites"
+	attacktext = "咬"
 	attack_sound = 'sound/weapons/bite.ogg'
 
 	//Space carp aren't affected by atmos.
@@ -48,9 +48,9 @@
 	if(istype(L))
 		if(prob(15))
 			L.apply_effect(3, WEAKEN)
-			L.visible_message(SPAN_DANGER("\the [src] knocks down \the [L]!"))
+			L.visible_message(SPAN_DANGER("[src]撞倒了[L]！"))
 
 /mob/living/simple_animal/hostile/tree/death()
-	..(null,"is hacked into pieces!")
+	..(null,"被劈成了碎片！")
 	new /obj/item/stack/sheet/wood(loc)
 	qdel(src)

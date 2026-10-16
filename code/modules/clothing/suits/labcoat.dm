@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/storage/labcoat
-	name = "labcoat"
-	desc = "A suit that protects against minor chemical spills."
+	name = "实验服"
+	desc = "可抵御少量化学品泼溅的外套。"
 	icon_state = "labcoat"
 	item_state = "labcoat" //Is this even used for anything?
 	blood_overlay_type = "coat"
@@ -48,8 +48,8 @@
 	var/buttoned = TRUE
 
 /obj/item/clothing/suit/storage/labcoat/verb/toggle()
-	set name = "Toggle Labcoat Buttons"
-	set category = "Object"
+	set name = "扣上／解开实验服纽扣"
+	set category = "物品"
 	set src in usr
 
 	if(usr.is_mob_incapacitated())
@@ -64,60 +64,60 @@
 	update_clothing_icon()
 
 /obj/item/clothing/suit/storage/labcoat/red
-	name = "red labcoat"
-	desc = "A suit that protects against minor chemical spills. This one is red."
+	name = "红色实验服"
+	desc = "可抵御少量化学品泼溅的外套。这件是红色的。"
 	icon_state = "red_labcoat"
 	item_state = "red_labcoat"
 
 /obj/item/clothing/suit/storage/labcoat/blue
-	name = "blue labcoat"
-	desc = "A suit that protects against minor chemical spills. This one is blue."
+	name = "蓝色实验服"
+	desc = "可抵御少量化学品泼溅的外套。这件是蓝色的。"
 	icon_state = "blue_labcoat"
 	item_state = "blue_labcoat"
 
 /obj/item/clothing/suit/storage/labcoat/purple
-	name = "purple labcoat"
-	desc = "A suit that protects against minor chemical spills. This one is purple."
+	name = "紫色实验服"
+	desc = "可抵御少量化学品泼溅的外套。这件是紫色的。"
 	icon_state = "purple_labcoat"
 	item_state = "purple_labcoat"
 
 /obj/item/clothing/suit/storage/labcoat/orange
-	name = "orange labcoat"
-	desc = "A suit that protects against minor chemical spills. This one is orange."
+	name = "橙色实验服"
+	desc = "可抵御少量化学品泼溅的外套。这件是橙色的。"
 	icon_state = "orange_labcoat"
 	item_state = "orange_labcoat"
 
 /obj/item/clothing/suit/storage/labcoat/green
-	name = "green labcoat"
-	desc = "A suit that protects against minor chemical spills. This one is green."
+	name = "绿色实验服"
+	desc = "可抵御少量化学品泼溅的外套。这件是绿色的。"
 	icon_state = "green_labcoat"
 	item_state = "green_labcoat"
 
 /obj/item/clothing/suit/storage/labcoat/cmo
-	name = "chief medical officer's labcoat"
-	desc = "Bluer than the standard model."
+	name = "首席医疗官实验服"
+	desc = "比标准款更蓝一些。"
 	icon_state = "labcoat_cmo"
 	item_state = "labcoat_cmo"
 
 /obj/item/clothing/suit/storage/labcoat/mad
-	name = "The Mad's labcoat"
-	desc = "It makes you look capable of konking someone on the noggin and shooting them into space."
+	name = "疯狂博士实验服"
+	desc = "穿上它，你看起来就像能把人敲晕再射进太空的家伙。"
 	icon_state = "labgreen"
 	item_state = "labgreen"
 
 /obj/item/clothing/suit/storage/labcoat/genetics
-	name = "Geneticist labcoat"
-	desc = "A suit that protects against minor chemical spills. Has a blue stripe on the shoulder."
+	name = "遗传学家实验服"
+	desc = "可抵御少量化学品泼溅的外套，肩部有蓝色条纹。"
 	icon_state = "labcoat_gen"
 
 /obj/item/clothing/suit/storage/labcoat/chemist
-	name = "Chemist labcoat"
-	desc = "A suit that protects against minor chemical spills. Has an orange stripe on the shoulder."
+	name = "药剂师实验服"
+	desc = "可抵御少量化学品泼溅的外套，肩部有橙色条纹。"
 	icon_state = "labcoat_chem"
 
 /obj/item/clothing/suit/storage/labcoat/virologist
-	name = "Virologist labcoat"
-	desc = "A suit that protects against minor chemical spills. Offers slightly more protection against biohazards than the standard model. Has a green stripe on the shoulder."
+	name = "病毒学家实验服"
+	desc = "可抵御少量化学品泼溅的外套，生物防护能力比标准款略强，肩部有绿色条纹。"
 	icon_state = "labcoat_vir"
 	armor_melee = CLOTHING_ARMOR_NONE
 	armor_bullet = CLOTHING_ARMOR_NONE
@@ -129,8 +129,8 @@
 	armor_internaldamage = CLOTHING_ARMOR_LOW
 
 /obj/item/clothing/suit/storage/labcoat/science
-	name = "Scientist labcoat"
-	desc = "A suit that protects against minor chemical spills. Has a purple stripe on the shoulder."
+	name = "科学家实验服"
+	desc = "可抵御少量化学品泼溅的外套，肩部有紫色条纹。"
 	icon_state = "labcoat_tox"
 
 /obj/item/clothing/suit/storage/labcoat/officer
@@ -139,18 +139,18 @@
 	item_state = "labcoatg"
 
 /obj/item/clothing/suit/storage/labcoat/researcher
-	name = "researcher's labcoat"
-	desc = "A high-quality labcoat, seemingly worn by scholars and researchers alike. It has a distinct leathery feel to it, and goads you towards adventure."
+	name = "研究员实验服"
+	desc = "一件高品质实验服，似乎深受学者和研究人员喜爱。它有鲜明的皮革质感，激励着你去冒险。"
 	icon_state = "sciencecoat"
 	item_state = "sciencecoat"
 
 /obj/item/clothing/suit/chef/classic/medical
-	name = "medical's apron"
-	desc = "A basic and sterile white apron, good for surgical and, of course, other medical practices."
+	name = "医用围裙"
+	desc = "一条普通的无菌白色围裙，适合手术，当然也适合其他医疗操作。"
 
 /obj/item/clothing/suit/storage/snow_suit
-	name = "snow suit"
-	desc = "A standard snow suit. It can protect the wearer from extreme cold."
+	name = "防寒服"
+	desc = "一套标准防寒服，能保护穿戴者抵御严寒。"
 	icon = 'icons/obj/items/clothing/suits.dmi'
 	icon_state = "snowsuit"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS
@@ -169,11 +169,11 @@
 	valid_accessory_slots = list(ACCESSORY_SLOT_DECOR, ACCESSORY_SLOT_MEDAL)
 
 /obj/item/clothing/suit/storage/snow_suit/doctor
-	name = "doctor's snow suit"
+	name = "医生防寒服"
 
 /obj/item/clothing/suit/storage/snow_suit/synth
-	name = "synthetic's snow suit"
-	desc = "A snow suit designed for keeping synthetic units within acceptable temperature ranges in extremely cold environments to prevent power supply inefficiency. Due to advancements made in synthetic insulation, they are not required for most cold environments."
+	name = "合成人防寒服"
+	desc = "专为极寒环境设计的防寒服，可使合成人维持在合适的温度范围内，避免供电效率下降。随着合成人隔热技术的进步，大多数寒冷环境已无需使用它。"
 	armor_melee = CLOTHING_ARMOR_NONE //no free armor for synths
 	armor_bullet = CLOTHING_ARMOR_NONE
 	armor_laser = CLOTHING_ARMOR_NONE
@@ -205,9 +205,9 @@
 	)
 
 /obj/item/clothing/suit/storage/snow_suit/survivor
-	name = "robust snow suit"
+	name = "加固防寒服"
 	icon_state = "snowsuit" //needs new cool sprite
-	desc = "A snow suit. It can protect the wearer from extreme cold. This one seems to have been modified somewhat, and can both holster a gun and fit magazines."
+	desc = "一套能抵御严寒的防寒服。这件似乎经过了一些改装，既能收纳枪支，也能放下弹匣。"
 	armor_melee = CLOTHING_ARMOR_MEDIUMLOW
 	armor_bullet = CLOTHING_ARMOR_MEDIUM
 	armor_laser = CLOTHING_ARMOR_LOW
@@ -244,31 +244,31 @@
 
 /obj/item/clothing/suit/storage/snow_suit/survivor/parka
 	name = "Parent Parka"
-	desc = "A winter coat made to withstand the frigged cold weather of the arctic deserts. W-Y branded Parka"
+	desc = "一件抵御极地荒漠严寒的冬季大衣。维兰德-汤谷牌派克大衣。"
 
 /obj/item/clothing/suit/storage/snow_suit/survivor/parka/red
-	name = "Security Parka"
+	name = "安保派克大衣"
 	icon_state = "redpark"
 
 /obj/item/clothing/suit/storage/snow_suit/survivor/parka/navy
-	name = "Navy Parka"
+	name = "海军蓝派克大衣"
 	icon_state = "navypark"
 
 /obj/item/clothing/suit/storage/snow_suit/survivor/parka/yellow
-	name = "yellow Parka"
+	name = "黄色派克大衣"
 	icon_state = "yellowpark"
 
 /obj/item/clothing/suit/storage/snow_suit/survivor/parka/green
-	name = "Green Parka"
+	name = "绿色派克大衣"
 	icon_state = "greenpark"
 
 /obj/item/clothing/suit/storage/snow_suit/survivor/parka/purple
-	name = "Purple Parka"
+	name = "紫色派克大衣"
 	icon_state = "purplepark"
 
 /obj/item/clothing/suit/storage/snow_suit/soviet
-	name = "soviet snowcoat"
-	desc = "A winter coat made in some desolate snowplanet. This wintercoat was made from the fur of local wildlife which donated their fur for the greater good of UPP!"
+	name = "苏式防寒大衣"
+	desc = "一件产自某颗荒凉冰雪星球的冬季大衣，使用当地野生动物的毛皮制作。这些动物为进步人民联盟的伟大事业献出了皮毛！"
 	icon_state = "sovietcoat"
 	item_state = "sovietcoat"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS
@@ -300,13 +300,13 @@
 	)
 
 /obj/item/clothing/suit/storage/snow_suit/liaison
-	name = "liaison's winter coat"
-	desc = "A Weyland-Yutani winter coat. Only the best comfort for the liaison in a cold environment."
+	name = "联络员冬季大衣"
+	desc = "一件维兰德-汤谷冬季大衣，让联络员在寒冷环境中享受最好的舒适感。"
 	icon_state = "snowsuit_liaison"
 
 /obj/item/clothing/suit/storage/snow_suit/liaison/modified
-	name = "modified liaison's winter coat"
-	desc = "A Weyland-Yutani winter coat. This one has been modified to holster guns and other objects. Only the best comfort and utility for the liaison surviving in a cold, hostile environment."
+	name = "改装联络员冬季大衣"
+	desc = "一件维兰德-汤谷冬季大衣，经过改装，可以收纳枪支和其他物品。让在寒冷敌对环境中求生的联络员享受最好的舒适性与实用性。"
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,

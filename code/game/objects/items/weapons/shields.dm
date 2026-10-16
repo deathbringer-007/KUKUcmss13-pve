@@ -1,5 +1,5 @@
 /obj/item/weapon/shield
-	name = "shield"
+	name = "盾牌"
 	var/base_icon_state = "shield"
 	var/passive_block = 15 // Percentage chance used in prob() to block incoming attack
 	var/readied_block = 30
@@ -8,7 +8,7 @@
 
 // Toggling procs
 /obj/item/weapon/shield/proc/raise_shield(mob/user as mob) // Prepare for an attack. Slows you down slightly, but increases chance to block.
-	user.visible_message(SPAN_BLUE("\The [user] raises \the [src]."))
+	user.visible_message(SPAN_BLUE("[user]举起了[src]。"))
 	shield_readied = TRUE
 	icon_state = "[base_icon_state]_ready"
 
@@ -19,7 +19,7 @@
 		H.recalculate_move_delay = TRUE
 
 /obj/item/weapon/shield/proc/lower_shield(mob/user as mob)
-	user.visible_message(SPAN_BLUE("\The [user] lowers \the [src]."))
+	user.visible_message(SPAN_BLUE("[user]放下了[src]。"))
 	shield_readied = FALSE
 	icon_state = base_icon_state
 
@@ -55,8 +55,8 @@
 	..()
 
 /obj/item/weapon/shield/riot
-	name = "riot shield"
-	desc = "Composite translucent shield useful for deflecting blunt objects or high speed collisions."
+	name = "防暴盾牌"
+	desc = "半透明的复合材料盾牌，可抵挡钝器打击和高速撞击。"
 	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "riot"
 	item_state = "riot"
@@ -76,7 +76,7 @@
 		WEAR_R_HAND = 'icons/mob/humans/onmob/items_righthand_1.dmi'
 		)
 
-	attack_verb = list("shoved", "bashed")
+	attack_verb = list("推撞", "猛撞")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 	var/blocks_on_back = TRUE
 
@@ -90,15 +90,15 @@
 /obj/item/weapon/shield/riot/attackby(obj/item/W as obj, mob/user as mob)
 	if(cooldown < world.time - 25)
 		if(istype(W, /obj/item/weapon/baton) || istype(W, /obj/item/weapon/sword) || istype(W, /obj/item/weapon/telebaton) || istype(W, /obj/item/weapon/baseballbat) || istype(W, /obj/item/weapon/classic_baton) || istype(W, /obj/item/weapon/twohanded/fireaxe) || istype(W, /obj/item/weapon/chainofcommand))
-			user.visible_message(SPAN_WARNING("[user] bashes [src] with [W]!"))
+			user.visible_message(SPAN_WARNING("[user]用[W]敲击[src]！"))
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
 			cooldown = world.time
 	else
 		..()
 
 /obj/item/weapon/shield/energy
-	name = "energy combat shield"
-	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
+	name = "能量战斗盾牌"
+	desc = "能抵挡大多数弹丸和近战攻击的盾牌。可收拢或展开，收纳方便。"
 	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "eshield0" // eshield1 for expanded
 	flags_atom = FPRINT|QUICK_DRAWABLE|CONDUCT|NOBLOODY
@@ -110,12 +110,12 @@
 	throw_range = 4
 	w_class = SIZE_SMALL
 
-	attack_verb = list("shoved", "bashed")
+	attack_verb = list("推撞", "猛撞")
 	var/active = 0
 
 /obj/item/weapon/shield/riot/metal
-	name = "assault shield"
-	desc = "Composite ballistic shield, painted a dark gray. If used correctly it can repel attacks from almost anything."
+	name = "突击盾牌"
+	desc = "涂成深灰色的复合材料防弹盾牌。只要使用得当，几乎能抵挡任何攻击。"
 	icon_state = "riotmetal"
 	item_state = "riotmetal"
 	base_icon_state = "riotmetal"
@@ -123,9 +123,9 @@
 	readied_block = 60
 
 /obj/item/weapon/shield/riot/ballistic //FOR THE ROYAL MARINE SPEC DO NOT TOUCH SMELLY MAN
-	name = "FBS-B Ballistic shield"
-	desc = "Ballistic shield used by the royal marines commando. This shield is commonly used during boarding actions due to its lightweight but durable design."
-	desc_lore = "The Fox Ballistic Shield-B (FBS-B), was originally introduced as the FBS, attempting to be a solution to high-impact operations following increased counter-insurgency deployments since 2151. It was designed to provide maximum protection, and for the user to be able to utilize their primary armament in tandem. By 2163 tertiary ballistics trials were undertaken to ascertain it's effectiveness against improved munitions, and was additionally used as an opportunity to  deal with user complaints making their way up from quartermasters. The complaints of the original FBS were twofold: weight and extended usage in combat causing the side to melt closest to the barrel. After further material research and in the field tests were conducted, by 2171, the FBS had attained a ballistics protection classification of D, the highest available for a portable shield, by being able to stop a singular armor piercing round. This reported success was due to the usage of a new fibre reinforced lightweight composite.  In the wake of the successful improvements, the FBS was later christened the FBS-B as with the enhanced shield, the user had a tendency for maximum aggression during engagements. The nickname 'Bellicose' was given to breachers by their squaddies and later became it's official designation."
+	name = "FBS-B防弹盾牌"
+	desc = "皇家陆战突击队使用的防弹盾牌。轻便又坚固，常用于登舰作战。"
+	desc_lore = "狐狸B型防弹盾牌（FBS-B）的前身是FBS。自2151年起，反叛乱部署日益增多，FBS便应运而生，用于应对高强度作战。设计目标是提供最大程度的保护，同时让使用者能够配合主武器作战。到2163年，第三轮弹道试验开始进行，以确定其对改进型弹药的防护效果，也借此解决军需官逐级上报的使用者意见。原版FBS主要有两个问题：过重，以及在长时间作战后，靠近枪管的一侧会熔化。经过进一步的材料研究和实地试验，到2171年，FBS已能挡住一发穿甲弹，取得便携盾牌最高的D级弹道防护评级。据称，这一成果得益于新型纤维增强轻质复合材料。改进成功后，FBS被重新命名为FBS-B：有了强化盾牌，使用者交战时往往格外凶猛，队友便给这些破门手起了“好战者”（Bellicose）的绰号，后来也成为其正式命名的一部分。"
 	icon_state = "ballisticshield"
 	item_state = "ballisticshield"
 	base_icon_state = "ballisticshield"

@@ -1,6 +1,6 @@
 /obj/item/clothing/head/soft
-	name = "cargo cap"
-	desc = "It's a baseball hat in a tasteless yellow color."
+	name = "货运帽"
+	desc = "一顶配色俗气的黄色棒球帽。"
 	icon_state = "cargosoft"
 	flags_inventory = COVEREYES
 	item_state = "helmet"
@@ -15,101 +15,101 @@
 	..()
 
 /obj/item/clothing/head/soft/verb/flip()
-	set category = "Object"
-	set name = "Flip cap"
+	set category = "物品"
+	set name = "转动帽子"
 	set src in usr
 	if(!usr.is_mob_incapacitated())
 		src.flipped = !src.flipped
 		if(src.flipped)
 			icon_state = "[cap_color]soft_flipped"
-			to_chat(usr, "You flip the hat backwards.")
+			to_chat(usr, "你将帽子转到后面，反戴起来。")
 		else
 			icon_state = "[cap_color]soft"
-			to_chat(usr, "You flip the hat back in normal position.")
+			to_chat(usr, "你将帽子转回正常位置。")
 		update_clothing_icon() //so our mob-overlays update
 
 /obj/item/clothing/head/soft/red
-	name = "red cap"
-	desc = "It's a baseball hat in a tasteless red color."
+	name = "红色便帽"
+	desc = "一顶配色俗气的红色棒球帽。"
 	icon_state = "redsoft"
 	cap_color = "red"
 
 /obj/item/clothing/head/soft/blue
-	name = "blue cap"
-	desc = "It's a baseball hat in a tasteless blue color."
+	name = "蓝色便帽"
+	desc = "一顶配色俗气的蓝色棒球帽。"
 	icon_state = "bluesoft"
 	cap_color = "blue"
 
 /obj/item/clothing/head/soft/green
-	name = "green cap"
-	desc = "It's a baseball hat in a tasteless green color."
+	name = "绿色便帽"
+	desc = "一顶配色俗气的绿色棒球帽。"
 	icon_state = "greensoft"
 	cap_color = "green"
 
 /obj/item/clothing/head/soft/yellow
-	name = "yellow cap"
-	desc = "It's a baseball hat in a tasteless yellow color."
+	name = "黄色便帽"
+	desc = "一顶配色俗气的黄色棒球帽。"
 	icon_state = "yellowsoft"
 	cap_color = "yellow"
 
 /obj/item/clothing/head/soft/grey
-	name = "grey cap"
-	desc = "It's a baseball hat in a tasteful grey color."
+	name = "灰色便帽"
+	desc = "一顶配色雅致的灰色棒球帽。"
 	icon_state = "greysoft"
 	cap_color = "grey"
 
 /obj/item/clothing/head/soft/orange
-	name = "orange cap"
-	desc = "It's a baseball hat in a tasteless orange color."
+	name = "橙色便帽"
+	desc = "一顶配色俗气的橙色棒球帽。"
 	icon_state = "orangesoft"
 	cap_color = "orange"
 
 /obj/item/clothing/head/soft/mime
-	name = "white cap"
-	desc = "It's a baseball hat in a tasteless white color."
+	name = "白色便帽"
+	desc = "一顶配色俗气的白色棒球帽。"
 	icon_state = "mimesoft"
 	cap_color = "mime"
 
 /obj/item/clothing/head/soft/purple
-	name = "purple cap"
-	desc = "It's a baseball hat in a tasteless purple color."
+	name = "紫色便帽"
+	desc = "一顶配色俗气的紫色棒球帽。"
 	icon_state = "purplesoft"
 	cap_color = "purple"
 
 /obj/item/clothing/head/soft/rainbow
-	name = "rainbow cap"
-	desc = "It's a baseball hat in a bright rainbow of colors."
+	name = "彩虹便帽"
+	desc = "一顶色彩鲜艳的彩虹棒球帽。"
 	icon_state = "rainbowsoft"
 	cap_color = "rainbow"
 
 /obj/item/clothing/head/soft/ferret
-	name = "\improper Ferret Heavy Industries trucker hat"
-	desc = "It's a trucker hat. They're becoming collector items since Ferret went under in 2180."
+	name = "\improper 雪貂重工卡车司机帽"
+	desc = "一顶卡车司机帽。自雪貂重工于 2180 年倒闭后，这种帽子正逐渐成为收藏品。"
 	icon_state = "ferretsoft"
 	cap_color = "ferret"
 	black_market_value = 25
 
 /obj/item/clothing/head/soft/trucker
-	name = "\improper blue trucker hat"
-	desc = "It's a blue trucker hat."
+	name = "\improper 蓝色卡车司机帽"
+	desc = "一顶蓝色卡车司机帽。"
 	icon_state = "truckercap_bluesoft"
 	cap_color = "truckercap_blue"
 
 /obj/item/clothing/head/soft/trucker/red
-	name = "\improper red trucker hat"
-	desc = "It's a red trucker hat."
+	name = "\improper 红色卡车司机帽"
+	desc = "一顶红色卡车司机帽。"
 	icon_state = "truckercap_redsoft"
 	cap_color = "truckercap_red"
 
 /obj/item/clothing/head/soft/sec
-	name = "security cap"
-	desc = "It's baseball hat in tasteful red color."
+	name = "安保便帽"
+	desc = "一顶配色雅致的红色棒球帽。"
 	icon_state = "secsoft"
 	cap_color = "sec"
 
 /obj/item/clothing/head/soft/sec/corp
-	name = "corporate security cap"
-	desc = "It's baseball hat in corporate colors."
+	name = "公司安保便帽"
+	desc = "一顶采用公司配色的棒球帽。"
 	icon_state = "corpsoft"
 	cap_color = "corp"
 
@@ -118,8 +118,8 @@
 //marine cap
 
 /obj/item/clothing/head/soft/marine
-	name = "marine sergeant cap"
-	desc = "It's a soft cap made from advanced ballistic-resistant fibres. Fails to prevent lumps in the head."
+	name = "陆战队中士便帽"
+	desc = "采用先进防弹纤维制成的软帽，但挡不住脑袋被敲出大包。"
 	icon_state = "greysoft"
 	cap_color = "grey"
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
@@ -133,26 +133,26 @@
 	flags_inventory = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/soft/marine/alpha
-	name = "alpha squad sergeant cap"
+	name = "阿尔法小队中士便帽"
 	icon_state = "redsoft"
 	cap_color = "red"
 
 /obj/item/clothing/head/soft/marine/beta
-	name = "beta squad sergeant cap"
+	name = "贝塔小队中士便帽"
 	icon_state = "yellowsoft"
 	cap_color = "yellow"
 
 /obj/item/clothing/head/soft/marine/charlie
-	name = "charlie squad sergeant cap"
+	name = "查理小队中士便帽"
 	icon_state = "purplesoft"
 	cap_color = "purple"
 
 /obj/item/clothing/head/soft/marine/delta
-	name = "delta squad sergeant cap"
+	name = "德尔塔小队中士便帽"
 	icon_state = "bluesoft"
 	cap_color = "blue"
 
 /obj/item/clothing/head/soft/marine/mp
-	name = "marine police sergeant cap"
+	name = "陆战队宪兵中士便帽"
 	icon_state = "greensoft"
 	cap_color = "green"

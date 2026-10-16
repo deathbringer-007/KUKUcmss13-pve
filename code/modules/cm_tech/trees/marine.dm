@@ -107,8 +107,8 @@ GLOBAL_LIST_EMPTY(marine_leaders)
 GLOBAL_LIST_EMPTY(tech_controls_marine)
 
 /obj/structure/machinery/computer/tech_control
-	name = "tech control console"
-	desc = "A console used to make tech purchases."
+	name = "科技控制台"
+	desc = "用于购买科技的控制台。"
 
 	icon_state = "techweb"
 
@@ -138,7 +138,7 @@ GLOBAL_LIST_EMPTY(tech_controls_marine)
 	. = ..()
 
 	if(!skillcheck(M, SKILL_INTEL, SKILL_INTEL_TRAINED) && SSmapping.configs[GROUND_MAP].map_name != MAP_WHISKEY_OUTPOST)
-		to_chat(M, SPAN_WARNING("You don't have the training to use \the [src]."))
+		to_chat(M, SPAN_WARNING("你没有接受过使用[src]所需的训练。"))
 		return
 
 	if(!attached_tree)
@@ -150,6 +150,6 @@ GLOBAL_LIST_EMPTY(tech_controls_marine)
 /datum/techtree/marine/on_tier_change(datum/tier/oldtier)
 	if(tier.tier < 2)
 		return //No need to announce tier updates for tier 1
-	var/name = "ALMAYER DEFCON LEVEL INCREASED"
-	var/input = "THREAT ASSESSMENT LEVEL INCREASED TO LEVEL [tier.tier].\n\nLEVEL [tier.tier] assets have been authorised to handle the situation."
+	var/name = "阿尔迈耶号战备等级已提升"
+	var/input = "威胁评估等级已提升至[tier.tier]级。\n\n已授权使用[tier.tier]级装备应对当前情况。"
 	marine_announcement(input, name, 'sound/AI/commandreport.ogg', logging = ARES_LOG_NONE)

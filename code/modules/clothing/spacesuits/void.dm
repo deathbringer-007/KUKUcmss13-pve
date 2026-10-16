@@ -1,14 +1,14 @@
 
 //NASA Voidsuit
 /obj/item/clothing/head/helmet/space/odyssey
-	name = "\improper environmental helmet"
-	desc = "An aged environmental suit helmet designed by the now defunct United States National Council of Astronautics."
+	name = "\improper 环境防护头盔"
+	desc = "由现已解散的美国国家航天委员会设计的老式环境防护服头盔。"
 	icon_state = "void"
 	item_state = "void"
 
 /obj/item/clothing/suit/space/odyssey
-	name = "\improper environmental suit"
+	name = "\improper 环境防护服"
 	icon_state = "void"
 	item_state = "void"
-	desc = "An aged environmental suit designed by the now defunct United States National Council of Astronautics."
+	desc = "由现已解散的美国国家航天委员会设计的老式环境防护服。"
 	slowdown = 1

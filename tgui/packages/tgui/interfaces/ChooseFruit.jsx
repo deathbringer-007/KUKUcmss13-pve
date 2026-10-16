@@ -22,11 +22,11 @@ export const ChooseFruit = (props) => {
     >
       <Window.Content>
         <Section
-          title="Fruits"
+          title="果实"
           buttons={
             <Button
               color="transparent"
-              tooltip="Compact Mode"
+              tooltip="紧凑模式"
               tooltipPosition="left"
               selected={compact}
               onClick={() => {

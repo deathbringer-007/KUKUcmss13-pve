@@ -1,9 +1,9 @@
 // nightvision goggles
 
 /obj/item/clothing/glasses/night
-	name = "\improper TV1 night vision goggles"
+	name = "\improper TV1夜视镜"
 	gender = PLURAL
-	desc = "A neat looking pair of civilian grade night vision goggles."
+	desc = "一副外形精致的民用夜视镜。"
 	icon = 'icons/obj/items/clothing/glasses.dmi' //Why wasn't this on the parent item before?
 	icon_state = "night"
 	item_state = "night"
@@ -34,8 +34,8 @@
 	return ..()
 
 /obj/item/clothing/glasses/night/helmet //for the integrated NVGs that are in helmetgarb code
-	name = "\improper M2 night vision goggles"
-	desc = "The actual goggle part of the M2 night vision system."
+	name = "\improper M2夜视镜"
+	desc = "M2夜视系统的目镜部分。"
 	icon_state = "stub" //our actual icon is a part of our helmet.
 	item_state = null
 	vision_flags = SEE_TURFS
@@ -43,9 +43,9 @@
 	flags_inventory = CANTSTRIP
 
 /obj/item/clothing/glasses/night/M49A
-	name = "\improper M49A Battle sight"
+	name = "\improper M49A战斗瞄准镜"
 	gender = NEUTER
-	desc = "A headset and night vision system for the M49A Battle Rifle. Allows highlighted imaging of surroundings, the ability to view the biofunction monitor readouts of other marines, and linking to the Command & Control network. Click it to toggle."
+	desc = "供M49A战斗步枪使用的头戴通讯与夜视系统。可增强周围环境成像，查看其他陆战队员的生命体征监测读数，并接入指挥控制网络。点击开关。"
 	icon_state = "m49a_goggles"
 	deactive_state = "m49a_goggles_0"
 	vision_flags = SEE_TURFS
@@ -56,9 +56,9 @@
 	headcam = TRUE
 
 /obj/item/clothing/glasses/night/medhud
-	name = "\improper Mark 4 Battle Medic sight"
+	name = "\improper Mark 4战地医护瞄准镜"
 	gender = NEUTER
-	desc = "A headset, night vision optic and biomonitor readout system. Allows highlighted imaging of surroundings, the ability to view the biofunction monitor readouts of other marines, and linking to the Command & Control network. Click it to toggle."
+	desc = "集头戴通讯、夜视光学和生命体征读数于一体的系统。可增强周围环境成像，查看其他陆战队员的生命体征监测读数，并接入指挥控制网络。点击开关。"
 	icon_state = "m4_goggles"
 	deactive_state = "m4_goggles_0"
 	vision_flags = SEE_TURFS
@@ -71,16 +71,16 @@
 	headcam = TRUE
 
 /obj/item/clothing/glasses/night/medhud/no_nvg
-	name = "\improper Mark 2 Battle Medic sight"
-	desc = "A headset and biomonitor readout system. Allows the ability to view the biofunction monitor readouts of other marines and linking to the Command & Control network. Click it to toggle."
+	name = "\improper Mark 2战地医护瞄准镜"
+	desc = "集头戴通讯和生命体征读数于一体的系统。可查看其他陆战队员的生命体征监测读数，并接入指挥控制网络。点击开关。"
 	hud_type = list(MOB_HUD_FACTION_MARINE, MOB_HUD_FACTION_ARMY, MOB_HUD_FACTION_NAVY, MOB_HUD_MEDICAL_ADVANCED) // Need to redefine or it won't work
 	darkness_view = 0
 	vision_flags = 0
 	lighting_alpha = 255
 
 /obj/item/clothing/glasses/night/ghillie_goggles
-	name = "\improper BiMex M3 day/night goggles"
-	desc = "A set of enhanced-vision goggles often issued to the marksman of USCM scout-sniper teams. Allows highlighted imaging of surroundings. Click it to toggle."
+	name = "\improper 比迈克斯M3昼夜两用镜"
+	desc = "一套增强视觉护目镜，通常配发给殖民地陆战队侦察狙击小组的射手。可增强周围环境成像。点击开关。"
 	icon_state = "ghillie_goggles"
 	deactive_state = "ghillie_goggles_0"
 	vision_flags = SEE_TURFS
@@ -89,9 +89,9 @@
 	actions_types = list(/datum/action/item_action/toggle)
 
 /obj/item/clothing/glasses/night/m42_hms
-	name = "\improper M42 head mounted sight"
+	name = "\improper M42头戴式瞄准镜"
 	gender = NEUTER
-	desc = "A standalone version of the HMS commonly seen attached to the M56 weapon system. Allows highlighted imaging of surroundings and connects the wearer to the Command & Control network whilst also providing a HUD display. Click it to toggle."
+	desc = "通常安装在M56武器系统上的头戴式瞄准镜的独立版本。可增强周围环境成像，让佩戴者接入指挥控制网络，并提供抬头显示。点击开关。"
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
 	vision_flags = SEE_TURFS
@@ -108,23 +108,23 @@
 	hud_type = list(MOB_HUD_FACTION_TWE, MOB_HUD_FACTION_WY)
 
 /obj/item/clothing/glasses/night/m42_hms/no_nvg
-	name = "\improper M42 head-mounted sight"
-	desc = "A standalone version of the HMS commonly seen attached to the M56 weapon system. Allows connection to the Command & Control network whilst also providing a HUD display. Click it to toggle."
+	name = "\improper M42头戴式瞄准镜"
+	desc = "通常安装在M56武器系统上的头戴式瞄准镜的独立版本。可接入指挥控制网络，并提供抬头显示。点击开关。"
 	actions_types = list(/datum/action/item_action/toggle)
 	darkness_view = 0
 	vision_flags = 0
 	lighting_alpha = 255
 
 /obj/item/clothing/glasses/night/m42_hms/m42c
-	name = "\improper M42C special operations sight"
-	desc = "A specialized variation of the M42 scout sight system, intended for use with the high-power M42C anti-tank sniper rifle. Allows for highlighted imaging of surroundings, as well as detection of thermal signatures even from a great distance. Click it to toggle."
+	name = "\improper M42C特种作战瞄准镜"
+	desc = "M42侦察瞄准系统的特化改型，专为大威力M42C反坦克狙击步枪设计。可增强周围环境成像，并从极远处探测热信号。点击开关。"
 	vision_flags = SEE_TURFS|SEE_MOBS
 	hud_type = list(MOB_HUD_FACTION_PMC, MOB_HUD_FACTION_TWE, MOB_HUD_FACTION_WY)
 
 /obj/item/clothing/glasses/night/m42_hms/upp
-	name = "\improper Type 9 commando goggles"
+	name = "\improper 9式突击队护目镜"
 	gender = PLURAL
-	desc = "A headset and night vision goggles system used by UPP forces. Allows highlighted imaging of surroundings. Click it to toggle."
+	desc = "进步人民联盟部队使用的头戴通讯与夜视系统。可增强周围环境成像。点击开关。"
 	icon_state = "upp_goggles"
 	deactive_state = "upp_goggles_0"
 	req_skill = null
@@ -132,9 +132,9 @@
 	hud_type = list(MOB_HUD_FACTION_UPP)
 
 /obj/item/clothing/glasses/night/m56_goggles
-	name = "\improper M56 head mounted sight"
+	name = "\improper M56头戴式瞄准镜"
 	gender = NEUTER
-	desc = "A headset and optic system for the M56 Smartgun weapon system. Has a low-res short-range imager, allowing for view of terrain."
+	desc = "供M56智能机枪武器系统使用的头戴通讯与光学系统。配有低分辨率近距成像仪，可观察地形。"
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
 	toggleable = TRUE
@@ -166,7 +166,7 @@
 /obj/item/clothing/glasses/night/m56_goggles/mob_can_equip(mob/user, slot)
 	if(slot == WEAR_EYES)
 		if(!link_smartgun(user))
-			to_chat(user, SPAN_NOTICE("You must have your smartgun equipped to wear these."))
+			to_chat(user, SPAN_NOTICE("必须先装备智能机枪才能佩戴它。"))
 			return FALSE
 	return ..()
 
@@ -185,10 +185,10 @@
 /obj/item/clothing/glasses/night/m56_goggles/proc/set_far_sight(mob/living/carbon/human/user, set_to_state = TRUE)
 	if(set_to_state)
 		if(user.glasses != src)
-			to_chat(user, SPAN_WARNING("You can't activate far sight without wearing \the [src]!"))
+			to_chat(user, SPAN_WARNING("没有戴上[src]，无法开启远视！"))
 			return
 		if(!link_smartgun(user))
-			to_chat(user, SPAN_WARNING("You can't use this without a smartgun!"))
+			to_chat(user, SPAN_WARNING("没有智能机枪，无法使用此设备！"))
 			return
 		far_sight = TRUE
 		if(user)
@@ -227,7 +227,7 @@
 
 /datum/action/item_action/m56_goggles/far_sight/New()
 	. = ..()
-	name = "Toggle Far Sight"
+	name = "开关远视"
 	action_icon_state = "far_sight"
 	button.name = name
 	button.overlays.Cut()
@@ -238,7 +238,7 @@
 	if(target)
 		var/obj/item/clothing/glasses/night/m56_goggles/G = target
 		G.set_far_sight(owner, !G.far_sight)
-		to_chat(owner, SPAN_NOTICE("You [G.far_sight ? "enable" : "disable"] \the [G]'s far sight system."))
+		to_chat(owner, SPAN_NOTICE("你[G.far_sight ? "开启" : "关闭"]了[G]的远视系统。"))
 
 /datum/action/item_action/m56_goggles/far_sight/update_button_icon()
 	if(!target)
@@ -256,8 +256,8 @@
 	lighting_alpha = 255
 
 /obj/item/clothing/glasses/night/m56_goggles/rmc
-	name = "\improper L58A3 head mounted gunsight interface"
-	desc = "A headset and optic system for the L58A3 Smartgun weapon system. Has a low-res short-range imager, allowing for view of terrain."
+	name = "\improper L58A3头戴式枪瞄接口"
+	desc = "供L58A3智能机枪武器系统使用的头戴通讯与光学系统。配有低分辨率近距成像仪，可观察地形。"
 	actions_types = list(/datum/action/item_action/toggle)
 	darkness_view = 0
 	vision_flags = 0
@@ -265,14 +265,14 @@
 	hud_type = list(MOB_HUD_FACTION_TWE, MOB_HUD_FACTION_WY)
 
 /obj/item/clothing/glasses/night/m56_goggles/whiteout
-	name = "\improper M56T head mounted sight"
-	desc = "A headset and goggles system for the M56T 'Terminator' Smartgun. Has a low-light vision processor as well as a system allowing detection of thermal signatures though solid surfaces."
+	name = "\improper M56T头戴式瞄准镜"
+	desc = "供M56T“终结者”智能机枪使用的头戴通讯与护目镜系统。配有微光视觉处理器，以及能透过实体表面探测热信号的系统。"
 	vision_flags = SEE_TURFS|SEE_MOBS
 	hud_type = list(MOB_HUD_FACTION_PMC, MOB_HUD_FACTION_TWE, MOB_HUD_FACTION_WY)
 
 /obj/item/clothing/glasses/night/m56_goggles/upp
-	name = "\improper RADIO head rig"
-	desc = "Developed for use with the RFVS-37, the Integrated Auto-Rifleman Optronic Device enables the riflemen of the UPP SOF to visually search for targets in low-visibility conditions, while also enabling safe use of the weapon itself."
+	name = "\improper RADIO头戴装置"
+	desc = "为配合RFVS-37开发的自动步枪手综合光电装置，可让进步人民联盟特种部队的步枪手在低能见度环境中目视搜索目标，同时安全操作武器。"
 	icon_state = "radio_head_rig"
 	deactive_state = "radio_head_rig_0"
 	hud_type = list(MOB_HUD_FACTION_UPP)
@@ -284,9 +284,9 @@
 	lighting_alpha = 255
 
 /obj/item/clothing/glasses/night/yautja
-	name = "bio-mask nightvision"
+	name = "生物面具夜视层"
 	gender = NEUTER
-	desc = "A vision overlay generated by the Bio-Mask. Used for low-light conditions."
+	desc = "生物面具生成的视觉覆盖层，用于低光照环境。"
 	icon = 'icons/obj/items/hunter/pred_gear.dmi'
 	icon_state = "visor_nvg"
 	item_state = "securityhud"
@@ -296,8 +296,8 @@
 	actions_types = null
 
 /obj/item/clothing/glasses/night/cultist
-	name = "\improper unusual thermal imaging goggles"
-	desc = "Seems to be thermal imaging goggles, except they have an unusual design. Looking at it makes you nauseous."
+	name = "\improper 异常热成像护目镜"
+	desc = "看起来像热成像护目镜，但设计很不寻常。光是看着它就让你恶心。"
 	icon_state = "thermal"
 	item_state = "thermal"
 	w_class = SIZE_SMALL
@@ -309,13 +309,13 @@
 		if(iscarbon(user))
 			var/mob/living/carbon/H = user
 			if(!H.hivenumber)
-				to_chat(user, SPAN_WARNING("You do not want to put these on, they're making you nauseous."))
+				to_chat(user, SPAN_WARNING("你不想戴上它，它让你感到恶心。"))
 				return FALSE
 	return ..()
 
 /obj/item/clothing/glasses/night/experimental_mesons
-	name = "\improper Experimental Meson Goggles"
-	desc = "An improved but experimental version of the standard issue meson goggles, due to increased complexity these can only be worn by synthetics. Allows for full night vision and viewing of the surroundings. Click it to toggle."
+	name = "\improper 实验型介子护目镜"
+	desc = "制式介子护目镜的实验改进型，由于结构更加复杂，只有合成人能够佩戴。提供完整夜视能力，可观察周围环境。点击开关。"
 	icon_state = "refurb_meson"
 	deactive_state = "degoggles"
 	vision_flags = SEE_TURFS
@@ -326,6 +326,6 @@
 /obj/item/clothing/glasses/night/experimental_mesons/mob_can_equip(mob/user, slot)
 	if(slot == WEAR_EYES)
 		if(!issynth(user))
-			to_chat(user, "The experimental meson goggles start probing at your eyes, searching for an attachment point, and you immediately take them off.")
+			to_chat(user, "实验型介子护目镜开始探查你的眼睛，寻找连接点，你立刻将它摘了下来。")
 			return FALSE
 	return ..()

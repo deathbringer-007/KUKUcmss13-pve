@@ -1,6 +1,6 @@
 /obj/item/hardpoint/support/flare_launcher
-	name = "\improper M-87F Flare Launcher"
-	desc = "A support module for APCs that shoots flares."
+	name = "\improper M-87F照明弹发射器"
+	desc = "装甲运兵车用支援模块，可发射照明弹。"
 	icon = 'icons/obj/vehicles/hardpoints/apc.dmi'
 
 	icon_state = "flare_launcher"
@@ -42,8 +42,8 @@
 
 // UPP APC
 /obj/item/hardpoint/support/flare_launcher/upp
-	name = "\improper ZSL-Flare Launcher"
-	desc = "A support module for APCs that shoots flares."
+	name = "\improper ZSL照明弹发射器"
+	desc = "装甲运兵车用支援模块，可发射照明弹。"
 	icon = 'icons/obj/vehicles/hardpoints/uppapc.dmi'
 
 	icon_state = "upp_flare_launcher"
@@ -79,8 +79,8 @@
 
 // UPP TANK
 /obj/item/hardpoint/support/flare_launcher/upptank
-	name = "\improper VT/CZ-Flare Launcher"
-	desc = "A support module for Tanks that shoots flares."
+	name = "\improper VT/CZ照明弹发射器"
+	desc = "坦克用支援模块，可发射照明弹。"
 	icon = 'icons/obj/vehicles/hardpoints/upptank.dmi'
 
 	icon_state = "turret_slauncher"

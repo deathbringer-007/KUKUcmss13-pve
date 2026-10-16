@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/guncabinet
-	name = "gun cabinet"
+	name = "枪柜"
 	req_access = null
 	health = 1000
 	icon = 'icons/obj/structures/props/misc.dmi'
@@ -14,7 +14,7 @@
 
 /obj/structure/closet/secure_closet/guncabinet/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_NOTICE("[src] will only open on [num2seclevel(req_level)] security level.")
+	. += SPAN_NOTICE("[src]仅在警戒等级达到[list("green" = "绿色", "blue" = "蓝色", "red" = "红色", "delta" = "德尔塔")[num2seclevel(req_level)]]时开放。")
 
 /obj/structure/closet/secure_closet/guncabinet/Initialize()
 	. = ..()
@@ -29,13 +29,13 @@
 			return
 		for(var/mob/living/L in contents)
 			L.forceMove(loc)
-			to_chat(L, SPAN_WARNING("You are forced out of [src]!"))
+			to_chat(L, SPAN_WARNING("你被强行赶出了[src]！"))
 		if(!locked)
 			locked = TRUE
 	else
 		if(locked)
 			locked = FALSE
-	visible_message(SPAN_NOTICE("[src] [locked ? "locks" : "unlocks"] itself."), null, null, 3)
+	visible_message(SPAN_NOTICE("[src]自动[locked ? "上锁" : "解锁"]了。"), null, null, 3)
 	update_icon()
 
 /obj/structure/closet/secure_closet/guncabinet/toggle()
@@ -67,7 +67,7 @@
 
 //this is used on corsat.(leaving it as a prop i guess)
 /obj/structure/closet/secure_closet/guncabinet/riot_control
-	name = "riot control equipment closet"
+	name = "防暴装备柜"
 // req_access = list(ACCESS_MARINE_BRIG)
 	storage_capacity = 55 //lots of stuff to fit in
 	req_level = SEC_LEVEL_BLUE
@@ -98,17 +98,17 @@
 	new /obj/item/storage/box/flashbangs(src)
 
 /obj/structure/closet/secure_closet/guncabinet/green
-	name = "green level gun cabinet"
+	name = "绿色警戒枪柜"
 	req_level = SEC_LEVEL_GREEN
 
 /obj/structure/closet/secure_closet/guncabinet/red
-	name = "red level gun cabinet"
+	name = "红色警戒枪柜"
 	req_level = SEC_LEVEL_RED
 
 /obj/structure/closet/secure_closet/guncabinet/delta
-	name = "delta level gun cabinet"
+	name = "德尔塔警戒枪柜"
 	req_level = SEC_LEVEL_DELTA
 
 /obj/structure/closet/secure_closet/guncabinet/wy
-	name = "weyland yutani gun cabinet"
+	name = "维兰德-汤谷枪柜"
 	req_access = ACCESS_WY_SECURITY

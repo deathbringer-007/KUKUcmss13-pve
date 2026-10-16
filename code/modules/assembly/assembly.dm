@@ -63,7 +63,7 @@
 /obj/item/device/assembly/proc/attach_assembly(obj/A, mob/user) //Called when an assembly is attacked by another
 	holder = new/obj/item/device/assembly_holder(get_turf(src))
 	if(holder.attach(A,src,user))
-		to_chat(user, SPAN_NOTICE("You attach \the [A] to \the [src]!"))
+		to_chat(user, SPAN_NOTICE("你将[A]连接到了[src]上！"))
 		return 1
 	return 0
 
@@ -82,9 +82,9 @@
 			return
 	if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
 		if(toggle_secure())
-			to_chat(user, SPAN_NOTICE("\The [src] is ready!"))
+			to_chat(user, SPAN_NOTICE("[src]已准备就绪！"))
 		else
-			to_chat(user, SPAN_NOTICE("\The [src] can now be attached!"))
+			to_chat(user, SPAN_NOTICE("现在可以连接[src]了！"))
 		return
 	..()
 
@@ -96,9 +96,9 @@
 	. = ..()
 	if((in_range(src, user) || loc == usr))
 		if(secured)
-			. += "[src] is ready!"
+			. += "[src]已准备就绪！"
 		else
-			. += "[src] can be attached!"
+			. += "可以连接[src]！"
 
 /obj/item/device/assembly/attack_self(mob/user)
 	..()

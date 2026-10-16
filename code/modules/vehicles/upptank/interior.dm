@@ -1,10 +1,10 @@
 /obj/structure/interior_exit/vehicle/tank/upp
-	name = "tank hatch"
+	name = "坦克舱盖"
 	icon = 'icons/obj/vehicles/interiors/upptank.dmi'
 	icon_state = "hatch"
 
 /obj/structure/prop/vehicle/upptank
-	name = "UPP Tank chassis"
+	name = "UPP坦克底盘"
 
 	icon = 'icons/obj/vehicles/interiors/upptank_chassis.dmi'
 	icon_state = "upptank_chassis"

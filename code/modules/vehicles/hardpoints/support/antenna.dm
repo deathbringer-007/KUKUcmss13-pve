@@ -1,6 +1,6 @@
 /obj/item/hardpoint/support/arc_antenna
-	name = "\improper U-56 Radar Antenna"
-	desc = "A heavy-duty antenna built for the ARC."
+	name = "\improper U-56雷达天线"
+	desc = "为ARC打造的重型天线。"
 	icon = 'icons/obj/vehicles/hardpoints/arc.dmi'
 
 	icon_state = "antenna"
@@ -79,7 +79,7 @@
 		return TRUE
 
 	if(arc_owner.antenna_deployed)
-		to_chat(remover, SPAN_WARNING("[src] cannot be removed from [owner] while it is deployed."))
+		to_chat(remover, SPAN_WARNING("[src]展开时，无法从[owner]上拆下。"))
 		return FALSE
 
 	return ..()

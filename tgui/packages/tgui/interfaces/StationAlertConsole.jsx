@@ -20,9 +20,9 @@ export const StationAlertConsoleContent = (props) => {
   const power = categories['Power'] || [];
   return (
     <>
-      <Section title="Fire Alarms">
+      <Section title="火灾警报">
         <ul>
-          {fire.length === 0 && <li className="color-good">Systems Nominal</li>}
+          {fire.length === 0 && <li className="color-good">系统正常</li>}
           {fire.map((alert) => (
             <li key={alert} className="color-average">
               {alert}
@@ -30,10 +30,10 @@ export const StationAlertConsoleContent = (props) => {
           ))}
         </ul>
       </Section>
-      <Section title="Atmospherics Alarms">
+      <Section title="大气警报">
         <ul>
           {atmos.length === 0 && (
-            <li className="color-good">Systems Nominal</li>
+            <li className="color-good">系统正常</li>
           )}
           {atmos.map((alert) => (
             <li key={alert} className="color-average">
@@ -42,10 +42,10 @@ export const StationAlertConsoleContent = (props) => {
           ))}
         </ul>
       </Section>
-      <Section title="Power Alarms">
+      <Section title="电力警报">
         <ul>
           {power.length === 0 && (
-            <li className="color-good">Systems Nominal</li>
+            <li className="color-good">系统正常</li>
           )}
           {power.map((alert) => (
             <li key={alert} className="color-average">

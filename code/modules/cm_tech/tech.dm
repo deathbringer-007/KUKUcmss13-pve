@@ -21,7 +21,7 @@
 	var/background_icon = "background"
 	var/background_icon_locked = "marine"
 
-	var/announce_name = "ALMAYER SPECIAL ASSETS AUTHORIZED"
+	var/announce_name = "阿尔迈耶号特殊装备使用已获授权"
 	var/announce_message
 
 	var/is_tier_changer = FALSE
@@ -30,18 +30,18 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 	if(!holder.has_access(M, TREE_ACCESS_MODIFY))
-		to_chat(M, SPAN_WARNING("You lack the necessary permission required to use this tree"))
+		to_chat(M, SPAN_WARNING("你没有使用这棵科技树所需的权限。"))
 		return
 
 	if(!check_tier_level(M))
 		return
 
 	if(!(type in holder.all_techs[tier.type]))
-		to_chat(M, SPAN_WARNING("You cannot purchase this node!"))
+		to_chat(M, SPAN_WARNING("你无法购买此节点！"))
 		return
 
 	if(!holder.can_use_points(required_points))
-		to_chat(M, SPAN_WARNING("Not enough points to purchase this node."))
+		to_chat(M, SPAN_WARNING("点数不足，无法购买此节点。"))
 		return
 
 	return TRUE
@@ -49,13 +49,13 @@
 /datum/tech/proc/check_tier_level(mob/M)
 	if(holder.tier.tier < tier.tier)
 		if(M)
-			to_chat(M, SPAN_WARNING("This tier level has not been unlocked yet!"))
+			to_chat(M, SPAN_WARNING("尚未解锁此等级！"))
 		return FALSE
 
 	var/datum/tier/t_target = holder.tree_tiers[tier.type]
 	if(t_target.max_techs != INFINITE_TECHS && LAZYLEN(holder.unlocked_techs[tier.type]) >= t_target.max_techs)
 		if(M)
-			to_chat(M, SPAN_WARNING("You can't purchase any more techs of this tier!"))
+			to_chat(M, SPAN_WARNING("你无法再购买此等级的科技！"))
 		return FALSE
 
 	return TRUE
@@ -70,7 +70,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 	unlocked = TRUE
-	to_chat(user, SPAN_HELPFUL("You have purchased the '[name]' tech node."))
+	to_chat(user, SPAN_HELPFUL("你已购买“[name]”科技节点。"))
 	log_admin("[key_name_admin(user)] has bought '[name]' via tech points.")
 	if(!is_tier_changer)
 		var/log_details = announce_message
@@ -107,10 +107,10 @@
 
 	if(tech_flags & TECH_FLAG_MULTIUSE)
 		.["stats"] += list(list(
-			"content" = "Repurchasable",
+			"content" = "可重复购买",
 			"color" = "grey",
 			"icon" = "cart-plus",
-			"tooltip" = "Can be purchased multiple times."
+			"tooltip" = "可多次购买。"
 		))
 
 /datum/tech/tgui_interact(mob/user, datum/tgui/ui)

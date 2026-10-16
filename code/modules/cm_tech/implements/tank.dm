@@ -1,13 +1,13 @@
 /obj/item/pamphlet/skill/vc
-	name = "vehicle training manual"
-	desc = "A manual used to quickly impart vital knowledge on driving vehicles."
+	name = "载具驾驶训练手册"
+	desc = "用于快速传授载具驾驶关键知识的手册。"
 	icon_state = "pamphlet_vehicle"
 	trait = /datum/character_trait/skills/vc
 	bypass_pamphlet_limit = TRUE
 
 /obj/item/vehicle_coupon
-	name = "vehicle coupon"
-	desc = "A coupon to be used for ASRS Vehicle Consoles to grant the wearer an actual APC! Yeah baby, we're done walking! One use only. The ASRS elevator must be manually sent to lower level. Special restrictions may apply. No warranty."
+	name = "载具兑换券"
+	desc = "可在ASRS载具控制台兑换一辆货真价实的装甲运兵车！好耶，终于不用走路了！仅限使用一次，必须手动将ASRS升降机送至下层。可能适用特殊限制，不提供保修。"
 	icon = 'icons/obj/items/pamphlets.dmi'
 	icon_state = "pamphlet_written"
 	item_state = "pamphlet_written"
@@ -15,8 +15,8 @@
 	var/vehicle_category = "APC"
 
 /obj/item/vehicle_coupon/tank
-	name = "tank coupon"
-	desc = "We're done playing! This coupon allows the ship crew to retrieve a complete Longstreet tank from Vehicle ASRS. Make sure to send the ASRS lift down so it can be retrieved. One use only. LTB not included. Comes with free friendly fire."
+	name = "坦克兑换券"
+	desc = "不闹着玩了！凭此券，船员可从载具ASRS领取一辆完整的朗斯特里特坦克。记得先把ASRS升降机降下去才能提车。仅限使用一次，不含LTB，附赠友军误伤。"
 	vehicle_type = /datum/vehicle_order/tank/broken
 	vehicle_category = "LONGSTREET"
 
@@ -24,7 +24,7 @@
 	if(QDELETED(src))
 		return
 	if(redeem_vehicle())
-		to_chat(user, SPAN_WARNING("\The [src] catches fire as it is read and resets the ASRS Vehicle system! Send the lift down and haul your prize up."))
+		to_chat(user, SPAN_WARNING("[src]在被读取时燃烧起来，重置了ASRS载具系统！将升降机降下去，把你的奖品运上来吧。"))
 		qdel(src)
 	return ..()
 

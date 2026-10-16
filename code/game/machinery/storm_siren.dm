@@ -1,6 +1,6 @@
 /obj/structure/machinery/storm_siren
-	name = "storm siren"
-	desc = "A siren used to announce storm warnings for the colony."
+	name = "风暴警报器"
+	desc = "用于向殖民地发布风暴预警的警报器。"
 	icon = 'icons/obj/structures/machinery/loudspeaker.dmi'
 	icon_state = "loudspeaker"
 	density = FALSE
@@ -23,4 +23,4 @@
 
 /obj/structure/machinery/storm_siren/proc/weather_warning()
 	playsound(loc, 'sound/effects/weather_warning_varadero.ogg', 60, 0)
-	visible_message(SPAN_DANGER("The storm siren blares: ATTENTION. ATTENTION. INCOMING TROPICAL STORM DETECTED. SEEK SHELTER IMMEDIATELY."))
+	visible_message(SPAN_DANGER("风暴警报器鸣响：注意！注意！检测到热带风暴正在逼近。请立即寻找掩体避难。"))

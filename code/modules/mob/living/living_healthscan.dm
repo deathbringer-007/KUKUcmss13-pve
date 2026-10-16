@@ -27,20 +27,20 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 /datum/health_scan/proc/look_at(mob/user, detail = DETAIL_LEVEL_FULL, bypass_checks = FALSE, ignore_delay = TRUE, alien = FALSE, datum/tgui/ui = null, associated_equipment = FALSE)
 	if(!bypass_checks)
 		if(HAS_TRAIT(target_mob, TRAIT_FOREIGN_BIO) && !alien)
-			to_chat(user, SPAN_WARNING("ERROR: Unknown biology detected."))
+			to_chat(user, SPAN_WARNING("错误：检测到未知生理结构。"))
 			return
 		if(!(ishuman(user) || SSticker?.mode.name == "monkey"))
-			to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
+			to_chat(usr, SPAN_WARNING("你的动作不够灵巧，无法进行此操作！"))
 			return
 		if(!ignore_delay && !skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_MEDIC))
-			to_chat(user, SPAN_WARNING("You start fumbling around with [target_mob]..."))
+			to_chat(user, SPAN_WARNING("你开始笨拙地尝试检查[target_mob]……"))
 			var/fduration = 60
 			if(skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_DEFAULT))
 				fduration = 30
 			if(!do_after(user, fduration, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY) || !user.Adjacent(target_mob))
 				return
 		if(!istype(target_mob, /mob/living/carbon) || isxeno(target_mob))
-			to_chat(user, SPAN_WARNING("The scanner can't make sense of this creature."))
+			to_chat(user, SPAN_WARNING("扫描仪无法识别这种生物的生理结构。"))
 			return
 
 	detail_level = detail
@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "HealthScan", "Health Scan")
+		ui = new(user, src, "HealthScan", "健康扫描")
 		ui.open()
 		ui.set_autoupdate(FALSE)
 
@@ -318,58 +318,58 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		if(!permadead)
 			if(human_target_mob.getBruteLoss(robotic_only = TRUE) > 20)
 				advice += list(list(
-					"advice" = "Use a blowtorch or nanopaste to repair the damaged areas.",
+					"advice" = "使用焊枪或纳米修复膏修复受损部位。",
 					"icon" = "tools",
 					"color" = "red" //BRI'ISH????
 					))
 			if(human_target_mob.getFireLoss(robotic_only = TRUE) > 20)
 				advice += list(list(
-					"advice" = "Use a cable coil or nanopaste to repair the burned areas.",
+					"advice" = "使用电缆卷或纳米修复膏修复烧毁的部位。",
 					"icon" = "plug",
 					"color" = "orange"
 					))
 			if(unknown_implants)
 				advice += list(list(
-					"advice" = "Recommend that the patient does not move - embedded objects.",
+					"advice" = "患者体内有嵌入异物，建议保持不动。",
 					"icon" = "window-close",
 					"color" = "red"
 					))
 			if(human_target_mob.stat == DEAD)
 				if((human_target_mob.health + 20) > HEALTH_THRESHOLD_DEAD)
 					advice += list(list(
-						"advice" = "Apply shock via defibrillator!",
+						"advice" = "使用除颤器进行电击！",
 						"icon" = "bolt",
 						"color" = "yellow"
 						))
 				else
 					if(human_target_mob.getBruteLoss(organic_only = TRUE) > 30)
 						advice += list(list(
-							"advice" = "Use trauma kits or surgical line to repair the lacerated areas.",
+							"advice" = "使用创伤治疗包或手术缝合线修复撕裂伤。",
 							"icon" = "band-aid",
 							"color" = "green" //BRI'ISH????
 							))
 					if(human_target_mob.getFireLoss(organic_only = TRUE) > 30)
 						advice += list(list(
-							"advice" = "Use burn kits or synth-graft to repair the burned areas.",
+							"advice" = "使用烧伤治疗包或合成皮肤移植剂修复烧伤部位。",
 							"icon" = "band-aid",
 							"color" = "orange" //BRI'ISH????
 							))
 					if(((human_target_mob.health + 50) < HEALTH_THRESHOLD_DEAD) && !issynth(human_target_mob))
 						advice += list(list(
-							"advice" = "Administer a single dose of epinephrine.",
+							"advice" = "给予一剂肾上腺素。",
 							"icon" = "syringe",
 							"color" = "olive"
 							))
 			if(!issynth(human_target_mob))
 				if(human_target_mob.blood_volume <= 500 && !chemicals_lists["nutriment"])
 					advice += list(list(
-						"advice" = "Administer food or recommend that the patient eat.",
+						"advice" = "给患者喂食，或建议患者进食。",
 						"icon" = "pizza-slice",
 						"color" = "white"
 						))
 				if(human_target_mob.getToxLoss() > 10)
 					temp_advice = list(list(
-						"advice" = "Administer a single dose of dylovene.",
+						"advice" = "给予一剂迪洛文（抗毒素）。",
 						"icon" = "syringe",
 						"color" = "green"
 						))
@@ -380,7 +380,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 						advice += temp_advice
 				if((human_target_mob.getToxLoss() > 50 || (human_target_mob.getOxyLoss() > 50 && human_target_mob.blood_volume > 400) || human_target_mob.getBrainLoss() >= 10))
 					temp_advice = list(list(
-						"advice" = "Administer a single dose of peridaxon.",
+						"advice" = "给予一剂佩里达酮。",
 						"icon" = "syringe",
 						"color" = "grey"
 						))
@@ -391,7 +391,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 						advice += temp_advice
 				if(human_target_mob.getOxyLoss() > 50)
 					temp_advice = list(list(
-						"advice" = "Administer a single dose of dexalin.",
+						"advice" = "给予一剂右氧林。",
 						"icon" = "syringe",
 						"color" = "blue"
 						))
@@ -402,7 +402,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 						advice += temp_advice
 				if(human_target_mob.getFireLoss(organic_only = TRUE) > 30)
 					temp_advice = list(list(
-						"advice" = "Administer a single dose of kelotane.",
+						"advice" = "给予一剂克洛坦。",
 						"icon" = "syringe",
 						"color" = "yellow"
 						))
@@ -413,7 +413,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 						advice += temp_advice
 				if(human_target_mob.getBruteLoss(organic_only = TRUE) > 30)
 					temp_advice = list(list(
-						"advice" = "Administer a single dose of bicaridine.",
+						"advice" = "给予一剂比卡定。",
 						"icon" = "syringe",
 						"color" = "red"
 						))
@@ -424,7 +424,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 						advice += temp_advice
 				if(human_target_mob.health < 0)
 					temp_advice = list(list(
-						"advice" = "Administer a single dose of inaprovaline.",
+						"advice" = "给予一剂因纳普罗伐林。",
 						"icon" = "syringe",
 						"color" = "purple"
 						))
@@ -440,7 +440,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 				if(has_pain && !chemicals_lists["paracetamol"])
 					temp_advice = list(list(
-						"advice" = "Administer a single dose of tramadol.",
+						"advice" = "给予一剂曲马多。",
 						"icon" = "syringe",
 						"color" = "white"
 						))
@@ -452,7 +452,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 				if(chemicals_lists["paracetamol"])
 					advice += list(list(
-						"advice" = "Do NOT administer tramadol.",
+						"advice" = "禁止给予曲马多。",
 						"icon" = "window-close",
 						"color" = "red"
 						))
@@ -481,14 +481,14 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 	data["ssd"] = null //clear the data in case we have an old input from a previous scan
 	if(target_mob.getBrainLoss() >= 100 || !target_mob.has_brain())
-		data["ssd"] = "Subject has taken extreme amounts of brain damage."
+		data["ssd"] = "患者遭受了极其严重的脑损伤。"
 	else if(target_mob.has_brain() && target_mob.stat != DEAD && ishuman(target_mob))
 		var/mob/living/carbon/human/target_human = target_mob
 		if(!target_human.get_ai_brain())
 			if(!target_mob.key)
-				data["ssd"] = "No soul detected." // they ghosted
+				data["ssd"] = "未检测到灵魂。" // they ghosted
 			else if(!target_mob.client)
-				data["ssd"] = "SSD detected." // SSD
+				data["ssd"] = "检测到 SSD（离线状态）。" // SSD
 
 	return data
 
@@ -522,7 +522,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 					analyzer.tgui_interact(ui.user)
 					return TRUE
 				else
-					to_chat(ui.user, "This device does not support this.")
+					to_chat(ui.user, "此设备不支持此操作。")
 		if("next_scan")
 			if(istype(scanner_device, /obj/item/device/healthanalyzer/soul))
 				var/obj/item/device/healthanalyzer/soul/analyzer = scanner_device
@@ -530,7 +530,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				analyzer.tgui_interact(ui.user)
 				return TRUE
 			else
-				to_chat(ui.user, "This device does not support this.")
+				to_chat(ui.user, "此设备不支持此操作。")
 		if("print_scan")
 			if(istype(scanner_device, /obj/item/device/healthanalyzer/soul))
 				var/obj/item/device/healthanalyzer/soul/analyzer = scanner_device
@@ -541,7 +541,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				analyzer.print_report(ui.user)
 				return TRUE
 			else
-				to_chat(ui.user, "This device does not support this.")
+				to_chat(ui.user, "此设备不支持此操作。")
 		if("clear_scans")
 			if(istype(scanner_device, /obj/item/device/healthanalyzer/soul))
 				var/obj/item/device/healthanalyzer/soul/analyzer = scanner_device
@@ -550,44 +550,44 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				playsound(analyzer.loc, 'sound/machines/buzz-sigh.ogg', 5, 0)
 				return TRUE
 			else
-				to_chat(ui.user, "This device does not support this.")
+				to_chat(ui.user, "此设备不支持此操作。")
 
 /// legacy proc for to_chat messages on health analysers
 /mob/living/proc/health_scan(mob/living/carbon/human/user, ignore_delay = FALSE, show_limb_damage = TRUE, show_browser = TRUE, alien = FALSE, do_checks = TRUE) // ahem. FUCK WHOEVER CODED THIS SHIT AS NUMBERS AND NOT DEFINES.
 	if(do_checks)
 		if((user.getBrainLoss() >= 60) && prob(50))
-			to_chat(user, SPAN_WARNING("You try to analyze the floor's vitals!"))
+			to_chat(user, SPAN_WARNING("你试图分析地板的生命体征！"))
 			for(var/mob/O in viewers(src, null))
-				O.show_message(SPAN_WARNING("[user] has analyzed the floor's vitals!"), 1)
-			user.show_message(SPAN_NOTICE("Health Analyzer results for The floor:\n\t Overall Status: Healthy"), 1)
-			user.show_message(SPAN_NOTICE("\t Damage Specifics: [0]-[0]-[0]-[0]"), 1)
-			user.show_message(SPAN_NOTICE("Key: Suffocation/Toxin/Burns/Brute"), 1)
-			user.show_message(SPAN_NOTICE("Body Temperature: ???"), 1)
+				O.show_message(SPAN_WARNING("[user]分析了地板的生命体征！"), 1)
+			user.show_message(SPAN_NOTICE("地板的健康分析结果：\n\t 总体状态：健康"), 1)
+			user.show_message(SPAN_NOTICE("\t 伤害数值：[0]-[0]-[0]-[0]"), 1)
+			user.show_message(SPAN_NOTICE("图例：缺氧／毒素／烧伤／物理损伤"), 1)
+			user.show_message(SPAN_NOTICE("体温：???"), 1)
 			return
 		if(HAS_TRAIT(src, TRAIT_FOREIGN_BIO) && !alien)
-			to_chat(user, SPAN_WARNING("ERROR: Unknown biology detected."))
+			to_chat(user, SPAN_WARNING("错误：检测到未知生理结构。"))
 			return
 		if(!(ishuman(user) || SSticker?.mode.name == "monkey"))
-			to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
+			to_chat(usr, SPAN_WARNING("你的动作不够灵巧，无法进行此操作！"))
 			return
 		if(!ignore_delay && !skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_MEDIC))
-			to_chat(user, SPAN_WARNING("You start fumbling around with [src]..."))
+			to_chat(user, SPAN_WARNING("你开始笨拙地尝试检查[src]……"))
 			var/fduration = 60
 			if(skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_DEFAULT))
 				fduration = 30
 			if(!do_after(user, fduration, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY) || !user.Adjacent(src))
 				return
 		if(isxeno(src))
-			to_chat(user, SPAN_WARNING("[src] can't make sense of this creature."))
+			to_chat(user, SPAN_WARNING("无法识别[src]的生理结构。"))
 			return
 		// Doesn't work on non-humans
 		if(!istype(src, /mob/living/carbon))
-			user.show_message("\nHealth Analyzer results for ERROR:\n\t Overall Status: ERROR")
-			user.show_message("\tType: [SET_CLASS("Oxygen", INTERFACE_BLUE)]-[SET_CLASS("Toxin", INTERFACE_GREEN)]-[SET_CLASS("Burns", INTERFACE_ORANGE)]-[SET_CLASS("Brute", INTERFACE_RED)]", 1)
-			user.show_message("\tDamage: [SET_CLASS("?", INTERFACE_BLUE)] - [SET_CLASS("?", INTERFACE_GREEN)] - [SET_CLASS("?", INTERFACE_ORANGE)] - [SET_CLASS("?", INTERFACE_RED)]")
-			user.show_message(SPAN_NOTICE("Body Temperature: [src.bodytemperature-T0C]&deg;C ([src.bodytemperature*1.8-459.67]&deg;F)"), 1)
-			user.show_message(SPAN_DANGER("<b>Warning: Blood Level ERROR: --% --cl.Type: ERROR"))
-			user.show_message(SPAN_NOTICE("Subject's pulse: [SET_CLASS("-- bpm", INTERFACE_RED)]"))
+			user.show_message("\n健康分析结果：错误\n\t 总体状态：错误")
+			user.show_message("\t类型：[SET_CLASS("缺氧", INTERFACE_BLUE)]-[SET_CLASS("毒素", INTERFACE_GREEN)]-[SET_CLASS("烧伤", INTERFACE_ORANGE)]-[SET_CLASS("物理损伤", INTERFACE_RED)]", 1)
+			user.show_message("\t伤害：[SET_CLASS("?", INTERFACE_BLUE)] - [SET_CLASS("?", INTERFACE_GREEN)] - [SET_CLASS("?", INTERFACE_ORANGE)] - [SET_CLASS("?", INTERFACE_RED)]")
+			user.show_message(SPAN_NOTICE("体温：[src.bodytemperature-T0C]&deg;C（[src.bodytemperature*1.8-459.67]&deg;F）"), 1)
+			user.show_message(SPAN_DANGER("<b>警告：血量读取错误：--% --cl。血型：错误"))
+			user.show_message(SPAN_NOTICE("患者脉搏：[SET_CLASS("-- 次/分", INTERFACE_RED)]"))
 			return
 
 	var/dat = ""
@@ -601,12 +601,12 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	// Show overall
 	if(src.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 ? "<b>[fake_oxy]</b>" : fake_oxy
-		dat += "\nHealth Analyzer for [src]:\n\tOverall Status: <b>DEAD</b>\n"
+		dat += "\n[src]的健康分析结果：\n\t总体状态：<b>死亡</b>\n"
 	else
-		dat += "\nHealth Analyzer results for [src]:\n\tOverall Status: [src.stat > 1 ? "<b>DEAD</b>" : "<b>[src.health - src.halloss]% healthy"]</b>\n"
-	dat += "\tType: [SET_CLASS("Oxygen", INTERFACE_BLUE)]-[SET_CLASS("Toxin", INTERFACE_GREEN)]-[SET_CLASS("Burns", INTERFACE_ORANGE)]-[SET_CLASS("Brute", INTERFACE_RED)]\n"
-	dat += "\tDamage: \t[SET_CLASS(OX, INTERFACE_BLUE)] - [SET_CLASS(TX, INTERFACE_GREEN)] - [SET_CLASS(BU, INTERFACE_ORANGE)] - [SET_CLASS(BR, INTERFACE_RED)]\n"
-	dat += "\tUntreated: {B}=Burns,{T}=Trauma,{F}=Fracture\n"
+		dat += "\n[src]的健康分析结果：\n\t总体状态：[src.stat > 1 ? "<b>死亡</b>" : "<b>健康度 [src.health - src.halloss]%"]</b>\n"
+	dat += "\t类型：[SET_CLASS("缺氧", INTERFACE_BLUE)]-[SET_CLASS("毒素", INTERFACE_GREEN)]-[SET_CLASS("烧伤", INTERFACE_ORANGE)]-[SET_CLASS("物理损伤", INTERFACE_RED)]\n"
+	dat += "\t伤害：\t[SET_CLASS(OX, INTERFACE_BLUE)] - [SET_CLASS(TX, INTERFACE_GREEN)] - [SET_CLASS(BU, INTERFACE_ORANGE)] - [SET_CLASS(BR, INTERFACE_RED)]\n"
+	dat += "\t未处理：{B}=烧伤，{T}=创伤，{F}=骨折\n"
 
 	var/unrevivable = 0
 
@@ -616,14 +616,14 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		for(var/obj/limb/org in H.limbs)
 			var/brute_treated = TRUE
 			var/burn_treated = TRUE
-			var/open_incision = org.get_incision_depth() ? " <span class='scanner'>Open surgical incision</span>" : ""
+			var/open_incision = org.get_incision_depth() ? " <span class='scanner'>手术切口未闭合</span>" : ""
 
 			if((org.brute_dam > 0 && !org.is_bandaged()) || open_incision)
 				brute_treated = FALSE
 			if(org.burn_dam > 0 && !org.is_salved())
 				burn_treated = FALSE
 			if(org.status & LIMB_DESTROYED)
-				dat += "\t\t [capitalize(org.display_name)]: <span class='scannerb'>Missing!</span>\n"
+				dat += "\t\t [capitalize(org.display_name)]：<span class='scannerb'>缺失！</span>\n"
 				continue
 
 			var/bleeding_check = FALSE
@@ -635,12 +635,12 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			var/org_name = "[capitalize(org.display_name)]"
 			if(org.status & LIMB_ROBOT)
 				if(org.status & LIMB_UNCALIBRATED_PROSTHETIC)
-					org_name += " (Nonfunctional Cybernetic)]"
+					org_name += "（机械义肢失效）]"
 					show_limb = TRUE
 				else
-					org_name += " (Cybernetic)"
+					org_name += "（机械义肢）"
 			else if(org.status & LIMB_SYNTHSKIN)
-				org_name += " (Synthskin)"
+				org_name += "（合成皮肤）"
 
 			var/burn_info = org.burn_dam > 0 ? "<span class='scannerburnb'> [floor(org.burn_dam)]</span>" : "<span class='scannerburn'>0</span>"
 			burn_info += "[burn_treated ? "" : "{B}"]"
@@ -653,7 +653,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 			var/org_bleed = ""
 			if(bleeding_check)
-				org_bleed = SPAN_SCANNERB("(Bleeding)")
+				org_bleed = SPAN_SCANNERB("（出血）")
 
 			var/org_advice = ""
 			if(do_checks && !skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_MEDIC))
@@ -661,40 +661,40 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 					if("head")
 						fracture_info = ""
 						if(org.brute_dam > 40 || src.getBrainLoss() >= 20)
-							org_advice = " Possible Skull Fracture."
+							org_advice = " 疑似颅骨骨折。"
 							show_limb = 1
 					if("chest")
 						fracture_info = ""
 						if(org.brute_dam > 40 || src.getOxyLoss() > 50)
-							org_advice = " Possible Chest Fracture."
+							org_advice = " 疑似胸部骨折。"
 							show_limb = 1
 					if("groin")
 						fracture_info = ""
 						if(org.brute_dam > 40 || src.getToxLoss() > 50)
-							org_advice = " Possible Groin Fracture."
+							org_advice = " 疑似骨盆骨折。"
 							show_limb = 1
 			if(show_limb)
 				dat += "\t\t [org_name]: \t [burn_info] - [brute_info] [fracture_info][org_bleed][open_incision][org_advice]"
 				if(org.status & LIMB_SPLINTED_INDESTRUCTIBLE)
-					dat += "(Nanosplinted)"
+					dat += "（纳米夹板固定）"
 				else if(org.status & LIMB_SPLINTED)
-					dat += "(Splinted)"
+					dat += "（夹板固定）"
 				dat += "\n"
 
 	// Show red messages - broken bokes, etc
 	if (src.getCloneLoss())
-		dat += "\t<span class='scanner'> *Subject appears to have been imperfectly cloned.</span>\n"
+		dat += "\t<span class='scanner'> *患者似乎存在克隆缺陷。</span>\n"
 	for(var/datum/disease/D in src.viruses)
 		if(!D.hidden[SCANNER])
-			dat += "\t<span class='scannerb'> *Warning: [D.form] Detected</span><span class='scanner'>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]</span>\n"
+			dat += "\t<span class='scannerb'> *警告：检测到[D.form]</span><span class='scanner'>\n名称：[D.name]。\n传播方式：[D.spread]。\n阶段：[D.stage]/[D.max_stages]。\n可能的疗法：[D.cure]</span>\n"
 	if (src.getBrainLoss() >= 100 || !src.has_brain())
-		dat += "\t<span class='scanner'> *Subject has taken extreme amounts of <b>brain damage</b></span>.\n"
+		dat += "\t<span class='scanner'> *患者遭受了极其严重的<b>脑损伤</b></span>。\n"
 
 	if(src.has_brain() && src.stat != DEAD && ishuman(src))
 		if(!src.key)
-			dat += SPAN_WARNING("\tNo soul detected.\n") // they ghosted
+			dat += SPAN_WARNING("\t未检测到灵魂。\n") // they ghosted
 		else if(!src.client)
-			dat += SPAN_WARNING("\tSSD detected.\n") // SSD
+			dat += SPAN_WARNING("\t检测到 SSD（离线状态）。\n") // SSD
 
 	var/internal_bleed_detected = FALSE
 	var/embedded_item_detected = FALSE
@@ -714,11 +714,11 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				if(!((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot")))
 					core_fracture = 1
 		if(core_fracture)
-			dat += "\t[SPAN_SCANNER("*<b>Bone fractures</b> detected. Advanced scanner required for location.")]\n"
+			dat += "\t[SPAN_SCANNER("*检测到<b>骨折</b>，需要高级扫描仪确定位置。")]\n"
 		if(internal_bleed_detected)
-			dat += "\t[SPAN_SCANNER("*<b>Internal bleeding</b> detected. Advanced scanner required for location.")]\n"
+			dat += "\t[SPAN_SCANNER("*检测到<b>内出血</b>，需要高级扫描仪确定位置。")]\n"
 		if(embedded_item_detected)
-			dat += "\t[SPAN_SCANNER("*<b>Embedded object</b> detected. Advanced scanner required for location.")]\n"
+			dat += "\t[SPAN_SCANNER("*检测到<b>嵌入异物</b>，需要高级扫描仪确定位置。")]\n"
 
 	var/reagents_in_body[0] // yes i know -spookydonut
 	if(istype(src, /mob/living/carbon))
@@ -730,18 +730,18 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				var/datum/reagent/R = A
 				reagents_in_body["[R.id]"] = R.volume
 				if(R.flags & REAGENT_SCANNABLE)
-					reagentdata["[R.id]"] = "[R.overdose != 0 && R.volume > R.overdose && !(R.flags & REAGENT_CANNOT_OVERDOSE) ? SPAN_WARNING("<b>OD: </b>") : ""] <font color='#9773C4'><b>[round(R.volume, 1)]u [R.name]</b></font>"
+					reagentdata["[R.id]"] = "[R.overdose != 0 && R.volume > R.overdose && !(R.flags & REAGENT_CANNOT_OVERDOSE) ? SPAN_WARNING("<b>过量：</b>") : ""] <font color='#9773C4'><b>[round(R.volume, 1)]u [R.name]</b></font>"
 				else
 					unknown++
 			if(length(reagentdata))
-				dat += "\n\tBeneficial reagents:\n"
+				dat += "\n\t有益试剂：\n"
 				for(var/d in reagentdata)
 					dat += "\t\t [reagentdata[d]]\n"
 			if(unknown)
-				dat += "\t<span class='scanner'> Warning: Unknown substance[(unknown>1)?"s":""] detected in subject's blood.</span>\n"
+				dat += "\t<span class='scanner'> 警告：患者血液中检测到未知物质。</span>\n"
 
 	// Show body temp
-	dat += "\n\tBody Temperature: [src.bodytemperature-T0C]&deg;C ([src.bodytemperature*1.8-459.67]&deg;F)\n"
+	dat += "\n\t体温：[src.bodytemperature-T0C]&deg;C（[src.bodytemperature*1.8-459.67]&deg;F）\n"
 
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src
@@ -754,31 +754,31 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			var/blood_type = H.blood_type
 			blood_percent *= 100
 			if(blood_volume <= 500 && blood_volume > 336)
-				dat += "\t<span class='scanner'> <b>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.</span> [SET_CLASS("Type: [blood_type]", INTERFACE_BLUE)]\n"
+				dat += "\t<span class='scanner'> <b>警告：血量偏低：[blood_percent]% [blood_volume]cl。</span> [SET_CLASS("血型：[blood_type]", INTERFACE_BLUE)]\n"
 			else if(blood_volume <= 336)
-				dat += "\t<span class='scanner'> <b>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl.</span> [SET_CLASS("Type: [blood_type]", INTERFACE_BLUE)]\n"
+				dat += "\t<span class='scanner'> <b>警告：血量严重不足：[blood_percent]% [blood_volume]cl。</span> [SET_CLASS("血型：[blood_type]", INTERFACE_BLUE)]\n"
 			else
-				dat += "\tBlood Level normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]\n"
+				dat += "\t血量正常：[blood_percent]% [blood_volume]cl。血型：[blood_type]\n"
 		// Show pulse
-		dat += "\tPulse: <span class='[H.pulse == PULSE_THREADY || H.pulse == PULSE_NONE ? INTERFACE_RED : ""]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</span>\n"
+		dat += "\t脉搏：<span class='[H.pulse == PULSE_THREADY || H.pulse == PULSE_NONE ? INTERFACE_RED : ""]'>[H.get_pulse(GETPULSE_TOOL)] 次/分。</span>\n"
 		if((H.stat == DEAD && !H.client))
 			unrevivable = 1
 		if(!unrevivable)
 			var/advice = ""
 			if(blood_volume <= 500 && !reagents_in_body["nutriment"])
-				advice += "<span class='scanner'>Administer food or recommend the patient eat.</span>\n"
+				advice += "<span class='scanner'>给患者喂食，或建议患者进食。</span>\n"
 			if(H.getToxLoss() > 10 && reagents_in_body["anti_toxin"] < 5)
-				advice += "<span class='scanner'>Administer a single dose of dylovene.</span>\n"
+				advice += "<span class='scanner'>给予一剂迪洛文（抗毒素）。</span>\n"
 			if((H.getToxLoss() > 50 || (H.getOxyLoss() > 50 && blood_volume > 400) || H.getBrainLoss() >= 10) && reagents_in_body["peridaxon"] < 5)
-				advice += "<span class='scanner'>Administer a single dose of peridaxon.</span>\n"
+				advice += "<span class='scanner'>给予一剂佩里达酮。</span>\n"
 			if(H.getOxyLoss() > 50 && reagents_in_body["dexalin"] < 5)
-				advice += "<span class='scanner'>Administer a single dose of dexalin.</span>\n"
+				advice += "<span class='scanner'>给予一剂右氧林。</span>\n"
 			if(H.getFireLoss(1) > 30 && reagents_in_body["kelotane"] < 3)
-				advice += "<span class='scanner'>Administer a single dose of kelotane.</span>\n"
+				advice += "<span class='scanner'>给予一剂克洛坦。</span>\n"
 			if(H.getBruteLoss(1) > 30 && reagents_in_body["bicaridine"] < 3)
-				advice += "<span class='scanner'>Administer a single dose of bicaridine.</span>\n"
+				advice += "<span class='scanner'>给予一剂比卡定。</span>\n"
 			if(H.health < 0 && reagents_in_body["inaprovaline"] < 5)
-				advice += "<span class='scanner'>Administer a single dose of inaprovaline.</span>\n"
+				advice += "<span class='scanner'>给予一剂因纳普罗伐林。</span>\n"
 
 			var/has_pain = FALSE
 			for(var/datum/effects/pain/P in H.effects_list)
@@ -786,15 +786,15 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				break
 
 			if(has_pain && reagents_in_body["tramadol"] < 3 && !reagents_in_body["paracetamol"])
-				advice += "<span class='scanner'>Administer a single dose of tramadol.</span>\n"
+				advice += "<span class='scanner'>给予一剂曲马多。</span>\n"
 			if(advice != "")
-				dat += "\t<span class='scanner'> <b>Medication Advice:</b></span>\n"
+				dat += "\t<span class='scanner'> <b>治疗建议：</b></span>\n"
 				dat += advice
 			advice = ""
 			if(reagents_in_body["paracetamol"])
-				advice += "<span class='scanner'>DO NOT administer tramadol.</span>\n"
+				advice += "<span class='scanner'>禁止给予曲马多。</span>\n"
 			if(advice != "")
-				dat += "\t<span class='scanner'> <b>Contradictions:</b></span>\n"
+				dat += "\t<span class='scanner'> <b>用药禁忌：</b></span>\n"
 				dat += advice
 
 	if(show_browser)

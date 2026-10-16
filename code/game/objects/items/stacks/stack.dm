@@ -76,7 +76,7 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 
 /obj/item/stack/get_examine_text(mob/user)
 	. = ..()
-	. += "There are [amount] [singular_name]\s in the stack."
+	. += "堆叠内容：[singular_name] × [amount]。"
 
 /obj/item/stack/attack_self(mob/user)
 	..()
@@ -92,7 +92,7 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 	if(recipes_sublist && recipe_list[recipes_sublist] && istype(recipe_list[recipes_sublist], /datum/stack_recipe_list))
 		var/datum/stack_recipe_list/srl = recipe_list[recipes_sublist]
 		recipe_list = srl.recipes
-	var/t1 = text("<HTML><HEAD><title>Constructions from []</title></HEAD><body><TT>Amount Left: []<br>", src, src.amount)
+	var/t1 = text("<HTML><HEAD><title>使用[]建造</title></HEAD><body><TT>剩余数量：[]<br>", src, src.amount)
 	for(var/i = 1; i <= length(recipe_list); i++)
 		var/E = recipe_list[i]
 		if(isnull(E))
@@ -105,9 +105,9 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 		if(istype(E, /datum/stack_recipe_list))
 			var/datum/stack_recipe_list/srl = E
 			if(src.amount >= srl.req_amount)
-				t1 += "<a href='byond://?src=\ref[src];sublist=[i]'>[srl.title] ([srl.req_amount] [src.singular_name]\s)</a>"
+				t1 += "<a href='byond://?src=\ref[src];sublist=[i]'>[srl.title]（[src.singular_name] × [srl.req_amount]）</a>"
 			else
-				t1 += "[srl.title] ([srl.req_amount] [src.singular_name]\s)<br>"
+				t1 += "[srl.title]（[src.singular_name] × [srl.req_amount]）<br>"
 
 		if(istype(E, /datum/stack_recipe))
 			var/datum/stack_recipe/R = E
@@ -116,10 +116,10 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 			var/can_build = 1
 			can_build = can_build && (max_multiplier > 0)
 			if(R.res_amount > 1)
-				title += "[R.res_amount]x [R.title]\s"
+				title += "[R.title] × [R.res_amount]"
 			else
 				title += "[R.title]"
-			title+= " ([R.req_amount] [src.singular_name]\s)"
+			title+= "（[src.singular_name] × [R.req_amount]）"
 			if(can_build)
 				t1 += text("<A href='byond://?src=\ref[src];sublist=[recipes_sublist];make=[i];multiplier=1'>[title]</A>  ")
 			else
@@ -131,12 +131,12 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 				var/list/multipliers = list(5, 10, 25)
 				for (var/n in multipliers)
 					if (max_multiplier>=n)
-						t1 += " <A href='byond://?src=\ref[src];make=[i];multiplier=[n]'>[n*R.res_amount]x</A>"
+						t1 += " <A href='byond://?src=\ref[src];make=[i];multiplier=[n]'>×[n*R.res_amount]</A>"
 				if(!(max_multiplier in multipliers))
-					t1 += " <A href='byond://?src=\ref[src];make=[i];multiplier=[max_multiplier]'>[max_multiplier*R.res_amount]x</A>"
+					t1 += " <A href='byond://?src=\ref[src];make=[i];multiplier=[max_multiplier]'>×[max_multiplier*R.res_amount]</A>"
 
 	t1 += "</TT></body></HTML>"
-	show_browser(user, t1, "Construction using [src]", "stack", width = 440, height = 500)
+	show_browser(user, t1, "使用[src]建造", "stack", width = 440, height = 500)
 	return
 
 /obj/item/stack/Topic(href, href_list)
@@ -169,13 +169,13 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 			return  //href exploit protection
 		if(R.skill_lvl)
 			if(ishuman(usr) && !skillcheck(usr, R.skill_req, R.skill_lvl))
-				to_chat(usr, SPAN_WARNING("You are not trained to build this..."))
+				to_chat(usr, SPAN_WARNING("你没有接受过建造这件物品所需的训练……"))
 				return
 		if(amount < R.req_amount * multiplier)
 			if(R.req_amount * multiplier > 1)
-				to_chat(usr, SPAN_WARNING("You need more [name] to build \the [R.req_amount*multiplier] [R.title]\s!"))
+				to_chat(usr, SPAN_WARNING("建造[R.title] × [R.req_amount*multiplier]需要更多[name]！"))
 			else
-				to_chat(usr, SPAN_WARNING("You need more [name] to build \the [R.title]!"))
+				to_chat(usr, SPAN_WARNING("建造[R.title]需要更多[name]！"))
 			return
 
 		if(check_one_per_turf(R,usr))
@@ -185,38 +185,38 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 			var/turf/open/OT = usr.loc
 			var/obj/structure/blocker/anti_cade/AC = locate(/obj/structure/blocker/anti_cade) in usr.loc // for M2C HMG, look at smartgun_mount.dm
 			if(!OT.allow_construction)
-				to_chat(usr, SPAN_WARNING("The [R.title] must be constructed on a proper surface!"))
+				to_chat(usr, SPAN_WARNING("必须在合适的地面上建造[R.title]！"))
 				return
 
 			if(AC)
-				to_chat(usr, SPAN_WARNING("The [R.title] cannot be built here!"))  //might cause some friendly fire regarding other items like barbed wire, shouldn't be a problem?
+				to_chat(usr, SPAN_WARNING("这里无法建造[R.title]！"))  //might cause some friendly fire regarding other items like barbed wire, shouldn't be a problem?
 				return
 
 			var/obj/structure/tunnel/tunnel = locate(/obj/structure/tunnel) in usr.loc
 			if(tunnel)
-				to_chat(usr, SPAN_WARNING("The [R.title] cannot be constructed on a tunnel!"))
+				to_chat(usr, SPAN_WARNING("不能在隧道上建造[R.title]！"))
 				return
 
 			if(R.one_per_turf != ONE_TYPE_PER_BORDER) //all barricade-esque structures utilize this define and have their own check for object density. checking twice is unneeded.
 				for(var/obj/object in usr.loc)
 					if(object.density || istype(object, /obj/structure/machinery/door))
-						to_chat(usr, SPAN_WARNING("[object] is blocking you from constructing \the [R.title]!"))
+						to_chat(usr, SPAN_WARNING("[object]挡住了位置，你无法建造[R.title]！"))
 						return
 
 		if((R.flags & RESULT_REQUIRES_SNOW) && !(istype(usr.loc, /turf/open/snow) || istype(usr.loc, /turf/open/auto_turf/snow)))
-			to_chat(usr, SPAN_WARNING("The [R.title] must be built on snow!"))
+			to_chat(usr, SPAN_WARNING("必须在雪地上建造[R.title]！"))
 			return
 
 		if((R.flags & CAN_MAKE_BARRICADE) && MODE_HAS_TOGGLEABLE_FLAG(MODE_NO_MAKE_BARRICADES))
-			to_chat(usr, SPAN_WARNING("You can't construct \the [R.title]!"))
+			to_chat(usr, SPAN_WARNING("你无法建造[R.title]！"))
 			return
 
 		if(R.time)
 			if(usr.action_busy)
 				return
 			var/time_mult = skillcheck(usr, SKILL_CONSTRUCTION, 2) ? 1 : 2
-			usr.visible_message(SPAN_NOTICE("[usr] starts assembling \a [R.title]."), \
-				SPAN_NOTICE("You start assembling \a [R.title]."))
+			usr.visible_message(SPAN_NOTICE("[usr]开始组装[R.title]。"), \
+				SPAN_NOTICE("你开始组装[R.title]。"))
 			if(!do_after(usr, max(R.time * time_mult, R.min_time), INTERRUPT_NO_NEEDHAND|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 				return
 
@@ -236,8 +236,8 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 		else
 			new_item = new R.result_type(usr.loc, usr)
 
-		usr.visible_message(SPAN_NOTICE("[usr] assembles \a [new_item]."),
-		SPAN_NOTICE("You assemble \a [new_item]."))
+		usr.visible_message(SPAN_NOTICE("[usr]组装好了[new_item]。"),
+		SPAN_NOTICE("你组装好了[new_item]。"))
 		new_item.setDir(usr.dir)
 		if(R.max_res_amount > 1)
 			var/obj/item/stack/new_stack = new_item
@@ -279,16 +279,16 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 
 		if(ONE_TYPE_PER_TURF)
 			if(locate(R.result_type) in user.loc)
-				to_chat(user, SPAN_WARNING("There is already another [R.title] here!"))
+				to_chat(user, SPAN_WARNING("这里已经有[R.title]了！"))
 				return TRUE
 
 		if(ONE_TYPE_PER_BORDER)
 			for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
 				if(O.density && !istype(O, R.result_type) && !((O.flags_atom & ON_BORDER))) //Note: If no dense items, or if dense item, both it and result must be border tiles
-					to_chat(user, SPAN_WARNING("You need a clear, open area to build \a [R.title]!"))
+					to_chat(user, SPAN_WARNING("你需要一片没有障碍物的空地才能建造[R.title]！"))
 					return TRUE
 				if((O.flags_atom & ON_BORDER) && O.dir == usr.dir) //We check overlapping dir here. Doesn't have to be the same type
-					to_chat(user, SPAN_WARNING("There is already \a [O.name] in this direction!"))
+					to_chat(user, SPAN_WARNING("这个方向已经有[O.name]了！"))
 					return TRUE
 
 	return FALSE
@@ -329,7 +329,7 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 		if (item.amount>=item.max_amount)
 			continue
 		oldsrc.attackby(item, user)
-		to_chat(user, "You add new [item.singular_name] to the stack. It now contains [item.amount] [item.singular_name]\s.")
+		to_chat(user, "你将[item.singular_name]加入堆叠。当前内容：[item.singular_name] × [item.amount]。")
 		if(!oldsrc)
 			break
 
@@ -339,7 +339,7 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 			return
 		if(amount <= 1)
 			return
-		var/desired = tgui_input_number(user, "How much would you like to split off from this stack?", "How much?", 1, amount-1, 1)
+		var/desired = tgui_input_number(user, "你想从这叠物品中分出多少？", "拆分数量", 1, amount-1, 1)
 		if(!desired)
 			return
 		if(!use(desired))
@@ -374,12 +374,12 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 		var/obj/item/stack/other_stack = W
 		if(other_stack.stack_id == stack_id) //same stack type
 			if(other_stack.amount >= max_amount)
-				to_chat(user, SPAN_WARNING("The stack is full!"))
+				to_chat(user, SPAN_WARNING("这叠物品已达到堆叠上限！"))
 				return TRUE
 			var/to_transfer = min(amount, other_stack.max_amount - other_stack.amount)
 			if(to_transfer <= 0)
 				return
-			to_chat(user, SPAN_INFO("You transfer [to_transfer] between the stacks."))
+			to_chat(user, SPAN_INFO("你在两叠物品之间转移了[to_transfer]份物品。"))
 			other_stack.add(to_transfer)
 			if(other_stack && user.interactee == other_stack)
 				INVOKE_ASYNC(other_stack, TYPE_PROC_REF(/obj/item/stack, interact), user)
@@ -395,7 +395,7 @@ Also change the icon to reflect the amount of sheets, if possible.*/
  * Recipe datum
  */
 /datum/stack_recipe
-	var/title = "ERROR"
+	var/title = "错误"
 	var/result_type
 	var/req_amount = 1
 	var/res_amount = 1
@@ -426,7 +426,7 @@ Also change the icon to reflect the amount of sheets, if possible.*/
  * Recipe list datum
  */
 /datum/stack_recipe_list
-	var/title = "ERROR"
+	var/title = "错误"
 	var/list/recipes = null
 	var/req_amount = 1
 

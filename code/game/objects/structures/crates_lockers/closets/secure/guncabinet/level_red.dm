@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/guncabinet/red
-	name = "red level gun cabinet"
+	name = "红色警戒枪柜"
 	req_level = SEC_LEVEL_RED
 
 // MP ARMORY

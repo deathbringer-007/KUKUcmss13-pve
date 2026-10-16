@@ -1,5 +1,5 @@
 /obj/structure/machinery/portable_atmospherics/powered/pump
-	name = "portable air pump"
+	name = "便携式气泵"
 
 	icon = 'icons/obj/structures/machinery/atmos.dmi'
 	icon_state = "psiphon:0"

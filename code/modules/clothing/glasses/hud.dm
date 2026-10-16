@@ -1,13 +1,13 @@
 /obj/item/clothing/glasses/hud
-	name = "HUD"
+	name = "抬头显示器"
 	gender = NEUTER
-	desc = "A heads-up display that provides important info in (almost) real time."
+	desc = "能以近乎实时的速度提供重要信息的抬头显示器。"
 	flags_atom = null //doesn't protect eyes because it's a monocle, duh
 
 
 /obj/item/clothing/glasses/hud/health
-	name = "\improper HealthMate HUD"
-	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
+	name = "\improper 医疗伙伴抬头显示器"
+	desc = "扫描视野内人类并提供准确健康状况数据的抬头显示器。"
 	icon_state = "healthhud"
 	deactive_state = "degoggles"
 	flags_armor_protection = 0
@@ -18,13 +18,13 @@
 	req_skill_level = SKILL_MEDICAL_MEDIC
 
 /obj/item/clothing/glasses/hud/health/prescription
-	name = "\improper Prescription HealthMate HUD"
-	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status. Contains prescription lenses."
+	name = "\improper 医疗伙伴抬头显示器（视力矫正型）"
+	desc = "扫描视野内人类并提供准确健康状况数据的抬头显示器，配有视力矫正镜片。"
 	prescription = TRUE
 
 /datum/action/item_action/view_publications/New(Target)
 	..()
-	name = "View Research Publications"
+	name = "查看研究出版物"
 	button.name = name
 	button.overlays.Cut()
 	var/image/IMG = image('icons/obj/structures/machinery/computer.dmi', button, "research")
@@ -81,8 +81,8 @@
 			return
 
 /obj/item/clothing/glasses/hud/health/verb/view_publications()
-	set category = "Object"
-	set name = "View Research Publications"
+	set category = "物品"
+	set name = "查看研究出版物"
 	set src in usr
 
 	if(!usr.stat && !usr.is_mob_restrained() && usr.faction != FACTION_SURVIVOR)
@@ -104,8 +104,8 @@
 			report.read_paper(user)
 
 /obj/item/clothing/glasses/hud/sensor
-	name = "\improper SensorMate HUD"
-	desc = "A much older heads-up display that displays the last known biometric data from suit sensors of any given individual."
+	name = "\improper 传感伙伴抬头显示器"
+	desc = "一种较为老旧的抬头显示器，可显示个人服装传感器最后记录的生物体征数据。"
 	icon_state = "sensorhud"
 	deactive_state = "sensorhud_d"
 	flags_armor_protection = 0
@@ -116,13 +116,13 @@
 	req_skill_level = SKILL_MEDICAL_DEFAULT
 
 /obj/item/clothing/glasses/hud/sensor/prescription
-	name = "\improper Prescription SensorMate HUD"
-	desc = "A much older heads-up display that displays the last known biometric data from suit sensors of any given individual. Contains prescription lenses."
+	name = "\improper 传感伙伴抬头显示器（视力矫正型）"
+	desc = "一种较为老旧的抬头显示器，可显示个人服装传感器最后记录的生物体征数据，配有视力矫正镜片。"
 	prescription = TRUE
 
 /obj/item/clothing/glasses/hud/security
-	name = "\improper PatrolMate HUD"
-	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
+	name = "\improper 巡逻伙伴抬头显示器"
+	desc = "扫描视野内人类并提供准确身份状态和安保记录的抬头显示器。"
 	icon_state = "securityhud"
 	deactive_state = "degoggles"
 	toggleable = TRUE
@@ -131,14 +131,14 @@
 	actions_types = list(/datum/action/item_action/toggle)
 
 /obj/item/clothing/glasses/hud/security/prescription
-	name = "\improper Prescription PatrolMate HUD"
-	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
+	name = "\improper 巡逻伙伴抬头显示器（视力矫正型）"
+	desc = "扫描视野内人类并提供准确身份状态和安保记录的抬头显示器。"
 	prescription = TRUE
 
 /obj/item/clothing/glasses/hud/security/jensenshades
-	name = "augmented shades"
+	name = "增强型墨镜"
 	gender = PLURAL
-	desc = "Polarized bioneural eyewear, designed to augment your vision. Why don't you try getting a job?"
+	desc = "用于增强视觉的偏光生物神经眼镜。你怎么不试着找份工作？"
 	icon_state = "jensenshades"
 	item_state = "jensenshades"
 	vision_flags = SEE_MOBS

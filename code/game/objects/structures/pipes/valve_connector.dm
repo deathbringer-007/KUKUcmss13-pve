@@ -1,8 +1,8 @@
 /obj/structure/pipes/valve
 	icon = 'icons/obj/pipes/valve.dmi'
 	icon_state = "map_valve0"
-	name = "manual valve"
-	desc = "A pipe valve"
+	name = "手动阀门"
+	desc = "管道阀门。"
 	level = 1
 	dir = SOUTH
 	valid_directions = list(SOUTH, NORTH)
@@ -26,8 +26,8 @@
 
 
 /obj/structure/pipes/valve/digital
-	name = "digital valve"
-	desc = "A digitally controlled valve."
+	name = "数字阀门"
+	desc = "数字控制阀门。"
 	icon = 'icons/obj/pipes/digital_valve.dmi'
 
 /obj/structure/pipes/valve/digital/open
@@ -37,8 +37,8 @@
 /obj/structure/pipes/tvalve
 	icon = 'icons/obj/pipes/tvalve.dmi'
 	icon_state = "map_tvalve0"
-	name = "manual switching valve"
-	desc = "A pipe valve"
+	name = "手动换向阀"
+	desc = "管道阀门。"
 	level = 1
 	dir = SOUTH
 	valid_directions = list(SOUTH, NORTH, WEST)
@@ -68,8 +68,8 @@
 	valid_directions = list(turn(dir, 180), dir, turn(dir, 90))
 
 /obj/structure/pipes/tvalve/digital // can be controlled by AI
-	name = "digital switching valve"
-	desc = "A digitally controlled valve."
+	name = "数字换向阀"
+	desc = "数字控制阀门。"
 	icon = 'icons/obj/pipes/digital_tvalve.dmi'
 
 /obj/structure/pipes/tvalve/digital/bypass
@@ -85,8 +85,8 @@
 	valid_directions = list(turn(dir, 180), dir, turn(dir, -90))
 
 /obj/structure/pipes/tvalve/mirrored/digital
-	name = "digital switching valve"
-	desc = "A digitally controlled valve."
+	name = "数字换向阀"
+	desc = "数字控制阀门。"
 	icon = 'icons/obj/pipes/digital_tvalve.dmi'
 
 /obj/structure/pipes/tvalve/mirrored/digital/bypass
@@ -96,8 +96,8 @@
 /obj/structure/pipes/portables_connector
 	icon = 'icons/obj/pipes/connector.dmi'
 	icon_state = "map_connector"
-	name = "Connector Port"
-	desc = "For connecting portables devices related to atmospherics control."
+	name = "连接端口"
+	desc = "用于连接便携式大气控制设备。"
 	dir = SOUTH
 	valid_directions = list(SOUTH)
 	level = 1

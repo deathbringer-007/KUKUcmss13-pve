@@ -19,17 +19,17 @@ export const ChemDispenser = (props) => {
   return (
     <Window width={435} height={620}>
       <Window.Content scrollable>
-        <Section title="Status">
+        <Section title="状态">
           <LabeledList>
-            <LabeledList.Item label="Energy">
+            <LabeledList.Item label="能量">
               <ProgressBar value={data.energy / data.maxEnergy}>
-                {toFixed(data.energy) + ' energy'}
+                {toFixed(data.energy) + ' 能量'}
               </ProgressBar>
             </LabeledList.Item>
           </LabeledList>
         </Section>
         <Section
-          title="Dispense"
+          title="分配试剂"
           buttons={beakerTransferAmounts.map((amount) => (
             <Button
               key={amount}
@@ -64,7 +64,7 @@ export const ChemDispenser = (props) => {
           </Box>
         </Section>
         <Section
-          title="Beaker"
+          title="烧杯"
           buttons={beakerTransferAmounts.map((amount) => (
             <Button
               key={amount}
@@ -77,7 +77,7 @@ export const ChemDispenser = (props) => {
         >
           <LabeledList>
             <LabeledList.Item
-              label="Beaker"
+              label="烧杯"
               buttons={
                 !!data.isBeakerLoaded && (
                   <Button
@@ -85,7 +85,7 @@ export const ChemDispenser = (props) => {
                     disabled={!data.isBeakerLoaded}
                     onClick={() => act('eject')}
                   >
-                    Eject
+                    取出
                   </Button>
                 )
               }
@@ -96,19 +96,19 @@ export const ChemDispenser = (props) => {
                     initial={0}
                     value={data.beakerCurrentVolume}
                   />
-                  /{data.beakerMaxVolume} units
+                  /{data.beakerMaxVolume} 单位
                 </>
-              )) || <NoticeBox info>No beaker loaded!</NoticeBox>}
+              )) || <NoticeBox info>未放入烧杯！</NoticeBox>}
             </LabeledList.Item>
-            <LabeledList.Item label="Contents">
+            <LabeledList.Item label="内容物">
               <Box color="label">
-                {(!data.isBeakerLoaded && 'N/A') ||
-                  (beakerContents.length === 0 && 'Nothing')}
+                {(!data.isBeakerLoaded && '无') ||
+                  (beakerContents.length === 0 && '空')}
               </Box>
               {beakerContents.map((chemical) => (
                 <Box key={chemical.name} color="label">
-                  <AnimatedNumber initial={0} value={chemical.volume} /> units
-                  of {chemical.name}
+                  <AnimatedNumber initial={0} value={chemical.volume} /> 单位
+                  {chemical.name}
                 </Box>
               ))}
             </LabeledList.Item>

@@ -3,8 +3,8 @@
 #define DISPENSER_HACKED 1
 
 /obj/structure/machinery/chem_dispenser
-	name = "chemical dispenser"
-	desc = "A complex machine for mixing elements into chemicals. A Wey-Yu product."
+	name = "化学分配器"
+	desc = "将元素混合制成化学品的复杂机器，维兰德-汤谷出品。"
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/structures/machinery/science_machines.dmi'
@@ -205,15 +205,15 @@
 /obj/structure/machinery/chem_dispenser/attackby(obj/item/reagent_container/attacking_object, mob/user)
 	if(istype(attacking_object, /obj/item/reagent_container/glass) || istype(attacking_object, /obj/item/reagent_container/food))
 		if(accept_beaker_only && istype(attacking_object,/obj/item/reagent_container/food))
-			to_chat(user, SPAN_NOTICE("This machine only accepts beakers"))
+			to_chat(user, SPAN_NOTICE("这台机器只接受烧杯。"))
 		if(user.drop_inv_item_to_loc(attacking_object, src))
 			var/obj/item/old_beaker = beaker
 			beaker = attacking_object
 			if(old_beaker)
-				to_chat(user, SPAN_NOTICE("You swap out [old_beaker] for [attacking_object]."))
+				to_chat(user, SPAN_NOTICE("你取出[old_beaker]，换上[attacking_object]。"))
 				user.put_in_hands(old_beaker)
 			else
-				to_chat(user, SPAN_NOTICE("You set [attacking_object] on the machine."))
+				to_chat(user, SPAN_NOTICE("你将[attacking_object]放到机器上。"))
 			SStgui.update_uis(src)
 		update_icon()
 		return
@@ -221,19 +221,19 @@
 	if(HAS_TRAIT(attacking_object, TRAIT_TOOL_MULTITOOL))
 		switch(hacked_check)
 			if(DISPENSER_UNHACKABLE)
-				to_chat(user, SPAN_NOTICE("[src] cannot be hacked."))
+				to_chat(user, SPAN_NOTICE("无法破解[src]。"))
 			if(DISPENSER_NOT_HACKED)
-				user.visible_message("[user] modifies [src] with [attacking_object], turning a light on.", "You enable a light in [src].")
+				user.visible_message("[user]用[attacking_object]改装了[src]，一盏指示灯亮了起来。", "你使[src]的一盏指示灯亮了起来。")
 				dispensable_reagents += hacked_reagents
 				hacked_check = DISPENSER_HACKED
 			if(DISPENSER_HACKED)
-				user.visible_message("[user] modifies [src] with [attacking_object], turning a light off.", "You disable a light in [src].")
+				user.visible_message("[user]用[attacking_object]改装了[src]，一盏指示灯熄灭了。", "你使[src]的一盏指示灯熄灭了。")
 				dispensable_reagents -= hacked_reagents
 				hacked_check = DISPENSER_NOT_HACKED
 
 	if(HAS_TRAIT(attacking_object, TRAIT_TOOL_WRENCH))
 		if(!wrenchable)
-			to_chat(user, "[src] cannot be unwrenched.")
+			to_chat(user, "无法用扳手拆下[src]。")
 			return
 
 		if(!do_after(user, 2 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
@@ -244,27 +244,27 @@
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 		anchored = !anchored
 		if(anchored)
-			user.visible_message("[user] tightens the bolts securing [src] to the surface.", "You tighten the bolts securing [src] to the surface.")
+			user.visible_message("[user]拧紧螺栓，将[src]固定在表面上。", "你拧紧螺栓，将[src]固定在表面上。")
 			return
 
-		user.visible_message("[user] unfastens the bolts securing [src] to the surface.", "You unfasten the bolts securing [src] to the surface.")
+		user.visible_message("[user]松开了将[src]固定在表面上的螺栓。", "你松开了将[src]固定在表面上的螺栓。")
 
 /obj/structure/machinery/chem_dispenser/attack_remote(mob/user as mob)
 	return src.attack_hand(user)
 
 /obj/structure/machinery/chem_dispenser/attack_hand(mob/user as mob)
 	if(stat & BROKEN)
-		to_chat(user, SPAN_WARNING("[src] is inoperative."))
+		to_chat(user, SPAN_WARNING("[src]无法运作。"))
 		return
 	if(req_skill && !skillcheck(user, req_skill, req_skill_level))
-		to_chat(user, SPAN_WARNING("You don't have the training to use [src]."))
+		to_chat(user, SPAN_WARNING("你没有接受过使用[src]的训练。"))
 		return
 	tgui_interact(user)
 
 /obj/structure/machinery/chem_dispenser/soda
 	icon_state = "soda_dispenser"
-	name = "soda fountain"
-	desc = "A drink fabricating machine, capable of producing many sugary drinks with just one touch."
+	name = "汽水机"
+	desc = "一键就能制作多种含糖饮料的饮品机器。"
 	ui_title = "Soda Dispens-o-matic"
 	req_skill = null
 	req_skill_level = null
@@ -303,9 +303,9 @@
 
 /obj/structure/machinery/chem_dispenser/soda/beer
 	icon_state = "booze_dispenser"
-	name = "booze dispenser"
+	name = "酒水分配器"
 	ui_title = "Booze Portal 9001"
-	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
+	desc = "科技奇迹，据说你一开口，它就能调出你想喝的那杯酒。"
 	dispensable_reagents = list(
 		"water",
 		"ice",
@@ -334,8 +334,8 @@
 	)
 
 /obj/structure/machinery/chem_dispenser/canteen
-	name = "NestleCo AutoDrink"
-	desc = "A NestleCo AutoDrink dispenser, capable of making a variety of drinks to consume from a mixture of water and instant flavoring juice and caffeine additives."
+	name = "雀巢公司自动饮料机"
+	desc = "雀巢公司出品的自动饮料机，可将水、速溶果味冲剂及咖啡因添加剂混合，制作多种饮品。"
 	icon = 'icons/obj/structures/machinery/vending_32x64.dmi'
 	icon_state = "drink"
 	ui_title = "NestleCo AutoDrink Dispenser W-A3"
@@ -376,8 +376,8 @@
 #undef DISPENSER_HACKED
 
 /obj/structure/machinery/chem_dispenser/canteen/upp
-	name = "liquid dispenser"
-	desc = "A liquid dispenser, capable of making a variety of drinks to consume from a mixture of water and instant flavoring juice and caffeine additives."
+	name = "饮液分配器"
+	desc = "可将水、速溶果味冲剂及咖啡因添加剂混合，制作多种饮品的分配器。"
 	icon_state = "uppdrink"
 	ui_title = "AutoDrink Dispenser"
 

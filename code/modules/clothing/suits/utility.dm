@@ -10,8 +10,8 @@
  */
 
 /obj/item/clothing/suit/fire
-	name = "firesuit"
-	desc = "A suit that protects against fire and heat."
+	name = "消防服"
+	desc = "用于抵御火焰和高温的防护服。"
 	icon_state = "fire"
 	item_state = "fire_suit"
 	w_class = SIZE_LARGE//bulky item
@@ -61,8 +61,8 @@
  * Bomb protection
  */
 /obj/item/clothing/head/bomb_hood
-	name = "bomb hood"
-	desc = "Use in case of bomb."
+	name = "防爆头罩"
+	desc = "遇到炸弹时使用。"
 	icon_state = "bombsuit"
 	armor_melee = CLOTHING_ARMOR_NONE
 	armor_bullet = CLOTHING_ARMOR_NONE
@@ -79,8 +79,8 @@
 
 
 /obj/item/clothing/suit/bomb_suit
-	name = "bomb suit"
-	desc = "A suit designed for safety when handling explosives."
+	name = "防爆服"
+	desc = "为安全处理爆炸物而设计的防护服。"
 	icon_state = "bombsuit"
 	item_state = "bombsuit"
 	w_class = SIZE_LARGE//bulky item
@@ -127,9 +127,9 @@
  * Radiation protection
  */
 /obj/item/clothing/head/radiation
-	name = "Radiation Hood"
+	name = "防辐射头罩"
 	icon_state = "rad"
-	desc = "A hood with radiation protective properties. Label: Made with lead, do not eat insulation"
+	desc = "具有防辐射能力的头罩。标签：含铅，请勿食用隔离层。"
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEFACE|HIDEMASK|HIDEEARS|HIDEALLHAIR
 	flags_armor_protection = BODY_FLAG_HEAD|BODY_FLAG_FACE|BODY_FLAG_EYES
@@ -144,8 +144,8 @@
 
 
 /obj/item/clothing/suit/radiation
-	name = "Radiation suit"
-	desc = "A suit that protects against radiation. Label: Made with lead, do not eat insulation."
+	name = "防辐射服"
+	desc = "用于抵御辐射的防护服。标签：含铅，请勿食用隔离层。"
 	icon_state = "rad"
 	item_state = "rad_suit"
 	w_class = SIZE_LARGE//bulky item

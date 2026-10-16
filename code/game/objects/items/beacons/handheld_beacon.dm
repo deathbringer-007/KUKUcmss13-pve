@@ -1,7 +1,7 @@
 /// Generic beacon for objectives
 /obj/item/handheld_beacon
-	name = "handheld beacon"
-	desc = "A standard handheld beacon. Generally used by teams who may be out of regular communications range but must signal for various reasons. This one is branded with a Weyland Yutani symbol and sold en masse."
+	name = "手持信标"
+	desc = "标准手持信标。通常供可能超出常规通讯范围、却仍需发送信号的小队使用。这款印着维兰德-汤谷标志，是大批量销售的产品。"
 	icon = 'icons/obj/items/handheld_beacon.dmi'
 	icon_state = "beacon_inactive"
 	w_class = SIZE_SMALL
@@ -13,7 +13,7 @@
 	. = ..()
 
 	if(active)
-		. += "The beacon has been activated!"
+		. += "信标已激活！"
 
 /obj/item/handheld_beacon/update_icon()
 	. = ..()
@@ -32,7 +32,7 @@
 	active = !active
 	update_icon()
 
-	to_chat(user, SPAN_NOTICE("The beacon pings quietly and turns [active ? "on" : "off"]."))
+	to_chat(user, SPAN_NOTICE("信标轻轻响了一声，随后[active ? "开启" : "关闭"]。"))
 
 	if(!active)
 		return

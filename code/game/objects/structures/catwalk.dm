@@ -2,8 +2,8 @@
 	icon = 'icons/turf/almayer.dmi'
 	icon_state = "plating_catwalk"
 	var/base_state = "catwalk" //Post mapping
-	name = "catwalk"
-	desc = "Cats really don't like these things."
+	name = "格栅走道"
+	desc = "猫可一点也不喜欢这种走道。"
 	var/covered = 1 //1 for theres the cover, 0 if there isn't.
 	unslashable = TRUE
 	unacidable = TRUE

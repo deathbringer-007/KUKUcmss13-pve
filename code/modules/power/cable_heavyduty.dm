@@ -1,12 +1,12 @@
 /obj/item/stack/cable_coil/heavyduty
-	name = "heavy cable coil"
+	name = "重型电缆卷"
 	icon = 'icons/obj/structures/machinery/power.dmi'
 	icon_state = "wire"
 
 /obj/structure/cable/heavyduty
 	icon = 'icons/obj/pipes/power_cond_heavy.dmi'
-	name = "large power cable"
-	desc = "This cable is tough. It cannot be cut with simple hand tools."
+	name = "大型电力电缆"
+	desc = "这种电缆十分坚韧，普通手工工具无法将其剪断。"
 	layer = BELOW_ATMOS_PIPE_LAYER
 
 /obj/structure/cable/heavyduty/attackby(obj/item/W, mob/user)
@@ -16,10 +16,10 @@
 		return
 
 	if(HAS_TRAIT(W, TRAIT_TOOL_WIRECUTTERS))
-		to_chat(usr, SPAN_NOTICE(" These cables are too tough to be cut with those [W.name]."))
+		to_chat(usr, SPAN_NOTICE("这些电缆太坚韧了，无法用[W.name]剪断。"))
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))
-		to_chat(usr, SPAN_NOTICE(" You will need heavier cables to connect to these."))
+		to_chat(usr, SPAN_NOTICE("你需要更粗的电缆才能连接这些电缆。"))
 		return
 	else
 		..()

@@ -1,6 +1,6 @@
 /datum/fire_support
 	///Fire support name
-	var/name = "misc firesupport"
+	var/name = "其他火力支援"
 	///icon_state for radial menu
 	var/icon_state
 	///faction the fire support would belong to
@@ -26,11 +26,11 @@
 	///How much delay between visual effect of impacts
 	var/visual_impact_delay = 0.15 SECONDS
 	///Chat message when initiating fire support
-	var/initiate_chat_message = "TARGET ACQUIRED. FIRE SUPPORT INBOUND."
+	var/initiate_chat_message = "目标已锁定。火力支援即将抵达。"
 	///screentext message when initiating fire support
-	var/list/initiate_screen_message = list("fire support inbound")
+	var/list/initiate_screen_message = list("火力支援即将抵达。")
 	///Screentext message title
-	var/initiate_title = "Falcon-1"
+	var/initiate_title = "猎鹰一号"
 	///Portrait used for screentext message
 	var/portrait_type = "pilot_3_green"
 	///Initiating sound effect
@@ -49,7 +49,7 @@
 	var/impact_sound = null
 
 /datum/fire_support/New()
-	name = "[name] ([cost])"
+	name = "[name]（[cost]点）"
 
 ///Enables the firesupport option
 /datum/fire_support/proc/enable_firesupport()
@@ -62,7 +62,7 @@
 ///Initiates fire support proc chain
 /datum/fire_support/proc/initiate_fire_support(turf/target_turf, mob/user)
 	if(!(fire_support_flags & FIRESUPPORT_AVAILABLE))
-		to_chat(user, SPAN_NOTICE("FIRE SUPPORT UNAVAILABLE"))
+		to_chat(user, SPAN_NOTICE("火力支援不可用"))
 		return
 	addtimer(CALLBACK(src, PROC_REF(start_fire_support), target_turf), delay_to_impact)
 

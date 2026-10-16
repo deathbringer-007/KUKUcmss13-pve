@@ -3,8 +3,8 @@
 //Lightsticks----------
 //Blue
 /obj/item/lightstick
-	name = "blue lightstick"
-	desc = "You can stick them in the ground"
+	name = "蓝色荧光棒"
+	desc = "可以插在地上。"
 	icon = 'icons/obj/items/lighting.dmi'
 	icon_state = "lightstick_blue0"
 	light_range = 2
@@ -22,7 +22,7 @@
 /obj/item/lightstick/Crossed(mob/living/O)
 	if(anchored && prob(trample_chance) && can_trample)
 		if(!istype(O,/mob/living/carbon/xenomorph/larva))
-			visible_message(SPAN_DANGER("[O] tramples [src]!"))
+			visible_message(SPAN_DANGER("[O]踩踏了[src]！"))
 			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 			if(istype(O,/mob/living/carbon/xenomorph))
 				if(prob(40))
@@ -46,12 +46,12 @@
 	if(!anchored)//If planted
 		return
 
-	to_chat(user, "You start pulling out [src].")
+	to_chat(user, "你开始拔出[src]。")
 	if(!do_after(user, 2 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		return
 
 	anchored = FALSE
-	user.visible_message("[user.name] removes [src] from the ground.", "You remove [src] from the ground.")
+	user.visible_message("[user.name]把[src]从地上拔了出来。", "你把[src]从地上拔了出来。")
 	icon_state = "lightstick_[s_color][anchored]"
 	set_light(0)
 	pixel_x = 0
@@ -65,7 +65,7 @@
 	light_on = TRUE
 
 /obj/item/lightstick/red
-	name = "red lightstick"
+	name = "红色荧光棒"
 	icon_state = "lightstick_red0"
 	s_color = "red"
 	light_color = COLOR_RED
@@ -76,7 +76,7 @@
 	light_on = TRUE
 
 /obj/item/lightstick/red/spoke
-	name = "red lightstick"
+	name = "红色荧光棒"
 	icon_state = "lightstick_spoke0"
 	s_color = "red"
 	can_trample = FALSE
@@ -87,7 +87,7 @@
 	light_on = TRUE
 
 /obj/item/lightstick/red/variant
-	name = "red lightstick"
+	name = "红色荧光棒"
 	icon_state = "lightstick_red_variant0"
 	s_color = "red"
 
@@ -97,7 +97,7 @@
 	light_on = TRUE
 
 /obj/item/lightstick/variant //blue
-	name = "blue lightstick"
+	name = "蓝色荧光棒"
 	icon_state = "lightstick_blue_variant0"
 	s_color = "blue"
 

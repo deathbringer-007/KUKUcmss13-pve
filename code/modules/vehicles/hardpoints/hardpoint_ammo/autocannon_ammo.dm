@@ -1,6 +1,6 @@
 /obj/item/ammo_magazine/hardpoint/ace_autocannon
-	name = "AC3-E Autocannon Magazine"
-	desc = "A 100 round magazine holding 40mm telescoped shells for the AC3-E autocannon."
+	name = "AC3-E自动炮弹箱"
+	desc = "装有100发40毫米埋头弹的弹箱，供AC3-E自动炮使用。"
 	caliber = "40mm"
 	icon_state = "ace_autocannon"
 	w_class = SIZE_LARGE

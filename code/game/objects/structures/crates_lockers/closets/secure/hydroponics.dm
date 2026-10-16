@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/hydroponics
-	name = "Botanist's locker"
+	name = "植物学家的储物柜"
 	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 	icon_state = "hydrosecure"
 	icon_closed = "hydrosecure"

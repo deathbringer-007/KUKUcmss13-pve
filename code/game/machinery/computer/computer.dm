@@ -1,5 +1,5 @@
 /obj/structure/machinery/computer
-	name = "computer"
+	name = "计算机"
 	icon = 'icons/obj/structures/machinery/computer.dmi'
 	density = FALSE
 	anchored = TRUE
@@ -57,7 +57,7 @@
 
 /obj/structure/machinery/computer/bullet_act(obj/projectile/Proj)
 	if(exproof)
-		visible_message("[Proj] ricochets off [src]!")
+		visible_message("[Proj]被[src]弹开了！")
 		return 0
 	else
 		if(prob(floor(Proj.ammo.damage /2)))
@@ -90,10 +90,10 @@
 /obj/structure/machinery/computer/attackby(obj/item/I, mob/user)
 	if(HAS_TRAIT(I, TRAIT_TOOL_SCREWDRIVER) && circuit)
 		if(!deconstructible)
-			to_chat(user, SPAN_WARNING("You can't figure out how to deconstruct [src]..."))
+			to_chat(user, SPAN_WARNING("你弄不清该如何拆解[src]……"))
 			return
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You don't know how to deconstruct [src]..."))
+			to_chat(user, SPAN_WARNING("你不知道如何拆解[src]……"))
 			return
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		if(do_after(user, 20, INTERRUPT_ALL, BUSY_ICON_BUILD))
@@ -104,12 +104,12 @@
 			for (var/obj/C in src)
 				C.forceMove(loc)
 			if (src.stat & BROKEN)
-				to_chat(user, SPAN_NOTICE("The broken glass falls out."))
+				to_chat(user, SPAN_NOTICE("碎玻璃掉了出来。"))
 				new /obj/item/shard( src.loc )
 				A.state = 3
 				A.icon_state = "3"
 			else
-				to_chat(user, SPAN_NOTICE("You disconnect the monitor."))
+				to_chat(user, SPAN_NOTICE("你断开了显示器的连接。"))
 				A.state = 4
 				A.icon_state = "4"
 			M.disassemble(src)

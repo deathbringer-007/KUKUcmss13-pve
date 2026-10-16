@@ -1,6 +1,6 @@
 /obj/effect/acid_hole
-	name = "hole"
-	desc = "What could have done this?"
+	name = "洞口"
+	desc = "是什么东西弄出来的？"
 	icon = 'icons/effects/new_acid.dmi'
 	icon_state = "hole_0"
 	anchored = TRUE
@@ -79,23 +79,23 @@
 	var/turf/T = get_step(src, crawl_dir)
 
 	if (!T || T.density)
-		to_chat(user, "This hole leads nowhere!")
+		to_chat(user, "这个洞没有通向另一边！")
 		return
 
 	if(entrance_dir)
 		if(!step(user, entrance_dir))
-			to_chat(user, SPAN_WARNING("You can't reach the hole's entrance."))
+			to_chat(user, SPAN_WARNING("你够不到洞口。"))
 			return
 
 	for(var/obj/O in T)
 		if(O.BlockedPassDirs(user, crawl_dir))
-			to_chat(user, SPAN_WARNING("The hole's exit is blocked by something!"))
+			to_chat(user, SPAN_WARNING("洞的出口被什么东西堵住了！"))
 			return
 
 	if(user.action_busy)
 		return
 
-	to_chat(user, SPAN_NOTICE("You start crawling through the hole."))
+	to_chat(user, SPAN_NOTICE("你开始爬过洞口。"))
 
 	if(do_after(user, 15, INTERRUPT_NO_NEEDHAND, BUSY_ICON_GENERIC))
 		if(!user.is_mob_incapacitated() && !user.buckled)
@@ -106,7 +106,7 @@
 					return
 			if(user.pulling)
 				user.stop_pulling()
-				to_chat(user, SPAN_WARNING("You release what you're pulling to fit into the tunnel!"))
+				to_chat(user, SPAN_WARNING("你松开了正在拖拽的东西，才能挤进洞里！"))
 			user.forceMove(T)
 
 			// If the wall is on fire, ignite the xeno.
@@ -133,15 +133,15 @@
 		var/obj/item/explosive/grenade/G = W
 
 		if(!Target ||Target.density)
-			to_chat(user, SPAN_WARNING("This hole leads nowhere!"))
+			to_chat(user, SPAN_WARNING("这个洞没有通向另一边！"))
 			return
 
-		to_chat(user, SPAN_NOTICE("You take the position to throw [G]."))
+		to_chat(user, SPAN_NOTICE("你摆好姿势，准备投掷[G]。"))
 		if(do_after(user,10, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
 			if(Target.density)
 				return
-			user.visible_message(SPAN_WARNING("[user] throws [G] through [src]!"), \
-								SPAN_WARNING("You throw [G] through [src]"))
+			user.visible_message(SPAN_WARNING("[user]将[G]扔过了[src]！"), \
+								SPAN_WARNING("你将[G]扔过了[src]！"))
 			user.drop_held_item()
 			G.forceMove(Target)
 			G.setDir(pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
@@ -155,15 +155,15 @@
 		var/obj/item/device/flashlight/F = W
 
 		if(!Target ||Target.density)
-			to_chat(user, SPAN_WARNING("This hole leads nowhere!"))
+			to_chat(user, SPAN_WARNING("这个洞没有通向另一边！"))
 			return
 
-		to_chat(user, SPAN_NOTICE("You take the position to throw [F]."))
+		to_chat(user, SPAN_NOTICE("你摆好姿势，准备投掷[F]。"))
 		if(do_after(user,10, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
 			if(Target.density)
 				return
-			user.visible_message(SPAN_WARNING("[user] throws [F] through [src]!"), \
-								SPAN_WARNING("You throw [F] through [src]"))
+			user.visible_message(SPAN_WARNING("[user]将[F]扔过了[src]！"), \
+								SPAN_WARNING("你将[F]扔过了[src]！"))
 			user.drop_held_item()
 			F.forceMove(Target)
 			F.setDir(pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))

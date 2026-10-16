@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/scientist
-	name = "Scientist's Locker"
+	name = "科学家的储物柜"
 	req_access = list(ACCESS_MARINE_RESEARCH)
 	icon_state = "secureres1"
 	icon_closed = "secureres"
@@ -20,7 +20,7 @@
 
 
 /obj/structure/closet/secure_closet/RD
-	name = "Research Director's Locker"
+	name = "研究主管的储物柜"
 	req_access = list(ACCESS_CIVILIAN_LOGISTICS)
 	icon_state = "rdsecure1"
 	icon_closed = "rdsecure"

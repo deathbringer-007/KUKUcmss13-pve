@@ -1,7 +1,7 @@
 
 /obj/item/clothing/mask/gas
-	name = "gas mask"
-	desc = "A civilian grade, face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
+	name = "防毒面具"
+	desc = "一副民用全面罩，可连接供气设备，并过滤空气中的有害气体。"
 	icon_state = "gas_alt"
 	flags_inventory = COVERMOUTH | COVEREYES | ALLOWINTERNALS | BLOCKGASEFFECT | ALLOWREBREATH | ALLOWCPR
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDELOWHAIR
@@ -26,14 +26,14 @@
 	var/list/filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
 
 /obj/item/clothing/mask/gas/kutjevo
-	name = "kutjevo respirator"
-	desc = "A respirator worn on the face that filters out harmful air particles often present in the air of Kutjevo."
+	name = "库特耶沃防尘面罩"
+	desc = "戴在脸上的呼吸防护面罩，可过滤库特耶沃空气中常见的有害颗粒。"
 	icon_state = "kutjevo_respirator"
 	item_state = "kutjevo_respirator"
 
 /obj/item/clothing/mask/gas/military
-	name = "\improper M5 gasmask"
-	desc = "The standard service gas mask of the USCM as part of a modernization program meant to replace the need for MOPP gear."
+	name = "\improper M5防毒面具"
+	desc = "殖民地陆战队的制式防毒面具，属于旨在替代MOPP防护装备的现代化计划。"
 	icon_state = "m5"
 	item_state = "m5"
 	flags_obj = OBJ_NO_HELMET_BAND|OBJ_IS_HELMET_GARB
@@ -64,14 +64,14 @@
 	helmet_item.flags_inv_hide &= ~(HIDEFACE)
 
 /obj/item/clothing/mask/gas/military/upp
-	name = "\improper ShMB/4 gasmask"
-	desc = "The standard issue gasmask utilized by the UPP Armed Collective and many UPP civilian organizations."
+	name = "\improper ShMB/4防毒面具"
+	desc = "进步人民联盟联合武装力量及许多联盟民间组织使用的制式防毒面具。"
 	icon_state = "pfb"
 	item_state = "pfb"
 
 /obj/item/clothing/mask/gas/pve_mopp
-	name = "\improper M2 MOPP mask"
-	desc = "The M2 MOPP mask includes a full covering cowl that securely attaches to the MOPP suit. It is capable of protecting of a variety of radiological and biological threats."
+	name = "\improper M2 MOPP防护面罩"
+	desc = "M2 MOPP防护面罩带有全包覆头罩，可牢固连接到MOPP防护服上，能够抵御多种放射性和生物威胁。"
 	icon = 'icons/obj/items/clothing/cm_hats.dmi'
 	icon_state = "cbrn_hood"
 	item_state = "cbrn_hood"
@@ -81,8 +81,8 @@
 	)
 
 /obj/item/clothing/mask/gas/pmc
-	name = "\improper tactical filtration mask"
-	desc = "A sophisticated filtration mask being tested for the military market but presently limited to Weyland-Yutani tactical teams."
+	name = "\improper 战术过滤面罩"
+	desc = "一种精密过滤面罩，正在为进入军用市场进行试验，目前仅限维兰德-汤谷战术小队使用。"
 	item_state = "helmet"
 	icon_state = "pmc_mask"
 	anti_hug = 3
@@ -100,22 +100,22 @@
 	flags_equip_slot = SLOT_FACE
 
 /obj/item/clothing/mask/gas/pmc/marsoc
-	name = "\improper SOF armored balaclava"
-	desc = "Designed for maximum protection -- and badassery. Provides protection against facial attacks, filters toxins, and conceals the wearer's identity."
+	name = "\improper 特种部队装甲头套"
+	desc = "专为最强防护和最酷造型设计。可抵御面部攻击、过滤毒素并隐藏穿戴者身份。"
 	icon_state = "balaclava"
 
 /obj/item/clothing/mask/gas/pmc/upp
-	name = "\improper UPP armored commando balaclava"
+	name = "\improper UPP装甲突击头套"
 	icon_state = "upp_mask"
 
 /obj/item/clothing/mask/gas/pmc/leader
-	name = "\improper M8 pattern armored balaclava"
-	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter. This particular suit looks like it belongs to a high-ranking officer."
+	name = "\improper M8型装甲头套"
+	desc = "既能隐藏使用者身份，又能过滤空气的装甲头套。这件看起来属于一位高级军官。"
 	icon_state = "officer_mask"
 
 /obj/item/clothing/mask/gas/bear
-	name = "tactical balaclava"
-	desc = "A superior balaclava worn by the Iron Bears."
+	name = "战术头套"
+	desc = "铁熊部队穿着的优质头套。"
 	icon_state = "bear_mask"
 	anti_hug = 2
 
@@ -123,8 +123,8 @@
 
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
-	name = "plague doctor mask"
-	desc = "A modernised version of the classic design, this mask will not only filter out phoron but it can also be connected to an air supply."
+	name = "瘟疫医生面具"
+	desc = "经典设计的现代化版本。这副面具既能过滤弗燃素，也能连接供气设备。"
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
 	armor_melee = CLOTHING_ARMOR_NONE
@@ -138,60 +138,60 @@
 	flags_armor_protection = BODY_FLAG_HEAD|BODY_FLAG_FACE
 
 /obj/item/clothing/mask/gas/swat
-	name = "\improper SWAT mask"
-	desc = "A close-fitting tactical mask that can be connected to an air supply."
+	name = "\improper 特警面罩"
+	desc = "一副贴合面部、可连接供气设备的战术面罩。"
 	icon_state = "swat"
 	siemens_coefficient = 0.7
 	flags_armor_protection = BODY_FLAG_FACE|BODY_FLAG_EYES
 
 /obj/item/clothing/mask/gas/swat/navy
-	name = "\improper flight mask"
-	desc = "A close-fitting mask used by pilots who might end up exposed to the vacuum of space during sorties."
+	name = "\improper 飞行面罩"
+	desc = "一副贴合面部的面罩，供可能在出击中暴露于太空真空的飞行员使用。"
 
 /obj/item/clothing/mask/gas/syndicate
-	name = "syndicate mask"
-	desc = "A close-fitting tactical mask that can be connected to an air supply."
+	name = "辛迪加面罩"
+	desc = "一副贴合面部、可连接供气设备的战术面罩。"
 	icon_state = "swat"
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/mask/gas/voice
-	name = "gas mask"
-	desc = "A face-covering mask that can be connected to an air supply. It seems to house some odd electronics."
+	name = "防毒面具"
+	desc = "一副可连接供气设备的全面罩，里面似乎装着奇怪的电子装置。"
 
 /obj/item/clothing/mask/gas/voice/space_ninja
-	name = "ninja mask"
-	desc = "A close-fitting mask that acts both as an air filter and a post-modern fashion statement."
+	name = "忍者面罩"
+	desc = "一副贴合面部的面罩，既能过滤空气，又能彰显后现代时尚。"
 	icon_state = "s-ninja"
 	item_state = "s-ninja_mask"
 	siemens_coefficient = 0.2
 	vision_impair = VISION_IMPAIR_NONE
 
 /obj/item/clothing/mask/gas/clown_hat
-	name = "clown wig and mask"
-	desc = "A true prankster's facial attire. A clown is incomplete without their wig and mask."
+	name = "小丑假发与面具"
+	desc = "真正恶作剧大师的面部装扮。没有假发和面具，小丑就不完整。"
 	icon_state = "clown"
 	item_state = "clown_hat"
 	vision_impair = VISION_IMPAIR_NONE
 	black_market_value = 25
 
 /obj/item/clothing/mask/gas/mime
-	name = "mime mask"
-	desc = "The traditional mime's mask. It has an eerie facial posture."
+	name = "默剧面具"
+	desc = "传统的默剧演员面具，表情有些诡异。"
 	icon_state = "mime"
 	item_state = "mime"
 	vision_impair = VISION_IMPAIR_NONE
 
 /obj/item/clothing/mask/gas/monkeymask
-	name = "monkey mask"
-	desc = "A mask used when acting as a monkey."
+	name = "猴子面具"
+	desc = "扮演猴子时使用的面具。"
 	icon_state = "monkeymask"
 	item_state = "monkeymask"
 	flags_armor_protection = BODY_FLAG_HEAD|BODY_FLAG_FACE|BODY_FLAG_EYES
 	vision_impair = VISION_IMPAIR_NONE
 
 /obj/item/clothing/mask/gas/fake_mustache
-	name = "fake mustache"
-	desc = "It is almost perfect."
+	name = "假胡子"
+	desc = "几乎以假乱真。"
 	icon_state = "souto_man"
 	vision_impair = VISION_IMPAIR_NONE
 	unacidable = TRUE
@@ -201,8 +201,8 @@
 //=ROYAL MARINES=\\
 
 /obj/item/clothing/mask/gas/pmc/royal_marine
-	name = "\improper L7 gasmask"
-	desc = "The L7 Gasmask used by members of the three world empires royal marines commando."
+	name = "\improper L7防毒面具"
+	desc = "三世界帝国皇家陆战突击队成员使用的L7防毒面具。"
 	icon_state = "rmc_mask"
 	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
 	flags_inventory = COVERMOUTH|COVEREYES|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH|ALLOWCPR

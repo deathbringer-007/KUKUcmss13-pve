@@ -4,9 +4,9 @@
 // using this solves the problem of having the APC in a wall yet also inside an area
 
 /obj/structure/machinery/power/terminal
-	name = "terminal"
+	name = "接线端子"
 	icon_state = "term"
-	desc = "It's an underfloor wiring terminal for power equipment."
+	desc = "安装在地板下、用于电力设备的接线端子。"
 	level = 1
 	var/obj/structure/machinery/power/master = null
 	anchored = TRUE

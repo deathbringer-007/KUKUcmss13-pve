@@ -1,6 +1,6 @@
 /obj/item/hardpoint/holder/apc_turret
-	name = "\improper ZSL-68 Turret"
-	desc = "'This is the BM-7/U.E.M Turret for the ZSL-68. The U.E.M, or 'Universal-Equipment-Module' was developed by Ukraine and China, though most of its' practical development took place in Ukraine. It is a remotely controlled and highly modular system capable of servicing a wide range of weapon packages."
+	name = "\improper ZSL-68炮塔"
+	desc = "这是ZSL-68的BM-7/U.E.M炮塔。U.E.M即“通用装备模块”，由乌克兰与中国联合研发，不过大部分实际研发工作在乌克兰完成。这是一套遥控、高度模块化的系统，可搭载多种武器组合。"
 	icon = 'icons/obj/vehicles/uppapc.dmi'
 	icon_state = "apc_turret_0"
 	disp_icon = "uppapc"
@@ -104,7 +104,7 @@
 			return TRUE
 
 		if(health < 1)
-			visible_message(SPAN_WARNING("\The [src] disintegrates into useless pile of scrap under the damage it suffered!"))
+			visible_message(SPAN_WARNING("[src]因损坏过重而散成了一堆废料！"))
 			qdel(src)
 			return TRUE
 
@@ -117,7 +117,7 @@
 	var/list/data = list()
 
 	data += list(list( // turret smokescreen data
-		"name" = "ZSL Turret Smoke Screen",
+		"name" = "ZSL炮塔烟幕系统",
 		"health" = health <= 0 ? null : floor(get_integrity_percent()),
 		"uses_ammo" = TRUE,
 		"current_rounds" = ammo.current_rounds / 2,
@@ -134,11 +134,11 @@
 //gyro ON locks the turret in one direction, OFF will make turret turning when tank turns
 /obj/item/hardpoint/holder/apc_turret/proc/toggle_gyro(mob/user)
 	if(health <= 0)
-		to_chat(user, SPAN_WARNING("\The [src]'s stabilization systems are busted!"))
+		to_chat(user, SPAN_WARNING("[src]的稳定系统已损坏！"))
 		return
 
 	gyro = !gyro
-	to_chat(user, SPAN_NOTICE("You toggle \the [src]'s gyroscopic stabilizer [gyro ? "ON" :"OFF"]."))
+	to_chat(user, SPAN_NOTICE("你将[src]的陀螺稳定器[gyro ? "开启" :"关闭"]。"))
 
 /obj/item/hardpoint/holder/apc_turret/proc/user_rotation(mob/user, deg)
 	// no rotating a broken turret
@@ -149,7 +149,7 @@
 		return
 
 	rotating = TRUE
-	to_chat(user, SPAN_NOTICE("You begin rotating the turret towards the [dir2text(turn(dir,deg))]."))
+	to_chat(user, SPAN_NOTICE("你开始将炮塔转向[list("north" = "北", "south" = "南", "east" = "东", "west" = "西", "northeast" = "东北", "southeast" = "东南", "northwest" = "西北", "southwest" = "西南")[dir2text(turn(dir,deg))]]方。"))
 
 	if(!do_after(user, rotation_windup, INTERRUPT_ALL, BUSY_ICON_GENERIC))
 		rotating = FALSE

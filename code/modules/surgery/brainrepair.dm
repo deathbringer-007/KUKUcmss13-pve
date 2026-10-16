@@ -4,7 +4,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery/brain_repair
-	name = "Brain Repair Surgery"
+	name = "脑部修复手术"
 	possible_locs = list("head")
 	invasiveness = list(SURGERY_DEPTH_DEEP)
 	required_surgery_skill = SKILL_SURGERY_TRAINED
@@ -32,24 +32,24 @@
 //------------------------------------
 
 /datum/surgery_step/remove_bone_chips
-	name = "Remove Embedded Bone Chips"
-	desc = "remove the shards of bone"
+	name = "取出嵌入的碎骨"
+	desc = "取出碎骨"
 	tools = SURGERY_TOOLS_PINCH
 	time = 5 SECONDS
 
 /datum/surgery_step/remove_bone_chips/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("You begin picking chips of bone out of [target]'s brain with \the [tool]."),
-		SPAN_NOTICE("[user] begins picking chips of bone out of your brain with \the [tool]."),
-		SPAN_NOTICE("[user] begins picking chips of bone out of [target]'s brain with \the [tool]."))
+		SPAN_NOTICE("你开始用[tool]取出[target]脑中的碎骨。"),
+		SPAN_NOTICE("[user]开始用[tool]取出你脑中的碎骨。"),
+		SPAN_NOTICE("[user]开始用[tool]取出[target]脑中的碎骨。"))
 
 	log_interact(user, target, "[key_name(user)] started taking bone chips out of [key_name(target)]'s brain with \the [tool], possibly beginning [surgery]")
 
 /datum/surgery_step/remove_bone_chips/success(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("You finish extracting fragments of bone from [target]'s brain."),
-		SPAN_NOTICE("[user] finishes extracting fragments of bone from your brain."),
-		SPAN_NOTICE("[user] finishes extracting fragments of bone from [target]'s brain."))
+		SPAN_NOTICE("你取出了[target]脑中的碎骨。"),
+		SPAN_NOTICE("[user]取出了你脑中的碎骨。"),
+		SPAN_NOTICE("[user]取出了[target]脑中的碎骨。"))
 
 	user.count_niche_stat(STATISTICS_NICHE_SURGERY_BRAIN)
 
@@ -66,39 +66,39 @@
 
 /datum/surgery_step/remove_bone_chips/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_WARNING("Your hand slips, tearing a blood vessel in [target]'s [surgery.affected_limb.display_name] with \the [tool]!"),
-		SPAN_WARNING("[user]'s hand slips, tearing a blood vessel in your [surgery.affected_limb.display_name] with \the [tool]!"),
-		SPAN_WARNING("[user]'s hand slips, tearing a blood vessel in [target]'s [surgery.affected_limb.display_name] with \the [tool]!"))
+		SPAN_WARNING("你手一滑，用[tool]划破了[target]的[surgery.affected_limb.display_name]内的一根血管！"),
+		SPAN_WARNING("[user]手一滑，用[tool]划破了你的[surgery.affected_limb.display_name]内的一根血管！"),
+		SPAN_WARNING("[user]手一滑，用[tool]划破了[target]的[surgery.affected_limb.display_name]内的一根血管！"))
 
 	log_interact(user, target, "[key_name(user)] failed to take the bone chips out of [key_name(target)]'s brain with \the [tool], possibly aborting [surgery].")
 
 	var/datum/wound/internal_bleeding/I = new (0)
 	surgery.affected_limb.add_bleeding(I, TRUE)
 	surgery.affected_limb.wounds += I
-	target.custom_pain("You feel something rip in your [surgery.affected_limb.display_name]!", 1)
+	target.custom_pain("你感觉[surgery.affected_limb.display_name]里面有什么东西裂开了！", 1)
 	return FALSE
 
 //------------------------------------
 
 /datum/surgery_step/treat_hematoma
-	name = "Treat Hematoma"
-	desc = "repair the hematoma"
+	name = "处理血肿"
+	desc = "处理血肿"
 	tools = SURGERY_TOOLS_MEND_BLOODVESSEL
 	time = 5 SECONDS
 
 /datum/surgery_step/treat_hematoma/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("You begin mending the hematoma in [target]'s brain with \the [tool]."),
-		SPAN_NOTICE("[user] begins to mend the hematoma in your brain with \the [tool]."),
-		SPAN_NOTICE("[user] begins to mend the hematoma in [target]'s brain with \the [tool]."))
+		SPAN_NOTICE("你开始用[tool]处理[target]脑中的血肿。"),
+		SPAN_NOTICE("[user]开始用[tool]处理你脑中的血肿。"),
+		SPAN_NOTICE("[user]开始用[tool]处理[target]脑中的血肿。"))
 
 	log_interact(user, target, "[key_name(user)] started mending a hematoma in [key_name(target)]'s brain with \the [tool].")
 
 /datum/surgery_step/treat_hematoma/success(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("You finish mending the hematoma in [target]'s brain."),
-		SPAN_NOTICE("[user] finishes mending the hematoma in your brain."),
-		SPAN_NOTICE("[user] finishes mending the hematoma in [target]'s brain."))
+		SPAN_NOTICE("你处理好了[target]脑中的血肿。"),
+		SPAN_NOTICE("[user]处理好了你脑中的血肿。"),
+		SPAN_NOTICE("[user]处理好了[target]脑中的血肿。"))
 
 	log_interact(user, target, "[key_name(user)] finished mending a hematoma in [key_name(target)]'s brain with \the [tool], beginning [surgery].")
 
@@ -111,9 +111,9 @@
 
 /datum/surgery_step/treat_hematoma/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_WARNING("Your hand slips, bruising [target]'s brain with \the [tool]!"),
-		SPAN_WARNING("[user]'s hand slips, bruising your brain with \the [tool]!"),
-		SPAN_WARNING("[user]'s hand slips, bruising [target]'s brain with \the [tool]!"))
+		SPAN_WARNING("你手一滑，用[tool]挫伤了[target]的大脑！"),
+		SPAN_WARNING("[user]手一滑，用[tool]挫伤了你的大脑！"),
+		SPAN_WARNING("[user]手一滑，用[tool]挫伤了[target]的大脑！"))
 
 	log_interact(user, target, "[key_name(user)] failed to mend the hematoma in [key_name(target)]'s brain with \the [tool], aborting [surgery].")
 

@@ -1,7 +1,7 @@
 
 /obj/item/storage/box/czsp/first_aid
-	name = "first-aid combat support kit"
-	desc = "Contains upgraded medical kits, nanosplints and an upgraded defibrillator."
+	name = "急救战区支援套装"
+	desc = "内含升级型医疗包、纳米夹板和升级型除颤器。"
 	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "medicbox"
 	storage_slots = 3
@@ -14,8 +14,8 @@
 		new /obj/item/device/healthanalyzer(src)
 
 /obj/item/storage/box/czsp/medical
-	name = "medical combat support kit"
-	desc = "Contains upgraded medical kits, nanosplints and an upgraded defibrillator."
+	name = "医疗战区支援套装"
+	desc = "内含升级型医疗包、纳米夹板和升级型除颤器。"
 	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "medicbox"
 	storage_slots = 4
@@ -28,10 +28,10 @@
 	new /obj/item/device/defibrillator/upgraded(src)
 
 /obj/item/storage/box/czsp/medic_upgraded_kits
-	name = "medical upgrade kit"
+	name = "医疗升级套装"
 	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "upgradedkitbox"
-	desc = "This kit holds upgraded trauma and burn kits, for critical injuries."
+	desc = "内含用于处理重伤的升级型创伤治疗包和烧伤治疗包。"
 	max_w_class = SIZE_MEDIUM
 	storage_slots = 2
 
@@ -41,12 +41,12 @@
 	new /obj/item/stack/medical/advanced/ointment/upgraded(src)
 
 /obj/item/stack/medical/advanced/ointment/upgraded
-	name = "upgraded burn kit"
-	singular_name = "upgraded burn kit"
+	name = "升级型烧伤治疗包"
+	singular_name = "升级型烧伤治疗包"
 	stack_id = "upgraded burn kit"
 
 	icon_state = "burnkit_upgraded"
-	desc = "An upgraded burn treatment kit. Three times as effective as standard-issue, and non-replenishable. Use sparingly on only the most critical burns."
+	desc = "升级型烧伤治疗包，效果是制式型号的三倍，且无法补充。请节省使用，仅用于最严重的烧伤。"
 
 	max_amount = 10
 	amount = 10
@@ -56,12 +56,12 @@
 	heal_burn = initial(heal_burn) * 3 // 3x stronger
 
 /obj/item/stack/medical/advanced/bruise_pack/upgraded
-	name = "upgraded trauma kit"
-	singular_name = "upgraded trauma kit"
+	name = "升级型创伤治疗包"
+	singular_name = "升级型创伤治疗包"
 	stack_id = "upgraded trauma kit"
 
 	icon_state = "traumakit_upgraded"
-	desc = "An upgraded trauma treatment kit. Three times as effective as standard-issue, and non-replenishable. Use sparingly on only the most critical wounds."
+	desc = "升级型创伤治疗包，效果是制式型号的三倍，且无法补充。请节省使用，仅用于最严重的创伤。"
 
 	max_amount = 10
 	amount = 10
@@ -71,11 +71,11 @@
 	heal_brute = initial(heal_brute) * 3 // 3x stronger
 
 /obj/item/stack/medical/splint/nano
-	name = "nano splints"
-	singular_name = "nano splint"
+	name = "纳米夹板"
+	singular_name = "纳米夹板"
 
 	icon_state = "nanosplint"
-	desc = "Advanced technology allows these splints to hold bones in place while being flexible and damage-resistant. These aren't plentiful, so use them sparingly on critical areas."
+	desc = "先进技术让这些夹板在固定骨骼的同时保持柔韧并耐受损伤。数量有限，请节省使用，优先固定关键部位。"
 
 	indestructible_splints = TRUE
 	amount = 5
@@ -84,12 +84,12 @@
 	stack_id = "nano splint"
 
 /obj/item/stack/medical/splint/nano/research
-	desc = "Advanced technology allows these splints to hold bones in place while being flexible and damage-resistant. Those are made from durable carbon fiber and dont look cheap, better use them sparingly."
+	desc = "先进技术让这些夹板在固定骨骼的同时保持柔韧并耐受损伤。它们由耐用的碳纤维制成，看起来价格不菲，最好节省使用。"
 
 /obj/item/device/defibrillator/upgraded
-	name = "upgraded emergency defibrillator"
+	name = "升级型急救除颤器"
 	icon_state = "adv_defib"
-	desc = "An advanced rechargeable defibrillator using induction to deliver shocks through metallic objects, such as armor, and does so with much greater efficiency than the standard variant, not damaging the heart."
+	desc = "先进的可充电除颤器，通过感应穿透护甲等金属物体施加电击。效率远高于标准型号，且不会损伤心脏。"
 
 	blocked_by_suit = FALSE
 	min_heart_damage_dealt = 0
@@ -131,12 +131,12 @@
 
 // upgraded version, currently no way of getting it
 /obj/item/weapon/gun/pill/super
-	name = "large pill gun"
+	name = "大型药丸枪"
 	current_mag = /obj/item/ammo_magazine/internal/pillgun/super
 
 /obj/item/weapon/gun/pill
-	name = "pill gun"
-	desc = "A spring-loaded rifle designed to fit pills, designed to inject patients from a distance."
+	name = "药丸枪"
+	desc = "以弹簧驱动、可装填药丸的步枪，用于远距离向患者输送药物。"
 	icon = 'icons/obj/items/weapons/guns/legacy/old_cmguns.dmi'
 	icon_state = "syringegun"
 	item_state = "syringegun"
@@ -159,7 +159,7 @@
 		return
 
 	if(current_mag.current_rounds >= current_mag.max_rounds)
-		to_chat(user, SPAN_WARNING("[src] is at maximum ammo capacity!"))
+		to_chat(user, SPAN_WARNING("[src]已经装满弹药了！"))
 		return
 
 	user.drop_inv_item_on_ground(I)
@@ -221,7 +221,7 @@
 	return AUTOFIRE_CONTINUE
 
 /datum/ammo/pill
-	name = "syringe"
+	name = "注射器"
 	icon_state = "syringe"
 	flags_ammo_behavior = AMMO_IGNORE_ARMOR|AMMO_ALWAYS_FF
 

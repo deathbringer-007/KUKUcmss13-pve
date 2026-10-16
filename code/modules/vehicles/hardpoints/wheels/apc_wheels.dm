@@ -1,6 +1,6 @@
 /obj/item/hardpoint/locomotion/apc_wheels
-	name = "\improper APC Wheels"
-	desc = "Integral to the movement of the APC."
+	name = "\improper 装甲运兵车车轮"
+	desc = "装甲运兵车行驶所必需的部件。"
 	icon = 'icons/obj/vehicles/hardpoints/apc.dmi'
 
 	damage_multiplier = 0.20
@@ -17,8 +17,8 @@
 	move_turn_momentum_loss_factor = 0.8
 
 /obj/item/hardpoint/locomotion/apc_wheels/arc
-	name = "ARC Wheels"
-	desc = "Not to be confused with the APC wheels, these are designed for the M540 ARC in mind."
+	name = "ARC车轮"
+	desc = "别与装甲运兵车车轮混淆，这些是专为M540 ARC设计的。"
 	icon = 'icons/obj/vehicles/hardpoints/arc.dmi'
 
 	icon_state = "tires"
@@ -32,8 +32,8 @@
 
 // UPP APC
 /obj/item/hardpoint/locomotion/apc_wheels/zsl_wheels
-	name = "\improper ZSL wheels"
-	desc = "Integral to the movement of the ZSL"
+	name = "\improper ZSL车轮"
+	desc = "ZSL行驶所必需的部件。"
 	icon = 'icons/obj/vehicles/hardpoints/uppapc.dmi'
 
 	damage_multiplier = 0.20

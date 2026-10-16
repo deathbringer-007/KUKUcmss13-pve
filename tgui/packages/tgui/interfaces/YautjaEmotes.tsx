@@ -18,6 +18,12 @@ type BackendContext = {
   on_cooldown: BooleanLike;
 };
 
+const emoteCategoryLabels: Record<string, string> = {
+  'Fake Sound': '拟声',
+  'Voice Synthesizer': '语音合成器',
+  Yautja: '铁血战士',
+};
+
 const EmoteTab = (props) => {
   const { data, act } = useBackend<BackendContext>();
   const { categories, emotes, on_cooldown } = data;
@@ -43,7 +49,7 @@ const EmoteTab = (props) => {
                   setCategoryIndex(item);
                 }}
               >
-                {item}
+                {emoteCategoryLabels[item] || item}
               </Tabs.Tab>
             ))}
           </Tabs>
@@ -101,7 +107,7 @@ export const YautjaEmotes = (props) => {
       width={750}
       height={600}
       theme="crtgreen"
-      title="Yautja Audio Panel"
+      title="铁血战士音频面板"
     >
       <Window.Content>
         <EmoteTab />

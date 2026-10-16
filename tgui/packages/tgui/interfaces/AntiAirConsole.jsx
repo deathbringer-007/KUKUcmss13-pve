@@ -35,11 +35,11 @@ const GeneralPanel = (props) => {
     <Section fill>
       {(!!data.protecting_section && (
         <NoticeBox info textAlign="center">
-          Currently tracking : {data.protecting_section}
+          当前跟踪区域： {data.protecting_section}
         </NoticeBox>
       )) || (
         <NoticeBox danger textAlign="center">
-          Warning! AA Cannon not active!
+          警告！防空炮尚未启动！
         </NoticeBox>
       )}
       <Stack vertical fill>
@@ -80,7 +80,7 @@ const GeneralPanel = (props) => {
             textAlign="center"
             onClick={() => act('protect', { section_id: selectedSection })}
           >
-            Set as section to track
+            设为跟踪区域
           </Button>
           {!!data.protecting_section && (
             <Button.Confirm
@@ -89,7 +89,7 @@ const GeneralPanel = (props) => {
               textAlign="center"
               onClick={() => act('deactivate')}
             >
-              Stop tracking
+              停止跟踪
             </Button.Confirm>
           )}
         </Stack.Item>
@@ -97,7 +97,7 @@ const GeneralPanel = (props) => {
       {!!data.disabled && (
         <Dimmer fontSize="32px">
           <Icon name="exclamation-triangle" />
-          {' AA disabled!'}
+          {' 防空系统已停用！'}
         </Dimmer>
       )}
     </Section>

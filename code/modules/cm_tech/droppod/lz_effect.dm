@@ -1,5 +1,5 @@
 /obj/effect/warning
-	name = "warning"
+	name = "警告标记"
 	icon = 'icons/effects/alert.dmi'
 	icon_state = "alert_greyscale"
 	anchored = TRUE
@@ -8,24 +8,24 @@
 	layer = ABOVE_OBJ_LAYER
 
 /obj/effect/warning/droppod
-	name = "droppod landing-zone"
+	name = "空投舱着陆区"
 	icon_state = "techpod_lz_marker"
 
 /obj/effect/warning/alien
-	name = "alien warning"
+	name = "异形警告标记"
 	color = "#a800ff"
 
 /obj/effect/warning/alien/weak
-	name = "weak alien warning"
+	name = "较弱的异形警告标记"
 	color = "#a800ff"
 	alpha = 127
 
 /obj/effect/warning/hover
-	name = "hoverpack warning"
+	name = "悬浮背包警告标记"
 	color = "#D4AE1E"
 
 /obj/effect/warning/explosive
-	name = "explosive warning"
+	name = "爆炸警告标记"
 	color = "#ff0000"
 
 /obj/effect/warning/explosive/Initialize(mapload, time_until_explosion)
@@ -36,5 +36,5 @@
 	qdel(src)
 
 /obj/effect/warning/explosive/gas
-	name = "gas warning"
+	name = "气体警告标记"
 	color = "#42acd6"

@@ -1,5 +1,5 @@
 /obj/effect/decal/prints
-	name = "suspicious prints"
+	name = "可疑指纹"
 	gender = PLURAL
 	icon = 'icons/effects/fingerprints.dmi'
 	icon_state = "prints"
@@ -44,12 +44,12 @@
 	var/obj/item/device/clue_scanner/S = W
 
 	if(!skillcheck(user, SKILL_POLICE, SKILL_POLICE_SKILLED))
-		to_chat(user, SPAN_WARNING("You don't seem to know how to use [S]..."))
+		to_chat(user, SPAN_WARNING("你似乎不知道该如何使用[S]……"))
 		return
 
 	S.scanning = TRUE
 	S.update_icon()
-	to_chat(user, SPAN_NOTICE("You start scanning [src]..."))
+	to_chat(user, SPAN_NOTICE("你开始扫描[src]……"))
 	if(!do_after(user, 50, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		S.scanning = FALSE
 		S.update_icon()
@@ -59,7 +59,7 @@
 	moveToNullspace()
 	LAZYADD(S.print_list, src)
 	S.update_icon()
-	to_chat(user, SPAN_INFO("New print sets found: 1, total amount: [length(S.print_list)]"))
+	to_chat(user, SPAN_INFO("新发现1组指纹，共计[length(S.print_list)]组。"))
 
 /obj/effect/decal/prints/proc/decipher_clue()
 	var/information = ""

@@ -1,6 +1,6 @@
 /obj/structure/dispenser
-	name = "tank storage unit"
-	desc = "A simple yet bulky storage device for gas tanks. Has room for up to ten oxygen tanks, and ten phoron tanks."
+	name = "储气瓶架"
+	desc = "一种结构简单但体积庞大的储气瓶架，最多可存放十个氧气瓶和十个弗燃素气瓶。"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "dispenser"
 	density = TRUE
@@ -40,9 +40,9 @@
 /obj/structure/dispenser/attack_hand(mob/user as mob)
 	user.set_interaction(src)
 	var/dat = "[src]<br><br>"
-	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<A href='byond://?src=\ref[src];oxygen=1'>Dispense</A>" : "empty"]<br>"
-	dat += "Phoron tanks: [phorontanks] - [phorontanks ? "<A href='byond://?src=\ref[src];phoron=1'>Dispense</A>" : "empty"]"
-	show_browser(user, dat, "Tank Storage Unit", "dispenser")
+	dat += "氧气瓶：[oxygentanks] - [oxygentanks ? "<A href='byond://?src=\ref[src];oxygen=1'>取出</A>" : "已空"]<br>"
+	dat += "弗燃素气瓶：[phorontanks] - [phorontanks ? "<A href='byond://?src=\ref[src];phoron=1'>取出</A>" : "已空"]"
+	show_browser(user, dat, "储气瓶架", "dispenser")
 	onclose(user, "dispenser")
 	return
 
@@ -54,11 +54,11 @@
 			I.forceMove(src)
 			oxytanks.Add(I)
 			oxygentanks++
-			to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
+			to_chat(user, SPAN_NOTICE("你将[I]放进[src]。"))
 			if(oxygentanks < 5)
 				update_icon()
 		else
-			to_chat(user, SPAN_NOTICE("[src] is full."))
+			to_chat(user, SPAN_NOTICE("[src]已经装满了。"))
 		updateUsrDialog()
 		return
 	if(istype(I, /obj/item/tank/phoron))
@@ -67,11 +67,11 @@
 			I.forceMove(src)
 			platanks.Add(I)
 			phorontanks++
-			to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
+			to_chat(user, SPAN_NOTICE("你将[I]放进[src]。"))
 			if(oxygentanks < 6)
 				update_icon()
 		else
-			to_chat(user, SPAN_NOTICE("[src] is full."))
+			to_chat(user, SPAN_NOTICE("[src]已经装满了。"))
 		updateUsrDialog()
 		return
 /*
@@ -101,7 +101,7 @@
 				else
 					O = new /obj/item/tank/oxygen(loc)
 				O.forceMove(loc)
-				to_chat(usr, SPAN_NOTICE("You take [O] out of [src]."))
+				to_chat(usr, SPAN_NOTICE("你从[src]中取出[O]。"))
 				oxygentanks--
 				update_icon()
 		if(href_list["phoron"])
@@ -113,7 +113,7 @@
 				else
 					P = new /obj/item/tank/phoron(loc)
 				P.forceMove(loc)
-				to_chat(usr, SPAN_NOTICE("You take [P] out of [src]."))
+				to_chat(usr, SPAN_NOTICE("你从[src]中取出[P]。"))
 				phorontanks--
 				update_icon()
 		add_fingerprint(usr)

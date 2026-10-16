@@ -1,8 +1,8 @@
 // It is a gizmo that flashes a small area
 
 /obj/structure/machinery/flasher
-	name = "Mounted flash"
-	desc = "A wall-mounted flashbulb device."
+	name = "壁挂闪光器"
+	desc = "壁挂式闪光灯装置。"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "mflash1"
 	var/id = null
@@ -14,8 +14,8 @@
 	anchored = TRUE
 
 /obj/structure/machinery/flasher/portable //Portable version of the flasher. Only flashes when anchored
-	name = "portable flasher"
-	desc = "A portable flashing device. Wrench to activate and deactivate. Cannot detect slow movements."
+	name = "便携式闪光器"
+	desc = "便携式闪光装置，使用扳手启用或停用，无法探测缓慢移动的目标。"
 	icon_state = "pflash1"
 	strength = 8
 	anchored = FALSE
@@ -37,9 +37,9 @@
 		add_fingerprint(user)
 		src.disable = !src.disable
 		if (src.disable)
-			user.visible_message(SPAN_DANGER("[user] has disconnected the [src]'s flashbulb!"), SPAN_DANGER("You disconnect the [src]'s flashbulb!"))
+			user.visible_message(SPAN_DANGER("[user]断开了[src]闪光灯的连接！"), SPAN_DANGER("你断开了[src]闪光灯的连接！"))
 		if (!src.disable)
-			user.visible_message(SPAN_DANGER("[user] has connected the [src]'s flashbulb!"), SPAN_DANGER("You connect the [src]'s flashbulb!"))
+			user.visible_message(SPAN_DANGER("[user]接通了[src]的闪光灯！"), SPAN_DANGER("你接通了[src]的闪光灯！"))
 
 //Let the AI trigger them directly.
 /obj/structure/machinery/flasher/attack_remote()
@@ -106,11 +106,11 @@
 		src.anchored = !src.anchored
 
 		if (!src.anchored)
-			user.show_message(text(SPAN_DANGER("[src] can now be moved.")), SHOW_MESSAGE_VISIBLE)
+			user.show_message(text(SPAN_DANGER("[src]现在可以移动了。")), SHOW_MESSAGE_VISIBLE)
 			src.overlays.Cut()
 
 		else if (src.anchored)
-			user.show_message(text(SPAN_DANGER("[src] is now secured.")), SHOW_MESSAGE_VISIBLE)
+			user.show_message(text(SPAN_DANGER("[src]现在已固定。")), SHOW_MESSAGE_VISIBLE)
 			src.overlays += "[base_state]-s"
 
 /obj/structure/machinery/flasher_button/attack_remote(mob/user as mob)
@@ -127,7 +127,7 @@
 		return
 
 	if(!allowed(user))
-		to_chat(user, SPAN_WARNING("Access Denied."))
+		to_chat(user, SPAN_WARNING("拒绝访问。"))
 		return
 
 	use_power(5)

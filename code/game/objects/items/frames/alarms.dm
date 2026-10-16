@@ -6,8 +6,8 @@ Handheld air alarm frame, for placing on walls
 Code shamelessly copied from apc_frame
 */
 /obj/item/frame/air_alarm
-	name = "air alarm frame"
-	desc = "Used for building Air Alarms"
+	name = "空气警报器框架"
+	desc = "用于组装空气警报器。"
 	icon = 'icons/obj/structures/machinery/monitors.dmi'
 	icon_state = "alarm_bitem"
 	flags_atom = FPRINT|CONDUCT
@@ -30,14 +30,14 @@ Code shamelessly copied from apc_frame
 	var/turf/loc = get_turf(usr)
 	var/area/A = loc.loc
 	if (!istype(loc, /turf/open/floor))
-		to_chat(usr, SPAN_DANGER("Air Alarm cannot be placed on this spot."))
+		to_chat(usr, SPAN_DANGER("不能在这个位置安装空气警报器。"))
 		return
 	if (A.requires_power == 0 || A.name == "Space")
-		to_chat(usr, SPAN_DANGER("Air Alarm cannot be placed in this area."))
+		to_chat(usr, SPAN_DANGER("不能在这个区域安装空气警报器。"))
 		return
 
 	if(gotwallitem(loc, ndir))
-		to_chat(usr, SPAN_DANGER("There's already an item on this wall!"))
+		to_chat(usr, SPAN_DANGER("这面墙上已经装有东西了！"))
 		return
 
 	new /obj/structure/machinery/alarm(loc, ndir, 1)
@@ -49,8 +49,8 @@ Handheld fire alarm frame, for placing on walls
 Code shamelessly copied from apc_frame
 */
 /obj/item/frame/fire_alarm
-	name = "fire alarm frame"
-	desc = "Used for building Fire Alarms"
+	name = "火灾警报器框架"
+	desc = "用于组装火灾警报器。"
 	icon = 'icons/obj/structures/machinery/monitors.dmi'
 	icon_state = "fire_bitem"
 	flags_atom = FPRINT|CONDUCT
@@ -73,14 +73,14 @@ Code shamelessly copied from apc_frame
 	var/turf/loc = get_turf(usr)
 	var/area/A = loc.loc
 	if (!istype(loc, /turf/open/floor))
-		to_chat(usr, SPAN_DANGER("Fire Alarm cannot be placed on this spot."))
+		to_chat(usr, SPAN_DANGER("不能在这个位置安装火灾警报器。"))
 		return
 	if (A.requires_power == 0 || A.name == "Space")
-		to_chat(usr, SPAN_DANGER("Fire Alarm cannot be placed in this area."))
+		to_chat(usr, SPAN_DANGER("不能在这个区域安装火灾警报器。"))
 		return
 
 	if(gotwallitem(loc, ndir))
-		to_chat(usr, SPAN_DANGER("There's already an item on this wall!"))
+		to_chat(usr, SPAN_DANGER("这面墙上已经装有东西了！"))
 		return
 
 	new /obj/structure/machinery/firealarm(loc, ndir, 1)

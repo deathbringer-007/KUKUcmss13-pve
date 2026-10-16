@@ -1,6 +1,6 @@
 /obj/structure/machinery/chem_storage
-	name = "Chemical Storage System"
-	desc = "Storage system for a large supply of chemicals, which slowly recharges."
+	name = "化学品储存系统"
+	desc = "储存大量化学品的系统，能量会缓慢恢复。"
 	icon = 'icons/obj/structures/machinery/science_machines_64x32.dmi'
 	icon_state = "chemstorage"
 	active_power_usage = 1000
@@ -18,15 +18,15 @@
 	unacidable = TRUE
 
 /obj/structure/machinery/chem_storage/medbay
-	name = "Chemical Storage System (Medbay)"
+	name = "化学品储存系统（医疗区）"
 	network = "Medbay"
 
 /obj/structure/machinery/chem_storage/research
-	name = "Chemical Storage System (Research)"
+	name = "化学品储存系统（研究部）"
 	network = "Research"
 
 /obj/structure/machinery/chem_storage/misc
-	name = "Chemical Storage System (Misc)"
+	name = "化学品储存系统（杂项）"
 	network = "Misc"
 
 /obj/structure/machinery/chem_storage/Initialize()
@@ -42,7 +42,7 @@
 	. = ..()
 	if(in_range(user, src) || istype(user, /mob/dead/observer))
 		var/charge = floor((energy / max_energy) * 100)
-		. += SPAN_NOTICE("The charge meter reads [charge]%")
+		. += SPAN_NOTICE("能量表显示：[charge]%。")
 
 /obj/structure/machinery/chem_storage/process()
 	if(recharge_cooldown <= 0)

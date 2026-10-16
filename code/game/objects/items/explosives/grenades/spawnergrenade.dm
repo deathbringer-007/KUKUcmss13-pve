@@ -1,6 +1,6 @@
 /obj/item/explosive/grenade/spawnergrenade
-	desc = "It is set to detonate in 5 seconds. It will unleash an unspecified anomaly into the vicinity."
-	name = "delivery grenade"
+	desc = "设置为5秒后引爆，将在附近释放某种未知异常。"
+	name = "投送手榴弹"
 	icon_state = "delivery"
 	item_state = "flashbang"
 
@@ -30,7 +30,7 @@
 	return
 
 /obj/item/explosive/grenade/spawnergrenade/spesscarp
-	name = "carp delivery grenade"
+	name = "太空鲤鱼投送手榴弹"
 	spawner_type = /mob/living/simple_animal/hostile/carp
 	deliveryamt = 5
 

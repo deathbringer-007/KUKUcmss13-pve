@@ -5,8 +5,9 @@
 
 /datum/reagent/blood
 	name = "Blood"
+	localized_name = "血液"
 	id = "blood"
-	description = "Blood is classified as a connective tissue and consists of two main components: Plasma, which is a clear extracellular fluid. Formed elements, which are made up of the blood cells and platelets."
+	description = "血液属于结缔组织，主要由两部分组成：血浆，即透明的细胞外液；有形成分，即血细胞和血小板。"
 	reagent_state = LIQUID
 	color = "#A10808"
 	data_properties = new/list("blood_type"=null,"blood_color"= "#A10808","viruses"=null,"resistances"=null)
@@ -40,37 +41,42 @@
 
 /datum/reagent/blood/yaut_blood
 	name = "Green Blood"
+	localized_name = "绿色血液"
 	id = "greenblood"
-	description = "A thick green blood, definitely not human."
+	description = "浓稠的绿色血液，绝对不是人类的。"
 	color = BLOOD_COLOR_YAUTJA
 	chemclass = CHEM_CLASS_SPECIAL
 	objective_value = OBJECTIVE_HIGH_VALUE
 
 /datum/reagent/blood/synth_blood
 	name = "Synthetic Blood"
+	localized_name = "合成人血液"
 	id = "whiteblood"
 	color = BLOOD_COLOR_SYNTHETIC
-	description = "A synthetic blood-like liquid used by all Synthetics. Very effective as a medium for liquid cooling of electronics."
+	description = "所有合成人使用的仿血液合成液体，作为电子设备液冷介质十分有效。"
 	chemclass = CHEM_CLASS_NONE
 
 /datum/reagent/blood/zomb_blood
 	name = "Grey Blood"
+	localized_name = "灰色血液"
 	id = "greyblood"
 	color = "#333333"
-	description = "A greyish liquid with the same consistency as blood."
+	description = "一种灰色液体，稠度与血液相同。"
 	chemclass = CHEM_CLASS_NONE
 
 /datum/reagent/blood/xeno_blood
 	name = "Acidic Blood"
+	localized_name = "酸性血液"
 	id = "xenoblood"
 	color = BLOOD_COLOR_XENO
-	description = "A corrosive blood like substance. Makeup appears to be made out of acids and blood plasma."
+	description = "具有腐蚀性的仿血液物质，成分似乎是酸与血浆。"
 	chemclass = CHEM_CLASS_SPECIAL
 	objective_value = OBJECTIVE_HIGH_VALUE
 	properties = list(PROPERTY_CORROSIVE = 3)
 
 /datum/reagent/blood/xeno_blood/royal
 	name = "Dark Acidic Blood"
+	localized_name = "深色酸性血液"
 	id = "xenobloodroyal"
 	color = BLOOD_COLOR_XENO_ROYAL
 	chemclass = CHEM_CLASS_SPECIAL
@@ -80,6 +86,7 @@
 /datum/reagent/vaccine
 	//data must contain virus type
 	name = "Vaccine"
+	localized_name = "疫苗"
 	id = "vaccine"
 	reagent_state = LIQUID
 	color = "#C81040" // rgb: 200, 16, 64
@@ -105,8 +112,9 @@
 
 /datum/reagent/water
 	name = "Water"
+	localized_name = "水"
 	id = "water"
-	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen. It is a vital component to all known forms of organic life, even though it provides no calories or organic nutrients. It is also an effective solvent and can be used for cleaning."
+	description = "由氢和氧组成的常见化学物质。虽然不提供热量或有机营养，却是所有已知有机生命不可或缺的组成部分。也是有效的溶剂，可用于清洁。"
 	reagent_state = LIQUID
 	color = "#0064C8" // rgb: 0, 100, 200
 	chemclass = CHEM_CLASS_BASIC
@@ -140,15 +148,17 @@
 
 /datum/reagent/water/holywater
 	name = "Holy Water"
+	localized_name = "圣水"
 	id = "holywater"
-	description = "An ashen-obsidian-water mix, this solution will alter certain sections of the brain's rationality."
+	description = "灰烬、黑曜石与水的混合液，会改变大脑中某些负责理性思维的区域。"
 	color = "#E0E8EF" // rgb: 224, 232, 239
 	chemclass = CHEM_CLASS_NONE
 
 /datum/reagent/plasticide
 	name = "Plasticide"
+	localized_name = "液态塑料"
 	id = "plasticide"
-	description = "Liquid plastic. Not safe to eat."
+	description = "液态的塑料，不可食用。"
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
 	custom_metabolism = AMOUNT_PER_TIME(1, 200 SECONDS)
@@ -156,8 +166,9 @@
 
 /datum/reagent/space_drugs
 	name = "Space drugs"
+	localized_name = "太空毒品"
 	id = "space_drugs"
-	description = "An illegal compound that causes hallucinations, visual artefacts and loss of balance."
+	description = "一种非法化合物，会引起幻觉、视觉异常和失去平衡。"
 	reagent_state = LIQUID
 	color = "#60A584" // rgb: 96, 165, 132
 	overdose = REAGENTS_OVERDOSE
@@ -167,8 +178,9 @@
 
 /datum/reagent/sleen
 	name = "Sleen"
+	localized_name = "赤酮饮"
 	id = "sleen"
-	description = " A favorite of marine medics, it is an illicit mixture of name brand lime soda and oxycodone, known for it's distinct red hue. Overdosing can cause hallucinations, loss of coordination, seizures, brain damage, respiratory failure, and death."
+	description = "陆战队医疗兵的最爱，以名牌青柠汽水和羟考酮调成的非法混合饮品，因鲜明的红色而闻名。过量使用可能引发幻觉、协调能力丧失、癫痫发作、脑损伤、呼吸衰竭和死亡。"
 	reagent_state = LIQUID
 	color = "#C21D24" // rgb: 194, 29, 36
 	overdose = MED_REAGENTS_OVERDOSE
@@ -178,8 +190,9 @@
 
 /datum/reagent/serotrotium
 	name = "Serotrotium"
+	localized_name = "促血清素剂"
 	id = "serotrotium"
-	description = "A chemical compound that promotes concentrated production of the serotonin neurotransmitter in humans."
+	description = "可促进人体集中产生血清素神经递质的化合物。"
 	reagent_state = LIQUID
 	color = "#202040" // rgb: 20, 20, 40
 	overdose = REAGENTS_OVERDOSE
@@ -188,8 +201,9 @@
 
 /datum/reagent/oxygen
 	name = "Oxygen"
+	localized_name = "氧气"
 	id = "oxygen"
-	description = "Chemical element of atomic number 8. It is an oxidizing agent that forms oxides with most elements and many other compounds. Dioxygen is used in cellular respiration and is nessesary to sustain organic life."
+	description = "原子序数为 8 的化学元素，是能与大多数元素及许多化合物反应生成氧化物的氧化剂。氧分子参与细胞呼吸，是维持有机生命所必需的。"
 	reagent_state = GAS
 	color = COLOR_GRAY
 	chemfiresupp = TRUE
@@ -203,8 +217,9 @@
 
 /datum/reagent/copper
 	name = "Copper"
+	localized_name = "铜"
 	id = "copper"
-	description = "Chemical element of atomic number 29. A solfe malleable red metal with high thermal and electrical conductivity."
+	description = "原子序数为 29 的化学元素。质软、易延展的红色金属，导热性和导电性都很高。"
 	color = "#6E3B08" // rgb: 110, 59, 8
 	chemfiresupp = TRUE
 	burncolor = "#78be5a"
@@ -215,8 +230,9 @@
 
 /datum/reagent/nitrogen
 	name = "Nitrogen"
+	localized_name = "氮气"
 	id = "nitrogen"
-	description = "Chemical element of atomic number 7. Liquid nitrogen is commonly used in cryogenics, with its melting point of 63.15 kelvin. Nitrogen is a component of many explosive compounds and fertilizers."
+	description = "原子序数为 7 的化学元素。液氮常用于低温技术，其熔点为 63.15 K。氮也是许多爆炸性化合物和肥料的组成元素。"
 	reagent_state = GAS
 	color = COLOR_GRAY
 	chemclass = CHEM_CLASS_BASIC
@@ -226,8 +242,9 @@
 
 /datum/reagent/hydrogen
 	name = "Hydrogen"
+	localized_name = "氢气"
 	id = "hydrogen"
-	description = "Chemical element of atomic number 1. Is the most abundant chemical element in the Universe. Liquid hydrogen was used as one of the first fuel sources for space travel. Very combustible and is used in many chemical reactions."
+	description = "原子序数为 1 的化学元素，也是宇宙中含量最丰富的元素。液氢是太空航行最早使用的燃料之一。极易燃烧，参与许多化学反应。"
 	reagent_state = GAS
 	color = COLOR_GRAY
 	chemfiresupp = TRUE
@@ -244,8 +261,9 @@
 
 /datum/reagent/potassium
 	name = "Potassium"
+	localized_name = "钾"
 	id = "potassium"
-	description = "Chemical element of atomic number 19. Is a soft and highly reactive metal and causes an extremely violent exothermic reaction with water."
+	description = "原子序数为 19 的化学元素，是一种质软且活性很高的金属，与水接触会产生极其剧烈的放热反应。"
 	reagent_state = SOLID
 	color = "#A0A0A0" // rgb: 160, 160, 160
 	chemclass = CHEM_CLASS_BASIC
@@ -254,8 +272,9 @@
 
 /datum/reagent/mercury
 	name = "Mercury"
+	localized_name = "汞"
 	id = "mercury"
-	description = "Chemical element of atomic number 80. It is the only elemental metal that is liquid at room temperature. Used in many industrial chemical purposes. The low vapor pressure of mercury causes it to create toxic fumes. Mercury poisoning is extremely dangerous and can cause large amounts of brain damage."
+	description = "原子序数为 80 的化学元素，是唯一在室温下呈液态的金属单质，具有许多工业化学用途。汞的低蒸气压使其产生有毒蒸气。汞中毒极其危险，可能造成严重脑损伤。"
 	reagent_state = LIQUID
 	color = "#484848" // rgb: 72, 72, 72
 	overdose = REAGENTS_OVERDOSE
@@ -264,8 +283,9 @@
 
 /datum/reagent/sulfur
 	name = "Sulfur"
+	localized_name = "硫"
 	id = "sulfur"
-	description = "Chemical element of atomic number 16. Sulfur is an essential element for all life, as a component in amino acids and vitamins. Industrial uses of sulfur include the production of gunpowder and sulfuric acid."
+	description = "原子序数为 16 的化学元素，是氨基酸和维生素的组成元素，对所有生命都不可或缺。工业用途包括制造火药和硫酸。"
 	reagent_state = SOLID
 	color = "#BF8C00" // rgb: 191, 140, 0
 	chemclass = CHEM_CLASS_BASIC
@@ -274,8 +294,9 @@
 
 /datum/reagent/carbon
 	name = "Carbon"
+	localized_name = "碳"
 	id = "carbon"
-	description = "Chemical element of atomic number 6. A very abundant element that occurs in all known organic life and in more than half of all known compounds. Used as fuel, in the production of steel, for nanotechnology and many other industrial purposes."
+	description = "原子序数为 6 的化学元素。含量十分丰富，存在于所有已知有机生命及超过半数的已知化合物中。可用作燃料，还用于炼钢、纳米技术及许多其他工业领域。"
 	reagent_state = SOLID
 	color = "#1C1300" // rgb: 30, 20, 0
 	chemfiresupp = TRUE
@@ -298,8 +319,9 @@
 
 /datum/reagent/chlorine
 	name = "Chlorine"
+	localized_name = "氯气"
 	id = "chlorine"
-	description = "Chemical element of atomic number 17. High concentrations of elemental chlorine is highly reactive and poisonous for all living organisms. Chlorine gas has been used as a chemical warfare agent. Industrially used in the production of disinfectants, medicines, plastics and purification of water."
+	description = "原子序数为 17 的化学元素。高浓度氯单质活性很高，对所有生物都有毒，氯气曾被用作化学战剂。工业上用于生产消毒剂、药品、塑料及净化水。"
 	reagent_state = GAS
 	color = COLOR_GRAY
 	overdose = REAGENTS_OVERDOSE
@@ -309,8 +331,9 @@
 
 /datum/reagent/fluorine
 	name = "Fluorine"
+	localized_name = "氟气"
 	id = "fluorine"
-	description = "Chemical element of atomic number 9. It is a very reactive and highly toxic pale yellow gas at standard conditions. Mostly used for medical and dental purposes."
+	description = "原子序数为 9 的化学元素，标准条件下是活性很高、剧毒的淡黄色气体。主要用于医疗和牙科领域。"
 	reagent_state = GAS
 	color = COLOR_GRAY
 	overdose = REAGENTS_OVERDOSE
@@ -320,8 +343,9 @@
 
 /datum/reagent/sodium
 	name = "Sodium"
+	localized_name = "钠"
 	id = "sodium"
-	description = "Chemical element of atomic number 11. Pure it is a soft and very reactive metal. Many salt compounds contain sodium, such as sodium chloride and sodium bicarbonate. There are more uses for sodium as a salt than as a metal."
+	description = "原子序数为 11 的化学元素。纯钠是质软且活性很高的金属，氯化钠、碳酸氢钠等多种盐类都含有钠。钠盐的用途比金属钠更广。"
 	reagent_state = SOLID
 	color = COLOR_GRAY
 	chemclass = CHEM_CLASS_BASIC
@@ -330,8 +354,9 @@
 
 /datum/reagent/phosphorus
 	name = "Phosphorus"
+	localized_name = "磷"
 	id = "phosphorus"
-	description = "Chemical element of atomic number 15. A highly reactive element, that is essential for life as a component of DNA, RNA and ATP. White phospherous is used in many types of tracer and incendiary munitions due to its smoke production and high flammability."
+	description = "原子序数为 15 的化学元素，活性很高。作为 DNA、RNA 和 ATP 的组成元素，对生命不可或缺。白磷因易燃并能产生烟雾，被用于多种曳光弹和燃烧弹药。"
 	reagent_state = SOLID
 	color = "#832828" // rgb: 131, 40, 40
 	chemfiresupp = TRUE
@@ -346,8 +371,9 @@
 
 /datum/reagent/lithium
 	name = "Lithium"
+	localized_name = "锂"
 	id = "lithium"
-	description = "Chemical element of atomic number 3. Is a soft alkali metal commonly used in the production of batteries. Highly reactive and flammable. Used as an antidepressant and for treating bipolar disorder."
+	description = "原子序数为 3 的化学元素，是常用于电池生产的软质碱金属。活性很高且易燃，也用于抗抑郁和治疗双相情感障碍。"
 	reagent_state = SOLID
 	color = COLOR_GRAY
 	chemfiresupp = TRUE
@@ -363,8 +389,9 @@
 
 /datum/reagent/sugar
 	name = "Sugar"
+	localized_name = "糖"
 	id = "sugar"
-	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste. The most simple form of sugar, glucose, is the only form of nutriment for red blood cells as they have no mitocondria. Sugar can therefore be used to improve blood regeneration as a nutriment, although ineffective."
+	description = "俗称食糖、也称蔗糖的有机化合物，是无臭的白色结晶粉末，具有怡人的甜味。最简单的糖——葡萄糖，是没有线粒体的红细胞唯一能利用的营养物质。因此糖可作为营养来源促进血液再生，但效率较低。"
 	reagent_state = SOLID
 	color = COLOR_WHITE
 	chemclass = CHEM_CLASS_BASIC
@@ -373,23 +400,26 @@
 
 /datum/reagent/cornsyrup
 	name = "High-Fructose Corn Syrup"
+	localized_name = "高果糖玉米糖浆"
 	id = "cornsyrup"
-	description = "Ah, some good old, all-american, high-fructose corn syrup. Sickeningly sweet. There's worse things you can put in your body, but very few of them are made to be put there."
+	description = "啊，经典的纯美式高果糖玉米糖浆，甜得发腻。能吃进身体里而又比它更糟的东西当然有，但其中没几种原本就是拿来吃的。"
 	color = "#593512" // rgb: 89, 53, 18
 	chemclass = CHEM_CLASS_NONE
 	properties = list(PROPERTY_NUTRITIOUS = 1)
 
 /datum/reagent/sucralose
 	name = "Sucralose"
+	localized_name = "三氯蔗糖"
 	id = "sucralose"
-	description = "600 times the flavor of sugar, with none of the calories!"
+	description = "甜度是糖的 600 倍，却没有热量！"
 	color = "#FFFFFF" // rgb: 255, 255, 255
 	chemclass = CHEM_CLASS_NONE
 
 /datum/reagent/glycerol
 	name = "Glycerol"
+	localized_name = "甘油"
 	id = "glycerol"
-	description = "Glycerol is a simple polyol compound. Glycerol is sweet-tasting and of low toxicity, often used in medicines and beverages. Used in the production of plastic, nitroglycerin and other explosives."
+	description = "一种简单的多元醇化合物，味甜且毒性较低，常用于药品和饮料，也用于制造塑料、硝化甘油及其他炸药。"
 	reagent_state = LIQUID
 	color = COLOR_GRAY
 	chemclass = CHEM_CLASS_RARE
@@ -398,8 +428,9 @@
 
 /datum/reagent/radium
 	name = "Radium"
+	localized_name = "镭"
 	id = "radium"
-	description = "Chemical element of atomic number 88. Radium is a highly radioactive metal that emits alpha and gamma radiation upon decay. Exposure to radium can cause cancer and other disorders."
+	description = "原子序数为 88 的化学元素，是放射性很强的金属，衰变时释放 α 和 γ 射线。接触镭可能导致癌症及其他疾病。"
 	reagent_state = SOLID
 	color = "#C7C7C7" // rgb: 199,199,199
 	chemclass = CHEM_CLASS_BASIC
@@ -407,8 +438,9 @@
 
 /datum/reagent/thermite
 	name = "Thermite"
+	localized_name = "铝热剂"
 	id = "thermite"
-	description = "Thermite is a pyrotechnic composition of powdered iron oxides that is an extremely volatile explosive. It is used in hand grenades, incendiary bombs, for welding and ore processing."
+	description = "由粉状氧化铁组成的烟火混合物，是极不稳定的爆炸物。用于手榴弹、燃烧弹、焊接及矿石加工。"
 	reagent_state = SOLID
 	color = "#673910" // rgb: 103, 57, 16
 	chemfiresupp = TRUE
@@ -428,8 +460,9 @@
 
 /datum/reagent/virus_food
 	name = "Virus Food"
+	localized_name = "病毒营养液"
 	id = "virusfood"
-	description = "A mixture of water, milk, and oxygen. Virus cells can use this mixture to reproduce."
+	description = "水、牛奶和氧气的混合物，病毒细胞可利用它繁殖。"
 	reagent_state = LIQUID
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#899613" // rgb: 137, 150, 19
@@ -438,8 +471,9 @@
 
 /datum/reagent/iron
 	name = "Iron"
+	localized_name = "铁"
 	id = "iron"
-	description = "Chemical element of atomic number 26. Has a broad range of uses in multiple industries particularly in engineering and construction. Iron is an important component of hemoglobin, the substance in red blood cells that carries oxygen. Overdosing on iron is extremely toxic."
+	description = "原子序数为 26 的化学元素，在众多行业中用途广泛，尤其是工程和建筑。铁是血红蛋白的重要组成元素，后者负责在红细胞中携带氧气。过量摄入铁具有极强的毒性。"
 	reagent_state = SOLID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
@@ -450,24 +484,27 @@
 
 /datum/reagent/gold
 	name = "Gold"
+	localized_name = "金"
 	id = "gold"
-	description = "Chemical element of atomic number 79. Gold is a dense, soft, shiny metal and the most malleable and ductile metal known. Used many industries including electronics, jewelry and medical."
+	description = "原子序数为 79 的化学元素。密度高、质软且有光泽，是已知延展性最强的金属，广泛用于电子、珠宝和医疗等行业。"
 	reagent_state = SOLID
 	color = "#F7C430" // rgb: 247, 196, 48
 	chemclass = CHEM_CLASS_RARE
 
 /datum/reagent/silver
 	name = "Silver"
+	localized_name = "银"
 	id = "silver"
-	description = "Chemical element of atomic number 47. A soft, white, lustrous transition metal. Has the highest electrical conductivity of any element and the highest thermal conductivity of any metal."
+	description = "原子序数为 47 的化学元素，是质软、有光泽的白色过渡金属。在所有元素中导电性最高，在所有金属中导热性最高。"
 	reagent_state = SOLID
 	color = "#D0D0D0" // rgb: 208, 208, 208
 	chemclass = CHEM_CLASS_RARE
 
 /datum/reagent/uranium
 	name ="Uranium"
+	localized_name = "铀"
 	id = "uranium"
-	description = "Chemical element of atomic number 92. A silvery-white metallic chemical element in the actinide series, weakly radioactive. Has been historically used for nuclear power and in the creation of nuclear bombs."
+	description = "原子序数为 92 的化学元素，是锕系中的银白色金属，具有弱放射性。历史上被用于核能发电和制造核弹。"
 	reagent_state = SOLID
 	color = "#B8B8C0" // rgb: 184, 184, 192
 	chemclass = CHEM_CLASS_RARE
@@ -483,24 +520,27 @@
 
 /datum/reagent/aluminum
 	name = "Aluminum"
+	localized_name = "铝"
 	id = "aluminum"
-	description = "Chemical element of atomic number 13. A silvery-white soft metal of the boron group. Because of its low density it is often uses as a structural material in aircrafts."
+	description = "原子序数为 13 的化学元素，属于硼族的银白色软金属。由于密度低，常用作飞机结构材料。"
 	reagent_state = SOLID
 	color = "#A8A8A8" // rgb: 168, 168, 168
 	chemclass = CHEM_CLASS_BASIC
 
 /datum/reagent/silicon
 	name = "Silicon"
+	localized_name = "硅"
 	id = "silicon"
-	description = "Chemical element of atomic number 14. Commonly used as a semiconductor in electronics and is the main component of sand and glass."
+	description = "原子序数为 14 的化学元素，常在电子设备中用作半导体，也是沙和玻璃的主要组成元素。"
 	reagent_state = SOLID
 	color = "#A8A8A8" // rgb: 168, 168, 168
 	chemclass = CHEM_CLASS_BASIC
 
 /datum/reagent/fuel
 	name = "Welding fuel"
+	localized_name = "焊接燃料"
 	id = "fuel"
-	description = "Liquid industrial grade blowtorch fuel."
+	description = "工业级液态喷灯燃料。"
 	reagent_state = LIQUID
 	color = "#660000" // rgb: 102, 0, 0
 	overdose = REAGENTS_OVERDOSE
@@ -521,8 +561,9 @@
 
 /datum/reagent/space_cleaner
 	name = "Space cleaner"
+	localized_name = "太空清洁剂"
 	id = "cleaner"
-	description = "A synthetic cleaner that vaporizes quickly and isn't slippery like water. It is therefore used compound for cleaning in space and low gravity environments. Very effective at sterilizing surfaces."
+	description = "一种挥发迅速、又不像水那样湿滑的合成清洁剂，因此常用于太空和低重力环境的清洁。对物体表面灭菌十分有效。"
 	reagent_state = LIQUID
 	color = "#A5F0EE" // rgb: 165, 240, 238
 	overdose = REAGENTS_OVERDOSE
@@ -571,8 +612,9 @@
 
 /datum/reagent/cryptobiolin
 	name = "Cryptobiolin"
+	localized_name = "隐生素"
 	id = "cryptobiolin"
-	description = "A component to making spaceacilin."
+	description = "制造太空西林的原料之一。"
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
@@ -581,8 +623,9 @@
 
 /datum/reagent/impedrezene
 	name = "Impedrezene"
+	localized_name = "阻神嗪"
 	id = "impedrezene"
-	description = "Impedrezene is a narcotic that impedes one's neural abilities by slowing down the higher brain cell functions. Can cause serious brain damage."
+	description = "一种通过减缓高级脑细胞功能来抑制神经活动的麻醉药，可能造成严重脑损伤。"
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
@@ -594,8 +637,9 @@
 
 /datum/reagent/oxidizing_agent
 	name = "Oxidizing Agent"
+	localized_name = "氧化剂"
 	id = "oxidizing_agent"
-	description = "A synthesized, highly-refined oxidizing agent that is most likely extremely unhealthy for human consumption."
+	description = "合成的高纯度氧化剂，人类食用后极有可能严重损害健康。"
 	reagent_state = GAS
 	color = "#c4c4c4"
 	chemfiresupp = TRUE
@@ -610,8 +654,9 @@
 
 /datum/reagent/xenomicrobes
 	name = "Xenomicrobes"
+	localized_name = "异星微生物"
 	id = "xenomicrobes"
-	description = "Microbes with an entirely alien cellular structure."
+	description = "细胞结构完全异于地球生命的微生物。"
 	reagent_state = LIQUID
 	color = "#535E66" // rgb: 83, 94, 102
 
@@ -622,24 +667,27 @@
 
 /datum/reagent/fluorosurfactant//foam precursor
 	name = "Fluorosurfactant"
+	localized_name = "含氟表面活性剂"
 	id = "fluorosurfactant"
-	description = "A perfluoronated sulfonic acid that forms a foam when mixed with water."
+	description = "一种全氟化磺酸，与水混合后会形成泡沫。"
 	reagent_state = LIQUID
 	color = "#9E6B38" // rgb: 158, 107, 56
 	chemclass = CHEM_CLASS_UNCOMMON
 
 /datum/reagent/foaming_agent// Metal foaming agent. This is lithium hydride. Add other recipes (e.g. LiH + H2O -> LiOH + H2) eventually.
 	name = "Foaming agent"
+	localized_name = "发泡剂"
 	id = "foaming_agent"
-	description = "An agent that yields metallic foam when mixed with light metal and a strong acid."
+	description = "与轻金属和强酸混合后会产生金属泡沫的制剂。"
 	reagent_state = SOLID
 	color = "#664B63" // rgb: 102, 75, 99
 	chemclass = CHEM_CLASS_UNCOMMON
 
 /datum/reagent/foaming_agent/stabilized
 	name = "Stabilized metallic foam"
+	localized_name = "稳定金属泡沫"
 	id = "stablefoam"
-	description = "Stabilized metallic foam that solidifies when exposed to an open flame"
+	description = "遇到明火便会凝固的稳定金属泡沫。"
 	reagent_state = LIQUID
 	color = "#d4b8d1"
 	chemclass = CHEM_CLASS_UNCOMMON
@@ -647,8 +695,9 @@
 
 /datum/reagent/nicotine
 	name = "Nicotine"
+	localized_name = "尼古丁"
 	id = "nicotine"
-	description = "A legal highly addictive stimulant extracted from the tobacco plant. It is one of the most commonly abused drugs."
+	description = "从烟草中提取的合法兴奋剂，成瘾性很高，是最常被滥用的药物之一。"
 	reagent_state = LIQUID
 	color = "#181818" // rgb: 24, 24, 24
 	chemclass = CHEM_CLASS_RARE
@@ -656,16 +705,18 @@
 
 /datum/reagent/ammonia
 	name = "Ammonia"
+	localized_name = "氨"
 	id = "ammonia"
-	description = "A caustic substance commonly used in fertilizers or household cleaners."
+	description = "具有腐蚀性的物质，常用于肥料或家用清洁剂。"
 	reagent_state = GAS
 	color = "#404030" // rgb: 64, 64, 48
 	chemclass = CHEM_CLASS_COMMON
 
 /datum/reagent/hexamine
 	name = "Hexamine"
+	localized_name = "六亚甲基四胺"
 	id = "hexamine"
-	description = "A crystalline compound that sees many uses varying from food additives, making plastics, treating urinary tract infections, as a smokeless heating element in military rations, and the creation of several explosives."
+	description = "用途广泛的结晶化合物，可用作食品添加剂、塑料原料、尿路感染治疗药物、军用口粮的无烟加热剂，以及多种炸药的原料。"
 	reagent_state = SOLID
 	color = "#F0F0F0"
 	chemfiresupp = TRUE
@@ -675,22 +726,25 @@
 
 /datum/reagent/ultraglue
 	name = "Ultra Glue"
+	localized_name = "超强胶"
 	id = "glue"
-	description = "An extremely powerful bonding agent."
+	description = "黏合力极强的胶黏剂。"
 	color = "#FFFFCC" // rgb: 255, 255, 204
 
 /datum/reagent/diethylamine
 	name = "Diethylamine"
+	localized_name = "二乙胺"
 	id = "diethylamine"
-	description = "Diethylamine is used as a potent fertilizer and as an alternative to ammonia. Also used in the preparation rubber processing chemicals, agricultural chemicals, and pharmaceuticals."
+	description = "用作高效肥料及氨的替代品，也用于制备橡胶加工助剂、农用化学品和药品。"
 	reagent_state = LIQUID
 	color = "#604030" // rgb: 96, 64, 48
 	chemclass = CHEM_CLASS_UNCOMMON
 
 /datum/reagent/blackgoo
 	name = "Black goo"
+	localized_name = "黑色黏液"
 	id = "blackgoo"
-	description = "A strange dark liquid of unknown origin and effect."
+	description = "一种奇异的深色液体，来源和作用均不明。"
 	reagent_state = LIQUID
 	color = "#222222"
 	custom_metabolism = 100 //disappears immediately
@@ -713,8 +767,9 @@
 
 /datum/reagent/napalm
 	name = "Napalm"
+	localized_name = "凝固汽油"
 	id = "napalm"
-	description = "This will probably ignite before you get to read this."
+	description = "你还没来得及读完这句，它大概就燃起来了。"
 	reagent_state = LIQUID
 	color = "#ffb300"
 	chemfiresupp = TRUE
@@ -724,8 +779,9 @@
 
 /datum/reagent/napalm/sticky
 	name = "Sticky-Napalm"
+	localized_name = "高黏凝固汽油"
 	id = "stickynapalm"
-	description = "A custom napalm mix, stickier and lasts longer but lower damage"
+	description = "特调凝固汽油，黏附性更强、持续时间更长，但伤害较低。"
 	reagent_state = LIQUID
 	color = "#f8e3b2"
 	burncolor = "#f8e3b2"
@@ -741,8 +797,9 @@
 
 /datum/reagent/napalm/high_damage
 	name = "High-Combustion Napalm Fuel"
+	localized_name = "高强度凝固汽油燃料"
 	id = "highdamagenapalm"
-	description = "A custom napalm mix, higher damage but not as sticky"
+	description = "特调凝固汽油，伤害更高，但黏附性较弱。"
 	reagent_state = LIQUID
 	color = "#c51c1c"
 	burncolor = "#c51c1c"
@@ -759,8 +816,9 @@
 // Weak flame for scaring marines without instantkilling them
 /datum/reagent/napalm/weak
 	name = "Impure Napalm"
+	localized_name = "低纯度凝固汽油"
 	id = "weaknapalm"
-	description = "An impure napalm mix, causing it to burn at lower temperatures, typically used with flamethrowers."
+	description = "含杂质的凝固汽油，因此燃烧温度较低，通常用于火焰喷射器。"
 	burncolor = "#e49320"
 	burn_sprite = "dynamic"
 	properties = list(
@@ -772,8 +830,9 @@
 // This is the regular flamer fuel and pyro regular flamer fuel.
 /datum/reagent/napalm/ut
 	name = "UT-Napthal Fuel"
+	localized_name = "UT-Napthal燃料"
 	id = "utnapthal"
-	description = "Known as Ultra Thick Napthal Fuel, a sticky combustible liquid chemical, typically used with flamethrowers."
+	description = "全称为超稠 Napthal 燃料，是黏稠的易燃液态化学品，通常用于火焰喷射器。"
 	burncolor = "#EE6515"
 	properties = list(
 		PROPERTY_INTENSITY = BURN_LEVEL_TIER_5,
@@ -784,8 +843,9 @@
 // This is gellie fuel. Green Flames.
 /datum/reagent/napalm/gel
 	name = "Napalm B-Gel"
+	localized_name = "B型凝固汽油"
 	id = "napalmgel"
-	description = "Unlike its liquid contemporaries, this gelled variant of napalm is easily extinguished, but shoots far and lingers on the ground in a viscous mess, while reacting with inorganic materials to ignite them."
+	description = "与液态配方不同，这种凝胶型凝固汽油很容易被扑灭，但喷射距离远，会黏稠地滞留在地面，并与无机材料反应将其点燃。"
 	flameshape = FLAMESHAPE_LINE
 	color = COLOR_GREEN
 	burncolor = COLOR_GREEN
@@ -800,8 +860,9 @@
 // This is the blue flamer fuel for the pyro.
 /datum/reagent/napalm/blue
 	name = "Napalm X"
+	localized_name = "X型凝固汽油"
 	id = "napalmx"
-	description = "A sticky combustible liquid chemical that burns extremely hot."
+	description = "一种黏稠的易燃液态化学品，燃烧温度极高。"
 	color = "#00b8ff"
 	burncolor = "#00b8ff"
 	burn_sprite = "blue"
@@ -814,8 +875,9 @@
 // This is the green flamer fuel for the pyro.
 /datum/reagent/napalm/green
 	name = "Napalm B"
+	localized_name = "B型凝固汽油（扩散型）"
 	id = "napalmb"
-	description = "A special variant of napalm that's unable to cling well to anything, but disperses over a wide area while burning slowly. The composition reacts with inorganic materials to ignite them, causing severe damage."
+	description = "一种不易黏附的特殊凝固汽油，可在大范围内散布并缓慢燃烧。其成分会与无机材料反应将其点燃，造成严重损伤。"
 	flameshape = FLAMESHAPE_TRIANGLE
 	color = COLOR_GREEN
 	burncolor = COLOR_GREEN
@@ -829,8 +891,9 @@
 
 /datum/reagent/napalm/penetrating
 	name = "Napalm E"
+	localized_name = "E型凝固汽油"
 	id = "napalme"
-	description = "A sticky combustible liquid chemical that penetrates the best fire retardants."
+	description = "一种黏稠的易燃液态化学品，能够穿透最好的阻燃防护。"
 	color = COLOR_PURPLE
 	burncolor = COLOR_PURPLE
 	burn_sprite = "dynamic"
@@ -843,8 +906,9 @@
 
 /datum/reagent/napalm/deathsquad //version of fuel for dsquad flamers.
 	name = "Napalm EX"
+	localized_name = "EX型凝固汽油"
 	id = "napalmex"
-	description = "A sticky combustible liquid chemical made up of a combonation of rare and dangerous reagents both that penetrates the best fire retardants, and burns extremely hot."
+	description = "由多种稀有危险试剂混合而成的黏稠易燃液体，既能穿透最好的阻燃防护，又能以极高温度燃烧。"
 	color = "#641dd6"
 	burncolor = "#641dd6"
 	burn_sprite = "dynamic"
@@ -857,8 +921,9 @@
 
 /datum/reagent/napalm/upp
 	name = "R189"
+	localized_name = "R189"
 	id = "R189"
-	description = "A UPP chemical, it burns at an extremely high tempature and is designed to melt directly through fortified positions or bunkers."
+	description = "进步人民联盟的化学品，燃烧温度极高，专为直接熔穿加固阵地或碉堡而设计。"
 	color = "#ffe49c"
 	burncolor = "#ffe49c"
 	burn_sprite = "dynamic"
@@ -871,8 +936,9 @@
 
 /datum/reagent/chlorinetrifluoride
 	name = "Chlorine Trifluoride"
+	localized_name = "三氟化氯"
 	id = "chlorine trifluoride"
-	description = "A highly reactive interhalogen compound capaple of self ignition. A very strong oxidizer and is extremely reactive with most organic and inorganic materials."
+	description = "活性极高、能够自燃的卤素互化物，是极强的氧化剂，会与大多数有机和无机材料剧烈反应。"
 	reagent_state = LIQUID
 	color = COLOR_CYAN
 	custom_metabolism = 100
@@ -885,12 +951,13 @@
 	. = ..()
 	M.adjust_fire_stacks(max(M.fire_stacks, 15))
 	M.IgniteMob(TRUE)
-	to_chat(M, SPAN_DANGER("It burns! It burns worse than you could ever have imagined!"))
+	to_chat(M, SPAN_DANGER("好烫！这灼痛远远超出了你的想象！"))
 
 /datum/reagent/methane
 	name = "Methane"
+	localized_name = "甲烷"
 	id = "methane"
-	description = "An easily combustible hydrocarbon that can very rapidly expand a fire, even explosively at the right concentrations. It is used primarily as fuel to make heat and light or manufacturing of organic chemicals."
+	description = "易燃的碳氢化合物，能迅速扩大火势，在适当浓度下甚至会爆炸。主要用作供热、照明燃料及制造有机化学品的原料。"
 	reagent_state = LIQUID
 	color = "#0064C8"
 	custom_metabolism = AMOUNT_PER_TIME(1, 5 SECONDS)
@@ -908,15 +975,17 @@
 
 /datum/reagent/potassium_hydroxide
 	name = "Potassium hydroxide"
+	localized_name = "氢氧化钾"
 	id = "potassium_hydroxide"
-	description = "This will probably explode before you manage to read this."
+	description = "你还没来得及读完这句，它大概就炸了。"
 	explosive = TRUE
 	power = 0.5
 
 /datum/reagent/ammoniumnitrate
 	name = "Ammonium Nitrate"
+	localized_name = "硝酸铵"
 	id = "ammonium_nitrate"
-	description = "A white crystalline compound that is used in agriculture as a high-nitrogen fertilizer. On its own, ammonium nitrate is not explosive, but rapidly becomes so when mixed with fuel oil."
+	description = "一种白色结晶化合物，在农业中用作高氮肥料。硝酸铵本身并不具有爆炸性，但与燃料油混合后很快便会具有爆炸性。"
 	reagent_state = SOLID
 	color = "#E5E5E5"
 	explosive = TRUE
@@ -929,17 +998,19 @@
 
 /datum/reagent/anfo
 	name = "Ammonium nitrate fuel oil"
+	localized_name = "铵油炸药"
 	id = "anfo"
 	color = "#E0E0E0"
-	description = "Ammonium nitrate fuel oil (ANFO) is a low cost bulk explosive commonly used for mining and construction operations."
+	description = "铵油炸药（ANFO）是低成本的散装炸药，常用于采矿和建筑作业。"
 	explosive = TRUE
 	power = 1
 	falloff_modifier = -0.6
 
 /datum/reagent/nitroglycerin
 	name = "Nitroglycerin"
+	localized_name = "硝化甘油"
 	id = "nitroglycerin"
-	description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerol. Despite being a highly volatile material, it is used for many medical purposes."
+	description = "通过对甘油进行硝化制得的重质、无色、油状爆炸性液体。虽然极不稳定，却具有许多医疗用途。"
 	reagent_state = LIQUID
 	color = COLOR_GRAY
 	custom_metabolism = AMOUNT_PER_TIME(1, 200 SECONDS)
@@ -949,8 +1020,9 @@
 
 /datum/reagent/cyclonite
 	name = "Cyclonite"
+	localized_name = "黑索金"
 	id = "cyclonite"
-	description = "Cyclonite is a low sensitivity highly explosive compound, commonly known as RDX. It is considered as one of the most energetic military high explosives. It is also sometimes used as a rat poison by civilians."
+	description = "一种低感度高爆化合物，常称 RDX，被认为是能量最高的军用烈性炸药之一。有时也被民间用作鼠药。"
 	reagent_state = SOLID
 	color = "#E3E0BA"
 	explosive = TRUE
@@ -963,8 +1035,9 @@
 
 /datum/reagent/octogen
 	name = "Octogen"
+	localized_name = "奥克托今"
 	id = "octogen"
-	description = "Octogen, also known as HMX or Her Majesty's Explosive, is a powerful and relatively insensitive explosive. It is one of the most potent chemical explosives available, exceeding that of cyclonite (RDX)."
+	description = "又称 HMX 或“女王陛下的炸药”，威力强大且相对不敏感。它是威力最强的化学炸药之一，超过黑索金（RDX）。"
 	reagent_state = SOLID
 	color = "#F5F5F5"
 	explosive = TRUE
@@ -979,16 +1052,18 @@
 
 /datum/reagent/plasma
 	name = "plasma"
+	localized_name = "血浆"
 	id = "plasma"
-	description = "A clear extracellular fluid separated from blood."
+	description = "从血液中分离出的透明细胞外液。"
 	reagent_state = LIQUID
 	color = "#f1e8cf"
 	custom_metabolism = AMOUNT_PER_TIME(1, 5 SECONDS)
 
 /datum/reagent/plasma/pheromone
 	name = "Pheromone Plasma"
+	localized_name = "信息素血浆"
 	id = PLASMA_PHEROMONE
-	description = "A funny smelling plasma..."
+	description = "气味古怪的血浆……"
 	color = "#a2e7d6"
 	overdose = REAGENTS_OVERDOSE
 	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
@@ -998,8 +1073,9 @@
 
 /datum/reagent/plasma/chitin
 	name = "Chitin Plasma"
+	localized_name = "几丁质血浆"
 	id = PLASMA_CHITIN
-	description = "A very thick fibrous plasma..."
+	description = "十分浓稠的纤维状血浆……"
 	color = "#6d7694"
 	overdose = REAGENTS_OVERDOSE
 	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
@@ -1009,8 +1085,9 @@
 
 /datum/reagent/plasma/catecholamine
 	name = "Catecholamine Plasma"
+	localized_name = "儿茶酚胺血浆"
 	id = PLASMA_CATECHOLAMINE
-	description = "A red-ish plasma..."
+	description = "略带红色的血浆……"
 	color = "#cf7551"
 	overdose = REAGENTS_OVERDOSE
 	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
@@ -1020,8 +1097,9 @@
 
 /datum/reagent/plasma/egg
 	name = "Egg Plasma"
+	localized_name = "卵质血浆"
 	id = PLASMA_EGG
-	description = "A white-ish plasma high with a high concentration of protein..."
+	description = "略带白色、蛋白质浓度很高的血浆……"
 	color = "#c3c371"
 	overdose = 80
 	overdose_critical = 100
@@ -1047,12 +1125,13 @@
 			embryo.hivenumber = data_properties["hive_number"]
 		else
 			embryo.hivenumber = XENO_HIVE_NORMAL
-		to_chat(H, SPAN_WARNING("Your stomach cramps and you suddenly feel very sick!"))
+		to_chat(H, SPAN_WARNING("你的腹部一阵绞痛，突然感到十分难受！"))
 
 /datum/reagent/plasma/neurotoxin
 	name = "Neurotoxin Plasma"
+	localized_name = "神经毒素血浆"
 	id = PLASMA_NEUROTOXIN
-	description = "A plasma containing an unknown but potent neurotoxin."
+	description = "含有未知强效神经毒素的血浆。"
 	color = "#ba8216"
 	overdose = REAGENTS_OVERDOSE
 	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
@@ -1062,8 +1141,9 @@
 
 /datum/reagent/plasma/antineurotoxin
 	name = "Anti-Neurotoxin"
+	localized_name = "神经毒素拮抗剂"
 	id = "antineurotoxin"
-	description = "A counteragent to Neurotoxin Plasma."
+	description = "用于对抗神经毒素血浆的药剂。"
 	color = "#afffc9"
 	chemclass = CHEM_CLASS_SPECIAL
 	objective_value = OBJECTIVE_MEDIUM_VALUE
@@ -1073,8 +1153,9 @@
 
 /datum/reagent/plasma/purple
 	name = "Purple Plasma"
+	localized_name = "紫色血浆"
 	id = PLASMA_PURPLE
-	description = "A purple-ish plasma..."
+	description = "略带紫色的血浆……"
 	color = "#a65d7f"
 	overdose = REAGENTS_OVERDOSE
 	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
@@ -1084,8 +1165,9 @@
 
 /datum/reagent/plasma/royal
 	name = "Royal Plasma"
+	localized_name = "皇族血浆"
 	id = PLASMA_ROYAL
-	description = "A dark purple-ish plasma..."
+	description = "略带深紫色的血浆……"
 	color = "#ffeb9c"
 	overdose = REAGENTS_OVERDOSE
 	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
@@ -1095,8 +1177,9 @@
 
 /datum/reagent/fruit_resin
 	name = "Fruit Resin"
+	localized_name = "果实树脂"
 	id = "fruit_resin"
-	description = "A strange green fluid found in certain xenomorphic structures. Seems to have regenerative properties."
+	description = "在某些异形结构中发现的奇异绿色液体，似乎具有再生作用。"
 	reagent_state = LIQUID
 	nutriment_factor = 15 * REAGENTS_METABOLISM
 	color = "#12911d" // rgb: 102, 67, 48

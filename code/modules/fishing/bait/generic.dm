@@ -1,8 +1,8 @@
 /obj/item/fish_bait
-	name = "fish bait"
+	name = "鱼饵"
 	icon = 'icons/obj/items/fishing_atoms.dmi'
 	icon_state = "other_meat"
-	desc = "A tasty piece of... meat? Whatever it is, fish love this."
+	desc = "一块美味的……肉？不管是什么，鱼很爱吃。"
 
 	icon = 'icons/obj/items/fishing_atoms.dmi'
 	icon_state = "worm_meat"

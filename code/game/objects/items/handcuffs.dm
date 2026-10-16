@@ -15,7 +15,7 @@
 	if(!istype(attacked_carbon) || !manual)
 		return ..()
 	if (!ishuman(user))
-		to_chat(user, SPAN_DANGER("You don't have the dexterity to do this!"))
+		to_chat(user, SPAN_DANGER("你的肢体不够灵活，无法进行此操作！"))
 		return
 	switch(target_zone)
 		if(SLOT_HANDS)
@@ -35,19 +35,19 @@
 		var/mob/living/carbon/human/human_mob = target
 
 		if(!human_mob.has_limb_for_slot(WEAR_HANDCUFFS))
-			to_chat(user, SPAN_DANGER("\The [human_mob] needs at least two wrists before you can cuff them together!"))
+			to_chat(user, SPAN_DANGER("[human_mob]至少需要有两只手腕，你才能将其铐在一起！"))
 			return
 
 		human_mob.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed (attempt) by [key_name(user)]</font>")
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to handcuff [key_name(human_mob)]</font>")
 		msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(human_mob)] in [get_area(src)] ([loc.x],[loc.y],[loc.z]).", loc.x, loc.y, loc.z)
 
-		user.visible_message(SPAN_NOTICE("[user] tries to put [src] on [human_mob]."))
+		user.visible_message(SPAN_NOTICE("[user]试图给[human_mob]戴上[src]。"))
 		if(do_after(user, cuff_delay, INTERRUPT_MOVED, BUSY_ICON_HOSTILE, human_mob, INTERRUPT_MOVED, BUSY_ICON_GENERIC))
 			if(src == user.get_active_hand() && !human_mob.handcuffed && Adjacent(user))
 				if(iscarbon(human_mob))
 					if(istype(human_mob.buckled, /obj/structure/bed/roller))
-						to_chat(user, SPAN_DANGER("You cannot handcuff someone who is buckled onto a roller bed."))
+						to_chat(user, SPAN_DANGER("不能给固定在担架床上的人戴手铐。"))
 						return
 				if(human_mob.has_limb_for_slot(WEAR_HANDCUFFS))
 					user.drop_inv_item_on_ground(src)
@@ -56,15 +56,15 @@
 				SEND_SIGNAL(target, COMSIG_HUMAN_HANDCUFFED)
 
 	else if(ismonkey(target))
-		user.visible_message(SPAN_NOTICE("[user] tries to put [src] on [target]."))
+		user.visible_message(SPAN_NOTICE("[user]试图给[target]戴上[src]。"))
 		if(do_after(user, 30, INTERRUPT_MOVED, BUSY_ICON_HOSTILE, target, INTERRUPT_MOVED, BUSY_ICON_GENERIC))
 			if(src == user.get_active_hand() && !target.handcuffed && Adjacent(user))
 				user.drop_inv_item_on_ground(src)
 				target.equip_to_slot_if_possible(src, WEAR_HANDCUFFS, 1, 0, 1, 1)
 
 /obj/item/restraint/handcuffs
-	name = "handcuffs"
-	desc = "Use this to keep prisoners in line."
+	name = "手铐"
+	desc = "用来让囚犯安分守己。"
 	gender = PLURAL
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "handcuff"
@@ -85,8 +85,8 @@
 	return ret
 
 /obj/item/restraint/handcuffs/zip
-	name = "zip cuffs"
-	desc = "Single-use plastic zip tie handcuffs."
+	name = "扎带手铐"
+	desc = "一次性的塑料扎带手铐。"
 	w_class = SIZE_TINY
 	icon_state = "cuff_zip"
 	breakouttime = 60 SECONDS
@@ -98,37 +98,37 @@
 	flags_item |= DELONDROP
 
 /obj/item/restraint/adjustable/verb/adjust_restraints()
-	set category = "Object"
-	set name = "Adjust Restraints"
-	set desc = "Adjust the restraint size for wrists or ankles."
+	set category = "物品"
+	set name = "调整束缚带"
+	set desc = "调整束缚带尺寸，以适配手腕或脚踝。"
 	set src = usr.contents
 
 	if(!ishuman(usr))
 		return FALSE
 
 	if(usr.is_mob_incapacitated())
-		to_chat(usr, "Not right now.")
+		to_chat(usr, "现在不行。")
 		return FALSE
 
 	switch(target_zone)
 		if(SLOT_HANDS)
 			target_zone = SLOT_LEGS
-			to_chat(usr, SPAN_NOTICE("[src] has been adjusted to tie around a subject's ankles."))
+			to_chat(usr, SPAN_NOTICE("[src]已调整为适合捆绑脚踝的尺寸。"))
 		if(SLOT_LEGS)
 			target_zone = SLOT_HANDS
-			to_chat(usr, SPAN_NOTICE("[src] has been adjusted to tie around a subject's wrists."))
+			to_chat(usr, SPAN_NOTICE("[src]已调整为适合捆绑手腕的尺寸。"))
 
 /obj/item/restraint/adjustable/get_examine_text(mob/user)
 	. = ..()
 	switch(target_zone)
 		if(SLOT_HANDS)
-			. += SPAN_RED("Sized for human hands.")
+			. += SPAN_RED("尺寸适合人类双手。")
 		if(SLOT_LEGS)
-			. += SPAN_RED("Sized for human ankles.")
+			. += SPAN_RED("尺寸适合人类脚踝。")
 
 /obj/item/restraint/adjustable/cable
-	name = "cable restraints"
-	desc = "Looks like some cables tied together. Could be used to tie something up."
+	name = "电缆束缚带"
+	desc = "看起来是几根绑在一起的电缆，可以用来捆绑东西。"
 	icon_state = "cuff_white"
 	breakouttime = 30 SECONDS
 	cuff_sound = 'sound/weapons/cablecuff.ogg'
@@ -165,7 +165,7 @@
 			var/obj/item/weapon/wirerod/W = new /obj/item/weapon/wirerod
 
 			user.put_in_hands(W)
-			to_chat(user, SPAN_NOTICE("You wrap the cable restraint around the top of the rod."))
+			to_chat(user, SPAN_NOTICE("你将电缆束缚带缠在金属棒顶端。"))
 			qdel(src)
 			update_icon(user)
 
@@ -174,12 +174,12 @@
 		var/turf/p_loc = user.loc
 		var/turf/p_loc_m = carbon_mob.loc
 		playsound(loc, cuff_sound, 25, 1, 4)
-		user.visible_message(SPAN_DANGER("<B>[user] is trying to put handcuffs on [carbon_mob]!</B>"))
+		user.visible_message(SPAN_DANGER("<B>[user]正试图给[carbon_mob]戴上手铐！</B>"))
 
 		if(ishuman(carbon_mob))
 			var/mob/living/carbon/human/human_mob = carbon_mob
 			if (!human_mob.has_limb_for_slot(WEAR_HANDCUFFS))
-				to_chat(user, SPAN_DANGER("\The [human_mob] needs at least two wrists before you can cuff them together!"))
+				to_chat(user, SPAN_DANGER("[human_mob]至少需要有两只手腕，你才能将其铐在一起！"))
 				return
 
 		spawn(30)
@@ -193,8 +193,8 @@
 
 
 /obj/item/xeno_restraints
-	name = "xeno restraints"
-	desc = "Use this to hold xenomorphic creatures safely."
+	name = "异形束缚具"
+	desc = "用于安全地束缚异形生物。"
 	gender = PLURAL
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "handcuff"
@@ -210,19 +210,19 @@
 
 /obj/item/xeno_restraints/attack(mob/living/carbon/C as mob, mob/user as mob)
 	if(!istype(C, /mob/living/carbon/xenomorph))
-		to_chat(user, SPAN_DANGER("The cuffs do not fit!"))
+		to_chat(user, SPAN_DANGER("手铐尺寸不合适！"))
 		return
 	if(!C.handcuffed)
 		var/turf/p_loc = user.loc
 		var/turf/p_loc_m = C.loc
 		playsound(src.loc, 'sound/weapons/handcuffs.ogg', 25, 1, 6)
 		for(var/mob/O in viewers(user, null))
-			O.show_message(SPAN_DANGER("<B>[user] is trying to put restraints on [C]!</B>"), SHOW_MESSAGE_VISIBLE)
+			O.show_message(SPAN_DANGER("<B>[user]正试图给[C]戴上束缚具！</B>"), SHOW_MESSAGE_VISIBLE)
 		spawn(30)
 			if(!C) return
 			if(p_loc == user.loc && p_loc_m == C.loc)
 				C.handcuffed = new /obj/item/xeno_restraints(C)
 				C.handcuff_update()
-				C.visible_message(SPAN_DANGER("[C] has been successfully restrained by [user]!"))
+				C.visible_message(SPAN_DANGER("[user]成功束缚了[C]！"))
 				qdel(src)
 	return

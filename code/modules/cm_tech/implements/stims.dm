@@ -1,7 +1,7 @@
 
 /obj/item/storage/pouch/stimulant_injector
-	name = "stimulant pouch"
-	desc = "A pouch that holds stimulant injectors."
+	name = "兴奋剂袋"
+	desc = "用于存放兴奋剂注射器的袋子。"
 	icon = 'icons/obj/items/clothing/pouches.dmi'
 	icon_state = "stimulant"
 	w_class = SIZE_LARGE //does not fit in backpack
@@ -20,15 +20,15 @@
 		new stimulant_type(src)
 
 /obj/item/storage/pouch/stimulant_injector/speed
-	desc = "A pouch that holds speed stimulant injectors."
+	desc = "用于存放疾速兴奋剂注射器的袋子。"
 	stimulant_type = /obj/item/reagent_container/hypospray/autoinjector/stimulant/speed_stimulant
 
 /obj/item/storage/pouch/stimulant_injector/brain
 	stimulant_type = /obj/item/reagent_container/hypospray/autoinjector/stimulant/brain_stimulant
-	desc = "A pouch that holds brain stimulant injectors."
+	desc = "用于存放脑部兴奋剂注射器的袋子。"
 
 /obj/item/storage/pouch/stimulant_injector/redemption
-	desc = "A pouch that holds redemption stimulant injectors."
+	desc = "用于存放救赎兴奋剂注射器的袋子。"
 	storage_slots = 1
 	stimulant_type = /obj/item/reagent_container/hypospray/autoinjector/stimulant/redemption_stimulant
 
@@ -56,18 +56,18 @@
 	overlays += I
 
 /obj/item/reagent_container/hypospray/autoinjector/stimulant/speed_stimulant
-	name = "speed stimulant autoinjector"
+	name = "疾速兴奋剂自动注射器"
 	chemname = "speed_stimulant"
-	desc = "A stimpack loaded with an experimental performance enhancement stimulant. Extremely muscle-stimulating. Lasts 5 minutes."
+	desc = "装有实验性体能增强兴奋剂的注射包，能强烈刺激肌肉，持续5分钟。"
 
 /obj/item/reagent_container/hypospray/autoinjector/stimulant/brain_stimulant
-	name = "brain stimulant stimpack"
+	name = "脑部兴奋剂注射包"
 	chemname = "brain_stimulant"
-	desc = "A stimpack loaded with an experimental CNS stimulant. Extremely nerve-stimulating. Lasts 5 minutes."
+	desc = "装有实验性中枢神经兴奋剂的注射包，能强烈刺激神经，持续5分钟。"
 
 /obj/item/reagent_container/hypospray/autoinjector/stimulant/redemption_stimulant
 	amount_per_transfer_from_this = 5
 	volume = 5
-	name = "redemption stimulant autoinjector"
+	name = "救赎兴奋剂自动注射器"
 	chemname = "redemption_stimulant"
-	desc = "A stimpack loaded with an experimental bone, organ and muscle stimulant. Significantly increases what a human can take before they go down. Lasts 5 minutes."
+	desc = "装有实验性骨骼、器官和肌肉兴奋剂的注射包，能显著提高人体倒下前的承受能力，持续5分钟。"

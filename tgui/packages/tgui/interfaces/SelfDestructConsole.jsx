@@ -6,20 +6,20 @@ export const SelfDestructConsole = (props) => {
   const { act, data } = useBackend();
   const { dest_status } = data;
 
-  let statusMessage = 'ERROR!';
+  let statusMessage = '错误！';
   let statusColor = 'bad';
 
   switch (dest_status) {
     case 0:
-      statusMessage = 'DISARMED.';
+      statusMessage = '未启用。';
       statusColor = 'blue';
       break;
     case 1:
-      statusMessage = 'AWAITING INPUT.';
+      statusMessage = '等待输入。';
       statusColor = 'yellow';
       break;
     case 2:
-      statusMessage = 'ARMED!';
+      statusMessage = '已就绪！';
       statusColor = 'green';
       break;
   }
@@ -29,7 +29,7 @@ export const SelfDestructConsole = (props) => {
       <Window.Content>
         <Section>
           <NoticeBox textAlign="center" color={statusColor}>
-            Self Destruct status: {statusMessage}
+            自毁系统状态： {statusMessage}
           </NoticeBox>
           {dest_status === 1 && (
             <Button.Confirm
@@ -39,7 +39,7 @@ export const SelfDestructConsole = (props) => {
               icon="power-off"
               onClick={() => act('dest_start')}
             >
-              Activate System
+              启动系统
             </Button.Confirm>
           )}
           {dest_status === 2 && (
@@ -51,7 +51,7 @@ export const SelfDestructConsole = (props) => {
                 icon="explosion"
                 onClick={() => act('dest_trigger')}
               >
-                DETONATE
+                引爆
               </Button.Confirm>
               <Button.Confirm
                 fluid
@@ -60,7 +60,7 @@ export const SelfDestructConsole = (props) => {
                 icon="ban"
                 onClick={() => act('dest_cancel')}
               >
-                CANCEL
+                取消
               </Button.Confirm>
             </>
           )}

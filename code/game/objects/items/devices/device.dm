@@ -12,4 +12,4 @@
 /obj/item/device/get_examine_text(mob/user)
 	. = ..()
 	if(!isxeno(user) && (get_dist(user, src) < 2 || isobserver(user)) && serial_number)
-		. += SPAN_INFO("The serial number is [serial_number].")
+		. += SPAN_INFO("序列号为[serial_number]。")

@@ -8,8 +8,8 @@
  * Gifts
  */
 /obj/item/a_gift
-	name = "gift"
-	desc = "PRESENTS!!!! eek!"
+	name = "礼物"
+	desc = "礼物！！！！哇！"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "gift1"
 	item_state = "gift1"
@@ -31,7 +31,7 @@
 		user.put_in_active_hand(gift)
 		gift.add_fingerprint(user)
 	else
-		to_chat(user, SPAN_NOTICE("The gift was empty!"))
+		to_chat(user, SPAN_NOTICE("礼物盒是空的！"))
 	deconstruct(TRUE)
 	return
 
@@ -42,16 +42,16 @@
 /obj/effect/spresent/relaymove(mob/user)
 	if (user.stat)
 		return
-	to_chat(user, SPAN_NOTICE(" You can't move."))
+	to_chat(user, SPAN_NOTICE("你动不了。"))
 
 /obj/effect/spresent/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
 	if (!HAS_TRAIT(W, TRAIT_TOOL_WIRECUTTERS))
-		to_chat(user, SPAN_NOTICE(" I need wirecutters for that."))
+		to_chat(user, SPAN_NOTICE("我得用剪线钳才能弄开它。"))
 		return
 
-	to_chat(user, SPAN_NOTICE(" You cut open the present."))
+	to_chat(user, SPAN_NOTICE("你剪开了礼物包装。"))
 
 	for(var/mob/M in src) //Should only be one but whatever.
 		M.forceMove(src.loc)
@@ -116,8 +116,8 @@
  * Wrapping Paper
  */
 /obj/item/wrapping_paper
-	name = "wrapping paper"
-	desc = "You can use this to wrap items in."
+	name = "包装纸"
+	desc = "可以用来包装物品。"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "wrap_paper"
 	var/amount = 20
@@ -125,14 +125,14 @@
 /obj/item/wrapping_paper/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if (!( locate(/obj/structure/surface/table, src.loc) ))
-		to_chat(user, SPAN_NOTICE(" You MUST put the paper on a table!"))
+		to_chat(user, SPAN_NOTICE("你必须把包装纸放在桌上！"))
 	if (W.w_class < 4)
 		var/obj/item/left_item = user.l_hand
 		var/obj/item/right_item = user.r_hand
 		if ( (left_item && HAS_TRAIT(left_item, TRAIT_TOOL_WIRECUTTERS)) || (right_item && HAS_TRAIT(right_item, TRAIT_TOOL_WIRECUTTERS)) )
 			var/a_used = 2 ** (src.w_class - 1)
 			if (src.amount < a_used)
-				to_chat(user, SPAN_NOTICE(" You need more paper!"))
+				to_chat(user, SPAN_NOTICE("你需要更多包装纸！"))
 				return
 			else
 				if(istype(W, /obj/item/smallDelivery) || istype(W, /obj/item/gift)) //No gift wrapping gifts!
@@ -153,9 +153,9 @@
 				deconstruct(TRUE)
 				return
 		else
-			to_chat(user, SPAN_NOTICE(" You need scissors!"))
+			to_chat(user, SPAN_NOTICE("你需要剪刀！"))
 	else
-		to_chat(user, SPAN_NOTICE(" The object is FAR too large!"))
+		to_chat(user, SPAN_NOTICE("这件物品实在太大了！"))
 	return
 
 /obj/item/wrapping_paper/deconstruct(disassembled = TRUE)
@@ -165,7 +165,7 @@
 
 /obj/item/wrapping_paper/get_examine_text(mob/user)
 	. = ..()
-	. += "There is about [amount] square units of paper left!"
+	. += "大约还剩[amount]平方单位的包装纸！"
 
 
 /obj/item/wrapping_paper/attack(mob/target as mob, mob/user as mob)
@@ -188,6 +188,6 @@
 			msg_admin_attack("[key_name(user)] used [src] to wrap [key_name(H)] in [get_area(user)] ([user.loc.x], [user.loc.y], [user.loc.z]).", user.loc.x, user.loc.y, user.loc.z)
 
 		else
-			to_chat(user, SPAN_NOTICE(" You need more paper."))
+			to_chat(user, SPAN_NOTICE("你需要更多包装纸。"))
 	else
-		to_chat(user, "They are moving around too much. A straightjacket would help.")
+		to_chat(user, "对方动得太厉害了。拘束衣应该能帮上忙。")

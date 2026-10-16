@@ -13,55 +13,55 @@ interface EscapePodProps {
 export const EscapePodConsole = () => {
   const { act, data } = useBackend<EscapePodProps>();
 
-  let statusMessage = 'ERROR';
+  let statusMessage = '错误';
   let buttonColor = 'bad';
   let delayed = 0;
   let operable = 0;
 
   switch (data.docking_status) {
     case 4:
-      statusMessage = 'NO EVACUATION';
+      statusMessage = '未启动撤离';
       buttonColor = 'neutral';
       if (data.launch_without_evac) {
         operable = 1;
       }
       break;
     case 5:
-      statusMessage = 'SYSTEMS DOWN';
+      statusMessage = '系统离线';
       break;
     case 6:
-      statusMessage = 'STANDING BY';
+      statusMessage = '待命';
       buttonColor = 'good';
       operable = 1;
       break;
     case 7:
-      statusMessage = 'DELAYED';
+      statusMessage = '已延迟';
       buttonColor = 'yellow';
       delayed = 1;
       operable = 1;
       break;
     case 8:
-      statusMessage = 'LAUNCHING';
+      statusMessage = '正在发射';
       buttonColor = 'grey';
       break;
     case 9:
-      statusMessage = 'TRAVELLING';
+      statusMessage = '航行中';
       buttonColor = 'good';
       break;
   }
 
-  let doorStatus = 'ERROR';
+  let doorStatus = '错误';
   let doorColor = 'bad';
 
   if (!data.door_state) {
-    doorStatus = 'OPEN';
+    doorStatus = '开启';
     doorColor = 'yellow';
   } else {
     if (data.door_lock) {
-      doorStatus = 'SECURED';
+      doorStatus = '已锁定';
       doorColor = 'green';
     } else {
-      doorStatus = 'UNSECURED';
+      doorStatus = '未锁定';
       doorColor = 'yellow';
     }
   }
@@ -69,21 +69,21 @@ export const EscapePodConsole = () => {
   return (
     <Window width={400} height={270}>
       <Window.Content scrollable>
-        <Section title="Information display">
+        <Section title="信息显示">
           <Flex height="100%" direction="column">
             <Flex.Item>
               <NoticeBox textAlign="center" color={buttonColor}>
-                Escape Pod Status : {statusMessage}
+                逃生舱状态： {statusMessage}
               </NoticeBox>
             </Flex.Item>
             <Flex.Item>
               <NoticeBox textAlign="center" color={doorColor}>
-                Docking Hatch : {doorStatus}
+                对接舱门： {doorStatus}
               </NoticeBox>
             </Flex.Item>
           </Flex>
         </Section>
-        <Section title="Pod controls">
+        <Section title="逃生舱控制">
           <Flex direction="column">
             <Flex.Item>
               <Button
@@ -93,7 +93,7 @@ export const EscapePodConsole = () => {
                 disabled={!operable}
                 onClick={() => act('lock_door')}
               >
-                {data.door_state ? 'Unlock door' : 'Lock door'}
+                {data.door_state ? '解锁舱门' : '锁定舱门'}
               </Button>
               <Box width="2px" />
             </Flex.Item>
@@ -105,7 +105,7 @@ export const EscapePodConsole = () => {
                 disabled={!operable || delayed}
                 onClick={() => act('force_launch')}
               >
-                Manual eject
+                手动弹射
               </Button>
               <Box width="2px" />
             </Flex.Item>
@@ -117,7 +117,7 @@ export const EscapePodConsole = () => {
                 disabled={!data.can_delay}
                 onClick={() => act('delay_launch')}
               >
-                {delayed ? 'Undelay Launch' : 'Delay launch'}
+                {delayed ? '取消发射延迟' : '延迟发射'}
               </Button>
             </Flex.Item>
           </Flex>

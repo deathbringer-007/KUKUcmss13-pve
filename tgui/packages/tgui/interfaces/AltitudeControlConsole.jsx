@@ -9,7 +9,7 @@ export const AltitudeControlConsole = () => {
   return (
     <Window width={455} height={275}>
       <Window.Content scrollable>
-        <Section title="Engine Temperature">
+        <Section title="引擎温度">
           <Box textAlign="center">
             <ProgressBar
               width="100%"
@@ -21,11 +21,11 @@ export const AltitudeControlConsole = () => {
                 bad: [51, Infinity],
               }}
             >
-              <Box textAlign="center">{data.temp}% to overheat</Box>
+              <Box textAlign="center">已达过热阈值的 {data.temp}%</Box>
             </ProgressBar>
           </Box>
         </Section>
-        <Section title="Altitude Control">
+        <Section title="高度控制">
           {
             <Button
               fontSize="20px"
@@ -34,7 +34,7 @@ export const AltitudeControlConsole = () => {
               disabled={data.alt === 0.5}
               onClick={() => act('low_alt')}
             >
-              Set to: Low Altitude
+              设为低空
             </Button>
           }
           {
@@ -45,7 +45,7 @@ export const AltitudeControlConsole = () => {
               disabled={data.alt === 1}
               onClick={() => act('med_alt')}
             >
-              Set to: Medium Altitude
+              设为中空
             </Button>
           }
           {
@@ -56,7 +56,7 @@ export const AltitudeControlConsole = () => {
               disabled={data.alt === 1.5}
               onClick={() => act('high_alt')}
             >
-              Set to: High Altitude
+              设为高空
             </Button>
           }
         </Section>

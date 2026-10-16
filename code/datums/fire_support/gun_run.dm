@@ -1,18 +1,18 @@
 /datum/fire_support/gau
-	name = "Gun run"
+	name = "机炮扫射"
 	fire_support_firer = FIRESUPPORT_CAS
 	fire_support_type = FIRESUPPORT_TYPE_GUN
 	cost = 3
 	impact_quantity = 4
 	scatter_range = 3
 	icon_state = "gau"
-	initiate_chat_message = "TARGET ACQUIRED GUN RUN INBOUND."
+	initiate_chat_message = "目标已锁定，机炮扫射即将抵达。"
 	initiate_screen_message = list(
-		"Target received, gun run inbound",
-		"Lase sighted, sending lead delivery hot and ready",
-		"Im coming in, keep your heads down!",
-		"Finally some targets! Strafe incomin'",
-		"Time to let these guns roar, we're inbound.",
+		"收到目标，机炮扫射即将抵达。",
+		"已发现激光标记，滚烫的子弹马上送到。",
+		"我进场了，都把头低下！",
+		"终于有目标了！扫射马上开始！",
+		"该让机炮吼起来了，我们马上到。",
 	)
 
 /datum/fire_support/gau/do_impact(turf/target_turf)
@@ -64,24 +64,24 @@
 	fire_support_firer = FIRESUPPORT_CAS_UPP
 	fire_support_type = FIRESUPPORT_TYPE_GUN_UPP
 	portrait_type = "pilot_red"
-	initiate_title = "Pig-1"
+	initiate_title = "野猪一号"
 	start_visual = /obj/effect/temp_visual/dropship_flyby/krokodil
 
 /datum/fire_support/laser
-	name = "Laser run"
+	name = "激光扫射"
 	fire_support_firer = FIRESUPPORT_CAS
 	fire_support_type = FIRESUPPORT_TYPE_LASER
 	cost = 2
 	impact_quantity = 7
 	scatter_range = 3
 	icon_state = "laser"
-	initiate_chat_message = "TARGET ACQUIRED LASER RUN INBOUND."
+	initiate_chat_message = "目标已锁定，激光扫射即将抵达。"
 	initiate_screen_message = list(
-		"Target received, laser inbound",
-		"Flash, flash! Don't look up!",
-		"Going to get real hot down there, watch your step.",
-		"Close your eyes or put some goggles on, laser pulsing!",
-		"Lets grill some motherfuckers!",
+		"收到目标，激光打击即将抵达。",
+		"强光，强光！别抬头看！",
+		"下面马上就要烫得要命了，看着点脚下。",
+		"闭上眼睛，或者戴好护目镜，激光脉冲来了！",
+		"来把这帮混蛋烤熟吧！",
 	)
 
 /datum/fire_support/laser/do_impact(turf/target_turf)
@@ -122,5 +122,5 @@
 	fire_support_firer = FIRESUPPORT_CAS_UPP
 	fire_support_type = FIRESUPPORT_TYPE_LASER_UPP
 	portrait_type = "pilot_red"
-	initiate_title = "Pig-1"
+	initiate_title = "野猪一号"
 	start_visual = /obj/effect/temp_visual/dropship_flyby/krokodil

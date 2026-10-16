@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet
-	name = "secure locker"
-	desc = "It's an immobile card-locked storage unit."
+	name = "安全储物柜"
+	desc = "无法移动、用身份卡上锁的储物柜。"
 	icon_state = "secure1"
 	density = TRUE
 	opened = 0
@@ -46,13 +46,13 @@
 
 /obj/structure/closet/secure_closet/proc/togglelock(mob/living/user)
 	if(opened)
-		to_chat(user, SPAN_NOTICE("Close the locker first."))
+		to_chat(user, SPAN_NOTICE("请先关上储物柜。"))
 		return
 	if(broken)
-		to_chat(user, SPAN_WARNING("The locker appears to be broken."))
+		to_chat(user, SPAN_WARNING("储物柜似乎坏了。"))
 		return
 	if(user.loc == src)
-		to_chat(user, SPAN_NOTICE("You can't reach the lock from inside."))
+		to_chat(user, SPAN_NOTICE("你在里面够不到锁。"))
 		return
 	if(allowed(user))
 		if(slotlocked && ishuman(user))
@@ -75,10 +75,10 @@
 		locked = !locked
 		for(var/mob/mob in viewers(user, 3))
 			if((mob.client && !( mob.blinded )))
-				to_chat(mob, SPAN_NOTICE("The locker has been [locked ? null : "un"]locked by [user]."))
+				to_chat(mob, SPAN_NOTICE("[user]已将储物柜[locked ? "上锁" : "解锁"]。"))
 		update_icon()
 	else
-		to_chat(user, SPAN_NOTICE("Access Denied"))
+		to_chat(user, SPAN_NOTICE("拒绝访问"))
 
 /obj/structure/closet/secure_closet/attackby(obj/item/W, mob/living/user)
 	if(src.opened)
@@ -88,7 +88,7 @@
 				if(src.large)
 					src.MouseDrop_T(G.grabbed_thing, user) //act like they were dragged onto the closet
 				else
-					to_chat(user, SPAN_NOTICE("The locker is too small to stuff [W:affecting] into!"))
+					to_chat(user, SPAN_NOTICE("储物柜太小，塞不下[W:affecting]！"))
 			return
 		if(iszombie(user))
 			return
@@ -97,7 +97,7 @@
 		return
 	else if(iswelder(W))
 		if(!HAS_TRAIT(W, TRAIT_TOOL_BLOWTORCH))
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要功率更大的喷灯！"))
 			return
 		return ..(W,user)
 	else
@@ -118,8 +118,8 @@
 
 /obj/structure/closet/secure_closet/verb/verb_togglelock()
 	set src in oview(1) // One square distance
-	set category = "Object"
-	set name = "Toggle Lock"
+	set category = "物品"
+	set name = "切换锁定状态"
 
 	if(usr.is_mob_incapacitated()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
 		return
@@ -128,7 +128,7 @@
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else
-		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
+		to_chat(usr, SPAN_WARNING("你当前的角色类型无法执行此操作。"))
 
 /obj/structure/closet/secure_closet/AIShiftClick()
 	locked = !locked

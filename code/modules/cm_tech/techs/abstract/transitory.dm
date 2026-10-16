@@ -1,6 +1,6 @@
 /datum/tech/transitory
 	name = "Transitory tech"
-	desc = "Transitions the tree to another tier."
+	desc = "将科技树提升至下一等级。"
 	icon_state = "upgrade"
 
 	var/datum/tier/before
@@ -11,14 +11,14 @@
 
 /datum/tech/transitory/check_tier_level(mob/M)
 	if(before && before != holder.tier.type)
-		to_chat(M, SPAN_WARNING("You can't unlock this node!"))
+		to_chat(M, SPAN_WARNING("你无法解锁此节点！"))
 		return
 
 	if(techs_to_unlock > 0)
 		var/amount_of_unlocked_techs = LAZYLEN(holder.unlocked_techs[before])
 
 		if(amount_of_unlocked_techs < techs_to_unlock)
-			to_chat(M, SPAN_WARNING("You must unlock [techs_to_unlock] techs from [initial(before.name)] before you can unlock this tech!"))
+			to_chat(M, SPAN_WARNING("你必须先解锁[initial(before.name)]中的[techs_to_unlock]项科技，才能解锁此科技！"))
 			return FALSE
 
 	return TRUE
@@ -35,7 +35,7 @@
 		if(flags & TREE_FLAG_MARINE)
 			/// Due to calling parent, points will have already been spent by now.
 			var/current_points = holder.points + required_points
-			log_ares_tech(user.real_name, is_tier_changer, "ALMAYER DEFCON LEVEL INCREASED", "THREAT ASSESSMENT LEVEL INCREASED TO LEVEL [next_tier.tier].\n\nLEVEL [next_tier.tier] assets have been authorised to handle the situation.", required_points, current_points)
+			log_ares_tech(user.real_name, is_tier_changer, "阿尔迈耶号战备等级已提升", "威胁评估等级已提升至[next_tier.tier]级。\n\n已授权使用[next_tier.tier]级装备应对当前情况。", required_points, current_points)
 
 /datum/tech/transitory/get_tier_overlay()
 	if(!next)
@@ -48,7 +48,7 @@
 	return I
 
 /datum/tech/transitory/tier1
-	name = "Unlock Tier 1"
+	name = "解锁一级"
 	tier = /datum/tier/free
 
 	flags = TREE_FLAG_MARINE|TREE_FLAG_XENO
@@ -56,7 +56,7 @@
 	next = /datum/tier/one
 
 /datum/tech/transitory/tier2
-	name = "Unlock Tier 2"
+	name = "解锁二级"
 	tier = /datum/tier/one_transition_two
 
 	before = /datum/tier/one
@@ -75,7 +75,7 @@
 	flags = TREE_FLAG_MARINE
 
 /datum/tech/transitory/tier3
-	name = "Unlock Tier 3"
+	name = "解锁三级"
 	tier = /datum/tier/two_transition_three
 
 	before = /datum/tier/two
@@ -94,7 +94,7 @@
 	flags = TREE_FLAG_MARINE
 
 /datum/tech/transitory/tier4
-	name = "Unlock Tier 4"
+	name = "解锁四级"
 	tier = /datum/tier/three_transition_four
 
 	before = /datum/tier/three

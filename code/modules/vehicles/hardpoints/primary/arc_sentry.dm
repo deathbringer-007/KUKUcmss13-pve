@@ -1,7 +1,7 @@
 // APC cannons
 /obj/item/hardpoint/primary/arc_sentry
-	name = "\improper RE700 Rotary Cannon"
-	desc = "A primary two-barrel cannon for the ARC that shoots 12.7mm IFF-compatible rounds."
+	name = "\improper RE700转管炮"
+	desc = "ARC的双管主炮，发射支持敌我识别的12.7毫米弹药。"
 	icon = 'icons/obj/vehicles/hardpoints/arc.dmi'
 
 	icon_state = "autocannon"
@@ -188,7 +188,7 @@
 		return TRUE
 
 	if(arc_owner.antenna_deployed)
-		to_chat(remover, SPAN_WARNING("[src] cannot be removed from [owner] while its antenna is deployed."))
+		to_chat(remover, SPAN_WARNING("[owner]的天线展开时，无法拆下[src]。"))
 		return FALSE
 
 	return ..()

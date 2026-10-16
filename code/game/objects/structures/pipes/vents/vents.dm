@@ -1,7 +1,7 @@
 /obj/structure/pipes/vents
 	icon = 'icons/obj/pipes/vent_scrubber.dmi'
 	icon_state = "map_vent"
-	desc = "Has a valve and pump attached to it"
+	desc = "装有阀门和气泵。"
 	valid_directions = list(NORTH, SOUTH, EAST, WEST)
 
 	var/area/initial_loc = null
@@ -30,11 +30,11 @@
 /obj/structure/pipes/vents/get_examine_text(mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 1)
-		. += SPAN_INFO("A small gauge in the corner reads 0.1 L/s; 0W.")
+		. += SPAN_INFO("角落里的小仪表显示：0.1 升/秒；0 瓦。")
 	else
-		. += SPAN_INFO("You are too far away to read the gauge.")
+		. += SPAN_INFO("你离得太远，看不清仪表。")
 	if(welded)
-		. += SPAN_INFO("It seems welded shut.")
+		. += SPAN_INFO("它似乎被焊死了。")
 
 /obj/structure/pipes/vents/update_icon(safety = 0)
 	if(!check_icon_cache())
@@ -77,47 +77,47 @@
 			weldtime = 60
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(1, user))
-			user.visible_message(SPAN_NOTICE("[user] starts welding \the [src] with \the [WT]."), \
-			SPAN_NOTICE("You start welding \the [src] with \the [WT]."))
+			user.visible_message(SPAN_NOTICE("[user]开始用[WT]焊接[src]。"), \
+			SPAN_NOTICE("你开始用[WT]焊接[src]。"))
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 			if(do_after(user, weldtime * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 				if(!src || !WT.isOn()) return 0
 				playsound(get_turf(src), 'sound/items/Welder2.ogg', 25, 1)
 				if(!welded)
-					user.visible_message(SPAN_NOTICE("[user] welds \the [src] shut."), \
-					SPAN_NOTICE("You weld \the [src] shut."))
+					user.visible_message(SPAN_NOTICE("[user]焊死了[src]。"), \
+					SPAN_NOTICE("你焊死了[src]。"))
 					welded = 1
 					update_icon()
 					msg_admin_niche("[key_name(user)] welded a vent pump.")
 					return 1
 				else
-					user.visible_message(SPAN_NOTICE("[user] welds \the [src] open."), \
-					SPAN_NOTICE("You weld \the [src] open."))
+					user.visible_message(SPAN_NOTICE("[user]焊开了[src]。"), \
+					SPAN_NOTICE("你焊开了[src]。"))
 					welded = 0
 					msg_admin_niche("[key_name(user)] un-welded a vent pump.")
 					update_icon()
 					return 1
 			else
-				to_chat(user, SPAN_WARNING("\The [W] needs to be on to start this task."))
+				to_chat(user, SPAN_WARNING("必须先开启[W]才能进行此操作。"))
 				return 0
 		else
-			to_chat(user, SPAN_WARNING("You need more welding fuel to complete this task."))
+			to_chat(user, SPAN_WARNING("你需要更多焊接燃料才能完成此操作。"))
 			return 1
 
 	if(!HAS_TRAIT(W, TRAIT_TOOL_WRENCH))
 		return ..()
 	var/turf/T = src.loc
 	if(isturf(T) && T.intact_tile)
-		to_chat(user, SPAN_WARNING("You must remove the plating first."))
+		to_chat(user, SPAN_WARNING("你必须先拆掉地板镀层。"))
 		return 1
 
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-	user.visible_message(SPAN_NOTICE("[user] begins unfastening [src]."),
-	SPAN_NOTICE("You begin unfastening [src]."))
+	user.visible_message(SPAN_NOTICE("[user]开始松开[src]的固定件。"),
+	SPAN_NOTICE("你开始松开[src]的固定件。"))
 	if(do_after(user, 40 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-		user.visible_message(SPAN_NOTICE("[user] unfastens [src]."),
-		SPAN_NOTICE("You unfasten [src]."))
+		user.visible_message(SPAN_NOTICE("[user]松开了[src]的固定件。"),
+		SPAN_NOTICE("你松开了[src]的固定件。"))
 		new /obj/item/pipe(loc, null, null, src)
 		qdel(src)
 
@@ -176,7 +176,7 @@
 	spreader.attach(src)
 
 	new /obj/effect/warning/explosive/gas(loc, warning_time)
-	visible_message(SPAN_HIGHDANGER("[src] begins to hiss as gas builds up within it."), SPAN_HIGHDANGER("You hear a hissing."), radius)
+	visible_message(SPAN_HIGHDANGER("气体在[src]内积聚，发出嘶嘶声。"), SPAN_HIGHDANGER("你听到一阵嘶嘶声。"), radius)
 	addtimer(CALLBACK(src, PROC_REF(release_gas), radius), warning_time)
 
 /obj/structure/pipes/vents/proc/release_gas(radius = 4)

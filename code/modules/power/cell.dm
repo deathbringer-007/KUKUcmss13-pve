@@ -3,8 +3,8 @@
 // fits in APC to provide backup power
 
 /obj/item/cell
-	name = "\improper power cell"
-	desc = "A rechargeable electrochemical power cell."
+	name = "\improper 电池"
+	desc = "可充电的电化学电池。"
 	icon = 'icons/obj/structures/machinery/power.dmi'
 	icon_state = "cell"
 	item_state = "cell"
@@ -63,11 +63,11 @@
 /obj/item/cell/get_examine_text(mob/user)
 	. = ..()
 	if(maxcharge <= 2500)
-		. += SPAN_NOTICE("The manufacturer's label states this cell has a power rating of <b>[maxcharge]</b>, and that you should not swallow it.\nThe charge meter reads <b>[floor(src.percent() )]%</b>.")
+		. += SPAN_NOTICE("制造商标签注明，这块电池的额定容量为<b>[maxcharge]</b>，并警告你不要吞食。\n电量表读数为<b>[floor(src.percent() )]%</b>。")
 	else
-		. += SPAN_NOTICE("This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of <b>[maxcharge]</b>!\nThe charge meter reads <b>[floor(src.percent() )]%</b>.")
+		. += SPAN_NOTICE("这块电池采用亮眼的镀铬外壳，属于超高容量型号！额定容量为<b>[maxcharge]</b>！\n电量表读数为<b>[floor(src.percent() )]%</b>。")
 	if(crit_fail)
-		. += SPAN_DANGER("This power cell seems to be faulty.")
+		. += SPAN_DANGER("这块电池似乎有故障。")
 
 
 /obj/item/cell/emp_act(severity)
@@ -110,8 +110,8 @@
 			return 0
 
 /obj/item/cell/crap
-	name = "\improper W-Y rechargeable mini-battery"
-	desc = "Cheap, throwaway batteries provided by the Weyland-Yutani Corporation. The 'rechargeable' feature was added to be more marketable to independent colonists hell-bent on 'using it till it disintegrates', a common sentiment on the frontier."
+	name = "\improper 维兰德-汤谷可充电迷你电池"
+	desc = "维兰德-汤谷公司提供的廉价一次性电池。边疆的独立殖民者普遍信奉“用到散架为止”，为了向他们推销，厂商特意加入了“可充电”功能。"
 	icon_state = "mini-cell"
 	w_class = SIZE_TINY
 	charge = 500
@@ -122,7 +122,7 @@
 	charge = 0
 
 /obj/item/cell/secborg
-	name = "\improper security borg rechargeable D battery"
+	name = "\improper 安保机器人可充电D型电池"
 
 	maxcharge = 600 //600 max charge / 100 charge per shot = six shots
 	matter = list("metal" = 700, "glass" = 40)
@@ -131,7 +131,7 @@
 	charge = 0
 
 /obj/item/cell/apc
-	name = "\improper heavy-duty power cell"
+	name = "\improper 重型电池"
 
 	charge = 5000
 	maxcharge = 5000
@@ -141,7 +141,7 @@
 	charge = 0
 
 /obj/item/cell/high
-	name = "\improper high-capacity power cell"
+	name = "\improper 大容量电池"
 
 	icon_state = "hcell"
 	charge = 10000
@@ -152,7 +152,7 @@
 	charge = 0
 
 /obj/item/cell/super
-	name = "\improper super-capacity power cell"
+	name = "\improper 超大容量电池"
 
 	icon_state = "scell"
 	charge = 20000
@@ -163,7 +163,7 @@
 	charge = 0
 
 /obj/item/cell/hyper
-	name = "\improper hyper-capacity power cell"
+	name = "\improper 特大容量电池"
 
 	icon_state = "hpcell"
 	charge = 30000
@@ -174,7 +174,7 @@
 	charge = 0
 
 /obj/item/cell/infinite
-	name = "\improper infinite-capacity power cell!"
+	name = "\improper 无限容量电池！"
 	icon_state = "icell"
 	charge = 30000
 	maxcharge = 30000
@@ -184,8 +184,8 @@
 	return 1
 
 /obj/item/cell/potato
-	name = "\improper potato battery"
-	desc = "A rechargeable starch-based power cell."
+	name = "\improper 土豆电池"
+	desc = "可充电的淀粉基电池。"
 
 	icon = 'icons/obj/structures/machinery/power.dmi' //'icons/obj/items/harvest.dmi'
 	icon_state = "potato_cell" //"potato_battery"

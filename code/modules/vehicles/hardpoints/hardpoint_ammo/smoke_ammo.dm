@@ -1,6 +1,6 @@
 /obj/item/ammo_magazine/hardpoint/turret_smoke
-	name = "Turret Smoke Screen Magazine"
-	desc = "A smoke grenades magazine used by tank turret."
+	name = "炮塔烟幕弹箱"
+	desc = "坦克炮塔用烟幕榴弹弹箱。"
 	caliber = "grenade"
 	icon_state = "slauncher_1"
 	w_class = SIZE_LARGE
@@ -12,19 +12,19 @@
 	icon_state = "slauncher_[current_rounds <= 0 ? "0" : "1"]"
 
 /obj/item/ammo_magazine/hardpoint/turret_smoke/uppapc
-	name = "UPP Turret Smoke Screen Magazine"
-	desc = "A smoke grenades magazine used by upp apc turret."
+	name = "UPP炮塔烟幕弹箱"
+	desc = "进步人民联盟装甲运兵车炮塔用烟幕榴弹弹箱。"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/upp.dmi'
 	icon_state = "upp_slauncher_1"
 	default_ammo = /datum/ammo/grenade_container/smoke/upp
 	gun_type = /obj/item/hardpoint/holder/apc_turret
 
 /obj/item/ammo_magazine/hardpoint/turret_smoke/incen
-	name = "Smoke Discharger Magazine"
-	desc = "A magazine of modified M60 incendiary smoke grenades used by the ATVs discharger array."
+	name = "烟幕发射器弹箱"
+	desc = "装有改装M60燃烧烟幕弹的弹箱，供全地形车的发射器阵列使用。"
 	default_ammo = /datum/ammo/grenade_container/incen
 	max_rounds = 8
 
 /obj/item/ammo_magazine/hardpoint/turret_smoke/incen/aev
-	desc = "A magazine of modified M60 incendiary smoke grenades used by the AEVs discharger array."
+	desc = "装有改装M60燃烧烟幕弹的弹箱，供装甲工程车的发射器阵列使用。"
 	max_rounds = 12

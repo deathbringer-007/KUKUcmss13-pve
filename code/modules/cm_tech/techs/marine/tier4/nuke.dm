@@ -1,16 +1,16 @@
 #define NUKE_UNLOCK_TIME (115 MINUTES)
 
 /datum/tech/nuke
-	name = "Nuclear Device"
-	desc = "Purchase a nuclear device. It's the only way to be sure."
+	name = "核装置"
+	desc = "购买一枚核装置，只有这样才能万无一失。"
 	icon_state = "nuke"
 
 	required_points = 5
 
 	tier = /datum/tier/four
 
-	announce_name = "NUCLEAR ARSENAL ACQUIRED"
-	announce_message = "A nuclear device has been authorized and will be delivered to requisitions via ASRS."
+	announce_name = "已获得核武器"
+	announce_message = "一枚核装置已获批准，将通过ASRS交付至军需部门。"
 
 	flags = TREE_FLAG_MARINE
 
@@ -36,10 +36,10 @@
 		return
 
 	if(ROUND_TIME < NUKE_UNLOCK_TIME)
-		to_chat(unlocking_mob, SPAN_WARNING("You cannot purchase this node before [ceil((NUKE_UNLOCK_TIME + SSticker.round_start_time) / (1 MINUTES))] minutes into the operation."))
+		to_chat(unlocking_mob, SPAN_WARNING("行动开始[ceil((NUKE_UNLOCK_TIME + SSticker.round_start_time) / (1 MINUTES))]分钟后才能购买此节点。"))
 		return FALSE
 
 	return TRUE
 
 /datum/tech/nuke/proc/handle_description()
-	desc = "Purchase a nuclear device. Only purchasable [ceil((NUKE_UNLOCK_TIME + SSticker.round_start_time) / (1 MINUTES))] minutes into the operation. It's the only way to be sure."
+	desc = "购买一枚核装置。行动开始[ceil((NUKE_UNLOCK_TIME + SSticker.round_start_time) / (1 MINUTES))]分钟后才能购买，只有这样才能万无一失。"

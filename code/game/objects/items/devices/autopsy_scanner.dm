@@ -3,8 +3,8 @@
 //please preference put stuff where it's easy to find - C
 
 /obj/item/device/autopsy_scanner
-	name = "autopsy scanner"
-	desc = "Extracts information on wounds."
+	name = "尸检扫描仪"
+	desc = "用于采集伤口信息。"
 	icon_state = "autopsy_scanner"
 	flags_atom = FPRINT|CONDUCT
 	w_class = SIZE_SMALL
@@ -70,7 +70,7 @@
 			if(D.organ_names == "")
 				D.organ_names = O.display_name
 			else
-				D.organ_names += ", [O.display_name]"
+				D.organ_names += "、[O.display_name]"
 
 		qdel(D.organs_scanned[O.name])
 		D.organs_scanned[O.name] = W.copy()
@@ -80,17 +80,17 @@
 			chemtraces += V
 
 /obj/item/device/autopsy_scanner/verb/print_data()
-	set category = "Object"
+	set category = "物品"
 	set src in view(usr, 1)
-	set name = "Print Data"
+	set name = "打印数据"
 	if(usr.stat || !(istype(usr,/mob/living/carbon/human)))
-		to_chat(usr, "No.")
+		to_chat(usr, "无法执行。")
 		return
 
 	var/scan_data = ""
 
 	if(timeofdeath)
-		scan_data += "<b>Time of death:</b> [worldtime2text("hh:mm", timeofdeath)] [time2text(timeofdeath, "DDD MMM DD [GLOB.game_year]")]<br><br>"
+		scan_data += "<b>死亡时间：</b>[time2text(timeofdeath, "[GLOB.game_year]年MM月DD日")] [worldtime2text("hh:mm", timeofdeath)]<br><br>"
 
 	var/n = 1
 	for(var/wdata_idx in wdata)
@@ -123,25 +123,25 @@
 		// total score happens to be the total damage
 		switch(total_score)
 			if(0)
-				damage_desc = "Unknown"
+				damage_desc = "未知"
 			if(1 to 5)
-				damage_desc = "<font color='green'>negligible</font>"
+				damage_desc = "<font color='green'>微不足道</font>"
 			if(5 to 15)
-				damage_desc = "<font color='green'>light</font>"
+				damage_desc = "<font color='green'>轻度</font>"
 			if(15 to 30)
-				damage_desc = "<font color='orange'>moderate</font>"
+				damage_desc = "<font color='orange'>中度</font>"
 			if(30 to 1000)
-				damage_desc = "<font color='red'>severe</font>"
+				damage_desc = "<font color='red'>重度</font>"
 
 		if(!total_score) total_score = length(D.organs_scanned)
 
-		scan_data += "<b>Weapon #[n]</b><br>"
+		scan_data += "<b>武器编号 [n]</b><br>"
 		if(damaging_weapon)
-			scan_data += "Severity: [damage_desc]<br>"
-			scan_data += "Hits by weapon: [total_hits]<br>"
-		scan_data += "Approximate time of wound infliction: [worldtime2text("hh:mm", age)] [time2text(age, "DDD MMM DD [GLOB.game_year]")]<br>"
-		scan_data += "Affected limbs: [D.organ_names]<br>"
-		scan_data += "Possible weapons:<br>"
+			scan_data += "严重程度：[damage_desc]<br>"
+			scan_data += "该武器命中次数：[total_hits]<br>"
+		scan_data += "大致受伤时间：[time2text(age, "[GLOB.game_year]年MM月DD日")] [worldtime2text("hh:mm", age)]<br>"
+		scan_data += "受伤部位：[D.organ_names]<br>"
+		scan_data += "可能的致伤武器：<br>"
 		for(var/weapon_name in weapon_chances)
 			scan_data += "\t[100*weapon_chances[weapon_name]/total_score]% [weapon_name]<br>"
 
@@ -150,18 +150,19 @@
 		n++
 
 	if(length(chemtraces))
-		scan_data += "<b>Trace Chemicals: </b><br>"
+		scan_data += "<b>化学物质残留：</b><br>"
 		for(var/chemID in chemtraces)
-			scan_data += chemID
+			var/datum/reagent/chemical = GLOB.chemical_reagents_list[chemID]
+			scan_data += chemical ? chemical.name : chemID
 			scan_data += "<br>"
 
 	for(var/mob/O in viewers(usr))
-		O.show_message(SPAN_DANGER("\the [src] rattles and prints out a sheet of paper."), SHOW_MESSAGE_VISIBLE)
+		O.show_message(SPAN_DANGER("[src]咔咔作响，打印出一张纸。"), SHOW_MESSAGE_VISIBLE)
 
 	sleep(10)
 
 	var/obj/item/paper/P = new(usr.loc)
-	P.name = "Autopsy Data ([target_name])"
+	P.name = "尸检数据（[target_name]）"
 	P.info = "<tt>[scan_data]</tt>"
 	P.icon_state = "paper_words"
 
@@ -184,7 +185,7 @@
 			break
 
 	if(!table)
-		to_chat(usr, "<b>You can't work here, you need to put [M] on a proper surgical bed.</b>")
+		to_chat(usr, "<b>这里无法进行操作，需要将[M]放到合适的手术床上。</b>")
 		return
 
 	if(target_name != M.name)
@@ -192,19 +193,19 @@
 		src.wdata = list()
 		src.chemtraces = list()
 		src.timeofdeath = null
-		to_chat(user, SPAN_DANGER("A new patient has been registered. Purging data for previous patient."))
+		to_chat(user, SPAN_DANGER("已登记新的受检者，正在清除上一位受检者的数据。"))
 
 	src.timeofdeath = M.timeofdeath
 
 	var/obj/limb/S = M.get_limb(user.zone_selected)
 	if(!S)
-		to_chat(usr, "<b>You can't scan this body part.</b>")
+		to_chat(usr, "<b>你无法扫描这个身体部位。</b>")
 		return
 	if(M.incision_depths[S.name] == SURGERY_DEPTH_SURFACE)
-		to_chat(usr, "<b>You have to cut the limb open first!</b>")
+		to_chat(usr, "<b>你必须先切开这个身体部位！</b>")
 		return
 	for(var/mob/O in viewers(M))
-		O.show_message(SPAN_DANGER("[user.name] scans the wounds on [M.name]'s [S.display_name] with \the [src.name]"), SHOW_MESSAGE_VISIBLE)
+		O.show_message(SPAN_DANGER("[user.name]用[src.name]扫描[M.name][S.display_name]上的伤口。"), SHOW_MESSAGE_VISIBLE)
 
 	src.add_data(S)
 

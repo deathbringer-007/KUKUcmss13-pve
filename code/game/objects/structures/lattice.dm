@@ -1,6 +1,6 @@
 /obj/structure/lattice
-	desc = "A lightweight support lattice."
-	name = "lattice"
+	desc = "轻型支撑格架。"
+	name = "支撑格架"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "latticefull"
 	density = FALSE
@@ -53,11 +53,11 @@
 		return
 	if (iswelder(C))
 		if(!HAS_TRAIT(C, TRAIT_TOOL_BLOWTORCH))
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要功率更大的喷灯！"))
 			return
 		var/obj/item/tool/weldingtool/WT = C
 		if(WT.remove_fuel(0, user))
-			to_chat(user, SPAN_NOTICE("Slicing lattice joints..."))
+			to_chat(user, SPAN_NOTICE("正在切割格架接点……"))
 		deconstruct()
 	return
 

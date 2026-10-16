@@ -31,8 +31,8 @@
 // MARINE STORAGE ARMOR
 
 /obj/item/clothing/suit/storage/marine
-	name = "\improper M3 pattern marine armor"
-	desc = "Standard USCMC issue M3 Pattern Personal Armor. Composite ballistic armor, integral biomonitoring system, and brackets for the IMP system as well as the TNR Shoulder Lamp. \nHas some extra pouches on the sides for storage."
+	name = "\improper M3 型陆战队护甲"
+	desc = "USCMC 制式 M3 型个人护甲，采用复合防弹装甲，集成生命体征监测系统，并带有 IMP 系统和 TNR 肩灯安装座。\n两侧额外配有储物袋。"
 	icon = 'icons/obj/items/clothing/cm_suits.dmi'
 	icon_state = "1"
 	item_state = "marine_armor" //Make unique states for Officer & Intel armors.
@@ -92,7 +92,7 @@
 	var/armor_overlays[]
 	actions_types = list(/datum/action/item_action/toggle)
 	var/flags_marine_armor = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
-	var/specialty = "M3 pattern marine" //Same thing here. Give them a specialty so that they show up correctly in vendors. speciality does NOTHING if you have NO_NAME_OVERRIDE
+	var/specialty = "M3 型陆战队" //Same thing here. Give them a specialty so that they show up correctly in vendors. speciality does NOTHING if you have NO_NAME_OVERRIDE
 	w_class = SIZE_HUGE
 	uniform_restricted = null
 	sprite_sheets = list(SPECIES_MONKEY = 'icons/mob/humans/species/monkeys/onmob/suit_monkey_1.dmi')
@@ -111,7 +111,7 @@
 /obj/item/clothing/suit/storage/marine/Initialize(mapload)
 	. = ..()
 	if(!(flags_atom & NO_NAME_OVERRIDE))
-		name = "[specialty] armor"
+		name = "[specialty]护甲"
 
 	if(!(flags_atom & NO_SNOW_TYPE))
 		select_gamemode_skin(type)
@@ -163,7 +163,7 @@
 	..()
 
 	if(!isturf(user.loc))
-		to_chat(user, SPAN_WARNING("You cannot turn the light [light_on ? "off" : "on"] while in [user.loc].")) //To prevent some lighting anomalies.
+		to_chat(user, SPAN_WARNING("你在[user.loc]内时无法[light_on ? "关闭" : "打开"]灯光。")) //To prevent some lighting anomalies.
 		return
 
 	if(flashlight_cooldown > world.time)
@@ -212,7 +212,7 @@
 	. = ..()
 	if (.)
 		if(issynth(M) && M.allow_gun_usage == FALSE && !(flags_marine_armor & SYNTH_ALLOWED))
-			M.visible_message(SPAN_DANGER("Your programming prevents you from wearing this!"))
+			M.visible_message(SPAN_DANGER("你的程序不允许你穿戴这件装备！"))
 			return 0
 
 /**
@@ -239,17 +239,17 @@
 /obj/item/clothing/suit/storage/marine/medium/rto
 	icon_state = "io"
 	armor_variation = 0
-	name = "\improper M4 pattern marine armor"
-	desc = "A well tinkered and crafted hybrid of Smart-Gunner mesh and M3 pattern plates. Robust, yet nimble, with room for all your pouches."
+	name = "\improper M4 型陆战队护甲"
+	desc = "将智能机枪手网状护甲与 M3 型护甲板精心结合的改进护甲。坚固而灵活，能容纳你的各种携行袋。"
 	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_rad = CLOTHING_ARMOR_MEDIUM
 	storage_slots = 4
 	light_range = 5 //slightly higher
-	specialty = "M4 pattern marine"
+	specialty = "M4 型陆战队"
 
 /obj/item/clothing/suit/storage/marine/MP
-	name = "\improper M2 pattern MP armor"
-	desc = "A standard Colonial Marines M2 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	name = "\improper M2 型宪兵护甲"
+	desc = "殖民地陆战队制式 M2 型胸甲，可保护胸部免受枪弹、利器和意外伤害，附带一个小皮袋，提供有限的储物空间。"
 	icon_state = "mp_armor"
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_bullet = CLOTHING_ARMOR_MEDIUM
@@ -279,72 +279,72 @@
 		/obj/item/device/motiondetector,
 		/obj/item/device/walkman,
 	)
-	specialty = "M2 pattern MP"
+	specialty = "M2 型宪兵"
 	item_state_slots = list(WEAR_JACKET = "mp_armor")
 	black_market_value = 20
 
 /obj/item/clothing/suit/storage/marine/MP/warden
-	name = "\improper M3 pattern warden MP armor"
-	desc = "A well-crafted suit of M3 Pattern Armor typically distributed to Wardens. Useful for letting your men know who is in charge."
+	name = "\improper M3 型典狱长宪兵护甲"
+	desc = "做工精良的 M3 型护甲，通常配发给典狱长。有助于让手下认清谁说了算。"
 	icon_state = "warden"
-	specialty = "M3 pattern warden MP"
+	specialty = "M3 型典狱长宪兵"
 	item_state_slots = list(WEAR_JACKET = "warden")
 
 /obj/item/clothing/suit/storage/marine/MP/WO
-	name = "\improper M3 pattern chief MP armor"
-	desc = "A well-crafted suit of M3 Pattern Armor typically distributed to Chief MPs. Useful for letting your men know who is in charge."
+	name = "\improper M3 型宪兵长护甲"
+	desc = "做工精良的 M3 型护甲，通常配发给宪兵长。有助于让手下认清谁说了算。"
 	icon_state = "warrant_officer"
-	specialty = "M3 pattern chief MP"
+	specialty = "M3 型宪兵长"
 	item_state_slots = list(WEAR_JACKET = "warrant_officer")
 	black_market_value = 30
 
 /obj/item/clothing/suit/storage/marine/MP/general
-	name = "\improper M3 pattern general officer armor"
-	desc = "A well-crafted suit of M3 Pattern Armor with a gold shine. It looks very expensive, but shockingly fairly easy to carry and wear."
+	name = "\improper M3 型将官护甲"
+	desc = "做工精良、泛着金光的 M3 型护甲。看起来价格不菲，但出乎意料地便于携带和穿戴。"
 	icon_state = "general"
 	armor_bullet = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_bio = CLOTHING_ARMOR_MEDIUM
-	specialty = "M3 pattern general"
+	specialty = "M3 型将官"
 	item_state_slots = list(WEAR_JACKET = "general")
 	w_class = SIZE_MEDIUM
 
 /obj/item/clothing/suit/storage/marine/MP/SO
-	name = "\improper M3 pattern officer armor"
-	desc = "A well-crafted suit of M3 Pattern Armor typically found in the hands of higher-ranking officers. Useful for letting your men know who is in charge when taking to the field."
+	name = "\improper M3 型军官护甲"
+	desc = "做工精良的 M3 型护甲，通常由高级军官使用。上前线时，有助于让手下认清谁说了算。"
 	icon_state = "officer"
 	storage_slots = 3
 	flags_atom = null
-	specialty = "M3 pattern officer"
+	specialty = "M3 型军官"
 	item_state_slots = list(WEAR_JACKET = "officer")
 
 //Making a new object because we might want to edit armor values and such.
 //Or give it its own sprite. It's more for the future.
 /obj/item/clothing/suit/storage/marine/MP/CO
-	name = "\improper M3 pattern commanding officer armor"
-	desc = "A robust, well-polished suit of armor for the Commanding Officer. Custom-made to fit its owner with special straps to operate a smartgun. Show those Marines who's really in charge."
+	name = "\improper M3 型指挥官护甲"
+	desc = "指挥官专用的坚固护甲，擦得锃亮，按穿戴者身形定制，并带有操控智能机枪的专用背带。让那些陆战队员看看谁才是真正的指挥官。"
 	icon_state = "co_officer"
 	item_state = "co_officer"
 	armor_bullet = CLOTHING_ARMOR_HIGH
 	storage_slots = 3
 	flags_atom = NO_SNOW_TYPE
 	flags_inventory = BLOCKSHARPOBJ|SMARTGUN_HARNESS
-	specialty = "M3 pattern captain"
+	specialty = "M3 型舰长"
 	item_state_slots = list(WEAR_JACKET = "co_officer")
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_RANK, ACCESSORY_SLOT_DECOR, ACCESSORY_SLOT_PONCHO)
 	black_market_value = 35
 
 
 /obj/item/clothing/suit/storage/marine/MP/CO/jacket
-	name = "\improper M3 pattern commanding officer armored coat"
-	desc = "A robust, well-polished suit of armor for the Commanding Officer. Custom-made to fit its owner with special straps to operate a smartgun. Show those Marines who's really in charge. This one has a coat over it for added warmth."
+	name = "\improper M3 型指挥官装甲大衣"
+	desc = "指挥官专用的坚固护甲，擦得锃亮，按穿戴者身形定制，并带有操控智能机枪的专用背带。让那些陆战队员看看谁才是真正的指挥官。这套护甲外罩大衣，更加保暖。"
 	icon_state = "bridge_coat_armored"
 	item_state = "bridge_coat_armored"
 	item_state_slots = list(WEAR_JACKET = "bridge_coat_armored")
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_RANK)
 
 /obj/item/clothing/suit/storage/marine/medium/leader
-	name = "\improper B12 pattern marine armor"
-	desc = "Semi-experimental body armor system similar to M3, incorporating primarily carbon fiber instead of boron carbide. \nDesigned in a lovely olive green, slightly improved protection against blunt impact and biological hazards."
+	name = "\improper B12 型陆战队护甲"
+	desc = "类似 M3 的半试验型防弹护甲系统，主要以碳纤维替代碳化硼。\n采用漂亮的橄榄绿色，对钝击和生物危害的防护略有提升。"
 	icon_state = "7"
 	armor_variation = 0
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
@@ -352,14 +352,14 @@
 	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_internaldamage = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_energy = CLOTHING_ARMOR_MEDIUM
-	specialty = "B12 pattern marine"
+	specialty = "B12 型陆战队"
 	light_range = 5
 
 /obj/item/clothing/suit/storage/marine/tanker
-	name = "\improper M3 pattern tanker armor"
-	desc = "Armored vest sometimes worn by USCMC armor crews. More bulky than a flak vest or service jacket, but substantially improved protection should the wearer need to dismount."
+	name = "\improper M3 型装甲车组护甲"
+	desc = "USCMC 装甲车组有时穿戴的装甲背心。比防破片背心或常服夹克更笨重，但在乘员需要下车时能提供明显更好的防护。"
 	icon_state = "tanker"
-	specialty = "M3 pattern tanker"
+	specialty = "M3 型装甲车组"
 	storage_slots = 2
 
 //===========================//PFC ARMOR CLASSES\\================================\\
@@ -371,22 +371,22 @@
 	light_power = 4
 
 /obj/item/clothing/suit/storage/marine/medium/padless_lines
-	name = "M3 pattern ridged marine armor"
+	name = "M3 型棱纹陆战队护甲"
 	icon_state = "2"
 	armor_variation = 0
-	specialty = "M3 pattern ridged marine"
+	specialty = "M3 型棱纹陆战队"
 
 /obj/item/clothing/suit/storage/marine/medium/smooth
-	name = "M3 pattern smooth marine armor"
+	name = "M3 型光面陆战队护甲"
 	icon_state = "3"
 	armor_variation = 0
-	specialty = "M3 pattern smooth marine"
+	specialty = "M3 型光面陆战队"
 
 // M3-L pattern light armor
 /obj/item/clothing/suit/storage/marine/light
-	name = "\improper M3-L pattern light armor"
-	desc = "A lighter, cut down version of the standard M3 pattern armor. It sacrifices durability for more speed."
-	specialty = "\improper M3-L pattern light"
+	name = "\improper M3-L 型轻型护甲"
+	desc = "标准 M3 型护甲的精简轻量版本，以降低耐久度换取更快的移动速度。"
+	specialty = "\improper M3-L 型轻型"
 	icon_state = "L1"
 	armor_variation = 6
 	slowdown = SLOWDOWN_ARMOR_LIGHT
@@ -410,8 +410,8 @@
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 
 /obj/item/clothing/suit/storage/marine/light/vest
-	name = "\improper M3-VL pattern ballistics vest"
-	desc = "Up until 2182 USCM non-combat personnel were issued non-standardized ballistics vests, though the lack of IMP compatibility and suit lamps proved time and time again inefficient. This modified M3-L shell is the result of a 6-year R&D program; It provides utility, protection, AND comfort to all USCM non-combat personnel."
+	name = "\improper M3-VL 型防弹背心"
+	desc = "直到 2182 年，USCM 非战斗人员仍配发非标准化防弹背心，缺乏 IMP 兼容性和服装照明屡次暴露出不足。这款改进 M3-L 护甲是六年研发计划的成果，为所有 USCM 非战斗人员兼顾实用、防护与舒适。"
 	icon_state = "VL"
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 	flags_marine_armor = ARMOR_LAMP_OVERLAY //No squad colors when wearing this since it'd look funny.
@@ -428,16 +428,16 @@
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/storage/marine/light/vest/dcc
-	name = "\improper M3-VL pattern flak vest"
-	desc = "Effectively a combination of the M3-VL ballistics vest and M70 flak jacket, this armor is used by primarily by flight personnel because of its combined flak and ballistic defense and high mobility. It is also typically worn by military police officers as a result of the blunt force protection offered by the aforementioned armor layering."
+	name = "\improper M3-VL 型防破片背心"
+	desc = "这款护甲将 M3-VL 防弹背心与 M70 防破片夹克结合，兼具防弹、防破片性能和高机动性，主要供飞行人员使用。叠层装甲也能防护钝击，因此宪兵也常穿戴它。"
 	icon_state = "VL_FLAK"
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_bomb = CLOTHING_ARMOR_MEDIUM
 	storage_slots = 2
 
 /obj/item/clothing/suit/storage/marine/light/synvest
-	name = "\improper M3A1 Synthetic Utility Vest"
-	desc = "This variant of the ubiquitous M3 pattern vest has been extensively modified, providing no protection in exchange for maximum mobility and added storage. Synthetic programming compliant."
+	name = "\improper M3A1 合成人多用途背心"
+	desc = "这款常见 M3 型背心的变体经过大幅改造，完全放弃防护，以换取最高机动性和更多储物空间。符合合成人程序限制。"
 	icon_state = "VL_syn_camo"
 	flags_atom = NO_NAME_OVERRIDE
 	flags_marine_armor = ARMOR_LAMP_OVERLAY|SYNTH_ALLOWED //No squad colors + can be worn by synths.
@@ -475,8 +475,8 @@
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 
 /obj/item/clothing/suit/storage/marine/light/recon
-	name = "M3-R pattern light armor"
-	desc = "Special issue light armor for forward reconnaissance Marines. Offers similar protection as M3 armor but none of the slowdown."
+	name = "M3-R 型轻型护甲"
+	desc = "专门配发给前出侦察陆战队员的轻型护甲，提供与 M3 护甲相近的防护，却不会拖慢移动速度。"
 	armor_melee = CLOTHING_ARMOR_MEDIUM
 	armor_bullet = CLOTHING_ARMOR_MEDIUM
 	armor_laser = CLOTHING_ARMOR_MEDIUMLOW
@@ -489,10 +489,10 @@
 
 // M3-EOD pattern heavy armor
 /obj/item/clothing/suit/storage/marine/heavy
-	name = "\improper M3-H pattern heavy armor"
-	desc = "M3 armor vest with a rheological liner behind the chestplate, additional armor over the limbs to improve protection ballistic and blast protections. \nMarginal improvement in other areas, and the mass of the extra plates degrades agility, especially in null-gee."
-	desc_lore = "This configuration of the iconic armor was developed during the Canton War in 2160 between the UPP and USCM - Designed in response to a need for higher protection for ComTechs assigned as EODs during the conflict, this is the pinnacle of protection for your average marine. The shoulders and kneepads have both been expanded upon heavily, covering up the arteries on each limb. A special spall liner was developed for this suit, with the same technology being used in the M70 Flak Jacket being developed at the same time."
-	specialty = "\improper M3-H pattern"
+	name = "\improper M3-H 型重型护甲"
+	desc = "在胸甲后加入流变衬层的 M3 装甲背心，四肢增设护甲，以增强防弹与抗爆性能。\n其他方面的提升有限，额外护甲板的重量降低了灵活性，在失重环境中尤其明显。"
+	desc_lore = "这款经典护甲的变型研发于 2160 年 UPP 与 USCM 之间的广州战争，旨在为承担排爆任务的战斗技术员提供更强防护，堪称普通陆战队员防护装备的巅峰。肩甲和护膝大幅扩展，覆盖四肢动脉。专门开发的防崩落衬层采用了同期 M70 防破片夹克的技术。"
+	specialty = "\improper M3-H 型"
 	icon_state = "H1"
 	armor_variation = 6
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
@@ -520,8 +520,8 @@
 //=======================================================================\\
 
 /obj/item/clothing/suit/storage/marine/specialist
-	name = "\improper B18 defensive armor"
-	desc = "A heavy, rugged set of armor plates for when you really, really need to not die horribly. Slows you down though.\nComes with two tricord injectors in each arm guard."
+	name = "\improper B18 防护护甲"
+	desc = "一套厚重坚固的护甲板，适合你非常、非常不想死得太惨的时候，不过会拖慢行动。\n每个护臂内配有两支广效康复嗪注射器。"
 	icon_state = "xarmor"
 	armor_melee = CLOTHING_ARMOR_HIGH
 	armor_bullet = CLOTHING_ARMOR_HIGH
@@ -536,27 +536,27 @@
 	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FEET
 	flags_heat_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FEET
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	specialty = "B18 defensive"
+	specialty = "B18 防护"
 	unacidable = TRUE
 	var/injections = 4
 
 /obj/item/clothing/suit/storage/marine/specialist/verb/inject()
-	set name = "Create Injector"
-	set category = "Object"
+	set name = "取出注射器"
+	set category = "物品"
 	set src in usr
 
 	if(usr.is_mob_incapacitated())
 		return 0
 
 	if(!injections)
-		to_chat(usr, "Your armor is all out of injectors.")
+		to_chat(usr, "你的护甲里已经没有注射器了。")
 		return 0
 
 	if(usr.get_active_hand())
-		to_chat(usr, "Your active hand must be empty.")
+		to_chat(usr, "你的当前手必须空着。")
 		return 0
 
-	to_chat(usr, "You feel a faint hiss and an injector drops into your hand.")
+	to_chat(usr, "伴随着轻微的嘶声，一支注射器落入你手中。")
 	var/obj/item/reagent_container/hypospray/autoinjector/skillless/O = new(usr)
 	usr.put_in_active_hand(O)
 	injections--
@@ -564,8 +564,8 @@
 	return
 
 /obj/item/clothing/suit/storage/marine/M3G
-	name = "\improper M3-G4 grenadier armor"
-	desc = "A custom set of M3 armor packed to the brim with padding, plating, and every form of ballistic protection under the sun. Used exclusively by USCM Grenadiers."
+	name = "\improper M3-G4 掷弹兵护甲"
+	desc = "定制 M3 护甲，塞满了衬垫、护甲板和各种防弹材料，仅供 USCM 掷弹兵使用。"
 	icon_state = "grenadier"
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_bullet = CLOTHING_ARMOR_MEDIUMHIGH
@@ -579,55 +579,55 @@
 	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FEET
 	flags_heat_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FEET
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	specialty = "M3-G4 grenadier"
+	specialty = "M3-G4 掷弹兵"
 	unacidable = TRUE
 	light_range = 5
 
 /obj/item/clothing/suit/storage/marine/M3T
-	name = "\improper M3-T light armor"
-	desc = "A custom set of M3 armor designed for users of long-ranged explosive weaponry."
+	name = "\improper M3-T 轻型护甲"
+	desc = "为远程爆炸武器使用者设计的定制 M3 护甲。"
 	icon_state = "demolitionist"
 	armor_bomb = CLOTHING_ARMOR_HIGH
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	specialty = "M3-T light"
+	specialty = "M3-T 轻型"
 	unacidable = TRUE
 
 /obj/item/clothing/suit/storage/marine/M3S
-	name = "\improper M3-S light armor"
-	desc = "A custom set of M3 armor designed for USCM Scouts."
+	name = "\improper M3-S 轻型护甲"
+	desc = "为 USCM 侦察兵设计的定制 M3 护甲。"
 	icon_state = "scout_armor"
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	specialty = "M3-S light"
+	specialty = "M3-S 轻型"
 	unacidable = TRUE
 
 //==================Combat Correspondent==================\\
 
 /obj/item/clothing/suit/storage/marine/light/reporter
-	name = "press body armor"
-	desc = "Body armor used by war correspondents in battles and wars across the universe."
+	name = "记者防弹衣"
+	desc = "战地记者在宇宙各地的战斗与战争中使用的防弹衣。"
 	icon_state = "cc_armor"
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 
 //==================USASF & ARMY==================\\
 
 /obj/item/clothing/suit/storage/marine/medium/rto/navy
-	name = "\improper M4 pattern naval-deployment armor"
-	desc = "A set of USASF acquired M4 armor, modified to fit the needs of the members that see deployment on the surface of worlds. Robust, yet very nimble, with room for all your pouches."
+	name = "\improper M4 型海军地面部署护甲"
+	desc = "USASF 采购的 M4 护甲，针对部署到星球地表的人员需求进行了改装。坚固而灵活，能容纳你的各种携行袋。"
 	movement_compensation = SLOWDOWN_ARMOR_LIGHT	//carbon fibre and shit in the plates rather than heavy stuff, so the swabbies stay nimble
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 
 /obj/item/clothing/suit/storage/marine/medium/rto/army
-	name = "\improper M4 pattern trooper armor"
-	desc = "Whilst it saw limited field-testing amongst the USCMC, the US Army adopted the M4 series pattern armor across the board. Surprisingly uncomfortable, even compared to the old M3 series armor."
+	name = "\improper M4 型陆军护甲"
+	desc = "M4 系列护甲只在 USCMC 中进行了有限的实地试验，美国陆军却已全面采用。即使与老旧的 M3 系列相比，它也出奇地不舒服。"
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 
 //===========================//CUSTOM ARMOR\\================================\\
 //=======================================================================\\
 //base armor, copies everything from the storage armor for the same traits
 /obj/item/clothing/suit/marine
-	name = "\improper M3 pattern marine armor"
-	desc = "Standard USCMC issue M3 Pattern Personal Armor. Composite ballistic armor, integral biomonitoring system, and brackets for the IMP system as well as the TNR Shoulder Lamp."
+	name = "\improper M3 型陆战队护甲"
+	desc = "USCMC 制式 M3 型个人护甲，采用复合防弹装甲，集成生命体征监测系统，并带有 IMP 系统和 TNR 肩灯安装座。"
 	icon = 'icons/obj/items/clothing/cm_suits.dmi'
 	icon_state = "1"
 	item_state = "marine_armor" //Make unique states for Officer & Intel armors.
@@ -706,7 +706,7 @@
 	var/armor_overlays[]
 	actions_types = list(/datum/action/item_action/toggle)
 	var/flags_marine_armor = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
-	var/specialty = "M3 pattern marine" //Same thing here. Give them a specialty so that they show up correctly in vendors. speciality does NOTHING if you have NO_NAME_OVERRIDE
+	var/specialty = "M3 型陆战队" //Same thing here. Give them a specialty so that they show up correctly in vendors. speciality does NOTHING if you have NO_NAME_OVERRIDE
 	w_class = SIZE_HUGE
 	uniform_restricted = null
 	sprite_sheets = list(SPECIES_MONKEY = 'icons/mob/humans/species/monkeys/onmob/suit_monkey_1.dmi')
@@ -726,7 +726,7 @@
 /obj/item/clothing/suit/marine/Initialize(mapload)
 	. = ..()
 	if(!(flags_atom & NO_NAME_OVERRIDE))
-		name = "[specialty] armor"
+		name = "[specialty]护甲"
 
 	if(!(flags_atom & NO_SNOW_TYPE))
 		select_gamemode_skin(type)
@@ -790,7 +790,7 @@
 	..()
 
 	if(!isturf(user.loc))
-		to_chat(user, SPAN_WARNING("You cannot turn the light [light_on ? "off" : "on"] while in [user.loc].")) //To prevent some lighting anomalies.
+		to_chat(user, SPAN_WARNING("你在[user.loc]内时无法[light_on ? "关闭" : "打开"]灯光。")) //To prevent some lighting anomalies.
 		return
 
 	if(flashlight_cooldown > world.time)
@@ -839,23 +839,23 @@
 	. = ..()
 	if (.)
 		if(issynth(M) && M.allow_gun_usage == FALSE && !(flags_marine_armor & SYNTH_ALLOWED))
-			M.visible_message(SPAN_DANGER("Your programming prevents you from wearing this!"))
+			M.visible_message(SPAN_DANGER("你的程序不允许你穿戴这件装备！"))
 			return 0
 
 /obj/item/clothing/suit/marine/lines
-	name = "M3 pattern ridged marine armor"
+	name = "M3 型棱纹陆战队护甲"
 	icon_state = "2"
-	specialty = "M3 pattern ridged marine"
+	specialty = "M3 型棱纹陆战队"
 
 /obj/item/clothing/suit/marine/smooth
-	name = "M3 pattern smooth marine armor"
+	name = "M3 型光面陆战队护甲"
 	icon_state = "3"
-	specialty = "M3 pattern smooth marine"
+	specialty = "M3 型光面陆战队"
 
 /obj/item/clothing/suit/marine/light
-	name = "\improper M3-L pattern light armor"
-	desc = "A lighter, cut down version of the standard M3 pattern armor. It sacrifices durability for less weight."
-	specialty = "\improper M3-L pattern light"
+	name = "\improper M3-L 型轻型护甲"
+	desc = "标准 M3 型护甲的精简轻量版本，以降低耐久度换取更轻的重量。"
+	specialty = "\improper M3-L 型轻型"
 	icon_state = "L1"
 	armor_variation = 3
 	slowdown = SLOWDOWN_ARMOR_LIGHT
@@ -869,12 +869,12 @@
 	restricted_accessory_slots = list(ACCESSORY_SLOT_DECORARMOR, ACCESSORY_SLOT_DECORBRACER, ACCESSORY_SLOT_DECORGROIN, ACCESSORY_SLOT_M3UTILITY, ACCESSORY_SLOT_PAINT)
 
 /obj/item/clothing/suit/marine/light/lines
-	name = "M3 pattern ridged marine armor"
+	name = "M3 型棱纹陆战队护甲"
 	icon_state = "L2"
 	armor_variation = 0
 
 /obj/item/clothing/suit/marine/light/smooth
-	name = "M3 pattern smooth marine armor"
+	name = "M3 型光面陆战队护甲"
 	icon_state = "L3"
 	armor_variation = 0
 
@@ -883,9 +883,9 @@
 
 
 /obj/item/clothing/suit/marine/heavy
-	name = "\improper M3-H pattern heavy armor"
-	desc = "M3 armor vest with a rheological liner behind the chestplate, additional armor over the limbs to improve protection ballistic and blast protections. \nMarginal improvement in other areas, and the mass of the extra plates degrades agility, especially in null-gee."
-	specialty = "\improper M3-H pattern"
+	name = "\improper M3-H 型重型护甲"
+	desc = "在胸甲后加入流变衬层的 M3 装甲背心，四肢增设护甲，以增强防弹与抗爆性能。\n其他方面的提升有限，额外护甲板的重量降低了灵活性，在失重环境中尤其明显。"
+	specialty = "\improper M3-H 型"
 	icon_state = "H1"
 	armor_variation = 3
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
@@ -898,51 +898,51 @@
 	movement_compensation = SLOWDOWN_ARMOR_MEDIUM
 
 /obj/item/clothing/suit/marine/heavy/lines
-	name = "M3 pattern ridged marine armor"
+	name = "M3 型棱纹陆战队护甲"
 	icon_state = "L2"
 	armor_variation = 0
 
 /obj/item/clothing/suit/marine/heavy/smooth
-	name = "M3 pattern smooth marine armor"
+	name = "M3 型光面陆战队护甲"
 	icon_state = "L3"
 	armor_variation = 0
 
 /obj/item/clothing/suit/marine/rto
 	icon_state = "io"
-	name = "\improper M4 pattern marine armor"
-	desc = "A well tinkered and crafted hybrid of Smart-Gunner mesh and M3 pattern plates. Robust, yet nimble, with room for all your pouches."
+	name = "\improper M4 型陆战队护甲"
+	desc = "将智能机枪手网状护甲与 M3 型护甲板精心结合的改进护甲。坚固而灵活，能容纳你的各种携行袋。"
 	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_rad = CLOTHING_ARMOR_MEDIUM
 	light_range = 5 //slightly higher
-	specialty = "M4 pattern marine"
+	specialty = "M4 型陆战队"
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_DECORARMOR, ACCESSORY_SLOT_DECORGROIN, ACCESSORY_SLOT_DECORSHIN, ACCESSORY_SLOT_DECORBRACER, ACCESSORY_SLOT_M3UTILITY, ACCESSORY_SLOT_PONCHO, ACCESSORY_SLOT_DECORKNEE)
 	restricted_accessory_slots = list(ACCESSORY_SLOT_DECORARMOR, ACCESSORY_SLOT_DECORGROIN, ACCESSORY_SLOT_DECORBRACER, ACCESSORY_SLOT_DECORSHIN, ACCESSORY_SLOT_M3UTILITY, ACCESSORY_SLOT_DECORKNEE)
 
 /obj/item/clothing/suit/marine/rto/forecon
-	name = "\improper M3-R pattern recon armor"
-	desc = "A modified Colonial Marines M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. Issued mostly to recon units."
+	name = "\improper M3-R 型侦察护甲"
+	desc = "改进型殖民地陆战队 M3 型胸甲，可保护胸部免受枪弹、利器和意外伤害，主要配发给侦察部队。"
 	icon_state = "4"
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_DECORARMOR, ACCESSORY_SLOT_DECORGROIN, ACCESSORY_SLOT_DECORSHIN, ACCESSORY_SLOT_DECORBRACER, ACCESSORY_SLOT_DECORNECK, ACCESSORY_SLOT_PAINT, ACCESSORY_SLOT_M3UTILITY, ACCESSORY_SLOT_PONCHO, ACCESSORY_SLOT_DECORKNEE)
 	restricted_accessory_slots = list(ACCESSORY_SLOT_DECORARMOR, ACCESSORY_SLOT_DECORGROIN, ACCESSORY_SLOT_DECORBRACER, ACCESSORY_SLOT_DECORNECK, ACCESSORY_SLOT_DECORSHIN, ACCESSORY_SLOT_M3UTILITY, ACCESSORY_SLOT_PAINT, ACCESSORY_SLOT_DECORKNEE)
 
 /obj/item/clothing/suit/marine/leader
-	name = "\improper B12 pattern marine armor"
-	desc = "Semi-experimental body armor system similar to M3, incorporating primarily carbon fiber instead of boron carbide. \nDesigned in a lovely olive green, slightly improved protection against blunt impact and biological hazards."
+	name = "\improper B12 型陆战队护甲"
+	desc = "类似 M3 的半试验型防弹护甲系统，主要以碳纤维替代碳化硼。\n采用漂亮的橄榄绿色，对钝击和生物危害的防护略有提升。"
 	icon_state = "7"
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_bomb = CLOTHING_ARMOR_MEDIUM
 	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_internaldamage = CLOTHING_ARMOR_MEDIUMHIGH
-	specialty = "B12 pattern marine"
+	specialty = "B12 型陆战队"
 
 /obj/item/clothing/suit/marine/guard
-	desc = "Standard UACG issue M3 Pattern Personal Armor. Composite ballistic armor, integral biomonitoring system, and brackets for the IMP system as well as the TNR Shoulder Lamp."
+	desc = "UACG 制式 M3 型个人护甲，采用复合防弹装甲，集成生命体征监测系统，并带有 IMP 系统和 TNR 肩灯安装座。"
 	icon_state = "uacg"
 	item_state = "uacg"
 	flags_atom = NO_SNOW_TYPE
-	name = "\improper M3 pattern armor"
-	specialty = "M3 pattern"
+	name = "\improper M3 型护甲"
+	specialty = "M3 型"
 
 /obj/item/clothing/suit/marine/guard/Initialize(mapload)
 	. = ..()
@@ -952,16 +952,16 @@
 //Army & USASF custom-armors\\
 
 /obj/item/clothing/suit/marine/medium/rto/navy
-	name = "\improper M4-N pattern armor"
-	desc = "A set of USASF acquired M4 armor, with slight modifications to better suite ship-side usage. Robust, yet very nimble, with room for all your pouches. Compatible with attachable components of the M3-pattern armor system."
+	name = "\improper M4-N 型护甲"
+	desc = "USASF 采购的 M4 护甲，经过小幅改装，更适合舰上使用。坚固而灵活，能容纳你的各种携行袋，兼容 M3 型护甲系统的附加组件。"
 	icon_state = "navy"
 	item_state = "navy"
 	slowdown = SLOWDOWN_ARMOR_LIGHT    //carbon fibre and shit in the plates rather than heavy stuff, so the swabbies stay nimble
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 
 /obj/item/clothing/suit/marine/medium/rto/navy/heavy
-	name = "\improper M4-N pattern shore-deployment armor"
-	desc = "A set of USASF acquired M4 armor, modified to fit the needs of the members that see deployment on the surface of worlds. Robust, yet very nimble, with room for all your pouches. Compatible with attachable components of the M3-pattern armor system."
+	name = "\improper M4-N 型岸勤部署护甲"
+	desc = "USASF 采购的 M4 护甲，针对部署到星球地表的人员需求进行了改装。坚固而灵活，能容纳你的各种携行袋，兼容 M3 型护甲系统的附加组件。"
 
 /obj/item/clothing/suit/marine/medium/rto/navy/heavy/Initialize(mapload)
 	. = ..()
@@ -973,8 +973,8 @@
 	src.attach_accessory(null, shoulderpads, TRUE)
 
 /obj/item/clothing/suit/marine/medium/rto/army
-	name = "\improper Personal Body Armor System"
-	desc = "Whilst it saw limited field-testing amongst the USCMC, the US Army adopted the M4 series pattern armor across the board under the PBAS program. Surprisingly uncomfortable, even compared to the old M3 series armor. At least it's compatible with attachable suplementary armor components of the M3 series."
+	name = "\improper 个人防弹护甲系统"
+	desc = "M4 系列护甲只在 USCMC 中进行了有限的实地试验，美国陆军却已在 PBAS 计划下全面采用。即使与老旧的 M3 系列相比，它也出奇地不舒服。至少它兼容 M3 系列的附加护甲组件。"
 	icon_state = "io"
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_DECORARMOR, ACCESSORY_SLOT_DECORGROIN, ACCESSORY_SLOT_DECORSHIN, ACCESSORY_SLOT_DECORBRACER, ACCESSORY_SLOT_M3UTILITY, ACCESSORY_SLOT_PONCHO, ACCESSORY_SLOT_DECORKNEE)
@@ -1009,9 +1009,9 @@
 //==================PLU Lamp Rig==================\\
 
 /obj/item/clothing/suit/marine/lamp
-	name = "\improper PLU lamp rig"
+	name = "\improper PLU 肩灯背架"
 	icon_state = "lamp_rig"
-	desc = "A lightweight rig designed to support a shoulder lamp."
+	desc = "用于支撑肩灯的轻型背架。"
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 	blood_overlay_type = "coat"
 	flags_armor_protection = BODY_FLAG_CHEST

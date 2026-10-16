@@ -51,7 +51,7 @@
 	if(istype(I, /obj/item/clothing/accessory))
 
 		if(!LAZYLEN(valid_accessory_slots))
-			to_chat(usr, SPAN_WARNING("You cannot attach accessories of any kind to \the [src]."))
+			to_chat(usr, SPAN_WARNING("你无法在[src]上安装任何配饰。"))
 			return
 
 		var/obj/item/clothing/accessory/A = I
@@ -61,7 +61,7 @@
 			attach_accessory(user, A)
 			return TRUE //For some suit/storage items which both allow attaching accessories and also have their own internal storage.
 		else
-			to_chat(user, SPAN_WARNING("You cannot attach more accessories of this type to [src]."))
+			to_chat(user, SPAN_WARNING("[src]无法再安装更多这种配饰。"))
 		return
 
 	if(LAZYLEN(accessories))
@@ -74,7 +74,7 @@
 /obj/item/clothing/get_examine_text(mob/user)
 	. = ..()
 	for(var/obj/item/clothing/accessory/A in accessories)
-		. += "[icon2html(A, user)] \A [A] is [A.additional_examine_text()]" //The spacing of the examine text proc is deliberate. By default it returns ".".
+		. += "[icon2html(A, user)] [A]：[A.additional_examine_text()]" //The spacing of the examine text proc is deliberate. By default it returns ".".
 
 /**
  *  Attach accessory A to src
@@ -110,8 +110,8 @@
 	update_clothing_icon()
 
 /obj/item/clothing/proc/removetie_verb()
-	set name = "Remove Accessory"
-	set category = "Object"
+	set name = "拆下配饰"
+	set category = "物品"
 	set src in usr
 
 	remove_accessory(usr, pick_accessory_to_remove(usr, usr))
@@ -135,12 +135,12 @@
 
 	if(LAZYLEN(removables) > 1)
 		var/use_radials = user.client.prefs?.no_radials_preference ? FALSE : TRUE
-		var/choice = use_radials ? show_radial_menu(user, targetmob, removables, require_near = FALSE) : tgui_input_list(user, "Select an accessory to remove from [src]", "Remove accessory", removables)
+		var/choice = use_radials ? show_radial_menu(user, targetmob, removables, require_near = FALSE) : tgui_input_list(user, "选择要从[src]上拆下的配饰", "拆下配饰", removables)
 		accessory = choice_to_accessory[choice]
 	else
 		accessory = choice_to_accessory[removables[1]]
 	if(!user.Adjacent(src))
-		to_chat(user, SPAN_WARNING("You're too far away!"))
+		to_chat(user, SPAN_WARNING("你离得太远了！"))
 		return
 
 	return accessory

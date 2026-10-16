@@ -1,5 +1,5 @@
 /obj/item/clipboard
-	name = "clipboard"
+	name = "写字夹板"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "clipboard"
 	item_state = "clipboard"
@@ -50,7 +50,7 @@
 		W.forceMove(src)
 		if(istype(W, /obj/item/paper))
 			toppaper = W
-		to_chat(user, SPAN_NOTICE("You clip [W] onto [src]."))
+		to_chat(user, SPAN_NOTICE("你将[W]夹到[src]上。"))
 		update_icon()
 
 	else if(istype(toppaper) && HAS_TRAIT(W, TRAIT_TOOL_PEN))
@@ -64,23 +64,23 @@
 
 	var/dat
 	if(haspen)
-		dat += "<A href='byond://?src=\ref[src];pen=1'>Remove Pen</A><BR><HR>"
+		dat += "<A href='byond://?src=\ref[src];pen=1'>取下笔</A><BR><HR>"
 	else
-		dat += "<A href='byond://?src=\ref[src];addpen=1'>Add Pen</A><BR><HR>"
+		dat += "<A href='byond://?src=\ref[src];addpen=1'>放入笔</A><BR><HR>"
 
 	//The topmost paper. I don't think there's any way to organise contents in byond, so this is what we're stuck with. -Pete
 	if(toppaper)
 		var/obj/item/paper/P = toppaper
-		dat += "<A href='byond://?src=\ref[src];write=\ref[P]'>Write</A> <A href='byond://?src=\ref[src];remove=\ref[P]'>Remove</A> - <A href='byond://?src=\ref[src];read=\ref[P]'>[P.name]</A><BR><HR>"
+		dat += "<A href='byond://?src=\ref[src];write=\ref[P]'>书写</A> <A href='byond://?src=\ref[src];remove=\ref[P]'>取出</A> - <A href='byond://?src=\ref[src];read=\ref[P]'>[P.name]</A><BR><HR>"
 
 	for(var/obj/item/paper/P in src)
 		if(P==toppaper)
 			continue
-		dat += "<A href='byond://?src=\ref[src];remove=\ref[P]'>Remove</A> - <A href='byond://?src=\ref[src];read=\ref[P]'>[P.name]</A><BR>"
+		dat += "<A href='byond://?src=\ref[src];remove=\ref[P]'>取出</A> - <A href='byond://?src=\ref[src];read=\ref[P]'>[P.name]</A><BR>"
 	for(var/obj/item/photo/Ph in src)
-		dat += "<A href='byond://?src=\ref[src];remove=\ref[Ph]'>Remove</A> - <A href='byond://?src=\ref[src];look=\ref[Ph]'>[Ph.name]</A><BR>"
+		dat += "<A href='byond://?src=\ref[src];remove=\ref[Ph]'>取出</A> - <A href='byond://?src=\ref[src];look=\ref[Ph]'>[Ph.name]</A><BR>"
 
-	show_browser(user, dat, "Clipboard", "clipboard")
+	show_browser(user, dat, "写字夹板", "clipboard")
 	onclose(user, "clipboard")
 	add_fingerprint(usr)
 	return
@@ -105,7 +105,7 @@
 					if(usr.drop_held_item())
 						W.forceMove(src)
 						haspen = W
-						to_chat(usr, SPAN_NOTICE("You slot the pen into \the [src]."))
+						to_chat(usr, SPAN_NOTICE("你将笔插入[src]。"))
 
 		else if(href_list["write"])
 			var/obj/item/P = locate(href_list["write"])
@@ -154,7 +154,7 @@
 			var/obj/item/P = locate(href_list["top"])
 			if(P && (P.loc == src) && istype(P, /obj/item/paper) )
 				toppaper = P
-				to_chat(usr, SPAN_NOTICE("You move [P.name] to the top."))
+				to_chat(usr, SPAN_NOTICE("你将[P.name]移到了最上面。"))
 
 		//Update everything
 		attack_self(usr)

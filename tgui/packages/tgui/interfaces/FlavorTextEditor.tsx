@@ -18,6 +18,20 @@ type Data = {
   categories: Array<string>;
 };
 
+const flavorCategoryLabels: Record<string, string> = {
+  general: '整体',
+  head: '头部',
+  face: '面部',
+  eyes: '眼睛',
+  torso: '躯干',
+  arms: '手臂',
+  hands: '双手',
+  legs: '腿部',
+  feet: '双脚',
+  helmet: '头盔',
+  armor: '护甲',
+};
+
 export const FlavorTextEditor = (props) => {
   const { act, data } = useBackend<Data>();
   const {
@@ -66,8 +80,7 @@ export const FlavorTextEditor = (props) => {
                       changeCategory(categories[index], data[categories[index]])
                     }
                   >
-                    {categories[index][0].toUpperCase() +
-                      categories[index].slice(1)}
+                    {flavorCategoryLabels[categories[index]] || categories[index]}
                   </Tabs.Tab>
                 );
               })}
@@ -76,7 +89,9 @@ export const FlavorTextEditor = (props) => {
           <Section
             fill
             title={
-              'Edit ' + category + ' flavor text (Shift+Enter for new line)'
+              '编辑' +
+              (flavorCategoryLabels[category] || category) +
+              '描述（Shift+Enter 换行）'
             }
             buttons={
               <>
@@ -84,10 +99,10 @@ export const FlavorTextEditor = (props) => {
                   icon="floppy-disk"
                   onClick={() => save(buffer, category, flavorText)}
                 >
-                  Save
+                  保存
                 </Button>
                 <Button icon="undo" onClick={() => setBuffer(flavorText)}>
-                  Revert
+                  撤销修改
                 </Button>
               </>
             }

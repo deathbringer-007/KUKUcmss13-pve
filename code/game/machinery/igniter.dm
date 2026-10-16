@@ -1,6 +1,6 @@
 /obj/structure/machinery/igniter
-	name = "igniter"
-	desc = "It's useful for igniting flammable items."
+	name = "点火器"
+	desc = "用于点燃易燃物品。"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "igniter1"
 	plane = FLOOR_PLANE
@@ -45,8 +45,8 @@
 // Wall mounted remote-control igniter.
 
 /obj/structure/machinery/sparker
-	name = "Mounted igniter"
-	desc = "A wall-mounted ignition device."
+	name = "壁挂点火器"
+	desc = "壁挂式点火装置。"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "migniter"
 	var/id = null
@@ -69,10 +69,10 @@
 		add_fingerprint(user)
 		src.disable = !src.disable
 		if (src.disable)
-			user.visible_message(SPAN_DANGER("[user] has disabled the [src]!"), SPAN_DANGER("You disable the connection to the [src]."))
+			user.visible_message(SPAN_DANGER("[user]停用了[src]！"), SPAN_DANGER("你断开了[src]的连接。"))
 			icon_state = "[base_state]-d"
 		if (!src.disable)
-			user.visible_message(SPAN_DANGER("[user] has reconnected the [src]!"), SPAN_DANGER("You fix the connection to the [src]."))
+			user.visible_message(SPAN_DANGER("[user]重新接通了[src]！"), SPAN_DANGER("你修复了[src]的连接。"))
 			if(src.powered())
 				icon_state = "[base_state]"
 			else

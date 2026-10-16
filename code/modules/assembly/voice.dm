@@ -1,6 +1,6 @@
 /obj/item/device/assembly/voice
-	name = "voice analyzer"
-	desc = "A small electronic device able to record a voice sample, and send a signal when that sample is repeated."
+	name = "语音分析器"
+	desc = "可录制一段语音样本的小型电子装置，再次听到相同内容时会发出信号。"
 	icon_state = "voice"
 	matter = list("metal" = 500, "glass" = 50, "waste" = 10)
 
@@ -12,7 +12,7 @@
 		recorded = msg
 		listening = 0
 		var/turf/T = get_turf(src) //otherwise it won't work in hand
-		T.visible_message("[icon2html(src, hearers(src))] beeps, \"Activation message is '[recorded]'.\"")
+		T.visible_message("[icon2html(src, hearers(src))]发出哔声：“触发语句为‘[recorded]’。”")
 	else
 		if(findtext(msg, recorded))
 			pulse(0)
@@ -22,7 +22,7 @@
 		if(!holder)
 			listening = !listening
 			var/turf/T = get_turf(src)
-			T.visible_message("[icon2html(src, hearers(src))] beeps, \"[listening ? "Now" : "No longer"] recording input.\"")
+			T.visible_message("[icon2html(src, hearers(src))]发出哔声：“[listening ? "开始" : "停止"]录制语音。”")
 
 
 /obj/item/device/assembly/voice/attack_self(mob/user)

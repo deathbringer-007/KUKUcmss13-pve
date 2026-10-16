@@ -1,9 +1,9 @@
 // Flags.
 
 /obj/item/stack/flag
-	name = "flags"
-	desc = "Some colorful flags."
-	singular_name = "flag"
+	name = "旗帜"
+	desc = "一些色彩鲜艳的旗帜。"
+	singular_name = "旗帜"
 	amount = 10
 	max_amount = 10
 	icon = 'icons/obj/structures/props/mining.dmi'
@@ -16,28 +16,28 @@
 	base_state = icon_state
 
 /obj/item/stack/flag/red
-	name = "red flags"
-	singular_name = "red flag"
+	name = "红色旗帜"
+	singular_name = "红色旗帜"
 	icon_state = "redflag"
 
 /obj/item/stack/flag/yellow
-	name = "yellow flags"
-	singular_name = "yellow flag"
+	name = "黄色旗帜"
+	singular_name = "黄色旗帜"
 	icon_state = "yellowflag"
 
 /obj/item/stack/flag/green
-	name = "green flags"
-	singular_name = "green flag"
+	name = "绿色旗帜"
+	singular_name = "绿色旗帜"
 	icon_state = "greenflag"
 
 /obj/item/stack/flag/blue
-	name = "blue flags"
-	singular_name = "blue flag"
+	name = "蓝色旗帜"
+	singular_name = "蓝色旗帜"
 	icon_state = "blueflag"
 
 /obj/item/stack/flag/purple
-	name = "purple flags"
-	singular_name = "purple flag"
+	name = "紫色旗帜"
+	singular_name = "紫色旗帜"
 	icon_state = "purpleflag"
 
 /obj/item/stack/flag/attackby(obj/item/W, mob/user)
@@ -51,7 +51,7 @@
 		upright = 0
 		icon_state = base_state
 		anchored = FALSE
-		src.visible_message("<b>[user]</b> knocks down [src].")
+		src.visible_message("<b>[user]</b>放倒了[src]。")
 	else
 		..()
 
@@ -60,12 +60,12 @@
 
 	var/turf/T = get_turf(src)
 	if(!T)
-		to_chat(user, "The flag won't stand up in this terrain.")
+		to_chat(user, "这种地形无法竖起旗帜。")
 		return
 
 	var/obj/item/stack/flag/F = locate() in get_turf(src)
 	if(F && F.upright)
-		to_chat(user, "There is already a flag here.")
+		to_chat(user, "这里已经有一面旗帜了。")
 		return
 
 	var/obj/item/stack/flag/newflag = new src.type(T)
@@ -74,15 +74,15 @@
 	newflag.anchored = TRUE
 	newflag.name = newflag.singular_name
 	newflag.icon_state = "[newflag.base_state]_open"
-	newflag.visible_message("<b>[user]</b> plants [newflag] firmly in the ground.")
+	newflag.visible_message("<b>[user]</b>将[newflag]牢牢插在地上。")
 	src.use(1)
 
 
 /// PLANTABLE FLAG
 
 /obj/structure/flag/plantable
-	name = "flag"
-	desc = "A flag of something. This one looks like you could dismantle it."
+	name = "旗帜"
+	desc = "一面不知代表什么的旗帜。看起来可以收起来。"
 	icon = 'icons/obj/structures/plantable_flag.dmi'
 	pixel_x = 9 // All flags need to be offset to the right by 9 to be centered.
 	layer = ABOVE_XENO_LAYER
@@ -103,14 +103,14 @@
 	if(user.action_busy)
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] starts taking [src] down..."), SPAN_NOTICE("You start taking [src] down..."))
+	user.visible_message(SPAN_NOTICE("[user]开始收起[src]……"), SPAN_NOTICE("你开始收起[src]……"))
 
 	playsound(loc, 'sound/effects/flag_raising.ogg', 30)
 	if(!do_after(user, 6 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC) || QDELETED(src))
 		return
 
 	playsound(loc, 'sound/effects/flag_raised.ogg', 30)
-	user.visible_message(SPAN_NOTICE("[user] starts takes [src] down!"), SPAN_NOTICE("You take [src] down!"))
+	user.visible_message(SPAN_NOTICE("[user]收起了[src]！"), SPAN_NOTICE("你收起了[src]！"))
 	var/obj/item/flag/plantable/flag_item = new flag_type(loc)
 	user.put_in_hands(flag_item)
 	COOLDOWN_START(flag_item, warcry_cooldown_item, COOLDOWN_TIMELEFT(src, warcry_cooldown_struc))
@@ -119,7 +119,7 @@
 /// Proc for when the flag gets forcefully dismantled (due to general damage, explosions, etc.)
 /obj/structure/flag/plantable/proc/demolish(flag_type)
 	playsound(loc, 'sound/effects/flag_raised.ogg', 30)
-	visible_message(SPAN_WARNING("[src] crumples to the ground!"))
+	visible_message(SPAN_WARNING("[src]倒在了地上！"))
 	var/obj/item/flag/plantable/flag_item = new flag_type(loc)
 	COOLDOWN_START(flag_item, warcry_cooldown_item, COOLDOWN_TIMELEFT(src, warcry_cooldown_struc))
 	qdel(src)
@@ -142,29 +142,29 @@
 			return
 		xeno.animation_attack_on(src)
 		playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-		xeno.visible_message(SPAN_DANGER("[xeno] slashes [src]!"), SPAN_DANGER("We slash [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		xeno.visible_message(SPAN_DANGER("[xeno]挥爪抓向[src]！"), SPAN_DANGER("我们挥爪抓向[src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		update_health(rand(xeno.melee_damage_lower, xeno.melee_damage_upper))
 		return XENO_ATTACK_ACTION
 	else
-		to_chat(xeno, SPAN_WARNING("We stare at [src] cluelessly."))
+		to_chat(xeno, SPAN_WARNING("我们茫然地盯着[src]。"))
 		return XENO_NONCOMBAT_ACTION
 
 /obj/structure/flag/plantable/bullet_act(obj/projectile/bullet)
 	bullet_ping(bullet)
-	visible_message(SPAN_DANGER("[src] is hit by [bullet]!"), null, 4, CHAT_TYPE_TAKING_HIT)
+	visible_message(SPAN_DANGER("[bullet]击中了[src]！"), null, 4, CHAT_TYPE_TAKING_HIT)
 	update_health(bullet.damage)
 	return TRUE
 
 /obj/structure/flag/plantable/attackby(obj/item/weapon, mob/living/user)
 	if(!indestructible)
-		visible_message(SPAN_DANGER("[src] has been hit by [user] with [weapon]!"), null, 5, CHAT_TYPE_MELEE_HIT)
+		visible_message(SPAN_DANGER("[user]用[weapon]击中了[src]！"), null, 5, CHAT_TYPE_MELEE_HIT)
 		user.animation_attack_on(src)
 		playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 		update_health(weapon.force * weapon.demolition_mod)
 
 /obj/item/flag/plantable
-	name = "plantable flag"
-	desc = "A flag of something. This one looks ready to be planted into the ground."
+	name = "可插设旗帜"
+	desc = "一面不知代表什么的旗帜。已经可以插在地上了。"
 	w_class = SIZE_LARGE
 	throw_range = 2
 	icon = 'icons/obj/structures/plantable_flag.dmi'
@@ -198,7 +198,7 @@
 /obj/item/flag/plantable/get_examine_text(mob/user)
 	. = ..()
 	if(play_warcry && user.faction == faction)
-		. += SPAN_NOTICE("Planting the flag while in <b>HARM</b> intent will cause you to bellow out a rallying warcry!")
+		. += SPAN_NOTICE("以<b>伤害意图</b>插下旗帜时，你会发出鼓舞士气的战吼！")
 
 /// Proc for turning the flag item into a structure.
 /obj/item/flag/plantable/proc/plant_flag(mob/living/user, play_warcry = FALSE, warcry_sound, warcry_extra_sound, faction)
@@ -206,30 +206,30 @@
 		return
 
 	if(SSinterior.in_interior(user))
-		to_chat(usr, SPAN_WARNING("There's no way to plant [src] in here!"))
+		to_chat(usr, SPAN_WARNING("这里没法插设[src]！"))
 		return
 
 	var/turf/turf_to_plant = get_step(user, user.dir)
 	if(istype(turf_to_plant, /turf/open))
 		var/turf/open/floor = turf_to_plant
 		if(!floor.allow_construction || istype(floor, /turf/open/space))
-			to_chat(user, SPAN_WARNING("You cannot deploy [src] here, find a more secure surface!"))
+			to_chat(user, SPAN_WARNING("这里无法插设[src]，找一处更稳固的地面吧！"))
 			return
 	else
-		to_chat(user, SPAN_WARNING("[turf_to_plant] is blocking you from deploying [src]!"))
+		to_chat(user, SPAN_WARNING("[turf_to_plant]挡住了位置，无法插设[src]！"))
 		return
 
 	for(var/obj/object in turf_to_plant)
 		if(object.density)
-			to_chat(usr, SPAN_WARNING("You need a clear, open area to plant [src], something is blocking the way in front of you!"))
+			to_chat(usr, SPAN_WARNING("你需要一片没有障碍物的空地才能插设[src]，前方有东西挡住了！"))
 			return
 
-	user.visible_message(SPAN_NOTICE("[user] starts planting [src] into the ground..."), SPAN_NOTICE("You start planting [src] into the ground..."))
+	user.visible_message(SPAN_NOTICE("[user]开始将[src]插入地面……"), SPAN_NOTICE("你开始将[src]插入地面……"))
 	playsound(user, 'sound/effects/flag_raising.ogg', 30)
 	if(!do_after(user, 6 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC))
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] plants [src] into the ground!"), SPAN_NOTICE("You plant [src] into the ground!"))
+	user.visible_message(SPAN_NOTICE("[user]将[src]插在了地上！"), SPAN_NOTICE("你将[src]插在了地上！"))
 	var/obj/structure/flag/plantable/planted_flag = new flag_type(turf_to_plant)
 
 	// If there are more than 14 allies nearby, play a stronger rallying cry.
@@ -247,10 +247,10 @@
 			playsound(user, warcry_extra_sound, 40)
 			// Start a cooldown on the flag structure. This way we can keep track of the cooldown when the flag is hoisted and taken down.
 			COOLDOWN_START(planted_flag, warcry_cooldown_struc, 90 SECONDS)
-			user.manual_emote("shouts an invigorating rallying cry!")
+			user.manual_emote("发出了振奋人心的集结战吼！")
 		else
 			playsound(user, warcry_sound, 30)
-			user.manual_emote("shouts an inspiring cry!")
+			user.manual_emote("发出了鼓舞士气的战吼！")
 			// Ditto. If the cooldown isn't finished we have to transfer the leftover time to the structure.
 			COOLDOWN_START(planted_flag, warcry_cooldown_struc, COOLDOWN_TIMELEFT(src, warcry_cooldown_item))
 	else
@@ -266,8 +266,8 @@
 //////////////////////////
 
 /obj/item/flag/plantable/ua
-	name = "\improper United Americas flag"
-	desc = "The flag of the United Americas. This one looks ready to be planted into the ground."
+	name = "\improper 美洲联盟旗帜"
+	desc = "美洲联盟的旗帜。已经可以插在地上了。"
 	icon = 'icons/obj/structures/plantable_flag.dmi'
 	icon_state = "flag_ua"
 	flag_type = /obj/structure/flag/plantable/ua
@@ -277,8 +277,8 @@
 	warcry_extra_sound = 'sound/effects/flag_warcry_ua_extra.ogg'
 
 /obj/structure/flag/plantable/ua
-	name = "\improper United Americas flag"
-	desc = "The flag of the United Americas."
+	name = "\improper 美洲联盟旗帜"
+	desc = "美洲联盟的旗帜。"
 	icon_state = "flag_ua_planted"
 	flag_type = /obj/item/flag/plantable/ua
 
@@ -286,16 +286,16 @@
 //////////////////////////
 
 /obj/item/flag/plantable/usa
-	name = "\improper United States of America flag"
-	desc = "The flag of the United States of America. This one looks ready to be planted into the ground."
+	name = "\improper 美利坚合众国国旗"
+	desc = "美利坚合众国的国旗。已经可以插在地上了。"
 	icon = 'icons/obj/structures/plantable_flag.dmi'
 	icon_state = "flag_usa"
 	flag_type = /obj/structure/flag/plantable/usa
 	faction = FACTION_MARINE
 
 /obj/structure/flag/plantable/usa
-	name = "\improper United States of America flag"
-	desc = "The flag of the United States of America. God Bless these United States."
+	name = "\improper 美利坚合众国国旗"
+	desc = "美利坚合众国的国旗。愿上帝保佑美利坚。"
 	icon_state = "flag_usa_planted"
 	flag_type = /obj/item/flag/plantable/usa
 
@@ -304,8 +304,8 @@
 //////////////////////////
 
 /obj/item/flag/plantable/upp
-	name = "\improper Union of Progressive Peoples flag"
-	desc = "The flag of the Union of Progressive Peoples. This one looks ready to be planted into the ground."
+	name = "\improper 进步人民联盟旗帜"
+	desc = "进步人民联盟的旗帜。已经可以插在地上了。"
 	icon = 'icons/obj/structures/plantable_flag.dmi'
 	icon_state = "flag_upp"
 	flag_type = /obj/structure/flag/plantable/upp
@@ -315,8 +315,8 @@
 	warcry_extra_sound = 'sound/effects/flag_upp_warcry_extra.ogg'
 
 /obj/structure/flag/plantable/upp
-	name = "\improper Union of Progressive Peoples flag"
-	desc = "The flag of the Union of Progressive Peoples. Unity through Strength, Freedom through Unity."
+	name = "\improper 进步人民联盟旗帜"
+	desc = "进步人民联盟的旗帜。以力量求团结，以团结求自由。"
 	icon_state = "flag_upp_planted"
 	flag_type = /obj/item/flag/plantable/upp
 
@@ -324,15 +324,15 @@
 //////////////////////////
 
 /obj/item/flag/plantable/brazil
-	name = "\improper Brazil flag"
-	desc = "The flag of Brazil. This one looks ready to be planted into the ground."
+	name = "\improper 巴西国旗"
+	desc = "巴西的国旗。已经可以插在地上了。"
 	icon = 'icons/obj/structures/plantable_flag.dmi'
 	icon_state = "flag_brazil"
 	flag_type = /obj/structure/flag/plantable/brazil
 	faction = FACTION_COLONIST
 
 /obj/structure/flag/plantable/brazil
-	name = "\improper Brazil flag"
-	desc = "The flag of Brazil."
+	name = "\improper 巴西国旗"
+	desc = "巴西的国旗。"
 	icon_state = "flag_brazil_planted"
 	flag_type = /obj/item/flag/plantable/brazil

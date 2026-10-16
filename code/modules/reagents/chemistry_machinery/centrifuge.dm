@@ -5,8 +5,8 @@
 #define MODE_DISTRIBUTE 1
 
 /obj/structure/machinery/centrifuge
-	name = "Chemical Centrifuge"
-	desc = "A machine that uses centrifugal forces to separate fluids of different densities. Needs a reagent container for input and a vialbox for output. Has a series of toggles to modify its behaviour."
+	name = "化学离心机"
+	desc = "利用离心力分离不同密度液体的机器。需要试剂容器提供原料、试管盒接收产物，可通过一系列开关调整运行方式。"
 	icon = 'icons/obj/structures/machinery/science_machines.dmi'
 	icon_state = "centrifuge_empty_open"
 	active_power_usage = 500
@@ -32,21 +32,21 @@
 	connected_turing = locate(/obj/structure/machinery/autodispenser) in range(tether_range, src)
 	if(connected_turing)
 		RegisterSignal(connected_turing, COMSIG_PARENT_QDELETING, PROC_REF(cleanup))
-		visible_message(SPAN_NOTICE("<b>The [src] beeps:</b> Turing Dispenser connected."))
+		visible_message(SPAN_NOTICE("<b>[src]鸣响提示：</b>已连接图灵自动配药机。"))
 
 /obj/structure/machinery/centrifuge/attackby(obj/item/B, mob/living/user)
 	if(machine_processing)
-		to_chat(user, SPAN_WARNING("The [src] is still running!"))
+		to_chat(user, SPAN_WARNING("[src]仍在运行！"))
 		return
 	if(!skillcheck(user, SKILL_RESEARCH, SKILL_RESEARCH_TRAINED))
-		to_chat(user, SPAN_WARNING("You have no idea how to use this."))
+		to_chat(user, SPAN_WARNING("你完全不知道该如何使用这台设备。"))
 		return
 	if(B.is_open_container() || istype(B, /obj/item/reagent_container/blood))
 		if(input_container)
-			to_chat(user, SPAN_WARNING("A container is already loaded into the [src]."))
+			to_chat(user, SPAN_WARNING("[src]中已经装有容器。"))
 			return
 		if(input_source == INPUT_TURING)
-			to_chat(user, SPAN_WARNING("The [src] is expecting its input from the Turing. Toggle input back to container if you want to centrifuge this."))
+			to_chat(user, SPAN_WARNING("[src]当前从图灵自动配药机获取原料。要离心处理这个容器中的液体，请将输入源切换回容器。"))
 			return
 		if(user.drop_inv_item_to_loc(B, src))
 			input_container = B
@@ -56,7 +56,7 @@
 				icon_state = "centrifuge_on_open"
 	else if(istype(B, /obj/item/storage/fancy/vials))
 		if(output_container)
-			to_chat(user, SPAN_WARNING("A vial box is already loaded into the [src]."))
+			to_chat(user, SPAN_WARNING("[src]中已经装有试管盒。"))
 			return
 		if(user.drop_inv_item_to_loc(B, src))
 			output_container = B
@@ -65,31 +65,31 @@
 			else
 				icon_state = "centrifuge_empty_closed"
 	else
-		to_chat(user, SPAN_WARNING("[B] doesn't fit in the [src]."))
+		to_chat(user, SPAN_WARNING("[B]无法装入[src]。"))
 		return
 	if(((input_container && input_source == INPUT_CONTAINER) || turing_ready()) && output_container)
-		to_chat(user, SPAN_NOTICE("You insert [B] and start configuring the [src]."))
+		to_chat(user, SPAN_NOTICE("你装入[B]，开始设置[src]。"))
 		updateUsrDialog()
 		icon_state = "centrifuge_spinning"
 		start_processing()
 	else
-		to_chat(user, SPAN_NOTICE("You insert [B] into the [src]."))
+		to_chat(user, SPAN_NOTICE("你将[B]装入[src]。"))
 
 /obj/structure/machinery/centrifuge/attack_hand(mob/user as mob)
 	if(machine_processing)
 		if(input_source == INPUT_TURING && status == 0)
 			stop_processing()
 		else
-			to_chat(user, SPAN_WARNING("The [src] is still running!"))
+			to_chat(user, SPAN_WARNING("[src]仍在运行！"))
 			return
 	if(!skillcheck(user, SKILL_RESEARCH, SKILL_RESEARCH_TRAINED))
-		to_chat(user, SPAN_WARNING("You have no idea how to use this."))
+		to_chat(user, SPAN_WARNING("你完全不知道该如何使用这台设备。"))
 		return
 	if(!input_container && !output_container)
 		tgui_interact(user)
 		return
 	if(output_container)
-		to_chat(user, SPAN_NOTICE("You remove [output_container] from the [src]."))
+		to_chat(user, SPAN_NOTICE("你从[src]中取出[output_container]。"))
 		user.put_in_active_hand(output_container)
 		output_container = null
 		if(input_container)
@@ -97,7 +97,7 @@
 		else
 			icon_state = "centrifuge_empty_open"
 	else if(input_container)
-		to_chat(user, SPAN_NOTICE("You remove [input_container] from the [src]."))
+		to_chat(user, SPAN_NOTICE("你从[src]中取出[input_container]。"))
 		user.put_in_active_hand(input_container)
 		input_container = null
 		icon_state = "centrifuge_empty_open"
@@ -172,7 +172,7 @@
 
 /obj/structure/machinery/centrifuge/proc/turing_ready()
 	if(QDELETED(connected_turing) || src.z != connected_turing.z || get_dist(src, connected_turing) > tether_range)
-		visible_message(SPAN_WARNING("The centrifuge beeps: Turing not found within range."))
+		visible_message(SPAN_WARNING("离心机鸣响提示：范围内未找到图灵自动配药机。"))
 		cleanup()
 		return FALSE
 
@@ -202,21 +202,21 @@
 		if(istype(V,/obj/item/reagent_container/hypospray/autoinjector))
 			var/obj/item/reagent_container/hypospray/autoinjector/A = V
 			if(autolabel)
-				A.name = "autoinjector ([autolabel])"
+				A.name = "自动注射器（[autolabel]）"
 			else if(!length(A.reagents.reagent_list))
-				A.name = "autoinjector"
+				A.name = "自动注射器"
 			else
-				A.name = "autoinjector (" + A.reagents.reagent_list[1].name + ")"
+				A.name = "自动注射器（" + A.reagents.reagent_list[1].name + "）"
 			var/numberOfUses = A.reagents.total_volume / A.amount_per_transfer_from_this
 			A.uses_left = floor(numberOfUses) == numberOfUses ? numberOfUses : floor(numberOfUses) + 1
 			A.update_icon()
 		else
 			if(autolabel)
-				V.name = "vial ([autolabel])"
+				V.name = "试管（[autolabel]）"
 			else if(!length(V.reagents.reagent_list) || (length(V.reagents.reagent_list) > 1))
-				V.name = "vial"
+				V.name = "试管"
 			else
-				V.name = "vial (" + V.reagents.reagent_list[1].name + ")"
+				V.name = "试管（" + V.reagents.reagent_list[1].name + "）"
 
 	input_container.update_icon()
 

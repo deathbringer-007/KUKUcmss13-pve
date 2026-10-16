@@ -1,6 +1,6 @@
 /obj/item/weapon/chainofcommand
-	name = "chain of command"
-	desc = "A tool used by great men to placate the frothing masses."
+	name = "指挥之链"
+	desc = "大人物用来安抚群情激愤的民众的工具。"
 	icon_state = "chain"
 	item_state = "chain"
 	flags_atom = FPRINT|QUICK_DRAWABLE|CONDUCT
@@ -9,11 +9,11 @@
 	throwforce = MELEE_FORCE_WEAK
 	w_class = SIZE_MEDIUM
 
-	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
+	attack_verb = list("抽打", "鞭打", "抽打", "鞭笞")
 
 /obj/item/weapon/broken_bottle
-	name = "broken bottle"
-	desc = "A bottle with a sharp broken bottom."
+	name = "破瓶子"
+	desc = "瓶底破裂、断口锋利的瓶子。"
 	icon = 'icons/obj/items/drinks.dmi'
 	icon_state = "broken_bottle"
 	force = MELEE_FORCE_WEAK
@@ -22,7 +22,7 @@
 	throw_range = 5
 	item_state = "broken_beer"
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb = list("stabbed", "slashed", "attacked")
+	attack_verb = list("刺击", "劈砍", "攻击")
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 0
 	var/icon/broken_outline = icon('icons/obj/items/drinks.dmi', "broken")
@@ -35,8 +35,8 @@
 	qdel(src)
 
 /obj/item/weapon/broken_glass
-	name = "broken glass"
-	desc = "A bottle with a sharp broken bottom."
+	name = "破玻璃杯"
+	desc = "瓶底破裂、断口锋利的瓶子。"
 	icon = 'icons/obj/items/drinks.dmi'
 	icon_state = "broken_glass"
 	force = MELEE_FORCE_WEAK
@@ -45,7 +45,7 @@
 	throw_range = 5
 	item_state = "shard-glass"
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb = list("stabbed", "slashed", "attacked")
+	attack_verb = list("刺击", "劈砍", "攻击")
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 0
 	var/icon/broken_outline = icon('icons/obj/items/drinks.dmi', "broken")
@@ -58,8 +58,8 @@
 	qdel(src)
 
 /obj/item/weapon/dart
-	name = "red throwing dart"
-	desc = "A dart. For throwing. This one's red."
+	name = "红色飞镖"
+	desc = "一支用来投掷的飞镖。这支是红色的。"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "red_dart"
 	force = MELEE_FORCE_WEAK
@@ -67,9 +67,9 @@
 	throw_speed = SPEED_VERY_FAST
 	throw_range = 5
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb = list("stabbed", "poked", "attacked")
+	attack_verb = list("刺击", "戳刺", "攻击")
 
 /obj/item/weapon/dart/green
-	name = "green throwing dart"
-	desc = "A dart. For throwing. This one's green."
+	name = "绿色飞镖"
+	desc = "一支用来投掷的飞镖。这支是绿色的。"
 	icon_state = "green_dart"

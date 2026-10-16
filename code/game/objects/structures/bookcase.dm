@@ -1,6 +1,6 @@
 
 /obj/structure/bookcase
-	name = "bookcase"
+	name = "书柜"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "book-0"
 	anchored = TRUE
@@ -18,8 +18,8 @@
 			return
 		xeno.animation_attack_on(src)
 		playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-		xeno.visible_message(SPAN_DANGER("[xeno] slices [src] apart!"),
-		SPAN_DANGER("We slice [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		xeno.visible_message(SPAN_DANGER("[xeno]撕碎了[src]！"),
+		SPAN_DANGER("我们撕碎了[src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		deconstruct(FALSE)
 		return XENO_ATTACK_ACTION
 	else
@@ -39,24 +39,24 @@
 		O.forceMove(src)
 		update_icon()
 	else if(HAS_TRAIT(O, TRAIT_TOOL_PEN))
-		var/newname = stripped_input(user, "What would you like to title this bookshelf?")
+		var/newname = stripped_input(user, "你想给这个书架起什么名字？")
 		if(!newname)
 			return
 		else
-			name = ("bookcase ([strip_html(newname)])")
+			name = ("书柜（[strip_html(newname)]）")
 			playsound(src, "paper_writing", 15, TRUE)
 	else if(HAS_TRAIT(O, TRAIT_TOOL_WRENCH))
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 		if(do_after(user, 1 SECONDS, INTERRUPT_MOVED, BUSY_ICON_FRIENDLY, src))
-			user.visible_message("[user] deconstructs [src].", \
-				"You deconstruct [src].", "You hear a noise.")
+			user.visible_message("[user]拆除了[src]。", \
+				"你拆除了[src]。", "你听到一阵声响。")
 			deconstruct(FALSE)
 	else
 		..()
 
 /obj/structure/bookcase/attack_hand(mob/user as mob)
 	if(length(contents))
-		var/obj/item/book/choice = input("Which book would you like to remove from the shelf?") as null|obj in contents
+		var/obj/item/book/choice = input("你想从书架上取下哪本书？") as null|obj in contents
 		if(choice)
 			if(user.is_mob_incapacitated() || !in_range(loc, user))
 				return
@@ -92,7 +92,7 @@
 
 
 /obj/structure/bookcase/manuals/medical
-	name = "medical manuals bookcase"
+	name = "医学手册书柜"
 
 /obj/structure/bookcase/manuals/medical/Initialize()
 	. = ..()
@@ -103,7 +103,7 @@
 
 
 /obj/structure/bookcase/manuals/engineering
-	name = "engineering manuals bookcase"
+	name = "工程手册书柜"
 
 /obj/structure/bookcase/manuals/engineering/Initialize()
 	. = ..()
@@ -115,7 +115,7 @@
 	update_icon()
 
 /obj/structure/bookcase/manuals/research_and_development
-	name = "\improper R&D manuals bookcase"
+	name = "\improper 研发手册书柜"
 
 /obj/structure/bookcase/manuals/research_and_development/Initialize()
 	. = ..()

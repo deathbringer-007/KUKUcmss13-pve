@@ -40,8 +40,8 @@
 
 /obj/item/device/lightreplacer
 
-	name = "light replacer"
-	desc = "A device to automatically replace lights. Refill with working lightbulbs."
+	name = "灯具更换器"
+	desc = "用于自动更换灯具的设备。可装入完好的灯泡补充库存。"
 
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "lightreplacer0"
@@ -59,42 +59,42 @@
 /obj/item/device/lightreplacer/Initialize()
 	. = ..()
 	uses = max_uses
-	failmsg = "The [name]'s refill light blinks red."
+	failmsg = "[name]的补充指示灯闪着红光。"
 
 /obj/item/device/lightreplacer/get_examine_text(mob/user)
 	. = ..()
-	. += "It has [uses] lights remaining."
+	. += "还剩 [uses] 个备用灯具。"
 
 /obj/item/device/lightreplacer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/sheet/glass))
 		var/obj/item/stack/sheet/glass/G = W
 		if(uses >= max_uses)
-			to_chat(user, SPAN_WARNING("[src.name] is full."))
+			to_chat(user, SPAN_WARNING("[src.name]已装满。"))
 			return
 		else if(G.use(1))
 			AddUses(5)
-			to_chat(user, SPAN_NOTICE("You insert a piece of glass into the [src.name]. You have [uses] lights remaining."))
+			to_chat(user, SPAN_NOTICE("你将一片玻璃装入[src.name]。现有 [uses] 个备用灯具。"))
 			return
 		else
-			to_chat(user, SPAN_WARNING("You need one sheet of glass to replace lights."))
+			to_chat(user, SPAN_WARNING("你需要一片玻璃来补充备用灯具。"))
 
 	if(istype(W, /obj/item/light_bulb))
 		var/obj/item/light_bulb/L = W
 		if(L.status == 0) // LIGHT OKAY
 			if(uses < max_uses)
 				AddUses(1)
-				to_chat(user, "You insert the [L.name] into the [src.name]. You have [uses] lights remaining.")
+				to_chat(user, "你将[L.name]装入[src.name]。现有 [uses] 个备用灯具。")
 				user.drop_held_item()
 				qdel(L)
 				return
 		else
-			to_chat(user, "You need a working light.")
+			to_chat(user, "你需要一个完好的灯具。")
 			return
 
 
 /obj/item/device/lightreplacer/attack_self(mob/user)
 	..()
-	to_chat(usr, "It has [uses] lights remaining.")
+	to_chat(usr, "还剩 [uses] 个备用灯具。")
 
 /obj/item/device/lightreplacer/update_icon()
 	icon_state = "lightreplacer0"
@@ -121,7 +121,7 @@
 	if(target.status != LIGHT_OK)
 		if(CanUse(U))
 			if(!Use(U)) return
-			to_chat(U, SPAN_NOTICE("You replace the [target.fitting] with [src]."))
+			to_chat(U, SPAN_NOTICE("你用[src]更换了[target.fitting]。"))
 
 			if(target.status != LIGHT_EMPTY)
 
@@ -154,7 +154,7 @@
 			to_chat(U, failmsg)
 			return
 	else
-		to_chat(U, "There is a working [target.fitting] already inserted.")
+		to_chat(U, "这里已装有完好的[target.fitting]。")
 		return
 
 //Can you use it?

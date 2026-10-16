@@ -20,11 +20,11 @@ export const FiltrationControl = () => {
               color="good"
               onClick={() => act('activate_filt')}
             >
-              Start Filtration
+              启动过滤
             </Button.Confirm>
           )) || (
             <NoticeBox textAlign="center" success={1} fontSize="20px">
-              Filtration is online
+              过滤系统已启动
             </NoticeBox>
           )}
         </Section>

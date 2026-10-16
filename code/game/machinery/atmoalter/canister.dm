@@ -1,5 +1,5 @@
 /obj/structure/machinery/portable_atmospherics/canister
-	name = "canister"
+	name = "储气罐"
 	icon = 'icons/obj/structures/machinery/atmos.dmi'
 	icon_state = "yellow"
 	density = TRUE
@@ -12,37 +12,37 @@
 	use_power = USE_POWER_NONE
 
 /obj/structure/machinery/portable_atmospherics/canister/sleeping_agent
-	name = "Canister: \[N2O\]"
+	name = "储气罐：\[N2O\]"
 	icon_state = "redws"
 	canister_color = "redws"
 	can_label = 0
 
 /obj/structure/machinery/portable_atmospherics/canister/nitrogen
-	name = "Canister: \[N2\]"
+	name = "储气罐：\[N2\]"
 	icon_state = "red"
 	canister_color = "red"
 	can_label = 0
 
 /obj/structure/machinery/portable_atmospherics/canister/oxygen
-	name = "Canister: \[O2\]"
+	name = "储气罐：\[O2\]"
 	icon_state = "blue"
 	canister_color = "blue"
 	can_label = 0
 
 /obj/structure/machinery/portable_atmospherics/canister/phoron
-	name = "Canister \[Phoron\]"
+	name = "储气罐\[弗燃素\]"
 	icon_state = "orange"
 	canister_color = "orange"
 	can_label = 0
 
 /obj/structure/machinery/portable_atmospherics/canister/carbon_dioxide
-	name = "Canister \[CO2\]"
+	name = "储气罐\[CO2\]"
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
 
 /obj/structure/machinery/portable_atmospherics/canister/air
-	name = "Canister \[Air\]"
+	name = "储气罐\[空气\]"
 	icon_state = "grey"
 	canister_color = "grey"
 	can_label = 0
@@ -50,12 +50,12 @@
 /obj/structure/machinery/portable_atmospherics/canister/air/airlock
 
 /obj/structure/machinery/portable_atmospherics/canister/empty/oxygen
-	name = "Canister: \[O2\]"
+	name = "储气罐：\[O2\]"
 	icon_state = "blue"
 	canister_color = "blue"
 
 /obj/structure/machinery/portable_atmospherics/canister/empty/phoron
-	name = "Canister \[Phoron\]"
+	name = "储气罐\[弗燃素\]"
 	icon_state = "orange"
 	canister_color = "orange"
 
@@ -98,7 +98,7 @@ update_flag
 
 /obj/structure/machinery/portable_atmospherics/canister/attackby(obj/item/W as obj, mob/user as mob)
 	if(!HAS_TRAIT(W, TRAIT_TOOL_WRENCH) && !istype(W, /obj/item/tank) && !istype(W, /obj/item/device/analyzer))
-		visible_message(SPAN_DANGER("[user] hits [src] with [W]!"))
+		visible_message(SPAN_DANGER("[user]用[W]击打了[src]！"))
 		update_health(W.force)
 		src.add_fingerprint(user)
 	..()

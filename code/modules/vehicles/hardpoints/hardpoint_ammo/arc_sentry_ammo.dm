@@ -1,6 +1,6 @@
 /obj/item/ammo_magazine/hardpoint/arc_sentry
-	name = "\improper RE700 Rotary Cannon Magazine"
-	desc = "A magazine for RE700 Rotary Cannon filled with 20mm rounds. Supports IFF."
+	name = "\improper RE700转管炮弹箱"
+	desc = "RE700转管炮用弹箱，装有20毫米弹药。支持敌我识别。"
 	caliber = "20mm"
 	icon_state = "ace_autocannon"
 	w_class = SIZE_LARGE

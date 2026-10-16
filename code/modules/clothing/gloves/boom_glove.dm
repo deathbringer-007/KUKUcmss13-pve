@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/marine/boom_glove
-	name = "XXV-5 Forcegloves"
-	desc = "A ridiculous prototype weapon made by crazy scientists. These gloves generate directed explosions when used."
+	name = "XXV-5 力场手套"
+	desc = "疯狂科学家造出的荒唐原型武器。这副手套使用时会产生定向爆炸。"
 
 	icon = 'icons/obj/items/clothing/gloves.dmi'
 	icon_state = "s-ninjak"
@@ -32,7 +32,7 @@
 	// Check for cooldown
 	if(world.time < last_use + cooldown)
 		..()
-		to_chat(H, SPAN_NOTICE("The gloves are still recharging!"))
+		to_chat(H, SPAN_NOTICE("手套还在充能！"))
 		return
 
 	if(!do_after(H, windup, INTERRUPT_ALL, BUSY_ICON_HOSTILE))

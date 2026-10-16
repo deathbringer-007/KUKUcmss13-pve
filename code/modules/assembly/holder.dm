@@ -1,5 +1,5 @@
 /obj/item/device/assembly_holder
-	name = "Assembly"
+	name = "组合装置"
 	icon = 'icons/obj/items/new_assemblies.dmi'
 	icon_state = "holder"
 	item_state = "assembly"
@@ -34,7 +34,7 @@
 	if(!D)
 		return FALSE
 	if(!secured)
-		visible_message("[icon2html(src, hearers(src))] *beep* *beep*", "*beep* *beep*")
+		visible_message("[icon2html(src, hearers(src))] *哔* *哔*", "*哔* *哔*")
 	if((normal) && (a_right) && (a_left))
 		if(a_right != D)
 			a_right.pulsed(0)
@@ -68,7 +68,7 @@
 	D2.forceMove(src)
 	a_left = D
 	a_right = D2
-	name = "[D.name]-[D2.name] assembly"
+	name = "[D.name]-[D2.name]组合装置"
 	update_icon()
 	usr.put_in_hands(src)
 
@@ -91,9 +91,9 @@
 	. = ..()
 	if (in_range(src, user) || loc == user)
 		if (secured)
-			. += "[src] is ready!"
+			. += "[src]已准备就绪！"
 		else
-			. += "[src] can be attached!"
+			. += "可以连接[src]！"
 
 /obj/item/device/assembly_holder/HasProximity(atom/movable/AM as mob|obj)
 	if(a_left)
@@ -136,15 +136,15 @@
 /obj/item/device/assembly_holder/attackby(obj/item/W as obj, mob/user as mob)
 	if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
 		if(!a_left || !a_right)
-			to_chat(user, SPAN_DANGER("BUG:Assembly part missing, please report this!"))
+			to_chat(user, SPAN_DANGER("错误：组合装置缺少组件，请报告此问题！"))
 			return
 		a_left.toggle_secure()
 		a_right.toggle_secure()
 		secured = !secured
 		if(secured)
-			to_chat(user, SPAN_NOTICE("\The [src] is ready!"))
+			to_chat(user, SPAN_NOTICE("[src]已准备就绪！"))
 		else
-			to_chat(user, SPAN_NOTICE("\The [src] can now be taken apart!"))
+			to_chat(user, SPAN_NOTICE("现在可以拆开[src]了！"))
 		update_icon()
 		return
 	else if(W.IsSpecialAssembly())
@@ -158,15 +158,15 @@
 	src.add_fingerprint(user)
 	if(src.secured)
 		if(!a_left || !a_right)
-			to_chat(user, SPAN_DANGER("Assembly part missing!"))
+			to_chat(user, SPAN_DANGER("组合装置缺少组件！"))
 			return
 		if(istype(a_left,a_right.type))//If they are the same type it causes issues due to window code
-			var/response = tgui_alert(user, "Which side would you like to use?", "Side selection", list("Left","Right"))
+			var/response = tgui_alert(user, "你要使用哪一侧的组件？", "选择组件", list("左侧","右侧"))
 			if(response && (user.l_hand == src || user.r_hand == src))
 				switch(response)
-					if("Left")
+					if("左侧")
 						a_left.attack_self(user)
-					if("Right")
+					if("右侧")
 						a_right.attack_self(user)
 			return
 		else
@@ -195,7 +195,7 @@
 		a_left.hear_talk(M,msg)
 
 /obj/item/device/assembly_holder/timer_igniter
-	name = "timer-igniter assembly"
+	name = "计时点火装置"
 
 /obj/item/device/assembly_holder/timer_igniter/Initialize(mapload, timer_time)
 	. = ..()
@@ -214,7 +214,7 @@
 	a_right = ign
 	secured = 1
 	update_icon()
-	name = initial(name) + " (timer: [tmr.time])"
+	name = initial(name) + "（计时：[tmr.time]）"
 
 	loc.verbs += /obj/item/device/assembly_holder/timer_igniter/verb/configure
 
@@ -223,8 +223,8 @@
 	..()
 
 /obj/item/device/assembly_holder/timer_igniter/verb/configure()
-	set name = "Set Timer"
-	set category = "Object"
+	set name = "设置计时器"
+	set category = "物品"
 	set src in usr
 
 	if ( !(usr.stat || usr.is_mob_restrained()) )
@@ -236,18 +236,18 @@
 		if(!istype(tmr,/obj/item/device/assembly/timer))
 			tmr = holder.a_right
 		if(!istype(tmr,/obj/item/device/assembly/timer))
-			to_chat(usr, SPAN_NOTICE("This detonator has no timer."))
+			to_chat(usr, SPAN_NOTICE("这个引爆器没有计时器。"))
 			return
 
 		if(tmr.timing)
-			to_chat(usr, SPAN_NOTICE("Clock is ticking already."))
+			to_chat(usr, SPAN_NOTICE("倒计时已经开始了。"))
 		else
-			var/ntime = tgui_input_number(usr, "Enter desired time in seconds", "Time", 5, 1000, 0)
+			var/ntime = tgui_input_number(usr, "输入所需时间，单位为秒", "时间", 5, 1000, 0)
 			if (ntime>0 && ntime<1000)
 				tmr.time = ntime
-				name = initial(name) + "([tmr.time] secs)"
-				to_chat(usr, SPAN_NOTICE("Timer set to [tmr.time] seconds."))
+				name = initial(name) + "（[tmr.time]秒）"
+				to_chat(usr, SPAN_NOTICE("计时器已设为[tmr.time]秒。"))
 			else
-				to_chat(usr, SPAN_NOTICE("Timer can't be [ntime<=0?"negative":"more than 1000 seconds"]."))
+				to_chat(usr, SPAN_NOTICE("计时时间不能[ntime<=0?"为零或负数":"达到或超过1000秒"]。"))
 	else
-		to_chat(usr, SPAN_NOTICE("You cannot do this while [usr.stat?"unconscious/dead":"restrained"]."))
+		to_chat(usr, SPAN_NOTICE("你[usr.stat?"昏迷或死亡":"受到束缚"]时无法这样做。"))

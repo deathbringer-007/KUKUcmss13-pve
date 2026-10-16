@@ -1,6 +1,6 @@
 /obj/structure/machinery/constructable_frame/porta_comms
-	name = "portable telecommunications unit"
-	desc = "A portable compact TC-4T telecommunications construction kit. Used to set up subspace communications lines between planetary and extra-planetary locations. Needs cabling."
+	name = "便携式通讯装置"
+	desc = "小巧便携的 TC-4T 通讯设备组装套件，用于建立行星表面与外太空之间的子空间通讯链路。尚需接线。"
 	icon = 'icons/obj/structures/machinery/comm_tower2.dmi'
 	icon_state = "construct_0_0"
 	required_skill = SKILL_ENGINEER_TRAINED
@@ -34,7 +34,7 @@
 /obj/structure/machinery/constructable_frame/porta_comms/attackby(obj/item/I, mob/user)
 	var/area/A = get_area(src)
 	if (!A.can_build_special)
-		to_chat(usr, SPAN_DANGER("You don't want to deploy this here!"))
+		to_chat(usr, SPAN_DANGER("这里不适合部署它！"))
 		return
 	if(istype(I, /obj/item/circuitboard/machine) && !istype(I, /obj/item/circuitboard/machine/telecomms/relay/tower))
 		return

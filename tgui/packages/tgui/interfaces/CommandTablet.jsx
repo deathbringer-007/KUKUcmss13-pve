@@ -24,36 +24,36 @@ export const CommandTablet = () => {
 
   let distress_reason;
   if (AlertLevel === 3) {
-    distress_reason = 'Self-destruct in progress. Beacon disabled.';
+    distress_reason = '正在执行自毁程序，信标已禁用。';
   } else if (AlertLevel !== 2) {
-    distress_reason = 'Ship is not under an active emergency.';
+    distress_reason = '舰船尚未处于紧急状态。';
   } else if (distressCooldown) {
-    distress_reason = 'Beacon is currently recharging.';
+    distress_reason = '信标正在充能。';
   } else if (!minimumTimeElapsed) {
-    distress_reason = "It's too early to launch a distress beacon.";
+    distress_reason = "现在发射求救信标还为时过早。";
   }
 
   return (
     <Window width={350} height={350}>
       <Window.Content scrollable>
-        <Section title="Command">
+        <Section title="指挥">
           <Flex height="100%" direction="column">
             <Flex.Item>
               {!canAnnounce && (
                 <Button color="bad" warning={1} fluid icon="ban">
-                  Announcement recharging:{' '}
-                  {Math.ceil((data.endtime - data.worldtime) / 10)} secs
+                  公告冷却中：{' '}
+                  {Math.ceil((data.endtime - data.worldtime) / 10)} 秒
                 </Button>
               )}
               {!!canAnnounce && (
                 <Button
                   fluid
                   icon="bullhorn"
-                  title="Make an announcement"
+                  title="发布公告"
                   onClick={() => act('announce')}
                   disabled={!canAnnounce}
                 >
-                  Make an announcement
+                  发布公告
                 </Button>
               )}
             </Flex.Item>
@@ -61,28 +61,27 @@ export const CommandTablet = () => {
               <Button
                 fluid
                 icon="medal"
-                title="Give a medal"
+                title="授予勋章"
                 onClick={() => act('award')}
               >
-                Give a medal
+                授予勋章
               </Button>
             </Flex.Item>
             <Flex.Item>
               <Button
                 fluid
                 icon="globe-africa"
-                title="View tactical map"
+                title="查看战术地图"
                 onClick={() => act('mapview')}
               >
-                View tactical map
+                查看战术地图
               </Button>
             </Flex.Item>
             {data.faction === 'USCM' && (
-              <Section title="Evacuation">
+              <Section title="疏散">
                 {AlertLevel < 2 && (
                   <NoticeBox color="bad" warning={1} textAlign="center">
-                    The ship must be under red alert in order to enact
-                    evacuation procedures.
+                    舰船必须处于红色警报状态才能启动疏散程序。
                   </NoticeBox>
                 )}
                 <Flex.Item>
@@ -93,7 +92,7 @@ export const CommandTablet = () => {
                       fluid
                       icon="ban"
                     >
-                      {'Distress Beacon disabled'}
+                      {'求救信标已禁用'}
                     </Button>
                   )}
                   {canDistress && (
@@ -102,11 +101,11 @@ export const CommandTablet = () => {
                       color="orange"
                       icon="phone-volume"
                       confirmColor="bad"
-                      confirmContent="Confirm?"
+                      confirmContent="确定？"
                       confirmIcon="question"
                       onClick={() => act('distress')}
                     >
-                      {'Send Distress Beacon'}
+                      {'发送求救信标'}
                     </Button.Confirm>
                   )}
                 </Flex.Item>
@@ -117,28 +116,28 @@ export const CommandTablet = () => {
                       color="orange"
                       icon="door-open"
                       confirmColor="bad"
-                      confirmContent="Confirm?"
+                      confirmContent="确定？"
                       confirmIcon="question"
                       onClick={() => act('evacuation_start')}
                       disabled={!canEvac}
                     >
-                      {'Initiate Evacuation'}
+                      {'启动疏散'}
                     </Button.Confirm>
                   </Flex.Item>
                 )}
                 {evacstatus === 1 && (
                   <NoticeBox color="good" info={1} textAlign="center">
-                    Evacuation ongoing.
+                    正在疏散。
                   </NoticeBox>
                 )}
                 {evacstatus === 2 && (
                   <NoticeBox color="good" info={1} textAlign="center">
-                    Escape pods launching.
+                    逃生舱正在发射。
                   </NoticeBox>
                 )}
                 {evacstatus === 3 && (
                   <NoticeBox color="good" success={1} textAlign="center">
-                    Evacuation complete.
+                    疏散已完成。
                   </NoticeBox>
                 )}
               </Section>

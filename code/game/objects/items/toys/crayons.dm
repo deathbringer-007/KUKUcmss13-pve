@@ -36,7 +36,7 @@
 
 /obj/item/toy/crayon/mime
 	icon_state = "crayonmime"
-	desc = "A very sad-looking crayon."
+	desc = "一支看起来很忧伤的蜡笔。"
 	crayon_color = COLOR_WHITE
 	shade_color = COLOR_BLACK
 	colorName = "mime"
@@ -48,11 +48,11 @@
 	if(crayon_color != COLOR_WHITE && shade_color != COLOR_BLACK)
 		crayon_color = COLOR_WHITE
 		shade_color = COLOR_BLACK
-		to_chat(user, "You will now draw in white and black with this crayon.")
+		to_chat(user, "现在你将用这支蜡笔绘制白底黑影的图案。")
 	else
 		crayon_color = COLOR_BLACK
 		shade_color = COLOR_WHITE
-		to_chat(user, "You will now draw in black and white with this crayon.")
+		to_chat(user, "现在你将用这支蜡笔绘制黑底白影的图案。")
 
 /obj/item/toy/crayon/rainbow
 	icon_state = "crayonrainbow"
@@ -119,41 +119,42 @@
 
 /obj/item/toy/crayon/rainbow/attack_self(mob/living/user)
 	..()
-	crayon_color = input(user, "Please select the main color.", "Crayon color") as color
-	shade_color = input(user, "Please select the shade color.", "Crayon color") as color
+	crayon_color = input(user, "请选择主色。", "蜡笔颜色") as color
+	shade_color = input(user, "请选择阴影色。", "蜡笔颜色") as color
 
 /obj/item/toy/crayon/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(target,/turf/open/floor))
-		var/drawtype = tgui_input_list(usr, "Choose what you'd like to draw.", "Crayon scribbles", list("graffiti","rune","letter"))
+		var/list/drawing_options = list("涂鸦" = "graffiti", "符文" = "rune", "字母" = "letter")
+		var/drawtype = drawing_options[tgui_input_list(usr, "选择要画的内容。", "蜡笔涂鸦", drawing_options)]
 		switch(drawtype)
 			if("letter")
-				drawtype = tgui_input_list(usr, "Choose the letter.", "Crayon scribbles", GLOB.alphabet_lowercase)
-				to_chat(user, "You start drawing a letter on the [target.name].")
+				drawtype = tgui_input_list(usr, "请选择字母。", "蜡笔涂鸦", GLOB.alphabet_lowercase)
+				to_chat(user, "你开始在[target.name]上画一个字母。")
 			if("graffiti")
-				to_chat(user, "You start drawing graffiti on the [target.name].")
+				to_chat(user, "你开始在[target.name]上涂鸦。")
 			if("rune")
-				to_chat(user, "You start drawing a rune on the [target.name].")
+				to_chat(user, "你开始在[target.name]上画一个符文。")
 		if(instant || do_after(user, 50, INTERRUPT_ALL, BUSY_ICON_GENERIC))
 			new /obj/effect/decal/cleanable/crayon(target,crayon_color,shade_color,drawtype)
-			to_chat(user, "You finish drawing.")
+			to_chat(user, "你画完了。")
 			target.add_fingerprint(user) // Adds their fingerprints to the floor the crayon is drawn on.
 			if(uses)
 				uses--
 				if(!uses)
-					to_chat(user, SPAN_DANGER("You used up your crayon!"))
+					to_chat(user, SPAN_DANGER("你的蜡笔用完了！"))
 					qdel(src)
 	return
 
 /obj/item/toy/crayon/attack(mob/M as mob, mob/user as mob)
 	if(M == user)
-		to_chat(user, "You take a bite of the crayon and swallow it.")
+		to_chat(user, "你咬下一口蜡笔，吞了下去。")
 // user.nutrition += 5
 		if(uses)
 			uses -= 5
 			if(uses <= 0)
-				to_chat(user, SPAN_DANGER("You ate your crayon!"))
+				to_chat(user, SPAN_DANGER("你把蜡笔吃掉了！"))
 				qdel(src)
 	else
 		..()

@@ -1,6 +1,6 @@
 /obj/item/bananapeel
-	name = "banana peel"
-	desc = "A peel from a banana."
+	name = "香蕉皮"
+	desc = "剥下来的香蕉皮。"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "banana_peel"
 	item_state = "banana_peel"
@@ -29,8 +29,8 @@
 */
 
 /obj/item/gift
-	name = "gift"
-	desc = "A wrapped item."
+	name = "礼物"
+	desc = "一件包装好的物品。"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "gift3"
 	var/size = 3
@@ -39,8 +39,8 @@
 	w_class = SIZE_LARGE
 
 /obj/item/weapon/pole
-	name = "wooden pole"
-	desc = "A rough, cracked pole seemingly constructed on the field. You could probably whack someone with this."
+	name = "木杆"
+	desc = "一根粗糙开裂的木杆，似乎是就地制作的。大概可以用来揍人。"
 	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "wooden_pole"
 	item_state = "wooden_pole"
@@ -50,18 +50,18 @@
 
 /obj/item/weapon/pole/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_NOTICE("Activate on your hand to grip this tightly. Useful if you have a bad leg.")
+	. += SPAN_NOTICE("拿在手中时激活即可握紧。如果你的腿脚不便，会很有用。")
 
 /obj/item/weapon/pole/attack_self(mob/living/user)
 	..()
 	if(!gripped)
-		user.visible_message(SPAN_NOTICE("[user] grips [src] tightly."), SPAN_NOTICE("You grip [src] tightly."))
+		user.visible_message(SPAN_NOTICE("[user]握紧了[src]。"), SPAN_NOTICE("你握紧了[src]。"))
 		flags_item |= NODROP|FORCEDROP_CONDITIONAL
 		ADD_TRAIT(user, TRAIT_HOLDS_CANE, TRAIT_SOURCE_ITEM)
 		user.AddComponent(/datum/component/footstep, 6, 35, 4, 1, "cane_step")
 		gripped = TRUE
 	else
-		user.visible_message(SPAN_NOTICE("[user] loosens \his grip on [src]."), SPAN_NOTICE("You loosen your grip on [src]."))
+		user.visible_message(SPAN_NOTICE("[user]松开了握着[src]的手。"), SPAN_NOTICE("你松开了握着[src]的手。"))
 		flags_item &= ~(NODROP|FORCEDROP_CONDITIONAL)
 		REMOVE_TRAIT(user, TRAIT_HOLDS_CANE, TRAIT_SOURCE_ITEM)
 		// Ideally, this would be something like a component added onto every mob that prioritizes certain sounds, such as stomping over canes.
@@ -85,22 +85,22 @@
 	qdel(component)
 
 /obj/item/weapon/pole/wooden_cane
-	name = "wooden cane"
-	desc = "A bog standard wooden cane with a dark tip."
+	name = "木手杖"
+	desc = "一根再普通不过的木手杖，杖头颜色较深。"
 	icon_state = "wooden_cane"
 	item_state = "wooden_cane"
 	force = 15
 
 /obj/item/weapon/pole/fancy_cane
-	name = "fancy cane"
-	desc = "An ebony cane with a fancy, seemingly-golden tip."
+	name = "华丽手杖"
+	desc = "一根乌木手杖，杖头装饰华丽，看起来是金制的。"
 	icon_state = "fancy_cane"
 	item_state = "fancy_cane"
 	force = 30
 
 /obj/item/weapon/pole/fancy_cane/this_is_a_knife
-	name = "fancy cane"
-	desc = "An ebony cane with a fancy, seemingly-golden tip. Feels hollow to the touch."
+	name = "华丽手杖"
+	desc = "一根乌木手杖，杖头装饰华丽，看起来是金制的。摸起来似乎是空心的。"
 	force = 15 // hollow
 	var/obj/item/stored_item
 	var/list/allowed_items = list(/obj/item/weapon, /obj/item/attachable/bayonet)
@@ -113,7 +113,7 @@
 /obj/item/weapon/pole/fancy_cane/this_is_a_knife/attack_hand(mob/living/mobber)
 	if(stored_item && src.loc == mobber && !mobber.is_mob_incapacitated()) //Only allow someone to take out the stored_item if it's being worn or held. So you can pick them up off the floor
 		if(mobber.put_in_active_hand(stored_item))
-			mobber.visible_message(SPAN_DANGER("[mobber] slides [stored_item] out of [src]!"), SPAN_NOTICE("You slide [stored_item] out of [src]."))
+			mobber.visible_message(SPAN_DANGER("[mobber]从[src]中抽出了[stored_item]！"), SPAN_NOTICE("你从[src]中抽出了[stored_item]。"))
 			playsound(mobber, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, TRUE)
 			stored_item = null
 			update_icon()
@@ -134,7 +134,7 @@
 					return
 				stored_item = object
 				mobber.drop_inv_item_to_loc(object, src)
-				to_chat(mobber, SPAN_NOTICE("You slide [object] into [src]."))
+				to_chat(mobber, SPAN_NOTICE("你将[object]插入了[src]。"))
 				playsound(mobber, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, TRUE)
 				update_icon()
 				break
@@ -165,7 +165,7 @@
 
 /obj/item/moneybag
 	icon = 'icons/obj/items/storage/bags.dmi'
-	name = "Money bag"
+	name = "钱袋"
 	icon_state = "moneybag"
 	force = 10
 	throwforce = 2
@@ -176,8 +176,8 @@
 
 
 /obj/item/evidencebag
-	name = "evidence bag"
-	desc = "An empty evidence bag."
+	name = "物证袋"
+	desc = "一个空物证袋。"
 	icon = 'icons/obj/items/storage/bags.dmi'
 	icon_state = "evidenceobj"
 	item_state = ""
@@ -217,19 +217,19 @@
 		return
 
 	if(istype(I, /obj/item/evidencebag))
-		to_chat(user, SPAN_NOTICE("You find putting an evidence bag in another evidence bag to be slightly absurd."))
+		to_chat(user, SPAN_NOTICE("你觉得把物证袋装进另一个物证袋有点荒唐。"))
 		return
 
 	if(I.w_class > SIZE_MEDIUM)
-		to_chat(user, SPAN_NOTICE("[I] won't fit in [src]."))
+		to_chat(user, SPAN_NOTICE("[src]装不下[I]。"))
 		return
 
 	if(length(contents))
-		to_chat(user, SPAN_NOTICE("[src] already has something inside it."))
+		to_chat(user, SPAN_NOTICE("[src]里面已经装了东西。"))
 		return
 
-	user.visible_message("[user] puts [I] into [src]", "You put [I] inside [src].",\
-	"You hear a rustle as someone puts something into a plastic bag.")
+	user.visible_message("[user]把[I]放进了[src]。", "你把[I]放进了[src]。",\
+	"你听见一阵沙沙声，有人正把东西放进塑料袋里。")
 
 	icon_state = "evidence"
 	/// save the offset of the item
@@ -247,7 +247,7 @@
 	/// should look nicer for transparent stuff. not really that important, but hey.
 	overlays += "evidence"
 
-	desc = "An evidence bag containing [I]."
+	desc = "一个装有[I]的物证袋。"
 	I.forceMove(src)
 	stored_item = I
 	w_class = I.w_class
@@ -259,8 +259,8 @@
 
 	if(length(contents))
 		var/obj/item/I = contents[1]
-		user.visible_message("[user] takes [I] out of [src]", "You take [I] out of [src].",\
-		"You hear someone rustle around in a plastic bag, and remove something.")
+		user.visible_message("[user]从[src]中取出了[I]。", "你从[src]中取出了[I]。",\
+		"你听见有人翻动塑料袋的沙沙声，随后取出了什么东西。")
 		overlays.Cut() //remove the overlays
 
 		user.put_in_hands(I)
@@ -268,9 +268,9 @@
 
 		w_class = initial(w_class)
 		icon_state = "evidenceobj"
-		desc = "An empty evidence bag."
+		desc = "一个空物证袋。"
 	else
-		to_chat(user, "[src] is empty.")
+		to_chat(user, "[src]是空的。")
 		icon_state = "evidenceobj"
 	return
 
@@ -280,8 +280,8 @@
 		. += stored_item.get_examine_text(user)
 
 /obj/item/storage/box/evidence
-	name = "evidence bag box"
-	desc = "A box claiming to contain evidence bags."
+	name = "物证袋盒"
+	desc = "一个标称装有物证袋的盒子。"
 
 /obj/item/storage/box/evidence/New()
 	..()
@@ -293,8 +293,8 @@
 	new /obj/item/evidencebag(src)
 
 /obj/item/parachute
-	name = "parachute"
-	desc = "A surprisingly small yet bulky pack with just enough safety straps to make RnD pass health and safety. The label says the pack comes with two parachutes - main and reserve, but you doubt the pack can fit even one."
+	name = "降落伞包"
+	desc = "一个小得出奇却又笨重的背包，安全带数量刚好够研发部门通过安全检查。标签说里面有主伞和备份伞两具降落伞，但你怀疑连一具都装不下。"
 	icon = 'icons/obj/items/clothing/backpacks.dmi'
 	icon_state = "parachute_pack"
 	item_state = "parachute_pack"
@@ -303,8 +303,8 @@
 	flags_item = SMARTGUNNER_BACKPACK_OVERRIDE
 
 /obj/item/rappel_harness
-	name = "rappel harness"
-	desc = "A simple, uncomfortable rappel harness with just enough safety straps to make RnD pass health and safety. It comes with an in-built descender, but has no pouches for ammunition."
+	name = "索降安全带"
+	desc = "一套简陋且不舒服的索降安全带，带子数量刚好够研发部门通过安全检查。内置下降器，但没有弹药袋。"
 	icon = 'icons/obj/items/clothing/belts.dmi'
 	icon_state = "rappel_harness"
 	item_state = "rappel_harness"
@@ -312,8 +312,8 @@
 	flags_equip_slot = SLOT_WAIST
 
 /obj/item/rappel_harness/extract
-	name = "dual purpose rappel-fulton harness"
-	desc = "A fulton Surface To Air Recovery System (STARS). Special latch/hook assembly allows for aircraft on flyby equipped with a rappel system to pick up the attached item or person. The complex assembly of venlar rigging and secured buckles takes some time to set up though."
+	name = "索降／富尔顿回收两用安全带"
+	desc = "富尔顿地对空回收系统（STARS）。特殊的锁扣和挂钩组件让配有索降系统的飞行器在掠过时收走固定的物品或人员。不过，复杂的文拉尔纤维索具和安全扣需要花些时间才能装好。"
 	icon_state = "rappel_harness_adv"
 	var/shuttle_id
 	actions_types = list(/datum/action/item_action/STARS)
@@ -325,15 +325,15 @@
 		return
 
 	if(!shuttle.in_flyby)
-		to_chat(user, SPAN_WARNING("No shuttle detected in lower orbit, aborting extraction."))
+		to_chat(user, SPAN_WARNING("未在低轨道检测到运输机，回收中止。"))
 		return
 
 	var/obj/structure/dropship_equipment/paradrop_system/rapsys = locate() in shuttle.equipments
 	if(!rapsys)
-		to_chat(user, SPAN_WARNING("No rappel system detected in shuttle, aborting extraction."))
+		to_chat(user, SPAN_WARNING("未在运输机上检测到索降系统，回收中止。"))
 		return
 
-	user.visible_message(SPAN_DANGER("[user] gets snatched off the ground with a tremendous force!"))
+	user.visible_message(SPAN_DANGER("一股巨力将[user]猛地拽离了地面！"))
 	if(prob(50))
 		user.emote("scream")
 	user.apply_effect(10, STUN)
@@ -343,7 +343,7 @@
 
 /obj/item/rappel_harness/extract/attack(mob/living/carbon/human/H, mob/living/carbon/human/user)
 	if(H.belt)
-		to_chat(user, SPAN_WARNING("Remove their belt first!"))
+		to_chat(user, SPAN_WARNING("先摘掉对方的腰带！"))
 		return
 
 	if(!is_ground_level(H.z))
@@ -351,16 +351,16 @@
 
 	var/area/location_area = get_area(H)
 	if(CEILING_IS_PROTECTED(location_area.ceiling, CEILING_PROTECTION_TIER_1))
-		to_chat(H, SPAN_WARNING("There's no space for fulton balloon to fly in this area."))
+		to_chat(H, SPAN_WARNING("这里没有足够的空间让富尔顿气球升空。"))
 		return
 
-	user.visible_message(SPAN_DANGER("[user] begins to adjust the fulton device on [H] for extraction!"))
+	user.visible_message(SPAN_DANGER("[user]开始调整[H]身上的富尔顿装置，准备回收！"))
 	playsound(H, 'sound/items/fulton.ogg', 50, 1)
 	if(!do_after(user, (10 SECONDS), INTERRUPT_ALL, BUSY_ICON_HOSTILE, H))
 		return
 
 	if(H.belt)
-		to_chat(user, SPAN_WARNING("Remove their belt!"))
+		to_chat(user, SPAN_WARNING("摘掉对方的腰带！"))
 		return
 	user.drop_inv_item_to_loc(src, H)
 	H.equip_to_slot_if_possible(src, WEAR_WAIST)
@@ -377,7 +377,7 @@
 
 /datum/action/item_action/STARS/New(Target, obj/item/holder)
 	. = ..()
-	name = "Attempt Extraction"
+	name = "尝试回收"
 	action_icon_state = "extract"
 	button.name = name
 	button.overlays.Cut()
@@ -388,16 +388,16 @@
 	var/obj/item/rappel_harness/extract/harness = holder_item
 	var/mob/living/carbon/human/H = usr
 	if(H.belt != harness)
-		to_chat(H, SPAN_WARNING("You have to equip the harness on your belt!"))
+		to_chat(H, SPAN_WARNING("必须将安全带装备在腰带栏位！"))
 		return
 	if(!is_ground_level(H.z))
 		return
 
 	var/area/location_area = get_area(H)
 	if(CEILING_IS_PROTECTED(location_area.ceiling, CEILING_PROTECTION_TIER_1))
-		to_chat(H, SPAN_WARNING("There's no space for fulton balloon to fly in this area."))
+		to_chat(H, SPAN_WARNING("这里没有足够的空间让富尔顿气球升空。"))
 		return
-	H.visible_message(SPAN_DANGER("[H] begins to adjust the fulton device for self-extraction!"))
+	H.visible_message(SPAN_DANGER("[H]开始调整富尔顿装置，准备自行撤离！"))
 	playsound(H, 'sound/items/fulton.ogg', 50, 1)
 	if(!do_after(H, (10 SECONDS), INTERRUPT_ALL, BUSY_ICON_HOSTILE, harness))
 		return

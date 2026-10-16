@@ -1,23 +1,23 @@
 /mob/living/simple_animal/mouse
-	name = "mouse"
-	real_name = "mouse"
-	desc = "It's a small, disease-ridden rodent."
+	name = "老鼠"
+	real_name = "老鼠"
+	desc = "一只携带多种疾病的小型啮齿动物。"
 	icon_state = "mouse_gray"
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
-	speak = list("Squeek!","SQUEEK!","Squeek?")
-	speak_emote = list("squeeks","squeeks","squiks")
-	emote_hear = list("squeeks","squeaks","squiks")
-	emote_see = list("runs in a circle", "shakes", "scritches at something")
+	speak = list("吱！","吱吱！","吱？")
+	speak_emote = list("吱吱叫","吱吱叫","吱吱叫")
+	emote_hear = list("吱吱叫","吱吱叫","吱吱叫")
+	emote_see = list("原地转圈", "抖动身体", "抓挠着什么")
 	mob_size = MOB_SIZE_SMALL
 	speak_chance = 1
 	turns_per_move = 5
 	maxHealth = 5
 	health = 5
 	meat_type = /obj/item/reagent_container/food/snacks/meat
-	response_help  = "pets the"
-	response_disarm = "gently pushes aside the"
-	response_harm   = "stamps on the"
+	response_help  = "抚摸"
+	response_disarm = "轻轻推开"
+	response_harm   = "踩踏"
 	density = FALSE
 	var/body_color //brown, gray and white, leave blank for random
 	layer = ABOVE_LYING_MOB_LAYER
@@ -63,7 +63,7 @@
 	icon_living = "mouse_[body_color]"
 	icon_dead = "mouse_[body_color]_dead"
 	if(!desc)
-		desc = "It's a small [body_color] rodent, often seen hiding in maintenance areas and making a nuisance of itself."
+		desc = "一只[list("brown" = "棕色", "gray" = "灰色", "white" = "白色")[body_color] || body_color]的小型啮齿动物，经常躲在维修区里惹麻烦。"
 
 /mob/living/simple_animal/mouse/initialize_pass_flags(datum/pass_flags_container/PF)
 	..()
@@ -81,7 +81,7 @@
 		client.time_died_as_mouse = world.time
 
 /mob/living/simple_animal/mouse/start_pulling(atom/movable/AM)//Prevents mouse from pulling things
-	to_chat(src, SPAN_WARNING("You are too small to pull anything."))
+	to_chat(src, SPAN_WARNING("你太小了，拉不动任何东西。"))
 	return
 
 /mob/living/simple_animal/mouse/Crossed(AM as mob|obj)
@@ -92,7 +92,7 @@
 			wander = 1
 		else if(!stat && prob(5))
 			var/mob/M = AM
-			to_chat(M, SPAN_NOTICE(" [icon2html(src, M)] Squeek!"))
+			to_chat(M, SPAN_NOTICE(" [icon2html(src, M)] 吱！"))
 			M << 'sound/effects/mousesqueek.ogg'
 	..()
 
@@ -126,7 +126,7 @@
 /mob/living/simple_animal/mouse/white
 	body_color = "white"
 	icon_state = "mouse_white"
-	desc = "It's a small laboratory mouse."
+	desc = "一只小小的实验鼠。"
 	holder_type = /obj/item/holder/mouse/white
 
 /mob/living/simple_animal/mouse/gray
@@ -140,19 +140,19 @@
 	holder_type = /obj/item/holder/mouse/brown
 
 /mob/living/simple_animal/mouse/white/Doc
-	name = "Doc"
-	desc = "Senior researcher of the Almayer. Likes: cheese, experiments, explosions."
+	name = "博士"
+	desc = "阿尔迈耶号的资深研究员，喜欢奶酪、实验和爆炸。"
 	gender = MALE
-	response_help  = "pets"
-	response_disarm = "gently pushes aside"
-	response_harm   = "stamps on"
+	response_help  = "抚摸"
+	response_disarm = "轻轻推开"
+	response_harm   = "踩踏"
 	holder_type = /obj/item/holder/mouse/white/Doc
 
 //TOM IS ALIVE! SQUEEEEEEEE~K :)
 /mob/living/simple_animal/mouse/brown/Tom
-	name = "Tom"
-	desc = "Jerry the cat is not amused."
-	response_help  = "pets"
-	response_disarm = "gently pushes aside"
-	response_harm   = "splats"
+	name = "汤姆"
+	desc = "猫咪杰瑞对此很不高兴。"
+	response_help  = "抚摸"
+	response_disarm = "轻轻推开"
+	response_harm   = "拍扁"
 	holder_type = /obj/item/holder/mouse/brown/Tom

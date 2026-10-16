@@ -1,6 +1,6 @@
 /obj/structure/machinery/computer/area_atmos
-	name = "Area Air Control"
-	desc = "A computer used to control the stationary scrubbers and pumps in the area."
+	name = "区域空气控制台"
+	desc = "用于控制区域内固定式洗涤器和气泵的计算机。"
 	icon_state = "atmos"
 	circuit = /obj/item/circuitboard/computer/area_atmos
 
@@ -10,7 +10,7 @@
 	var/range = 25
 
 	//Simple variable to prevent me from doing attack_hand in both this and the child computer
-	var/zone = "This computer is working on a wireless range, the range is currently limited to 25 meters."
+	var/zone = "此计算机通过无线连接工作，目前覆盖范围为 25 米。"
 
 /obj/structure/machinery/computer/area_atmos/New()
 	..()
@@ -63,9 +63,9 @@
 			</style>
 		</head>
 		<body>
-			<center><h1>Area Air Control</h1></center>
+			<center><h1>区域空气控制台</h1></center>
 			<font color="red">[status]</font><br>
-			<a href="byond://?src=\ref[src];scan=1">Scan</a>
+			<a href="byond://?src=\ref[src];scan=1">扫描</a>
 			<table border="1" width="90%">"}
 	for(var/obj/structure/machinery/portable_atmospherics/powered/scrubber/huge/scrubber in connectedscrubbers)
 		dat += {"
@@ -97,7 +97,7 @@
 
 		if(!validscrubber(scrubber))
 			spawn(20)
-				status = "ERROR: Couldn't connect to scrubber! (timeout)"
+				status = "错误：无法连接洗涤器！（超时）"
 				connectedscrubbers -= scrubber
 				src.updateUsrDialog()
 			return
@@ -121,13 +121,13 @@
 			connectedscrubbers += scrubber
 
 	if(!found)
-		status = "ERROR: No scrubber found!"
+		status = "错误：未找到洗涤器！"
 
 	src.updateUsrDialog()
 
 
 /obj/structure/machinery/computer/area_atmos/area
-	zone = "This computer is working in a wired network limited to this area."
+	zone = "此计算机通过仅覆盖本区域的有线网络工作。"
 
 /obj/structure/machinery/computer/area_atmos/area/validscrubber(obj/structure/machinery/portable_atmospherics/powered/scrubber/huge/scrubber as obj )
 	if(!isobj(scrubber))
@@ -166,6 +166,6 @@
 
 
 	if(!found)
-		status = "ERROR: No scrubber found!"
+		status = "错误：未找到洗涤器！"
 
 	src.updateUsrDialog()

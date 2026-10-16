@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/storage/marine/smartgunner
-	name = "\improper M56 combat harness"
-	desc = "Lightweight vest composed of ballistic micromesh and a ceramic composite chestplate for practical protection, as well as the computers, straps, and armature required for operating the M56 Smartgun itself."
+	name = "\improper M56战斗护具"
+	desc = "由防弹微网和陶瓷复合胸甲构成的轻型背心，提供实用的防护，并配有操作M56智能机枪所需的计算机、绑带和支撑架。"
 	icon_state = "8"
 	item_state = "armor"
 	armor_laser = CLOTHING_ARMOR_LOW
@@ -19,8 +19,8 @@
 
 /obj/item/clothing/suit/storage/marine/smartgunner/Initialize()
 	. = ..()
-	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD] && name == "\improper M56 combat harness" && !(flags_atom & NO_SNOW_TYPE))
-		name = "M56 snow combat harness"
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD] && name == "\improper M56战斗护具" && !(flags_atom & NO_SNOW_TYPE))
+		name = "M56雪地战斗护具"
 	//select_gamemode_skin(type)
 
 /obj/item/clothing/suit/storage/marine/smartgunner/mob_can_equip(mob/equipping_mob, slot, disable_warning = FALSE)
@@ -28,7 +28,7 @@
 
 	if(equipping_mob.back && !(equipping_mob.back.flags_item & SMARTGUNNER_BACKPACK_OVERRIDE))
 		if(!disable_warning)
-			to_chat(equipping_mob, SPAN_WARNING("You can't equip [src] while wearing a backpack."))
+			to_chat(equipping_mob, SPAN_WARNING("背着背包时无法穿上[src]。"))
 		return FALSE
 
 /obj/item/clothing/suit/storage/marine/smartgunner/equipped(mob/user, slot, silent)
@@ -49,7 +49,7 @@
 	. = COMPONENT_HUMAN_CANCEL_ATTEMPT_EQUIP
 
 	if(equipping_item.flags_equip_slot == SLOT_BACK)
-		to_chat(equipping_human, SPAN_WARNING("You can't equip [equipping_item] on your back while wearing [src]."))
+		to_chat(equipping_human, SPAN_WARNING("穿着[src]时无法将[equipping_item]装备在背部。"))
 		return
 
 /obj/item/clothing/suit/storage/marine/smartgunner/unequipped(mob/user, slot)
@@ -66,8 +66,8 @@
 
 //Customizable Variant
 /obj/item/clothing/suit/marine/smartgunner
-	name = "\improper M56 combat harness"
-	desc = "Lightweight vest composed of ballistic micromesh and a ceramic composite chestplate for practical protection, as well as the computers, straps, and armature required for operating the M56 Smartgun itself."
+	name = "\improper M56战斗护具"
+	desc = "由防弹微网和陶瓷复合胸甲构成的轻型背心，提供实用的防护，并配有操作M56智能机枪所需的计算机、绑带和支撑架。"
 	icon_state = "8"
 	item_state = "armor"
 	armor_laser = CLOTHING_ARMOR_LOW
@@ -106,8 +106,8 @@
 
 /obj/item/clothing/suit/marine/smartgunner/Initialize()
 	. = ..()
-	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD] && name == "\improper M56 combat harness" && !(flags_atom & NO_SNOW_TYPE))
-		name = "\improper M56 snow combat harness"
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD] && name == "\improper M56战斗护具" && !(flags_atom & NO_SNOW_TYPE))
+		name = "\improper M56雪地战斗护具"
 	//select_gamemode_skin(type)
 
 /obj/item/clothing/suit/marine/smartgunner/mob_can_equip(mob/equipping_mob, slot, disable_warning = FALSE)
@@ -115,7 +115,7 @@
 
 	if(equipping_mob.back && !(equipping_mob.back.flags_item & SMARTGUNNER_BACKPACK_OVERRIDE))
 		if(!disable_warning)
-			to_chat(equipping_mob, SPAN_WARNING("You can't equip [src] while wearing a backpack."))
+			to_chat(equipping_mob, SPAN_WARNING("背着背包时无法穿上[src]。"))
 		return FALSE
 
 /obj/item/clothing/suit/marine/smartgunner/equipped(mob/user, slot, silent)
@@ -136,7 +136,7 @@
 	. = COMPONENT_HUMAN_CANCEL_ATTEMPT_EQUIP
 
 	if(equipping_item.flags_equip_slot == SLOT_BACK)
-		to_chat(equipping_human, SPAN_WARNING("You can't equip [equipping_item] on your back while wearing [src]."))
+		to_chat(equipping_human, SPAN_WARNING("穿着[src]时无法将[equipping_item]装备在背部。"))
 		return
 
 /obj/item/clothing/suit/marine/smartgunner/unequipped(mob/user, slot)

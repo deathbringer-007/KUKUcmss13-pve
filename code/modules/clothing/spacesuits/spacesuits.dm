@@ -2,9 +2,9 @@
 //Note: Everything in modules/clothing/spacesuits should have the entire suit grouped together.
 //   Meaning the suit is defined directly after the corrisponding helmet. Just like below!
 /obj/item/clothing/head/helmet/space
-	name = "Space helmet"
+	name = "太空头盔"
 	icon_state = "space"
-	desc = "A special helmet designed for work in a hazardous, low-pressure environment."
+	desc = "专为危险低压环境作业设计的特制头盔。"
 	item_state = "space"
 	permeability_coefficient = 0.01
 	armor_melee = CLOTHING_ARMOR_NONE
@@ -24,8 +24,8 @@
 	eye_protection = EYE_PROTECTION_WELDING
 
 /obj/item/clothing/suit/space
-	name = "Space suit"
-	desc = "A suit that protects against low pressure environments."
+	name = "太空服"
+	desc = "能在低压环境下提供防护的服装。"
 	icon_state = "space"
 	item_state = "s_suit"
 	w_class = SIZE_LARGE//bulky item

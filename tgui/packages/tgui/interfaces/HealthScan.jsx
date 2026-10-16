@@ -14,6 +14,23 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+const statusLabels = new Map([
+  ['Possible Fracture', '疑似骨折'],
+  ['Fracture', '骨折'],
+  ['Splinted', '夹板固定'],
+  ['Nanosplinted', '纳米夹板固定'],
+  ['Nonfunctional Cybernetic', '机械义肢失效'],
+  ['Cybernetic', '机械义肢'],
+  ['Synthskin', '合成皮肤'],
+  ['Broken', '严重损伤'],
+  ['Bruised', '挫伤'],
+  ['Eyes', '眼部'],
+  ['Mouth', '口部'],
+  ['Eyes and mouth', '眼部和口部'],
+]);
+
+const statusLabel = (value) => statusLabels.get(value) ?? value;
+
 export const HealthScan = (props) => {
   const { act, data } = useBackend();
   const {
@@ -37,7 +54,7 @@ export const HealthScan = (props) => {
       width={ui_mode ? 300 : 500}
       height={bodyscanner ? 700 : 600}
       theme={theme}
-      title={'Patient: ' + patient}
+      title={'患者：' + patient}
     >
       <Window.Content scrollable>
         <Patient />
@@ -93,15 +110,15 @@ const Patient = (props) => {
 
   let holocard_message;
   if (holocard === 'red') {
-    holocard_message = 'Patient needs life-saving treatment.';
+    holocard_message = '患者需要紧急救治。';
   } else if (holocard === 'orange') {
-    holocard_message = 'Patient needs non-urgent surgery.';
+    holocard_message = '患者需要非紧急手术。';
   } else if (holocard === 'purple') {
-    holocard_message = 'Patient is infected with an XX-121 embryo.';
+    holocard_message = '患者体内寄生着 XX-121 胚胎。';
   } else if (holocard === 'black') {
-    holocard_message = 'Patient is permanently deceased.';
+    holocard_message = '患者已死亡，无法复苏。';
   } else {
-    holocard_message = 'Patient has no active holocard.';
+    holocard_message = '患者未设置全息分诊卡。';
   }
 
   const ghostscan = detail_level >= 2;
@@ -111,10 +128,10 @@ const Patient = (props) => {
     <Section>
       {hugged && ghostscan ? (
         <NoticeBox danger>
-          Patient has been implanted with an alien embryo!
+          患者体内被植入了异形胚胎！
         </NoticeBox>
       ) : null}
-      {dead ? <NoticeBox danger>Patient is deceased!</NoticeBox> : null}
+      {dead ? <NoticeBox danger>患者已死亡！</NoticeBox> : null}
       {ssd ? (
         <NoticeBox warning color="grey">
           {ssd}
@@ -126,16 +143,16 @@ const Patient = (props) => {
           {dead ? (
             <Stack.Item>
               <Stack>
-                <Stack.Item>Condition:</Stack.Item>
+                <Stack.Item>状态：</Stack.Item>
                 <Stack.Item>
                   <Box color={permadead ? 'red' : 'green'} bold={1}>
                     {permadead
                       ? heart_broken
-                        ? 'Myocardial rupture, surgical intervention required'
-                        : 'Permanently deceased'
+                        ? '心肌破裂，需要手术治疗'
+                        : '已死亡，无法复苏'
                       : Synthetic
-                        ? 'Central power system shutdown, reboot with a reset key possible'
-                        : 'Cardiac arrest, defibrillation possible'}
+                        ? '中央供电系统已停机，可使用重置钥匙重启'
+                        : '心搏骤停，可进行除颤'}
                   </Box>
                 </Stack.Item>
               </Stack>
@@ -143,7 +160,7 @@ const Patient = (props) => {
           ) : null}
           <Stack.Item>
             <Stack>
-              <Stack.Item>Damage:</Stack.Item>
+              <Stack.Item>伤害：</Stack.Item>
               <Stack.Item>
                 <Box inline bold color={'red'} mr={1}>
                   {total_brute}
@@ -173,7 +190,7 @@ const Patient = (props) => {
           </Stack.Item>
           <Stack.Item>
             <Stack>
-              <Stack.Item>Holocard:</Stack.Item>
+              <Stack.Item>全息分诊卡：</Stack.Item>
               {holocard ? (
                 <Stack.Item>
                   <ColorBox color={holocard} />
@@ -189,7 +206,7 @@ const Patient = (props) => {
                   onClick={() => act('change_holo_card')}
                   backgroundColor="rgba(255, 255, 255, .05)"
                 >
-                  Change
+                  更改
                 </Box>
               </Stack.Item>
               <Stack.Item>
@@ -198,7 +215,7 @@ const Patient = (props) => {
                   onClick={() => act('change_ui_mode')}
                   backgroundColor="rgba(255, 255, 255, .05)"
                 >
-                  Classic UI
+                  完整界面
                 </Box>
               </Stack.Item>
             </Stack>
@@ -206,7 +223,7 @@ const Patient = (props) => {
         </Stack>
       ) : (
         <LabeledList>
-          <LabeledList.Item label="Health">
+          <LabeledList.Item label="健康">
             {health >= 0 ? (
               <ProgressBar
                 value={health / 100}
@@ -216,7 +233,7 @@ const Patient = (props) => {
                   bad: [-Infinity, 0.2],
                 }}
               >
-                {health}% healthy
+                健康度：{health}%
               </ProgressBar>
             ) : (
               <ProgressBar
@@ -225,27 +242,27 @@ const Patient = (props) => {
                   bad: [-Infinity, Infinity],
                 }}
               >
-                {health}% healthy
+                健康度：{health}%
               </ProgressBar>
             )}
           </LabeledList.Item>
           {dead ? (
-            <LabeledList.Item label="Condition">
+            <LabeledList.Item label="状态">
               <Box color={permadead ? 'red' : 'green'} bold={1}>
                 {permadead
                   ? heart_broken
-                    ? 'Myocardial rupture, surgical intervention required'
-                    : 'Permanently deceased'
+                    ? '心肌破裂，需要手术治疗'
+                    : '已死亡，无法复苏'
                   : Synthetic
-                    ? 'Central power system shutdown, reboot with a reset key possible'
-                    : 'Cardiac arrest, defibrillation possible'}
+                    ? '中央供电系统已停机，可使用重置钥匙重启'
+                    : '心搏骤停，可进行除颤'}
               </Box>
             </LabeledList.Item>
           ) : null}
-          <LabeledList.Item label="Damage">
+          <LabeledList.Item label="伤害">
             <Box inline>
               <ProgressBar>
-                Brute:{' '}
+                物理损伤：{' '}
                 <Box inline bold color={'red'}>
                   {total_brute}
                 </Box>
@@ -254,7 +271,7 @@ const Patient = (props) => {
             <Box inline width={'5px'} />
             <Box inline>
               <ProgressBar>
-                Burn:{' '}
+                烧伤：{' '}
                 <Box inline bold color={'#ffb833'}>
                   {total_burn}
                 </Box>
@@ -263,7 +280,7 @@ const Patient = (props) => {
             <Box inline width={'5px'} />
             <Box inline>
               <ProgressBar>
-                Toxin:{' '}
+                毒素损伤：{' '}
                 <Box inline bold color={'green'}>
                   {toxin}
                 </Box>
@@ -272,7 +289,7 @@ const Patient = (props) => {
             <Box inline width={'5px'} />
             <Box inline>
               <ProgressBar>
-                Oxygen:{' '}
+                缺氧损伤：{' '}
                 <Box inline bold color={'blue'}>
                   {oxy}
                 </Box>
@@ -282,7 +299,7 @@ const Patient = (props) => {
             {!!clone && (
               <Box inline>
                 <ProgressBar>
-                  Clone:{' '}
+                  遗传损伤：{' '}
                   <Box inline color={'teal'}>
                     {clone}
                   </Box>
@@ -290,7 +307,7 @@ const Patient = (props) => {
               </Box>
             )}
           </LabeledList.Item>
-          <LabeledList.Item label="Holocard">
+          <LabeledList.Item label="全息分诊卡">
             <NoticeBox color={holocard} inline>
               {holocard_message}
             </NoticeBox>
@@ -300,41 +317,41 @@ const Patient = (props) => {
               style={{ marginLeft: '2%' }}
               onClick={() => act('change_holo_card')}
             >
-              Change
+              更改
             </Button>
 
             <Button inline onClick={() => act('change_ui_mode')}>
-              Mini UI
+              简洁界面
             </Button>
           </LabeledList.Item>
-          <LabeledList.Item label="Buffered Scans">
+          <LabeledList.Item label="已存扫描">
             <Button
               inline
               style={{ marginLeft: '2%' }}
               onClick={() => act('previous_scan')}
             >
-              Previous
+              上一份
             </Button>
             <Button
               inline
               style={{ marginLeft: '2%' }}
               onClick={() => act('print_scan')}
             >
-              Print Scan
+              打印报告
             </Button>
             <Button
               inline
               style={{ marginLeft: '2%' }}
               onClick={() => act('next_scan')}
             >
-              Next
+              下一份
             </Button>
             <Button
               inline
               style={{ marginLeft: '2%' }}
               onClick={() => act('clear_scans')}
             >
-              Clear Scans
+              清除扫描
             </Button>
           </LabeledList.Item>
         </LabeledList>
@@ -365,7 +382,7 @@ const Misc = (props) => {
     <Section>
       <LabeledList>
         {has_blood ? (
-          <LabeledList.Item label={'Blood Type ' + blood_type}>
+          <LabeledList.Item label={'血型：' + blood_type}>
             <Box
               color={
                 bloodpct > 0.9 ? 'green' : bloodpct > 0.7 ? 'orange' : 'red'
@@ -375,35 +392,34 @@ const Misc = (props) => {
             </Box>
           </LabeledList.Item>
         ) : null}
-        <LabeledList.Item label={'Body Temperature'}>
+        <LabeledList.Item label={'体温'}>
           {body_temperature}
         </LabeledList.Item>
-        <LabeledList.Item label={'Pulse'}>{pulse}</LabeledList.Item>
+        <LabeledList.Item label={'脉搏'}>{pulse}</LabeledList.Item>
       </LabeledList>
       {implants || hugged || core_fracture || (lung_ruptured && bodyscanner) ? (
         <Divider />
       ) : null}
       {implants && detail_level !== 1 ? (
         <NoticeBox danger>
-          {implants} embedded object{implants > 1 ? 's' : ''} detected!
+          检测到 {implants} 个嵌入异物！
           {healthanalyser && !ui_mode
-            ? ' Advanced scanner required for location.'
+            ? ' 需要高级扫描仪确定位置。'
             : null}
         </NoticeBox>
       ) : null}
       {(implants || hugged) && detail_level === 1 ? (
         <NoticeBox danger>
-          {implants + (hugged ? 1 : 0)} unknown bod
-          {implants + (hugged ? 1 : 0) > 1 ? 'ies' : 'y'} detected!
+          检测到 {implants + (hugged ? 1 : 0)} 个未知异物！
         </NoticeBox>
       ) : null}
       {lung_ruptured && bodyscanner ? (
-        <NoticeBox danger>Ruptured lung detected!</NoticeBox>
+        <NoticeBox danger>检测到肺破裂！</NoticeBox>
       ) : null}
       {core_fracture && healthanalyser ? (
         <NoticeBox danger>
-          Bone fractures detected!
-          {!ui_mode ? ' Advanced scanner required for location.' : null}
+          检测到骨折！
+          {!ui_mode ? ' 需要高级扫描仪确定位置。' : null}
         </NoticeBox>
       ) : null}
     </Section>
@@ -414,7 +430,7 @@ const Diseases = (props) => {
   const { data } = useBackend();
   const { diseases } = data;
   return (
-    <Section title="Diseases">
+    <Section title="疾病">
       <LabeledList>
         {diseases.map((disease) => (
           <LabeledList.Item
@@ -422,7 +438,7 @@ const Diseases = (props) => {
             label={disease.name[0].toUpperCase() + disease.name.slice(1)}
           >
             <Box inline bold={1}>
-              Type : {disease.type}, possible cure : {disease.cure}
+              传播方式：{disease.type}，可能的疗法：{disease.cure}
             </Box>
             <Box inline width={'5px'} />
             <Box inline>
@@ -435,7 +451,7 @@ const Diseases = (props) => {
                   bad: [50, Infinity],
                 }}
               >
-                Stage:{disease.stage}/{disease.max_stage}
+                阶段：{disease.stage}/{disease.max_stage}
               </ProgressBar>
             </Box>
           </LabeledList.Item>
@@ -449,7 +465,7 @@ const MedicalAdvice = (props) => {
   const { data } = useBackend();
   const { advice } = data;
   return (
-    <Section title="Medication Advice">
+    <Section title="治疗建议">
       <Stack vertical>
         {advice.map((advice) => (
           <Stack.Item key={advice.advice}>
@@ -471,10 +487,10 @@ const ScannerChems = (props) => {
   const chemicals = Object.values(chemicals_lists);
 
   return (
-    <Section title={ui_mode ? null : 'Chemical Contents'}>
+    <Section title={ui_mode ? null : '体内化学物质'}>
       {has_unknown_chemicals ? (
         <NoticeBox warning color="grey">
-          Unknown reagents detected.
+          检测到未知试剂。
         </NoticeBox>
       ) : null}
       <Stack vertical>
@@ -488,12 +504,12 @@ const ScannerChems = (props) => {
                 color={chemical.dangerous ? 'red' : 'white'}
                 bold={chemical.dangerous}
               >
-                {chemical.amount + 'u ' + chemical.name}
+                {chemical.amount + ' 单位' + chemical.name}
               </Box>
               <Box inline width={'5px'} />
               {chemical.od ? (
                 <Box inline color={'red'} bold={1}>
-                  {'OD'}
+                  {'过量'}
                 </Box>
               ) : null}
             </Box>
@@ -519,19 +535,19 @@ const ScannerLimbs = (props) => {
   });
 
   return (
-    <Section title={ui_mode ? null : 'Limbs Damaged'}>
+    <Section title={ui_mode ? null : '肢体损伤'}>
       <Stack vertical fill>
         {ui_mode ? null : (
           <Flex width="100%" height="20px">
             <Flex.Item basis="85px" />
             <Flex.Item basis="55px" bold color="red">
-              Brute
+              物理损伤
             </Flex.Item>
             <Flex.Item basis="55px" bold color="#ffb833">
-              Burn
+              烧伤
             </Flex.Item>
             <Flex.Item grow="1" shrink="1" textAlign="right" nowrap>
-              {'{ } = Untreated'}
+              {'{ } = 未处理'}
             </Flex.Item>
           </Flex>
         )}
@@ -548,7 +564,7 @@ const ScannerLimbs = (props) => {
             </Flex.Item>
             {limb.missing ? (
               <Flex.Item color={'red'} bold={1}>
-                MISSING
+                缺失
               </Flex.Item>
             ) : (
               <>
@@ -571,29 +587,29 @@ const ScannerLimbs = (props) => {
                 <Flex.Item shrink="1">
                   {limb.bleeding ? (
                     <Box inline color={'red'} bold={1}>
-                      {ui_mode ? `[B]` : `[Bleeding]`}
+                      {ui_mode ? `[出血]` : `[正在出血]`}
                     </Box>
                   ) : null}
                   {limb.internal_bleeding ? (
                     limb.arterial_bleeding ? (
                       <Box inline color="red" bold={1}>
-                        {ui_mode ? '[IB]' : '[Internal Bleeding]'}
+                        {ui_mode ? '[内出血]' : '[内出血]'}
                       </Box>
                     ) : (
                       <Box inline color="pink" bold={1}>
-                        {ui_mode ? '[AB!]' : '[Arterial Bleeding!]'}
+                        {ui_mode ? '[动脉出血!]' : '[动脉出血！]'}
                       </Box>
                     )
                   ) : null}
 
                   {limb.limb_status ? (
                     <Box inline color="white" bold={1}>
-                      {ui_mode ? '[F]' : `[${limb.limb_status}]`}
+                      {ui_mode ? '[骨折]' : `[${statusLabel(limb.limb_status)}]`}
                     </Box>
                   ) : null}
                   {limb.limb_splint ? (
                     <Box inline color={'lime'} bold={1}>
-                      {ui_mode ? '[S]' : `[${limb.limb_splint}]`}
+                      {ui_mode ? '[夹板]' : `[${statusLabel(limb.limb_splint)}]`}
                     </Box>
                   ) : null}
                   {limb.limb_type ? (
@@ -606,25 +622,25 @@ const ScannerLimbs = (props) => {
                       }
                       bold={1}
                     >
-                      {ui_mode ? '[C]' : `[${limb.limb_type}]`}
+                      {ui_mode ? '[机械]' : `[${statusLabel(limb.limb_type)}]`}
                     </Box>
                   ) : null}
                   {limb.open_incision ? (
                     <Box inline color={'red'} bold={1}>
-                      {ui_mode ? `[OSI]` : `[Open Surgical Incision]`}
+                      {ui_mode ? `[切口]` : `[手术切口未闭合]`}
                     </Box>
                   ) : null}
                   {limb.implant && bodyscanner ? (
                     <Box inline color={'white'} bold={1}>
-                      {ui_mode ? `[E]` : `[Embedded Object]`}
+                      {ui_mode ? `[异物]` : `[嵌入异物]`}
                     </Box>
                   ) : null}
                   {limb.open_zone_incision ? (
                     <Box inline color={'red'} bold={1}>
-                      [Open Surgical Incision In {limb.open_zone_incision}]
+                      [{statusLabel(limb.open_zone_incision)}手术切口未闭合]
                       {ui_mode
-                        ? `[OSI:${limb.open_zone_incision}]`
-                        : `[Open Surgical Incision In ${limb.open_zone_incision}]`}
+                        ? `[切口：${statusLabel(limb.open_zone_incision)}]`
+                        : `[${statusLabel(limb.open_zone_incision)}手术切口未闭合]`}
                     </Box>
                   ) : null}
                 </Flex.Item>
@@ -642,7 +658,7 @@ const ScannerOrgans = (props) => {
   const { damaged_organs, ui_mode } = data;
 
   return (
-    <Section title={ui_mode ? null : 'Organ(s) Damaged'}>
+    <Section title={ui_mode ? null : '器官损伤'}>
       <LabeledList>
         {damaged_organs.map((organ) => (
           <LabeledList.Item
@@ -654,12 +670,12 @@ const ScannerOrgans = (props) => {
               color={organ.status === 'Bruised' ? 'orange' : 'red'}
               bold={1}
             >
-              {organ.status + ' [' + organ.damage + ' damage]'}
+              {statusLabel(organ.status) + ' [' + organ.damage + ' 损伤]'}
             </Box>
             <Box inline width={'5px'} />
             {organ.robotic ? (
               <Box inline bold={1} color="blue">
-                Robotic
+                机械器官
               </Box>
             ) : null}
           </LabeledList.Item>

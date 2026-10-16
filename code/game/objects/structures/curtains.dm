@@ -1,6 +1,6 @@
 /obj/structure/curtain
 	icon = 'icons/obj/structures/props/curtain.dmi'
-	name = "curtain"
+	name = "帘子"
 	icon_state = "green"
 	layer = ABOVE_MOB_LAYER
 	opacity = TRUE
@@ -12,7 +12,7 @@
 
 /obj/structure/curtain/bullet_act(obj/projectile/P, def_zone)
 	if(P.damage)
-		visible_message(SPAN_WARNING("[P] tears [src] down!"))
+		visible_message(SPAN_WARNING("[P]撕碎了[src]！"))
 		qdel(src)
 	return 0
 
@@ -23,8 +23,8 @@
 
 /obj/structure/curtain/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
-	M.visible_message(SPAN_DANGER("\The [M] slices [src] apart!"), \
-	SPAN_DANGER("You slice [src] apart!"), null, 5)
+	M.visible_message(SPAN_DANGER("[M]划开了[src]！"), \
+	SPAN_DANGER("你划开了[src]！"), null, 5)
 	qdel(src)
 	return XENO_ATTACK_ACTION
 
@@ -38,35 +38,35 @@
 		layer = ABOVE_MOB_LAYER
 
 /obj/structure/curtain/shower
-	name = "shower curtain"
+	name = "浴帘"
 	color = "#ACD1E9"
 	alpha = 200
 
 /obj/structure/curtain/black
-	name = "black curtain"
+	name = "黑色帘子"
 	color = "#222222"
 
 /obj/structure/curtain/medical
-	name = "plastic curtain"
+	name = "塑料帘子"
 	color = "#B8F5E3"
 	alpha = 200
 
 /obj/structure/curtain/open/shower
-	name = "shower curtain"
+	name = "浴帘"
 	icon_state = "shower"
 	alpha = 200
 
 /obj/structure/curtain/open/black
-	name = "black curtain"
+	name = "黑色帘子"
 	color = "#222222"
 
 /obj/structure/curtain/open/medical
-	name = "plastic curtain"
+	name = "塑料帘子"
 	color = "#B8F5E3"
 	alpha = 200
 
 /obj/structure/curtain/red
-	name = "red curtain"
+	name = "红色帘子"
 	icon_state = "red"
 
 /obj/structure/curtain/red/clean
@@ -74,5 +74,5 @@
 
 
 /obj/structure/curtain/blue
-	name = "blue curtain"
+	name = "蓝色帘子"
 	icon_state = "blue_clean"

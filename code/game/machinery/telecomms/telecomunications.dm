@@ -110,10 +110,10 @@ GLOBAL_LIST_EMPTY_TYPED(telecomms_list, /obj/structure/machinery/telecomms)
 */
 
 /obj/structure/machinery/telecomms/receiver
-	name = "Subspace Receiver"
+	name = "子空间接收器"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "broadcast receiver"
-	desc = "This machine has a dish-like shape and green lights. It is designed to detect and process subspace radio activity."
+	desc = "这台机器呈碟形，亮着绿色指示灯，用于探测和处理子空间无线电信号。"
 	density = TRUE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
@@ -132,10 +132,10 @@ GLOBAL_LIST_EMPTY_TYPED(telecomms_list, /obj/structure/machinery/telecomms)
 */
 
 /obj/structure/machinery/telecomms/hub
-	name = "Telecommunication Hub"
+	name = "通讯枢纽"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "hub"
-	desc = "A mighty piece of hardware used to send/receive massive amounts of data."
+	desc = "用于收发海量数据的强大设备。"
 	density = TRUE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
@@ -155,10 +155,10 @@ GLOBAL_LIST_EMPTY_TYPED(telecomms_list, /obj/structure/machinery/telecomms)
 */
 
 /obj/structure/machinery/telecomms/relay
-	name = "Telecommunication Relay"
+	name = "通讯中继器"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "relay"
-	desc = "A mighty piece of hardware used to send massive amounts of data far away."
+	desc = "用于将海量数据发送到远方的强大设备。"
 	density = TRUE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
@@ -181,10 +181,10 @@ GLOBAL_LIST_EMPTY_TYPED(telecomms_list, /obj/structure/machinery/telecomms)
 */
 
 /obj/structure/machinery/telecomms/bus
-	name = "Bus Mainframe"
+	name = "总线主机"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "bus"
-	desc = "A mighty piece of hardware used to send massive amounts of data quickly."
+	desc = "用于快速传输海量数据的强大设备。"
 	density = TRUE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
@@ -203,10 +203,10 @@ GLOBAL_LIST_EMPTY_TYPED(telecomms_list, /obj/structure/machinery/telecomms)
 */
 
 /obj/structure/machinery/telecomms/processor
-	name = "Processor Unit"
+	name = "处理器单元"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "processor"
-	desc = "This machine is used to process large quantities of information."
+	desc = "这台机器用于处理大量信息。"
 	density = TRUE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
@@ -225,10 +225,10 @@ GLOBAL_LIST_EMPTY_TYPED(telecomms_list, /obj/structure/machinery/telecomms)
 
 
 /obj/structure/machinery/telecomms/server
-	name = "Telecommunication Server"
+	name = "通讯服务器"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "comm_server"
-	desc = "A machine used to store data and network statistics."
+	desc = "用于存储数据和网络统计信息的机器。"
 	density = TRUE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE

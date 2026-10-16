@@ -9,16 +9,16 @@
  * Banhammer
  */
 /obj/item/weapon/banhammer/attack(mob/M as mob, mob/user as mob)
-	to_chat(M, "<font color='red'><b> You have been banned FOR NO REISIN by [user]<b></font>")
-	to_chat(user, "<font color='red'> You have <b>BANNED</b> [M]</font>")
+	to_chat(M, "<font color='red'><b> 你被[user]莫名其妙地封禁了！<b></font>")
+	to_chat(user, "<font color='red'> 你<b>封禁</b>了[M]！</font>")
 
 
 /*
  * Classic Baton
  */
 /obj/item/weapon/classic_baton
-	name = "police baton"
-	desc = "A wooden truncheon for beating criminal scum."
+	name = "警棍"
+	desc = "用于殴打犯罪败类的木制警棍。"
 	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "baton"
 	item_state = "classic_baton"
@@ -32,12 +32,12 @@
 	if(M.stuttering < 8)
 		M.stuttering = 8
 
-	user.visible_message(SPAN_DANGER("<B>[M] has been beaten with \the [src] by [user]!</B>"), SPAN_DANGER("You hear someone fall"))
+	user.visible_message(SPAN_DANGER("<B>[user]用[src]殴打了[M]！</B>"), SPAN_DANGER("你听见有人倒地的声音。"))
 
 //Telescopic baton
 /obj/item/weapon/telebaton
-	name = "telescopic baton"
-	desc = "A compact yet rebalanced personal defense weapon. Can be concealed when folded. It will knock down humans when not on harm intent."
+	name = "伸缩警棍"
+	desc = "结构紧凑、配重经过调整的个人防卫武器。收拢后便于隐藏。使用伤害意图以外的意图攻击人类时，可将其击倒。"
 	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "telebaton_0"
 	item_state = "telebaton_0"
@@ -60,25 +60,25 @@
 
 	on = !on
 	if(on)
-		user.visible_message(SPAN_DANGER("With a flick of the wrist, [user] extends \his [src]."),\
-		SPAN_DANGER("You extend \the [src]."),\
-		"You hear an ominous click.")
+		user.visible_message(SPAN_DANGER("[user]手腕一抖，甩开了[src]。"),\
+		SPAN_DANGER("你展开了[src]。"),\
+		"你听见一声不祥的咔嗒声。")
 		icon_state = "telebaton_1"
 		item_state = "telebaton_1"
 		w_class = SIZE_MEDIUM
 		force = MELEE_FORCE_VERY_STRONG
 		stun_force = 40
-		attack_verb = list("smacked", "struck", "slapped", "beat")
+		attack_verb = list("拍击", "击打", "拍打", "殴打")
 	else
-		user.visible_message(SPAN_NOTICE("Using a smooth, practiced movement, [user] collapses \his [src]."),\
-		SPAN_NOTICE("You collapse \the [src]."),\
-		"You hear a click.")
+		user.visible_message(SPAN_NOTICE("[user]动作娴熟而流畅地收起了[src]。"),\
+		SPAN_NOTICE("你收起了[src]。"),\
+		"你听见一声咔嗒声。")
 		icon_state = "telebaton_0"
 		item_state = "telebaton_0"
 		w_class = SIZE_SMALL
 		force = MELEE_FORCE_WEAK
 		stun_force = initial(stun_force)
-		attack_verb = list("hit", "punched")
+		attack_verb = list("击打", "冲击")
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
@@ -114,11 +114,11 @@
 	var/target_zone = check_zone(user.zone_selected)
 	target.apply_stamina_damage(final_stun_force, target_zone, ARMOR_MELEE)
 	if(target.stamina.current_stamina <= 0)
-		user.visible_message(SPAN_DANGER("[user] knocks down [target] with \the [src]!"),\
-							SPAN_WARNING("You knock down [target] with \the [src]!"))
+		user.visible_message(SPAN_DANGER("[user]用[src]击倒了[target]！"),\
+							SPAN_WARNING("你用[src]击倒了[target]！"))
 	else
-		user.visible_message(SPAN_DANGER("[user] thwacks [target] with \the [src]!"),\
-							SPAN_WARNING("You beat [target] with \the [src]!"))
+		user.visible_message(SPAN_DANGER("[user]用[src]重击了[target]！"),\
+							SPAN_WARNING("你用[src]殴打了[target]！"))
 	return TRUE
 
 /*
@@ -136,14 +136,14 @@
 		icon_state = "eshield[active]"
 		w_class = SIZE_LARGE
 		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
-		to_chat(user, SPAN_NOTICE(" [src] is now active."))
+		to_chat(user, SPAN_NOTICE("[src]现已启动。"))
 
 	else
 		force = 3
 		icon_state = "eshield[active]"
 		w_class = SIZE_TINY
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
-		to_chat(user, SPAN_NOTICE(" [src] can now be concealed."))
+		to_chat(user, SPAN_NOTICE("现在可以将[src]藏起来了。"))
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user

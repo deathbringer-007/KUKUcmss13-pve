@@ -16,8 +16,8 @@
 /obj/structure/pipes/binary/pump
 	icon = 'icons/obj/pipes/pump.dmi'
 	icon_state = "map_off"
-	name = "gas pump"
-	desc = "A pump"
+	name = "气泵"
+	desc = "一台泵。"
 
 /obj/structure/pipes/binary/pump/on
 	icon_state = "map_on"
@@ -38,8 +38,8 @@
 	icon = 'icons/obj/pipes/volume_pump.dmi'
 	icon_state = "map_off"
 	level = 1
-	name = "high power gas pump"
-	desc = "A pump. Has double the power rating of the standard gas pump."
+	name = "高功率气泵"
+	desc = "一台泵，额定功率是标准气泵的两倍。"
 
 /obj/structure/pipes/binary/pump/high_power/on
 	icon_state = "map_on"
@@ -48,8 +48,8 @@
 /obj/structure/pipes/binary/passive_gate
 	icon = 'icons/obj/pipes/passive_gate.dmi'
 	icon_state = "map"
-	name = "pressure regulator"
-	desc = "A one-way air valve that can be used to regulate input or output pressure, and flow rate. Does not require power."
+	name = "压力调节阀"
+	desc = "可调节入口或出口压力及流量的单向气阀，无需电力。"
 
 /obj/structure/pipes/binary/passive_gate/update_underlays()
 	if(..())
@@ -65,8 +65,8 @@
 
 
 /obj/structure/pipes/binary/circulator
-	name = "circulator/heat exchanger"
-	desc = "A gas circulator pump and heat exchanger."
+	name = "循环泵／热交换器"
+	desc = "气体循环泵兼热交换器。"
 	icon = 'icons/obj/pipes/pipes3.dmi'
 	icon_state = "circ-off"
 	anchored = FALSE
@@ -74,7 +74,7 @@
 
 /obj/structure/pipes/binary/circulator/New()
 	..()
-	desc = initial(desc) + "  Its outlet port is to the [dir2text(dir)]."
+	desc = initial(desc) + "其出口朝向[list("north" = "北", "south" = "南", "east" = "东", "west" = "西", "northeast" = "东北", "southeast" = "东南", "northwest" = "西北", "southwest" = "西南")[dir2text(dir)]]。"
 
 /obj/structure/pipes/binary/circulator/update_icon()
 	if(!anchored)
@@ -85,7 +85,7 @@
 /obj/structure/pipes/binary/circulator/attackby(obj/item/W as obj, mob/user as mob)
 	if(HAS_TRAIT(W, TRAIT_TOOL_WRENCH))
 		anchored = !anchored
-		to_chat(user, SPAN_NOTICE(" You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."))
+		to_chat(user, SPAN_NOTICE("你[anchored ? "拧紧" : "松开"]了将[src]固定在地板上的螺栓。"))
 
 		if(anchored)
 			if(dir & (NORTH|SOUTH))
@@ -96,23 +96,23 @@
 		. = ..()
 
 /obj/structure/pipes/binary/circulator/verb/rotate_clockwise()
-	set category = "Object"
-	set name = "Rotate Circulator (Clockwise)"
+	set category = "物品"
+	set name = "顺时针旋转循环泵"
 	set src in view(1)
 
 	if (usr.stat || usr.is_mob_restrained() || anchored)
 		return
 
 	src.setDir(turn(src.dir, 90))
-	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
+	desc = initial(desc) + "其出口朝向[list("north" = "北", "south" = "南", "east" = "东", "west" = "西", "northeast" = "东北", "southeast" = "东南", "northwest" = "西北", "southwest" = "西南")[dir2text(dir)]]。"
 
 /obj/structure/pipes/binary/circulator/verb/rotate_anticlockwise()
-	set category = "Object"
-	set name = "Rotate Circulator (Counterclockwise)"
+	set category = "物品"
+	set name = "逆时针旋转循环泵"
 	set src in view(1)
 
 	if (usr.stat || usr.is_mob_restrained() || anchored)
 		return
 
 	src.setDir(turn(src.dir, -90))
-	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
+	desc = initial(desc) + "其出口朝向[list("north" = "北", "south" = "南", "east" = "东", "west" = "西", "northeast" = "东北", "southeast" = "东南", "northwest" = "西北", "southwest" = "西南")[dir2text(dir)]]。"

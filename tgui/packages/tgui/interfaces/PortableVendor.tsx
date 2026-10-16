@@ -36,7 +36,7 @@ const PointCounter = (props) => {
   return (
     <Stack.Item>
       <ProgressBar maxValue={data.max_points} value={data.current_points}>
-        {data.current_points} points
+        {data.current_points} 点数
       </ProgressBar>
     </Stack.Item>
   );

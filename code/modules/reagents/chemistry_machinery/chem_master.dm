@@ -1,5 +1,5 @@
 /obj/structure/machinery/chem_master
-	name = "ChemMaster 3000"
+	name = "制药大师 3000"
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/structures/machinery/science_machines.dmi'
@@ -40,7 +40,7 @@
 	connected = locate(/obj/structure/machinery/smartfridge/chemistry) in range(tether_range, src)
 	if(connected)
 		RegisterSignal(connected, COMSIG_PARENT_QDELETING, PROC_REF(cleanup))
-		visible_message(SPAN_NOTICE("<b>The [src] beeps:</b> Smartfridge connected."))
+		visible_message(SPAN_NOTICE("<b>[src]鸣响提示：</b>已连接智能冰箱。"))
 
 /obj/structure/machinery/chem_master/ex_act(severity)
 	switch(severity)
@@ -67,21 +67,21 @@
 		beaker = B
 		user.drop_inv_item_to_loc(B, src)
 		if(old_beaker)
-			to_chat(user, SPAN_NOTICE("You swap out \the [old_beaker] for \the [B]."))
+			to_chat(user, SPAN_NOTICE("你取出[old_beaker]，换上[B]。"))
 			user.put_in_hands(old_beaker)
 		else
-			to_chat(user, SPAN_NOTICE("You add the beaker to the machine!"))
+			to_chat(user, SPAN_NOTICE("你将烧杯装入机器！"))
 		updateUsrDialog()
 		update_icon()
 
 	else if(istype(B, /obj/item/storage/pill_bottle) && pill_maker)
 		if(loaded_pill_bottle)
-			to_chat(user, SPAN_WARNING("A pill bottle is already loaded into the machine."))
+			to_chat(user, SPAN_WARNING("机器中已经装有药瓶。"))
 			return
 
 		loaded_pill_bottle = B
 		user.drop_inv_item_to_loc(B, src)
-		to_chat(user, SPAN_NOTICE("You add the pill bottle into the dispenser slot!"))
+		to_chat(user, SPAN_NOTICE("你将药瓶装入出药槽！"))
 		updateUsrDialog()
 	return
 
@@ -130,7 +130,7 @@
 		if(!Adjacent(usr))
 			return
 
-		var/label = copytext(reject_bad_text(input(user,"Label text?", "Set label", "")), 1, MAX_NAME_LEN)
+		var/label = copytext(reject_bad_text(input(user,"标签写什么？", "设置标签", "")), 1, MAX_NAME_LEN)
 		if(label)
 			loaded_pill_bottle.AddComponent(/datum/component/label, label)
 			if(length(label) < 3)
@@ -160,7 +160,7 @@
 
 		else if(href_list["addcustom"])
 			var/id = href_list["addcustom"]
-			useramount = tgui_input_number(usr, "Select the amount to transfer.", "Transfer amount", useramount)
+			useramount = tgui_input_number(usr, "选择转移量。", "转移量", useramount)
 			transfer_chemicals(src, beaker, useramount, id)
 
 		else if(href_list["addall"])
@@ -180,7 +180,7 @@
 
 		else if(href_list["removecustom"])
 			var/id = href_list["removecustom"]
-			useramount = tgui_input_number(usr, "Select the amount to transfer.", "Transfer amount", useramount)
+			useramount = tgui_input_number(usr, "选择转移量。", "转移量", useramount)
 			if(mode)
 				transfer_chemicals(beaker, src, useramount, id)
 			else
@@ -218,7 +218,7 @@
 				return
 
 			if(href_list["createpill_multiple"])
-				count = clamp(tgui_input_number(user, "Select the number of pills to make. (max: [max_pill_count])", "Pills to make", pillamount, max_pill_count, 1), 0, max_pill_count)
+				count = clamp(tgui_input_number(user, "选择制作药片的数量。（最多：[max_pill_count]）", "制药数量", pillamount, max_pill_count, 1), 0, max_pill_count)
 				if(!count)
 					return
 
@@ -227,7 +227,7 @@
 
 			for(var/datum/reagent/R in reagents.reagent_list)
 				if(R.flags & REAGENT_NOT_INGESTIBLE)
-					to_chat(user, SPAN_WARNING("[R.name] must be administered intravenously and cannot be made into a pill."))
+					to_chat(user, SPAN_WARNING("[R.name]必须静脉给药，不能制成药片。"))
 					return
 
 			var/amount_per_pill = reagents.total_volume/count
@@ -239,7 +239,7 @@
 
 			while (count--)
 				var/obj/item/reagent_container/pill/P = new/obj/item/reagent_container/pill(loc)
-				P.pill_desc = "A custom pill."
+				P.pill_desc = "一片定制药片。"
 				P.icon_state = "pill"+pillsprite
 				reagents.trans_to(P,amount_per_pill)
 				if(loaded_pill_bottle)
@@ -257,19 +257,19 @@
 
 		else if(href_list["createglass"])
 			if(!condi)
-				var/name = reject_bad_text(input(user,"Label:","Enter label!", reagents.get_master_reagent_name()) as text|null)
+				var/name = reject_bad_text(input(user,"标签：","输入标签", reagents.get_master_reagent_name()) as text|null)
 				if(!name)
 					return
 
 				var/obj/item/reagent_container/glass/P
 				if(href_list["createbottle"])
 					P = new/obj/item/reagent_container/glass/bottle()
-					P.name = "[name] bottle"
+					P.name = "[name]试剂瓶"
 					P.icon_state = "bottle-"+bottlesprite
 					reagents.trans_to(P, 60)
 				else if(href_list["createvial"])
 					P = new/obj/item/reagent_container/glass/beaker/vial()
-					P.name = "[name] vial"
+					P.name = "[name]试管"
 					reagents.trans_to(P, 30)
 
 				P.update_icon()
@@ -290,14 +290,14 @@
 			for(var/i = 1 to PILL_ICON_CHOICES)
 				dat += "<tr><td><a href=\"byond://?src=\ref[src]&pill_sprite=[i]\"><img src=\"pill[i].png\" /></a></td></tr>"
 			dat += "</table>"
-			show_browser(user, dat, "Change Pill Type", "chem_master")
+			show_browser(user, dat, "选择药片外观", "chem_master")
 			return
 		else if(href_list["change_bottle"])
 			var/dat = "<table>"
 			for(var/i = 1 to BOTTLE_ICON_CHOICES)
 				dat += "<tr><td><a href=\"byond://?src=\ref[src]&bottle_sprite=[i]\"><img src=\"bottle-[i].png\" /></a></td></tr>"
 			dat += "</table>"
-			show_browser(user, dat, "Change Bottle Type", "chem_master")
+			show_browser(user, dat, "选择试剂瓶外观", "chem_master")
 			return
 		else if(href_list["pill_sprite"])
 			pillsprite = href_list["pill_sprite"]
@@ -309,11 +309,11 @@
 			return
 
 		if(QDELETED(connected))
-			to_chat(user, SPAN_WARNING("Connect a smartfridge first."))
+			to_chat(user, SPAN_WARNING("请先连接智能冰箱。"))
 			return
 
 		if(src.z != connected.z || get_dist(src, connected) > tether_range)
-			to_chat(user, SPAN_WARNING("Smartfridge is out of range. Connection severed."))
+			to_chat(user, SPAN_WARNING("智能冰箱超出范围，连接已断开。"))
 			cleanup()
 			attack_hand(user)
 			return
@@ -332,7 +332,7 @@
 	if(stat & BROKEN)
 		return
 	if(req_skill && !skillcheck(user, req_skill, req_skill_level))
-		to_chat(user, SPAN_WARNING("You don't have the training to use this."))
+		to_chat(user, SPAN_WARNING("你没有接受过使用这台设备的训练。"))
 		return
 	user.set_interaction(src)
 	if(!(user.client in has_sprites))
@@ -344,71 +344,71 @@
 				user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "bottle-" + num2text(i)), "bottle-[i].png")
 	var/dat = ""
 	if(!beaker)
-		dat = "Please insert beaker.<BR>"
+		dat = "请放入烧杯。<BR>"
 		if(pill_maker)
 			if(loaded_pill_bottle)
-				dat += "<A href='byond://?src=\ref[src];ejectp=1;user=\ref[user]'>Eject Pill Bottle \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
+				dat += "<A href='byond://?src=\ref[src];ejectp=1;user=\ref[user]'>取出药瓶 \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
 			else
-				dat += "No pill bottle inserted.<BR><BR>"
-		dat += "<A href='byond://?src=\ref[src];close=1'>Close</A>"
+				dat += "未装入药瓶。<BR><BR>"
+		dat += "<A href='byond://?src=\ref[src];close=1'>关闭</A>"
 	else
-		dat += "<A href='byond://?src=\ref[src];eject=1;user=\ref[user]'>Eject beaker and Clear Buffer</A><BR><BR>"
+		dat += "<A href='byond://?src=\ref[src];eject=1;user=\ref[user]'>取出烧杯并清空暂存槽</A><BR><BR>"
 		if(pill_maker)
 			if(loaded_pill_bottle)
-				dat += "<A href='byond://?src=\ref[src];ejectp=1;user=\ref[user]'>Eject [loaded_pill_bottle] \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR>"
-				dat += "<A href='byond://?src=\ref[src];addlabelp=1;user=\ref[user]'>Add label to [loaded_pill_bottle] \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR>"
-				dat += "<A href='byond://?src=\ref[src];setcolor=1;user=\ref[user]'>Set color to [loaded_pill_bottle] \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
-				dat += "<A href='byond://?src=\ref[src];transferp=1;'>Transfer [loaded_pill_bottle] \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\] to the smartfridge</A><BR><BR>"
+				dat += "<A href='byond://?src=\ref[src];ejectp=1;user=\ref[user]'>取出[loaded_pill_bottle] \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];addlabelp=1;user=\ref[user]'>给[loaded_pill_bottle]添加标签 \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];setcolor=1;user=\ref[user]'>设置[loaded_pill_bottle]的颜色 \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
+				dat += "<A href='byond://?src=\ref[src];transferp=1;'>将[loaded_pill_bottle] \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\] 转存至智能冰箱</A><BR><BR>"
 			else
-				dat += "No pill bottle inserted.<BR><BR>"
+				dat += "未装入药瓶。<BR><BR>"
 		if(!connected && pill_maker)
-			dat += "<A href='byond://?src=\ref[src];connect=1'>Connect Smartfridge</A><BR><BR>"
+			dat += "<A href='byond://?src=\ref[src];connect=1'>连接智能冰箱</A><BR><BR>"
 		if(!beaker.reagents.total_volume)
-			dat += "Beaker is empty."
+			dat += "烧杯是空的。"
 		else
-			dat += "Add to buffer:<BR>"
+			dat += "加入暂存槽：<BR>"
 			for(var/datum/reagent/G in beaker.reagents.reagent_list)
-				dat += "[G.name] , [G.volume] Units - "
+				dat += "[G.name]，[G.volume] 单位 - "
 				dat += "<A href='byond://?src=\ref[src];add=[G.id];amount=1'>1</A> "
 				dat += "<A href='byond://?src=\ref[src];add=[G.id];amount=5'>5</A> "
 				dat += "<A href='byond://?src=\ref[src];add=[G.id];amount=10'>10</A> "
 				dat += "<A href='byond://?src=\ref[src];add=[G.id];amount=30'>30</A> "
 				dat += "<A href='byond://?src=\ref[src];add=[G.id];amount=60'>60</A> "
-				dat += "<A href='byond://?src=\ref[src];add=[G.id];amount=[G.volume]'>All</A> "
-				dat += "<A href='byond://?src=\ref[src];addcustom=[G.id]'>Custom</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];addall=[beaker]'>All reagents</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];add=[G.id];amount=[G.volume]'>全部</A> "
+				dat += "<A href='byond://?src=\ref[src];addcustom=[G.id]'>自定义</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];addall=[beaker]'>全部试剂</A><BR>"
 
-		dat += "<HR>Transfer to <A href='byond://?src=\ref[src];toggle=1'>[(!mode ? "disposal" : "beaker")]:</A><BR>"
+		dat += "<HR>转移至 <A href='byond://?src=\ref[src];toggle=1'>[(!mode ? "废弃" : "烧杯")]：</A><BR>"
 		if(reagents.total_volume)
 			for(var/datum/reagent/N in reagents.reagent_list)
-				dat += "[N.name] , [N.volume] Units - "
+				dat += "[N.name]，[N.volume] 单位 - "
 				dat += "<A href='byond://?src=\ref[src];remove=[N.id];amount=1'>1</A> "
 				dat += "<A href='byond://?src=\ref[src];remove=[N.id];amount=5'>5</A> "
 				dat += "<A href='byond://?src=\ref[src];remove=[N.id];amount=10'>10</A> "
 				dat += "<A href='byond://?src=\ref[src];remove=[N.id];amount=30'>30</A> "
 				dat += "<A href='byond://?src=\ref[src];remove=[N.id];amount=60'>60</A> "
-				dat += "<A href='byond://?src=\ref[src];remove=[N.id];amount=[N.volume]'>All</A> "
-				dat += "<A href='byond://?src=\ref[src];removecustom=[N.id]'>Custom</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];removeall=[src]'>All reagents</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];remove=[N.id];amount=[N.volume]'>全部</A> "
+				dat += "<A href='byond://?src=\ref[src];removecustom=[N.id]'>自定义</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];removeall=[src]'>全部试剂</A><BR>"
 		else
-			dat += "Empty<BR>"
+			dat += "空<BR>"
 		if(!condi)
 			if(pill_maker)
-				dat += "<HR><BR><A href='byond://?src=\ref[src];createpill=1'>Create pill (60 units max)</A><a href=\"byond://?src=\ref[src]&change_pill=1\"><img src=\"pill[pillsprite].png\" /></a><BR>"
-				dat += "<A href='byond://?src=\ref[src];createpill_multiple=1'>Create multiple pills</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];createglass=1;createbottle=1;user=\ref[user]'>Create bottle (60 units max)<a href=\"byond://?src=\ref[src]&change_bottle=1\"><img src=\"bottle-[bottlesprite].png\" /></A>"
+				dat += "<HR><BR><A href='byond://?src=\ref[src];createpill=1'>制作药片（最多 60 单位）</A><a href=\"byond://?src=\ref[src]&change_pill=1\"><img src=\"pill[pillsprite].png\" /></a><BR>"
+				dat += "<A href='byond://?src=\ref[src];createpill_multiple=1'>批量制作药片</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];createglass=1;createbottle=1;user=\ref[user]'>装瓶（最多 60 单位）<a href=\"byond://?src=\ref[src]&change_bottle=1\"><img src=\"bottle-[bottlesprite].png\" /></A>"
 			if(connected)
-				dat += "<BR><A href='byond://?src=\ref[src];createglass=1;createbottle=1;store=1;user=\ref[user]'>Store bottle in smartfridge (60 units max)</A>"
+				dat += "<BR><A href='byond://?src=\ref[src];createglass=1;createbottle=1;store=1;user=\ref[user]'>装瓶并存入智能冰箱（最多 60 单位）</A>"
 			if(vial_maker)
-				dat += "<BR><BR><A href='byond://?src=\ref[src];createglass=1;createvial=1;user=\ref[user]'>Create vial (30 units max)</A>"
+				dat += "<BR><BR><A href='byond://?src=\ref[src];createglass=1;createvial=1;user=\ref[user]'>装试管（最多 30 单位）</A>"
 				if(connected)
-					dat += "<BR><A href='byond://?src=\ref[src];createglass=1;createvial=1;store=1;user=\ref[user]'>Store vial in smartfridge (30 units max)</A>"
+					dat += "<BR><A href='byond://?src=\ref[src];createglass=1;createvial=1;store=1;user=\ref[user]'>装试管并存入智能冰箱（最多 30 单位）</A>"
 		else
-			dat += "<A href='byond://?src=\ref[src];createglass=1;user=\ref[user]'>Create bottle (50 units max)</A>"
+			dat += "<A href='byond://?src=\ref[src];createglass=1;user=\ref[user]'>装瓶（最多 50 单位）</A>"
 	if(!condi)
-		show_browser(user, "[name] menu:<BR><BR>[dat]", name, "chem_master", width = 460, height = 520)
+		show_browser(user, "[name]菜单：<BR><BR>[dat]", name, "chem_master", width = 460, height = 520)
 	else
-		show_browser(user, "Condimaster menu:<BR><BR>[dat]", name, "chem_master")
+		show_browser(user, "调味大师菜单：<BR><BR>[dat]", name, "chem_master")
 	return
 
 /obj/structure/machinery/chem_master/proc/cleanup()
@@ -417,13 +417,13 @@
 		connected = null
 
 /obj/structure/machinery/chem_master/condimaster
-	name = "CondiMaster 3000"
+	name = "调味大师 3000"
 	req_skill = null
 	req_skill_level = null
 	condi = 1
 
 /obj/structure/machinery/chem_master/industry_mixer
-	name = "Industrial Chemical Mixer"
+	name = "工业化学混合机"
 	icon_state = "industry_mixer0"
 	base_state = "industry_mixer"
 	req_skill = SKILL_ENGINEER

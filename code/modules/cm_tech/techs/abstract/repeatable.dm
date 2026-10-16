@@ -13,10 +13,10 @@
 	. = ..()
 	if(increase_per_purchase)
 		.["stats"] += list(list(
-			"content" = "Incremental Price: +[increase_per_purchase] per purchase",
+			"content" = "递增价格：每次购买增加[increase_per_purchase]",
 			"color" = "orange",
 			"icon" = "dollar-sign",
-			"tooltip" = "Increases the cost of this tech whenever it is purchased by [increase_per_purchase]."
+			"tooltip" = "每次购买此科技后，价格都会增加[increase_per_purchase]。"
 		))
 
 /datum/tech/repeatable/can_unlock(mob/M)
@@ -25,7 +25,7 @@
 		return
 
 	if(next_purchase > world.time)
-		to_chat(M, SPAN_WARNING("You recently purchased this! Wait [DisplayTimeText(next_purchase - world.time, 0.1)]"))
+		to_chat(M, SPAN_WARNING("你刚刚购买过！请再等[DisplayTimeText(next_purchase - world.time, 0.1)]。"))
 		return FALSE
 
 /datum/tech/repeatable/on_unlock()

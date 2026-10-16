@@ -1,7 +1,7 @@
 /obj/item/reagent_container/food/snacks/honeycomb
-	name = "honeycomb"
+	name = "蜂巢蜜"
 	icon_state = "honeycomb"
-	desc = "Dripping with sugary sweetness."
+	desc = "甜蜜的蜂蜜正一滴滴往下流。"
 
 /obj/item/reagent_container/food/snacks/honeycomb/Initialize()
 	. = ..()

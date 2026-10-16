@@ -3,8 +3,8 @@
  */
 
 /obj/item/device/multitool
-	name = "\improper Security Access Tuner" //Thats what is is in-universe. From Alien: Isolation.
-	desc = "A small handheld tool used to override various machine functions. Primarily used to pulse Airlock and APC wires on a shortwave frequency. It contains a small data buffer as well."
+	name = "\improper 安全访问调谐器" //Thats what is is in-universe. From Alien: Isolation.
+	desc = "用于干预各种机器功能的小型手持工具。主要通过短波脉冲操作气闸和区域电力控制器的线路，还内置一个小型数据缓冲区。"
 	icon_state = "multitool"
 	item_state = "multitool"
 	pickup_sound = 'sound/handling/multitool_pickup.ogg'
@@ -54,8 +54,11 @@
 	var/area/A = get_area(src)
 	var/atom/APC = A? A.get_apc() : null
 	if(APC)
-		to_chat(user, SPAN_NOTICE("The local APC is located at [SPAN_BOLD("[get_dist(src, APC)] units [dir2text(Get_Compass_Dir(src, APC))]")]."))
-		user.balloon_alert(user, "[get_dist(src, APC)] units [dir2text(Get_Compass_Dir(src, APC))]")
+		var/list/direction_labels = list("north" = "北方", "south" = "南方", "east" = "东方", "west" = "西方", "northeast" = "东北方", "southeast" = "东南方", "northwest" = "西北方", "southwest" = "西南方")
+		var/direction_text = dir2text(Get_Compass_Dir(src, APC))
+		direction_text = direction_labels[direction_text] || direction_text
+		to_chat(user, SPAN_NOTICE("本区域的电力控制器位于[SPAN_BOLD("[direction_text]，距离 [get_dist(src, APC)] 格")]。"))
+		user.balloon_alert(user, "[direction_text]，距离 [get_dist(src, APC)] 格")
 		if(user.client)
 			//Create the appearance so we have something to apply the filter to.
 			var/mutable_appearance/apc_appearance = new(APC)
@@ -73,8 +76,8 @@
 
 
 	else
-		to_chat(user, SPAN_WARNING("ERROR: Could not locate local APC."))
-		user.balloon_alert(user, "could not locate!")
+		to_chat(user, SPAN_WARNING("错误：无法定位本区域的电力控制器。"))
+		user.balloon_alert(user, "定位失败！")
 
 /obj/item/device/multitool/proc/remove_apc_highlight(client/user_client, image/highlight_image)
 	if(!user_client)

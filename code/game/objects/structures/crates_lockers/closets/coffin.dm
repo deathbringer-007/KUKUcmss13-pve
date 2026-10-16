@@ -1,6 +1,6 @@
 /obj/structure/closet/coffin
-	name = "coffin"
-	desc = "It's a burial receptacle for the dearly departed."
+	name = "棺材"
+	desc = "用来安葬逝者的容器。"
 	icon_state = "coffin"
 	icon_closed = "coffin"
 	icon_opened = "coffin_open"
@@ -15,8 +15,8 @@
 		icon_state = icon_opened
 
 /obj/structure/closet/coffin/predator
-	name = "strange coffin"
-	desc = "It's a burial receptacle for the dearly departed. Seems to have weird markings on the side..?"
+	name = "奇怪的棺材"
+	desc = "用来安葬逝者的容器。侧面似乎刻着奇怪的符号……？"
 	icon_state = "pred_coffin"
 	icon_closed = "pred_coffin"
 	icon_opened = "pred_coffin_open"
@@ -26,8 +26,8 @@
 
 
 /obj/structure/closet/coffin/woodencrate //Subtyped here so Req doesn't sell them
-	name = "wooden crate"
-	desc = "A wooden crate. Shoddily assembled, spacious and worthless on the ASRS"
+	name = "木箱"
+	desc = "一个做工粗糙、空间宽敞的木箱，在自动仓储检索系统中一文不值。"
 	icon_state = "closed_woodcrate"
 	icon_opened = "open_woodcrate"
 	icon_closed = "closed_woodcrate"

@@ -1,6 +1,6 @@
 /obj/structure/machinery/door/poddoor
-	name = "\improper Podlock"
-	desc = "That looks like it doesn't open easily."
+	name = "\improper 防爆闸门"
+	desc = "看起来不容易打开。"
 	icon = 'icons/obj/structures/doors/rapid_pdoor.dmi'
 	icon_state = "pdoor1"
 	var/base_icon_state = "pdoor"
@@ -56,17 +56,17 @@
 	if(X.action_busy)
 		return
 
-	X.visible_message(SPAN_DANGER("[X] begins prying [src] open."),\
-	SPAN_XENONOTICE("You start prying [src] open."), max_distance = 3)
+	X.visible_message(SPAN_DANGER("[X]开始撬开[src]。"),\
+	SPAN_XENONOTICE("你开始撬开[src]。"), max_distance = 3)
 
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, TRUE)
 
 	if(!do_after(X, time, INTERRUPT_ALL, BUSY_ICON_HOSTILE, src, INTERRUPT_ALL))
-		to_chat(X, "You stop prying [src] open.")
+		to_chat(X, "你停止撬开[src]。")
 		return
 
-	X.visible_message(SPAN_DANGER("[X] pries open [src]."), \
-	SPAN_XENONOTICE("You pry open [src]."), max_distance = 3)
+	X.visible_message(SPAN_DANGER("[X]撬开了[src]。"), \
+	SPAN_XENONOTICE("你撬开了[src]。"), max_distance = 3)
 
 	open()
 	return TRUE

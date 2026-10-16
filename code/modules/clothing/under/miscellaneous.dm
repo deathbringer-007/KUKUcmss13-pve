@@ -1,54 +1,54 @@
 /obj/item/clothing/under/pj/red
-	name = "red pj's"
-	desc = "Sleepwear."
+	name = "红色睡衣"
+	desc = "睡觉穿的衣服。"
 	icon_state = "red_pyjamas"
 	item_state = "w_suit"
 
 /obj/item/clothing/under/pj/blue
-	name = "blue pj's"
-	desc = "Sleepwear."
+	name = "蓝色睡衣"
+	desc = "睡觉穿的衣服。"
 	icon_state = "blue_pyjamas"
 	item_state = "w_suit"
 
 /obj/item/clothing/under/scratch
-	name = "white suit"
-	desc = "A white suit, suitable for an excellent host"
+	name = "白色西装"
+	desc = "适合优秀主人的白色西装。"
 	icon_state = "scratch"
 
 /obj/item/clothing/under/sl_suit
-	desc = "It's a very Amish-looking suit."
-	name = "Amish suit"
+	desc = "一套很有阿米什风格的西装。"
+	name = "阿米什西装"
 	icon_state = "sl_suit"
 
 /obj/item/clothing/under/waiter
-	name = "waiter's outfit"
-	desc = "It's a very smart uniform with a special pocket for tip."
+	name = "侍者制服"
+	desc = "一套非常利落的制服，专门留有放小费的口袋。"
 	icon_state = "waiter"
 
 /obj/item/clothing/under/rank/mailman
-	name = "mailman's jumpsuit"
-	desc = "<i>'Special delivery!'</i>"
+	name = "邮差连体服"
+	desc = "<i>“特快专递！”</i>"
 	icon_state = "mailman"
 	item_state = "b_suit"
 	flags_jumpsuit = FALSE
 
 /obj/item/clothing/under/rank/centcom_officer
-	desc = "It's a jumpsuit worn by CentCom Officers."
-	name = "\improper CentCom officer's jumpsuit"
+	desc = "中央指挥部军官穿着的连体服。"
+	name = "\improper 中央指挥部军官连体服"
 	icon_state = "officer"
 	item_state = "g_suit"
 	flags_jumpsuit = FALSE
 
 /obj/item/clothing/under/rank/centcom_commander
-	desc = "It's a jumpsuit worn by CentCom's highest-tier Commanders."
-	name = "\improper CentCom officer's jumpsuit"
+	desc = "中央指挥部最高层指挥官穿着的连体服。"
+	name = "\improper 中央指挥部军官连体服"
 	icon_state = "centcom"
 	item_state = "dg_suit"
 	flags_jumpsuit = FALSE
 
 /obj/item/clothing/under/space
-	name = "\improper NASA jumpsuit"
-	desc = "It has a NASA logo on it and is made of space-proofed materials."
+	name = "\improper NASA连体服"
+	desc = "带有NASA标志，使用能适应太空环境的材料制成。"
 	icon_state = "black"
 	item_state = "bl_suit"
 	w_class = SIZE_LARGE//bulky item
@@ -59,90 +59,90 @@
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROT
 
 /obj/item/clothing/under/suit_jacket
-	name = "black suit"
-	desc = "A black suit and red tie. Very formal."
+	name = "黑色西装"
+	desc = "黑色西装搭配红领带，非常正式。"
 	icon_state = "black_suit"
 	item_state = "bl_suit"
 
 /obj/item/clothing/under/suit_jacket/really_black
-	name = "executive suit"
-	desc = "A formal black suit and red tie, intended for the station's finest."
+	name = "高管西装"
+	desc = "正式的黑色西装搭配红领带，专为站上精英准备。"
 	icon_state = "really_black_suit"
 	item_state = "bl_suit"
 
 /obj/item/clothing/under/suit_jacket/female
-	name = "executive suit"
-	desc = "A formal trouser suit for women, intended for the station's finest."
+	name = "高管西装"
+	desc = "正式的女士裤装西服，专为站上精英准备。"
 	icon_state = "black_suit_fem"
 
 /obj/item/clothing/under/suit_jacket/red
-	name = "red suit"
-	desc = "A red suit and blue tie. Somewhat formal."
+	name = "红色西装"
+	desc = "红色西装搭配蓝领带，颇为正式。"
 	icon_state = "red_suit"
 	item_state = "r_suit"
 
 /obj/item/clothing/under/blackskirt
-	name = "red dress skirt"
-	desc = "A black cardigan with a red skirt, quite fancy!"
+	name = "红色裙装"
+	desc = "黑色开衫搭配红色裙子，相当漂亮！"
 	icon_state = "blackskirt"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS
 
 /obj/item/clothing/under/schoolgirl
-	name = "schoolgirl uniform"
-	desc = "It's just like one of my Japanese animes!"
+	name = "女学生制服"
+	desc = "简直和我看的日本动画里一模一样！"
 	icon_state = "schoolgirl"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
 
 /obj/item/clothing/under/overalls
-	name = "laborer's overalls"
-	desc = "A set of durable overalls for getting the job done."
+	name = "劳动者背带服"
+	desc = "一套结实耐用、适合干活的背带服。"
 	icon_state = "overalls"
 	item_state = "lb_suit"
 
 /obj/item/clothing/under/pirate
-	name = "pirate outfit"
-	desc = "Yarr."
+	name = "海盗服"
+	desc = "呀嗬！"
 	icon_state = "pirate"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_LEGS
 
 /obj/item/clothing/under/kutjevo
-	name = "kutjevo jumper"
-	desc = "A heavy-duty jumpsuit worn by the workers on Kutjevo."
+	name = "库特耶沃连体服"
+	desc = "库特耶沃工人穿着的耐用连体服。"
 	icon_state = "kutjevo_jumper"
 	item_state = "kutjevo_jumper"
 
 /obj/item/clothing/under/kutjevo/drysuit
-	name = "kutjevo drysuit"
-	desc = "A heavy-duty drysuit worn by the workers on Kutjevo."
+	name = "库特耶沃干式防水服"
+	desc = "库特耶沃工人穿着的耐用干式防水服。"
 	icon_state = "kutjevo_drysuit"
 	item_state = "kutjevo_drysuit"
 
 
 /obj/item/clothing/under/soviet
-	name = "soviet uniform"
-	desc = "For the Motherland!"
+	name = "苏式制服"
+	desc = "为了祖国！"
 	icon_state = "soviet"
 
 /obj/item/clothing/under/rank/veteran/soviet_uniform_01
-	name = "soviet military uniform"
-	desc = "Made with fabric so strong and unified it would make the capitalist tailors jealous."
+	name = "苏式军服"
+	desc = "布料结实得团结一心，足以让资本主义裁缝嫉妒。"
 	icon_state = "soviet_uniform_01"
 	item_state = "soviet_uniform_01_d"
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
 
 /obj/item/clothing/under/rank/miner
-	desc = "It's a snappy jumpsuit with a sturdy set of overalls. It is very dirty."
-	name = "shaft miner's jumpsuit"
+	desc = "一套利落的连体服，配有结实的背带裤，脏得很。"
+	name = "矿工连体服"
 	icon_state = "miner"
 
 /obj/item/clothing/under/redcoat
-	name = "redcoat uniform"
-	desc = "Looks old."
+	name = "红衫军制服"
+	desc = "看起来很老旧。"
 	icon_state = "redcoat"
 
 /obj/item/clothing/under/kilt
-	name = "kilt"
-	desc = "Includes shoes and plaid"
+	name = "苏格兰短裙"
+	desc = "包含鞋子和格纹披肩。"
 	icon_state = "kilt"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_FEET
 
@@ -151,91 +151,91 @@
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_LEGS
 
 /obj/item/clothing/under/wedding/bride_orange
-	name = "orange wedding dress"
-	desc = "A big and puffy orange dress."
+	name = "橙色婚纱"
+	desc = "一件宽大蓬松的橙色裙子。"
 	icon_state = "bride_orange"
 	flags_inv_hide = HIDESHOES
 
 /obj/item/clothing/under/wedding/bride_purple
-	name = "purple wedding dress"
-	desc = "A big and puffy purple dress."
+	name = "紫色婚纱"
+	desc = "一件宽大蓬松的紫色裙子。"
 	icon_state = "bride_purple"
 	flags_inv_hide = HIDESHOES
 
 /obj/item/clothing/under/wedding/bride_blue
-	name = "blue wedding dress"
-	desc = "A big and puffy blue dress."
+	name = "蓝色婚纱"
+	desc = "一件宽大蓬松的蓝色裙子。"
 	icon_state = "bride_blue"
 	flags_inv_hide = HIDESHOES
 
 /obj/item/clothing/under/wedding/bride_red
-	name = "red wedding dress"
-	desc = "A big and puffy red dress."
+	name = "红色婚纱"
+	desc = "一件宽大蓬松的红色裙子。"
 	icon_state = "bride_red"
 	flags_inv_hide = HIDESHOES
 
 /obj/item/clothing/under/wedding/bride_white
-	name = "silky wedding dress"
-	desc = "A white wedding gown made from the finest silk."
+	name = "丝绸婚纱"
+	desc = "用上等丝绸制成的白色婚纱。"
 	icon_state = "bride_white"
 	flags_inv_hide = HIDESHOES
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
 
 /obj/item/clothing/under/assistantformal
-	name = "assistant's formal uniform"
-	desc = "An assistant's formal-wear. Why an assistant needs formal-wear is still unknown."
+	name = "助理礼服"
+	desc = "一套助理的正式服装。至今没人知道助理为什么需要礼服。"
 	icon_state = "assistant_formal"
 	item_state = "gy_suit"
 
 /obj/item/clothing/under/suit_jacket/charcoal
-	name = "charcoal suit"
-	desc = "A charcoal suit and red tie. Very professional."
+	name = "炭灰色西装"
+	desc = "炭灰色西装搭配红领带，非常专业。"
 	icon_state = "charcoal_suit"
 
 /obj/item/clothing/under/suit_jacket/navy
-	name = "navy suit"
-	desc = "A navy suit and red tie, intended for the station's finest."
+	name = "海军蓝西装"
+	desc = "海军蓝西装搭配红领带，专为站上精英准备。"
 	icon_state = "navy_suit"
 
 /obj/item/clothing/under/suit_jacket/burgundy
-	name = "burgundy suit"
-	desc = "A burgundy suit and black tie. Somewhat formal."
+	name = "酒红色西装"
+	desc = "酒红色西装搭配黑领带，颇为正式。"
 	icon_state = "burgundy_suit"
 
 /obj/item/clothing/under/suit_jacket/checkered
-	name = "checkered suit"
-	desc = "That's a very nice suit you have there. Shame if something were to happen to it, eh?"
+	name = "格纹西装"
+	desc = "你这套西装真不错啊。要是出了什么意外，可就可惜了，对吧？"
 	icon_state = "checkered_suit"
 
 /obj/item/clothing/under/suit_jacket/tan
-	name = "tan suit"
-	desc = "A tan suit with a yellow tie. Smart, but casual."
+	name = "棕褐色西装"
+	desc = "棕褐色西装搭配黄领带，利落而休闲。"
 	icon_state = "tan_suit"
 
 /obj/item/clothing/under/suit_jacket/stowaway
-	name = "dirty suit"
-	desc = "A dirty suit with a yellow tie. It looks very weathered."
+	name = "脏西装"
+	desc = "脏兮兮的西装搭配黄领带，看起来饱经风霜。"
 	icon_state = "stowaway_uniform"
 
 /obj/item/clothing/under/serviceoveralls
-	name = "Workman outfit"
-	desc = "The very image of a working man. Not that you're probably doing work."
+	name = "工人服"
+	desc = "标准的劳动者形象。不过你未必真在干活。"
 	icon_state = "mechanic"
 
 /obj/item/clothing/under/suit_jacket/director
-	name = "director's suit"
-	desc = "It's a suit that oozes with authority. Belongs to someone very important."
+	name = "主管西装"
+	desc = "一套散发着权威气息的西装，属于某位大人物。"
 	item_state = "director_uniform"
 	icon_state = "director_uniform"
 
 /obj/item/clothing/under/suit_jacket/manager
-	desc = "It's a suit worn by those with the know-how to achieve the position of \"Corporate Manager\"."
-	name = "manager's suit"
+	desc = "由具备“公司经理”任职本领的人员穿着的西装。"
+	name = "经理西装"
 	icon_state = "manager_uniform"
 	item_state = "manager_uniform"
 
 /obj/item/clothing/under/suit_jacket/trainee
-	name = "trainee's uniform"
-	desc = "It's a uniform that has a Wey-Yu insignia on it with the words \"Trainee\" stamped below."
+	name = "实习生制服"
+	desc = "带有维兰德-汤谷徽章的制服，徽章下印着“实习生”。"
 	icon_state = "trainee_uniform"
 	item_state = "trainee_uniform"

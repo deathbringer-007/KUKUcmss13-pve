@@ -1,5 +1,5 @@
 /obj/item/device/aicard
-	name = "inteliCard"
+	name = "智能卡"
 	icon = 'icons/obj/items/robot_component.dmi'
 	icon_state = "aicard" // aicard-full
 	item_state = "electronic"

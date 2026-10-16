@@ -1,5 +1,5 @@
 /obj/structure/machinery/robotic_fabricator
-	name = "Robotic Fabricator"
+	name = "机器人制造机"
 	icon = 'icons/obj/structures/machinery/robotics.dmi'
 	icon_state = "fab-idle"
 	density = TRUE
@@ -26,11 +26,11 @@
 						M.use(1)
 						count++
 
-					to_chat(user, "You insert [count] metal sheet\s into the fabricator.")
+					to_chat(user, "你向制造机中放入了[count]张金属板。")
 					src.overlays -= "fab-load-metal"
 					updateDialog()
 		else
-			to_chat(user, "The robot part maker is full. Please remove metal from the robot part maker in order to insert more.")
+			to_chat(user, "机器人零件制造机已经装满。请先取出部分金属，再放入更多材料。")
 
 /obj/structure/machinery/robotic_fabricator/attack_hand(user as mob)
 	var/dat
@@ -39,24 +39,24 @@
 
 	if (src.operating)
 		dat = {"
-<TT>Building [src.being_built.name].<BR>
-Please wait until completion...</TT><BR>
+<TT>正在制造[src.being_built.name]。<BR>
+请等待制造完成……</TT><BR>
 <BR>
 "}
 	else
 		dat = {"
-<B>Metal Amount:</B> [min(150000, src.metal_amount)] cm<sup>3</sup> (MAX: 150,000)<BR><HR>
+<B>金属储量：</B> [min(150000, src.metal_amount)] cm<sup>3</sup>（最大：150,000）<BR><HR>
 <BR>
-<A href='byond://?src=\ref[src];make=1'>Left Arm (25,000 cc metal.)<BR>
-<A href='byond://?src=\ref[src];make=2'>Right Arm (25,000 cc metal.)<BR>
-<A href='byond://?src=\ref[src];make=3'>Left Leg (25,000 cc metal.)<BR>
-<A href='byond://?src=\ref[src];make=4'>Right Leg (25,000 cc metal).<BR>
-<A href='byond://?src=\ref[src];make=5'>Chest (50,000 cc metal).<BR>
-<A href='byond://?src=\ref[src];make=6'>Head (50,000 cc metal).<BR>
-<A href='byond://?src=\ref[src];make=7'>Robot Frame (75,000 cc metal).<BR>
+<A href='byond://?src=\ref[src];make=1'>左臂（25,000 立方厘米金属）<BR>
+<A href='byond://?src=\ref[src];make=2'>右臂（25,000 立方厘米金属）<BR>
+<A href='byond://?src=\ref[src];make=3'>左腿（25,000 立方厘米金属）<BR>
+<A href='byond://?src=\ref[src];make=4'>右腿（25,000 立方厘米金属）<BR>
+<A href='byond://?src=\ref[src];make=5'>胸部（50,000 立方厘米金属）<BR>
+<A href='byond://?src=\ref[src];make=6'>头部（50,000 立方厘米金属）<BR>
+<A href='byond://?src=\ref[src];make=7'>机器人机架（75,000 立方厘米金属）<BR>
 "}
 
-	user << browse("<HEAD><TITLE>Robotic Fabricator Control Panel</TITLE></HEAD><TT>[dat]</TT>", "window=robot_fabricator")
+	user << browse("<HEAD><TITLE>机器人制造机控制面板</TITLE></HEAD><TT>[dat]</TT>", "window=robot_fabricator")
 	onclose(user, "robot_fabricator")
 	return
 

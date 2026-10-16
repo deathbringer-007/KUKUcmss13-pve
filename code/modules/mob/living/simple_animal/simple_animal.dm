@@ -1,7 +1,7 @@
 #define OVERLAY_FIRE_LAYER -1
 
 /mob/living/simple_animal
-	name = "animal"
+	name = "动物"
 	icon = 'icons/mob/animal.dmi'
 	health = 20
 	maxHealth = 20
@@ -12,7 +12,7 @@
 
 	melee_damage_lower = 0
 	melee_damage_upper = 0
-	attacktext = "attacks"
+	attacktext = "攻击"
 	attack_sound = null
 	//Attacktext is the mob deal 0 damaage.
 	friendly = "nuzzles"
@@ -45,9 +45,9 @@
 	var/stop_automated_movement_when_pulled = 1
 
 	//Interaction
-	var/response_help   = "tries to help"
-	var/response_disarm = "tries to disarm"
-	var/response_harm   = "tries to hurt"
+	var/response_help   = "试图帮助"
+	var/response_disarm = "试图缴械"
+	var/response_harm   = "试图伤害"
 	var/harm_intent_damage = 3
 
 	//Temperature effect
@@ -107,20 +107,20 @@
 /mob/living/simple_animal/get_examine_text(mob/user)
 	. = ..()
 	if(stat == DEAD)
-		. += SPAN_BOLDWARNING("[user == src ? "You are" : "It is"] DEAD. Kicked the bucket.")
+		. += SPAN_BOLDWARNING("[user == src ? "你" : "它"]已经死了，彻底断气了。")
 	else
 		var/percent = floor((health / maxHealth * 100))
 		switch(percent)
 			if(95 to INFINITY)
-				. += SPAN_NOTICE("[user == src ? "You look" : "It looks"] quite healthy.")
+				. += SPAN_NOTICE("[user == src ? "你" : "它"]看起来很健康。")
 			if(75 to 94)
-				. += SPAN_NOTICE("[user == src ? "You look" : "It looks"] slightly injured.")
+				. += SPAN_NOTICE("[user == src ? "你" : "它"]看起来受了轻伤。")
 			if(50 to 74)
-				. += SPAN_DANGER("[user == src ? "You look" : "It looks"] injured.")
+				. += SPAN_DANGER("[user == src ? "你" : "它"]看起来受伤了。")
 			if(25 to 49)
-				. += SPAN_DANGER("[user == src ? "You are bleeding" : "It bleeds"] with gory wounds.")
+				. += SPAN_DANGER("[user == src ? "你" : "它"]伤口血肉模糊，血流不止。")
 			if(-INFINITY to 24)
-				. += SPAN_BOLDWARNING("[user == src ? "You are" : "It is"] heavily injured and limping badly.")
+				. += SPAN_BOLDWARNING("[user == src ? "你" : "它"]身受重伤，走路一瘸一拐。")
 
 /mob/living/simple_animal/handle_fire()
 	if(..())
@@ -313,7 +313,7 @@
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
 		for(var/mob/O in viewers(src, null))
-			O.show_message(SPAN_DANGER("<B>[M]</B> [M.attacktext] [src]!"), SHOW_MESSAGE_VISIBLE)
+			O.show_message(SPAN_DANGER("<B>[M]</B>[M.attacktext][src]！"), SHOW_MESSAGE_VISIBLE)
 		last_damage_data = create_cause_data(initial(M.name), M)
 		M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
 		src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>")
@@ -327,7 +327,7 @@
 		if(INTENT_HELP)
 			if (health > 0)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-				visible_message(SPAN_NOTICE("[attacking_mob] [response_help] [src]."))
+				visible_message(SPAN_NOTICE("[attacking_mob][response_help][src]。"))
 			return 1
 
 		if(INTENT_GRAB)
@@ -335,7 +335,7 @@
 			return 1
 
 		if(INTENT_DISARM)
-			visible_message(SPAN_NOTICE("[attacking_mob] [response_disarm] [src]."))
+			visible_message(SPAN_NOTICE("[attacking_mob][response_disarm][src]。"))
 			attacking_mob.animation_attack_on(src)
 			attacking_mob.flick_attack_overlay(src, "disarm")
 			return 1
@@ -355,7 +355,7 @@
 			var/final_damage = 0
 
 			playsound(loc, attack.attack_sound, 25, 1)
-			visible_message(SPAN_DANGER("[attacking_mob] [response_harm] [src]!"), null, null, 5)
+			visible_message(SPAN_DANGER("[attacking_mob][response_harm][src]！"), null, null, 5)
 
 			final_damage = attack.damage + extra_cqc_dmg + harm_intent_damage
 			apply_damage(final_damage, BRUTE, src, sharp = attack.sharp, edge = attack.edge)
@@ -363,7 +363,7 @@
 
 /mob/living/simple_animal/can_be_pulled_by(mob/pulling_mob)
 	if(locate(/obj/item/explosive/plastic) in contents)
-		to_chat(pulling_mob, SPAN_WARNING("You leave \the [src] alone. It's got live explosives on it!"))
+		to_chat(pulling_mob, SPAN_WARNING("你没有碰[src]，它身上装着已启动的炸药！"))
 		return FALSE
 	return ..()
 
@@ -378,10 +378,10 @@
 					MED.use(1)
 					for(var/mob/M as anything in viewers(src, null))
 						if ((M.client && !( M.blinded )))
-							M.show_message(SPAN_NOTICE("[user] applies [MED] on [src]"), SHOW_MESSAGE_VISIBLE)
+							M.show_message(SPAN_NOTICE("[user]将[MED]用在[src]身上。"), SHOW_MESSAGE_VISIBLE)
 					return
 		else
-			to_chat(user, SPAN_NOTICE(" this [src] is dead, medical items won't bring it back to life."))
+			to_chat(user, SPAN_NOTICE("[src]已经死了，医疗用品无法使其复活。"))
 			return
 	if(meat_type && (stat == DEAD)) //if the animal has a meat, and if it is dead.
 		if(istype(O, /obj/item/tool/kitchen/knife) || istype(O, /obj/item/tool/kitchen/knife/butcher))
@@ -447,7 +447,7 @@
 	if(stat)
 		return
 
-	var/verb = "says"
+	var/verb = "说"
 
 	if(length(speak_emote))
 		verb = pick(speak_emote)
@@ -473,7 +473,7 @@
 
 /mob/living/simple_animal/can_inject(mob/user, error_msg)
 	if(user && error_msg)
-		to_chat(user, SPAN_WARNING("You aren't sure how to inject this animal!"))
+		to_chat(user, SPAN_WARNING("你不确定该如何给这只动物注射！"))
 	return FALSE
 
 #undef OVERLAY_FIRE_LAYER

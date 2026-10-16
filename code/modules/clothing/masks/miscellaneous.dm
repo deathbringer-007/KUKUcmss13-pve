@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/muzzle
-	name = "muzzle"
-	desc = "To stop that awful noise."
+	name = "口枷"
+	desc = "让那难听的声音停下来。"
 	icon_state = "muzzle"
 	item_state = "muzzle"
 	flags_inventory = COVERMOUTH
@@ -9,8 +9,8 @@
 	gas_transfer_coefficient = 0.90
 
 /obj/item/clothing/mask/surgical
-	name = "sterile mask"
-	desc = "A sterile mask designed to help prevent the spread of diseases."
+	name = "无菌口罩"
+	desc = "用于帮助阻止疾病传播的无菌口罩。"
 	icon_state = "sterile"
 	item_state = "sterile"
 	w_class = SIZE_SMALL
@@ -28,22 +28,22 @@
 	armor_internaldamage = CLOTHING_ARMOR_NONE
 
 /obj/item/clothing/mask/fakemoustache
-	name = "fake moustache"
-	desc = "Warning: moustache is fake."
+	name = "假胡子"
+	desc = "警告：胡子是假的。"
 	icon_state = "fake-moustache"
 	flags_inv_hide = HIDEFACE
 	flags_armor_protection = 0
 
 /obj/item/clothing/mask/snorkel
-	name = "Snorkel"
-	desc = "For the Swimming Savant."
+	name = "浮潜呼吸管"
+	desc = "游泳高手的装备。"
 	icon_state = "snorkel"
 	flags_inv_hide = HIDEFACE
 	flags_armor_protection = 0
 
 /obj/item/clothing/mask/pig
-	name = "pig mask"
-	desc = "A rubber pig mask."
+	name = "猪脸面具"
+	desc = "一副橡胶猪脸面具。"
 	icon_state = "pig"
 	item_state = "pig"
 	flags_inventory = COVERMOUTH|COVEREYES
@@ -53,8 +53,8 @@
 	flags_armor_protection = BODY_FLAG_HEAD|BODY_FLAG_FACE|BODY_FLAG_EYES
 
 /obj/item/clothing/mask/balaclava
-	name = "balaclava"
-	desc = "A basic single eye-hole balaclava, available in almost every sporting goods, outdoor supply, or military surplus store in existence, protects your face from the cold almost as well as it conceals it. This one is in a standard black color."
+	name = "头套"
+	desc = "一顶普通的单孔头套，几乎所有体育用品店、户外用品店和军品店都有出售。它既能遮住脸，也能很好地抵御寒冷。这顶是标准黑色款。"
 	icon_state = "balaclava"
 	item_state = "balaclava"
 	flags_inventory = COVERMOUTH|ALLOWREBREATH|ALLOWCPR
@@ -64,21 +64,21 @@
 	w_class = SIZE_SMALL
 
 /obj/item/clothing/mask/balaclava/tactical
-	name = "green balaclava"
-	desc = "A basic single eye-hole balaclava, available in almost every sporting goods, outdoor supply, or military surplus store in existence, protects your face from the cold almost as well as it conceals it. This one is in a non-standard green color."
+	name = "绿色头套"
+	desc = "一顶普通的单孔头套，几乎所有体育用品店、户外用品店和军品店都有出售。它既能遮住脸，也能很好地抵御寒冷。这顶是非标准绿色款。"
 	icon_state = "swatclava"
 	item_state = "swatclava"
 
 /obj/item/clothing/mask/balaclava/threehole
-	name = "three-hole balaclava"
-	desc = "The preferred mask of every proper henchman, goon, thug, or villain worth their salt."
+	name = "三孔头套"
+	desc = "称职的爪牙、打手、暴徒和恶棍都会首选这种头套。"
 	icon_state = "balaclava_threehole"
 	item_state = "balaclava_threehole"
 	flags_inventory = ALLOWREBREATH|ALLOWCPR
 
 /obj/item/clothing/mask/luchador
-	name = "Luchador Mask"
-	desc = "Worn by robust fighters, flying high to defeat their foes!"
+	name = "墨西哥摔角面具"
+	desc = "强健的摔角手戴着它高高跃起，击败敌人！"
 	icon_state = "luchag"
 	item_state = "luchag"
 	flags_inv_hide = HIDEFACE|HIDEALLHAIR
@@ -87,13 +87,13 @@
 	siemens_coefficient = 3
 
 /obj/item/clothing/mask/luchador/tecnicos
-	name = "Tecnicos Mask"
-	desc = "Worn by robust fighters who uphold justice and fight honorably."
+	name = "正派摔角面具"
+	desc = "坚持正义、光明磊落的强健摔角手佩戴的面具。"
 	icon_state = "luchador"
 	item_state = "luchador"
 
 /obj/item/clothing/mask/luchador/rudos
-	name = "Rudos Mask"
-	desc = "Worn by robust fighters who are willing to do anything to win."
+	name = "反派摔角面具"
+	desc = "为求胜利不择手段的强健摔角手佩戴的面具。"
 	icon_state = "luchar"
 	item_state = "luchar"

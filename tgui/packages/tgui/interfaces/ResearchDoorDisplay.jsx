@@ -12,28 +12,28 @@ export const ResearchDoorDisplay = () => {
           <Flex height="100%" direction="column">
             <Flex.Item>
               <NoticeBox info textAlign="center">
-                Linked door : {data.door_id}
+                关联门： {data.door_id}
               </NoticeBox>
             </Flex.Item>
             <Flex.Item>
               {(!data.open_shutter && (
                 <Button fluid icon="lock-open" onClick={() => act('shutter')}>
-                  Open shutter
+                  打开卷闸
                 </Button>
               )) || (
                 <Button fluid icon="lock" onClick={() => act('shutter')}>
-                  Close shutter
+                  关闭卷闸
                 </Button>
               )}
             </Flex.Item>
             <Flex.Item>
               {(!data.open_door && (
                 <Button fluid icon="door-open" onClick={() => act('door')}>
-                  Open door
+                  开门
                 </Button>
               )) || (
                 <Button fluid icon="door-closed" onClick={() => act('door')}>
-                  Close door
+                  关门
                 </Button>
               )}
             </Flex.Item>
@@ -44,7 +44,7 @@ export const ResearchDoorDisplay = () => {
                   icon="arrows-alt-v"
                   onClick={() => act('divider')}
                 >
-                  Toggle divider
+                  切换隔板
                 </Button>
               </Flex.Item>
             )}
@@ -52,11 +52,11 @@ export const ResearchDoorDisplay = () => {
               <Flex.Item>
                 {(!data.flash_charging && (
                   <Button fluid icon="sun" onClick={() => act('flash')}>
-                    Activate flash
+                    启动闪光器
                   </Button>
                 )) || (
                   <Button fluid color="bad" icon="sync-alt">
-                    Flash recharging!
+                    闪光器正在充能！
                   </Button>
                 )}
               </Flex.Item>

@@ -1,6 +1,6 @@
 /obj/structure/deployable_beacon
-	name = "deployable beacon"
-	desc = "A standard deployable beacon. Generally used by teams who may be out of regular communications range but must signal for various reasons. This one is branded with a Weyland Yutani symbol and sold en masse."
+	name = "可部署信标"
+	desc = "标准可部署信标，通常供超出常规通信范围、但仍需发出各种信号的队伍使用。这款印着维兰德-汤谷标志，面向市场大量销售。"
 	icon = 'icons/obj/items/deployable_beacon.dmi'
 	icon_state = "beacon_active"
 
@@ -18,7 +18,7 @@
 
 	overlays += overlay_image
 
-	visible_message(SPAN_NOTICE("[src] beeps quietly as it begins broadcasting preprogrammed signals."))
+	visible_message(SPAN_NOTICE("[src]轻声鸣响，开始发送预设信号。"))
 
 	set_light(2, 1, beacon_light_color)
 
@@ -38,7 +38,7 @@
 	if(!do_after(user, (1 SECONDS), INTERRUPT_ALL, BUSY_ICON_BUILD, src))
 		return
 
-	visible_message(SPAN_NOTICE("[src] gives a drone as it powers down and collapses into itself for easier carrying."))
+	visible_message(SPAN_NOTICE("[src]低鸣着关闭电源，并折叠收起以便携带。"))
 
 	var/obj/item/deployable_beacon/undeployed_beacon = new beacon_type()
 

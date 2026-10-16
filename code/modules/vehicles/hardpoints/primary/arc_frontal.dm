@@ -1,6 +1,6 @@
 /obj/item/hardpoint/primary/arc_frontalcannon
-	name = "\improper Bleihagel RE-RE850 Frontal Rotary Cannon"
-	desc = "A peculiar turret with two 20mm rotary cannons strapped to the front of it."
+	name = "\improper 铅雨RE-RE850前置转管炮"
+	desc = "一座奇特的炮塔，正面装着两门20毫米转管炮。"
 	icon = 'icons/obj/vehicles/hardpoints/arc.dmi'
 
 	icon_state = "autocannon"

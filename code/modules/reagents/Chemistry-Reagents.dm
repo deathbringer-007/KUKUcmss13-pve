@@ -14,6 +14,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 /datum/reagent
 	var/name = "Reagent"
+	var/localized_name = null
 	var/id = ""
 	var/description = ""
 	var/datum/reagents/holder = null
@@ -61,6 +62,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/deleted = FALSE //If the reagent was deleted
 
 /datum/reagent/New()
+	if(localized_name)
+		name = localized_name
 	if(properties)
 		properties = properties_to_datums()
 	recalculate_variables()

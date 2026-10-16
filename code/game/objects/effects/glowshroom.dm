@@ -1,7 +1,7 @@
 //separate dm since hydro is getting bloated already
 
 /obj/effect/glowshroom
-	name = "glowshroom"
+	name = "荧光菇"
 	anchored = TRUE
 	opacity = FALSE
 	density = FALSE

@@ -1,22 +1,22 @@
 //Corgi
 /mob/living/simple_animal/corgi
-	name = "\improper corgi"
-	real_name = "corgi"
-	desc = "It's a corgi."
+	name = "\improper 柯基犬"
+	real_name = "柯基犬"
+	desc = "一只柯基犬。"
 	icon_state = "corgi"
 	icon_living = "corgi"
 	icon_dead = "corgi_dead"
-	speak = list("YAP", "Woof!", "Bark!", "AUUUUUU")
-	speak_emote = list("barks", "woofs")
-	emote_hear = list("barks", "woofs", "yaps","pants")
-	emote_see = list("shakes its head", "shivers")
+	speak = list("汪", "汪！", "汪汪！", "嗷呜——")
+	speak_emote = list("汪汪叫", "汪汪叫")
+	emote_hear = list("汪汪叫", "汪汪叫", "吠叫","喘着气")
+	emote_see = list("摇了摇头", "打了个哆嗦")
 	speak_chance = 1
 	turns_per_move = 10
 	meat_type = /obj/item/reagent_container/food/snacks/meat/corgi
 	meat_amount = 3
-	response_help  = "pets the"
-	response_disarm = "bops the"
-	response_harm   = "kicks the"
+	response_help  = "抚摸"
+	response_disarm = "轻拍"
+	response_harm   = "踢"
 	see_in_dark = 5
 	mob_size = MOB_SIZE_SMALL
 	black_market_value = 50
@@ -27,15 +27,15 @@
 
 //IAN! SQUEEEEEEEEE~
 /mob/living/simple_animal/corgi/Ian
-	name = "Ian"
-	real_name = "Ian" //Intended to hold the name without altering it.
+	name = "伊恩"
+	real_name = "伊恩" //Intended to hold the name without altering it.
 	gender = MALE
-	desc = "It's a corgi."
+	desc = "一只柯基犬。"
 	var/turns_since_scan = 0
 	var/obj/movement_target
-	response_help  = "pets"
-	response_disarm = "bops"
-	response_harm   = "kicks"
+	response_help  = "抚摸"
+	response_disarm = "轻拍"
+	response_harm   = "踢"
 
 /mob/living/simple_animal/corgi/Ian/Life(delta_time)
 	..()
@@ -99,8 +99,8 @@
 			user.count_niche_stat(STATISTICS_NICHE_CORGI)
 
 /obj/item/reagent_container/food/snacks/meat/corgi
-	name = "Corgi meat"
-	desc = "Tastes like... well you know..."
+	name = "柯基肉"
+	desc = "尝起来像……嗯，你懂的……"
 
 
 /mob/living/simple_animal/corgi/attackby(obj/item/O as obj, mob/user as mob)  //Marker -Agouri
@@ -108,7 +108,7 @@
 		if(!stat)
 			for(var/mob/M as anything in viewers(user, null))
 				if ((M.client && !( M.blinded )))
-					M.show_message(SPAN_NOTICE("[user] baps [name] on the nose with the rolled-up [O]"), SHOW_MESSAGE_VISIBLE)
+					M.show_message(SPAN_NOTICE("[user]用卷起来的[O]轻拍[name]的鼻子。"), SHOW_MESSAGE_VISIBLE)
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2))
 					setDir(i)
@@ -147,9 +147,9 @@
 
 
 /mob/living/simple_animal/corgi/puppy
-	name = "\improper corgi puppy"
-	real_name = "corgi"
-	desc = "It's a corgi puppy."
+	name = "\improper 柯基幼犬"
+	real_name = "柯基犬"
+	desc = "一只柯基幼犬。"
 	icon_state = "puppy"
 	icon_living = "puppy"
 	icon_dead = "puppy_dead"
@@ -157,30 +157,30 @@
 //pupplies cannot wear anything.
 /mob/living/simple_animal/corgi/puppy/Topic(href, href_list)
 	if(href_list["remove_inv"] || href_list["add_inv"])
-		to_chat(usr, SPAN_DANGER("You can't fit this on [src]"))
+		to_chat(usr, SPAN_DANGER("你没法给[src]戴上这个。"))
 		return
 	..()
 
 
 //LISA! SQUEEEEEEEEE~
 /mob/living/simple_animal/corgi/Lisa
-	name = "Lisa"
-	real_name = "Lisa"
+	name = "莉萨"
+	real_name = "莉萨"
 	gender = FEMALE
-	desc = "It's a corgi with a cute pink bow."
+	desc = "一只戴着可爱粉色蝴蝶结的柯基犬。"
 	icon_state = "lisa"
 	icon_living = "lisa"
 	icon_dead = "lisa_dead"
-	response_help  = "pets"
-	response_disarm = "bops"
-	response_harm   = "kicks"
+	response_help  = "抚摸"
+	response_disarm = "轻拍"
+	response_harm   = "踢"
 	var/turns_since_scan = 0
 	var/puppies = 0
 
 //Lisa already has a cute bow!
 /mob/living/simple_animal/corgi/Lisa/Topic(href, href_list)
 	if(href_list["remove_inv"] || href_list["add_inv"])
-		to_chat(usr, SPAN_DANGER("[src] already has a cute bow!"))
+		to_chat(usr, SPAN_DANGER("[src]已经戴着一个可爱的蝴蝶结了！"))
 		return
 	..()
 

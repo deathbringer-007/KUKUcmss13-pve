@@ -1,7 +1,7 @@
 
 /obj/structure/machinery/line_nexter
-	name = "Turnstile"
-	desc = "a one-way barrier combined with a bar to pull people out of line."
+	name = "旋转闸门"
+	desc = "单向闸门，配有横杆，可将排队人员逐个放行。"
 	icon = 'icons/obj/structures/barricades.dmi'
 	density = TRUE
 	icon_state = "turnstile"
@@ -42,14 +42,14 @@
 	last_use = world.time
 
 /obj/structure/machinery/line_nexter_control
-	name = "Next Button"
+	name = "下一位按钮"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "doorctrl0"
 	var/id
 
 /obj/structure/machinery/line_nexter_control/verb/push_button()
-	set name = "Push Button"
-	set category = "Object"
+	set name = "按下按钮"
+	set category = "物品"
 	if(isliving(usr))
 		var/mob/living/L = usr
 		attack_hand(L)

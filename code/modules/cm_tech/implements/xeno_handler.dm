@@ -1,6 +1,6 @@
 //Xenomorphs, hostile to everyone.
 /datum/emergency_call/xeno_handler
-	name = "Xenomorph Handler"
+	name = "异形驯导员"
 	mob_max = 8
 	probability = 0
 	auto_shuttle_launch = TRUE //because xenos can't use the shuttle console.
@@ -9,8 +9,8 @@
 
 /datum/emergency_call/xeno_handler/New()
 	..()
-	arrival_message = "[MAIN_SHIP_NAME], corrupted xenos with a trainer have been sent your way."
-	objectives = "Listen to the human that gives you directives, they are your master. If you are this human, give orders to the Xenomorphs. They are expected to listen to you."
+	arrival_message = "[MAIN_SHIP_NAME]，一支由驯导员带领的腐化异形队伍已派往你方。"
+	objectives = "听从向你发号施令的人类，对方是你的主人。如果你就是这名人类，请向异形下达命令，它们应当服从你。"
 
 
 /datum/emergency_call/xeno_handler/spawn_items()

@@ -1,6 +1,6 @@
 /obj/item/hardpoint/locomotion/van_wheels
-	name = "Van wheels"
-	desc = "Integral to the movement of the van"
+	name = "厢式车车轮"
+	desc = "厢式车行驶所必需的部件。"
 	icon = 'icons/obj/vehicles/hardpoints/van.dmi'
 
 	icon_state = "tires"
@@ -14,8 +14,8 @@
 	move_delay = VEHICLE_SPEED_VERYFAST
 
 /obj/item/hardpoint/locomotion/van_wheels/upp
-	name = "UPP Van wheels"
-	desc = "Integral to the movement of the upp van"
+	name = "UPP厢式车车轮"
+	desc = "进步人民联盟厢式车行驶所必需的部件。"
 	icon = 'icons/obj/vehicles/hardpoints/van.dmi'
 
 	icon_state = "upp_tires"

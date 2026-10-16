@@ -1,6 +1,6 @@
 /obj/item/hardpoint/primary/aa_quadcannon
-	name = "\improper Bleihagel RE-RE965 Aerial-Defence System"
-	desc = "A compact turret with four 20mm rotary cannons mounted in it. Normally slaved to the vehicles tracking systems, this one seems to be lacking the electronics required for such."
+	name = "\improper 铅雨RE-RE965防空系统"
+	desc = "一座紧凑炮塔，安装有四门20毫米转管炮。通常由载具追踪系统控制，但这座似乎缺少所需的电子设备。"
 	icon = 'icons/obj/vehicles/hardpoints/apc.dmi'
 
 	icon_state = "quad_cannon"

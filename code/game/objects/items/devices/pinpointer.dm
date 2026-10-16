@@ -1,5 +1,5 @@
 /obj/item/device/pinpointer
-	name = "pinpointer"
+	name = "定向定位器"
 	icon_state = "pinoff"
 	flags_atom = FPRINT | CONDUCT
 	flags_equip_slot = SLOT_WAIST
@@ -18,11 +18,11 @@
 	if(!active)
 		active = 1
 		workdisk()
-		to_chat(usr, SPAN_NOTICE(" You activate the pinpointer"))
+		to_chat(usr, SPAN_NOTICE("你启动了定向定位器。"))
 	else
 		active = 0
 		icon_state = "pinoff"
-		to_chat(usr, SPAN_NOTICE(" You deactivate the pinpointer"))
+		to_chat(usr, SPAN_NOTICE("你关闭了定向定位器。"))
 
 /obj/item/device/pinpointer/proc/workdisk()
 	if(!active) return
@@ -47,12 +47,12 @@
 	. = ..()
 	for(var/obj/structure/machinery/nuclearbomb/bomb in GLOB.machines)
 		if(bomb.timing)
-			. += "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]"
+			. += "极度危险。检测到武装信号。剩余时间：[bomb.timeleft]"
 
 
 /obj/item/device/pinpointer/advpinpointer
-	name = "Advanced Pinpointer"
-	desc = "A larger version of the normal pinpointer, this unit features a helpful quantum entanglement detection system to locate various objects that do not broadcast a locator signal."
+	name = "高级定向定位器"
+	desc = "普通定向定位器的加大型号，配备实用的量子纠缠探测系统，能够定位各种不发送定位信号的物体。"
 	var/mode = 0  // Mode 0 locates disk, mode 1 locates coordinates.
 	var/turf/location = null
 	var/obj/target = null
@@ -67,11 +67,11 @@
 			worklocation()
 		if(mode == 2)
 			workobj()
-		to_chat(usr, SPAN_NOTICE(" You activate the pinpointer"))
+		to_chat(usr, SPAN_NOTICE("你启动了定向定位器。"))
 	else
 		active = 0
 		icon_state = "pinoff"
-		to_chat(usr, SPAN_NOTICE(" You deactivate the pinpointer"))
+		to_chat(usr, SPAN_NOTICE("你关闭了定向定位器。"))
 
 
 /obj/item/device/pinpointer/advpinpointer/proc/worklocation()
@@ -112,8 +112,8 @@
 	spawn(5) .()
 
 /obj/item/device/pinpointer/advpinpointer/verb/toggle_mode()
-	set category = "Object"
-	set name = "Toggle Pinpointer Mode"
+	set category = "物品"
+	set name = "切换定向定位器模式"
 	set src in view(1)
 
 	active = 0
@@ -121,14 +121,14 @@
 	target=null
 	location = null
 
-	switch(alert("Please select the mode you want to put the pinpointer in.", "Pinpointer Mode Select", "Location", "Disk Recovery", "Other Signature"))
-		if("Location")
+	switch(alert("请选择定向定位器的工作模式。", "选择定向定位器模式", "坐标定位", "寻找磁盘", "其他特征信号"))
+		if("坐标定位")
 			mode = 1
 
-			var/locationx = tgui_input_real_number(usr, "Please input the x coordinate to search for.", "Location?")
+			var/locationx = tgui_input_real_number(usr, "请输入目标位置的 X 坐标。", "目标位置")
 			if(!locationx || !(usr in dview(1, src)))
 				return
-			var/locationy = tgui_input_real_number(usr, "Please input the y coordinate to search for.", "Location?")
+			var/locationy = tgui_input_real_number(usr, "请输入目标位置的 Y 坐标。", "目标位置")
 			if(!locationy || !(usr in dview(1, src)))
 				return
 
@@ -136,11 +136,11 @@
 
 			location = locate(locationx,locationy,Z.z)
 
-			to_chat(usr, "You set the pinpointer to locate [locationx],[locationy]")
+			to_chat(usr, "你将定向定位器的目标坐标设为 [locationx]，[locationy]。")
 
 
 			return attack_self()
 
-		if("Disk Recovery")
+		if("寻找磁盘")
 			mode = 0
 			return attack_self()

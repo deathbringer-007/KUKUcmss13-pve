@@ -1,6 +1,6 @@
 // Impenetrable and invincible barriers
 /obj/structure/blocker
-	name = "blocker"
+	name = "阻挡物"
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
@@ -17,8 +17,8 @@
 	return
 
 /obj/structure/blocker/invisible_wall
-	name = "invisible wall"
-	desc = "You cannot go this way."
+	name = "隐形墙"
+	desc = "你无法往这边走。"
 	icon_state = "invisible_wall"
 	opacity = FALSE
 	layer = ABOVE_FLY_LAYER + 0.1 //to make it visible in the map editor
@@ -27,7 +27,7 @@
 /obj/structure/blocker/invisible_wall/Collided(atom/movable/AM)
 	var/msg = desc
 	if(!msg)
-		msg = "You cannot go this way."
+		msg = "你无法往这边走。"
 	to_chat(AM, SPAN_WARNING(msg))
 
 /obj/structure/blocker/invisible_wall/New()
@@ -35,12 +35,12 @@
 	icon_state = null
 
 /obj/structure/blocker/invisible_wall/water
-	desc = "You cannot wade out any further"
+	desc = "你无法再往深处涉水了。"
 	icon_state = "map_blocker"
 
 /obj/structure/blocker/fog
-	name = "dense fog"
-	desc = "It looks way too dangerous to traverse. Best wait until it has cleared up."
+	name = "浓雾"
+	desc = "穿过去似乎太危险了，最好等雾散去。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
 	opacity = TRUE
@@ -55,7 +55,7 @@
 	QDEL_IN(src, time_to_dispel + rand(-5 SECONDS, 5 SECONDS))
 
 /obj/structure/blocker/fog/attack_hand(mob/M)
-	to_chat(M, SPAN_NOTICE("You peer through the fog, but it's impossible to tell what's on the other side..."))
+	to_chat(M, SPAN_NOTICE("你透过浓雾张望，却完全看不出另一边有什么……"))
 
 /obj/structure/blocker/fog/attack_alien(M)
 	attack_hand(M)
@@ -63,7 +63,7 @@
 
 
 /obj/structure/blocker/forcefield
-	name = "forcefield"
+	name = "力场"
 
 	icon = 'icons/landmarks.dmi'
 	icon_state = "map_blocker"
@@ -136,12 +136,12 @@ GLOBAL_VAR_INIT(vehicle_blockers, TRUE)
 
 // for fuel pump since it's a large sprite.
 /obj/structure/blocker/fuelpump
-	name = "\improper Fuel Pump"
-	desc = "It is a machine that pumps fuel around the ship."
+	name = "\improper 燃料泵"
+	desc = "在舰船各处泵送燃料的机器。"
 	invisibility = 101
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/blocker/invisible_wall/directional
-	name = "directional blocker"
+	name = "定向阻挡物"
 	icon_state = "invisible_wall_directional"
 	flags_atom = ON_BORDER

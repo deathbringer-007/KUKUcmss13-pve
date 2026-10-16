@@ -1,7 +1,7 @@
 //Hydroponics tank and base code
 /obj/item/reagent_container/glass/watertank
-	name = "backpack watertank"
-	desc = "A commercially-produced backpack tank, capable of holding and spraying various liquids. Widely used in the agricultural industry on colonies and in space stations."
+	name = "背负式水箱"
+	desc = "商业生产的背负式储液箱，可储存并喷洒各种液体，广泛用于殖民地和空间站的农业生产。"
 	icon = 'icons/obj/items/backpack_sprayers.dmi'
 	icon_state = "backpack_sprayer"
 	item_state = "backpack_sprayer"
@@ -36,7 +36,7 @@
 	if(!istype(user))
 		return
 	if(user.get_item_by_slot(WEAR_BACK) != src)
-		to_chat(user, SPAN_WARNING("\The [src] must be worn properly to use!"))
+		to_chat(user, SPAN_WARNING("必须正确背好[src]才能使用！"))
 		return
 	if(user.is_mob_incapacitated())
 		return
@@ -47,7 +47,7 @@
 	if(noz in src)
 		//Detach the nozzle into the user's hands
 		if(!user.put_in_hands(noz))
-			to_chat(user, SPAN_WARNING("You need a free hand to hold \the [noz]!"))
+			to_chat(user, SPAN_WARNING("你需要空出一只手来握住[noz]！"))
 			update_icon()
 			return
 		update_icon()
@@ -82,8 +82,8 @@
 	return ..()
 
 /obj/item/reagent_container/glass/watertank/verb/toggle_mister_verb()
-	set name = "Toggle Mister"
-	set category = "Object"
+	set name = "取出／收回喷头"
+	set category = "物品"
 	set src in usr
 	toggle_mister(usr)
 
@@ -112,17 +112,17 @@
 /obj/item/reagent_container/glass/watertank/get_examine_text(mob/user)
 	. = ..()
 	if(!noz || QDELETED(noz) || (noz in src))
-		. += SPAN_NOTICE("Its nozzle is attached.")
+		. += SPAN_NOTICE("喷头已收回。")
 	else
-		. += SPAN_NOTICE("Its nozzle is detached.")
+		. += SPAN_NOTICE("喷头已取出。")
 
 // This mister item is intended as an extension of the watertank and always attached to it.
 // Therefore, it's designed to be "locked" to the player's hands or extended back onto
 // the watertank backpack. Allowing it to be placed elsewhere or created without a parent
 // watertank object will likely lead to weird behaviour or runtimes.
 /obj/item/reagent_container/spray/mister
-	name = "water mister"
-	desc = "A mister nozzle attached to a water tank. This is what your reagents come out of."
+	name = "喷雾头"
+	desc = "连接水箱的喷雾头，试剂从这里喷出。"
 	icon = 'icons/obj/items/backpack_sprayers.dmi'
 	icon_state = "nozzle"
 	item_state = "nozzle"
@@ -147,7 +147,7 @@
 	var/obj/item/reagent_container/glass/watertank/W = user.back
 	if(!istype(W))
 		return
-	. += "It is linked to \the [W]."
+	. += "它连接着[W]。"
 
 /obj/item/reagent_container/spray/mister/afterattack(atom/A, mob/user, proximity)
 	//this is what you get for using afterattack() TODO: make is so this is only called if attackby() returns 0 or something
@@ -163,11 +163,11 @@
 		return
 
 	if(W.reagents.total_volume < amount_per_transfer_from_this)
-		to_chat(user, SPAN_NOTICE("\The [W] is empty!"))
+		to_chat(user, SPAN_NOTICE("[W]已经空了！"))
 		return
 
 	if(safety)
-		to_chat(user, SPAN_WARNING("The safety is on!"))
+		to_chat(user, SPAN_WARNING("保险尚未解除！"))
 		return
 
 
@@ -194,8 +194,8 @@
 #define METAL_FOAM 2
 
 /obj/item/reagent_container/glass/watertank/atmos
-	name = "backpack firefighting watertank"
-	desc = "A refrigerated and pressurised backpack tank with an extinguisher nozzle, intended to fight fires and plug hull breaches. Swaps between extinguisher, metal foam launcher and a smaller scale metal foamer."
+	name = "背负式消防水箱"
+	desc = "配有灭火喷头的冷却加压背负式水箱，用于灭火和封堵船体破口。可在灭火器、金属泡沫发射器及小型金属发泡器之间切换。"
 	icon_state = "backpack_foamer"
 	item_state = "backpack_foamer"
 	volume = 500
@@ -211,11 +211,11 @@
 		return
 	if(src.reagents.total_volume < volume)
 		O.reagents.trans_to(src, volume)
-		to_chat(user, SPAN_NOTICE("You crack the cap off the top of \the [src] and fill it back up again with reagents from \the [O]."))
+		to_chat(user, SPAN_NOTICE("你打开[src]顶部的盖子，用[O]中的试剂将它重新加满。"))
 		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
 		return
 	else if(src.reagents.total_volume == volume)
-		to_chat(user, SPAN_NOTICE("\The [src] is already full!"))
+		to_chat(user, SPAN_NOTICE("[src]已经满了！"))
 		return
 	..()
 
@@ -223,18 +223,18 @@
 	. = ..()
 	switch(nozzle_mode)
 		if(EXTINGUISHER)
-			. += SPAN_NOTICE("It is set to [SPAN_HELPFUL("extinguisher")] mode.")
+			. += SPAN_NOTICE("当前设为[SPAN_HELPFUL("灭火器")]模式。")
 			return
 		if(METAL_FOAM)
-			. += SPAN_NOTICE("It is set to [SPAN_HELPFUL("metal foamer")] mode.")
+			. += SPAN_NOTICE("当前设为[SPAN_HELPFUL("金属发泡器")]模式。")
 			return
 		if(METAL_LAUNCHER)
-			. += SPAN_NOTICE("It is set to [SPAN_HELPFUL("metal foam launcher")] mode.")
+			. += SPAN_NOTICE("当前设为[SPAN_HELPFUL("金属泡沫发射器")]模式。")
 			return
 
 /obj/item/reagent_container/spray/mister/atmos
-	name = "multipurpose nozzle"
-	desc = "A heavy-duty foam-spraying nozzle attached to a firefighter's backpack tank."
+	name = "多功能喷头"
+	desc = "连接消防背负式水箱的重型泡沫喷头。"
 	icon_state = "fnozzle"
 	item_state = "fnozzle"
 	w_class = SIZE_LARGE
@@ -266,11 +266,11 @@
 	. = ..()
 	switch(nozzle_mode)
 		if(EXTINGUISHER)
-			. += SPAN_NOTICE("It is set to [SPAN_HELPFUL("extinguisher")] mode.")
+			. += SPAN_NOTICE("当前设为[SPAN_HELPFUL("灭火器")]模式。")
 		if(METAL_FOAM)
-			. += SPAN_NOTICE("It is set to [SPAN_HELPFUL("metal foamer")] mode.")
+			. += SPAN_NOTICE("当前设为[SPAN_HELPFUL("金属发泡器")]模式。")
 		if(METAL_LAUNCHER)
-			. += SPAN_NOTICE("It is set to [SPAN_HELPFUL("metal foam launcher")] mode.")
+			. += SPAN_NOTICE("当前设为[SPAN_HELPFUL("金属泡沫发射器")]模式。")
 
 /obj/item/reagent_container/spray/mister/atmos/update_icon()
 	. = ..()
@@ -292,20 +292,20 @@
 		if(EXTINGUISHER)
 			nozzle_mode = METAL_LAUNCHER
 			tank.nozzle_mode = METAL_LAUNCHER
-			to_chat(user, SPAN_NOTICE("Swapped to metal foam launcher. Now using [launcher_cost] water per foam shot."))
+			to_chat(user, SPAN_NOTICE("已切换为金属泡沫发射器。每次发射泡沫消耗[launcher_cost]单位水。"))
 		if(METAL_LAUNCHER)
 			nozzle_mode = METAL_FOAM
 			tank.nozzle_mode = METAL_FOAM
-			to_chat(user, SPAN_NOTICE("Swapped to metal foamer. Now using [foamer_cost] water per foam shot."))
+			to_chat(user, SPAN_NOTICE("已切换为金属发泡器。每次喷射泡沫消耗[foamer_cost]单位水。"))
 		if(METAL_FOAM)
 			nozzle_mode = EXTINGUISHER
 			tank.nozzle_mode = EXTINGUISHER
-			to_chat(user, SPAN_NOTICE("Swapped to water extinguisher. Now using [extinguisher_cost] water per blast."))
+			to_chat(user, SPAN_NOTICE("已切换为水灭火器。每次喷射消耗[extinguisher_cost]单位水。"))
 	update_icon()
 
 /obj/item/reagent_container/spray/mister/atmos/afterattack(atom/target, mob/user)
 	if(!issynth(user))
-		to_chat(user, SPAN_WARNING("You have no idea how use \the [src]!"))
+		to_chat(user, SPAN_WARNING("你完全不知道该怎么使用[src]！"))
 		return
 	if(nozzle_mode == EXTINGUISHER)
 		if(istype(target, /atom/movable/screen)) //so we don't end up wasting water when clicking
@@ -314,7 +314,7 @@
 			tank.reagents.remove_reagent("water", extinguisher_cost)
 			return internal_extinguisher.afterattack(target, user)
 		else
-			to_chat(user, SPAN_WARNING("You need at least [extinguisher_cost] units of water to use the extinguisher!"))
+			to_chat(user, SPAN_WARNING("至少需要[extinguisher_cost]单位水才能使用灭火器！"))
 			return
 	var/Adj = user.Adjacent(target)
 	if(nozzle_mode == METAL_LAUNCHER)
@@ -322,11 +322,11 @@
 			return //Safety check so you don't blast yourself trying to refill your tank
 		for(var/S in target)
 			if(istype(S, /obj/effect/particle_effect/foam) || istype(S, /obj/structure/foamed_metal))
-				to_chat(user, SPAN_WARNING("There's already metal foam here!"))
+				to_chat(user, SPAN_WARNING("这里已经有金属泡沫了！"))
 				return
 		//actually firing the launcher
 		if(tank.launcher_cooldown > world.time)
-			to_chat(user, SPAN_WARNING("\The [tank] cannot fire another foam ball just yet. Wait [floor(tank.launcher_cooldown/10)] seconds."))
+			to_chat(user, SPAN_WARNING("[tank]暂时无法再次发射泡沫球。请等待[floor(tank.launcher_cooldown/10)]秒。"))
 			return
 		if(tank.reagents.has_reagent("water", launcher_cost))
 			tank.reagents.remove_reagent("water", launcher_cost)
@@ -340,7 +340,7 @@
 			A.Smoke()
 			return
 		else
-			to_chat(user, SPAN_WARNING("You need at least [launcher_cost] units of water to use the metal foam launcher!"))
+			to_chat(user, SPAN_WARNING("至少需要[launcher_cost]单位水才能使用金属泡沫发射器！"))
 			return
 
 	if(nozzle_mode == METAL_FOAM)
@@ -349,7 +349,7 @@
 		//check for the foamer - is there already foam on the tile?
 		for(var/S in target)
 			if(istype(S, /obj/effect/particle_effect/foam) || istype(S, /obj/structure/foamed_metal))
-				to_chat(user, SPAN_WARNING("There's already metal foam here!"))
+				to_chat(user, SPAN_WARNING("这里已经有金属泡沫了！"))
 				return
 		//check for tank reagents
 		if(tank.reagents.has_reagent("water", foamer_cost))
@@ -360,12 +360,12 @@
 			S.start()
 			return
 		else
-			to_chat(user, SPAN_WARNING("You need at least [foamer_cost] units of water to use the metal foamer!"))
+			to_chat(user, SPAN_WARNING("至少需要[foamer_cost]单位水才能使用金属发泡器！"))
 			return
 
 /obj/effect/resin_container //the projectile that the launcher fires
-	name = "metal foam ball"
-	desc = "A compacted ball of expansive metal foam, used to repair the atmosphere in a room, or seal off breaches."
+	name = "金属泡沫球"
+	desc = "压缩成球状的膨胀金属泡沫，用于恢复房间的气密性或封堵破口。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "foam_ball"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

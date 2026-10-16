@@ -2,8 +2,8 @@
 #define TIMER_MAXIMUM_TIME (120 SECONDS)
 
 /obj/item/device/assembly/timer
-	name = "timer"
-	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
+	name = "计时器"
+	desc = "用于计时，适合搭配需要倒计时的装置使用。滴答，滴答。"
 	icon_state = "timer"
 	matter = list("metal" = 500, "glass" = 50, "waste" = 10)
 	wires = WIRE_ASSEMBLY_PULSE
@@ -45,7 +45,7 @@
 	if(!secured) return 0
 	pulse(0)
 	if(!holder)
-		visible_message("[icon2html(src, hearers(src))] *beep* *beep*", "*beep* *beep*")
+		visible_message("[icon2html(src, hearers(src))] *哔* *哔*", "*哔* *哔*")
 	cooldown = 2
 	addtimer(CALLBACK(src, PROC_REF(process_cooldown)), 1 SECONDS)
 	STOP_PROCESSING(SSobj, src)
@@ -74,7 +74,7 @@
 
 /obj/item/device/assembly/timer/interact(mob/user)
 	if(!secured)
-		to_chat(user, SPAN_WARNING("The [name] is unsecured!"))
+		to_chat(user, SPAN_WARNING("[name]尚未固定好！"))
 		return
 
 	tgui_interact(user)
@@ -83,7 +83,7 @@
 /obj/item/device/assembly/timer/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "Timer", "Timer Assembly")
+		ui = new(user, src, "Timer", "计时器组件")
 		ui.open()
 		ui.set_autoupdate(timing)
 

@@ -1,7 +1,7 @@
 // Praetorian Neurotoxin grenade.
 /obj/item/explosive/grenade/xeno_acid_grenade
-	name = "acid ball"
-	desc = "A small, pulsating ball of gas."
+	name = "酸液球"
+	desc = "一小团不断脉动的气体。"
 	icon_state = "neuro_nade"
 	det_time = 30
 	item_state = "neuro_nade"

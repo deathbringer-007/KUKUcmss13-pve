@@ -1,15 +1,15 @@
 /obj/item/circuitboard/robot_module
-	name = "robot module"
+	name = "机器人模块"
 	icon_state = "std_mod"
 	flags_atom = FPRINT|CONDUCT
 
 /obj/item/circuitboard/robot_module/surgeon
-	name = "surgeon robot module"
+	name = "外科机器人模块"
 /obj/item/circuitboard/robot_module/medic
-	name = "medic robot module"
+	name = "医疗机器人模块"
 /obj/item/circuitboard/robot_module/engineering
-	name = "engineering robot module"
+	name = "工程机器人模块"
 /obj/item/circuitboard/robot_module/janitor
-	name = "janitorial robot module"
+	name = "清洁机器人模块"
 /obj/item/circuitboard/robot_module/butler
-	name = "service robot module"
+	name = "服务机器人模块"

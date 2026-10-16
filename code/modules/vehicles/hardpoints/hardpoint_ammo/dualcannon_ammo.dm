@@ -1,6 +1,6 @@
 /obj/item/ammo_magazine/hardpoint/boyars_dualcannon
-	name = "PARS-159 Dualcannon IFF Magazine"
-	desc = "A magazine for the PARS-159 Boyars Dualcannon filled with telescoped 40mm rounds. Slightly contuses targets upon hit. Supports IFF."
+	name = "PARS-159双联炮敌我识别弹箱"
+	desc = "供PARS-159“博雅尔”双联炮使用的弹箱，装有40毫米埋头弹，命中时会使目标轻微眩晕。支持敌我识别。"
 	caliber = "40mm"
 	icon_state = "ace_autocannon"
 	w_class = SIZE_LARGE

@@ -1,6 +1,6 @@
 /obj/item/storage/box/implant
-	name = "implant box"
-	desc = "A sterile metal lockbox housing hypodermic implant injectors."
+	name = "植入物盒"
+	desc = "用于存放皮下注射式植入器的无菌金属锁盒。"
 	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "implantbox"
 	use_sound = "toolbox"
@@ -10,15 +10,15 @@
 
 
 /obj/item/storage/box/implant/picker
-	desc = "A sterile metal lockbox housing a printer for making hypodermic implant injectors."
+	desc = "内置皮下注射式植入器打印机的无菌金属锁盒。"
 	foldable = FALSE
 	storage_slots = 2
 	var/picks_left = 2
 	var/list/pickable = list(
-		"Nightvision Implant" = /obj/item/device/implanter/nvg,
-		"Rejuvenation Implant" = /obj/item/device/implanter/rejuv,
-		"Agility Implant" = /obj/item/device/implanter/agility,
-		"Subdermal Armor" = /obj/item/device/implanter/subdermal_armor
+		"夜视植入物" = /obj/item/device/implanter/nvg,
+		"复苏植入物" = /obj/item/device/implanter/rejuv,
+		"敏捷植入物" = /obj/item/device/implanter/agility,
+		"皮下护甲" = /obj/item/device/implanter/subdermal_armor
 	)
 
 /obj/item/storage/box/implant/picker/open(mob/user)
@@ -37,7 +37,7 @@
 		var/list/options = list()
 		for(var/name in pickable)
 			options += name
-		var/choice = tgui_input_list(usr, "Pick your implants", "Implants Select", options)
+		var/choice = tgui_input_list(usr, "选择你的植入物", "选择植入物", options)
 		if(!choice || !(choice in pickable))
 			return
 		picks_left--
@@ -47,8 +47,8 @@
 		stoplag()
 
 /obj/item/device/implanter
-	name = "implanter"
-	desc = "An injector that drives an implant into your body. The injection stings quite badly."
+	name = "植入器"
+	desc = "将植入物注入身体的注射器，注射时会有强烈的刺痛。"
 	icon = 'icons/obj/items/devices.dmi'
 	icon_state = "implanter"
 
@@ -57,7 +57,7 @@
 	var/implant_type
 	var/uses = 1
 	var/implant_time = 3 SECONDS
-	var/implant_string = "Awesome."
+	var/implant_string = "棒极了。"
 
 /obj/item/device/implanter/update_icon()
 	if(!uses)
@@ -71,11 +71,11 @@
 		return ..()
 
 	if(LAZYISIN(M.implants, implant_type))
-		to_chat(user, SPAN_WARNING("[M] already have this implant!"))
+		to_chat(user, SPAN_WARNING("[M]已经装有这种植入物！"))
 		return
 
 	if(LAZYLEN(M.implants) >= M.max_implants)
-		to_chat(user, SPAN_WARNING("[M] can't take any more implants!"))
+		to_chat(user, SPAN_WARNING("[M]无法再容纳更多植入物！"))
 		return
 
 	var/self_inject = TRUE
@@ -98,9 +98,9 @@
 		QDEL_NULL(M.implants[implant_type])
 
 	if(self_inject)
-		to_chat(M, SPAN_NOTICE("You implant yourself with \the [src]. You feel [implant_string]"))
+		to_chat(M, SPAN_NOTICE("你使用[src]为自己植入了装置。你感觉[implant_string]"))
 	else
-		to_chat(M, SPAN_NOTICE("You've been implanted with \the [src]. You feel [implant_string]"))
+		to_chat(M, SPAN_NOTICE("有人使用[src]为你植入了装置。你感觉[implant_string]"))
 
 	playsound(src, 'sound/items/air_release.ogg', 75, TRUE)
 	var/obj/item/device/internal_implant/I = new implant_type(M)
@@ -112,8 +112,8 @@
 	update_icon()
 
 /obj/item/device/internal_implant
-	name = "implant"
-	desc = "An implant, usually delivered with an implanter."
+	name = "植入物"
+	desc = "通常使用植入器植入体内的装置。"
 	icon_state = "implant"
 
 	var/mob/living/host
@@ -127,10 +127,10 @@
 	return ..()
 
 /obj/item/device/implanter/nvg
-	name = "nightvision implant"
-	desc = "This implant will give you night vision. These implants get damaged on death."
+	name = "夜视植入物"
+	desc = "赋予你夜视能力的植入物，会在宿主死亡时受损。"
 	implant_type = /obj/item/device/internal_implant/nvg
-	implant_string = "your pupils dilating to unsettling levels."
+	implant_string = "瞳孔扩张到了令人不安的程度。"
 
 /obj/item/device/internal_implant/nvg
 	var/implant_health = 2
@@ -149,9 +149,9 @@
 			COMSIG_HUMAN_POST_UPDATE_SIGHT,
 			COMSIG_MOB_DEATH
 		))
-		to_chat(M, SPAN_WARNING("Everything feels a lot darker."))
+		to_chat(M, SPAN_WARNING("一切似乎都暗了许多。"))
 	else
-		to_chat(M, SPAN_WARNING("You feel the effects of the nightvision implant waning."))
+		to_chat(M, SPAN_WARNING("你感觉夜视植入物的效果正在减弱。"))
 
 /obj/item/device/internal_implant/nvg/proc/give_nvg(mob/living/M)
 	SIGNAL_HANDLER
@@ -160,10 +160,10 @@
 	M.sync_lighting_plane_alpha()
 
 /obj/item/device/implanter/rejuv
-	name = "rejuvenation implant"
-	desc = "This implant will automatically activate at the brink of death. When activated, it will expend itself, greatly healing you, and giving you a stimulant that speeds you up significantly and dulls all pain."
+	name = "复苏植入物"
+	desc = "在濒死时自动启动的一次性植入物。启动后会大幅治疗伤势，并注入兴奋剂，显著加快移动速度、抑制所有疼痛。"
 	implant_type = /obj/item/device/internal_implant/rejuv
-	implant_string = "something beating next to your heart." //spooky second heart deep lore
+	implant_string = "心脏旁边有什么东西在跳动。" //spooky second heart deep lore
 
 /obj/item/device/internal_implant/rejuv
 	/// Assoc list where the keys are the reagent ids of the reagents to be injected and the values are the amount to be injected
@@ -200,14 +200,14 @@
 		M.reagents.add_reagent(reagent_id, injection_amt)
 
 /obj/item/device/implanter/agility
-	name = "agility implant"
-	desc = "This implant will make you more agile, allowing you to vault over structures extremely quickly and allowing you to fireman carry other people."
+	name = "敏捷植入物"
+	desc = "使你更加敏捷，可以极快地翻越障碍，并以消防员式背负法扛起他人。"
 	implant_type = /obj/item/device/internal_implant/agility
-	implant_string = "your heartrate increasing significantly and your pupils dilating."
+	implant_string = "心率显著加快，瞳孔也在扩张。"
 
 /obj/item/device/implanter/agility/get_examine_text(user)
 	. = ..()
-	. += SPAN_NOTICE("To fireman carry someone, aggressive-grab them and drag their sprite to yours.")
+	. += SPAN_NOTICE("要用消防员式背负法扛起某人，先用强力抓取抓住对方，再将其角色图像拖到自己身上。")
 
 /obj/item/device/internal_implant/agility
 	var/move_delay_mult  = 0.94
@@ -241,10 +241,10 @@
 	return TRUE
 
 /obj/item/device/implanter/subdermal_armor
-	name = "subdermal armor implant"
-	desc = "This implant will grant you armor under the skin, reducing incoming damage and strengthening bones."
+	name = "皮下护甲植入物"
+	desc = "在皮肤下提供护甲，减少受到的伤害并强化骨骼。"
 	implant_type = /obj/item/device/internal_implant/subdermal_armor
-	implant_string = "your skin becoming significantly harder... That's going to hurt in a decade."
+	implant_string = "皮肤明显变硬了……十年后可有得疼了。"
 
 /obj/item/device/internal_implant/subdermal_armor
 	var/burn_damage_mult = 0.9

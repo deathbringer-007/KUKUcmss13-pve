@@ -1,6 +1,6 @@
 /obj/item/device/assembly/mousetrap
-	name = "mousetrap"
-	desc = "A handy little spring-loaded trap for catching pesty rodents."
+	name = "捕鼠夹"
+	desc = "方便实用的小型弹簧陷阱，用于捕捉恼人的鼠类。"
 	icon_state = "mousetrap"
 	matter = list("metal" = 100, "waste" = 10)
 
@@ -12,7 +12,7 @@
 /obj/item/device/assembly/mousetrap/get_examine_text(mob/user)
 	. = ..()
 	if(armed)
-		. += "It looks like it's armed."
+		. += "它看起来已经设好了。"
 
 /obj/item/device/assembly/mousetrap/update_icon()
 	if(armed)
@@ -43,7 +43,7 @@
 			H.updatehealth()
 	else if(ismouse(target))
 		var/mob/living/simple_animal/mouse/M = target
-		visible_message(SPAN_DANGER("<b>SPLAT!</b>"))
+		visible_message(SPAN_DANGER("<b>啪叽！</b>"))
 		M.splat()
 	if(!target) return
 	playsound(target.loc, 'sound/effects/snap.ogg', 25, 1)
@@ -57,16 +57,16 @@
 	..()
 
 	if(!armed)
-		to_chat(user, SPAN_NOTICE("You arm [src]."))
+		to_chat(user, SPAN_NOTICE("你设好了[src]。"))
 	else
 		if((user.getBrainLoss() >= 60) && prob(50))
 			var/which_hand = "l_hand"
 			if(!user.hand)
 				which_hand = "r_hand"
 			triggered(user, which_hand)
-			user.visible_message(SPAN_WARNING("[user] accidentally sets off [src], breaking their fingers."), SPAN_WARNING("You accidentally trigger [src]!"))
+			user.visible_message(SPAN_WARNING("[user]意外触发了[src]，夹断了自己的手指。"), SPAN_WARNING("你意外触发了[src]！"))
 			return
-		to_chat(user, SPAN_NOTICE("You disarm [src]."))
+		to_chat(user, SPAN_NOTICE("你解除了[src]。"))
 	armed = !armed
 	update_icon()
 	playsound(user.loc, 'sound/weapons/handcuffs.ogg', 25, 1, 6)
@@ -79,7 +79,7 @@
 			if(!user.hand)
 				which_hand = "r_hand"
 			triggered(user, which_hand)
-			user.visible_message(SPAN_WARNING("[user] accidentally sets off [src], breaking their fingers."),SPAN_WARNING("You accidentally trigger [src]!"))
+			user.visible_message(SPAN_WARNING("[user]意外触发了[src]，夹断了自己的手指。"),SPAN_WARNING("你意外触发了[src]！"))
 			return
 	..()
 
@@ -89,7 +89,7 @@
 		if(ishuman(AM))
 			var/mob/living/carbon/H = AM
 			triggered(H)
-			H.visible_message(SPAN_WARNING("[H] accidentally steps on [src]."),SPAN_WARNING("You accidentally step on [src]"))
+			H.visible_message(SPAN_WARNING("[H]意外踩中了[src]。"),SPAN_WARNING("你意外踩中了[src]。"))
 		if(ismouse(AM))
 			triggered(AM)
 	..()
@@ -97,7 +97,7 @@
 
 /obj/item/device/assembly/mousetrap/on_found(mob/finder as mob)
 	if(armed)
-		finder.visible_message(SPAN_WARNING("[finder] accidentally sets off [src], breaking their fingers."),SPAN_WARNING("You accidentally trigger [src]!"))
+		finder.visible_message(SPAN_WARNING("[finder]意外触发了[src]，夹断了自己的手指。"),SPAN_WARNING("你意外触发了[src]！"))
 		triggered(finder, finder.hand ? "l_hand" : "r_hand")
 		return 1 //end the search!
 	return 0
@@ -106,7 +106,7 @@
 /obj/item/device/assembly/mousetrap/hitby(atom/movable/AM)
 	if(!armed)
 		return ..()
-	visible_message(SPAN_WARNING("[src] is triggered by [AM]."))
+	visible_message(SPAN_WARNING("[AM]触发了[src]。"))
 	triggered(null)
 
 
@@ -117,11 +117,11 @@
 
 /obj/item/device/assembly/mousetrap/verb/hide_under()
 	set src in oview(1)
-	set name = "Hide"
-	set category = "Object"
+	set name = "隐藏"
+	set category = "物品"
 
 	if(usr.stat)
 		return
 
 	layer = TURF_LAYER+0.2
-	to_chat(usr, SPAN_NOTICE("You hide [src]."))
+	to_chat(usr, SPAN_NOTICE("你藏起了[src]。"))

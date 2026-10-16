@@ -1,7 +1,7 @@
 
 /obj/item/clothing/accessory/health
-	name = "armor plate"
-	desc = "A metal trauma plate, able to absorb some blows."
+	name = "护甲插板"
+	desc = "一块金属防护插板，能够抵挡一些攻击。"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "regular2_100"
 	var/base_icon_state = "regular2"
@@ -37,27 +37,27 @@
 	var/percentage = floor(armor_health / armor_maxhealth * 100)
 	switch(percentage)
 		if(0)
-			. = "It is broken."
+			. = "它已经损坏。"
 			if(scrappable)
-				. += " If you had two, you could repair it."
+				. += "如果有两块损坏的插板，就能拼出一块可用的。"
 		if(1 to 19)
-			. = "It is crumbling apart!"
+			. = "它快要碎了！"
 		if(20 to 49)
-			. = "It is seriously damaged."
+			. = "它严重受损。"
 		if(50 to 79)
-			. = "It is moderately damaged."
+			. = "它中度受损。"
 		if(80 to 99)
-			. = "It is slightly damaged."
+			. = "它轻微受损。"
 		else
-			. = "It is in pristine condition."
+			. = "它完好无损。"
 
 /obj/item/clothing/accessory/health/get_examine_text(mob/user)
 	. = ..()
-	. += "To use it, attach it to your uniform."
+	. += "将它装在制服上即可使用。"
 	. += SPAN_NOTICE(get_damage_status())
 
 /obj/item/clothing/accessory/health/additional_examine_text()
-	return ". [get_damage_status()]"
+	return "。[get_damage_status()]"
 
 /obj/item/clothing/accessory/health/on_attached(obj/item/clothing/S, mob/living/carbon/human/user)
 	. = ..()
@@ -111,7 +111,7 @@
 
 	update_icon()
 	if(!armor_health && damage_to_nullify)
-		user.show_message(SPAN_WARNING("You feel [src] break apart."), null, null, null, CHAT_TYPE_ARMOR_DAMAGE)
+		user.show_message(SPAN_WARNING("你感觉到[src]碎裂了。"), null, null, null, CHAT_TYPE_ARMOR_DAMAGE)
 		playsound(user, armor_shattersound, 35, TRUE)
 
 	if(damage_to_nullify)
@@ -129,7 +129,7 @@
 
 	update_icon()
 	if(!armor_health && damage_to_nullify)
-		user.show_message(SPAN_WARNING("You feel [src] break apart."), null, null, null, CHAT_TYPE_ARMOR_DAMAGE)
+		user.show_message(SPAN_WARNING("你感觉到[src]碎裂了。"), null, null, null, CHAT_TYPE_ARMOR_DAMAGE)
 		playsound(user, armor_shattersound, 50, TRUE)
 
 	if(damage_to_nullify)
@@ -141,15 +141,15 @@
 		return
 
 	if(!I.armor_health && !armor_health)
-		to_chat(user, SPAN_NOTICE("You use the shards of armor to cobble together an improvised ceramic plate."))
+		to_chat(user, SPAN_NOTICE("你用护甲碎片拼凑出一块简易陶瓷插板。"))
 		qdel(I)
 		qdel(src)
 		user.put_in_active_hand(new /obj/item/clothing/accessory/health/scrap())
 
 
 /obj/item/clothing/accessory/health/ceramic_plate
-	name = "ceramic plate"
-	desc = "A strong trauma plate, able to protect the user from a large amount of bullets. Ineffective against sharp objects."
+	name = "陶瓷插板"
+	desc = "坚固的防护插板，能为使用者挡下大量子弹，但对锐器无效。"
 	icon_state = "ceramic2_100"
 	base_icon_state = "ceramic2"
 
@@ -172,8 +172,8 @@
 	return
 
 /obj/item/clothing/accessory/health/scrap
-	name = "scrap metal"
-	desc = "A weak armor plate, only able to protect from a little bit of damage. Perhaps that will be enough."
+	name = "废金属"
+	desc = "简陋的护甲插板，只能抵挡少量伤害。或许这就够用了。"
 	icon_state = "scrap_100"
 	base_icon_state = "scrap"
 	health_states = list(
@@ -233,18 +233,18 @@
 	return TRUE
 
 /obj/item/clothing/accessory/health/research_plate/translator
-	name = "experimental language translator"
-	desc = "Translates any language heard by the microphones on the plate without any linguistical input, allowing to translate languages never heard before and known languages alike."
+	name = "实验型语言翻译器"
+	desc = "无需预先录入语言资料，即可翻译插板麦克风听到的任何语言，无论是已知语言还是从未听过的语言。"
 
 /obj/item/clothing/accessory/health/research_plate/translator/on_attached(obj/item/clothing/S, mob/living/carbon/human/user)
 	. = ..()
-	to_chat(user, SPAN_NOTICE("[src] buzzes as it begins to listen for input."))
+	to_chat(user, SPAN_NOTICE("[src]嗡嗡作响，开始监听输入。"))
 	user.universal_understand = TRUE
 
 /obj/item/clothing/accessory/health/research_plate/translator/on_removed(mob/living/carbon/human/user, obj/item/clothing/C)
 	. = ..()
 	if(user.universal_understand)
-		to_chat(user, SPAN_NOTICE("[src] makes a sad woop sound as it powers down."))
+		to_chat(user, SPAN_NOTICE("[src]关闭时发出一声低落的呜声。"))
 		attached_uni = null
 		if(user.chem_effect_flags & CHEM_EFFECT_HYPER_THROTTLE) // we are currently under effect of simular univeral understand drug.
 			return
@@ -255,28 +255,28 @@
 	if(. == FALSE)
 		return
 	if(user.universal_understand)
-		to_chat(user, SPAN_NOTICE("[src] makes a woop sound as it is powered down."))
+		to_chat(user, SPAN_NOTICE("[src]关闭时发出一声呜声。"))
 		if(user.chem_effect_flags & CHEM_EFFECT_HYPER_THROTTLE) // we are currently under effect of simular univeral understand drug.
 			return
 		attached_uni = null
 		user.universal_understand = FALSE
 
 /obj/item/clothing/accessory/health/research_plate/coagulator
-	name = "experimental blood coagulator"
-	desc = "A device that encourages clotting through the coordinated effort of multiple sensors and radiation emitters. The Surgeon General warns that continuous exposure to radiation may be hazardous to your health."
+	name = "实验型凝血器"
+	desc = "通过多个传感器和辐射发射器协同工作来促进凝血的装置。军医总监提醒您：持续暴露于辐射可能危害健康。"
 
 /obj/item/clothing/accessory/health/research_plate/coagulator/on_attached(obj/item/clothing/S, mob/living/carbon/human/user)
 	. = ..()
 	if (user.chem_effect_flags & CHEM_EFFECT_NO_BLEEDING)
 		return
 	user.chem_effect_flags |= CHEM_EFFECT_NO_BLEEDING
-	to_chat(user, SPAN_NOTICE("You feel tickling as you activate [src]."))
+	to_chat(user, SPAN_NOTICE("启动[src]时，你感觉有些发痒。"))
 
 /obj/item/clothing/accessory/health/research_plate/coagulator/on_removed(mob/living/carbon/human/user, obj/item/clothing/C)
 	. = ..()
 	if (user.chem_effect_flags & CHEM_EFFECT_NO_BLEEDING)
 		user.chem_effect_flags &= CHEM_EFFECT_NO_BLEEDING
-		to_chat(user, SPAN_NOTICE("You feel [src] peeling off from your skin."))
+		to_chat(user, SPAN_NOTICE("你感觉到[src]从皮肤上剥离。"))
 		attached_uni = null
 
 /obj/item/clothing/accessory/health/research_plate/coagulator/on_removed_sig(mob/living/carbon/human/user, slot)
@@ -284,13 +284,13 @@
 	if(. == FALSE)
 		return
 	if(user.chem_effect_flags & CHEM_EFFECT_NO_BLEEDING)
-		to_chat(user, SPAN_NOTICE("You feel [src] peeling off from your skin."))
+		to_chat(user, SPAN_NOTICE("你感觉到[src]从皮肤上剥离。"))
 		user.chem_effect_flags &= CHEM_EFFECT_NO_BLEEDING
 		attached_uni = null
 
 /obj/item/clothing/accessory/health/research_plate/emergency_injector
-	name = "emergency chemical plate"
-	desc = "One-time disposable research plate packing all kinds of chemicals injected at the will of the user by pressing two buttons on the sides simultaneously. The injection is painless, instant and packs much more chemicals than your normal emergency injector. Features OD Protection in three modes."
+	name = "应急药剂插板"
+	desc = "内置多种药剂的一次性科研插板，同时按下两侧按钮即可按使用者意愿注射。注射无痛、即时生效，药剂储量远超普通应急注射器。具有三种过量保护模式。"
 	var/od_protection_mode = EMERGENCY_PLATE_OD_PROTECTION_STRICT
 	var/datum/action/item_action/activation
 	var/mob/living/wearer
@@ -316,24 +316,24 @@
 
 /obj/item/clothing/accessory/health/research_plate/emergency_injector/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_INFO("ALT-Clicking the plate will toggle overdose protection")
-	. += SPAN_INFO("Overdose protection seems to be [od_protection_mode == 1 ? "ON" : od_protection_mode == 2 ? "DYNAMIC" : "OFF"]")
+	. += SPAN_INFO("按住 Alt 点击插板可切换过量保护模式。")
+	. += SPAN_INFO("过量保护模式：[od_protection_mode == 1 ? "严格" : od_protection_mode == 2 ? "动态" : "关闭"]")
 	if(used)
-		. += SPAN_WARNING("It is already used!")
+		. += SPAN_WARNING("它已经用过了！")
 
 /obj/item/clothing/accessory/health/research_plate/emergency_injector/clicked(mob/user, list/mods)
 	. = ..()
 	if(mods[ALT_CLICK])
-		var/text = "You toggle overdose protection "
+		var/text = "你将过量保护模式切换为"
 		if(od_protection_mode == EMERGENCY_PLATE_OD_PROTECTION_DYNAMIC)
 			od_protection_mode = EMERGENCY_PLATE_OD_PROTECTION_OFF
-			text += "to OVERRIDE. Overdose protection is now offline."
+			text += "强制覆盖。过量保护现已关闭。"
 		else
 			od_protection_mode++
 			if(od_protection_mode == EMERGENCY_PLATE_OD_PROTECTION_DYNAMIC)
-				text += "to DYNAMIC. Overdose subsystems will inject chemicals but will not go above overdose levels."
+				text += "动态模式。过量保护系统将注射药剂，但不会超过过量阈值。"
 			else
-				text += "to STRICT. Overdose subsystems will refuse to inject if any of chemicals will overdose."
+				text += "严格模式。只要任何一种药剂会过量，过量保护系统就会拒绝注射。"
 		to_chat(user, SPAN_NOTICE(text))
 		return TRUE
 	return
@@ -364,7 +364,7 @@
 //Action buttons
 /datum/action/item_action/emergency_plate/inject_chemicals/New(Target, obj/item/holder)
 	. = ..()
-	name = "Inject Emergency Plate"
+	name = "启用应急插板注射"
 	action_icon_state = "plate_research"
 	button.name = name
 	button.overlays.Cut()
@@ -372,13 +372,13 @@
 
 /obj/item/clothing/accessory/health/research_plate/emergency_injector/ui_action_click(mob/owner, obj/item/holder)
 	if(used)
-		to_chat(wearer, SPAN_DANGER("[src]'s inner reserve is empty, replace the plate!"))
+		to_chat(wearer, SPAN_DANGER("[src]的内部储备已耗尽，请更换插板！"))
 		return
 	for(var/chemical in chemicals_to_inject)
 		var/datum/reagent/reag = GLOB.chemical_reagents_list[chemical]
 		if(wearer.reagents.get_reagent_amount(chemical) + chemicals_to_inject[chemical] > reag.overdose)
 			if(od_protection_mode == EMERGENCY_PLATE_OD_PROTECTION_STRICT)
-				to_chat(wearer, SPAN_DANGER("You hold the two buttons, but the plate buzzes and refuses to inject, indicating the potential overdose!"))
+				to_chat(wearer, SPAN_DANGER("你按住两个按钮，但插板发出蜂鸣并拒绝注射，提示可能发生药物过量！"))
 				return
 			if (od_protection_mode == EMERGENCY_PLATE_OD_PROTECTION_DYNAMIC)
 				var/adjust_volume_to_inject = reag.overdose - wearer.reagents.get_reagent_amount(chemical)
@@ -388,15 +388,15 @@
 			warning_type = EMERGENCY_PLATE_OD_WARNING
 		wearer.reagents.add_reagent(chemical, chemicals_to_inject[chemical])
 	if(warning_type == EMERGENCY_PLATE_OD_WARNING)
-		to_chat(wearer, SPAN_DANGER("You hold the two buttons, and the plate injects the chemicals, but makes a worrying beep, indicating overdose!"))
+		to_chat(wearer, SPAN_DANGER("你按住两个按钮，插板注射了药剂，但发出令人担忧的警报声，提示药物过量！"))
 	if(warning_type == EMERGENCY_PLATE_ADJUSTED_WARNING)
-		to_chat(wearer, SPAN_DANGER("You hold the two buttons, and the plate injects the chemicals, but makes a relieving beep, indicating it adjusted amounts it injected to prevent overdose!"))
+		to_chat(wearer, SPAN_DANGER("你按住两个按钮，插板注射了药剂，并发出令人安心的提示音，表示它已调整剂量以防止过量！"))
 	playsound(loc, "sound/items/air_release.ogg", 100, TRUE)
 	used = TRUE
 
 /obj/item/clothing/accessory/health/research_plate/anti_decay
-	name = "experimental preservation plate"
-	desc = "preservation plate which activates once the user is dead, uses variety of different substances and sensors to slow down the decay and increase the time before the user is permanently dead, due to small tank of preservatives, it needs to be replaced on each death."
+	name = "实验型遗体保存插板"
+	desc = "使用者死亡后自动启动的保存插板，通过多种物质和传感器延缓腐败，延长可复苏的时间。由于保存剂储罐较小，每次死亡后都需要更换。"
 	var/mob/living/carbon/human/wearer
 	var/used = FALSE
 
@@ -408,7 +408,7 @@
 /obj/item/clothing/accessory/health/research_plate/anti_decay/get_examine_text(mob/user)
 	. = ..()
 	if(used)
-		. += SPAN_WARNING("It is used!")
+		. += SPAN_WARNING("它已经用过了！")
 
 /obj/item/clothing/accessory/health/research_plate/anti_decay/on_attached(obj/item/clothing/S, mob/living/carbon/human/user)
 	. = ..()
@@ -432,14 +432,14 @@
 /obj/item/clothing/accessory/health/research_plate/anti_decay/proc/begin_preserving()
 	SIGNAL_HANDLER
 	UnregisterSignal(wearer, COMSIG_MOB_DEATH)
-	to_chat(wearer, SPAN_NOTICE("The [src] detects your death and starts injecting various chemicals to slow down your final demise!"))
+	to_chat(wearer, SPAN_NOTICE("[src]检测到你已死亡，开始注射多种药剂，延缓你彻底死亡的时间！"))
 	RegisterSignal(wearer, COMSIG_HUMAN_REVIVED, PROC_REF(onetime_use))
 	used = TRUE
 
 /obj/item/clothing/accessory/health/research_plate/anti_decay/proc/onetime_use()
 	SIGNAL_HANDLER
 	UnregisterSignal(wearer, COMSIG_HUMAN_REVIVED)
-	to_chat(wearer, SPAN_NOTICE("[icon2html(src, viewers(src))] \The <b>[src]</b> beeps: Chemical preservatives reserves depleted, replace the [src]"))
+	to_chat(wearer, SPAN_NOTICE("[icon2html(src, viewers(src))] <b>[src]</b>发出提示音：化学保存剂储备已耗尽，请更换[src]。"))
 	wearer.revive_grace_period = 5 MINUTES
 
 

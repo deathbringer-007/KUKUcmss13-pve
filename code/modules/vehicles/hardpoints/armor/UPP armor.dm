@@ -1,6 +1,6 @@
 /obj/item/hardpoint/armor/reactive
-	name = "\improper Reactive Armor"
-	desc = "A set of explosive reactive armor panels for the tank hull that increases its resistance to shaped charges and kinetic penetrators."
+	name = "\improper 反应装甲"
+	desc = "安装在坦克车体上的一组爆炸反应装甲板，可增强对聚能装药和动能穿甲弹的防护。"
 
 	icon = 'icons/obj/vehicles/hardpoints/upptank.dmi'
 	icon_state = "reactive_armor"

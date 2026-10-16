@@ -11,7 +11,7 @@ export const Wires = (props) => {
       <Window.Content>
         {!!proper_name && (
           <NoticeBox textAlign="center">
-            {proper_name} Wire Configuration
+            {proper_name}线路配置
           </NoticeBox>
         )}
         <Section>
@@ -33,7 +33,7 @@ export const Wires = (props) => {
                         })
                       }
                     >
-                      {wire.cut ? 'Mend' : 'Cut'}
+                      {wire.cut ? '接回' : '剪断'}
                     </Button>
                     <Button
                       icon="wave-square"
@@ -43,7 +43,7 @@ export const Wires = (props) => {
                         })
                       }
                     >
-                      Pulse
+                      脉冲
                     </Button>
                     <Button
                       icon="paperclip"
@@ -53,7 +53,7 @@ export const Wires = (props) => {
                         })
                       }
                     >
-                      {wire.attached ? 'Detach' : 'Attach'}
+                      {wire.attached ? '拆下' : '装上'}
                     </Button>
                   </>
                 }

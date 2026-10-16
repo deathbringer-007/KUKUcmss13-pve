@@ -1,7 +1,7 @@
 //generic procs copied from obj/effect/alien
 /obj/effect/spider
-	name = "web"
-	desc = "it's stringy and sticky"
+	name = "蛛网"
+	desc = "丝丝缕缕，黏糊糊的。"
 	icon = 'icons/effects/effects.dmi'
 	anchored = TRUE
 	density = FALSE
@@ -22,9 +22,9 @@
 
 /obj/effect/spider/attackby(obj/item/W, mob/user)
 	if(LAZYLEN(W.attack_verb))
-		visible_message(SPAN_DANGER("[src] has been [pick(W.attack_verb)] with [W][(user ? " by [user]." : ".")]"))
+		visible_message(SPAN_DANGER("[src]被[(user ? "[user]" : "某人")]用[W][pick(W.attack_verb)]了。"))
 	else
-		visible_message(SPAN_DANGER("[src] has been attacked with [W][(user ? " by [user]." : ".")]"))
+		visible_message(SPAN_DANGER("[src]被[(user ? "[user]" : "某人")]用[W]攻击了。"))
 
 	var/damage = W.force / 4
 
@@ -64,7 +64,7 @@
 		return NO_BLOCKED_MOVEMENT
 	else if(isliving(mover))
 		if(prob(50))
-			to_chat(mover, SPAN_WARNING("You get stuck in [src] for a moment."))
+			to_chat(mover, SPAN_WARNING("你被[src]缠住了一会儿。"))
 			return BLOCKED_MOVEMENT
 	else if(istype(mover, /obj/projectile))
 		if(prob(30))
@@ -72,8 +72,8 @@
 	return NO_BLOCKED_MOVEMENT
 
 /obj/effect/spider/eggcluster
-	name = "egg cluster"
-	desc = "They seem to pulse slightly with an inner life"
+	name = "卵群"
+	desc = "似乎在微微搏动，里面孕育着生命。"
 	icon_state = "eggs"
 	var/amount_grown = 0
 /obj/effect/spider/eggcluster/Initialize(mapload, ...)
@@ -95,8 +95,8 @@
 		qdel(src)
 
 /obj/effect/spider/spiderling
-	name = "spiderling"
-	desc = "It never stays still for long."
+	name = "幼蛛"
+	desc = "它总是停不下来。"
 	icon_state = "spiderling"
 	anchored = FALSE
 	layer = BELOW_TABLE_LAYER
@@ -131,7 +131,7 @@
 		..()
 
 /obj/effect/spider/spiderling/proc/die()
-	visible_message(SPAN_ALERT("[src] dies!"))
+	visible_message(SPAN_ALERT("[src]死了！"))
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
 	qdel(src)
 
@@ -147,7 +147,7 @@
 			var/target_atom = pick(nearby)
 			walk_to(src, target_atom, 5)
 			if(prob(25))
-				src.visible_message(SPAN_NOTICE("\the [src] skitters[pick(" away"," around","")]."))
+				src.visible_message(SPAN_NOTICE("[src][pick("飞快地爬远了","飞快地四处爬动","飞快地爬动")]。"))
 	else if(prob(5))
 		//vent crawl!
 		for(var/obj/structure/pipes/vents/pump/v in view(7,src))
@@ -157,7 +157,7 @@
 				break
 
 	if(prob(1))
-		src.visible_message(SPAN_NOTICE("\the [src] chitters."))
+		src.visible_message(SPAN_NOTICE("[src]吱吱作响。"))
 	if(isturf(loc) && amount_grown > 0)
 		amount_grown += rand(0,2)
 		if(amount_grown >= 100)
@@ -173,7 +173,7 @@
 			var/target_atom = pick(nearby)
 			walk_to(src, target_atom, 5)
 			if(prob(25))
-				src.visible_message(SPAN_NOTICE("\the [src] skitters[pick(" away"," around","")]."))
+				src.visible_message(SPAN_NOTICE("[src][pick("飞快地爬远了","飞快地四处爬动","飞快地爬动")]。"))
 	else if(prob(5))
 		//vent crawl!
 		for(var/obj/structure/pipes/vents/pump/v in view(7,src))
@@ -183,18 +183,18 @@
 				break
 
 	if(prob(1))
-		src.visible_message(SPAN_NOTICE("\the [src] chitters."))
+		src.visible_message(SPAN_NOTICE("[src]吱吱作响。"))
 
 /obj/effect/decal/cleanable/spiderling_remains
-	name = "spiderling remains"
+	name = "幼蛛残骸"
 	gender = PLURAL
-	desc = "Green squishy mess."
+	desc = "一摊绿色的软烂残骸。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "greenshatter"
 
 /obj/effect/spider/cocoon
-	name = "cocoon"
-	desc = "Something wrapped in silky spider web"
+	name = "蛛茧"
+	desc = "某种被柔滑蛛丝包裹起来的东西。"
 	icon_state = "cocoon1"
 	health = 30
 
@@ -202,7 +202,7 @@
 	icon_state = pick("cocoon1","cocoon2","cocoon3")
 
 /obj/effect/spider/cocoon/Destroy()
-	visible_message(SPAN_DANGER("[src] splits open."))
+	visible_message(SPAN_DANGER("[src]裂开了。"))
 	for(var/atom/movable/A in contents)
 		A.forceMove(loc)
 	. = ..()

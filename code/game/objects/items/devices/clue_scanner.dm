@@ -1,6 +1,6 @@
 /obj/item/device/clue_scanner
-	name = "forensic scanner"
-	desc = "A modern handheld scanner to gather fingerprints. Must be analyzed at a security records terminal after prints are gathered."
+	name = "痕迹扫描仪"
+	desc = "用于采集指纹的现代手持扫描仪。采集到的指纹必须在安保档案终端上分析。"
 	icon_state = "forensic1"
 	w_class = SIZE_MEDIUM
 	item_state = "electronic"
@@ -14,7 +14,7 @@
 
 /obj/item/device/clue_scanner/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_INFO("Print sets stored: [length(print_list)]")
+	. += SPAN_INFO("已保存的指纹组数：[length(print_list)]")
 
 /obj/item/device/clue_scanner/update_icon()
 	overlays.Cut()
@@ -29,12 +29,12 @@
 	. = ..()
 
 	if(!skillcheck(user, SKILL_POLICE, SKILL_POLICE_SKILLED))
-		to_chat(user, SPAN_WARNING("You don't seem to know how to use [src]..."))
+		to_chat(user, SPAN_WARNING("你似乎不知道怎么使用[src]……"))
 		return
 
 	scanning = TRUE
 	update_icon()
-	user.visible_message(SPAN_NOTICE("[user] starts scanning the surroundings for prints..."), SPAN_NOTICE("You scan the surroundings for prints..."))
+	user.visible_message(SPAN_NOTICE("[user]开始扫描周围，寻找指纹……"), SPAN_NOTICE("你扫描周围，寻找指纹……"))
 	if(!do_after(user, 50, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		scanning = FALSE
 		update_icon()
@@ -50,6 +50,6 @@
 	update_icon()
 
 	if(!newlyfound)
-		to_chat(user, SPAN_INFO("No new print sets found!"))
+		to_chat(user, SPAN_INFO("没有发现新的指纹！"))
 	else
-		to_chat(user, SPAN_INFO("New print sets found: [newlyfound], total stored amount: [length(print_list)]"))
+		to_chat(user, SPAN_INFO("新发现的指纹组数：[newlyfound]，已保存总数：[length(print_list)]"))

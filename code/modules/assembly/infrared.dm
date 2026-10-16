@@ -1,8 +1,8 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 /obj/item/device/assembly/infra
-	name = "infrared emitter"
-	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
+	name = "红外发射器"
+	desc = "发出可见或不可见的光束，光束被遮断时便会触发。"
 	icon_state = "infrared"
 	matter = list("metal" = 1000, "glass" = 500, "waste" = 100)
 
@@ -101,7 +101,7 @@
 	if((!secured)||(!on)||(cooldown > 0)) return 0
 	pulse(0)
 	if(!holder)
-		visible_message("[icon2html(src, hearers(src))] *beep* *beep*")
+		visible_message("[icon2html(src, hearers(src))] *哔* *哔*")
 	cooldown = 2
 	spawn(10)
 		process_cooldown()
@@ -116,22 +116,22 @@
 	var/dat = text("<TT><B>Infrared Laser</B>\n<B>Status</B>: []<BR>\n<B>Visibility</B>: []<BR>\n</TT>", (on ? text("<A href='byond://?src=\ref[];state=0'>On</A>", src) : text("<A href='byond://?src=\ref[];state=1'>Off</A>", src)), (src.visible ? text("<A href='byond://?src=\ref[];visible=0'>Visible</A>", src) : text("<A href='byond://?src=\ref[];visible=1'>Invisible</A>", src)))
 	*/
 
-	var/dat = "<TT><B>Infrared Laser</B>\n<B>Status</B>: "
+	var/dat = "<TT><B>红外激光器</B>\n<B>状态</B>："
 	if (on)
-		dat += "<A href='byond://?src=\ref[src];state=0'>On</A>"
+		dat += "<A href='byond://?src=\ref[src];state=0'>开启</A>"
 	else
-		dat += "<A href='byond://?src=\ref[src];state=1'>Off</A>"
-	dat += "<BR>\n<B>Visibility</B>: "
+		dat += "<A href='byond://?src=\ref[src];state=1'>关闭</A>"
+	dat += "<BR>\n<B>可见性</B>："
 
 	if (visible)
-		dat += "<A href='byond://?src=\ref[src];visible=0'>Visible</A>"
+		dat += "<A href='byond://?src=\ref[src];visible=0'>可见</A>"
 	else
-		dat += "<A href='byond://?src=\ref[src];visible=1'>Invisible</A>"
+		dat += "<A href='byond://?src=\ref[src];visible=1'>不可见</A>"
 
 	dat += "<BR>\n</TT>"
-	dat += "<BR><BR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A>"
-	dat += "<BR><BR><A href='byond://?src=\ref[src];close=1'>Close</A>"
-	show_browser(user, dat, "Infrared Laser", "infra")
+	dat += "<BR><BR><A href='byond://?src=\ref[src];refresh=1'>刷新</A>"
+	dat += "<BR><BR><A href='byond://?src=\ref[src];close=1'>关闭</A>"
+	show_browser(user, dat, "红外激光器", "infra")
 	return
 
 
@@ -162,8 +162,8 @@
 
 
 /obj/item/device/assembly/infra/verb/rotate()//This could likely be better
-	set name = "Rotate Infrared Laser"
-	set category = "Object"
+	set name = "旋转红外激光器"
+	set category = "物品"
 	set src in usr
 
 	setDir(turn(dir, 90))
@@ -174,7 +174,7 @@
 //***************************IBeam*********************************/
 
 /obj/effect/beam/i_beam
-	name = "i beam"
+	name = "红外光束"
 	icon = 'icons/obj/items/weapons/projectiles.dmi'
 	icon_state = "ibeam"
 	var/obj/effect/beam/i_beam/next = null

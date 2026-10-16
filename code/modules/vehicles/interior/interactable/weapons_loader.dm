@@ -1,6 +1,6 @@
 /obj/structure/weapons_loader
-	name = "ammunition loader"
-	desc = "A hefty piece of machinery that sorts, moves and loads various ammunition into the correct guns."
+	name = "弹药装填机"
+	desc = "一台笨重的机械，负责分拣、搬运各类弹药，并将其装填至对应的武器中。"
 	icon = 'icons/obj/vehicles/interiors/general.dmi'
 	icon_state = "weapons_loader"
 
@@ -18,7 +18,7 @@
 		return ..()
 
 	if(!skillcheck(user, SKILL_VEHICLE, SKILL_VEHICLE_LARGE))
-		to_chat(user, SPAN_NOTICE("You have no idea how to operate this thing!"))
+		to_chat(user, SPAN_NOTICE("你完全不知道该怎么操作这东西！"))
 		return
 
 	// Check if any of the hardpoints accept the magazine
@@ -46,8 +46,8 @@
 	handle_reload(user)
 
 /obj/structure/weapons_loader/proc/reload_ammo()
-	set name = "Reload Ammo"
-	set category = "Object"
+	set name = "装填弹药"
+	set category = "物品"
 	set src in range(1)
 
 	var/mob/living/carbon/human/H = usr
@@ -63,43 +63,43 @@
 		if(isVehicle(user.interactee))
 			vehicle = user.interactee
 		if(!istype(vehicle))
-			to_chat(user, SPAN_WARNING("Critical Error! Ahelp this! Code: T_VMIS"))
+			to_chat(user, SPAN_WARNING("严重错误！请通过管理员求助报告此问题！错误代码：T_VMIS"))
 			return
 
 	var/list/hps = vehicle.get_hardpoints_with_ammo()
 
 	if(!skillcheck(user, SKILL_VEHICLE, SKILL_VEHICLE_LARGE))
-		to_chat(user, SPAN_NOTICE("You have no idea how to operate this thing!"))
+		to_chat(user, SPAN_NOTICE("你完全不知道该怎么操作这东西！"))
 		return
 
 	if(!LAZYLEN(hps))
-		to_chat(user, SPAN_WARNING("None of the hardpoints can be reloaded!"))
+		to_chat(user, SPAN_WARNING("没有可以装填弹药的挂载模块！"))
 		return
 
-	var/chosen_hp = tgui_input_list(usr, "Select a hardpoint", "Hardpoint Menu", (hps + "Cancel"))
-	if(chosen_hp == "Cancel")
+	var/chosen_hp = tgui_input_list(usr, "选择挂载模块", "挂载模块菜单", (hps + "取消"))
+	if(chosen_hp == "取消")
 		return
 
 	var/obj/item/hardpoint/HP = chosen_hp
 
 	// If someone removed the hardpoint while their dialogue was open or something
 	if(QDELETED(HP))
-		to_chat(user, SPAN_WARNING("Error! Module not found!"))
+		to_chat(user, SPAN_WARNING("错误！未找到模块！"))
 		return
 
 	if(!LAZYLEN(HP.backup_clips))
-		to_chat(user, SPAN_WARNING("\The [HP] has no remaining backup magazines!"))
+		to_chat(user, SPAN_WARNING("[HP]没有剩余备用弹匣！"))
 		return
 
 	var/obj/item/ammo_magazine/M = LAZYACCESS(HP.backup_clips, 1)
 	if(!M)
-		to_chat(user, SPAN_DANGER("Something went wrong! Ahelp this! Code: T_BMIS"))
+		to_chat(user, SPAN_DANGER("发生错误！请通过管理员求助报告此问题！错误代码：T_BMIS"))
 		return
 
-	to_chat(user, SPAN_NOTICE("You begin reloading \the [HP]."))
+	to_chat(user, SPAN_NOTICE("你开始为[HP]装填弹药。"))
 
 	if(!do_after(user, 10, INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
-		to_chat(user, SPAN_WARNING("Something interrupted you while reloading \the [HP]."))
+		to_chat(user, SPAN_WARNING("你为[HP]装填弹药的动作被打断了。"))
 		return
 
 	HP.ammo.forceMove(get_turf(src))
@@ -108,4 +108,4 @@
 	LAZYREMOVE(HP.backup_clips, M)
 
 	playsound(loc, 'sound/machines/hydraulics_3.ogg', 50)
-	to_chat(user, SPAN_NOTICE("You reload \the [HP]. Ammo: <b>[SPAN_HELPFUL(HP.ammo.current_rounds)]/[SPAN_HELPFUL(HP.ammo.max_rounds)]</b> | Mags: <b>[SPAN_HELPFUL(LAZYLEN(HP.backup_clips))]/[SPAN_HELPFUL(HP.max_clips)]</b>"))
+	to_chat(user, SPAN_NOTICE("你为[HP]装填了弹药。弹药：<b>[SPAN_HELPFUL(HP.ammo.current_rounds)]/[SPAN_HELPFUL(HP.ammo.max_rounds)]</b> | 弹匣：<b>[SPAN_HELPFUL(LAZYLEN(HP.backup_clips))]/[SPAN_HELPFUL(HP.max_clips)]</b>"))

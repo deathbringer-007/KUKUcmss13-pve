@@ -1,7 +1,7 @@
 //Space santa outfit suit
 /obj/item/clothing/head/helmet/space/santahat
-	name = "Santa's hat"
-	desc = "Ho ho ho. Merrry X-mas!"
+	name = "圣诞老人帽"
+	desc = "嚯嚯嚯，圣诞快乐！"
 	icon_state = "santa_hat_red"
 	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEYES
@@ -11,16 +11,16 @@
 	icon_state = "santa_hat_green"
 
 /obj/item/clothing/suit/space/santa
-	name = "Santa's suit"
-	desc = "Festive!"
+	name = "圣诞老人服"
+	desc = "节日气氛十足！"
 	icon_state = "santa"
 	item_state = "santa"
 	slowdown = 0
 	allowed = list(/obj/item) //for stuffing extra special presents
 
 /obj/item/clothing/head/helmet/space/pressure
-	name = "\improper pressure helmet"
-	desc = "A heavy space helmet."
+	name = "\improper 压力头盔"
+	desc = "一顶沉重的太空头盔。"
 	icon = 'icons/obj/items/clothing/cm_hats.dmi'
 	item_icons = list(
 		WEAR_HEAD = 'icons/mob/humans/onmob/head_1.dmi'
@@ -63,11 +63,11 @@
 	. = ..()
 
 	if(!toggleable)
-		to_chat(user, SPAN_WARNING("You cannot toggle [src] on or off."))
+		to_chat(user, SPAN_WARNING("你无法开关[src]。"))
 		return FALSE
 
 	if(!isturf(user.loc))
-		to_chat(user, SPAN_WARNING("You cannot turn the light [light_on ? "off" : "on"] while in [user.loc].")) //To prevent some lighting anomalies.
+		to_chat(user, SPAN_WARNING("身处[user.loc]时无法[light_on ? "关闭" : "开启"]灯光。")) //To prevent some lighting anomalies.
 		return FALSE
 
 	turn_light(user, !light_on)
@@ -108,8 +108,8 @@
 	playsound(loc, breaking_sound, 25, 1)
 
 /obj/item/clothing/suit/space/pressure
-	name = "\improper pressure suit"
-	desc = "A heavy, bulky civilian space suit, fitted with armored plates."
+	name = "\improper 压力服"
+	desc = "一套沉重笨拙的民用太空服，配有装甲板。"
 	icon = 'icons/obj/items/clothing/cm_suits.dmi'
 	item_icons = list(
 		WEAR_JACKET = 'icons/mob/humans/onmob/suit_1.dmi'
@@ -173,15 +173,15 @@
 	helmet_color = "dark"
 
 /obj/item/clothing/head/helmet/space/pressure/uscm
-	name = "\improper USCM MK.35 pressure helmet"
-	desc = "A heavy space helmet, designed to be coupled with the MK.35 pressure suit utilized by the United States Colonial Marines and a few other American or UA organizations. Feels like you could hotbox in here."
+	name = "\improper USCM MK.35压力头盔"
+	desc = "一顶沉重的太空头盔，与美国殖民地海军陆战队及少数美国或美洲联盟组织使用的MK.35压力服配套。感觉能在里面闷着抽烟。"
 	item_state = "pressure_uscm"
 	icon_state = "pressure_uscm"
 	helmet_color = "uscm"
 
 /obj/item/clothing/suit/space/pressure/uscm
-	name = "\improper USCM MK.35 pressure suit"
-	desc = "A heavy, bulky military-grade space suit utilized by the United States Colonial Marines and a few other American or UA organizations."
+	name = "\improper USCM MK.35压力服"
+	desc = "一套沉重笨拙的军用太空服，由美国殖民地海军陆战队及少数美国或美洲联盟组织使用。"
 	item_state = "pressure_uscm"
 	icon_state = "pressure_uscm"
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
@@ -191,15 +191,15 @@
 	flags_inventory = SMARTGUN_HARNESS
 
 /obj/item/clothing/head/helmet/space/pressure/upp
-	name = "\improper UPPAC Sokol-KV2 pressure helmet"
-	desc = "A heavy space helmet, designed to be coupled with the Sokol-KV2 pressure suit utilized by the Union of Progressive Peoples Armed Collective and a few other UPP organizations."
+	name = "\improper UPPAC 猎鹰-KV2压力头盔"
+	desc = "一顶沉重的太空头盔，与进步人民联盟联合武装力量及少数其他联盟组织使用的猎鹰-KV2压力服配套。"
 	item_state = "pressure_upp"
 	icon_state = "pressure_upp"
 	helmet_color = "upp"
 
 /obj/item/clothing/suit/space/pressure/upp
-	name = "\improper UPPAC Sokol-KV2 pressure suit"
-	desc = "A heavy, bulky military-grade space suit utilized by the Union of Progressive Peoples Armed Collective and a few other UPP organizations."
+	name = "\improper UPPAC 猎鹰-KV2压力服"
+	desc = "一套沉重笨拙的军用太空服，由进步人民联盟联合武装力量及少数其他联盟组织使用。"
 	item_state = "pressure_upp"
 	icon_state = "pressure_upp"
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
@@ -211,8 +211,8 @@
 // Souto man
 
 /obj/item/clothing/suit/space/souto
-	name = "\improper Souto Man tank top"
-	desc = "The tank top worn by Souto Man. As fresh as a nice can of Souto Classic!"
+	name = "\improper 索托侠背心"
+	desc = "索托侠穿的背心，和一罐美味的经典索托一样清爽！"
 	item_state = "souto_man"
 	icon_state = "souto_man"
 	armor_melee = CLOTHING_ARMOR_HARDCORE
@@ -229,8 +229,8 @@
 	slowdown = 0
 
 /obj/item/clothing/head/helmet/space/souto
-	name = "\improper Souto Man hat"
-	desc = "The hat worn by Souto Man. As tall as the new 24oz cans of Souto Lime!"
+	name = "\improper 索托侠帽"
+	desc = "索托侠戴的帽子，和新款24盎司罐装青柠索托一样高！"
 	item_state = "souto_man"
 	icon_state = "souto_man"
 	armor_melee = CLOTHING_ARMOR_HARDCORE

@@ -18,6 +18,19 @@ type BackendContext = {
   on_cooldown: BooleanLike;
 };
 
+const emoteCategoryLabels: Record<string, string> = {
+  Greeting: '问候',
+  'Task Update': '任务进展',
+  'Restricted Area': '限制区域',
+  Farewell: '告别',
+  Quip: '俏皮话',
+  Warning: '警告',
+  Question: '提问',
+  Notice: '提示',
+  Fire: '火灾',
+  Damage: '受损',
+};
+
 const EmoteTab = (props) => {
   const { data, act } = useBackend<BackendContext>();
   const { categories, emotes, on_cooldown } = data;
@@ -43,7 +56,7 @@ const EmoteTab = (props) => {
                   setCategoryIndex(item);
                 }}
               >
-                {item}
+                {emoteCategoryLabels[item] || item}
               </Tabs.Tab>
             ))}
           </Tabs>
@@ -101,7 +114,7 @@ export const JoeEmotes = (props) => {
       width={750}
       height={600}
       theme="crtblue"
-      title="Working Joe Voice Synthesizer"
+      title="工作乔语音合成器"
     >
       <Window.Content>
         <EmoteTab />

@@ -1,6 +1,6 @@
 /obj/item/ammo_magazine/hardpoint/secondary_flamer
-	name = "LZR-N Flamer Unit Fuel Tank"
-	desc = "A napalm tank fitted to be accepted by the LZR-N Flamer."
+	name = "LZR-N火焰喷射器燃料箱"
+	desc = "适配LZR-N火焰喷射器的凝固汽油燃料箱。"
 	caliber = "High-Combustion Napalm" //correlates to flamer mags
 	icon_state = "flametank_large"
 	w_class = SIZE_LARGE

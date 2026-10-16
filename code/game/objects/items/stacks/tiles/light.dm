@@ -1,11 +1,11 @@
 /obj/item/stack/tile/light
-	name = "light floor tile"
-	singular_name = "light floor tile"
-	desc = "A floor tile, made out of glass. It produces light."
+	name = "发光地砖"
+	singular_name = "发光地砖"
+	desc = "一块玻璃制成的地砖，能够发光。"
 	icon_state = "tile_e"
 	force = 3
 	throwforce = 5
-	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "smashed")
+	attack_verb = list("猛砸", "殴打", "重击", "痛打", "砸击")
 	stack_id = "light floor tile"
 	turf_type = /turf/open/floor/light
 

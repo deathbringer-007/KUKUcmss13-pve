@@ -1,6 +1,6 @@
 /obj/item/hardpoint/armor/paladin
-	name = "\improper Paladin Armor"
-	desc = "Offers a good balance of protection for the vehicle from both explosive and ballistic sources of damage."
+	name = "\improper 圣骑士装甲"
+	desc = "为载具提供兼顾爆炸与弹道伤害的均衡防护。"
 
 	icon_state = "paladin_armor"
 	disp_icon = "tank"

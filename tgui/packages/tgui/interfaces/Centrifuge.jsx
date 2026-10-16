@@ -8,12 +8,12 @@ export const Centrifuge = () => {
   return (
     <Window width={300} height={270} theme="weyland">
       <Window.Content scrollable>
-        <Section title="Centrifuge controls">
+        <Section title="离心机控制">
           <Flex direction="column">
             <Flex.Item>
-              Label :{' '}
+              标签：{' '}
               <Input
-                placeholder="No label"
+                placeholder="无标签"
                 value={data.label}
                 width="210px"
                 onInput={(e, value) =>
@@ -30,7 +30,7 @@ export const Centrifuge = () => {
                 icon={data.mode ? 'equals' : 'arrows-split-up-and-left'}
                 onClick={() => act('togglemode')}
               >
-                {data.mode ? 'Mode : distribute' : 'Mode : split'}
+                {data.mode ? '模式：分装' : '模式：分离'}
               </Button>
               <Box width="2px" />
             </Flex.Item>
@@ -42,8 +42,8 @@ export const Centrifuge = () => {
                 onClick={() => act('togglesource')}
               >
                 {data.input_source
-                  ? 'Input : Turing Dispenser'
-                  : 'Input : Container'}
+                  ? '输入：图灵自动配药机'
+                  : '输入：容器'}
               </Button>
               <Box width="2px" />
             </Flex.Item>
@@ -55,7 +55,7 @@ export const Centrifuge = () => {
                   disabled={!data.turing}
                   onClick={() => act('attempt_connection')}
                 >
-                  Connect a Turing Dispenser
+                  连接图灵自动配药机
                 </Button>
                 <Box width="2px" />
               </Flex.Item>
@@ -63,8 +63,8 @@ export const Centrifuge = () => {
             <Flex.Item>
               <NoticeBox info>
                 {data.turing
-                  ? 'Turing Dispenser connected!'
-                  : 'No Turing Dispenser connected!'}
+                  ? '已连接图灵自动配药机！'
+                  : '未连接图灵自动配药机！'}
               </NoticeBox>
             </Flex.Item>
           </Flex>

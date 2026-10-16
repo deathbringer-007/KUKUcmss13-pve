@@ -1,6 +1,6 @@
 /obj/structure/closet/l3closet
-	name = "level-3 biohazard suit closet"
-	desc = "It's a storage unit for level-3 biohazard gear."
+	name = "三级生物危害防护服柜"
+	desc = "用于存放三级生物危害防护装备的储物柜。"
 	icon_state = "bio"
 	icon_closed = "bio"
 	icon_opened = "bioopen"

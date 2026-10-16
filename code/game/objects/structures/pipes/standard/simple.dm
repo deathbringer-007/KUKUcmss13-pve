@@ -1,8 +1,8 @@
 /obj/structure/pipes/standard/simple
 	icon = 'icons/obj/pipes/pipes.dmi'
 	icon_state = ""
-	name = "pipe"
-	desc = "A one-meter section of regular pipe"
+	name = "管道"
+	desc = "一段一米长的普通管道。"
 	dir = SOUTH
 	valid_directions = list(SOUTH, NORTH)
 
@@ -55,15 +55,15 @@
 	level = 2
 
 /obj/structure/pipes/standard/simple/visible/scrubbers
-	name = "Scrubbers pipe"
-	desc = "A one-meter section of scrubbers pipe"
+	name = "洗涤管道"
+	desc = "一段一米长的洗涤管道。"
 	icon_state = "intact-scrubbers"
 	layer = ATMOS_PIPE_SCRUBBER_LAYER
 	color = PIPE_COLOR_RED
 
 /obj/structure/pipes/standard/simple/visible/supply
-	name = "Air supply pipe"
-	desc = "A one-meter section of supply pipe"
+	name = "供气管道"
+	desc = "一段一米长的供气管道。"
 	icon_state = "intact-supply"
 	layer = ATMOS_PIPE_SUPPLY_LAYER
 	color = PIPE_COLOR_BLUE
@@ -91,21 +91,21 @@
 	. = ..()
 
 /obj/structure/pipes/standard/simple/hidden/scrubbers
-	name = "Scrubbers pipe"
-	desc = "A one-meter section of scrubbers pipe"
+	name = "洗涤管道"
+	desc = "一段一米长的洗涤管道。"
 	icon_state = "intact-scrubbers"
 	layer = ATMOS_PIPE_SCRUBBER_LAYER
 	color = PIPE_COLOR_RED
 
 /obj/structure/pipes/standard/simple/hidden/supply
-	name = "Air supply pipe"
-	desc = "A one-meter section of supply pipe"
+	name = "供气管道"
+	desc = "一段一米长的供气管道。"
 	icon_state = "intact-supply"
 	layer = ATMOS_PIPE_SUPPLY_LAYER
 	color = PIPE_COLOR_BLUE
 
 /obj/structure/pipes/standard/simple/hidden/supply/no_boom
-	name = "Reinforced Air supply pipe"
+	name = "加固供气管道"
 	explodey = FALSE
 	color = PIPE_COLOR_PURPLE
 

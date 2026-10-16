@@ -1,8 +1,8 @@
 /obj/structure/displaycase
-	name = "display case"
+	name = "展示柜"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "glassbox1"
-	desc = "A display case for prized possessions. It taunts you to kick it."
+	desc = "用来展示珍贵藏品的柜子，看着就让人想踢一脚。"
 	density = TRUE
 	anchored = TRUE
 	unacidable = FALSE
@@ -65,16 +65,16 @@
 
 /obj/structure/displaycase/attack_hand(mob/user as mob)
 	if (src.destroyed && src.occupied)
-		to_chat(user, "\b You deactivate the hover field built into the case.")
+		to_chat(user, "\b 你关闭了展示柜内置的悬浮力场。")
 		src.occupied = 0
 		src.add_fingerprint(user)
 		update_icon()
 		return
 	else
-		to_chat(user, SPAN_NOTICE("You kick the display case."))
+		to_chat(user, SPAN_NOTICE("你踢了展示柜一脚。"))
 		for(var/mob/O in oviewers())
 			if ((O.client && !( O.blinded )))
-				to_chat(O, SPAN_DANGER("[user] kicks the display case."))
+				to_chat(O, SPAN_DANGER("[user]踢了展示柜一脚。"))
 		src.health -= 2
 		healthcheck()
 		return

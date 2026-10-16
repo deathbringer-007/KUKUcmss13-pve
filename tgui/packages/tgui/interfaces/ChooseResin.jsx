@@ -24,11 +24,11 @@ export const ChooseResin = (props) => {
     >
       <Window.Content>
         <Section
-          title="Structures"
+          title="建筑"
           buttons={
             <Button
               color="transparent"
-              tooltip="Compact Mode"
+              tooltip="紧凑模式"
               tooltipPosition="left"
               selected={compact}
               onClick={() => {
@@ -62,7 +62,7 @@ export const ChooseResin = (props) => {
                     <Box fontSiz>
                       {val.name}
                       {val.max_per_xeno !== INFINITE_BUILD_AMOUNT &&
-                        ` (${val.max_per_xeno} Max)`}
+                        `（最多 ${val.max_per_xeno} 个）`}
                     </Box>
                   </Stack.Item>
                 </Stack>

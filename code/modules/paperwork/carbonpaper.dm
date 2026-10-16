@@ -1,5 +1,5 @@
 /obj/item/paper/carbon
-	name = "paper"
+	name = "纸张"
 	icon_state = "paper_stack"
 	item_state = "paper"
 	var/copied = 0
@@ -26,8 +26,8 @@
 
 
 /obj/item/paper/carbon/verb/removecopy()
-	set name = "Remove carbon-copy"
-	set category = "Object"
+	set name = "撕下复写副本"
+	set category = "物品"
 	set src in usr
 
 	if (!copied && !iscopy)
@@ -38,13 +38,13 @@
 		copycontents = replacetext(copycontents, "<font face=\"[c.crayonfont]\" color=", "<font face=\"[c.crayonfont]\" nocolor=") //This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
 		copy.info += copycontents
 		copy.info += "</font>"
-		copy.name = "Copy - " + c.name
+		copy.name = "副本 - " + c.name
 		copy.fields = c.fields
 		copy.updateinfolinks()
-		to_chat(usr, SPAN_NOTICE("You tear off the carbon-copy!"))
+		to_chat(usr, SPAN_NOTICE("你撕下了复写副本！"))
 		c.copied = 1
 		copy.iscopy = 1
 		copy.update_icon()
 		c.update_icon()
 	else
-		to_chat(usr, "There are no more carbon copies attached to this paper!")
+		to_chat(usr, "这张纸已经没有复写副本了！")

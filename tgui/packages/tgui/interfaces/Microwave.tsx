@@ -26,7 +26,7 @@ export const Microwave = (props) => {
       <Window.Content scrollable>
         <Section
           fill
-          title="Ingredients"
+          title="食材"
           buttons={
             <Flex>
               <Button
@@ -35,7 +35,7 @@ export const Microwave = (props) => {
                 disabled={!!operating || !!dirty || !!broken}
                 onClick={() => act('cook')}
               >
-                Activate
+                启动
               </Button>
 
               <Button
@@ -44,7 +44,7 @@ export const Microwave = (props) => {
                 disabled={!ingredients.length || !!operating}
                 onClick={() => act('eject_all')}
               >
-                Eject all
+                全部取出
               </Button>
             </Flex>
           }
@@ -56,23 +56,23 @@ export const Microwave = (props) => {
               p=".5rem"
               fontSize="1.5rem"
             >
-              Cooking...
+              正在烹饪……
             </NoticeBox>
           )}
 
           {!!broken && (
             <NoticeBox danger width="100%" textAlign="center" p="1rem">
-              Appliance broken. Please contact your local technician.
+              设备已损坏，请联系技术人员。
             </NoticeBox>
           )}
 
           {!!dirty && (
             <NoticeBox danger width="100%" textAlign="center" p="1rem">
-              This microwave is too dirty. Cleaning required.
+              微波炉太脏了，需要清洁。
             </NoticeBox>
           )}
 
-          {!ingredients.length && <Box>None</Box>}
+          {!ingredients.length && <Box>无</Box>}
 
           <Flex direction="column">
             {ingredients.map((ingredient) => {

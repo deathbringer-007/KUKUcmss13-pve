@@ -1,7 +1,7 @@
 //this is Cupola guns that are fired from the sides of APC by support gunners
 /obj/item/hardpoint/special/firing_port_weapon
-	name = "\improper M56 FPW"
-	desc = "A modified M56B Smartgun installed on the sides of M577 Armored Personnel Carrier as a Firing Port Weapon. Used by support gunners to cover friendly infantry at APC sides."
+	name = "\improper M56射孔武器"
+	desc = "安装在M577装甲运兵车两侧的改装M56B智能机枪，作为射孔武器，由支援炮手用来掩护车辆两侧的友军步兵。"
 
 	icon = 'icons/obj/vehicles/hardpoints/apc.dmi'
 	icon_state = "m56_FPW"
@@ -61,21 +61,21 @@
 	playsound(owner, 'sound/items/m56dauto_setup.ogg', 50, TRUE)
 
 	if(user && owner.get_mob_seat(user))
-		to_chat(user, SPAN_WARNING("\The [name]'s automated reload is finished. Ammo: <b>[SPAN_HELPFUL(ammo ? ammo.current_rounds : 0)]/[SPAN_HELPFUL(ammo ? ammo.max_rounds : 0)]</b>"))
+		to_chat(user, SPAN_WARNING("[name]自动装填完毕。弹药：<b>[SPAN_HELPFUL(ammo ? ammo.current_rounds : 0)]/[SPAN_HELPFUL(ammo ? ammo.max_rounds : 0)]</b>"))
 
 /obj/item/hardpoint/special/firing_port_weapon/proc/start_auto_reload(mob/user)
 	if(reloading)
-		to_chat(user, SPAN_WARNING("\The [name] is already being reloaded. Wait [SPAN_HELPFUL("[((reload_time_started + reload_time - world.time) / 10)]")] seconds."))
+		to_chat(user, SPAN_WARNING("[name]正在装填，请等待[SPAN_HELPFUL("[((reload_time_started + reload_time - world.time) / 10)]")]秒。"))
 		return
 	if(user)
-		to_chat(user, SPAN_WARNING("\The [name] is out of ammunition! Wait [reload_time / 10] seconds for automatic reload to finish."))
+		to_chat(user, SPAN_WARNING("[name]弹药耗尽！请等待[reload_time / 10]秒，直至自动装填完成。"))
 	reloading = TRUE
 	reload_time_started = world.time
 	addtimer(CALLBACK(src, PROC_REF(reload), user), reload_time)
 
 //try adding magazine to hardpoint's backup clips. Called via weapons loader
 /obj/item/hardpoint/special/firing_port_weapon/try_add_clip(obj/item/ammo_magazine/A, mob/user)
-	to_chat(user, SPAN_NOTICE("\The [name] reloads automatically."))
+	to_chat(user, SPAN_NOTICE("[name]会自动装填。"))
 	return FALSE
 
 /obj/item/hardpoint/special/firing_port_weapon/try_fire(atom/target, mob/living/user, params)
@@ -84,26 +84,26 @@
 
 	//FPW stop working at 50% hull
 	if(owner.health < initial(owner.health) * 0.5)
-		to_chat(user, SPAN_WARNING("<b>\The [owner]'s hull is too damaged!</b>"))
+		to_chat(user, SPAN_WARNING("<b>[owner]的车体损坏过于严重！</b>"))
 		return NONE
 
 	if(user.get_active_hand())
-		to_chat(user, SPAN_WARNING("You need a free hand to use \the [name]."))
+		to_chat(user, SPAN_WARNING("你需要腾出一只手才能使用[name]。"))
 		return NONE
 
 	if(reloading)
-		to_chat(user, SPAN_NOTICE("\The [name] is reloading. Wait [SPAN_HELPFUL("[((reload_time_started + reload_time - world.time) / 10)]")] seconds."))
+		to_chat(user, SPAN_NOTICE("[name]正在装填，请等待[SPAN_HELPFUL("[((reload_time_started + reload_time - world.time) / 10)]")]秒。"))
 		return NONE
 
 	if(ammo && ammo.current_rounds <= 0)
 		if(reloading)
-			to_chat(user, SPAN_WARNING("<b>\The [name] is out of ammo! You have to wait [(reload_time_started + reload_time - world.time) / 10] seconds before it reloads!"))
+			to_chat(user, SPAN_WARNING("<b>[name]弹药耗尽！还需等待[(reload_time_started + reload_time - world.time) / 10]秒才能完成装填！"))
 		else
 			start_auto_reload(user)
 		return NONE
 
 	if(!in_firing_arc(target))
-		to_chat(user, SPAN_WARNING("<b>The target is not within your firing arc!</b>"))
+		to_chat(user, SPAN_WARNING("<b>目标不在射界内！</b>"))
 		return NONE
 
 	return handle_fire(target, user, params)

@@ -9,7 +9,7 @@
 
 //Used by spraybottles.
 /obj/effect/decal/chempuff
-	name = "chemicals"
+	name = "化学物质"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "chempuff"
 	var/mob/source_user
@@ -61,8 +61,8 @@
 			reagents.trans_to(A)
 
 /obj/effect/decal/mecha_wreckage
-	name = "Exosuit wreckage"
-	desc = "Remains of some unfortunate mecha. Completely unrepairable."
+	name = "外骨骼机甲残骸"
+	desc = "某台倒霉机甲的残骸，已经彻底无法修复。"
 	icon = 'icons/obj/structures/props/mech.dmi'
 	density = TRUE
 	anchored = FALSE
@@ -85,7 +85,7 @@
 /obj/effect/decal/mecha_wreckage/attack_alien(mob/living/carbon/xenomorph/M)
 	playsound(src, 'sound/effects/metal_crash.ogg', 50, 1)
 	M.animation_attack_on(src)
-	M.visible_message(SPAN_DANGER("[M] slices [src] apart!"), SPAN_DANGER("You slice [src] apart!"))
+	M.visible_message(SPAN_DANGER("[M]将[src]劈成了碎片！"), SPAN_DANGER("你将[src]劈成了碎片！"))
 	deconstruct(TRUE)
 	return XENO_ATTACK_ACTION
 
@@ -95,50 +95,50 @@
 	return ..()
 
 /obj/effect/decal/mecha_wreckage/gygax
-	name = "MAX wreckage"
+	name = "MAX机甲残骸"
 	icon_state = "gygax-broken"
 
 /obj/effect/decal/mecha_wreckage/gygax/dark
-	name = "Dark MAX wreckage"
+	name = "暗黑MAX机甲残骸"
 	icon_state = "darkgygax-broken"
 
 /obj/effect/decal/mecha_wreckage/marauder
-	name = "Marauder wreckage"
+	name = "掠夺者机甲残骸"
 	icon_state = "marauder-broken"
 
 /obj/effect/decal/mecha_wreckage/mauler
-	name = "Mauler Wreckage"
+	name = "重殴者机甲残骸"
 	icon_state = "mauler-broken"
-	desc = "The syndicate won't be very happy about this..."
+	desc = "辛迪加恐怕不会对此感到高兴……"
 
 /obj/effect/decal/mecha_wreckage/seraph
-	name = "Seraph wreckage"
+	name = "炽天使机甲残骸"
 	icon_state = "seraph-broken"
 
 /obj/effect/decal/mecha_wreckage/ripley
-	name = "P-1000 wreckage"
+	name = "P-1000机甲残骸"
 	icon_state = "ripley-broken"
 
 /obj/effect/decal/mecha_wreckage/ripley/firefighter
-	name = "Firefighter wreckage"
+	name = "消防员机甲残骸"
 	icon_state = "firefighter-broken"
 
 /obj/effect/decal/mecha_wreckage/ripley/deathripley
-	name = "Death-P-1000 wreckage"
+	name = "死亡P-1000机甲残骸"
 	icon_state = "deathripley-broken"
 
 /obj/effect/decal/mecha_wreckage/durand
-	name = "MOX wreckage"
+	name = "MOX机甲残骸"
 	icon_state = "durand-broken"
 
 /obj/effect/decal/mecha_wreckage/phazon
-	name = "Phazon wreckage"
+	name = "法宗机甲残骸"
 	icon_state = "phazon-broken"
 
 /obj/effect/decal/mecha_wreckage/odysseus
-	name = "Alice wreckage"
+	name = "爱丽丝机甲残骸"
 	icon_state = "odysseus-broken"
 
 /obj/effect/decal/mecha_wreckage/hoverpod
-	name = "Hover pod wreckage"
+	name = "悬浮舱残骸"
 	icon_state = "engineering_pod-broken"

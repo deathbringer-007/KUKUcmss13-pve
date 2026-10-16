@@ -9,14 +9,14 @@
 	invisibility = 101
 
 /obj/effect/manifest/proc/manifest()
-	var/dat = "<B>Crew Manifest</B>:<BR>"
+	var/dat = "<B>船员名册</B>：<BR>"
 	for(var/mob/living/carbon/human/M in GLOB.human_mob_list)
 		if(M.species && M.species.name == "Yautja")
 			continue
 		dat += text(" [] <B>[]</B> -  []<BR>", M.get_paygrade(0), M.name, M.get_assignment())
 	var/obj/item/paper/P = new /obj/item/paper( src.loc )
 	P.info = dat
-	P.name = "paper- 'Crew Manifest'"
+	P.name = "纸张 - “船员名册”"
 	//SN src = null
 	qdel(src)
 	return

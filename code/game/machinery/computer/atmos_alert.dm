@@ -2,8 +2,8 @@
 
 
 /obj/structure/machinery/computer/atmos_alert
-	name = "Atmospheric Alert Computer"
-	desc = "Used to access the station's atmospheric sensors."
+	name = "大气警报计算机"
+	desc = "用于访问空间站的大气传感器。"
 	circuit = /obj/item/circuitboard/computer/atmos_alert
 	icon_state = "alert:0"
 	var/list/priority_alarms = list()
@@ -81,20 +81,20 @@
 		for(var/zone in priority_alarms)
 			priority_text += "<FONT color='red'><B>[zone]</B></FONT>  <A href='byond://?src=\ref[src];priority_clear=[ckey(zone)]'>X</A><BR>"
 	else
-		priority_text = "No priority alerts detected.<BR>"
+		priority_text = "未检测到紧急警报。<BR>"
 
 	if(length(minor_alarms))
 		for(var/zone in minor_alarms)
 			minor_text += "<B>[zone]</B>  <A href='byond://?src=\ref[src];minor_clear=[ckey(zone)]'>X</A><BR>"
 	else
-		minor_text = "No minor alerts detected.<BR>"
+		minor_text = "未检测到一般警报。<BR>"
 
 	var/output = {"<B>[name]</B><HR>
-<B>Priority Alerts:</B><BR>
+<B>紧急警报：</B><BR>
 [priority_text]
 <BR>
 <HR>
-<B>Minor Alerts:</B><BR>
+<B>一般警报：</B><BR>
 [minor_text]
 <BR>"}
 

@@ -1,6 +1,6 @@
 /obj/item/hardpoint/secondary/towlauncher/aa
-	name = "\improper Vertical-Launch System Array"
-	desc = "A hull-mounted vertical launch system for the M579 ADS-C, typically loaded with ground-to-air missiles, this one instead is capable of firing ground-to-ground missiles with devestating effect."
+	name = "\improper 垂直发射系统阵列"
+	desc = "安装在M579 ADS-C车体上的垂直发射系统，通常装填地对空导弹，但这一套改为发射威力惊人的地对地导弹。"
 
 	icon_state = "vls_launcher"
 	disp_icon = "apc"

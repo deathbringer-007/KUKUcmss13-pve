@@ -25,8 +25,8 @@ GLOBAL_DATUM(railgun_eye_location, /datum/coords)
 	return INITIALIZE_HINT_QDEL
 
 /obj/structure/machinery/computer/railgun
-	name = "railgun computer"
-	desc = "A computer with an orange interface, fires the standard railgun shells. The higher your altitude, the faster your reload, and slower the shots hit."
+	name = "轨道炮控制计算机"
+	desc = "橙色界面的计算机，用于发射标准轨道炮弹。高度越高，装填越快，但炮弹抵达目标越慢。"
 
 	icon_state = "terminal"
 
@@ -105,22 +105,22 @@ GLOBAL_DATUM(railgun_eye_location, /datum/coords)
 		return FALSE
 
 	if(locked)
-		to_chat(H, SPAN_WARNING("Safeties are on, unable to fire!"))
+		to_chat(H, SPAN_WARNING("保险已开启，无法开火！"))
 		return FALSE
 
 	if(istype(T, /turf/open/space)) // No firing into space
 		return FALSE
 
 	if(protected_by_pylon(TURF_PROTECTION_MORTAR, T))
-		to_chat(H, SPAN_WARNING("[icon2html(src)] This area is too reinforced to fire into."))
+		to_chat(H, SPAN_WARNING("[icon2html(src)] 该区域受到坚固防护，无法向其开火。"))
 		return FALSE
 
 	if(next_fire > world.time)
-		to_chat(H, SPAN_WARNING("[icon2html(src)] The barrel is still hot! Wait [SPAN_BOLD((next_fire - world.time)/10)] more seconds before firing."))
+		to_chat(H, SPAN_WARNING("[icon2html(src)] 炮管仍然过热！再等 [SPAN_BOLD((next_fire - world.time)/10)] 秒才能开火。"))
 		return FALSE
 
 	if(ammo <= 0)
-		to_chat(H, SPAN_WARNING("[icon2html(src)] No more shells remaining in the barrel. Please wait for automatic reloading. [SPAN_BOLD("([ammo]/[max_ammo])")]"))
+		to_chat(H, SPAN_WARNING("[icon2html(src)] 炮弹已耗尽，请等待自动装填。[SPAN_BOLD("([ammo]/[max_ammo])")]"))
 		return FALSE
 
 	return TRUE
@@ -132,7 +132,7 @@ GLOBAL_DATUM(railgun_eye_location, /datum/coords)
 		addtimer(CALLBACK(src, PROC_REF(recharge_ammo)), ammo_recharge_time, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 	if(operator)
-		to_chat(operator, SPAN_NOTICE("[icon2html(src)] Loaded in a shell [SPAN_BOLD("([ammo]/[max_ammo] shells left).")]"))
+		to_chat(operator, SPAN_NOTICE("[icon2html(src)] 已装填一发炮弹。[SPAN_BOLD("（剩余炮弹：[ammo]/[max_ammo]）")]"))
 
 /obj/effect/warning/railgun
 	color = "#0000ff"
@@ -155,7 +155,7 @@ GLOBAL_DATUM(railgun_eye_location, /datum/coords)
 	addtimer(CALLBACK(src, PROC_REF(recharge_ammo)), ammo_recharge_time*2-GLOB.ship_alt, TIMER_UNIQUE)
 	ammo--
 
-	to_chat(H, SPAN_NOTICE("[icon2html(src)] Firing shell. [SPAN_BOLD("([ammo]/[max_ammo] shells left).")]"))
+	to_chat(H, SPAN_NOTICE("[icon2html(src)] 炮弹已发射。[SPAN_BOLD("（剩余炮弹：[ammo]/[max_ammo]）")]"))
 
 	var/obj/effect/warning/railgun/warning_zone = new(T)
 	warning_zone.color = warning_color
@@ -204,18 +204,18 @@ GLOBAL_DATUM(railgun_eye_location, /datum/coords)
 		return
 
 	if(locked)
-		to_chat(H, SPAN_WARNING("The railgun safeties prevent you from using the firing system!"))
+		to_chat(H, SPAN_WARNING("轨道炮的保险已开启，无法使用发射系统！"))
 		return FALSE
 
 	if(operator && operator.stat == CONSCIOUS)
-		to_chat(H, SPAN_WARNING("Someone is already using this computer!"))
+		to_chat(H, SPAN_WARNING("已经有人在使用这台计算机了！"))
 		return
 
-	#define INPUT_COORD "Input Co-ordinates"
-	if(tgui_alert(H, "View a specific co-ordinate, or continue without inputting a co-ordinate?", \
-		"Railgun Computer", list(INPUT_COORD, "Continue without inputting a co-ordinate")) == INPUT_COORD)
-		var/x_coord = tgui_input_real_number(H, "Longitude")
-		var/y_coord = tgui_input_real_number(H, "Latitude")
+	#define INPUT_COORD "输入坐标"
+	if(tgui_alert(H, "查看指定坐标，还是直接继续？", \
+		"轨道炮控制计算机", list(INPUT_COORD, "不输入坐标，直接继续")) == INPUT_COORD)
+		var/x_coord = tgui_input_real_number(H, "经度")
+		var/y_coord = tgui_input_real_number(H, "纬度")
 
 		if(!x_coord || !y_coord)
 			return
@@ -226,7 +226,7 @@ GLOBAL_DATUM(railgun_eye_location, /datum/coords)
 	set_operator(H)
 
 /mob/hologram/railgun
-	name = "Camera"
+	name = "摄像头"
 	density = FALSE
 
 /mob/hologram/railgun/handle_view(mob/M, atom/target)
@@ -243,7 +243,7 @@ GLOBAL_DATUM(railgun_eye_location, /datum/coords)
 
 	if(allow_turf_entry(src, loc) & COMPONENT_TURF_DENY_MOVEMENT)
 		loc = GLOB.railgun_eye_location.get_turf_from_coord()
-		to_chat(M, SPAN_WARNING("[icon2html(src)] Observation area was blocked. Switched to a viewable location."))
+		to_chat(M, SPAN_WARNING("[icon2html(src)] 观察区域被阻挡，已切换至可观察的位置。"))
 
 	RegisterSignal(M, COMSIG_HUMAN_UPDATE_SIGHT, PROC_REF(see_only_turf))
 	RegisterSignal(src, COMSIG_MOVABLE_TURF_ENTER, PROC_REF(allow_turf_entry))
@@ -268,7 +268,7 @@ GLOBAL_DATUM(railgun_eye_location, /datum/coords)
 	SIGNAL_HANDLER
 
 	if(protected_by_pylon(TURF_PROTECTION_OB, to_enter))
-		to_chat(linked_mob, SPAN_WARNING("[icon2html(src)] This area is too reinforced to enter."))
+		to_chat(linked_mob, SPAN_WARNING("[icon2html(src)] 该区域受到坚固防护，无法进入。"))
 		return COMPONENT_TURF_DENY_MOVEMENT
 
 	if(istype(to_enter, /turf/closed/wall))
@@ -281,8 +281,8 @@ GLOBAL_DATUM(railgun_eye_location, /datum/coords)
 
 
 /obj/structure/machinery/computer/railgun/gatling
-	name = "orbital gatling computer"
-	desc = "The younger sister to the railgun, this one is way weaker, however, it fires significantly faster. The higher your altitude, the faster your reload, and slower the shots hit."
+	name = "轨道加特林炮控制计算机"
+	desc = "轨道炮的小妹妹，威力低得多，但射速明显更快。高度越高，装填越快，但炮弹抵达目标越慢。"
 	max_ammo = 100
 	ammo = 100
 	ammo_recharge_time = 2 SECONDS
@@ -294,8 +294,8 @@ GLOBAL_DATUM(railgun_eye_location, /datum/coords)
 
 
 /obj/structure/machinery/computer/railgun/orbital
-	name = "orbital computer"
-	desc = "An Orbital cannon with a very long recharge time. The higher your altitude, the faster your reload, and slower the shots hit."
+	name = "轨道炮计算机"
+	desc = "充能时间很长的轨道炮。高度越高，装填越快，但炮弹抵达目标越慢。"
 	max_ammo = 1
 	ammo = 1
 	ammo_recharge_time = 5 SECONDS
@@ -307,8 +307,8 @@ GLOBAL_DATUM(railgun_eye_location, /datum/coords)
 
 
 /obj/structure/machinery/computer/railgun/napalm
-	name = "orbital napalm computer"
-	desc = "An Orbital cannon with a very long recharge time. The higher your altitude, the faster your reload, and slower the shots hit."
+	name = "轨道凝固汽油炮控制计算机"
+	desc = "充能时间很长的轨道炮。高度越高，装填越快，但炮弹抵达目标越慢。"
 	max_ammo = 5
 	ammo = 5
 	ammo_recharge_time = 45 SECONDS
@@ -325,9 +325,9 @@ GLOBAL_DATUM(railgun_eye_location, /datum/coords)
 		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flame_radius), create_cause_data("railgun", firer.mob), 5, T, BURN_TIME_TIER_5 + 5, BURN_LEVEL_TIER_2, FLAMESHAPE_DEFAULT, FIRE_VARIANT_TYPE_B)
 
 /obj/structure/machinery/computer/railgun/toc
-	name = "railgun computer screen"
+	name = "轨道炮计算机屏幕"
 	icon_state = "toc_railgun"
 
 /obj/structure/machinery/computer/railgun/gatling/toc
-	name = "gatling-gun computer screen"
+	name = "加特林炮计算机屏幕"
 	icon_state = "toc_railcannon"

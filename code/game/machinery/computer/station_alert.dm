@@ -1,7 +1,7 @@
 
 /obj/structure/machinery/computer/station_alert
-	name = "Station Alert Computer"
-	desc = "Used to access the station's automated alert system."
+	name = "空间站警报计算机"
+	desc = "用于访问空间站的自动警报系统。"
 	icon_state = "atmos"
 	circuit = /obj/item/circuitboard/computer/stationalert
 	var/alarms = list("Fire"=list(), "Atmosphere"=list(), "Power"=list())

@@ -1,7 +1,7 @@
 //The effect when you wrap a dead body in gift wrap
 /obj/effect/spresent
-	name = "strange present"
-	desc = "It's a ... present?"
+	name = "奇怪的礼物"
+	desc = "这是……礼物？"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "strangepresent"
 	density = TRUE
@@ -22,7 +22,7 @@
 	unacidable = TRUE//Just to be sure.
 
 /obj/effect/beam
-	name = "beam"
+	name = "光束"
 	unacidable = TRUE//Just to be sure.
 	var/def_zone
 
@@ -41,8 +41,8 @@
 	var/list/container = list(  )
 
 /obj/effect/projection
-	name = "Projection"
-	desc = "This looks like a projection of something."
+	name = "投影"
+	desc = "看起来是某种东西的投影。"
 	anchored = TRUE
 
 
@@ -56,7 +56,7 @@
 
 //Exhaust effect
 /obj/effect/engine_exhaust
-	name = "engine exhaust"
+	name = "引擎尾气"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "exhaust"
 	anchored = TRUE

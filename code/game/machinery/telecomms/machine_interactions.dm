@@ -23,32 +23,32 @@
 
 	else
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You stare at \the [src] cluelessly..."))
+			to_chat(user, SPAN_WARNING("你茫然地盯着[src]，不知该如何下手……"))
 			return 0
 
 	switch(construct_op)
 		if(0)
 			if(HAS_TRAIT(P, TRAIT_TOOL_SCREWDRIVER) && deconstructable)
-				to_chat(user, "You unfasten the bolts.")
+				to_chat(user, "你松开了螺栓。")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				construct_op ++
 		if(1)
 			if(HAS_TRAIT(P, TRAIT_TOOL_SCREWDRIVER))
-				to_chat(user, "You fasten the bolts.")
+				to_chat(user, "你拧紧了螺栓。")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				construct_op --
 			if(HAS_TRAIT(P, TRAIT_TOOL_WRENCH))
-				to_chat(user, "You dislodge the external plating.")
+				to_chat(user, "你松开了外部面板。")
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				construct_op ++
 		if(2)
 			if(HAS_TRAIT(P, TRAIT_TOOL_WRENCH))
-				to_chat(user, "You secure the external plating.")
+				to_chat(user, "你固定好了外部面板。")
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				construct_op --
 			if(HAS_TRAIT(P, TRAIT_TOOL_WIRECUTTERS))
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
-				to_chat(user, "You remove the cables.")
+				to_chat(user, "你拆除了线缆。")
 				construct_op ++
 				var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( user.loc )
 				A.amount = 5
@@ -57,16 +57,16 @@
 			if(istype(P, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/A = P
 				if (A.use(5))
-					to_chat(user, SPAN_NOTICE("You insert the cables."))
+					to_chat(user, SPAN_NOTICE("你接入了线缆。"))
 					construct_op--
 					stat &= ~BROKEN // the machine's not borked anymore!
 				else
-					to_chat(user, SPAN_WARNING("You need five coils of wire for this."))
+					to_chat(user, SPAN_WARNING("这需要5段线缆。"))
 			if(HAS_TRAIT(P, TRAIT_TOOL_CROWBAR))
-				to_chat(user, "You begin prying out the circuit board other components...")
+				to_chat(user, "你开始撬出电路板和其他部件……")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 				if(do_after(user, 60 * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-					to_chat(user, "You finish prying out the components.")
+					to_chat(user, "你撬出了所有部件。")
 
 					// Drop all the component stuff
 					if(length(contents) > 0)
@@ -104,7 +104,7 @@
 	// You need a multitool to use this, or be silicon
 	if(!isSilicon(user))
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You stare at \the [src] cluelessly..."))
+			to_chat(user, SPAN_WARNING("你茫然地盯着[src]，不知该如何下手……"))
 			return
 		// istype returns false if the value is null
 		var/obj/item/held_item = user.get_active_hand()
@@ -118,20 +118,20 @@
 	var/dat
 	dat = "<font face = \"Courier\">"
 	dat += "<br>[temp]<br>"
-	dat += "<br>Power Status: <a href='byond://?src=\ref[src];input=toggle'>[src.toggled ? "On" : "Off"]</a>"
+	dat += "<br>电源状态：<a href='byond://?src=\ref[src];input=toggle'>[src.toggled ? "开启" : "关闭"]</a>"
 	if(on && toggled)
 		if(id != "" && id)
-			dat += "<br>Identification String: <a href='byond://?src=\ref[src];input=id'>[id]</a>"
+			dat += "<br>标识字符串：<a href='byond://?src=\ref[src];input=id'>[id]</a>"
 		else
-			dat += "<br>Identification String: <a href='byond://?src=\ref[src];input=id'>NULL</a>"
-		dat += "<br>Network: <a href='byond://?src=\ref[src];input=network'>[network]</a>"
-		dat += "<br>Prefabrication: [length(autolinkers) ? "TRUE" : "FALSE"]"
-		if(hide) dat += "<br>Shadow Link: ACTIVE</a>"
+			dat += "<br>标识字符串：<a href='byond://?src=\ref[src];input=id'>未设置</a>"
+		dat += "<br>网络：<a href='byond://?src=\ref[src];input=network'>[network]</a>"
+		dat += "<br>预设配置：[length(autolinkers) ? "是" : "否"]"
+		if(hide) dat += "<br>隐蔽链接：已启用</a>"
 
 		//Show additional options for certain GLOB.machines.
 		dat += Options_Menu()
 
-		dat += "<br>Linked Network Entities: <ol>"
+		dat += "<br>已连接的网络设备：<ol>"
 
 		var/i = 0
 		for(var/obj/structure/machinery/telecomms/T in links)
@@ -141,7 +141,7 @@
 			dat += "<li>\ref[T] [T.name] ([T.id])  <a href='byond://?src=\ref[src];unlink=[i]'>\[X\]</a></li>"
 		dat += "</ol>"
 
-		dat += "<br>Filtering Frequencies: "
+		dat += "<br>筛选频率："
 
 		i = 0
 		if(length(freq_listening))
@@ -152,14 +152,14 @@
 				else
 					dat += "[format_frequency(x)] GHz<a href='byond://?src=\ref[src];delete=[x]'>\[X\]</a>"
 		else
-			dat += "NONE"
+			dat += "无"
 
-		dat += "<br>  <a href='byond://?src=\ref[src];input=freq'>\[Add Filter\]</a>"
+		dat += "<br>  <a href='byond://?src=\ref[src];input=freq'>\[添加筛选频率\]</a>"
 		dat += "<hr>"
 
 	dat += "</font>"
 	temp = ""
-	show_browser(user, dat, "[src] Access", "tcommachine", "can_resize=0", width = 520, height = 500)
+	show_browser(user, dat, "[src]控制界面", "tcommachine", "can_resize=0", width = 520, height = 500)
 	onclose(user, "tcommachine")
 
 
@@ -212,49 +212,49 @@
 /obj/structure/machinery/telecomms/relay/Options_Menu()
 	var/dat = ""
 	if(should_block_game_interaction(src))
-		dat += "<br>Signal Locked to Station: <A href='byond://?src=\ref[src];change_listening=1'>[listening_level == TELECOMM_GROUND_Z ? "TRUE" : "FALSE"]</a>"
-	dat += "<br>Broadcasting: <A href='byond://?src=\ref[src];broadcast=1'>[broadcasting ? "YES" : "NO"]</a>"
-	dat += "<br>Receiving: <A href='byond://?src=\ref[src];receive=1'>[receiving ? "YES" : "NO"]</a>"
+		dat += "<br>信号锁定空间站：<A href='byond://?src=\ref[src];change_listening=1'>[listening_level == TELECOMM_GROUND_Z ? "是" : "否"]</a>"
+	dat += "<br>广播：<A href='byond://?src=\ref[src];broadcast=1'>[broadcasting ? "开启" : "关闭"]</a>"
+	dat += "<br>接收：<A href='byond://?src=\ref[src];receive=1'>[receiving ? "开启" : "关闭"]</a>"
 	return dat
 
 /obj/structure/machinery/telecomms/relay/Options_Topic(href, href_list)
 
 	if(href_list["receive"])
 		receiving = !receiving
-		temp = "<font color = #666633>-% Receiving mode changed. %-</font color>"
+		temp = "<font color = #666633>-% 接收模式已更改。 %-</font color>"
 	if(href_list["broadcast"])
 		broadcasting = !broadcasting
-		temp = "<font color = #666633>-% Broadcasting mode changed. %-</font color>"
+		temp = "<font color = #666633>-% 广播模式已更改。 %-</font color>"
 	if(href_list["change_listening"])
 		//Lock to the station OR lock to the current position!
 		//You need at least two receivers and two broadcasters for this to work, this includes the machine.
 		var/result = toggle_level()
 		if(result)
-			temp = "<font color = #666633>-% [src]'s signal has been successfully changed.</font color>"
+			temp = "<font color = #666633>-% [src]的信号已成功更改。</font color>"
 		else
-			temp = "<font color = #666633>-% [src] could not lock it's signal onto the station. Two broadcasters or receivers required.</font color>"
+			temp = "<font color = #666633>-% [src]无法将信号锁定到空间站。需要两个广播器或接收器。</font color>"
 
 // BUS
 
 /obj/structure/machinery/telecomms/bus/Options_Menu()
-	var/dat = "<br>Change Signal Frequency: <A href='byond://?src=\ref[src];change_freq=1'>[change_frequency ? "YES ([change_frequency])" : "NO"]</a>"
+	var/dat = "<br>转换信号频率：<A href='byond://?src=\ref[src];change_freq=1'>[change_frequency ? "启用（[change_frequency]）" : "关闭"]</a>"
 	return dat
 
 /obj/structure/machinery/telecomms/bus/Options_Topic(href, href_list)
 
 	if(href_list["change_freq"])
 
-		var/newfreq = input(usr, "Specify a new frequency for new signals to change to. Enter null to turn off frequency changing. Decimals assigned automatically.", src, network) as null|num
+		var/newfreq = input(usr, "指定新信号要转换到的频率。留空可关闭频率转换，小数点将自动添加。", src, network) as null|num
 		if(canAccess(usr))
 			if(newfreq)
 				if(findtext(num2text(newfreq), "."))
 					newfreq *= 10 // shift the decimal one place
 				if(newfreq < 10000)
 					change_frequency = newfreq
-					temp = "<font color = #666633>-% New frequency to change to assigned: \"[newfreq] GHz\" %-</font color>"
+					temp = "<font color = #666633>-% 已设置新的目标频率：“[newfreq] GHz” %-</font color>"
 			else
 				change_frequency = 0
-				temp = "<font color = #666633>-% Frequency changing deactivated %-</font color>"
+				temp = "<font color = #666633>-% 已关闭频率转换 %-</font color>"
 
 
 /obj/structure/machinery/telecomms/Topic(href, href_list)
@@ -274,7 +274,7 @@
 
 			if("toggle")
 				src.toggled = !src.toggled
-				temp = "<font color = #666633>-% [src] has been [src.toggled ? "activated" : "deactivated"].</font color>"
+				temp = "<font color = #666633>-% [src]已[src.toggled ? "启用" : "停用"]。</font color>"
 				toggle_state(usr)
 
 			/*
@@ -284,17 +284,17 @@
 			*/
 
 			if("id")
-				var/newid = copytext(reject_bad_text(input(usr, "Specify the new ID for this machine", src, id) as null|text),1,MAX_MESSAGE_LEN)
+				var/newid = copytext(reject_bad_text(input(usr, "指定这台机器的新 ID", src, id) as null|text),1,MAX_MESSAGE_LEN)
 				if(newid && canAccess(usr))
 					id = newid
-					temp = "<font color = #666633>-% New ID assigned: \"[id]\" %-</font color>"
+					temp = "<font color = #666633>-% 已设置新 ID：“[id]” %-</font color>"
 
 			if("network")
-				var/newnet = stripped_input(usr, "Specify the new network for this machine. This will break all current links.", src, network)
+				var/newnet = stripped_input(usr, "指定这台机器的新网络。这将断开当前的所有链接。", src, network)
 				if(newnet && canAccess(usr))
 
 					if(length(newnet) > 15)
-						temp = "<font color = #666633>-% Too many characters in new network tag %-</font color>"
+						temp = "<font color = #666633>-% 新网络标签的字符过多 %-</font color>"
 
 					else
 						for(var/obj/structure/machinery/telecomms/T in links)
@@ -302,24 +302,24 @@
 
 						network = newnet
 						links = list()
-						temp = "<font color = #666633>-% New network tag assigned: \"[network]\" %-</font color>"
+						temp = "<font color = #666633>-% 已设置新网络标签：“[network]” %-</font color>"
 
 
 			if("freq")
-				var/newfreq = input(usr, "Specify a new frequency to filter (GHz). Decimals assigned automatically.", src, network) as null|num
+				var/newfreq = input(usr, "指定新的筛选频率（GHz），小数点将自动添加。", src, network) as null|num
 				if(newfreq && canAccess(usr))
 					if(findtext(num2text(newfreq), "."))
 						newfreq *= 10 // shift the decimal one place
 					if(!(newfreq in freq_listening) && newfreq < 10000)
 						freq_listening.Add(newfreq)
-						temp = "<font color = #666633>-% New frequency filter assigned: \"[newfreq] GHz\" %-</font color>"
+						temp = "<font color = #666633>-% 已添加筛选频率：“[newfreq] GHz” %-</font color>"
 
 	if(href_list["delete"])
 
 		// changed the layout about to workaround a pesky runtime -- Doohl
 
 		var/x = text2num(href_list["delete"])
-		temp = "<font color = #666633>-% Removed frequency filter [x] %-</font color>"
+		temp = "<font color = #666633>-% 已移除筛选频率[x] %-</font color>"
 		freq_listening.Remove(x)
 
 	if(href_list["unlink"])
@@ -327,7 +327,7 @@
 		if(text2num(href_list["unlink"]) <= length(links))
 			var/obj/structure/machinery/telecomms/T = links[text2num(href_list["unlink"])]
 			if(istype(T))
-				temp = "<font color = #666633>-% Removed \ref[T] [T.name] from linked entities. %-</font color>"
+				temp = "<font color = #666633>-% 已从连接设备中移除\ref[T] [T.name]。 %-</font color>"
 
 				// Remove link entries from both T and src.
 

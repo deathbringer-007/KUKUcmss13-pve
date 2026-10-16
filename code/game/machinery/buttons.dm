@@ -1,8 +1,8 @@
 /obj/structure/machinery/ignition_switch
-	name = "ignition switch"
+	name = "点火开关"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "launcherbtt"
-	desc = "A remote control switch for a mounted igniter."
+	desc = "固定式点火器的遥控开关。"
 	var/id = null
 	var/active = 0
 	anchored = TRUE
@@ -11,8 +11,8 @@
 	active_power_usage = 4
 
 /obj/structure/machinery/flasher_button
-	name = "flasher button"
-	desc = "A remote control switch for a mounted flasher."
+	name = "闪光器按钮"
+	desc = "固定式闪光器的遥控开关。"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "launcherbtt"
 	var/id = null
@@ -23,8 +23,8 @@
 	active_power_usage = 4
 
 /obj/structure/machinery/crema_switch
-	desc = "Burn baby burn!"
-	name = "crematorium igniter"
+	desc = "燃烧吧，宝贝，燃烧吧！"
+	name = "焚化炉点火器"
 	icon = 'icons/obj/structures/machinery/power.dmi'
 	icon_state = "crema_switch"
 	anchored = TRUE

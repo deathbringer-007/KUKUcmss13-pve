@@ -1,6 +1,6 @@
 /obj/structure/machinery/seed_extractor
-	name = "seed extractor"
-	desc = "Extracts and bags seeds from produce."
+	name = "种子提取机"
+	desc = "从农产品中提取种子并装袋。"
 	icon = 'icons/obj/structures/machinery/hydroponics.dmi'
 	icon_state = "sextractor"
 	density = TRUE
@@ -12,10 +12,10 @@
 	if(istype(object,/obj/item/storage))
 		var/obj/item/storage/container = object
 		if(length(container.contents) == 0)
-			to_chat(user, SPAN_NOTICE("[container] is empty."))
+			to_chat(user, SPAN_NOTICE("[container]是空的。"))
 			return
 
-		to_chat(user, SPAN_NOTICE("You start dumping the contents of [container] into [src]."))
+		to_chat(user, SPAN_NOTICE("你开始将[container]里的东西倒进[src]。"))
 		if(!do_after(user, 1.5 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC))
 			return
 
@@ -44,23 +44,23 @@
 				new_seed_type = GLOB.seed_types[plant.plantname]
 
 			if(new_seed_type)
-				to_chat(user, SPAN_NOTICE("You extract some seeds from [object]."))
+				to_chat(user, SPAN_NOTICE("你从[object]中提取了一些种子。"))
 				var/produce = rand(1,4)
 				for(var/i = 0;i<=produce;i++)
 					var/obj/item/seeds/seeds = new(get_turf(src))
 					seeds.seed_type = new_seed_type.name
 					seeds.update_seed()
 			else
-				to_chat(user, "[object] doesn't seem to have any usable seeds inside it.")
+				to_chat(user, "[object]里面似乎没有可用的种子。")
 			qdel(object)
 			return TRUE
 	//Grass.
 	else if(istype(object, /obj/item/stack/tile/grass))
 		var/obj/item/stack/tile/grass/grass = object
 		if (grass.use(1))
-			to_chat(user, SPAN_NOTICE("You extract some seeds from the grass tile."))
+			to_chat(user, SPAN_NOTICE("你从草皮中提取了一些种子。"))
 			new /obj/item/seeds/grassseed(loc)
 			return TRUE
 	else
-		to_chat(user, SPAN_WARNING("Cannot get seeds from [object]."))
+		to_chat(user, SPAN_WARNING("无法从[object]中获取种子。"))
 		return FALSE

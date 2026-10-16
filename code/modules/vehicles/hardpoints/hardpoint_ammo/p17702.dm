@@ -1,6 +1,6 @@
 /obj/item/ammo_magazine/hardpoint/p17702
-	name = "P-177-02 93mm Cannon Magazine"
-	desc = "A magazine of high-explosive, anti-tank cannon rounds."
+	name = "P-177-02 93毫米火炮弹箱"
+	desc = "装有高爆反坦克炮弹的弹箱。"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/upp.dmi'
 	caliber = "93mm"
 	icon_state = "p17702_8"

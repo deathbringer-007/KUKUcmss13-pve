@@ -5,8 +5,8 @@ LINEN BINS
 */
 
 /obj/item/bedsheet
-	name = "bedsheet"
-	desc = "A surprisingly soft linen bedsheet."
+	name = "床单"
+	desc = "柔软得出奇的亚麻床单。"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "sheet"
 	item_state = "bedsheet"
@@ -79,8 +79,8 @@ LINEN BINS
 
 
 /obj/structure/bedsheetbin
-	name = "linen bin"
-	desc = "A linen bin. It looks rather cosy."
+	name = "床单箱"
+	desc = "一个床单箱，看起来挺舒适。"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "linenbin-full"
 	unslashable = TRUE
@@ -93,11 +93,11 @@ LINEN BINS
 /obj/structure/bedsheetbin/get_examine_text(mob/user)
 	. = ..()
 	if(amount < 1)
-		. += "There are no bed sheets in the bin."
+		. += "箱子里没有床单。"
 	else if(amount == 1)
-		. += "There is one bed sheet in the bin."
+		. += "箱子里有一条床单。"
 	else
-		. += "There are [amount] bed sheets in the bin."
+		. += "箱子里有[amount]条床单。"
 
 
 /obj/structure/bedsheetbin/update_icon()
@@ -117,12 +117,12 @@ LINEN BINS
 			I.forceMove(src)
 			sheets.Add(I)
 			amount++
-			to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
+			to_chat(user, SPAN_NOTICE("你将[I]放进[src]。"))
 	else if(amount && !hidden && I.w_class < 4) //make sure there's sheets to hide it among, make sure nothing else is hidden in there.
 		if(user.drop_held_item())
 			I.forceMove(src)
 			hidden = I
-			to_chat(user, SPAN_NOTICE("You hide [I] among the sheets."))
+			to_chat(user, SPAN_NOTICE("你把[I]藏在床单之间。"))
 
 /obj/structure/bedsheetbin/attack_hand(mob/user as mob)
 	if(amount >= 1)
@@ -138,11 +138,11 @@ LINEN BINS
 
 		B.forceMove(user.loc)
 		user.put_in_hands(B)
-		to_chat(user, SPAN_NOTICE("You take [B] out of [src]."))
+		to_chat(user, SPAN_NOTICE("你从[src]中取出[B]。"))
 
 		if(hidden)
 			hidden.forceMove(user.loc)
-			to_chat(user, SPAN_NOTICE("[hidden] falls out of [B]!"))
+			to_chat(user, SPAN_NOTICE("[hidden]从[B]中掉了出来！"))
 			hidden = null
 
 

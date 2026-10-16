@@ -11,19 +11,19 @@ import { BeakerContents } from './common/BeakerContents';
 
 const damageTypes = [
   {
-    label: 'Brute',
+    label: '物理损伤',
     type: 'bruteLoss',
   },
   {
-    label: 'Respiratory',
+    label: '缺氧损伤',
     type: 'oxyLoss',
   },
   {
-    label: 'Toxin',
+    label: '毒素损伤',
     type: 'toxLoss',
   },
   {
-    label: 'Burn',
+    label: '烧伤',
     type: 'fireLoss',
   },
 ];
@@ -47,24 +47,24 @@ const CryoContent = (props) => {
   }
   return (
     <>
-      <Section title="Occupant">
+      <Section title="患者">
         <LabeledList>
-          <LabeledList.Item label="Occupant">
-            {data.occupant.name || 'No Occupant'}
+          <LabeledList.Item label="患者">
+            {data.occupant.name || '无患者'}
           </LabeledList.Item>
           {!!data.hasOccupant && (
             <>
-              <LabeledList.Item label="State" color={data.occupant.statstate}>
+              <LabeledList.Item label="状态" color={data.occupant.statstate}>
                 {data.occupant.stat}
               </LabeledList.Item>
               <LabeledList.Item
-                label="Temperature"
+                label="温度"
                 color={data.occupant.temperaturestatus}
               >
                 <AnimatedNumber value={data.occupant.bodyTemperature} />
                 {' K'}
               </LabeledList.Item>
-              <LabeledList.Item label="Health">
+              <LabeledList.Item label="健康">
                 <ProgressBar
                   value={data.occupant.health / data.occupant.maxHealth}
                   color={data.occupant.health > 0 ? 'good' : 'average'}
@@ -83,39 +83,39 @@ const CryoContent = (props) => {
           )}
         </LabeledList>
       </Section>
-      <Section title="Cell">
+      <Section title="冷冻舱">
         <LabeledList>
-          <LabeledList.Item label="Power">
+          <LabeledList.Item label="电源">
             <Button
               icon={data.isOperating ? 'power-off' : 'times'}
               disabled={data.isOpen}
               onClick={() => act('power')}
               color={data.isOperating && 'green'}
             >
-              {data.isOperating ? 'On' : 'Off'}
+              {data.isOperating ? '开启' : '关闭'}
             </Button>
           </LabeledList.Item>
-          <LabeledList.Item label="Temperature">
+          <LabeledList.Item label="温度">
             <AnimatedNumber value={data.cellTemperature} /> K
           </LabeledList.Item>
-          <LabeledList.Item label="Door">
+          <LabeledList.Item label="舱门">
             <Button
               icon="eject"
               disabled={!data.hasOccupant}
               onClick={() => act('eject')}
             >
-              Eject Patient
+              移出患者
             </Button>
             <Button
               icon={data.autoEject ? 'sign-out-alt' : 'sign-in-alt'}
               width="6rem"
               tooltipPosition="top"
               tooltip={
-                'Auto eject is ' + (data.autoEject ? 'enabled.' : 'disabled.')
+                '自动移出已' + (data.autoEject ? '启用。' : '禁用。')
               }
               onClick={() => act('autoeject')}
             >
-              {data.autoEject ? 'Auto' : 'Manual'}
+              {data.autoEject ? '自动' : '手动'}
             </Button>
             <Button
               icon={soundicon}
@@ -124,25 +124,25 @@ const CryoContent = (props) => {
               width="5.5rem"
               tooltipPosition="top"
               tooltip={
-                'Auto eject notifications are ' +
-                (data.notify ? 'enabled.' : 'disabled.')
+                '自动移出通知已' +
+                (data.notify ? '启用。' : '禁用。')
               }
               onClick={() => act('notice')}
             >
-              {data.notify ? 'Notify' : 'Silent'}
+              {data.notify ? '通知' : '静音'}
             </Button>
           </LabeledList.Item>
         </LabeledList>
       </Section>
       <Section
-        title="Beaker"
+        title="烧杯"
         buttons={
           <Button
             icon="eject"
             disabled={!data.isBeakerLoaded}
             onClick={() => act('ejectbeaker')}
           >
-            Eject
+            取出
           </Button>
         }
       >

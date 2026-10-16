@@ -1,6 +1,6 @@
 /obj/item/clothing/accessory
-	name = "tie"
-	desc = "A neosilk clip-on tie."
+	name = "领带"
+	desc = "一条新丝绸夹式领带。"
 	icon = 'icons/obj/items/clothing/ties.dmi'
 	icon_state = "bluetie"
 	w_class = SIZE_SMALL
@@ -41,7 +41,7 @@
 
 	if(user)
 		if(!silent)
-			to_chat(user, SPAN_NOTICE("You attach \the [src] to \the [has_suit]."))
+			to_chat(user, SPAN_NOTICE("你将[src]装在[has_suit]上。"))
 		src.add_fingerprint(user)
 	return TRUE
 
@@ -69,40 +69,40 @@
 
 ///Extra text to append when attached to another clothing item and the host clothing is examined.
 /obj/item/clothing/accessory/proc/additional_examine_text()
-	return "attached to it."
+	return "已装在上面。"
 
 /obj/item/clothing/accessory/blue
-	name = "blue tie"
+	name = "蓝色领带"
 	icon_state = "bluetie"
 
 /obj/item/clothing/accessory/red
-	name = "red tie"
+	name = "红色领带"
 	icon_state = "redtie"
 
 /obj/item/clothing/accessory/green
-	name = "green tie"
+	name = "绿色领带"
 	icon_state = "greentie"
 
 /obj/item/clothing/accessory/black
-	name = "black tie"
+	name = "黑色领带"
 	icon_state = "blacktie"
 
 /obj/item/clothing/accessory/gold
-	name = "gold tie"
+	name = "金色领带"
 	icon_state = "goldtie"
 
 /obj/item/clothing/accessory/purple
-	name = "purple tie"
+	name = "紫色领带"
 	icon_state = "purpletie"
 
 /obj/item/clothing/accessory/horrible
-	name = "horrible tie"
-	desc = "A neosilk clip-on tie. This one is disgusting."
+	name = "难看的领带"
+	desc = "一条新丝绸夹式领带。这条难看得令人反胃。"
 	icon_state = "horribletie"
 
 /obj/item/clothing/accessory/stethoscope
-	name = "stethoscope"
-	desc = "An outdated, but still useful, medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
+	name = "听诊器"
+	desc = "用于聆听人体声音的医疗器械，虽然过时，却仍然实用。戴上它还能让你看起来很懂行。"
 	icon_state = "stethoscope"
 
 /obj/item/clothing/accessory/stethoscope/attack(mob/living/carbon/human/being, mob/living/user)
@@ -113,10 +113,11 @@
 	if(!body_part)
 		return
 
+	var/display_body_part = list("chest" = "胸部", "groin" = "腹股沟", "head" = "头部", "eyes" = "眼睛", "mouth" = "嘴部", "right hand" = "右手", "left hand" = "左手", "right arm" = "右臂", "left arm" = "左臂", "right leg" = "右腿", "left leg" = "左腿", "right foot" = "右脚", "left foot" = "左脚")[body_part] || body_part
 	var/sound = null
 	if(being.stat == DEAD || (being.status_flags & FAKEDEATH))
-		sound = "can't hear anything at all, they must have kicked the bucket"
-		user.visible_message("[user] places [src] against [being]'s [body_part] and listens attentively.", "You place [src] against [being.p_their()] [body_part] and... you [sound].")
+		sound = "什么也听不到，看来对方已经一命呜呼了"
+		user.visible_message("[user]将[src]贴在[being]的[display_body_part]上，仔细聆听。", "你将[src]贴在[being]的[display_body_part]上，然后……你[sound]。")
 		return
 
 	switch(body_part)
@@ -130,40 +131,41 @@
 				if(heart)
 					switch(heart.organ_status)
 						if(ORGAN_LITTLE_BRUISED)
-							sound = "hear <font color='yellow'>small murmurs with each heart beat</font>, it is possible that [being.p_their()] heart is <font color='yellow'>subtly damaged</font>"
+							sound = "听到<font color='yellow'>每次心跳都伴有轻微杂音</font>，[being]的心脏可能<font color='yellow'>轻微受损</font>"
 						if(ORGAN_BRUISED)
-							sound = "hear <font color='orange'>deviant heart beating patterns</font>, result of probable <font color='orange'>heart damage</font>"
+							sound = "听到<font color='orange'>异常的心跳节律</font>，可能是<font color='orange'>心脏受损</font>所致"
 						if(ORGAN_BROKEN)
-							sound = "hear <font color='red'>irregular and additional heart beating patterns</font>, probably caused by impaired blood pumping, [being.p_their()] heart is certainly <font color='red'>failing</font>"
+							sound = "听到<font color='red'>不规则心跳和额外心音</font>，可能是泵血功能受损所致，[being]的心脏显然已经<font color='red'>衰竭</font>"
 						else
-							sound = "hear <font color='green'>normal heart beating patterns</font>, [being.p_their()] heart is surely <font color='green'>healthy</font>"
+							sound = "听到<font color='green'>正常的心跳节律</font>，[being]的心脏显然很<font color='green'>健康</font>"
 				var/datum/internal_organ/lungs/lungs = being.internal_organs_by_name["lungs"]
 				if(lungs)
 					if(sound)
-						sound += ". You also "
+						sound += "。你还"
 					switch(lungs.organ_status)
 						if(ORGAN_LITTLE_BRUISED)
-							sound += "hear <font color='yellow'>some crackles when [being.p_they()] breath</font>, [being.p_they()] is possibly suffering from <font color='yellow'>a small damage to the lungs</font>"
+							sound += "听到<font color='yellow'>[being]呼吸时伴有少许湿啰音</font>，[being]可能存在<font color='yellow'>轻微肺损伤</font>"
 						if(ORGAN_BRUISED)
-							sound += "hear <font color='orange'>unusual respiration sounds</font> and noticeable difficulty to breath, possibly signalling <font color='orange'>ruptured lungs</font>"
+							sound += "听到<font color='orange'>异常呼吸音</font>，且呼吸明显困难，可能意味着<font color='orange'>肺破裂</font>"
 						if(ORGAN_BROKEN)
-							sound += "<font color='red'>barely hear any respiration sounds</font> and a lot of difficulty to breath, [being.p_their()] lungs are <font color='red'>heavily failing</font>"
+							sound += "<font color='red'>几乎听不到呼吸音</font>，且呼吸极为困难，[being]的肺部已经<font color='red'>严重衰竭</font>"
 						else
-							sound += "hear <font color='green'>normal respiration sounds</font> aswell, that means [being.p_their()] lungs are <font color='green'>healthy</font>, probably"
+							sound += "也听到<font color='green'>正常呼吸音</font>，这说明[being]的肺部大概是<font color='green'>健康</font>的"
 				else
-					sound = "can't hear. Really, anything at all, how weird"
+					sound = "听不到声音，真的什么也听不到，太奇怪了"
 			else
-				sound = "hear a lot of sounds... it's quite hard to distinguish, really"
+				sound = "听到许多声音……实在很难分辨"
 		if("eyes","mouth")
-			sound = "can't hear anything. Maybe that isn't the smartest idea"
+			sound = "什么也听不到。也许这不是个聪明的主意"
 		else
-			sound = "hear a sound here and there, but none of them give you any good information"
-	user.visible_message("[user] places [src] against [being]'s [body_part] and listens attentively.", "You place [src] against [being.p_their()] [body_part] and... you [sound].")
+			sound = "零星听到一些声音，却得不到有用的信息"
+	user.visible_message("[user]将[src]贴在[being]的[display_body_part]上，仔细聆听。", "你将[src]贴在[being]的[display_body_part]上，然后……你[sound]。")
 
 //Medals
 /obj/item/clothing/accessory/medal
 	name = "medal"
-	desc = "A medal."
+	var/localized_name = "勋章"
+	desc = "一枚勋章。"
 	icon_state = "bronze"
 	var/recipient_name //name of the person this is awarded to.
 	var/recipient_rank
@@ -171,6 +173,11 @@
 	slot = ACCESSORY_SLOT_MEDAL
 	high_visibility = TRUE
 	jumpsuit_hide_states = UNIFORM_JACKET_REMOVED
+
+/obj/item/clothing/accessory/medal/Initialize()
+	. = ..()
+	if(localized_name)
+		name = localized_name
 
 /obj/item/clothing/accessory/medal/on_attached(obj/item/clothing/S, mob/living/user, silent)
 	. = ..()
@@ -192,7 +199,7 @@
 	if(!(istype(H) && istype(user)))
 		return ..()
 	if(recipient_name != H.real_name)
-		to_chat(user, SPAN_WARNING("[src] wasn't awarded to [H]."))
+		to_chat(user, SPAN_WARNING("[src]并不是颁发给[H]的。"))
 		return
 
 	var/obj/item/clothing/U
@@ -202,47 +209,47 @@
 		U = H.w_uniform //Will be null if no uniform. That this allows medal ceremonies in which the hero is wearing no pants is correct and just.
 	if(!U)
 		if(user == H)
-			to_chat(user, SPAN_WARNING("You aren't wearing anything you can pin [src] to."))
+			to_chat(user, SPAN_WARNING("你没有穿着可以别上[src]的衣物。"))
 		else
-			to_chat(user, SPAN_WARNING("[H] isn't wearing anything you can pin [src] to."))
+			to_chat(user, SPAN_WARNING("[H]没有穿着可以别上[src]的衣物。"))
 		return
 
 	if(user == H)
-		user.visible_message(SPAN_NOTICE("[user] pins [src] to \his [U.name]."),
-		SPAN_NOTICE("You pin [src] to your [U.name]."))
+		user.visible_message(SPAN_NOTICE("[user]将[src]别在自己的[U.name]上。"),
+		SPAN_NOTICE("你将[src]别在自己的[U.name]上。"))
 
 	else
 		if(user.action_busy)
 			return
 		if(user.a_intent != INTENT_HARM)
 			user.affected_message(H,
-			SPAN_NOTICE("You start to pin [src] onto [H]."),
-			SPAN_NOTICE("[user] starts to pin [src] onto you."),
-			SPAN_NOTICE("[user] starts to pin [src] onto [H]."))
+			SPAN_NOTICE("你开始给[H]别上[src]。"),
+			SPAN_NOTICE("[user]开始给你别上[src]。"),
+			SPAN_NOTICE("[user]开始给[H]别上[src]。"))
 			if(!do_after(user, 20, INTERRUPT_ALL, BUSY_ICON_FRIENDLY, H))
 				return
 			if(!(U == H.w_uniform || U == H.wear_suit))
-				to_chat(user, SPAN_WARNING("[H] took off \his [U.name] before you could finish pinning [src] to it."))
+				to_chat(user, SPAN_WARNING("你还没别好[src]，[H]就脱下了[U.name]。"))
 				return
 			user.affected_message(H,
-			SPAN_NOTICE("You pin [src] to [H]'s [U.name]."),
-			SPAN_NOTICE("[user] pins [src] to your [U.name]."),
-			SPAN_NOTICE("[user] pins [src] to [H]'s [U.name]."))
+			SPAN_NOTICE("你将[src]别在[H]的[U.name]上。"),
+			SPAN_NOTICE("[user]将[src]别在你的[U.name]上。"),
+			SPAN_NOTICE("[user]将[src]别在[H]的[U.name]上。"))
 
 		else
 			user.affected_message(H,
-			SPAN_ALERT("You start to pin [src] to [H]."),
-			SPAN_ALERT("[user] starts to pin [src] to you."),
-			SPAN_ALERT("[user] starts to pin [src] to [H]."))
+			SPAN_ALERT("你开始给[H]别上[src]。"),
+			SPAN_ALERT("[user]开始给你别上[src]。"),
+			SPAN_ALERT("[user]开始给[H]别上[src]。"))
 			if(!do_after(user, 10, INTERRUPT_ALL, BUSY_ICON_HOSTILE, H))
 				return
 			if(!(U == H.w_uniform || U == H.wear_suit))
-				to_chat(user, SPAN_WARNING("[H] took off \his [U.name] before you could finish pinning [src] to \him."))
+				to_chat(user, SPAN_WARNING("你还没给[H]别好[src]，对方就脱下了[U.name]。"))
 				return
 			user.affected_message(H,
-			SPAN_DANGER("You slam the [src.name]'s pin through [H]'s [U.name] and into \his chest."),
-			SPAN_DANGER("[user] slams the [src.name]'s pin through your [U.name] and into your chest!"),
-			SPAN_DANGER("[user] slams the [src.name]'s pin through [H]'s [U.name] and into \his chest."))
+			SPAN_DANGER("你猛地将[src.name]的别针穿过[H]的[U.name]，扎进胸口。"),
+			SPAN_DANGER("[user]猛地将[src.name]的别针穿过你的[U.name]，扎进你的胸口！"),
+			SPAN_DANGER("[user]猛地将[src.name]的别针穿过[H]的[U.name]，扎进胸口。"))
 
 			/*Some duplication from punch code due to attack message and damage stats.
 			This does cut damage and awarding multiple medals like this to the same person will cause bleeding.*/
@@ -256,7 +263,7 @@
 				if(prob(35))
 					INVOKE_ASYNC(H, TYPE_PROC_REF(/mob, emote), "pain")
 				else
-					INVOKE_ASYNC(H, TYPE_PROC_REF(/mob, emote), "me", 1, "winces.")
+					INVOKE_ASYNC(H, TYPE_PROC_REF(/mob, emote), "me", 1, "痛得缩了一下。")
 
 	if(U.can_attach_accessory(src) && user.drop_held_item())
 		U.attach_accessory(H, src, TRUE)
@@ -271,253 +278,268 @@
 
 	var/citation_to_read = ""
 	if(medal_citation)
-		citation_to_read = "The citation reads \'[medal_citation]\'."
+		citation_to_read = "嘉奖词写着：“[medal_citation]”。"
 
-	. += "Awarded to: \'[recipient_rank] [recipient_name]\'. [citation_to_read]"
+	. += "获授者：[recipient_rank] [recipient_name]。[citation_to_read]"
 
 /obj/item/clothing/accessory/medal/bronze
 	name = "bronze medal"
-	desc = "A bronze medal."
+	localized_name = "铜质勋章"
+	desc = "一枚铜质勋章。"
 
 /obj/item/clothing/accessory/medal/bronze/conduct
 	name = MARINE_CONDUCT_MEDAL
-	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is the most basic award given by the USCM"
+	localized_name = "卓越品行勋章"
+	desc = "表彰卓越品行的铜质勋章。虽然也是莫大的荣誉，但它是 USCM 最基础的奖章。"
 	icon_state = "bronze_b"
 
 /obj/item/clothing/accessory/medal/bronze/heart
 	name = MARINE_BRONZE_HEART_MEDAL
-	desc = "A bronze heart-shaped medal awarded for sacrifice. It is often awarded posthumously or for severe injury in the line of duty."
+	localized_name = "青铜之心勋章"
+	desc = "表彰牺牲奉献的心形铜质勋章。通常追授给殉职者，或颁发给因公重伤者。"
 	icon_state = "bronze_heart"
 
 /obj/item/clothing/accessory/medal/bronze/science
 	name = "nobel sciences award"
-	desc = "A bronze medal which represents significant contributions to the field of science or engineering."
+	localized_name = "诺贝尔科学奖章"
+	desc = "表彰在科学或工程领域作出重大贡献的铜质奖章。"
 
 /obj/item/clothing/accessory/medal/silver
 	name = "silver medal"
-	desc = "A silver medal."
+	localized_name = "银质勋章"
+	desc = "一枚银质勋章。"
 	icon_state = "silver_b"
 
 /obj/item/clothing/accessory/medal/silver/valor
 	name = MARINE_VALOR_MEDAL
-	desc = "A silver medal awarded for acts of exceptional valor."
+	localized_name = "英勇勋章"
+	desc = "表彰非凡英勇行为的银质勋章。"
 
 /obj/item/clothing/accessory/medal/silver/security
 	name = "robust security award"
-	desc = "An award for distinguished combat and sacrifice in defence of Wey-Yu's commercial interests. Often awarded to security staff."
+	localized_name = "卓越安保奖章"
+	desc = "表彰为维护维兰德-汤谷商业利益而英勇战斗、作出牺牲的奖章，通常颁发给安保人员。"
 
 /obj/item/clothing/accessory/medal/gold
 	name = "gold medal"
-	desc = "A prestigious golden medal."
+	localized_name = "金质勋章"
+	desc = "一枚尊贵的金质勋章。"
 	icon_state = "gold_b"
 
 /obj/item/clothing/accessory/medal/gold/captain
 	name = "medal of captaincy"
-	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain to Wey-Yu, and their undisputable authority over their crew."
+	localized_name = "船长勋章"
+	desc = "专门颁发给晋升为船长者的金质勋章，象征船长对维兰德-汤谷承担的法定职责，以及对船员毋庸置疑的指挥权。"
 
 /obj/item/clothing/accessory/medal/gold/heroism
 	name = MARINE_HEROISM_MEDAL
-	desc = "An extremely rare golden medal awarded only by the USCM. To receive such a medal is the highest honor and as such, very few exist."
+	localized_name = "非凡英雄勋章"
+	desc = "仅由 USCM 颁发的极其罕见的金质勋章。这是至高无上的荣誉，因此获颁者寥寥无几。"
 
 /obj/item/clothing/accessory/medal/platinum
 	name = "platinum medal"
-	desc = "A very prestigious platinum medal, only able to be handed out by generals due to special circumstances."
+	localized_name = "铂金勋章"
+	desc = "一枚极为尊贵的铂金勋章，只有将军才能在特殊情况下颁发。"
 	icon_state = "platinum_b"
 
 /obj/item/clothing/accessory/medal/bronze/service
 	name = "bronze service medal"
-	desc = "A bronze medal awarded for a marine's service within the USCM. It is a very common medal, and is typically the first medal a marine would receive."
+	localized_name = "铜质服役勋章"
+	desc = "表彰陆战队员在 USCM 服役的铜质勋章。非常常见，通常是陆战队员获得的第一枚勋章。"
 	icon_state = "bronze"
 
 /obj/item/clothing/accessory/medal/silver/service
 	name = "silver service medal"
-	desc = "A shiny silver medal awarded for a marine's service within the USCM. It is a somewhat common medal which signifies the amount of time a marine has spent in the line of duty."
+	localized_name = "银质服役勋章"
+	desc = "表彰陆战队员在 USCM 服役的闪亮银质勋章。较为常见，代表获授者长期履行职责。"
 	icon_state = "silver"
 /obj/item/clothing/accessory/medal/gold/service
 	name = "gold service medal"
-	desc = "A prestigious gold medal awarded for a marine's service within the USCM. It is a rare medal which signifies the amount of time a marine has spent in the line of duty."
+	localized_name = "金质服役勋章"
+	desc = "表彰陆战队员在 USCM 服役的尊贵金质勋章。十分罕见，代表获授者长期履行职责。"
 	icon_state = "gold"
 /obj/item/clothing/accessory/medal/platinum/service
 	name = "platinum service medal"
-	desc = "The highest service medal that can be awarded to a marine; such medals are hand-given by USCM Generals to a marine. It signifies the sheer amount of time a marine has spent in the line of duty."
+	localized_name = "铂金服役勋章"
+	desc = "陆战队员能够获得的最高级别服役勋章，由 USCM 将军亲手颁发，象征获授者极其漫长的服役历程。"
 	icon_state = "platinum"
 
 //Armbands
 /obj/item/clothing/accessory/armband
-	name = "red armband"
-	desc = "A fancy red armband!"
+	name = "红色臂章"
+	desc = "一枚漂亮的红色臂章！"
 	icon_state = "red"
 	slot = ACCESSORY_SLOT_ARMBAND
 	jumpsuit_hide_states = (UNIFORM_SLEEVE_CUT|UNIFORM_JACKET_REMOVED)
 
 /obj/item/clothing/accessory/armband/cargo
-	name = "cargo armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is brown."
+	name = "货运臂章"
+	desc = "船员用来标明所属部门的臂章。这枚是棕色的。"
 	icon_state = "cargo"
 
 /obj/item/clothing/accessory/armband/engine
-	name = "engineering armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is orange with a reflective strip!"
+	name = "工程臂章"
+	desc = "船员用来标明所属部门的臂章。这枚是橙色的，还带有反光条！"
 	icon_state = "engie"
 
 /obj/item/clothing/accessory/armband/science
-	name = "science armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is purple."
+	name = "科研臂章"
+	desc = "船员用来标明所属部门的臂章。这枚是紫色的。"
 	icon_state = "rnd"
 
 /obj/item/clothing/accessory/armband/hydro
-	name = "hydroponics armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is green and blue."
+	name = "水培臂章"
+	desc = "船员用来标明所属部门的臂章。这枚是绿蓝相间的。"
 	icon_state = "hydro"
 
 /obj/item/clothing/accessory/armband/med
-	name = "medical armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is white."
+	name = "医疗臂章"
+	desc = "船员用来标明所属部门的臂章。这枚是白色的。"
 	icon_state = "med"
 
 /obj/item/clothing/accessory/armband/medgreen
-	name = "EMT armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is white and green."
+	name = "急救员臂章"
+	desc = "船员用来标明所属部门的臂章。这枚是白绿相间的。"
 	icon_state = "medgreen"
 
 /obj/item/clothing/accessory/armband/nurse
-	name = "nurse armband"
-	desc = "An armband, worn by the rookie nurses to display they are still not doctors. This one is dark red."
+	name = "护士臂章"
+	desc = "新手护士佩戴的臂章，用来表明自己还不是医生。这枚是深红色的。"
 	icon_state = "nurse"
 
 /obj/item/clothing/accessory/armband/mpsec
-	name = "military police armband"
-	desc = "An armband used by military police officers to denote their position."
+	name = "宪兵臂章"
+	desc = "宪兵用来表明身份的臂章。"
 	icon_state = "armband_mp"
 	slot = ACCESSORY_SLOT_ARMBAND
 	jumpsuit_hide_states = (UNIFORM_SLEEVE_CUT|UNIFORM_JACKET_REMOVED)
 
 //patches
 /obj/item/clothing/accessory/patch
-	name = "USCM patch"
-	desc = "A fire-resistant shoulder patch, worn by the men and women of the United States Colonial Marines."
+	name = "USCM 肩章"
+	desc = "美国殖民地海军陆战队官兵佩戴的阻燃肩章。"
 	icon_state = "uscmpatch"
 	jumpsuit_hide_states = (UNIFORM_SLEEVE_CUT|UNIFORM_JACKET_REMOVED)
 
 /obj/item/clothing/accessory/patch/falcon
-	name = "USCM Falling Falcons patch"
-	desc = "A fire-resistant shoulder patch, worn by the men and women of the Falling Falcons, the 2nd battalion of the 4th brigade of the USCM."
+	name = "USCM 坠落猎鹰肩章"
+	desc = "USCM 第 4 旅第 2 营“坠落猎鹰”官兵佩戴的阻燃肩章。"
 	icon_state = "fallingfalconspatch"
 
 /obj/item/clothing/accessory/patch/devils
-	name = "USCM Solar Devils patch"
-	desc = "A fire-resistant shoulder patch, worn by the men and women of the 3rd Battalion 'Solar Devils', part of the USCM 2nd Division, 1st Regiment."
+	name = "USCM 太阳恶魔肩章"
+	desc = "USCM 第 2 师第 1 团第 3 营“太阳恶魔”官兵佩戴的阻燃肩章。"
 	icon_state = "solardevilspatch"
 
 /obj/item/clothing/accessory/patch/forecon
-	name = "USCM Force Reconnaissance patch"
-	desc = "A fire-resistant shoulder patch, worn by the men and women of USCM FORECON. Swift, Silent, Deadly."
+	name = "USCM 武装侦察部队肩章"
+	desc = "USCM 武装侦察部队官兵佩戴的阻燃肩章。迅捷、无声、致命。"
 	icon_state = "forecon_patch"
 
 /obj/item/clothing/accessory/patch/sapper
-	name = "USCM Combat Engineering patch"
-	desc = "A fire-resistant shoulder patch, worn by the men and women of the 4th Combat Engineering Battalion, part of the USCM 2nd Colonial Support Group."
+	name = "USCM 战斗工兵肩章"
+	desc = "USCM 第 2 殖民地支援群第 4 战斗工兵营官兵佩戴的阻燃肩章。"
 	icon_state = "sapper_patch"
 
 /obj/item/clothing/accessory/patch/royal_marines
-	name = "TWE Royal Marines Commando patch"
-	desc = "A fire-resistant shoulder patch, worn by the men and women of the Royal Marines Commando."
+	name = "TWE 皇家陆战突击队肩章"
+	desc = "皇家陆战突击队官兵佩戴的阻燃肩章。"
 	icon_state = "rmcpatch"
 
 /obj/item/clothing/accessory/patch/twe
-	name = "Three World Empire patch"
-	desc = "A fire-resistant shoulder patch, worn by the men and women loyal to the Three World Empire, An older style symbol of the TWE."
+	name = "三世界帝国肩章"
+	desc = "忠于三世界帝国的官兵佩戴的阻燃肩章，采用 TWE 的旧式标志。"
 	icon_state = "twepatch"
 
 /obj/item/clothing/accessory/patch/upp
-	name = "UPP patch"
-	desc = "A fire-resistant shoulder patch, worn by the men and women of the Union of Progressive Peoples Armed Collective."
+	name = "UPP 肩章"
+	desc = "进步人民联盟联合武装力量官兵佩戴的阻燃肩章。"
 	icon_state = "upppatch"
 
 /obj/item/clothing/accessory/patch/upp/airborne
-	name = "UPP Airborne Reconnaissance patch"
-	desc = "A fire-resistant shoulder patch, worn by the men and women of the 173rd Airborne Reconnaissance Platoon."
+	name = "UPP 空降侦察肩章"
+	desc = "第 173 空降侦察排官兵佩戴的阻燃肩章。"
 	icon_state = "vdvpatch"
 
 /obj/item/clothing/accessory/patch/upp/naval
-	name = "UPP Naval Infantry patch"
-	desc = "A fire-resistant shoulder patch, worn by the men and women of the UPP Naval Infantry."
+	name = "UPP 海军步兵肩章"
+	desc = "UPP 海军步兵官兵佩戴的阻燃肩章。"
 	icon_state = "navalpatch"
 
 /obj/item/clothing/accessory/patch/usasf
-	name = "USASF patch"
-	desc = "A fire-resistant shoulder patch, worn by the men and women of the United States Aerospace Force."
+	name = "USASF 肩章"
+	desc = "美国航空航天军官兵佩戴的阻燃肩章。"
 	icon_state = "usasfpatch"
 
 /obj/item/clothing/accessory/patch/usasf/helljumper
-	name = "Para-Rescue patch"
-	desc = "A fire-resistant shoulder patch, worn by the absolute badasses of the USASF 7th Para-Rescue Battalion. Feet first into hell!"
+	name = "空降救援肩章"
+	desc = "USASF 第 7 空降救援营硬汉们佩戴的阻燃肩章。双脚朝下，直入地狱！"
 	icon_state = "helljumperpatch"
 
 /obj/item/clothing/accessory/patch/army
-	name = "US Army patch"
-	desc = "A fire-resistant shoulder patch, worn by the men and women of the United States Army."
+	name = "美国陆军肩章"
+	desc = "美国陆军官兵佩戴的阻燃肩章。"
 	icon_state = "armypatch"
 
 /obj/item/clothing/accessory/patch/army/infantry
-	name = "Army Infantry patch"
-	desc = "A fire-resistant shoulder patch, worn by the men and women of the 1st Cavalry Division."
+	name = "陆军步兵肩章"
+	desc = "第 1 骑兵师官兵佩戴的阻燃肩章。"
 	icon_state = "infantrypatch"
 
 /obj/item/clothing/accessory/patch/army/spook
-	name = "Army Intelligence patch"
-	desc = "A fire-resistant shoulder patch, worn by the men and women of the 525th Army Intelligence Brigade."
+	name = "陆军情报肩章"
+	desc = "第 525 陆军情报旅官兵佩戴的阻燃肩章。"
 	icon_state = "spookpatch"
 
 /obj/item/clothing/accessory/patch/army/armor
-	name = "Army Armor patch"
-	desc = "A fire-resistant shoulder patch, worn by the men and women of the 32nd Armor Brigade."
+	name = "陆军装甲兵肩章"
+	desc = "第 32 装甲旅官兵佩戴的阻燃肩章。"
 	icon_state = "armorpatch"
 
 /obj/item/clothing/accessory/patch/cmb/brazil_police
-	name = "Brazilian Colonial Military Police patch"
-	desc = "A fire-resistant shoulder patch, worn by the men and women of the Brazilian Military Police."
+	name = "巴西殖民地军警肩章"
+	desc = "巴西军警人员佩戴的阻燃肩章。"
 	icon_state = "brazilpolicepatch"
 
 //Flag patches
 /obj/item/clothing/accessory/patch/ua
-	name = "UA flag patch"
-	desc = "A fire-resistant shoulder patch with the flag of the United Americas, a superpower composed by North and South America, and their interstellar colonies."
+	name = "美洲联盟旗帜肩章"
+	desc = "印有美洲联盟旗帜的阻燃肩章。这个超级大国由南北美洲及其星际殖民地组成。"
 	icon_state = "uaflagpatch"
 
 /obj/item/clothing/accessory/patch/brazil
 
-	name = "Brazilian flag patch"
-	desc = "A fire-resistant shoulder patch, with the flag of Brazil, a large South American nation of Earth."
+	name = "巴西国旗肩章"
+	desc = "印有巴西国旗的阻燃肩章。巴西是地球上的南美洲大国。"
 	icon_state = "brazilpatch"
 
 /obj/item/clothing/accessory/patch/usa
-	name = "USA flag patch"
-	desc = "A fire-resistant shoulder patch with the flag of the United States of America, a massive North American nation of Earth, and the leading superpower of the United Americas."
+	name = "美国国旗肩章"
+	desc = "印有美利坚合众国国旗的阻燃肩章。美国是地球上的北美洲大国，也是美洲联盟的主导强国。"
 	icon_state = "usaflagpatch"
 
 //Ribbons
 /obj/item/clothing/accessory/patch/ribbon/topography
-	name = "USCM Topography Ribbon"
-	desc = "A fire-resistant ribbon, awarded to those marines who have completed selective training at the USCMC Topographic Navigation Course."
+	name = "USCM 地形导航绶带"
+	desc = "授予完成 USCMC 地形导航课程选拔训练的陆战队员的阻燃绶带。"
 	icon_state = "topography"
 
 /obj/item/clothing/accessory/patch/ribbon/topography/honor
-	name = "USCM Honor Topography Ribbon"
-	desc = "A fire-resistant ribbon, awarded to those marines who have completed selective training at the top of their class at the USCMC Topographic Navigation Course."
+	name = "USCM 荣誉地形导航绶带"
+	desc = "授予以班级第一名成绩完成 USCMC 地形导航课程选拔训练的陆战队员的阻燃绶带。"
 	icon_state = "topography_honor"
 
 //misc
 
 /obj/item/clothing/accessory/dogtags
-	name = "Attachable Dogtags"
-	desc = "A robust pair of dogtags to be worn around the neck of the United States Colonial Marines, however due to a combination of budget reallocation, Marines losing their dogtags, and multiple incidents of marines swallowing their tags, they now attach to the uniform or armor."
+	name = "可挂式身份牌"
+	desc = "一副结实的身份牌，原本供美国殖民地海军陆战队员挂在脖子上。但由于预算调整、队员遗失身份牌，以及多起误吞事故，现在改为挂在制服或护甲上。"
 	icon_state = "dogtag"
 	slot = ACCESSORY_SLOT_MEDAL
 
 /obj/item/clothing/accessory/poncho
-	name = "USCM Poncho"
-	desc = "The standard USCM poncho has variations for every climate. Custom fitted to be attached to standard USCM armor variants it is comfortable, warming or cooling as needed, and well-fit. A marine couldn't ask for more. Affectionately referred to as a \"woobie\"."
+	name = "USCM 斗篷"
+	desc = "USCM 制式斗篷有适应各种气候的型号，专为制式护甲各型设计，贴合舒适，能按需保暖或散热。陆战队员还能奢求什么呢？大家亲切地叫它“安心毯”。"
 	icon_state = "poncho"
 	slot = ACCESSORY_SLOT_PONCHO
 	var/has_variation = TRUE
@@ -550,12 +572,12 @@
 	has_variation = FALSE
 
 /obj/item/clothing/accessory/poncho/green/army
-	name = "Well-worn Poncho"
-	desc = "The standard poncho has variations for every climate. Custom fitted to be attached to M3 & M4 armor variants, it is comfortable and warms or cools as needed. A trooper couldn't ask for more. Affectionately referred to as a \"woobie\"."
+	name = "磨旧的斗篷"
+	desc = "制式斗篷有适应各种气候的型号，专为 M3 和 M4 系列护甲设计，舒适合身，能按需保暖或散热。士兵还能奢求什么呢？大家亲切地叫它“安心毯”。"
 
 /obj/item/clothing/accessory/bomb //Suicide vesst
-	name = "explosive vest"
-	desc = "Used by absolute madmen to cause terror and fear against others, haphazardly put together with C4 and a standard webbing vest."
+	name = "炸弹背心"
+	desc = "由 C4 和普通携行背心胡乱拼成，彻头彻尾的疯子用它来制造恐怖与恐惧。"
 	icon_state = "bomb_vest"
 	var/datum/action/item_action/activation
 	var/mob/living/wearer
@@ -582,7 +604,7 @@
 
 /datum/action/item_action/bomb/activate/New(mob/living/user, obj/item/holder)
 	..()
-	name = "Activate Bomb Vest"
+	name = "启动炸弹背心"
 	button.name = name
 	button.overlays.Cut()
 	button.overlays += image('icons/obj/items/clothing/ties.dmi', button, "bomb_vest")
@@ -599,7 +621,7 @@
 /datum/action/item_action/bomb/activate/action_activate()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.visible_message(SPAN_ALERTWARNING("[H] activates the bomb vest! GET DOWN!"), SPAN_ALERTWARNING("You activate the bomb vest! WITNESS ME!"))
+	H.visible_message(SPAN_ALERTWARNING("[H]启动了炸弹背心！快趴下！"), SPAN_ALERTWARNING("你启动了炸弹背心！见证我吧！"))
 	playsound(H, 'sound/items/bomb_vest.ogg', 100, 1)
 	activated = TRUE
 
@@ -619,8 +641,8 @@
 	storage_slots = 3
 
 /obj/item/clothing/accessory/storage
-	name = "load bearing equipment"
-	desc = "Used to hold things when you don't have enough hands."
+	name = "携行装具"
+	desc = "手不够用时，用它来携带物品。"
 	icon_state = "webbing"
 	w_class = SIZE_LARGE //too big to store in other pouches
 	var/obj/item/storage/internal/hold = /obj/item/storage/internal/accessory
@@ -665,7 +687,7 @@
 
 /obj/item/clothing/accessory/storage/attack_self(mob/user)
 	..()
-	to_chat(user, SPAN_NOTICE("You empty [src]."))
+	to_chat(user, SPAN_NOTICE("你倒空了[src]。"))
 	var/turf/T = get_turf(src)
 	hold.storage_close(usr)
 	for(var/obj/item/I in hold.contents)
@@ -693,8 +715,8 @@
 	)
 
 /obj/item/clothing/accessory/storage/webbing
-	name = "webbing"
-	desc = "A sturdy mess of synthcotton belts and buckles, ready to share your burden."
+	name = "携行带"
+	desc = "结实的合成棉带和搭扣组成的携行装具，随时为你分担负重。"
 	icon_state = "webbing"
 	hold = /obj/item/storage/internal/accessory/webbing
 
@@ -708,8 +730,8 @@
 	storage_slots = 5
 
 /obj/item/clothing/accessory/storage/black_vest
-	name = "black webbing vest"
-	desc = "Robust black synthcotton vest with lots of pockets to hold whatever you need, but cannot hold in hands."
+	name = "黑色携行背心"
+	desc = "结实的黑色合成棉背心，有许多口袋，可以装下你需要却拿不下的东西。"
 	icon_state = "vest_black"
 	hold = /obj/item/storage/internal/accessory/black_vest
 
@@ -747,23 +769,23 @@
 	. = ..()
 
 /obj/item/clothing/accessory/storage/black_vest/brown_vest
-	name = "brown webbing vest"
-	desc = "Worn brownish synthcotton vest with lots of pockets to unload your hands."
+	name = "棕色携行背心"
+	desc = "磨旧的棕色合成棉背心，有许多口袋，能解放你的双手。"
 	icon_state = "vest_brown"
 
 /obj/item/clothing/accessory/storage/black_vest/waistcoat
-	name = "tactical waistcoat"
-	desc = "A stylish black waistcoat with plenty of discreet pouches, to be both utilitarian and fashionable without compromising looks."
+	name = "战术马甲"
+	desc = "时髦的黑色马甲，配有许多隐蔽的收纳袋，实用与时尚兼顾，又不影响外观。"
 	icon_state = "waistcoat"
 
 /obj/item/clothing/accessory/storage/tool_webbing
-	name = "Tool Webbing"
-	desc = "A brown synthcotton webbing that is similar in function to civilian tool aprons, but is more durable for field usage."
+	name = "工具携行带"
+	desc = "棕色合成棉携行带，功能类似民用工具围裙，但更加耐用，适合野外使用。"
 	hold = /obj/item/storage/internal/accessory/tool_webbing
 
 /obj/item/clothing/accessory/storage/tool_webbing/small
-	name = "Small Tool Webbing"
-	desc = "A brown synthcotton webbing that is similar in function to civilian tool aprons, but is more durable for field usage. This is the small low-budget version."
+	name = "小型工具携行带"
+	desc = "棕色合成棉携行带，功能类似民用工具围裙，但更加耐用，适合野外使用。这是小型廉价版本。"
 	hold = /obj/item/storage/internal/accessory/tool_webbing/small
 
 /obj/item/storage/internal/accessory/tool_webbing
@@ -832,7 +854,7 @@
 		if(!length(ST.contents))
 			return
 		if(length(contents) >= storage_slots)
-			to_chat(user, SPAN_WARNING("The surgical webbing vest is already full."))
+			to_chat(user, SPAN_WARNING("手术器械携行背心已经装满了。"))
 			return
 		if(!do_after(user, 5 SECONDS * user.get_skill_duration_multiplier(SKILL_MEDICAL), INTERRUPT_ALL, BUSY_ICON_GENERIC))
 			return
@@ -841,7 +863,7 @@
 				break
 			ST.remove_from_storage(I)
 			attempt_item_insertion(I, TRUE, user)
-		user.visible_message("[user] transfers the tools from \the [ST] to the surgical webbing vest.", SPAN_NOTICE("You transfer the tools from \the [ST] to the surgical webbing vest."), max_distance = 3)
+		user.visible_message("[user]将器械从[ST]转移到手术器械携行背心中。", SPAN_NOTICE("你将器械从[ST]转移到手术器械携行背心中。"), max_distance = 3)
 		return
 	return ..()
 
@@ -862,8 +884,8 @@
 	new /obj/item/tool/surgery/synthgraft(src)
 
 /obj/item/clothing/accessory/storage/surg_vest
-	name = "surgical webbing vest"
-	desc = "Greenish synthcotton vest purpose-made for holding surgical tools."
+	name = "手术器械携行背心"
+	desc = "专为携带手术器械设计的绿色合成棉背心。"
 	icon_state = "vest_surg"
 	hold = /obj/item/storage/internal/accessory/surg_vest
 
@@ -871,24 +893,24 @@
 	hold = /obj/item/storage/internal/accessory/surg_vest/equipped
 
 /obj/item/clothing/accessory/storage/surg_vest/blue
-	name = "blue surgical webbing vest"
-	desc = "A matte blue synthcotton vest purpose-made for holding surgical tools."
+	name = "蓝色手术器械携行背心"
+	desc = "专为携带手术器械设计的哑光蓝色合成棉背心。"
 	icon_state = "vest_blue"
 
 /obj/item/clothing/accessory/storage/surg_vest/blue/equipped
 	hold = /obj/item/storage/internal/accessory/surg_vest/equipped
 
 /obj/item/clothing/accessory/storage/surg_vest/drop_blue
-	name = "blue surgical drop pouch"
-	desc = "A matte blue synthcotton drop pouch purpose-made for holding surgical tools."
+	name = "蓝色手术器械挂袋"
+	desc = "专为携带手术器械设计的哑光蓝色合成棉挂袋。"
 	icon_state = "drop_pouch_surgical_blue"
 
 /obj/item/clothing/accessory/storage/surg_vest/drop_blue/equipped
 	hold = /obj/item/storage/internal/accessory/surg_vest/equipped
 
 /obj/item/clothing/accessory/storage/surg_vest/drop_green
-	name = "green surgical drop pouch"
-	desc = "A greenish synthcotton drop pouch purpose-made for holding surgical tools."
+	name = "绿色手术器械挂袋"
+	desc = "专为携带手术器械设计的绿色合成棉挂袋。"
 	icon_state = "drop_pouch_surgical_green"
 
 /obj/item/clothing/accessory/storage/surg_vest/drop_green/equipped
@@ -914,16 +936,16 @@
 	new /obj/item/reagent_container/blood/OMinus(src)
 
 /obj/item/clothing/accessory/storage/surg_vest/drop_black
-	name = "black surgical drop pouch"
-	desc = "A tactical black synthcotton drop pouch purpose-made for holding surgical tools."
+	name = "黑色手术器械挂袋"
+	desc = "专为携带手术器械设计的战术黑色合成棉挂袋。"
 	icon_state = "drop_pouch_surgical_black"
 
 /obj/item/clothing/accessory/storage/surg_vest/drop_black/equipped
 	hold = /obj/item/storage/internal/accessory/surg_vest/equipped
 
 /obj/item/clothing/accessory/storage/knifeharness
-	name = "M272 pattern knife vest"
-	desc = "An older generation M272 pattern knife vest once employed by the USCM. Can hold up to 5 knives. It is made of synthcotton."
+	name = "M272 型飞刀背心"
+	desc = "USCM 曾使用的老式 M272 型飞刀背心，以合成棉制成，最多可容纳 5 把刀。"
 	icon_state = "vest_knives"
 	hold = /obj/item/storage/internal/accessory/knifeharness
 
@@ -955,7 +977,7 @@
 	. = ..()
 
 	if(!COOLDOWN_FINISHED(src, draw_cooldown))
-		to_chat(user, SPAN_WARNING("You need to wait before drawing another knife!"))
+		to_chat(user, SPAN_WARNING("你需要等一会儿才能再拔出一把刀！"))
 		return FALSE
 
 	if(length(contents))
@@ -971,8 +993,8 @@
 	playsound(src, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, TRUE)
 
 /obj/item/clothing/accessory/storage/knifeharness/duelling
-	name = "decorated harness"
-	desc = "A heavily decorated harness of sinew and leather with two knife-loops."
+	name = "装饰华丽的背带"
+	desc = "用筋腱和皮革制成、装饰繁复的背带，带有两个刀环。"
 	icon_state = "unathiharness2"
 	hold = /obj/item/storage/internal/accessory/knifeharness/duelling
 
@@ -988,8 +1010,8 @@
 	new /obj/item/weapon/unathiknife(src)
 
 /obj/item/clothing/accessory/storage/droppouch
-	name = "drop pouch"
-	desc = "A convenient pouch to carry loose items around."
+	name = "挂袋"
+	desc = "方便携带零散物品的小袋。"
 	icon_state = "drop_pouch"
 	hold = /obj/item/storage/internal/accessory/drop_pouch
 
@@ -1012,8 +1034,8 @@
 	storage_flags = NONE //no verb, no quick draw, no tile gathering
 
 /obj/item/clothing/accessory/storage/smallpouch
-	name = "small pouch"
-	desc = "A small pouch to carry a few items, typically the contents of an IFAK."
+	name = "小型收纳袋"
+	desc = "用来携带少量物品的小袋，通常装有单兵急救包的物资。"
 	icon_state = "pouch"
 	hold = /obj/item/storage/internal/accessory/smallpouch
 
@@ -1030,8 +1052,8 @@
 	storage_slots = 4
 
 /obj/item/clothing/accessory/storage/holster
-	name = "shoulder holster"
-	desc = "A handgun holster with an attached pouch, allowing two magazines or speedloaders to be stored along with it."
+	name = "肩部枪套"
+	desc = "带有附袋的手枪套，还可容纳两个弹匣或快速装弹器。"
 	icon_state = "holster"
 	high_visibility = TRUE
 	hold = /obj/item/storage/internal/accessory/holster
@@ -1078,7 +1100,7 @@
 		if(isgun(W))
 			if(current_gun)
 				if(!stop_messages)
-					to_chat(usr, SPAN_WARNING("[src] already holds \a [W]."))
+					to_chat(usr, SPAN_WARNING("[src]里已经有[W]了。"))
 				return
 		else //Must be ammo.
 			var/ammo_slots = storage_slots - 1 //We have a slot reserved for the gun
@@ -1087,7 +1109,7 @@
 				ammo_stored--
 			if(ammo_stored >= ammo_slots)
 				if(!stop_messages)
-					to_chat(usr, SPAN_WARNING("[src] can't hold any more magazines."))
+					to_chat(usr, SPAN_WARNING("[src]装不下更多弹匣了。"))
 				return
 		return 1
 
@@ -1104,13 +1126,13 @@
 	. = ..()
 
 /obj/item/clothing/accessory/storage/holster/armpit
-	name = "shoulder holster"
-	desc = "A worn-out handgun holster. Perfect for concealed carry"
+	name = "肩部枪套"
+	desc = "磨损的手枪套，非常适合隐蔽携带。"
 	icon_state = "holster"
 
 /obj/item/clothing/accessory/storage/holster/waist
-	name = "waist holster"
-	desc = "A handgun holster."
+	name = "腰部枪套"
+	desc = "一个手枪套。"
 	icon_state = "holster_hip"
 	item_state = "holster_hip"
 
@@ -1118,8 +1140,8 @@
 //Butchered holster code
 
 /obj/item/clothing/accessory/storage/sheath
-	name = "large knife sheath"
-	desc = "A well-made leather sheath, looks big enough to hold a proper knife in it, or even a machete at a push."
+	name = "大型刀鞘"
+	desc = "做工精良的皮革刀鞘，看起来足以容纳一把大刀，勉强还能塞进一把砍刀。"
 	icon_state = "holster_knife"
 	high_visibility = TRUE
 	hold = /obj/item/storage/internal/accessory/sheath
@@ -1157,7 +1179,7 @@
 		if(isweapon(W))
 			if(current_blade)
 				if(!stop_messages)
-					to_chat(usr, SPAN_WARNING("[src] already holds \a [W]."))
+					to_chat(usr, SPAN_WARNING("[src]里已经有[W]了。"))
 				return
 		return 1
 
@@ -1181,8 +1203,8 @@
 
 /obj/item/clothing/accessory/holobadge
 
-	name = "holobadge"
-	desc = "This glowing blue badge marks the holder as THE LAW."
+	name = "全息警徽"
+	desc = "这枚发出蓝光的警徽表明持有者就是法律的化身。"
 	icon_state = "holobadge"
 	flags_equip_slot = SLOT_WAIST
 	jumpsuit_hide_states = UNIFORM_JACKET_REMOVED
@@ -1197,10 +1219,10 @@
 	..()
 
 	if(!stored_name)
-		to_chat(user, "Waving around a badge before swiping an ID would be pretty pointless.")
+		to_chat(user, "还没刷入身份信息就挥舞警徽，实在没什么意义。")
 		return
 	if(isliving(user))
-		user.visible_message(SPAN_DANGER("[user] displays their Wey-Yu Internal Security Legal Authorization Badge.\nIt reads: [stored_name], Wey-Yu Security."),SPAN_DANGER("You display your Wey-Yu Internal Security Legal Authorization Badge.\nIt reads: [stored_name], Wey-Yu Security."))
+		user.visible_message(SPAN_DANGER("[user]出示了维兰德-汤谷内部安保执法授权徽章。\n上面写着：[stored_name]，维兰德-汤谷安保。"),SPAN_DANGER("你出示了维兰德-汤谷内部安保执法授权徽章。\n上面写着：[stored_name]，维兰德-汤谷安保。"))
 
 /obj/item/clothing/accessory/holobadge/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/card/id))
@@ -1211,22 +1233,22 @@
 			id_card = O
 
 		if(ACCESS_MARINE_BRIG in id_card.access)
-			to_chat(user, "You imprint your ID details onto the badge.")
+			to_chat(user, "你将身份卡信息写入警徽。")
 			stored_name = id_card.registered_name
-			name = "holobadge ([stored_name])"
-			desc = "This glowing blue badge marks [stored_name] as THE LAW."
+			name = "全息警徽（[stored_name]）"
+			desc = "这枚发出蓝光的警徽表明[stored_name]就是法律的化身。"
 		else
-			to_chat(user, "[src] rejects your insufficient access rights.")
+			to_chat(user, "你的权限不足，[src]拒绝了操作。")
 		return
 	..()
 
 /obj/item/clothing/accessory/holobadge/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))
-		user.visible_message(SPAN_DANGER("[user] invades [M]'s personal space, thrusting [src] into their face insistently."),SPAN_DANGER("You invade [M]'s personal space, thrusting [src] into their face insistently. You are the law."))
+		user.visible_message(SPAN_DANGER("[user]凑到[M]面前，执意把[src]怼到对方脸上。"),SPAN_DANGER("你凑到[M]面前，执意把[src]怼到对方脸上。你就是法律。"))
 
 /obj/item/storage/box/holobadge
-	name = "holobadge box"
-	desc = "A box claiming to contain holobadges."
+	name = "全息警徽盒"
+	desc = "一个声称装有全息警徽的盒子。"
 
 /obj/item/storage/box/holobadge/New()
 	new /obj/item/clothing/accessory/holobadge(src)
@@ -1239,15 +1261,15 @@
 	return
 
 /obj/item/clothing/accessory/storage/owlf_vest
-	name = "\improper OWLF agent vest"
-	desc = "This is a fancy-looking ballistics vest, meant to be attached to a uniform." //No stats for these yet, just placeholder implementation.
+	name = "\improper OWLF 特工背心"
+	desc = "外观精致的防弹背心，用于安装在制服上。" //No stats for these yet, just placeholder implementation.
 	icon = 'icons/obj/items/clothing/ties.dmi'
 	icon_state = "owlf_vest"
 	item_state = "owlf_vest"
 
 /obj/item/clothing/accessory/flak
-	name = "M67 flak vest"
-	desc = "An older model of flak jacket worn by combat support personnel such as dropship crew, or occasionally by smartgunners. Much comfier than its M70 successor, and can be worn under most combat armor, however, the ballistic protection leaves much to be desired."
+	name = "M67 防破片背心"
+	desc = "运输机机组等作战支援人员穿着的旧式防破片背心，智能机枪手偶尔也会使用。比后继的 M70 舒适得多，可穿在大多数战斗护甲内，但防弹能力不尽人意。"
 	icon_state = "flak"
 	item_state = "flak"
 	w_class = SIZE_MEDIUM
@@ -1255,7 +1277,7 @@
 
 /obj/item/clothing/accessory/flak/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_NOTICE("You can wear it differently by <b>using it in hand</b>.")
+	. += SPAN_NOTICE("<b>拿在手中使用</b>即可切换穿着方式。")
 
 /obj/item/clothing/accessory/flak/attack_self(mob/user)
 	..()
@@ -1263,10 +1285,10 @@
 	tucked_in = !tucked_in
 	if(tucked_in)
 		icon_state = "[initial(icon_state)]_slim"
-		user.visible_message(SPAN_NOTICE("[user] tucks in [src]'s sleeves."), SPAN_NOTICE("You tuck in [src]'s sleeves."))
+		user.visible_message(SPAN_NOTICE("[user]收起了[src]的袖子。"), SPAN_NOTICE("你收起了[src]的袖子。"))
 	else
 		icon_state = initial(icon_state)
-		user.visible_message(SPAN_NOTICE("[user] decides to keep [src] nice and puffy."), SPAN_NOTICE("You decide to keep [src] nice and puffy."))
+		user.visible_message(SPAN_NOTICE("[user]决定让[src]保持蓬松舒适的样子。"), SPAN_NOTICE("你决定让[src]保持蓬松舒适的样子。"))
 	item_state = icon_state
 
 /obj/item/clothing/accessory/flak/od
@@ -1276,25 +1298,25 @@
 //===========================//Wrist-worn accessories, just watches currently\\================================\\
 
 /obj/item/clothing/accessory/wrist
-	name = "bracelet"
-	desc = "A simple bracelet made from a strip of fabric."
+	name = "手环"
+	desc = "用布条制成的简单手环。"
 	icon_state = "bracelet"
 	item_state = null
 	slot = ACCESSORY_SLOT_WRIST_L
-	var/which_wrist = "left wrist"
+	var/which_wrist = "左手腕"
 
 /obj/item/clothing/accessory/wrist/get_examine_text(mob/user)
 	. = ..()
 
 	switch(slot)
 		if(ACCESSORY_SLOT_WRIST_L)
-			which_wrist = "left wrist"
+			which_wrist = "左手腕"
 		if(ACCESSORY_SLOT_WRIST_R)
-			which_wrist = "right wrist"
-	. += "It will be worn on the [which_wrist]."
+			which_wrist = "右手腕"
+	. += "它将戴在[which_wrist]上。"
 
 /obj/item/clothing/accessory/wrist/additional_examine_text()
-	return "on the [which_wrist]."
+	return "戴在[which_wrist]上。"
 
 /obj/item/clothing/accessory/wrist/attack_self(mob/user)
 	..()
@@ -1302,14 +1324,14 @@
 	switch(slot)
 		if(ACCESSORY_SLOT_WRIST_L)
 			slot = ACCESSORY_SLOT_WRIST_R
-			to_chat(user, SPAN_NOTICE("[src] will be worn on the right wrist."))
+			to_chat(user, SPAN_NOTICE("[src]将戴在右手腕上。"))
 		if(ACCESSORY_SLOT_WRIST_R)
 			slot = ACCESSORY_SLOT_WRIST_L
-			to_chat(user, SPAN_NOTICE("[src] will be worn on the left wrist."))
+			to_chat(user, SPAN_NOTICE("[src]将戴在左手腕上。"))
 
 /obj/item/clothing/accessory/wrist/watch
-	name = "Seiko Pulsemeter wristwatch"
-	desc = "Model S234-501A, a durable quartz-based wristwatch issued to most Colonial Marines who pass through basic training."
+	name = "精工脉搏计腕表"
+	desc = "S234-501A 型耐用石英腕表，配发给大多数完成基础训练的殖民地陆战队员。"
 	icon_state = "wristwatch_basic"
 	item_state = "wristwatch_black"
 	w_class = SIZE_SMALL
@@ -1318,16 +1340,16 @@
 /obj/item/clothing/accessory/wrist/watch/get_examine_text(mob/user)
 	. = ..()
 
-	. += "It reads: [SPAN_NOTICE("[worldtime2text()]")]"
+	. += "显示时间：[SPAN_NOTICE("[worldtime2text()]")]"
 
 /obj/item/clothing/accessory/wrist/watch/additional_examine_text()
 	. = ..()
 
-	. += " It reads: [SPAN_NOTICE("[worldtime2text()]")]"
+	. += "显示时间：[SPAN_NOTICE("[worldtime2text()]")]"
 
 /obj/item/storage/box/watch_box
-	name = "\improper Seiko Pulsemeter wristwatch storage case"
-	desc = "A tough-wearing case to keep an expensive wristwatch safe when not being worn."
+	name = "\improper 精工脉搏计腕表收纳盒"
+	desc = "坚固耐用的收纳盒，在不佩戴时妥善保护昂贵的腕表。"
 	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "pdt_box"
 	can_hold = list(/obj/item/clothing/accessory/wrist/watch)
@@ -1340,49 +1362,49 @@
 	new /obj/item/clothing/accessory/wrist/watch(src)
 
 /obj/item/clothing/accessory/wrist/watch/bishop
-	name = "Seiko 7A28-6000 wristwatch"
-	desc = "A fancy black-bodied wristwatch. Once set correctly, it always holds the right time. For the connoisseurs of precision."
+	name = "精工 7A28-6000 腕表"
+	desc = "一款精致的黑色腕表。一旦正确校时，便能始终准确走时。献给追求精准的鉴赏家。"
 	icon_state = "wristwatch_bishop"
 	item_state = "wristwatch_black"
 
 /obj/item/storage/box/watch_box/bishop
-	name = "\improper Seiko 7A28-6000 wristwatch storage case"
+	name = "\improper 精工 7A28-6000 腕表收纳盒"
 
 /obj/item/storage/box/watch_box/bishop/fill_preset_inventory()
 	new /obj/item/clothing/accessory/wrist/watch/bishop(src)
 
 /obj/item/clothing/accessory/wrist/watch/ripley
-	name = "Seiko 7A28-7000 wristwatch"
-	desc = "With the pioneering design of analog quartz chronographs beating inside it, this asymetric wristwatch is perfect for anyone who can remain standing where others have all fallen."
+	name = "精工 7A28-7000 腕表"
+	desc = "这款不对称腕表内置开创性的指针式石英计时机芯，适合那些在众人倒下后仍能屹立不倒的人。"
 	icon_state = "wristwatch_ripley"
 	item_state = "wristwatch_silver"
 
 /obj/item/storage/box/watch_box/ripley
-	name = "\improper Seiko 7A28-7000 wristwatch storage case"
+	name = "\improper 精工 7A28-7000 腕表收纳盒"
 
 /obj/item/storage/box/watch_box/ripley/fill_preset_inventory()
 	new /obj/item/clothing/accessory/wrist/watch/ripley(src)
 
 /obj/item/clothing/accessory/wrist/watch/burke
-	name = "Seiko H556-5050 wristwatch"
-	desc = "A more upmarket wristwatch tailored towards junior executives & 'company guys' all across the galaxy. Flashy, but not horribly ostentatious."
+	name = "精工 H556-5050 腕表"
+	desc = "面向银河各地初级主管和“公司人”的高档腕表。耀眼，却不过分张扬。"
 	icon_state = "wristwatch_burke"
 	item_state = "wristwatch_silver"
 
 /obj/item/storage/box/watch_box/burke
-	name = "\improper Seiko H556-5050 wristwatch storage case"
+	name = "\improper 精工 H556-5050 腕表收纳盒"
 
 /obj/item/storage/box/watch_box/burke/fill_preset_inventory()
 	new /obj/item/clothing/accessory/wrist/watch/burke(src)
 
 /obj/item/clothing/accessory/wrist/watch/dallas
-	name = "Samani E-125 wristwatch"
-	desc = "Advertised as being 'A new dawn of precision digital watches', the E-125 became a popular hit with members of the civil aerospace industry."
+	name = "萨马尼 E-125 腕表"
+	desc = "以“精准数字腕表的新曙光”为宣传口号的 E-125，深受民用航空航天业人士欢迎。"
 	icon_state = "wristwatch_dallas"
 	item_state = "wristwatch_fancy"
 
 /obj/item/storage/box/watch_box/dallas
-	name = "\improper Samani E-125 wristwatch storage case"
+	name = "\improper 萨马尼 E-125 腕表收纳盒"
 
 /obj/item/storage/box/watch_box/dallas/fill_preset_inventory()
 	new /obj/item/clothing/accessory/wrist/watch/dallas(src)
@@ -1390,8 +1412,8 @@
 //===========================//CUSTOM ARMOR COSMETIC PLATES\\================================\\
 
 /obj/item/clothing/accessory/pads
-	name = "\improper M3 Pauldrons"
-	desc = "Attachable supplementary armor for the M3 armor system. Protects from glancing hits and covers the arm opening in the cuirass against shrapnel."
+	name = "\improper M3 肩甲"
+	desc = "M3 护甲系统的附加护甲，抵挡擦边攻击，并遮护胸甲的臂部开口，防御弹片。"
 	icon_state = "pads"
 	item_state = "pads"
 	slot = ACCESSORY_SLOT_DECORARMOR
@@ -1403,8 +1425,8 @@
 	update_icon()
 
 /obj/item/clothing/accessory/pads/bracers
-	name = "\improper M3 Vambraces"
-	desc = "Attachable supplementary armor for the M3 armor system. A pair of composite ballistic vambraces to shield the forearms, with straps to ensure it doesn't ride up or down."
+	name = "\improper M3 护臂"
+	desc = "M3 护甲系统的附加护甲。一对保护前臂的复合防弹护臂，带有固定绑带，防止上下滑动。"
 	icon_state = "bracers"
 	item_state = "bracers"
 	slot = ACCESSORY_SLOT_DECORBRACER
@@ -1413,21 +1435,21 @@
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/accessory/pads/neckguard
-	name = "\improper M3 Gorget"
-	desc = "Attachable supplementary armor for the M3 armor system. A simple polymer ballistic plate to resist ricochets and shrapnel."
+	name = "\improper M3 护颈"
+	desc = "M3 护甲系统的附加护甲。简单的聚合物防弹板，用于抵挡跳弹和弹片。"
 	icon_state = "neckguard"
 	item_state = "neckguard"
 	slot = ACCESSORY_SLOT_DECORNECK
 
 /obj/item/clothing/accessory/pads/neckguard/uacg
-	desc = "Attachable supplementary armor for the UACG's M3 armor system. A simple polymer ballistic plate to resist ricochets and shrapnel."
+	desc = "UACG M3 护甲系统的附加护甲。简单的聚合物防弹板，用于抵挡跳弹和弹片。"
 	icon_state = "neckguard_uacg"
 	item_state = "neckguard_uacg"
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/accessory/pads/greaves
-	name = "\improper M3 Greaves"
-	desc = "Attachable supplementary armor for the M3 armor system. Lightweight polymer clamshell-style plates enclose the lower legs to provide shrapnel and pistol protection."
+	name = "\improper M3 护胫"
+	desc = "M3 护甲系统的附加护甲。轻质聚合物双片式护板包覆小腿，防御弹片和手枪弹。"
 	icon_state = "shinguards"
 	item_state = "shinguards"
 	slot = ACCESSORY_SLOT_DECORSHIN
@@ -1436,8 +1458,8 @@
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/accessory/pads/kneepads
-	name = "\improper M3 Kneepads"
-	desc = "Attachable supplementary armor for the M3 armor system. High impact ruggedized outer shell and polymer internals protect from shrapnel as well as low power ballistics."
+	name = "\improper M3 护膝"
+	desc = "M3 护甲系统的附加护甲。耐冲击强化外壳与聚合物内衬能抵挡弹片和低威力弹药。"
 	icon_state = "thighguards"
 	item_state = "thighguards"
 	slot = ACCESSORY_SLOT_DECORKNEE
@@ -1446,14 +1468,14 @@
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/accessory/pads/groin
-	name = "\improper M3 Lap Panel"
-	desc = "Attachable supplementary armor for the M3 armor system. Shear thickening liquid armor piece covering the abdomen and groin, with an additional ruggedized boron carbide strike face for the genitals. Clasps to the inside of the M3 cuirass."
+	name = "\improper M3 腹股沟护板"
+	desc = "M3 护甲系统的附加护甲。剪切增稠液态护甲覆盖腹部和腹股沟，生殖器部位另有强化碳化硼迎弹面。扣装于 M3 胸甲内侧。"
 	icon_state = "groinplate"
 	item_state = "groinplate"
 	slot = ACCESSORY_SLOT_DECORGROIN
 
 /obj/item/clothing/accessory/pads/groin/uacg
-	desc = "Attachable supplementary armor for the UACG's M3 armor system. Shear thickening liquid armor piece covering the abdomen and groin, with an additional ruggedized boron carbide strike face for the genitals. Clasps to the inside of the M3 cuirass."
+	desc = "UACG M3 护甲系统的附加护甲。剪切增稠液态护甲覆盖腹部和腹股沟，生殖器部位另有强化碳化硼迎弹面。扣装于 M3 胸甲内侧。"
 	icon_state = "groinplate_uacg"
 	item_state = "groinplate_uacg"
 	slot = ACCESSORY_SLOT_DECORGROIN
@@ -1463,22 +1485,22 @@
 //===========================//USASF CUSTOM ARMOR PLATES\\================================\\
 
 /obj/item/clothing/accessory/pads/navy
-	name = "\improper M4 Pauldrons"
-	desc = "Attachable supplementary armor for the USASF M4 armor system. Protects from glancing hits and covers the arm opening in the cuirass against shrapnel."
+	name = "\improper M4 肩甲"
+	desc = "USASF M4 护甲系统的附加护甲，抵挡擦边攻击，并遮护胸甲的臂部开口，防御弹片。"
 	icon_state = "u_pads"
 	item_state = "u_pads"
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/accessory/pads/greaves/navy
-	name = "\improper M4 Greaves"
-	desc = "Attachable supplementary armor for the M4 armor system. Lightweight polymer clamshell-style plates enclose the lower legs to provide shrapnel and pistol protection."
+	name = "\improper M4 护胫"
+	desc = "M4 护甲系统的附加护甲。轻质聚合物双片式护板包覆小腿，防御弹片和手枪弹。"
 	icon_state = "u_shinguards"
 	item_state = "u_shinguards"
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/accessory/pads/groin/navy
-	name = "\improper M4 Lap Panel"
-	desc = "Attachable supplementary armor for the USASF M4 armor system. Shear thickening liquid armor piece covering the abdomen and groin, with an additional ruggedized carbon-fibre composite strike face for the genitals. Clasps to the inside of the M3 cuirass."
+	name = "\improper M4 腹股沟护板"
+	desc = "USASF M4 护甲系统的附加护甲。剪切增稠液态护甲覆盖腹部和腹股沟，生殖器部位另有强化碳纤维复合迎弹面。扣装于 M3 胸甲内侧。"
 	icon_state = "u_groinplate"
 	item_state = "u_groinplate"
 	slot = ACCESSORY_SLOT_DECORGROIN
@@ -1486,22 +1508,22 @@
 //===========================//UPP CUSTOM ARMOR PLATES\\================================\\
 
 /obj/item/clothing/accessory/upppads
-	name = "\improper 6B90 Arm Plates"
-	desc = "A set of arm plates designed for the 6B90 armor system."
+	name = "\improper 6B90 臂甲"
+	desc = "为 6B90 护甲系统设计的臂甲。"
 	icon_state = "upp_arms"
 	item_state = "upp_arms"
 	slot = ACCESSORY_SLOT_DECORARMOR
 
 /obj/item/clothing/accessory/upppads/legs
-	name = "\improper 6B90 Leg Guards"
-	desc = "A set of leg greaves designed for the 6B90 armor system."
+	name = "\improper 6B90 护腿"
+	desc = "为 6B90 护甲系统设计的护胫。"
 	icon_state = "upp_greaves"
 	item_state = "upp_greaves"
 	slot = ACCESSORY_SLOT_DECORSHIN
 
 /obj/item/clothing/accessory/upppads/crotch
-	name = "\improper 6B90 Crotch Guard"
-	desc = "A crotch plate designed for the 6B90 armor system."
+	name = "\improper 6B90 护裆"
+	desc = "为 6B90 护甲系统设计的护裆板。"
 	icon_state = "upp_crotch"
 	item_state = "upp_crotch"
 	slot = ACCESSORY_SLOT_DECORGROIN
@@ -1509,15 +1531,15 @@
 //===========================//TWE CUSTOM ARMOR PLATES\\================================\\
 
 /obj/item/clothing/accessory/twepads
-	name = "\improper Kestrel Shoulder Pads"
-	desc = "A set of ashoulder pads designed for the Kestrel armor system."
+	name = "\improper 红隼肩垫"
+	desc = "为红隼护甲系统设计的肩垫。"
 	icon_state = "rmc_arms"
 	item_state = "rmc_arms"
 	slot = ACCESSORY_SLOT_DECORARMOR
 
 /obj/item/clothing/accessory/twepads/legs
-	name = "\improper Kestrel Leg Guards"
-	desc = "A set of leg greaves designed for the Kestrel armor system."
+	name = "\improper 红隼护腿"
+	desc = "为红隼护甲系统设计的护胫。"
 	icon_state = "rmc_greaves"
 	item_state = "rmc_greaves"
 	slot = ACCESSORY_SLOT_DECORSHIN
@@ -1525,75 +1547,75 @@
 //===========================//CUSTOM ARMOR PAINT\\================================\\
 
 /obj/item/clothing/accessory/paint
-	name = "skull armor paint"
-	desc = "A set of paint tones to etch a skull into a Marine's armor."
+	name = "骷髅护甲涂料"
+	desc = "用于在陆战队护甲上绘制骷髅图案的一组涂料。"
 	icon_state = "skull"
 	item_state = "skull"
 	slot = ACCESSORY_SLOT_PAINT
 
 /obj/item/clothing/accessory/paint/heart
-	name = "heart armor paint"
-	desc = "A set of paint tones to etch a heart into a Marine's armor."
+	name = "爱心护甲涂料"
+	desc = "用于在陆战队护甲上绘制爱心图案的一组涂料。"
 	icon_state = "heart"
 	item_state = "heart"
 
 /obj/item/clothing/accessory/paint/medic
-	name = "cross armor paint"
-	desc = "A set of paint tones to etch a red cross into a Marine's armor."
+	name = "红十字护甲涂料"
+	desc = "用于在陆战队护甲上绘制红十字的一组涂料。"
 	icon_state = "medic"
 	item_state = "medic"
 
 /obj/item/clothing/accessory/paint/uaflag
-	name = "UA flag armor paint"
-	desc = "A set of paint tones to etch the red, white, and black into a Marine's armor."
+	name = "美洲联盟旗帜护甲涂料"
+	desc = "用于在陆战队护甲上绘制红、白、黑三色旗帜的一组涂料。"
 	icon_state = "uaflag"
 	item_state = "uaflag"
 
 /obj/item/clothing/accessory/paint/usflag
-	name = "US flag armor paint"
-	desc = "A set of paint tones to etch the red, white, and blue into a Marine's armor."
+	name = "美国国旗护甲涂料"
+	desc = "用于在陆战队护甲上绘制红、白、蓝三色旗帜的一组涂料。"
 	icon_state = "usflag"
 	item_state = "usflag"
 
 /obj/item/clothing/accessory/paint/target
-	name = "target armor paint"
-	desc = "A set of paint tones to etch a target pattern into a Marine's armor."
+	name = "靶标护甲涂料"
+	desc = "用于在陆战队护甲上绘制靶标图案的一组涂料。"
 	icon_state = "target"
 	item_state = "target"
 
 /obj/item/clothing/accessory/paint/alcoholism
-	name = "smileyface armor paint"
-	desc = "A set of paint tones to etch a happy face into a Marine's armor."
+	name = "笑脸护甲涂料"
+	desc = "用于在陆战队护甲上绘制笑脸的一组涂料。"
 	icon_state = "smileyface"
 	item_state = "smileyface"
 
 /obj/item/clothing/accessory/paint/melancholy
-	name = "neutralface armor paint"
-	desc = "A set of paint tones to etch a happy face into a Marine's armor, though this one carries indifferent energy."
+	name = "无表情脸护甲涂料"
+	desc = "用于在陆战队护甲上绘制脸部图案的一组涂料，不过这张脸显得漠不关心。"
 	icon_state = "neutralface"
 	item_state = "neutralface"
 
 /obj/item/clothing/accessory/paint/cross
-	name = "cross armor paint"
-	desc = "A set of paint tones to etch a religious symbol into a Marine's armor."
+	name = "十字架护甲涂料"
+	desc = "用于在陆战队护甲上绘制宗教符号的一组涂料。"
 	icon_state = "cross"
 	item_state = "cross"
 
 /obj/item/clothing/accessory/paint/inscription
-	name = "cross armor paint"
-	desc = "A set of paint tones to etch a text phrase into a Marine's armor."
+	name = "文字护甲涂料"
+	desc = "用于在陆战队护甲上写下一段话的一组涂料。"
 	icon_state = "inscription"
 	item_state = "inscription"
 
 /obj/item/clothing/accessory/paint/fire
-	name = "flames armor paint"
-	desc = "A set of paint tones to etch straight heat into a Marine's armor."
+	name = "火焰护甲涂料"
+	desc = "用于在陆战队护甲上绘制炽热火焰的一组涂料。"
 	icon_state = "mixtape"
 	item_state = "mixtape"
 
 /obj/item/clothing/accessory/paint/sg
-	name = "camouflage paint"
-	desc = "A set of paints for smartgunners to apply to their harnesses for a darker complextion."
+	name = "迷彩涂料"
+	desc = "供智能机枪手涂抹在承重背带上的一组涂料，使其色调更深。"
 	icon_state = "blacksg"
 	item_state = "blacksg"
 	slot = ACCESSORY_SLOT_SGPAINT
@@ -1601,8 +1623,8 @@
 //===========================//CUSTOM ARMOR WEBBING\\================================\\
 
 /obj/item/clothing/accessory/storage/webbing/m3
-	name = "\improper M3 Pattern Webbing"
-	desc = "A sturdy mess of synthcotton belts and buckles designed to attach to the M3 Pattern Marine armor standard for the USCMC. This one is the slimmed down model designed for general purpose storage."
+	name = "\improper M3 型携行带"
+	desc = "由结实的合成棉带和搭扣组成，适配 USCMC 制式 M3 型陆战队护甲。这是用于通用收纳的精简型号。"
 	icon_state = "m3webbing"
 	hold = /obj/item/storage/internal/accessory/webbing/m3generic
 	slot = ACCESSORY_SLOT_M3UTILITY
@@ -1622,8 +1644,8 @@
 	)
 
 /obj/item/clothing/accessory/storage/webbing/m3/mag
-	name = "\improper M3 Pattern Magazine Webbing"
-	desc = "A variant of the M3 Pattern webbing that features pouches for pulse rifle magazines."
+	name = "\improper M3 型弹匣携行带"
+	desc = "M3 型携行带的变型，配有脉冲步枪弹匣袋。"
 	icon_state = "m3webbingmag"
 	hold = /obj/item/storage/internal/accessory/webbing/m3mag
 
@@ -1662,8 +1684,8 @@
 //===
 
 /obj/item/clothing/accessory/storage/webbing/m3/shotgun
-	name = "\improper M3 Pattern Shell Webbing"
-	desc = "A slightly modified variant of the M3 Pattern grenade webbing, fitted for 12 gauge shotgun shells."
+	name = "\improper M3 型霰弹携行带"
+	desc = "略作改装的 M3 型手榴弹携行带，适用于 12 号霰弹。"
 	icon_state = "m3webbingshotgun"
 	hold = /obj/item/storage/internal/accessory/black_vest/m3shotgun
 
@@ -1673,8 +1695,8 @@
 	)
 
 /obj/item/clothing/accessory/storage/webbing/m3/small
-	name = "\improper M3 Pattern Small Pouch Webbing"
-	desc = "A set of M3 pattern webbing fully outfitted with pouches and pockets to carry a whole array of small items."
+	name = "\improper M3 型小袋携行带"
+	desc = "配有各种口袋和收纳袋的 M3 型携行带，可携带多种小型物品。"
 	icon_state = "m3webbingsmall"
 	hold = /obj/item/storage/internal/accessory/black_vest/m3generic
 	slot = ACCESSORY_SLOT_M3UTILITY
@@ -1682,8 +1704,8 @@
 //Pre-load For Army Props
 //===
 /obj/item/clothing/accessory/storage/webbing/m3/small/army
-	name = "\improper PBAS Webbing"
-	desc = "A sturdy set of webbing designed to fit on the US Army's standard body armor system. Fully outfitted with pouches and pockets to carry a whole array of small items."
+	name = "\improper PBAS 携行带"
+	desc = "结实的携行带，适配美国陆军制式防护系统，配有各种口袋和收纳袋，可携带多种小型物品。"
 	icon_state = "armywebbing"
 	hold = /obj/item/storage/internal/accessory/black_vest/m3generic/army
 
@@ -1716,8 +1738,8 @@
 //===
 
 /obj/item/clothing/accessory/storage/webbing/m3/m40
-	name = "\improper M3 Pattern Grenade Webbing"
-	desc = "A variation of the M3 Pattern webbing fitted with loops for storing M40-hull grenades."
+	name = "\improper M3 型手榴弹携行带"
+	desc = "M3 型携行带的变型，带有收纳 M40 壳体手榴弹的挂环。"
 	icon_state = "m3webbingm40"
 	hold = /obj/item/storage/internal/accessory/black_vest/m3grenade
 
@@ -1742,8 +1764,8 @@
 	)
 
 /obj/item/clothing/accessory/storage/webbing/m3/recon
-	name = "\improper M3-R Pattern Magazine Webbing"
-	desc = "A set of magazine webbing made in an alternative configuration for standard M3 Pattern armor. This one is exclusively issued to Force Reconnoissance units."
+	name = "\improper M3-R 型弹匣携行带"
+	desc = "适配制式 M3 型护甲、采用另一种布局的弹匣携行带，仅配发给武装侦察部队。"
 	icon_state = "m3rwebbing"
 	hold = /obj/item/storage/internal/accessory/webbing/m3mag/recon
 
@@ -1770,8 +1792,8 @@
 //===
 
 /obj/item/clothing/accessory/storage/webbing/m3/recon/m40
-	name = "\improper M3-R Pattern Grenade Webbing"
-	desc = "An alternative to the M3-R Pattern webbing fitted to store M40-hull grenades."
+	name = "\improper M3-R 型手榴弹携行带"
+	desc = "M3-R 型携行带的变型，适合收纳 M40 壳体手榴弹。"
 	icon_state = "m3rwebbingm40"
 	hold = /obj/item/storage/internal/accessory/black_vest/m3grenade/recon
 
@@ -1779,8 +1801,8 @@
 	storage_slots = 10
 
 /obj/item/clothing/accessory/storage/webbing/m3/recon/shotgun
-	name = "\improper M3-R Pattern Shell Webbing"
-	desc = "A modified variant of the M3-R Pattern grenade webbing for FORECON units, this one accepting 12 gauge."
+	name = "\improper M3-R 型霰弹携行带"
+	desc = "供武装侦察部队使用的改装型 M3-R 手榴弹携行带，适用于 12 号霰弹。"
 	icon_state = "m3rwebbingshotgun"
 	hold = /obj/item/storage/internal/accessory/black_vest/m3shotgun/recon
 
@@ -1788,8 +1810,8 @@
 	storage_slots = 7
 
 /obj/item/clothing/accessory/storage/webbing/m3/recon/medic
-	name = "\improper M3-R Pattern Corpsman Webbing"
-	desc = "A large pouch with M3-R Pattern webbing clips designed to house surgical tools for Corpsmen attached to FORECON units, where field hospitals are not readily available."
+	name = "\improper M3-R 型医务兵携行带"
+	desc = "带有 M3-R 型携行带卡扣的大型收纳袋，供缺乏野战医院支援的武装侦察部队随队医务兵携带手术器械。"
 	icon_state = "m3rwebbingmedic"
 	hold = /obj/item/storage/internal/accessory/black_vest/m3generic/recon
 
@@ -1810,8 +1832,8 @@
 	)
 
 /obj/item/clothing/accessory/storage/webbing/m56
-	name = "\improper Clip-on Pouch"
-	desc = "A clip on synth-leather pouch designed to house a small collection of items for M56 weapon operators."
+	name = "\improper 夹式收纳袋"
+	desc = "供 M56 武器操作员携带少量物品的夹式合成皮革收纳袋。"
 	icon_state = "m56pouch"
 	hold = /obj/item/storage/internal/accessory/black_vest/m56
 	slot = ACCESSORY_SLOT_M56UTILITY
@@ -1838,8 +1860,8 @@
 //===
 
 /obj/item/clothing/accessory/storage/webbing/m56/grenade
-	name = "\improper Clip-on Grenade Band"
-	desc = "A sturdy mess of synth-leather band designed to store a few grenades for M56 weapon operators."
+	name = "\improper 夹式手榴弹挂带"
+	desc = "供 M56 武器操作员携带几枚手榴弹的结实合成皮革挂带。"
 	icon_state = "m56grenade"
 	hold = /obj/item/storage/internal/accessory/black_vest/m56/grenade
 
@@ -1866,8 +1888,8 @@
 //===========================//CUSTOM UPP ARMOR WEBBING\\================================\\
 
 /obj/item/clothing/accessory/storage/webbing/m3/uppmags
-	name = "\improper Type 90 Pattern Magazine Webbing"
-	desc = "A set of UPP magazine webbing that can carry four magazines."
+	name = "\improper 90 式弹匣携行带"
+	desc = "一套可携带四个弹匣的 UPP 携行带。"
 	icon_state = "upp_webbing_magazine"
 	hold = /obj/item/storage/internal/accessory/webbing/m3mag/upp
 	flags_atom = NO_SNOW_TYPE
@@ -1897,16 +1919,16 @@
 	)
 
 /obj/item/clothing/accessory/storage/webbing/m3/uppsmall
-	name = "\improper Type 78 Pattern Small Pouch Webbing"
-	desc = "A set of UPP webbing fully outfitted with pouches and pockets to carry a while array of small items."
+	name = "\improper 78 式小袋携行带"
+	desc = "配有各种口袋和收纳袋的 UPP 携行带，可携带多种小型物品。"
 	icon_state = "upp_webbing_small"
 	hold = /obj/item/storage/internal/accessory/black_vest/m3generic
 	flags_atom = NO_SNOW_TYPE
 	slot = ACCESSORY_SLOT_M3UTILITY
 
 /obj/item/clothing/accessory/storage/webbing/m3/uppgeneral
-	name = "\improper Type 78 Pattern Webbing"
-	desc = "A sturdy mess of synthcotton belts and buckles designed to attach to UPP armor. This one is the slimmed down model designed for general purpose storage."
+	name = "\improper 78 式携行带"
+	desc = "由结实的合成棉带和搭扣组成，适配 UPP 护甲。这是用于通用收纳的精简型号。"
 	icon_state = "upp_webbing_large"
 	hold = /obj/item/storage/internal/accessory/webbing/m3generic
 	flags_atom = NO_SNOW_TYPE
@@ -1915,13 +1937,13 @@
 //===========================//CUSTOM RMC ARMOR WEBBING\\================================\\
 
 /obj/item/clothing/accessory/storage/webbing/m3/uppsmall/rmc
-	name = "\improper 67 Pattern Webbing"
+	name = "\improper 67 式携行带"
 	icon_state = "rmc_webbing_small"
-	desc = "A sturdy mess of synthcotton belts and buckles designed to attach to Royal Marine armor. This one is the slimmed down model designed for general purpose storage."
+	desc = "由结实的合成棉带和搭扣组成，适配皇家陆战队护甲。这是用于通用收纳的精简型号。"
 
 /obj/item/clothing/accessory/storage/webbing/m3/uppmags/rmc
-	name = "\improper 82 Pattern Magazine Webbing"
-	desc = "A set of webbing pouches that can carry four magazines. Comes with clips to mount to the standard armor system in use by the Royal Marines."
+	name = "\improper 82 式弹匣携行带"
+	desc = "一套可携带四个弹匣的携行袋，配有卡扣，能安装在皇家陆战队现役制式护甲上。"
 	icon_state = "rmc_webbing_magazine"
 	hold = /obj/item/storage/internal/accessory/webbing/m3mag/rmc
 

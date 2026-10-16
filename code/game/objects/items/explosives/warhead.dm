@@ -6,8 +6,8 @@
 	ground_offset_y = 6
 
 /obj/item/explosive/warhead/rocket
-	name = "84mm rocket warhead"
-	desc = "A custom warhead meant for 84mm rocket shells."
+	name = "84毫米火箭弹弹头"
+	desc = "用于84毫米火箭弹弹壳的自制弹头。"
 	icon_state = "warhead_rocket"
 	max_container_volume = 210
 	allow_star_shape = FALSE
@@ -19,8 +19,8 @@
 	has_blast_wave_dampener = TRUE
 
 /obj/item/explosive/warhead/mortar
-	name = "80mm mortar warhead"
-	desc = "A custom warhead meant for 80mm mortar shells."
+	name = "80毫米迫击炮弹弹头"
+	desc = "用于80毫米迫击炮弹弹壳的自制弹头。"
 	icon_state = "warhead_mortar"
 	max_container_volume = 240
 	matter = list("metal" = 11250) //3 sheets
@@ -32,8 +32,8 @@
 	var/has_camera = FALSE
 
 /obj/item/explosive/warhead/mortar/camera
-	name = "80mm mortar camera warhead"
-	desc = "A custom warhead meant for 80mm mortar shells. Camera drone included."
+	name = "80毫米迫击炮摄像弹头"
+	desc = "用于80毫米迫击炮弹弹壳的自制弹头，内含摄像无人机。"
 	max_container_volume = 180
 	matter = list("metal" = 15000) //4 sheets
 	has_camera = TRUE

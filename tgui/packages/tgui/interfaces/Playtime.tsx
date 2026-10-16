@@ -38,7 +38,7 @@ const PlaytimeRow = (props: { readonly data: PlaytimeRecord }) => {
         <span className="LabelSpan">{props.data.job}</span>
       </TableCell>
       <TableCell>
-        <span className="TimeSpan">{props.data.playtime.toFixed(1)} hr</span>
+        <span className="TimeSpan">{props.data.playtime.toFixed(1)} 小时</span>
       </TableCell>
     </>
   );
@@ -82,19 +82,19 @@ export const Playtime = (props) => {
             selected={selected === 'human'}
             onClick={() => setSelected('human')}
           >
-            Human ({humanTime} hr)
+            人类（{humanTime} 小时）
           </Tabs.Tab>
           <Tabs.Tab
             selected={selected === 'xeno'}
             onClick={() => setSelected('xeno')}
           >
-            Xeno ({xenoTime} hr)
+            异形（{xenoTime} 小时）
           </Tabs.Tab>
           <Tabs.Tab
             selected={selected === 'other'}
             onClick={() => setSelected('other')}
           >
-            Other ({otherTime} hr)
+            其他（{otherTime} 小时）
           </Tabs.Tab>
         </Tabs>
         {selected === 'human' && (

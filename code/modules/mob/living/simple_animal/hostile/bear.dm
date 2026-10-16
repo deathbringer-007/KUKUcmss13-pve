@@ -1,22 +1,22 @@
 //Space bears!
 /mob/living/simple_animal/hostile/bear
-	name = "space bear"
-	desc = "RawrRawr!!"
+	name = "太空熊"
+	desc = "嗷嗷！！"
 	icon_state = "bear"
 	icon_living = "bear"
 	icon_dead = "bear_dead"
 	icon_gib = "bear_gib"
-	speak = list("RAWR!","Rawr!","GRR!","Growl!")
-	speak_emote = list("growls", "roars")
-	emote_hear = list("rawrs","grumbles","grawls")
-	emote_see = list("stares ferociously", "stomps")
+	speak = list("嗷！","嗷呜！","吼！","呜吼！")
+	speak_emote = list("低吼", "咆哮")
+	emote_hear = list("嗷嗷叫","咕哝","咆哮")
+	emote_see = list("凶狠地瞪着眼睛", "踩踏")
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6
 	meat_type = /obj/item/reagent_container/food/snacks/bearmeat
-	response_help  = "pets the"
-	response_disarm = "gently pushes aside the"
-	response_harm   = "pokes the"
+	response_help  = "抚摸"
+	response_disarm = "轻轻推开"
+	response_harm   = "戳了戳"
 	stop_automated_movement_when_pulled = 0
 	maxHealth = 60
 	health = 60
@@ -39,11 +39,11 @@
 
 //SPACE BEARS! SQUEEEEEEEE~  OW! FUCK! IT BIT MY HAND OFF!!
 /mob/living/simple_animal/hostile/bear/Hudson
-	name = "Hudson"
+	name = "哈德森"
 	desc = ""
-	response_help  = "pets"
-	response_disarm = "gently pushes aside"
-	response_harm   = "pokes"
+	response_help  = "抚摸"
+	response_disarm = "轻轻推开"
+	response_harm   = "戳了戳"
 
 /mob/living/simple_animal/hostile/bear/Life(delta_time)
 	. =..()
@@ -77,7 +77,7 @@
 					src.setDir(get_dir(src,target_mob)) //Keep staring at the mob
 
 					if(stance_step in list(1,4,7)) //every 3 ticks
-						var/action = pick( list( "growls at [target_mob]", "stares angrily at [target_mob]", "prepares to attack [target_mob]", "closely watches [target_mob]" ) )
+						var/action = pick( list( "朝[target_mob]低吼", "愤怒地瞪着[target_mob]", "准备攻击[target_mob]", "紧盯着[target_mob]" ) )
 						if(action)
 							INVOKE_ASYNC(src, PROC_REF(manual_emote), action)
 			if(!found_mob)
@@ -90,7 +90,7 @@
 
 		if(HOSTILE_STANCE_ATTACKING)
 			if(stance_step >= 20) //attacks for 20 ticks, then it gets tired and needs to rest
-				INVOKE_ASYNC(src, PROC_REF(manual_emote), "is worn out and needs to rest")
+				INVOKE_ASYNC(src, PROC_REF(manual_emote), "筋疲力尽，需要休息")
 				stance = HOSTILE_STANCE_TIRED
 				stance_step = 0
 				walk(src, 0) //This stops the bear's walking
@@ -118,7 +118,7 @@
 /mob/living/simple_animal/hostile/bear/FindTarget()
 	. = ..()
 	if(.)
-		manual_emote("stares alertly at [.]")
+		manual_emote("警惕地盯着[.]")
 		stance = HOSTILE_STANCE_ALERT
 
 /mob/living/simple_animal/hostile/bear/LoseTarget()
@@ -127,7 +127,7 @@
 /mob/living/simple_animal/hostile/bear/AttackingTarget()
 	if(!Adjacent(target_mob))
 		return
-	manual_emote(pick(list("slashes at [target_mob]", "bites [target_mob]")))
+	manual_emote(pick(list("挥爪抓向[target_mob]", "咬向[target_mob]")))
 
 	var/damage = rand(20,30)
 

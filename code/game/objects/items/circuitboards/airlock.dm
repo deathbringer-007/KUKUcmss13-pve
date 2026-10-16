@@ -1,6 +1,6 @@
 
 /obj/item/circuitboard/airlock
-	name = "airlock electronics"
+	name = "气闸门电子组件"
 	gender = PLURAL
 	icon_state = "door_electronics"
 	w_class = SIZE_SMALL
@@ -30,17 +30,17 @@
 
 
 	if (last_configurator)
-		t1 += "Operator: [last_configurator]<br>"
+		t1 += "操作员：[last_configurator]<br>"
 
 	if (locked)
-		t1 += "<a href='byond://?src=\ref[src];login=1'>Swipe ID</a><hr>"
+		t1 += "<a href='byond://?src=\ref[src];login=1'>刷身份卡</a><hr>"
 	else
-		t1 += "<a href='byond://?src=\ref[src];logout=1'>Block</a><hr>"
+		t1 += "<a href='byond://?src=\ref[src];logout=1'>锁定</a><hr>"
 
-		t1 += "Access requirement is set to "
-		t1 += one_access ? "<a style='color: green' href='byond://?src=\ref[src];one_access=1'>ONE</a><hr>" : "<a style='color: red' href='byond://?src=\ref[src];one_access=1'>ALL</a><hr>"
+		t1 += "权限要求设为："
+		t1 += one_access ? "<a style='color: green' href='byond://?src=\ref[src];one_access=1'>任意一项</a><hr>" : "<a style='color: red' href='byond://?src=\ref[src];one_access=1'>全部满足</a><hr>"
 
-		t1 += conf_access == null ? "<font color=red>All</font><br>" : "<a href='byond://?src=\ref[src];access=all'>All</a><br>"
+		t1 += conf_access == null ? "<font color=red>全部</font><br>" : "<a href='byond://?src=\ref[src];access=all'>全部</a><br>"
 
 		t1 += "<br>"
 
@@ -55,9 +55,9 @@
 			else
 				t1 += "<a style='color: red' href='byond://?src=\ref[src];access=[acc]'>[aname]</a><br>"
 
-	t1 += text("<p><a href='byond://?src=\ref[];close=1'>Close</a></p>\n", src)
+	t1 += text("<p><a href='byond://?src=\ref[];close=1'>关闭</a></p>\n", src)
 
-	show_browser(user, t1, "Access Control", "airlock_electronics")
+	show_browser(user, t1, "门禁控制", "airlock_electronics")
 	onclose(user, "airlock_electronics")
 
 
@@ -112,5 +112,5 @@
 
 
 /obj/item/circuitboard/airlock/secure
-	name = "secure airlock electronics"
-	desc = "designed to be somewhat more resistant to hacking than standard electronics."
+	name = "安全型气闸门电子组件"
+	desc = "经过特殊设计，比标准电子组件更能抵抗入侵。"

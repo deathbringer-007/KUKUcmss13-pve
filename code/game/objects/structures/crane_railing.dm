@@ -1,6 +1,6 @@
 /obj/structure/roof/cargocrane_tracks
-	name = "cargo crane track"
-	desc = "A track for a cargo crane to move along."
+	name = "货运起重机轨道"
+	desc = "供货运起重机移动的轨道。"
 	icon = 'icons/obj/structures/props/cargocrane_tracks.dmi'
 	icon_state = "holder"
 	mouse_opacity = FALSE

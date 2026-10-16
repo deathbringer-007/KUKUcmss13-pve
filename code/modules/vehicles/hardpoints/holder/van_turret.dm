@@ -1,7 +1,7 @@
 
 //UPP VAN TURRET
 /obj/item/hardpoint/holder/tank_turret/uppvanturret
-	name = "\improper Van Turret"
+	name = "\improper 厢式车炮塔"
 	desc = null
 	icon = 'icons/obj/vehicles/uppvan.dmi'
 	icon_state = "van_turret_0"
@@ -36,7 +36,7 @@
 	var/list/data = list()
 
 	data += list(list( // turret smokescreen data
-		"name" = "VT/CZ Turret Smoke Screen",
+		"name" = "VT/CZ炮塔烟幕系统",
 		"health" = health <= 0 ? null : floor(get_integrity_percent()),
 		"uses_ammo" = TRUE,
 		"current_rounds" = ammo.current_rounds / 5,

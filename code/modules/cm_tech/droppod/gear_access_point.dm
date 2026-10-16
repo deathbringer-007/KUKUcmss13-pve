@@ -1,6 +1,6 @@
 /obj/structure/techpod_vendor
-	name = "ColMarTech Techpod Vendor"
-	desc = "An automated gear rack hooked up to a tech gear storage."
+	name = "ColMarTech科技空投装备配发机"
+	desc = "连接科技装备仓库的自动装备架。"
 	icon = 'icons/obj/structures/machinery/vending.dmi'
 	icon_state = "intel_gear"
 	anchored = TRUE
@@ -21,7 +21,7 @@
 		return
 
 	if(!ishuman(user) || !get_access_permission(user))
-		to_chat(user, SPAN_WARNING("Access denied."))
+		to_chat(user, SPAN_WARNING("拒绝访问。"))
 		return
 
 	var/list/list_of_techs = list()
@@ -35,10 +35,10 @@
 	*/
 
 	if(!length(list_of_techs))
-		to_chat(user, SPAN_WARNING("No tech gear is available at the moment!"))
+		to_chat(user, SPAN_WARNING("目前没有可领取的科技装备！"))
 		return
 
-	var/user_input = tgui_input_list(user, "Choose a tech to retrieve an item from.", name, list_of_techs)
+	var/user_input = tgui_input_list(user, "选择要领取装备的科技。", name, list_of_techs)
 	if(!user_input)
 		return
 

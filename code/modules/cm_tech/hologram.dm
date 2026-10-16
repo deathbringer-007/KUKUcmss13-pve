@@ -1,8 +1,8 @@
 GLOBAL_LIST_EMPTY_TYPED(hologram_list, /mob/hologram)
 
 /mob/hologram
-	name = "Hologram"
-	desc = "It seems to be a visual projection of someone" //jinkies!
+	name = "全息影像"
+	desc = "看起来是某个人的视觉投影。" //jinkies!
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "hologram"
 	blinded = FALSE
@@ -95,7 +95,7 @@ GLOBAL_LIST_EMPTY_TYPED(hologram_list, /mob/hologram)
 	return ..()
 
 /datum/action/leave_hologram
-	name = "Leave"
+	name = "离开"
 	action_icon_state = "hologram_exit"
 
 	var/mob/hologram/linked_hologram

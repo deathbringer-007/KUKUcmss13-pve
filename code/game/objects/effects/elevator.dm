@@ -1,6 +1,6 @@
 /obj/effect/elevator
-	name = "\proper empty space"
-	desc = "There seems to be an awful lot of machinery down below..."
+	name = "\proper 空洞"
+	desc = "下方似乎有大量机械设备……"
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "supply_elevator_lowered"
 	unacidable = TRUE

@@ -3,8 +3,8 @@
 	flags_atom = FPRINT|QUICK_DRAWABLE|NOBLOODY
 
 /obj/item/weapon/energy/axe
-	name = "energy axe"
-	desc = "An energised battle axe."
+	name = "能量斧"
+	desc = "一把能量战斧。"
 	icon_state = "axe0"
 	force = MELEE_FORCE_VERY_STRONG
 	throwforce = MELEE_FORCE_NORMAL
@@ -14,7 +14,7 @@
 	flags_atom = FPRINT|CONDUCT|QUICK_DRAWABLE|NOBLOODY
 	flags_item = NOSHIELD
 
-	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
+	attack_verb = list("攻击", "砍击", "劈开", "撕裂", "割伤")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 
@@ -23,13 +23,13 @@
 
 	active = !active
 	if(active)
-		to_chat(user, SPAN_NOTICE(" The axe is now energised."))
+		to_chat(user, SPAN_NOTICE("能量斧已启动。"))
 		force = 150
 		icon_state = "axe1"
 		w_class = SIZE_HUGE
 		heat_source = 3500
 	else
-		to_chat(user, SPAN_NOTICE(" The axe can now be concealed."))
+		to_chat(user, SPAN_NOTICE("现在可以把斧头藏起来了。"))
 		force = 40
 		icon_state = "axe0"
 		w_class = SIZE_HUGE
@@ -39,8 +39,8 @@
 
 
 /obj/item/weapon/energy/sword
-	name = "energy sword"
-	desc = "May the force be within you."
+	name = "能量剑"
+	desc = "愿原力与你同在。"
 	icon_state = "sword0"
 	force = 3
 	throwforce = 5
@@ -50,7 +50,7 @@
 	flags_atom = FPRINT|QUICK_DRAWABLE|NOBLOODY
 	flags_item = NOSHIELD
 
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("攻击", "劈砍", "刺击", "切割", "撕裂", "撕扯", "切碎", "割伤")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 	var/base_sword_icon = "sword"
@@ -78,7 +78,7 @@
 			icon_state = "sword[sword_color]"
 		w_class = SIZE_LARGE
 		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
-		to_chat(user, SPAN_NOTICE(" [src] is now active."))
+		to_chat(user, SPAN_NOTICE("[src]已启动。"))
 
 	else
 		force = 3
@@ -86,7 +86,7 @@
 		icon_state = "[base_sword_icon]0"
 		w_class = SIZE_SMALL
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
-		to_chat(user, SPAN_NOTICE(" [src] can now be concealed."))
+		to_chat(user, SPAN_NOTICE("现在可以把[src]藏起来了。"))
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
@@ -98,8 +98,8 @@
 
 
 /obj/item/weapon/energy/sword/pirate
-	name = "energy cutlass"
-	desc = "Arrrr matey."
+	name = "能量弯刀"
+	desc = "哟吼，伙计！"
 	icon_state = "cutlass0"
 	base_sword_icon = "cutlass"
 

@@ -1,6 +1,6 @@
 /obj/item/ammo_magazine/hardpoint/firing_port_weapon
-	name = "M56 FPW Magazine"
-	desc = "A magazine for an M56 Firing Port Weapon. Supports IFF."
+	name = "M56射孔武器弹箱"
+	desc = "M56射孔武器用弹箱。支持敌我识别。"
 	caliber = "10x28mm" //Correlates to smartguns
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/uscm.dmi'
 	icon_state = "cupola_1"

@@ -1,6 +1,6 @@
 /obj/item/device/vulture_spotter_scope
-	name = "\improper M707 spotter scope"
-	desc = "A scope that, when mounted on a tripod, allows a user to assist the M707's firer in target acquisition."
+	name = "\improper M707 观测镜"
+	desc = "安装在三脚架上后，可用于协助 M707 射手搜索和确认目标的观测镜。"
 	icon_state = "vulture_scope"
 	item_state = "electronic"
 	flags_atom = FPRINT|CONDUCT
@@ -16,13 +16,13 @@
 
 /obj/item/device/vulture_spotter_scope/attack_self(mob/user)
 	. = ..()
-	to_chat(user, SPAN_WARNING("[src] needs to be mounted on a tripod to use!"))
+	to_chat(user, SPAN_WARNING("[src]必须安装在三脚架上才能使用！"))
 
 /obj/item/device/vulture_spotter_scope/skillless
 
 /obj/item/device/vulture_spotter_tripod
-	name = "\improper M707 spotter tripod"
-	desc = "A tripod, meant for stabilizing a spotting scope for the M707 anti-materiel rifle."
+	name = "\improper M707 观测镜三脚架"
+	desc = "用于稳定 M707 反器材步枪配套观测镜的三脚架。"
 	icon_state = "vulture_tripod"
 	item_state = "electronic"
 	flags_atom = FPRINT|CONDUCT
@@ -31,11 +31,11 @@
 
 /obj/item/device/vulture_spotter_tripod/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_NOTICE("[src] can be set down by <b>using in-hand</b>.")
+	. += SPAN_NOTICE("<b>在手中使用</b>即可架设[src]。")
 
 /obj/item/device/vulture_spotter_tripod/attack_self(mob/user)
 	. = ..()
-	user.balloon_alert(user, "setting up tripod...")
+	user.balloon_alert(user, "正在架设三脚架……")
 	if(!do_after(user, 1.5 SECONDS, target = user))
 		return
 

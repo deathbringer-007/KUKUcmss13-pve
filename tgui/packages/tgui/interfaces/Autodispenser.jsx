@@ -40,34 +40,34 @@ export const Autodispenser = () => {
   const memoryEmpty = memory === 'Empty';
   const boxEmpty = box === 'Empty';
 
-  let statusmessage = 'ERROR';
+  let statusmessage = '错误';
 
   switch (status) {
     case 0:
-      statusmessage = 'IDLE';
+      statusmessage = '待机';
       break;
     case 1:
-      statusmessage = 'RUNNING';
+      statusmessage = '运行中';
       break;
     case 2:
-      statusmessage = 'FINISHED';
+      statusmessage = '已完成';
       break;
   }
 
-  let outputmessage = 'ERROR';
+  let outputmessage = '错误';
   let outputicon;
 
   switch (outputmode) {
     case 0:
-      outputmessage = 'CONTAINER';
+      outputmessage = '容器';
       outputicon = 'flask';
       break;
     case 1:
-      outputmessage = 'SMARTFRIDGE';
+      outputmessage = '智能冰箱';
       outputicon = 'box';
       break;
     case 2:
-      outputmessage = 'CENTRIFUGE';
+      outputmessage = '离心机';
       outputicon = 'industry';
       break;
   }
@@ -77,7 +77,7 @@ export const Autodispenser = () => {
       <Window.Content scrollable>
         <Flex direction="row">
           <Flex.Item grow>
-            <Section title="Turing dispenser controls">
+            <Section title="图灵自动配药机控制">
               <ProgressBar
                 width="100%"
                 value={energyPct}
@@ -87,11 +87,11 @@ export const Autodispenser = () => {
                   good: [0.33, Infinity],
                 }}
               >
-                <Box textAlign="right">Energy: {energy}%</Box>
+                <Box textAlign="right">能量：{energy}%</Box>
               </ProgressBar>
               <Box height="5px" />
               <NoticeBox color={error ? 'red' : null}>
-                Status: {statusmessage} {error ? error : null}
+                状态：{statusmessage} {error ? error : null}
               </NoticeBox>
               <Button.Confirm
                 icon="trash"
@@ -99,18 +99,18 @@ export const Autodispenser = () => {
                 disabled={memoryEmpty}
                 onClick={() => act('clearmemory')}
               >
-                Clear memory
+                清空存储程序
               </Button.Confirm>
               <Button
                 icon="play"
                 tooltip={
                   memoryEmpty
                     ? !boxEmpty
-                      ? 'This will run from the box.'
+                      ? '将按试管盒中的程序运行。'
                       : !output_container && outputmode === 0
-                        ? 'No output beaker loaded!'
-                        : 'No box loaded or memory saved!'
-                    : 'This will run from memory.'
+                        ? '未装入接收烧杯！'
+                        : '未装入试管盒，也未保存程序！'
+                    : '将运行已保存的程序。'
                 }
                 fluid
                 disabled={
@@ -119,23 +119,23 @@ export const Autodispenser = () => {
                 }
                 onClick={() => act('runprogram')}
               >
-                Run program
+                运行程序
               </Button>
               <Box height="5px" />
               <NoticeBox color={input_container ? null : 'red'}>
                 {input_container
-                  ? 'Input box: ' + input_container
-                  : 'No input box loaded!'}
+                  ? '输入试管盒：' + input_container
+                  : '未装入输入试管盒！'}
               </NoticeBox>
               {(!memoryEmpty && (
                 <Button.Confirm
-                  tooltip="This will overwrite the current saved box"
+                  tooltip="将覆盖当前保存的试管盒程序"
                   icon="floppy-disk"
                   fluid
                   disabled={!input_container}
                   onClick={() => act('saveprogram')}
                 >
-                  Save box to memory
+                  保存试管盒程序
                 </Button.Confirm>
               )) || (
                 <Button
@@ -144,7 +144,7 @@ export const Autodispenser = () => {
                   disabled={!input_container}
                   onClick={() => act('saveprogram')}
                 >
-                  Save box to memory
+                  保存试管盒程序
                 </Button>
               )}
               <Button
@@ -153,32 +153,32 @@ export const Autodispenser = () => {
                 disabled={!input_container}
                 onClick={() => act('ejectI')}
               >
-                Eject box
+                取出试管盒
               </Button>
               <Box height="5px" />
               {outputmode === 0 && (
                 <NoticeBox color={output_container ? null : 'red'}>
                   {output_container
-                    ? 'Output: ' + output_container + '.'
-                    : 'No output beaker loaded!'}
+                    ? '接收容器：' + output_container + '。'
+                    : '未装入接收烧杯！'}
                 </NoticeBox>
               )}
               {outputmode === 1 && (
                 <NoticeBox>
                   {networked_storage && smartlink
-                    ? 'Bottling to networked smartfridge.'
-                    : 'Bottling to smartfridge.'}
+                    ? '装瓶后送入联网智能冰箱。'
+                    : '装瓶后送入智能冰箱。'}
                 </NoticeBox>
               )}
               {outputmode === 2 && (
                 <NoticeBox>
                   {status === 2
-                    ? 'Output: Internal buffer:' +
+                    ? '输出至内部暂存槽：' +
                       buffervolume +
                       'u / ' +
                       buffermax +
                       'u.'
-                    : 'Awaiting centrifuge.'}
+                    : '等待离心机。'}
                 </NoticeBox>
               )}
               {output_container && outputmode === 0 && (
@@ -189,7 +189,7 @@ export const Autodispenser = () => {
                     color={output_color ? output_color : 'blue'}
                   >
                     <Box textAlign="right">
-                      Beaker vol: {output_totalvol}u/{output_maxvol}u
+                      烧杯容量：{output_totalvol}u/{output_maxvol}u
                     </Box>
                   </ProgressBar>
                   <Box height="5px" />
@@ -199,7 +199,7 @@ export const Autodispenser = () => {
                 <Button.Confirm
                   tooltip={
                     output_container
-                      ? 'This will flush ' + output_container + "'s contents."
+                      ? '这将清空' + output_container + '中的内容物。'
                       : null
                   }
                   icon="trash"
@@ -207,7 +207,7 @@ export const Autodispenser = () => {
                   disabled={!output_container}
                   onClick={() => act('dispose')}
                 >
-                  Flush beaker
+                  清空烧杯
                 </Button.Confirm>
               )}
               {(output_container || outputmode === 0) && (
@@ -217,13 +217,13 @@ export const Autodispenser = () => {
                   disabled={!output_container}
                   onClick={() => act('ejectO')}
                 >
-                  Eject beaker
+                  取出烧杯
                 </Button>
               )}
             </Section>
-            <Section title="Settings">
+            <Section title="设置">
               <LabeledList>
-                <LabeledList.Item label="Program multiplier">
+                <LabeledList.Item label="配药倍数">
                   <NumberInput
                     width="4em"
                     step={0.1}
@@ -235,7 +235,7 @@ export const Autodispenser = () => {
                     }
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="Program cycles">
+                <LabeledList.Item label="执行次数">
                   <NumberInput
                     width="4em"
                     step={1}
@@ -254,21 +254,21 @@ export const Autodispenser = () => {
                 fluid
                 onClick={() => act('toggleauto')}
               >
-                {'Autorun: ' + (automode ? 'enabled' : 'disabled')}
+                {'自动运行：' + (automode ? '已启用' : '已禁用')}
               </Button>
               <Button
                 icon={smartlink ? 'link' : 'link-slash'}
                 fluid
                 onClick={() => act('togglesmart')}
               >
-                {'Smartlink: ' + (smartlink ? 'enabled' : 'disabled')}
+                {'智能联动：' + (smartlink ? '已启用' : '已禁用')}
               </Button>
               <Button
                 icon={outputicon}
                 fluid
                 onClick={() => act('toggleoutput')}
               >
-                {'Outputting to: ' + outputmessage}
+                {'输出至：' + outputmessage}
               </Button>
             </Section>
           </Flex.Item>
@@ -276,7 +276,7 @@ export const Autodispenser = () => {
             <Box width="5px" />
           </Flex.Item>
           <Flex.Item grow>
-            <Section title="Memory Program">
+            <Section title="已保存的程序">
               {(!memoryEmpty && (
                 <Flex direction="column">
                   {Object.keys(memory).map((entry) => (
@@ -287,9 +287,9 @@ export const Autodispenser = () => {
                     </Flex.Item>
                   ))}
                 </Flex>
-              )) || <NoticeBox danger>Nothing saved to memory!</NoticeBox>}
+              )) || <NoticeBox danger>尚未保存程序！</NoticeBox>}
             </Section>
-            <Section title="Box Program">
+            <Section title="试管盒程序">
               {(!boxEmpty && (
                 <Flex direction="column">
                   {Object.keys(box).map((entry) => (
@@ -300,7 +300,7 @@ export const Autodispenser = () => {
                     </Flex.Item>
                   ))}
                 </Flex>
-              )) || <NoticeBox danger>No box loaded!</NoticeBox>}
+              )) || <NoticeBox danger>未装入试管盒！</NoticeBox>}
             </Section>
           </Flex.Item>
         </Flex>

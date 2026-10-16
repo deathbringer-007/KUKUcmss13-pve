@@ -1,8 +1,8 @@
 /obj/structure/droppod/tech
-	name = "\improper USCM droppod"
+	name = "\improper USCM空投舱"
 	var/time_until_return = 2 MINUTES
 
-/obj/structure/droppod/tech/Initialize(mapload, contents_name = "Empty")
+/obj/structure/droppod/tech/Initialize(mapload, contents_name = "空")
 	. = ..()
 	name += " ([contents_name])"
 

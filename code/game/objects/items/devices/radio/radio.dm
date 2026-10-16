@@ -1,6 +1,6 @@
 /obj/item/device/radio
 	icon = 'icons/obj/items/radio.dmi'
-	name = "shortwave radio"
+	name = "短波无线电"
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
@@ -93,7 +93,7 @@
 /obj/item/device/radio/tgui_interact(mob/user, datum/tgui/ui, datum/ui_state/state)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "Radio", "Radio")
+		ui = new(user, src, "Radio", "无线电")
 		ui.open()
 
 /obj/item/device/radio/ui_data(mob/user)
@@ -175,9 +175,9 @@
 		return ""
 	return {"
 			<hr>
-			Green Wire: <A href='byond://?src=\ref[src];wires=4'>[(wires & 4) ? "Cut" : "Mend"] Wire</A><BR>
-			Red Wire:   <A href='byond://?src=\ref[src];wires=2'>[(wires & 2) ? "Cut" : "Mend"] Wire</A><BR>
-			Blue Wire:  <A href='byond://?src=\ref[src];wires=1'>[(wires & 1) ? "Cut" : "Mend"] Wire</A><BR>
+			绿线：<A href='byond://?src=\ref[src];wires=4'>[(wires & 4) ? "剪断" : "接回"]线路</A><BR>
+			红线：<A href='byond://?src=\ref[src];wires=2'>[(wires & 2) ? "剪断" : "接回"]线路</A><BR>
+			蓝线：<A href='byond://?src=\ref[src];wires=1'>[(wires & 1) ? "剪断" : "接回"]线路</A><BR>
 			"}
 
 
@@ -186,7 +186,7 @@
 	var/channel_key = channel_to_prefix(chan_name)
 	return {"
 			<tr><td><B>[chan_name]</B> [channel_key]</td>
-			<td><A href='byond://?src=\ref[src];ch_name=[chan_name];listen=[!list]'>[list ? "Engaged" : "Disengaged"]</A></td></tr>
+			<td><A href='byond://?src=\ref[src];ch_name=[chan_name];listen=[!list]'>[list ? "已启用" : "未启用"]</A></td></tr>
 			"}
 
 // Interprets the message mode when talking into a radio, possibly returning a connection datum
@@ -206,7 +206,7 @@
 	// If we were to send to a channel we don't have, drop it.
 	return null
 
-/obj/item/device/radio/talk_into(mob/living/M as mob, message, channel, verb = "says", datum/language/speaking = null, listening_device = FALSE)
+/obj/item/device/radio/talk_into(mob/living/M as mob, message, channel, verb = "说", datum/language/speaking = null, listening_device = FALSE)
 	if(!on) return // the device has to be on
 	//  Fix for permacell radios, but kinda eh about actually fixing them.
 	if(!M || !message) return
@@ -322,7 +322,7 @@
 				return null
 	return target_zs
 
-/obj/item/device/radio/hear_talk(mob/M as mob, msg, verb = "says", datum/language/speaking = null)
+/obj/item/device/radio/hear_talk(mob/M as mob, msg, verb = "说", datum/language/speaking = null)
 	if (broadcasting)
 		if(get_dist(src, M) <= canhear_range)
 			talk_into(M, msg,null,verb,speaking)
@@ -397,9 +397,9 @@
 	. = ..()
 	if ((in_range(src, user) || loc == user))
 		if (b_stat)
-			. += SPAN_NOTICE("[src] can be attached and modified!")
+			. += SPAN_NOTICE("[src]可以安装和改装！")
 		else
-			. += SPAN_NOTICE("[src] can not be modified or attached!")
+			. += SPAN_NOTICE("[src]无法改装或安装！")
 
 
 /obj/item/device/radio/attackby(obj/item/W as obj, mob/user as mob)
@@ -409,9 +409,9 @@
 	b_stat = !( b_stat )
 	if(!istype(src, /obj/item/device/radio/beacon))
 		if (b_stat)
-			user.show_message(SPAN_NOTICE("The radio can now be attached and modified!"))
+			user.show_message(SPAN_NOTICE("现在可以安装和改装无线电了！"))
 		else
-			user.show_message(SPAN_NOTICE("The radio can no longer be modified or attached!"))
+			user.show_message(SPAN_NOTICE("无线电现在无法改装或安装！"))
 		updateDialog()
 			//Foreach goto(83)
 		add_fingerprint(user)

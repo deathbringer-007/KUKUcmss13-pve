@@ -64,17 +64,17 @@
 
 	var/turf/T = src.loc
 	if(level == 1 && isturf(T) && T.intact_tile)
-		to_chat(user, SPAN_WARNING("You must remove the plating first."))
+		to_chat(user, SPAN_WARNING("你必须先拆掉地板镀层。"))
 		return
 
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-	user.visible_message(SPAN_NOTICE("[user] begins unfastening [src]."), SPAN_NOTICE("You begin unfastening [src]."))
+	user.visible_message(SPAN_NOTICE("[user]开始松开[src]的固定件。"), SPAN_NOTICE("你开始松开[src]的固定件。"))
 	if(!do_after(user, 40 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		return
 
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-	user.visible_message(SPAN_NOTICE("[user] unfastens [src]."),
-	SPAN_NOTICE("You unfasten [src]."))
+	user.visible_message(SPAN_NOTICE("[user]松开了[src]的固定件。"),
+	SPAN_NOTICE("你松开了[src]的固定件。"))
 	new /obj/item/pipe(loc, null, null, src)
 	qdel(src)
 
@@ -118,13 +118,13 @@
 		if(istype(src, /obj/structure/pipes/vents))
 			var/obj/structure/pipes/vents/V = src
 			if(V.welded)
-				to_chat(user, SPAN_WARNING("This vent is closed off, you cannot climb through it."))
+				to_chat(user, SPAN_WARNING("这个通风口已被封住，你无法爬过去。"))
 				return
 			var/obj/effect/alien/weeds/W = locate(/obj/effect/alien/weeds) in V.loc
 			if(W)
 				var/mob/living/carbon/xenomorph/X = user
 				if(!istype(X) || X.hivenumber != W.linked_hive.hivenumber)
-					to_chat(user, SPAN_WARNING("The weeds are blocking the exit of this vent"))
+					to_chat(user, SPAN_WARNING("菌毯堵住了这个通风口的出口。"))
 					return
 
 		if(ventcrawl_message_busy > world.time)
@@ -133,8 +133,8 @@
 		ventcrawl_message_busy = world.time + 20
 		playsound(src, pick('sound/effects/alien_ventcrawl1.ogg', 'sound/effects/alien_ventcrawl2.ogg'), 25, 1)
 		var/turf/alert_turf = get_turf(src) //Pipe segments aren't guaranteed to be visible
-		alert_turf.visible_message(SPAN_HIGHDANGER("You hear something squeezing through the ducts."))
-		to_chat(user, SPAN_NOTICE("You begin to climb out of [src]"))
+		alert_turf.visible_message(SPAN_HIGHDANGER("你听到有东西正从管道里挤过。"))
+		to_chat(user, SPAN_NOTICE("你开始从[src]中爬出。"))
 		animate_ventcrawl()
 		user.remove_specific_pipe_image(src)
 		if(!do_after(user, 20, INTERRUPT_NO_NEEDHAND))
@@ -144,7 +144,7 @@
 		animate_ventcrawl_reset()
 		user.remove_ventcrawl()
 		user.forceMove(src.loc)
-		user.visible_message(SPAN_HIGHDANGER("[user] climbs out of [src]."), SPAN_NOTICE("You climb out of [src]."))
+		user.visible_message(SPAN_HIGHDANGER("[user]从[src]中爬了出来。"), SPAN_NOTICE("你从[src]中爬了出来。"))
 		playsound(user, pick('sound/effects/alien_ventpass1.ogg', 'sound/effects/alien_ventpass2.ogg'), 35, 1)
 
 		return
@@ -209,7 +209,7 @@
 	new /obj/effect/warning/explosive(position, time_till)
 	playsound(src, 'sound/effects/pipe_hissing.ogg', vol = 40)
 	addtimer(CALLBACK(src, PROC_REF(kablooie)), time_till)
-	visible_message(SPAN_HIGHDANGER("[src] begins hissing violently!"))
+	visible_message(SPAN_HIGHDANGER("[src]开始发出刺耳的嘶嘶声！"))
 
 /**
  * Makes the pipe go boom.

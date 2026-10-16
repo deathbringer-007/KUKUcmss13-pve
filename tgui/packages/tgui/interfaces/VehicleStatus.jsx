@@ -39,27 +39,27 @@ export const VehicleStatus = (props) => {
                 bad: [-Infinity, 0.2],
               }}
             >
-              Hull integrity: {integrity}%
+              车体完整度： {integrity}%
             </ProgressBar>
           ) : (
-            <NoticeBox danger>Hull destroyed!</NoticeBox>
+            <NoticeBox danger>车体已被摧毁！</NoticeBox>
           )}
           <Box height="5px" />
           <NoticeBox info={door_locked ? 0 : 1} danger={door_locked ? 1 : 0}>
-            {door_locked ? 'Door locks: enabled.' : 'Door locks: disabled.'}
+            {door_locked ? '车门已锁定。' : '车门已解锁。'}
           </NoticeBox>
-          <Collapsible title="Current armour resistances">
+          <Collapsible title="当前装甲抗性">
             <ResistanceView />
           </Collapsible>
-          <Collapsible title="Passengers">
+          <Collapsible title="乘员">
             <Box>
-              Total passenger capacity: {total_taken_slots}/
+              乘员总容量： {total_taken_slots}/
               {total_passenger_slots}
             </Box>
             <PassengersView />
           </Collapsible>
         </Section>
-        <Section title="Hardpoints">
+        <Section title="挂载模块">
           <HardpointsView />
         </Section>
       </Window.Content>
@@ -73,7 +73,15 @@ const ResistanceView = (props) => {
   return resistance_data.map((resistance, index) => (
     <Fragment key={index}>
       <Box>
-        {resistance.name}: {resistance.pct * 100}%
+        {
+          {
+            Bio: '酸液',
+            Slash: '劈砍',
+            Bullet: '弹丸',
+            Expl: '爆炸',
+            Blunt: '钝击',
+          }[resistance.name] || resistance.name
+        }: {resistance.pct * 100}%
       </Box>
       <Box width="3px" />
     </Fragment>
@@ -97,10 +105,10 @@ const HardpointsView = (props) => {
             bad: [-Infinity, 0.2],
           }}
         >
-          Hardpoint integrity: {hardpoint.health}%
+          模块完整度： {hardpoint.health}%
         </ProgressBar>
       ) : (
-        <NoticeBox danger>Hardpoint destroyed!</NoticeBox>
+        <NoticeBox danger>模块已被摧毁！</NoticeBox>
       )}
       <Box height="3px" />
       {hardpoint.uses_ammo ? (
@@ -109,7 +117,7 @@ const HardpointsView = (props) => {
             value={hardpoint.current_rounds / hardpoint.max_rounds}
             width={hardpoint.fpw ? '100%' : '49%'}
           >
-            Ammo: {hardpoint.current_rounds} / {hardpoint.max_rounds}
+            弹药： {hardpoint.current_rounds} / {hardpoint.max_rounds}
           </ProgressBar>
           {hardpoint.fpw ? null : (
             <>
@@ -118,7 +126,7 @@ const HardpointsView = (props) => {
                 value={hardpoint.mags / hardpoint.max_mags}
                 width="49%"
               >
-                Mags: {hardpoint.mags} / {hardpoint.max_mags}
+                弹匣： {hardpoint.mags} / {hardpoint.max_mags}
               </ProgressBar>
             </>
           )}
@@ -134,7 +142,16 @@ const PassengersView = (props) => {
   return passenger_categories_data.map((cat, index) => (
     <Fragment key={index}>
       <Box>
-        {cat.name}: {cat.taken}/{cat.total}
+        {
+          {
+            Crewmen: '车组成员',
+            'Synthetic Unit': '合成人',
+            'CIC Officer': '作战情报中心军官',
+            'Intelligence Officer': '情报官',
+            'Medical Support': '医疗支援人员',
+            'Command Staff': '指挥人员',
+          }[cat.name] || cat.name
+        }: {cat.taken}/{cat.total}
       </Box>
       <Box width="3px" />
     </Fragment>

@@ -1,6 +1,6 @@
 /obj/item/weapon/baton
-	name = "stunbaton"
-	desc = "A stun baton for incapacitating people with."
+	name = "电击警棍"
+	desc = "用于使人失去行动能力的电击警棍。"
 	icon_state = "stunbaton"
 	item_state = "baton"
 	flags_equip_slot = SLOT_WAIST
@@ -10,7 +10,7 @@
 	edge = FALSE
 	w_class = SIZE_MEDIUM
 
-	attack_verb = list("beaten")
+	attack_verb = list("殴打")
 	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_SENIOR, ACCESS_WY_GENERAL, ACCESS_WY_SECURITY, ACCESS_CIVILIAN_BRIG)
 	var/stunforce = 50
 	var/status = FALSE //whether the thing is on or not
@@ -19,7 +19,7 @@
 	var/has_user_lock = TRUE //whether the baton prevents people without correct access from using it.
 
 /obj/item/weapon/baton/suicide_act(mob/user)
-	user.visible_message(SPAN_SUICIDE("[user] is putting the live [name] in \his mouth! It looks like \he's trying to commit suicide."))
+	user.visible_message(SPAN_SUICIDE("[user]正把通电的[name]塞进自己嘴里！看起来是想自杀。"))
 	return (FIRELOSS)
 
 /obj/item/weapon/baton/Initialize(mapload, ...)
@@ -54,9 +54,9 @@
 /obj/item/weapon/baton/get_examine_text(mob/user)
 	. = ..()
 	if(bcell)
-		. += SPAN_NOTICE("The baton is [floor(bcell.percent())]% charged.")
+		. += SPAN_NOTICE("警棍剩余电量为[floor(bcell.percent())]%。")
 	else
-		. += SPAN_WARNING("The baton does not have a power source installed.")
+		. += SPAN_WARNING("警棍没有安装电源。")
 
 /obj/item/weapon/baton/attackby(obj/item/W, mob/user)
 
@@ -65,17 +65,17 @@
 			if(user.drop_held_item())
 				W.forceMove(src)
 				bcell = W
-				to_chat(user, SPAN_NOTICE("You install a cell in [src]."))
+				to_chat(user, SPAN_NOTICE("你给[src]装上了电池。"))
 				update_icon()
 		else
-			to_chat(user, SPAN_NOTICE("[src] already has a cell."))
+			to_chat(user, SPAN_NOTICE("[src]已经装有电池了。"))
 
 	else if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
 		if(bcell)
 			bcell.update_icon()
 			bcell.forceMove(get_turf(src.loc))
 			bcell = null
-			to_chat(user, SPAN_NOTICE("You remove the cell from [src]."))
+			to_chat(user, SPAN_NOTICE("你取出了[src]里的电池。"))
 			status = 0
 			update_icon()
 			return
@@ -85,19 +85,19 @@
 	..()
 
 	if(has_user_lock && !skillcheck(user, SKILL_POLICE, SKILL_POLICE_SKILLED))
-		to_chat(user, SPAN_WARNING("You don't seem to know how to use [src]..."))
+		to_chat(user, SPAN_WARNING("你似乎不知道该怎么使用[src]……"))
 		return
 	if(bcell && bcell.charge > hitcost)
 		status = !status
-		to_chat(user, SPAN_NOTICE("[src] is now [status ? "on" : "off"]."))
+		to_chat(user, SPAN_NOTICE("[src]现已[status ? "开启" : "关闭"]。"))
 		playsound(loc, "sparks", 25, 1, 6)
 		update_icon()
 	else
 		status = 0
 		if(!bcell)
-			to_chat(user, SPAN_WARNING("[src] does not have a power source!"))
+			to_chat(user, SPAN_WARNING("[src]没有电源！"))
 		else
-			to_chat(user, SPAN_WARNING("[src] is out of charge."))
+			to_chat(user, SPAN_WARNING("[src]没电了。"))
 	add_fingerprint(user)
 
 
@@ -106,12 +106,12 @@
 	var/mob/living/carbon/human/human_target = target
 	if(has_user_lock && !skillcheck(real_user, SKILL_POLICE, SKILL_POLICE_SKILLED))
 		if(prob(70) && status)
-			to_chat(real_user, SPAN_WARNING("You hit yourself with the [src] during the struggle..."))
+			to_chat(real_user, SPAN_WARNING("混乱中，你用[src]打到了自己……"))
 			real_user.drop_held_item()
 			real_user.apply_effect(1,STUN)
 			human_target = real_user
 		if(prob(20) && !status) //a relatively reliable melee weapon when turned off.
-			to_chat(real_user, SPAN_WARNING("You grab the [src] incorrectly twisting your hand in the process."))
+			to_chat(real_user, SPAN_WARNING("你握持[src]的姿势不对，扭伤了手。"))
 			real_user.drop_held_item()
 			real_user.apply_effect(1,STUN)
 			real_user.apply_damage(force, BRUTE, pick("l_hand","r_hand"), no_limb_loss = TRUE)
@@ -129,23 +129,23 @@
 		if (ishuman(human_target))
 
 			if(!target_zone) //shouldn't ever happen
-				human_target.visible_message(SPAN_DANGER("<B>[user] misses [human_target] with \the [src]!"))
+				human_target.visible_message(SPAN_DANGER("<B>[user]用[src]攻击[human_target]，却打空了！"))
 				return FALSE
 
 			var/mob/living/carbon/human/H = human_target
 			var/obj/limb/affecting = H.get_limb(target_zone)
 			if (affecting)
 				if(!status)
-					human_target.visible_message(SPAN_WARNING("[human_target] has been prodded in the [affecting.display_name] with [src] by [user]. Luckily it was off."))
+					human_target.visible_message(SPAN_WARNING("[user]用[src]戳中了[human_target]的[affecting.display_name]。幸好警棍没通电。"))
 					return TRUE
 				else
-					H.visible_message(SPAN_DANGER("[human_target] has been prodded in the [affecting.display_name] with [src] by [user]!"))
+					H.visible_message(SPAN_DANGER("[user]用[src]戳中了[human_target]的[affecting.display_name]！"))
 		else
 			if(!status)
-				human_target.visible_message(SPAN_WARNING("[human_target] has been prodded with [src] by [user]. Luckily it was off."))
+				human_target.visible_message(SPAN_WARNING("[user]用[src]戳中了[human_target]。幸好警棍没通电。"))
 				return TRUE
 			else
-				human_target.visible_message(SPAN_DANGER("[human_target] has been prodded with [src] by [user]!"))
+				human_target.visible_message(SPAN_DANGER("[user]用[src]戳中了[human_target]！"))
 
 	//stun effects
 
@@ -177,14 +177,14 @@
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/weapon/baton/cattleprod
-	name = "stunprod"
-	desc = "An improvised stun baton."
+	name = "简易电击棒"
+	desc = "一根临时拼装的电击棒。"
 	icon_state = "stunprod"
 	item_state = "prod"
 	force = 3
 	throwforce = 5
 	stunforce = 40
 	hitcost = 2500
-	attack_verb = list("poked")
+	attack_verb = list("戳刺")
 	flags_equip_slot = NO_FLAGS
 	has_user_lock = FALSE

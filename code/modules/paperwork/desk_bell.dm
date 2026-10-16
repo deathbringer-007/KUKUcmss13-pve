@@ -1,8 +1,8 @@
 // A receptionist's bell
 
 /obj/item/desk_bell
-	name = "desk bell"
-	desc = "The cornerstone of any customer service job. You feel an unending urge to ring it."
+	name = "桌铃"
+	desc = "客服工作的必备品。你总是忍不住想按响它。"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "desk_bell"
 	w_class = SIZE_SMALL
@@ -26,7 +26,7 @@
 	if(!COOLDOWN_FINISHED(src, ring_cooldown))
 		return FALSE
 	if(!ring_bell(user))
-		to_chat(user, SPAN_NOTICE("[src] is silent. Some idiot broke it."))
+		to_chat(user, SPAN_NOTICE("[src]没有响。某个笨蛋把它弄坏了。"))
 		return FALSE
 	return TRUE
 
@@ -44,9 +44,9 @@
 	//Repair the desk bell if its broken and we're using a screwdriver.
 	if(HAS_TRAIT(item, TRAIT_TOOL_SCREWDRIVER))
 		if(broken_ringer)
-			user.visible_message(SPAN_NOTICE("[user] begins repairing [src]..."), SPAN_NOTICE("You begin repairing [src]..."))
+			user.visible_message(SPAN_NOTICE("[user]开始修理[src]……"), SPAN_NOTICE("你开始修理[src]……"))
 			if(do_after(user, 5 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] repairs [src]."), SPAN_NOTICE("You repair [src]."))
+				user.visible_message(SPAN_NOTICE("[user]修好了[src]。"), SPAN_NOTICE("你修好了[src]。"))
 				playsound(src, 'sound/items/Screwdriver.ogg', 50)
 				broken_ringer = FALSE
 				times_rang = 0
@@ -60,19 +60,19 @@
 	//Wrenching down and unwrenching.
 	if(HAS_TRAIT(item, TRAIT_TOOL_WRENCH))
 		if(user.a_intent == INTENT_HARM)
-			visible_message(SPAN_NOTICE("[user] begins taking apart [src]..."), SPAN_NOTICE("You begin taking apart [src]..."))
+			visible_message(SPAN_NOTICE("[user]开始拆解[src]……"), SPAN_NOTICE("你开始拆解[src]……"))
 			playsound(src, 'sound/items/deconstruct.ogg', 35)
 			if(do_after(user, 5 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC))
-				visible_message(SPAN_NOTICE("[user] takes apart [src]."), SPAN_NOTICE("You take apart [src]."))
+				visible_message(SPAN_NOTICE("[user]拆解了[src]。"), SPAN_NOTICE("你拆解了[src]。"))
 				new /obj/item/stack/sheet/metal(get_turf(src))
 				qdel(src)
 				return TRUE
 		else
-			user.visible_message(SPAN_NOTICE("[user] begins [anchored ? "un" : ""]securing [src]..."), SPAN_NOTICE("You begin [anchored ? "un" : ""]securing [src]..."))
+			user.visible_message(SPAN_NOTICE("[user]开始[anchored ? "松开" : "固定"][src]……"), SPAN_NOTICE("你开始[anchored ? "松开" : "固定"][src]……"))
 			playsound(src, 'sound/items/Ratchet.ogg', 35, TRUE)
 			if(!do_after(user, 2 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC))
 				return FALSE
-			user.visible_message(SPAN_NOTICE("[user] [anchored ? "un" : ""]secures [src]."), SPAN_NOTICE("You [anchored ? "un" : ""]secure [src]."))
+			user.visible_message(SPAN_NOTICE("[user][anchored ? "松开" : "固定"]了[src]。"), SPAN_NOTICE("你[anchored ? "松开" : "固定"]了[src]。"))
 			anchored = !anchored
 			return TRUE
 
@@ -80,7 +80,7 @@
 /// Check if the clapper breaks, and if it does, break it. Chance to break is 1% for every 100 rings of the bell.
 /obj/item/desk_bell/proc/check_clapper(mob/living/user)
 	if(prob(times_rang / 100))
-		to_chat(user, SPAN_NOTICE("You hear [src]'s clapper fall off of its hinge. Nice job hamfist, you broke it."))
+		to_chat(user, SPAN_NOTICE("你听见[src]的铃舌从铰链上掉了下来。真是好手劲，你把它弄坏了。"))
 		broken_ringer = TRUE
 
 /// Ring the bell.
@@ -95,12 +95,12 @@
 	return TRUE
 
 /obj/item/desk_bell/ares
-	name = "AI core reception bell"
-	desc = "The cornerstone of any customer service job. This one is linked to ARES and will notify any active Working Joes upon being rung."
+	name = "AI 核心接待铃"
+	desc = "客服工作的必备品。这只铃连接着 ARES，按响时会通知所有正在工作的工作乔。"
 	ring_cooldown_length = 60 SECONDS // Prevents spam
 
 /obj/item/desk_bell/ares/ring_bell(mob/living/user)
 	if(broken_ringer)
 		return FALSE
-	ares_apollo_talk("Attendence requested at AI Core Reception.")
+	ares_apollo_talk("AI 核心接待处需要工作人员前往。")
 	return ..()

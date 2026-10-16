@@ -2,9 +2,9 @@
 // thermal goggles
 
 /obj/item/clothing/glasses/thermal
-	name = "Optical Thermal Scanner"
+	name = "光学热成像扫描镜"
 	gender = NEUTER
-	desc = "Thermals in the shape of glasses."
+	desc = "眼镜形状的热成像仪。"
 	icon_state = "thermal"
 	item_state = "glasses"
 	toggleable = TRUE
@@ -22,7 +22,7 @@
 	if(blinds_on_emp)
 		if(istype(src.loc, /mob/living/carbon/human))
 			var/mob/living/carbon/human/M = src.loc
-			to_chat(M, SPAN_WARNING("The Optical Thermal Scanner overloads and blinds you!"))
+			to_chat(M, SPAN_WARNING("光学热成像扫描镜过载，闪瞎了你的双眼！"))
 			if(M.glasses == src)
 				M.SetEyeBlind(3)
 				M.EyeBlur(5)
@@ -33,43 +33,43 @@
 
 
 /obj/item/clothing/glasses/thermal/syndi //These are now a traitor item, concealed as mesons. -Pete
-	name = "Optical Meson Scanner"
-	desc = "Used for seeing walls, floors, and stuff through anything."
+	name = "光学介子扫描镜"
+	desc = "用于透过任何障碍查看墙壁、地板等物体。"
 	icon_state = "meson"
 	deactive_state = "degoggles"
 	actions_types = list(/datum/action/item_action/toggle)
 
 /obj/item/clothing/glasses/thermal/syndi/bug_b_gone
-	name = "Bug-B Gone Thermal Goggles"
+	name = "灭虫灵热成像护目镜"
 	gender = PLURAL
-	desc = "For all your bug hunting needs!"
+	desc = "满足你的各种猎虫需求！"
 	icon_state = "rwelding-g"
 	deactive_state = "rwelding-gup"
 
 /obj/item/clothing/glasses/thermal/monocle
-	name = "Thermoncle"
-	desc = "A monocle thermal."
+	name = "热成像单片眼镜"
+	desc = "一副热成像单片眼镜。"
 	icon_state = "thermoncle"
 	flags_atom = null //doesn't protect eyes because it's a monocle, duh
 	toggleable = FALSE
 	flags_armor_protection = 0
 
 /obj/item/clothing/glasses/thermal/eyepatch
-	name = "Optical Thermal Eyepatch"
-	desc = "An eyepatch with built-in thermal optics"
+	name = "光学热成像眼罩"
+	desc = "内置热成像光学系统的眼罩。"
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 	toggleable = FALSE
 	flags_armor_protection = 0
 
 /obj/item/clothing/glasses/thermal/jensen
-	name = "Optical Thermal Implants"
+	name = "光学热成像植入镜"
 	gender = PLURAL
-	desc = "A set of implantable lenses designed to augment your vision"
+	desc = "一组可植入的镜片，用于增强视觉。"
 	icon_state = "thermalimplants"
 	item_state = "syringe_kit"
 	toggleable = FALSE
 
 /obj/item/clothing/glasses/thermal/empproof
-	desc = "Thermals in the shape of glasses. This one is EMP proof."
+	desc = "眼镜形状的热成像仪。这副具有电磁脉冲防护功能。"
 	blinds_on_emp = FALSE

@@ -1,6 +1,6 @@
 /obj/item/explosive/grenade/empgrenade
-	name = "classic emp grenade"
-	desc = "Wide area EMP grenade."
+	name = "经典电磁脉冲手榴弹"
+	desc = "大范围电磁脉冲手榴弹。"
 	icon_state = "emp"
 	item_state = "emp"
 	
@@ -12,8 +12,8 @@
 	return
 
 /obj/item/explosive/grenade/empgrenade/dutch
-	name = "Dutch's Concoction"
-	desc = "Wide area EMP grenade. The label reads, 'CLOAKER DESTROYER - EXTREMELY STRONG'."
+	name = "达奇特调"
+	desc = "大范围电磁脉冲手榴弹。标签上写着：“隐形装置克星——超强效”。"
 	icon_state = "emp"
 	item_state = "emp"
 

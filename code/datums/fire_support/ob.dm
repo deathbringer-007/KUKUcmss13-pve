@@ -1,14 +1,14 @@
 /datum/fire_support/ob
-	name = "HE OB"
+	name = "高爆轨道轰炸"
 	fire_support_firer = FIRESUPPORT_ORBITAL
 	fire_support_type = FIRESUPPORT_TYPE_OB
 	scatter_range = 1
 	cost = 5
 	icon_state = "cruise"
-	initiate_title = "CIC"
-	initiate_chat_message = "TARGET ACQUIRED OB INBOUND."
+	initiate_title = "作战情报中心"
+	initiate_chat_message = "目标已锁定，轨道轰炸即将抵达。"
 	initiate_screen_message = list(
-		"Orbital support request received, HE inbound.",
+		"已收到轨道支援请求，高爆弹即将抵达。",
 		)
 	initiate_sound = 'sound/weapons/gun_orbital_travel.ogg'
 	start_visual = /obj/effect/temp_visual/falling_obj/ob

@@ -1,8 +1,8 @@
 /obj/item/clothing/suit/marine/medium/rto/md
-	name = "\improper XM4 pattern intelligence officer armor"
-	specialty = "XM4 pattern intel"
-	desc = "Tougher than steel, quieter than whispers, the XM4 Intel Armor provides capable protection combined with an experimental integrated motion tracker. It took an R&D team a weekend to develop and costs more than the Chinook Station... probably."
-	desc_lore = "ARMAT Perfection. The XM4 Soldier Awareness System mixes M4-style hard armor and a distributed series of motion sensors clipped onto the breastplate. When connected to any HUD optic, it replicates the effects of an M314 Motion Detector unit, increasing user situational awareness. It is currently undergoing field trials by intelligence operatives."
+	name = "\improper XM4型情报官护甲"
+	specialty = "XM4型情报"
+	desc = "比钢铁更坚固，比低语更安静。XM4情报护甲将可靠的防护与实验型内置运动追踪器融为一体。研发团队花了一个周末完成设计，造价比奇努克空间站还高……大概吧。"
+	desc_lore = "阿玛特，精益求精。XM4士兵态势感知系统将M4式硬质护甲与分布在胸甲上的运动传感器结合起来。连接任意抬头显示光学设备后，即可实现M314运动探测器的功能，提升使用者的环境感知能力。目前正由情报人员进行实地试用。"
 	/// XM4 Integral Motion Detector Ability
 	actions_types = list(/datum/action/item_action/toggle, /datum/action/item_action/intel/toggle_motion_detector)
 	var/motion_detector = FALSE
@@ -29,7 +29,7 @@
 
 /datum/action/item_action/intel/toggle_motion_detector/New(Target, obj/item/holder)
 	. = ..()
-	name = "Toggle Motion Detector"
+	name = "开关运动探测器"
 	action_icon_state = "motion_detector"
 	button.name = name
 	button.overlays.Cut()
@@ -64,7 +64,7 @@
 		proximity.scan()
 
 /obj/item/clothing/suit/marine/medium/rto/md/proc/toggle_motion_detector(mob/user)
-	to_chat(user,SPAN_NOTICE("You [motion_detector? "<B>disable</b>" : "<B>enable</b>"] \the [src]'s motion detector."))
+	to_chat(user,SPAN_NOTICE("你[motion_detector? "<B>关闭</b>" : "<B>开启</b>"]了[src]的运动探测器。"))
 	if(!motion_detector)
 		playsound(loc,'sound/items/detector_turn_on.ogg', 25, 1)
 	else
@@ -81,9 +81,9 @@
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/clothing/suit/marine/medium/rto/md/army
-	name = "\improper Mk2 Personal Body Armor System"
-	desc = "An experimental modification of the personal body armor system, combining capable protection with an integrated motion tracker."
-	desc_lore = "ARMAT Perfection. The Soldier Awareness Program mixes M4-style hard armor and a distributed series of motion sensors clipped onto the breastplate. When connected to any HUD optic, it replicates the effects of an M314 Motion Detector unit, increasing user situational awareness. It is currently undergoing field trials by intelligence operatives and those whose duties detract from constant situational awareness."
+	name = "\improper Mk2个人防弹护甲系统"
+	desc = "个人防弹护甲系统的实验改进型，将可靠的防护与内置运动追踪器结合起来。"
+	desc_lore = "阿玛特，精益求精。士兵态势感知计划将M4式硬质护甲与分布在胸甲上的运动传感器结合起来。连接任意抬头显示光学设备后，即可实现M314运动探测器的功能，提升使用者的环境感知能力。目前正由情报人员以及因工作职责而无法时刻留意周围环境的人员进行实地试用。"
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 
 /obj/item/clothing/suit/marine/medium/rto/md/army/Initialize(mapload, ...)

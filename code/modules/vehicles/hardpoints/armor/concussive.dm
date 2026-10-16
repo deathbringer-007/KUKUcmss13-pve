@@ -1,6 +1,6 @@
 /obj/item/hardpoint/armor/concussive
-	name = "\improper Concussive Armor"
-	desc = "Protects the vehicle from high-impact weapons."
+	name = "\improper 抗冲击装甲"
+	desc = "保护载具抵御高冲击力武器。"
 
 	icon_state = "concussive_armor"
 	disp_icon = "tank"

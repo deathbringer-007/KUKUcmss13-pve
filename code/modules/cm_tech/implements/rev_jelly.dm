@@ -1,7 +1,7 @@
 /obj/item/stack/revival_jelly
-	name = "revival jelly"
-	singular_name = "revival jelly"
-	desc = "A weird jelly, capable of bringing a dead Xenomorph back to life."
+	name = "复生凝胶"
+	singular_name = "复生凝胶"
+	desc = "一种奇怪的凝胶，可以让死去的异形复活。"
 
 	icon_state = "royal_jelly"
 
@@ -17,23 +17,23 @@
 
 /obj/item/stack/revival_jelly/proc/can_revive(required_jelly, mob/living/carbon/xenomorph/X, mob/living/user)
 	if(user.action_busy)
-		to_chat(user, SPAN_WARNING("You're already performing an action!"))
+		to_chat(user, SPAN_WARNING("你已经在执行其他动作了！"))
 		return FALSE
 
 	if(!X.caste.can_be_revived)
-		to_chat(user, SPAN_WARNING("This Xenomorph cannot be revived!"))
+		to_chat(user, SPAN_WARNING("这只异形无法复活！"))
 		return FALSE
 
 	if(X == user)
-		to_chat(user, SPAN_WARNING("You can't use this on yourself!"))
+		to_chat(user, SPAN_WARNING("你不能对自己使用这个！"))
 		return FALSE
 
 	if(!X.stat || !X.caste.can_be_revived)
-		to_chat(user, SPAN_WARNING("You can't use this on [X]!"))
+		to_chat(user, SPAN_WARNING("你不能对[X]使用这个！"))
 		return FALSE
 
 	if(amount < required_jelly)
-		to_chat(user, SPAN_WARNING("There isn't enough of [src] to revive [X]! You require [required_jelly] to do this action."))
+		to_chat(user, SPAN_WARNING("[src]不足，无法复活[X]！此操作需要[required_jelly]份。"))
 		return FALSE
 
 	return TRUE
@@ -47,9 +47,9 @@
 	if(!can_revive(required_jelly, X, user))
 		return
 
-	to_chat(user, SPAN_NOTICE("You start applying [src] onto [X]."))
+	to_chat(user, SPAN_NOTICE("你开始将[src]涂在[X]身上。"))
 	if(!do_after(user, time_to_take, INTERRUPT_ALL, BUSY_ICON_FRIENDLY, X, INTERRUPT_MOVED, BUSY_ICON_MEDICAL))
-		to_chat(user, SPAN_WARNING("You stop applying [src] onto [X]."))
+		to_chat(user, SPAN_WARNING("你停止将[src]涂在[X]身上。"))
 		return
 
 	if(!can_revive(required_jelly, X, user))

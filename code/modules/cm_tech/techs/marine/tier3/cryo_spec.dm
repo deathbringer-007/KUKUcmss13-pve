@@ -1,9 +1,9 @@
 /datum/tech/cryomarine
-	name = "Wake Up Additional Specialist"
-	desc = "Wakes up an additional specialist to fight against any threats."
+	name = "唤醒额外武器专家"
+	desc = "唤醒一名额外的武器专家，应对各类威胁。"
 	icon_state = "overshield"
 
-	announce_message = "An additional specialist is being taken out of cryo."
+	announce_message = "正在从冷冻休眠中唤醒一名额外的武器专家。"
 
 	required_points = 8
 
@@ -15,7 +15,7 @@
 	if(!.)
 		return
 	if(!SSticker.mode)
-		to_chat(user, SPAN_WARNING("You can't do this right now!"))
+		to_chat(user, SPAN_WARNING("现在无法执行此操作！"))
 		return
 
 /datum/tech/cryomarine/on_unlock()

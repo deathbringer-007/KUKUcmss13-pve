@@ -1,5 +1,5 @@
 /obj/effect/decal/remains
-	name = "remains"
+	name = "残骸"
 	gender = PLURAL
 	icon = 'icons/effects/blood.dmi'
 	appearance_flags = PIXEL_SCALE
@@ -15,15 +15,15 @@
 	transform = rotate
 
 /obj/effect/decal/remains/human
-	desc = "They look like human remains. Eerie..."
+	desc = "看起来像是人类的遗骸。令人毛骨悚然……"
 	icon_state = "remains"
 
 /obj/effect/decal/remains/xeno
-	desc = "They look like the remains of some horrible creature. They are not pleasant to look at..."
+	desc = "看起来像是某种恐怖生物的残骸，让人不忍直视……"
 	icon_state = "remainsxeno"
 
 /obj/effect/decal/remains/robot
-	desc = "They look like the remains of something mechanical. They have a strange aura about them."
+	desc = "看起来像是某种机械的残骸，透着一股古怪的气息。"
 	icon = 'icons/mob/robots.dmi'
 	icon_state = "remainsrobot"
 
@@ -40,8 +40,8 @@ items, so they do not intersect. This is far more efficient than using Bl*nd() o
 Turn() or Shift() as there is virtually no overhead. ~N
 */
 /obj/effect/decal/ammo_casing
-	name = "spent casing"
-	desc = "Empty and useless now."
+	name = "空弹壳"
+	desc = "已经空了，没什么用了。"
 	icon = 'icons/obj/items/casings.dmi'
 	icon_state = "casing"
 	dir = NORTH //Always north when it spawns.
@@ -63,7 +63,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 //This does most of the heavy lifting. It updates the icon and name if needed, then changes .dir to simulate new casings.
 /obj/effect/decal/ammo_casing/update_icon()
 	if(max_casings >= current_casings)
-		if(current_casings == 2) name += "s" //In case there is more than one.
+		if(current_casings == 2) name += "堆" //In case there is more than one.
 		if(floor((current_casings-1)/8) > current_icon)
 			current_icon++
 			icon_state += "_[current_icon]"
@@ -76,17 +76,17 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/effect/decal/ammo_casing/bullet
 
 /obj/effect/decal/ammo_casing/cartridge
-	name = "spent cartridge"
+	name = "空弹壳"
 	icon_state = "cartridge"
 
 /obj/effect/decal/ammo_casing/greenshell
-	name = "spent shell"
+	name = "空霰弹壳"
 	icon_state = "greenshell"
 
 /obj/effect/decal/ammo_casing/redshell
-	name = "spent shell"
+	name = "空霰弹壳"
 	icon_state = "redshell"
 
 /obj/effect/decal/ammo_casing/blueshell
-	name = "spent shell"
+	name = "空霰弹壳"
 	icon_state = "blueshell"

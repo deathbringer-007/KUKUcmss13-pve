@@ -1,16 +1,16 @@
 /datum/fire_support/supply_drop
-	name = "Ammo drop"
+	name = "弹药空投"
 	fire_support_firer = FIRESUPPORT_CAS
 	fire_support_type = FIRESUPPORT_TYPE_SUPPLY_DROP
 	cost = 2
 	scatter_range = 1
 	icon_state = "ammo"
-	initiate_chat_message = "TARGET ACQUIRED AMMO CRATE LAUNCHING."
+	initiate_chat_message = "目标已锁定，弹药箱正在投放。"
 	initiate_screen_message = list(
-		"Make sure to tip!",
-		"Your ammo's here, enjoy.",
-		"Watch your head, crate dropping.",
-		"Dropping it.. now.",
+		"别忘了给小费！",
+		"你的弹药到了，好好用吧。",
+		"小心头顶，货箱正在降落。",
+		"准备投放……就是现在。",
 	)
 	delay_to_impact = 2 SECONDS
 	start_visual = null
@@ -50,23 +50,23 @@
 	fire_support_firer = FIRESUPPORT_CAS_UPP
 	fire_support_type = FIRESUPPORT_TYPE_SUPPLY_DROP_UPP
 	portrait_type = "pilot_red"
-	initiate_title = "Pig-1"
+	initiate_title = "野猪一号"
 	initiate_visual = /obj/effect/temp_visual/dropship_hover/krokodil
 	delivered = /obj/structure/largecrate/supply/ammo/supply_drop_upp
 
 /datum/fire_support/sentry_drop
-	name = "Sentry drop"
+	name = "哨戒炮空投"
 	fire_support_firer = FIRESUPPORT_CAS
 	fire_support_type = FIRESUPPORT_TYPE_SENTRY_POD
 	cost = 2
 	scatter_range = 1
 	icon_state = "sentry"
-	initiate_chat_message = "TARGET ACQUIRED SENTRY POD LAUNCHING."
+	initiate_chat_message = "目标已锁定，哨戒炮投放舱正在发射。"
 	initiate_screen_message = list(
-		"Sending you a little friend.",
-		"Watch your head, sentry dropping.",
-		"Take good care of him, would you?.",
-		"Sentry, on the way."
+		"给你送个小伙伴来。",
+		"小心头顶，哨戒炮正在降落。",
+		"帮我照顾好它，行吗？",
+		"哨戒炮马上到。"
 	)
 	delay_to_impact = 2 SECONDS
 	start_visual = null
@@ -90,6 +90,6 @@
 	fire_support_firer = FIRESUPPORT_CAS_UPP
 	fire_support_type = FIRESUPPORT_TYPE_SENTRY_POD_UPP
 	portrait_type = "pilot_red"
-	initiate_title = "Pig-1"
+	initiate_title = "野猪一号"
 	initiate_visual = /obj/effect/temp_visual/dropship_hover/krokodil
 	sentry_type = /obj/structure/machinery/defenses/sentry/launchable/upp

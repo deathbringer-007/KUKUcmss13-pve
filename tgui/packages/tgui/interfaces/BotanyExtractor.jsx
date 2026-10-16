@@ -30,7 +30,7 @@ export const BotanyExtractor = () => {
                 disabled={!disk}
                 onClick={() => act('eject_disk')}
               >
-                {disk ? 'Eject ' + disk : 'Eject disk'}
+                {disk ? '取出' + disk : '取出磁盘'}
               </Button>
             </Stack.Item>
             <Stack.Item>
@@ -40,7 +40,7 @@ export const BotanyExtractor = () => {
                 disabled={!seed}
                 onClick={() => act('eject_packet')}
               >
-                {seed ? 'Eject ' + seed : 'Eject seed packet'}
+                {seed ? '取出' + seed : '取出种子包'}
               </Button>
             </Stack.Item>
             {!!seed && (
@@ -48,33 +48,33 @@ export const BotanyExtractor = () => {
                 <Button.Confirm
                   fluid
                   icon="industry"
-                  confirmContent="Are you sure? This will destroy the seeds."
+                  confirmContent="确定吗？这会销毁种子。"
                   disabled={!seed}
                   onClick={() => act('scan_genome')}
                 >
-                  {'Process ' + seed + "'s genome"}
+                  {'处理' + seed + '的基因组'}
                 </Button.Confirm>
               </Stack.Item>
             )}
           </Stack>
         </Section>
-        <Section title="Buffered Genetic Data">
+        <Section title="暂存基因数据">
           {(!!hasGenetics && (
             <>
               {!disk && (
                 <NoticeBox danger>
-                  No disk! Genetic data cannot be extracted.
+                  未插入磁盘，无法提取基因数据。
                 </NoticeBox>
               )}
               {degraded && (
                 <NoticeBox danger>
-                  Genetic data too degraded to extract!
+                  基因数据退化严重，无法提取！
                 </NoticeBox>
               )}
               <LabeledList>
-                <LabeledList.Item label="Source">{sourceName}</LabeledList.Item>
-                <LabeledList.Item label="Gene Decay">
-                  {!degraded ? degradation + '%' : '#!ERROR%'}
+                <LabeledList.Item label="来源">{sourceName}</LabeledList.Item>
+                <LabeledList.Item label="基因退化">
+                  {!degraded ? degradation + '%' : '#!错误%'}
                 </LabeledList.Item>
                 {geneMasks.map((entry) => {
                   return (
@@ -84,7 +84,7 @@ export const BotanyExtractor = () => {
                         disabled={!disk || degraded}
                         onClick={() => act('get_gene', { gene: entry.tag })}
                       >
-                        Extract gene
+                        提取基因
                       </Button>
                     </LabeledList.Item>
                   );
@@ -97,10 +97,10 @@ export const BotanyExtractor = () => {
                 disabled={!hasGenetics}
                 onClick={() => act('clear_buffer')}
               >
-                Clear buffer
+                清空暂存区
               </Button.Confirm>
             </>
-          )) || <NoticeBox danger>No genetic data stored!</NoticeBox>}
+          )) || <NoticeBox danger>没有储存的基因数据！</NoticeBox>}
         </Section>
       </Window.Content>
     </Window>

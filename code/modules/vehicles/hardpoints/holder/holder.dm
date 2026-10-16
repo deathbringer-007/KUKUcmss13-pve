@@ -22,7 +22,7 @@
 /obj/item/hardpoint/holder/get_examine_text(mob/user)
 	. = ..()
 	for(var/obj/item/hardpoint/H in hardpoints)
-		. += "There is \a [H] module installed on [src]."
+		. += "[src]上安装着[H]模块。"
 		. += H.get_examine_text(user, TRUE)
 
 /obj/item/hardpoint/holder/get_tgui_info()
@@ -66,13 +66,13 @@
 
 /obj/item/hardpoint/holder/proc/install(obj/item/hardpoint/H, mob/user)
 	if(health <= 0)
-		to_chat(user, SPAN_WARNING("All the mounting points on \the [src] are broken!"))
+		to_chat(user, SPAN_WARNING("[src]的所有安装点都已损坏！"))
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] begins installing \the [H] on the [H.slot] hardpoint slot of \the [src]."),
-		SPAN_NOTICE("You begin installing \the [H] on the [H.slot] hardpoint slot of \the [src]."))
+	user.visible_message(SPAN_NOTICE("[user]开始将[H]安装到[src]的[list(HDPT_PRIMARY = "主武器", HDPT_SECONDARY = "副武器", HDPT_SUPPORT = "支援", HDPT_ARMOR = "装甲", HDPT_TREADS = "履带", HDPT_WHEELS = "车轮", HDPT_TURRET = "炮塔", HDPT_SPECIAL = "特殊")[H.slot]]挂点。"),
+		SPAN_NOTICE("你开始将[H]安装到[src]的[list(HDPT_PRIMARY = "主武器", HDPT_SECONDARY = "副武器", HDPT_SUPPORT = "支援", HDPT_ARMOR = "装甲", HDPT_TREADS = "履带", HDPT_WHEELS = "车轮", HDPT_TURRET = "炮塔", HDPT_SPECIAL = "特殊")[H.slot]]挂点。"))
 	if(!do_after(user, 120 * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
-		user.visible_message(SPAN_WARNING("[user] stops installing \the [H] on \the [src]."), SPAN_WARNING("You stop installing \the [H] on \the [src]."))
+		user.visible_message(SPAN_WARNING("[user]停止向[src]安装[H]。"), SPAN_WARNING("你停止向[src]安装[H]。"))
 		return
 
 	user.temp_drop_inv_item(H, 0)
@@ -84,10 +84,10 @@
 	if(!LAZYISIN(hardpoints, H))
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] begins removing \the [H] from the [H.slot] hardpoint slot of \the [src]."),
-		SPAN_NOTICE("You begin removing \the [H] from the [H.slot] hardpoint slot of \the [src]."))
+	user.visible_message(SPAN_NOTICE("[user]开始从[src]的[list(HDPT_PRIMARY = "主武器", HDPT_SECONDARY = "副武器", HDPT_SUPPORT = "支援", HDPT_ARMOR = "装甲", HDPT_TREADS = "履带", HDPT_WHEELS = "车轮", HDPT_TURRET = "炮塔", HDPT_SPECIAL = "特殊")[H.slot]]挂点拆除[H]。"),
+		SPAN_NOTICE("你开始从[src]的[list(HDPT_PRIMARY = "主武器", HDPT_SECONDARY = "副武器", HDPT_SUPPORT = "支援", HDPT_ARMOR = "装甲", HDPT_TREADS = "履带", HDPT_WHEELS = "车轮", HDPT_TURRET = "炮塔", HDPT_SPECIAL = "特殊")[H.slot]]挂点拆除[H]。"))
 	if(!do_after(user, 120 * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
-		user.visible_message(SPAN_WARNING("[user] stops removing \the [H] from \the [src]."), SPAN_WARNING("You stop removing \the [H] from \the [src]."))
+		user.visible_message(SPAN_WARNING("[user]停止从[src]上拆除[H]。"), SPAN_WARNING("你停止从[src]上拆除[H]。"))
 		return
 
 	remove_hardpoint(H, get_turf(user))
@@ -97,11 +97,11 @@
 /obj/item/hardpoint/holder/attackby(obj/item/O, mob/user)
 	if(HAS_TRAIT(O, TRAIT_TOOL_CROWBAR))
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You don't know what to do with \the [O] on \the [src]."))
+			to_chat(user, SPAN_WARNING("你不知道如何用[O]操作[src]。"))
 			return
 
-		var/chosen_hp = tgui_input_list(usr, "Select a hardpoint to remove", "Vehicle Hardpoint Removal", (hardpoints + "Cancel"))
-		if(chosen_hp == "Cancel")
+		var/chosen_hp = tgui_input_list(usr, "选择要拆除的挂载模块", "拆除载具挂载模块", (hardpoints + "取消"))
+		if(chosen_hp == "取消")
 			return
 		var/obj/item/hardpoint/old = chosen_hp
 
@@ -110,12 +110,12 @@
 
 	if(istype(O, /obj/item/hardpoint))
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-			to_chat(user, SPAN_WARNING("You don't know what to do with \the [O] on \the [src]."))
+			to_chat(user, SPAN_WARNING("你不知道如何用[O]操作[src]。"))
 			return
 
 		var/obj/item/hardpoint/H = O
 		if(!(H.type in accepted_hardpoints))
-			to_chat(user, SPAN_WARNING("You don't know what to do with \the [O] on \the [src]."))
+			to_chat(user, SPAN_WARNING("你不知道如何用[O]操作[src]。"))
 			return
 
 		install(H, user)

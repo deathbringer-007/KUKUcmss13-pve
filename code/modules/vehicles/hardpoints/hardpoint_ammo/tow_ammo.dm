@@ -1,7 +1,7 @@
 /obj/item/ammo_magazine/hardpoint/towlauncher
-	name = "TOW Launcher Magazine"
+	name = "TOW发射器弹箱"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/event.dmi'
-	desc = "A magazine of laser-guided missiles used in the UA TOW launcher weapon-system."
+	desc = "装有激光制导导弹的弹箱，供美洲联盟TOW发射器武器系统使用。"
 	caliber = "rocket" //correlates to any rocket mags
 	icon_state = "quad_rocket"
 	w_class = SIZE_LARGE
@@ -10,9 +10,9 @@
 	gun_type = /obj/item/hardpoint/secondary/towlauncher
 
 /obj/item/ammo_magazine/hardpoint/towlauncher/aa
-	name = "M579 VLS Magazine"
+	name = "M579垂直发射系统弹箱"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/event.dmi'
-	desc = "A magazine of ground-to-ground missiles for the M579 ADS-C frontal launch system."
+	desc = "装有地对地导弹的弹箱，供M579 ADS-C前置发射系统使用。"
 	caliber = "rocket" //correlates to any rocket mags
 	icon_state = "quad_rocket"
 	w_class = SIZE_LARGE
@@ -23,9 +23,9 @@
 // HJ-35 FOR UPP APC
 
 /obj/item/ammo_magazine/hardpoint/hj35launcher
-	name = "HJ-35 Launcher Magazine"
+	name = "HJ-35发射器弹箱"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/upp.dmi'
-	desc = "A magazine of laser-guided missiles used in the UPP HJ-35 launcher weapon-system."
+	desc = "装有激光制导导弹的弹箱，供进步人民联盟HJ-35发射器武器系统使用。"
 	caliber = "rocket" //correlates to any rocket mags
 	icon_state = "hj35"
 	w_class = SIZE_LARGE

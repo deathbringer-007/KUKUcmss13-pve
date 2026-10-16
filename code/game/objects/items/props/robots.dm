@@ -1,5 +1,5 @@
 /obj/item/broken_device
-	name = "broken component"
+	name = "损坏的组件"
 	icon = 'icons/obj/items/robot_component.dmi'
 	icon_state = "broken"
 
@@ -8,34 +8,34 @@
 	icon_state = "working"
 
 /obj/item/robot_parts/robot_component/binary_communication_device
-	name = "binary communication device"
+	name = "二进制通讯装置"
 	icon_state = "binradio"
 
 /obj/item/robot_parts/robot_component/actuator
-	name = "actuator"
+	name = "执行器"
 	icon_state = "motor"
 
 /obj/item/robot_parts/robot_component/armour
-	name = "armour plating"
+	name = "装甲板"
 	icon_state = "armor"
 
 /obj/item/robot_parts/robot_component/camera
-	name = "camera"
+	name = "摄像头"
 	icon_state = "camera"
 
 /obj/item/robot_parts/robot_component/diagnosis_unit
-	name = "diagnosis unit"
+	name = "诊断单元"
 	icon_state = "analyser"
 
 /obj/item/robot_parts/robot_component/radio
-	name = "radio"
+	name = "无线电"
 	icon_state = "radio"
 
 /obj/item/device/robotanalyzer
-	name = "cyborg analyzer"
+	name = "赛博格分析仪"
 	icon_state = "robotanalyzer"
 	item_state = "analyzer"
-	desc = "A hand-held scanner able to diagnose robotic injuries. It looks broken."
+	desc = "能够诊断机器人损伤的手持扫描仪。看起来坏了。"
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_WAIST
 	throwforce = 3

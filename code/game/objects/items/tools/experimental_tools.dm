@@ -1,6 +1,6 @@
 /obj/item/tool/crew_monitor
-	name = "crew monitor"
-	desc = "A tool used to get coordinates to deployed personnel."
+	name = "人员监测仪"
+	desc = "用于获取已部署人员坐标的工具。"
 	icon = 'icons/obj/items/experimental_tools.dmi'
 	icon_state = "crew_monitor"
 	flags_equip_slot = SLOT_WAIST
@@ -25,16 +25,16 @@
 	SStgui.close_uis(src)
 
 /obj/item/tool/crew_monitor/upp
-	name = "\"Dísir\" lifesigns monitor"
+	name = "“守护灵”生命体征监测仪"
 	faction = FACTION_UPP
 
 /obj/item/tool/crew_monitor/pmc
-	name = "operative wellbeing monitor"
+	name = "行动人员健康监测仪"
 	faction = FACTION_PMC
 
 /obj/item/tool/signal_tracker
-	name = "Signal Tracker"
-	desc = "A tool used to track signals and the user's distance to them."
+	name = "信号追踪器"
+	desc = "用于追踪信号及测量使用者与信号源距离的工具。"
 	icon = 'icons/obj/items/experimental_tools.dmi'
 	icon_state = "crew_monitor"
 	flags_equip_slot = SLOT_WAIST
@@ -57,8 +57,8 @@
 	radar.tgui_interact(user)
 
 /obj/item/clothing/suit/auto_cpr
-	name = "autocompressor" //autocompressor
-	desc = "A device that gives regular compression to the victim's ribcage, used in case of urgent heart issues.\nClick a person with it to place it on them."
+	name = "自动胸外按压器" //autocompressor
+	desc = "对患者胸廓进行规律按压的装置，用于处理紧急心脏问题。\n拿着它点击目标，即可给对方安装。"
 	icon = 'icons/obj/items/experimental_tools.dmi'
 	icon_state = "autocomp"
 	item_state = "autocomp"
@@ -89,25 +89,25 @@
 	if(M == user)
 		return ..()
 	if(!skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_MEDIC))
-		to_chat(user, SPAN_WARNING("You have no idea how to use \the [src]..."))
+		to_chat(user, SPAN_WARNING("你完全不知道怎么使用[src]……"))
 		return
 	if(M.stat == CONSCIOUS)
-		to_chat(user, SPAN_WARNING("They're fine, no need for <b>CPR</b>!"))
+		to_chat(user, SPAN_WARNING("对方没事，不需要<b>心肺复苏</b>！"))
 		return
 	if(!M.is_revivable() || !M.check_tod())
-		to_chat(user, SPAN_WARNING("That won't be of any use, they're already too far gone!"))
+		to_chat(user, SPAN_WARNING("已经无力回天了，这么做没有用！"))
 		return
 	if(istype(M) && user.a_intent == INTENT_HELP)
 		if(M.wear_suit)
-			to_chat(user, SPAN_WARNING("Their [M.wear_suit] is in the way, remove it first!"))
+			to_chat(user, SPAN_WARNING("对方身上的[M.wear_suit]挡住了，先脱下来！"))
 			return
 		if(!mob_can_equip(M, WEAR_JACKET))
-			to_chat(user, SPAN_WARNING("\The [src] only fits on humans!"))
+			to_chat(user, SPAN_WARNING("[src]只能安装在人类身上！"))
 			return
 		user.affected_message(M,
-							SPAN_NOTICE("You start fitting \the [src] onto [M]'s chest."),
-							SPAN_WARNING("[user] starts fitting \the [src] onto your chest!"),
-							SPAN_NOTICE("[user] starts fitting \the [src] onto [M]'s chest."))
+							SPAN_NOTICE("你开始把[src]安装到[M]的胸前。"),
+							SPAN_WARNING("[user]开始把[src]安装到你的胸前！"),
+							SPAN_NOTICE("[user]开始把[src]安装到[M]的胸前。"))
 		if(!(do_after(user, HUMAN_STRIP_DELAY * user.get_skill_duration_multiplier(SKILL_MEDICAL), INTERRUPT_ALL, BUSY_ICON_GENERIC, M, INTERRUPT_MOVED, BUSY_ICON_MEDICAL)))
 			return
 		if(!mob_can_equip(M, WEAR_JACKET))
@@ -150,14 +150,14 @@
 
 /obj/item/clothing/suit/auto_cpr/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_NOTICE("It has [floor(pdcell.charge * 100 / pdcell.maxcharge)]% charge remaining.")
+	. += SPAN_NOTICE("剩余电量为[floor(pdcell.charge * 100 / pdcell.maxcharge)]%。")
 
 
 
 /obj/item/clothing/suit/auto_cpr/proc/start_cpr()
 	if(doing_cpr)
 		return
-	src.visible_message(SPAN_NOTICE("\The [src] whirrs into life and begins pumping."))
+	src.visible_message(SPAN_NOTICE("[src]嗡嗡启动，开始按压。"))
 	START_PROCESSING(SSobj,src)
 	doing_cpr = TRUE
 	update_icon()
@@ -169,8 +169,8 @@
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		H.drop_inv_item_on_ground(src)
-		src.visible_message(SPAN_NOTICE("\The [src] automatically detaches from [H]!"))
-	src.visible_message(SPAN_NOTICE("\The [src] powers down and stops pumping."))
+		src.visible_message(SPAN_NOTICE("[src]自动从[H]身上脱离了！"))
+	src.visible_message(SPAN_NOTICE("[src]关闭电源，停止了按压。"))
 	STOP_PROCESSING(SSobj,src)
 	update_icon()
 
@@ -185,7 +185,7 @@
 		return PROCESS_KILL
 
 	if(pdcell.charge <= 49)
-		src.visible_message(SPAN_NOTICE("\The [src] beeps its low power alarm."))
+		src.visible_message(SPAN_NOTICE("[src]发出了电量不足警报。"))
 		end_cpr()
 		return PROCESS_KILL
 
@@ -196,16 +196,16 @@
 			H.apply_damage(-suff, OXY)
 			H.updatehealth()
 			H.affected_message(H,
-				SPAN_HELPFUL("You feel a <b>breath of fresh air</b> enter your lungs. It feels good."),
-				message_viewer = SPAN_NOTICE("<b>\The [src]</b> automatically performs <b>CPR</b> on <b>[H]</b>.")
+				SPAN_HELPFUL("你感到<b>一口新鲜空气</b>进入肺中。舒服多了。"),
+				message_viewer = SPAN_NOTICE("<b>[src]</b>自动为<b>[H]</b>进行<b>心肺复苏</b>。")
 				)
 			pdcell.use(pump_cost)
 			update_icon()
 			return
 
 /obj/item/tool/portadialysis
-	name = "portable dialysis machine"
-	desc = "A man-portable dialysis machine, with a small internal battery that can be recharged. Filters out all foreign compounds from the bloodstream of whoever it's attached to, but also typically ends up removing some blood as well."
+	name = "便携式透析机"
+	desc = "单人即可携带的透析机，内置小型充电电池。连接患者后，可滤除其血液中的所有外来化合物，但通常也会带走一些血液。"
 	icon = 'icons/obj/items/experimental_tools.dmi'
 	icon_state = "portadialysis"
 	item_state = "syringe_0"
@@ -266,13 +266,13 @@
 	. = ..()
 	var/currentpercent = 0
 	currentpercent = floor(pdcell.charge * 100 / pdcell.maxcharge)
-	. += SPAN_INFO("It has [currentpercent]% charge left in its internal battery.")
+	. += SPAN_INFO("内置电池剩余电量为[currentpercent]%。")
 
 /obj/item/tool/portadialysis/proc/painful_detach()
 	if(!attached) //sanity
 		return
-	attached.visible_message(SPAN_WARNING("\The [src]'s needle is ripped out of [attached], doesn't that hurt?"))
-	to_chat(attached, SPAN_WARNING("Ow! A needle is ripped out of you!"))
+	attached.visible_message(SPAN_WARNING("[src]的针头被从[attached]身上硬扯了出来，看着都疼！"))
+	to_chat(attached, SPAN_WARNING("好痛！针头被从你身上硬扯了出来！"))
 	damage_arms(attached)
 	if(attached.pain.feels_pain)
 		attached.emote("scream")
@@ -287,11 +287,11 @@
 		return ..()
 
 	if(!skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_MEDIC))
-		to_chat(user, SPAN_WARNING("You don't seem to know how to use \the [src]..."))
+		to_chat(user, SPAN_WARNING("你似乎不知道怎么使用[src]……"))
 		return
 
 	if(!pdcell || pdcell.charge == 0)
-		to_chat(user, SPAN_NOTICE("\The [src] flashes its 'battery low' light, and refuses to attach."))
+		to_chat(user, SPAN_NOTICE("[src]的“电量不足”指示灯闪烁，无法连接。"))
 		return
 
 	if(ishuman(user))
@@ -302,12 +302,12 @@
 			return
 
 		if(attached && !(target == attached)) //are we already attached to something that isn't the target?
-			to_chat(user, SPAN_WARNING("You're already using \the [src] on someone else!"))
+			to_chat(user, SPAN_WARNING("你已经在给别人使用[src]了！"))
 			return
 
 		if(target == attached) //are we attached to the target?
-			user.visible_message("[user] detaches \the [src] from [attached].", \
-			"You detach \the [src] from [attached].")
+			user.visible_message("[user]从[attached]身上拆下了[src]。", \
+			"你从[attached]身上拆下了[src]。")
 			attached = null
 			filtering = FALSE
 			attaching = FALSE
@@ -320,24 +320,24 @@
 			var/obj/limb/l_arm = target.get_limb("l_arm")
 			var/obj/limb/r_arm = target.get_limb("r_arm")
 			if((l_arm.status & LIMB_DESTROYED) && (r_arm.status & LIMB_DESTROYED))
-				to_chat(user, SPAN_WARNING("[target] has no arms to attach \the [src] to!"))
+				to_chat(user, SPAN_WARNING("[target]没有手臂，无法连接[src]！"))
 				return
 
 			attaching = TRUE
 			update_icon()
-			to_chat(target, SPAN_DANGER("[user] is trying to attach \the [src] to you!"))
-			user.visible_message(SPAN_WARNING("[user] starts setting up \the [src]'s needle on [target]'s arm."), \
-				SPAN_WARNING("You start setting up \the [src]'s needle on [target]'s arm."))
+			to_chat(target, SPAN_DANGER("[user]正试图把[src]连接到你身上！"))
+			user.visible_message(SPAN_WARNING("[user]开始把[src]的针头插到[target]的手臂上。"), \
+				SPAN_WARNING("你开始把[src]的针头插到[target]的手臂上。"))
 			if(!do_after(user, attach_time, INTERRUPT_ALL, BUSY_ICON_FRIENDLY, target, INTERRUPT_MOVED, BUSY_ICON_MEDICAL))
-				user.visible_message(SPAN_WARNING("[user] stops setting up \the [src]'s needle on [target]'s arm."), \
-				SPAN_WARNING("You stop setting up \the [src]'s needle on [target]'s arm."))
-				visible_message("\The [src]'s tubing snaps back onto the machine frame.")
+				user.visible_message(SPAN_WARNING("[user]停止了给[target]的手臂插入[src]针头的操作。"), \
+				SPAN_WARNING("你停止了给[target]的手臂插入[src]针头的操作。"))
+				visible_message("[src]的软管弹回了机身。")
 				attaching = FALSE
 				update_icon()
 				return
 
-			user.visible_message("[user] attaches \the [src] to [target].", \
-			"You attach \the [src] to [target].")
+			user.visible_message("[user]把[src]连接到了[target]身上。", \
+			"你把[src]连接到了[target]身上。")
 			attached = target
 			filtering = TRUE
 			attaching = FALSE
@@ -360,7 +360,7 @@
 		return
 
 	if(!pdcell || pdcell.charge == 0)
-		attached.visible_message(SPAN_NOTICE("\The [src] automatically detaches from [attached], blinking its 'battery low' light."))
+		attached.visible_message(SPAN_NOTICE("[src]自动从[attached]身上脱离，“电量不足”指示灯闪烁。"))
 		attached = null
 		filtering = FALSE
 		update_icon(TRUE)
@@ -370,7 +370,7 @@
 	var/obj/limb/l_arm = attached.get_limb("l_arm")
 	var/obj/limb/r_arm = attached.get_limb("r_arm")
 	if((l_arm.status & LIMB_DESTROYED) && (r_arm.status & LIMB_DESTROYED))
-		attached.visible_message(SPAN_NOTICE("\The [src] automatically detaches from [attached] - \he has no arms to attach to!."))
+		attached.visible_message(SPAN_NOTICE("[src]自动从[attached]身上脱离——对方已经没有可供连接的手臂了！"))
 		attached = null
 		filtering = FALSE
 		update_icon(TRUE)
@@ -381,7 +381,7 @@
 		attached.reagents.remove_any_but("blood", reagent_removed_per_second*delta_time)
 		attached.take_blood(attached, blood_cost*delta_time)
 		if(attached.blood_volume < BLOOD_VOLUME_SAFE) if(prob(5))
-			visible_message("\The [src] beeps loudly.")
+			visible_message("[src]发出了响亮的哔哔声。")
 		pdcell.use(filter_cost*delta_time)
 
 	updateUsrDialog()

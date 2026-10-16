@@ -1,6 +1,6 @@
 /obj/structure/prop/fishing/line
-	name = "fishing line"
-	desc = "Super thin wire attached to a fishing pole."
+	name = "钓鱼线"
+	desc = "系在钓竿上的极细丝线。"
 	icon_state = "line_short"
 	flags_atom = NOINTERACT
 

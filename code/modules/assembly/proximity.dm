@@ -1,6 +1,6 @@
 /obj/item/device/assembly/prox_sensor
-	name = "proximity sensor"
-	desc = "Used for scanning and alerting when someone enters a certain proximity."
+	name = "接近传感器"
+	desc = "用于扫描周围环境，有人进入一定范围时便会发出警报。"
 	icon_state = "prox"
 	matter = list("metal" = 800, "glass" = 200, "waste" = 50)
 	wires = WIRE_ASSEMBLY_PULSE
@@ -50,7 +50,7 @@
 
 /obj/item/device/assembly/prox_sensor/proc/sense()
 	var/turf/mainloc = get_turf(src)
-	mainloc.visible_message(SPAN_DANGER("You hear a proximity sensor beep!"), SPAN_DANGER("You hear a proximity sensor beep!"))
+	mainloc.visible_message(SPAN_DANGER("你听见接近传感器发出哔声！"), SPAN_DANGER("你听见接近传感器发出哔声！"))
 	playsound(mainloc, 'sound/machines/twobeep.ogg', 50, 1)
 
 	delaying = TRUE
@@ -105,7 +105,7 @@
 
 /obj/item/device/assembly/prox_sensor/interact(mob/user)
 	if(!secured)
-		to_chat(user, SPAN_WARNING("The [name] is unsecured!"))
+		to_chat(user, SPAN_WARNING("[name]尚未固定好！"))
 		return FALSE
 
 	tgui_interact(user)
@@ -113,7 +113,7 @@
 /obj/item/device/assembly/prox_sensor/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "Proximity", "Proximity Assembly")
+		ui = new(user, src, "Proximity", "接近传感器组件")
 		ui.open()
 		ui.set_autoupdate(timing)
 
@@ -189,6 +189,6 @@
 	if(scanning)
 		playsound(loc, "alien_claw_metal", 25, 1)
 		xeno.animation_attack_on(src)
-		xeno.visible_message(SPAN_XENOWARNING("[xeno] slashes [src], turning it off!"), SPAN_XENONOTICE("You slash [src], turning it off!"))
+		xeno.visible_message(SPAN_XENOWARNING("[xeno]抓击了[src]，将其关闭！"), SPAN_XENONOTICE("你抓击了[src]，将其关闭！"))
 		toggle_scan()
 	return XENO_ATTACK_ACTION

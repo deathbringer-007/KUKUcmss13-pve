@@ -17,7 +17,7 @@ export const Timer = (props) => {
             icon="clock"
             onClick={() => act('set_timing', { should_time: !data.is_timing })}
           >
-            {data.is_timing ? 'Enabled' : 'Disabled'}
+            {data.is_timing ? '已启用' : '已停用'}
           </Button>
         </Section>
         <Section>
@@ -26,7 +26,7 @@ export const Timer = (props) => {
             minValue={min_time}
             value={data.current_time}
             onChange={(e, value) => act('set_time', { time: value })}
-            unit="Seconds"
+            unit="秒"
             stepPixelSize={window_width / max_time} // width / max_time
           />
         </Section>

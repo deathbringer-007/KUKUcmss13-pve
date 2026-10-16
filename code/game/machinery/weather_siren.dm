@@ -1,6 +1,6 @@
 /obj/structure/machinery/weather_siren
-	name = "Weather Siren"
-	desc = "A siren used to play weather warnings for the colony."
+	name = "天气警报器"
+	desc = "用于向殖民地播报天气预警的警报器。"
 	icon = 'icons/obj/structures/machinery/loudspeaker.dmi'
 	icon_state = "loudspeaker"
 	density = FALSE
@@ -23,4 +23,4 @@
 
 /obj/structure/machinery/weather_siren/proc/weather_warning()
 	playsound(loc, 'sound/effects/weather_warning.ogg', 50, 0)
-	visible_message(SPAN_DANGER("The [src] blares. ATTENTION. POTENTIALLY HAZARDOUS WEATHER ANOMALY DETECTED. SEEK SHELTER IMMEDIATELY."))
+	visible_message(SPAN_DANGER("[src]鸣响：注意！检测到可能具有危险性的天气异常。请立即寻找掩体避难。"))

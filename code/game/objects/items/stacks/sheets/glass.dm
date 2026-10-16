@@ -11,9 +11,9 @@
  * Glass sheets
  */
 /obj/item/stack/sheet/glass
-	name = "glass"
-	desc = "Glass is a non-crystalline solid, made out of silicate, the primary constituent of sand. It is valued for its transparency, albeit it is not too resistant to damage."
-	singular_name = "glass sheet"
+	name = "玻璃"
+	desc = "玻璃是由沙子的主要成分硅酸盐制成的非晶态固体。它因透明性而广受应用，但不太耐冲击。"
+	singular_name = "玻璃板"
 	icon_state = "sheet-glass"
 	matter = list("glass" = 3750)
 
@@ -45,17 +45,17 @@
 		if(istype(W,/obj/item/stack/cable_coil))
 			var/obj/item/stack/cable_coil/CC = W
 			if (get_amount() < 1 || CC.get_amount() < 5)
-				to_chat(user, SPAN_WARNING("You need five lengths of coil and one sheet of glass to make wired glass."))
+				to_chat(user, SPAN_WARNING("制作布线玻璃需要5段线缆和1块玻璃板。"))
 				return
 
 			CC.use(5)
 			new /obj/item/stack/light_w(user.loc, 1)
 			use(1)
-			to_chat(user, SPAN_NOTICE("You attach wire to the [name]."))
+			to_chat(user, SPAN_NOTICE("你在[name]上接上了电线。"))
 		else if(istype(W, /obj/item/stack/rods))
 			var/obj/item/stack/rods/V  = W
 			if (V.get_amount() < 1 || get_amount() < 1)
-				to_chat(user, SPAN_WARNING("You need one rod and one sheet of glass to make reinforced glass."))
+				to_chat(user, SPAN_WARNING("制作强化玻璃需要1根金属杆和1块玻璃板。"))
 				return
 
 			var/obj/item/stack/sheet/glass/reinforced/RG = new (user.loc)
@@ -73,19 +73,23 @@
 	if(!user || !src) return FALSE
 	if(!istype(user.loc,/turf)) return FALSE
 	if(!user.IsAdvancedToolUser())
-		to_chat(user, SPAN_DANGER("You don't have the dexterity to do this!"))
+		to_chat(user, SPAN_DANGER("你的肢体不够灵巧，无法进行这项操作！"))
 		return FALSE
 	if(ishuman(user) && !skillcheck(user, SKILL_CONSTRUCTION, SKILL_CONSTRUCTION_ENGI))
-		to_chat(user, SPAN_WARNING("You are not trained to build with [src]..."))
+		to_chat(user, SPAN_WARNING("你没有接受过使用[src]建造所需的训练……"))
 		return FALSE
-	var/title = "Sheet-[name]"
-	title += " ([src.amount] sheet\s left)"
-	var/to_build = tgui_input_list(user, title, "What would you like to construct?", construction_options)
+	var/title = "板材：[name]"
+	title += "（剩余[src.amount]块）"
+	var/static/list/construction_labels = list("One Direction" = "单面窗", "Full Window" = "整格窗", "Windoor" = "玻璃门")
+	var/list/localized_options = list()
+	for(var/option in construction_options)
+		localized_options[construction_labels[option] ? construction_labels[option] : option] = option
+	var/to_build = localized_options[tgui_input_list(user, title, "你想建造什么？", localized_options)]
 	if(!to_build)
 		return
 	var/turf/open/T = user.loc
 	if(!(istype(T) && T.allow_construction))
-		to_chat(user, SPAN_WARNING("Windows must be constructed on a proper surface!"))
+		to_chat(user, SPAN_WARNING("必须在合适的地面上建造窗户！"))
 		return
 	var/fail = FALSE
 	for(var/obj/X in T.contents - src)
@@ -96,7 +100,7 @@
 			fail = TRUE
 			break
 	if(fail)
-		to_chat(user, SPAN_WARNING("You can't make a window here, something is in the way."))
+		to_chat(user, SPAN_WARNING("有东西挡住了位置，你无法在这里建造窗户。"))
 		return
 	switch(to_build)
 		if("One Direction")
@@ -104,18 +108,18 @@
 			if(src.loc != user) return TRUE
 			var/obj/structure/blocker/anti_cade/AC = locate(/obj/structure/blocker/anti_cade) in T // for M2C HMG, look at smartgun_mount.dm
 			if(AC)
-				to_chat(usr, SPAN_WARNING("\The [src] cannot be built here!"))
+				to_chat(usr, SPAN_WARNING("这里无法使用[src]建造！"))
 				return TRUE
 			var/list/directions = GLOB.cardinals.Copy()
 			var/i = 0
 			for (var/obj/structure/window/win in user.loc)
 				i++
 				if(i >= 4)
-					to_chat(user, SPAN_DANGER("There are too many windows in this location."))
+					to_chat(user, SPAN_DANGER("这个位置的窗户太多了。"))
 					return TRUE
 				directions-=win.dir
 				if(!(win.dir in GLOB.cardinals))
-					to_chat(user, SPAN_DANGER("Can't let you do that."))
+					to_chat(user, SPAN_DANGER("不能这样做。"))
 					return TRUE
 
 			//Determine the direction. It will first check in the direction the person making the window is facing, if it finds an already made window it will try looking at the next cardinal direction, etc.
@@ -135,10 +139,10 @@
 			if(!src) return TRUE
 			if(src.loc != user) return TRUE
 			if(src.amount < 4)
-				to_chat(user, SPAN_DANGER("You need more glass to do that."))
+				to_chat(user, SPAN_DANGER("你需要更多玻璃才能这样做。"))
 				return TRUE
 			if(locate(/obj/structure/window) in user.loc)
-				to_chat(user, SPAN_DANGER("There is a window in the way."))
+				to_chat(user, SPAN_DANGER("有一扇窗户挡住了位置。"))
 				return TRUE
 			var/obj/structure/window/WD = new created_full_window(user.loc)
 			WD.set_constructed_window()
@@ -150,19 +154,19 @@
 
 			var/obj/structure/blocker/anti_cade/AC = locate(/obj/structure/blocker/anti_cade) in T // for M2C HMG, look at smartgun_mount.dm
 			if(AC)
-				to_chat(usr, SPAN_WARNING("\The [src] cannot be built here!"))
+				to_chat(usr, SPAN_WARNING("这里无法使用[src]建造！"))
 				return TRUE
 
 			if(isturf(T) && locate(/obj/structure/windoor_assembly/, T))
-				to_chat(user, SPAN_DANGER("There is already a windoor assembly in that location."))
+				to_chat(user, SPAN_DANGER("那个位置已经有玻璃门组件了。"))
 				return TRUE
 
 			if(isturf(T) && locate(/obj/structure/machinery/door/window/, T))
-				to_chat(user, SPAN_DANGER("There is already a windoor in that location."))
+				to_chat(user, SPAN_DANGER("那个位置已经有玻璃门了。"))
 				return TRUE
 
 			if(src.amount < 5)
-				to_chat(user, SPAN_DANGER("You need more glass to do that."))
+				to_chat(user, SPAN_DANGER("你需要更多玻璃才能这样做。"))
 				return TRUE
 
 			new /obj/structure/windoor_assembly(T, user.dir, 1)
@@ -175,9 +179,9 @@
  * Reinforced glass sheets
  */
 /obj/item/stack/sheet/glass/reinforced
-	name = "reinforced glass"
-	desc = "Reinforced glass is made out of squares of regular silicate glass layered on a metallic rod matrix. This glass is more resistant to direct impacts, even if it may crack."
-	singular_name = "reinforced glass sheet"
+	name = "强化玻璃"
+	desc = "强化玻璃由普通硅酸盐玻璃与金属杆网架层叠而成。虽然仍可能开裂，但能承受更强的直接冲击。"
+	singular_name = "强化玻璃板"
 	icon_state = "sheet-rglass"
 	stack_id = "reinf glass sheet"
 
@@ -203,9 +207,9 @@
  * Phoron Glass sheets
  */
 /obj/item/stack/sheet/glass/phoronglass
-	name = "phoron glass"
-	desc = "Phoron glass is a silicate-phoron alloy turned into a non-crystalline solid. It is transparent just like glass, even if visibly tainted pink, and very resistant to damage and heat."
-	singular_name = "phoron glass sheet"
+	name = "弗燃玻璃"
+	desc = "弗燃玻璃是由硅酸盐与弗燃素的混合材料制成的非晶态固体。虽然明显泛着粉色，但仍像普通玻璃一样透明，并且十分耐损伤和高温。"
+	singular_name = "弗燃玻璃板"
 	icon_state = "sheet-phoronglass"
 	matter = list("glass" = 7500)
 
@@ -233,9 +237,9 @@
  * Reinforced phoron glass sheets
  */
 /obj/item/stack/sheet/glass/phoronrglass
-	name = "reinforced phoron glass"
-	desc = "Reinforced phoron glass is made out of squares of silicate-phoron alloy glass layered on a metallic rod matrix. It is insanely resistant to both physical shock and heat."
-	singular_name = "reinforced phoron glass sheet"
+	name = "强化弗燃玻璃"
+	desc = "强化弗燃玻璃由硅酸盐与弗燃素制成的玻璃片和金属杆网架层叠而成，具有惊人的抗冲击性和耐热性。"
+	singular_name = "强化弗燃玻璃板"
 	icon_state = "sheet-phoronrglass"
 	matter = list("glass" = 7500,"metal" = 1875)
 

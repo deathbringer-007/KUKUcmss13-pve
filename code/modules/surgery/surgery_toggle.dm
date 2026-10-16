@@ -1,5 +1,5 @@
 /datum/action/surgery_toggle
-	name = "Toggle Surgery Mode"
+	name = "切换手术模式"
 	action_icon_state = "surgery_toggle"
 	var/original_help_safety
 
@@ -25,4 +25,4 @@
 	else
 		button.icon_state = "template_on"
 		owner.mob_flags |= SURGERY_MODE_ON
-		to_chat(owner, "You prepare to perform surgery.")
+		to_chat(owner, "你准备进行手术。")

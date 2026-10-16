@@ -2,13 +2,13 @@
 
 // Wall
 /obj/structure/interior_wall/tank
-	name = "\improper tank interior wall"
+	name = "\improper 坦克内壁"
 	icon = 'icons/obj/vehicles/interiors/tank.dmi'
 	icon_state = "wall"
 
 // Props
 /obj/structure/prop/tank
-	name = "tank machinery"
+	name = "坦克机械设备"
 	mouse_opacity = FALSE
 	density = TRUE
 
@@ -21,7 +21,7 @@
 
 // Hatch
 /obj/structure/interior_exit/vehicle/tank
-	name = "tank hatch"
+	name = "坦克舱盖"
 	icon = 'icons/obj/vehicles/interiors/tank.dmi'
 	icon_state = "hatch"
 

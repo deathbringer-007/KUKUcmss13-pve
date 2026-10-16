@@ -1,14 +1,14 @@
 
 /obj/item/stack/yautja_rope
-	name = "rope"
-	singular_name = "rope meter"
-	desc = "Good, strong rope."
+	name = "绳索"
+	singular_name = "绳索（米）"
+	desc = "结实耐用的好绳子。"
 	icon = 'icons/obj/structures/machinery/power.dmi'
 	icon_state = "coil"
 	item_state = "coil"
 	force = 2
 	w_class = SIZE_SMALL
-	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
+	attack_verb = list("鞭打", "抽打", "惩戒", "鞭笞")
 	color = "#D2B48C"
 	attack_speed = 1.4 SECONDS //stop spam
 	amount = 8
@@ -19,7 +19,7 @@
 		return ..()
 
 	if(mob_victim.mob_size != MOB_SIZE_HUMAN)
-		to_chat(user, SPAN_WARNING("[mob_victim] has the wrong body plan to hang up."))
+		to_chat(user, SPAN_WARNING("[mob_victim]的身体构造不适合吊起来。"))
 		return TRUE
 
 	var/mob/living/carbon/human/victim = mob_victim
@@ -27,29 +27,29 @@
 	if(!do_after(user, 1 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE, victim))
 		return TRUE
 
-	user.visible_message(SPAN_NOTICE("[user] starts to secure \his rope to the ceiling..."),
-		SPAN_NOTICE("You start securing the rope to the ceiling..."))
+	user.visible_message(SPAN_NOTICE("[user]开始将绳索固定在天花板上……"),
+		SPAN_NOTICE("你开始将绳索固定在天花板上……"))
 
 	if(do_after(user, 4 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE, victim))
 		var/turf/rturf = get_turf(victim)
 		var/area/rarea = get_area(victim)
 		if(rturf.density)
-			to_chat(user, SPAN_WARNING("They're in a wall!"))
+			to_chat(user, SPAN_WARNING("对方在墙里！"))
 			return TRUE
 		if(rarea.ceiling == CEILING_NONE)
-			to_chat(user, SPAN_WARNING("There's no ceiling to hang them from!"))
+			to_chat(user, SPAN_WARNING("这里没有天花板，无法把对方吊起来！"))
 			return TRUE
-		user.visible_message(SPAN_NOTICE("[user] secures the rope."),
-			SPAN_NOTICE("You secure the rope."))
+		user.visible_message(SPAN_NOTICE("[user]固定好了绳索。"),
+			SPAN_NOTICE("你固定好了绳索。"))
 		if(!do_after(user, 1 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE, victim))
 			return
-		user.visible_message(SPAN_WARNING("[user] begins hanging [victim] up by the rope..."),
-			SPAN_NOTICE("You start hanging [victim] up by the rope..."))
+		user.visible_message(SPAN_WARNING("[user]开始用绳索吊起[victim]……"),
+			SPAN_NOTICE("你开始用绳索吊起[victim]……"))
 		if(!do_after(user, 3 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE, victim))
 			return
 		if(victim.anchored)
 			return // Just in case weed_food took them during this time
-		user.visible_message(SPAN_WARNING("[user] hangs [victim] from the ceiling!"), SPAN_NOTICE("You finish hanging [victim]."))
+		user.visible_message(SPAN_WARNING("[user]将[victim]吊在了天花板上！"), SPAN_NOTICE("你将[victim]吊了起来。"))
 		user.stop_pulling()
 		victim.get_hung()
 		use(1)
@@ -86,11 +86,11 @@
 	if(user)
 		if(user.a_intent != INTENT_HELP)
 			return
-		user.visible_message(SPAN_WARNING("[user] cuts down [src] with \the [source]."), SPAN_WARNING("You cut down [src] with \the [source]."))
+		user.visible_message(SPAN_WARNING("[user]用[source]割断绳索，将[src]放了下来。"), SPAN_WARNING("你用[source]割断绳索，将[src]放了下来。"))
 		user.animation_attack_on(src)
 		playsound(src, 'sound/effects/vegetation_hit.ogg', 25, TRUE)
 	else
-		visible_message(SPAN_DANGER("[src]'s body falls down from the hanging rope!"))
+		visible_message(SPAN_DANGER("[src]的身体从悬挂的绳索上掉了下来！"))
 	UnregisterSignal(src, list(
 			COMSIG_ATTEMPT_MOB_PULL,
 			COMSIG_ITEM_ATTEMPT_ATTACK,

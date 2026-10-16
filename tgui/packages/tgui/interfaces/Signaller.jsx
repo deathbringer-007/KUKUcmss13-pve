@@ -18,12 +18,12 @@ export const Signaller = (props) => {
             icon="satellite-dish"
             onClick={() => act('send_signal')}
           >
-            Trigger
+            触发信号
           </Button>
         </Section>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Frequency">
+            <LabeledList.Item label="频率">
               <Slider
                 inline
                 maxValue={max_freq}
@@ -36,7 +36,7 @@ export const Signaller = (props) => {
                 stepPixelSize={2}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Code">
+            <LabeledList.Item label="信号码">
               <Slider
                 inline
                 maxValue={max_signal}

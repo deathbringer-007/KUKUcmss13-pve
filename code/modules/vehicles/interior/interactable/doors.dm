@@ -1,6 +1,6 @@
 /obj/structure/interior_exit
-	name = "interior door"
-	desc = "I can get out of here if I go through this."
+	name = "舱门"
+	desc = "穿过这里就能出去了。"
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "vomit_1"
 	layer = INTERIOR_DOOR_LAYER
@@ -33,9 +33,9 @@
 	if(dragged_atom)
 		exit_time = 2 SECONDS
 
-	to_chat(M, SPAN_NOTICE("You start climbing out of \the [interior.exterior]."))
+	to_chat(M, SPAN_NOTICE("你开始爬出[interior.exterior]。"))
 	if(!do_after(M, exit_time, INTERRUPT_NO_NEEDHAND, BUSY_ICON_GENERIC))
-		to_chat(M, SPAN_WARNING("Something has interrupted you."))
+		to_chat(M, SPAN_WARNING("你的动作被打断了。"))
 		return
 
 	//Dragged stuff comes with us only if properly waited 2 seconds. No cheating!
@@ -51,9 +51,9 @@
 	interior.exit(M)
 
 /obj/structure/interior_exit/attack_alien(mob/living/carbon/xenomorph/M, dam_bonus)
-	to_chat(M, SPAN_NOTICE("You start climbing out of \the [interior.exterior]."))
+	to_chat(M, SPAN_NOTICE("你开始爬出[interior.exterior]。"))
 	if(!do_after(M, 1 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_GENERIC))
-		to_chat(M, SPAN_WARNING("Something has interrupted you."))
+		to_chat(M, SPAN_WARNING("你的动作被打断了。"))
 	else
 		interior.exit(M)
 	return XENO_NO_DELAY_ACTION
@@ -62,18 +62,18 @@
 	if(istype(object, /obj/item/explosive/grenade))
 		var/obj/item/explosive/grenade/nade = object
 		if(nade.antigrief_protection && user.faction == FACTION_MARINE && explosive_antigrief_check(nade, user))
-			to_chat(user, SPAN_WARNING("\The [nade.name]'s safe-area accident inhibitor prevents you from priming the grenade!"))
+			to_chat(user, SPAN_WARNING("[nade.name]的安全区防事故装置阻止了你启用手榴弹！"))
 			// Let staff know, in case someone's actually about to try to grief
 			msg_admin_niche("[key_name(user)] attempted to prime \a [nade.name] in [get_area(src)] [ADMIN_JMP(src.loc)]")
 			return
 
-		user.visible_message(SPAN_WARNING("[user] takes position to throw [nade] through the door."),
-		SPAN_WARNING("You take position to throw [nade] through the door."))
+		user.visible_message(SPAN_WARNING("[user]摆好姿势，准备把[nade]从门口扔出去。"),
+		SPAN_WARNING("你摆好姿势，准备把[nade]从门口扔出去。"))
 		if(!do_after(user, 1 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
 			return
 
-		user.visible_message(SPAN_WARNING("[user] throws [nade] through the door!"),
-		SPAN_WARNING("You throw [nade] through the door."))
+		user.visible_message(SPAN_WARNING("[user]把[nade]从门口扔了出去！"),
+		SPAN_WARNING("你把[nade]从门口扔了出去。"))
 
 		var/turf/exit_turf = get_exit_turf()
 		user.drop_held_item()
@@ -96,7 +96,7 @@
 	user.forceMove(vehicle_turf)
 
 /obj/structure/interior_exit/vehicle
-	name = "vehicle door"
+	name = "车门"
 
 /obj/structure/interior_exit/vehicle/Initialize()
 	. = ..()
@@ -131,9 +131,9 @@
 	if(dragged_atom)
 		exit_time = 2 SECONDS
 
-	to_chat(M, SPAN_NOTICE("You start climbing out of \the [interior.exterior]."))
+	to_chat(M, SPAN_NOTICE("你开始爬出[interior.exterior]。"))
 	if(!do_after(M, exit_time, INTERRUPT_NO_NEEDHAND, BUSY_ICON_GENERIC))
-		to_chat(M, SPAN_WARNING("Something has interrupted you."))
+		to_chat(M, SPAN_WARNING("你的动作被打断了。"))
 		return
 
 	var/turf/exit_turf = get_exit_turf()
@@ -151,9 +151,9 @@
 	interior.exit(M, exit_turf)
 
 /obj/structure/interior_exit/vehicle/attack_alien(mob/living/carbon/xenomorph/M, dam_bonus)
-	to_chat(M, SPAN_NOTICE("You start climbing out of \the [interior.exterior]."))
+	to_chat(M, SPAN_NOTICE("你开始爬出[interior.exterior]。"))
 	if(!do_after(M, 1 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_GENERIC))
-		to_chat(M, SPAN_WARNING("Something has interrupted you."))
+		to_chat(M, SPAN_WARNING("你的动作被打断了。"))
 	else
 		interior.exit(M, get_exit_turf())
 	return XENO_NO_DELAY_ACTION

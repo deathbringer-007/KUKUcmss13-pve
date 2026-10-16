@@ -1,7 +1,7 @@
 /obj/structure/pipes/standard/manifold
 	icon = 'icons/obj/pipes/manifold.dmi'
-	name = "pipe manifold"
-	desc = "A manifold composed of regular pipes"
+	name = "管道歧管"
+	desc = "由普通管道组成的歧管。"
 	dir = SOUTH
 	valid_directions = list(EAST, NORTH, WEST)
 
@@ -54,15 +54,15 @@
 	level = 2
 
 /obj/structure/pipes/standard/manifold/visible/scrubbers
-	name="Scrubbers pipe manifold"
-	desc = "A manifold composed of scrubbers pipes"
+	name="洗涤管道歧管"
+	desc = "由洗涤管道组成的歧管。"
 	icon_state = "map-scrubbers"
 	layer = ATMOS_PIPE_SCRUBBER_LAYER
 	color = PIPE_COLOR_RED
 
 /obj/structure/pipes/standard/manifold/visible/supply
-	name="Air supply pipe manifold"
-	desc = "A manifold composed of supply pipes"
+	name="供气管道歧管"
+	desc = "由供气管道组成的歧管。"
 	icon_state = "map-supply"
 	layer = ATMOS_PIPE_SUPPLY_LAYER
 	color = PIPE_COLOR_BLUE
@@ -90,21 +90,21 @@
 	. = ..()
 
 /obj/structure/pipes/standard/manifold/hidden/scrubbers
-	name = "Scrubbers pipe manifold"
-	desc = "A manifold composed of scrubbers pipes"
+	name = "洗涤管道歧管"
+	desc = "由洗涤管道组成的歧管。"
 	icon_state = "map-scrubbers"
 	layer = ATMOS_PIPE_SCRUBBER_LAYER
 	color = PIPE_COLOR_RED
 
 /obj/structure/pipes/standard/manifold/hidden/supply
-	name = "Air supply pipe manifold"
-	desc = "A manifold composed of supply pipes"
+	name = "供气管道歧管"
+	desc = "由供气管道组成的歧管。"
 	icon_state = "map-supply"
 	layer = ATMOS_PIPE_SUPPLY_LAYER
 	color = PIPE_COLOR_BLUE
 
 /obj/structure/pipes/standard/manifold/hidden/supply/no_boom
-	name = "Reinforced Air supply pipe manifold"
+	name = "加固供气管道歧管"
 	explodey = FALSE
 	color = PIPE_COLOR_PURPLE
 
@@ -126,8 +126,8 @@
 /obj/structure/pipes/standard/manifold/fourway
 	icon = 'icons/obj/pipes/manifold.dmi'
 	icon_state = ""
-	name = "4-way pipe manifold"
-	desc = "A manifold composed of regular pipes"
+	name = "四通管道歧管"
+	desc = "由普通管道组成的歧管。"
 	dir = SOUTH
 	valid_directions = list(NORTH, SOUTH, EAST, WEST)
 
@@ -139,15 +139,15 @@
 	level = 2
 
 /obj/structure/pipes/standard/manifold/fourway/visible/scrubbers
-	name="4-way scrubbers pipe manifold"
-	desc = "A manifold composed of scrubbers pipes"
+	name="四通洗涤管道歧管"
+	desc = "由洗涤管道组成的歧管。"
 	icon_state = "map_4way-scrubbers"
 	layer = ATMOS_PIPE_SCRUBBER_LAYER
 	color = PIPE_COLOR_RED
 
 /obj/structure/pipes/standard/manifold/fourway/visible/supply
-	name="4-way air supply pipe manifold"
-	desc = "A manifold composed of supply pipes"
+	name="四通供气管道歧管"
+	desc = "由供气管道组成的歧管。"
 	icon_state = "map_4way-supply"
 	layer = ATMOS_PIPE_SUPPLY_LAYER
 	color = PIPE_COLOR_BLUE
@@ -175,21 +175,21 @@
 	. = ..()
 
 /obj/structure/pipes/standard/manifold/fourway/hidden/scrubbers
-	name="4-way scrubbers pipe manifold"
-	desc = "A manifold composed of scrubbers pipes"
+	name="四通洗涤管道歧管"
+	desc = "由洗涤管道组成的歧管。"
 	icon_state = "map_4way-scrubbers"
 	layer = ATMOS_PIPE_SCRUBBER_LAYER
 	color = PIPE_COLOR_RED
 
 /obj/structure/pipes/standard/manifold/fourway/hidden/supply
-	name="4-way air supply pipe manifold"
-	desc = "A manifold composed of supply pipes"
+	name="四通供气管道歧管"
+	desc = "由供气管道组成的歧管。"
 	icon_state = "map_4way-supply"
 	layer = ATMOS_PIPE_SUPPLY_LAYER
 	color = PIPE_COLOR_BLUE
 
 /obj/structure/pipes/standard/manifold/fourway/hidden/supply/no_boom
-	name = "reinforced 4-way air supply pipe manifold"
+	name = "加固四通供气管道歧管"
 	explodey = FALSE
 	color = PIPE_COLOR_PURPLE
 

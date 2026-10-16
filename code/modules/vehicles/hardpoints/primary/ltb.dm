@@ -1,6 +1,6 @@
 /obj/item/hardpoint/primary/cannon
-	name = "\improper LTB Cannon"
-	desc = "A primary cannon for tanks that shoots 85mm high-explosive anti-tank rounds. Comes standard on the M22 Jackson tank, uncommonly mounted to M34 Longstreets."
+	name = "\improper LTB火炮"
+	desc = "坦克主炮，发射85毫米高爆反坦克弹，是M22“杰克逊”坦克的标准配备，偶尔也安装在M34“朗斯特里特”上。"
 
 	icon_state = "ltb_cannon"
 	disp_icon = "tank"

@@ -1,6 +1,6 @@
 /obj/item/device/radio/beacon
-	name = "Tracking Beacon"
-	desc = "A beacon used by a teleporter."
+	name = "追踪信标"
+	desc = "供传送机使用的信标。"
 	icon_state = "beacon"
 	item_state = "signaller"
 	var/code = "electronic"
@@ -23,8 +23,8 @@
 
 
 /obj/item/device/radio/beacon/verb/alter_signal(t as text)
-	set name = "Alter Beacon's Signal"
-	set category = "Object"
+	set name = "更改信标信号"
+	set category = "物品"
 	set src in usr
 
 	if (usr.is_mob_incapacitated())

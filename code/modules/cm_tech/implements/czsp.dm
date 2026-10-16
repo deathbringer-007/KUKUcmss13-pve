@@ -1,4 +1,4 @@
 /obj/item/storage/box/czsp
-	name = "combat zone support kit"
-	desc = "Contains Combat Zone support supplies."
+	name = "战区支援套装"
+	desc = "内含战区支援物资。"
 	use_sound = "toolbox"

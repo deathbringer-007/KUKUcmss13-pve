@@ -1,87 +1,87 @@
 /obj/item/stack/sheet/animalhide/human
-	name = "human skin"
-	desc = "The by-product of human farming."
-	singular_name = "human skin piece"
+	name = "人皮"
+	desc = "养殖人类的副产品。"
+	singular_name = "人皮片"
 	icon_state = "sheet-hide"
 	sheettype = "leather"
 	stack_id = "human skin"
 
 /obj/item/stack/sheet/animalhide/corgi
-	name = "corgi hide"
-	desc = "The by-product of corgi farming."
-	singular_name = "corgi hide piece"
+	name = "柯基皮"
+	desc = "养殖柯基的副产品。"
+	singular_name = "柯基皮片"
 	icon_state = "sheet-corgi"
 	sheettype = "leather"
 	stack_id = "corgi hide"
 
 /obj/item/stack/sheet/animalhide/cat
-	name = "cat hide"
-	desc = "The by-product of cat farming."
-	singular_name = "cat hide piece"
+	name = "猫皮"
+	desc = "养殖猫的副产品。"
+	singular_name = "猫皮片"
 	icon_state = "sheet-cat"
 	sheettype = "leather"
 	stack_id = "cat hide"
 
 /obj/item/stack/sheet/animalhide/monkey
-	name = "monkey hide"
-	desc = "The by-product of monkey farming."
-	singular_name = "monkey hide piece"
+	name = "猴皮"
+	desc = "养殖猴子的副产品。"
+	singular_name = "猴皮片"
 	icon_state = "sheet-monkey"
 	sheettype = "leather"
 	stack_id = "monkey hide"
 
 /obj/item/stack/sheet/animalhide/lizard
-	name = "lizard skin"
-	desc = "Sssssss..."
-	singular_name = "lizard skin piece"
+	name = "蜥蜴皮"
+	desc = "嘶嘶嘶……"
+	singular_name = "蜥蜴皮片"
 	icon_state = "sheet-lizard"
 	sheettype = "leather"
 	stack_id = "lizard skin"
 
 /obj/item/stack/sheet/animalhide/xeno
-	name = "alien hide"
-	desc = "The skin of a terrible creature."
-	singular_name = "alien hide piece"
+	name = "异形皮"
+	desc = "一种恐怖生物的皮肤。"
+	singular_name = "异形皮片"
 	icon_state = "sheet-xeno"
 	sheettype = "leather"
 	stack_id = "alien hide"
 
 /obj/item/stack/sheet/animalhide/xeno/kinghide
-	name = "king hide"
-	desc = "The hide of an irregular strain, it is tattered and rotting."
+	name = "异形王皮"
+	desc = "异常品系的皮肤，已经破烂腐朽。"
 	color = "#f7897c"
 
 //don't see anywhere else to put these, maybe together they could be used to make the xenos suit?
 /obj/item/stack/sheet/xenochitin
-	name = "alien chitin"
-	desc = "A piece of chitin from a terrible creature."
-	singular_name = "alien hide piece"
+	name = "异形几丁质"
+	desc = "来自一种恐怖生物的几丁质片。"
+	singular_name = "异形皮片"
 	icon_state = "chitin"
 	sheettype = "chitin"
 	stack_id = "alien chitin"
 
 /obj/item/xenos_claw
-	name = "alien claw"
-	desc = "The claw of a terrible creature."
+	name = "异形利爪"
+	desc = "一种恐怖生物的利爪。"
 	icon_state = "claw"
 
 /obj/item/weed_extract
-	name = "weed extract"
-	desc = "A piece of slimy, greenish weed."
+	name = "菌毯提取物"
+	desc = "一块黏滑的浅绿色菌毯。"
 	icon_state = "weed_extract"
 
 /obj/item/stack/sheet/hairlesshide
-	name = "hairless hide"
-	desc = "This hide was stripped of its hair, but still needs tanning."
-	singular_name = "hairless hide piece"
+	name = "脱毛生皮"
+	desc = "这张生皮已去除毛发，但尚需鞣制。"
+	singular_name = "脱毛生皮片"
 	icon_state = "sheet-hairlesshide"
 	sheettype = "leather"
 	stack_id = "hairless hide"
 
 /obj/item/stack/sheet/wetleather
-	name = "wet leather"
-	desc = "This leather has been cleaned but still needs to be dried."
-	singular_name = "wet leather piece"
+	name = "湿皮革"
+	desc = "这块皮革已清洗干净，但尚需晾干。"
+	singular_name = "湿皮革片"
 	icon_state = "sheet-wetleather"
 	sheettype = "leather"
 	stack_id = "wet leather"
@@ -89,9 +89,9 @@
 	var/drying_threshold_temperature = 500 //Kelvin to start drying
 
 /obj/item/stack/sheet/leather
-	name = "leather"
-	desc = "The by-product of mob grinding."
-	singular_name = "leather piece"
+	name = "皮革"
+	desc = "绞碎生物的副产品。"
+	singular_name = "皮革片"
 	icon_state = "sheet-leather"
 	sheettype = "leather"
 	stack_id = "leather"
@@ -103,9 +103,9 @@
 /obj/item/stack/sheet/animalhide/attackby(obj/item/W, mob/user)
 	if(W.sharp)
 		//visible message on mobs is defined as visible_message(message, self_message, blind_message)
-		user.visible_message(SPAN_NOTICE("\the [usr] starts cutting hair off \the [src]"), SPAN_NOTICE("You start cutting the hair off \the [src]"), "You hear the sound of a knife rubbing against flesh")
+		user.visible_message(SPAN_NOTICE("[usr]开始刮除[src]上的毛发。"), SPAN_NOTICE("你开始刮除[src]上的毛发。"), "你听到了刀刃刮擦皮肉的声音。")
 		if(do_after(user,50, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
-			to_chat(user, SPAN_NOTICE(" You cut the hair from this [src.singular_name]"))
+			to_chat(user, SPAN_NOTICE("你刮掉了这块[src.singular_name]上的毛发。"))
 			//Try locating an exisitng stack on the tile and add to there if possible
 			for(var/obj/item/stack/sheet/hairlesshide/HS in user.loc)
 				if(HS.amount < 50)

@@ -1,6 +1,6 @@
 /obj/item/ammo_magazine/hardpoint/primary_flamer
-	name = "DRG-N Offensive Flamer Unit Fuel Tank"
-	desc = "Fuel tanks for the DRG-N Offensive Flamer. It contains an ultra-thick napthal fuel mix, highly flammable."
+	name = "DRG-N进攻型火焰喷射器燃料箱"
+	desc = "DRG-N进攻型火焰喷射器用燃料箱，装有极易燃烧的超稠萘基混合燃料。"
 	caliber = "UT-Napthal Fuel" //correlates to flamer mags
 	icon_state = "drgn_flametank"
 	w_class = SIZE_LARGE

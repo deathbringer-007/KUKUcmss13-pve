@@ -1,5 +1,5 @@
 /obj/structure/machinery/medical_pod
-	name = "generic medical pod"
+	name = "通用医疗舱"
 	icon = 'icons/obj/structures/machinery/cryogenics.dmi'
 	icon_state = "sleeper_open"
 	var/base_icon_state = "sleeper"
@@ -39,45 +39,45 @@
 
 /obj/structure/machinery/medical_pod/verb/move_inside(mob/target)
 	set src in oview(1)
-	set category = "Object"
-	set name = "Enter Pod"
+	set category = "物品"
+	set name = "进入医疗舱"
 
 	target = usr
 
 	if (usr.stat || !(ishuman(usr)))
 		return
 	if (src.occupant)
-		to_chat(usr, SPAN_BOLDNOTICE("\The [src] is already occupied!"))
+		to_chat(usr, SPAN_BOLDNOTICE("[src]内已经有人了！"))
 		return
 	if(inoperable())
-		to_chat(usr, SPAN_NOTICE("\The [src] is non-functional!"))
+		to_chat(usr, SPAN_NOTICE("[src]无法工作！"))
 		return
 	if (usr.abiotic())
-		to_chat(usr, SPAN_BOLDNOTICE("Subject cannot have abiotic items on."))
+		to_chat(usr, SPAN_BOLDNOTICE("患者须先放下手中的物品。"))
 		return
 	if(entry_timer)
 		if(!do_after(usr, entry_timer, INTERRUPT_NO_NEEDHAND, BUSY_ICON_GENERIC))
 			return
 		if(src.occupant)
-			to_chat(usr, SPAN_NOTICE("\The [src] is already occupied!"))
+			to_chat(usr, SPAN_NOTICE("[src]内已经有人了！"))
 			return
 	go_in(usr)
 	add_fingerprint(usr)
 
 /obj/structure/machinery/medical_pod/verb/eject()
 	set src in oview(1)
-	set category = "Object"
-	set name = "Eject Pod"
+	set category = "物品"
+	set name = "移出患者"
 
 	if(usr.is_mob_incapacitated())
 		return
 	if(!occupant)
-		to_chat(usr, SPAN_WARNING("There's nobody in \the [src] to eject!"))
+		to_chat(usr, SPAN_WARNING("[src]内没有可移出的人！"))
 		return
 	if(isxeno(usr)) // let xenos eject people hiding inside.
-		visible_message("[usr] starts forcing open \the [src]!")
+		visible_message("[usr]开始强行打开[src]！")
 		if(!do_after(usr, 1 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
-			to_chat(usr, SPAN_WARNING("You were interrupted!"))
+			to_chat(usr, SPAN_WARNING("你的动作被打断了！"))
 			return
 		go_out()
 		add_fingerprint(usr)
@@ -121,12 +121,12 @@
 			return
 
 	if(occupant)
-		to_chat(main_character, SPAN_BOLDNOTICE("\The [src] is already occupied!"))
+		to_chat(main_character, SPAN_BOLDNOTICE("[src]内已经有人了！"))
 		return
 	if(main_character != M)
-		to_chat(main_character, SPAN_NOTICE("You move [M.name] inside \the [src]."))
+		to_chat(main_character, SPAN_NOTICE("你将[M.name]移入[src]。"))
 	else
-		to_chat(main_character, SPAN_NOTICE("You move into \the [src]."))
+		to_chat(main_character, SPAN_NOTICE("你进入[src]。"))
 
 	M.forceMove(src)
 	occupant = M
@@ -147,8 +147,8 @@
 
 	if(exit_stun)
 		occupant.apply_effect(exit_stun, STUN) //Action delay when going out
-		occupant.visible_message(SPAN_WARNING("[occupant] pops out of \the [src]!"),
-		SPAN_WARNING("You get out of \the [src] and get your bearings!"))
+		occupant.visible_message(SPAN_WARNING("[occupant]从[src]里出来了！"),
+		SPAN_WARNING("你从[src]里出来，重新辨清了周围的情况！"))
 
 	occupant = null
 	update_use_power(USE_POWER_IDLE)
@@ -162,7 +162,7 @@
 	if(!ishuman(user))
 		return // no
 	if(inoperable())
-		to_chat(user, SPAN_NOTICE("\The [src] is non-functional!"))
+		to_chat(user, SPAN_NOTICE("[src]无法工作！"))
 		return
 	if(istype(W, /obj/item/grab))
 		var/mob/to_put_in
@@ -170,7 +170,7 @@
 		if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
 			var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
 			if(!C.stasis_mob)
-				to_chat(user, SPAN_WARNING("\The [C] is empty!"))
+				to_chat(user, SPAN_WARNING("[C]是空的！"))
 				return
 			to_put_in = C.stasis_mob
 			C.open()
@@ -180,21 +180,21 @@
 		else
 			return
 		if(occupant)
-			to_chat(user, SPAN_WARNING("\The [src] is already occupied!"))
+			to_chat(user, SPAN_WARNING("[src]内已经有人了！"))
 			return
 		if(to_put_in.abiotic())
-			to_chat(user, SPAN_WARNING("Subject cannot have abiotic items on."))
+			to_chat(user, SPAN_WARNING("患者须先放下手中的物品。"))
 			return
 		if(!ishuman(to_put_in))
-			to_chat(user, SPAN_WARNING("An unsupported lifeform was detected, aborting!"))
+			to_chat(user, SPAN_WARNING("检测到不兼容的生命体，操作已中止！"))
 			return
 
 		if(push_in_timer)
-			visible_message(SPAN_NOTICE("[user] starts putting [to_put_in] into \the [src]."), null, null, 3)
+			visible_message(SPAN_NOTICE("[user]开始将[to_put_in]放入[src]。"), null, null, 3)
 			if(!do_after(usr, push_in_timer, INTERRUPT_NO_NEEDHAND, BUSY_ICON_GENERIC))
 				return
 			if(src.occupant)
-				to_chat(usr, SPAN_NOTICE("\The [src] is already occupied!"))
+				to_chat(usr, SPAN_NOTICE("[src]内已经有人了！"))
 				return
 			if(!G || !G.grabbed_thing)
 				return
@@ -206,7 +206,7 @@
 	. = ..()
 	if(istype(W, /obj/item/stack/sheet/metal))
 		if(stored_metal == max_metal)
-			to_chat(user, SPAN_WARNING("\The [src] is full!"))
+			to_chat(user, SPAN_WARNING("[src]已装满！"))
 			return
 		var/obj/item/stack/sheet/metal/M = W
 		var/sheets_to_eat = (round((max_metal - stored_metal), 100))/100
@@ -220,6 +220,6 @@
 			M.use(M.amount)
 		if(stored_metal > max_metal)
 			stored_metal = max_metal
-		to_chat(user, SPAN_NOTICE("\The [src] processes \the [W]."))
+		to_chat(user, SPAN_NOTICE("[src]处理了[W]。"))
 		playsound(user, 'sound/machines/outputclick1.ogg', 25, TRUE)
 		return

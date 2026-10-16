@@ -32,8 +32,9 @@
 
 /datum/reagent/stimulant/speed_stimulant
 	name = "Speed Stimulant"
+	localized_name = "疾速兴奋剂"
 	id = "speed_stimulant"
-	description = "A highly experimental performance enhancement stimulant. It is not addictive."
+	description = "一种用于增强身体机能的高度实验性兴奋剂，不会成瘾。"
 	color = "#ffff00"
 	properties = list(
 		PROPERTY_MUSCLESTIMULATING = 40,
@@ -42,8 +43,9 @@
 
 /datum/reagent/stimulant/brain_stimulant
 	name = "Brain Stimulant"
+	localized_name = "脑部兴奋剂"
 	id = "brain_stimulant"
-	description = "A highly experimental CNS stimulant."
+	description = "一种高度实验性的中枢神经兴奋剂。"
 	color = "#a800ff"
 	properties = list(
 		PROPERTY_NERVESTIMULATING = 30,
@@ -53,14 +55,15 @@
 
 /datum/reagent/stimulant/redemption_stimulant
 	name = "Redemption Stimulant"
+	localized_name = "救赎兴奋剂"
 	id = "redemption_stimulant"
 	overdose = LOW_REAGENTS_OVERDOSE
 	overdose_critical = LOW_REAGENTS_OVERDOSE_CRITICAL
 	description = {"\
-		A highly experimental bone, organ and muscle stimulant.\
-		Increases the durability of skin and bones as well as nullifying any pain.\
-		Pain is impossible to feel whilst this drug is in your system.\
-		During the metabolism of this drug, dysfunctional organs will work normally."}
+		一种高度实验性的骨骼、器官和肌肉兴奋剂。\
+		可增强皮肤和骨骼的耐受能力，并消除一切疼痛。\
+		只要药物还在体内，就无法感受到疼痛。\
+		药物代谢期间，功能失常的器官也能正常运作。"}
 	color = "#00ffa8"
 	properties = list(
 		PROPERTY_NERVESTIMULATING = 2,

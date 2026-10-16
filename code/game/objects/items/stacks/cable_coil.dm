@@ -3,13 +3,13 @@
 
 #define MAXCOIL 30
 /obj/item/stack/cable_coil
-	name = "cable coil"
+	name = "电缆卷"
 	icon = 'icons/obj/structures/machinery/power.dmi'
 	icon_state = "coil"
 	amount = MAXCOIL
 	max_amount = MAXCOIL
 	color = COLOR_RED
-	desc = "A coil of power cable."
+	desc = "一卷电力电缆。"
 	throwforce = 10
 	w_class = SIZE_SMALL
 	throw_speed = SPEED_SLOW
@@ -17,7 +17,7 @@
 	matter = list("metal" = 50, "glass" = 20)
 	flags_equip_slot = SLOT_WAIST
 	item_state = "coil"
-	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
+	attack_verb = list("鞭打", "抽打", "鞭笞", "抽打")
 	stack_id = "cable coil"
 	attack_speed = 3
 	ground_offset_x = 2
@@ -37,13 +37,13 @@
 		color = pick(COLOR_RED, COLOR_BLUE, COLOR_GREEN, COLOR_ORANGE, COLOR_WHITE, COLOR_MAGENTA, COLOR_YELLOW, COLOR_CYAN)
 	if(amount == 1)
 		icon_state = "coil1"
-		name = "cable piece"
+		name = "电缆段"
 	else if(amount == 2)
 		icon_state = "coil2"
-		name = "cable piece"
+		name = "电缆段"
 	else
 		icon_state = "coil"
-		name = "cable coil"
+		name = "电缆卷"
 
 /obj/item/stack/cable_coil/proc/update_wclass()
 	if(amount == 1)
@@ -54,35 +54,35 @@
 /obj/item/stack/cable_coil/get_examine_text(mob/user)
 	. = list()
 	if(amount == 1)
-		. += "A short piece of power cable."
+		. += "一小段电力电缆。"
 	else if(amount == 2)
-		. += "A piece of power cable."
+		. += "一段电力电缆。"
 	else
-		. += "A coil of power cable. There are [amount] lengths of cable in the coil."
+		. += "一卷电力电缆，共有[amount]段。"
 
 /obj/item/stack/cable_coil/verb/make_restraint()
-	set name = "Make Cable Restraints"
-	set category = "Object"
+	set name = "制作电缆束缚带"
+	set category = "物品"
 	set src in usr
 	var/mob/M = usr
 
 	if(ishuman(M) && !M.is_mob_incapacitated())
 		if(!istype(usr.loc,/turf)) return
 		if(src.amount <= 14)
-			to_chat(usr, SPAN_WARNING("You need at least 15 lengths to make restraints!"))
+			to_chat(usr, SPAN_WARNING("你至少需要15段电缆才能制作束缚带！"))
 			return
 		var/obj/item/restraint/adjustable/cable/B = new /obj/item/restraint/adjustable/cable(usr.loc)
 		B.color = color
-		to_chat(usr, SPAN_NOTICE("You wind some cable together to make some restraints."))
+		to_chat(usr, SPAN_NOTICE("你将电缆绕在一起，制成了束缚带。"))
 		src.use(15)
 	else
-		to_chat(usr, SPAN_NOTICE("\blue You cannot do that."))
+		to_chat(usr, SPAN_NOTICE("\blue 你无法进行此操作。"))
 
 /obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
 	if( HAS_TRAIT(W, TRAIT_TOOL_WIRECUTTERS) && src.amount > 1)
 		src.amount--
 		new/obj/item/stack/cable_coil(user.loc, 1,color)
-		to_chat(user, SPAN_NOTICE("You cut a piece off the cable coil."))
+		to_chat(user, SPAN_NOTICE("你从电缆卷上剪下了一段电缆。"))
 		src.updateicon()
 		src.update_wclass()
 		return
@@ -90,17 +90,17 @@
 	else if( istype(W, /obj/item/stack/cable_coil) )
 		var/obj/item/stack/cable_coil/C = W
 		if(C.amount >= MAXCOIL)
-			to_chat(user, "The coil is too long, you cannot add any more cable to it.")
+			to_chat(user, "这卷电缆已经太长，无法再加了。")
 			return
 
 		if( (C.amount + src.amount <= MAXCOIL) )
-			to_chat(user, "You join the cable coils together.")
+			to_chat(user, "你将两卷电缆接在了一起。")
 			C.add(src.amount) // give it cable
 			src.use(src.amount) // make sure this one cleans up right
 
 		else
 			var/amt = MAXCOIL - C.amount
-			to_chat(user, "You transfer [amt] length\s of cable from one coil to the other.")
+			to_chat(user, "你将[amt]段电缆从一卷转移到了另一卷。")
 			C.add(amt)
 			src.use(amt)
 		return
@@ -138,11 +138,11 @@
 		return
 
 	if(get_dist(F,user) > 1)
-		to_chat(user, SPAN_WARNING("You can't lay cable at a place that far away."))
+		to_chat(user, SPAN_WARNING("那里太远，无法铺设电缆。"))
 		return
 
 	if(F.intact_tile) // if floor is intact, complain
-		to_chat(user, SPAN_WARNING("You can't lay cable there unless the floor tiles are removed."))
+		to_chat(user, SPAN_WARNING("必须先撬起地砖，才能在那里铺设电缆。"))
 		return
 
 	else
@@ -155,12 +155,12 @@
 
 		for(var/obj/structure/cable/LC in F)
 			if((LC.d1 == dirn && LC.d2 == 0 ) || ( LC.d2 == dirn && LC.d1 == 0))
-				to_chat(user, SPAN_WARNING("There's already a cable at that position."))
+				to_chat(user, SPAN_WARNING("那个位置已经有电缆了。"))
 				return
 
 		for(var/obj/structure/cable/LC in F)
 			if((LC.d1 == dirn && LC.d2 == 0 ) || ( LC.d2 == dirn && LC.d1 == 0))
-				to_chat(user, "There's already a cable at that position.")
+				to_chat(user, "那个位置已经有电缆了。")
 				return
 
 		var/obj/structure/cable/C = new(F)
@@ -196,7 +196,7 @@
 		return
 
 	if(get_dist(C, user) > 1) // make sure it's close enough
-		to_chat(user, SPAN_WARNING("You can't lay cable at a place that far away."))
+		to_chat(user, SPAN_WARNING("那里太远，无法铺设电缆。"))
 		return
 
 
@@ -207,7 +207,7 @@
 
 	if(C.d1 == dirn || C.d2 == dirn) // one end of the clicked cable is pointing towards us
 		if(U.intact_tile) // can't place a cable if the floor is complete
-			to_chat(user, SPAN_WARNING("You can't lay cable there unless the floor tiles are removed."))
+			to_chat(user, SPAN_WARNING("必须先撬起地砖，才能在那里铺设电缆。"))
 			return
 		else
 			// cable is pointing at us, we're standing on an open tile
@@ -217,7 +217,7 @@
 
 			for(var/obj/structure/cable/LC in U) // check to make sure there's not a cable there already
 				if(LC.d1 == fdirn || LC.d2 == fdirn)
-					to_chat(user, SPAN_WARNING("There's already a cable at that position."))
+					to_chat(user, SPAN_WARNING("那个位置已经有电缆了。"))
 					return
 
 			var/obj/structure/cable/NC = new(U)
@@ -250,7 +250,7 @@
 			if(LC == C) // skip the cable we're interacting with
 				continue
 			if((LC.d1 == nd1 && LC.d2 == nd2) || (LC.d1 == nd2 && LC.d2 == nd1) ) // make sure no cable matches either direction
-				to_chat(user, SPAN_WARNING("There's already a cable at that position."))
+				to_chat(user, SPAN_WARNING("那个位置已经有电缆了。"))
 				return
 
 
@@ -322,17 +322,17 @@
 
 		if(S.burn_dam > 0 && use(1))
 			if(self_fixing)
-				user.visible_message(SPAN_WARNING("\The [user] begins fixing some burn damage on their [S.display_name]."), \
-					SPAN_WARNING("You begin to carefully patch some burn damage on your [S.display_name] so as not to void your warranty."))
+				user.visible_message(SPAN_WARNING("[user]开始修复自己[S.display_name]上的烧伤。"), \
+					SPAN_WARNING("你开始小心修补自己[S.display_name]上的烧伤，以免失去保修资格。"))
 				if(!do_after(user, 30, INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
 					return
 
 			S.heal_damage(0, 15, TRUE)
 			H.pain.recalculate_pain()
-			user.visible_message(SPAN_DANGER("\The [user] repairs some burn damage on \the [M]'s [S.display_name] with \the [src]."))
+			user.visible_message(SPAN_DANGER("[user]用[src]修复了[M]的[S.display_name]上的部分烧伤。"))
 			return
 		else
-			to_chat(user, "Nothing to fix!")
+			to_chat(user, "没有需要修复的损伤！")
 
 	else
 		return ..()

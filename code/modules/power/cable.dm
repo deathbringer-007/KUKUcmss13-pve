@@ -28,8 +28,8 @@
 	level = 1
 	anchored =1
 	var/datum/powernet/powernet
-	name = "power cable"
-	desc = "A flexible superconducting cable for heavy-duty power transfer"
+	name = "电力电缆"
+	desc = "用于大功率输电的柔性超导电缆。"
 	icon = 'icons/obj/pipes/power_cond_white.dmi'
 	icon_state = "0-1"
 	var/d1 = 0
@@ -100,7 +100,7 @@
 
 ///// Z-Level Stuff
 		if(src.d1 == 12 || src.d2 == 12)
-			to_chat(user, SPAN_WARNING("You must cut this cable from above."))
+			to_chat(user, SPAN_WARNING("你必须从上方剪断这根电缆。"))
 			return
 
 		if(src.d1 == 11 || src.d2 == 11)
@@ -112,7 +112,7 @@
 ///// Z-Level Stuff
 
 		if(breaker_box)
-			to_chat(user, SPAN_DANGER("This cable is connected to nearby breaker box. Use breaker box to interact with it."))
+			to_chat(user, SPAN_DANGER("这根电缆连接着附近的断路器箱，请通过断路器箱进行操作。"))
 			return
 
 		if (shock(user, 50))
@@ -120,7 +120,7 @@
 
 		deconstruct()
 		for(var/mob/O in viewers(src, null))
-			O.show_message(SPAN_WARNING("[user] cuts the cable."), SHOW_MESSAGE_VISIBLE)
+			O.show_message(SPAN_WARNING("[user]剪断了电缆。"), SHOW_MESSAGE_VISIBLE)
 		// wires are irrelevant so I have disabled this message for now
 		//message_admins("[key_name(user)] cut a wire at ([x],[y],[z]) [ADMIN_JMP(src)]")
 

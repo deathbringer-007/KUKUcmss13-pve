@@ -9,8 +9,8 @@
  * Security
  */
 /obj/item/clothing/under/rank/warden
-	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for more robust protection. It has the word \"Warden\" written on the shoulders."
-	name = "warden's jumpsuit"
+	desc = "采用比普通连体服稍坚固的材料，提供更可靠的防护。肩部写着“典狱长”。"
+	name = "典狱长连体服"
 	icon_state = "warden"
 	item_state = "r_suit"
 	armor_melee = CLOTHING_ARMOR_LOW
@@ -24,8 +24,8 @@
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/under/rank/security
-	name = "security officer's jumpsuit"
-	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
+	name = "安保人员连体服"
+	desc = "采用比普通连体服稍坚固的材料，提供可靠的防护。"
 	icon_state = "security"
 	item_state = "r_suit"
 	armor_melee = CLOTHING_ARMOR_LOW
@@ -40,8 +40,8 @@
 	flags_jumpsuit = FALSE
 
 /obj/item/clothing/under/rank/dispatch
-	name = "dispatcher's uniform"
-	desc = "A dress shirt and khakis with a security patch sewn on."
+	name = "调度员制服"
+	desc = "一件衬衫配卡其裤，上面缝有安保臂章。"
 	icon_state = "dispatch"
 	armor_melee = CLOTHING_ARMOR_LOW
 	armor_bullet = CLOTHING_ARMOR_LOW
@@ -56,8 +56,8 @@
 	flags_jumpsuit = FALSE
 
 /obj/item/clothing/under/rank/security2
-	name = "security officer's uniform"
-	desc = "It's made of a slightly sturdier material, to allow for robust protection."
+	name = "安保人员制服"
+	desc = "采用稍坚固的材料，提供可靠的防护。"
 	icon_state = "redshirt2"
 	item_state = "r_suit"
 	armor_melee = CLOTHING_ARMOR_LOW
@@ -80,8 +80,8 @@
 	flags_jumpsuit = FALSE
 
 /obj/item/clothing/under/tactical
-	name = "tactical jumpsuit"
-	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
+	name = "战术连体服"
+	desc = "采用比普通连体服稍坚固的材料，提供可靠的防护。"
 	icon_state = "swatunder"
 	armor_melee = CLOTHING_ARMOR_LOW
 	armor_bullet = CLOTHING_ARMOR_LOW
@@ -97,8 +97,8 @@
  * Detective
  */
 /obj/item/clothing/under/det
-	name = "hard-worn suit"
-	desc = "Someone who wears this means business."
+	name = "旧西装"
+	desc = "穿这套衣服的人可不是闹着玩的。"
 	icon_state = "detective"
 	item_state = "det"
 	armor_melee = CLOTHING_ARMOR_LOW
@@ -124,22 +124,22 @@
  */
 
 /obj/item/clothing/under/rank/security/navyblue
-	name = "security officer's uniform"
-	desc = "The latest in fashionable security outfits."
+	name = "安保人员制服"
+	desc = "安保服装的最新时尚款。"
 	icon_state = "officerblueclothes"
 	item_state = "officerblueclothes"
 	flags_jumpsuit = FALSE
 
 /obj/item/clothing/under/rank/head_of_security/navyblue
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Head of Security."
-	name = "head of security's uniform"
+	desc = "制服上的徽章表明它属于安保主管。"
+	name = "安保主管制服"
 	icon_state = "hosblueclothes"
 	item_state = "hosblueclothes"
 	flags_jumpsuit = FALSE
 
 /obj/item/clothing/under/rank/warden/navyblue
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Warden."
-	name = "warden's uniform"
+	desc = "制服上的徽章表明它属于典狱长。"
+	name = "典狱长制服"
 	icon_state = "wardenblueclothes"
 	item_state = "wardenblueclothes"
 	flags_jumpsuit = FALSE

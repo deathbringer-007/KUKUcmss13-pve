@@ -1,14 +1,14 @@
 /mob/living/simple_animal/hostile/pirate
-	name = "Pirate"
-	desc = "Does what he wants cause a pirate is free."
+	name = "海盗"
+	desc = "想干什么就干什么，因为海盗是自由的。"
 	icon_state = "piratemelee"
 	icon_living = "piratemelee"
 	icon_dead = "piratemelee_dead"
 	speak_chance = 0
 	turns_per_move = 5
-	response_help = "pushes the"
-	response_disarm = "shoves"
-	response_harm = "hits the"
+	response_help = "推了推"
+	response_disarm = "猛推"
+	response_harm = "击打"
 	speed = 4
 	stop_automated_movement_when_pulled = 0
 	maxHealth = 100
@@ -17,7 +17,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-	attacktext = "slashes"
+	attacktext = "劈砍"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 
 	min_oxy = 5

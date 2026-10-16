@@ -1,9 +1,9 @@
 // UPP Cannon for upp tank
 /obj/item/hardpoint/primary/cannon/railgun
-	name = "\improper Railgun Cannon"
-	desc = "A primary weapon for UPP tanks that fires hypervelocity sabots."
-	desc = "A primary weapon for UPP tanks that fires hypervelocity sabots."
-	desc_lore = "An experimental chemical-railgun developed in a secreted orbital facility outside of Sol for hard targets, such as bunkers or dedicated armour. Using a high-efficiency hypergolic propellant as the first stage, which is then accelerated to blistering velocities by the magnetic rails. Thanks to excessive energy requirements, the turret internals were significantly remodelled to account for the capacitors and dedicated generator. Suffers from wear-through issues on barrels, and heat-masking."
+	name = "\improper 轨道炮"
+	desc = "进步人民联盟坦克用主武器，发射超高速脱壳弹。"
+	desc = "进步人民联盟坦克用主武器，发射超高速脱壳弹。"
+	desc_lore = "在太阳系外秘密轨道设施中研发的实验型化学助推轨道炮，用于打击碉堡或专用装甲等坚固目标。先用高效自燃推进剂进行初级加速，再由电磁轨道将弹丸加速至极高速度。由于耗能巨大，炮塔内部进行了大幅改造，以容纳电容器和专用发电机。存在炮管磨穿和热信号难以遮蔽的问题。"
 
 	icon = 'icons/obj/vehicles/hardpoints/upptank.dmi'
 	icon_state = "railgun"

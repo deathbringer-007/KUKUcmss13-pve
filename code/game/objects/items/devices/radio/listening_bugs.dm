@@ -10,8 +10,8 @@
 #define DISGUISE_TAPE_RECORDER "tape recorder"
 
 /obj/item/device/radio/listening_bug
-	name = "listening device"
-	desc = "A small, and disguisable, listening device."
+	name = "窃听器"
+	desc = "小巧且可伪装成其他物品的窃听设备。"
 
 	icon = 'icons/obj/items/devices.dmi'
 	icon_state = "voice0"
@@ -31,7 +31,7 @@
 	/// Whether or not the bug can be used to listen to its own channel.
 	var/prevent_snooping = FALSE
 	/// The ID tag of the device, for identification.
-	var/nametag = "Device"
+	var/nametag = "设备"
 
 /obj/item/device/radio/listening_bug/ui_data(mob/user)
 	var/list/data = list()
@@ -64,7 +64,7 @@
 	switch(action)
 		if("listen")
 			if(prevent_snooping)
-				to_chat(usr, SPAN_WARNING("This device cannot receive transmissions!"))
+				to_chat(usr, SPAN_WARNING("此设备无法接收传输信号！"))
 				return
 			listening = !listening
 			return
@@ -73,7 +73,7 @@
 				return
 			var/mob/living/carbon/human/user = usr
 			if(!check_access(user.wear_id) && !check_access(user.get_active_hand()))
-				to_chat(user, SPAN_WARNING("You need an authenticated ID card to change this function!"))
+				to_chat(user, SPAN_WARNING("你需要经过身份验证的识别卡才能更改此功能！"))
 				return
 			if(subspace_switchable)
 				subspace_transmission = !subspace_transmission
@@ -86,8 +86,8 @@
 				return
 	..()
 
-/obj/item/device/radio/listening_bug/hear_talk(mob/M as mob, msg, verb = "says", datum/language/speaking = null)
-	var/processed_verb = "[SPAN_RED("\[LSTN [nametag]\]")] [verb]"
+/obj/item/device/radio/listening_bug/hear_talk(mob/M as mob, msg, verb = "说", datum/language/speaking = null)
+	var/processed_verb = "[SPAN_RED("\[窃听 [nametag]\]")] [verb]"
 	if(broadcasting)
 		if(get_dist(src, M) <= 7)
 			talk_into(M, msg, null, processed_verb, speaking, listening_device = TRUE)
@@ -98,11 +98,11 @@
 
 	var/obj/item/target_item = target_atom
 	if(!istype(target_item) || target_item.anchored || target_item.w_class >= SIZE_LARGE)
-		to_chat(user, SPAN_WARNING("You cannot disguise the listening device as this object."))
+		to_chat(user, SPAN_WARNING("无法将窃听器伪装成这个物品。"))
 		return FALSE
 
-	var/confirm = tgui_alert(user, "Are you sure you wish to disguise the listening device as '[target_item]'?", "Confirm Choice", list("Yes","No"), 20 SECONDS)
-	if(confirm != "Yes")
+	var/confirm = tgui_alert(user, "确定要将窃听器伪装成“[target_item]”吗？", "确认选择", list("是","否"), 20 SECONDS)
+	if(confirm != "是")
 		return FALSE
 
 	icon = target_item.icon
@@ -121,37 +121,37 @@
 		var/size
 		switch(w_class)
 			if(SIZE_TINY)
-				size = "tiny"
+				size = "微型"
 			if(SIZE_SMALL)
-				size = "small"
+				size = "小型"
 			if(SIZE_MEDIUM)
-				size = "normal-sized"
-		. += "This is a [blood_color ? blood_color != COLOR_OIL ? "bloody " : "oil-stained " : ""][icon2html(src, user)][src.name]. It is a [size] item."
+				size = "中型"
+		. += "这是[blood_color ? blood_color != COLOR_OIL ? "沾血的" : "沾着油污的" : ""][icon2html(src, user)][src.name]，属于[size]物品。"
 		if(desc)
 			. += desc
 		if(desc_lore)
-			. += SPAN_NOTICE("This has an <a href='byond://?src=\ref[src];desc_lore=1'>extended lore description</a>.")
+			. += SPAN_NOTICE("此物品有<a href='byond://?src=\ref[src];desc_lore=1'>详细背景说明</a>。")
 	else
 		. = ..()
-		. += SPAN_INFO("[src] is set to frequency [get_bug_letter()].")
+		. += SPAN_INFO("[src]当前设为 [get_bug_letter()] 频段。")
 		if(nametag != initial(nametag))
-			. += SPAN_INFO("[src]'s nametag is set to '[nametag]'")
+			. += SPAN_INFO("[src]的名称标签为“[nametag]”。")
 
 /obj/item/device/radio/listening_bug/verb/change_disguise()
-	set name = "Change Disguise"
-	set category = "Object"
+	set name = "更改伪装"
+	set category = "物品"
 	set src in usr
 
 	if(usr.is_mob_incapacitated())
-		to_chat(usr, SPAN_WARNING("You cannot do this while incapacitated!"))
+		to_chat(usr, SPAN_WARNING("失去行动能力时无法执行此操作！"))
 		return FALSE
 
-	var/check = tgui_alert(usr, "Do you wish to change the disguise of this listening bug?", "Change Disguise?", list("Yes", "No"))
-	if(check != "Yes")
+	var/check = tgui_alert(usr, "要更改这个窃听器的伪装吗？", "更改伪装", list("是", "否"))
+	if(check != "是")
 		return FALSE
 	if(disguised)
-		var/remove_check = tgui_alert(usr, "Do you wish to remove the current disguise?", "Remove Disguise?", list("Yes","No"))
-		if(remove_check == "Yes")
+		var/remove_check = tgui_alert(usr, "要移除当前伪装吗？", "移除伪装", list("是","否"))
+		if(remove_check == "是")
 			icon = initial(icon)
 			name = initial(name)
 			desc = initial(desc)
@@ -162,7 +162,7 @@
 			disguised = FALSE
 			return TRUE
 
-	to_chat(usr, SPAN_HELPFUL("You can now change the disguise of the device by selecting a normal, or smaller, sized object."))
+	to_chat(usr, SPAN_HELPFUL("现在可以选择一个中型或更小的物品，将设备伪装成它。"))
 	ready_to_disguise = TRUE
 	return TRUE
 
@@ -191,27 +191,27 @@
 #define OPTION_NEW "New Tag"
 
 /obj/item/device/radio/listening_bug/verb/set_nametag()
-	set name = "Set Nametag"
-	set category = "Object"
+	set name = "设置名称标签"
+	set category = "物品"
 	set src in usr
 
 	if(usr.is_mob_incapacitated())
-		to_chat(usr, SPAN_WARNING("You cannot do this while incapacitated!"))
+		to_chat(usr, SPAN_WARNING("失去行动能力时无法执行此操作！"))
 		return FALSE
 
-	var/check = tgui_alert(usr, "Do you wish to change the name tag of this listening bug?", "Change Name tag?", list("Yes", "No"))
-	if(check != "Yes")
+	var/check = tgui_alert(usr, "要更改这个窃听器的名称标签吗？", "更改名称标签", list("是", "否"))
+	if(check != "是")
 		return FALSE
 
 
 	var/new_nametag
 	var/remove
 	if(nametag != initial(nametag))
-		remove = tgui_alert(usr, "Do you wish to remove the current nametag?", "Remove Nametag", list("Yes", "No"))
-	if(remove == "Yes")
+		remove = tgui_alert(usr, "要移除当前名称标签吗？", "移除名称标签", list("是", "否"))
+	if(remove == "是")
 		new_nametag = initial(nametag)
 	else
-		new_nametag = tgui_input_text(usr, "What new name tag do you wish to use?", "New Name", initial(nametag), 6)
+		new_nametag = tgui_input_text(usr, "请输入新的名称标签。", "新名称", initial(nametag), 6)
 
 	if(!new_nametag || (new_nametag == nametag))
 		return FALSE
@@ -268,13 +268,13 @@
 // ENCRYPTION KEYS FOR LISTENING IN!
 //REQURIES SUBSPACE ACTIVATION ON THE BUGS FIRST!
 /obj/item/device/encryptionkey/listening_bug
-	desc = "A small encryption key for listening to a secret broadcasting device! Unlikely to work if the device is not using subspace communications!"
+	desc = "用于监听秘密发射设备的小型加密密钥！如果设备未使用子空间通讯，通常无法生效！"
 	icon_state = "stripped_key"
 
 /obj/item/device/encryptionkey/listening_bug/freq_a
-	name = "Listening Bug Encryption Key (A)"
+	name = "窃听器加密密钥（A）"
 	channels = list(RADIO_CHANNEL_BUG_A = TRUE)
 
 /obj/item/device/encryptionkey/listening_bug/freq_b
-	name = "Listening Bug Encryption Key (B)"
+	name = "窃听器加密密钥（B）"
 	channels = list(RADIO_CHANNEL_BUG_B = TRUE)

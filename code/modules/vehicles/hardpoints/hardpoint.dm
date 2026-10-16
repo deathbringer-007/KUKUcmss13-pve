@@ -161,7 +161,7 @@
 
 	take_damage(severity / 2)
 	if(health <= 0)
-		visible_message(SPAN_WARNING("\The [src] disintegrates into useless pile of scrap under the damage it suffered."))
+		visible_message(SPAN_WARNING("[src]因损坏过重而散成了一堆废料。"))
 		deconstruct(TRUE)
 
 /// Populate traits_to_give in this proc
@@ -337,22 +337,22 @@
 /obj/item/hardpoint/get_examine_text(mob/user, integrity_only = FALSE)
 	. = ..()
 	if(health <= 0)
-		. += "It's busted!\n"
+		. += "它已经坏了！\n"
 	else if(isobserver(user) || (ishuman(user) && (skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_NOVICE) || skillcheck(user, SKILL_VEHICLE, SKILL_VEHICLE_CREWMAN))))
-		. += "It's at [round(get_integrity_percent(), 1)]% integrity!\n"
+		. += "结构完整度为[round(get_integrity_percent(), 1)]%！\n"
 
 //reloading hardpoint - take mag from backup clips and replace current ammo with it. Will change in future. Called via weapons loader
 /obj/item/hardpoint/proc/reload(mob/user)
 	if(!LAZYLEN(backup_clips))
-		to_chat(usr, SPAN_WARNING("\The [name] has no remaining backup clips."))
+		to_chat(usr, SPAN_WARNING("[name]没有备用弹箱了。"))
 		return
 
 	var/obj/item/ammo_magazine/A = LAZYACCESS(backup_clips, 1)
 	if(!A)
-		to_chat(user, SPAN_DANGER("Something went wrong! Ahelp and ask for a developer! Code: HP_RLDHP"))
+		to_chat(user, SPAN_DANGER("发生错误！请通过管理员求助联系开发者！错误代码：HP_RLDHP"))
 		return
 
-	to_chat(user, SPAN_NOTICE("You begin reloading \the [name]."))
+	to_chat(user, SPAN_NOTICE("你开始为[name]重新装填。"))
 
 	sleep(20)
 
@@ -361,41 +361,41 @@
 	ammo = A
 	LAZYREMOVE(backup_clips, A)
 
-	to_chat(user, SPAN_NOTICE("You reload \the [name]."))
+	to_chat(user, SPAN_NOTICE("你为[name]重新装填。"))
 
 //try adding magazine to hardpoint's backup clips. Called via weapons loader
 /obj/item/hardpoint/proc/try_add_clip(obj/item/ammo_magazine/A, mob/user)
 	if(!ammo)
-		to_chat(user, SPAN_WARNING("\The [name] doesn't use ammunition."))
+		to_chat(user, SPAN_WARNING("[name]不使用弹药。"))
 		return FALSE
 	if(max_clips == 0)
-		to_chat(user, SPAN_WARNING("\The [name] does not have room for additional ammo."))
+		to_chat(user, SPAN_WARNING("[name]没有存放额外弹药的空间。"))
 		return FALSE
 	else if(LAZYLEN(backup_clips) >= max_clips)
-		to_chat(user, SPAN_WARNING("\The [name]'s reloader is full."))
+		to_chat(user, SPAN_WARNING("[name]的装填机构已经装满了。"))
 		return FALSE
 
-	to_chat(user, SPAN_NOTICE("You begin loading \the [A] into \the [name]."))
+	to_chat(user, SPAN_NOTICE("你开始将[A]装入[name]。"))
 
 	if(!do_after(user, 10, INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
-		to_chat(user, SPAN_WARNING("Something interrupted you while reloading \the [name]."))
+		to_chat(user, SPAN_WARNING("你为[name]装填时受到了打断。"))
 		return FALSE
 
 	if(LAZYLEN(backup_clips) >= max_clips)
-		to_chat(user, SPAN_WARNING("\The [name]'s reloader is full."))
+		to_chat(user, SPAN_WARNING("[name]的装填机构已经装满了。"))
 		return FALSE
 
 	user.drop_inv_item_to_loc(A, src)
 
 	playsound(loc, 'sound/machines/hydraulics_2.ogg', 50)
 	LAZYADD(backup_clips, A)
-	to_chat(user, SPAN_NOTICE("You load \the [A] into \the [name]. Ammo: <b>[SPAN_HELPFUL(ammo.current_rounds)]/[SPAN_HELPFUL(ammo.max_rounds)]</b> | Mags: <b>[SPAN_HELPFUL(LAZYLEN(backup_clips))]/[SPAN_HELPFUL(max_clips)]</b>"))
+	to_chat(user, SPAN_NOTICE("你将[A]装入[name]。弹药：<b>[SPAN_HELPFUL(ammo.current_rounds)]/[SPAN_HELPFUL(ammo.max_rounds)]</b> | 备用弹箱：<b>[SPAN_HELPFUL(LAZYLEN(backup_clips))]/[SPAN_HELPFUL(max_clips)]</b>"))
 	return TRUE
 
 /obj/item/hardpoint/attackby(obj/item/O, mob/user)
 	if(iswelder(O))
 		if(!HAS_TRAIT(O, TRAIT_TOOL_BLOWTORCH))
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要更强力的喷灯！"))
 			return
 		handle_repair(O, user)
 		return
@@ -407,20 +407,20 @@
 		return
 
 	if(health <= 0)
-		to_chat(user, SPAN_WARNING("\The [src] crumbles in your hands to unsalvageable mess."))
+		to_chat(user, SPAN_WARNING("[src]在你手中散架，已经无法修复。"))
 		qdel(src)
 		return
 	if(health >= initial(health))
-		to_chat(user, SPAN_WARNING("\The [src]s structural integrity is at 100%."))
+		to_chat(user, SPAN_WARNING("[src]的结构完整度为100%。"))
 		return
 	if(!WT.isOn())
-		to_chat(user, SPAN_WARNING("You need to light your [WT] first."))
+		to_chat(user, SPAN_WARNING("你需要先点燃[WT]。"))
 		return
 	if(WT.get_fuel() < 1)
-		to_chat(user, SPAN_WARNING("You need to refill \the [WT] first."))
+		to_chat(user, SPAN_WARNING("你需要先为[WT]补充燃料。"))
 		return
 	if(being_repaired)
-		to_chat(user, SPAN_WARNING("\The [src] is already being repaired."))
+		to_chat(user, SPAN_WARNING("[src]已经有人在维修了。"))
 		return
 	if(user.action_busy)
 		return
@@ -447,7 +447,7 @@
 	//skill level adjustment: instead of reducing welding time, we increase amount fixed.
 	//Uses skill duration multiplier proc in order to not create a bicycle.
 	var/amount_fixed_adjustment = user.get_skill_duration_multiplier(SKILL_ENGINEER)
-	user.visible_message(SPAN_NOTICE("[user] starts repairing \the [name]."), SPAN_NOTICE("You start repairing \the [name]."))
+	user.visible_message(SPAN_NOTICE("[user]开始维修[name]。"), SPAN_NOTICE("你开始维修[name]。"))
 	playsound(get_turf(user), 'sound/items/weldingtool_weld.ogg', 25)
 	while(WT.get_fuel() > 1)
 		if(!(world.time % 3))
@@ -460,7 +460,7 @@
 			break
 
 		if(!WT.isOn())
-			to_chat(user, SPAN_WARNING("\The [WT] needs to be on!"))
+			to_chat(user, SPAN_WARNING("必须先开启[WT]！"))
 			break
 
 		WT.remove_fuel(1, user)
@@ -469,13 +469,13 @@
 		health += initial(health)/100 * (amount_fixed / amount_fixed_adjustment)
 		if(health >= initial(health))
 			health = initial(health)
-			user.visible_message(SPAN_NOTICE("[user] finishes repairing \the [name]."), SPAN_NOTICE("You finish repairing \the [name]. The integrity of the module is at [SPAN_HELPFUL(floor(get_integrity_percent()))]%."))
+			user.visible_message(SPAN_NOTICE("[user]修好了[name]。"), SPAN_NOTICE("你修好了[name]。模块结构完整度为[SPAN_HELPFUL(floor(get_integrity_percent()))]%。"))
 			being_repaired = FALSE
 			return
-		to_chat(user, SPAN_NOTICE("The integrity of \the [src] is now at [SPAN_HELPFUL(floor(get_integrity_percent()))]%."))
+		to_chat(user, SPAN_NOTICE("[src]目前的结构完整度为[SPAN_HELPFUL(floor(get_integrity_percent()))]%。"))
 
 	being_repaired = FALSE
-	user.visible_message(SPAN_NOTICE("[user] stops repairing \the [name]."), SPAN_NOTICE("You stop repairing \the [name]. The integrity of the module is at [SPAN_HELPFUL(floor(get_integrity_percent()))]%."))
+	user.visible_message(SPAN_NOTICE("[user]停止维修[name]。"), SPAN_NOTICE("你停止维修[name]。模块结构完整度为[SPAN_HELPFUL(floor(get_integrity_percent()))]%。"))
 	return
 
 /// Setter proc for the automatic firing flag.
@@ -521,7 +521,7 @@
 		return
 
 	if(ammo)
-		to_chat(user, SPAN_WARNING("[name] Ammo: <b>[SPAN_HELPFUL(ammo ? ammo.current_rounds : 0)]/[SPAN_HELPFUL(ammo ? ammo.max_rounds : 0)]</b> | Mags: <b>[SPAN_HELPFUL(LAZYLEN(backup_clips))]/[SPAN_HELPFUL(max_clips)]</b>"))
+		to_chat(user, SPAN_WARNING("[name] 弹药：<b>[SPAN_HELPFUL(ammo ? ammo.current_rounds : 0)]/[SPAN_HELPFUL(ammo ? ammo.max_rounds : 0)]</b> | 备用弹箱：<b>[SPAN_HELPFUL(LAZYLEN(backup_clips))]/[SPAN_HELPFUL(max_clips)]</b>"))
 
 /// Reset variables used in firing and remove the gun from the autofire system.
 /obj/item/hardpoint/proc/stop_fire(datum/source, atom/object, turf/location, control, params)
@@ -543,7 +543,7 @@
 
 	if(!auto_firing && !burst_firing && !COOLDOWN_FINISHED(src, fire_cooldown))
 		if(max(fire_delay, burst_delay + extra_delay) >= 2.0 SECONDS) //filter out guns with high firerate to prevent message spam.
-			to_chat(source, SPAN_WARNING("You need to wait [SPAN_HELPFUL(COOLDOWN_SECONDSLEFT(src, fire_cooldown))] seconds before [name] can be used again."))
+			to_chat(source, SPAN_WARNING("还需等待[SPAN_HELPFUL(COOLDOWN_SECONDSLEFT(src, fire_cooldown))]秒才能再次使用[name]。"))
 		return
 
 	set_target(get_turf_on_clickcatcher(object, source, params))
@@ -571,7 +571,7 @@
 /// Tests if firing should be interrupted, otherwise fires.
 /obj/item/hardpoint/proc/try_fire(atom/target, mob/living/user, params)
 	if(health <= 0)
-		to_chat(user, SPAN_WARNING("<b>\The [name] is broken!</b>"))
+		to_chat(user, SPAN_WARNING("<b>[name]已损坏！</b>"))
 		return NONE
 
 	if(ammo && ammo.current_rounds <= 0)
@@ -579,7 +579,7 @@
 		return NONE
 
 	if(!in_firing_arc(target))
-		to_chat(user, SPAN_WARNING("<b>The target is not within your firing arc!</b>"))
+		to_chat(user, SPAN_WARNING("<b>目标不在射界内！</b>"))
 		return NONE
 
 	return handle_fire(target, user, params)
@@ -646,7 +646,7 @@
 /obj/item/hardpoint/proc/click_empty(mob/user)
 	playsound(src, 'sound/weapons/gun_empty.ogg', 25, 1, 5)
 	if(user)
-		to_chat(user, SPAN_WARNING("<b>*click*</b>"))
+		to_chat(user, SPAN_WARNING("<b>咔嗒！</b>"))
 
 /// Selects and plays a firing sound from the list.
 /obj/item/hardpoint/proc/play_firing_sounds()

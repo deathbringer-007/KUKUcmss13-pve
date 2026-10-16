@@ -1,21 +1,21 @@
 //Cat
 /mob/living/simple_animal/cat
-	name = "cat"
-	real_name = "cat"
-	desc = "A domesticated, feline pet. Has a tendency to adopt crewmembers."
+	name = "猫"
+	real_name = "猫"
+	desc = "一种驯养的猫科宠物，有收养船员的倾向。"
 	icon_state = "cat2"
 	icon_living = "cat2"
 	icon_dead = "cat2_dead"
-	speak = list("Meow!","Esp!","Purr!","HSSSSS")
-	speak_emote = list("purrs", "meows")
-	emote_hear = list("meows","mews")
-	emote_see = list("shakes their head", "shivers")
+	speak = list("喵！","咪！","呼噜！","嘶——")
+	speak_emote = list("发出呼噜声", "喵喵叫")
+	emote_hear = list("喵喵叫","轻声喵叫")
+	emote_see = list("摇了摇头", "打了个哆嗦")
 	speak_chance = 1
 	turns_per_move = 5
 	meat_type = /obj/item/reagent_container/food/snacks/meat
-	response_help  = "pets"
-	response_disarm = "gently pushes aside"
-	response_harm   = "kicks"
+	response_help  = "抚摸"
+	response_disarm = "轻轻推开"
+	response_harm   = "踢"
 	status_flags = parent_type::status_flags & ~CANPUSH
 	layer = 3.5
 	var/turns_since_scan = 0
@@ -72,7 +72,7 @@
 						return
 
 					play_counter++
-					visible_message(pick("[src] bites [livingprey]!","[src] toys with [livingprey].","[src] chomps on [livingprey]!"))
+					visible_message(pick("[src]咬了[livingprey]！","[src]戏弄着[livingprey]。","[src]啃咬着[livingprey]！"))
 					movement_target = null
 					stop_automated_movement = 0
 
@@ -92,7 +92,7 @@
 
 	for(var/mob/snack in oview(src, 3))
 		if(is_type_in_list(snack, hunting_targets) && prob(15) && snack.stat != DEAD)
-			visible_message(pick("[src] hisses at [snack]!", "[src] mrowls fiercely!", "[src] eyes [snack] hungrily."))
+			visible_message(pick("[src]朝[snack]发出嘶声！", "[src]凶狠地叫着！", "[src]饥肠辘辘地盯着[snack]。"))
 		break
 
 	if(!stat && !resting && !buckled)
@@ -121,7 +121,7 @@
 			for(var/mob/living/snack in oview(src))
 				if(isturf(snack.loc) && snack.stat != DEAD && is_type_in_list(snack, hunting_targets))
 					setDir(get_dir(src, snack))
-					balloon_alert_to_viewers("[src] pounces at [snack]")
+					balloon_alert_to_viewers("[src]扑向[snack]")
 					movement_target = snack
 					play_counter = 0
 					break
@@ -148,25 +148,25 @@
 
 //RUNTIME IS ALIVE! SQUEEEEEEEE~
 /mob/living/simple_animal/cat/Runtime
-	name = "Runtime"
-	desc = "Her fur has the look and feel of velvet, and her tail quivers occasionally."
+	name = "运行时"
+	desc = "她的毛皮看起来摸起来都像天鹅绒，尾巴偶尔会颤动。"
 	icon_state = "cat"
 	icon_living = "cat"
 	icon_dead = "cat_dead"
 	holder_type = /obj/item/holder/cat/blackcat/Runtime
 
 /mob/living/simple_animal/cat/blackcat
-	name = "black cat"
-	desc = "It's a cat, now in black!"
+	name = "黑猫"
+	desc = "一只猫，现在换成黑色了！"
 	icon_state = "cat"
 	icon_living = "cat"
 	icon_dead = "cat_dead"
 	holder_type = /obj/item/holder/cat/blackcat
 
 /mob/living/simple_animal/cat/Jones
-	name = "Jones"
-	real_name = "Jones"
-	desc = "A tough, old stray whose origin no one seems to know."
+	name = "琼斯"
+	real_name = "琼斯"
+	desc = "一只顽强的老流浪猫，似乎没人知道它的来历。"
 	icon_state = "cat2"
 	icon_living = "cat2"
 	icon_dead = "cat2_dead"
@@ -175,8 +175,8 @@
 	holder_type = /obj/item/holder/cat/Jones
 
 /mob/living/simple_animal/cat/kitten
-	name = "kitten"
-	desc = "D'aaawwww"
+	name = "小猫"
+	desc = "哎呀，真可爱！"
 	icon_state = "kitten"
 	icon_living = "kitten"
 	icon_dead = "kitten_dead"

@@ -1,8 +1,8 @@
 #define MAX_NOTICES 8
 
 /obj/structure/noticeboard
-	name = "notice board"
-	desc = "A board for pinning important notices upon."
+	name = "公告板"
+	desc = "用于钉放重要通知的板子。"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "noticeboard"
 	density = FALSE
@@ -27,16 +27,16 @@
 /obj/structure/noticeboard/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/paper) || istype(O, /obj/item/photo))
 		if(!allowed(user))
-			to_chat(user, SPAN_WARNING("You are not authorized to add notices!"))
+			to_chat(user, SPAN_WARNING("你没有张贴通知的权限！"))
 			return
 		if(notices < MAX_NOTICES)
 			if(!user.drop_inv_item_to_loc(O, src))
 				return
 			notices++
 			update_overlays()
-			to_chat(user, SPAN_NOTICE("You pin the [O] to the noticeboard."))
+			to_chat(user, SPAN_NOTICE("你将[O]钉在公告板上。"))
 		else
-			to_chat(user, SPAN_WARNING("The notice board is full!"))
+			to_chat(user, SPAN_WARNING("公告板已经贴满了！"))
 	else if(istype(O, /obj/item/tool/pen))
 		user.set_interaction(src)
 		tgui_interact(user)
@@ -87,7 +87,7 @@
 		if("write")
 			var/obj/item/writing_tool = user.get_held_item()
 			if(!istype(writing_tool, /obj/item/tool/pen))
-				balloon_alert(user, "you need a pen for that!")
+				balloon_alert(user, "你需要一支笔！")
 				return
 			item.attackby(writing_tool, user)
 			return TRUE
@@ -106,7 +106,7 @@
 	item.forceMove(loc)
 	if(user)
 		user.put_in_hands(item)
-		balloon_alert(user, "removed from board")
+		balloon_alert(user, "已从公告板取下")
 	notices--
 	update_overlays()
 

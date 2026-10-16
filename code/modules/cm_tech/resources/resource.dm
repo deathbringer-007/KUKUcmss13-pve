@@ -2,8 +2,8 @@
 	var/obj/structure/resource_node/r_node
 
 /obj/structure/resource_node
-	name = "\improper power node"
-	desc = "Generates vast amounts of energy. As a Marine, use a wrench to capture and welder to repair. As a Xeno, click as a builder caste to capture and repair."
+	name = "\improper 能源节点"
+	desc = "产生大量能量。陆战队员可用扳手占领、焊枪维修；建造阶级的异形可点击它进行占领和修复。"
 	icon = 'icons/obj/structures/resources_64x64.dmi'
 	icon_state = "node_off"
 
@@ -121,7 +121,7 @@
 
 /obj/structure/resource_node/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_BLUE("Health: [health]/[max_health]")
+	. += SPAN_BLUE("耐久度：[health]/[max_health]")
 
 
 /obj/structure/resource_node/attackby(obj/item/W, mob/user)
@@ -134,46 +134,46 @@
 		return
 
 	if(!active)
-		to_chat(H, SPAN_WARNING("[src] isn't active right now!"))
+		to_chat(H, SPAN_WARNING("[src]目前尚未启用！"))
 		return
 	if(H.action_busy)
-		to_chat(H, SPAN_WARNING("You're already performing an action!"))
+		to_chat(H, SPAN_WARNING("你已经在执行其他动作了！"))
 		return
 
-	H.visible_message(SPAN_DANGER("[H] starts to set up [src]."),\
-	SPAN_NOTICE("You begin to set up [src]."), max_distance = 3)
+	H.visible_message(SPAN_DANGER("[H]开始设置[src]。"),\
+	SPAN_NOTICE("你开始设置[src]。"), max_distance = 3)
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 
 	if(!do_after(H, time_to_build * H.get_skill_duration_multiplier(SKILL_ENGINEER), BEHAVIOR_IMMOBILE|INTERRUPT_ALL, BUSY_ICON_BUILD, src, INTERRUPT_ALL))
-		to_chat(H, SPAN_NOTICE("You decide not to apply [W] onto [src]."))
+		to_chat(H, SPAN_NOTICE("你决定不再对[src]使用[W]。"))
 		return
 
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-	H.visible_message(SPAN_DANGER("[H] sets up [src]."),\
-	SPAN_NOTICE("You set up [src]."), max_distance = 3)
+	H.visible_message(SPAN_DANGER("[H]设置好了[src]。"),\
+	SPAN_NOTICE("你设置好了[src]。"), max_distance = 3)
 
 /obj/structure/resource_node/attack_alien(mob/living/carbon/xenomorph/M)
 	if(!isxeno_builder(M))
-		to_chat(M, SPAN_XENOWARNING("You can't build onto [src]."))
+		to_chat(M, SPAN_XENOWARNING("你无法在[src]上建造。"))
 		return XENO_NO_DELAY_ACTION
 
 	if(!active)
-		to_chat(M, SPAN_XENOWARNING("[src] isn't active right now!"))
+		to_chat(M, SPAN_XENOWARNING("[src]目前尚未启用！"))
 		return XENO_NO_DELAY_ACTION
 
 	if(M.action_busy)
-		to_chat(M, SPAN_WARNING("You're already performing an action!"))
+		to_chat(M, SPAN_WARNING("你已经在执行其他动作了！"))
 		return XENO_NO_DELAY_ACTION
 
-	M.visible_message(SPAN_DANGER("[M] starts secreting resin over [src]."),\
-	SPAN_XENONOTICE("You begin to connect [src] to the hive."), max_distance = 3)
+	M.visible_message(SPAN_DANGER("[M]开始在[src]上分泌树脂。"),\
+	SPAN_XENONOTICE("你开始将[src]连接到虫巢。"), max_distance = 3)
 	xeno_attack_delay(M)
 
 	if(!do_after(M, time_to_build, BEHAVIOR_IMMOBILE|INTERRUPT_ALL, BUSY_ICON_BUILD, src, INTERRUPT_ALL))
-		to_chat(M, SPAN_XENOWARNING("You decide not to connect [src] to the hive."))
+		to_chat(M, SPAN_XENOWARNING("你决定不再将[src]连接到虫巢。"))
 		return XENO_NO_DELAY_ACTION
 
-	M.visible_message(SPAN_DANGER("[M] secretes resin over [src]."),\
-	SPAN_XENONOTICE("You connect [src] to the hive."), max_distance = 3)
+	M.visible_message(SPAN_DANGER("[M]在[src]上分泌了树脂。"),\
+	SPAN_XENONOTICE("你将[src]连接到了虫巢。"), max_distance = 3)
 
 	return XENO_NO_DELAY_ACTION

@@ -137,7 +137,7 @@
 		return
 
 	if(T.type in cached_unlocked_techs)
-		M.show_message(SPAN_WARNING("This node is already unlocked!"))
+		M.show_message(SPAN_WARNING("此节点已经解锁！"))
 		return
 
 	if(!T.can_unlock(M))
@@ -160,7 +160,7 @@
 		return FALSE
 
 	if(!has_access(M, TREE_ACCESS_VIEW) && !force)
-		to_chat(M, SPAN_WARNING("You do not have access to this tech tree"))
+		to_chat(M, SPAN_WARNING("你没有访问这棵科技树的权限。"))
 		return FALSE
 
 	if(SEND_SIGNAL(M, COMSIG_MOB_ENTER_TREE, src, force) & COMPONENT_CANCEL_TREE_ENTRY) return

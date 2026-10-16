@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/quartermaster
-	name = "Quartermaster's Locker"
+	name = "军需官储物柜"
 	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 	icon_state = "secureqm1"
 	icon_closed = "secureqm"
@@ -21,7 +21,7 @@
 	return
 
 /obj/structure/closet/secure_closet/quartermaster_uscm
-	name = "Quartermaster's Locker"
+	name = "军需官储物柜"
 	req_access = list(ACCESS_MARINE_RO)
 	icon_state = "secureqm1"
 	icon_closed = "secureqm"
@@ -52,7 +52,7 @@
 //**********************Miner Lockers**************************/
 
 /obj/structure/closet/secure_closet/miner
-	name = "miner's equipment"
+	name = "矿工装备柜"
 	icon_state = "miningsec1"
 	icon_closed = "miningsec"
 	icon_locked = "miningsec1"

@@ -1,6 +1,6 @@
 /obj/item/ammo_magazine/hardpoint/tank_glauncher
-	name = "M92T Grenade Launcher Magazine"
-	desc = "A magazine loaded with M40 grenades. Used to reload the magazine fed M92T Grenade launcher."
+	name = "M92T榴弹发射器弹箱"
+	desc = "装有M40榴弹的弹箱，用于为弹箱供弹的M92T榴弹发射器装填。"
 	caliber = "grenade"
 	icon_state = "glauncher_2"
 	w_class = SIZE_LARGE

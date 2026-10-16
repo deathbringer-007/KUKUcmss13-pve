@@ -1,7 +1,7 @@
 //CORE PACKAGE ITEM
 /obj/item/mre_food_packet
-	name = "\improper ration component"
-	desc = "A ration package."
+	name = "\improper 口粮分装包"
+	desc = "一包口粮。"
 	icon_state = "entree"
 	icon = 'icons/obj/items/food/mre_food/uscm.dmi'
 	w_class = SIZE_SMALL
@@ -31,7 +31,7 @@
 	M.temp_drop_inv_item(src)
 	M.put_in_hands(I)
 	I.add_fingerprint(M)
-	to_chat(M, SPAN_NOTICE("You pull open the package of the meal!"))
+	to_chat(M, SPAN_NOTICE("你撕开了餐食包装！"))
 	playsound(loc, "rip", 15, 1)
 	qdel(src)
 	return

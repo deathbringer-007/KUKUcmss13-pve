@@ -1,8 +1,8 @@
 
 
 /obj/item/device/walkman
-	name = "Seegson C-Series magnetic tape recorder"
-	desc = "A classic-style portable audio recorder used to record or play music and audio tapes. Now when you go EVA you can bring your country jams with you!"
+	name = "西格森 C 系列磁带录放机"
+	desc = "经典风格的便携式录放机，可录制或播放音乐和录音带。现在出舱作业时，你也能带上心爱的乡村乐曲了！"
 	icon = 'icons/obj/items/walkman.dmi'
 	icon_state = "walkman"
 	w_class = SIZE_SMALL
@@ -44,9 +44,9 @@
 			if(!tape)
 				insert_tape(W)
 				playsound(src,'sound/weapons/handcuffs.ogg',20,1)
-				to_chat(user,SPAN_INFO("You insert \the [W] into \the [src]"))
+				to_chat(user,SPAN_INFO("你将[W]放入[src]。"))
 			else
-				to_chat(user,SPAN_WARNING("Remove the other tape first!"))
+				to_chat(user,SPAN_WARNING("请先取出里面的磁带！"))
 
 /obj/item/device/walkman/attack_self(mob/user)
 	..()
@@ -57,13 +57,13 @@
 	if(istype(tape))
 		if(paused)
 			play()
-			to_chat(user,SPAN_INFO("You press [src]'s 'play' button"))
+			to_chat(user,SPAN_INFO("你按下[src]的“播放”按钮。"))
 		else
 			pause()
-			to_chat(user,SPAN_INFO("You pause [src]"))
+			to_chat(user,SPAN_INFO("你暂停了[src]的播放。"))
 		update_icon()
 	else
-		to_chat(user,SPAN_INFO("There's no tape to play"))
+		to_chat(user,SPAN_INFO("没有可播放的磁带。"))
 	playsound(src,'sound/machines/click.ogg',20,1)
 
 /obj/item/device/walkman/attack_hand(mob/user)
@@ -102,10 +102,10 @@
 			return
 	paused = FALSE
 	if(current_song.status & SOUND_PAUSED)
-		to_chat(current_listener,SPAN_INFO("Resuming [pl_index] of [length(current_playlist)]"))
+		to_chat(current_listener,SPAN_INFO("继续播放第 [pl_index] 首，共 [length(current_playlist)] 首。"))
 		update_song(current_song,current_listener)
 	else
-		to_chat(current_listener,SPAN_INFO("Now playing [pl_index] of [length(current_playlist)]"))
+		to_chat(current_listener,SPAN_INFO("正在播放第 [pl_index] 首，共 [length(current_playlist)] 首。"))
 		update_song(current_song,current_listener,0)
 
 	update_song(current_song,current_listener)
@@ -142,7 +142,7 @@
 	tape = null
 	update_icon()
 	playsound(src,'sound/weapons/handcuffs.ogg',20,1)
-	to_chat(user,SPAN_INFO("You eject the tape from [src]"))
+	to_chat(user,SPAN_INFO("你从[src]中弹出磁带。"))
 
 /obj/item/device/walkman/proc/next_song(mob/user)
 
@@ -157,7 +157,7 @@
 	current_song = sound(current_playlist[pl_index], 0, 0, SOUND_CHANNEL_WALKMAN, volume)
 	current_song.status = SOUND_STREAM
 	play()
-	to_chat(user,SPAN_INFO("You change the song"))
+	to_chat(user,SPAN_INFO("你切换了曲目。"))
 
 
 /obj/item/device/walkman/update_icon()
@@ -199,8 +199,8 @@
 		update_song(current_song, current_listener)
 
 /obj/item/device/walkman/verb/play_pause()
-	set name = "Play/Pause"
-	set category = "Object"
+	set name = "播放／暂停"
+	set category = "物品"
 	set src in usr
 
 	if(usr.is_mob_incapacitated()) return
@@ -208,27 +208,27 @@
 	attack_self(usr)
 
 /obj/item/device/walkman/verb/eject_cassetetape()
-	set name = "Eject tape"
-	set category = "Object"
+	set name = "弹出磁带"
+	set category = "物品"
 	set src in usr
 
 	eject_tape(usr)
 
 /obj/item/device/walkman/verb/next_pl_song()
-	set name = "Next song"
-	set category = "Object"
+	set name = "下一首"
+	set category = "物品"
 	set src in usr
 
 	next_song(usr)
 
 /obj/item/device/walkman/verb/change_volume()
-	set name = "Change Walkman volume"
-	set category = "Object"
+	set name = "调整随身听音量"
+	set category = "物品"
 	set src in usr
 
 	if(usr.is_mob_incapacitated() || !current_song) return
 
-	var/tmp = tgui_input_number(usr,"Change the volume (0 - 100)","Volume", volume, 100, 0)
+	var/tmp = tgui_input_number(usr,"调整音量（0—100）","音量", volume, 100, 0)
 	if(tmp == null) return
 	if(tmp > 100) tmp = 100
 	if(tmp < 0) tmp = 0
@@ -239,11 +239,11 @@
 	if(user.is_mob_incapacitated() || !current_song) return
 
 	update_song(current_song, current_listener, 0)
-	to_chat(user,SPAN_INFO("You restart the song"))
+	to_chat(user,SPAN_INFO("你从头播放当前曲目。"))
 
 /obj/item/device/walkman/verb/restart_current_song()
-	set name = "Restart Song"
-	set category = "Object"
+	set name = "从头播放"
+	set category = "物品"
 	set src in usr
 
 	restart_song(usr)
@@ -265,7 +265,7 @@
 
 /datum/action/item_action/walkman/play_pause/New()
 	..()
-	name = "Play/Pause"
+	name = "播放／暂停"
 	button.name = name
 
 /datum/action/item_action/walkman/play_pause/action_activate()
@@ -279,7 +279,7 @@
 
 /datum/action/item_action/walkman/next_song/New()
 	..()
-	name = "Next song"
+	name = "下一首"
 	button.name = name
 
 /datum/action/item_action/walkman/next_song/action_activate()
@@ -293,7 +293,7 @@
 
 /datum/action/item_action/walkman/restart_song/New()
 	..()
-	name = "Restart song"
+	name = "从头播放"
 	button.name = name
 
 /datum/action/item_action/walkman/restart_song/action_activate()
@@ -306,8 +306,8 @@
 	TAPES
 */
 /obj/item/device/cassette_tape
-	name = "cassette Tape"
-	desc = "A cassette tape"
+	name = "盒式磁带"
+	desc = "一盘盒式磁带。"
 	icon = 'icons/obj/items/walkman.dmi'
 	icon_state = "cassette_flip"
 	w_class = SIZE_SMALL
@@ -326,19 +326,19 @@
 	else
 		flipped = TRUE
 		icon_state = "cassette_flip"
-	to_chat(user,"You flip [src]")
+	to_chat(user,"你将[src]翻面。")
 
 /obj/item/device/cassette_tape/verb/flip()
-	set name = "Flip tape"
-	set category = "Object"
+	set name = "磁带翻面"
+	set category = "物品"
 	set src in usr
 
 	attack_self()
 
 /obj/item/device/cassette_tape/pop1
-	name = "blue cassette"
+	name = "蓝色磁带"
 	id = 2
-	desc = "A plastic cassette tape with a blue sticker."
+	desc = "贴有蓝色贴纸的塑料盒式磁带。"
 	icon_state = "cassette_blue"
 	side1_icon = "cassette_blue"
 	songs = list("side1" = list("sound/music/walkman/pop1/1-1-1.ogg",\
@@ -349,9 +349,9 @@
 								"sound/music/walkman/pop1/1-2-3.ogg"))
 
 /obj/item/device/cassette_tape/pop2
-	name = "rainbow cassette"
+	name = "彩虹磁带"
 	id = 3
-	desc = "A plastic cassette tape with a rainbow-colored sticker."
+	desc = "贴有彩虹色贴纸的塑料盒式磁带。"
 	icon_state = "cassette_rainbow"
 	side1_icon = "cassette_rainbow"
 	songs = list("side1" = list("sound/music/walkman/pop2/2-1-1.ogg",\
@@ -362,9 +362,9 @@
 								"sound/music/walkman/pop2/2-2-3.ogg"))
 
 /obj/item/device/cassette_tape/pop3
-	name = "orange cassette"
+	name = "橙色磁带"
 	id = 4
-	desc = "A plastic cassette tape with an orange sticker."
+	desc = "贴有橙色贴纸的塑料盒式磁带。"
 	icon_state = "cassette_orange"
 	side1_icon = "cassette_orange"
 	songs = list("side1" = list("sound/music/walkman/pop3/3-1-1.ogg",\
@@ -375,9 +375,9 @@
 								"sound/music/walkman/pop3/3-2-3.ogg"))
 
 /obj/item/device/cassette_tape/pop4
-	name = "pink cassette"
+	name = "粉色磁带"
 	id = 5
-	desc = "A plastic cassette tape with a pink striped sticker."
+	desc = "贴有粉色条纹贴纸的塑料盒式磁带。"
 	icon_state = "cassette_pink_stripe"
 	side1_icon = "cassette_pink_stripe"
 	songs = list("side1" = list("sound/music/walkman/pop4/4-1-1.ogg",\
@@ -388,9 +388,9 @@
 								"sound/music/walkman/pop4/4-2-3.ogg"))
 
 /obj/item/device/cassette_tape/heavymetal
-	name = "red-black cassette"
+	name = "红黑磁带"
 	id = 6
-	desc = "A plastic cassette tape with a red and black sticker."
+	desc = "贴有红黑贴纸的塑料盒式磁带。"
 	icon_state = "cassette_red_black"
 	side1_icon = "cassette_red_black"
 	songs = list("side1" = list("sound/music/walkman/heavymetal/5-1-1.ogg",\
@@ -401,9 +401,9 @@
 								"sound/music/walkman/heavymetal/5-2-3.ogg"))
 
 /obj/item/device/cassette_tape/hairmetal
-	name = "red striped cassette"
+	name = "红条纹磁带"
 	id = 7
-	desc = "A plastic cassette tape with a gray sticker with red stripes."
+	desc = "贴有灰底红条纹贴纸的塑料盒式磁带。"
 	icon_state = "cassette_red_stripe"
 	side1_icon = "cassette_red_stripe"
 	songs = list("side1" = list("sound/music/walkman/hairmetal/6-1-1.ogg",\
@@ -414,9 +414,9 @@
 								"sound/music/walkman/hairmetal/6-2-3.ogg"))
 
 /obj/item/device/cassette_tape/indie
-	name = "rising sun cassette"
+	name = "旭日磁带"
 	id = 8
-	desc = "A plastic cassette tape with the Japanese Rising Sun."
+	desc = "印有日本旭日图案的塑料盒式磁带。"
 	icon_state = "cassette_rising_sun"
 	side1_icon = "cassette_rising_sun"
 	songs = list("side1" = list("sound/music/walkman/indie/7-1-1.ogg",\
@@ -427,9 +427,9 @@
 								"sound/music/walkman/indie/7-2-3.ogg"))
 
 /obj/item/device/cassette_tape/hiphop
-	name = "blue stripe cassette"
+	name = "蓝条纹磁带"
 	id = 9
-	desc = "An orange plastic cassette tape with a blue stripe."
+	desc = "带有蓝色条纹的橙色塑料盒式磁带。"
 	icon_state = "cassette_orange_blue"
 	side1_icon = "cassette_orange_blue"
 	songs = list("side1" = list("sound/music/walkman/hiphop/8-1-1.ogg",\
@@ -440,9 +440,9 @@
 								"sound/music/walkman/hiphop/8-2-3.ogg"))
 
 /obj/item/device/cassette_tape/nam
-	name = "green cassette"
+	name = "绿色磁带"
 	id = 10
-	desc = "A green plastic cassette tape."
+	desc = "一盘绿色塑料盒式磁带。"
 	icon_state = "cassette_green"
 	side1_icon = "cassette_green"
 	songs = list("side1" = list("sound/music/walkman/nam/9-1-1.ogg",\
@@ -453,9 +453,9 @@
 								"sound/music/walkman/nam/9-2-3.ogg"))
 
 /obj/item/device/cassette_tape/ocean
-	name = "ocean cassette"
+	name = "海洋磁带"
 	id = 11
-	desc = "A blue and white plastic cassette tape."
+	desc = "一盘蓝白相间的塑料盒式磁带。"
 	icon_state = "cassette_ocean"
 	side1_icon = "cassette_ocean"
 	songs = list("side1" = list("sound/music/walkman/surf/10-1-1.ogg",\
@@ -469,53 +469,53 @@
 
 // hotline reference
 /obj/item/device/cassette_tape/aesthetic
-	name = "aesthetic cassette"
+	name = "潮流磁带"
 	id = 12
-	desc = "An aesthetic looking cassette tape. 'Jacket' is written on the front."
+	desc = "一盘外观很有格调的盒式磁带，正面写着“夹克”。"
 	icon_state = "cassette_aesthetic"
 	side1_icon = "cassette_aesthetic"
 
 //cassette tape that I thought was a good idea but doesnt fit for new maps.
 /obj/item/device/cassette_tape/cargocrate
-	name = "weyland yutani cassette"
+	name = "维兰德-汤谷磁带"
 	id = 13
-	desc = "A blue metallic cassette with a weyland yutani logo."
+	desc = "印有维兰德-汤谷标志的蓝色金属盒式磁带。"
 	icon_state = "cassette_wy"
 	side1_icon = "cassette_wy"
 
 // cassette tapes for map lore
 /obj/item/device/cassette_tape/solaris
-	name = "red UCP cassette"
+	name = "红色 UCP 迷彩磁带"
 	id = 14
-	desc = "A cassette with a red UCP camo design."
+	desc = "采用红色 UCP 迷彩图案的盒式磁带。"
 	icon_state = "cassette_solaris"
 	side1_icon = "cassette_solaris"
 
 
 /obj/item/device/cassette_tape/icecolony
-	name = "frozen cassette"
+	name = "冰封磁带"
 	id = 15
-	desc = "A cassette. It's covered in ice and snow."
+	desc = "一盘覆满冰雪的盒式磁带。"
 	icon_state = "cassette_ice"
 	side1_icon = "cassette_ice"
 
 /obj/item/device/cassette_tape/lz
-	name = "nostalgic cassette"
+	name = "怀旧磁带"
 	id = 16
-	desc = "There's a cut up postcard taped to this cassette. You know this place."
+	desc = "这盘磁带上贴着一张裁剪过的明信片。你认得这个地方。"
 	icon_state = "cassette_lz"
 	side1_icon = "cassette_lz"
 
 /obj/item/device/cassette_tape/desertdam
-	name = "dam cassette"
+	name = "大坝磁带"
 	id = 17
-	desc = "Attached to this cassette is a picture of a dam."
+	desc = "这盘磁带上贴着一张大坝的照片。"
 	icon_state = "cassette_dam"
 	side1_icon = "cassette_dam"
 
 /obj/item/device/cassette_tape/prison
-	name = "broken cassette"
+	name = "破损的磁带"
 	id = 18
-	desc = "The shell on this cassette is broken, it still looks like it'll work, though!"
+	desc = "这盘磁带的外壳破了，不过看起来还能用！"
 	icon_state = "cassette_worstmap"
 	side1_icon = "cassette_worstmap"

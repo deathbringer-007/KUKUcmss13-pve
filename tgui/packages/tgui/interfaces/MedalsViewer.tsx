@@ -29,8 +29,8 @@ export const MedalsViewer = (props) => {
         {medals.map((medal) => {
           const medalType = medal.medal_type
             ? medal.medal_type
-            : 'Unknown Medal';
-          const sectionTitle = `Round ${medal.round_id} - ${medalType}`;
+            : '未知勋章';
+          const sectionTitle = `第 ${medal.round_id} 回合 - ${medalType}`;
           const sectionType = medal.xeno_medal ? 'xeno-medal' : 'human-medal';
           return (
             <Section
@@ -38,12 +38,12 @@ export const MedalsViewer = (props) => {
               title={sectionTitle}
               className={sectionType}
             >
-              Issued to{' '}
+              获奖者：{' '}
               <b>
                 {medal.recipient_name}{' '}
                 {!medal.xeno_medal && `(${medal.recipient_role})`}
               </b>{' '}
-              by <b>{medal.giver_name}</b> for: <br />
+              ；颁发者：<b>{medal.giver_name}</b>。授勋理由：<br />
               {!medal.xeno_medal && (
                 <span
                   className={classes([

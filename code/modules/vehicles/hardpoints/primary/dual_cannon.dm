@@ -1,7 +1,7 @@
 // APC cannons
 /obj/item/hardpoint/primary/dualcannon
-	name = "\improper PARS-159 Boyars Dualcannon"
-	desc = "A primary two-barrel cannon for the M577 APC that shoots telescoped 40mm IFF-compatible rounds."
+	name = "\improper PARS-159“博雅尔”双联炮"
+	desc = "M577装甲运兵车的双管主炮，发射支持敌我识别的40毫米埋头弹。"
 	icon = 'icons/obj/vehicles/hardpoints/apc.dmi'
 
 	icon_state = "dual_cannon"

@@ -1,11 +1,11 @@
 /obj/structure/pipes/vents/scrubber
 	icon = 'icons/obj/pipes/vent_scrubber.dmi'
 	icon_state = "map_vent"
-	name = "Air Scrubber"
+	name = "空气洗涤器"
 	vent_icon = "scrubber"
 
 /obj/structure/pipes/vents/scrubber/no_boom
-	name = "Reinforced Air Scrubber"
+	name = "加固空气洗涤器"
 	explodey = FALSE
 
 /obj/structure/pipes/vents/scrubber/on
@@ -15,15 +15,15 @@
 /obj/structure/pipes/vents/pump
 	icon = 'icons/obj/pipes/vent_pump.dmi'
 	icon_state = "map_vent"
-	name = "Air Vent"
+	name = "通风口"
 
 /obj/structure/pipes/vents/pump/no_boom
-	name = "Reinforced Air Vent"
+	name = "加固通风口"
 	explodey = FALSE
 
 /// Vents that are linked to ARES Security Protocols, allowing the ARES Interface to trigger security measures.
 /obj/structure/pipes/vents/pump/no_boom/gas
-	name = "Security Air Vent"
+	name = "安保通风口"
 	var/datum/ares_link/link
 	var/vent_tag
 	COOLDOWN_DECLARE(vent_trigger_cooldown)
@@ -57,7 +57,7 @@
 	icon_state = "in"
 
 /obj/structure/pipes/vents/pump/high_volume
-	name = "Large Air Vent"
+	name = "大型通风口"
 
 /obj/structure/pipes/vents/pump/engine
-	name = "Engine Core Vent"
+	name = "引擎核心通风口"

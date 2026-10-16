@@ -2,8 +2,8 @@
 //*****************************Shovels********************************/
 
 /obj/item/tool/shovel
-	name = "shovel"
-	desc = "A large tool for digging and moving dirt."
+	name = "铁锹"
+	desc = "用于挖掘和搬运泥土的大型工具。"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "shovel"
 	item_state = "shovel"
@@ -14,7 +14,7 @@
 	w_class = SIZE_MEDIUM
 	matter = list("metal" = 50)
 
-	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
+	attack_verb = list("猛击", "钝击", "痛打", "重击")
 	var/dirt_overlay = "shovel_overlay"
 	var/folded = FALSE
 	/// 0 for no dirt, 1 for brown dirt, 2 for snow, 3 for big red.
@@ -43,15 +43,15 @@
 /obj/item/tool/shovel/get_examine_text(mob/user)
 	. = ..()
 	if(dirt_amt)
-		var/dirt_name = dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"
-		. += "It holds [dirt_amt] layer\s of [dirt_name]."
+		var/dirt_name = dirt_type == DIRT_TYPE_SNOW ? "积雪" : "泥土"
+		. += "上面盛着[dirt_amt]层[dirt_name]。"
 
 /obj/item/tool/shovel/attack_self(mob/user)
 	..()
 	add_fingerprint(user)
 
 	if(dirt_amt)
-		to_chat(user, SPAN_NOTICE("You dump the [dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"]!"))
+		to_chat(user, SPAN_NOTICE("你倒掉了[dirt_type == DIRT_TYPE_SNOW ? "积雪" : "泥土"]！"))
 		if(dirt_type == DIRT_TYPE_SNOW)
 			var/turf/T = get_turf(user.loc)
 			var/obj/item/stack/snow/S = locate() in T
@@ -75,10 +75,10 @@
 		var/turf/T = target
 		var/turfdirt = T.get_dirt_type()
 		if(turfdirt)
-			to_chat(user, SPAN_NOTICE("You start digging."))
+			to_chat(user, SPAN_NOTICE("你开始挖掘。"))
 			playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
 			if(!do_after(user, shovelspeed * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-				to_chat(user, SPAN_NOTICE("You stop digging."))
+				to_chat(user, SPAN_NOTICE("你停止了挖掘。"))
 				return
 
 			var/transfer_amount = dirt_amt_per_dig
@@ -92,7 +92,7 @@
 					else
 						OT.bleed_layer -= transfer_amount
 						OT.update_icon(1,0)
-			to_chat(user, SPAN_NOTICE("You dig up some [dirt_type_to_name(turfdirt)]."))
+			to_chat(user, SPAN_NOTICE("你挖起了一些[dirt_type_to_name(turfdirt)]。"))
 			dirt_amt = transfer_amount
 			dirt_type = turfdirt
 			update_icon()
@@ -110,14 +110,14 @@
 					return
 
 				if(!istype(SB, /obj/item/stack/sandbags_empty)) // Checks sandbag a second time to confirm, if none are found, cancels everything
-					to_chat(user, SPAN_NOTICE("There are no sandbags nearby to fill up."))
+					to_chat(user, SPAN_NOTICE("附近没有可填装的沙袋。"))
 					break
 
 				if(sandbagcheck == FALSE)
 					sandbagcheck = TRUE
-					to_chat(user, SPAN_NOTICE("You begin filling the sandbags with [dirt_type_to_name(turfdirt)]."))
+					to_chat(user, SPAN_NOTICE("你开始往沙袋里填装[dirt_type_to_name(turfdirt)]。"))
 					if(!do_after(user, shovelspeed / 2, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD)) // Sandbag filling speed faster than normal, no skillchecks required since filling bags is almost instant
-						to_chat(user, SPAN_NOTICE("You stop filling the sandbags with [dirt_type_to_name(turfdirt)]."))
+						to_chat(user, SPAN_NOTICE("你停止了向沙袋填装[dirt_type_to_name(turfdirt)]。"))
 						return
 
 				if(get_dist(user, SB) > 1) // check if sandbag still beside them
@@ -154,7 +154,7 @@
 
 /obj/item/tool/shovel/proc/dump_shovel(atom/target, mob/user)
 	var/turf/T = target
-	to_chat(user, SPAN_NOTICE("You dump the [dirt_type_to_name(dirt_type)]!"))
+	to_chat(user, SPAN_NOTICE("你倒掉了[dirt_type_to_name(dirt_type)]！"))
 	playsound(user.loc, "rustle", 30, 1, 6)
 	if(dirt_type == DIRT_TYPE_SNOW)
 		var/obj/item/stack/snow/S = locate() in T
@@ -168,15 +168,15 @@
 /obj/item/tool/shovel/proc/dirt_type_to_name(dirt_type)
 	switch(dirt_type)
 		if(DIRT_TYPE_GROUND)
-			return "dirt"
+			return "泥土"
 		if(DIRT_TYPE_MARS)
-			return "red sand"
+			return "红沙"
 		if(DIRT_TYPE_SNOW)
-			return "snow"
+			return "积雪"
 		if(DIRT_TYPE_SAND)
-			return "sand"
+			return "沙子"
 		if(DIRT_TYPE_SHALE)
-			return "loam"
+			return "壤土"
 
 /obj/item/tool/shovel/proc/check_dirt_type()
 	if(dirt_amt <= 0)
@@ -184,8 +184,8 @@
 	return dirt_type
 
 /obj/item/tool/shovel/spade
-	name = "spade"
-	desc = "A small tool for digging and moving dirt."
+	name = "小铲"
+	desc = "用于挖掘和搬运泥土的小型工具。"
 	icon_state = "spade"
 	item_state = "spade"
 	force = 5
@@ -198,8 +198,8 @@
 
 //Snow Shovel----------
 /obj/item/tool/shovel/snow
-	name = "snow shovel"
-	desc = "I had enough winter for this year!"
+	name = "雪铲"
+	desc = "今年的冬天我已经受够了！"
 	w_class = SIZE_LARGE
 	force = 5
 	throwforce = 3
@@ -207,8 +207,8 @@
 
 // Entrenching tool.
 /obj/item/tool/shovel/etool
-	name = "USCM M61 entrenching tool"
-	desc = "A marine's best friend. Dually useful for digging foxholes and bashing in heads. Folds in half for easier storage."
+	name = "USCM M61 工兵铲"
+	desc = "陆战队员最好的朋友。既能挖散兵坑，也能砸碎脑袋。可对折收起，方便携带。"
 	icon = 'icons/obj/items/marine-items.dmi'
 	icon_state = "etool"
 	item_state = "etool"
@@ -256,15 +256,15 @@
 	folded = TRUE
 
 /obj/item/tool/shovel/etool/rmc
-	name = "2155 pattern entrenching tool"
-	desc = "A marine commando's best friend. Dually useful for digging foxholes and bashing in noggins. Folds in half for easier storage."
+	name = "2155 式工兵铲"
+	desc = "皇家陆战突击队员最好的朋友。既能挖散兵坑，也能敲烂脑壳。可对折收起，方便携带。"
 
 /obj/item/tool/shovel/etool/rmc/folded
 	folded = TRUE
 
 /obj/item/tool/shovel/etool/upp
-	name = "Type 50 entrenching tool"
-	desc = "A serviceman's best friend. Dually useful for digging foxholes and bashing in heads. Folds in half for easier storage."
+	name = "50 式工兵铲"
+	desc = "军人最好的朋友。既能挖散兵坑，也能砸碎脑袋。可对折收起，方便携带。"
 	icon_state = "etoolupp"
 	item_state = "etoolupp"
 	dirt_overlay = "etoolupp_overlay"

@@ -14,7 +14,7 @@
 		target.AddComponent(/datum/component/label, target_label_text)
 
 /obj/item/tool/hand_labeler
-	name = "hand labeler"
+	name = "手持标签机"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "labeler0"
 	item_state = "flight"
@@ -31,32 +31,32 @@
 	if(!proximity) return
 
 	if(!mode) //if it's off, give up.
-		to_chat(user, SPAN_WARNING("\The [src] isn't on."))
+		to_chat(user, SPAN_WARNING("[src]还没打开。"))
 		return
 
 	if(A == loc) // if placing the labeller into something (e.g. backpack)
 		return // don't set a label
 
 	if(!labels_left)
-		to_chat(user, SPAN_WARNING("No labels left."))
+		to_chat(user, SPAN_WARNING("标签用完了。"))
 		return
 	if(length(A.name) + length(label) > 64)
-		to_chat(user, SPAN_WARNING("Label too big."))
+		to_chat(user, SPAN_WARNING("标签文字太长了。"))
 		return
 	if(isliving(A) || istype(A, /obj/item/holder))
-		to_chat(user, SPAN_WARNING("You can't label living beings."))
+		to_chat(user, SPAN_WARNING("你不能给活物贴标签。"))
 		return
 	if((istype(A, /obj/item/reagent_container/glass)) && (!(istype(A, /obj/item/reagent_container/glass/minitank))))
-		to_chat(user, SPAN_WARNING("The label will not stick to [A]. Use a pen instead."))
+		to_chat(user, SPAN_WARNING("标签贴不住[A]，改用笔吧。"))
 		return
 	if(istype(A, /obj/item/tool/surgery) || istype(A, /obj/item/reagent_container/pill))
-		to_chat(user, SPAN_WARNING("That wouldn't be sanitary."))
+		to_chat(user, SPAN_WARNING("那样不卫生。"))
 		return
 	if((istype(A, /obj/vehicle/multitile)) || (istype(A, /obj/structure))) // disallow naming structures
-		to_chat(user, SPAN_WARNING("The label won't stick to that."))
+		to_chat(user, SPAN_WARNING("标签贴不住那东西。"))
 		return
 	if(isturf(A))
-		to_chat(user, SPAN_WARNING("The label won't stick to that."))
+		to_chat(user, SPAN_WARNING("标签贴不住那东西。"))
 		return
 	if(istype(A, /obj/item/storage/pill_bottle))
 		var/obj/item/storage/pill_bottle/target_pill_bottle = A
@@ -69,11 +69,11 @@
 	var/datum/component/label/labelcomponent = A.GetComponent(/datum/component/label)
 	if(labelcomponent)
 		if(labelcomponent.label_name == label)
-			to_chat(user, SPAN_WARNING("It already has the same label."))
+			to_chat(user, SPAN_WARNING("它已经贴着相同的标签了。"))
 			return
 
-	user.visible_message(SPAN_NOTICE("[user] labels [A] as \"[label]\"."), \
-	SPAN_NOTICE("You label [A] as \"[label]\"."))
+	user.visible_message(SPAN_NOTICE("[user]给[A]贴上了“[label]”的标签。"), \
+	SPAN_NOTICE("你给[A]贴上了“[label]”的标签。"))
 
 	log_admin("[user] has labeled [A.name] with label \"[label]\". (CKEY: ([user.ckey]))")
 
@@ -88,17 +88,17 @@
 	mode = !mode
 	icon_state = "labeler[mode]"
 	if(mode)
-		to_chat(user, SPAN_NOTICE("You turn on \the [src]."))
+		to_chat(user, SPAN_NOTICE("你打开了[src]。"))
 		//Now let them choose the text.
-		var/str = copytext(reject_bad_text(input(user,"Label text?", "Set label", "")), 1, MAX_NAME_LEN)
+		var/str = copytext(reject_bad_text(input(user,"标签上要写什么？", "设置标签", "")), 1, MAX_NAME_LEN)
 		if(!str || !length(str))
-			to_chat(user, SPAN_NOTICE("Label text cleared. You can now remove labels."))
+			to_chat(user, SPAN_NOTICE("标签文字已清空。现在可以移除标签了。"))
 			label = null
 			return
 		label = str
-		to_chat(user, SPAN_NOTICE("You set the text to '[str]'."))
+		to_chat(user, SPAN_NOTICE("你将标签文字设为“[str]”。"))
 	else
-		to_chat(user, SPAN_NOTICE("You turn off \the [src]."))
+		to_chat(user, SPAN_NOTICE("你关闭了[src]。"))
 
 
 
@@ -112,14 +112,14 @@
 /obj/item/tool/hand_labeler/proc/remove_label(atom/A, mob/user)
 	var/datum/component/label/label = A.GetComponent(/datum/component/label)
 	if(label)
-		user.visible_message(SPAN_NOTICE("[user] removes label from [A]."), \
-						SPAN_NOTICE("You remove the label from [A]."))
+		user.visible_message(SPAN_NOTICE("[user]移除了[A]上的标签。"), \
+						SPAN_NOTICE("你移除了[A]上的标签。"))
 		label.remove_label()
 		log_admin("[user] has removed label from [A.name]. (CKEY: ([user.ckey]))")
 		playsound(A, remove_label_sound, 20, TRUE)
 		return
 	else
-		to_chat(user, SPAN_NOTICE("There is no label to remove."))
+		to_chat(user, SPAN_NOTICE("没有可移除的标签。"))
 		return
 
 /**
@@ -132,11 +132,11 @@
 	. = ..()
 	if(istype(I, /obj/item/paper))
 		if(labels_left != initial(labels_left))
-			to_chat(user, SPAN_NOTICE("You insert [I] into [src]."))
+			to_chat(user, SPAN_NOTICE("你将[I]放入[src]。"))
 			qdel(I) //delete the paper item
 			labels_left = initial(labels_left)
 		else
-			to_chat(user, SPAN_NOTICE("[src] is already full."))
+			to_chat(user, SPAN_NOTICE("[src]已经满了。"))
 
 /*
 	Instead of updating labels_left to user every label used,
@@ -144,16 +144,16 @@
 */
 /obj/item/tool/hand_labeler/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_NOTICE("It has [labels_left] out of [initial(labels_left)] labels left.")
-	. += SPAN_HELPFUL("Use paper to refill it.")
+	. += SPAN_NOTICE("还剩[labels_left]/[initial(labels_left)]张标签。")
+	. += SPAN_HELPFUL("可以用纸补充标签。")
 
 
 /*
  * Pens
  */
 /obj/item/tool/pen
-	desc = "It's a normal black ink pen."
-	name = "pen"
+	desc = "一支普通的黑色墨水笔。"
+	name = "笔"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "pen"
 	item_state = "pen"
@@ -172,7 +172,7 @@
 /obj/item/tool/pen/attack_self(mob/living/carbon/human/user)
 	..()
 	on = !on
-	to_chat(user, SPAN_WARNING("You click the pen [on? "on": "off"]."))
+	to_chat(user, SPAN_WARNING("你咔哒一声[on? "按出了": "收回了"]笔尖。"))
 	if(clicky)
 		playsound(user.loc, "sound/items/pen_click_[on? "on": "off"].ogg", 100, 1, 5)
 	update_pen_state()
@@ -193,16 +193,17 @@
 	var/obj/obj_target = target
 	//Changing name/description of items. Only works if they have the OBJ_UNIQUE_RENAME object flag set
 	if(proximity_flag && (obj_target.flags_obj & OBJ_UNIQUE_RENAME))
-		var/penchoice = tgui_input_list(user, "What would you like to edit?", "Pen Setting", list("Rename", "Description", "Reset"))
+		var/list/pen_choices = list("重命名" = "Rename", "描述" = "Description", "重置" = "Reset")
+		var/penchoice = pen_choices[tgui_input_list(user, "你想编辑什么？", "书写工具设置", pen_choices)]
 		if(QDELETED(target) || !CAN_PICKUP(user, obj_target))
 			return
 		if(penchoice == "Rename")
-			var/input = tgui_input_text(user, "What do you want to name [target]?", "Object Name", "[target.name]", MAX_NAME_LEN)
+			var/input = tgui_input_text(user, "你想给[target]取什么名字？", "物品名称", "[target.name]", MAX_NAME_LEN)
 			var/oldname = target.name
 			if(QDELETED(target) || !CAN_PICKUP(user, obj_target))
 				return
 			if(input == oldname || !input)
-				to_chat(user, SPAN_NOTICE("You changed [target] to... well... [target]."))
+				to_chat(user, SPAN_NOTICE("你把[target]改成了……呃……[target]。"))
 			else
 				msg_admin_niche("[key_name(usr)] changed \the [src]'s name to [input] [ADMIN_JMP(src)]")
 				target.AddComponent(/datum/component/rename, input, target.desc)
@@ -210,21 +211,21 @@
 				if(label)
 					label.remove_label()
 					label.apply_label()
-				to_chat(user, SPAN_NOTICE("You have successfully renamed \the [oldname] to [target]."))
+				to_chat(user, SPAN_NOTICE("你成功将[oldname]重命名为[target]。"))
 				obj_target.renamedByPlayer = TRUE
 				playsound(target, "paper_writing", 15, TRUE)
 
 		if(penchoice == "Description")
-			var/input = tgui_input_text(user, "Describe [target]", "Description", "[target.desc]", 140)
+			var/input = tgui_input_text(user, "描述[target]", "描述", "[target.desc]", 140)
 			var/olddesc = target.desc
 			if(QDELETED(target) || !CAN_PICKUP(user, obj_target))
 				return
 			if(input == olddesc || !input)
-				to_chat(user, SPAN_NOTICE("You decide against changing [target]'s description."))
+				to_chat(user, SPAN_NOTICE("你决定不修改[target]的描述。"))
 			else
 				msg_admin_niche("[key_name(usr)] changed \the [src]'s description to [input] [ADMIN_JMP(src)]")
 				target.AddComponent(/datum/component/rename, target.name, input)
-				to_chat(user, SPAN_NOTICE("You have successfully changed [target]'s description."))
+				to_chat(user, SPAN_NOTICE("你成功修改了[target]的描述。"))
 				obj_target.renamedByPlayer = TRUE
 				playsound(target, "paper_writing", 15, TRUE)
 
@@ -240,49 +241,50 @@
 				label.remove_label()
 				label.apply_label()
 
-			to_chat(user, SPAN_NOTICE("You have successfully reset [target]'s name and description."))
+			to_chat(user, SPAN_NOTICE("你成功重置了[target]的名称和描述。"))
 			obj_target.renamedByPlayer = FALSE
 
 /obj/item/tool/pen/clicky
-	desc = "It's an extra clicky black ink pen."
+	desc = "一支按起来格外响亮的黑色墨水笔。"
 	clicky = TRUE
 
 /obj/item/tool/pen/blue
-	desc = "It's a normal blue ink pen."
+	desc = "一支普通的蓝色墨水笔。"
 	pen_color = "blue"
 
 /obj/item/tool/pen/blue/clicky
-	desc = "It's an extra clicky blue ink pen."
+	desc = "一支按起来格外响亮的蓝色墨水笔。"
 	clicky = TRUE
 
 /obj/item/tool/pen/red
-	desc = "It's a normal red ink pen."
+	desc = "一支普通的红色墨水笔。"
 	pen_color = "red"
 
 /obj/item/tool/pen/red/clicky
-	desc = "It's an extra clicky red ink pen."
+	desc = "一支按起来格外响亮的红色墨水笔。"
 	clicky = TRUE
 
 /obj/item/tool/pen/green
-	desc = "It's a normal green ink pen."
+	desc = "一支普通的绿色墨水笔。"
 	pen_color = "green"
 
 /obj/item/tool/pen/green/clicky
-	desc = "It's an extra clicky green ink pen."
+	desc = "一支按起来格外响亮的绿色墨水笔。"
 	clicky = TRUE
 
 /obj/item/tool/pen/invisible
-	desc = "It's an invisible pen marker."
+	desc = "一支隐形墨水笔。"
 	pen_color = "white"
 
 /obj/item/tool/pen/fountain
-	desc = "A lavish testament to the ingenuity of ARMAT's craftsmanship, this fountain pen is a paragon of design and functionality. Detailed with golden accents and intricate mechanics, the pen allows for a swift change between a myriad of ink colors with a simple twist. A product of precision engineering, each mechanism inside the pen is designed to provide a seamless, effortless transition from one color to the next, creating an instrument of luxurious versatility."
-	desc_lore = "More than just a tool for writing, ARMAT's fountain pen is a symbol of distinction and authority within the ranks of the United States Colonial Marine Corps (USCM). It is a legacy item, exclusively handed out to the top-tier command personnel, each pen a tribute to the recipient's leadership and dedication.\n \nARMAT, renowned for their weapons technology, took a different approach in crafting this piece. The fountain pen, though seemingly a departure from their usual field, is deeply ingrained with the company's engineering philosophy, embodying precision, functionality, and robustness.\n \nThe golden accents are not mere embellishments; they're an identifier, setting apart these pens and their owners from the rest. The gold is meticulously alloyed with a durable metallic substance, granting it resilience to daily wear and tear. Such resilience is symbolic of the tenacity and perseverance required of USCM command personnel.\n \nEach pen is equipped with an intricate color changing mechanism, allowing the user to switch between various ink colors. This feature, inspired by the advanced targeting systems of ARMAT's weaponry, uses miniaturized actuators and precision-ground components to smoothly transition the ink flow. A simple twist of the pen's body activates the change, rotating the internal ink cartridges into place with mechanical grace, ready for the user's command.\n \nThe ink colors are not chosen arbitrarily. Each represents a different echelon within the USCM, allowing the pen's owner to write in the hue that corresponds with their rank or the rank of the recipient of their written orders. This acts as a silent testament to the authority of their words, as if each stroke of the pen echoes through the halls of USCM authority.\n \nDespite its ornate appearance, the pen is as robust as any ARMAT weapon, reflecting the company's commitment to reliability and durability. The metal components are corrosion-resistant, ensuring the pen's longevity, even under the challenging conditions often faced by USCM high command.\n \nThe fusion of luxury and utility, the blend of gold and metal, is an embodiment of the hard-won elegance of command, of the fusion between power and grace. It's more than a writing instrument - it's an emblem of leadership, an accolade to the dedication and strength of those who bear it. ARMAT's fountain pen stands as a monument to the precision, integrity, and courage embodied by the USCM's highest-ranking officers."
-	name = "fountain pen"
+	desc = "这支钢笔是设计与实用性的典范，奢华地展示了阿玛特公司的精湛工艺。金色饰边之下藏着精巧的机械结构，只需轻轻一转，就能迅速切换多种墨水颜色。精密工程赋予了每一处机构顺畅、轻松的换色能力，让这件书写工具兼具奢华质感与多样用途。"
+	desc_lore = "阿玛特钢笔不仅是一件书写工具，更是美国殖民地海军陆战队（USCM）内部身份与权威的象征。这件传承之物仅颁发给最高层指挥人员，每一支都表达了对获赠者领导能力与奉献精神的敬意。\n \n以武器技术闻名的阿玛特公司，在打造它时走了一条不同的道路。钢笔看似偏离了公司的传统业务，却深深融入了其工程理念，体现着精密、实用与坚固。\n \n金色饰边并非单纯的装饰，更是一种身份标识，让这些钢笔及其主人显得与众不同。黄金与耐用金属精心熔合，使其能够抵御日常磨损。这份坚韧，也象征着殖民地陆战队指挥人员所需的毅力与韧性。\n \n每支钢笔都配备了精巧的换色机构，让使用者能够切换多种墨水颜色。这项功能的灵感来自阿玛特武器的先进瞄准系统，通过微型执行器和精密研磨的零件平稳切换供墨。只需轻轻转动笔身，内部墨囊就会优雅地旋转到位，随时听候使用者的指令。\n \n墨水颜色的选择并非随意。每种颜色都代表殖民地陆战队内部的一个等级，持有者可以使用与自己军衔或书面命令接收者军衔相对应的颜色书写。它无声地彰显文字的权威，仿佛每一笔都在殖民地陆战队的指挥殿堂中回响。\n \n尽管外观华丽，这支钢笔却像阿玛特的任何武器一样坚固，体现了公司对可靠与耐用的坚持。耐腐蚀的金属零件确保它即使面对殖民地陆战队高级指挥人员常处的严苛环境，也能长久使用。\n \n奢华与实用的交融，黄金与金属的结合，展现了指挥者历经磨砺的从容，以及力量与优雅的统一。它不仅是书写工具，更是领导力的象征，是对持有者奉献与力量的嘉奖。阿玛特钢笔彰显着殖民地陆战队最高级军官所具备的严谨、正直与勇气。"
+	name = "钢笔"
 	icon_state = "fountain_pen"
 	item_state = "fountain_pen"
 	matter = list("metal" = 20, "gold" = 10)
 	var/static/list/color_list = list("red", "blue", "green", "yellow", "purple", "pink", "brown", "black", "orange") // Can add more colors as required
+	var/static/list/color_names = list("red" = "红色", "blue" = "蓝色", "green" = "绿色", "yellow" = "黄色", "purple" = "紫色", "pink" = "粉色", "brown" = "棕色", "black" = "黑色", "orange" = "橙色")
 	var/current_color_index = 1
 	var/owner_name
 
@@ -301,13 +303,13 @@
 /obj/item/tool/pen/fountain/get_examine_text(mob/user)
 	. = ..()
 	if(owner_name)
-		. += "There's a laser engraving of [owner_name] on it."
+		. += "上面用激光刻着[owner_name]的名字。"
 
 /obj/item/tool/pen/fountain/attack_self(mob/living/carbon/human/user)
 	if(on)
 		current_color_index = (current_color_index % length(color_list)) + 1
 		pen_color = color_list[current_color_index]
-		balloon_alert(user,"you twist the pen and change the ink color to [pen_color].")
+		balloon_alert(user,"你转动笔身，将墨水颜色切换为[color_names[pen_color]]。")
 		if(clicky)
 			playsound(user.loc, 'sound/items/pen_click_on.ogg', 100, 1, 5)
 		update_pen_state()
@@ -317,7 +319,7 @@
 /obj/item/tool/pen/attack(mob/M as mob, mob/user as mob)
 	if(!ismob(M))
 		return
-	to_chat(user, SPAN_WARNING("You stab [M] with the pen."))
+	to_chat(user, SPAN_WARNING("你用笔刺了[M]。"))
 // to_chat(M, SPAN_WARNING("You feel a tiny prick!")) //That's a whole lot of meta!
 	M.last_damage_data = create_cause_data(initial(name), user)
 	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been stabbed with [name] by [key_name(user)]</font>")
@@ -330,7 +332,7 @@
  * Sleepy Pens
  */
 /obj/item/tool/pen/sleepypen
-	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
+	desc = "一支笔尖锋利的黑色墨水笔，上面精细地刻着“华夫公司”。"
 	flags_atom = FPRINT|OPENCONTAINER
 	flags_equip_slot = SLOT_WAIST
 
@@ -371,8 +373,8 @@
 	reagents.add_reagent("cryptobiolin", 15)
 
 /obj/item/tool/stamp
-	name = "rubber stamp"
-	desc = "A rubber stamp for stamping important documents."
+	name = "橡皮印章"
+	desc = "用于给重要文件盖章的橡皮印章。"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "stamp-def"
 	item_state = "stamp"
@@ -381,66 +383,66 @@
 	throw_speed = SPEED_VERY_FAST
 	throw_range = 15
 	matter = list("metal" = 60)
-	attack_verb = list("stamped")
+	attack_verb = list("盖戳")
 
 /obj/item/tool/stamp/captain
-	name = "captain's rubber stamp"
+	name = "舰长橡皮印章"
 	icon_state = "stamp-cap"
 
 /obj/item/tool/stamp/hop
-	name = "head of personnel's rubber stamp"
+	name = "人事主管橡皮印章"
 	icon_state = "stamp-hop"
 
 /obj/item/tool/stamp/hos
-	name = "head of security's rubber stamp"
+	name = "安保主管橡皮印章"
 	icon_state = "stamp-hos"
 
 /obj/item/tool/stamp/ce
-	name = "chief engineer's rubber stamp"
+	name = "总工程师橡皮印章"
 	icon_state = "stamp-ce"
 
 /obj/item/tool/stamp/rd
-	name = "research director's rubber stamp"
+	name = "研究主管橡皮印章"
 	icon_state = "stamp-rd"
 
 /obj/item/tool/stamp/cmo
-	name = "chief medical officer's rubber stamp"
+	name = "首席医疗官橡皮印章"
 	icon_state = "stamp-cmo"
 
 /obj/item/tool/stamp/denied
-	name = "\improper DENIED rubber stamp"
+	name = "\improper “驳回”橡皮印章"
 	icon_state = "stamp-deny"
 
 /obj/item/tool/stamp/approved
-	name = "\improper APPROVED rubber stamp"
+	name = "\improper “批准”橡皮印章"
 	icon_state = "stamp-approve"
 
 /obj/item/tool/stamp/clown
-	name = "clown's rubber stamp"
+	name = "小丑橡皮印章"
 	icon_state = "stamp-clown"
 
 /obj/item/tool/stamp/internalaffairs
-	name = "internal affairs rubber stamp"
+	name = "内务部橡皮印章"
 	icon_state = "stamp-intaff"
 
 /obj/item/tool/stamp/weyyu
-	name = "W-Y rubber stamp"
+	name = "维兰德-汤谷橡皮印章"
 	icon_state = "stamp-weyyu"
 
 /obj/item/tool/stamp/uscm
-	name = "USCM rubber stamp"
+	name = "USCM 橡皮印章"
 	icon_state = "stamp-uscm"
 
 /obj/item/tool/stamp/cmb
-	name = "CMB rubber stamp"
+	name = "殖民地执法局橡皮印章"
 	icon_state = "stamp-cmb"
 
 /obj/item/tool/stamp/ro
-	name = "quartermaster's rubber stamp"
+	name = "军需官橡皮印章"
 	icon_state = "stamp-ro"
 
 /obj/item/tool/carpenters_hammer //doesn't do anything, yet
-	name = "carpenter's hammer"
+	name = "木工锤"
 	icon_state = "carpenters_hammer" //yay, it now has a sprite.
 	item_state = "carpenters_hammer"
-	desc = "Can be used to thwack nails into wooden objects to repair them."
+	desc = "可将钉子敲进木制物品，用于修理。"

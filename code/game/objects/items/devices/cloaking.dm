@@ -1,8 +1,8 @@
 //chameleon projector
 
 /obj/item/device/chameleon
-	name = "chameleon-projector"
-	desc = "Use this to become invisible to the human eye."
+	name = "变色龙投影器"
+	desc = "使用它即可从人类视野中隐去身形。"
 	icon_state = "shield0"
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_WAIST
@@ -47,12 +47,12 @@
 	src.add_fingerprint(user)
 	if(chameleon_on)
 		user.alpha = 25
-		to_chat(user, SPAN_NOTICE("You activate [src]."))
+		to_chat(user, SPAN_NOTICE("你启动了[src]。"))
 		spark_system.start()
 		src.icon_state = "shield1"
 	else
 		user.alpha = initial(user.alpha)
-		to_chat(user, SPAN_NOTICE("You deactivate [src]."))
+		to_chat(user, SPAN_NOTICE("你关闭了[src]。"))
 		src.icon_state = "shield0"
 		spark_system.start()
 

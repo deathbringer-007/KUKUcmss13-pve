@@ -1,6 +1,6 @@
 /obj/item/hardpoint/armor/caustic
-	name = "\improper Caustic Armor"
-	desc = "Protects vehicles from most types of corrosive chemical agents."
+	name = "\improper 耐腐蚀装甲"
+	desc = "保护载具抵御大多数腐蚀性化学物质。"
 
 	icon_state = "caustic_armor"
 	disp_icon = "tank"

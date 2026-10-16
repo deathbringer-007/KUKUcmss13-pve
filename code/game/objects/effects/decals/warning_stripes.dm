@@ -1,5 +1,5 @@
 /obj/effect/decal/warning_stripes
-	name = "warning stripes"
+	name = "警示条纹"
 	gender = PLURAL
 	icon = 'icons/effects/warning_stripes.dmi'
 	layer = WEED_LAYER
@@ -76,7 +76,7 @@
 
 
 /obj/effect/decal/sand_overlay
-	name = "sandy edge"
+	name = "沙地边缘"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	unacidable = TRUE
 	icon = 'icons/turf/overlays.dmi'
@@ -92,7 +92,7 @@
 	icon_state = "sand2_c"
 
 /obj/effect/decal/grass_overlay
-	name = "grass edge"
+	name = "草地边缘"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	unacidable = TRUE
 	icon = 'icons/turf/floors/auto_strata_grass.dmi'
@@ -102,14 +102,14 @@
 	icon_state = "grass_outercorner"
 
 /obj/effect/decal/grass_overlay/grass1/inner
-	name = "grass edge"
+	name = "草地边缘"
 	icon_state = "grass_innercorner"
 
 /obj/effect/decal/siding
-	name = "siding"
+	name = "护边板"
 	icon = 'icons/turf/floors/floors.dmi'
 	icon_state = "siding1"
 
 /obj/effect/decal/siding/wood_siding
-	name = "wood siding"
+	name = "木质护边板"
 	icon_state = "wood_siding1"

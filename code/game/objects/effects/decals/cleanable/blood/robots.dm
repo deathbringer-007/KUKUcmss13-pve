@@ -1,6 +1,6 @@
 /obj/effect/decal/cleanable/blood/gibs/robot
-	name = "robot debris"
-	desc = "It's a useless heap of junk... <i>or is it?</i>"
+	name = "机器人碎片"
+	desc = "一堆没用的废物……<i>真是这样吗？</i>"
 	icon = 'icons/mob/robots.dmi'
 	icon_state = "gib1"
 	basecolor=COLOR_OIL
@@ -37,8 +37,8 @@
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6", "gib7","gibdown1","gibdown1") //2:7 is close enough to 1:4
 
 /obj/effect/decal/cleanable/blood/oil
-	name = "motor oil"
-	desc = "It's black and greasy."
+	name = "机油"
+	desc = "又黑又油腻。"
 	basecolor=COLOR_OIL
 
 /obj/effect/decal/cleanable/blood/oil/dry()

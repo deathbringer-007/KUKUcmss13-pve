@@ -48,12 +48,12 @@ const ConfirmationDialogue = (props: ConfirmationProps) => {
               icon="check"
               onClick={props.onConfirm}
             >
-              Confirm
+              确认
             </Button>
           </Stack.Item>
           <Stack.Item>
             <Button icon="cancel" onClick={props.onCancel}>
-              Cancel
+              取消
             </Button>
           </Stack.Item>
         </Stack>
@@ -63,7 +63,7 @@ const ConfirmationDialogue = (props: ConfirmationProps) => {
 };
 
 const NoCompoundsDetected = () => {
-  return <span>ERROR: no chemicals have been detected.</span>;
+  return <span>错误：未检测到化学物质。</span>;
 };
 
 interface CompoundRecordProps extends BoxProps {
@@ -110,7 +110,7 @@ const CompoundRecord = (props: CompoundRecordProps) => {
         >
           <Flex.Item>
             <Button icon="book" onClick={() => act('read_document', doc_ref)}>
-              Read
+              阅读
             </Button>
           </Flex.Item>
           {props.canPrint && (
@@ -120,7 +120,7 @@ const CompoundRecord = (props: CompoundRecordProps) => {
                 icon="print"
                 onClick={() => act('print', doc_ref)}
               >
-                Print
+                打印
               </Button>
             </Flex.Item>
           )}
@@ -130,7 +130,7 @@ const CompoundRecord = (props: CompoundRecordProps) => {
                 icon="upload"
                 onClick={() => act('publish_document', doc_ref)}
               >
-                Publish
+                发布
               </Button>
             </Flex.Item>
           )}
@@ -140,7 +140,7 @@ const CompoundRecord = (props: CompoundRecordProps) => {
                 icon="remove"
                 onClick={() => act('unpublish_document', doc_ref)}
               >
-                Unpublish
+                撤回发布
               </Button>
             </Flex.Item>
           )}
@@ -186,11 +186,11 @@ const ResearchReportTable = (props: {
           <Flex.Item>
             {hideOld && (
               <Button onClick={() => setHideOld(false)}>
-                Show All Reports
+                显示全部报告
               </Button>
             )}
             {!hideOld && (
-              <Button onClick={() => setHideOld(true)}>Hide Old Reports</Button>
+              <Button onClick={() => setHideOld(true)}>隐藏旧报告</Button>
             )}
           </Flex.Item>
         </Flex>
@@ -200,7 +200,7 @@ const ResearchReportTable = (props: {
         <CompoundTable
           hideOld={hideOld}
           docs={documents}
-          timeLabel="Scan Time"
+          timeLabel="扫描时间"
           canPrint
         />
       </Stack.Item>
@@ -236,7 +236,7 @@ export const CompoundTable = (props: CompoundTableProps) => {
       const document_prefix = x.document_title.split(' ')[0];
       const doc_number = Number.parseInt(document_prefix, 10);
       const doctype: DocInfo = {
-        doctype: Number.isNaN(doc_number) ? 'Synthesis' : 'Analysis',
+        doctype: Number.isNaN(doc_number) ? '合成' : '分析',
         document: x.document,
         time: x.time,
       };
@@ -305,18 +305,18 @@ export const CompoundTable = (props: CompoundTableProps) => {
           </Button>
         </TableCell>
         <TableCell textAlign="center">
-          <span>Type</span>
+          <span>类型</span>
         </TableCell>
         <TableCell textAlign="center">
           <Button
             icon={iconRef('name', false)}
             onClick={() => sortColClick('name')}
           >
-            Compound
+            化合物
           </Button>
         </TableCell>
         <TableCell textAlign="center">
-          <span>Actions</span>
+          <span>操作</span>
         </TableCell>
       </TableRow>
       {Array.from(outputDocs.values())
@@ -343,11 +343,11 @@ export const CompoundTable = (props: CompoundTableProps) => {
 };
 
 const PhotocopierMissing = () => {
-  return <span>ERROR: no linked printer found.</span>;
+  return <span>错误：未找到已连接的打印机。</span>;
 };
 
 const TonerEmpty = () => {
-  return <span>ERROR: Printer toner is empty.</span>;
+  return <span>错误：打印机墨粉已用尽。</span>;
 };
 
 const ImproveClearanceConfirmation = (props: {
@@ -370,8 +370,7 @@ const ImproveClearanceConfirmation = (props: {
           onCancel={() => setConfirm(undefined)}
         >
           <span>
-            Are you sure you want to spend <u>{data.broker_cost}</u> research
-            credits to increase the clearance immediately?
+            确定要花费 <u>{data.broker_cost}</u> 点研究积分立即提升权限等级吗？
           </span>
         </ConfirmationDialogue>
       </Stack.Item>
@@ -399,8 +398,7 @@ const XClearanceConfirmation = (props: {
           onCancel={() => setConfirm(undefined)}
         >
           <span>
-            Are you sure you wish request clearance level <u>X</u> access for{' '}
-            <u>5</u> credits?
+            确定要申请 <u>X</u> 级权限吗？费用为 <u>5</u> 点研究积分。
           </span>
         </ConfirmationDialogue>
       </Stack.Item>
@@ -418,7 +416,7 @@ const ResearchManager = (props: {
     <Box>
       <Stack vertical>
         <Stack.Item>
-          <span>Credits available: {data.rsc_credits}</span>
+          <span>可用研究积分：{data.rsc_credits}</span>
         </Stack.Item>
       </Stack>
       <hr />
@@ -468,7 +466,7 @@ const PublishedMaterial = (props: { readonly hideOld: boolean }) => {
         <CompoundTable
           hideOld={hideOld}
           docs={documents}
-          timeLabel="Published"
+          timeLabel="发布时间"
           canPrint
         />
       </Stack.Item>
@@ -497,7 +495,7 @@ const ResearchOverview = (props: {
           icon="gear"
           color="black"
         >
-          Manage Research
+          研究管理
         </Tabs.Tab>
         <Tabs.Tab
           selected={selectedTab === 2}
@@ -508,7 +506,7 @@ const ResearchOverview = (props: {
           icon="flask"
           color="black"
         >
-          View Chemicals
+          查看化学物质
         </Tabs.Tab>
         <Tabs.Tab
           selected={selectedTab === 3}
@@ -519,7 +517,7 @@ const ResearchOverview = (props: {
           icon="book"
           color="black"
         >
-          Published Material
+          已发布资料
         </Tabs.Tab>
       </Tabs>
       <div className="TabbedContent">
@@ -561,7 +559,7 @@ const ClearanceImproveButton = (props: {
             setConfirm('broker_clearance');
           }}
         >
-          Improve {data.broker_cost}CR
+          提升权限（{data.broker_cost} 积分）
         </Button>
       )}
       {clearance_level === 5 && x_access === 0 && (
@@ -573,13 +571,13 @@ const ClearanceImproveButton = (props: {
               setConfirm('request_clearance_x_access');
             }}
           >
-            Request X (5)
+            申请 X 级权限（5 积分）
           </Button>
         </Flex.Item>
       )}
       {x_access !== 0 && (
         <Flex.Item>
-          <Button disabled>Maximum clearance reached</Button>
+          <Button disabled>已达到最高权限</Button>
         </Flex.Item>
       )}
     </>
@@ -594,7 +592,7 @@ export const ResearchTerminal = () => {
     <Window width={480 * 2} height={320 * 2} theme="crtyellow">
       <Window.Content scrollable className="ResearchTerminal">
         <Section
-          title={`Clearance Level ${data.clearance_level}`}
+          title={`权限等级：${data.clearance_level}`}
           buttons={
             <ClearanceImproveButton
               setSelectedTab={setSelectedTab}

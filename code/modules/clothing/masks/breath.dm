@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/breath
-	desc = "A close-fitting mask that can be connected to an air supply."
-	name = "breath mask"
+	desc = "一副贴合面部、可连接供气设备的面罩。"
+	name = "呼吸面罩"
 	icon_state = "breath"
 	item_state = "breath"
 	flags_inventory = COVERMOUTH|ALLOWINTERNALS
@@ -12,8 +12,8 @@
 	var/hanging = 0
 
 /obj/item/clothing/mask/breath/verb/toggle()
-	set category = "Object"
-	set name = "Adjust mask"
+	set category = "物品"
+	set name = "调整面罩"
 	set src in usr
 
 	if(usr.is_mob_incapacitated())
@@ -22,19 +22,19 @@
 			gas_transfer_coefficient = 1 //gas is now escaping to the turf and vice versa
 			flags_inventory &= ~(COVERMOUTH|ALLOWINTERNALS)
 			icon_state = "breathdown"
-			to_chat(usr, "Your mask is now hanging on your neck.")
+			to_chat(usr, "你的面罩现在挂在脖子上。")
 
 		else
 			src.hanging = !src.hanging
 			gas_transfer_coefficient = 0.10
 			flags_inventory |= COVERMOUTH|ALLOWINTERNALS
 			icon_state = "breath"
-			to_chat(usr, "You pull the mask up to cover your face.")
+			to_chat(usr, "你将面罩拉起，遮住面部。")
 		update_clothing_icon()
 
 /obj/item/clothing/mask/breath/medical
-	desc = "A close-fitting sterile mask that can be connected to an air supply."
-	name = "medical mask"
+	desc = "一副贴合面部、可连接供气设备的无菌面罩。"
+	name = "医用面罩"
 	icon_state = "medical"
 	item_state = "medical"
 	permeability_coefficient = 0.01
@@ -44,8 +44,8 @@
 //REBREATHER
 
 /obj/item/clothing/mask/rebreather
-	name = "rebreather"
-	desc = "A close-fitting device that instantly heats or cools down air when you inhale so it doesn't damage your lungs."
+	name = "呼吸调温器"
+	desc = "一种贴合面部的装置，能在你吸气时立即加热或冷却空气，以免损伤肺部。"
 	icon_state = "rebreather"
 	item_state = "rebreather"
 	w_class = SIZE_SMALL
@@ -54,8 +54,8 @@
 	flags_inv_hide = HIDELOWHAIR
 
 /obj/item/clothing/mask/rebreather/skull
-	name = "skull balaclava"
-	desc = "The face of your nightmares. Or at least that's how you imagined it'd be. Additionally protects against the cold."
+	name = "骷髅头套"
+	desc = "噩梦中的面孔，至少你想象中是这样。还能抵御寒冷。"
 	icon_state = "blue_skull_balaclava"
 	item_state = "blue_skull_balaclava"
 	flags_inventory = COVERMOUTH|ALLOWREBREATH|ALLOWCPR
@@ -64,14 +64,14 @@
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROT
 
 /obj/item/clothing/mask/rebreather/skull/black
-	desc = "The face of your nightmares. Or at least that's how you imagined it'd be. Now in black!"
+	desc = "噩梦中的面孔，至少你想象中是这样。现在推出黑色款！"
 	icon_state = "black_skull_balaclava"
 	item_state = "black_skull_balaclava"
 
 
 /obj/item/clothing/mask/rebreather/scarf
-	name = "heat absorbent coif"
-	desc = "A close-fitting cap that covers the top, back, and sides of the head. Can also be adjusted to cover the lower part of the face so it keeps the user warm in harsh conditions."
+	name = "吸热头套"
+	desc = "一种贴身头套，覆盖头顶、后脑和头部两侧，也可调整至遮住下半张脸，在恶劣环境中为使用者保暖。"
 	icon_state = "coif"
 	item_state = "coif"
 	flags_inventory = COVERMOUTH|ALLOWREBREATH|ALLOWCPR
@@ -86,8 +86,8 @@
 	pull_down()
 
 /obj/item/clothing/mask/rebreather/scarf/verb/pull_down()
-	set name = "Pull Up/Down"
-	set category = "Object"
+	set name = "拉起／拉下"
+	set category = "物品"
 	set src in usr
 	if(usr.stat == DEAD)
 		return
@@ -95,10 +95,10 @@
 	flags_inv_hide ^= HIDEFACE|HIDELOWHAIR
 	pulled = !pulled
 	if(pulled)
-		to_chat(usr, SPAN_NOTICE("You pull \the [src] down."))
+		to_chat(usr, SPAN_NOTICE("你将[src]拉下。"))
 		icon_state += "_down"
 	else
-		to_chat(usr, SPAN_NOTICE("You pull \the [src] up."))
+		to_chat(usr, SPAN_NOTICE("你将[src]拉起。"))
 		icon_state = original_state
 
 	update_clothing_icon(src) //Update the on-mob icon.
@@ -106,26 +106,26 @@
 
 
 /obj/item/clothing/mask/rebreather/scarf/green
-	name = "Green Balaclava"
+	name = "绿色头套"
 	icon_state = "balaclava_green"
 	item_state = "balaclava_green"
 	original_state = "balaclava_green"
 
 /obj/item/clothing/mask/rebreather/scarf/tan
-	name = "Tan Balaclava"
+	name = "棕褐色头套"
 	icon_state = "balaclava_tan"
 	item_state = "balaclava_tan"
 	original_state = "balaclava_tan"
 
 /obj/item/clothing/mask/rebreather/scarf/gray
-	name = "Gray Balaclava"
+	name = "灰色头套"
 	icon_state = "balaclava_gray"
 	item_state = "balacvlava_gray"
 	original_state = "balaclava_gray"
 
 /obj/item/clothing/mask/rebreather/scarf/tacticalmask
-	name = "tactical wrap"
-	desc = "A tactical wrap used by soldiers to conceal their face."
+	name = "战术面巾"
+	desc = "士兵用于遮掩面部的战术面巾。"
 	icon_state = "scarf_gray"
 	item_state = "scarf_gray"
 	original_state = "scarf_gray"
@@ -190,8 +190,8 @@
 	original_state = "scarf_black"
 
 /obj/item/clothing/mask/tornscarf
-	name = "tactical scarf"
-	desc = "A tactical scarf used to keep warm in the cold."
+	name = "战术围巾"
+	desc = "用于在寒冷环境中保暖的战术围巾。"
 	icon_state = "torn_scarf_classic"
 	item_state = "torn_scarf_classic"
 	w_class = SIZE_SMALL
@@ -220,8 +220,8 @@
 	item_state = "torn_scarf_black"
 
 /obj/item/clothing/mask/neckerchief
-	name = "neckerchief"
-	desc = "A simple cloth worn around the neck, adjustable between a loose fit or a more tightly secured style."
+	name = "领巾"
+	desc = "一块围在颈部的普通布巾，可调成宽松或收紧的样式。"
 	icon_state = "neckerchief"
 	item_state = "neckerchief"
 	icon = 'icons/obj/items/clothing/masks.dmi'
@@ -238,18 +238,18 @@
 	adjust()
 
 /obj/item/clothing/mask/neckerchief/verb/adjust()
-	set name = "Adjust"
-	set category = "Object"
+	set name = "调整"
+	set category = "物品"
 	set src in usr
 	if(usr.stat == DEAD)
 		return
 
 	adjust = !adjust
 	if(adjust)
-		to_chat(usr, SPAN_NOTICE("You adjust \the [src]"))
+		to_chat(usr, SPAN_NOTICE("你调整了[src]。"))
 		icon_state += "_alt"
 	else
-		to_chat(usr, SPAN_NOTICE("You adjust \the [src]"))
+		to_chat(usr, SPAN_NOTICE("你调整了[src]。"))
 		icon_state = original_state
 
 	update_clothing_icon(src)
@@ -318,8 +318,8 @@
 
 
 /obj/item/clothing/mask/owlf_mask
-	name = "\improper OWLF gas mask"
-	desc = "A close-fitting mask that can be connected to an air supply."
+	name = "\improper OWLF防毒面具"
+	desc = "一副贴合面部、可连接供气设备的面罩。"
 	icon_state = "owlf_mask"
 	item_state = "owlf_mask"
 	flags_inventory = COVERMOUTH|ALLOWINTERNALS

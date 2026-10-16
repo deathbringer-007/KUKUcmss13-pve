@@ -11,8 +11,8 @@
  * Welding mask
  */
 /obj/item/clothing/head/welding
-	name = "welding helmet"
-	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
+	name = "焊接头盔"
+	desc = "一种头戴式面罩，能全面保护佩戴者的眼睛免受太空电弧伤害。"
 	icon_state = "welding"
 	item_state = "welding"
 	matter = list("metal" = 3000, "glass" = 1000)
@@ -41,8 +41,8 @@
 
 
 /obj/item/clothing/head/welding/verb/toggle()
-	set category = "Object"
-	set name = "Adjust welding mask"
+	set category = "物品"
+	set name = "调整焊接面罩"
 	set src in usr
 
 	if(usr.is_mob_incapacitated())
@@ -54,14 +54,14 @@
 		flags_inv_hide |= HIDEEARS|HIDEEYES|HIDEFACE
 		icon_state = initial(icon_state)
 		eye_protection = initial(eye_protection)
-		to_chat(usr, SPAN_NOTICE("You flip [src] down to protect your eyes."))
+		to_chat(usr, SPAN_NOTICE("你放下[src]，保护双眼。"))
 	else
 		vision_impair = VISION_IMPAIR_NONE
 		flags_inventory &= ~(COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
 		flags_inv_hide &= ~(HIDEEARS|HIDEEYES|HIDEFACE)
 		icon_state = "[initial(icon_state)]up"
 		eye_protection = EYE_PROTECTION_NONE
-		to_chat(usr, SPAN_NOTICE("You push [src] up out of your face."))
+		to_chat(usr, SPAN_NOTICE("你将[src]推到额头上，露出面部。"))
 	up = !up
 
 	if(ishuman(loc))
@@ -79,8 +79,8 @@
  * Cakehat
  */
 /obj/item/clothing/head/cakehat
-	name = "cake-hat"
-	desc = "It's tasty looking!"
+	name = "蛋糕帽"
+	desc = "看起来很好吃！"
 	icon_state = "cake0"
 	flags_inventory = COVEREYES
 	var/onfire = 0
@@ -116,8 +116,8 @@
  * Pumpkin head
  */
 /obj/item/clothing/head/pumpkinhead
-	name = "carved pumpkin"
-	desc = "A jack o' lantern! Believed to ward off evil spirits."
+	name = "雕刻南瓜"
+	desc = "南瓜灯！据说可以驱赶邪灵。"
 	icon_state = "hardhat0_pumpkin"//Could stand to be renamed
 	item_state = "hardhat0_pumpkin"
 	flags_inventory = COVEREYES|COVERMOUTH
@@ -132,7 +132,7 @@
 	..()
 
 	if(!isturf(user.loc))
-		to_chat(user, SPAN_WARNING("You cannot turn the light [on ? "off" : "on" ] while in [user.loc].")) //To prevent some lighting anomalies.
+		to_chat(user, SPAN_WARNING("你在[user.loc]内时无法[on ? "关闭" : "打开" ]灯光。")) //To prevent some lighting anomalies.
 		return
 
 	on = !on

@@ -1,5 +1,5 @@
 /obj/structure/machinery/computer/tech_control
-	name = "broken tech console"
-	desc = "A console once used to control technological decisions. What are you, an egghead?"
+	name = "损坏的科技控制台"
+	desc = "一台曾用于制定科技决策的控制台。怎么，你是个书呆子？"
 	icon_state = "techweb"
 	density = TRUE

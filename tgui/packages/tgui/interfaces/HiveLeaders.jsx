@@ -9,7 +9,7 @@ export const HiveLeaders = (props) => {
   const { queens, leaders } = data;
   return (
     <Window
-      title={'Hive Leaders'}
+      title={'虫巢领袖'}
       theme="hive_status"
       resizable
       width={250}
@@ -20,8 +20,8 @@ export const HiveLeaders = (props) => {
           <Table className="xeno_list">
             <Table.Row header className="xenoListRow">
               <Table.Cell width="5%" className="noPadCell" />
-              <Table.Cell textAlign="left">Designation</Table.Cell>
-              <Table.Cell textAlign="left">Caste</Table.Cell>
+              <Table.Cell textAlign="left">编号</Table.Cell>
+              <Table.Cell textAlign="left">阶级</Table.Cell>
             </Table.Row>
 
             <Table.Row
@@ -31,7 +31,7 @@ export const HiveLeaders = (props) => {
               lineHeight="5px"
             >
               <Table.Cell colspan={3} p={1}>
-                Queen
+                女王
               </Table.Cell>
             </Table.Row>
 
@@ -54,7 +54,7 @@ export const HiveLeaders = (props) => {
               lineHeight="5px"
             >
               <Table.Cell colspan={3} p={1}>
-                Leaders
+                领袖
               </Table.Cell>
             </Table.Row>
 

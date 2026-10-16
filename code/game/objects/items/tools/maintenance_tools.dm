@@ -15,8 +15,8 @@
  * Wrench
  */
 /obj/item/tool/wrench
-	name = "wrench"
-	desc = "A wrench with many common uses. Can be usually found in your hand."
+	name = "扳手"
+	desc = "用途广泛的扳手。通常就在你手里。"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "wrench"
 	pickup_sound = 'sound/handling/wrench_pickup.ogg'
@@ -27,7 +27,7 @@
 	throwforce = 7
 	w_class = SIZE_SMALL
 	matter = list("metal" = 150)
-	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
+	attack_verb = list("猛击", "痛击", "钝击", "重击")
 	inherent_traits = list(TRAIT_TOOL_WRENCH)
 	preferred_storage = list(/obj/item/clothing/accessory/storage/tool_webbing = WEAR_ACCESSORY)
 
@@ -36,8 +36,8 @@
  * Screwdriver
  */
 /obj/item/tool/screwdriver
-	name = "screwdriver"
-	desc = "You can be totally screwy with this."
+	name = "螺丝刀"
+	desc = "有了它，你就能拧出一番名堂。"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "screwdriver"
 	pickup_sound = 'sound/handling/multitool_pickup.ogg'
@@ -50,7 +50,7 @@
 	throw_speed = SPEED_VERY_FAST
 	throw_range = 5
 	matter = list("metal" = 75)
-	attack_verb = list("stabbed")
+	attack_verb = list("刺击")
 	flags_item = CAN_DIG_SHRAPNEL
 	inherent_traits = list(TRAIT_TOOL_SCREWDRIVER)
 	preferred_storage = list(/obj/item/clothing/accessory/storage/tool_webbing = WEAR_ACCESSORY)
@@ -98,13 +98,13 @@
 		if(E)
 			var/safety = H.get_eye_protection()
 			if(!safety)
-				user.visible_message(SPAN_DANGER("[user] stabs [H] in the eyes with [src]!"),
-					SPAN_DANGER("You stab [H] in the eyes with [src]!"))
+				user.visible_message(SPAN_DANGER("[user]用[src]刺向[H]的眼睛！"),
+					SPAN_DANGER("你用[src]刺向[H]的眼睛！"))
 				E.take_damage(rand(8,20))
 	return ..()
 /obj/item/tool/screwdriver/tactical
-	name = "tactical screwdriver"
-	desc = "Sharp, matte black, and deadly. In a pinch this will substitute for a pencil in a fight."
+	name = "战术螺丝刀"
+	desc = "锋利、哑黑、致命。紧急情况下，它可以代替铅笔成为你的打架武器。"
 	force = MELEE_FORCE_TIER_2
 	throwforce = MELEE_FORCE_NORMAL
 
@@ -116,9 +116,9 @@
  * Wirecutters
  */
 /obj/item/tool/wirecutters
-	name = "wirecutters"
+	name = "剪线钳"
 	gender = PLURAL
-	desc = "This cuts wires."
+	desc = "用于剪断电线。"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "cutters"
 	item_state = "cutters"
@@ -132,22 +132,22 @@
 	w_class = SIZE_SMALL
 	matter = list("metal" = 80)
 
-	attack_verb = list("pinched", "nipped")
+	attack_verb = list("夹击", "夹剪")
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 1
 	inherent_traits = list(TRAIT_TOOL_WIRECUTTERS)
 	preferred_storage = list(/obj/item/clothing/accessory/storage/tool_webbing = WEAR_ACCESSORY)
 
 /obj/item/tool/wirecutters/tactical
-	name = "tactical wirecutters"
-	desc = "This heavy-duty pair seems more fit for cutting barbed wire, but it'll work splendidly on electrical wires."
+	name = "战术剪线钳"
+	desc = "这把重型钳子看起来更适合剪带刺铁丝，不过剪电线也一样好用。"
 	icon_state = "tac_cutters"
 
 /obj/item/tool/wirecutters/attack(mob/living/carbon/C, mob/user)
 	if((C.handcuffed) && (istype(C.handcuffed, /obj/item/restraint/adjustable/cable)))
-		user.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
-		"You cut \the [C]'s restraints with \the [src]!",\
-		"You hear cable being cut.")
+		user.visible_message("[usr]用[src]剪断了[C]身上的束缚物！",\
+		"你用[src]剪断了[C]身上的束缚物！",\
+		"你听到了线缆被剪断的声音。")
 		C.handcuffed = null
 		C.handcuff_update()
 		return
@@ -158,7 +158,7 @@
  * Blowtorch
  */
 /obj/item/tool/weldingtool
-	name = "blowtorch"
+	name = "焊炬"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "welder"
 	pickup_sound = 'sound/handling/weldingtool_pickup.ogg'
@@ -210,7 +210,7 @@
 
 /obj/item/tool/weldingtool/get_examine_text(mob/user)
 	. = ..()
-	. += "It contains [get_fuel()]/[max_fuel] units of fuel!"
+	. += "内含[get_fuel()]/[max_fuel]单位燃料！"
 
 /obj/item/tool/weldingtool/process()
 	if(QDELETED(src))
@@ -243,19 +243,19 @@
 		if(limb.brute_dam && welding)
 			remove_fuel(1,user)
 			if(self_fixing)
-				user.visible_message(SPAN_WARNING("\The [user] begins fixing some dents on their [limb.display_name]."), \
-					SPAN_WARNING("You begin to carefully patch some dents on your [limb.display_name] so as not to void your warranty."))
+				user.visible_message(SPAN_WARNING("[user]开始修补自己[limb.display_name]上的凹痕。"), \
+					SPAN_WARNING("你开始小心地修补自己[limb.display_name]上的凹痕，以免失去保修资格。"))
 				if(!do_after(user, 30, INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
 					return
 
 			limb.heal_damage(15, 0, TRUE)
 			human.pain.recalculate_pain()
 			human.UpdateDamageIcon()
-			user.visible_message(SPAN_WARNING("\The [user] patches some dents on \the [human]'s [limb.display_name] with \the [src]."), \
-								SPAN_WARNING("You patch some dents on \the [human]'s [limb.display_name] with \the [src]."))
+			user.visible_message(SPAN_WARNING("[user]用[src]修补了[human]的[limb.display_name]上的一些凹痕。"), \
+								SPAN_WARNING("你用[src]修补了[human]的[limb.display_name]上的一些凹痕。"))
 			return
 		else
-			to_chat(user, SPAN_WARNING("Nothing to fix!"))
+			to_chat(user, SPAN_WARNING("没有需要修理的地方！"))
 
 	else
 		if(ismob(target))
@@ -269,13 +269,13 @@
 		if(!welding)
 			target.reagents.trans_to(src, max_fuel)
 			weld_tick = 0
-			user.visible_message(SPAN_NOTICE("[user] refills [src]."), \
-			SPAN_NOTICE("You refill [src]."))
+			user.visible_message(SPAN_NOTICE("[user]为[src]补充燃料。"), \
+			SPAN_NOTICE("你为[src]补充燃料。"))
 			playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		else
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a blowtorch.")
 			log_game("[key_name(user)] triggered a fueltank explosion with a blowtorch.")
-			to_chat(user, SPAN_DANGER("You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done."))
+			to_chat(user, SPAN_DANGER("你开始焊接燃料罐，在清醒的最后一瞬，你意识到这或许不是个明智之举。"))
 			var/obj/structure/reagent_dispensers/fueltank/tank = target
 			tank.explode()
 		return
@@ -315,7 +315,7 @@
 		return 1
 	else
 		if(M)
-			to_chat(M, SPAN_NOTICE("You need more welding fuel to complete this task."))
+			to_chat(M, SPAN_NOTICE("你需要更多焊接燃料才能完成这项操作。"))
 		return 0
 
 //Returns whether or not the blowtorch is currently on.
@@ -340,7 +340,7 @@
 			playsound(loc, 'sound/items/weldingtool_on.ogg', 25)
 			welding = 1
 			if(M)
-				to_chat(M, SPAN_NOTICE("You switch [src] on."))
+				to_chat(M, SPAN_NOTICE("你打开了[src]。"))
 			turn_light((M ? M : null), toggle_on = TRUE)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
 			force = 15
@@ -351,7 +351,7 @@
 			START_PROCESSING(SSobj, src)
 		else
 			if(M)
-				to_chat(M, SPAN_WARNING("[src] needs more fuel!"))
+				to_chat(M, SPAN_WARNING("[src]需要更多燃料！"))
 			return
 	else
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 25)
@@ -363,9 +363,9 @@
 		heat_source = 0
 		if(M)
 			if(!message)
-				to_chat(M, SPAN_NOTICE("You switch [src] off."))
+				to_chat(M, SPAN_NOTICE("你关闭了[src]。"))
 			else
-				to_chat(M, SPAN_WARNING("[src] shuts off!"))
+				to_chat(M, SPAN_WARNING("[src]熄灭了！"))
 			if(M.r_hand == src)
 				M.update_inv_r_hand()
 			if(M.l_hand == src)
@@ -390,34 +390,34 @@
 			return
 		switch(safety)
 			if(EYE_PROTECTION_FLASH)
-				to_chat(user, SPAN_DANGER("You see a bright light in the corner of your vision."))
+				to_chat(user, SPAN_DANGER("你的眼角余光中闪过一道强光。"))
 				E.take_damage(rand(0, 1), TRUE)
 				if(E.damage > 10)
 					E.take_damage(rand(3, 5), TRUE)
 			if(EYE_PROTECTION_FLAVOR)
-				to_chat(user, SPAN_DANGER("Your eyes sting a little."))
+				to_chat(user, SPAN_DANGER("你的眼睛有些刺痛。"))
 				E.take_damage(rand(1, 2), TRUE)
 				if(E.damage > 8) // dont abuse your funny flavor glasses
 					E.take_damage(2, TRUE)
 			if(EYE_PROTECTION_NONE)
-				to_chat(user, SPAN_WARNING("Your eyes burn."))
+				to_chat(user, SPAN_WARNING("你的眼睛火辣辣地疼。"))
 				E.take_damage(rand(3, 4), TRUE)
 				if(E.damage > 10)
 					E.take_damage(rand(4, 10), TRUE)
 			if(EYE_PROTECTION_NEGATIVE)
-				to_chat(user, SPAN_WARNING("Your thermals intensify [src]'s glow. Your eyes itch and burn severely."))
+				to_chat(user, SPAN_WARNING("你的热成像镜放大了[src]的强光。你的眼睛又痒又痛，像被灼烧一样。"))
 				H.AdjustEyeBlur(12,20)
 				E.take_damage(rand(12, 16), TRUE)
 
 		if(safety < EYE_PROTECTION_WELDING)
 			if (E.damage >= E.min_broken_damage)
-				to_chat(H, SPAN_WARNING("You go blind! Maybe welding without protection wasn't such a great idea..."))
+				to_chat(H, SPAN_WARNING("你失明了！也许毫无防护地焊接并不是个好主意……"))
 				return FALSE
 			if (E.damage >= E.min_bruised_damage)
-				to_chat(H, SPAN_WARNING("Your vision starts blurring and your eyes hurt terribly!"))
+				to_chat(H, SPAN_WARNING("你的视线开始模糊，双眼疼痛难忍！"))
 				return FALSE
 			if(E.damage > 5)
-				to_chat(H, SPAN_WARNING("Your eyes are really starting to hurt. This can't be good for you!"))
+				to_chat(H, SPAN_WARNING("你的眼睛开始剧烈疼痛。这绝对不是什么好事！"))
 				return FALSE
 
 // Medical purposes for synths
@@ -458,21 +458,21 @@
 		toggle(FALSE)
 
 /obj/item/tool/weldingtool/largetank
-	name = "industrial blowtorch"
+	name = "工业焊炬"
 	max_fuel = 60
 	matter = list("metal" = 70, "glass" = 60)
 	icon_state = "welder_c"
 
 
 /obj/item/tool/weldingtool/hugetank
-	name = "high-capacity industrial blowtorch"
+	name = "大容量工业焊炬"
 	max_fuel = 80
 	w_class = SIZE_MEDIUM
 	matter = list("metal" = 70, "glass" = 120)
 
 
 /obj/item/tool/weldingtool/experimental
-	name = "experimental blowtorch"
+	name = "实验型焊炬"
 	max_fuel = 40 //?
 	w_class = SIZE_MEDIUM
 	matter = list("metal" = 70, "glass" = 120)
@@ -486,8 +486,8 @@
 		reagents = max_fuel
 
 /obj/item/tool/weldingtool/simple
-	name = "\improper ME3 hand welder"
-	desc = "A compact, handheld welding torch used by the marines of the United States Colonial Marine Corps for cutting and welding jobs on the field. Due to the small size and slow strength, its function is limited compared to a full-sized technician's blowtorch."
+	name = "\improper ME3 手持焊炬"
+	desc = "美国殖民地海军陆战队用于野外切割和焊接作业的小型手持焊炬。由于体积小、功率低，与技术人员使用的全尺寸焊炬相比，它的功能较为有限。"
 	max_fuel = 5
 	has_welding_screen = TRUE
 	inherent_traits = list(TRAIT_TOOL_SIMPLE_BLOWTORCH)
@@ -498,8 +498,8 @@
  */
 
 /obj/item/tool/crowbar
-	name = "crowbar"
-	desc = "Used to remove floors and to pry open doors."
+	name = "撬棍"
+	desc = "用于拆除地板和撬开门。"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "crowbar"
 	pickup_sound = 'sound/handling/crowbar_pickup.ogg'
@@ -512,7 +512,7 @@
 	w_class = SIZE_SMALL
 	matter = list("metal" = 50)
 
-	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
+	attack_verb = list("攻击", "猛击", "痛击", "钝击", "重击")
 	inherent_traits = list(TRAIT_TOOL_CROWBAR)
 	pry_capable = IS_PRY_CAPABLE_CROWBAR
 	preferred_storage = list(/obj/item/clothing/accessory/storage/tool_webbing = WEAR_ACCESSORY)
@@ -526,15 +526,15 @@
 	item_state = "red_crowbar"
 
 /obj/item/tool/crowbar/tactical
-	name = "tactical prybar"
-	desc = "Holding this makes you want to raid a townhouse filled with terrorists. Also doubles as a blunt weapon."
+	name = "战术撬棍"
+	desc = "握着它，你就想突袭一栋满是恐怖分子的联排住宅。也可用作钝器。"
 	icon_state = "tac_prybar"
 	force = MELEE_FORCE_NORMAL
 	throwforce = MELEE_FORCE_NORMAL
 
 /obj/item/maintenance_jack
-	name = "\improper K92 Maintenance Jack"
-	desc = "A combination crowbar, wrench, and generally large bludgeoning device that comes in handy in emergencies. Can be used to disengage door jacks. Pretty hefty, though."
+	name = "\improper K92 维护撬杠"
+	desc = "集撬棍、扳手和大型钝器于一身的工具，紧急情况下很有用。可用于解除门锁机构。不过分量可不轻。"
 	icon_state = "maintenance_jack"
 	item_state = "maintenance_jack"
 	hitsound = "swing_hit"
@@ -564,18 +564,18 @@
 
 /obj/item/maintenance_jack/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_NOTICE("Interact with the Maintenance Jack to change modes.")
+	. += SPAN_NOTICE("与维护撬杠交互可切换模式。")
 	if(crowbar_mode)
-		. += SPAN_NOTICE("It is set to crowbar mode, allowing you to pry open doors, provided you are strong enough. Maybe you could even use this side for surgery...")
+		. += SPAN_NOTICE("当前处于撬棍模式，只要力气够大就能撬开门。说不定这一端还能拿来做手术……")
 	else
-		. += SPAN_NOTICE("It is set to wrench mode, allowing you to unbolt doors, provided you are smart enough to know how.")
+		. += SPAN_NOTICE("当前处于扳手模式，只要掌握了操作方法就能解除门闩。")
 
 /obj/item/maintenance_jack/attack_self(mob/living/user)
 	. = ..()
 	playsound(src, 'sound/weapons/punchmiss.ogg', 15, TRUE, 3)
 	if(crowbar_mode) //Switch to wrench mode | Remove bolts
-		user.visible_message(SPAN_INFO("[user] changes their grip on [src]. They will now use it as a wrench."),
-		SPAN_NOTICE("You change your grip on [src]. You will now use it as a wrench."))
+		user.visible_message(SPAN_INFO("[user]改变了握持[src]的姿势，准备把它当作扳手使用。"),
+		SPAN_NOTICE("你改变了握持[src]的姿势，准备把它当作扳手使用。"))
 		crowbar_mode = FALSE
 		animate(src, transform = matrix(0, MATRIX_ROTATE), time = 2, easing = EASE_IN)
 		animate(transform = matrix(90, MATRIX_ROTATE), time = 1)
@@ -585,8 +585,8 @@
 		return
 
 	//Switch to crowbar mode | Pry open doors if super strong trait
-	user.visible_message(SPAN_INFO("[user] changes their grip on [src]. They will now use it as a crowbar."),
-	SPAN_NOTICE("You change your grip on [src]. You will now use it as a crowbar."))
+	user.visible_message(SPAN_INFO("[user]改变了握持[src]的姿势，准备把它当作撬棍使用。"),
+	SPAN_NOTICE("你改变了握持[src]的姿势，准备把它当作撬棍使用。"))
 	crowbar_mode = TRUE
 	animate(src, transform = matrix(180, MATRIX_ROTATE), time = 2, easing = EASE_IN)
 	animate(transform = matrix(270, MATRIX_ROTATE), time = 1)
@@ -598,14 +598,14 @@
 	. = COMPONENT_CANCEL_AIRLOCK_ATTACK
 	if(crowbar_mode)
 		if(attacked_door.locked) //Bolted
-			to_chat(user, SPAN_DANGER("You can't pry open [attacked_door] while it is bolted shut."))
+			to_chat(user, SPAN_DANGER("[attacked_door]的门闩已锁定，你无法将其撬开。"))
 			return
 
 		if(requires_superstrength_pry)
 			if(!HAS_TRAIT(user, TRAIT_SUPER_STRONG)) //basically IS_PRY_CAPABLE_CROWBAR
 				return
 		if(attacked_door.heavy) //Unopenable
-			to_chat(usr, SPAN_DANGER("You cannot force [attacked_door] open."))
+			to_chat(usr, SPAN_DANGER("你无法强行打开[attacked_door]。"))
 			return
 		if(user.action_busy)
 			return
@@ -618,8 +618,8 @@
 		if(!attacked_door.density) //If its open
 			return
 
-		user.visible_message(SPAN_DANGER("[user] jams [src] into [attacked_door] and starts to pry it open."),
-		SPAN_DANGER("You jam [src] into [attacked_door] and start to pry it open."))
+		user.visible_message(SPAN_DANGER("[user]将[src]插入[attacked_door]的门缝，开始撬门。"),
+		SPAN_DANGER("你将[src]插入[attacked_door]的门缝，开始撬门。"))
 		playsound(src, "pry", 15, TRUE)
 		if(!do_after(user, prying_time, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
 			return
@@ -627,38 +627,38 @@
 		if(!attacked_door.density)
 			return
 		if(attacked_door.locked)
-			user.visible_message(SPAN_DANGER("[user] fails to force [attacked_door] open with [src]."),
-			SPAN_DANGER("You fail to force [attacked_door] open with [src]."))
+			user.visible_message(SPAN_DANGER("[user]没能用[src]强行打开[attacked_door]。"),
+			SPAN_DANGER("你没能用[src]强行打开[attacked_door]。"))
 			return
 
-		user.visible_message(SPAN_DANGER("[user] forces [attacked_door] open with [src]."),
-		SPAN_DANGER("You force [attacked_door] open with [src]."))
+		user.visible_message(SPAN_DANGER("[user]用[src]强行打开了[attacked_door]。"),
+		SPAN_DANGER("你用[src]强行打开了[attacked_door]。"))
 		attacked_door.open(TRUE)
 		return
 
 	//Wrench Mode
 	if(!attacked_door.locked)
-		to_chat(user, SPAN_NOTICE("You cannot disable bolts on a door that is already unbolted."))
+		to_chat(user, SPAN_NOTICE("这扇门的门闩已经解除了。"))
 		return
 
 	if(requires_skills_unbolt)
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_MASTER)) //Engi 3 is much faster
-			user.visible_message(SPAN_DANGER("[user] begins to search for [attacked_door]'s bolts!"),\
-			SPAN_NOTICE("You search for [attacked_door]'s bolts."))
+			user.visible_message(SPAN_DANGER("[user]开始寻找[attacked_door]的门闩！"),\
+			SPAN_NOTICE("你开始寻找[attacked_door]的门闩。"))
 			if(!do_after(user, unskilled_unbolt_time, INTERRUPT_ALL, BUSY_ICON_HOSTILE, src, INTERRUPT_ALL)) //Otherwise it takes an extra 15 seconds
-				to_chat(user, SPAN_WARNING("You fail to find the bolts on [attacked_door]."))
+				to_chat(user, SPAN_WARNING("你没能找到[attacked_door]的门闩。"))
 				return
 
-	user.visible_message(SPAN_DANGER("[user] begins to disable [attacked_door]'s bolts!"),\
-	SPAN_NOTICE("You start to disable [attacked_door]'s bolts."))
+	user.visible_message(SPAN_DANGER("[user]开始解除[attacked_door]的门闩！"),\
+	SPAN_NOTICE("你开始解除[attacked_door]的门闩。"))
 	playsound(attacked_door, "pry", 25, TRUE)
 
 	if(!do_after(user, unbolt_time, INTERRUPT_ALL, BUSY_ICON_HOSTILE, src, INTERRUPT_ALL))
-		to_chat(user, SPAN_WARNING("You decide not to disable the bolts on [attacked_door]."))
+		to_chat(user, SPAN_WARNING("你决定不再解除[attacked_door]的门闩。"))
 		return
 
-	user.visible_message(SPAN_DANGER("[user] disables the bolts on [attacked_door]."),\
-	SPAN_NOTICE("You unbolt [attacked_door]."))
+	user.visible_message(SPAN_DANGER("[user]解除了[attacked_door]的门闩。"),\
+	SPAN_NOTICE("你解除了[attacked_door]的门闩。"))
 	attacked_door.unlock(TRUE)
 	return
 
@@ -679,16 +679,16 @@
 				if(!resin_door.density || user.action_busy || user.a_intent == INTENT_HARM)
 					return
 
-				user.visible_message(SPAN_DANGER("[user] jams [src] into [resin_door] and starts to pry it open."),
-				SPAN_DANGER("You jam [src] into [resin_door] and start to pry it open."))
+				user.visible_message(SPAN_DANGER("[user]将[src]插入[resin_door]的门缝，开始撬门。"),
+				SPAN_DANGER("你将[src]插入[resin_door]的门缝，开始撬门。"))
 				playsound(user, 'sound/weapons/wristblades_hit.ogg', 15, TRUE)
 
 				if(!do_after(user, resin_prying_time, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
-					to_chat(user, SPAN_NOTICE("You stop prying [resin_door] open."))
+					to_chat(user, SPAN_NOTICE("你停止了撬开[resin_door]的动作。"))
 					return
 
-				user.visible_message(SPAN_DANGER("[user] forces [resin_door] open with [src]."),
-				SPAN_DANGER("You force [resin_door] open with [src]."))
+				user.visible_message(SPAN_DANGER("[user]用[src]强行打开了[resin_door]。"),
+				SPAN_DANGER("你用[src]强行打开了[resin_door]。"))
 				resin_door.open()
 				return
 
@@ -701,7 +701,7 @@
 			if(flooring.weeds)
 				return attackby(src, user)
 
-			to_chat(user, SPAN_WARNING("You forcefully pry off [flooring], destroying it in the process."))
+			to_chat(user, SPAN_WARNING("你强行撬下了[flooring]，也将它弄坏了。"))
 			playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 			flooring.make_plating()
 			return
@@ -711,8 +711,8 @@ Welding backpack
 */
 
 /obj/item/tool/weldpack
-	name = "Welding kit"
-	desc = "A heavy-duty, portable welding fluid carrier."
+	name = "焊接燃料背包"
+	desc = "结实耐用的便携式焊接燃料容器。"
 	flags_equip_slot = SLOT_BACK
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "welderpack"
@@ -736,24 +736,24 @@ Welding backpack
 		if(T.welding & prob(50))
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion.")
 			log_game("[key_name(user)] triggered a fueltank explosion.")
-			to_chat(user, SPAN_DANGER("That was stupid of you."))
+			to_chat(user, SPAN_DANGER("你这下可犯蠢了。"))
 			reagents.source_mob = WEAKREF(user)
 			if(reagents.handle_volatiles())
 				qdel(src)
 			return
 		else
 			if(T.reagents.total_volume == T.max_fuel)
-				to_chat(user, SPAN_NOTICE(" \The [src] is already full!"))
+				to_chat(user, SPAN_NOTICE("[src]已经满了！"))
 				return
 			if(T.welding)
-				to_chat(user, SPAN_DANGER("That was close!"))
+				to_chat(user, SPAN_DANGER("好险！"))
 			src.reagents.trans_to(W, T.max_fuel)
-			to_chat(user, SPAN_NOTICE(" Welder refilled!"))
+			to_chat(user, SPAN_NOTICE("焊炬燃料已补满！"))
 			playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 			return
 	if(istype(W, /obj/item/ammo_magazine/flamer_tank))
 		return
-	to_chat(user, SPAN_NOTICE("You cannot figure out how to use \the [W] with [src]."))
+	to_chat(user, SPAN_NOTICE("你不知道如何将[W]与[src]配合使用。"))
 	return
 
 /obj/item/tool/weldpack/afterattack(obj/target as obj, mob/user as mob, proximity)
@@ -761,25 +761,25 @@ Welding backpack
 		return
 	if(istype(target, /obj/structure/reagent_dispensers))
 		if(!(istypestrict(target, /obj/structure/reagent_dispensers/fueltank)))
-			to_chat(user, SPAN_NOTICE("This must be filled with a fuel tank."))
+			to_chat(user, SPAN_NOTICE("必须使用燃料罐为它补充燃料。"))
 			return
 		if(reagents.total_volume < max_fuel)
 			target.reagents.trans_to(src, max_fuel)
-			to_chat(user, SPAN_NOTICE("You crack the cap off the top of \the [src] and fill it back up again from the tank."))
+			to_chat(user, SPAN_NOTICE("你打开[src]顶部的盖子，用燃料罐将它重新装满。"))
 			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 			return
 		if (reagents.total_volume >= max_fuel)
-			to_chat(user, SPAN_NOTICE("[src] is already full!"))
+			to_chat(user, SPAN_NOTICE("[src]已经满了！"))
 			return
 	..()
 
 /obj/item/tool/weldpack/get_examine_text(mob/user)
 	. = ..()
-	. += "[reagents.total_volume] units of welding fuel left!"
+	. += "还剩[reagents.total_volume]单位焊接燃料！"
 	if(original_health > health)
-		. += "\The [src] appears to have been damaged, as the self sealing liner has been exposed."
+		. += "[src]似乎受损了，自密封内衬已经露了出来。"
 	else
-		. += "No punctures are seen on \the [src] upon closer inspection."
+		. += "仔细检查后，未发现[src]上有破孔。"
 
 /obj/item/tool/weldpack/bullet_act(obj/projectile/P)
 	var/damage = P.damage
@@ -800,8 +800,8 @@ Welding backpack
 
 
 /obj/item/tool/weldpack/minitank
-	name = "ES-11 fuel canister"
-	desc = "A robust little pressurized canister that is small enough to fit in most bags and made for use with welding fuel. Upon closer inspection there is faded text on the red tape wrapped around the tank 'WARNING: Contents under pressure! Do not puncture!' "
+	name = "ES-11 燃料罐"
+	desc = "坚固的小型加压罐，用于盛装焊接燃料，尺寸足以放入大多数背包。仔细查看可以发现，缠在罐体上的红色胶带印着褪色的文字：“警告：内有高压！请勿刺穿！”"
 	icon_state = "welderpackmini"
 	/// Just barely enough to be better than the satchel
 	max_fuel = 120

@@ -1,6 +1,6 @@
 /obj/item/hardpoint/secondary/m56cupola
-	name = "\improper M56 Cupola"
-	desc = "A secondary remotely-controlled weapon system for tanks using a modified M56."
+	name = "\improper M56车顶机枪"
+	desc = "坦克用遥控副武器系统，采用改装M56机枪。"
 
 	icon_state = "m56_cupola"
 	disp_icon = "tank"
@@ -34,8 +34,8 @@
 	))
 
 /obj/item/hardpoint/secondary/m56cupola/aev
-	name = "\improper Pintle-Mounted M56 RWS"
-	desc = "A remotely-controlled weapon system for armored engineering vehicles using a modified M56."
+	name = "\improper 枢轴式M56遥控武器站"
+	desc = "装甲工程车用遥控武器系统，采用改装M56机枪。"
 	disp_icon_state = "m56pintle"
 
 	allowed_seat = VEHICLE_DRIVER

@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/critter
-	name = "critter crate"
-	desc = "A crate which can sustain life for a while."
+	name = "动物运输箱"
+	desc = "能在一段时间内维持箱中生物存活的运输箱。"
 	icon_state = "critter"
 	icon_opened = "critteropen"
 	icon_closed = "critter"

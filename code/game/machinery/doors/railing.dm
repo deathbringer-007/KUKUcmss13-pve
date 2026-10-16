@@ -1,5 +1,5 @@
 /obj/structure/machinery/door/poddoor/railing
-	name = "\improper retractable railing"
+	name = "\improper 伸缩栏杆"
 	icon = 'icons/obj/structures/doors/railing.dmi'
 	icon_state = "railing0"
 	climbable = TRUE

@@ -2,8 +2,8 @@
 //not sure if there's an immediate place for secure wall lockers, but i'm sure the players will think of something
 
 /obj/structure/closet/walllocker
-	desc = "A wall mounted storage locker."
-	name = "Wall Locker"
+	desc = "安装在墙上的储物柜。"
+	name = "壁挂储物柜"
 	icon = 'icons/obj/structures/props/walllocker.dmi'
 	icon_state = "wall-locker"
 	density = FALSE
@@ -15,8 +15,8 @@
 //spawns endless (3 sets) amounts of breathmask, emergency oxy tank and crowbar
 
 /obj/structure/closet/walllocker/emerglocker
-	name = "emergency locker"
-	desc = "A wall mounted locker with emergency supplies."
+	name = "应急柜"
+	desc = "装有应急物资的壁挂储物柜。"
 	var/list/spawnitems = list(/obj/item/tank/emergency_oxygen/double,/obj/item/clothing/mask/gas)
 	var/amount = 6 // spawns each items X times.
 	icon_state = "emerg"
@@ -33,10 +33,10 @@
 	if (isRemoteControlling(user)) //Added by Strumpetplaya - AI shouldn't be able to
 		return //activate emergency lockers.  This fixes that.  (Does this make sense, the AI can't call attack_hand, can it? --Mloc)
 	if(!amount)
-		to_chat(usr, SPAN_NOTICE("It's empty..."))
+		to_chat(usr, SPAN_NOTICE("里面空了……"))
 		return
 	if(amount)
-		to_chat(usr, SPAN_NOTICE("You take out some items from \the [src]."))
+		to_chat(usr, SPAN_NOTICE("你从[src]里取出一些物品。"))
 		for(var/path in spawnitems)
 			new path(src.loc)
 		amount--

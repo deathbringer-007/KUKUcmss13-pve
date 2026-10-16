@@ -1,8 +1,8 @@
 //souto land props
 
 /obj/structure/prop/souto_land
-	name = "placeholder"
-	desc = "Welcome to souto land! This prop shouldn't be used, so please gitlab this and notify a mapper!"
+	name = "占位道具"
+	desc = "欢迎来到索托乐园！这个道具不该出现在这里，请在 GitLab 上提交问题并通知地图制作者！"
 	icon = 'icons/obj/structures/souto_land.dmi'
 	density = FALSE
 	unacidable = TRUE
@@ -14,15 +14,15 @@
 	return
 
 /obj/structure/prop/souto_land/streamer
-	name = "orange streamers"
+	name = "橙色彩带"
 	gender = PLURAL
-	desc = "They flutter softly. Poignant."
+	desc = "它们轻轻飘动，令人感伤。"
 	icon_state = "streamers"
 	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/souto_land/pole
-	name = "streamer pole"
-	desc = "It connects streamer to streamer."
+	name = "彩带支杆"
+	desc = "用来连接一条条彩带。"
 	icon_state = "post"
 	layer = ABOVE_MOB_LAYER
 

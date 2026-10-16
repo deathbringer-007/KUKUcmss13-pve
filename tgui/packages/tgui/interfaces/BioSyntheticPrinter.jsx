@@ -24,26 +24,26 @@ export const BioSyntheticPrinter = () => {
     <Window width={400} height={320}>
       <Window.Content scrollable>
         <Section
-          title="Stored metal"
+          title="金属储量"
           buttons={
             <Button
               onClick={() => act('eject')}
               disabled={data.metal_amt < 100}
             >
-              Eject all
+              全部取出
             </Button>
           }
         >
           <ProgressBar value={data.metal_amt} maxValue={data.metal_max}>
             <Box textAlign="center">
-              {data.metal_amt}/{data.metal_max} metal stored
+              已存金属：{data.metal_amt}/{data.metal_max}
             </Box>
           </ProgressBar>
         </Section>
-        <Section title="Limbs" grow>
+        <Section title="肢体" grow>
           {!!Working && (
             <Box>
-              <NoticeBox>Currently printing : {data.printingitem}</NoticeBox>
+              <NoticeBox>正在打印： {data.printingitem}</NoticeBox>
               <ProgressBar value={PrintingPct} />
               <Divider />
             </Box>
@@ -67,12 +67,12 @@ export const BioSyntheticPrinter = () => {
                       textAlign="center"
                       onClick={() => act('print', { recipe_id: val.recipe_id })}
                     >
-                      print
+                      打印
                     </Button>
                   }
                 >
                   <Box>
-                    {val.metal} metal, {val.time / 10} seconds
+                    {val.metal} 金属，{val.time / 10} 秒
                   </Box>
                 </LabeledList.Item>
               );

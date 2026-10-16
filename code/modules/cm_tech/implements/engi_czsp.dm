@@ -1,6 +1,6 @@
 /obj/item/engi_upgrade_kit
-	name = "engineering upgrade kit"
-	desc = "A kit used to upgrade the defenses of an engineer's sentry. Back in 1980 when the machines tried to break free, it was a single android who laid them low. Now their technology is used widely on the rim."
+	name = "工程升级套装"
+	desc = "用于强化工程兵哨戒炮防御能力的套装。早在1980年，机器试图挣脱束缚时，是一个孤身奋战的仿生人击败了它们。如今，这项技术在边疆广泛应用。"
 
 	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "upgradekit"
@@ -13,7 +13,7 @@
 	overlays.Cut()
 	if(prob(20))
 		icon_state = "upgradekit_alt"
-		desc = "A kit used to upgrade the defenses of an engineer's sentry. Do you... enjoy violence? Of course you do. It's a part of you."
+		desc = "用于强化工程兵哨戒炮防御能力的套装。你……喜欢暴力吗？当然喜欢，它是你的一部分。"
 	. = ..()
 
 /obj/item/engi_upgrade_kit/afterattack(atom/target, mob/user, proximity_flag, click_parameters, proximity)
@@ -35,7 +35,7 @@
 		return
 
 	if((user.get_active_hand()) != src)
-		to_chat(user, SPAN_WARNING("You must be holding [src] to upgrade [D]!"))
+		to_chat(user, SPAN_WARNING("你必须手持[src]才能升级[D]！"))
 		return
 
 	var/type_to_change_to = D.upgrade_string_to_type(chosen_upgrade)

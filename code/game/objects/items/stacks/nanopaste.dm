@@ -1,7 +1,7 @@
 /obj/item/stack/nanopaste
-	name = "nanopaste"
-	singular_name = "nanite swarm"
-	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
+	name = "纳米修复膏"
+	singular_name = "纳米机器人群"
+	desc = "一管含有大量维修纳米机器人的膏剂，修复机器人和机械装置的效果极佳。"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "tube"
 
@@ -27,12 +27,12 @@
 				H.pain.recalculate_pain()
 				H.updatehealth()
 				use(1)
-				var/others_msg = "\The [user] applies some nanite paste at[user != M ? " \the [M]'s" : " the"] [S.display_name] with \the [src]." // Needs to create vars for these messages because macro doesn't work otherwise
-				var/user_msg = "You apply some nanite paste at [user == M ? "your" : "[M]'s"] [S.display_name]."
+				var/others_msg = "[user]用[src]将纳米修复膏涂在[user != M ? "[M]的" : "自己的"][S.display_name]上。" // Needs to create vars for these messages because macro doesn't work otherwise
+				var/user_msg = "你将纳米修复膏涂在[user == M ? "自己的" : "[M]的"][S.display_name]上。"
 				user.visible_message(SPAN_NOTICE("[others_msg]"),\
 					SPAN_NOTICE("[user_msg]"))
 			else
-				to_chat(user, SPAN_NOTICE("Nothing to fix here."))
+				to_chat(user, SPAN_NOTICE("这里没有需要修复的损伤。"))
 
 /obj/item/stack/nanopaste/ai_can_use(mob/living/carbon/human/user, datum/human_ai_brain/ai_brain, mob/living/carbon/human/target)
 	if(!issynth(target))

@@ -1,8 +1,8 @@
 // UPP Cannon for upp tank
 /obj/item/hardpoint/primary/cannon/p17702
-	name = "\improper P-177-02 93mm Cannon"
-	desc = "A primary cannon for tanks that shoots 93mm high-explosive anti-tank rounds."
-	desc_lore = " Developed in Vietnam as part of a multinational project including China, Cambodia and Laos. This 93mm smoothbore cannon is seen in use with several light UPP vehicles and defensive fortifications. Though it's most notable as the standard gun for the Cheetah 2A. A rugged gun capable of operating in the most inhospitable environments, be it deep-sea trenches, airless moons, alien bogs or impossible jungles."
+	name = "\improper P-177-02 93毫米火炮"
+	desc = "坦克主炮，发射93毫米高爆反坦克弹。"
+	desc_lore = "由越南研发，是中国、柬埔寨和老挝等国参与的多国项目成果。这门93毫米滑膛炮用于多种进步人民联盟轻型载具和防御工事，其中最著名的是作为“猎豹”2A的标准主炮。它坚固可靠，无论深海沟壑、无大气卫星、外星沼泽还是难以穿行的丛林，都能在最恶劣的环境中运作。"
 
 	icon = 'icons/obj/vehicles/hardpoints/upptank.dmi'
 	icon_state = "p17702"

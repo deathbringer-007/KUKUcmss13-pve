@@ -64,8 +64,8 @@ export const CheckboxInput = (props) => {
           <Stack.Item>
             <NoticeBox info textAlign="center">
               {decodeHtmlEntities(message)}{' '}
-              {min_checked > 0 && ` (Min: ${min_checked})`}
-              {max_checked < 50 && ` (Max: ${max_checked})`}
+              {min_checked > 0 && `（至少 ${min_checked} 项）`}
+              {max_checked < 50 && `（至多 ${max_checked} 项）`}
             </NoticeBox>
           </Stack.Item>
           <Stack.Item grow mt={0}>
@@ -93,7 +93,7 @@ export const CheckboxInput = (props) => {
           </Stack.Item>
           <Stack m={1} mb={0}>
             <Stack.Item>
-              <Tooltip content="Search" position="bottom">
+              <Tooltip content="搜索" position="bottom">
                 <Icon name="search" mt={0.5} />
               </Tooltip>
             </Stack.Item>

@@ -1,6 +1,6 @@
 /datum/tech/repeatable/ob
-	name = "OB Ammo"
-	desc = "Purchase orbital bombardment ammo."
+	name = "轨道轰炸弹药"
+	desc = "购买轨道轰炸弹药。"
 
 	required_points = 5
 	increase_per_purchase = 2
@@ -23,33 +23,33 @@
 	GLOB.supply_controller.shoppinglist += O
 
 /datum/tech/repeatable/ob/he
-	name = "Additional OB projectiles - HE"
-	desc = "Highly explosive bombardment ammo, to be loaded into the orbital cannon."
+	name = "追加轨道轰炸弹药——高爆"
+	desc = "装填至轨道炮的高爆轰炸弹药。"
 	icon_state = "ob_he"
 
-	announce_message = "Additional Orbital Bombardment warheads (HE) have been delivered to Requisitions' ASRS."
+	announce_message = "追加的轨道轰炸弹头（高爆）已送达军需部门ASRS。"
 
 	flags = TREE_FLAG_MARINE
 
 	type_to_give = "OB HE Crate"
 
 /datum/tech/repeatable/ob/cluster
-	name = "Additional OB projectiles - Cluster"
-	desc = "Highly explosive bombardment ammo that fragments, to be loaded into the orbital cannon."
+	name = "追加轨道轰炸弹药——集束"
+	desc = "装填至轨道炮、会分裂散布的高爆轰炸弹药。"
 	icon_state = "ob_cluster"
 
-	announce_message = "Additional Orbital Bombardment warheads (Cluster) have been delivered to Requisitions' ASRS."
+	announce_message = "追加的轨道轰炸弹头（集束）已送达军需部门ASRS。"
 
 	flags = TREE_FLAG_MARINE
 
 	type_to_give = "OB Cluster Crate"
 
 /datum/tech/repeatable/ob/incend
-	name = "Additional OB projectiles - Incendiary"
-	desc = "Highly flammable bombardment ammo, to be loaded into the orbital cannon."
+	name = "追加轨道轰炸弹药——燃烧"
+	desc = "装填至轨道炮的高燃性轰炸弹药。"
 	icon_state = "ob_incend"
 
-	announce_message = "Additional Orbital Bombardment warheads (Incendiary) have been delivered to Requisitions' ASRS."
+	announce_message = "追加的轨道轰炸弹头（燃烧）已送达军需部门ASRS。"
 
 	flags = TREE_FLAG_MARINE
 

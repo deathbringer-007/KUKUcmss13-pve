@@ -2,8 +2,8 @@
 //external magazines
 
 /obj/item/ammo_magazine/revolver
-	name = "\improper M44 speed loader (.44)"
-	desc = "A revolver speed loader for the M44 revolver."
+	name = "\improper M44 快速装弹器（.44）"
+	desc = "供 M44 左轮手枪使用的快速装弹器。"
 	default_ammo = /datum/ammo/bullet/revolver
 	flags_equip_slot = NO_FLAGS
 	caliber = ".44"
@@ -17,30 +17,30 @@
 	ammo_band_icon_empty = "empty"
 
 /obj/item/ammo_magazine/revolver/marksman
-	name = "\improper M44 marksman speed loader (.44)"
+	name = "\improper M44 精确弹快速装弹器（.44）"
 	default_ammo = /datum/ammo/bullet/revolver/marksman
 	caliber = ".44"
 	ammo_band_color = REVOLVER_TIP_COLOR_MARKSMAN
 
 /obj/item/ammo_magazine/revolver/heavy
-	name = "\improper M44 heavy speed loader (.44)"
-	desc = "A revolver speed loader containing heavy bullets. While less damaging overall than the traditional rounds, they are more accurate."
+	name = "\improper M44 重弹快速装弹器（.44）"
+	desc = "装有重弹的左轮手枪快速装弹器。与传统弹药相比，总体伤害较低，但精度更高。"
 	default_ammo = /datum/ammo/bullet/revolver/heavy
 	caliber = ".44"
 	ammo_band_color = REVOLVER_TIP_COLOR_HEAVY
 
 /obj/item/ammo_magazine/revolver/incendiary
-	name = "\improper M44 incendiary speed loader (.44)"
+	name = "\improper M44 燃烧弹快速装弹器（.44）"
 	default_ammo = /datum/ammo/bullet/revolver/incendiary
 	ammo_band_color = REVOLVER_TIP_COLOR_INCENDIARY
 
 /obj/item/ammo_magazine/revolver/marksman/toxin
-	name = "\improper M44 toxic speed loader (.44)"
+	name = "\improper M44 毒素弹快速装弹器（.44）"
 	default_ammo = /datum/ammo/bullet/revolver/marksman/toxin
 	ammo_band_color = REVOLVER_TIP_COLOR_TOXIN
 
 /obj/item/ammo_magazine/revolver/penetrating
-	name = "\improper M44 wall-penetrating speed loader (.44)"
+	name = "\improper M44 穿墙弹快速装弹器（.44）"
 	default_ammo = /datum/ammo/bullet/revolver/penetrating
 	ammo_band_color = REVOLVER_TIP_COLOR_PENETRATING
 
@@ -49,14 +49,14 @@
  */
 
 /obj/item/ammo_magazine/revolver/pkd
-	name = "\improper Plfager Katsuma stripper clip (.44)"
-	desc = "Flip up the two side latches (three on PKL) and push after aligning with feed lips on blaster. Clip can be re-used."
+	name = "\improper 普尔法格-胜又桥夹（.44）"
+	desc = "翻起两侧卡扣（PKL 型为三个），对准枪上的供弹唇后推入。弹夹可重复使用。"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/colony.dmi'
 	icon_state = "pkd_44"
 	caliber = ".44 sabot"
 
 /obj/item/ammo_magazine/revolver/upp
-	name = "\improper ZHNK-72 speed loader (7.62x38mmR)"
+	name = "\improper ZHNK-72 快速装弹器（7.62x38mmR）"
 	default_ammo = /datum/ammo/bullet/revolver/upp
 	caliber = "7.62x38mmR"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/upp.dmi'
@@ -64,14 +64,14 @@
 	gun_type = /obj/item/weapon/gun/revolver/upp
 
 /obj/item/ammo_magazine/revolver/upp/shrapnel
-	name = "\improper ZHNK-72 shrapnel-shot speed loader (7.62x38mmR)"
-	desc = "This speedloader contains seven 'shrapnel-shot' bullets, cheap recycled casings picked up off the ground and refilled with gunpowder and random scrap metal. Acts similarly to flechette."
+	name = "\improper ZHNK-72 碎片弹快速装弹器（7.62x38mmR）"
+	desc = "这个快速装弹器装有七发“碎片弹”，用捡来的廉价弹壳重新填入火药和杂碎金属制成，效果类似箭形弹。"
 	default_ammo = /datum/ammo/bullet/revolver/upp/shrapnel
 	icon_state = "zhnk72loader_shrapnel"
 
 /obj/item/ammo_magazine/revolver/small
-	name = "\improper .38 overpressure speedloader (.38 +P)"
-	desc = "A speedloader of 6 handloaded overpressure .38 bullets. Substantial impact, but suffers from accuracy issues compared to factory ammunition. Liable to damage firearms not built to handle the chamber pressure."
+	name = "\improper .38 高压弹快速装弹器（.38 +P）"
+	desc = "装有六发手工复装 .38 高压弹的快速装弹器。冲击力强，但精度不及工厂弹药，容易损坏无法承受其膛压的枪械。"
 	default_ammo = /datum/ammo/bullet/revolver/small
 	caliber = ".38 +P"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/colony.dmi'
@@ -80,8 +80,8 @@
 	gun_type = /obj/item/weapon/gun/revolver/small
 
 /obj/item/ammo_magazine/revolver/spearhead
-	name = "\improper Spearhead speed loader (.357)"
-	desc = "A speedloader of 6 FMJ .357 bullets, uncommonly issued to Colonial Marshals due to overpenetration risks."
+	name = "\improper 矛头快速装弹器（.357）"
+	desc = "装有六发 .357 全被甲弹的快速装弹器。由于存在过度穿透风险，很少配发给殖民地执法官。"
 	default_ammo = /datum/ammo/bullet/revolver/small
 	caliber = ".357"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/colony.dmi'
@@ -90,8 +90,8 @@
 	gun_type = /obj/item/weapon/gun/revolver/spearhead
 
 /obj/item/ammo_magazine/revolver/spearhead/hollowpoint
-	name = "\improper Spearhead speed loader (.357)"
-	desc = "A speedloader of 6 hollowpoint .357 bullets, commonly issued to Colonial Marshals to both prevent overpenetration and improve performance against unarmored criminals or wildlife."
+	name = "\improper 矛头快速装弹器（.357）"
+	desc = "装有六发 .357 空尖弹的快速装弹器。常配发给殖民地执法官，既能避免过度穿透，也能提高对无甲罪犯和野生动物的杀伤力。"
 	default_ammo = /datum/ammo/bullet/revolver/small/hollowpoint
 	icon_state = "cmb_hp"
 
@@ -100,8 +100,8 @@
  */
 
 /obj/item/ammo_magazine/revolver/mateba
-	name = "\improper Mateba speed loader (.454)"
-	desc = "A formidable .454 speedloader, made exclusively for the Mateba autorevolver. Packs a devastating punch. This standard-variant is optimized for anti-armor."
+	name = "\improper 马特巴快速装弹器（.454）"
+	desc = "专为马特巴自动左轮手枪制造的强力 .454 快速装弹器，威力惊人。这个标准型号针对反装甲用途进行了优化。"
 	default_ammo = /datum/ammo/bullet/revolver/mateba
 	caliber = ".454"
 	icon_state = "mateba"
@@ -109,20 +109,20 @@
 	gun_type = /obj/item/weapon/gun/revolver/mateba
 
 /obj/item/ammo_magazine/revolver/mateba/highimpact
-	name = "\improper High Impact Mateba speed loader (.454)"
-	desc = "A formidable .454 speedloader, made exclusively for the Mateba autorevolver. Packs a devastating punch. This high impact variant is optimized for anti-personnel. Don't point at anything you don't want to destroy."
+	name = "\improper 马特巴高冲击弹快速装弹器（.454）"
+	desc = "专为马特巴自动左轮手枪制造的强力 .454 快速装弹器，威力惊人。这个高冲击型号针对人员杀伤进行了优化。别对准你不想摧毁的东西。"
 	default_ammo = /datum/ammo/bullet/revolver/mateba/highimpact
 	ammo_band_color = REVOLVER_TIP_COLOR_HIGH_IMPACT
 
 /obj/item/ammo_magazine/revolver/mateba/highimpact/ap
-	name = "\improper High Impact Armor-Piercing Mateba speed loader (.454)"
-	desc = "A formidable .454 speedloader, made exclusively for the Mateba autorevolver. Packs a devastating punch. This armor-piercing variant is optimized against armored targets at the cost of lower overall damage. Don't point at anything you don't want to destroy."
+	name = "\improper 马特巴高冲击穿甲弹快速装弹器（.454）"
+	desc = "专为马特巴自动左轮手枪制造的强力 .454 快速装弹器，威力惊人。这个穿甲型号以降低总体伤害为代价，强化了对装甲目标的效果。别对准你不想摧毁的东西。"
 	default_ammo = /datum/ammo/bullet/revolver/mateba/highimpact/ap
 	ammo_band_color = REVOLVER_TIP_COLOR_AP
 
 /obj/item/ammo_magazine/revolver/mateba/highimpact/explosive
-	name = "\improper Mateba explosive speed loader (.454)"
-	desc = "A formidable .454 speedloader, made exclusively for the Mateba autorevolver. There's an impact charge built into the bullet tip. Firing this at anything will result in a powerful explosion. Use with EXTREME caution."
+	name = "\improper 马特巴爆炸弹快速装弹器（.454）"
+	desc = "专为马特巴自动左轮手枪制造的强力 .454 快速装弹器。弹头内置触发装药，命中任何目标都会产生强烈爆炸。请极其谨慎地使用。"
 	default_ammo = /datum/ammo/bullet/revolver/mateba/highimpact/explosive
 	ammo_band_color = REVOLVER_TIP_COLOR_EXPLOSIVE
 
@@ -131,8 +131,8 @@
 */
 
 /obj/item/ammo_magazine/revolver/webley
-	name = "\improper Webley speed loader (.455)"
-	desc = ".455 Webley, the last decent pistol calibre. Loaded with Mk III dum-dum bullets, because Marines are not human and the Hague Conventions do not apply to them."
+	name = "\improper 韦伯利快速装弹器（.455）"
+	desc = ".455 韦伯利，最后一种像样的手枪口径。装填 Mk III 达姆弹，因为陆战队员不是人，海牙公约不适用于他们。"
 	default_ammo = /datum/ammo/bullet/revolver/webley
 	caliber = ".455"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/colony.dmi'

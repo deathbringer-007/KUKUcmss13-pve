@@ -1,6 +1,6 @@
 /obj/item/device/radio/electropack
-	name = "electropack"
-	desc = "Dance my monkeys! DANCE!!!"
+	name = "电击背包"
+	desc = "跳吧，我的小猴子们！跳啊！！！"
 	icon_state = "electropack0"
 	item_state = "electropack"
 	frequency = 1457
@@ -16,7 +16,7 @@
 
 /obj/item/device/radio/electropack/attack_hand(mob/user as mob)
 	if(src == user.back)
-		to_chat(user, SPAN_NOTICE("You need help taking this off!"))
+		to_chat(user, SPAN_NOTICE("你需要别人帮忙才能脱下它！"))
 		return
 	..()
 
@@ -72,7 +72,7 @@
 			if( (world.time - mob_move_time) >= (5 SECONDS) && M.last_move_dir)
 				mob_move_time = world.time
 				step(M, M.last_move_dir)
-		to_chat(M, SPAN_DANGER("You feel a sharp shock!"))
+		to_chat(M, SPAN_DANGER("你感到一阵强烈的电击！"))
 		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 		s.set_up(3, 1, M)
 		s.start()
@@ -90,16 +90,16 @@
 		return
 	user.set_interaction(src)
 	var/dat = {"<TT>
-<A href='byond://?src=\ref[src];power=1'>Turn [on ? "Off" : "On"]</A><BR>
-<B>Frequency/Code</B> for electropack:<BR>
-Frequency: [format_frequency(frequency)] kHz<BR>
+<A href='byond://?src=\ref[src];power=1'>[on ? "关闭" : "开启"]</A><BR>
+电击背包<B>频率／代码</B>：<BR>
+频率：[format_frequency(frequency)] kHz<BR>
 
-Code:
+代码：
 <A href='byond://?src=\ref[src];code=-5'>-</A>
 <A href='byond://?src=\ref[src];code=-1'>-</A> [code]
 <A href='byond://?src=\ref[src];code=1'>+</A>
 <A href='byond://?src=\ref[src];code=5'>+</A><BR>
 </TT>"}
-	show_browser(user, dat, "Electropack Configuration", "radio")
+	show_browser(user, dat, "电击背包设置", "radio")
 	onclose(user, "radio")
 	return

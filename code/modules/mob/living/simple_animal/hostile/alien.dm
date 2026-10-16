@@ -1,13 +1,13 @@
 /mob/living/simple_animal/hostile/alien
 	name = "Drone"
 	var/caste_name = null
-	desc = "A builder of hives. Only drones may evolve into Queens."
+	desc = "虫巢的建造者，只有工蜂才能进化为女皇。"
 	icon = 'icons/mob/xenos/drone.dmi'
 	icon_gib = "syndicate_gib"
 	layer = BIG_XENO_LAYER
-	response_help = "pokes"
-	response_disarm = "shoves"
-	response_harm = "hits"
+	response_help = "戳了戳"
+	response_disarm = "猛推"
+	response_harm = "击打"
 	status_flags = CANSTUN|CANKNOCKDOWN|CANPUSH
 	speed = XENO_SPEED_TIER_6
 	meat_type = /obj/item/reagent_container/food/snacks/meat/xenomeat
@@ -15,7 +15,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = XENO_DAMAGE_TIER_1
 	melee_damage_upper = XENO_DAMAGE_TIER_2
-	attacktext = "slashes"
+	attacktext = "劈砍"
 	a_intent = INTENT_HARM
 	attack_sound = 'sound/weapons/alien_claw_flesh1.ogg'
 	min_oxy = 0
@@ -56,7 +56,7 @@
 	vis_contents += wound_icon_holder
 
 /mob/living/simple_animal/hostile/alien/proc/generate_name()
-	change_real_name(src, "[caste_name] (BD-[rand(1, 999)])")
+	change_real_name(src, "[list("Drone" = "工蜂", "Ravager" = "蹂躏者", "Lurker" = "潜伏者")[caste_name] || caste_name] (BD-[rand(1, 999)])")
 
 /mob/living/simple_animal/hostile/alien/proc/handle_icon()
 	icon_state = "Normal [caste_name] Running"
@@ -96,7 +96,7 @@
 			return TRUE
 		puller.apply_effect(2, WEAKEN)
 		playsound(puller.loc, 'sound/weapons/pierce.ogg', 25, 1)
-		puller.visible_message(SPAN_WARNING("[puller] tried to pull [src] but instead gets a tail swipe to the head!"))
+		puller.visible_message(SPAN_WARNING("[puller]试图拖动[src]，却被它一尾巴抽中了头！"))
 		return FALSE
 	return TRUE
 
@@ -136,10 +136,10 @@
 		roar_emote()
 
 /mob/living/simple_animal/hostile/alien/proc/roar_emote()
-	visible_message("<B>The [name]</B> roars!")
+	visible_message("<B>[name]</B>发出咆哮！")
 	playsound(loc, "alien_roar", 40)
 
-/mob/living/simple_animal/hostile/alien/death(cause, gibbed, deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw. The caustic acid starts melting the body away...")
+/mob/living/simple_animal/hostile/alien/death(cause, gibbed, deathmessage = "发出渐弱的嘶吼，绿色血液从口中汩汩涌出。腐蚀性的酸液开始将尸体溶解……")
 	. = ..()
 	if(!.)
 		return //If they were already dead, it will return.
@@ -154,7 +154,7 @@
 
 /mob/living/simple_animal/hostile/alien/ravager
 	name = "Ravager"
-	desc = "A huge, nasty red alien with enormous scythed claws."
+	desc = "巨大的红色异形，凶猛可怖，长着镰刀般的巨爪。"
 	icon = 'icons/mob/xenos/ravager.dmi'
 	melee_damage_lower = XENO_DAMAGE_TIER_5
 	melee_damage_upper = XENO_DAMAGE_TIER_5
@@ -167,7 +167,7 @@
 
 /mob/living/simple_animal/hostile/alien/lurker
 	name = "Lurker"
-	desc = "A fast, powerful backline combatant."
+	desc = "动作迅捷、力量强大的后方突袭者。"
 	icon = 'icons/mob/xenos/lurker.dmi'
 	melee_damage_lower = XENO_DAMAGE_TIER_3
 	melee_damage_upper = XENO_DAMAGE_TIER_3

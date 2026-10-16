@@ -30,7 +30,7 @@
  * * default - If an option is already preselected on the UI. Current values, etc.
  * * ui_state - The TGUI UI state that will be returned in ui_state(). Default: always_state
  */
-/proc/tgui_input_list(mob/user, message, title = "Select", list/buttons, timeout = 0, theme = null, default, ui_state = GLOB.always_state)
+/proc/tgui_input_list(mob/user, message, title = "选择", list/buttons, timeout = 0, theme = null, default, ui_state = GLOB.always_state)
 	if (!user)
 		user = usr
 	if(!length(buttons))
@@ -71,7 +71,7 @@
  * * default - If an option is already preselected on the UI. Current values, etc.
  * * ui_state - The TGUI UI state that will be returned in ui_state(). Default: always_state
  */
-/proc/tgui_input_list_async(mob/user, message, title = "Select", list/buttons, datum/callback/callback, timeout = 60 SECONDS, theme = null, default, ui_state = GLOB.always_state)
+/proc/tgui_input_list_async(mob/user, message, title = "选择", list/buttons, datum/callback/callback, timeout = 60 SECONDS, theme = null, default, ui_state = GLOB.always_state)
 	if (!user)
 		user = usr
 	if(!length(buttons))
@@ -134,7 +134,7 @@
 	src.ui_theme = theme
 	var/list/repeat_items = list()
 	// Gets rid of illegal characters
-	var/static/regex/whitelistedWords = regex(@{"([^\u0020-\u8000]+)"})
+	var/static/regex/whitelistedWords = regex(@{"([^\u0020-\u9FFF\uFF00-\uFFEF]+)"})
 
 	for(var/i in buttons)
 		if(!i)

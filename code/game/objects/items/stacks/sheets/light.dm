@@ -1,7 +1,7 @@
 /obj/item/stack/light_w
-	name = "wired glass tile"
-	singular_name = "wired glass floor tile"
-	desc = "A glass tile, which is wired, somehow."
+	name = "布线玻璃地砖"
+	singular_name = "布线玻璃地砖"
+	desc = "一块不知道怎么接上了电线的玻璃地砖。"
 	icon_state = "glass_wire"
 	w_class = SIZE_MEDIUM
 	force = 3
@@ -27,7 +27,7 @@
 		if (M.use(1))
 			new/obj/item/stack/tile/light(user.loc, 1)
 			use(1)
-			to_chat(user, SPAN_NOTICE("You make a light tile."))
+			to_chat(user, SPAN_NOTICE("你制作了一块发光地砖。"))
 		else
-			to_chat(user, SPAN_WARNING("You need one metal sheet to finish the light tile."))
+			to_chat(user, SPAN_WARNING("你还需要一块金属板才能完成发光地砖。"))
 		return

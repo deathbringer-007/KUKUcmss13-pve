@@ -1,13 +1,13 @@
 /obj/item/device/motiondetector/intel
-	name = "data detector"
-	desc = "A device that detects objects that may be useful for intel gathering. You can switch modes with Alt+Click."
+	name = "情报探测器"
+	desc = "用于探测潜在情报收集物品的设备。按住 Alt 并点击可切换模式。"
 	icon_state = "datadetector"
 	item_state = "data_detector"
 	blip_type = "data"
 	var/objects_to_detect = list()
 
 /obj/item/device/motiondetector/intel/get_help_text()
-	. = "Green indicators on your HUD will show the location of intelligence objects detected by the scanner. Has two modes: slow long-range [SPAN_HELPFUL("(14 tiles)")] and fast short-range [SPAN_HELPFUL("(7 tiles)")]."
+	. = "抬头显示中的绿色标记会指示扫描到的情报物品位置。本机有两种模式：慢速远程[SPAN_HELPFUL("（14 格）")]和快速近程[SPAN_HELPFUL("（7 格）")]。"
 
 /obj/item/device/motiondetector/intel/update_icon()
 	if (active)

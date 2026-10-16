@@ -1,8 +1,8 @@
 
 
 /obj/item/frame/light_fixture
-	name = "light fixture frame"
-	desc = "Used for building lights."
+	name = "灯具框架"
+	desc = "用于组装灯具。"
 	icon = 'icons/obj/items/lighting.dmi'
 	icon_state = "tube-construct-item"
 	flags_atom = FPRINT|CONDUCT
@@ -25,9 +25,9 @@
 		return
 	var/turf/loc = get_turf(usr)
 	if (!istype(loc, /turf/open/floor))
-		to_chat(usr, SPAN_DANGER("[src.name] cannot be placed on this spot."))
+		to_chat(usr, SPAN_DANGER("不能在这个位置安装[src.name]。"))
 		return
-	to_chat(usr, "Attaching [src] to the wall.")
+	to_chat(usr, "正在把[src]安装到墙上。")
 	playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 	var/constrdir = usr.dir
 	var/constrloc = usr.loc
@@ -40,13 +40,13 @@
 			newlight = new /obj/structure/machinery/light_construct(constrloc)
 	newlight.setDir(constrdir)
 	transfer_fingerprints_to(newlight)
-	usr.visible_message("[usr.name] attaches [src] to the wall.", \
-		"You attach [src] to the wall.")
+	usr.visible_message("[usr.name]把[src]安装到了墙上。", \
+		"你把[src]安装到了墙上。")
 	qdel(src)
 
 /obj/item/frame/light_fixture/small
-	name = "small light fixture frame"
-	desc = "Used for building small lights."
+	name = "小型灯具框架"
+	desc = "用于组装小型灯具。"
 	icon = 'icons/obj/items/lighting.dmi'
 	icon_state = "bulb-construct-item"
 	fixture_type = "bulb"

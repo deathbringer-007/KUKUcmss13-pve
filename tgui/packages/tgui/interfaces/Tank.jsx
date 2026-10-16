@@ -26,13 +26,13 @@ export const Tank = (props) => {
     <Window width={310} height={150}>
       <Window.Content>
         {(!!data.mask_connected && (
-          <NoticeBox success>This tank is connected to a mask.</NoticeBox>
+          <NoticeBox success>此气瓶已连接面罩。</NoticeBox>
         )) || (
-          <NoticeBox danger>This tank is not connected to a mask.</NoticeBox>
+          <NoticeBox danger>此气瓶未连接面罩。</NoticeBox>
         )}
         <Section>
           <LabeledControls>
-            <LabeledControls.Item label="Pressure">
+            <LabeledControls.Item label="压力">
               <RoundGauge
                 value={data.tankPressure}
                 minValue={0}
@@ -41,7 +41,7 @@ export const Tank = (props) => {
                 size={2}
               />
             </LabeledControls.Item>
-            <LabeledControls.Item label="Pressure Regulator">
+            <LabeledControls.Item label="压力调节器">
               <Button
                 icon="fast-backward"
                 disabled={data.ReleasePressure === data.minReleasePressure}
@@ -84,7 +84,7 @@ export const Tank = (props) => {
                 }
               />
             </LabeledControls.Item>
-            <LabeledControls.Item label="Valve">
+            <LabeledControls.Item label="阀门">
               <Button
                 my={0.5}
                 width="60px"
@@ -95,7 +95,7 @@ export const Tank = (props) => {
                 icon={data.valve_open ? 'lock-open' : 'lock'}
                 onClick={() => act('valve')}
               >
-                {data.valve_open ? 'Open' : 'Closed'}
+                {data.valve_open ? '开启' : '关闭'}
               </Button>
             </LabeledControls.Item>
           </LabeledControls>

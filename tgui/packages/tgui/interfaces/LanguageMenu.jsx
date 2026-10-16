@@ -29,7 +29,7 @@ const LanguagesView = (props) => {
     <Fragment key={index}>
       <Button
         fluid
-        tooltip={index === 0 ? 'Default language' : 'Make default'}
+        tooltip={index === 0 ? '默认语言' : '设为默认语言'}
         color={index === 0 ? 'good' : null}
         onClick={() =>
           act('set_default_language', {

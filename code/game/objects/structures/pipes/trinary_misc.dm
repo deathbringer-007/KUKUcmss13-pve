@@ -24,7 +24,7 @@
 	icon_state = "map"
 	density = FALSE
 	level = 1
-	name = "Gas filter"
+	name = "气体过滤器"
 
 /obj/structure/pipes/trinary/filter/update_icon()
 	if(length(connected_to))
@@ -79,7 +79,7 @@
 	icon_state = "map"
 	density = FALSE
 	level = 1
-	name = "Gas mixer"
+	name = "气体混合器"
 
 /obj/structure/pipes/trinary/mixer/update_icon()
 	if(length(connected_to))

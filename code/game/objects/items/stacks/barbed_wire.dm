@@ -1,16 +1,16 @@
 
 /obj/item/stack/barbed_wire
-	name = "barbed wire"
-	desc = "A spiky length of wire."
+	name = "带刺铁丝"
+	desc = "一段布满尖刺的铁丝。"
 	icon = 'icons/obj/items/marine-items.dmi'
 	icon_state = "barbed_wire"
-	singular_name = "length"
+	singular_name = "段铁丝"
 	w_class = SIZE_SMALL
 	force = 0
 	throwforce = 5
 	throw_speed = SPEED_VERY_FAST
 	throw_range = 20
-	attack_verb = list("hit", "whacked", "sliced")
+	attack_verb = list("击打", "猛击", "切割")
 	max_amount = 20
 	stack_id = "barbed wire"
 
@@ -29,6 +29,6 @@
  */
 
 GLOBAL_LIST_INIT_TYPED(wire_recipes, /datum/stack_recipe, list ( \
-	new/datum/stack_recipe("razor wire", /obj/structure/barricade/razorwire, 2, time = 2 SECONDS, one_per_turf = ONE_TYPE_PER_BORDER, on_floor = 1, skill_req = SKILL_CONSTRUCTION, skill_lvl = SKILL_CONSTRUCTION_TRAINED, min_time = 2 SECONDS), \
+	new/datum/stack_recipe("刀片铁丝网", /obj/structure/barricade/razorwire, 2, time = 2 SECONDS, one_per_turf = ONE_TYPE_PER_BORDER, on_floor = 1, skill_req = SKILL_CONSTRUCTION, skill_lvl = SKILL_CONSTRUCTION_TRAINED, min_time = 2 SECONDS), \
 	null, \
 ))

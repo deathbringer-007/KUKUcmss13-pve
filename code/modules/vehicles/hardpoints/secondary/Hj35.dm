@@ -1,6 +1,6 @@
 /obj/item/hardpoint/secondary/hj35launcher
-	name = "\improper HJ-35 Launcher"
-	desc = "A secondary weapon for UPP armored vehicles that shoots rockets. It loads multiple rockets at once."
+	name = "\improper HJ-35发射器"
+	desc = "进步人民联盟装甲载具的副武器，可发射火箭弹，一次可装填多枚。"
 	icon = 'icons/obj/vehicles/hardpoints/uppapc.dmi'
 
 	icon_state = "hj35launcher"
@@ -43,8 +43,8 @@
 
 // for upp tank
 /obj/item/hardpoint/secondary/hj35launcher/upptank
-	name = "\improper HJ-35-T Launcher"
-	desc = "A secondary weapon for upp tank that shoots rockets"
+	name = "\improper HJ-35-T发射器"
+	desc = "进步人民联盟坦克的副武器，可发射火箭弹。"
 	icon = 'icons/obj/vehicles/hardpoints/upptank.dmi'
 
 	icon_state = "hj35tlauncher"

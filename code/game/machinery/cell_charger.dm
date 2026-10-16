@@ -1,6 +1,6 @@
 /obj/structure/machinery/cell_charger
-	name = "\improper heavy-duty cell charger"
-	desc = "A much more powerful version of the standard recharger that is specially designed for charging power cells."
+	name = "\improper 重型电池充电器"
+	desc = "标准充电器的高功率版本，专门用于为电池充电。"
 	icon = 'icons/obj/structures/machinery/power.dmi'
 	icon_state = "ccharger0"
 	anchored = TRUE
@@ -29,9 +29,9 @@
 
 /obj/structure/machinery/cell_charger/get_examine_text(mob/user)
 	. = ..()
-	. += "There's [charging ? "a" : "no"] cell in the charger."
+	. += "充电器里[charging ? "有" : "没有"]电池。"
 	if(charging)
-		. += "Current charge: [charging.charge] ([charging.percent()]%)"
+		. += "当前电量：[charging.charge]（[charging.percent()]%）"
 
 /obj/structure/machinery/cell_charger/attackby(obj/item/W, mob/user)
 	if(stat & BROKEN)
@@ -39,29 +39,29 @@
 
 	if(istype(W, /obj/item/cell) && anchored)
 		if(charging)
-			to_chat(user, SPAN_DANGER("There is already a cell in the charger."))
+			to_chat(user, SPAN_DANGER("充电器里已经有一块电池了。"))
 			return
 		else
 			var/area/a = loc.loc // Gets our locations location, like a dream within a dream
 			if(!isarea(a))
 				return
 			if(a.power_equip == 0) // There's no APC in this area, don't try to cheat power!
-				to_chat(user, SPAN_DANGER("The [name] blinks red as you try to insert the cell!"))
+				to_chat(user, SPAN_DANGER("你试图插入电池时，[name]闪起了红灯！"))
 				return
 
 			if(user.drop_inv_item_to_loc(W, src))
 				charging = W
-				user.visible_message("[user] inserts a cell into the charger.", "You insert a cell into the charger.")
+				user.visible_message("[user]将一块电池插入充电器。", "你将一块电池插入充电器。")
 				chargelevel = -1
 				start_processing()
 		updateicon()
 	else if(HAS_TRAIT(W, TRAIT_TOOL_WRENCH))
 		if(charging)
-			to_chat(user, SPAN_DANGER("Remove the cell first!"))
+			to_chat(user, SPAN_DANGER("请先取出电池！"))
 			return
 
 		anchored = !anchored
-		to_chat(user, "You [anchored ? "attach" : "detach"] the cell charger [anchored ? "to" : "from"] the ground.")
+		to_chat(user, "你[anchored ? "固定" : "松开"]了电池充电器[anchored ? "与地面的连接" : "的地面固定件"]。")
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 
 /obj/structure/machinery/cell_charger/attack_hand(mob/user)
@@ -71,7 +71,7 @@
 		charging.update_icon()
 
 		src.charging = null
-		user.visible_message("[user] removes the cell from the charger.", "You remove the cell from the charger.")
+		user.visible_message("[user]从充电器中取出电池。", "你从充电器中取出电池。")
 		chargelevel = -1
 		updateicon()
 		stop_processing()

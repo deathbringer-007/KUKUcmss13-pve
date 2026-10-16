@@ -5,8 +5,8 @@
 #define DEATH_STAGE_CRITICAL 3
 
 /obj/structure/machinery/cryo_cell
-	name = "cryo cell"
-	desc = "A donation from the old A.W. project, using cryogenic technology. It slowly heals whoever is inside the tube."
+	name = "冷冻舱"
+	desc = "由旧 A.W. 项目捐赠的低温医疗设备，可缓慢治疗舱内患者。"
 	icon = 'icons/obj/structures/machinery/cryogenics2.dmi'
 	icon_state = "cell"
 	density = FALSE
@@ -44,7 +44,7 @@
 		var/mob/living/carbon/human/human_occupant = occupant
 		if(occupant.stat == DEAD && (!istype(human_occupant) || human_occupant.undefibbable))
 			go_out(TRUE, TRUE) //Whether auto-eject is on or not, we don't permit literal deadbeats to hang around.
-			display_message("Patient is dead!", warning = TRUE)
+			display_message("患者已死亡！", warning = TRUE)
 		else
 			process_occupant()
 
@@ -89,13 +89,13 @@
 		data["occupant"]["name"] = mob_occupant.name
 		switch(mob_occupant.stat)
 			if(CONSCIOUS)
-				data["occupant"]["stat"] = "Conscious"
+				data["occupant"]["stat"] = "清醒"
 				data["occupant"]["statstate"] = "good"
 			if(UNCONSCIOUS)
-				data["occupant"]["stat"] = "Unconscious"
+				data["occupant"]["stat"] = "昏迷"
 				data["occupant"]["statstate"] = "average"
 			if(DEAD)
-				data["occupant"]["stat"] = "Dead"
+				data["occupant"]["stat"] = "死亡"
 				data["occupant"]["statstate"] = "bad"
 		data["occupant"]["health"] = round(mob_occupant.health, 1)
 		data["occupant"]["maxHealth"] = mob_occupant.maxHealth
@@ -156,11 +156,11 @@
 /obj/structure/machinery/cryo_cell/attackby(obj/item/W, mob/living/user)
 	if(istype(W, /obj/item/reagent_container/glass))
 		if(beaker)
-			to_chat(user, SPAN_WARNING("A beaker is already loaded into the machine."))
+			to_chat(user, SPAN_WARNING("设备内已装有烧杯。"))
 			return
 
 		if(istype(W, /obj/item/reagent_container/glass/bucket))
-			to_chat(user, SPAN_WARNING("That's too big to fit!"))
+			to_chat(user, SPAN_WARNING("太大了，放不进去！"))
 			return
 
 		beaker =  W
@@ -172,7 +172,7 @@
 		msg_admin_niche("[key_name(user)] put \a [beaker] into [src], containing [reagentnames] at ([src.loc.x],[src.loc.y],[src.loc.z]) [ADMIN_JMP(src.loc)].", 1)
 
 		if(user.drop_inv_item_to_loc(W, src))
-			user.visible_message("[user] adds \a [W] to [src]!", "You add \a [W] to [src]!")
+			user.visible_message("[user]将[W]装入[src]！", "你将[W]装入[src]！")
 	else if(istype(W, /obj/item/grab))
 		if(isxeno(user))
 			return
@@ -214,7 +214,7 @@
 		else
 			occupant_death_stage = DEATH_STAGE_EARLY
 		if(old_state != occupant_death_stage)
-			display_message("Patient is critical!", warning = TRUE)
+			display_message("患者情况危急！", warning = TRUE)
 
 	// Passive healing if alive and cold enough
 	if(occupant.stat != DEAD)
@@ -258,11 +258,11 @@
 	if(autoeject)
 		//release the patient automatically when brute and burn are handled on non-robotic limbs
 		if(!occupant.getBruteLoss(TRUE) && !occupant.getFireLoss(TRUE) && !occupant.getCloneLoss())
-			display_message("Patient's external wounds are healed.")
+			display_message("患者的外伤已治愈。")
 			go_out(TRUE)
 			return
 		if(occupant.health >= occupant.maxHealth)
-			display_message("Patient's external wounds are healed.")
+			display_message("患者的外伤已治愈。")
 			go_out(TRUE)
 			return
 
@@ -287,10 +287,10 @@
 	if(auto_eject) //Turn off and announce if auto-ejected because patient is recovered or dead.
 		on = FALSE
 		if(release_notice) //If auto-release notices are on as it should be, let the doctors know what's up
-			var/reason = "Reason for release: Patient recovery."
+			var/reason = "移出原因：患者已康复。"
 			if(dead)
-				reason = "Reason for release: Patient death."
-			ai_silent_announcement("Patient [occupant] has been automatically released from [src] at: [sanitize_area((get_area(occupant))?.name)]. [reason]", ":m")
+				reason = "移出原因：患者已死亡。"
+			ai_silent_announcement("患者[occupant]已从[src]中自动移出，地点：[sanitize_area((get_area(occupant))?.name)]。[reason]", ":m")
 	occupant = null
 	update_use_power(USE_POWER_IDLE)
 	update_icon()
@@ -298,22 +298,22 @@
 
 /obj/structure/machinery/cryo_cell/proc/put_mob(mob/living/carbon/cur_mob)
 	if(inoperable())
-		to_chat(usr, SPAN_DANGER("The cryo cell is not functioning."))
+		to_chat(usr, SPAN_DANGER("冷冻舱无法工作。"))
 		return
 	if(!istype(cur_mob) || isxeno(cur_mob))
-		to_chat(usr, SPAN_DANGER("The cryo cell cannot handle such a lifeform!"))
+		to_chat(usr, SPAN_DANGER("冷冻舱无法容纳这种生命体！"))
 		return
 	if(occupant)
-		to_chat(usr, SPAN_DANGER("The cryo cell is already occupied!"))
+		to_chat(usr, SPAN_DANGER("冷冻舱内已经有人了！"))
 		return
 	if(cur_mob.abiotic())
-		to_chat(usr, SPAN_DANGER("Subject may not have abiotic items on."))
+		to_chat(usr, SPAN_DANGER("患者须先放下手中的物品。"))
 		return
 	if(do_after(usr, 2 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_GENERIC))
-		visible_message(SPAN_NOTICE("[usr] moves [usr == cur_mob ? "" : "[cur_mob] "]inside the cryo cell."))
+		visible_message(SPAN_NOTICE("[usr][usr == cur_mob ? "进入" : "将[cur_mob]移入"]冷冻舱。"))
 		cur_mob.forceMove(src)
 		if(cur_mob.health >= HEALTH_THRESHOLD_DEAD && (cur_mob.health <= 0 || cur_mob.sleeping))
-			to_chat(cur_mob, SPAN_NOTICE("You feel cold liquid surround you. Your skin starts to freeze up."))
+			to_chat(cur_mob, SPAN_NOTICE("你感到冰冷的液体包围了全身，皮肤开始冻结。"))
 		occupant = cur_mob
 		occupant_death_stage = DEATH_STAGE_NONE
 		update_use_power(USE_POWER_ACTIVE)
@@ -326,19 +326,19 @@
 			playsound(loc, 'sound/machines/twobeep.ogg', 40)
 		else
 			playsound(loc, 'sound/machines/ping.ogg', 25, 1)
-	visible_message("[icon2html(src, viewers(src))] [SPAN_NOTICE("[src] [warning ? "beeps" : "pings"]: [msg]")]")
+	visible_message("[icon2html(src, viewers(src))] [SPAN_NOTICE("[src] [warning ? "发出蜂鸣声" : "发出提示音"]: [msg]")]")
 
 /obj/structure/machinery/cryo_cell/verb/move_eject()
-	set name = "Eject occupant"
-	set category = "Object"
+	set name = "移出患者"
+	set category = "物品"
 	set src in oview(1)
 	if(usr == occupant)//If the user is inside the tube...
 		if(usr.stat == DEAD)//and he's not dead....
 			return
 
-		if(tgui_alert(usr, "Would you like to activate the ejection sequence of the cryo cell? Healing may be in progress.", "Confirm", list("Yes", "No")) == "Yes")
-			to_chat(usr, SPAN_NOTICE("Cryo cell release sequence activated. This will take thirty seconds."))
-			visible_message(SPAN_WARNING("The cryo cell's tank starts draining as its ejection lights blare!"))
+		if(tgui_alert(usr, "要启动冷冻舱的移出程序吗？治疗可能尚未完成。", "确认", list("是", "否")) == "是")
+			to_chat(usr, SPAN_NOTICE("冷冻舱移出程序已启动，需要三十秒。"))
+			visible_message(SPAN_WARNING("冷冻舱的移出指示灯亮起，舱内开始排液！"))
 			addtimer(CALLBACK(src, PROC_REF(finish_eject), usr), 30 SECONDS, TIMER_UNIQUE|TIMER_NO_HASH_WAIT)
 	else
 		if(usr.stat != CONSCIOUS)
@@ -352,8 +352,8 @@
 	go_out()//and release him from the eternal prison.
 
 /obj/structure/machinery/cryo_cell/verb/move_inside()
-	set name = "Move Inside"
-	set category = "Object"
+	set name = "进入舱内"
+	set category = "物品"
 	set src in oview(1)
 	if(usr.stat != CONSCIOUS)
 		return

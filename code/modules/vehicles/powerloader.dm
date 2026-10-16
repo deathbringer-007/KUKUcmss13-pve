@@ -1,7 +1,7 @@
 /obj/vehicle/powerloader
-	name = "\improper Caterpillar P-5000 Work Loader"
+	name = "\improper 卡特彼勒P-5000动力装载机"
 	icon = 'icons/obj/vehicles/powerloader.dmi'
-	desc = "The Caterpillar P-5000 Work Loader is a commercial mechanized exoskeleton used for lifting heavy materials and objects, first designed in January 29, 2025 by Weyland Corporation. An old but trusted design used in warehouses, constructions and military ships everywhere."
+	desc = "卡特彼勒P-5000动力装载机是一种用于搬运重型材料和物件的商用机械外骨骼，最初由维兰德公司于2025年1月29日设计。它虽已老旧，但可靠耐用，广泛用于仓库、建筑工地和军舰。"
 	icon_state = "powerloader_open"
 	layer = POWERLOADER_LAYER //so the top appears above windows and wall mounts
 	anchored = TRUE
@@ -24,10 +24,10 @@
 /obj/vehicle/powerloader/Initialize()
 	cell = new /obj/item/cell/apc
 	PC_left = new(src)
-	PC_left.name = "\improper Power Loader Left Hydraulic Claw"
+	PC_left.name = "\improper 动力装载机左液压夹爪"
 	PC_left.linked_powerloader = src
 	PC_right = new(src)
-	PC_right.name = "\improper Power Loader Right Hydraulic Claw"
+	PC_right.name = "\improper 动力装载机右液压夹爪"
 	PC_right.linked_powerloader = src
 	PC_right.is_right = TRUE
 	PC_right.icon_state = "loader_clamp_right"
@@ -83,8 +83,8 @@
 
 /obj/vehicle/powerloader/attack_hand(mob/user)
 	if(buckled_mob && user != buckled_mob)
-		buckled_mob.visible_message(SPAN_WARNING("[user] tries to move [buckled_mob] out of [src]."),\
-		SPAN_DANGER("[user] tries to move you out of [src]!"))
+		buckled_mob.visible_message(SPAN_WARNING("[user]试图把[buckled_mob]从[src]中拉出来。"),\
+		SPAN_DANGER("[user]试图把你从[src]中拉出来！"))
 		var/oldloc = loc
 		var/olddir = dir
 		var/old_buckled_mob = buckled_mob
@@ -108,10 +108,10 @@
 		return
 	var/mob/living/carbon/human/H = M
 	if(!skillcheck(user, SKILL_POWERLOADER, SKILL_POWERLOADER_TRAINED))
-		to_chat(H, SPAN_WARNING("You don't seem to know how to operate \the [src]."))
+		to_chat(H, SPAN_WARNING("你似乎不知道如何操作[src]。"))
 		return
 	if(H.r_hand || H.l_hand)
-		to_chat(H, SPAN_WARNING("You need both hands free to operate \the [src]."))
+		to_chat(H, SPAN_WARNING("你需要腾出双手才能操作[src]。"))
 		return
 	. = ..()
 
@@ -140,8 +140,8 @@
 
 //verb
 /obj/vehicle/powerloader/verb/enter_powerloader(mob/M)
-	set category = "Object"
-	set name = "Enter Power Loader"
+	set category = "物品"
+	set name = "进入动力装载机"
 	set src in oview(1)
 
 	buckle_mob(M, usr)
@@ -149,7 +149,7 @@
 //--------------------POWERLOADER CLAMP-----------------
 
 /obj/item/powerloader_clamp
-	name = "\improper Power Loader Hydraulic Claw"
+	name = "\improper 动力装载机液压夹爪"
 	icon = 'icons/obj/vehicles/powerloader_clamp.dmi'
 	icon_state = "loader_clamp"
 	force = 20
@@ -189,11 +189,11 @@
 
 /obj/item/powerloader_clamp/get_examine_text(mob/user, compact_info = FALSE)
 	if(compact_info && loaded)
-		return list(SPAN_NOTICE("There is a [icon2html(loaded, user)] [SPAN_HELPFUL(loaded.name)] in the [icon2html(src, user)] [src.name]."))
+		return list(SPAN_NOTICE("[icon2html(src, user)] [src.name]正夹着[icon2html(loaded, user)] [SPAN_HELPFUL(loaded.name)]。"))
 	else
 		. = ..()
 		if(loaded)
-			. += SPAN_NOTICE("There is a [icon2html(loaded, user)] [SPAN_HELPFUL(loaded.name)] in the [icon2html(src, user)] [src.name].")
+			. += SPAN_NOTICE("[icon2html(src, user)] [src.name]正夹着[icon2html(loaded, user)] [SPAN_HELPFUL(loaded.name)]。")
 
 /obj/item/powerloader_clamp/attack(mob/living/M, mob/living/user)
 	if(M == linked_powerloader.buckled_mob)
@@ -216,29 +216,29 @@
 			if(!T.density)
 				for(var/atom/movable/AM in T.contents)
 					if(AM.density)
-						to_chat(user, SPAN_WARNING("You can't drop [loaded] here, [AM] blocks the way."))
+						to_chat(user, SPAN_WARNING("无法在这里放下[loaded]，[AM]挡住了位置。"))
 						return
 				if(loaded.bound_height > 32)
 					var/turf/next_turf = get_step(T, NORTH)
 					if(next_turf.density)
-						to_chat(user, SPAN_WARNING("You can't drop [loaded] here, something blocks the way."))
+						to_chat(user, SPAN_WARNING("无法在这里放下[loaded]，有东西挡住了位置。"))
 						return
 					for(var/atom/movable/AM in next_turf.contents)
 						if(AM.density)
-							to_chat(user, SPAN_WARNING("You can't drop [loaded] here, [AM] blocks the way."))
+							to_chat(user, SPAN_WARNING("无法在这里放下[loaded]，[AM]挡住了位置。"))
 							return
 				if(loaded.bound_width > 32)
 					var/turf/next_turf = get_step(T, EAST)
 					if(next_turf.density)
-						to_chat(user, SPAN_WARNING("You can't drop [loaded] here, something blocks the way."))
+						to_chat(user, SPAN_WARNING("无法在这里放下[loaded]，有东西挡住了位置。"))
 						return
 					for(var/atom/movable/AM in next_turf.contents)
 						if(AM.density)
-							to_chat(user, SPAN_WARNING("You can't drop \the [loaded] here, \the [AM] blocks the way."))
+							to_chat(user, SPAN_WARNING("无法在这里放下[loaded]，[AM]挡住了位置。"))
 							return
 
-				user.visible_message(SPAN_NOTICE("[user] drops \the [loaded] on [T] with \the [src]."),
-				SPAN_NOTICE("You drop \the [loaded] on [T] with \the [src]."))
+				user.visible_message(SPAN_NOTICE("[user]用[src]将[loaded]放到[T]上。"),
+				SPAN_NOTICE("你用[src]将[loaded]放到[T]上。"))
 				loaded.forceMove(T)
 				playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 
@@ -259,7 +259,7 @@
 
 	for(var/obj/effect/xenomorph/acid/A in get_turf(target))
 		if(A.acid_t == target)
-			to_chat(src, SPAN_WARNING("\The [target] is melting under a sizzling acidic substance. Trying to grab it will damage \the [src]."))
+			to_chat(src, SPAN_WARNING("[target]正在滋滋作响的酸液中熔化。试图夹起它会损坏[src]。"))
 			return
 
 	var/load_target_tag = ""
@@ -267,37 +267,37 @@
 	if(istype(target, /obj/structure/closet/crate))
 		var/obj/structure/closet/crate/C = target
 		if(C.anchored || C.store_mobs)
-			to_chat(user, SPAN_WARNING("\The [src] can't grab \the [target]."))
+			to_chat(user, SPAN_WARNING("[src]无法夹起[target]。"))
 			return
 		for(var/X in C)
 			if(ismob(X)) //just in case.
-				to_chat(user, SPAN_WARNING("\The [src] can't grab \the [target], it has a creature inside!"))
+				to_chat(user, SPAN_WARNING("[src]无法夹起[target]，里面有生物！"))
 				return
 		load_target_tag = "crate"
 
 	else if(istype(target, /obj/structure/largecrate))
 		var/obj/structure/largecrate/LC = target
 		if(LC.anchored)
-			to_chat(user, SPAN_WARNING("\The [src] can't grab \the [target] as it appears to be anchored to the ground."))
+			to_chat(user, SPAN_WARNING("[src]无法夹起[target]，它似乎固定在地面上。"))
 			return
 		load_target_tag = "big_crate"
 
 	else if(istype(target, /obj/structure/reagent_dispensers))
 		var/obj/structure/reagent_dispensers/RD = target
 		if(RD.anchored)
-			to_chat(user, SPAN_WARNING("\The [src] can't grab \the [target], it is secured to the ground."))
+			to_chat(user, SPAN_WARNING("[src]无法夹起[target]，它固定在地面上。"))
 			return
 		if(RD.reagents && RD.reagents.total_volume > 0)
 			for(var/datum/reagent/R in RD.reagents.reagent_list)
-				if(R.name != "Water" && R.name != "Beer")
-					to_chat(user, SPAN_WARNING("It is unsafe to use \the [linked_powerloader] to transport \the [RD] without emptying it first."))
+				if(initial(R.name) != "Water" && initial(R.name) != "Beer")
+					to_chat(user, SPAN_WARNING("没有先排空[RD]就用[linked_powerloader]搬运它是不安全的。"))
 					return
 		load_target_tag = "reagent_dispenser"
 
 	else if(istypestrict(target, /obj/structure/machinery/floodlight))
 		var/obj/structure/machinery/floodlight/FD = target
 		if(FD.anchored)
-			to_chat(user, SPAN_WARNING("\The [FD] is secured to the ground, you need to use a [SPAN_HELPFUL("wrench")] to loosen up the anchoring bolts before you can grab it with \the [src]."))
+			to_chat(user, SPAN_WARNING("[FD]固定在地面上，你需要先用[SPAN_HELPFUL("扳手")]松开固定螺栓，才能用[src]夹起它。"))
 			return
 		load_target_tag = "floodlight"
 
@@ -308,14 +308,14 @@
 //a bit unsafe proc
 /obj/item/powerloader_clamp/proc/grab_object(mob/user, obj/target, target_tag = "", sound = 'sound/machines/hydraulics_2.ogg')
 	if(loaded)
-		to_chat(user, SPAN_WARNING("\The [src] must be empty in order to grab \the [target]!"))
+		to_chat(user, SPAN_WARNING("[src]必须空着才能夹起[target]！"))
 		return
 	if(!linked_powerloader)
 		qdel(src)
 		return
 	loaded = target
 	loaded.forceMove(src)
-	to_chat(user, SPAN_NOTICE("You grab \the [target] with \the [src]."))
+	to_chat(user, SPAN_NOTICE("你用[src]夹起了[target]。"))
 	playsound(src, sound, 40, 1)
 	update_icon(target_tag)
 	target.update_icon()
@@ -328,8 +328,8 @@
 //--------------------LOADER WRECKAGE-----------------
 
 /obj/structure/powerloader_wreckage
-	name = "\improper Caterpillar P-5000 Work Loader wreckage"
-	desc = "Remains of some unfortunate Power Loader. Completely unrepairable."
+	name = "\improper 卡特彼勒P-5000动力装载机残骸"
+	desc = "某台不幸的动力装载机留下的残骸，已经完全无法修复。"
 	icon = 'icons/obj/vehicles/powerloader.dmi'
 	icon_state = "wreck"
 	density = TRUE
@@ -344,12 +344,12 @@
 		return XENO_NO_DELAY_ACTION
 
 	if(attacking_xeno.mob_size < MOB_SIZE_XENO)
-		to_chat(attacking_xeno, SPAN_XENOWARNING("You're too small to do any significant damage to this vehicle!"))
+		to_chat(attacking_xeno, SPAN_XENOWARNING("你的体型太小，无法对这辆载具造成明显伤害！"))
 		return XENO_NO_DELAY_ACTION
 
 	attacking_xeno.animation_attack_on(src)
 
-	attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno] slashes [src]!"), SPAN_DANGER("You slash [src]!"))
+	attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno]抓挠了[src]！"), SPAN_DANGER("你抓挠了[src]！"))
 	playsound(attacking_xeno, pick('sound/effects/metalhit.ogg', 'sound/weapons/alien_claw_metal1.ogg', 'sound/weapons/alien_claw_metal2.ogg', 'sound/weapons/alien_claw_metal3.ogg'), 25, 1)
 
 	var/damage = (attacking_xeno.melee_vehicle_damage + rand(-5,5))
@@ -362,12 +362,12 @@
 	return XENO_NONCOMBAT_ACTION
 
 /obj/structure/powerloader_wreckage/jd
-	name = "\improper John Deere 4300 Power Loader wreckage"
+	name = "\improper 约翰迪尔4300动力装载机残骸"
 	icon_state = "wreck_jd"
 
 /obj/vehicle/powerloader/jd
-	name = "\improper John Deere 4300 Power Loader"
-	desc = "The John Deere 4300 Power Loader is a commercial mechanized exoskeleton used for lifting heavy materials and objects based on the Caterpillar P-5000, first designed in January 29, 2025 by the Weyland Corporation. An old but trusted design used in warehouses, constructions and military ships everywhere. This one has a signature green and yellow livery."
+	name = "\improper 约翰迪尔4300动力装载机"
+	desc = "约翰迪尔4300动力装载机是一种用于搬运重型材料和物件的商用机械外骨骼，以维兰德公司于2025年1月29日最初设计的卡特彼勒P-5000为基础。它虽已老旧，但可靠耐用，广泛用于仓库、建筑工地和军舰。这台采用标志性的绿黄涂装。"
 	icon_state = "powerloader_open_jd"
 	base_state = "powerloader_jd"
 	open_state = "powerloader_open_jd"
@@ -375,12 +375,12 @@
 	wreckage = /obj/structure/powerloader_wreckage/jd
 
 /obj/structure/powerloader_wreckage/ft
-	name = "\improper Ferret Heavy Industries Mk4 Power Loader wreckage"
+	name = "\improper 雪貂重工Mk4动力装载机残骸"
 	icon_state = "wreck_ft"
 
 /obj/vehicle/powerloader/ft
-	name = "\improper Ferret Heavy Industries Mk4 Power Loader"
-	desc = "The Ferret Heavy Industries Mk4 Power Loader is a commercial mechanized exoskeleton used for lifting heavy materials and objects based on the Caterpillar P-5000, first designed in January 29, 2025 by the Weyland Corporation. An old but trusted design used in warehouses, constructions and military ships everywhere. This one has the signature blue and white livery of the now defunct Ferret Heavy Industries that went bankrupt two years ago."
+	name = "\improper 雪貂重工Mk4动力装载机"
+	desc = "雪貂重工Mk4动力装载机是一种用于搬运重型材料和物件的商用机械外骨骼，以维兰德公司于2025年1月29日最初设计的卡特彼勒P-5000为基础。它虽已老旧，但可靠耐用，广泛用于仓库、建筑工地和军舰。这台采用雪貂重工标志性的蓝白涂装，而该公司已于两年前破产。"
 	icon_state = "powerloader_open_ft"
 	base_state = "powerloader_ft"
 	open_state = "powerloader_open_ft"

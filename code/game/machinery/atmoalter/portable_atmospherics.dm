@@ -1,5 +1,5 @@
 /obj/structure/machinery/portable_atmospherics
-	name = "atmoalter"
+	name = "大气调节设备"
 	use_power = USE_POWER_NONE
 	var/destroyed = 0
 
@@ -10,9 +10,9 @@
 
 /obj/structure/machinery/portable_atmospherics/attackby(obj/item/W, mob/user)
 	if((istype(W, /obj/item/device/analyzer)) && Adjacent(user))
-		visible_message(SPAN_DANGER("[user] has used [W] on [icon2html(icon, viewers(src))]"))
-		to_chat(user, SPAN_NOTICE(" Results of analysis of [icon2html(icon, user)]"))
-		to_chat(user, SPAN_NOTICE(" Tank is empty!"))
+		visible_message(SPAN_DANGER("[user]对[icon2html(icon, viewers(src))]使用了[W]。"))
+		to_chat(user, SPAN_NOTICE("[icon2html(icon, user)]的分析结果："))
+		to_chat(user, SPAN_NOTICE("储罐是空的！"))
 
 
 
@@ -26,7 +26,7 @@
 /obj/structure/machinery/portable_atmospherics/powered/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/cell))
 		if(cell)
-			to_chat(user, "There is already a power cell installed.")
+			to_chat(user, "已经装有一块电池了。")
 			return
 
 		var/obj/item/cell/C = I
@@ -34,15 +34,15 @@
 		if(user.drop_inv_item_to_loc(C, src))
 			C.add_fingerprint(user)
 			cell = C
-			user.visible_message(SPAN_NOTICE("[user] opens the panel on [src] and inserts [C]."), SPAN_NOTICE("You open the panel on [src] and insert [C]."))
+			user.visible_message(SPAN_NOTICE("[user]打开[src]的面板，放入了[C]。"), SPAN_NOTICE("你打开[src]的面板，放入了[C]。"))
 		return
 
 	if(HAS_TRAIT(I, TRAIT_TOOL_SCREWDRIVER))
 		if(!cell)
-			to_chat(user, SPAN_DANGER("There is no power cell installed."))
+			to_chat(user, SPAN_DANGER("没有安装电池。"))
 			return
 
-		user.visible_message(SPAN_NOTICE("[user] opens the panel on [src] and removes [cell]."), SPAN_NOTICE("You open the panel on [src] and remove [cell]."))
+		user.visible_message(SPAN_NOTICE("[user]打开[src]的面板，取出了[cell]。"), SPAN_NOTICE("你打开[src]的面板，取出了[cell]。"))
 		cell.add_fingerprint(user)
 		cell.forceMove(loc)
 		cell = null

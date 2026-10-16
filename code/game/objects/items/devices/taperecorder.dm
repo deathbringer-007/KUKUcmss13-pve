@@ -1,6 +1,6 @@
 /obj/item/device/taperecorder
-	name = "tape recorder"
-	desc = "A device that can record dialogue using magnetic tapes. It automatically translates the content in playback."
+	name = "录音机"
+	desc = "使用磁带记录对话的设备，播放时会自动翻译录音内容。"
 	icon = 'icons/obj/items/walkman.dmi'
 	icon_state = "taperecorder_idle"
 	item_state = "analyzer"
@@ -46,35 +46,35 @@
 /obj/item/device/taperecorder/proc/readout()
 	if(mytape)
 		if(playing)
-			return SPAN_NOTICE("<b>PLAYING</b>")
+			return SPAN_NOTICE("<b>正在播放</b>")
 		else
 			var/time = mytape.used_capacity / 10 //deciseconds / 10 = seconds
 			var/mins = floor(time / 60)
 			var/secs = time - mins * 60
-			return SPAN_NOTICE("<b>[mins]</b>m <b>[secs]</b>s")
-	return SPAN_NOTICE("<b>NO TAPE INSERTED</b>")
+			return SPAN_NOTICE("<b>[mins]</b> 分 <b>[secs]</b> 秒")
+	return SPAN_NOTICE("<b>未插入磁带</b>")
 
 /obj/item/device/taperecorder/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_INFO("Alt-clicking it in your hand will make it playback, if it's next to you it will open the use menu.")
+	. += SPAN_INFO("按住 Alt 点击手中的录音机即可播放；若录音机在你身旁，则会打开操作菜单。")
 	if(in_range(src, user) || isobserver(user))
-		. += SPAN_NOTICE("The display reads:")
+		. += SPAN_NOTICE("显示屏上写着：")
 		. += "[readout()]"
 
 /obj/item/device/taperecorder/proc/update_available_icons()
 	icons_available = list()
 
 	if(!playing && !recording)
-		icons_available += list("Record" = image(radial_icon_file,"record"))
-		icons_available += list("Play" = image(radial_icon_file,"play"))
+		icons_available += list("录音" = image(radial_icon_file,"record"))
+		icons_available += list("播放" = image(radial_icon_file,"play"))
 		if(canprint && length(mytape?.storedinfo))
-			icons_available += list("Print Transcript" = image(radial_icon_file,"print"))
+			icons_available += list("打印录音文字稿" = image(radial_icon_file,"print"))
 
 	if(playing || recording)
-		icons_available += list("Stop" = image(radial_icon_file,"stop"))
+		icons_available += list("停止" = image(radial_icon_file,"stop"))
 
 	if(mytape)
-		icons_available += list("Eject" = image(radial_icon_file,"eject"))
+		icons_available += list("弹出" = image(radial_icon_file,"eject"))
 
 
 /obj/item/device/taperecorder/proc/update_sound()
@@ -89,7 +89,7 @@
 		if(!user.drop_inv_item_to_loc(I, src))
 			return
 		mytape = I
-		to_chat(user, SPAN_NOTICE("You insert [I] into [src]."))
+		to_chat(user, SPAN_NOTICE("你将[I]放入[src]。"))
 		playsound(src, 'sound/items/taperecorder/taperecorder_close.ogg', 50, FALSE)
 		update_icon()
 
@@ -97,7 +97,7 @@
 /obj/item/device/taperecorder/proc/eject(mob/user)
 	if(mytape)
 		playsound(src, 'sound/items/taperecorder/taperecorder_open.ogg', 50, FALSE)
-		to_chat(user, SPAN_NOTICE("You remove [mytape] from [src]."))
+		to_chat(user, SPAN_NOTICE("你从[src]中取出[mytape]。"))
 		stop()
 		user.put_in_hands(mytape)
 		mytape = null
@@ -137,8 +137,8 @@
 
 
 /obj/item/device/taperecorder/verb/ejectverb()
-	set name = "Eject Tape"
-	set category = "Object"
+	set name = "弹出磁带"
+	set category = "物品"
 
 	if(!can_use(usr))
 		return
@@ -167,14 +167,14 @@
 	if(mytape && recording)
 		mytape.timestamp += mytape.used_capacity
 		var/language_known = (M.universal_speak || (speaking && (speaking.name in known_languages)))
-		var/mob_name = language_known ? M.GetVoice() : "Unknown"
+		var/mob_name = language_known ? M.GetVoice() : "未知说话者"
 		var/message = (!speaking || language_known) ? msg : speaking.scramble(msg)
-		mytape.storedinfo += "\[[time2text(mytape.used_capacity,"mm:ss")]\] [mob_name] [verb], \"[italics ? "<i>" : null][message][italics ? "</i>" : null]\""
+		mytape.storedinfo += "\[[time2text(mytape.used_capacity,"mm:ss")]\] [mob_name][verb]：“[italics ? "<i>" : null][message][italics ? "</i>" : null]”"
 
 
 /obj/item/device/taperecorder/verb/record()
-	set name = "Start Recording"
-	set category = "Object"
+	set name = "开始录音"
+	set category = "物品"
 
 	if(!can_use(usr))
 		return
@@ -189,7 +189,7 @@
 
 	if(mytape.used_capacity < mytape.max_capacity)
 		recording = TRUE
-		audible_message(SPAN_MAROON("[icon2html(src, usr)] Recording started."))
+		audible_message(SPAN_MAROON("[icon2html(src, usr)] 已开始录音。"))
 		update_sound()
 		update_icon()
 		var/used = mytape.used_capacity //to stop runtimes when you eject the tape
@@ -199,38 +199,38 @@
 			used += 1 SECONDS
 			if(max - used < time_left_warning && !time_warned)
 				time_warned = TRUE
-				audible_message(SPAN_MAROON("[icon2html(src, usr)] [(max - used) / 10] seconds left!")) //deciseconds / 10 = seconds
+				audible_message(SPAN_MAROON("[icon2html(src, usr)] 还可录制 [(max - used) / 10] 秒！")) //deciseconds / 10 = seconds
 			sleep(1 SECONDS)
 		if(used >= max)
-			audible_message(SPAN_MAROON("[icon2html(src, usr)] Tape full."))
+			audible_message(SPAN_MAROON("[icon2html(src, usr)] 磁带已录满。"))
 		stop()
 	else
-		audible_message(SPAN_MAROON("[icon2html(src, usr)] The tape is full!"))
+		audible_message(SPAN_MAROON("[icon2html(src, usr)] 磁带已录满！"))
 		playsound(src, 'sound/items/taperecorder/taperecorder_stop.ogg', 50, FALSE)
 
 
 /obj/item/device/taperecorder/verb/stop()
-	set name = "Stop"
-	set category = "Object"
+	set name = "停止"
+	set category = "物品"
 
 	if(!can_use(usr))
 		return
 
 	if(recording)
 		playsound(src, 'sound/items/taperecorder/taperecorder_stop.ogg', 50, FALSE)
-		audible_message(SPAN_MAROON("[icon2html(src, usr)] Recording stopped."))
+		audible_message(SPAN_MAROON("[icon2html(src, usr)] 已停止录音。"))
 		recording = FALSE
 	else if(playing)
 		playsound(src, 'sound/items/taperecorder/taperecorder_stop.ogg', 50, FALSE)
-		audible_message(SPAN_MAROON("[icon2html(src, usr)] Playback stopped."))
+		audible_message(SPAN_MAROON("[icon2html(src, usr)] 已停止播放。"))
 		playing = FALSE
 	time_warned = FALSE
 	update_icon()
 	update_sound()
 
 /obj/item/device/taperecorder/verb/play()
-	set name = "Play Tape"
-	set category = "Object"
+	set name = "播放磁带"
+	set category = "物品"
 
 	if(!can_use(usr))
 		return
@@ -242,13 +242,13 @@
 		return
 
 	if(length(mytape.storedinfo) < 1)
-		audible_message(SPAN_MAROON("[icon2html(src, usr)] Tape has no data."))
+		audible_message(SPAN_MAROON("[icon2html(src, usr)] 磁带中没有录音。"))
 		return
 
 	playing = TRUE
 	update_icon()
 	update_sound()
-	audible_message(SPAN_MAROON("[icon2html(src, usr)] Playback started."))
+	audible_message(SPAN_MAROON("[icon2html(src, usr)] 已开始播放。"))
 	playsound(src, 'sound/items/taperecorder/taperecorder_play.ogg', 50, FALSE)
 	var/used = mytape.used_capacity //to stop runtimes when you eject the tape
 	var/max = mytape.max_capacity
@@ -258,7 +258,7 @@
 		if(playing == FALSE)
 			break
 		if(length(mytape.storedinfo) < i)
-			audible_message(SPAN_MAROON("[icon2html(src, usr)] End of recording."))
+			audible_message(SPAN_MAROON("[icon2html(src, usr)] 录音结束。"))
 			break
 
 		var/list/heard = get_mobs_in_view(GLOB.world_view_size, src)
@@ -272,8 +272,8 @@
 			playsleepseconds = mytape.timestamp[i + 1] - mytape.timestamp[i]
 		if(playsleepseconds > 14 SECONDS)
 			sleep(1 SECONDS)
-			langchat_speech("Skipping [playsleepseconds/10] seconds of silence", heard, GLOB.all_languages, skip_language_check = TRUE, additional_styles = list("langchat_small"))
-			audible_message(SPAN_MAROON("[icon2html(src, usr)] Skipping [playsleepseconds/10] seconds of silence."))
+			langchat_speech("跳过 [playsleepseconds/10] 秒静音", heard, GLOB.all_languages, skip_language_check = TRUE, additional_styles = list("langchat_small"))
+			audible_message(SPAN_MAROON("[icon2html(src, usr)] 跳过 [playsleepseconds/10] 秒静音。"))
 			playsleepseconds = 1 SECONDS
 		i++
 
@@ -283,10 +283,10 @@
 /obj/item/device/taperecorder/attack_self(mob/user)
 	. = ..()
 	if(!mytape)
-		to_chat(user, SPAN_NOTICE("\The [src] is empty."))
+		to_chat(user, SPAN_NOTICE("[src]里没有磁带。"))
 		return
 	if(mytape.unspooled)
-		to_chat(user, SPAN_WARNING("\The tape inside \the [src] is broken!"))
+		to_chat(user, SPAN_WARNING("[src]里面的磁带坏了！"))
 		return
 
 	update_available_icons()
@@ -295,20 +295,20 @@
 		if(!selection)
 			return
 		switch(selection)
-			if("Stop")
+			if("停止")
 				stop()
-			if("Record")
+			if("录音")
 				record()
-			if("Play")
+			if("播放")
 				play()
-			if("Print Transcript")
+			if("打印录音文字稿")
 				print_transcript()
-			if("Eject")
+			if("弹出")
 				eject(user)
 
 /obj/item/device/taperecorder/verb/print_transcript()
-	set name = "Print Transcript"
-	set category = "Object"
+	set name = "打印录音文字稿"
+	set category = "物品"
 
 	if(!length(mytape.storedinfo))
 		return
@@ -317,21 +317,21 @@
 	if(!mytape)
 		return
 	if(!canprint)
-		to_chat(usr, SPAN_WARNING("The recorder can't print that fast!"))
+		to_chat(usr, SPAN_WARNING("录音机无法这么快再次打印！"))
 		return
 	if(recording || playing)
 		return
 
-	audible_message(SPAN_MAROON("[icon2html(src, usr)] Transcript printed."))
+	audible_message(SPAN_MAROON("[icon2html(src, usr)] 录音文字稿已打印。"))
 	playsound(src, 'sound/items/taperecorder/taperecorder_print.ogg', 50, FALSE)
 	var/obj/item/paper/sheet_of_paper = new /obj/item/paper(get_turf(src))
-	var/t1 = "<B>Transcript:</B><BR><BR>"
+	var/t1 = "<B>录音文字稿：</B><BR><BR>"
 	for(var/i in 1 to length(mytape.storedinfo))
 		t1 += "[mytape.storedinfo[i]]<BR>"
 	sheet_of_paper.info = t1
 	var/tapename = mytape.name
 	var/prototapename = initial(mytape.name)
-	sheet_of_paper.name = "paper- '[tapename == prototapename ? "Tape" : "[tapename]"] Transcript'"
+	sheet_of_paper.name = "录音文字稿——[tapename == prototapename ? "磁带" : "[tapename]"]"
 	sheet_of_paper.update_icon()
 	usr.put_in_hands(sheet_of_paper)
 	canprint = FALSE
@@ -342,8 +342,8 @@
 	starting_tape_type = null
 
 /obj/item/tape
-	name = "tape"
-	desc = "A magnetic tape that can hold up to twenty minutes of content on either side. Has a little paper strip on the top to let you label it with a pen."
+	name = "录音带"
+	desc = "每面最多可录制二十分钟内容的磁带。顶部有一条小纸签，可用笔写上标签。"
 	icon_state = "cassette_gray"
 	icon = 'icons/obj/items/walkman.dmi'
 	item_state = "analyzer"
@@ -380,24 +380,24 @@
 	. = ..()
 	if(in_range(src, user) || isobserver(user))
 		if(unspooled)
-			. += SPAN_WARNING("It's had all its magnetic tape pulled out! Maybe you can wind it back in with a screwdriver.")
+			. += SPAN_WARNING("里面的磁带全被抽出来了！也许可以用螺丝刀将它卷回去。")
 		else
 			var/used_tape_percent = floor((used_capacity / max_capacity)*100)
 			switch(used_tape_percent)
 				if(0 to 5)
-					. += SPAN_NOTICE("It's unused.")
+					. += SPAN_NOTICE("它还没有使用过。")
 				if(5 to 25)
-					. += SPAN_NOTICE("A bit of the tape has been used.")
+					. += SPAN_NOTICE("磁带已录了一小部分。")
 				if(26 to 50)
-					. += SPAN_NOTICE("It's a bit under half used.")
+					. += SPAN_NOTICE("磁带已录了不到一半。")
 				if(51 to 75)
-					. += SPAN_NOTICE("It's a bit over half used.")
+					. += SPAN_NOTICE("磁带已录了超过一半。")
 				if(75 to 90)
-					. += SPAN_WARNING("It's almost fully used!")
+					. += SPAN_WARNING("磁带快录满了！")
 				if(90 to 99)
-					. += SPAN_WARNING("Just a tiny bit of tape left!")
+					. += SPAN_WARNING("只剩一点点可录制空间了！")
 				if(100)
-					. += SPAN_WARNING("It's fully used up.")
+					. += SPAN_WARNING("磁带已完全录满。")
 
 /obj/item/tape/fire_act(exposed_temperature, exposed_volume)
 	unspool()
@@ -420,15 +420,15 @@
 	icons_available = list()
 
 	if(!unspooled)
-		icons_available += list("Unwind tape" = image(radial_icon_file,"tape_unwind"))
-	icons_available += list("Flip tape" = image(radial_icon_file,"tape_flip"))
+		icons_available += list("抽出磁带" = image(radial_icon_file,"tape_unwind"))
+	icons_available += list("磁带翻面" = image(radial_icon_file,"tape_flip"))
 
 /obj/item/tape/attack_self(mob/user)
 	. = ..()
 
 	if(unspooled)
 		tapeflip()
-		to_chat(user, SPAN_NOTICE("You turn \the [src] over."))
+		to_chat(user, SPAN_NOTICE("你将[src]翻面。"))
 		playsound(src, 'sound/items/taperecorder/tape_flip.ogg', 70, FALSE)
 		return
 
@@ -438,17 +438,17 @@
 		if(!selection)
 			return
 		switch(selection)
-			if("Flip tape")
+			if("磁带翻面")
 				if(loc != user)
 					return
 				tapeflip()
-				to_chat(user, SPAN_NOTICE("You turn \the [src] over."))
+				to_chat(user, SPAN_NOTICE("你将[src]翻面。"))
 				playsound(src, 'sound/items/taperecorder/tape_flip.ogg', 70, FALSE)
-			if("Unwind tape")
+			if("抽出磁带")
 				if(loc != user)
 					return
 				unspool()
-				to_chat(user, SPAN_WARNING("You pull out all the tape!"))
+				to_chat(user, SPAN_WARNING("你把磁带全抽了出来！"))
 
 /obj/item/tape/attackby(obj/item/W, mob/user)
 	. = ..()
@@ -456,11 +456,11 @@
 		if(!unspooled)
 			return FALSE
 		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-		to_chat(user, SPAN_NOTICE("You start winding the tape back in..."))
+		to_chat(user, SPAN_NOTICE("你开始将磁带卷回去……"))
 		if(!(do_after(user, 5 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC)))
-			to_chat(user, SPAN_NOTICE("You stop rewinding the tape."))
+			to_chat(user, SPAN_NOTICE("你停止卷回磁带。"))
 			return
-		to_chat(user, SPAN_NOTICE("You wind the tape back in."))
+		to_chat(user, SPAN_NOTICE("你将磁带卷了回去。"))
 		respool()
 
 /obj/item/tape/proc/unspool()
@@ -505,5 +505,5 @@
 	. = ..()
 
 /obj/item/tape/regulation
-	name = "regulation tape"
+	name = "制式录音带"
 	icon_state = "cassette_regulation"

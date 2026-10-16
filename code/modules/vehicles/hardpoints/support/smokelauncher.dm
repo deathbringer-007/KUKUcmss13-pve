@@ -1,6 +1,6 @@
 /obj/item/hardpoint/support/smoke_launcher
-	name = "\improper M-39P Smoke Discharger"
-	desc = "A support module for ATVs that shoots M60 incendiary smoke grenades to deter hitchhikers."
+	name = "\improper M-39P烟幕发射器"
+	desc = "全地形车用支援模块，可发射M60燃烧烟幕弹，吓退想搭便车的家伙。"
 	icon = 'icons/obj/vehicles/hardpoints/apc.dmi'
 
 	icon_state = "slauncher"
@@ -29,8 +29,8 @@
 	))
 
 /obj/item/hardpoint/support/smoke_launcher/aev
-	name = "\improper M-39Q Smoke Discharger"
-	desc = "A support module for AEVs that shoots M60 incendiary smoke grenades to deter hitchhikers."
+	name = "\improper M-39Q烟幕发射器"
+	desc = "装甲工程车用支援模块，可发射M60燃烧烟幕弹，吓退想搭便车的家伙。"
 	icon = 'icons/obj/vehicles/hardpoints/tank.dmi'
 
 	icon_state = "slauncher_0"

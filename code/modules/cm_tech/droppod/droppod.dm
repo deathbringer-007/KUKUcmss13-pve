@@ -1,5 +1,5 @@
 /obj/structure/droppod
-	name = "\improper droppod"
+	name = "\improper 空投舱"
 
 	icon = 'icons/obj/structures/droppod_32x64.dmi'
 	icon_state = "techpod_closed"

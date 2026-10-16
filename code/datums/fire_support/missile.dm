@@ -1,16 +1,16 @@
 /datum/fire_support/missile
-	name = "LGM strike"
+	name = "激光制导导弹打击"
 	fire_support_firer = FIRESUPPORT_CAS
 	fire_support_type = FIRESUPPORT_TYPE_MISSILE
 	scatter_range = 1
 	cost = 4
 	icon_state = "missile"
-	initiate_chat_message = "TARGET ACQUIRED MISSILE INBOUND."
+	initiate_chat_message = "目标已锁定，导弹即将抵达。"
 	initiate_screen_message = list(
-		"TGP on lase, one out.",
-		"Hope that target's worth it, sending one.",
-		"One big boom, on the way.",
-		"Missile inbound, keep your heads down.",
+		"瞄准吊舱已锁定激光标记，一发导弹已出。",
+		"希望这个目标值得，一发导弹出去了。",
+		"一份大爆炸，马上送到。",
+		"导弹来了，都把头低下。",
 		)
 	initiate_sound = 'sound/effects/IncomingRocket.ogg'
 	start_visual = null
@@ -32,14 +32,14 @@
 	fire_support_firer = FIRESUPPORT_CAS_UPP
 	fire_support_type = FIRESUPPORT_TYPE_MISSILE_UPP
 	portrait_type = "pilot_red"
-	initiate_title = "Pig-1"
+	initiate_title = "野猪一号"
 
 /datum/fire_support/missile/napalm
-	name = "Napalm strike"
+	name = "凝固汽油弹打击"
 	fire_support_type = FIRESUPPORT_TYPE_NAPALM_MISSILE
 	cost = 3
 	icon_state = "napalm_missile"
-	initiate_chat_message = "TARGET ACQUIRED NAPALM MISSILE INBOUND."
+	initiate_chat_message = "目标已锁定，凝固汽油导弹即将抵达。"
 	impact_start_visual = /obj/effect/temp_visual/falling_obj/napalm
 
 /datum/fire_support/missile/napalm/do_impact(turf/target_turf)
@@ -51,14 +51,14 @@
 	fire_support_firer = FIRESUPPORT_CAS_UPP
 	fire_support_type = FIRESUPPORT_TYPE_NAPALM_MISSILE_UPP
 	portrait_type = "pilot_red"
-	initiate_title = "Pig-1"
+	initiate_title = "野猪一号"
 
 /datum/fire_support/missile/smoke
-	name = "SMK missile"
+	name = "烟幕导弹"
 	fire_support_type = FIRESUPPORT_TYPE_SMOKE_MISSILE
 	cost = 2
 	icon_state = "smoke_missile"
-	initiate_chat_message = "TARGET ACQUIRED SMOKE MISSILE INBOUND."
+	initiate_chat_message = "目标已锁定，烟幕导弹即将抵达。"
 	impact_start_visual = /obj/effect/temp_visual/falling_obj/banshee
 	///smoke type created when the grenade is primed
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
@@ -78,14 +78,14 @@
 	fire_support_firer = FIRESUPPORT_CAS_UPP
 	fire_support_type = FIRESUPPORT_TYPE_SMOKE_MISSILE_UPP
 	portrait_type = "pilot_red"
-	initiate_title = "Pig-1"
+	initiate_title = "野猪一号"
 
 /datum/fire_support/missile/smoke/nerve
-	name = "CN-20 missile"
+	name = "CN-20神经毒气导弹"
 	fire_support_type = FIRESUPPORT_TYPE_NERVE_MISSILE_UPP
 	cost = 3
 	icon_state = "nerve_missile"
-	initiate_screen_message = list("Nerve gas, inbound!")
+	initiate_screen_message = list("神经毒气弹来了！")
 	smoketype = /datum/effect_system/smoke_spread/cn20
 	smoke_duration = 30
 
@@ -94,14 +94,14 @@
 	fire_support_firer = FIRESUPPORT_CAS_UPP
 	fire_support_type = FIRESUPPORT_TYPE_NERVE_MISSILE_UPP
 	portrait_type = "pilot_red"
-	initiate_title = "Pig-1"
+	initiate_title = "野猪一号"
 
 /datum/fire_support/missile/smoke/lsd
-	name = "LSD missile"
+	name = "LSD致幻气体导弹"
 	fire_support_type = FIRESUPPORT_TYPE_LSD_MISSILE_UPP
 	cost = 2
 	icon_state = "lsd_missile"
-	initiate_screen_message = list("LSD gas, inbound!")
+	initiate_screen_message = list("LSD致幻气体弹来了！")
 	smoketype = /datum/effect_system/smoke_spread/LSD
 	smoke_duration = 30
 
@@ -110,4 +110,4 @@
 	fire_support_firer = FIRESUPPORT_CAS_UPP
 	fire_support_type = FIRESUPPORT_TYPE_LSD_MISSILE_UPP
 	portrait_type = "pilot_red"
-	initiate_title = "Pig-1"
+	initiate_title = "野猪一号"

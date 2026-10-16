@@ -1,12 +1,12 @@
 /obj/structure/closet/secure_closet/guncabinet/blue
-	name = "blue level gun cabinet"
+	name = "蓝色警戒枪柜"
 	req_level = SEC_LEVEL_BLUE
 
 //riot gear control cabinet adding vehicle clamp to it to...
 // make more sense than in red alert cabinet.
 
 /obj/structure/closet/secure_closet/guncabinet/blue/riot_control
-	name = "riot control equipment closet"
+	name = "防暴装备柜"
 	storage_capacity = 55 //lots of stuff to fit in
 	req_level = SEC_LEVEL_BLUE
 

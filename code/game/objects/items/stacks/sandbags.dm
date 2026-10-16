@@ -1,8 +1,8 @@
 //Empty sandbags
 /obj/item/stack/sandbags_empty
-	name = "empty sandbags"
-	desc = "Some empty sandbags, best to fill them up if you want to use them."
-	singular_name = "sandbag"
+	name = "空沙袋"
+	desc = "一些空沙袋，使用之前最好先装满。"
+	singular_name = "沙袋"
 	icon = 'icons/obj/items/marine-items.dmi'
 	icon_state = "sandbag_stack"
 	item_state = "sandbag_stack"
@@ -12,14 +12,14 @@
 	throw_speed = SPEED_VERY_FAST
 	throw_range = 20
 	max_amount = 50
-	attack_verb = list("hit", "slapped", "whacked")
+	attack_verb = list("击打", "拍打", "猛击")
 	stack_id = "empty sandbags"
 
 /obj/item/stack/sandbags_empty/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/tool/shovel))
 		var/obj/item/tool/shovel/ET = W
 		if(MODE_HAS_TOGGLEABLE_FLAG(MODE_NO_MAKE_BARRICADES))
-			to_chat(usr, SPAN_WARNING("The sandbags cannot be filled!"))
+			to_chat(usr, SPAN_WARNING("无法填装沙袋！"))
 			return
 		if(ET.dirt_amt)
 			ET.dirt_amt--
@@ -57,9 +57,9 @@
 
 //Full sandbags
 /obj/item/stack/sandbags
-	name = "sandbags"
-	desc = "Some bags filled with sand. For now, just cumbersome, but soon to be used for fortifications."
-	singular_name = "sandbag"
+	name = "沙袋"
+	desc = "装满沙子的袋子。眼下搬着累赘，很快就能成为防御工事。"
+	singular_name = "沙袋"
 	icon = 'icons/obj/items/marine-items.dmi'
 	icon_state = "sandbag_pile"
 	item_state = "sandbag_pile"
@@ -69,7 +69,7 @@
 	throw_speed = SPEED_VERY_FAST
 	throw_range = 20
 	max_amount = 50
-	attack_verb = list("hit", "bludgeoned", "whacked")
+	attack_verb = list("击打", "重击", "猛击")
 	stack_id = "sandbags"
 
 /obj/item/stack/sandbags/large_stack
@@ -85,12 +85,12 @@
 	if(!isturf(user.loc))
 		return
 	if(istype(user.loc, /turf/open/shuttle))
-		to_chat(user, SPAN_WARNING("No. This area is needed for the dropships and personnel."))
+		to_chat(user, SPAN_WARNING("不行。这里必须留给运输机和人员通行。"))
 		return
 	if(!istype(user.loc, /turf/open))
 		var/turf/open/OT = user.loc
 		if(!OT.allow_construction)
-			to_chat(user, SPAN_WARNING("The sandbag barricade must be constructed on a proper surface!"))
+			to_chat(user, SPAN_WARNING("沙袋路障必须建在合适的地面上！"))
 			return
 
 	//Using same safeties as other constructions
@@ -99,24 +99,24 @@
 		if(O.density)
 			if(O.flags_atom & ON_BORDER)
 				if(O.dir == user.dir)
-					to_chat(user, SPAN_WARNING("There is already \a [O.name] in this direction!"))
+					to_chat(user, SPAN_WARNING("这个方向已经有[O.name]了！"))
 					return
 			else
-				to_chat(user, SPAN_WARNING("You need a clear, open area to build the sandbag barricade!"))
+				to_chat(user, SPAN_WARNING("你需要一片没有障碍物的空地才能建造沙袋路障！"))
 				return
 		if(AC)
-			to_chat(usr, SPAN_WARNING("The [O.name] cannot be built here!"))
+			to_chat(usr, SPAN_WARNING("这里不能建造[O.name]！"))
 			return
 
 	if(MODE_HAS_TOGGLEABLE_FLAG(MODE_NO_MAKE_BARRICADES))
-		to_chat(usr, SPAN_WARNING("The sandbags cannot be placed."))
+		to_chat(usr, SPAN_WARNING("无法放置沙袋。"))
 		return
 
 	if(user.action_busy)
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] starts assembling a sandbag barricade."),
-	SPAN_NOTICE("You start assembling a sandbag barricade."))
+	user.visible_message(SPAN_NOTICE("[user]开始堆砌沙袋路障。"),
+	SPAN_NOTICE("你开始堆砌沙袋路障。"))
 
 	if(!do_after(user, 10, INTERRUPT_NO_NEEDHAND|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		return
@@ -131,8 +131,8 @@
 		build_stack = 5
 
 	var/obj/structure/barricade/sandbags/SB = new(user.loc, user, user.dir, build_stack)
-	user.visible_message(SPAN_NOTICE("[user] assembles a sandbag barricade."),
-	SPAN_NOTICE("You assemble a sandbag barricade."))
+	user.visible_message(SPAN_NOTICE("[user]堆好了沙袋路障。"),
+	SPAN_NOTICE("你堆好了沙袋路障。"))
 	SB.setDir(user.dir)
 	SB.add_fingerprint(user)
 	use(build_stack)

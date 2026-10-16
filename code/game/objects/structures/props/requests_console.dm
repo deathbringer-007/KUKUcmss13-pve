@@ -1,6 +1,6 @@
 /obj/structure/machinery/requests_console
-	name = "Requests Console"
-	desc = "A console intended to send requests to different departments on the station."
+	name = "请求控制台"
+	desc = "用于向空间站各部门发送请求的控制台。"
 	anchored = TRUE
 	icon = 'icons/obj/structures/machinery/terminals.dmi'
 	icon_state = "req_comp0"

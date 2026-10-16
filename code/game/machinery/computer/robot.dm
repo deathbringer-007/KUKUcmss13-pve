@@ -2,8 +2,8 @@
 
 
 /obj/structure/machinery/computer/robotics
-	name = "Robotics Control"
-	desc = "Used to remotely lockdown or detonate linked Cyborgs."
+	name = "机器人控制台"
+	desc = "用于远程锁定或引爆已连接的赛博格。"
 	icon = 'icons/obj/structures/machinery/computer.dmi'
 	icon_state = "robot"
 	req_access = list(ACCESS_MARINE_RESEARCH)

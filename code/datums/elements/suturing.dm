@@ -24,8 +24,8 @@
 	//ex. 'wounds', "the []"
 	var/description_wounds
 
-/datum/element/suturing/Attach(datum/target, brute, burns, time_per_point, desc_verb = "treat", \
-	desc_verbing = "treating", desc_pain = "hurts", desc_wounds = "wounds")
+/datum/element/suturing/Attach(datum/target, brute, burns, time_per_point, desc_verb = "处理", \
+	desc_verbing = "处理", desc_pain = "疼痛难忍", desc_wounds = "伤口")
 	. = ..()
 	if(!brute && !burns || !time_per_point)
 		return ELEMENT_INCOMPATIBLE
@@ -60,7 +60,7 @@ YOU TO 200 DAMAGE. I ASK NOT FOR MY OWN MEDIC EGOSTROKING, BUT FOR THE GOOD OF T
 	if(!ishuman(target) || user.a_intent == INTENT_HARM)
 		return
 	if(!skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_MEDIC))
-		to_chat(user, SPAN_WARNING("You don't know how to [description_verb] [user == target ? "yourself" : target] with \the [suturing_item]!"))
+		to_chat(user, SPAN_WARNING("你不知道如何使用[suturing_item]为[user == target ? "自己" : target]进行[description_verb]！"))
 		return
 
 	INVOKE_ASYNC(src, PROC_REF(suture), suturing_item, user, target, target.get_limb(check_zone(user.zone_selected))) //do_after sleeps.
@@ -71,13 +71,13 @@ YOU TO 200 DAMAGE. I ASK NOT FOR MY OWN MEDIC EGOSTROKING, BUT FOR THE GOOD OF T
 		return
 
 	if(!target_limb || target_limb.status & LIMB_DESTROYED)
-		to_chat(user, SPAN_WARNING("[user == target ? "You have" : "\The [target] has"] no [target_limb.display_name]!"))
+		to_chat(user, SPAN_WARNING("[user == target ? "你" : "[target]"]没有[target_limb.display_name]！"))
 		return
 	if(target_limb.status & (LIMB_ROBOT|LIMB_SYNTHSKIN))
-		to_chat(user, SPAN_WARNING("You can't repair a robotic limb with \the [suturing_item]!"))
+		to_chat(user, SPAN_WARNING("你无法使用[suturing_item]修复机械肢体！"))
 		return
 	if(target_limb.get_incision_depth())
-		to_chat(user, SPAN_WARNING("[user == target ? "Your" : "\The [target]'s"] [target_limb.display_name] has been cut open and needs to be closed surgically!"))
+		to_chat(user, SPAN_WARNING("[user == target ? "你的" : "[target]的"][target_limb.display_name]已被切开，需要通过手术闭合切口！"))
 		return
 
 	//Figure out how much damage we can suture.
@@ -85,10 +85,10 @@ YOU TO 200 DAMAGE. I ASK NOT FOR MY OWN MEDIC EGOSTROKING, BUT FOR THE GOOD OF T
 
 	switch(suturable_damage) //SEND_SIGNAL returns 0 by default if there's no signal to answer.
 		if(CANNOT_SUTURE) //Datum exists, no suturable damage types.
-			to_chat(user, SPAN_WARNING("There are no [description_wounds] on [user == target ? "your" : "\the [target]'s"] [target_limb.display_name]."))
+			to_chat(user, SPAN_WARNING("[user == target ? "你的" : "[target]的"][target_limb.display_name]上没有[description_wounds]。"))
 			return
 		if(FULLY_SUTURED) //Datum exist, all suturable damage types have been fully sutured.
-			to_chat(user, SPAN_WARNING("The [description_wounds] on [user == target ? "your" : "\the [target]'s"] [target_limb.display_name] have already been treated."))
+			to_chat(user, SPAN_WARNING("[user == target ? "你的" : "[target]的"][target_limb.display_name]上的[description_wounds]已经处理好了。"))
 			return
 		if(0) //No datum.
 			//Stitch in 10 damage increments. Balance between flexibility, spam, performance, and opportunities for people to mess about during do_afters.
@@ -97,7 +97,7 @@ YOU TO 200 DAMAGE. I ASK NOT FOR MY OWN MEDIC EGOSTROKING, BUT FOR THE GOOD OF T
 			if(suture_burn)
 				suturable_damage += min(10, target_limb.burn_dam * 0.5)
 			if(!suturable_damage) //This stuff would be much tidier if datum stuff is moved to the limb.
-				to_chat(user, SPAN_WARNING("There are no [description_wounds] on [user == target ? "your" : "\the [target]'s"] [target_limb.display_name]."))
+				to_chat(user, SPAN_WARNING("[user == target ? "你的" : "[target]的"][target_limb.display_name]上没有[description_wounds]。"))
 				return
 
 	//Select user feedback and get a time-per-point mult.
@@ -105,40 +105,40 @@ YOU TO 200 DAMAGE. I ASK NOT FOR MY OWN MEDIC EGOSTROKING, BUT FOR THE GOOD OF T
 	var/skill_msg
 	switch(user.skills.get_skill_level(SKILL_MEDICAL))
 		if(SKILL_MEDICAL_MEDIC) //Numbers are centered around medics.
-			skill_msg = " with [pick("steady", "careful", "practiced")] [pick("skill", "motions", "hands")]"
+			skill_msg = "以[pick("稳健", "谨慎", "娴熟")]的[pick("手法", "动作", "操作")]"
 		if(SKILL_MEDICAL_DOCTOR) //Who?
 			suture_time *= 0.75
-			skill_msg = " with [pick("swift", "precise", "smooth")] [pick("skill", "care", "motions", "competence")]"
+			skill_msg = "以[pick("迅速", "精准", "流畅")]的[pick("手法", "操作", "动作", "技巧")]"
 		if(SKILL_MEDICAL_MASTER) //I hand my munted biker jacket to the synth. "Hey, Sewing Machine. Need this fixed real quick, hot date tonight."
 			suture_time *= 0.5
-			skill_msg = " with [pick("mechanical", "inhuman", "absolute")] [pick("perfection", "precision", "certainty")]"
+			skill_msg = "以[pick("机械般", "超人般", "绝对")][pick("完美", "精准", "稳妥")]的手法"
 
 	var/possessive
 	var/possessive_their
 	if(user == target)
 		suture_time *= 1.5 //Stitching yourself up is badass but awkward.
-		possessive = "your"
-		possessive_their = user.gender == MALE ? "his" : "her"
+		possessive = "你的"
+		possessive_their = user.gender == MALE ? "他的" : "她的"
 		if(!looping) //start message.
-			skill_msg = pick("awkwardly", "slowly and carefully")
-			user.visible_message(SPAN_NOTICE("[user] begins to [skill_msg] [description_verb] the [description_wounds] on \his [target_limb.display_name]."),
-				SPAN_HELPFUL("You <b>begin to [skill_msg] [description_verb]</b> the [description_wounds] on your <b>[target_limb.display_name]</b>."))
-			target.custom_pain("It feels like your [target_limb.display_name] is [description_pain]!")
+			skill_msg = pick("笨拙地", "缓慢而小心地")
+			user.visible_message(SPAN_NOTICE("[user][skill_msg]开始[description_verb]自己[target_limb.display_name]上的[description_wounds]。"),
+				SPAN_HELPFUL("你<b>[skill_msg]开始[description_verb]</b>自己<b>[target_limb.display_name]</b>上的[description_wounds]。"))
+			target.custom_pain("你感觉自己的[target_limb.display_name]仿佛[description_pain]！")
 	else
-		possessive = "\the [target]'s"
-		possessive_their = "\the [target]'s"
+		possessive = "[target]的"
+		possessive_their = "[target]的"
 		if(!looping)
 			user.affected_message(target,
-				SPAN_HELPFUL("You <b>begin to [description_verb]</b> the [description_wounds] on [possessive_their] <b>[target_limb.display_name]</b>[skill_msg]."),
-				SPAN_HELPFUL("[user] <b>begins to [description_verb]</b> the [description_wounds] on your <b>[target_limb.display_name]</b>[skill_msg]."),
-				SPAN_NOTICE("[user] begins to [description_verb] the [description_wounds] on [possessive_their] [target_limb.display_name][skill_msg]."))
-			target.custom_pain("It feels like your [target_limb.display_name] is [description_pain]!")
+				SPAN_HELPFUL("你[skill_msg]<b>开始[description_verb]</b>[possessive_their]<b>[target_limb.display_name]</b>上的[description_wounds]。"),
+				SPAN_HELPFUL("[user][skill_msg]<b>开始[description_verb]</b>你<b>[target_limb.display_name]</b>上的[description_wounds]。"),
+				SPAN_NOTICE("[user][skill_msg]开始[description_verb][possessive_their][target_limb.display_name]上的[description_wounds]。"))
+			target.custom_pain("你感觉自己的[target_limb.display_name]仿佛[description_pain]！")
 
 	if(target.pain?.feels_pain && target.stat == CONSCIOUS && target.pain.reduction_pain < PAIN_REDUCTION_HEAVY && prob(max(0, PAIN_REDUCTION_HEAVY - target.pain.reduction_pain))) //This is based on surgery pain failure code but more lenient.
 		do_after(user, max(rand(suture_time * 0.1, suture_time * 0.5), 0.5), INTERRUPT_ALL, BUSY_ICON_FRIENDLY, target, INTERRUPT_MOVED, BUSY_ICON_MEDICAL)
 		if(user != target)
-			to_chat(user, SPAN_DANGER("[target] couldn't hold still through the pain of the [description_verbing]!"))
-		to_chat(target, SPAN_DANGER("The pain was too much, you couldn't hold still!"))
+			to_chat(user, SPAN_DANGER("[target]无法忍受[description_verbing]带来的疼痛，没能保持不动！"))
+		to_chat(target, SPAN_DANGER("疼痛太剧烈了，你无法保持不动！"))
 		INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "pain")
 		return
 
@@ -149,7 +149,7 @@ YOU TO 200 DAMAGE. I ASK NOT FOR MY OWN MEDIC EGOSTROKING, BUT FOR THE GOOD OF T
 	//Timer and redo checks in case something funny happened during the do_after().
 	if(!do_after(user, suture_time, INTERRUPT_ALL, BUSY_ICON_FRIENDLY, target, INTERRUPT_MOVED, BUSY_ICON_MEDICAL)\
 		|| target_limb.status & (LIMB_DESTROYED|LIMB_ROBOT|LIMB_SYNTHSKIN) || target_limb.get_incision_depth())
-		to_chat(user, SPAN_WARNING("You were interrupted before you could finish!"))
+		to_chat(user, SPAN_WARNING("操作尚未完成就被打断了！"))
 		return
 
 	//Add the sutures.
@@ -160,14 +160,14 @@ YOU TO 200 DAMAGE. I ASK NOT FOR MY OWN MEDIC EGOSTROKING, BUT FOR THE GOOD OF T
 
 	if(added_sutures & SUTURED_FULLY)
 		user.affected_message(target,
-			SPAN_HELPFUL("You <b>finish [description_verbing]</b> the [description_wounds] on [possessive] <b>[target_limb.display_name]</b>."),
-			SPAN_HELPFUL("[user] <b>finishes [description_verbing]</b> the [description_wounds] on your <b>[target_limb.display_name]</b>."),
-			SPAN_NOTICE("[user] finishes [description_verbing] the [description_wounds] on [possessive_their] [target_limb.display_name]."))
+			SPAN_HELPFUL("你<b>完成了[description_verbing]</b>，处理好了[possessive]<b>[target_limb.display_name]</b>上的[description_wounds]。"),
+			SPAN_HELPFUL("[user]<b>完成了[description_verbing]</b>，处理好了你<b>[target_limb.display_name]</b>上的[description_wounds]。"),
+			SPAN_NOTICE("[user]完成了[description_verbing]，处理好了[possessive_their][target_limb.display_name]上的[description_wounds]。"))
 	else
 		user.affected_message(target,
-			SPAN_HELPFUL("You [description_verb] some of the [description_wounds] on [possessive] [target_limb.display_name]."),
-			SPAN_HELPFUL("[user] [description_verb]s some of the [description_wounds] on your [target_limb.display_name]."),
-			SPAN_NOTICE("[user] [description_verb]s some of the [description_wounds] on [possessive_their] [target_limb.display_name]."))
+			SPAN_HELPFUL("你[description_verb]了[possessive][target_limb.display_name]上的部分[description_wounds]。"),
+			SPAN_HELPFUL("[user][description_verb]了你[target_limb.display_name]上的部分[description_wounds]。"),
+			SPAN_NOTICE("[user][description_verb]了[possessive_their][target_limb.display_name]上的部分[description_wounds]。"))
 
 		suture(suturing_item, user, target, target_limb, TRUE) //Loop - untreated wounds remain.
 
