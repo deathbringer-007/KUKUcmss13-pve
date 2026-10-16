@@ -6,8 +6,8 @@
 ///ENTREE
 
 /obj/item/mre_food_packet/entree/uscm
-	name = "\improper MRE main dish"
-	desc = "An MRE entree component. Contains the main course for nutrients."
+	name = "\improper MRE即食军粮主菜"
+	desc = "即食军粮的主菜，提供主要的营养。"
 	icon = 'icons/obj/items/food/mre_food/uscm.dmi'
 	icon_state = "entree"
 	food_list = list(
@@ -24,9 +24,9 @@
 	)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/porkribs
-	name = "boneless pork ribs"
+	name = "去骨猪肋排"
 	icon_state = "boneless pork ribs"
-	desc = "You can't even taste processed meat taste under all those spices!"
+	desc = "调料放得这么多，你甚至尝不出加工肉的味道！"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/porkribs/Initialize()
 	. = ..()
@@ -35,9 +35,9 @@
 	reagents.add_reagent("blackpepper", 4)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/grilledchicken
-	name = "grilled chicken"
+	name = "烤鸡"
 	icon_state = "grilled chicken"
-	desc = "Doesn't actually tastes like grilled one, but do you really expect that luxury here?"
+	desc = "吃起来其实不像烤的，但在这里还指望什么奢侈享受呢？"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/grilledchicken/Initialize()
 	. = ..()
@@ -45,9 +45,9 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/pizzasquare
-	name = "pizza square"
+	name = "方形披萨"
 	icon_state = "pizza square"
-	desc = "An American classic, been added and removed from the menu about 27 times at this point, still loved despite being cheap parody of a real thing."
+	desc = "美式经典，至今大概已经在菜单上增删了27次。虽然只是正宗披萨的廉价仿品，依然广受喜爱。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/pizzasquare/Initialize()
 	. = ..()
@@ -59,9 +59,9 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/pepperonisquare
-	name = "pepperoni pizza square"
+	name = "意式辣香肠方形披萨"
 	icon_state = "pepperoni square"
-	desc = "A newer addition to the timeless MRE classic, very similar."
+	desc = "即食军粮经典菜式的新版本，吃起来差不太多。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/pepperonisquare/Initialize()
 	. = ..()
@@ -72,9 +72,9 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/chickentender
-	name = "chicken tender"
+	name = "鸡柳"
 	icon_state = "chicken tender"
-	desc = "Really tasty and has nice crumbs texture, but makes you wish for some good chicken wings..."
+	desc = "非常美味，面包糠的口感也不错，但还是让你想吃几只好鸡翅……"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/chickentender/Initialize()
 	. = ..()
@@ -83,9 +83,9 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/grilledchickenbreast
-	name = "grilled chicken breast"
+	name = "烤鸡胸"
 	icon_state = "grilled chicken breast"
-	desc = "Very plain grilled chicken meat, simple but yet very classic taste."
+	desc = "非常朴素的烤鸡肉，简单却经典。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/grilledchickenbreast/Initialize()
 	. = ..()
@@ -93,9 +93,9 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/spaghettichunks
-	name = "meat spaghetti"
+	name = "肉酱意面"
 	icon_state = "spaghetti chunks"
-	desc = "Spaghetti with some cooked meat chunks, all covered in a tomato sauce."
+	desc = "拌有熟肉块的意大利面，全部裹着番茄酱。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/spaghettichunks/Initialize()
 	. = ..()
@@ -105,9 +105,9 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/chiliconcarne
-	name = "chili con carne"
+	name = "辣味炖肉"
 	icon_state = "chili con carne"
-	desc = "Spicy minced meat dish, there is no limit on adding chili in there, having some milk in near proximity is recommended."
+	desc = "辛辣的肉末菜式，辣椒仿佛不要钱，建议在手边备点牛奶。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/chiliconcarne/Initialize()
 	. = ..()
@@ -118,9 +118,9 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/noodlesoup
-	name = "noodle soup"
+	name = "面条汤"
 	icon_state = "noodle soup"
-	desc = "Very nourishing noodle soup with vegetables and a chicken flavor, will keep you warm for a long time if heated."
+	desc = "营养丰富的鸡味蔬菜面条汤，加热后能让你暖和好一阵。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/noodlesoup/Initialize()
 	. = ..()
@@ -130,9 +130,9 @@
 	reagents.add_reagent("meatprotein", 1)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/feijoada
-	name = "feijoada"
+	name = "巴西黑豆炖肉"
 	icon_state = "brazilian-style feijoada"
-	desc = "A Brazillian dish filled with black beans, different kinds of meat, vegetables and spices, very nourishing and rich in flavor."
+	desc = "巴西菜式，内有黑豆、各式肉类、蔬菜和香料，营养丰富，风味浓郁。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/entree/feijoada/Initialize()
 	. = ..()
@@ -144,8 +144,8 @@
 ///SIDE
 
 /obj/item/mre_food_packet/uscm/side
-	name = "\improper MRE side dish"
-	desc = "An MRE side component. Contains a side, to be eaten alongside the main."
+	name = "\improper MRE即食军粮配菜"
+	desc = "即食军粮的配餐部分，内含搭配主菜食用的配菜。"
 	icon_state = "side"
 	food_list = list(
 		/obj/item/reagent_container/food/snacks/mre_food/uscm/side/cracker,
@@ -161,9 +161,9 @@
 	)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/cracker
-	name = "cracker"
+	name = "薄脆饼干"
 	icon_state = "cracker"
-	desc = "Crumbs easily but it's the most satisfying part."
+	desc = "很容易掉渣，但掉渣正是最过瘾的部分。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/cracker/Initialize()
 	. = ..()
@@ -171,9 +171,9 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/mashedpotatoes
-	name = "mashed potatoes"
+	name = "土豆泥"
 	icon_state = "mashed potatoes"
-	desc = "Really soft and gentle, goes well with a main dish."
+	desc = "口感非常细腻柔软，适合搭配主菜。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/mashedpotatoes/Initialize()
 	. = ..()
@@ -183,9 +183,9 @@
 	reagents.add_reagent("sodiumchloride", 1)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/risotto
-	name = "risotto"
+	name = "意式烩饭"
 	icon_state = "risotto"
-	desc = "A bit more exotic, but Italian cuisine never dissapoints."
+	desc = "稍显异国风味，但意大利菜从不令人失望。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/risotto/Initialize()
 	. = ..()
@@ -195,9 +195,9 @@
 	reagents.add_reagent("vegetable", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/onigiri
-	name = "rice onigiri"
+	name = "三角饭团"
 	icon_state = "rice onigiri"
-	desc = "Cooked rice in a form of a triangle, covered in a seaweed at the bottom, doesn't fall apart, surprisingly."
+	desc = "熟米饭捏成三角形，底部包着海苔，居然没有散开。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/onigiri/Initialize()
 	. = ..()
@@ -206,9 +206,9 @@
 	reagents.add_reagent("sodiumchloride", 1)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/cornbread
-	name = "cornbread"
+	name = "玉米面包"
 	icon_state = "cornbread"
-	desc = "Almost universally hated, very dry and simple taste of it really gets old fast. Requisitions probably has ass-load of it in the back. Nobody eats that shit."
+	desc = "几乎人人嫌弃，又干又寡淡，很快就吃腻了。军需处后面大概还囤着一大堆，根本没人吃这破玩意儿。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/cornbread/Initialize()
 	. = ..()
@@ -217,9 +217,9 @@
 	reagents.add_reagent("sodiumchloride", 1)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/kale
-	name = "marinated kale"
+	name = "腌羽衣甘蓝"
 	icon_state = "kale"
-	desc = "A sort of cabbage, marinated in spices, still has a lot of moist and crunch to it."
+	desc = "用香料腌制的一种甘蓝，依然多汁爽脆。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/kale/Initialize()
 	. = ..()
@@ -228,18 +228,18 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/tortillas
-	name = "tortillas"
+	name = "墨西哥薄饼"
 	icon_state = "tortillas"
-	desc = "A kind of flat bread, goes well with adding other things onto it."
+	desc = "一种扁平面饼，适合搭配其他食物。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/tortillas/Initialize()
 	. = ..()
 	reagents.add_reagent("bread", 6)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/biscuits
-	name = "biscuits"
+	name = "美式松饼"
 	icon_state = "biscuits"
-	desc = "An assortment of biscuits, go well with adding other things onto them."
+	desc = "各式松饼，适合搭配其他食物。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/biscuits/Initialize()
 	. = ..()
@@ -247,9 +247,9 @@
 
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/cinnamonappleslices
-	name = "cinnamon apple slices"
+	name = "肉桂苹果片"
 	icon_state = "cinnamon apple slices"
-	desc = "A bit gooey pieces of apple in cinnamon sauce, a bit sticky but tasty."
+	desc = "浸在肉桂酱中的软糯苹果块，有些黏，但很好吃。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/cinnamonappleslices/Initialize()
 	. = ..()
@@ -257,9 +257,9 @@
 	reagents.add_reagent("sugar", 3)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/boiledrice
-	name = "boiled rice"
+	name = "白米饭"
 	icon_state = "rice"
-	desc = "A packet of plain boiled rice, a bit boring but would go well with additives."
+	desc = "一包普通的熟米饭，虽然有些乏味，配点东西就不错了。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/side/boiledrice/Initialize()
 	. = ..()
@@ -268,8 +268,8 @@
 ///SNACK
 
 /obj/item/mre_food_packet/uscm/snack
-	name = "\improper MRE snack"
-	desc = "An MRE snack component. Contains a light snack in case you weren't feeling terribly hungry."
+	name = "\improper MRE即食军粮零食"
+	desc = "即食军粮中的轻食零食，适合不太饿的时候吃。"
 	icon_state = "snack"
 	food_list = list(
 		/obj/item/reagent_container/food/snacks/mre_food/uscm/snack/biscuit,
@@ -280,9 +280,9 @@
 	)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/snack/biscuit
-	name = "biscuit"
+	name = "杂粮饼干"
 	icon_state = "biscuit"
-	desc = "Reminds you of a cracker, but has a lot more different grains in it, which gives it more unique texture and flavor."
+	desc = "像是薄脆饼干，但多种谷物带来了更独特的口感和风味。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/snack/biscuit/Initialize()
 	. = ..()
@@ -290,9 +290,9 @@
 	reagents.add_reagent("sodiumchloride", 1)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/snack/meatballs
-	name = "meatballs"
+	name = "肉丸"
 	icon_state = "meatballs"
-	desc = "You can even taste muscle fibers, despite it being a cooked minced meat."
+	desc = "虽然是煮熟的肉末，你甚至还能尝到肌肉纤维。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/snack/meatballs/Initialize()
 	. = ..()
@@ -301,9 +301,9 @@
 	reagents.add_reagent("blackpepper", 1)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/snack/pretzels
-	name = "pretzels"
+	name = "椒盐脆饼"
 	icon_state = "pretzels"
-	desc = "Really salty and crunchy, thirst provoking."
+	desc = "又咸又脆，让人口渴。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/snack/pretzels/Initialize()
 	. = ..()
@@ -311,9 +311,9 @@
 	reagents.add_reagent("sodiumchloride", 4)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/snack/sushi
-	name = "sushi"
+	name = "寿司"
 	icon_state = "sushi"
-	desc = "You kinda highly doubt that raw fish wouldn't go bad in here, it barely smells like one... is it even fish?..."
+	desc = "你实在怀疑生鱼在这里能不能保持新鲜。闻起来几乎没有鱼味……这真的是鱼吗……"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/snack/sushi/Initialize()
 	. = ..()
@@ -323,9 +323,9 @@
 	reagents.add_reagent("soymilk", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/snack/peanuts
-	name = "peanuts"
+	name = "花生"
 	icon_state = "peanuts"
-	desc = "Some crunchy salted peanuts, easy to get addicted to."
+	desc = "酥脆的咸花生，很容易吃上瘾。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/snack/peanuts/Initialize()
 	. = ..()
@@ -335,8 +335,8 @@
 ///DESSERT
 
 /obj/item/mre_food_packet/uscm/dessert
-	name = "\improper MRE dessert"
-	desc = "An MRE side component. Contains a sweet dessert, to be eaten after the main (or before, if you're rebellious)."
+	name = "\improper MRE即食军粮甜点"
+	desc = "即食军粮的配餐部分，内含餐后甜点；如果你够叛逆，也可以餐前吃。"
 	icon_state = "dessert"
 	food_list = list(
 		/obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/spicedapples,
@@ -353,9 +353,9 @@
 	)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/spicedapples
-	name = "spiced apples"
+	name = "香料苹果"
 	icon_state = "spiced apples"
-	desc = "A bit dry pieces of apple in cinnamon spice, makes your mouth water, but still tasty."
+	desc = "有些干的肉桂苹果块，令人垂涎欲滴，依然好吃。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/spicedapples/Initialize()
 	. = ..()
@@ -363,9 +363,9 @@
 	reagents.add_reagent("sugar", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/chocolatebrownie
-	name = "chocolate brownie"
+	name = "巧克力布朗尼"
 	icon_state = "chocolate brownie"
-	desc = "Coco filled cake base with a chocolate frosting on top, has a deep chocolate flavor."
+	desc = "可可蛋糕底上覆着巧克力糖霜，巧克力风味浓郁。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/chocolatebrownie/Initialize()
 	. = ..()
@@ -374,9 +374,9 @@
 	reagents.add_reagent("sprinkles", 1)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/sugarcookie
-	name = "sugar cookie"
+	name = "糖霜饼干"
 	icon_state = "sugar cookie"
-	desc = "Baked cookie frosted with a caramelized sugar."
+	desc = "覆着焦糖糖霜的烤饼干。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/sugarcookie/Initialize()
 	. = ..()
@@ -384,9 +384,9 @@
 	reagents.add_reagent("bread", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/cocobar
-	name = "coco bar"
+	name = "可可巧克力条"
 	icon_state = "coco bar"
-	desc = "Good old milk chocolate bar, goes well with hot drinks."
+	desc = "经典的牛奶巧克力条，适合搭配热饮。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/cocobar/Initialize()
 	. = ..()
@@ -395,9 +395,9 @@
 	reagents.add_reagent("sugar", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/flan
-	name = "flan"
+	name = "奶香蛋糕派"
 	icon_state = "flan"
-	desc = "A soft milky biscuit pie."
+	desc = "松软的奶香海绵蛋糕派。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/flan/Initialize()
 	. = ..()
@@ -407,9 +407,9 @@
 	reagents.add_reagent("egg", 3)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/honeyflan
-	name = "honey flan"
+	name = "蜂蜜奶香蛋糕派"
 	icon_state = "honey flan"
-	desc = "A soft milky biscuit pie, covered in honey topping."
+	desc = "淋有蜂蜜的松软奶香海绵蛋糕派。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/honeyflan/Initialize()
 	. = ..()
@@ -419,9 +419,9 @@
 	reagents.add_reagent("egg", 3)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/lemonpie
-	name = "lemon pie"
+	name = "柠檬派"
 	icon_state = "lemon pie"
-	desc = "A creamy pie with a milky lemon filling and a thick crust."
+	desc = "奶油派，内有奶香柠檬馅，外皮厚实。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/lemonpie/Initialize()
 	. = ..()
@@ -432,9 +432,9 @@
 	reagents.add_reagent("egg", 1)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/limepie
-	name = "key lime pie"
+	name = "青柠派"
 	icon_state = "key lime pie"
-	desc = "A creamy pie with a milky lime filling and a thick crust."
+	desc = "奶油派，内有奶香青柠馅，外皮厚实。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/limepie/Initialize()
 	. = ..()
@@ -445,9 +445,9 @@
 	reagents.add_reagent("egg", 1)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/brigadeiro
-	name = "brigadeiro balls"
+	name = "巴西巧克力软糖球"
 	icon_state = "brigadeiro balls"
-	desc = "A traditional Brazillian dessert, made out of condensed milk, cocoa and butter, very soft and sugary in taste."
+	desc = "巴西传统甜点，由炼乳、可可和黄油制成，口感非常柔软香甜。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/brigadeiro/Initialize()
 	. = ..()
@@ -457,9 +457,9 @@
 	reagents.add_reagent("egg", 1)
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/strawberrytoaster
-	name = "strawberry toaster pastry"
+	name = "草莓烤馅饼"
 	icon_state = "strawberry toaster pastry"
-	desc = "A crunchy biscuit with a strawberry jam inside it, with a frosting on top."
+	desc = "外皮酥脆的饼干糕点，内有草莓酱，顶部覆着糖霜。"
 
 /obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/strawberrytoaster/Initialize()
 	. = ..()
@@ -472,19 +472,19 @@
 ///SPREAD
 
 /obj/item/reagent_container/food/drinks/cans/spread
-	name = "spread packet (cheese)"
+	name = "抹酱包（奶酪）"
 	icon = 'icons/obj/items/food/mre_food/uscm.dmi'
 	icon_state = "spread"
-	desc = "A creamy and cheesy spread, made out of a processed cheese, combines well with tortillas and other snacks."
+	desc = "用加工奶酪制成的绵密抹酱，奶酪风味浓郁，适合搭配墨西哥薄饼等零食。"
 	open_sound = "rip"
-	open_message = "You pull open the package of the spread!"
+	open_message = "你撕开了抹酱的包装！"
 	volume = 6
 	var/flavor = "cheese spread"
 	food_interactable = TRUE
 	possible_transfer_amounts = list(1, 2, 3, 5)
 	crushable = FALSE
 	gulp_size = 5
-	object_fluff = "packet"
+	object_fluff = "包装袋"
 
 /obj/item/reagent_container/food/drinks/cans/spread/update_icon()
 	overlays.Cut()
@@ -503,8 +503,8 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/drinks/cans/spread/jalapeno
-	name = "spread packet (jalapeno cheese)"
-	desc = "A creamy and cheesy spread, made out of a processed cheese, combines well with tortillas and other snacks, this one has a spicy jalapeno flavor."
+	name = "抹酱包（墨西哥辣椒奶酪）"
+	desc = "用加工奶酪制成的绵密抹酱，带有墨西哥辣椒的辛辣风味，适合搭配墨西哥薄饼等零食。"
 	flavor = "jalapeno cheese spread"
 
 /obj/item/reagent_container/food/drinks/cans/spread/jalapeno/Initialize()
@@ -513,8 +513,8 @@
 	reagents.add_reagent("capsaicin", 2)
 
 /obj/item/reagent_container/food/drinks/cans/spread/peanut_butter
-	name = "spread packet (peanut butter)"
-	desc = "A creamy and nutty spread, made out of a processed peanuts, combines well with tortillas and other snacks."
+	name = "抹酱包（花生酱）"
+	desc = "用加工花生制成的绵密抹酱，带有坚果香，适合搭配墨西哥薄饼等零食。"
 	flavor = "peanut butter"
 
 /obj/item/reagent_container/food/drinks/cans/spread/peanut_butter/Initialize()
@@ -525,47 +525,47 @@
 ///BEVERAGE DRINKS
 
 /obj/item/reagent_container/food/drinks/beverage_drink
-	name = "beverage powder packet"
-	desc = "A packet of a beverage, to be mixed with water, makes a ready-in-a-field drink."
+	name = "饮料粉包"
+	desc = "一包兑水即可冲成野外饮品的饮料粉。"
 	icon = 'icons/obj/items/food/mre_food/uscm.dmi'
 	icon_state = "beverage"
 	volume = 20
 
 /obj/item/reagent_container/food/drinks/beverage_drink/grape
-	name = "electrolyte beverage powder packet (grape)"
-	desc = "A packet of an electrolyte beverage, to be mixed with water, makes a ready-in-a-field drink. Has a grape flavor."
+	name = "电解质饮料粉包（葡萄）"
+	desc = "一包兑水即可冲成野外饮品的电解质饮料粉，带有葡萄风味。"
 
 /obj/item/reagent_container/food/drinks/beverage_drink/grape/Initialize()
 	. = ..()
 	reagents.add_reagent("dehydrated_grape_beverage", 4)
 
 /obj/item/reagent_container/food/drinks/beverage_drink/orange
-	name = "electrolyte beverage powder packet (orange)"
-	desc = "A packet of an electrolyte beverage, to be mixed with water, makes a ready-in-a-field drink. Has a citrusy orange flavor."
+	name = "电解质饮料粉包（橙子）"
+	desc = "一包兑水即可冲成野外饮品的电解质饮料粉，带有清新的橙子风味。"
 
 /obj/item/reagent_container/food/drinks/beverage_drink/orange/Initialize()
 	. = ..()
 	reagents.add_reagent("electrolyte_orange_beverage", 4)
 
 /obj/item/reagent_container/food/drinks/beverage_drink/lemonlime
-	name = "electrolyte beverage powder packet (lemon-lime)"
-	desc = "A packet of an electrolyte beverage, to be mixed with water, makes a ready-in-a-field drink. Has a citrusy lemon-lime flavor."
+	name = "电解质饮料粉包（柠檬青柠）"
+	desc = "一包兑水即可冲成野外饮品的电解质饮料粉，带有清新的柠檬青柠风味。"
 
 /obj/item/reagent_container/food/drinks/beverage_drink/lemonlime/Initialize()
 	. = ..()
 	reagents.add_reagent("electrolyte_lemonlime_beverage", 4)
 
 /obj/item/reagent_container/food/drinks/beverage_drink/chocolate
-	name = "protein drink beverage powder packet (milk chocolate)"
-	desc = "A packet of a protein drink, to be mixed with water, makes a ready-in-a-field drink. Has a chocolate flavor."
+	name = "蛋白饮料粉包（牛奶巧克力）"
+	desc = "一包兑水即可冲成野外饮品的蛋白饮料粉，带有巧克力风味。"
 
 /obj/item/reagent_container/food/drinks/beverage_drink/chocolate/Initialize()
 	. = ..()
 	reagents.add_reagent("chocolate_beverage", 4)
 
 /obj/item/reagent_container/food/drinks/beverage_drink/chocolate_hazelnut
-	name = "protein drink beverage powder packet (chocolate hazelnut)"
-	desc = "A packet of a protein drink, to be mixed with water, makes a ready-in-a-field drink. Has a chocolate hazelnut flavor."
+	name = "蛋白饮料粉包（巧克力榛子）"
+	desc = "一包兑水即可冲成野外饮品的蛋白饮料粉，带有巧克力榛子风味。"
 
 /obj/item/reagent_container/food/drinks/beverage_drink/chocolate_hazelnut/Initialize()
 	. = ..()

@@ -1,8 +1,8 @@
 //M49A custom marksman rifle
 
 /obj/item/weapon/gun/rifle/m49a_custom
-	name = "\improper M49A5 battle rifle"
-	desc = "This is a further improvement upon the already rock-solid M49A. Made by the USCM armorers on Chinook station - This variant of the M49A has a specifically milled magazine well to accept A19 rounds. It sports a light-weight titantium-alloy frame, better responsive to the heavy kick of the tailor-made A19 rounds."
+	name = "\improper M49A5战斗步枪"
+	desc = "在本就可靠的M49A基础上进一步改进而成，由奇努克空间站的殖民地陆战队军械师制造。这款M49A改型专门铣制了弹匣井，以容纳A19弹药。轻量化钛合金枪身能更好地应对特制A19弹药的强劲后坐力。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "m49a_custom"
 	item_state = "m49a_custom"

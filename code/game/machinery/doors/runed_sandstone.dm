@@ -1,5 +1,5 @@
 /obj/structure/machinery/door/airlock/sandstone/runed
-	name = "\improper Runed Sandstone Airlock"
+	name = "\improper 符文砂岩气闸"
 	icon = 'icons/obj/structures/doors/doorrunedsand.dmi'
 	mineral = "runed sandstone"
 	no_panel = TRUE
@@ -18,7 +18,7 @@
 
 /obj/structure/machinery/door/airlock/sandstone/runed/proc/can_use(mob/user as mob, loud = 0)
 	if(!in_range(src, user))
-		to_chat(usr, "You cannot operate the door from this far away")
+		to_chat(usr, "距离太远，你无法操作这扇门。")
 		return FALSE
 
 /obj/structure/machinery/door/airlock/sandstone/runed/attackby(obj/item/W as obj, mob/user as mob)
@@ -32,28 +32,28 @@
 
 		var/list/options = list()
 		if(src.locked)
-			options += "Unlock Door"
+			options += "解锁门"
 		else
-			options += "Lock Door"
+			options += "锁定门"
 			if(src.density)
-				options += "Open Door"
+				options += "开门"
 			else
-				options += "Close Door"
+				options += "关门"
 
 		sleep(1 SECONDS)
 
-		var/input = tgui_input_list(user, "Rotate your wristblades to operate the door", "Temple Door Control", options)
+		var/input = tgui_input_list(user, "转动腕刃来操作这扇门", "神庙门控制", options)
 
 		if(!input)
 			return
 
-		if(input == "Unlock Door")
+		if(input == "解锁门")
 			unlock_door()
-		else if(input == "Lock Door")
+		else if(input == "锁定门")
 			lock_door()
-		else if(input == "Open Door")
+		else if(input == "开门")
 			open_door()
-		else if(input == "Close Door")
+		else if(input == "关门")
 			close_door()
 		src.add_fingerprint(usr)
 		src.updateUsrDialog()
@@ -104,7 +104,7 @@
 		return FALSE
 
 	playsound(loc, 'sound/effects/runedsanddoor.ogg', 25, 0)
-	visible_message(SPAN_NOTICE("\The [src] makes a loud grating sound as hidden workings pull it open."))
+	visible_message(SPAN_NOTICE("隐藏的机关拉开\the [src]，发出刺耳的摩擦声。"))
 	operating = DOOR_OPERATING_OPENING
 	do_animate("opening")
 	icon_state = "door0"
@@ -144,7 +144,7 @@
 				addtimer(CALLBACK(src, PROC_REF(close), forced), 6 SECONDS + openspeed, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT)
 				return FALSE
 	playsound(loc, 'sound/effects/runedsanddoor.ogg', 25, 0)
-	visible_message(SPAN_NOTICE("[src] makes a loud grating sound as hidden workings force it shut."))
+	visible_message(SPAN_NOTICE("隐藏的机关将[src]强行关闭，发出刺耳的摩擦声。"))
 
 	operating = DOOR_OPERATING_CLOSING
 	density = TRUE
@@ -185,9 +185,9 @@
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25)
 	locked = TRUE
 	if(density)
-		visible_message(SPAN_NOTICE("[src] makes a loud grating sound as heavy stone bolts seal it shut."))
+		visible_message(SPAN_NOTICE("沉重的石栓将[src]锁死在关闭位置，发出刺耳的摩擦声。"))
 	else
-		visible_message(SPAN_NOTICE("[src] makes a loud grating sound as heavy stone bolts seal it open."))
+		visible_message(SPAN_NOTICE("沉重的石栓将[src]锁定在开启位置，发出刺耳的摩擦声。"))
 	update_icon()
 
 /obj/structure/machinery/door/airlock/sandstone/runed/unlock(forced = FALSE)
@@ -198,7 +198,7 @@
 
 	locked = FALSE
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25)
-	visible_message(SPAN_NOTICE("[src] makes a loud grating sound as heavy stone bolts retract."))
+	visible_message(SPAN_NOTICE("[src]沉重的石栓缩回，发出刺耳的摩擦声。"))
 	update_icon()
 	return TRUE
 
@@ -213,7 +213,7 @@
 		if(M && istype(M))
 			M.count_niche_stat(STATISTICS_NICHE_DESTRUCTION_DOORS, 1)
 			SEND_SIGNAL(M, COMSIG_MOB_DESTROY_AIRLOCK, src)
-		to_chat(loc, SPAN_DANGER("[src] blows apart!"))
+		to_chat(loc, SPAN_DANGER("[src]炸成了碎片！"))
 		deconstruct(FALSE)
 		playsound(src, 'sound/effects/metal_crash.ogg', 25, 1)
 
@@ -248,6 +248,6 @@
 		return FALSE
 
 /obj/structure/machinery/door/airlock/sandstone/runed/destroyable
-	name = "\improper Runed Sandstone Airlock"
+	name = "\improper 符文砂岩气闸"
 	unacidable = FALSE //Destroyable version of the temple doors
 	damage_cap = HEALTH_WALL

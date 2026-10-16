@@ -6,7 +6,7 @@
 
 /turf/open/space
 	icon = 'icons/turf/floors/space.dmi'
-	name = "\proper space"
+	name = "\proper 太空"
 	icon_state = "0"
 	can_bloody = FALSE
 	layer = UNDER_TURF_LAYER
@@ -52,7 +52,7 @@
 			return
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))
-			to_chat(user, SPAN_NOTICE(" Constructing support lattice ..."))
+			to_chat(user, SPAN_NOTICE("正在搭建支撑格架……"))
 			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 			ReplaceWithLattice()
 		return
@@ -69,7 +69,7 @@
 			S.use(1)
 			return
 		else
-			to_chat(user, SPAN_DANGER("The plating is going to need some support."))
+			to_chat(user, SPAN_DANGER("地板需要支撑结构。"))
 	return
 
 
@@ -98,7 +98,7 @@
 				if(istype(A, /mob/living))
 					var/mob/living/MM = A
 					if(MM.client && !MM.stat)
-						to_chat(MM, SPAN_WARNING("Something you are carrying is preventing you from leaving. Don't play stupid; you know exactly what it is."))
+						to_chat(MM, SPAN_WARNING("你携带的某样东西阻止了你离开。别装傻，你很清楚是什么。"))
 						if(MM.x <= TRANSITIONEDGE)
 							MM.inertia_dir = 4
 						else if(MM.x >= world.maxx -TRANSITIONEDGE)

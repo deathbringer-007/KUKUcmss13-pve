@@ -1,9 +1,9 @@
 /mob/living/carbon/xenomorph/say(message)
-	var/verb = "says"
+	var/verb = "说道"
 	var/message_range = GLOB.world_view_size
 
 	if(client?.prefs?.muted & MUTE_IC)
-		to_chat(src, SPAN_WARNING("You cannot speak in IC (Muted)."))
+		to_chat(src, SPAN_WARNING("你已被禁言，无法发送角色内消息。"))
 		return
 
 	message = trim(strip_html(message))
@@ -54,7 +54,7 @@
 		var/old_message = message
 		message = lisp_replace(message)
 		if(old_message != message)
-			verb = "lisps"
+			verb = "含混地说道"
 
 	if(!message)
 		return
@@ -80,7 +80,7 @@
 //General proc for hivemind. Lame, but effective.
 /mob/living/carbon/xenomorph/proc/hivemind_talk(message)
 	if(HAS_TRAIT(src, TRAIT_HIVEMIND_INTERFERENCE))
-		to_chat(src, SPAN_WARNING("Our psychic connection has been temporarily disabled!"))
+		to_chat(src, SPAN_WARNING("我们的精神连接暂时中断了！"))
 		return
 
 	if(SEND_SIGNAL(src, COMSIG_XENO_TRY_HIVEMIND_TALK, message) & COMPONENT_OVERRIDE_HIVEMIND_TALK)
@@ -93,7 +93,7 @@
 		return
 
 	if(!hive.living_xeno_queen && !SSticker?.mode?.hardcore && !hive.allow_no_queen_actions && ROUND_TIME > SSticker.mode.round_time_evolution_ovipositor)
-		to_chat(src, SPAN_WARNING("There is no Queen. You are alone."))
+		to_chat(src, SPAN_WARNING("没有女皇，你孤立无援。"))
 		return
 
 	log_hivemind("[key_name(src)] : [message]")
@@ -116,30 +116,30 @@
 			var/mob/living/carbon/xenomorph/X = src
 			if(istype(S,/mob/dead/observer))
 				if(S.client.prefs && S.client.prefs.toggles_chat & CHAT_GHOSTHIVEMIND)
-					track = "(<a href='byond://?src=\ref[S];track=\ref[src]'>F</a>)"
+					track = "(<a href='byond://?src=\ref[S];track=\ref[src]'>跟随</a>)"
 					if(isqueen(src))
 						var/mob/hologram/queen/queen_eye = client?.eye
 						if(istype(queen_eye))
-							track += " (<a href='byond://?src=\ref[S];track=\ref[queen_eye]'>E</a>)"
-						ghostrend = SPAN_XENOQUEEN("Hivemind, [src.name][track] hisses, <span class='normal'>'[message]'</span>")
+							track += " (<a href='byond://?src=\ref[S];track=\ref[queen_eye]'>视点</a>)"
+						ghostrend = SPAN_XENOQUEEN("虫巢意志，[src.name][track]嘶鸣道：<span class='normal'>“[message]”</span>")
 					else if(hive.leading_cult_sl == src)
-						ghostrend = SPAN_XENOQUEEN("Hivemind, [src.name][track] hisses, <span class='normal'>'[message]'</span>")
+						ghostrend = SPAN_XENOQUEEN("虫巢意志，[src.name][track]嘶鸣道：<span class='normal'>“[message]”</span>")
 					else if(istype(X) && IS_XENO_LEADER(X))
-						ghostrend = SPAN_XENOLEADER("Hivemind, Leader [src.name][track] hisses, <span class='normal'>'[message]'</span>")
+						ghostrend = SPAN_XENOLEADER("虫巢意志，领袖[src.name][track]嘶鸣道：<span class='normal'>“[message]”</span>")
 					else
-						ghostrend = SPAN_XENO("Hivemind, [src.name][track] hisses, <span class='normal'>'[message]'</span>")
+						ghostrend = SPAN_XENO("虫巢意志，[src.name][track]嘶鸣道：<span class='normal'>“[message]”</span>")
 					S.show_message(ghostrend, SHOW_MESSAGE_AUDIBLE)
 
 			else if(hive.hivenumber == xeno_hivenumber(S) || hive.hivenumber == hear_hivemind)
 				if(isxeno(src) && isxeno(S))
-					overwatch_insert = " (<a href='byond://?src=\ref[S];[overwatch_target]=\ref[src];[overwatch_src]=\ref[S]'>watch</a>)"
+					overwatch_insert = " (<a href='byond://?src=\ref[S];[overwatch_target]=\ref[src];[overwatch_src]=\ref[S]'>观察</a>)"
 
 				if(isqueen(src) || hive.leading_cult_sl == src)
-					rendered = SPAN_XENOQUEEN("Hivemind, [src.name][overwatch_insert] hisses, <span class='normal'>'[message]'</span>")
+					rendered = SPAN_XENOQUEEN("虫巢意志，[src.name][overwatch_insert]嘶鸣道：<span class='normal'>“[message]”</span>")
 				else if(istype(X) && IS_XENO_LEADER(X))
-					rendered = SPAN_XENOLEADER("Hivemind, Leader [src.name][overwatch_insert] hisses, <span class='normal'>'[message]'</span>")
+					rendered = SPAN_XENOLEADER("虫巢意志，领袖[src.name][overwatch_insert]嘶鸣道：<span class='normal'>“[message]”</span>")
 				else
-					rendered = SPAN_XENO("Hivemind, [src.name][overwatch_insert] hisses, <span class='normal'>'[message]'</span>")
+					rendered = SPAN_XENO("虫巢意志，[src.name][overwatch_insert]嘶鸣道：<span class='normal'>“[message]”</span>")
 
 				S.show_message(rendered, SHOW_MESSAGE_AUDIBLE)
 

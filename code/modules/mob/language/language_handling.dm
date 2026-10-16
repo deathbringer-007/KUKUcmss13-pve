@@ -28,7 +28,7 @@
 	return (universal_speak || (speaking in src.languages))
 
 /mob/verb/check_languages()
-	set name = "Check Known Languages"
+	set name = "查看已知语言"
 	set category = "IC"
 	set src = usr
 

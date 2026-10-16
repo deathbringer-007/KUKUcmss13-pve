@@ -5,9 +5,9 @@
 #define TESLA_COIL_SLOW_EFFECT 3
 
 /obj/structure/machinery/defenses/tesla_coil
-	name = "\improper 21S tesla coil"
+	name = "\improper 21S特斯拉线圈"
 	icon = 'icons/obj/structures/machinery/defenses/tesla.dmi'
-	desc = "A perfected way of producing high-voltage, low-current and high-frequency electricity. Minor modifications allow it to only hit hostile targets with a devastating shock."
+	desc = "产生高电压、低电流、高频电能的成熟装置。经过小幅改装，只会对敌对目标施以毁灭性电击。"
 	var/list/targets
 	var/last_fired = 0
 	var/tesla_range = TESLA_COIL_RANGE
@@ -53,12 +53,12 @@
 /obj/structure/machinery/defenses/tesla_coil/power_on_action()
 	set_light(7)
 	start_processing()
-	visible_message("[icon2html(src, viewers(src))] [SPAN_NOTICE("The [name] gives a short zap, as it awakens.")]")
+	visible_message("[icon2html(src, viewers(src))] [SPAN_NOTICE("[name]启动时发出短促的电击声。")]")
 
 /obj/structure/machinery/defenses/tesla_coil/power_off_action()
 	set_light(0)
 	stop_processing()
-	visible_message("[icon2html(src, viewers(src))] [SPAN_NOTICE("The [name] dies out with a last spark.")]")
+	visible_message("[icon2html(src, viewers(src))] [SPAN_NOTICE("[name]迸出最后一丝火花，停了下来。")]")
 
 /obj/structure/machinery/defenses/tesla_coil/process()
 	if(!anchored || !turned_on || stat)
@@ -76,7 +76,7 @@
 		if(M.stat == DEAD)
 			continue
 		if(HAS_TRAIT(M, TRAIT_CHARGING))
-			to_chat(M, SPAN_WARNING("You ignore some weird noises as you charge."))
+			to_chat(M, SPAN_WARNING("你冲锋时无视了那些奇怪的声响。"))
 			continue
 
 		if(M.get_target_lock(faction_group))
@@ -178,8 +178,8 @@
 #define TESLA_COIL_STUN_FIRE_DELAY 3 SECONDS
 #define TESLA_COIL_STUN_EFFECT 1
 /obj/structure/machinery/defenses/tesla_coil/stun
-	name = "21S overclocked tesla coil"
-	desc = "A perfected way of producing high-voltage, low-current and high-frequency electricity. Minor modifications allow it to only hit hostile targets with a devastating shock. This one is significantly overclocked, providing a lot more voltage at the cost of speed."
+	name = "21S超频特斯拉线圈"
+	desc = "产生高电压、低电流、高频电能的成熟装置。经过小幅改装，只会对敌对目标施以毁灭性电击。这台经过大幅超频，牺牲攻击速度换取更高电压。"
 	fire_delay = TESLA_COIL_STUN_FIRE_DELAY
 	handheld_type = /obj/item/defenses/handheld/tesla_coil/stun
 	defense_type = "Stun"
@@ -193,8 +193,8 @@
 	M.set_effect(TESLA_COIL_DAZE_EFFECT * 1.5, DAZE) // 1.5x as effective as normal tesla
 
 /obj/structure/machinery/defenses/tesla_coil/stun/rmc
-	name = "\improper L33A1 TED device"
-	desc = "Tactical Electroshock Deterrence device, also simply called 'tedds' by those who use them. A perfected way of producing high-frequency & high-voltage, low-current electricity. Adaptave grounding in RMC equipment allows it to only hit hostile targets with a devastating shock."
+	name = "\improper L33A1战术电击威慑装置"
+	desc = "战术电击威慑装置，使用者也简称它为TED。能高效产生高频、高电压、低电流电能。皇家陆战突击队装备的自适应接地系统，使它只会对敌对目标施以毁灭性电击。"
 	tesla_range = TESLA_COIL_RMC_RANGE
 	fire_delay = TESLA_COIL_FIREDELAY
 	handheld_type = /obj/item/defenses/handheld/tesla_coil/stun/rmc
@@ -213,8 +213,8 @@
 #undef TESLA_COIL_STUN_FIRE_DELAY
 #define TESLA_COIL_MICRO_FIRE_DELAY 10
 /obj/structure/machinery/defenses/tesla_coil/micro
-	name = "\improper 25S micro tesla coil"
-	desc = "A perfected way of producing high-voltage, low-current and high-frequency electricity. Minor modifications allow it to only hit hostile targets with a devastating shock. This one is smaller and more lightweight."
+	name = "\improper 25S微型特斯拉线圈"
+	desc = "产生高电压、低电流、高频电能的成熟装置。经过小幅改装，只会对敌对目标施以毁灭性电击。这台体积更小，也更轻。"
 	handheld_type = /obj/item/defenses/handheld/tesla_coil/micro
 	disassemble_time = 0.5 SECONDS
 	density = FALSE

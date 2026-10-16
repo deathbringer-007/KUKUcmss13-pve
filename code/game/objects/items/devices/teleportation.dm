@@ -8,8 +8,8 @@
  * Locator
  */
 /obj/item/device/locator
-	name = "locator"
-	desc = "Used to track those with locater implants."
+	name = "定位器"
+	desc = "用于追踪装有定位植入物的人员。"
 	icon_state = "locator"
 	var/temp = null
 	var/frequency = 1451
@@ -28,18 +28,18 @@
 	user.set_interaction(src)
 	var/dat
 	if (src.temp)
-		dat = "[src.temp]<BR><BR><A href='byond://?src=\ref[src];temp=1'>Clear</A>"
+		dat = "[src.temp]<BR><BR><A href='byond://?src=\ref[src];temp=1'>清除</A>"
 	else
 		dat = {"
-		Frequency:
+		频率：
 		<A href='byond://?src=\ref[src];freq=-10'>-</A>
 		<A href='byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
 		<A href='byond://?src=\ref[src];freq=2'>+</A>
 		<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
 
-		<A href='byond://?src=\ref[src];refresh=1'>Refresh</A>
+		<A href='byond://?src=\ref[src];refresh=1'>刷新</A>
 		"}
-	show_browser(user, dat, "Persistent Signal Locator", "radio")
+	show_browser(user, dat, "持续信号定位器", "radio")
 	onclose(user, "radio")
 	return
 
@@ -49,16 +49,16 @@
 		return
 	var/turf/current_location = get_turf(usr)//What turf is the user on?
 	if(!current_location || should_block_game_interaction(current_location))//If turf was not found or they're on z level 2.
-		to_chat(usr, "[src] is malfunctioning.")
+		to_chat(usr, "[src]发生故障了。")
 		return
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
 		usr.set_interaction(src)
 		if (href_list["refresh"])
-			src.temp = "<B>Persistent Signal Locator</B><HR>"
+			src.temp = "<B>持续信号定位器</B><HR>"
 			var/turf/sr = get_turf(src)
 
 			if (sr)
-				src.temp += "<B>Located Beacons:</B><BR>"
+				src.temp += "<B>已定位的信标：</B><BR>"
 
 				for(var/i in GLOB.radio_beacon_list)
 					var/obj/item/device/radio/beacon/W = i
@@ -67,18 +67,18 @@
 						if (tr.z == sr.z && tr)
 							var/direct = max(abs(tr.x - sr.x), abs(tr.y - sr.y))
 							if (direct < 5)
-								direct = "very strong"
+								direct = "极强"
 							else
 								if (direct < 10)
-									direct = "strong"
+									direct = "强"
 								else
 									if (direct < 20)
-										direct = "weak"
+										direct = "弱"
 									else
-										direct = "very weak"
+										direct = "极弱"
 							src.temp += "[W.code]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
 
-				src.temp += "<B>Extranneous Signals:</B><BR>"
+				src.temp += "<B>其他信号：</B><BR>"
 				for (var/i in GLOB.tracking_implant_list)
 					var/obj/item/implant/tracking/W = i
 					if (!W.implanted || !(istype(W.loc,/obj/limb) || ismob(W.loc)))
@@ -94,17 +94,17 @@
 						var/direct = max(abs(tr.x - sr.x), abs(tr.y - sr.y))
 						if (direct < 20)
 							if (direct < 5)
-								direct = "very strong"
+								direct = "极强"
 							else
 								if (direct < 10)
-									direct = "strong"
+									direct = "强"
 								else
-									direct = "weak"
+									direct = "弱"
 							src.temp += "[W.id]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
 
-				src.temp += "<B>You are at \[[sr.x],[sr.y],[sr.z]\]</B> in orbital coordinates.<BR><BR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A><BR>"
+				src.temp += "<B>你所在的轨道坐标为\[[sr.x],[sr.y],[sr.z]\]</B>。<BR><BR><A href='byond://?src=\ref[src];refresh=1'>刷新</A><BR>"
 			else
-				src.temp += "<B><FONT color='red'>Processing Error:</FONT></B> Unable to locate orbital position.<BR>"
+				src.temp += "<B><FONT color='red'>处理错误：</FONT></B>无法确定轨道位置。<BR>"
 		else
 			if (href_list["freq"])
 				src.frequency += text2num(href_list["freq"])
@@ -125,8 +125,8 @@
  * Hand-tele
  */
 /obj/item/device/hand_tele
-	name = "hand tele"
-	desc = "A portable item using blue-space technology."
+	name = "手持传送器"
+	desc = "采用蓝空间技术的便携设备。"
 	icon_state = "hand_tele"
 	item_state = "electronic"
 	throwforce = 5
@@ -141,24 +141,24 @@
 
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	if(!current_location || should_block_game_interaction(current_location))//If turf was not found or they're on z level 2
-		to_chat(user, SPAN_NOTICE("\The [src] is malfunctioning."))
+		to_chat(user, SPAN_NOTICE("\The [src]发生故障了。"))
 		return
 	var/list/L = list(  )
 	for(var/obj/structure/machinery/teleport/hub/R in GLOB.machines)
 		var/obj/structure/machinery/computer/teleporter/com = locate(/obj/structure/machinery/computer/teleporter, locate(R.x - 2, R.y, R.z))
 		if (istype(com, /obj/structure/machinery/computer/teleporter) && com.locked && !com.one_time_use)
 			if(R.icon_state == "tele1")
-				L["[com.id] (Active)"] = com.locked
+				L["[com.id]（已启动）"] = com.locked
 			else
-				L["[com.id] (Inactive)"] = com.locked
+				L["[com.id]（未启动）"] = com.locked
 	var/list/turfs = list( )
 	for(var/turf/T as anything in ORANGE_TURFS(10, src))
 		if(T.x>world.maxx-8 || T.x<8) continue //putting them at the edge is dumb
 		if(T.y>world.maxy-8 || T.y<8) continue
 		turfs += T
 	if(length(turfs))
-		L["None (Dangerous)"] = pick(turfs)
-	var/t1 = tgui_input_list(user, "Please select a teleporter to lock in on.", "Hand Teleporter", L)
+		L["无目标（危险）"] = pick(turfs)
+	var/t1 = tgui_input_list(user, "请选择要锁定的传送器。", "手持传送器", L)
 	if ((user.get_active_hand() != src || user.stat || user.is_mob_restrained()))
 		return
 	var/count = 0 //num of portals from this teleport in the world
@@ -167,11 +167,11 @@
 		if(PO.creator == src)
 			count++
 	if(count >= 3)
-		user.show_message(SPAN_NOTICE("\The [src] is recharging!"), SHOW_MESSAGE_VISIBLE)
+		user.show_message(SPAN_NOTICE("\The [src]正在充能！"), SHOW_MESSAGE_VISIBLE)
 		return
 	var/T = L[t1]
 	for(var/mob/O in hearers(user, null))
-		O.show_message(SPAN_NOTICE("Locked In."), SHOW_MESSAGE_AUDIBLE)
+		O.show_message(SPAN_NOTICE("已锁定。"), SHOW_MESSAGE_AUDIBLE)
 	var/obj/effect/portal/P = new /obj/effect/portal( get_turf(src) )
 	P.target = T
 	P.creator = src

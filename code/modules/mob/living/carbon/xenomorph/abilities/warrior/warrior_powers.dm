@@ -3,7 +3,7 @@
 
 	if (!action_cooldown_check())
 		if(twitch_message_cooldown < world.time )
-			xeno.visible_message(SPAN_XENOWARNING("[xeno]'s claws twitch."), SPAN_XENOWARNING("Our claws twitch as we try to lunge but lack the strength. Wait a moment to try again."))
+			xeno.visible_message(SPAN_XENOWARNING("[xeno]的利爪抽动着。"), SPAN_XENOWARNING("我们的利爪抽动着，想要猛扑却力不从心。稍等片刻再试。"))
 			twitch_message_cooldown = world.time + 5 SECONDS
 		return //this gives a little feedback on why your lunge didn't hit other than the lunge button going grey. Plus, it might spook marines that almost got lunged if they know why the message appeared, and extra spookiness is always good.
 
@@ -11,7 +11,7 @@
 		return
 
 	if (!isturf(xeno.loc))
-		to_chat(xeno, SPAN_XENOWARNING("We can't lunge from here!"))
+		to_chat(xeno, SPAN_XENOWARNING("我们无法从这里猛扑！"))
 		return
 
 	if (!xeno.check_state() || xeno.agility)
@@ -31,7 +31,7 @@
 	apply_cooldown()
 	..()
 
-	xeno.visible_message(SPAN_XENOWARNING("[xeno] lunges towards [carbon]!"), SPAN_XENOWARNING("We lunge at [carbon]!"))
+	xeno.visible_message(SPAN_XENOWARNING("[xeno]猛扑向[carbon]！"), SPAN_XENOWARNING("我们猛扑向[carbon]！"))
 
 	xeno.throw_atom(get_step_towards(affected_atom, xeno), grab_range, SPEED_FAST, xeno)
 
@@ -40,7 +40,7 @@
 		if(ishuman(carbon))
 			INVOKE_ASYNC(carbon, TYPE_PROC_REF(/mob, emote), "scream")
 	else
-		xeno.visible_message(SPAN_XENOWARNING("[xeno]'s claws twitch."), SPAN_XENOWARNING("Our claws twitch as we lunge but are unable to grab onto our target. Wait a moment to try again."))
+		xeno.visible_message(SPAN_XENOWARNING("[xeno]的利爪抽动着。"), SPAN_XENOWARNING("我们猛扑时利爪抽动，却没能抓住目标。稍等片刻再试。"))
 
 	return TRUE
 
@@ -70,13 +70,13 @@
 		xeno.stop_pulling()
 
 	if(carbon.mob_size >= MOB_SIZE_BIG)
-		to_chat(xeno, SPAN_XENOWARNING("[carbon] is too big for us to fling!"))
+		to_chat(xeno, SPAN_XENOWARNING("[carbon]体型太大，我们甩不动！"))
 		return
 
 	if (!check_and_use_plasma_owner())
 		return
 
-	xeno.visible_message(SPAN_XENOWARNING("[xeno] effortlessly flings [carbon] to the side!"), SPAN_XENOWARNING("We effortlessly fling [carbon] to the side!"))
+	xeno.visible_message(SPAN_XENOWARNING("[xeno]轻而易举地将[carbon]甩向一旁！"), SPAN_XENOWARNING("我们轻而易举地将[carbon]甩向一旁！"))
 	playsound(carbon,'sound/weapons/alien_claw_block.ogg', 75, 1)
 	if(stun_power)
 		carbon.Stun(get_xeno_stun_duration(carbon, stun_power))
@@ -135,8 +135,8 @@
 
 	carbon.last_damage_data = create_cause_data(initial(xeno.caste_type), xeno)
 
-	xeno.visible_message(SPAN_XENOWARNING("[xeno] hits [carbon] in the [target_limb ? target_limb.display_name : "chest"] with a devastatingly powerful punch!"), \
-	SPAN_XENOWARNING("We hit [carbon] in the [target_limb ? target_limb.display_name : "chest"] with a devastatingly powerful punch!"))
+	xeno.visible_message(SPAN_XENOWARNING("[xeno]用毁灭性的重拳击中了[carbon]的[target_limb ? target_limb.display_name : "胸部"]！"), \
+	SPAN_XENOWARNING("我们用毁灭性的重拳击中了[carbon]的[target_limb ? target_limb.display_name : "胸部"]！"))
 	var/sound = pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg')
 	playsound(carbon, sound, 50, 1)
 	do_base_warrior_punch(carbon, target_limb)
@@ -151,7 +151,7 @@
 		if((target_limb.status & LIMB_SPLINTED) && !(target_limb.status & LIMB_SPLINTED_INDESTRUCTIBLE)) //If they have it splinted, the splint won't hold.
 			target_limb.status &= ~LIMB_SPLINTED
 			playsound(get_turf(carbon), 'sound/items/splintbreaks.ogg', 20)
-			to_chat(carbon, SPAN_DANGER("The splint on your [target_limb.display_name] comes apart!"))
+			to_chat(carbon, SPAN_DANGER("你[target_limb.display_name]上的夹板散开了！"))
 			carbon.pain.apply_pain(PAIN_BONE_BREAK_SPLINTED)
 
 		if(ishuman_strict(carbon))

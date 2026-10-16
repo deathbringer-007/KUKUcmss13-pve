@@ -1,7 +1,7 @@
 
 //actual built floors, not natural ground
 /turf/open/floor
-	name = "floor"
+	name = "地板"
 	icon = 'icons/turf/floors/floors.dmi'
 	icon_state = "floor"
 	var/broken = FALSE
@@ -21,13 +21,13 @@
 	if(!hull_floor)
 		var/tool_output = list()
 		if(tool_flags & REMOVE_CROWBAR)
-			tool_output += SPAN_GREEN("crowbar")
+			tool_output += SPAN_GREEN("撬棍")
 		if(tool_flags & BREAK_CROWBAR)
-			tool_output += SPAN_RED("crowbar")
+			tool_output += SPAN_RED("撬棍")
 		if(tool_flags & REMOVE_SCREWDRIVER)
-			tool_output += SPAN_GREEN("screwdriver")
+			tool_output += SPAN_GREEN("螺丝刀")
 		if(length(tool_output))
-			. += SPAN_NOTICE("\The [src] can be removed with \a [english_list(tool_output)].")
+			. += SPAN_NOTICE("可以用\a [english_list(tool_output)]拆除\the [src]。")
 
 
 /turf/open/floor/is_plasteel_floor()
@@ -150,12 +150,12 @@
 
 	if(HAS_TRAIT(hitting_item, TRAIT_TOOL_CROWBAR) && (tool_flags & (REMOVE_CROWBAR|BREAK_CROWBAR)))
 		if(broken || burnt)
-			to_chat(user, SPAN_WARNING("You remove the broken tiles."))
+			to_chat(user, SPAN_WARNING("你移除了破碎的地砖。"))
 		else
 			if(tool_flags & BREAK_CROWBAR)
-				to_chat(user, SPAN_WARNING("You forcefully pry off the planks, destroying them in the process."))
+				to_chat(user, SPAN_WARNING("你强行撬掉了木板，也将它们弄坏了。"))
 			else
-				to_chat(user, SPAN_WARNING("You remove \the [src]."))
+				to_chat(user, SPAN_WARNING("你移除了\the [src]。"))
 				new tile_type(src, 1, type)
 
 		playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
@@ -163,7 +163,7 @@
 		return
 
 	if(HAS_TRAIT(hitting_item, TRAIT_TOOL_SCREWDRIVER) && (tool_flags & REMOVE_SCREWDRIVER))
-		to_chat(user, SPAN_WARNING("You unscrew the planks."))
+		to_chat(user, SPAN_WARNING("你拧下了固定木板的螺丝。"))
 		new tile_type(src, 1, type)
 		playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
 		make_plating()
@@ -192,9 +192,9 @@
 
 
 /turf/open/floor/sandstone
-	name = "sandstone floor"
+	name = "砂岩地板"
 	icon_state = "whiteyellowfull"
 
 /turf/open/floor/sandstone/runed
-	name = "sandstone temple floor"
+	name = "砂岩神庙地板"
 	icon_state = "runedsandstone"

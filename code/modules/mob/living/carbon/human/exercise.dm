@@ -3,8 +3,8 @@ Verbs related to getting fucking jacked, bro
 */
 
 /mob/living/carbon/human/verb/pushup()
-	set name = "Do Pushup"
-	set desc = "Makes you do a pushup."
+	set name = "做俯卧撑"
+	set desc = "让你做俯卧撑。"
 	set category = "IC"
 
 	do_pushups()
@@ -14,14 +14,14 @@ Verbs related to getting fucking jacked, bro
 		return
 
 	set_face_dir(WEST)
-	visible_message(SPAN_NOTICE("[src] gets down and prepares to do some pushups."), SPAN_NOTICE("You get down for some pushups."), SPAN_NOTICE("You hear rustling."))
+	visible_message(SPAN_NOTICE("[src]趴下，准备做俯卧撑。"), SPAN_NOTICE("你趴下，准备做俯卧撑。"), SPAN_NOTICE("你听见窸窣声。"))
 
-	var/choice = tgui_alert(src, "Proper pushups or on your knees?", "What kinda pushups, mate.", list("Proper ones", "On my knees"), 60 SECONDS)
-	if(choice == "Proper ones")
-		visible_message(SPAN_NOTICE("[src] shifts \his weight onto \his hands and feet."), SPAN_NOTICE("You move your weight onto your hands and feet."), SPAN_NOTICE("You hear rustling."))
+	var/choice = tgui_alert(src, "做标准俯卧撑，还是跪姿俯卧撑？", "选择俯卧撑姿势", list("标准姿势", "跪姿"), 60 SECONDS)
+	if(choice == "标准姿势")
+		visible_message(SPAN_NOTICE("[src]将身体重量转移到双手和双脚上。"), SPAN_NOTICE("你将身体重量转移到双手和双脚上。"), SPAN_NOTICE("你听见窸窣声。"))
 		execute_pushups(on_knees = FALSE)
-	if(choice == "On my knees")
-		visible_message(SPAN_NOTICE("[src] shifts \his weight onto \his knees. What a wimp."), SPAN_NOTICE("You move your weight onto your knees. WEAK!"), SPAN_NOTICE("You hear rustling."))
+	if(choice == "跪姿")
+		visible_message(SPAN_NOTICE("[src]将身体重量转移到膝盖上。真是个弱鸡。"), SPAN_NOTICE("你将身体重量转移到膝盖上。弱爆了！"), SPAN_NOTICE("你听见窸窣声。"))
 		execute_pushups(on_knees = TRUE)
 	else
 		return
@@ -54,19 +54,19 @@ Verbs related to getting fucking jacked, bro
 		staminaloss = calculate_stamina_loss_per_pushup(on_knees)
 		animate(src, pixel_y = target_y, time = 0.8 SECONDS, easing = QUAD_EASING) //down to the floor
 		if(!do_after(src, 0.6 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC))
-			visible_message(SPAN_NOTICE("[src] stops doing pushups."), SPAN_NOTICE("You stop doing pushups."), SPAN_NOTICE("You hear movements."))
+			visible_message(SPAN_NOTICE("[src]停止了俯卧撑。"), SPAN_NOTICE("你停止了俯卧撑。"), SPAN_NOTICE("你听见活动声。"))
 			animate(src, pixel_y = 0, time = 0.2 SECONDS, easing = QUAD_EASING)
 			return
 		animate(src, pixel_y = 0, time = 0.8 SECONDS, easing = QUAD_EASING) //back up
 		if(!do_after(src, 0.6 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC))
-			visible_message(SPAN_NOTICE("[src] stops doing pushups."), SPAN_NOTICE("You stop doing pushups."), SPAN_NOTICE("You hear movements."))
+			visible_message(SPAN_NOTICE("[src]停止了俯卧撑。"), SPAN_NOTICE("你停止了俯卧撑。"), SPAN_NOTICE("你听见活动声。"))
 			animate(src, pixel_y = 0, time = 0.2 SECONDS, easing = QUAD_EASING)
 			return
 		pushups_in_a_row++
-		visible_message(SPAN_BOLDNOTICE("[src] does a pushup - [pushups_in_a_row] done so far!"), SPAN_BOLDNOTICE("You do a pushup - [pushups_in_a_row] done so far!"), SPAN_NOTICE("You hear rustling."))
+		visible_message(SPAN_BOLDNOTICE("[src]做了一个俯卧撑，目前已经做了[pushups_in_a_row]个！"), SPAN_BOLDNOTICE("你做了一个俯卧撑，目前已经做了[pushups_in_a_row]个！"), SPAN_NOTICE("你听见窸窣声。"))
 		stamina.apply_damage(staminaloss)
 		if(stamina.current_stamina < 10)
-			to_chat(src, SPAN_WARNING("You slump down to the floor, too tired to keep going."))
+			to_chat(src, SPAN_WARNING("你累得瘫倒在地，无法继续。"))
 			return
 
 /mob/living/carbon/human/proc/can_do_pushup()
@@ -74,7 +74,7 @@ Verbs related to getting fucking jacked, bro
 		return FALSE
 
 	if(!resting || buckled)
-		to_chat(src, SPAN_WARNING("How do you think you'll be able to do a pushup standing up? Get down to the floor!"))
+		to_chat(src, SPAN_WARNING("站着怎么做俯卧撑？先趴到地上！"))
 		return FALSE
 
 	var/list/extremities = list("l_hand", "r_hand", "l_foot", "r_foot", "l_arm", "r_arm", "l_leg", "r_leg")
@@ -84,15 +84,15 @@ Verbs related to getting fucking jacked, bro
 			extremities.Remove(zone)
 
 	if(length(extremities) < 8)
-		to_chat(src, SPAN_WARNING("How do you think you'll be able to do a pushup without two hands and feet to stand on? See a doctor!"))
+		to_chat(src, SPAN_WARNING("没有双手和双脚支撑，怎么做俯卧撑？去找医生！"))
 		return FALSE
 
 	if(stamina.current_stamina < (stamina.max_stamina / 10))
-		to_chat(src, SPAN_WARNING("You feel far too weak to do a pushup!"))
+		to_chat(src, SPAN_WARNING("你太虚弱，做不了俯卧撑！"))
 		return FALSE
 
 	if(!isturf(loc))
-		to_chat(src, SPAN_WARNING("You cannot do that here!"))
+		to_chat(src, SPAN_WARNING("你不能在这里这样做！"))
 		return FALSE
 
 	return TRUE

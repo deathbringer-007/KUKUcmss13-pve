@@ -1,5 +1,5 @@
 /obj/structure/machinery/washing_machine
-	name = "Washing Machine"
+	name = "洗衣机"
 	icon = 'icons/obj/structures/machinery/washing_machine.dmi'
 	icon_state = "wm_10"
 	density = TRUE
@@ -23,7 +23,7 @@
 	var/obj/crayon
 
 /obj/structure/machinery/washing_machine/verb/start()
-	set name = "Start Washing"
+	set name = "开始洗涤"
 	set category = "Object"
 	set src in oview(1)
 
@@ -31,7 +31,7 @@
 		return
 
 	if( state != 4 )
-		to_chat(usr, "The washing machine cannot run in this state.")
+		to_chat(usr, "洗衣机在当前状态下无法运转。")
 		return
 
 	if( locate(/mob,contents) )
@@ -58,7 +58,7 @@
 	update_icon()
 
 /obj/structure/machinery/washing_machine/verb/climb_out()
-	set name = "Climb out"
+	set name = "爬出"
 	set category = "Object"
 	set src in usr.loc
 
@@ -95,40 +95,40 @@
 
 		//YES, it's hardcoded... saves a var/can_be_washed for every single clothing item.
 		if ( istype(W,/obj/item/clothing/suit/space ) )
-			to_chat(user, "This item does not fit.")
+			to_chat(user, "这件物品放不进去。")
 			return
 		if ( istype(W,/obj/item/clothing/suit/syndicatefake ) )
-			to_chat(user, "This item does not fit.")
+			to_chat(user, "这件物品放不进去。")
 			return
 // if ( istype(W,/obj/item/clothing/suit/powered ) )
 // to_chat(user, "This item does not fit.")
 // return
 		if ( istype(W,/obj/item/clothing/suit/cyborg_suit ) )
-			to_chat(user, "This item does not fit.")
+			to_chat(user, "这件物品放不进去。")
 			return
 		if ( istype(W,/obj/item/clothing/suit/bomb_suit ) )
-			to_chat(user, "This item does not fit.")
+			to_chat(user, "这件物品放不进去。")
 			return
 		if ( istype(W,/obj/item/clothing/suit/armor ) )
-			to_chat(user, "This item does not fit.")
+			to_chat(user, "这件物品放不进去。")
 			return
 		if ( istype(W,/obj/item/clothing/suit/armor ) )
-			to_chat(user, "This item does not fit.")
+			to_chat(user, "这件物品放不进去。")
 			return
 		if ( istype(W,/obj/item/clothing/mask/gas ) )
-			to_chat(user, "This item does not fit.")
+			to_chat(user, "这件物品放不进去。")
 			return
 		if ( istype(W,/obj/item/clothing/mask/cigarette ) )
-			to_chat(user, "This item does not fit.")
+			to_chat(user, "这件物品放不进去。")
 			return
 		if ( istype(W,/obj/item/clothing/head/syndicatefake ) )
-			to_chat(user, "This item does not fit.")
+			to_chat(user, "这件物品放不进去。")
 			return
 // if ( istype(W,/obj/item/clothing/head/powered ) )
 // to_chat(user, "This item does not fit.")
 // return
 		if ( istype(W,/obj/item/clothing/head/helmet ) )
-			to_chat(user, "This item does not fit.")
+			to_chat(user, "这件物品放不进去。")
 			return
 
 		if(length(contents) < 5)
@@ -136,9 +136,9 @@
 				if(user.drop_inv_item_to_loc(W, src))
 					state = 3
 			else
-				to_chat(user, SPAN_NOTICE(" You can't put the item in right now."))
+				to_chat(user, SPAN_NOTICE("你现在无法放入物品。"))
 		else
-			to_chat(user, SPAN_NOTICE(" The washing machine is full."))
+			to_chat(user, SPAN_NOTICE("洗衣机已经满了。"))
 	else
 		..()
 	update_icon()
@@ -160,7 +160,7 @@
 			crayon = null
 			state = 1
 		if(5)
-			to_chat(user, SPAN_DANGER("The [src] is busy."))
+			to_chat(user, SPAN_DANGER("[src]正在运转。"))
 		if(6)
 			state = 7
 		if(7)

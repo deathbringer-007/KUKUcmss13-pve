@@ -2,7 +2,7 @@
 /mob/proc/hear_apollo()
 	return FALSE
 
-/mob/proc/hear_say(message, verb = "says", datum/language/language = null, alt_name = "", italics = 0, mob/speaker = null, sound/speech_sound, sound_vol)
+/mob/proc/hear_say(message, verb = "说道", datum/language/language = null, alt_name = "", italics = 0, mob/speaker = null, sound/speech_sound, sound_vol)
 
 	if(!client && !(mind && mind.current != src))
 		return
@@ -42,9 +42,9 @@
 
 	if(sdisabilities & DISABILITY_DEAF || ear_deaf)
 		if(speaker == src)
-			to_chat(src, SPAN_WARNING("You cannot hear yourself speak!"))
+			to_chat(src, SPAN_WARNING("你听不见自己的声音！"))
 		else
-			to_chat(src, SPAN_LOCALSAY("<span class='prefix'>[comm_paygrade][speaker_name]</span>[alt_name] talks but you cannot hear them."))
+			to_chat(src, SPAN_LOCALSAY("<span class='prefix'>[comm_paygrade][speaker_name]</span>[alt_name]正在说话，但你听不见。"))
 	else
 		to_chat(src, SPAN_LOCALSAY("<span class='prefix'>[comm_paygrade][speaker_name]</span>[alt_name] [verb], <span class='[style]'>\"[message]\"</span>"))
 		if (speech_sound && (get_dist(speaker, src) <= GLOB.world_view_size && src.z == speaker.z))
@@ -53,7 +53,7 @@
 
 
 /mob/proc/hear_radio(
-	message, verb="says",
+	message, verb="说道",
 	datum/language/language=null,
 	part_a, part_b,
 	mob/speaker = null,
@@ -103,13 +103,13 @@
 
 
 	if(hard_to_hear)
-		speaker_name = "unknown"
+		speaker_name = "未知"
 		comm_paygrade = ""
 
 	if(istype(src, /mob/dead/observer))
 		if(speaker_name != speaker.real_name) //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.
 			speaker_name = "[speaker.real_name] ([speaker_name])"
-		track = "[speaker_name] (<a href='byond://?src=\ref[src];track=\ref[speaker]'>F</a>)"
+		track = "[speaker_name] (<a href='byond://?src=\ref[src];track=\ref[speaker]'>跟随</a>)"
 
 	var/fontsize_style
 	switch(command)
@@ -122,7 +122,7 @@
 
 	if(sdisabilities & DISABILITY_DEAF || ear_deaf)
 		if(prob(20))
-			to_chat(src, SPAN_WARNING("You feel your headset vibrate but can hear nothing from it!"), type = MESSAGE_TYPE_RADIO)
+			to_chat(src, SPAN_WARNING("你感觉耳机在振动，却什么也听不见！"), type = MESSAGE_TYPE_RADIO)
 	else if(track)
 		if(!command)
 			to_chat(src, "[part_a][comm_paygrade][track][part_b][verb], <span class=\"[style]\">\"[message]\"</span></span></span>", type = MESSAGE_TYPE_RADIO)
@@ -174,16 +174,16 @@
 
 	if(sdisabilities & DISABILITY_DEAF || ear_deaf)
 		if(speaker == src)
-			to_chat(src, SPAN_WARNING("You cannot hear yourself speak!"))
+			to_chat(src, SPAN_WARNING("你听不见自己的声音！"))
 		else
-			to_chat(src, SPAN_LOCALSAY("Someone near talks but you cannot hear them."))
+			to_chat(src, SPAN_LOCALSAY("附近有人说话，但你听不见。"))
 		return
 
 	if(hearing_self)
-		heard = SPAN_LOCALSAY("You mutter something about... [stars(message, clear_char_probability = 99)]")
+		heard = SPAN_LOCALSAY("你嘟囔着什么……[stars(message, clear_char_probability = 99)]")
 
 	else if(!sleeping && proximity_flag)
-		heard = SPAN_LOCALSAY("You hear someone near you say something... [stars(message, clear_char_probability)]")
+		heard = SPAN_LOCALSAY("你听见附近有人说了些什么……[stars(message, clear_char_probability)]")
 
 	else if(prob(15))
 
@@ -195,9 +195,9 @@
 			heardword = copytext(heardword,2)
 		if(copytext(heardword,-1) in punctuation)
 			heardword = copytext(heardword,1,length(heardword))
-		heard = SPAN_LOCALSAY("...You hear something about...[heardword]")
+		heard = SPAN_LOCALSAY("……你听见有人提到……[heardword]")
 
 	else
-		heard = SPAN_LOCALSAY("...<i>You almost hear someone talking</i>...")
+		heard = SPAN_LOCALSAY("……<i>你隐约听见有人说话</i>……")
 
 	to_chat(src, heard)

@@ -1,6 +1,6 @@
 /obj/structure/barricade/deployable
-	name = "portable composite barricade"
-	desc = "A plasteel-carbon composite barricade. Resistant to most acids while being simple to repair. There are two pushplates that allow this barricade to fold into a neat package. Use a blowtorch to repair."
+	name = "便携式复合路障"
+	desc = "塑钢与碳复合材料制成的路障，耐多数酸液，维修简单。两块压板可将路障折成整齐的一包。用焊枪修理。"
 	icon_state = "folding_0"
 	health = 350
 	maxhealth = 350
@@ -21,7 +21,7 @@
 
 /obj/structure/barricade/deployable/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_INFO("Drag its sprite onto yourself to undeploy.")
+	. += SPAN_INFO("将它的图像拖到自己身上即可收起。")
 
 /obj/structure/barricade/deployable/attackby(obj/item/item, mob/user)
 	if(iswelder(item))
@@ -32,15 +32,15 @@
 		if(user.action_busy)
 			return
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_NOVICE))
-			to_chat(user, SPAN_WARNING("You do not know how to collapse [src] using a crowbar..."))
+			to_chat(user, SPAN_WARNING("你不知道如何用撬棍折叠[src]……"))
 			return
-		user.visible_message(SPAN_NOTICE("[user] starts collapsing [src]."), \
-			SPAN_NOTICE("You begin collapsing [src]..."))
+		user.visible_message(SPAN_NOTICE("[user]开始折叠[src]。"), \
+			SPAN_NOTICE("你开始折叠[src]……"))
 		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 		if(do_after(user, 1.5 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY, src))
 			collapse(usr)
 		else
-			to_chat(user, SPAN_WARNING("You stop collapsing [src]."))
+			to_chat(user, SPAN_WARNING("你停止折叠[src]。"))
 
 	if(try_nailgun_usage(item, user))
 		return
@@ -55,21 +55,21 @@
 		return
 
 	if(over_object == usr && Adjacent(usr))
-		usr.visible_message(SPAN_NOTICE("[usr] starts collapsing [src]."),
-			SPAN_NOTICE("You begin collapsing [src]."))
+		usr.visible_message(SPAN_NOTICE("[usr]开始折叠[src]。"),
+			SPAN_NOTICE("你开始折叠[src]。"))
 		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 		if(do_after(usr, 3 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY, src))
 			collapse(usr)
 		else
-			to_chat(usr, SPAN_WARNING("You stop collapsing [src]."))
+			to_chat(usr, SPAN_WARNING("你停止折叠[src]。"))
 
 /obj/structure/barricade/deployable/proc/collapse(mob/living/carbon/human/user)
 	var/obj/item/stack/folding_barricade/folding = new source_type(loc)
 	folding.stack_health = list(health)
 	folding.maxhealth = maxhealth
 	if(istype(user))
-		user.visible_message(SPAN_NOTICE("[user] collapses [src]."),
-			SPAN_NOTICE("You collapse [src]."))
+		user.visible_message(SPAN_NOTICE("[user]折叠了[src]。"),
+			SPAN_NOTICE("你折叠了[src]。"))
 		user.put_in_active_hand(folding)
 	qdel(src)
 
@@ -82,8 +82,8 @@
 
 // Cade in hands
 /obj/item/stack/folding_barricade
-	name = "MB-6 Folding Barricade"
-	desc = "A folding barricade that can be used to quickly deploy an all-round resistant barricade."
+	name = "MB-6折叠路障"
+	desc = "可快速部署的折叠路障，具有全面的防护能力。"
 	health = 350
 	var/maxhealth = 350
 
@@ -125,35 +125,35 @@
 
 	for(var/obj/structure/barricade/B in usr.loc)
 		if(B.dir == user.dir)
-			to_chat(user, SPAN_WARNING("There is already \a [B] in this direction!"))
+			to_chat(user, SPAN_WARNING("这个方向已经有\a [B]了！"))
 			return
 
 	var/turf/open/OT = usr.loc
 	var/obj/structure/blocker/anti_cade/AC = locate(/obj/structure/blocker/anti_cade) in OT // for M2C HMG, look at smartgun_mount.dm
 
 	if(!OT.allow_construction)
-		to_chat(usr, SPAN_WARNING("[singular_name] must be constructed on a proper surface!"))
+		to_chat(usr, SPAN_WARNING("必须在合适的表面上搭建[singular_name]！"))
 		return
 	if(AC)
-		to_chat(usr, SPAN_WARNING("[singular_name] cannot be built here!"))
+		to_chat(usr, SPAN_WARNING("这里无法搭建[singular_name]！"))
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] begins deploying [singular_name]."),
-			SPAN_NOTICE("You begin deploying [singular_name]."))
+	user.visible_message(SPAN_NOTICE("[user]开始部署[singular_name]。"),
+			SPAN_NOTICE("你开始部署[singular_name]。"))
 
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 
 	if(!do_after(user, 1 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-		to_chat(user, SPAN_WARNING("You were interrupted."))
+		to_chat(user, SPAN_WARNING("你被打断了。"))
 		return
 
 	for(var/obj/structure/barricade/B in usr.loc) //second check so no memery
 		if(B.dir == user.dir)
-			to_chat(user, SPAN_WARNING("There is already \a [B] in this direction!"))
+			to_chat(user, SPAN_WARNING("这个方向已经有\a [B]了！"))
 			return
 
-	user.visible_message(SPAN_NOTICE("[user] has finished deploying [singular_name]."),
-			SPAN_NOTICE("You finish deploying [singular_name]."))
+	user.visible_message(SPAN_NOTICE("[user]完成了[singular_name]的部署。"),
+			SPAN_NOTICE("你完成了[singular_name]的部署。"))
 
 	var/obj/structure/barricade/deployable/cade = new(user.loc)
 	cade.setDir(user.dir)
@@ -170,17 +170,17 @@
 		var/obj/item/stack/folding_barricade/folding = item
 		if(!ismob(loc)) //gather from ground
 			if(amount >= max_amount)
-				to_chat(user, "You cannot stack more [folding.singular_name]\s.")
+				to_chat(user, "你无法再堆叠更多[folding.singular_name]。")
 				return
 			var/to_transfer = min(folding.max_amount - folding.amount, amount)
 			for(var/counter in 1 to to_transfer)
 				folding.stack_health += pop(stack_health)
 			use(to_transfer)
 			folding.add(to_transfer)
-			to_chat(user, SPAN_INFO("You transfer [to_transfer] between the stacks."))
+			to_chat(user, SPAN_INFO("你在两堆之间转移了[to_transfer]个。"))
 			return
 		if(amount >= max_amount)
-			to_chat(user, "You cannot stack more [singular_name]\s.")
+			to_chat(user, "你无法再堆叠更多[singular_name]。")
 			return
 
 		var/to_transfer = min(max_amount - amount, folding.amount)
@@ -188,12 +188,12 @@
 			stack_health += pop(folding.stack_health)
 		folding.use(to_transfer)
 		add(to_transfer)
-		to_chat(user, SPAN_INFO("You transfer [to_transfer] between the stacks."))
+		to_chat(user, SPAN_INFO("你在两堆之间转移了[to_transfer]个。"))
 		return
 
 	if(iswelder(item))
 		if(!HAS_TRAIT(item, TRAIT_TOOL_BLOWTORCH))
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要功率更大的焊枪！"))
 			return
 
 		if(user.action_busy)
@@ -205,15 +205,15 @@
 				need_repairs++
 
 		if(!need_repairs)
-			to_chat(user, SPAN_WARNING("[singular_name] doesn't need repairs."))
+			to_chat(user, SPAN_WARNING("[singular_name]无须修理。"))
 			return
 
 		var/obj/item/tool/weldingtool/welder = item
 		if(!(welder.remove_fuel(2, user)))
 			return
 
-		user.visible_message(SPAN_NOTICE("[user] begins repairing damage to [src]."),
-		SPAN_NOTICE("You begin repairing the damage to [src]."))
+		user.visible_message(SPAN_NOTICE("[user]开始修复[src]的损伤。"),
+		SPAN_NOTICE("你开始修复[src]的损伤。"))
 		playsound(loc, 'sound/items/Welder2.ogg', 25, TRUE)
 
 		var/welding_time = (skillcheck(user, SKILL_CONSTRUCTION, SKILL_CONSTRUCTION_TRAINED) ? 5 SECONDS : 10 SECONDS) * need_repairs
@@ -225,8 +225,8 @@
 			if(!do_after(user, welding_time, (INTERRUPT_ALL & (~INTERRUPT_MOVED)), BUSY_ICON_FRIENDLY, src, INTERRUPT_DIFF_LOC)) //you can move while repairing if you have cade in hand
 				return
 
-		user.visible_message(SPAN_NOTICE("[user] repairs some damage on [src]."),
-		SPAN_NOTICE("You repair [src]."))
+		user.visible_message(SPAN_NOTICE("[user]修复了[src]的部分损伤。"),
+		SPAN_NOTICE("你修好了[src]。"))
 		user.count_niche_stat(STATISTICS_NICHE_REPAIR_CADES)
 
 		for(var/counter in 1 to length(stack_health))
@@ -271,7 +271,7 @@
 /obj/item/stack/folding_barricade/get_examine_text(mob/user)
 	. = ..()
 	if(floor(min(stack_health)/maxhealth * 100) <= 75)
-		. += SPAN_WARNING("It appears to be damaged.")
+		. += SPAN_WARNING("它似乎受损了。")
 
 /obj/item/stack/folding_barricade/three
 	amount = 3

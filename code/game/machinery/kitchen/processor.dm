@@ -1,5 +1,5 @@
 /obj/structure/machinery/processor
-	name = "Food Processor"
+	name = "食品加工机"
 	icon = 'icons/obj/structures/machinery/kitchen.dmi'
 	icon_state = "processor"
 	layer = ABOVE_TABLE_LAYER
@@ -39,7 +39,7 @@
 
 /datum/food_processor_process/xenomeat/can_use(mob/user)
 	if(!skillcheck(user, SKILL_DOMESTIC, SKILL_DOMESTIC_MASTER))
-		to_chat(user, SPAN_DANGER("You aren't trained to remove dangerous substances from food!"))
+		to_chat(user, SPAN_DANGER("你没有受过从食物中去除危险物质的训练！"))
 		return FALSE
 	return TRUE
 
@@ -53,7 +53,7 @@
 
 /datum/food_processor_process/carpmeat/can_use(mob/user)
 	if(!skillcheck(user, SKILL_DOMESTIC, SKILL_DOMESTIC_MASTER))
-		to_chat(user, SPAN_DANGER("You aren't trained to remove dangerous substances from food!"))
+		to_chat(user, SPAN_DANGER("你没有受过从食物中去除危险物质的训练！"))
 		return FALSE
 	return TRUE
 
@@ -100,10 +100,10 @@
 
 /obj/structure/machinery/processor/attackby(obj/item/O as obj, mob/user as mob)
 	if(processing)
-		to_chat(user, SPAN_DANGER("The processor is in the process of processing."))
+		to_chat(user, SPAN_DANGER("食品加工机正在加工。"))
 		return 1
 	if(length(contents) > 0) //TODO: several items at once? several different items?
-		to_chat(user, SPAN_DANGER("Something is already in the processing chamber."))
+		to_chat(user, SPAN_DANGER("加工室里已经有东西了。"))
 		return 1
 	if(HAS_TRAIT(O, TRAIT_TOOL_WRENCH))
 		. = ..()
@@ -115,12 +115,12 @@
 
 	var/datum/food_processor_process/P = select_recipe(what)
 	if (!P)
-		to_chat(user, SPAN_DANGER("That probably won't blend."))
+		to_chat(user, SPAN_DANGER("那东西恐怕没法搅碎。"))
 		return 1
 	if(!P.can_use(user))
 		return 1
-	user.visible_message("[user] put [what] into [src].", \
-		"You put [what] into [src].")
+	user.visible_message("[user]将[what]放入了[src]。", \
+		"你将[what]放入了[src]。")
 	user.drop_held_item()
 	what.forceMove(src)
 
@@ -128,10 +128,10 @@
 	if (src.stat != 0) //NOPOWER etc
 		return
 	if(src.processing)
-		to_chat(user, SPAN_DANGER("The processor is in the process of processing."))
+		to_chat(user, SPAN_DANGER("食品加工机正在加工。"))
 		return 1
 	if(length(src.contents) == 0)
-		to_chat(user, SPAN_DANGER("The processor is empty."))
+		to_chat(user, SPAN_DANGER("食品加工机是空的。"))
 		return 1
 	for(var/O in src.contents)
 		var/datum/food_processor_process/P = select_recipe(O)
@@ -139,13 +139,13 @@
 			log_admin("DEBUG: [O] in processor havent suitable recipe. How do you put it in?") //-rastaf0
 			continue
 		src.processing = 1
-		user.visible_message(SPAN_NOTICE("[user] turns on [src]."), \
-			"You turn on [src].", \
-			"You hear a food processor.")
+		user.visible_message(SPAN_NOTICE("[user]启动了[src]。"), \
+			"你启动了[src]。", \
+			"你听见食品加工机运转的声音。")
 		playsound(src.loc, 'sound/machines/blender.ogg', 25, 1)
 		use_power(500)
 		sleep(P.time)
 		P.process(src.loc, O)
 		src.processing = 0
-	src.visible_message(SPAN_NOTICE("\the [src] finished processing."), \
-		"You hear the food processor stopping/")
+	src.visible_message(SPAN_NOTICE("\the [src]完成了加工。"), \
+		"你听见食品加工机停了下来。")

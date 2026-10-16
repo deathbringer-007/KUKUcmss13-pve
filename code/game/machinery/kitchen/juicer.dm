@@ -1,6 +1,6 @@
 
 /obj/structure/machinery/juicer
-	name = "Juicer"
+	name = "榨汁机"
 	icon = 'icons/obj/structures/machinery/kitchen.dmi'
 	icon_state = "juicer1"
 	layer = ABOVE_TABLE_LAYER
@@ -50,7 +50,7 @@
 			updateUsrDialog()
 			return 0
 	if (!is_type_in_list(O, allowed_items))
-		to_chat(user, "It looks as not containing any juice.")
+		to_chat(user, "它看起来榨不出什么汁。")
 		return 1
 	if(user.drop_held_item())
 		O.forceMove(src)
@@ -74,32 +74,32 @@
 		for (var/obj/item/O in src.contents)
 			if (!istype(O,i))
 				continue
-			processing_chamber+= "some <B>[O]</B><BR>"
+			processing_chamber+= "一些<B>[O]</B><BR>"
 			break
 	if (!processing_chamber)
 		is_chamber_empty = 1
-		processing_chamber = "Nothing."
+		processing_chamber = "空无一物。"
 	if (!beaker)
-		beaker_contents = "\The [src] has no beaker attached."
+		beaker_contents = "\The [src]上没有安装烧杯。"
 	else if (!beaker.reagents.total_volume)
-		beaker_contents = "\The [src]  has attached an empty beaker."
+		beaker_contents = "\The [src]上装着一个空烧杯。"
 		is_beaker_ready = 1
 	else if (beaker.reagents.total_volume < beaker.reagents.maximum_volume)
-		beaker_contents = "\The [src]  has attached a beaker with something."
+		beaker_contents = "\The [src]上装着一个盛有液体的烧杯。"
 		is_beaker_ready = 1
 	else
-		beaker_contents = "\The [src]  has attached a beaker and beaker is full!"
+		beaker_contents = "\The [src]上的烧杯已经满了！"
 
 	var/dat = {"
-<b>Processing chamber contains:</b><br>
+<b>加工室内有：</b><br>
 [processing_chamber]<br>
 [beaker_contents]<hr>
 "}
 	if (is_beaker_ready && !is_chamber_empty && !(inoperable()))
-		dat += "<A href='byond://?src=\ref[src];action=juice'>Turn on!<BR>"
+		dat += "<A href='byond://?src=\ref[src];action=juice'>启动！<BR>"
 	if (beaker)
-		dat += "<A href='byond://?src=\ref[src];action=detach'>Detach a beaker!<BR>"
-	show_browser(user, dat, "Juicer", "juicer")
+		dat += "<A href='byond://?src=\ref[src];action=detach'>取下烧杯！<BR>"
+	show_browser(user, dat, "榨汁机", "juicer")
 	onclose(user, "juicer")
 	return
 
@@ -119,7 +119,7 @@
 
 /obj/structure/machinery/juicer/verb/detach()
 	set category = "Object"
-	set name = "Detach Beaker from the juicer"
+	set name = "从榨汁机上取下烧杯"
 	set src in oview(1)
 	if (usr.stat != 0)
 		return

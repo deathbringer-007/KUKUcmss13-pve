@@ -10,8 +10,8 @@
 ///ENTREE
 
 /obj/item/mre_food_packet/entree/twe
-	name = "\improper ORP main dish"
-	desc = "An Operation Ration Pack entree component. Contains a luxurious well prepared main course based on TWE cuisines, preserved using high-tech methods."
+	name = "\improper ORP作战口粮主菜"
+	desc = "作战口粮包的主菜，按三世界帝国菜式精心烹调，颇为奢华，采用高科技保鲜技术保存。"
 	icon = 'icons/obj/items/food/mre_food/twe.dmi'
 	icon_state = "twe_entree"
 	food_list = list(
@@ -23,9 +23,9 @@
 	)
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/entree/bacon
-	name = "bacon"
+	name = "培根"
 	icon_state = "bacon"
-	desc = "Yet another classic part of the British breakfast, bacon, fried to a crisp, goes well with a toast."
+	desc = "英式早餐的又一经典组成部分，煎得酥脆的培根，搭配吐司很合适。"
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/entree/bacon/Initialize()
 	. = ..()
@@ -33,9 +33,9 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/entree/tomatobeans
-	name = "tomato beans"
+	name = "茄汁豆"
 	icon_state = "tomato beans"
-	desc = "Classic part of the British breakfast, baked beans in tomato sauce, goes well with a toast."
+	desc = "英式早餐的经典组成部分，番茄酱焗豆，搭配吐司很合适。"
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/entree/tomatobeans/Initialize()
 	. = ..()
@@ -44,9 +44,9 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/entree/fishnrice
-	name = "fish n rice"
+	name = "炸鱼配米饭"
 	icon_state = "fish n rice"
-	desc = "A dish born in Japan, initially made by the Commonwealth sailors suffering from lack of potatoes in Asian parts of the Empire, they figured out they could use rice for that instead."
+	desc = "诞生于日本的菜式。最初，驻帝国亚洲地区的英联邦水手缺少土豆，于是想到可以用米饭代替。"
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/entree/fishnrice/Initialize()
 	. = ..()
@@ -56,9 +56,9 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/entree/ricenoodles
-	name = "rice ramen"
+	name = "日式米粉汤"
 	icon_state = "rice noodles"
-	desc = "A Japanese style rice noodle ramen, has a fair share of hot sauce to it, has some subtle bits of carrot and green onions."
+	desc = "日式米粉汤，加入了不少辣酱，还能找到些许胡萝卜和葱花。"
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/entree/ricenoodles/Initialize()
 	. = ..()
@@ -69,9 +69,9 @@
 	reagents.add_reagent("hotsauce", 4)
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/entree/fishnchips
-	name = "fish n chips"
+	name = "炸鱼薯条"
 	icon_state = "fish n chips"
-	desc = "A British classic, stripes of fish covered in bread crumbs and fried, has a bit of a crunch to it, hands are all greasy after it."
+	desc = "英式经典美食。鱼条裹上面包糠炸至酥脆，吃完满手都是油。"
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/entree/fishnchips/Initialize()
 	. = ..()
@@ -85,8 +85,8 @@
 ///SIDE
 
 /obj/item/mre_food_packet/twe/side
-	name = "\improper ORP side dish"
-	desc = "An Operation Ration Pack side component. Contains a side, to be eaten alongside the main."
+	name = "\improper ORP作战口粮配菜"
+	desc = "作战口粮包的配餐部分，内含搭配主菜食用的配菜。"
 	icon_state = "twe_side"
 	food_list = list(
 		/obj/item/reagent_container/food/snacks/mre_food/twe/side/nutpatty,
@@ -98,9 +98,9 @@
 	)
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/side/nutpatty
-	name = "chickpeas patty"
+	name = "鹰嘴豆饼"
 	icon_state = "nut patty"
-	desc = "Vegeterian patte from from chickpeas, covered in bread crumbs and fried, reminds you of fish sticks for some reason."
+	desc = "鹰嘴豆制成的素饼，裹上面包糠油炸，不知为何让你想起炸鱼条。"
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/side/nutpatty/Initialize()
 	. = ..()
@@ -110,9 +110,9 @@
 	reagents.add_reagent("sodiumchloride", 1)
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/side/mushroom_soup
-	name = "mushroom soup"
+	name = "蘑菇汤"
 	icon_state = "mushroom_soup"
-	desc = "Very nourishing soup with vegetables and a mushroom flavor, will keep you warm for a long time if heated."
+	desc = "营养丰富的蔬菜蘑菇汤，加热后能让你暖和好一阵。"
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/side/mushroom_soup/Initialize()
 	. = ..()
@@ -122,9 +122,9 @@
 	reagents.add_reagent("sodiumchloride", 1)
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/side/bean_stew
-	name = "beans stew"
+	name = "炖豆"
 	icon_state = "bean_soup"
-	desc = "Very nourishing bean stew with a tomato sauce, will keep you warm for a long time if heated."
+	desc = "营养丰富的茄汁炖豆，加热后能让你暖和好一阵。"
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/side/bean_stew/Initialize()
 	. = ..()
@@ -134,9 +134,9 @@
 	reagents.add_reagent("sodiumchloride", 1)
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/side/nigirisushi
-	name = "nigiri sushi"
+	name = "握寿司"
 	icon_state = "nigiri sushi"
-	desc = "A salmon slice on a ball of boiled rice, wrapped in a stripe of seaweed, melts in mouth."
+	desc = "熟米饭团上覆着一片三文鱼，再裹上一条海苔，入口即化。"
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/side/nigirisushi/Initialize()
 	. = ..()
@@ -146,9 +146,9 @@
 	reagents.add_reagent("soysauce", 1)
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/side/tomatochips
-	name = "tomato chips"
+	name = "番茄脆片"
 	icon_state = "tomato chips"
-	desc = "Very crisp, with a hint of basil, goes well with beer."
+	desc = "极为酥脆，带着淡淡的罗勒香，很适合下酒。"
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/side/tomatochips/Initialize()
 	. = ..()
@@ -160,8 +160,8 @@
 ///SNACK
 
 /obj/item/mre_food_packet/twe/snack
-	name = "\improper ORP snack"
-	desc = "An ORP snack component. Contains a light snack in case you weren't feeling terribly hungry."
+	name = "\improper ORP作战口粮零食"
+	desc = "作战口粮包中的轻食零食，适合不太饿的时候吃。"
 	icon_state = "twe_snack"
 	food_list = list(
 		/obj/item/reagent_container/food/snacks/mre_food/twe/snack/cheese,
@@ -169,9 +169,9 @@
 	)
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/snack/almond
-	name = "almonds"
+	name = "杏仁"
 	icon_state = "almond"
-	desc = "Oven dried almonds, rich in vitamins, flavor, has a nice crunch, the luxury you needed all along."
+	desc = "烘干的杏仁，富含维生素，香味浓郁，口感酥脆。你一直渴望的奢侈享受。"
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/snack/almond/Initialize()
 	. = ..()
@@ -179,9 +179,9 @@
 	reagents.add_reagent("sodiumchloride", 1)
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/snack/cheese
-	name = "dehydrated cheese chunk"
+	name = "脱水奶酪块"
 	icon_state = "cheese"
-	desc = "Freeze dried chunk of cheddar, very dry but has a concentrated flavor, makes a good snack."
+	desc = "冻干的切达奶酪块，非常干，但风味浓缩，是不错的零食。"
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/snack/cheese/Initialize()
 	. = ..()
@@ -191,8 +191,8 @@
 ///DESSERT
 
 /obj/item/mre_food_packet/twe/dessert
-	name = "\improper ORP dessert"
-	desc = "An Operatipn Ration Pack side component. Contains a sweet dessert, to be eaten after the main (or before, if you're rebellious)."
+	name = "\improper ORP作战口粮甜点"
+	desc = "作战口粮包的配餐部分，内含餐后甜点；如果你够叛逆，也可以餐前吃。"
 	icon_state = "twe_dessert"
 	food_list = list(
 		/obj/item/reagent_container/food/snacks/mre_food/twe/dessert/chocobar,
@@ -202,9 +202,9 @@
 	)
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/dessert/chocobar
-	name = "dark chocolate bar"
+	name = "黑巧克力条"
 	icon_state = "tiny chocolate bar"
-	desc = "56% coco true dark chocolate, rich in flavor, classic, combines well with hot drinks."
+	desc = "可可含量56%的纯正黑巧克力，风味浓郁经典，适合搭配热饮。"
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/dessert/chocobar/Initialize()
 	. = ..()
@@ -212,9 +212,9 @@
 	reagents.add_reagent("sugar", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/dessert/tinyapplepie
-	name = "tiny applepie"
+	name = "迷你苹果派"
 	icon_state = "tiny applepie"
-	desc = "Has some juice apple slices with a cinnamon flavor."
+	desc = "内有多汁的肉桂风味苹果片。"
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/dessert/tinyapplepie/Initialize()
 	. = ..()
@@ -223,9 +223,9 @@
 	reagents.add_reagent("sugar", 1)
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/dessert/tinycheesecake
-	name = "tiny cheesecake"
+	name = "迷你芝士蛋糕"
 	icon_state = "tiny cheesecake"
-	desc = "Very airy and sugary cheesy, has a tasty vanilla cake base."
+	desc = "绵密轻盈，香甜的奶酪搭配美味的香草蛋糕底。"
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/dessert/tinycheesecake/Initialize()
 	. = ..()
@@ -234,9 +234,9 @@
 	reagents.add_reagent("milk", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/dessert/tinypancakes
-	name = "tiny pancakes"
+	name = "迷你松饼"
 	icon_state = "tiny pancakes"
-	desc = "Buttery cupcakes with a honey topping."
+	desc = "淋有蜂蜜的黄油小蛋糕。"
 
 /obj/item/reagent_container/food/snacks/mre_food/twe/dessert/tinypancakes/Initialize()
 	. = ..()
@@ -247,18 +247,18 @@
 ///PASTE TUBE
 
 /obj/item/reagent_container/food/drinks/cans/tube
-	name = "nutrient tube"
+	name = "营养膏管"
 	icon = 'icons/obj/items/food/mre_food/twe.dmi'
 	icon_state = "paste1"
-	desc = "Space food."
+	desc = "太空食品。"
 	open_sound = 'sound/effects/pillbottle.ogg'
-	open_message = "You remove cap from the tube."
+	open_message = "你拧开了管子的盖子。"
 	volume = 15
 	food_interactable = TRUE
 	possible_transfer_amounts = list(1, 2, 3, 5)
 	crushable = FALSE
 	gulp_size = 5
-	object_fluff = "tube"
+	object_fluff = "管子"
 	var/flavor = "paste_vegemite"
 
 /obj/item/reagent_container/food/drinks/cans/tube/attack_self(mob/user)
@@ -294,16 +294,16 @@
 		icon_state = "paste3"
 
 /obj/item/reagent_container/food/drinks/cans/tube/vegemite
-	name = "ORP spread tube (vegemite)"
-	desc = "Contains a very salty food spread, good to combine with a sandwich, however, not everyone is fond of the taste and looks of it."
+	name = "ORP抹酱管（维吉麦）"
+	desc = "装着非常咸的食品抹酱，很适合夹三明治，但不是每个人都喜欢它的味道和卖相。"
 
 /obj/item/reagent_container/food/drinks/cans/tube/vegemite/Initialize()
 	. = ..()
 	reagents.add_reagent("vegemite", 20)
 
 /obj/item/reagent_container/food/drinks/cans/tube/strawberry
-	name = "ORP spread tube (strawberry)"
-	desc = "Contains strawberry food spread, good to combine with a sandwich."
+	name = "ORP抹酱管（草莓）"
+	desc = "装着草莓抹酱，很适合夹三明治。"
 	flavor = "paste_strawberry"
 
 /obj/item/reagent_container/food/drinks/cans/tube/strawberry/Initialize()
@@ -312,8 +312,8 @@
 	reagents.add_reagent("sugar", 5)
 
 /obj/item/reagent_container/food/drinks/cans/tube/blackberry
-	name = "ORP spread tube (blackberry)"
-	desc = "Contains blackberry food spread, good to combine with a sandwich."
+	name = "ORP抹酱管（黑莓）"
+	desc = "装着黑莓抹酱，很适合夹三明治。"
 	flavor = "paste_blackberry"
 
 /obj/item/reagent_container/food/drinks/cans/tube/blackberry/Initialize()
@@ -324,8 +324,8 @@
 ///LEMON DROP CANDY
 
 /obj/item/reagent_container/food/snacks/lemondrop
-	name = "Lemon Drop candy"
-	desc = "A sugar coated, lemon flavored sweet and sour hard candy popular in TWE, with candy itself originating in England."
+	name = "柠檬酸糖"
+	desc = "裹糖的柠檬味硬糖，酸甜可口，起源于英格兰，在三世界帝国很受欢迎。"
 	icon_state = "lemondrop"
 	icon = 'icons/obj/items/food/mre_food/twe.dmi'
 	filling_color = "#e3f218"

@@ -1,7 +1,7 @@
 /obj/item/explosive/grenade/custom
-	name = "custom grenade"
+	name = "自制手雷"
 	icon_state = "grenade_custom"
-	desc = "A custom chemical grenade with an M40 casing. This one is made to fit into underslung grenade launchers, but can also be thrown by hand."
+	desc = "采用M40弹壳的自制化学手雷，专为下挂式榴弹发射器设计，也可手掷。"
 	w_class = SIZE_SMALL
 	force = 2
 	dangerous = TRUE
@@ -17,8 +17,8 @@
 	..()
 
 /obj/item/explosive/grenade/custom/large
-	name = "large custom grenade"
-	desc = "A custom chemical grenade with an M15 casing. This casing has a higher explosive capacity than the M40 variant."
+	name = "大型自制手雷"
+	desc = "采用M15弹壳的自制化学手雷，爆炸容量高于M40版本。"
 	icon_state = "large_grenade_custom"
 	allowed_containers = list(/obj/item/reagent_container/glass)
 	max_container_volume = 180
@@ -33,8 +33,8 @@
 
 
 /obj/item/explosive/grenade/custom/metal_foam
-	name = "metal-foam grenade"
-	desc = "Used for emergency sealing of air breaches."
+	name = "金属泡沫手雷"
+	desc = "用于紧急封堵漏气的破口。"
 	assembly_stage = ASSEMBLY_LOCKED
 	harmful = FALSE
 	has_blast_wave_dampener = FALSE
@@ -56,8 +56,8 @@
 	update_icon()
 
 /obj/item/explosive/grenade/custom/incendiary
-	name = "incendiary grenade"
-	desc = "Used for clearing rooms of living things."
+	name = "燃烧手雷"
+	desc = "用于清除房间内的活物。"
 	assembly_stage = ASSEMBLY_LOCKED
 	has_blast_wave_dampener = FALSE
 
@@ -79,8 +79,8 @@
 	update_icon()
 
 /obj/item/explosive/grenade/custom/flare
-	name = "\improper M40-F flare grenade"
-	desc = "Chemical flare in a grenade form, designed for compatibility with most standard issue launchers."
+	name = "\improper M40-F照明手雷"
+	desc = "手雷形式的化学照明弹，兼容大多数制式发射器。"
 	assembly_stage = ASSEMBLY_LOCKED
 	has_blast_wave_dampener = FALSE
 	antigrief_protection = FALSE
@@ -103,8 +103,8 @@
 	update_icon()
 
 /obj/item/explosive/grenade/custom/large/flare
-	name = "\improper M15-F flare grenade"
-	desc = "Chemical flare in a grenade form, expanded variant. The casing is too large to fit most launchers."
+	name = "\improper M15-F照明手雷"
+	desc = "手雷形式的加大号化学照明弹，弹壳过大，无法装入大多数发射器。"
 	assembly_stage = ASSEMBLY_LOCKED
 	has_blast_wave_dampener = FALSE
 	antigrief_protection = FALSE
@@ -128,8 +128,8 @@
 
 
 /obj/item/explosive/grenade/custom/antiweed
-	name = "weedkiller grenade"
-	desc = "Used for purging large areas of invasive plant species. Contents under pressure. Do not directly inhale contents."
+	name = "除草手雷"
+	desc = "用于大面积清除入侵植物。内容物处于加压状态，请勿直接吸入。"
 	assembly_stage = ASSEMBLY_LOCKED
 	harmful = FALSE
 	antigrief_protection = FALSE
@@ -152,8 +152,8 @@
 	update_icon()
 
 /obj/item/explosive/grenade/custom/cleaner
-	name = "cleaner grenade"
-	desc = "BLAM!-brand foaming space cleaner. In a special applicator for rapid cleaning of wide areas."
+	name = "清洁手雷"
+	desc = "BLAM!牌泡沫太空清洁剂，装在专用容器中，可快速清洁大片区域。"
 	assembly_stage = ASSEMBLY_LOCKED
 	harmful = FALSE
 	has_blast_wave_dampener = FALSE
@@ -175,8 +175,8 @@
 	update_icon()
 
 /obj/item/explosive/grenade/custom/ied
-	name = "improvised explosive device"
-	desc = "An improvised chemical explosive grenade. Designed to kill through fragmentation."
+	name = "简易爆炸装置"
+	desc = "简易化学爆炸手雷，依靠破片杀伤目标。"
 	assembly_stage = ASSEMBLY_LOCKED
 	has_blast_wave_dampener = FALSE
 
@@ -199,8 +199,8 @@
 
 
 /obj/item/explosive/grenade/custom/ied_incendiary
-	name = "improvised explosive device (incendiary)"
-	desc = "An improvised chemical explosive grenade. Designed to spray incendiary shrapnel across a wide area."
+	name = "简易爆炸装置（燃烧型）"
+	desc = "简易化学爆炸手雷，可向大片区域喷射燃烧破片。"
 	assembly_stage = ASSEMBLY_LOCKED
 	has_blast_wave_dampener = FALSE
 

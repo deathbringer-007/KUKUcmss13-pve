@@ -1,6 +1,6 @@
 /obj/structure/machinery/computer/research
-	name = "research data terminal"
-	desc = "A terminal for accessing research data."
+	name = "科研数据终端"
+	desc = "用于访问科研数据的终端。"
 	icon_state = "research"
 	req_access = list(ACCESS_MARINE_RESEARCH)
 	var/base_purchase_cost = 5
@@ -9,7 +9,7 @@
 	var/obj/structure/machinery/photocopier/photocopier
 
 /obj/structure/machinery/computer/research/main_terminal
-	name = "research main terminal"
+	name = "科研主终端"
 	main_terminal = TRUE
 	req_access = list(ACCESS_MARINE_CMO)
 
@@ -29,25 +29,25 @@
 			if(!N.grant)
 				return
 			GLOB.chemical_data.update_credits(N.grant)
-			visible_message(SPAN_NOTICE("[user] scans the [N.name] on [src], collecting the [N.grant] research credits."))
+			visible_message(SPAN_NOTICE("[user]在[src]上扫描[N.name]，获得了[N.grant]科研点数。"))
 			N.grant = 0
 			qdel(N)
 			return
 	//Saving to database
 	if(istype(B, /obj/item/paper))
 		var/obj/item/paper/P = B
-		var/response = alert(usr,"Do you want to save [P.name] to the research database?","[src]","Yes","No")
-		if(response != "Yes")
+		var/response = alert(usr,"要将[P.name]保存到科研数据库吗？","[src]","是","否")
+		if(response != "是")
 			return
-		response = alert(usr,"Use existing or new category?","[src]","Existing","New")
-		if(response == "Existing")
+		response = alert(usr,"使用现有分类还是创建新分类？","[src]","现有分类","新分类")
+		if(response == "现有分类")
 			var/list/pool = list()
 			for(var/category in GLOB.chemical_data.research_documents)
 				pool += category
 			pool = sortAssoc(pool)
-			response = tgui_input_list(usr,"Select a category:", "Categories", pool)
-		else if(response == "New")
-			response = input(usr,"Please enter the category of the paper:")
+			response = tgui_input_list(usr,"选择一个分类：", "分类", pool)
+		else if(response == "新分类")
+			response = input(usr,"请输入文档分类：")
 		if(!response)
 			response = "Misc."
 		var/obj/item/paper/research_report/CR = P.convert_to_chem_report()
@@ -57,17 +57,17 @@
 	if(istype(B, /obj/item/research_upgrades/credits))
 		var/obj/item/research_upgrades/credits/cred = B
 		GLOB.chemical_data.update_credits(cred.credit_value)
-		visible_message(SPAN_NOTICE("[user] inserts [cred] in [src], collecting [cred.credit_value] points from sales."))
+		visible_message(SPAN_NOTICE("[user]将[cred]插入[src]，收取了[cred.credit_value]点销售所得。"))
 		qdel(cred)
 	//Clearance Card Updating
 	if(!istype(B, /obj/item/card/id))
 		return
 	var/obj/item/card/id/silver/clearance_badge/card = B
 	if(!istype(card))
-		visible_message(SPAN_NOTICE("[user] swipes their ID card on [src], but it is refused."))
+		visible_message(SPAN_NOTICE("[user]在[src]上刷过身份卡，却遭到拒绝。"))
 		return
 	if(!card.check_biometrics(user))
-		visible_message(SPAN_WARNING("WARNING: ILLEGAL CLEARANCE USER DETECTED. ABORTING."))
+		visible_message(SPAN_WARNING("警告：检测到权限异常用户，正在中止。"))
 		return
 
 	var/credits_to_add = max(card.credits_to_give - GLOB.chemical_data.credits_gained, 0)
@@ -75,7 +75,7 @@
 		GLOB.chemical_data.update_credits(credits_to_add)
 		GLOB.chemical_data.credits_gained += credits_to_add
 
-	visible_message(SPAN_NOTICE("[user] swipes their ID card on [src], granting [credits_to_add] credits."))
+	visible_message(SPAN_NOTICE("[user]在[src]上刷过身份卡，获得了[credits_to_add]点数。"))
 	msg_admin_niche("[key_name(user)] has swiped a clearance card to give [credits_to_add] credits to research.")
 	return
 
@@ -153,7 +153,7 @@
 				if(cost <= GLOB.chemical_data.rsc_credits)
 					GLOB.chemical_data.update_credits(cost * -1)
 					GLOB.chemical_data.clearance_level++
-					visible_message(SPAN_NOTICE("Clearance access increased to level [GLOB.chemical_data.clearance_level] for [cost] credits."))
+					visible_message(SPAN_NOTICE("花费[cost]点数，将访问权限提升至[GLOB.chemical_data.clearance_level]级。"))
 					msg_admin_niche("[key_name(user)] traded research credits to upgrade the clearance to level [GLOB.chemical_data.clearance_level].")
 					if(max_clearance < GLOB.chemical_data.clearance_level)
 						switch(GLOB.chemical_data.clearance_level)
@@ -174,7 +174,7 @@
 			var/print_title = params["print_title"]
 			var/obj/item/paper/research_report/report = GLOB.chemical_data.get_report(print_type, print_title)
 			if(!report)
-				to_chat(usr, SPAN_WARNING("Report data corrupted. Unable to transmit."))
+				to_chat(usr, SPAN_WARNING("报告数据损坏，无法传输。"))
 				return
 			GLOB.chemical_data.publish_document(report, print_type, print_title)
 		if("unpublish_document")
@@ -187,5 +187,5 @@
 				GLOB.chemical_data.clearance_x_access = TRUE
 				GLOB.chemical_data.reached_x_access = TRUE
 				GLOB.chemical_data.update_credits(purchase_cost * -1)
-				visible_message(SPAN_NOTICE("Clearance Level X Acquired."))
+				visible_message(SPAN_NOTICE("已取得X级权限。"))
 	playsound(loc, pick('sound/machines/computer_typing1.ogg','sound/machines/computer_typing2.ogg','sound/machines/computer_typing3.ogg'), 5, 1)

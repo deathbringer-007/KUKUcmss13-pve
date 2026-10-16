@@ -1,6 +1,6 @@
 
 /obj/structure/machinery/microwave
-	name = "Microwave"
+	name = "微波炉"
 	icon = 'icons/obj/structures/machinery/kitchen.dmi'
 	icon_state = "mw"
 	layer = ABOVE_TABLE_LAYER
@@ -57,24 +57,24 @@
 	if(broken > 0)
 		if(broken == 2 && HAS_TRAIT(O, TRAIT_TOOL_SCREWDRIVER)) // If it's broken and they're using a screwdriver
 			user.visible_message( \
-				SPAN_NOTICE("[user] starts to fix part of the microwave."), \
-				SPAN_NOTICE("You start to fix part of the microwave.") \
+				SPAN_NOTICE("[user]开始修理微波炉的一部分。"), \
+				SPAN_NOTICE("你开始修理微波炉的一部分。") \
 			)
 			if (do_after(user,20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 				user.visible_message( \
-					SPAN_NOTICE("[user] fixes part of the microwave."), \
-					SPAN_NOTICE("You have fixed part of the microwave. Now use a wrench!") \
+					SPAN_NOTICE("[user]修好了微波炉的一部分。"), \
+					SPAN_NOTICE("你修好了微波炉的一部分。接下来用扳手！") \
 				)
 				src.broken = 1 // Fix it a bit
 		else if(src.broken == 1 && HAS_TRAIT(O, TRAIT_TOOL_WRENCH)) // If it's broken and they're doing the wrench
 			user.visible_message( \
-				SPAN_NOTICE("[user] starts to fix part of the microwave."), \
-				SPAN_NOTICE("You start to fix part of the microwave.") \
+				SPAN_NOTICE("[user]开始修理微波炉的一部分。"), \
+				SPAN_NOTICE("你开始修理微波炉的一部分。") \
 			)
 			if (do_after(user,20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 				user.visible_message( \
-					SPAN_NOTICE("[user] fixes the microwave."), \
-					SPAN_NOTICE("You have fixed the microwave.") \
+					SPAN_NOTICE("[user]修好了微波炉。"), \
+					SPAN_NOTICE("你修好了微波炉。") \
 				)
 				icon_state = "mw"
 				broken = 0 // Fix it!
@@ -82,9 +82,9 @@
 				flags_atom = OPENCONTAINER
 		else
 			if(broken == 2)
-				to_chat(user, SPAN_DANGER("It's broken! Use a screwdriver and a wrench to fix it!"))
+				to_chat(user, SPAN_DANGER("它坏了！用螺丝刀和扳手修理它！"))
 			else
-				to_chat(user, SPAN_DANGER("It's broken! Use a wrench to fix it!"))
+				to_chat(user, SPAN_DANGER("它坏了！用扳手修理它！"))
 			return 1
 	else if(HAS_TRAIT(O, TRAIT_TOOL_WRENCH))
 		. = ..()
@@ -92,52 +92,52 @@
 	else if(dirty==100) // The microwave is all dirty so can't be used!
 		if(istype(O, /obj/item/reagent_container/spray/cleaner)) // If they're trying to clean it then let them
 			user.visible_message( \
-				SPAN_NOTICE("[user] starts to clean the microwave."), \
-				SPAN_NOTICE("You start to clean the microwave.") \
+				SPAN_NOTICE("[user]开始清洁微波炉。"), \
+				SPAN_NOTICE("你开始清洁微波炉。") \
 			)
 			if (do_after(user, 2 SECONDS * user.get_skill_duration_multiplier(SKILL_DOMESTIC), INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
 				user.visible_message( \
-					SPAN_NOTICE("[user]  has cleaned  the microwave."), \
-					SPAN_NOTICE("You have cleaned the microwave.") \
+					SPAN_NOTICE("[user]清洁了微波炉。"), \
+					SPAN_NOTICE("你清洁了微波炉。") \
 				)
 				dirty = 0 // It's clean!
 				broken = 0 // just to be sure
 				icon_state = "mw"
 				flags_atom = OPENCONTAINER
 		else //Otherwise bad luck!!
-			to_chat(user, SPAN_DANGER("It's dirty! Clean it with a spray cleaner!"))
+			to_chat(user, SPAN_DANGER("它脏了！用清洁喷雾清理它！"))
 			return 1
 	else if(operating)
-		to_chat(user, SPAN_DANGER("It's running!"))
+		to_chat(user, SPAN_DANGER("它正在运转！"))
 	else if(is_type_in_list(O,acceptable_items))
 		if (length(contents)>=max_n_of_items)
-			to_chat(user, SPAN_DANGER("This [src] is full of ingredients, you cannot put more."))
+			to_chat(user, SPAN_DANGER("[src]已经装满食材，放不下更多了。"))
 			return 1
 		if(istype(O, /obj/item/stack) && O:get_amount() > 1) // This is bad, but I can't think of how to change it
 			var/obj/item/stack/S = O
 			new O.type (src)
 			S.use(1)
 			user.visible_message( \
-				SPAN_NOTICE("[user] has added one of [O] to \the [src]."), \
-				SPAN_NOTICE("You add one of [O] to \the [src]."))
+				SPAN_NOTICE("[user]向\the [src]中加入了一份[O]。"), \
+				SPAN_NOTICE("你向\the [src]中加入了一份[O]。"))
 		else
 		// user.before_take_item(O) //This just causes problems so far as I can tell. -Pete
 			if(user.drop_held_item())
 				O.forceMove(src)
 				user.visible_message( \
-					SPAN_NOTICE("[user] has added \the [O] to \the [src]."), \
-					SPAN_NOTICE("You add \the [O] to \the [src]."))
+					SPAN_NOTICE("[user]向\the [src]中加入了\the [O]。"), \
+					SPAN_NOTICE("你向\the [src]中加入了\the [O]。"))
 	else if(istype(O,/obj/item/reagent_container/glass) || istype(O,/obj/item/reagent_container/food/drinks) || istype(O,/obj/item/reagent_container/food/condiment)) // TODO: typecache this
 		if (!O.reagents)
 			return 1
 		for (var/datum/reagent/R in O.reagents.reagent_list)
 			if (!(R.id in acceptable_reagents))
-				to_chat(user, SPAN_DANGER("Your [O] contains components unsuitable for cookery."))
+				to_chat(user, SPAN_DANGER("你的[O]含有不适合烹饪的成分。"))
 				return 1
 	else if(istype(O,/obj/item/grab))
 		return 1
 	else
-		to_chat(user, SPAN_DANGER("You have no idea what you can cook with this [O]."))
+		to_chat(user, SPAN_DANGER("你不知道能用[O]做出什么菜。"))
 		return 1
 	src.updateUsrDialog()
 
@@ -151,7 +151,7 @@
 /obj/structure/machinery/microwave/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "Microwave", "Microwave Controls")
+		ui = new(user, src, "Microwave", "微波炉控制")
 		ui.open()
 
 //*******************
@@ -173,18 +173,18 @@
 		var/display_name = contents_item.name
 
 		if (istype(contents_item, /obj/item/reagent_container/food/snacks/tofu))
-			items_measures[display_name] = "tofu chunk"
-			items_measures_p[display_name] = "tofu chunks"
+			items_measures[display_name] = "豆腐块"
+			items_measures_p[display_name] = "豆腐块"
 		if (istype(contents_item, /obj/item/reagent_container/food/snacks/meat)) //any meat
-			items_measures[display_name] = "slab of meat"
-			items_measures_p[display_name] = "slabs of meat"
+			items_measures[display_name] = "肉块"
+			items_measures_p[display_name] = "肉块"
 		if (istype(contents_item, /obj/item/reagent_container/food/snacks/microwavable/donkpocket))
-			display_name = "Turnovers"
-			items_measures[display_name] = "turnover"
-			items_measures_p[display_name] = "turnovers"
+			display_name = "馅饼"
+			items_measures[display_name] = "馅饼"
+			items_measures_p[display_name] = "馅饼"
 		if (istype(contents_item, /obj/item/reagent_container/food/snacks/carpmeat))
-			items_measures[display_name] = "fillet of meat"
-			items_measures_p[display_name] = "fillets of meat"
+			items_measures[display_name] = "肉片"
+			items_measures_p[display_name] = "肉片"
 		items_counts[display_name]++
 
 	for (var/contents_item in items_counts)
@@ -194,7 +194,7 @@
 		item["count"] = items_counts[contents_item]
 
 		if (!(contents_item in items_measures))
-			item["measure"] = "[lowertext(contents_item)][items_counts[contents_item] > 1 ? "s" : ""]" // Adds 's' for plurals.
+			item["measure"] = "[lowertext(contents_item)]" // Adds 's' for plurals.
 		else if (items_counts[contents_item] == 1)
 			item["measure"] = items_measures[contents_item]
 		else
@@ -206,13 +206,13 @@
 		var/list/reagent = list()
 
 		reagent["count"] = contents_reagent.volume
-		reagent["measure"] = contents_reagent.volume > 1 ? "units" : "unit"
+		reagent["measure"] = contents_reagent.volume > 1 ? "单位" : "单位"
 
 		reagent["name"] = contents_reagent.name
 		if (contents_reagent.id == "hotsauce")
-			reagent["name"] = "Hotsauce"
+			reagent["name"] = "辣酱"
 		if (contents_reagent.id == "frostoil")
-			reagent["name"] = "Coldsauce"
+			reagent["name"] = "冰酱"
 
 		ingredients += list(reagent)
 
@@ -299,7 +299,7 @@
 	return 0
 
 /obj/structure/machinery/microwave/proc/start()
-	src.visible_message(SPAN_NOTICE("The microwave turns on."), SPAN_NOTICE("You hear a microwave."))
+	src.visible_message(SPAN_NOTICE("微波炉启动了。"), SPAN_NOTICE("你听见微波炉运转的声音。"))
 	src.operating = 1
 	src.icon_state = "mw1"
 	src.updateUsrDialog()
@@ -321,7 +321,7 @@
 	if (src.reagents.total_volume)
 		src.dirty++
 	src.reagents.clear_reagents()
-	to_chat(usr, SPAN_NOTICE("You dispose of the microwave contents."))
+	to_chat(usr, SPAN_NOTICE("你清空了微波炉内的东西。"))
 	src.updateUsrDialog()
 
 /obj/structure/machinery/microwave/proc/muck_start()
@@ -330,7 +330,7 @@
 
 /obj/structure/machinery/microwave/proc/muck_finish()
 	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
-	visible_message(SPAN_DANGER("The microwave gets covered in muck!"))
+	visible_message(SPAN_DANGER("微波炉沾满了污物！"))
 	dirty = 100 // Make it dirty so it can't be used util cleaned
 	flags_atom = null //So you can't add condiments
 	icon_state = "mwbloody" // Make it look dirty too
@@ -342,7 +342,7 @@
 	s.set_up(2, 1, src)
 	s.start()
 	icon_state = "mwb" // Make it look all busted up and shit
-	visible_message(SPAN_DANGER("The microwave breaks!")) //Let them know they're stupid
+	visible_message(SPAN_DANGER("微波炉坏了！")) //Let them know they're stupid
 	broken = 2 // Make it broken so it can't be used util fixed
 	flags_atom = null //So you can't add condiments
 	operating = 0 // Turn it off again aferwards

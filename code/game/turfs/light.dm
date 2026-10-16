@@ -6,8 +6,8 @@
 #define LIGHT_FLOOR_COLOR_WHITE 5
 
 /turf/open/floor/light
-	name = "light floor"
-	desc = "Beware of breakdancing on these tiles, glass shards embedded in the head is not a fun time."
+	name = "发光地板"
+	desc = "在这些地砖上跳霹雳舞时要小心，脑袋扎进玻璃碴可不是什么好体验。"
 	icon_state = "light_on"
 	tile_type = /obj/item/stack/tile/light
 	var/on = TRUE
@@ -15,7 +15,7 @@
 
 /turf/open/floor/light/get_examine_text(mob/user)
 	. = ..()
-	. += "[src] is [broken ? "broken, and requires a replacement lightbulb":"[on ? "on" : "off"]"]."
+	. += "[src]目前[broken ? "已损坏，需要更换灯泡":"[on ? "亮着" : "关闭着"]"]。"
 
 /turf/open/floor/light/is_light_floor()
 	return TRUE
@@ -62,27 +62,27 @@
 			broken = FALSE
 			update_icon()
 			playsound(src, 'sound/machines/click.ogg', 25, 1)
-			to_chat(user, SPAN_NOTICE("You replace the light bulb."))
+			to_chat(user, SPAN_NOTICE("你更换了灯泡。"))
 		else
-			to_chat(user, SPAN_NOTICE("The lightbulb seems fine, no need to replace it."))
+			to_chat(user, SPAN_NOTICE("灯泡看起来完好，无须更换。"))
 		return
 
 	if(istype(item_in_hand, /obj/item/device/multitool)) //changing the light color with multitool, can't do if bulb broken, can do while it's off
 		if(!broken)
 			state++
 			update_icon()
-			to_chat(user, SPAN_NOTICE("You alter the glass panel's settings, changing its color."))
+			to_chat(user, SPAN_NOTICE("你调整了玻璃面板的设置，改变了它的颜色。"))
 		else
-			to_chat(user, SPAN_NOTICE("The bulb inside is shattered, you should get a new one before tuning it."))
+			to_chat(user, SPAN_NOTICE("里面的灯泡碎了，调整前得先换个新的。"))
 
 
 /turf/open/floor/light/attack_hand(mob/user as mob) //turning the light on and off
 	if(!broken)
 		on = !on
 		update_icon()
-		to_chat(user, SPAN_NOTICE("You turn the light [on ? "on" : "off"]."))
+		to_chat(user, SPAN_NOTICE("你[on ? "打开" : "关闭"]了灯。"))
 	else
-		to_chat(user, SPAN_NOTICE("It looks like the bulb inside has been shattered, you should think about replacing it.")) //if the light is broken and you try to turn it off and on
+		to_chat(user, SPAN_NOTICE("里面的灯泡似乎碎了，你该考虑换一个。")) //if the light is broken and you try to turn it off and on
 
 	return ..()
 
@@ -90,9 +90,9 @@
 	if(!broken)
 		playsound(src, "windowshatter", 25, 1)
 		xeno_attacker.animation_attack_on(src)
-		xeno_attacker.visible_message(SPAN_DANGER("\The [xeno_attacker] smashes \the [src]!"), \
-		SPAN_DANGER("You smash \the [src]!"), \
-		SPAN_DANGER("You hear broken glass!"), 5)
+		xeno_attacker.visible_message(SPAN_DANGER("\The [xeno_attacker]砸碎了\the [src]！"), \
+		SPAN_DANGER("你砸碎了\the [src]！"), \
+		SPAN_DANGER("你听见玻璃破碎的声音！"), 5)
 		broken = TRUE
 		update_icon()
 		return XENO_ATTACK_ACTION

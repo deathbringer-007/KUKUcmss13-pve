@@ -1,8 +1,8 @@
 /obj/item/explosive/grenade/spawnergrenade/smartdisc
-	name = "smart-disc"
+	name = "智能飞盘"
 	spawner_type = /mob/living/simple_animal/hostile/smartdisc
 	deliveryamt = 1
-	desc = "A strange piece of alien technology. It has many jagged, whirring blades and bizarre writing."
+	desc = "奇异的外星科技产物，布满嗡嗡转动的锯齿刀刃和古怪文字。"
 	flags_item = ITEM_PREDATOR
 	icon = 'icons/obj/items/hunter/pred_gear.dmi'
 	item_icons = list(
@@ -67,9 +67,9 @@
 
 	if(!isyautja(user))
 		if(prob(75))
-			to_chat(user, SPAN_WARNING("You fiddle with the disc, but nothing happens. Try again maybe?"))
+			to_chat(user, SPAN_WARNING("你摆弄着飞盘，却没有任何反应。要不再试试？"))
 			return
-	to_chat(user, SPAN_WARNING("You activate the smart-disc and it whirrs to life!"))
+	to_chat(user, SPAN_WARNING("你启动了智能飞盘，它开始嗡嗡转动！"))
 	activate(user)
 	add_fingerprint(user)
 	var/mob/living/carbon/C = user
@@ -105,14 +105,14 @@
 	if(isyautja(hit_atom))
 		var/mob/living/carbon/human/H = hit_atom
 		if(H.put_in_hands(src))
-			hit_atom.visible_message("[hit_atom] expertly catches [src] out of the air.","You catch [src] easily.")
+			hit_atom.visible_message("[hit_atom]娴熟地接住了空中的[src]。","你轻松接住了[src]。")
 			throwing = FALSE
 		return
 	..()
 
 /mob/living/simple_animal/hostile/smartdisc
-	name = "smart-disc"
-	desc = "A furious, whirling array of blades and alien technology."
+	name = "智能飞盘"
+	desc = "高速旋转的凶猛刀刃与外星科技结合的产物。"
 	icon = 'icons/obj/items/hunter/pred_gear.dmi'
 	icon_state = "disc_active"
 	icon_living = "disc_active"
@@ -120,9 +120,9 @@
 	icon_gib = "disc"
 	speak_chance = 0
 	turns_per_move = 1
-	response_help = "stares at the"
-	response_disarm = "bats aside the"
-	response_harm = "hits the"
+	response_help = "盯着"
+	response_disarm = "拨开"
+	response_harm = "击打"
 	speed = -2
 	maxHealth = 60
 	health = 60
@@ -131,7 +131,7 @@
 	mob_size = MOB_SIZE_SMALL
 
 	harm_intent_damage = 10
-	attacktext = "slices"
+	attacktext = "切割"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 
 	min_oxy = 0
@@ -174,14 +174,14 @@
 	return 1
 
 /mob/living/simple_animal/hostile/smartdisc/death()
-	visible_message("\The [src] stops whirring and spins out onto the floor.")
+	visible_message("\The [src]停止嗡鸣，旋转着落在地板上。")
 	new /obj/item/explosive/grenade/spawnergrenade/smartdisc(src.loc)
 	..()
 	spawn(1)
 		if(src) qdel(src)
 
 /mob/living/simple_animal/hostile/smartdisc/gib(datum/cause_data/cause = create_cause_data("gibbing", src))
-	visible_message("\The [src] explodes!")
+	visible_message("\The [src]爆炸了！")
 	..(cause, icon_gib,1)
 	spawn(1)
 		if(src)
@@ -231,7 +231,7 @@
 
 	lifetime--
 	if(lifetime <= 0 || time_idle > 3)
-		visible_message("\The [src] stops whirring and spins out onto the floor.")
+		visible_message("\The [src]停止嗡鸣，旋转着落在地板上。")
 		new /obj/item/explosive/grenade/spawnergrenade/smartdisc(src.loc)
 		qdel(src)
 		return
@@ -267,7 +267,7 @@
 		L.attack_animal(src)
 		if(prob(5))
 			L.apply_effect(3, WEAKEN)
-			L.visible_message(SPAN_DANGER("\The [src] viciously slashes at \the [L]!"))
+			L.visible_message(SPAN_DANGER("\The [src]凶狠地切向\the [L]！"))
 			log_attack("[key_name(L)] was knocked down by [src]")
 		log_attack("[key_name(L)] was attacked by [src]")
 		return L

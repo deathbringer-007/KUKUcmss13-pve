@@ -1,7 +1,7 @@
 /obj/structure/machinery/defenses/sentry/flamer
-	name = "\improper UA 42-F Sentry Flamer"
+	name = "\improper UA 42-F哨戒火焰炮塔"
 	icon = 'icons/obj/structures/machinery/defenses/flamer.dmi'
-	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with a special flamer and a 100 liters fuel tank."
+	desc = "可部署的半自动炮塔，具备AI瞄准能力，配有专用喷火器和100升燃料箱。"
 	fire_delay = 30
 	ammo = new /obj/item/ammo_magazine/sentry_flamer
 	sentry_type = "uac_flamer"
@@ -38,11 +38,11 @@
 	ammo.current_rounds--
 	track_shot()
 	if(ammo.current_rounds == 0)
-		visible_message("[icon2html(src, viewers(src))] [SPAN_WARNING("The [name] beeps steadily and its ammo light blinks red.")]")
+		visible_message("[icon2html(src, viewers(src))] [SPAN_WARNING("[name]持续发出哔声，弹药指示灯闪着红光。")]")
 		playsound(loc, 'sound/weapons/smg_empty_alarm.ogg', 25, 1)
 
 /obj/structure/machinery/defenses/sentry/flamer/destroyed_action()
-	visible_message("[icon2html(src, viewers(src))] [SPAN_WARNING("The [name] starts spitting out sparks and smoke!")]")
+	visible_message("[icon2html(src, viewers(src))] [SPAN_WARNING("[name]开始喷出火花和浓烟！")]")
 	playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
 	for(var/i = 1 to 6)
 		setDir(pick(NORTH, EAST, SOUTH, WEST))
@@ -57,7 +57,7 @@
 
 
 /obj/structure/machinery/defenses/sentry/flamer/mini
-	name = "UA 45-FM Mini Sentry"
+	name = "UA 45-FM迷你火焰炮塔"
 	defense_type = "Mini"
 	health = 150
 	health_max = 150
@@ -70,7 +70,7 @@
 
 
 /obj/structure/machinery/defenses/sentry/flamer/mini/destroyed_action()
-	visible_message("[icon2html(src, viewers(src))] [SPAN_WARNING("The [name] starts spitting out sparks and smoke!")]")
+	visible_message("[icon2html(src, viewers(src))] [SPAN_WARNING("[name]开始喷出火花和浓烟！")]")
 	playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
 
 	cell_explosion(loc, 10, 10, null, create_cause_data("sentry explosion", owner_mob))
@@ -78,9 +78,9 @@
 		qdel(src)
 
 /obj/structure/machinery/defenses/sentry/flamer/wy
-	name = "WY 406-FE2 Smart Sentry"
+	name = "WY 406-FE2智能火焰炮塔"
 	icon = 'icons/obj/structures/machinery/defenses/wy_defenses.dmi'
-	desc = "A deployable, fully-automated turret with AI targeting capabilities used by the PMC."
+	desc = "私人军事承包商使用的可部署全自动炮塔，具备AI瞄准能力。"
 	health = 300
 	health_max = 300
 	fire_delay = 2 SECONDS
@@ -97,7 +97,7 @@
 	)
 
 /obj/structure/machinery/defenses/sentry/flamer/wy/destroyed_action()
-	visible_message("[icon2html(src, viewers(src))] [SPAN_WARNING("The [name] starts spitting out sparks and smoke!")]")
+	visible_message("[icon2html(src, viewers(src))] [SPAN_WARNING("[name]开始喷出火花和浓烟！")]")
 	playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
 	for(var/i = 1 to 6)
 		setDir(pick(NORTH, EAST, SOUTH, WEST))
@@ -112,9 +112,9 @@
 
 
 /obj/structure/machinery/defenses/sentry/flamer/upp
-	name = "UPP SDS-R5 Sentry Flamer"
+	name = "UPP SDS-R5哨戒火焰炮塔"
 	icon = 'icons/obj/structures/machinery/defenses/upp_defenses.dmi'
-	desc = "A deployable, fully-automated turret with AI targeting capabilities used by the UPP."
+	desc = "进步人民联盟使用的可部署全自动炮塔，具备AI瞄准能力。"
 	health = 300
 	health_max = 300
 	fire_delay = 1 SECONDS
@@ -128,7 +128,7 @@
 	)
 
 /obj/structure/machinery/defenses/sentry/flamer/upp/destroyed_action()
-	visible_message("[icon2html(src, viewers(src))] [SPAN_WARNING("The [name] starts spitting out sparks and smoke!")]")
+	visible_message("[icon2html(src, viewers(src))] [SPAN_WARNING("[name]开始喷出火花和浓烟！")]")
 	playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
 	for(var/i = 1 to 6)
 		setDir(pick(NORTH, EAST, SOUTH, WEST))

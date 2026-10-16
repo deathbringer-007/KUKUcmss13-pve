@@ -317,7 +317,8 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
 	on_tickrate_change()
 
 /world/proc/on_tickrate_change()
-	SStimer.reset_buckets()
+	// Changing the tick rate requires a normal rebuild, not an error recovery.
+	SStimer.reset_buckets(warn = FALSE)
 
 /**
  * Handles incresing the world's maxx var and intializing the new turfs and assigning them to the global area.

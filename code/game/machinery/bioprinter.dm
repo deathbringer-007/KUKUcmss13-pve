@@ -1,8 +1,8 @@
 // thingy to print robot limbs :3
 
 /obj/structure/machinery/bioprinter
-	name = "\improper Weyland-Yutani synthetic limb printer 2000"
-	desc = "A machine that can produce synthetic limbs of dubious quality. Smells of smoke and battery acid. The USCM has recently rejected an offer for the 3000 series, which can also print synthetic organs, on the basis of unreliability."
+	name = "\improper 维兰德-汤谷2000型合成肢体打印机"
+	desc = "能制造合成肢体的机器，产品质量存疑，散发着烟味和电池酸液的气味。殖民地陆战队最近以可靠性不足为由，拒绝采购还能打印合成器官的3000系列。"
 	icon = 'icons/obj/structures/machinery/surgery.dmi'
 
 	anchored = TRUE
@@ -40,7 +40,7 @@
 /obj/structure/machinery/bioprinter/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/sheet/metal))
 		if(stored_metal == max_metal)
-			to_chat(user, SPAN_WARNING("\The [src] is full!"))
+			to_chat(user, SPAN_WARNING("\The [src]已经满了！"))
 			return
 		var/obj/item/stack/sheet/metal/M = W
 		var/sheets_to_eat = (round((max_metal - stored_metal), 100))/100
@@ -54,13 +54,13 @@
 			M.use(M.amount)
 		if(stored_metal > max_metal)
 			stored_metal = max_metal
-		to_chat(user, SPAN_NOTICE("\The [src] processes \the [W]."))
+		to_chat(user, SPAN_NOTICE("\The [src]处理了\the [W]。"))
 	else
 		return..()
 
 /obj/structure/machinery/bioprinter/get_examine_text(mob/user)
 	. = ..()
-	. += "It has [stored_metal] metal left."
+	. += "还剩[stored_metal]份金属。"
 
 /obj/structure/machinery/bioprinter/ui_static_data(mob/user)
 	var/list/data = list()
@@ -95,7 +95,7 @@
 /obj/structure/machinery/bioprinter/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "BioSyntheticPrinter", "Limb Printer")
+		ui = new(user, src, "BioSyntheticPrinter", "肢体打印机")
 		ui.open()
 
 /obj/structure/machinery/bioprinter/ui_state(mob/user)
@@ -115,7 +115,7 @@
 		if("print")
 			if(working)
 				//If we're already printing something then we're too busy to multi task.
-				to_chat(usr, SPAN_NOTICE("[src] is busy at the moment."))
+				to_chat(usr, SPAN_NOTICE("[src]目前正在工作。"))
 				return FALSE
 			var/recipe = params["recipe_id"]
 			var/valid_recipe = FALSE
@@ -129,11 +129,11 @@
 				return FALSE
 			var/datum/bioprinter_recipe/recipe_datum = new recipe
 			if(stored_metal < recipe_datum.metal)
-				to_chat(usr, SPAN_NOTICE("[src] does not have enough stored metal."))
+				to_chat(usr, SPAN_NOTICE("[src]储存的金属不足。"))
 				QDEL_NULL(recipe_datum)
 				return FALSE
 			stored_metal -= recipe_datum.metal
-			to_chat(usr, SPAN_NOTICE("\The [src] is now printing the selected organ. Please hold."))
+			to_chat(usr, SPAN_NOTICE("\The [src]正在打印所选器官，请稍候。"))
 			working = TRUE
 			update_icon()
 			var/new_organ = recipe_datum.path
@@ -147,7 +147,7 @@
 			sheets_to_print -= 0.5
 			sheets_to_print = round(sheets_to_print, 1)
 			stored_metal -= sheets_to_print*100
-			visible_message("\The [src] ejects [sheets_to_print] metal sheets from its storage.")
+			visible_message("\The [src]从储料仓中吐出了[sheets_to_print]块金属板。")
 			new /obj/item/stack/sheet/metal(get_turf(src), sheets_to_print)
 			return TRUE
 
@@ -161,7 +161,7 @@
 	working = FALSE
 	update_icon()
 	printing_item = null
-	visible_message("\The [src] spits out a new organ.")
+	visible_message("\The [src]吐出了一个新器官。")
 	return
 
 
@@ -172,17 +172,17 @@
 	var/metal = LIMB_METAL_AMOUNT
 
 /datum/bioprinter_recipe/l_arm
-	title = "synthetic left arm"
+	title = "合成左臂"
 	path = /obj/item/robot_parts/arm/l_arm
 
 /datum/bioprinter_recipe/r_arm
-	title = "synthetic right arm"
+	title = "合成右臂"
 	path = /obj/item/robot_parts/arm/r_arm
 
 /datum/bioprinter_recipe/l_leg
-	title = "synthetic left leg"
+	title = "合成左腿"
 	path = /obj/item/robot_parts/leg/l_leg
 
 /datum/bioprinter_recipe/r_leg
-	title = "synthetic right leg"
+	title = "合成右腿"
 	path = /obj/item/robot_parts/leg/r_leg

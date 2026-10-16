@@ -3,7 +3,7 @@
 #define TANK_MIN_RELEASE_PRESSURE 0
 
 /obj/item/tank
-	name = "tank"
+	name = "气瓶"
 	icon = 'icons/obj/items/tank.dmi'
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_BACK
@@ -33,19 +33,19 @@
 		var/descriptive
 		switch(celsius_temperature)
 			if(-280 to 20)
-				descriptive = "cold"
+				descriptive = "冰凉"
 			if(20 to 40)
-				descriptive = "room temperature"
+				descriptive = "与室温相当"
 			if(40 to 80)
-				descriptive = "lukewarm"
+				descriptive = "微温"
 			if(80 to 100)
-				descriptive = "warm"
+				descriptive = "温热"
 			if(100 to 300)
-				descriptive = "hot"
+				descriptive = "滚烫"
 			else
-				descriptive = "furiously hot"
+				descriptive = "灼热"
 
-		. += SPAN_NOTICE("\The [icon2html(src, user)][src] feels [descriptive]")
+		. += SPAN_NOTICE("\The [icon2html(src, user)][src]摸起来[descriptive]。")
 
 
 /obj/item/tank/attackby(obj/item/W as obj, mob/user as mob)
@@ -53,17 +53,18 @@
 
 	if((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
 		for(var/mob/O in viewers(user, null))
-			to_chat(O, SPAN_DANGER("[user] has used [W] on [icon2html(src, O)] [src]"))
+			to_chat(O, SPAN_DANGER("[user]对[icon2html(src, O)] [src]使用了[W]。"))
 
 		manipulated_by = user.real_name //This person is aware of the contents of the tank.
 
-		to_chat(user, SPAN_NOTICE("Results of analysis of [icon2html(src, user)]"))
+		to_chat(user, SPAN_NOTICE("[icon2html(src, user)]的分析结果："))
 		if(pressure>0)
-			to_chat(user, SPAN_NOTICE("Pressure: [round(pressure,0.1)] kPa"))
-			to_chat(user, SPAN_NOTICE("[gas_type]: 100%"))
-			to_chat(user, SPAN_NOTICE("Temperature: [floor(temperature-T0C)]&deg;C"))
+			to_chat(user, SPAN_NOTICE("压力：[round(pressure,0.1)] kPa"))
+			var/static/list/gas_labels = list(GAS_TYPE_AIR = "空气", GAS_TYPE_OXYGEN = "氧气", GAS_TYPE_NITROGEN = "氮气", GAS_TYPE_N2O = "麻醉气体", GAS_TYPE_PHORON = "弗燃素", GAS_TYPE_CO2 = "二氧化碳")
+			to_chat(user, SPAN_NOTICE("[gas_labels[gas_type] || gas_type]：100%"))
+			to_chat(user, SPAN_NOTICE("温度：[floor(temperature-T0C)]&deg;C"))
 		else
-			to_chat(user, SPAN_NOTICE("Tank is empty!"))
+			to_chat(user, SPAN_NOTICE("气瓶是空的！"))
 		src.add_fingerprint(user)
 
 
@@ -130,13 +131,13 @@
 				var/mob/living/carbon/location = loc
 				if(location.internal == src)
 					location.internal = null
-					to_chat(usr, SPAN_NOTICE("You close the tank release valve."))
+					to_chat(usr, SPAN_NOTICE("你关闭了气瓶的泄压阀。"))
 				else
 					if(location.wear_mask && (location.wear_mask.flags_inventory & ALLOWINTERNALS))
 						location.internal = src
-						to_chat(usr, SPAN_NOTICE("You open \the [src]'s valve."))
+						to_chat(usr, SPAN_NOTICE("你打开了\the [src]的阀门。"))
 					else
-						to_chat(usr, SPAN_NOTICE("You need something to connect to \the [src]."))
+						to_chat(usr, SPAN_NOTICE("你需要连接到\the [src]的设备。"))
 				. = TRUE
 
 /obj/item/tank/return_air()

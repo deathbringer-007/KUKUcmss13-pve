@@ -233,9 +233,11 @@ SUBSYSTEM_DEF(timer)
 
 /**
  * Destroys the existing buckets and creates new buckets from the existing timed events
+ * Set warn to FALSE for expected rebuilds, such as world tick rate changes.
  */
-/datum/controller/subsystem/timer/proc/reset_buckets()
-	WARNING("Timer buckets has been reset, this may cause timer to lag")
+/datum/controller/subsystem/timer/proc/reset_buckets(warn = TRUE)
+	if(warn)
+		WARNING("Timer buckets has been reset, this may cause timer to lag")
 	bucket_reset_count++
 
 	var/list/bucket_list = src.bucket_list // Store local reference to datum var, this is faster

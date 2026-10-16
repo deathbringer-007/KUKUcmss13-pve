@@ -1,6 +1,6 @@
 /obj/structure/machinery/computer/demo_sim
-	name = "demolitions simulator"
-	desc = "A powerful simulator that can simulate explosions. Its processors need a cooldown of approximately 1 minute after each simulation."
+	name = "爆破模拟器"
+	desc = "能模拟爆炸的强大模拟器。每次模拟后，处理器需要冷却约1分钟。"
 	icon_state = "demo_sim"
 	exproof = TRUE
 	unacidable = TRUE
@@ -12,18 +12,18 @@
 	if(inoperable())
 		return
 	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-		to_chat(user, SPAN_WARNING("You don't know how to configure [src]."))
+		to_chat(user, SPAN_WARNING("你不知道如何配置[src]。"))
 		return
 	if(configuration)
-		to_chat(user, SPAN_WARNING("[src] already has an item for configuration! Eject that first!"))
+		to_chat(user, SPAN_WARNING("[src]中已经有配置用物品了！先将它弹出！"))
 		return
 	if(istype(B, /obj/item/explosive) || istype(B, /obj/item/mortar_shell) || istype(B, /obj/item/ammo_magazine/rocket/custom))
 		user.drop_held_item(B)
 		B.forceMove(src)
 		configuration = B
-		to_chat(user, SPAN_NOTICE("You configure \the [src] to simulate [B]."))
+		to_chat(user, SPAN_NOTICE("你将\the [src]配置为模拟[B]。"))
 	else
-		to_chat(user, "\The [src] is not compatible with [B].")
+		to_chat(user, "\The [src]不兼容[B]。")
 
 /obj/structure/machinery/computer/demo_sim/attack_hand(mob/user as mob)
 	if(..())
@@ -84,18 +84,18 @@
 				configuration.forceMove(loc)
 				configuration = null
 			else
-				to_chat(user, SPAN_NOTICE("Nothing to eject."))
+				to_chat(user, SPAN_NOTICE("没有可弹出的物品。"))
 			. = TRUE
 
 		if("detonate")
 			if(!configuration)
-				to_chat(user, SPAN_NOTICE("No configuration set."))
+				to_chat(user, SPAN_NOTICE("尚未设置配置。"))
 				return
 			simulate_detonation(user)
 			. = TRUE
 
 		if("switchmode")
-			simulation.dummy_mode = tgui_input_list(user, "Select target type to simulate", "Target type", simulation.target_types, 30 SECONDS)
+			simulation.dummy_mode = tgui_input_list(user, "选择要模拟的目标类型", "目标类型", simulation.target_types, 30 SECONDS)
 			if(!simulation.dummy_mode)
 				simulation.dummy_mode = /mob/living/carbon/human
 			. = TRUE

@@ -5,8 +5,8 @@
 
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "navbeacon0-f"
-	name = "navigation beacon"
-	desc = "A radio beacon used for bot navigation."
+	name = "导航信标"
+	desc = "用于机器人导航的无线电信标。"
 	level = 1 // underfloor
 	layer = UNDERFLOOR_OBJ_LAYER
 	anchored = TRUE
@@ -109,7 +109,7 @@
 	if(HAS_TRAIT(I, TRAIT_TOOL_SCREWDRIVER))
 		open = !open
 
-		user.visible_message("[user] [open ? "opens" : "closes"] the beacon's cover.", "You [open ? "open" : "close"] the beacon's cover.")
+		user.visible_message("[user][open ? "打开" : "关闭"]了信标的盖板。", "你[open ? "打开" : "关闭"]了信标的盖板。")
 
 		updateicon()
 
@@ -117,12 +117,12 @@
 		if(open)
 			if (src.allowed(user))
 				src.locked = !src.locked
-				to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
+				to_chat(user, "控制面板现已[src.locked ? "锁定。" : "解锁。"]")
 			else
-				to_chat(user, SPAN_DANGER("Access denied."))
+				to_chat(user, SPAN_DANGER("拒绝访问。"))
 			updateDialog()
 		else
-			to_chat(user, "You must open the cover first!")
+			to_chat(user, "你得先打开盖板！")
 	return
 
 /obj/structure/machinery/navbeacon/attack_remote(mob/user)
@@ -137,18 +137,18 @@
 		return // prevent intraction when T-scanner revealed
 
 	if(!open && !ai) // can't alter controls if not open, unless you're an AI
-		to_chat(user, "The beacon's control cover is closed.")
+		to_chat(user, "信标控制面板的盖板关着。")
 		return
 
 
 	var/t
 
 	if(locked && !ai)
-		t = {"<TT><B>Navigation Beacon</B><HR><BR>
-<i>(swipe card to unlock controls)</i><BR>
-Frequency: [format_frequency(freq)]<BR><HR>
-Location: [location ? location : "(none)"]</A><BR>
-Transponder Codes:<UL>"}
+		t = {"<TT><B>导航信标</B><HR><BR>
+<i>（刷卡解锁控制面板）</i><BR>
+频率： [format_frequency(freq)]<BR><HR>
+位置： [location ? location : "（无）"]</A><BR>
+应答器代码：<UL>"}
 
 		for(var/key in codes)
 			t += "<LI>[key] ... [codes[key]]"
@@ -156,23 +156,23 @@ Transponder Codes:<UL>"}
 
 	else
 
-		t = {"<TT><B>Navigation Beacon</B><HR><BR>
-<i>(swipe card to lock controls)</i><BR>
-Frequency:
+		t = {"<TT><B>导航信标</B><HR><BR>
+<i>（刷卡锁定控制面板）</i><BR>
+频率：
 <A href='byond://?src=\ref[src];freq=-10'>-</A>
 <A href='byond://?src=\ref[src];freq=-2'>-</A>
 [format_frequency(freq)]
 <A href='byond://?src=\ref[src];freq=2'>+</A>
 <A href='byond://?src=\ref[src];freq=10'>+</A><BR>
 <HR>
-Location: <A href='byond://?src=\ref[src];locedit=1'>[location ? location : "(none)"]</A><BR>
-Transponder Codes:<UL>"}
+位置： <A href='byond://?src=\ref[src];locedit=1'>[location ? location : "（无）"]</A><BR>
+应答器代码：<UL>"}
 
 		for(var/key in codes)
 			t += "<LI>[key] ... [codes[key]]"
-			t += " <small><A href='byond://?src=\ref[src];edit=1;code=[key]'>(edit)</A>"
-			t += " <A href='byond://?src=\ref[src];delete=1;code=[key]'>(delete)</A></small><BR>"
-		t += "<small><A href='byond://?src=\ref[src];add=1;'>(add new)</A></small><BR>"
+			t += " <small><A href='byond://?src=\ref[src];edit=1;code=[key]'>（编辑）</A>"
+			t += " <A href='byond://?src=\ref[src];delete=1;code=[key]'>（删除）</A></small><BR>"
+		t += "<small><A href='byond://?src=\ref[src];add=1;'>（新增）</A></small><BR>"
 		t+= "<UL></TT>"
 
 	user << browse(t, "window=navbeacon")
@@ -192,7 +192,7 @@ Transponder Codes:<UL>"}
 				updateDialog()
 
 			else if(href_list["locedit"])
-				var/newloc = strip_html(input("Enter New Location", "Navigation Beacon", location) as text|null)
+				var/newloc = strip_html(input("输入新位置", "导航信标", location) as text|null)
 				if(newloc)
 					location = newloc
 					updateDialog()
@@ -200,12 +200,12 @@ Transponder Codes:<UL>"}
 			else if(href_list["edit"])
 				var/codekey = href_list["code"]
 
-				var/newkey = stripped_input(usr, "Enter Transponder Code Key", "Navigation Beacon", codekey)
+				var/newkey = stripped_input(usr, "输入应答器代码键", "导航信标", codekey)
 				if(!newkey)
 					return
 
 				var/codeval = codes[codekey]
-				var/newval = stripped_input(usr, "Enter Transponder Code Value", "Navigation Beacon", codeval)
+				var/newval = stripped_input(usr, "输入应答器代码值", "导航信标", codeval)
 				if(!newval)
 					newval = codekey
 					return
@@ -222,11 +222,11 @@ Transponder Codes:<UL>"}
 
 			else if(href_list["add"])
 
-				var/newkey = stripped_input(usr, "Enter New Transponder Code Key", "Navigation Beacon")
+				var/newkey = stripped_input(usr, "输入新的应答器代码键", "导航信标")
 				if(!newkey)
 					return
 
-				var/newval = stripped_input(usr, "Enter New Transponder Code Value", "Navigation Beacon")
+				var/newval = stripped_input(usr, "输入新的应答器代码值", "导航信标")
 				if(!newval)
 					newval = "1"
 					return

@@ -1,6 +1,6 @@
 /obj/structure/closet
-	name = "closet"
-	desc = "It's a basic storage unit."
+	name = "储物柜"
+	desc = "基础储物设施。"
 	icon = 'icons/obj/structures/closet.dmi'
 	icon_state = "closed"
 	density = TRUE
@@ -88,8 +88,8 @@
 		if(isliving(M))
 			var/mob/living/living_M = M
 			if(living_M.mobility_flags & MOBILITY_MOVE)
-				M.visible_message(SPAN_WARNING("[M] suddenly gets out of [src]!"),
-				SPAN_WARNING("You get out of [src] and get your bearings!"))
+				M.visible_message(SPAN_WARNING("[M]突然从[src]中钻了出来！"),
+				SPAN_WARNING("你从[src]中钻出，辨认着周围的环境！"))
 
 /obj/structure/closet/proc/open()
 	if(opened)
@@ -161,7 +161,7 @@
 /obj/structure/closet/proc/toggle(mob/living/user)
 	user.next_move = world.time + 5
 	if(!(src.opened ? src.close(user) : src.open()))
-		to_chat(user, SPAN_NOTICE("It won't budge!"))
+		to_chat(user, SPAN_NOTICE("它纹丝不动！"))
 	return
 
 
@@ -208,7 +208,7 @@
 
 /obj/structure/closet/attack_animal(mob/living/user)
 	if(user.wall_smash)
-		visible_message(SPAN_DANGER("[user] destroys [src]."))
+		visible_message(SPAN_DANGER("[user]摧毁了[src]。"))
 		for(var/atom/movable/A as mob|obj in src)
 			A.forceMove(src.loc)
 		qdel(src)
@@ -226,21 +226,21 @@
 		if(material == MATERIAL_METAL)
 			if(iswelder(W))
 				if(!HAS_TRAIT(W, TRAIT_TOOL_BLOWTORCH))
-					to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+					to_chat(user, SPAN_WARNING("你需要功率更大的焊枪！"))
 					return
 				var/obj/item/tool/weldingtool/WT = W
 				if(!WT.isOn())
-					to_chat(user, SPAN_WARNING("\The [WT] needs to be on!"))
+					to_chat(user, SPAN_WARNING("需要先开启\the [WT]！"))
 					return
 				if(!WT.remove_fuel(0 ,user))
-					to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
+					to_chat(user, SPAN_NOTICE("你需要更多焊接燃料才能完成这项工作。"))
 					return
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 				if(!do_after(user, 10 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					return
 				new /obj/item/stack/sheet/metal(src.loc)
 				for(var/mob/M as anything in viewers(src))
-					M.show_message(SPAN_NOTICE("\The [src] has been cut apart by [user] with [WT]."), SHOW_MESSAGE_VISIBLE, "You hear welding.", SHOW_MESSAGE_AUDIBLE)
+					M.show_message(SPAN_NOTICE("[user]用[WT]切开了\the [src]。"), SHOW_MESSAGE_VISIBLE, "你听见焊接声。", SHOW_MESSAGE_AUDIBLE)
 				qdel(src)
 				return
 		if(material == MATERIAL_WOOD)
@@ -249,7 +249,7 @@
 				if(!do_after(user, 10 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					return
 				new /obj/item/stack/sheet/wood(src.loc)
-				user.visible_message(SPAN_NOTICE("[user] has pried apart [src] with [W]."), "You pry apart [src].")
+				user.visible_message(SPAN_NOTICE("[user]用[W]撬开了[src]。"), "你撬开了[src]。")
 				qdel(src)
 				return
 		user.drop_inv_item_to_loc(W,loc)
@@ -258,17 +258,17 @@
 		return
 	else if(iswelder(W))
 		if(material != MATERIAL_METAL && material != MATERIAL_PLASTEEL)
-			to_chat(user, SPAN_WARNING("You cannot weld [material]!"))
+			to_chat(user, SPAN_WARNING("你无法焊接[material == MATERIAL_WOOD ? "木材" : material]！"))
 			return FALSE//Can't weld wood/plastic.
 		if(!HAS_TRAIT(W, TRAIT_TOOL_BLOWTORCH))
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要功率更大的焊枪！"))
 			return FALSE
 		var/obj/item/tool/weldingtool/WT = W
 		if(!WT.isOn())
-			to_chat(user, SPAN_WARNING("\The [WT] needs to be on!"))
+			to_chat(user, SPAN_WARNING("需要先开启\the [WT]！"))
 			return FALSE
 		if(!WT.remove_fuel(0, user))
-			to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
+			to_chat(user, SPAN_NOTICE("你需要更多焊接燃料才能完成这项工作。"))
 			return FALSE
 		playsound(src, 'sound/items/Welder.ogg', 25, 1)
 		if(!do_after(user, 10 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
@@ -276,7 +276,7 @@
 		welded = !welded
 		update_icon()
 		for(var/mob/M as anything in viewers(src))
-			M.show_message(SPAN_WARNING("[src] has been [welded?"welded shut":"unwelded"] by [user.name]."), SHOW_MESSAGE_VISIBLE, "You hear welding.", SHOW_MESSAGE_AUDIBLE)
+			M.show_message(SPAN_WARNING("[user.name]已将[src][welded?"焊死":"解除焊接"]。"), SHOW_MESSAGE_VISIBLE, "你听见焊接声。", SHOW_MESSAGE_AUDIBLE)
 	else
 		if(isxeno(user))
 			var/mob/living/carbon/xenomorph/opener = user
@@ -310,7 +310,7 @@
 		return
 	else
 		step_towards(O, loc)
-		user.visible_message(SPAN_DANGER("[user] stuffs [O] into [src]!"))
+		user.visible_message(SPAN_DANGER("[user]将[O]塞进了[src]！"))
 
 
 
@@ -321,17 +321,17 @@
 
 	var/obj/item/I = user.get_active_hand()
 	if(istype(I) && (I.pry_capable == IS_PRY_CAPABLE_FORCE))
-		visible_message(SPAN_DANGER("[user] smashes out of the locker!"))
+		visible_message(SPAN_DANGER("[user]撞开储物柜冲了出来！"))
 		playsound(loc, 'sound/effects/metal_crash.ogg', 75)
 		qdel(src)
 		return
 
 	if(!src.open())
-		to_chat(user, SPAN_NOTICE("It won't budge!"))
+		to_chat(user, SPAN_NOTICE("它纹丝不动！"))
 		if(!lastbang)
 			lastbang = 1
 			for (var/mob/M in hearers(src, null))
-				to_chat(M, text("<FONT size=[]>BANG, bang!</FONT>", max(0, 5 - get_dist(src, M))))
+				to_chat(M, text("<FONT size=[]>砰，砰！</FONT>", max(0, 5 - get_dist(src, M))))
 			addtimer(VARSET_CALLBACK(src, lastbang, FALSE), 3 SECONDS)
 
 /obj/structure/closet/attack_hand(mob/living/user)
@@ -343,7 +343,7 @@
 /obj/structure/closet/verb/verb_toggleopen()
 	set src in oview(1)
 	set category = "Object"
-	set name = "Toggle Open"
+	set name = "切换开合"
 
 	if(usr.is_mob_incapacitated())
 		return
@@ -355,7 +355,7 @@
 		src.add_fingerprint(usr)
 		src.toggle(usr)
 	else
-		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
+		to_chat(usr, SPAN_WARNING("此类角色无法使用这个操作。"))
 
 /obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()

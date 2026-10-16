@@ -2,7 +2,7 @@
 //-----------------------SHOTGUN SHELL BOXES-----------------------
 
 /obj/item/ammo_box/magazine/shotgun
-	name = "\improper shotgun shell box (Slugs x 100)"
+	name = "\improper 霰弹枪弹药盒（独头弹×100）"
 	icon_state = "base_slug"
 	flags_equip_slot = SLOT_BACK
 	overlay_ammo_type = ""
@@ -22,7 +22,7 @@
 	empty = TRUE
 
 /obj/item/ammo_box/magazine/shotgun/buckshot
-	name = "\improper shotgun shell box (Buckshot x 100)"
+	name = "\improper 霰弹枪弹药盒（鹿弹×100）"
 	icon_state = "base_buck"
 	overlay_content = "_buck"
 	magazine_type = /obj/item/ammo_magazine/shotgun/buckshot
@@ -31,13 +31,13 @@
 	empty = TRUE
 
 /obj/item/ammo_box/magazine/shotgun/special_buck
-	name = "\improper shotgun shell box (Spc. Buckshot x 100)"
+	name = "\improper 霰弹枪弹药盒（特种鹿弹×100）"
 	icon_state = "base_spcbuck"
 	overlay_content = "_buck"
 	magazine_type = /obj/item/ammo_magazine/shotgun/buckshot/special
 
 /obj/item/ammo_box/magazine/shotgun/flechette
-	name = "\improper shotgun shell box (Flechette x 100)"
+	name = "\improper 霰弹枪弹药盒（箭形弹×100）"
 	icon_state = "base_flech"
 	overlay_content = "_flech"
 	magazine_type = /obj/item/ammo_magazine/shotgun/flechette
@@ -46,7 +46,7 @@
 	empty = TRUE
 
 /obj/item/ammo_box/magazine/shotgun/incendiary
-	name = "\improper shotgun shell box (Incendiary slug x 100)"
+	name = "\improper 霰弹枪弹药盒（燃烧独头弹×100）"
 	icon_state = "base_inc"
 	overlay_content = "_incen"
 	magazine_type = /obj/item/ammo_magazine/shotgun/incendiary
@@ -55,7 +55,7 @@
 	empty = TRUE
 
 /obj/item/ammo_box/magazine/shotgun/incendiarybuck
-	name = "\improper shotgun shell box (Incendiary buckshot x 100)"
+	name = "\improper 霰弹枪弹药盒（燃烧鹿弹×100）"
 	icon_state = "base_incbuck"
 	overlay_content = "_incenbuck"
 	magazine_type = /obj/item/ammo_magazine/shotgun/incendiarybuck
@@ -64,7 +64,7 @@
 	empty = TRUE
 
 /obj/item/ammo_box/magazine/shotgun/beanbag
-	name = "\improper shotgun shell box (Beanbag x 100)"
+	name = "\improper 霰弹枪弹药盒（布袋弹×100）"
 	icon_state = "base_bean"
 	overlay_content = "_bean"
 	magazine_type = /obj/item/ammo_magazine/shotgun/beanbag
@@ -78,7 +78,7 @@
 //-----------------------16 GAUGE SHOTGUN SHELL BOXES-----------------------
 
 /obj/item/ammo_box/magazine/shotgun/light
-	name = "\improper 16-gauge shotgun shell box (Buckshot x 120)"
+	name = "\improper 16号霰弹枪弹药盒（鹿弹×120）"
 	icon_state = "base_breach"
 	overlay_content = "_buck"
 	magazine_type = /obj/item/ammo_magazine/shotgun/buckshot/light
@@ -91,7 +91,7 @@
 //-----------------------R4T Lever-action rifle handfuls box-----------------------
 
 /obj/item/ammo_box/magazine/lever_action
-	name = "\improper 45-70 bullets box (45-70 x 300)"
+	name = "\improper .45-70弹药盒（.45-70子弹×300）"
 	icon_state = "base_4570"
 	overlay_ammo_type = "_reg"
 	overlay_gun_type = "_4570"
@@ -105,7 +105,7 @@
 	empty = TRUE
 
 /obj/item/ammo_box/magazine/lever_action/training
-	name = "\improper 45-70 blank box (45-70 x 300)"
+	name = "\improper .45-70空包弹盒（.45-70子弹×300）"
 	icon_state = "base_4570"
 	overlay_ammo_type = "_45_training"
 	overlay_gun_type = "_4570"
@@ -117,7 +117,7 @@
 
 //unused
 /obj/item/ammo_box/magazine/lever_action/tracker
-	name = "\improper 45-70 tracker bullets box (45-70 x 300)"
+	name = "\improper .45-70追踪弹盒（.45-70子弹×300）"
 	icon_state = "base_4570"
 	overlay_ammo_type = "_45_tracker"
 	overlay_gun_type = "_4570"
@@ -129,7 +129,7 @@
 
 //unused
 /obj/item/ammo_box/magazine/lever_action/marksman
-	name = "\improper 45-70 marksman bullets box (45-70 x 300)"
+	name = "\improper .45-70精确射击弹盒（.45-70子弹×300）"
 	icon_state = "base_4570"
 	overlay_ammo_type = "_45_marksman"
 	overlay_gun_type = "_4570"

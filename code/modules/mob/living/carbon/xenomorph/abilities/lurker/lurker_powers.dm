@@ -79,7 +79,7 @@
 		invis_timer_id = TIMER_ID_NULL
 
 	animate(xeno, alpha = initial(xeno.alpha), time = 0.1 SECONDS, easing = QUAD_EASING)
-	to_chat(xeno, SPAN_XENOHIGHDANGER("We feel our invisibility end!"))
+	to_chat(xeno, SPAN_XENOHIGHDANGER("我们的隐身结束了！"))
 
 	button.icon_state = "template"
 	xeno.update_icons()
@@ -101,7 +101,7 @@
 	behavior.on_invisibility_off()
 
 /datum/action/xeno_action/onclick/lurker_invisibility/ability_cooldown_over()
-	to_chat(owner, SPAN_XENOHIGHDANGER("We are ready to use our invisibility again!"))
+	to_chat(owner, SPAN_XENOHIGHDANGER("我们可以再次隐身了！"))
 	..()
 
 /datum/action/xeno_action/onclick/lurker_assassinate/use_ability(atom/targeted_atom)
@@ -120,7 +120,7 @@
 	if (istype(behavior))
 		behavior.next_slash_buffed = TRUE
 
-	to_chat(xeno, SPAN_XENOHIGHDANGER("Our next slash will deal increased damage!"))
+	to_chat(xeno, SPAN_XENOHIGHDANGER("我们的下一次爪击将造成额外伤害！"))
 
 	addtimer(CALLBACK(src, PROC_REF(unbuff_slash)), buff_duration)
 	xeno.next_move = world.time + 1 // Autoattack reset
@@ -139,7 +139,7 @@
 			return
 		behavior.next_slash_buffed = FALSE
 
-	to_chat(xeno, SPAN_XENODANGER("We have waited too long, our slash will no longer deal increased damage!"))
+	to_chat(xeno, SPAN_XENODANGER("我们等得太久，爪击已经无法造成额外伤害！"))
 
 
 // VAMPIRE LURKER
@@ -165,8 +165,8 @@
 	if (!action_cooldown_check())
 		return
 
-	xeno.visible_message(SPAN_DANGER("[xeno] drags its claws in a wide area in front of it!"), \
-	SPAN_XENOWARNING("We unleash a barrage of slashes!"))
+	xeno.visible_message(SPAN_DANGER("[xeno]用利爪横扫身前大片区域！"), \
+	SPAN_XENOWARNING("我们发动连环爪击！"))
 	playsound(xeno, 'sound/effects/alien_tail_swipe2.ogg', 30)
 	apply_cooldown()
 
@@ -207,8 +207,8 @@
 			if (!isxeno_human(target) || xeno.can_not_harm(target))
 				continue
 
-			xeno.visible_message(SPAN_DANGER("[xeno] slashes [target]!"), \
-			SPAN_XENOWARNING("We slash [target] multiple times!"))
+			xeno.visible_message(SPAN_DANGER("[xeno]抓击[target]！"), \
+			SPAN_XENOWARNING("我们连续抓击[target]！"))
 			xeno.flick_attack_overlay(target, "slash")
 			target.last_damage_data = create_cause_data(xeno.caste_type, xeno)
 			log_attack("[key_name(xeno)] attacked [key_name(target)] with Flurry")
@@ -239,11 +239,11 @@
 	var/list/turf/path = get_line(xeno, targeted_atom, include_start_atom = FALSE)
 	for(var/turf/path_turf as anything in path)
 		if(path_turf.density)
-			to_chat(xeno, SPAN_WARNING("There's something blocking us from striking!"))
+			to_chat(xeno, SPAN_WARNING("有东西挡住了我们的攻击！"))
 			return
 		var/atom/barrier = path_turf.handle_barriers(A = xeno , pass_flags = (PASS_MOB_THRU_XENO|PASS_OVER_THROW_MOB|PASS_TYPE_CRAWLER))
 		if(barrier != path_turf)
-			to_chat(xeno, SPAN_WARNING("There's something blocking us from striking!"))
+			to_chat(xeno, SPAN_WARNING("有东西挡住了我们的攻击！"))
 			return
 		for(var/obj/structure/current_structure in path_turf)
 			if(istype(current_structure, /obj/structure/window/framed))
@@ -252,11 +252,11 @@
 					return
 				playsound(get_turf(target_window),'sound/effects/glassbreak3.ogg', 30, TRUE)
 				target_window.shatter_window(TRUE)
-				xeno.visible_message(SPAN_XENOWARNING("\The [xeno] strikes the window with their tail!"), SPAN_XENOWARNING("We strike the window with our tail!"))
+				xeno.visible_message(SPAN_XENOWARNING("\The [xeno]用尾巴猛击窗户！"), SPAN_XENOWARNING("我们用尾巴猛击窗户！"))
 				apply_cooldown(cooldown_modifier = 0.5)
 				return
 			if(current_structure.density && !current_structure.throwpass)
-				to_chat(xeno, SPAN_WARNING("There's something blocking us from striking!"))
+				to_chat(xeno, SPAN_WARNING("有东西挡住了我们的攻击！"))
 				return
 	// find a target in the target turf
 	if(!iscarbon(targeted_atom) || hit_target.stat == DEAD)
@@ -267,12 +267,12 @@
 
 	if(iscarbon(hit_target) && !xeno.can_not_harm(hit_target) && hit_target.stat != DEAD)
 		if(targeted_atom == hit_target) //reward for a direct hit
-			to_chat(xeno, SPAN_XENOHIGHDANGER("We attack [hit_target], with our tail, piercing their body!"))
+			to_chat(xeno, SPAN_XENOHIGHDANGER("我们用尾巴攻击[hit_target]，贯穿其身体！"))
 			hit_target.apply_armoured_damage(15, ARMOR_MELEE, BRUTE, "chest")
 		else
-			to_chat(xeno, SPAN_XENODANGER("We attack [hit_target], slashing them with our tail!"))
+			to_chat(xeno, SPAN_XENODANGER("我们用尾巴挥斩[hit_target]！"))
 	else
-		xeno.visible_message(SPAN_XENOWARNING("\The [xeno] swipes their tail through the air!"), SPAN_XENOWARNING("We swipe our tail through the air!"))
+		xeno.visible_message(SPAN_XENOWARNING("\The [xeno]挥动尾巴划过空中！"), SPAN_XENOWARNING("我们挥动尾巴划过空中！"))
 		apply_cooldown(cooldown_modifier = 0.2)
 		playsound(xeno, 'sound/effects/alien_tail_swipe1.ogg', 50, TRUE)
 		return
@@ -287,8 +287,8 @@
 
 	if(!step(hit_target, direction))
 		playsound(hit_target.loc, "punch", 25, 1)
-		hit_target.visible_message(SPAN_DANGER("[hit_target] slams into an obstacle!"),
-		isxeno(hit_target) ? SPAN_XENODANGER("We slam into an obstacle!") : SPAN_HIGHDANGER("You slam into an obstacle!"), null, 4, CHAT_TYPE_TAKING_HIT)
+		hit_target.visible_message(SPAN_DANGER("[hit_target]猛撞在障碍物上！"),
+		isxeno(hit_target) ? SPAN_XENODANGER("我们猛撞在障碍物上！") : SPAN_HIGHDANGER("你猛撞在障碍物上！"), null, 4, CHAT_TYPE_TAKING_HIT)
 		hit_target.apply_damage(MELEE_FORCE_TIER_2)
 		if (hit_target.mob_size < MOB_SIZE_BIG)
 			hit_target.KnockDown(0.5)
@@ -330,11 +330,11 @@
 		return
 
 	if(!xeno.Adjacent(target_carbon))
-		to_chat(xeno, SPAN_XENOHIGHDANGER("We can only headbite an unconscious, adjacent target!"))
+		to_chat(xeno, SPAN_XENOHIGHDANGER("我们只能对身旁失去意识的目标咬头！"))
 		return
 
 	if(!(HAS_TRAIT(target_carbon, TRAIT_KNOCKEDOUT) || target_carbon.stat == UNCONSCIOUS || (locate(/datum/effects/crit) in target_carbon.effects_list))) //called knocked out because for some reason .stat seems to have a delay .
-		to_chat(xeno, SPAN_XENOHIGHDANGER("We can only headbite an unconscious, adjacent target!"))
+		to_chat(xeno, SPAN_XENOHIGHDANGER("我们只能对身旁失去意识的目标咬头！"))
 		return
 
 	if(xeno.stat == UNCONSCIOUS)
@@ -349,27 +349,27 @@
 	if(target_carbon.status_flags & XENO_HOST)
 		for(var/obj/item/alien_embryo/embryo in target_carbon)
 			if(HIVE_ALLIED_TO_HIVE(xeno.hivenumber, embryo.hivenumber))
-				to_chat(xeno, SPAN_WARNING("We should not harm this host! It has a sister inside."))
+				to_chat(xeno, SPAN_WARNING("我们不该伤害这个宿主！它体内有姐妹。"))
 				return
 
-	xeno.visible_message(SPAN_DANGER("[xeno] grabs [target_carbon]’s head aggressively."), \
-	SPAN_XENOWARNING("We grab [target_carbon]’s head aggressively."))
+	xeno.visible_message(SPAN_DANGER("[xeno]用力抓住了[target_carbon]的头。"), \
+	SPAN_XENOWARNING("我们用力抓住了[target_carbon]的头。"))
 
 	if(!do_after(xeno, 0.8 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE, numticks = 2)) // would be 0.75 but that doesn't really work with numticks
 		return
 
 	// To make sure that the headbite does nothing if the target is moved away.
 	if(!xeno.Adjacent(target_carbon))
-		to_chat(xeno, SPAN_XENOHIGHDANGER("We missed! Our target was moved away before we could finish headbiting them!"))
+		to_chat(xeno, SPAN_XENOHIGHDANGER("我们失手了！还没完成咬头，目标就被移走了！"))
 		return
 
 	if(target_carbon.stat == DEAD)
-		to_chat(xeno, SPAN_XENODANGER("They died before you could finish headbiting them! Be more careful next time!"))
+		to_chat(xeno, SPAN_XENODANGER("还没完成咬头，目标就死了！下次小心点！"))
 		return
 
-	to_chat(xeno, SPAN_XENOHIGHDANGER("We pierce [target_carbon]’s head with our inner jaw!"))
+	to_chat(xeno, SPAN_XENOHIGHDANGER("我们用内颚刺穿了[target_carbon]的头！"))
 	playsound(target_carbon,'sound/weapons/alien_bite2.ogg', 50, TRUE)
-	xeno.visible_message(SPAN_DANGER("[xeno] pierces [target_carbon]’s head with its inner jaw!"))
+	xeno.visible_message(SPAN_DANGER("[xeno]用内颚刺穿了[target_carbon]的头！"))
 	xeno.flick_attack_overlay(target_carbon, "headbite")
 	xeno.animation_attack_on(target_carbon, pixel_offset = 16)
 	target_carbon.apply_armoured_damage(60, ARMOR_MELEE, BRUTE, "head", 5) //DIE

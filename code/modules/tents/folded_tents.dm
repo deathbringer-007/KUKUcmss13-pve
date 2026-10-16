@@ -1,5 +1,5 @@
 /obj/item/folded_tent
-	name = "folded abstract tent"
+	name = "折叠的通用帐篷"
 	icon = 'icons/obj/structures/tents_folded.dmi'
 	icon_state = "tent"
 	w_class = SIZE_LARGE
@@ -38,24 +38,24 @@
 		var/area/area = get_area(turf)
 		if(!area.can_build_special && !unrestricted_deployment)
 			if(message_receiver)
-				to_chat(message_receiver, SPAN_WARNING("You cannot deploy tents on restricted areas."))
+				to_chat(message_receiver, SPAN_WARNING("你不能在限制区域部署帐篷。"))
 			if(display_error)
 				new /obj/effect/overlay/temp/tent_deployment_area/error(turf)
 			return FALSE
 		if(istype(turf, /turf/open/shuttle))
 			if(message_receiver)
-				to_chat(message_receiver, SPAN_BOLDWARNING("What are you doing?!! Don't build that on the shuttle please!"))
+				to_chat(message_receiver, SPAN_BOLDWARNING("你在做什么？！别在穿梭机上搭帐篷！"))
 			return FALSE
 		if(turf.density)
 			if(message_receiver)
-				to_chat(message_receiver, SPAN_WARNING("You cannot deploy [src] here, something ([turf]) is in the way."))
+				to_chat(message_receiver, SPAN_WARNING("你无法在这里部署[src]，有东西（[turf]）挡住了。"))
 			if(display_error)
 				new /obj/effect/overlay/temp/tent_deployment_area/error(turf)
 			return FALSE
 		for(var/atom/movable/atom as anything in turf)
 			if(isliving(atom) || (atom.density && atom.can_block_movement) || istype(atom, /obj/structure/tent))
 				if(message_receiver)
-					to_chat(message_receiver, SPAN_WARNING("You cannot deploy [src] here, something ([atom.name]) is in the way."))
+					to_chat(message_receiver, SPAN_WARNING("你无法在这里部署[src]，有东西（[atom.name]）挡住了。"))
 				if(display_error)
 					new /obj/effect/overlay/temp/tent_deployment_area/error(turf)
 				return FALSE
@@ -63,7 +63,7 @@
 
 /obj/item/folded_tent/proc/unfold(mob/user, turf/ref_turf)
 	if(!istype(template))
-		to_chat(user, SPAN_BOLDWARNING("[src] does not contain a tent! It is broken!"))
+		to_chat(user, SPAN_BOLDWARNING("[src]里面没有帐篷！它坏了！"))
 		CRASH("[src] attempted to unfold \"[template]\" as a tent.")
 	template.load(ref_turf, FALSE, FALSE)
 
@@ -73,8 +73,8 @@
 
 /obj/item/folded_tent/attack_self(mob/living/user)
 	. = ..()
-	var/off_x = -(tgui_input_number(user, "If facing North or South", "Set X Offset", 0, dim_x, 0, 30 SECONDS, TRUE))
-	var/off_y = -(tgui_input_number(user, "If facing East or West", "Set Y Offset", 0, dim_y, 0, 30 SECONDS, TRUE))
+	var/off_x = -(tgui_input_number(user, "面向北或南时使用", "设置X轴偏移", 0, dim_x, 0, 30 SECONDS, TRUE))
+	var/off_y = -(tgui_input_number(user, "面向东或西时使用", "设置Y轴偏移", 0, dim_y, 0, 30 SECONDS, TRUE))
 	var/turf/deploy_turf = user.loc
 	if(!istype(deploy_turf))
 		return // In a locker or something. Get lost you already have a home.
@@ -93,7 +93,7 @@
 		return
 
 	if(!is_ground_level(deploy_turf.z) && !unrestricted_deployment)
-		to_chat(user, SPAN_WARNING("USCM Operational Tents are intended for operations, not ship or space recreation."))
+		to_chat(user, SPAN_WARNING("殖民地陆战队作战帐篷是供执行任务使用的，不是用来在舰上或太空里娱乐的。"))
 		return
 
 	var/list/obj/effect/overlay/temp/tent_deployment_area/turf_overlay = list()
@@ -107,10 +107,10 @@
 	for(var/turf/turf in deployment_area)
 		turf_overlay += new /obj/effect/overlay/temp/tent_deployment_area/casting(turf)
 
-	user.visible_message(SPAN_INFO("[user] starts deploying [src]..."), \
-		SPAN_WARNING("You start assembling [src]... Stand still, it might take a bit to figure it out..."))
+	user.visible_message(SPAN_INFO("[user]开始部署[src]……"), \
+		SPAN_WARNING("你开始组装[src]……保持不动，弄明白怎么装可能需要一点时间……"))
 	if(!do_after(user, 6 SECONDS, INTERRUPT_ALL, BUSY_ICON_BUILD))
-		to_chat(user, SPAN_WARNING("You were interrupted!"))
+		to_chat(user, SPAN_WARNING("你被打断了！"))
 		for(var/gfx in turf_overlay)
 			qdel(gfx)
 		return
@@ -121,33 +121,33 @@
 		return
 
 	unfold(user, deploy_turf)
-	user.visible_message(SPAN_INFO("[user] finishes deploying [src]!"), SPAN_INFO("You finish deploying [src]!"))
+	user.visible_message(SPAN_INFO("[user]完成了[src]的部署！"), SPAN_INFO("你完成了[src]的部署！"))
 	for(var/gfx in turf_overlay)
 		qdel(gfx)
 	qdel(src) // Success!
 
 /obj/item/folded_tent/cmd
-	name = "folded USCM Command Tent"
+	name = "折叠的殖民地陆战队指挥帐篷"
 	icon_state = "cmd"
-	desc = "A standard USCM Command Tent. This one comes equipped with a self-powered Overwatch Console and a Telephone. Unfold in a suitable location to maximize usefulness. Staff Officer not included. ENTRANCE TO THE SOUTH."
+	desc = "殖民地陆战队标准指挥帐篷，配有自供电战场监控台和电话。在合适的位置展开，才能发挥最大效用。不附送参谋军官。入口朝南。"
 	template_preset = "tent_cmd"
 
 /obj/item/folded_tent/med
-	name = "folded USCM Medical Tent"
+	name = "折叠的殖民地陆战队医疗帐篷"
 	icon_state = "med"
-	desc = "A standard USCM Medical Tent. This one comes equipped with advanced field surgery facilities. Unfold in a suitable location to maximize health gains. Surgical Tray not included. ENTRANCE TO THE SOUTH."
+	desc = "殖民地陆战队标准医疗帐篷，配有先进的野战手术设施。在合适的位置展开，才能发挥最佳救治效果。不附送手术托盘。入口朝南。"
 	template_preset = "tent_med"
 
 /obj/item/folded_tent/reqs
-	name = "folded USCM Requisitions Tent"
+	name = "折叠的殖民地陆战队军需帐篷"
 	icon_state = "req"
-	desc = "A standard USCM Requisitions Tent. Now, you can enjoy req line anywhere you go! Unfold in a suitable location to maximize resource distribution. ASRS not included. ENTRANCE TO THE SOUTH."
+	desc = "殖民地陆战队标准军需帐篷。现在走到哪都能排队领物资！在合适的位置展开，才能高效分发资源。不附送自动仓储检索系统。入口朝南。"
 	template_preset = "tent_reqs"
 
 /obj/item/folded_tent/big
-	name = "folded USCM Big Tent"
+	name = "折叠的殖民地陆战队大型帐篷"
 	icon_state = "big"
-	desc = "A standard USCM Tent. This one is just a bigger, general purpose version. Unfold in a suitable location for maximum FOB vibes. Mess Tech not included. ENTRANCE TO THE SOUTH."
+	desc = "殖民地陆战队标准帐篷，这是更大的通用版本。在合适的位置展开，前线基地的氛围立刻拉满。不附送伙食勤务员。入口朝南。"
 	template_preset = "tent_big"
 
 /obj/effect/overlay/temp/tent_deployment_error

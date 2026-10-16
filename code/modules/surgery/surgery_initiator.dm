@@ -13,7 +13,7 @@
 
 	var/turf/open/T = get_turf(target)
 	if(!istype(user.loc, /turf/open))
-		to_chat(user, SPAN_WARNING("You can't perform surgery here!"))
+		to_chat(user, SPAN_WARNING("你不能在这里做手术！"))
 		return FALSE
 	else
 		if(!istype(T) || !T.supports_surgery)
@@ -23,14 +23,14 @@
 			if(HAS_TRAIT(tool, TRAIT_TOOL_BLOWTORCH) && affecting)
 				return FALSE
 			if(!(tool.type in SURGERY_TOOLS_NO_INIT_MSG))
-				to_chat(user, SPAN_WARNING("You can't perform surgery under these bad conditions!"))
+				to_chat(user, SPAN_WARNING("环境太差，你无法做手术！"))
 			return FALSE
 
 	var/obj/limb/surgery_limb = target.get_limb(target_zone)
 	if(surgery_limb)
 		var/obj/item/blocker = target.get_sharp_obj_blocker(surgery_limb)
 		if(blocker)
-			to_chat(user, SPAN_WARNING("[blocker] [target] is wearing restricts your access to the surgical site, take it off!"))
+			to_chat(user, SPAN_WARNING("[target]穿戴的[blocker]挡住了手术部位，先脱下来！"))
 			return
 
 	if(user.action_busy) //already doing an action
@@ -94,28 +94,28 @@
 
 		if(target.incision_depths[target_zone] == SURGERY_DEPTH_SURFACE ? is_surgery_init_tool(tool) : is_surgery_tool(tool))
 			if(target == user && ((!user.hand && (target_zone in list("r_arm", "r_hand"))) || (user.hand && (target_zone in list("l_arm", "l_hand")))))
-				to_chat(user, SPAN_WARNING("You can't perform surgery on the same \
-					[target_zone == "r_hand"||target_zone == "l_hand" ? "hand":"arm"] you're using!"))
+				to_chat(user, SPAN_WARNING("你无法对正在使用的同一只\
+					[target_zone == "r_hand"||target_zone == "l_hand" ? "手":"手臂"]进行手术！"))
 				return FALSE
 			if(!length(valid_steps))
 				if(ishuman(target))
-					var/limbname = affecting?.status & LIMB_DESTROYED ? "the stump of [target]'s [affecting.display_name]" : "[target]'s [parse_zone(target_zone)]"
+					var/limbname = affecting?.status & LIMB_DESTROYED ? "[target]的[affecting.display_name]残肢" : "[target]的[parse_zone(target_zone)]"
 					if(target.incision_depths[target_zone] != SURGERY_DEPTH_SURFACE)
-						to_chat(user, SPAN_WARNING("You don't know of any operations you could perform in the [target.incision_depths[target_zone]] incision on [limbname]."))
+						to_chat(user, SPAN_WARNING("你不知道能在[limbname]上深度为[target.incision_depths[target_zone]]的切口中进行什么手术。"))
 					else
-						to_chat(user, SPAN_WARNING("You don't know of any operations you could begin on [limbname]."))
+						to_chat(user, SPAN_WARNING("你不知道能对[limbname]进行什么手术。"))
 					return FALSE
 				if(isxeno(target))
-					to_chat(user, SPAN_WARNING("You don't know any operations you could perform on this body part of a xenomorph."))
+					to_chat(user, SPAN_WARNING("你不知道能对异形的这个身体部位进行什么手术。"))
 			var/hint_msg
 			for(var/datum/surgery_step/current_step as anything in valid_steps)
 				if(hint_msg)
 					if(current_step == valid_steps[length(valid_steps)])
-						hint_msg += ", or [current_step.desc]"
+						hint_msg += "，或者[current_step.desc]"
 					else
-						hint_msg += ", [current_step.desc]"
+						hint_msg += "，[current_step.desc]"
 				else
-					hint_msg = "You can't [current_step.desc] with \the [tool]"
+					hint_msg = "你无法用\the [tool]来[current_step.desc]"
 			if(!isnull(hint_msg))
 				to_chat(user, SPAN_WARNING("[hint_msg]."))
 		return FALSE
@@ -124,7 +124,7 @@
 	if(length(available_surgeries) == 1)
 		surgeryinstance = available_surgeries[available_surgeries[1]]
 	else
-		surgeryinstance = available_surgeries[tgui_input_list(user, "Begin which procedure?", "Surgery", sortList(available_surgeries))]
+		surgeryinstance = available_surgeries[tgui_input_list(user, "要开始哪项手术？", "手术", sortList(available_surgeries))]
 		//we check that the surgery is still doable after the input() wait.
 		if(!surgeryinstance || QDELETED(user) || user.is_mob_incapacitated() || !user.Adjacent(target) || tool != user.get_active_hand() || target_zone != user.zone_selected)
 			return TRUE
@@ -133,8 +133,8 @@
 			return TRUE //during the input() another surgery was started at the same location.
 
 		if(target == user && ((!user.hand && (target_zone in list("r_arm", "r_hand"))) || (user.hand && (target_zone in list("l_arm", "l_hand")))))
-			to_chat(user, SPAN_WARNING("You can't perform surgery on the same \
-				[target_zone == "r_hand"||target_zone == "l_hand" ? "hand":"arm"] you're using!"))
+			to_chat(user, SPAN_WARNING("你无法对正在使用的同一只\
+				[target_zone == "r_hand"||target_zone == "l_hand" ? "手":"手臂"]进行手术！"))
 			return TRUE
 
 		if(surgeryinstance.lying_required && target.body_position != LYING_DOWN)
@@ -143,7 +143,7 @@
 		if(surgery_limb)
 			var/obj/item/blocker = target.get_sharp_obj_blocker(surgery_limb)
 			if(blocker)
-				to_chat(user, SPAN_WARNING("[blocker] [target] is wearing restricts your access to the surgical site, take it off!"))
+				to_chat(user, SPAN_WARNING("[target]穿戴的[blocker]挡住了手术部位，先脱下来！"))
 				return
 
 		if(affecting)

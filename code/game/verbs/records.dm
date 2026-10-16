@@ -1,25 +1,26 @@
 /client/verb/own_records()
-	set name = "View Own Records"
+	set name = "查看自己的记录"
 	set category = "OOC.Records"
 
-	var/list/options = list("Admin", "Merit", "Whitelist")
+	var/list/options = list("管理记录" = "Admin", "功绩记录" = "Merit", "白名单记录" = "Whitelist")
 
-	var/choice = tgui_input_list(usr, "What record do you wish to view?", "Record Choice", options)
+	var/choice_label = tgui_input_list(usr, "要查看哪种记录？", "选择记录", options)
+	var/choice = options[choice_label]
 	switch(choice)
 		if("Admin")
-			show_own_notes(NOTE_ADMIN, choice)
+			show_own_notes(NOTE_ADMIN, choice_label)
 		if("Merit")
-			show_own_notes(NOTE_MERIT, choice)
+			show_own_notes(NOTE_MERIT, choice_label)
 		if("Whitelist")
-			show_own_notes(NOTE_WHITELIST, choice)
+			show_own_notes(NOTE_WHITELIST, choice_label)
 		else
 			return
-	to_chat(usr, SPAN_NOTICE("Displaying your [choice] Record."))
+	to_chat(usr, SPAN_NOTICE("正在显示你的[choice_label]。"))
 
 /client/proc/show_own_notes(note_category, category_text)
 	var/datum/entity/player/P = get_player_from_key(ckey)
 	if(!P.migrated_notes)
-		to_chat(usr, "Error: notes not yet migrated for that key. Please try again in 5 minutes.")
+		to_chat(usr, "错误：该账号的记录尚未迁移，请5分钟后再试。")
 		return
 
 	var/dat = {"
@@ -27,7 +28,7 @@
 	<tr>
 	<td width='20%'>
 	<div align='center'>
-	<b>Search:</b>
+	<b>搜索：</b>
 	</div>
 	</td>
 	<td width='80%'>
@@ -57,12 +58,12 @@
 			if(NOTE_WHITELIST)
 				color = "#324da5"
 
-		dat += "<tr><td><font color=[color]>[N.text]</font> <i>by [admin_ckey] ([N.admin_rank])</i> on <i><font color=blue>[N.date] [NOTE_ROUND_ID(N)]</i></font> "
+		dat += "<tr><td><font color=[color]>[N.text]</font> <i>记录人：[admin_ckey]（[N.admin_rank]）</i> 时间：<i><font color=blue>[N.date] [NOTE_ROUND_ID(N)]</i></font> "
 		dat += "</td></tr>"
 
 	dat += "</table>"
 
-	show_browser(usr, dat, "Your [category_text] Record", "ownrecords", width = 480, height = 480)
+	show_browser(usr, dat, "你的[category_text]", "ownrecords", width = 480, height = 480)
 
 
 
@@ -180,7 +181,7 @@ GLOBAL_DATUM_INIT(medals_view_tgui, /datum/medals_view_tgui, new)
 /datum/medals_view_tgui/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "MedalsViewer", "[user.ckey]'s Medals")
+		ui = new(user, src, "MedalsViewer", "[user.ckey]的勋章")
 		ui.open()
 
 /datum/medals_view_tgui/ui_static_data(mob/user)
@@ -218,7 +219,7 @@ GLOBAL_DATUM_INIT(medals_view_tgui, /datum/medals_view_tgui, new)
 	)
 
 /client/verb/view_own_medals()
-	set name = "View Own Medals"
+	set name = "查看自己的勋章"
 	set category = "OOC.Records"
 
 	GLOB.medals_view_tgui.tgui_interact(mob)
@@ -233,12 +234,12 @@ GLOBAL_DATUM_INIT(medals_view_given_tgui, /datum/medals_view_tgui/given_medals, 
 /datum/medals_view_tgui/given_medals/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "MedalsViewer", "[user.ckey]'s Given Medals")
+		ui = new(user, src, "MedalsViewer", "[user.ckey]授予的勋章")
 		ui.open()
 
 
 /client/verb/view_given_medals()
-	set name = "View Medals Given to Others"
+	set name = "查看授予他人的勋章"
 	set category = "OOC.Records"
 
 	GLOB.medals_view_given_tgui.tgui_interact(mob)

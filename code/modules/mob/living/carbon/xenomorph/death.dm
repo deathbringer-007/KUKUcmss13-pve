@@ -1,7 +1,7 @@
 #define DELETE_TIME 1800
 
 /mob/living/carbon/xenomorph/death(cause, gibbed)
-	var/msg = "lets out a waning guttural screech, green blood bubbling from its maw."
+	var/msg = "发出逐渐衰弱的低沉尖叫，绿色鲜血从口中不断涌出。"
 	. = ..(cause, gibbed, msg)
 	if(!.)
 		return //If they're already dead, it will return.
@@ -52,8 +52,8 @@
 							qdel(new_xeno)
 							break
 
-						new_xeno.visible_message(SPAN_XENODANGER("A larva suddenly burrows out of the ground!"),
-						SPAN_XENODANGER("You burrow out of the ground after feeling an immense tremor through the hive, which quickly fades into complete silence..."))
+						new_xeno.visible_message(SPAN_XENODANGER("一只幼虫突然钻出了地面！"),
+						SPAN_XENODANGER("你感到整个虫巢剧烈震颤，随后迅速归于死寂，于是从地下钻了出来……"))
 
 						GLOB.hive_datum[hivenumber].stored_larva--
 						GLOB.hive_datum[hivenumber].hive_ui.update_burrowed_larva()
@@ -61,8 +61,8 @@
 						message_alien_candidates(players_with_xeno_pref, dequeued = count)
 
 			if(hive && hive.living_xeno_queen == src)
-				notify_ghosts(header = "Queen Death", message = "The Queen has been slain!", source = src, action = NOTIFY_ORBIT)
-				xeno_message(SPAN_XENOANNOUNCE("A sudden tremor ripples through the hive... the Queen has been slain! Vengeance!"),3, hivenumber)
+				notify_ghosts(header = "女皇陨落", message = "女皇被杀害了！", source = src, action = NOTIFY_ORBIT)
+				xeno_message(SPAN_XENOANNOUNCE("一阵突如其来的震颤传遍虫巢……女皇被杀害了！复仇！"),3, hivenumber)
 				hive.slashing_allowed = XENO_SLASH_ALLOWED
 				hive.set_living_xeno_queen(null)
 				//on the off chance there was somehow two queen alive
@@ -73,7 +73,7 @@
 				hive.handle_xeno_leader_pheromones()
 				if(SSticker.mode)
 					INVOKE_ASYNC(SSticker.mode, TYPE_PROC_REF(/datum/game_mode, check_queen_status), hivenumber)
-					LAZYADD(SSticker.mode.dead_queens, "<br>[!isnull(full_designation) ? full_designation : "?"] was [src] [SPAN_BOLDNOTICE("(DIED)")]")
+					LAZYADD(SSticker.mode.dead_queens, "<br>[!isnull(full_designation) ? full_designation : "?"]曾是[src] [SPAN_BOLDNOTICE("（阵亡）")]")
 
 		else if(ispredalien(src))
 			playsound(loc,'sound/voice/predalien_death.ogg', 25, TRUE)
@@ -84,12 +84,12 @@
 		var/area/A = get_area(src)
 		if(hive && hive.living_xeno_queen)
 			if(!HAS_TRAIT(src, TRAIT_TEMPORARILY_MUTED))
-				xeno_message("Hive: [src] has <b>died</b>[A? " at [sanitize_area(A.name)]":""]! [banished ? "They were banished from the hive." : ""]", death_fontsize, hivenumber)
+				xeno_message("虫巢：[src][A? "在[sanitize_area(A.name)]":""]<b>死亡</b>了！[banished ? "该成员已被逐出虫巢。" : ""]", death_fontsize, hivenumber)
 
 	if(hive && IS_XENO_LEADER(src)) //Strip them from the Xeno leader list, if they are indexed in here
 		hive.remove_hive_leader(src)
 		if(hive.living_xeno_queen)
-			to_chat(hive.living_xeno_queen, SPAN_XENONOTICE("A leader has fallen!")) //alert queens so they can choose another leader
+			to_chat(hive.living_xeno_queen, SPAN_XENONOTICE("一位领袖陨落了！")) //alert queens so they can choose another leader
 
 	hud_update() //updates the overwatch hud to remove the upgrade chevrons, gold star, etc
 	SSminimaps.remove_marker(src)
@@ -137,7 +137,7 @@
 			gib_state = "gibbed-a-corpse-runner"
 		if(XENO_CASTE_BOILER)
 			var/mob/living/carbon/xenomorph/boiler/src_boiler = src
-			visible_message(SPAN_DANGER("[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!"))
+			visible_message(SPAN_DANGER("[src]的身体开始怪异地膨胀，随后炸成一团腐蚀性气体！"))
 			src_boiler.smoke.set_up(2, 0, get_turf(src), new_cause_data = src_boiler.smoke.cause_data)
 			src_boiler.smoke.start()
 		if(XENO_CASTE_LARVA, XENO_CASTE_PREDALIEN_LARVA)

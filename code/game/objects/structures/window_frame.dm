@@ -1,6 +1,6 @@
 /obj/structure/window_frame
-	name = "window frame"
-	desc = "A big hole in the wall that used to sport a large window. Can be vaulted through"
+	name = "窗框"
+	desc = "墙上的大洞，原本装着一扇大窗户，可以翻越。"
 	icon = 'icons/turf/walls/window_frames.dmi'
 	icon_state = "window0_frame"
 	layer = WINDOW_FRAME_LAYER
@@ -86,14 +86,14 @@
 	if(istype(W, sheet_type))
 		var/obj/item/stack/sheet/sheet = W
 		if(sheet.get_amount() < 2)
-			to_chat(user, SPAN_WARNING("You need more [W.name] to install a new window."))
+			to_chat(user, SPAN_WARNING("你需要更多[W.name]才能安装新窗户。"))
 			return
-		user.visible_message(SPAN_NOTICE("[user] starts installing a new glass window on the frame."), \
-		SPAN_NOTICE("You start installing a new window on the frame."))
+		user.visible_message(SPAN_NOTICE("[user]开始在窗框上安装新玻璃窗。"), \
+		SPAN_NOTICE("你开始在窗框上安装新窗户。"))
 		playsound(src, 'sound/items/Deconstruct.ogg', 25, 1)
 		if(do_after(user, 20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-			user.visible_message(SPAN_NOTICE("[user] installs a new glass window on the frame."), \
-			SPAN_NOTICE("You install a new window on the frame."))
+			user.visible_message(SPAN_NOTICE("[user]在窗框上装好了新玻璃窗。"), \
+			SPAN_NOTICE("你在窗框上装好了新窗户。"))
 			sheet.use(2)
 			new window_type(loc) //This only works on Almayer windows!
 			SEND_SIGNAL(user, COMSIG_MOB_CONSTRUCT_WINDOW, window_type)
@@ -101,11 +101,11 @@
 
 	else if(HAS_TRAIT(W, TRAIT_TOOL_WRENCH))
 		if(buildstacktype)
-			to_chat(user, SPAN_NOTICE(" You start to deconstruct [src]."))
+			to_chat(user, SPAN_NOTICE("你开始拆解[src]。"))
 			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 			if(do_after(user, 240 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD)) // takes 3 seconds to deconstruct
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				to_chat(user, SPAN_NOTICE("You deconstruct [src]."))
+				to_chat(user, SPAN_NOTICE("你拆解了[src]。"))
 				SEND_SIGNAL(user, COMSIG_MOB_DISASSEMBLE_W_FRAME, src)
 				deconstruct()
 
@@ -116,21 +116,21 @@
 			var/mob/living/M = G.grabbed_thing
 			if(user.grab_level >= GRAB_AGGRESSIVE)
 				if(get_dist(src, M) > 1)
-					to_chat(user, SPAN_WARNING("[M] needs to be next to [src]."))
+					to_chat(user, SPAN_WARNING("[M]必须紧邻[src]。"))
 				else
 					if(user.action_busy)
 						return
-					user.visible_message(SPAN_NOTICE("[user] starts pulling [M] onto [src]."),
-					SPAN_NOTICE("You start pulling [M] onto [src]!"))
+					user.visible_message(SPAN_NOTICE("[user]开始将[M]拖上[src]。"),
+					SPAN_NOTICE("你开始将[M]拖上[src]！"))
 					var/oldloc = loc
 					if(!do_after(user, 20, INTERRUPT_ALL, BUSY_ICON_GENERIC, M) || loc != oldloc)
 						return
 					M.apply_effect(2, WEAKEN)
-					user.visible_message(SPAN_WARNING("[user] pulls [M] onto [src]."),
-					SPAN_NOTICE("You pull [M] onto [src]."))
+					user.visible_message(SPAN_WARNING("[user]将[M]拖上了[src]。"),
+					SPAN_NOTICE("你将[M]拖上了[src]。"))
 					M.forceMove(loc)
 			else
-				to_chat(user, SPAN_WARNING("You need a better grip to do that!"))
+				to_chat(user, SPAN_WARNING("你得抓得更牢才能这样做！"))
 	else
 		. = ..()
 
@@ -191,7 +191,7 @@
 
 /obj/structure/window_frame/almayer/requisitions/attackby(obj/item/W, mob/living/user)
 	if(istype(W, sheet_type))
-		to_chat(user, SPAN_WARNING("You can't repair this window."))
+		to_chat(user, SPAN_WARNING("你无法修复这扇窗户。"))
 		return
 	..()
 
@@ -272,13 +272,13 @@
 //Shivas Snowball (Ice v3) frame
 
 /obj/structure/window_frame/shiva
-	name = "poly-kevlon window frame"
+	name = "聚合凯夫纶窗框"
 	icon = 'icons/turf/walls/ice_colony/shiva_windows.dmi'
 	icon_state = "shiva_window0_frame"
 	basestate = "shiva_window"
 
 /obj/structure/window_frame/prefab
-	name = "poly-kevlon window frame"
+	name = "聚合凯夫纶窗框"
 	icon = 'icons/turf/walls/ice_colony/shiva_windows.dmi'
 	icon_state = "prefab_window0_frame"
 	basestate = "prefab_window"
@@ -323,7 +323,7 @@
 	window_type = /obj/structure/window/framed/corsat/security
 
 /obj/structure/window_frame/upp
-	name = "military grade window frame"
+	name = "军用级窗框"
 	reinforced = TRUE
 
 /obj/structure/window_frame/upp/green

@@ -1,6 +1,6 @@
 /obj/structure/machinery/computer/teleporter_console
-	name = "teleporter console"
-	desc = "A console used for controlling teleporters."
+	name = "传送器控制台"
+	desc = "用于控制传送器的控制台。"
 	icon_state = "teleport"
 	unacidable = TRUE
 	var/datum/teleporter/linked_teleporter
@@ -18,11 +18,11 @@
 		return
 
 	if(ishuman(user) && !skillcheck(user, SKILL_RESEARCH, SKILL_RESEARCH_TRAINED))
-		to_chat(user, SPAN_WARNING("You can't figure out how to use [src]."))
+		to_chat(user, SPAN_WARNING("你弄不明白如何使用[src]。"))
 		return
 
 	if(!linked_teleporter && !attempt_teleporter_link(teleporter_id))
-		to_chat(user, SPAN_WARNING("Something has gone very, very wrong. Tell the devs. Code: TELEPORTER_CONSOLE_4"))
+		to_chat(user, SPAN_WARNING("发生了严重错误，请向开发者报告。代码：TELEPORTER_CONSOLE_4"))
 		log_debug("Couldn't find teleporter matching ID [teleporter_id]. Code: TELEPORTER_CONSOLE_4")
 		log_admin("Couldn't find teleporter matching ID [teleporter_id]. Tell the devs. Code: TELEPORTER_CONSOLE_4")
 		return
@@ -62,7 +62,7 @@
 
 	if(!linked_teleporter)
 		if(!attempt_teleporter_link(teleporter_id))
-			to_chat(user, SPAN_WARNING("Something has gone very, very wrong. Tell the devs. Code: TELEPORTER_CONSOLE_5"))
+			to_chat(user, SPAN_WARNING("发生了严重错误，请向开发者报告。代码：TELEPORTER_CONSOLE_5"))
 			log_debug("Couldn't find teleporter matching ID [teleporter_id]. Code: TELEPORTER_CONSOLE_5")
 			log_admin("Couldn't find teleporter matching ID [teleporter_id]. Tell the devs. Code: TELEPORTER_CONSOLE_5")
 			return
@@ -101,11 +101,11 @@
 
 /obj/structure/machinery/computer/teleporter_console/proc/carry_out_teleport()
 	if(!linked_teleporter.safety_check_destination(selected_destination))
-		visible_message("<b>[src]</b> beeps, \"The destination is unsafe. Please clear it of any dangerous or dense objects.\"")
+		visible_message("<b>[src]</b>鸣响：“目的地不安全，请移除所有危险物品或阻挡物。”")
 		return
 
 	if(!linked_teleporter.safety_check_source(selected_source))
-		visible_message("<b>[src]</b> beeps, \"The source location is unsafe. Any large objects must be completely inside the teleporter.\"")
+		visible_message("<b>[src]</b>鸣响：“出发位置不安全，大型物体必须完全位于传送器内。”")
 		return
 
 	teleporting = TRUE
@@ -118,23 +118,23 @@
 	spawn(0)
 		linked_teleporter.apply_vfx(selected_source, 30)
 
-	visible_message("<b>[src]</b> beeps, \"Initiating Teleportation in 5 seconds....\"")
+	visible_message("<b>[src]</b>鸣响：“5秒后开始传送……”")
 
 	sleep(10)
 
-	visible_message("<b>[src]</b> beeps, \"Initiating Teleportation in 4 seconds....\"")
+	visible_message("<b>[src]</b>鸣响：“4秒后开始传送……”")
 
 	sleep(10)
 
-	visible_message("<b>[src]</b> beeps, \"Initiating Teleportation in 3 seconds....\"")
+	visible_message("<b>[src]</b>鸣响：“3秒后开始传送……”")
 
 	sleep(10)
 
-	visible_message("<b>[src]</b> beeps, \"Initiating Teleportation in 2 seconds....\"")
+	visible_message("<b>[src]</b>鸣响：“2秒后开始传送……”")
 
 	sleep(10)
 
-	visible_message("<b>[src]</b> beeps, \"Initiating Teleportation in 1 second....\"")
+	visible_message("<b>[src]</b>鸣响：“1秒后开始传送……”")
 
 	for(var/turf_key in turf_keys)
 		var/turf/T = turf_keys[turf_key]
@@ -142,13 +142,13 @@
 
 	sleep(10)
 
-	visible_message("<b>[src]</b> beeps, \"INITIATING TELEPORTATION....\"")
+	visible_message("<b>[src]</b>鸣响：“开始传送……”")
 
 	teleporting = FALSE
 	SStgui.update_uis(src)
 
 	if(!linked_teleporter.safety_check_source(selected_source) || !linked_teleporter.safety_check_destination(selected_destination) || !linked_teleporter.check_teleport_cooldown())
-		visible_message("<b>[src]</b> beeps, \"TELEPORTATION ERROR; ABORTING....\"")
+		visible_message("<b>[src]</b>鸣响：“传送错误，正在中止……”")
 		return
 
 	linked_teleporter.teleport(selected_source, selected_destination)
@@ -161,13 +161,13 @@
 
 
 /obj/structure/machinery/computer/teleporter_console/bullet_act(obj/projectile/P)
-	visible_message("[P] doesn't even scratch [src]!")
+	visible_message("[P]甚至没能给[src]留下划痕！")
 	return FALSE
 
 // Please only add things with teleporter_id set or it will not work and you'll spam the shit out of admin logs
 /obj/structure/machinery/computer/teleporter_console/corsat
-	name = "\improper CORSAT Teleporter Console"
-	desc = "A console used for interfacing with the CORSAT experimental teleporter."
+	name = "\improper CORSAT传送器控制台"
+	desc = "用于操作CORSAT实验传送器的控制台。"
 	teleporter_id = "Corsat_Teleporter"
 
 /obj/structure/machinery/computer/teleporter_console/corsat/Initialize()

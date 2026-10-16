@@ -4,7 +4,7 @@
 		return
 
 	if(xeno.fortify)
-		to_chat(xeno, SPAN_XENOWARNING("We cannot use abilities while fortified."))
+		to_chat(xeno, SPAN_XENOWARNING("固守时无法使用技能。"))
 		return
 
 	if(!xeno.check_state())
@@ -16,7 +16,7 @@
 	xeno.crest_defense = !xeno.crest_defense
 
 	if(xeno.crest_defense)
-		to_chat(xeno, SPAN_XENOWARNING("We lower our crest."))
+		to_chat(xeno, SPAN_XENOWARNING("我们放低了头冠。"))
 
 		xeno.ability_speed_modifier += speed_debuff
 		xeno.armor_deflection_buff += armor_buff
@@ -24,7 +24,7 @@
 		button.icon_state = "template_active"
 		xeno.update_icons()
 	else
-		to_chat(xeno, SPAN_XENOWARNING("We raise our crest."))
+		to_chat(xeno, SPAN_XENOWARNING("我们抬起了头冠。"))
 
 		xeno.ability_speed_modifier -= speed_debuff
 		xeno.armor_deflection_buff -= armor_buff
@@ -54,7 +54,7 @@
 		return
 
 	if(fendy.fortify && !usable_while_fortified)
-		to_chat(fendy, SPAN_XENOWARNING("We cannot use headbutt while fortified."))
+		to_chat(fendy, SPAN_XENOWARNING("固守时无法使用头槌。"))
 		return
 
 	var/mob/living/carbon/carbone = target_atom
@@ -76,8 +76,8 @@
 		return
 
 	carbone.last_damage_data = create_cause_data(fendy.caste_type, fendy)
-	fendy.visible_message(SPAN_XENOWARNING("[fendy] rams [carbone] with its armored crest!"), \
-	SPAN_XENOWARNING("We ram [carbone] with our armored crest!"))
+	fendy.visible_message(SPAN_XENOWARNING("[fendy]用装甲头冠撞击[carbone]！"), \
+	SPAN_XENOWARNING("我们用装甲头冠撞击[carbone]！"))
 
 	if(carbone.stat != DEAD && (!(carbone.status_flags & XENO_HOST) || !HAS_TRAIT(carbone, TRAIT_NESTED)))
 		// -10 damage if their crest is down.
@@ -109,15 +109,15 @@
 		return
 
 	if(xeno.fortify)
-		to_chat(src, SPAN_XENOWARNING("We cannot use tail swipe while fortified."))
+		to_chat(src, SPAN_XENOWARNING("固守时无法扫尾。"))
 		return
 
 	if(xeno.crest_defense)
-		to_chat(src, SPAN_XENOWARNING("We cannot use tail swipe with our crest lowered."))
+		to_chat(src, SPAN_XENOWARNING("头冠放低时无法扫尾。"))
 		return
 
-	xeno.visible_message(SPAN_XENOWARNING("[xeno] sweeps its tail in a wide circle!"), \
-	SPAN_XENOWARNING("We sweep our tail in a wide circle!"))
+	xeno.visible_message(SPAN_XENOWARNING("[xeno]大幅度环扫尾巴！"), \
+	SPAN_XENOWARNING("我们大幅度环扫尾巴！"))
 
 	if(!check_and_use_plasma_owner())
 		return
@@ -142,7 +142,7 @@
 		if(human.mob_size < MOB_SIZE_BIG)
 			human.apply_effect(get_xeno_stun_duration(human, 1), WEAKEN)
 
-		to_chat(human, SPAN_XENOWARNING("You are struck by [xeno]'s tail sweep!"))
+		to_chat(human, SPAN_XENOWARNING("[xeno]扫动的尾巴击中了你！"))
 		playsound(human,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
 	apply_cooldown()
@@ -155,7 +155,7 @@
 		return
 
 	if(xeno.crest_defense)
-		to_chat(src, SPAN_XENOWARNING("We cannot use fortify with our crest lowered."))
+		to_chat(src, SPAN_XENOWARNING("头冠放低时无法固守。"))
 		return
 
 	if(!xeno.check_state())
@@ -200,13 +200,13 @@
 		return
 
 	if(fortify_state)
-		to_chat(xeno, SPAN_XENOWARNING("We tuck ourself into a defensive stance."))
+		to_chat(xeno, SPAN_XENOWARNING("我们蜷缩身体，进入防御姿态。"))
 		RegisterSignal(owner, COMSIG_XENO_PRE_CALCULATE_ARMOURED_DAMAGE_PROJECTILE, PROC_REF(check_directional_armor))
 		xeno.mob_size = MOB_SIZE_IMMOBILE //knockback immune
 		xeno.mob_flags &= ~SQUEEZE_UNDER_VEHICLES
 		xeno.fortify = TRUE
 	else
-		to_chat(xeno, SPAN_XENOWARNING("We resume our normal stance."))
+		to_chat(xeno, SPAN_XENOWARNING("我们恢复了正常姿态。"))
 		REMOVE_TRAIT(xeno, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Fortify"))
 		xeno.anchored = FALSE
 		UnregisterSignal(owner, COMSIG_XENO_PRE_CALCULATE_ARMOURED_DAMAGE_PROJECTILE)
@@ -274,9 +274,9 @@
 	RegisterSignal(steelcrest, COMSIG_XENO_TAKE_DAMAGE, PROC_REF(damage_accumulate))
 	addtimer(CALLBACK(src, PROC_REF(stop_accumulating)), 6 SECONDS)
 
-	steelcrest.balloon_alert(steelcrest, "begins to tank incoming damage!")
+	steelcrest.balloon_alert(steelcrest, "开始承受来袭伤害！")
 
-	to_chat(steelcrest, SPAN_XENONOTICE("We begin to tank incoming damage!"))
+	to_chat(steelcrest, SPAN_XENONOTICE("我们开始承受来袭伤害！"))
 
 	steelcrest.add_filter("steelcrest_enraging", 1, list("type" = "outline", "color" = "#421313", "size" = 1))
 
@@ -297,14 +297,14 @@
 	UnregisterSignal(owner, COMSIG_XENO_TAKE_DAMAGE)
 
 	damage_accumulated = 0
-	to_chat(owner, SPAN_XENONOTICE("We stop taking incoming damage."))
+	to_chat(owner, SPAN_XENONOTICE("我们的承伤技能结束了。"))
 	owner.remove_filter("steelcrest_enraging")
 
 /datum/action/xeno_action/onclick/soak/proc/enraged()
 
 	owner.remove_filter("steelcrest_enraging")
 	owner.add_filter("steelcrest_enraged", 1, list("type" = "outline", "color" = "#ad1313", "size" = 1))
-	owner.visible_message(SPAN_XENOWARNING("[owner] gets enraged after being damaged enough!"), SPAN_XENOWARNING("We feel enraged after taking in oncoming damage! Our tail slam's cooldown is reset and we heal!"))
+	owner.visible_message(SPAN_XENOWARNING("[owner]承受了足够伤害，陷入狂怒！"), SPAN_XENOWARNING("承受来袭伤害让我们陷入狂怒！尾击冷却已重置，我们的伤势得到恢复！"))
 
 	var/mob/living/carbon/xenomorph/enraged_mob = owner
 	enraged_mob.gain_health(75) // pretty reasonable amount of health recovered

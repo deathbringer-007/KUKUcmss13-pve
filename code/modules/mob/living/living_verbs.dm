@@ -6,7 +6,7 @@
 	return TRUE
 
 /mob/living/verb/resist()
-	set name = "Resist"
+	set name = "挣脱"
 	set category = "IC"
 
 	reset_view()
@@ -15,13 +15,13 @@
 		return
 
 	if(is_mob_incapacitated(TRUE))
-		to_chat(src, SPAN_WARNING("You can't resist in your current state."))
+		to_chat(src, SPAN_WARNING("你现在的状态无法挣脱。"))
 		return
 
 	if(isxeno(src))
 		var/mob/living/carbon/xenomorph/xeno = src
 		if(HAS_TRAIT(xeno, TRAIT_ABILITY_BURROWED))
-			to_chat(src, SPAN_WARNING("You can't resist in your current state."))
+			to_chat(src, SPAN_WARNING("你现在的状态无法挣脱。"))
 			return
 
 	resisting = TRUE
@@ -35,10 +35,10 @@
 
 		if(istype(M))
 			M.drop_inv_item_on_ground(H)
-			to_chat(M, "[H] wriggles out of your grip!")
-			to_chat(src, "You wriggle out of [M]'s grip!")
+			to_chat(M, "[H]扭动身体，挣脱了你的控制！")
+			to_chat(src, "你扭动身体，挣脱了[M]的控制！")
 		else if(istype(H.loc,/obj/item))
-			to_chat(src, "You struggle free of [H.loc].")
+			to_chat(src, "你挣扎着脱离了[H.loc]。")
 			H.forceMove(get_turf(H))
 
 		if(!istype(M))
@@ -52,7 +52,7 @@
 
 	//resisting grabs (as if it helps anyone...)
 	if(!is_mob_restrained(0) && pulledby)
-		visible_message(SPAN_DANGER("[src] resists against [pulledby]'s grip!"))
+		visible_message(SPAN_DANGER("[src]正挣扎着摆脱[pulledby]的控制！"))
 		resist_grab()
 		return
 
@@ -65,7 +65,7 @@
 		var/obj/structure/closet/bodybag/BB = loc
 		if (BB.opened)
 			return
-		visible_message("[BB] begins to wiggle violently!")
+		visible_message("[BB]开始剧烈摇晃！")
 		if(do_after(src, 5 SECONDS, INTERRUPT_UNCONSCIOUS, BUSY_ICON_HOSTILE, BB))//5 second unzip from inside
 			BB.open()
 
@@ -85,9 +85,9 @@
 	//regular ejection is done with verbs and doesnt work for half the time
 	if(loc && (istype(loc, /obj/structure/machinery/medical_pod/autodoc)))
 		var/obj/structure/machinery/medical_pod/autodoc/BB = loc
-		if (alert(usr, "Would you like to emergency eject out of [BB]? A surgery may be in progress.", "Confirm", "Yes", "No") == "Yes")
-			visible_message(SPAN_WARNING ("[BB]'s emergency lights blare as the casket starts moving!"))
-			to_chat(usr, SPAN_NOTICE ("You are now leaving [BB]"))
+		if (alert(usr, "要从[BB]紧急弹出吗？手术可能仍在进行中。", "确认", "是", "否") == "是")
+			visible_message(SPAN_WARNING ("[BB]的紧急警报灯亮起，舱体开始移动！"))
+			to_chat(usr, SPAN_NOTICE ("你正在离开[BB]。"))
 			playsound(src, 'sound/machines/beepalert.ogg', 30)
 			if(do_after(src, 5 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE, BB))//5 sec delay
 				BB.go_out() //Eject doesnt work you have to force it
@@ -121,9 +121,9 @@
 		//okay, so the closet is either welded or locked... resist!!!
 		next_move = world.time + 100
 		last_special = world.time + 100
-		to_chat(src, SPAN_DANGER("You lean on the back of [C] and start pushing the door open. (this will take about [breakout_time] minutes)"))
+		to_chat(src, SPAN_DANGER("你靠在[C]后部，开始推门。（大约需要[breakout_time]分钟）"))
 		for(var/mob/O in viewers(loc))
-			O.show_message(SPAN_DANGER("<B>[loc] begins to shake violently!</B>"), SHOW_MESSAGE_VISIBLE)
+			O.show_message(SPAN_DANGER("<B>[loc]开始剧烈摇晃！</B>"), SHOW_MESSAGE_VISIBLE)
 
 		if(!do_after(src, (breakout_time*1 MINUTES), INTERRUPT_NO_NEEDHAND^INTERRUPT_RESIST))
 			return
@@ -140,7 +140,7 @@
 		//Well then break it!
 		if(istype(loc, /obj/structure/closet/secure_closet))
 			var/obj/structure/closet/secure_closet/SC = loc
-			SC.desc = "It appears to be broken."
+			SC.desc = "它似乎坏了。"
 			SC.icon_state = SC.icon_off
 			flick(SC.icon_broken, SC)
 			sleep(10)
@@ -149,9 +149,9 @@
 			SC.broken = 1
 			SC.locked = 0
 			SC.update_icon()
-			to_chat(src, SPAN_DANGER("You successfully break out!"))
+			to_chat(src, SPAN_DANGER("你成功挣脱了！"))
 			for(var/mob/O in viewers(loc))
-				O.show_message(SPAN_DANGER("<B>\the [src] successfully broke out of \the [SC]!</B>"), SHOW_MESSAGE_VISIBLE)
+				O.show_message(SPAN_DANGER("<B>\the [src]成功逃出了\the [SC]！</B>"), SHOW_MESSAGE_VISIBLE)
 			if(istype(SC.loc, /obj/structure/bigDelivery)) //Do this to prevent contents from being opened into nullspace (read: bluespace)
 				var/obj/structure/bigDelivery/BD = SC.loc
 				BD.attack_hand(src)
@@ -160,9 +160,9 @@
 		else
 			C.welded = 0
 			C.update_icon()
-			to_chat(src, SPAN_DANGER("You successfully break out!"))
+			to_chat(src, SPAN_DANGER("你成功挣脱了！"))
 			for(var/mob/O in viewers(loc))
-				O.show_message(SPAN_DANGER("<B>\the [src] successfully broke out of \the [C]!</B>"), SHOW_MESSAGE_VISIBLE)
+				O.show_message(SPAN_DANGER("<B>\the [src]成功逃出了\the [C]！</B>"), SHOW_MESSAGE_VISIBLE)
 			if(istype(C.loc, /obj/structure/bigDelivery)) //nullspace ect... read the comment above
 				var/obj/structure/bigDelivery/BD = C.loc
 				BD.attack_hand(src)

@@ -4,11 +4,11 @@
 #define CONTROL_DROPSHIP 3
 
 /obj/structure/machinery/door_control
-	name = "remote door-control"
-	desc = "It controls doors, remotely."
+	name = "远程门控开关"
+	desc = "它能远程控制门。"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "doorctrl"
-	desc = "A remote control-switch for a door."
+	desc = "用于控制门的远程开关。"
 	power_channel = POWER_CHANNEL_ENVIRON
 	unslashable = TRUE
 	unacidable = TRUE
@@ -44,7 +44,7 @@
 	if(wires & 2)
 		return src.attack_hand(user)
 	else
-		to_chat(user, "Error, no route to host.")
+		to_chat(user, "错误，无法连接主机。")
 
 /obj/structure/machinery/door_control/attack_alien(mob/user as mob)
 	return
@@ -106,7 +106,7 @@
 				INVOKE_ASYNC(M, TYPE_PROC_REF(/obj/structure/machinery/door, close))
 
 /obj/structure/machinery/door_control/verb/push_button()
-	set name = "Push Button"
+	set name = "按下按钮"
 	set category = "Object"
 	if(isliving(usr))
 		var/mob/living/L = usr
@@ -120,18 +120,18 @@
 
 /obj/structure/machinery/door_control/proc/use_button(mob/living/user, force = FALSE)
 	if(inoperable())
-		to_chat(user, SPAN_WARNING("[src] doesn't seem to be working."))
+		to_chat(user, SPAN_WARNING("[src]似乎没有正常工作。"))
 		return
 
 	if(!allowed(user) && (wires & 1) && !force )
-		to_chat(user, SPAN_DANGER("Access Denied"))
+		to_chat(user, SPAN_DANGER("拒绝访问"))
 		flick(initial(icon_state) + "-denied",src)
 		return
 
 	use_power(5)
 	icon_state = initial(icon_state) + "1"
 	add_fingerprint(user)
-	to_chat(user, SPAN_NOTICE("You press \the [name] button."))
+	to_chat(user, SPAN_NOTICE("你按下了\the [name]按钮。"))
 
 	switch(normaldoorcontrol)
 		if(CONTROL_NORMAL_DOORS)
@@ -155,15 +155,15 @@
 
 // Controls elevator railings
 /obj/structure/machinery/door_control/railings
-	name = "railing controls"
-	desc = "Allows for raising and lowering the guard rails on the vehicle ASRS elevator when it's raised."
+	name = "护栏控制器"
+	desc = "用于在载具自动仓储检索系统升降机升起时，升降其防护栏。"
 	id = "vehicle_elevator_railing_aux"
 	gender = PLURAL
 	var/busy = FALSE
 
 /obj/structure/machinery/door_control/railings/use_button(mob/living/user, force = FALSE)
 	if(inoperable())
-		to_chat(user, SPAN_WARNING("[src] doesn't seem to be working."))
+		to_chat(user, SPAN_WARNING("[src]似乎没有正常工作。"))
 		return
 
 	if(busy)
@@ -171,7 +171,7 @@
 		return
 
 	if(!allowed(user) && (wires & 1) && !force)
-		to_chat(user, SPAN_DANGER("Access Denied"))
+		to_chat(user, SPAN_DANGER("拒绝访问"))
 		flick(initial(icon_state) + "-denied",src)
 		return
 
@@ -220,12 +220,12 @@
 
 /obj/structure/machinery/door_control/airlock/use_button(mob/living/user, force = FALSE)
 	if(inoperable())
-		to_chat(user, SPAN_WARNING("\The [src] doesn't seem to be working."))
+		to_chat(user, SPAN_WARNING("\The [src]似乎没有正常工作。"))
 		return
 
 	use_power(5)
 	add_fingerprint(user)
-	to_chat(user, SPAN_NOTICE("You press \the [name] button."))
+	to_chat(user, SPAN_NOTICE("你按下了\the [name]按钮。"))
 
 	switch(normaldoorcontrol)
 		if(CONTROL_NORMAL_DOORS)
@@ -242,26 +242,26 @@
 // seperating quarter and office because we might want to allow more access to the office than quarter in the future.
 /obj/structure/machinery/door_control/cl/office
 /obj/structure/machinery/door_control/cl/office/door
-	name = "Office Door Shutter"
+	name = "办公室门闸"
 	id = "cl_office_door"
 /obj/structure/machinery/door_control/cl/office/window
-	name = "Office Windows Shutters"
+	name = "办公室窗闸"
 	id = "cl_office_windows"
 /obj/structure/machinery/door_control/cl/office/divider
-	name = "Room Divider"
+	name = "房间隔断"
 	id = "RoomDivider"
 //special button that unlock the cl lock on is evac pod door bypassing general lockdown.
 /obj/structure/machinery/door_control/cl/office/evac
-	name = "Evac Pod Door Control"
+	name = "逃生舱门控制器"
 	id = "cl_evac"
 	normaldoorcontrol = 1
 /obj/structure/machinery/door_control/cl/quarter
 /obj/structure/machinery/door_control/cl/quarter/officedoor
-	name = "Quarter Door Shutter"
+	name = "住舱门闸"
 	id = "cl_quarter_door"
 /obj/structure/machinery/door_control/cl/quarter/backdoor
-	name = "Maintenance Door Shutter"
+	name = "维修通道门闸"
 	id = "cl_quarter_maintenance"
 /obj/structure/machinery/door_control/cl/quarter/windows
-	name = "Quarter Windows Shutters"
+	name = "住舱窗闸"
 	id = "cl_quarter_windows"

@@ -18,11 +18,11 @@
 		carbon.apply_armoured_damage(damage)
 		carbon.last_damage_data = create_cause_data(initial(xeno.name), xeno)
 		xeno.flick_attack_overlay(carbon, "tail")
-		to_chat(carbon, SPAN_DANGER("[xeno] cuts you with its razor sharp tail."))
+		to_chat(carbon, SPAN_DANGER("[xeno]用剃刀般锋利的尾巴割伤了你。"))
 		log_attack("[key_name(xeno)] hit [key_name(carbon)] with [name]")
 		playsound(carbon, pick(slash_sounds), 30, TRUE)
 
-	xeno.visible_message(SPAN_DANGER("[xeno] slices around itself!"), SPAN_NOTICE("We slice around ourself!"))
+	xeno.visible_message(SPAN_DANGER("[xeno]向周围挥斩！"), SPAN_NOTICE("我们向周围挥斩！"))
 	apply_cooldown()
 	..()
 
@@ -39,7 +39,7 @@
 	XENO_ACTION_CHECK_USE_PLASMA(xeno)
 
 	playsound(xeno, 'sound/voice/deep_alien_screech2.ogg', 75, 0, status = 0)
-	xeno.visible_message(SPAN_XENOHIGHDANGER("[xeno] emits an raspy guttural roar!"))
+	xeno.visible_message(SPAN_XENOHIGHDANGER("[xeno]发出沙哑低沉的咆哮！"))
 	xeno.create_shriekwave()
 
 	var/datum/effect_system/smoke_spread/king_doom/smoke_gas = new /datum/effect_system/smoke_spread/king_doom
@@ -74,7 +74,7 @@
 			addtimer(CALLBACK(human, TYPE_PROC_REF(/mob, remove_client_color_matrix), "doom", 1 SECONDS), 5 SECONDS)
 			addtimer(CALLBACK(human, TYPE_PROC_REF(/mob, clear_fullscreen), "doom", 0.5 SECONDS), 5 SECONDS)
 
-			to_chat(human, SPAN_HIGHDANGER("[xeno]'s roar overwhelms your entire being!"))
+			to_chat(human, SPAN_HIGHDANGER("[xeno]的咆哮震慑了你的整个身心！"))
 			shake_camera(human, 6, 1)
 
 			var/time_to_extinguish = get_dist(owner, human) SECONDS
@@ -148,7 +148,7 @@
 	XENO_ACTION_CHECK(xeno)
 
 	if(get_dist(owner, target) > range)
-		to_chat(xeno, SPAN_XENONOTICE("Sorry bud, you can't use this ability!"))
+		to_chat(xeno, SPAN_XENONOTICE("我们无法使用这个技能！"))
 		return
 
 	var/turf/target_turf = get_turf(target)
@@ -172,16 +172,16 @@
 				return
 
 	if(!check_and_use_plasma_owner())
-		to_chat(xeno, SPAN_XENONOTICE("We don't have enough plasma to use [name]."))
+		to_chat(xeno, SPAN_XENONOTICE("我们没有足够的等离子体来施放[get_display_name()]。"))
 		return
 
 	var/turf/template_turf = get_step(target_turf, SOUTHWEST)
 
-	to_chat(xeno, SPAN_XENONOTICE("Our muscles tense as we prepare ourself for a giant leap."))
+	to_chat(xeno, SPAN_XENONOTICE("我们的肌肉绷紧，准备纵身跃起。"))
 	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, "WaitBeforeMove") // idk, that probably works
 	xeno.make_jittery(1 SECONDS)
 	if(!do_after(xeno, 1 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
-		to_chat(xeno, SPAN_XENONOTICE("We relax our muslces and end our leap."))
+		to_chat(xeno, SPAN_XENONOTICE("我们放松肌肉，取消跃击。"))
 		return
 	if(leaping || !target)
 		return
@@ -189,7 +189,7 @@
 	leaping = TRUE
 	ADD_TRAIT(owner, TRAIT_UNDENSE, "Destroy")
 	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, "Destroy")
-	owner.visible_message(SPAN_WARNING("[owner] takes a giant leap into the air!"))
+	owner.visible_message(SPAN_WARNING("[owner]纵身高高跃入空中！"))
 
 	var/negative
 	var/initial_x = owner.x
@@ -269,7 +269,7 @@
 			var/throwtarget = get_edge_target_turf(owner, throw_dir)
 			carbon.throw_atom(throwtarget, 2, SPEED_REALLY_FAST, owner, TRUE)
 			carbon.KnockDown(0.5)
-			xeno.visible_message(SPAN_WARNING("[carbon] is thrown clear of [owner]!"))
+			xeno.visible_message(SPAN_WARNING("[carbon]被抛离了[owner]！"))
 
 	// Any items get thrown away
 	for(var/obj/item/item in orange(2, owner))
@@ -364,7 +364,7 @@
 	owner.add_filter("Enrage", 1, list("type" = "outline", "color" = "#7c3e3e", "size" = 1))
 	king.speed_modifier -= speed_buff_amount
 	king.recalculate_speed()
-	owner.visible_message(SPAN_WARNING("[owner] enrages!"))
+	owner.visible_message(SPAN_WARNING("[owner]陷入狂怒！"))
 
 	addtimer(CALLBACK(src, PROC_REF(remove_effects)), duration)
 

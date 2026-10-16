@@ -1,6 +1,6 @@
 /obj/structure/machinery/sentry_holder
-	name = "sentry deployment system"
-	desc = "A box that deploys a sentry turret."
+	name = "哨戒炮塔部署系统"
+	desc = "能部署哨戒炮塔的箱体。"
 	density = FALSE
 	anchored = TRUE
 	unacidable = 1
@@ -33,31 +33,31 @@
 /obj/structure/machinery/sentry_holder/get_examine_text(mob/user)
 	. = ..()
 	if(!deployed_turret)
-		. += "It's offline."
+		. += "它已离线。"
 
 /obj/structure/machinery/sentry_holder/attack_hand(mob/user)
 	if(!deployed_turret)
-		to_chat(user, SPAN_WARNING("[src] is unresponsive."))
+		to_chat(user, SPAN_WARNING("[src]没有反应。"))
 		return
 
 	if(deployment_cooldown > world.time)
-		to_chat(user, SPAN_WARNING("[src] is busy."))
+		to_chat(user, SPAN_WARNING("[src]正在工作。"))
 		return
 
 	if(deployed_turret.loc == src) //not deployed
 		if(stat & NOPOWER)
-			to_chat(user, SPAN_WARNING("[src] is non-functional."))
+			to_chat(user, SPAN_WARNING("[src]无法运作。"))
 			return
 
 		if(require_red_alert && (seclevel2num(get_security_level()) < SEC_LEVEL_RED))
-			to_chat(user, SPAN_WARNING("[src] can only be activated in emergencies."))
+			to_chat(user, SPAN_WARNING("[src]只能在紧急情况下启动。"))
 			return
 
-		to_chat(user, SPAN_NOTICE("You deploy [src]."))
+		to_chat(user, SPAN_NOTICE("你展开了[src]。"))
 		deploy_sentry()
 		return
 
-	to_chat(user, SPAN_NOTICE("You retract [src]."))
+	to_chat(user, SPAN_NOTICE("你收回了[src]。"))
 	undeploy_sentry()
 	return
 
@@ -108,12 +108,12 @@
 	icon_state = "[base_icon_state]_installed"
 
 /obj/structure/machinery/sentry_holder/colony
-	desc = "A box that deploys a sentry turret for protection of the residents in the area."
+	desc = "能部署哨戒炮塔的箱体，用于保护附近居民。"
 	turret_path = /obj/structure/machinery/defenses/sentry/premade/deployable/colony
 
 /obj/structure/machinery/sentry_holder/wy
 	health = 200
-	desc = "A box that deploys a sentry turret for protecting Weyland-Yutani personnel"
+	desc = "能部署哨戒炮塔的箱体，用于保护维兰德-汤谷人员。"
 	turret_path = /obj/structure/machinery/defenses/sentry/premade/deployable/wy
 
 /obj/structure/machinery/sentry_holder/almayer
@@ -141,7 +141,7 @@
 		return TRUE
 
 /obj/structure/machinery/sentry_holder/almayer/mini/aicore/attack_hand(mob/user)
-	to_chat(user, SPAN_WARNING("[src] can only be deployed remotely."))
+	to_chat(user, SPAN_WARNING("[src]只能远程部署。"))
 	return
 
 /obj/structure/machinery/sentry_holder/landing_zone
@@ -153,28 +153,28 @@
 /obj/structure/machinery/sentry_holder/landing_zone/attack_hand(mob/user)
 	var/obj/structure/machinery/defenses/sentry/premade/deployable/colony/landing_zone/turret = deployed_turret
 	if(!istype(turret))
-		to_chat(user, SPAN_WARNING("[src] is unresponsive."))
+		to_chat(user, SPAN_WARNING("[src]没有反应。"))
 		return
 
 	if(deployment_cooldown > world.time)
-		to_chat(user, SPAN_WARNING("[src] is busy."))
+		to_chat(user, SPAN_WARNING("[src]正在工作。"))
 		return
 
 	if(deployed_turret.loc == src) //not deployed
 		if(turret.battery_state == TURRET_BATTERY_STATE_DEAD)
-			to_chat(user, SPAN_WARNING("[src] is non-functional."))
+			to_chat(user, SPAN_WARNING("[src]无法运作。"))
 			return
 
 		if(require_red_alert && (seclevel2num(get_security_level()) < SEC_LEVEL_RED))
-			to_chat(user, SPAN_WARNING("[src] can only be activated in emergencies."))
+			to_chat(user, SPAN_WARNING("[src]只能在紧急情况下启动。"))
 			return
 
-		to_chat(user, SPAN_NOTICE("You deploy [src]."))
+		to_chat(user, SPAN_NOTICE("你展开了[src]。"))
 		deploy_sentry()
 		msg_admin_niche("[key_name(user)] deployed [turret] at [get_location_in_text(src)] [ADMIN_JMP(loc)]")
 		return
 
-	to_chat(user, SPAN_NOTICE("You retract [src]."))
+	to_chat(user, SPAN_NOTICE("你收回了[src]。"))
 	msg_admin_niche("[key_name(user)] retracted [turret] at [get_location_in_text(src)] [ADMIN_JMP(loc)]")
 	undeploy_sentry()
 	return

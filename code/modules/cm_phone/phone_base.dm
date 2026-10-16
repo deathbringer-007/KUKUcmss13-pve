@@ -1,8 +1,8 @@
 /obj/structure/phone_base
-	name = "telephone receiver"
+	name = "电话底座"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "wall_phone"
-	desc = "It is a wall mounted telephone. The fine text reads: To log your details with the mainframe please insert your keycard into the slot below. Unfortunately the slot is jammed. You can still use the phone, however."
+	desc = "一部壁挂电话。小字写着：要向主机登记个人资料，请将身份卡插入下方插槽。可惜插槽堵住了，不过电话依然可以使用。"
 	unslashable = TRUE
 
 	var/phone_category = "Uncategorised"
@@ -52,54 +52,54 @@
 
 //rotary desk phones (need a touch tone handset at some point)
 /obj/structure/phone_base/rotary
-	name = "rotary telephone"
+	name = "转盘电话"
 	icon_state = "rotary_phone"
-	desc = "The finger plate is a little stiff."
+	desc = "拨号盘有些紧。"
 
 /obj/structure/phone_base/rotary/no_dnd
 	do_not_disturb = PHONE_DND_FORBIDDEN
 
 /obj/structure/phone_base/touchtone
-	name = "touch-tone telephone"
+	name = "按键电话"
 	icon_state = "rotary_phone"//placeholder
-	desc = "Ancient aliens, it's all true. I'm an expert just like you!"
+	desc = "远古外星人，那都是真的。我和你一样也是专家！"
 
 /obj/structure/phone_base/colony_net
 	networks_receive = list(FACTION_COLONIST)
 	networks_transmit = list(FACTION_COLONIST)
 
 /obj/structure/phone_base/colony_net/rotary
-	name = "rotary telephone"
+	name = "转盘电话"
 	icon_state = "rotary_phone"
-	desc = "The finger plate is a little stiff."
+	desc = "拨号盘有些紧。"
 
 /obj/structure/phone_base/upp_net
 	networks_receive = list(FACTION_UPP)
 	networks_transmit = list(FACTION_UPP)
 
 /obj/structure/phone_base/upp_net/rotary
-	name = "rotary telephone"
+	name = "转盘电话"
 	icon_state = "rotary_phone"
-	desc = "The finger plate is a little stiff."
+	desc = "拨号盘有些紧。"
 
 /obj/structure/phone_base/clf_net
 	networks_receive = list(FACTION_CLF)
 	networks_transmit = list(FACTION_CLF)
 
 /obj/structure/phone_base/clf_net/rotary
-	name = "rotary telephone"
+	name = "转盘电话"
 	icon_state = "rotary_phone"
-	desc = "The finger plate is a little stiff."
+	desc = "拨号盘有些紧。"
 
 /obj/structure/phone_base/wy_net
 	networks_receive = list(FACTION_WY)
 	networks_transmit = list(FACTION_WY)
 
 /obj/structure/phone_base/wy_net/rotary
-	name = "rotary telephone"
+	name = "转盘电话"
 	icon_state = "rotary_phone"
-	desc = "The finger plate is a little stiff."
+	desc = "拨号盘有些紧。"
 
 /obj/structure/phone_base/toc
-	name = "telephone receiver"
+	name = "电话底座"
 	icon = 'icons/obj/vehicles/interiors/movie.dmi'

@@ -49,14 +49,14 @@
 	. = ..()
 	if(health < maxhealth)
 		if(health > maxhealth/3)
-			. += SPAN_WARNING("[src]'s parts look loose.")
+			. += SPAN_WARNING("[src]的零件看起来有些松动。")
 		else
-			. += SPAN_DANGER("[src]'s parts look very loose!")
+			. += SPAN_DANGER("[src]的零件看起来非常松动！")
 
 /obj/structure/machinery/bot/attack_animal(mob/living/simple_animal/M as mob)
 	if(M.melee_damage_upper == 0) return
 	health -= M.melee_damage_upper
-	visible_message(SPAN_DANGER("<B>[M] has [M.attacktext] [src]!</B>"))
+	visible_message(SPAN_DANGER("<B>[M]对[src]进行了[M.attacktext]！</B>"))
 	M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
 	M.last_damage_data = create_cause_data(initial(name))
 	if(prob(10))
@@ -67,19 +67,19 @@
 	if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
 		if(!locked)
 			open = !open
-			to_chat(user, SPAN_NOTICE("Maintenance panel is now [src.open ? "opened" : "closed"]."))
+			to_chat(user, SPAN_NOTICE("检修面板目前[src.open ? "已打开" : "已关闭"]。"))
 	else if(iswelder(W))
 		if(!HAS_TRAIT(W, TRAIT_TOOL_BLOWTORCH))
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要功率更大的焊枪！"))
 			return
 		if(health < maxhealth)
 			if(open)
 				health = min(maxhealth, health+10)
-				user.visible_message(SPAN_DANGER("[user] repairs [src]!"),SPAN_NOTICE("You repair [src]!"))
+				user.visible_message(SPAN_DANGER("[user]修好了[src]！"),SPAN_NOTICE("你修好了[src]！"))
 			else
-				to_chat(user, SPAN_NOTICE("Unable to repair with the maintenance panel closed."))
+				to_chat(user, SPAN_NOTICE("检修面板关闭时无法修理。"))
 		else
-			to_chat(user, SPAN_NOTICE("[src] does not need a repair."))
+			to_chat(user, SPAN_NOTICE("[src]无须修理。"))
 	else
 		if(hasvar(W,"force") && hasvar(W,"damtype"))
 			switch(W.damtype)
@@ -135,7 +135,7 @@
 
 	if(user.species.can_shred(user))
 		src.health -= rand(15,30)*brute_dam_coeff
-		src.visible_message(SPAN_DANGER("[user] has slashed [src]!"))
+		src.visible_message(SPAN_DANGER("[user]抓伤了[src]！"))
 		playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1)
 		if(prob(10))
 			new /obj/effect/decal/cleanable/blood/oil(src.loc)

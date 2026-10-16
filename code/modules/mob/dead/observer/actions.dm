@@ -1,5 +1,5 @@
 /datum/action/ghost
-	name = "Ghost"
+	name = "化为幽灵"
 	action_icon_state = "ghost"
 
 /datum/action/ghost/action_activate()
@@ -26,7 +26,7 @@
 	action_icon_state = "ghost_xeno"
 
 /datum/action/join_ert
-	name = "Join ERT"
+	name = "加入紧急响应小队"
 	action_icon_state = "join_ert"
 	listen_signal = COMSIG_KB_OBSERVER_JOIN_ERT
 
@@ -47,7 +47,7 @@
 	activator.do_join_response_team()
 
 /datum/action/join_predator
-	name = "Join the Hunt"
+	name = "加入狩猎"
 	action_icon_state = "join_pred"
 	listen_signal = COMSIG_KB_OBSERVER_JOIN_PREDATOR
 
@@ -57,15 +57,15 @@
 	activator.join_as_yautja()
 
 /datum/action/observer_action/view_crew_manifest
-	name = "View Crew Manifest"
+	name = "查看舰员名册"
 	action_icon_state = "view_crew_manifest"
 
 /datum/action/observer_action/view_crew_manifest/action_activate()
 	. = ..()
-	show_browser(owner, GLOB.data_core.get_manifest(), "Crew Manifest", "manifest", width = 450, height = 750)
+	show_browser(owner, GLOB.data_core.get_manifest(), "舰员名册", "manifest", width = 450, height = 750)
 
 /datum/action/observer_action/view_hive_status
-	name = "View Hive Status"
+	name = "查看虫巢状态"
 	action_icon_state = "view_hive_status"
 
 /datum/action/observer_action/view_hive_status/action_activate()
@@ -74,7 +74,7 @@
 	activator.hive_status()
 
 /datum/action/observer_action/join_xeno
-	name = "Join as Xeno"
+	name = "以异形身份加入"
 	action_icon_state = "join_xeno"
 	listen_signal = COMSIG_KB_OBSERVER_JOIN_XENO
 
@@ -84,14 +84,14 @@
 		return
 
 	if(SSticker.current_state < GAME_STATE_PLAYING || !SSticker.mode)
-		owner.balloon_alert(owner, "game must start!")
+		owner.balloon_alert(owner, "需要先开始游戏！")
 		return
 
 	if(SSticker.mode.check_xeno_late_join(owner))
 		SSticker.mode.attempt_to_join_as_xeno(owner)
 
 /datum/action/observer_action/join_lesser_drone
-	name = "Join as Lesser Drone"
+	name = "以次级工蜂身份加入"
 	action_icon_state = "join_lesser_drone"
 	listen_signal = COMSIG_KB_OBSERVER_JOIN_LESSER_DRONE
 
@@ -101,7 +101,7 @@
 		return
 
 	if(SSticker.current_state < GAME_STATE_PLAYING || !SSticker.mode)
-		owner.balloon_alert(owner, "game must start!")
+		owner.balloon_alert(owner, "需要先开始游戏！")
 		return
 
 	if(SSticker.mode.check_xeno_late_join(owner))
@@ -118,26 +118,26 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "join_as_xeno"
-	full_name = "Join as Xeno"
+	full_name = "以异形身份加入"
 	keybind_signal = COMSIG_KB_OBSERVER_JOIN_XENO
 
 /datum/keybinding/observer/join_ert
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "join_ert"
-	full_name = "Join ERT"
+	full_name = "加入紧急响应小队"
 	keybind_signal = COMSIG_KB_OBSERVER_JOIN_ERT
 
 /datum/keybinding/observer/join_pred
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "join_pred"
-	full_name = "Join the Hunt"
+	full_name = "加入狩猎"
 	keybind_signal = COMSIG_KB_OBSERVER_JOIN_PREDATOR
 
 /datum/keybinding/observer/join_lesser_drone
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "join_lesser_drone"
-	full_name = "Join as Lesser Drone"
+	full_name = "以次级工蜂身份加入"
 	keybind_signal = COMSIG_KB_OBSERVER_JOIN_LESSER_DRONE

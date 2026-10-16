@@ -22,7 +22,7 @@
 	is_intelligent = 1
 	evolution_allowed = FALSE
 	fire_immunity = FIRE_IMMUNITY_NO_DAMAGE|FIRE_IMMUNITY_NO_IGNITE
-	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
+	caste_desc = "体型最大、最凶猛的异形。女皇掌控虫巢并产卵。"
 	spit_types = list(/datum/ammo/xeno/toxin/queen, /datum/ammo/xeno/acid/spatter)
 	can_hold_facehuggers = 0
 	can_hold_eggs = CAN_HOLD_ONE_HAND
@@ -60,12 +60,12 @@
 			for(var/mob/living/carbon/xenomorph/queen/Q in GLOB.living_xeno_list)
 				if(Q.hivenumber == hive.hivenumber && !should_block_game_interaction(Q))
 					hive.living_xeno_queen = Q
-					xeno_message(SPAN_XENOANNOUNCE("A new Queen has risen to lead the Hive! Rejoice!"),3,hive.hivenumber)
+					xeno_message(SPAN_XENOANNOUNCE("新女皇已经崛起，将领导虫巢！欢呼吧！"),3,hive.hivenumber)
 					continue outer_loop
 			hive.living_xeno_queen = null
 
 /mob/hologram/queen
-	name = "Queen Eye"
+	name = "女皇视点"
 	action_icon_state = "queen_exit"
 	motion_sensed = TRUE
 
@@ -197,7 +197,7 @@
 
 		next_point = world.time + point_delay
 
-		var/message = SPAN_XENONOTICE("[Q] points at [A].")
+		var/message = SPAN_XENONOTICE("[Q]指向[A]。")
 
 		to_chat(Q, message)
 		for(var/mob/living/carbon/xenomorph/X in viewers(7, src))
@@ -256,13 +256,13 @@
 
 	caste_type = XENO_CASTE_QUEEN
 	name = XENO_CASTE_QUEEN
-	desc = "A huge, looming alien creature. The biggest and the baddest."
+	desc = "庞大而威严的外星生物，体型最大，也最为凶猛。"
 	icon_size = 64
 	icon_state = "Queen Walking"
 	plasma_types = list(PLASMA_ROYAL,PLASMA_CHITIN,PLASMA_PHEROMONE,PLASMA_NEUROTOXIN)
-	attacktext = "bites"
+	attacktext = "啃咬"
 	attack_sound = null
-	friendly = "nuzzles"
+	friendly = "轻蹭"
 	wall_smash = 0
 	pixel_x = -16
 	old_x = -16
@@ -421,8 +421,8 @@
 	. = ..()
 	SStracking.set_leader("hive_[hivenumber]", src)
 	if(!should_block_game_interaction(src))//so admins can safely spawn Queens in Thunderdome for tests.
-		xeno_message(SPAN_XENOANNOUNCE("A new Queen has risen to lead the Hive! Rejoice!"),3,hivenumber)
-		notify_ghosts(header = "New Queen", message = "A new Queen has risen.", source = src, action = NOTIFY_ORBIT)
+		xeno_message(SPAN_XENOANNOUNCE("新女皇已经崛起，将领导虫巢！欢呼吧！"),3,hivenumber)
+		notify_ghosts(header = "新女皇", message = "一位新女皇已经崛起。", source = src, action = NOTIFY_ORBIT)
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
 	set_resin_build_order(GLOB.resin_build_order_drone)
 	for(var/datum/action/xeno_action/action in actions)
@@ -568,15 +568,15 @@
 	var/stored_larvae = GLOB.hive_datum[hivenumber].stored_larva
 	var/xeno_leader_num = hive?.queen_leader_limit - length(hive?.open_xeno_leader_positions)
 
-	. += "Pooled Larvae: [stored_larvae]"
-	. += "Leaders: [xeno_leader_num] / [hive?.queen_leader_limit]"
+	. += "储备幼虫：[stored_larvae]"
+	. += "领袖：[xeno_leader_num] / [hive?.queen_leader_limit]"
 	if(!queen_aged && queen_age_timer_id != TIMER_ID_NULL)
-		. += "Maturity: [time2text(timeleft(queen_age_timer_id), "mm:ss")] remaining"
+		. += "成熟倒计时：[time2text(timeleft(queen_age_timer_id), "mm:ss")]"
 
 /mob/living/carbon/xenomorph/queen/proc/set_orders()
 	set category = "Alien"
 	set name = "Set Hive Orders (50)"
-	set desc = "Give some specific orders to the hive. They can see this on the status pane."
+	set desc = "向虫巢下达具体命令，同伴可在状态面板中查看。"
 
 	if(!check_state())
 		return
@@ -586,11 +586,11 @@
 		return
 	use_plasma(50)
 
-	var/txt = strip_html(input("Set the hive's orders to what? Leave blank to clear it.", "Hive Orders",""))
+	var/txt = strip_html(input("要下达什么虫巢命令？留空则清除现有命令。", "虫巢命令",""))
 	if(txt)
-		xeno_message("<B>The Queen's will overwhelms your instincts...</B>", 3, hivenumber)
+		xeno_message("<B>女皇的意志压过了你的本能……</B>", 3, hivenumber)
 		xeno_message("<B>\""+txt+"\"</B>", 3, hivenumber)
-		xeno_maptext(txt, "Hive Orders Updated", hivenumber)
+		xeno_maptext(txt, "虫巢命令已更新", hivenumber)
 		hive.hive_orders = txt
 		log_hiveorder("[key_name(usr)] has set the Hive Order to: [txt]")
 	else
@@ -601,12 +601,12 @@
 /mob/living/carbon/xenomorph/queen/proc/hive_message()
 	set category = "Alien"
 	set name = "Word of the Queen (50)"
-	set desc = "Send a message to all aliens in the hive that is big and visible"
+	set desc = "向虫巢中的所有异形发送醒目的消息。"
 	if(client.prefs.muted & MUTE_IC)
-		to_chat(src, SPAN_DANGER("You cannot send Announcements (muted)."))
+		to_chat(src, SPAN_DANGER("你已被禁言，无法发布公告。"))
 		return
 	if(health <= 0)
-		to_chat(src, SPAN_WARNING("You can't do that while unconscious."))
+		to_chat(src, SPAN_WARNING("失去意识时无法这样做。"))
 		return FALSE
 	if(!check_plasma(50))
 		return FALSE
@@ -620,7 +620,7 @@
 				return FALSE
 			break
 
-	var/input = stripped_multiline_input(src, "This message will be broadcast throughout the hive.", "Word of the Queen", "")
+	var/input = stripped_multiline_input(src, "这条消息将广播给整个虫巢。", "女皇之言", "")
 	if(!input)
 		return FALSE
 
@@ -628,7 +628,7 @@
 	if(word_ability)
 		word_ability.apply_cooldown()
 
-	xeno_announcement(input, hivenumber, "The words of the [name] reverberate in our head...")
+	xeno_announcement(input, hivenumber, "[name]的话语在我们的脑海中回荡……")
 
 	message_admins("[key_name_admin(src)] has created a Word of the Queen report:")
 	log_admin("[key_name_admin(src)] Word of the Queen: [input]")
@@ -636,33 +636,33 @@
 
 /mob/living/carbon/xenomorph/proc/claw_toggle()
 	set name = "Permit/Disallow Slashing"
-	set desc = "Allows you to permit the hive to harm."
+	set desc = "设置虫巢伤害宿主的权限。"
 	set category = "Alien"
 
 	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that now."))
+		to_chat(src, SPAN_WARNING("你现在无法这样做。"))
 		return
 
 	if(!hive)
-		to_chat(src, SPAN_WARNING("You can't do that now."))
+		to_chat(src, SPAN_WARNING("你现在无法这样做。"))
 		CRASH("[src] attempted to toggle slashing without a linked hive")
 
 	if(pslash_delay)
-		to_chat(src, SPAN_WARNING("You must wait a bit before you can toggle this again."))
+		to_chat(src, SPAN_WARNING("你得等一会儿才能再次切换。"))
 		return
 
 	pslash_delay = TRUE
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon/xenomorph, do_claw_toggle_cooldown)), 30 SECONDS)
 
-	var/choice = tgui_input_list(usr, "Choose which level of slashing hosts to permit to your hive.","Harming", list("Allowed", "Restricted - Hosts of Interest", "Forbidden"), theme="hive_status")
+	var/choice = tgui_input_list(usr, "选择虫巢抓击宿主的许可级别。","虫巢权限", list("允许", "限制——重点宿主", "禁止"), theme="hive_status")
 
-	if(choice == "Allowed")
-		to_chat(src, SPAN_XENONOTICE("You allow slashing."))
-		xeno_message(SPAN_XENOANNOUNCE("The Queen has <b>permitted</b> the harming of hosts! Go hog wild!"), 2, hivenumber)
+	if(choice == "允许")
+		to_chat(src, SPAN_XENONOTICE("你允许了抓击。"))
+		xeno_message(SPAN_XENOANNOUNCE("女皇已<b>允许</b>伤害宿主！放手大干吧！"), 2, hivenumber)
 		hive.slashing_allowed = XENO_SLASH_ALLOWED
-	else if(choice == "Forbidden")
-		to_chat(src, SPAN_XENONOTICE("You forbid slashing entirely."))
-		xeno_message(SPAN_XENOANNOUNCE("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies."), 2, hivenumber)
+	else if(choice == "禁止")
+		to_chat(src, SPAN_XENONOTICE("你完全禁止了抓击。"))
+		xeno_message(SPAN_XENOANNOUNCE("女皇已<b>禁止</b>伤害宿主，你不能再抓击敌人。"), 2, hivenumber)
 		hive.slashing_allowed = XENO_SLASH_FORBIDDEN
 
 /mob/living/carbon/xenomorph/proc/do_claw_toggle_cooldown()
@@ -670,75 +670,75 @@
 
 /mob/living/carbon/xenomorph/proc/construction_toggle()
 	set name = "Permit/Disallow Construction Placement"
-	set desc = "Allows you to permit the hive to place construction nodes freely."
+	set desc = "设置虫巢自由放置建造节点的权限。"
 	set category = "Alien"
 
 	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that now."))
+		to_chat(src, SPAN_WARNING("你现在无法这样做。"))
 		return
 
-	var/choice = tgui_input_list(usr, "Choose which level of construction placement freedom to permit to your hive.","Harming", list("Queen", "Leaders", "Anyone"), theme="hive_status")
+	var/choice = tgui_input_list(usr, "选择虫巢放置建造节点的权限范围。","虫巢权限", list("女皇", "领袖", "所有成员"), theme="hive_status")
 
-	if(choice == "Anyone")
-		to_chat(src, SPAN_XENONOTICE("You allow construction placement to all builder castes."))
-		xeno_message("The Queen has <b>permitted</b> the placement of construction nodes to all builder castes!", hivenumber = src.hivenumber)
+	if(choice == "所有成员")
+		to_chat(src, SPAN_XENONOTICE("你允许所有建造阶级放置建造节点。"))
+		xeno_message("女皇已<b>允许</b>所有建造阶级放置建造节点！", hivenumber = src.hivenumber)
 		hive.construction_allowed = NORMAL_XENO
-	else if(choice == "Leaders")
-		to_chat(src, SPAN_XENONOTICE("You restrict construction placement to leaders only."))
-		xeno_message("The Queen has <b>restricted</b> the placement of construction nodes to leading builder castes only.", hivenumber = src.hivenumber)
+	else if(choice == "领袖")
+		to_chat(src, SPAN_XENONOTICE("你将建造节点放置权限限制为领袖。"))
+		xeno_message("女皇已将建造节点的放置权限<b>限制</b>为担任领袖的建造阶级。", hivenumber = src.hivenumber)
 		hive.construction_allowed = XENO_LEADER
-	else if(choice == "Queen")
-		to_chat(src, SPAN_XENONOTICE("You forbid construction placement entirely."))
-		xeno_message("The Queen has <b>forbidden</b> the placement of construction nodes to herself.", hivenumber = src.hivenumber)
+	else if(choice == "女皇")
+		to_chat(src, SPAN_XENONOTICE("你禁止其他成员放置建造节点。"))
+		xeno_message("女皇已将建造节点的放置权限<b>限制</b>为自身。", hivenumber = src.hivenumber)
 		hive.construction_allowed = XENO_QUEEN
 
 /mob/living/carbon/xenomorph/proc/destruction_toggle()
 	set name = "Permit/Disallow Special Structure Destruction"
-	set desc = "Allows you to permit the hive to destroy special structures freely."
+	set desc = "设置虫巢自由拆除特殊建筑的权限。"
 	set category = "Alien"
 
 	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that now."))
+		to_chat(src, SPAN_WARNING("你现在无法这样做。"))
 		return
 
-	var/choice = tgui_input_list(usr, "Choose which level of destruction freedom to permit to your hive.","Harming", list("Queen", "Leaders", "Anyone"), theme="hive_status")
+	var/choice = tgui_input_list(usr, "选择虫巢拆除建筑的权限范围。","虫巢权限", list("女皇", "领袖", "所有成员"), theme="hive_status")
 
-	if(choice == "Anyone")
-		to_chat(src, SPAN_XENONOTICE("You allow special structure destruction to all builder castes and leaders."))
-		xeno_message("The Queen has <b>permitted</b> the special structure destruction to all builder castes and leaders!", hivenumber = src.hivenumber)
+	if(choice == "所有成员")
+		to_chat(src, SPAN_XENONOTICE("你允许所有建造阶级和领袖拆除特殊建筑。"))
+		xeno_message("女皇已<b>允许</b>所有建造阶级和领袖拆除特殊建筑！", hivenumber = src.hivenumber)
 		hive.destruction_allowed = NORMAL_XENO
-	else if(choice == "Leaders")
-		to_chat(src, SPAN_XENONOTICE("You restrict special structure destruction to leaders only."))
-		xeno_message("The Queen has <b>restricted</b> the special structure destruction to leaders only.", hivenumber = src.hivenumber)
+	else if(choice == "领袖")
+		to_chat(src, SPAN_XENONOTICE("你将特殊建筑拆除权限限制为领袖。"))
+		xeno_message("女皇已将特殊建筑的拆除权限<b>限制</b>为领袖。", hivenumber = src.hivenumber)
 		hive.destruction_allowed = XENO_LEADER
-	else if(choice == "Queen")
-		to_chat(src, SPAN_XENONOTICE("You forbid special structure destruction entirely."))
-		xeno_message("The Queen has <b>forbidden</b> the special structure destruction to anyone but herself.", hivenumber = src.hivenumber)
+	else if(choice == "女皇")
+		to_chat(src, SPAN_XENONOTICE("你禁止其他成员拆除特殊建筑。"))
+		xeno_message("女皇已<b>禁止</b>除自身以外的所有成员拆除特殊建筑。", hivenumber = src.hivenumber)
 		hive.destruction_allowed = XENO_QUEEN
 
 /mob/living/carbon/xenomorph/proc/toggle_unnesting()
 	set name = "Permit/Disallow Unnesting"
-	set desc = "Allows you to restrict unnesting to drones."
+	set desc = "可将解除宿主巢穴束缚的权限限制为工蜂。"
 	set category = "Alien"
 
 	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that now."))
+		to_chat(src, SPAN_WARNING("你现在无法这样做。"))
 		return
 
 	hive.unnesting_allowed = !hive.unnesting_allowed
 
 	if(hive.unnesting_allowed)
-		to_chat(src, SPAN_XENONOTICE("You have allowed everyone to unnest hosts."))
-		xeno_message("The Queen has allowed everyone to unnest hosts.", hivenumber = src.hivenumber)
+		to_chat(src, SPAN_XENONOTICE("你允许所有成员解除宿主的巢穴束缚。"))
+		xeno_message("女皇已允许所有成员解除宿主的巢穴束缚。", hivenumber = src.hivenumber)
 	else
-		to_chat(src, SPAN_XENONOTICE("You have forbidden anyone to unnest hosts, except for the drone caste."))
-		xeno_message("The Queen has forbidden anyone to unnest hosts, except for the drone caste.", hivenumber = src.hivenumber)
+		to_chat(src, SPAN_XENONOTICE("你禁止除工蜂以外的成员解除宿主的巢穴束缚。"))
+		xeno_message("女皇已禁止除工蜂以外的成员解除宿主的巢穴束缚。", hivenumber = src.hivenumber)
 
 /mob/living/carbon/xenomorph/queen/handle_screech_act(mob/self, mob/living/carbon/xenomorph/queen/queen)
 	return COMPONENT_SCREECH_ACT_CANCEL
 
 /mob/living/carbon/xenomorph/queen/proc/screech_ready()
-	to_chat(src, SPAN_WARNING("You feel your throat muscles vibrate. You are ready to screech again."))
+	to_chat(src, SPAN_WARNING("你感到喉部肌肉颤动，可以再次尖啸了。"))
 	for(var/Z in actions)
 		var/datum/action/A = Z
 		A.update_button_icon()
@@ -764,16 +764,16 @@
 		var/mob/living/carbon/human/human_victim = victim
 		if(human_victim.status_flags & XENO_HOST)
 			if(victim.stat != DEAD) //Not dead yet.
-				to_chat(src, SPAN_XENOWARNING("The host and child are still alive!"))
+				to_chat(src, SPAN_XENOWARNING("宿主和幼体都还活着！"))
 				return FALSE
 			else if(istype(human_victim) && (world.time <= human_victim.timeofdeath + human_victim.revive_grace_period)) //Dead, but the host can still hatch, possibly.
-				to_chat(src, SPAN_XENOWARNING("The child may still hatch! Not yet!"))
+				to_chat(src, SPAN_XENOWARNING("幼体仍可能孵化！还不行！"))
 				return FALSE
 
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/xeno = victim
 		if(hivenumber == xeno.hivenumber)
-			to_chat(src, SPAN_WARNING("You can't bring yourself to harm a fellow sister to this magnitude."))
+			to_chat(src, SPAN_WARNING("你无法对姐妹下如此重手。"))
 			return FALSE
 
 	var/turf/cur_loc = victim.loc
@@ -786,8 +786,8 @@
 	if(!check_plasma(200))
 		return FALSE
 
-	visible_message(SPAN_XENOWARNING("[src] begins slowly lifting [victim] into the air."), \
-	SPAN_XENOWARNING("You begin focusing your anger as you slowly lift [victim] into the air."))
+	visible_message(SPAN_XENOWARNING("[src]开始将[victim]缓缓举向空中。"), \
+	SPAN_XENOWARNING("你开始凝聚怒火，将[victim]缓缓举向空中。"))
 	if(do_after(src, 80, INTERRUPT_ALL, BUSY_ICON_HOSTILE, victim))
 		if(!victim)
 			return FALSE
@@ -798,8 +798,8 @@
 
 		use_plasma(200)
 
-		visible_message(SPAN_XENODANGER("[src] viciously smashes and wrenches [victim] apart!"), \
-		SPAN_XENODANGER("You suddenly unleash pure anger on [victim], instantly wrenching \him apart!"))
+		visible_message(SPAN_XENODANGER("[src]凶狠地猛砸并撕碎了[victim]！"), \
+		SPAN_XENODANGER("你突然向[victim]倾泻怒火，瞬间将其撕成碎片！"))
 		emote("roar")
 
 		attack_log += text("\[[time_stamp()]\] <font color='red'>gibbed [key_name(victim)]</font>")
@@ -893,7 +893,7 @@
 	for(var/mob/living/carbon/xenomorph/leader in hive.xeno_leader_list)
 		leader.handle_xeno_leader_pheromones()
 
-	xeno_message(SPAN_XENOANNOUNCE("The Queen has grown an ovipositor, evolution progress resumed."), 3, hivenumber)
+	xeno_message(SPAN_XENOANNOUNCE("女皇已长出产卵器，进化进度恢复。"), 3, hivenumber)
 
 	START_PROCESSING(SShive_status, hive.hive_ui)
 
@@ -947,7 +947,7 @@
 		L.handle_xeno_leader_pheromones()
 
 	if(!instant_dismount)
-		xeno_message(SPAN_XENOANNOUNCE("The Queen has shed her ovipositor, evolution progress paused."), 3, hivenumber)
+		xeno_message(SPAN_XENOANNOUNCE("女皇已脱离产卵器，进化进度暂停。"), 3, hivenumber)
 
 	SEND_SIGNAL(src, COMSIG_QUEEN_DISMOUNT_OVIPOSITOR, instant_dismount)
 
@@ -990,4 +990,4 @@
 	var/obj/effect/overlay/temp/point/big/greyscale/point = new(target_turf, src, target_atom)
 	point.color = "#a800a8"
 
-	visible_message("<b>[src]</b> points to [target_atom]", null, null, 5)
+	visible_message("<b>[src]</b>指向[target_atom]。", null, null, 5)

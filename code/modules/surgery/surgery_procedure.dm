@@ -71,36 +71,36 @@
 /datum/surgery/proc/attempt_next_step(mob/user, obj/item/tool, repeating)
 	if(step_in_progress)
 		if(!user.action_busy) //Otherwise, assume it's the same person.
-			to_chat(user, SPAN_WARNING("Someone is already performing surgery on [target]'s [affected_limb.display_name]!"))
+			to_chat(user, SPAN_WARNING("已经有人在给[target]的[affected_limb.display_name]做手术了！"))
 			return FALSE
 
 		return TRUE //So that you don't poke them with a tool you're already using.
 
 	if(user.action_busy)
-		to_chat(user, SPAN_WARNING("You're too busy to perform surgery on [user == target ? "yourself" : "[target]"]!"))
+		to_chat(user, SPAN_WARNING("你正忙着，无法给[user == target ? "自己" : "[target]"]做手术！"))
 		return FALSE
 
 	if((target.mob_flags & EASY_SURGERY) ? !skillcheck(user, SKILL_SURGERY, SKILL_SURGERY_NOVICE) : !skillcheck(user, SKILL_SURGERY, required_surgery_skill))
-		to_chat(user, SPAN_WARNING("This operation is more complex than you're trained for!"))
+		to_chat(user, SPAN_WARNING("这项手术的复杂程度超出了你的训练水平！"))
 		return FALSE
 
 	if(target.pulledby?.grab_level == GRAB_CARRY)
 		if(target.pulledby == user)
-			to_chat(user, SPAN_WARNING("You need to set [target] down before you can operate on \him!"))
+			to_chat(user, SPAN_WARNING("你得先放下[target]，才能给其做手术！"))
 		else
-			to_chat(user, SPAN_WARNING("You can't operate on [target], \he is being carried by [target.pulledby]!"))
+			to_chat(user, SPAN_WARNING("你无法给[target]做手术，其正被[target.pulledby]搬运！"))
 		return FALSE
 
 	if(lying_required && target.body_position != LYING_DOWN)
-		to_chat(user, SPAN_WARNING("[user == target ? "You need" : "[target] needs"] to be lying down for this operation!"))
+		to_chat(user, SPAN_WARNING("这项手术需要[user == target ? "你" : "[target]"]躺下！"))
 		return FALSE
 	if(user == target)
 		if(!self_operable)
-			to_chat(user, SPAN_WARNING("You can't perform this operation on yourself!"))
+			to_chat(user, SPAN_WARNING("你无法对自己进行这项手术！"))
 			return FALSE
 		if((!user.hand && (user.zone_selected in list("r_arm", "r_hand"))) || (user.hand && (user.zone_selected in list("l_arm", "l_hand"))))
-			to_chat(user, SPAN_WARNING("You can't perform surgery on the same \
-				[user.zone_selected == "r_hand"||user.zone_selected == "l_hand" ? "hand":"arm"] you're using!"))
+			to_chat(user, SPAN_WARNING("你无法对正在使用的同一只\
+				[user.zone_selected == "r_hand"||user.zone_selected == "l_hand" ? "手":"手臂"]进行手术！"))
 			return FALSE
 	var/datum/surgery_step/current_step = GLOB.surgery_step_list[steps[status]]
 	if(current_step)
@@ -113,9 +113,9 @@
 				return TRUE
 		if(tool && is_surgery_tool(tool)) //Just because you used the wrong tool doesn't mean you meant to whack the patient with it...
 			if(next_step)
-				to_chat(user, SPAN_WARNING("You can't [current_step.desc] with \the [tool], or [next_step.desc]."))
+				to_chat(user, SPAN_WARNING("你无法用\the [tool]来[current_step.desc]，也无法[next_step.desc]。"))
 			else
-				to_chat(user, SPAN_WARNING("You can't [current_step.desc] with \the [tool]."))
+				to_chat(user, SPAN_WARNING("你无法用\the [tool]来[current_step.desc]。"))
 			return FALSE //...but you might be wanting to use it on them anyway. If on help intent, the help-intent safety will apply for this attack.
 	return FALSE
 

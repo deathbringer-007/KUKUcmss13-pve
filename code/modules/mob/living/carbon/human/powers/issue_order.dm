@@ -1,14 +1,14 @@
 /mob/living/carbon/human/proc/issue_order(order)
 	if(!HAS_TRAIT(src, TRAIT_LEADERSHIP))
-		to_chat(src, SPAN_WARNING("You are not qualified to issue orders!"))
+		to_chat(src, SPAN_WARNING("你没有资格下达命令！"))
 		return
 
 	if(stat)
-		to_chat(src, SPAN_WARNING("You cannot give an order in your current state."))
+		to_chat(src, SPAN_WARNING("你现在的状态无法下达命令。"))
 		return
 
 	if(!command_aura_available)
-		to_chat(src, SPAN_WARNING("You have recently given an order. Calm down."))
+		to_chat(src, SPAN_WARNING("你刚下达过命令，先冷静一下。"))
 		return
 
 	if(!skills)
@@ -17,16 +17,17 @@
 	if(!order_level)
 		order_level = SKILL_LEAD_TRAINED
 
+	var/list/order_labels = list("机动" = COMMAND_ORDER_MOVE, "坚守" = COMMAND_ORDER_HOLD, "专注" = COMMAND_ORDER_FOCUS, "帮助" = "help", "取消" = "cancel")
 	if(!order)
-		order = tgui_input_list(src, "Choose an order", "Order to send", list(COMMAND_ORDER_MOVE, COMMAND_ORDER_HOLD, COMMAND_ORDER_FOCUS, "help", "cancel"))
+		order = order_labels[tgui_input_list(src, "选择一道命令", "下达命令", order_labels)]
 		if(order == "help")
-			to_chat(src, SPAN_NOTICE("<br>Orders give a buff to nearby soldiers for a short period of time, followed by a cooldown, as follows:<br><B>Move</B> - Increased mobility and chance to dodge projectiles.<br><B>Hold</B> - Increased resistance to pain and combat wounds.<br><B>Focus</B> - Increased gun accuracy and effective range.<br>"))
+			to_chat(src, SPAN_NOTICE("<br>命令能暂时强化附近的士兵，随后进入冷却。效果如下：<br><B>机动</B>——提高机动性和闪避弹丸的概率。<br><B>坚守</B>——提高对疼痛和战斗伤害的抵抗力。<br><B>专注</B>——提高枪械精度和有效射程。<br>"))
 			return
 		if(!order || order == "cancel")
 			return
 
 		if(!command_aura_available)
-			to_chat(src, SPAN_WARNING("You have recently given an order. Calm down."))
+			to_chat(src, SPAN_WARNING("你刚下达过命令，先冷静一下。"))
 			return
 
 	command_aura_available = FALSE
@@ -48,18 +49,18 @@
 	// 1min cooldown on orders
 	addtimer(CALLBACK(src, PROC_REF(make_aura_available)), COMMAND_ORDER_COOLDOWN)
 
-	visible_message(SPAN_BOLDNOTICE("[src] gives an order to [order]!"), SPAN_BOLDNOTICE("You give an order to [order]!"))
+	visible_message(SPAN_BOLDNOTICE("[src]下达了[order == COMMAND_ORDER_MOVE ? "机动" : order == COMMAND_ORDER_HOLD ? "坚守" : "专注"]命令！"), SPAN_BOLDNOTICE("你下达了[order == COMMAND_ORDER_MOVE ? "机动" : order == COMMAND_ORDER_HOLD ? "坚守" : "专注"]命令！"))
 
 /mob/living/carbon/human/proc/make_aura_available()
-	to_chat(src, SPAN_NOTICE("You can issue an order again."))
+	to_chat(src, SPAN_NOTICE("你可以再次下达命令了。"))
 	command_aura_available = TRUE
 	for(var/datum/action/A in actions)
 		A.update_button_icon()
 
 
 /mob/living/carbon/human/verb/issue_order_verb()
-	set name = "Issue Order"
-	set desc = "Issue an order to nearby humans, using your authority to strengthen their resolve."
+	set name = "下达命令"
+	set desc = "向附近的人类下达命令，用你的威望坚定他们的意志。"
 	set category = "IC"
 
 	issue_order()

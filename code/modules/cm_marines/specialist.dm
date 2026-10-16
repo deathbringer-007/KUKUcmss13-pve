@@ -81,10 +81,10 @@
 		return FALSE
 
 	if(kit && (available_kit_num <= 0))
-		to_chat(redeemer, SPAN_WARNING("No more kits of this type may be chosen."))
+		to_chat(redeemer, SPAN_WARNING("这种类型的套装已不能再选了。"))
 		return FALSE
 	else if(!kit && (available_vendor_num <= 0))
-		to_chat(redeemer, SPAN_WARNING("That set is already taken."))
+		to_chat(redeemer, SPAN_WARNING("那套装备已经被选走了。"))
 		return FALSE
 
 	if(skill_to_give != SKILL_SPEC_DEFAULT)
@@ -129,7 +129,7 @@
 
 /datum/specialist_set/rpg
 	name = "Rocketeer Set"
-	role_name = "Rockteer"
+	role_name = "火箭兵"
 	trait_to_give = "demo"
 	kit_typepath = /obj/item/storage/box/spec/rocketeer
 
@@ -144,7 +144,7 @@
 
 /datum/specialist_set/spotter
 	name = "Scout-Sniper (Spotter) Set"
-	role_name = "Scout-Sniper"
+	role_name = "侦察狙击手"
 	trait_to_give = "scout"
 	kit_typepath = /obj/item/storage/box/spec/spotter
 
@@ -159,7 +159,7 @@
 
 /datum/specialist_set/sniper
 	name = "Scout-Sniper (Shooter) Set"
-	role_name = "Sniper"
+	role_name = "狙击手"
 	trait_to_give = "sniper"
 	kit_typepath = /obj/item/storage/box/spec/sniper
 	incompatible_sets = list(
@@ -168,7 +168,7 @@
 
 /datum/specialist_set/anti_mat_sniper
 	name = "Scout-Sniper (Anti-Materiel Shooter) Set"
-	role_name = "Heavy Sniper"
+	role_name = "重型狙击手"
 	trait_to_give = "antimat_sniper"
 	kit_typepath = /obj/item/storage/box/spec/sniper/anti_materiel
 	incompatible_sets = list(
@@ -177,14 +177,14 @@
 
 /datum/specialist_set/grenadier
 	name = "Heavy Grenadier Set"
-	role_name = "Grenadier"
+	role_name = "榴弹兵"
 	skill_to_give = SKILL_SPEC_GRENADIER
 	trait_to_give = "grenadier"
 	kit_typepath = /obj/item/storage/box/spec/heavy_grenadier
 
 /datum/specialist_set/pyro
 	name = "Pyro Set"
-	role_name = "Pyro"
+	role_name = "火焰兵"
 	skill_to_give = SKILL_SPEC_PYRO
 	trait_to_give = "pyro"
 	kit_typepath = /obj/item/storage/box/spec/pyro

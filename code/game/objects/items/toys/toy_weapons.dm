@@ -10,8 +10,8 @@
  * Toy gun: Why isnt this an /obj/item/weapon/gun?
  */
 /obj/item/toy/gun
-	name = "cap gun"
-	desc = "There are 0 caps left. Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps!"
+	name = "响纸枪"
+	desc = "还剩0发响纸弹。看起来几乎以假乱真！适合8岁及以上人群。用完后请放入自动车床回收！"
 	icon_state = "capgun"
 	item_state = "gun"
 	flags_equip_slot = SLOT_WAIST
@@ -19,52 +19,52 @@
 
 	matter = list("glass" = 10,"metal" = 10)
 
-	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
+	attack_verb = list("敲击", "枪托击打", "击打", "重击")
 	var/bullets = 7
 
 /obj/item/toy/gun/get_examine_text(mob/user)
-	desc = "There are [bullets] caps\s left. Looks almost like the real thing! Ages 8 and up."
+	desc = "还剩[bullets]发响纸弹。看起来几乎以假乱真！适合8岁及以上人群。"
 	return ..()
 
 /obj/item/toy/gun/attackby(obj/item/toy/gun_ammo/A as obj, mob/user as mob)
 	if (istype(A, /obj/item/toy/gun_ammo))
 		if (src.bullets >= 7)
-			to_chat(user, SPAN_NOTICE(" It's already fully loaded!"))
+			to_chat(user, SPAN_NOTICE("已经装满了！"))
 			return 1
 		if (A.amount_left <= 0)
-			to_chat(user, SPAN_DANGER("There is no more caps!"))
+			to_chat(user, SPAN_DANGER("没有响纸弹了！"))
 			return 1
 		if (A.amount_left < (7 - bullets))
 			src.bullets += A.amount_left
-			to_chat(user, SPAN_DANGER("You reload [A.amount_left] caps\s!"))
+			to_chat(user, SPAN_DANGER("你装入了[A.amount_left]发响纸弹！"))
 			A.amount_left = 0
 		else
-			to_chat(user, SPAN_DANGER("You reload [7 - bullets] caps\s!"))
+			to_chat(user, SPAN_DANGER("你装入了[7 - bullets]发响纸弹！"))
 			A.amount_left -= 7 - bullets
 			bullets = 7
 		A.update_icon()
-		A.desc = "There are [A.amount_left] caps\s left! Make sure to recycle the box in an autolathe when it gets empty."
+		A.desc = "还剩[A.amount_left]发响纸弹！用完后记得将盒子放入自动车床回收。"
 		return 1
 
 /obj/item/toy/gun/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
 	if (flag)
 		return
 	if (!(istype(usr, /mob/living/carbon/human) || SSticker) && SSticker.mode.name != "monkey")
-		to_chat(usr, SPAN_DANGER("You don't have the dexterity to do this!"))
+		to_chat(usr, SPAN_DANGER("你的肢体不够灵巧，做不了这个！"))
 		return
 	src.add_fingerprint(user)
 	if (src.bullets < 1)
-		user.show_message(SPAN_DANGER("*click* *click*"), SHOW_MESSAGE_AUDIBLE)
+		user.show_message(SPAN_DANGER("*咔嗒* *咔嗒*"), SHOW_MESSAGE_AUDIBLE)
 		playsound(user, 'sound/weapons/gun_empty.ogg', 15, 1)
 		return
 	playsound(user, 'sound/weapons/Gunshot.ogg', 15, 1)
 	src.bullets--
 	for(var/mob/O in viewers(user, null))
-		O.show_message(SPAN_DANGER("<B>[user] fires a cap gun at [target]!</B>"), SHOW_MESSAGE_VISIBLE, SPAN_DANGER("You hear a gunshot"), SHOW_MESSAGE_AUDIBLE)
+		O.show_message(SPAN_DANGER("<B>[user]朝[target]发射了响纸枪！</B>"), SHOW_MESSAGE_VISIBLE, SPAN_DANGER("你听见一声枪响。"), SHOW_MESSAGE_AUDIBLE)
 
 /obj/item/toy/gun_ammo
-	name = "ammo-caps"
-	desc = "There are 7 caps left! Make sure to recycle the box in an autolathe when it gets empty."
+	name = "响纸弹盒"
+	desc = "还剩7发响纸弹！用完后记得将盒子放入自动车床回收。"
 	icon_state = "cap_ammo"
 	w_class = SIZE_TINY
 
@@ -84,18 +84,18 @@
  */
 
 /obj/item/toy/crossbow
-	name = "foam dart crossbow"
-	desc = "A weapon favored by many overactive children. Ages 8 and up."
+	name = "泡沫飞镖弩"
+	desc = "许多精力过剩的小孩喜欢的武器，适合8岁及以上人群。"
 	icon_state = "foamcrossbow"
 	item_state = "crossbow"
 	w_class = SIZE_SMALL
-	attack_verb = list("attacked", "struck", "hit")
+	attack_verb = list("攻击", "敲击", "击打")
 	var/bullets = 5
 
 /obj/item/toy/crossbow/examine(mob/user)
 	..()
 	if (bullets)
-		to_chat(user, SPAN_NOTICE(" It is loaded with [bullets] foam darts!"))
+		to_chat(user, SPAN_NOTICE("里面装有[bullets]支泡沫飞镖！"))
 
 /obj/item/toy/crossbow/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/toy/crossbow_ammo))
@@ -103,9 +103,9 @@
 			if(user.drop_held_item())
 				qdel(I)
 				bullets++
-				to_chat(user, SPAN_NOTICE(" You load the foam dart into the crossbow."))
+				to_chat(user, SPAN_NOTICE("你将泡沫飞镖装入了弩中。"))
 		else
-			to_chat(usr, SPAN_DANGER("It's already fully loaded."))
+			to_chat(usr, SPAN_DANGER("已经装满了。"))
 
 
 /obj/item/toy/crossbow/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
@@ -119,7 +119,7 @@
 		var/obj/effect/foam_dart_dummy/D = new/obj/effect/foam_dart_dummy(get_turf(src))
 		bullets--
 		D.icon_state = "foamdart"
-		D.name = "foam dart"
+		D.name = "泡沫飞镖"
 		playsound(user.loc, 'sound/items/syringeproj.ogg', 15, 1)
 
 		for(var/i=0, i<6, i++)
@@ -131,7 +131,7 @@
 					if(!istype(M,/mob/living)) continue
 					if(M == user) continue
 					for(var/mob/O in viewers(GLOB.world_view_size, D))
-						O.show_message(SPAN_DANGER("[M] was hit by the foam dart!"), SHOW_MESSAGE_VISIBLE)
+						O.show_message(SPAN_DANGER("[M]被泡沫飞镖击中了！"), SHOW_MESSAGE_VISIBLE)
 					new /obj/item/toy/crossbow_ammo(M.loc)
 					qdel(D)
 					return
@@ -153,7 +153,7 @@
 	else if (bullets == 0)
 		user.apply_effect(5, WEAKEN)
 		for(var/mob/O in viewers(GLOB.world_view_size, user))
-			O.show_message(SPAN_DANGER("[user] realized they were out of ammo and starting scrounging for some!"), SHOW_MESSAGE_VISIBLE)
+			O.show_message(SPAN_DANGER("[user]意识到没弹药了，开始四处寻找！"), SHOW_MESSAGE_VISIBLE)
 
 
 /obj/item/toy/crossbow/attack(mob/living/M as mob, mob/user as mob)
@@ -163,8 +163,8 @@
 
 		for(var/mob/O in viewers(M, null))
 			if(O.client)
-				O.show_message(SPAN_DANGER("<B>[user] casually lines up a shot with [M]'s head and pulls the trigger!</B>"), SHOW_MESSAGE_VISIBLE, SPAN_DANGER("You hear the sound of foam against skull!"), SHOW_MESSAGE_AUDIBLE)
-				O.show_message(SPAN_DANGER("[M] was hit in the head by the foam dart!"), SHOW_MESSAGE_VISIBLE)
+				O.show_message(SPAN_DANGER("<B>[user]若无其事地瞄准[M]的头，扣下了扳机！</B>"), SHOW_MESSAGE_VISIBLE, SPAN_DANGER("你听见泡沫撞上脑袋的声音！"), SHOW_MESSAGE_AUDIBLE)
+				O.show_message(SPAN_DANGER("[M]的头被泡沫飞镖击中了！"), SHOW_MESSAGE_VISIBLE)
 
 		playsound(user.loc, 'sound/items/syringeproj.ogg', 15, 1)
 		new /obj/item/toy/crossbow_ammo(M.loc)
@@ -172,13 +172,13 @@
 	else if (M.body_position == LYING_DOWN && src.bullets == 0)
 		for(var/mob/O in viewers(M, null))
 			if (O.client)
-				O.show_message(SPAN_DANGER("<B>[user] casually lines up a shot with [M]'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</B>"), SHOW_MESSAGE_VISIBLE, SPAN_DANGER("You hear someone fall"), SHOW_MESSAGE_AUDIBLE)
+				O.show_message(SPAN_DANGER("<B>[user]若无其事地瞄准[M]的头，扣下扳机，才发现没弹药了，于是趴到地上寻找！</B>"), SHOW_MESSAGE_VISIBLE, SPAN_DANGER("你听见有人趴倒在地。"), SHOW_MESSAGE_AUDIBLE)
 		user.apply_effect(5, WEAKEN)
 	return
 
 /obj/item/toy/crossbow_ammo
-	name = "foam dart"
-	desc = "It's nerf or nothing! Ages 8 and up."
+	name = "泡沫飞镖"
+	desc = "要玩就玩NERF！适合8岁及以上人群。"
 	icon = 'icons/obj/items/toy.dmi'
 	icon_state = "foamdart"
 	w_class = SIZE_TINY
@@ -196,28 +196,28 @@
  * Toy swords
  */
 /obj/item/toy/sword
-	name = "toy sword"
-	desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up."
+	name = "玩具剑"
+	desc = "廉价的塑料能量剑仿品，音效逼真！适合8岁及以上人群。"
 	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "sword0"
 	item_state = "sword0"
 	var/active = 0
 	w_class = SIZE_SMALL
 	flags_item = NOSHIELD
-	attack_verb = list("attacked", "struck", "hit")
+	attack_verb = list("攻击", "敲击", "击打")
 
 /obj/item/toy/sword/attack_self(mob/user)
 	..()
 
 	active = !active
 	if (active)
-		to_chat(user, SPAN_NOTICE(" You extend the plastic blade with a quick flick of your wrist."))
+		to_chat(user, SPAN_NOTICE("你手腕一抖，甩出了塑料剑刃。"))
 		playsound(user, 'sound/weapons/saberon.ogg', 15, 1)
 		icon_state = "swordblue"
 		item_state = "swordblue"
 		w_class = SIZE_LARGE
 	else
-		to_chat(user, SPAN_NOTICE(" You push the plastic blade back down into the handle."))
+		to_chat(user, SPAN_NOTICE("你将塑料剑刃推回了剑柄。"))
 		playsound(user, 'sound/weapons/saberoff.ogg', 15, 1)
 		icon_state = "sword0"
 		item_state = "sword0"
@@ -231,8 +231,8 @@
 	add_fingerprint(user)
 
 /obj/item/toy/katana
-	name = "replica katana"
-	desc = "Woefully underpowered in D20."
+	name = "仿制武士刀"
+	desc = "在D20规则下弱得可怜。"
 	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "katana"
 	flags_atom = FPRINT|CONDUCT
@@ -241,5 +241,5 @@
 	force = 5
 	throwforce = 5
 	w_class = SIZE_MEDIUM
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced")
+	attack_verb = list("攻击", "挥斩", "刺击", "切割")
 

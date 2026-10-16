@@ -1,6 +1,6 @@
 /obj/structure/barricade/handrail
-	name = "handrail"
-	desc = "A railing, for your hands. Woooow."
+	name = "扶手"
+	desc = "给你的手扶的栏杆。哇哦。"
 	icon = 'icons/obj/structures/handrail.dmi'
 	icon_state = "handrail_a_0"
 	barricade_type = "handrail"
@@ -44,14 +44,14 @@
 	. = ..()
 	switch(build_state)
 		if(BARRICADE_BSTATE_SECURED)
-			. += SPAN_INFO("The [barricade_type] is safely secured to the ground.")
+			. += SPAN_INFO("扶手已牢牢固定在地面上。")
 		if(BARRICADE_BSTATE_UNSECURED)
-			. += SPAN_INFO("The bolts nailing it to the ground has been unsecured.")
+			. += SPAN_INFO("将它固定在地面的螺栓已被松开。")
 		if(BARRICADE_BSTATE_FORTIFIED)
 			if(reinforced)
-				. += SPAN_INFO("The [barricade_type] has been reinforced with metal.")
+				. += SPAN_INFO("扶手已用金属加固。")
 			else
-				. += SPAN_INFO("Metal has been laid across the [barricade_type]. Weld it to secure it.")
+				. += SPAN_INFO("扶手上已放好金属板，焊接即可固定。")
 
 /obj/structure/barricade/handrail/proc/reinforce()
 	if(reinforced)
@@ -70,7 +70,7 @@
 /obj/structure/barricade/handrail/attackby(obj/item/item, mob/user)
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
 		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
+			to_chat(user, "它正在熔化，你无法靠近！")
 			return
 
 	switch(build_state)
@@ -79,12 +79,12 @@
 				if(user.action_busy)
 					return
 				if(!skillcheck(user, SKILL_CONSTRUCTION, SKILL_CONSTRUCTION_TRAINED))
-					to_chat(user, SPAN_WARNING("You are not trained to unsecure [src]..."))
+					to_chat(user, SPAN_WARNING("你没受过松开[src]固定件的训练……"))
 					return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(!do_after(user, 10, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, src)) return
-				user.visible_message(SPAN_NOTICE("[user] loosens [src]'s anchor bolts."),
-				SPAN_NOTICE("You loosen [src]'s anchor bolts."))
+				user.visible_message(SPAN_NOTICE("[user]松开了[src]的地脚螺栓。"),
+				SPAN_NOTICE("你松开了[src]的地脚螺栓。"))
 				anchored = FALSE
 				build_state = BARRICADE_BSTATE_UNSECURED
 				update_icon()
@@ -95,7 +95,7 @@
 				if(user.action_busy)
 					return
 				if(!skillcheck(user, SKILL_CONSTRUCTION, SKILL_CONSTRUCTION_TRAINED))
-					to_chat(user, SPAN_WARNING("You are not trained to reinforce [src]..."))
+					to_chat(user, SPAN_WARNING("你没受过加固[src]的训练……"))
 					return
 				var/obj/item/stack/sheet/metal/M = item
 				playsound(src.loc, 'sound/items/Screwdriver2.ogg', 25, 1)
@@ -105,7 +105,7 @@
 					build_state = BARRICADE_BSTATE_FORTIFIED
 					update_icon()
 				else
-					to_chat(user, SPAN_WARNING("You need at least one metal sheet to do this."))
+					to_chat(user, SPAN_WARNING("你需要至少一块金属板才能这样做。"))
 				return
 
 		if(BARRICADE_BSTATE_UNSECURED)
@@ -113,12 +113,12 @@
 				if(user.action_busy)
 					return
 				if(!skillcheck(user, SKILL_CONSTRUCTION, SKILL_CONSTRUCTION_TRAINED))
-					to_chat(user, SPAN_WARNING("You are not trained to secure [src]..."))
+					to_chat(user, SPAN_WARNING("你没受过固定[src]的训练……"))
 					return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(!do_after(user, 10, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, src)) return
-				user.visible_message(SPAN_NOTICE("[user] tightens [src]'s anchor bolts."),
-				SPAN_NOTICE("You tighten [src]'s anchor bolts."))
+				user.visible_message(SPAN_NOTICE("[user]拧紧了[src]的地脚螺栓。"),
+				SPAN_NOTICE("你拧紧了[src]的地脚螺栓。"))
 				anchored = TRUE
 				build_state = BARRICADE_BSTATE_SECURED
 				update_icon()
@@ -127,14 +127,14 @@
 				if(user.action_busy)
 					return
 				if(!skillcheck(user, SKILL_CONSTRUCTION, SKILL_CONSTRUCTION_TRAINED))
-					to_chat(user, SPAN_WARNING("You are not trained to disassemble [src]..."))
+					to_chat(user, SPAN_WARNING("你没受过拆解[src]的训练……"))
 					return
-				user.visible_message(SPAN_NOTICE("[user] starts unscrewing [src]'s panels."),
-				SPAN_NOTICE("You remove [src]'s panels and start taking it apart."))
+				user.visible_message(SPAN_NOTICE("[user]开始拧下[src]面板上的螺丝。"),
+				SPAN_NOTICE("你卸下[src]的面板，开始拆解。"))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				if(!do_after(user, 10, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, src)) return
-				user.visible_message(SPAN_NOTICE("[user] takes apart [src]."),
-				SPAN_NOTICE("You take apart [src]."))
+				user.visible_message(SPAN_NOTICE("[user]拆解了[src]。"),
+				SPAN_NOTICE("你拆解了[src]。"))
 				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 				deconstruct(TRUE)
 				return
@@ -145,29 +145,29 @@
 					if(user.action_busy)
 						return
 					if(!skillcheck(user, SKILL_CONSTRUCTION, SKILL_CONSTRUCTION_TRAINED))
-						to_chat(user, SPAN_WARNING("You are not trained to unreinforce [src]..."))
+						to_chat(user, SPAN_WARNING("你没受过移除[src]加固结构的训练……"))
 						return
 					playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 					if(!do_after(user, 10, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, src)) return
-					user.visible_message(SPAN_NOTICE("[user] pries off [src]'s extra metal panel."),
-					SPAN_NOTICE("You pry off [src]'s extra metal panel."))
+					user.visible_message(SPAN_NOTICE("[user]撬下了[src]额外的金属面板。"),
+					SPAN_NOTICE("你撬下了[src]额外的金属面板。"))
 					build_state = BARRICADE_BSTATE_SECURED
 					reinforce()
 					return
 			else
 				if(iswelder(item)) // Finish reinforcing
 					if(!HAS_TRAIT(item, TRAIT_TOOL_BLOWTORCH))
-						to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+						to_chat(user, SPAN_WARNING("你需要功率更大的焊枪！"))
 						return
 					if(user.action_busy)
 						return
 					if(!skillcheck(user, SKILL_CONSTRUCTION, SKILL_CONSTRUCTION_TRAINED))
-						to_chat(user, SPAN_WARNING("You are not trained to reinforce [src]..."))
+						to_chat(user, SPAN_WARNING("你没受过加固[src]的训练……"))
 						return
 					playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
 					if(!do_after(user, 10, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, src)) return
-					user.visible_message(SPAN_NOTICE("[user] secures [src]'s metal panel."),
-					SPAN_NOTICE("You secure [src]'s metal panel."))
+					user.visible_message(SPAN_NOTICE("[user]固定好了[src]的金属面板。"),
+					SPAN_NOTICE("你固定好了[src]的金属面板。"))
 					reinforce()
 					return
 	. = ..()
@@ -189,7 +189,7 @@
 	climb_delay = CLIMB_DELAY_SHORT
 
 /obj/structure/barricade/handrail/sandstone
-	name = "sandstone handrail"
+	name = "砂岩扶手"
 	icon_state = "hr_sandstone"
 	can_be_reinforced = FALSE
 	projectile_coverage = PROJECTILE_COVERAGE_LOW
@@ -200,7 +200,7 @@
 	icon_state = "hr_sandstone_b"
 
 /obj/structure/barricade/handrail/pizza
-	name = "\improper diner half-wall"
+	name = "\improper 餐馆半高隔墙"
 	icon_state = "hr_sandstone" //temp, getting sprites soontm
 	color = "#b51c0b"
 	can_be_reinforced = FALSE

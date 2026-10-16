@@ -1,7 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 /obj/structure/machinery/constructable_frame //Made into a separate type to make future revisions easier.
-	name = "machine frame"
+	name = "机器框架"
 	icon = 'icons/obj/structures/machinery/stock_parts.dmi'
 	icon_state = "box_0"
 	var/base_state = "box"
@@ -27,19 +27,19 @@
 
 /obj/structure/machinery/constructable_frame/proc/update_desc()
 	if(state == CONSTRUCTION_STATE_BEGIN)
-		requirements_left = " Requires 5 lengths of cable."
+		requirements_left = "还需要5段电线。"
 	else if(state == CONSTRUCTION_STATE_PROGRESS)
-		requirements_left = " Requires a circuit board."
+		requirements_left = "还需要一块电路板。"
 	else if(state == CONSTRUCTION_STATE_FINISHED)
-		requirements_left = " Requires "
+		requirements_left = "还需要"
 		var/first = 1
 		for(var/I in req_components)
 			if(req_components[I] > 0)
-				requirements_left += "[first?"":", "][num2text(req_components[I])] [req_component_names[I]]"
+				requirements_left += "[first?"":"、"][num2text(req_components[I])] [req_component_names[I]]"
 				first = 0
 		if(first) // nothing needs to be added, then
-			requirements_left += "nothing. Use a screwdriver to complete"
-		requirements_left += "."
+			requirements_left = "所需零件已齐全。用螺丝刀完成组装"
+		requirements_left += "。"
 	desc = initial(desc) + SPAN_WARNING(requirements_left)
 
 /obj/structure/machinery/constructable_frame/update_icon()
@@ -48,45 +48,45 @@
 
 /obj/structure/machinery/constructable_frame/attackby(obj/item/P as obj, mob/user as mob)
 	if(P.crit_fail)
-		to_chat(user, SPAN_DANGER("This part is faulty, you cannot add this to the machine!"))
+		to_chat(user, SPAN_DANGER("这个零件有故障，不能装进机器！"))
 		return
 	switch(state)
 		if(CONSTRUCTION_STATE_BEGIN)
 			if(iscoil(P))
 				if(!skillcheck(user, SKILL_CONSTRUCTION, required_skill))
-					to_chat(user, SPAN_WARNING("You are not trained to build machines..."))
+					to_chat(user, SPAN_WARNING("你没受过制造机器的训练……"))
 					return
 				var/obj/item/stack/cable_coil/C = P
 				if(C.get_amount() < 5)
-					to_chat(user, SPAN_WARNING("You need five lengths of cable to add them to the frame."))
+					to_chat(user, SPAN_WARNING("你需要五段电线才能给框架布线。"))
 					return
 				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-				user.visible_message(SPAN_NOTICE("[user] starts adding cables to [src]."),
-				SPAN_NOTICE("You start adding cables to [src]."))
+				user.visible_message(SPAN_NOTICE("[user]开始给[src]布线。"),
+				SPAN_NOTICE("你开始给[src]布线。"))
 				if(do_after(user, 20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD) && state == 0)
 					if(C && istype(C) && C.use(5))
-						user.visible_message(SPAN_NOTICE("[user] adds cables to [src]."),
-						SPAN_NOTICE("You add cables to [src]."))
+						user.visible_message(SPAN_NOTICE("[user]给[src]接好了电线。"),
+						SPAN_NOTICE("你给[src]接好了电线。"))
 						state = CONSTRUCTION_STATE_PROGRESS
 						anchored = TRUE
 						update_desc()
 			else if(HAS_TRAIT(P, TRAIT_TOOL_WRENCH))
 				if(!skillcheck(user, SKILL_ENGINEER, required_dismantle_skill))
-					to_chat(user, SPAN_WARNING("You are not trained to dismantle machines..."))
+					to_chat(user, SPAN_WARNING("你没受过拆解机器的训练……"))
 					return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-				to_chat(user, SPAN_NOTICE(" You dismantle the frame..."))
+				to_chat(user, SPAN_NOTICE("你拆解了框架……"))
 				new /obj/item/stack/sheet/metal(src.loc, 5)
 				qdel(src)
 		if(CONSTRUCTION_STATE_PROGRESS)
 			if(istype(P, /obj/item/circuitboard/machine))
 				if(!skillcheck(user, SKILL_CONSTRUCTION, required_skill))
-					to_chat(user, SPAN_WARNING("You are not trained to build machines..."))
+					to_chat(user, SPAN_WARNING("你没受过制造机器的训练……"))
 					return
 				if(!do_after(user, 20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					return
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-				to_chat(user, SPAN_NOTICE(" You add the circuit board to the frame."))
+				to_chat(user, SPAN_NOTICE("你将电路板装进了框架。"))
 				circuit = P
 				if(user.drop_inv_item_to_loc(P, src))
 					state = CONSTRUCTION_STATE_FINISHED
@@ -105,10 +105,10 @@
 
 			else if(HAS_TRAIT(P, TRAIT_TOOL_WIRECUTTERS))
 				if(!skillcheck(user, SKILL_ENGINEER, required_dismantle_skill))
-					to_chat(user, SPAN_WARNING("You are not trained to dismantle machines..."))
+					to_chat(user, SPAN_WARNING("你没受过拆解机器的训练……"))
 					return
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
-				to_chat(user, SPAN_NOTICE(" You remove the cables."))
+				to_chat(user, SPAN_NOTICE("你拆除了电线。"))
 				state = CONSTRUCTION_STATE_BEGIN
 				var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( src.loc )
 				A.amount = 5
@@ -116,7 +116,7 @@
 		if(CONSTRUCTION_STATE_FINISHED)
 			if(HAS_TRAIT(P, TRAIT_TOOL_CROWBAR))
 				if(!skillcheck(user, SKILL_ENGINEER, required_dismantle_skill))
-					to_chat(user, SPAN_WARNING("You are not trained to dismantle machines..."))
+					to_chat(user, SPAN_WARNING("你没受过拆解机器的训练……"))
 					return
 				if(!do_after(user, 20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					return
@@ -125,9 +125,9 @@
 				circuit.forceMove(loc)
 				circuit = null
 				if(length(components) == 0)
-					to_chat(user, SPAN_NOTICE("You remove the circuit board."))
+					to_chat(user, SPAN_NOTICE("你拆下了电路板。"))
 				else
-					to_chat(user, SPAN_NOTICE("You remove the circuit board and other components."))
+					to_chat(user, SPAN_NOTICE("你拆下了电路板和其他零件。"))
 					for(var/obj/item/W in components)
 						W.forceMove(loc)
 				update_desc()
@@ -135,7 +135,7 @@
 				components = null
 			else if(HAS_TRAIT(P, TRAIT_TOOL_SCREWDRIVER))
 				if(!skillcheck(user, SKILL_CONSTRUCTION, required_skill))
-					to_chat(user, SPAN_WARNING("You are not trained to build machines..."))
+					to_chat(user, SPAN_WARNING("你没受过制造机器的训练……"))
 					return
 				var/component_check = 1
 				for(var/R in req_components)
@@ -155,7 +155,7 @@
 					qdel(src)
 			else if(istype(P, /obj/item))
 				if(!skillcheck(user, SKILL_CONSTRUCTION, required_skill))
-					to_chat(user, SPAN_WARNING("You are not trained to build machines..."))
+					to_chat(user, SPAN_WARNING("你没受过制造机器的训练……"))
 					return
 				for(var/I in req_components)
 					if(istype(P, I) && (req_components[I] > 0))
@@ -181,6 +181,6 @@
 						break
 				to_chat(user, requirements_left)
 				if(P && P.loc != src && !istype(P, /obj/item/stack/cable_coil))
-					to_chat(user, SPAN_DANGER("You cannot add that component to the machine!"))
+					to_chat(user, SPAN_DANGER("你不能将那个零件装进机器！"))
 	update_icon()
 

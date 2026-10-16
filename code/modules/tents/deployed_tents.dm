@@ -1,9 +1,9 @@
 /// Structures serving as landmarks and providing a buff to its users.
 /// A notable code feature is that they use a separate roof image that phases out when you enter the tent.
 /obj/structure/tent
-	name = "tent"
+	name = "帐篷"
 	icon = 'icons/obj/structures/tents_deployed_classic.dmi'
-	desc = "Can be torn down with an entrenching tool."
+	desc = "可用工兵铲拆除。"
 	opacity = FALSE // Seems only the initial turf blocks light, not all of the multitile. Therefore, useless.
 	layer = INTERIOR_WALL_SOUTH_LAYER // This should be below FLY_LAYER but just thank chairs and other bs
 	health = 200
@@ -89,11 +89,11 @@
 	health -= rand(M.melee_damage_lower, M.melee_damage_upper)
 	playsound(src, 'sound/items/paper_ripped.ogg', 25, 1)
 
-	M.visible_message(SPAN_DANGER("[M] [M.slashes_verb] [src]!"), \
-	SPAN_DANGER("You [M.slash_verb] [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+	M.visible_message(SPAN_DANGER("[M]对[src]进行了[M.slashes_verb]！"), \
+	SPAN_DANGER("你对[src]进行了[M.slash_verb]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 
 	if(health <= 0)
-		visible_message(SPAN_BOLDWARNING("[src] collapses!"))
+		visible_message(SPAN_BOLDWARNING("[src]倒塌了！"))
 		qdel(src)
 
 	return XENO_ATTACK_ACTION
@@ -102,13 +102,13 @@
 	var/obj/item/tool/shovel/shovel = item
 	if(!istype(shovel) || shovel.folded || user.action_busy)
 		return
-	visible_message(SPAN_HIGHDANGER("[user] is trying to tear down [src]"))
+	visible_message(SPAN_HIGHDANGER("[user]正试图拆除[src]。"))
 	playsound(src, 'sound/items/paper_ripped.ogg', 25, 1)
 
 	if(!do_after(user, 150, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_HOSTILE, src) || QDELETED(src))
 		return
 
-	visible_message(SPAN_HIGHDANGER("[user] tears down [src]"))
+	visible_message(SPAN_HIGHDANGER("[user]拆除了[src]。"))
 	playsound(src, 'sound/items/paper_ripped.ogg', 25, 1)
 	qdel(src)
 
@@ -120,13 +120,13 @@
 /obj/structure/tent/cmd
 	icon_state = "cmd_interior"
 	roof_state = "cmd_top"
-	desc = "A standard USCM Command Tent. This one comes equipped with a self-powered Overwatch Console and a Telephone. It is very frail, do not burn, expose to sharp objects, or explosives. Can be torn down with an entrenching tool."
+	desc = "殖民地陆战队标准指挥帐篷，配有自供电战场监控台和电话。非常脆弱，切勿接触火焰、锐器或爆炸物。可用工兵铲拆除。"
 
 /// Medical tent, procures a buff to surgery speed
 /obj/structure/tent/med
 	icon_state = "med_interior"
 	roof_state = "med_top"
-	desc = "A standard USCM Medical Tent. This one comes equipped with advanced field surgery facilities. It is very fragile however and won't withstand the rigors of war. Can be torn down with an entrenching tool."
+	desc = "殖民地陆战队标准医疗帐篷，配有先进的野战手术设施。但它非常脆弱，无法承受战争的摧残。可用工兵铲拆除。"
 	var/surgery_speed_mult = 0.9
 	var/surgery_pain_reduction = 5
 

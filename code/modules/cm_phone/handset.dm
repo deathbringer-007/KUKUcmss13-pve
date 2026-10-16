@@ -2,7 +2,7 @@
 #define HANDSET_RANGE 7
 
 /obj/item/handset
-	name = "telephone"
+	name = "电话听筒"
 	icon = 'icons/obj/items/misc.dmi'
 	icon_state = "rpb_phone"
 
@@ -106,10 +106,10 @@
 
 	if(raised)
 		set_raised(FALSE, user)
-		to_chat(user, SPAN_NOTICE("You lower [src]."))
+		to_chat(user, SPAN_NOTICE("你放下了[src]。"))
 	else
 		set_raised(TRUE, user)
-		to_chat(user, SPAN_NOTICE("You raise [src] to your ear."))
+		to_chat(user, SPAN_NOTICE("你将[src]举到耳边。"))
 
 /obj/item/handset/proc/set_raised(to_raise, mob/living/carbon/human/user)
 	if(!istype(user))

@@ -3,8 +3,8 @@
 
 /obj/structure/disposalconstruct
 
-	name = "disposal pipe segment"
-	desc = "A huge pipe segment used for constructing disposal systems."
+	name = "废物管道段"
+	desc = "用于搭建废物处理系统的大型管道段。"
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "conpipe-s"
 	anchored = FALSE
@@ -101,14 +101,14 @@
 	// flip and rotate verbs
 /obj/structure/disposalconstruct/verb/rotate()
 	set category = "Object"
-	set name = "Rotate Pipe"
+	set name = "旋转管道"
 	set src in view(1)
 
 	if(usr.stat)
 		return
 
 	if(anchored)
-		to_chat(usr, "You must unfasten the pipe before rotating it.")
+		to_chat(usr, "旋转前必须先松开管道的固定件。")
 		return
 
 	setDir(turn(dir, -90))
@@ -116,13 +116,13 @@
 
 /obj/structure/disposalconstruct/verb/flip()
 	set category = "Object"
-	set name = "Flip Pipe"
+	set name = "翻转管道"
 	set src in view(1)
 	if(usr.stat)
 		return
 
 	if(anchored)
-		to_chat(usr, "You must unfasten the pipe before flipping it.")
+		to_chat(usr, "翻转前必须先松开管道的固定件。")
 		return
 
 	setDir(turn(dir, 180))
@@ -176,32 +176,32 @@
 // weldingtool: convert to real pipe
 
 /obj/structure/disposalconstruct/attackby(obj/item/I, mob/user)
-	var/nicetype = "pipe"
+	var/nicetype = "管道"
 	var/ispipe = 0 // Indicates if we should change the level of this pipe
 	src.add_fingerprint(user)
 	switch(ptype)
 		if(6)
-			nicetype = "disposal bin"
+			nicetype = "废物处理箱"
 		if(7)
-			nicetype = "disposal outlet"
+			nicetype = "废物出口"
 		if(8)
-			nicetype = "delivery chute"
+			nicetype = "投递槽"
 		if(9, 10)
-			nicetype = "sorting pipe"
+			nicetype = "分拣管道"
 			ispipe = 1
 		if(13)
-			nicetype = "tagging pipe"
+			nicetype = "标记管道"
 			ispipe = 1
 		if(14)
-			nicetype = "partial tagging pipe"
+			nicetype = "部分标记管道"
 			ispipe = 1
 		else
-			nicetype = "pipe"
+			nicetype = "管道"
 			ispipe = 1
 
 	var/turf/T = src.loc
 	if(T.intact_tile)
-		to_chat(user, "You can only attach the [nicetype] if the floor plating is removed.")
+		to_chat(user, "必须先拆除地板底板，才能安装[nicetype]。")
 		return
 
 	var/obj/structure/disposalpipe/CP = locate() in T
@@ -214,15 +214,15 @@
 				density = FALSE
 			else
 				density = TRUE
-			to_chat(user, "You detach the [nicetype] from the underfloor.")
+			to_chat(user, "你将[nicetype]从地板下拆了下来。")
 		else
 			if(ptype>=6 && ptype <= 8) // Disposal or outlet
 				if(CP) // There's something there
 					if(!istype(CP,/obj/structure/disposalpipe/trunk))
-						to_chat(user, "The [nicetype] requires a trunk underneath it in order to work.")
+						to_chat(user, "[nicetype]下方需要主管接口才能运作。")
 						return
 				else // Nothing under, fuck.
-					to_chat(user, "The [nicetype] requires a trunk underneath it in order to work.")
+					to_chat(user, "[nicetype]下方需要主管接口才能运作。")
 					return
 			else
 				if(CP)
@@ -231,7 +231,7 @@
 					if(istype(CP, /obj/structure/disposalpipe/broken))
 						pdir = CP.dir
 					if(pdir & dpdir)
-						to_chat(user, "There is already a [nicetype] at that location.")
+						to_chat(user, "那个位置已经有[nicetype]了。")
 						return
 
 			anchored = TRUE
@@ -240,22 +240,22 @@
 				density = FALSE
 			else
 				density = TRUE // We don't want disposal bins or outlets to go density 0
-			to_chat(user, "You attach the [nicetype] to the underfloor.")
+			to_chat(user, "你将[nicetype]装到了地板下。")
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		update()
 
 	else if(iswelder(I))
 		if(!HAS_TRAIT(I, TRAIT_TOOL_BLOWTORCH))
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要功率更大的焊枪！"))
 			return
 		if(anchored)
 			var/obj/item/tool/weldingtool/W = I
 			if(W.remove_fuel(0,user))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-				to_chat(user, "Welding the [nicetype] in place.")
+				to_chat(user, "正在将[nicetype]焊接固定。")
 				if(do_after(user, 20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					if(!src || !W.isOn()) return
-					to_chat(user, "The [nicetype] has been welded in place!")
+					to_chat(user, "[nicetype]已焊接固定！")
 					update() // TODO: Make this neat
 					if(ispipe) // Pipe
 
@@ -294,8 +294,8 @@
 					qdel(src)
 					return
 			else
-				to_chat(user, "You need more welding fuel to complete this task.")
+				to_chat(user, "你需要更多焊接燃料才能完成这项工作。")
 				return
 		else
-			to_chat(user, "You need to attach it to the plating first!")
+			to_chat(user, "你得先将它固定到底板上！")
 			return

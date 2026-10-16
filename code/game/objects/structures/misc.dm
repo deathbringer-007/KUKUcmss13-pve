@@ -1,8 +1,8 @@
 /obj/structure/showcase
-	name = "Showcase"
+	name = "展示架"
 	icon = 'icons/obj/structures/props/stationobjs.dmi'
 	icon_state = "showcase_1"
-	desc = "A stand with the empty body of a cyborg bolted to it."
+	desc = "支架上用螺栓固定着一具空的机器人躯壳。"
 	density = TRUE
 	anchored = TRUE
 	unslashable = TRUE
@@ -14,8 +14,8 @@
 			return
 		xeno.animation_attack_on(src)
 		playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-		xeno.visible_message(SPAN_DANGER("[xeno] slices [src] apart!"),
-		SPAN_DANGER("We slice [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		xeno.visible_message(SPAN_DANGER("[xeno]将[src]切成碎片！"),
+		SPAN_DANGER("我们将[src]切成碎片！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		deconstruct(FALSE)
 		return XENO_ATTACK_ACTION
 	else
@@ -35,7 +35,7 @@
 	return 1
 
 /obj/structure/showcase/proc/explode()
-	src.visible_message(SPAN_DANGER("<B>[src] blows apart!</B>"), null, null, 1)
+	src.visible_message(SPAN_DANGER("<B>[src]炸成了碎片！</B>"), null, null, 1)
 	deconstruct(FALSE)
 
 /obj/structure/showcase/deconstruct(disassembled = TRUE)
@@ -62,9 +62,9 @@
 			deconstruct(FALSE)
 
 /obj/structure/target
-	name = "shooting target"
+	name = "射击靶"
 	anchored = FALSE
-	desc = "A shooting target."
+	desc = "一个射击靶。"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "target_a"
 	density = FALSE
@@ -73,16 +73,16 @@
 
 /obj/structure/target/syndicate
 	icon_state = "target_s"
-	desc = "A shooting target that looks like a hostile agent."
+	desc = "外形像敌方特工的射击靶。"
 	health = 7500
 
 /obj/structure/target/alien
 	icon_state = "target_q"
-	desc = "A shooting target with a threatening silhouette."
+	desc = "轮廓颇具威胁感的射击靶。"
 	health = 6500
 
 /obj/structure/monorail
-	name = "monorail track"
+	name = "单轨轨道"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "monorail"
 	density = FALSE
@@ -94,13 +94,13 @@
 //ICE COLONY RESEARCH DECORATION-----------------------//
 //Most of icons made by ~Morrinn
 /obj/structure/xenoautopsy
-	name = "Research thingies"
+	name = "研究杂物"
 	icon = 'icons/obj/structures/props/alien_autopsy.dmi'
 	icon_state = "jarshelf_9"
 	unslashable = TRUE
 
 /obj/structure/xenoautopsy/jar_shelf
-	name = "jar shelf"
+	name = "样品罐架"
 	icon_state = "jarshelf_0"
 	var/randomise = 1 //Random icon
 
@@ -109,35 +109,35 @@
 		icon_state = "jarshelf_[rand(0,9)]"
 
 /obj/structure/xenoautopsy/tank
-	name = "cryo tank"
+	name = "低温储罐"
 	icon_state = "tank_empty"
-	desc = "It is empty."
+	desc = "里面是空的。"
 
 /obj/structure/xenoautopsy/tank/broken
-	name = "cryo tank"
+	name = "低温储罐"
 	icon_state = "tank_broken"
-	desc = "Something broke it..."
+	desc = "有什么东西打破了它……"
 
 /obj/structure/xenoautopsy/tank/alien
-	name = "cryo tank"
+	name = "低温储罐"
 	icon_state = "tank_alien"
-	desc = "There is something big inside..."
+	desc = "里面有个大家伙……"
 
 /obj/structure/xenoautopsy/tank/hugger
-	name = "cryo tank"
+	name = "低温储罐"
 	icon_state = "tank_hugger"
-	desc = "There is something spider-like inside..."
+	desc = "里面有个像蜘蛛的东西……"
 
 /obj/structure/xenoautopsy/tank/larva
-	name = "cryo tank"
+	name = "低温储罐"
 	icon_state = "tank_larva"
-	desc = "There is something worm-like inside..."
+	desc = "里面有个像蠕虫的东西……"
 
 /obj/item/alienjar
-	name = "sample jar"
+	name = "样品罐"
 	icon = 'icons/obj/structures/props/alien_autopsy.dmi'
 	icon_state = "jar_sample"
-	desc = "Used to store organic samples inside for preservation."
+	desc = "用于储存并保存有机样本。"
 
 /obj/item/alienjar/Initialize(mapload, ...)
 	. = ..()
@@ -153,9 +153,9 @@
 //stairs
 
 /obj/structure/stairs
-	name = "Stairs"
+	name = "楼梯"
 	icon = 'icons/obj/structures/structures.dmi'
-	desc = "Stairs.  You walk up and down them."
+	desc = "楼梯，供你上下行走。"
 	icon_state = "rampbottom"
 	gender = PLURAL
 	unslashable = TRUE
@@ -181,8 +181,8 @@
 /obj/structure/ore_box
 	icon = 'icons/obj/structures/props/mining.dmi'
 	icon_state = "orebox0"
-	name = "ore box"
-	desc = "A heavy box used for storing ore."
+	name = "矿石箱"
+	desc = "用于存放矿石的沉重箱子。"
 	density = TRUE
 	anchored = FALSE
 	unslashable = TRUE
@@ -196,27 +196,27 @@
 	density = TRUE
 	anchored = FALSE
 	unslashable = TRUE
-	name = "computer frame"
+	name = "计算机机架"
 	icon = 'icons/obj/structures/machinery/stock_parts.dmi'
 	icon_state = "0"
 	var/state = 0
 
 /obj/structure/computer3frame/server
-	name = "server frame"
+	name = "服务器机架"
 
 /obj/structure/computer3frame/wallcomp
-	name = "wall-computer frame"
+	name = "壁挂计算机机架"
 
 /obj/structure/computer3frame/laptop
-	name = "laptop frame"
+	name = "笔记本电脑框架"
 
 // Dartboard
 #define DOUBLE_BAND 2
 #define TRIPLE_BAND 3
 
 /obj/structure/dartboard
-	name = "dartboard"
-	desc = "A dartboard, loosely secured."
+	name = "飞镖靶"
+	desc = "一个固定得不太牢的飞镖靶。"
 	icon = 'icons/obj/structures/props/props.dmi'
 	icon_state = "dart_board"
 	density = TRUE
@@ -225,11 +225,11 @@
 /obj/structure/dartboard/get_examine_text()
 	. = ..()
 	if(length(contents))
-		var/is_are = "is"
+		var/is_are = "着"
 		if(length(contents) != 1)
-			is_are = "are"
+			is_are = "着"
 
-		. += SPAN_NOTICE("There [is_are] [length(contents)] item\s embedded into [src].")
+		. += SPAN_NOTICE("[src]上嵌[is_are][length(contents)]件物品。")
 
 /obj/structure/dartboard/initialize_pass_flags(datum/pass_flags_container/pass_flags)
 	..()
@@ -238,7 +238,7 @@
 
 /obj/structure/dartboard/get_projectile_hit_boolean(obj/projectile/projectile)
 	. = ..()
-	visible_message(SPAN_DANGER("[projectile] hits [src], collapsing it!"))
+	visible_message(SPAN_DANGER("[projectile]击中[src]，将它打落了！"))
 	collapse()
 
 /obj/structure/dartboard/proc/flush_contents()
@@ -252,11 +252,11 @@
 
 /obj/structure/dartboard/attack_hand(mob/user)
 	if(length(contents))
-		user.visible_message(SPAN_NOTICE("[user] starts recovering items from [src]..."), SPAN_NOTICE("You start recovering items from [src]..."))
+		user.visible_message(SPAN_NOTICE("[user]开始从[src]上取回物品……"), SPAN_NOTICE("你开始从[src]上取回物品……"))
 		if(do_after(user, 1 SECONDS, INTERRUPT_ALL, BUSY_ICON_FRIENDLY, user, INTERRUPT_MOVED, BUSY_ICON_GENERIC))
 			flush_contents()
 	else
-		to_chat(user, SPAN_WARNING("[src] has nothing embedded!"))
+		to_chat(user, SPAN_WARNING("[src]上没有嵌入任何东西！"))
 
 /obj/structure/dartboard/Destroy()
 	flush_contents()
@@ -264,7 +264,7 @@
 
 /obj/structure/dartboard/hitby(obj/item/thrown_item)
 	if(thrown_item.sharp != IS_SHARP_ITEM_ACCURATE && !istype(thrown_item, /obj/item/weapon/dart))
-		visible_message(SPAN_DANGER("[thrown_item] hits [src], collapsing it!"))
+		visible_message(SPAN_DANGER("[thrown_item]击中[src]，将它打落了！"))
 		collapse()
 		return
 
@@ -272,21 +272,21 @@
 	playsound(src, 'sound/weapons/tablehit1.ogg', 50)
 	var/score = rand(1,21)
 	if(score == 21)
-		visible_message(SPAN_DANGER("[thrown_item] embeds into [src], striking the bullseye! 50 points."))
+		visible_message(SPAN_DANGER("[thrown_item]扎进[src]，正中靶心！50分。"))
 		return
 
-	var/band = "single"
+	var/band = "单倍区"
 	var/band_number = rand(1,3)
 	score *= band_number
 	switch(band_number)
 		if(DOUBLE_BAND)
-			band = "double"
+			band = "双倍区"
 		if(TRIPLE_BAND)
-			band = "triple"
-	visible_message(SPAN_DANGER("[thrown_item] embeds into [src], striking [band] for [score] point\s."))
+			band = "三倍区"
+	visible_message(SPAN_DANGER("[thrown_item]扎进[src]的[band]，得[score]分。"))
 
 /obj/structure/dartboard/attackby(obj/item/item, mob/user)
-	user.visible_message(SPAN_DANGER("[user] hits [src] with [item], collapsing it!"), SPAN_DANGER("You collapse [src] with [item]!"))
+	user.visible_message(SPAN_DANGER("[user]用[item]击中[src]，将它打落了！"), SPAN_DANGER("你用[item]将[src]打落了！"))
 	collapse()
 
 /obj/structure/dartboard/MouseDrop(over_object, src_location, over_location)
@@ -297,14 +297,14 @@
 	if(!ishuman(usr))
 		return
 
-	visible_message(SPAN_NOTICE("[usr] unsecures [src]."))
+	visible_message(SPAN_NOTICE("[usr]松开了[src]的固定件。"))
 	var/obj/item/dartboard/unsecured_board = new(loc)
 	usr.put_in_hands(unsecured_board)
 	qdel(src)
 
 /obj/item/dartboard
-	name = "dartboard"
-	desc = "A dartboard for darts."
+	name = "飞镖靶"
+	desc = "用于投掷飞镖的靶盘。"
 	icon = 'icons/obj/structures/props/props.dmi'
 	icon_state = "dart_board"
 
@@ -313,7 +313,7 @@
 
 	var/turf_ahead = get_step(user, user.dir)
 	if(!istype(turf_ahead, /turf/closed))
-		to_chat(user, SPAN_WARNING("[src] needs a wall to be secured to!"))
+		to_chat(user, SPAN_WARNING("[src]需要固定在墙上！"))
 		return
 
 	var/obj/structure/dartboard/secured_board = new(user.loc)
@@ -327,7 +327,7 @@
 		if(WEST)
 			secured_board.pixel_x = -32
 
-	to_chat(user, SPAN_NOTICE("You secure [secured_board] to [turf_ahead]."))
+	to_chat(user, SPAN_NOTICE("你将[secured_board]固定在了[turf_ahead]上。"))
 	qdel(src)
 
 #undef DOUBLE_BAND

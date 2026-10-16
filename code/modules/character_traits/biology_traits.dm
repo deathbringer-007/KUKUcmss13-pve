@@ -1,13 +1,13 @@
 /datum/character_trait_group/biology
-	trait_group_name = "Biology"
+	trait_group_name = "生理特征"
 
 /datum/character_trait/biology
 	applyable = FALSE
 	trait_group = /datum/character_trait_group/biology
 
 /datum/character_trait/biology/bad_eyesight
-	trait_name = "Bad Eyesight"
-	trait_desc = "A condition in which close objects appear clearly, but far ones don't."
+	trait_name = "近视"
+	trait_desc = "近处的物体看得清，远处的物体却很模糊。"
 	applyable = TRUE
 	cost = 1
 
@@ -20,8 +20,8 @@
 	DISABLE_BITFIELD(target.disabilities, NEARSIGHTED)
 
 /datum/character_trait/biology/opiate_receptor_deficiency
-	trait_name = "Opiate Receptor Deficiency"
-	trait_desc = "Due to overuse of opiates or a genetic fluke, this condition reduces the potency of all basic painkilling drugs."
+	trait_name = "阿片受体功能不足"
+	trait_desc = "由于阿片类药物滥用或遗传因素，所有基础止痛药对你的效力均有所降低。"
 	applyable = TRUE
 	cost = 1
 
@@ -34,8 +34,8 @@
 	DISABLE_BITFIELD(target.disabilities, OPIATE_RECEPTOR_DEFICIENCY)
 
 /datum/character_trait/biology/lisp
-	trait_name = "Lisping"
-	trait_desc = "You have difficulty with pronouncing 'S' sounds (and similar). Expect to be mocked mercilessly."
+	trait_name = "口齿不清"
+	trait_desc = "你难以清楚发出S及类似的音。做好被无情嘲笑的准备。"
 	applyable = TRUE
 	cost = 1
 	/// Roles that will not allow the trait to be added
@@ -49,13 +49,13 @@
 	var/string_paygrade = preset.load_rank(target)
 	var/datum/paygrade/paygrade_datum = GLOB.paygrades[string_paygrade]
 	if(paygrade_datum?.ranking > maximum_ranking)
-		to_chat(target, SPAN_WARNING("Your paygrade is too high for you to be able to receive the lisping trait."))
+		to_chat(target, SPAN_WARNING("你的军衔过高，无法选择口齿不清特征。"))
 		return
 	if(target.job in inapplicable_roles)
-		to_chat(target, SPAN_WARNING("Your office is too high for you to be able to receive the lisping trait."))
+		to_chat(target, SPAN_WARNING("你的职位过高，无法选择口齿不清特征。"))
 		return
 	if(target.species.group in inapplicable_species)
-		to_chat(target, SPAN_WARNING("Your species is too sophisticated for you be able to receive the lisping trait."))
+		to_chat(target, SPAN_WARNING("你的物种太过精密，无法选择口齿不清特征。"))
 		return
 
 	ADD_TRAIT(target, TRAIT_LISPING, ROUNDSTART_TRAIT)
@@ -66,8 +66,8 @@
 	..()
 
 /datum/character_trait/biology/bad_leg
-	trait_name = "Bad Leg"
-	trait_desc = "Your left (or right, if the left's robotic) leg suffered an undetermined wound a long time ago that never fully healed. Walking around without a cane will eventually cause you to freeze in pain, but you start with one."
+	trait_name = "腿疾"
+	trait_desc = "你的左腿（若左腿是义肢则为右腿）曾受过不明旧伤，至今未能痊愈。不用手杖行走最终会让你疼得动弹不得，不过你开局就有一根手杖。"
 	applyable = TRUE
 	cost = 1
 	/// Roles that will not allow the trait to be added. (Due to being designed for combat, heavy physical duty, or just being too junior to be worth keeping around as a cripple.)
@@ -89,10 +89,10 @@
 
 /datum/character_trait/biology/bad_leg/apply_trait(mob/living/carbon/human/target, datum/equipment_preset/preset)
 	if(target.job in inapplicable_roles)
-		to_chat(target, SPAN_WARNING("Your office is too combat-geared for you to be able to receive the bad leg trait."))
+		to_chat(target, SPAN_WARNING("你的职位需要承担太多战斗任务，无法选择腿疾特征。"))
 		return
 	if(target.species.group in inapplicable_species)
-		to_chat(target, SPAN_WARNING("Your species is too sophisticated for you be able to receive the bad leg trait."))
+		to_chat(target, SPAN_WARNING("你的物种太过精密，无法选择腿疾特征。"))
 		return
 
 	target.AddComponent(/datum/component/bad_leg)
@@ -114,14 +114,14 @@
 //datum/character_trait/biology/bad_leg/unapply_trait(mob/living/carbon/human/target) // IMPOSSIBLE
 
 /datum/character_trait/biology/hardcore
-	trait_name = "Hardcore"
-	trait_desc = "One life. One chance. (Rifleman Only)"
+	trait_name = "硬核"
+	trait_desc = "一条命，一次机会。（仅限步枪兵）"
 	applyable = TRUE
 	cost = 1
 
 /datum/character_trait/biology/hardcore/apply_trait(mob/living/carbon/human/target, datum/equipment_preset/preset)
 	if(target.job != JOB_SQUAD_MARINE)
-		to_chat(target, SPAN_WARNING("Only riflemen can have the Hardcore trait."))
+		to_chat(target, SPAN_WARNING("只有步枪兵可以选择硬核特征。"))
 		return
 
 	ADD_TRAIT(target, TRAIT_HARDCORE, ROUNDSTART_TRAIT)
@@ -132,8 +132,8 @@
 	..()
 
 /datum/character_trait/biology/iron_teeth
-	trait_name = "Iron Teeth"
-	trait_desc = "You've got iron teeth or really good dental insurance. Items in your face slot won't fall out when you go down."
+	trait_name = "铁齿"
+	trait_desc = "你有一口铁齿，或者买了极好的牙科保险。倒地时，面部栏位的物品不会掉落。"
 	applyable = TRUE
 	cost = 1
 

@@ -1,17 +1,17 @@
 
 #define POSSIBLE_DREAM_TOPICS list( \
-"a military vessel","a wound","a familiar face","a friend","a flare","a military officer","a politician", \
-"whispering","deep space","a medic","an FTL engine","alarm","an ally","darkness", \
-"dim light","a scientist","a great leader","a catastrophe","desertion","a mistake","ice","freezing","warning lights", \
-"a helmet","mandibles","an abandoned station","a colony","monsters","air","a morgue","a military bridge","blinking lights", \
-"a blue light","an abandoned colony","USCM","blood","a bandage","fear","a stiff corpse","military fleet", \
-"loyalty","space","a crash","loneliness","suffocation","a fall","heat","flames","ice","cigarettes","falling","a buzzer","a PDA", \
-"snow","searing heat","calamity","the dead","a rifle", \
-"a knife","a distress beacon","a pistol","a spider","empty space","claws", \
-"acid","jaws","a meeting","welding","the vents","being trapped","a survivor", \
-"a power loader","hypersleep","a meeting room","an engineer","a severed head","a motion scanner","a dropship","a uniform", \
-"a ruined station","fire","a smokey room","a voice","the cold","dimness","an operating table","teeth","flowers","graves", \
-"a synthetic man","meat","a planet","the U.P.P.","Weyland-Yutani","tools" \
+"一艘军舰","一道伤口","一张熟悉的面孔","一位朋友","一枚照明弹","一名军官","一名政客", \
+"低语","深空","一名医护兵","一台超光速引擎","警报","一位盟友","黑暗", \
+"昏暗的光","一位科学家","一位伟大的领袖","一场灾难","逃兵","一次失误","冰","严寒","警示灯", \
+"一顶头盔","颚钳","一座废弃空间站","一处殖民地","怪物","空气","一间停尸间","军舰舰桥","闪烁的灯光", \
+"一道蓝光","一处废弃殖民地","殖民地陆战队","鲜血","一条绷带","恐惧","一具僵硬的尸体","军用舰队", \
+"忠诚","太空","一场坠毁","孤独","窒息","一次跌落","热浪","烈焰","冰","香烟","坠落","蜂鸣器","一台掌上电脑", \
+"雪","灼热","浩劫","死者","一支步枪", \
+"一把刀","一个求救信标","一把手枪","一只蜘蛛","空旷的太空","利爪", \
+"酸液","颚","一场会议","焊接","通风管道","身陷囹圄","一位幸存者", \
+"一台动力装载机","低温休眠","一间会议室","一名工程师","一颗断头","一台运动探测器","一艘登陆艇","一套制服", \
+"一座毁坏的空间站","火焰","一间烟雾弥漫的房间","一个声音","寒冷","昏暗","一张手术台","牙齿","鲜花","坟墓", \
+"一名合成人","肉","一颗星球","进步人民联盟","维兰德-汤谷","工具" \
 )
 
 /mob/living/carbon/proc/dream()

@@ -1,6 +1,6 @@
 /obj/structure/fence
-	name = "fence"
-	desc = "A large metal mesh strewn between two poles. Intended as a cheap way to separate areas, while allowing one to see through it."
+	name = "围栏"
+	desc = "两根立柱间张着大片金属网，用于低成本隔离区域，同时保持视野通透。"
 	icon = 'icons/obj/structures/props/fence.dmi'
 	icon_state = "fence0"
 	throwpass = TRUE
@@ -29,7 +29,7 @@
 		return
 	if(health <= 0)
 		if(user)
-			user.visible_message(SPAN_DANGER("[user] smashes through [src][AM ? " with [AM]":""]!"))
+			user.visible_message(SPAN_DANGER("[user][AM ? "用[AM]":""]撞破了[src]！"))
 		playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 		cut_grille()
 	if(make_hit_sound)
@@ -56,7 +56,7 @@
 
 /obj/structure/fence/hitby(atom/movable/AM)
 	..()
-	visible_message(SPAN_DANGER("[src] was hit by [AM]."))
+	visible_message(SPAN_DANGER("[src]被[AM]击中了。"))
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 40
@@ -76,7 +76,7 @@
 /obj/structure/fence/proc/attack_generic(mob/living/user, damage = 0)
 	health -= damage
 	user.animation_attack_on(src)
-	user.visible_message(SPAN_DANGER("[user] smashes into [src]!"))
+	user.visible_message(SPAN_DANGER("[user]猛撞在[src]上！"))
 	healthcheck(1, 1, user)
 
 /obj/structure/fence/attack_animal(mob/user as mob)
@@ -89,19 +89,19 @@
 
 	if(istype(W, /obj/item/stack/barbed_wire) && health < health_max)
 		if(!skillcheck(user, SKILL_CONSTRUCTION, SKILL_CONSTRUCTION_ENGI))
-			to_chat(user, SPAN_WARNING("You don't have the skill needed to fix [src]'s wiring."))
+			to_chat(user, SPAN_WARNING("你没有修复[src]网线所需的技能。"))
 			return
 		var/obj/item/stack/barbed_wire/R = W
 		var/amount_needed = 2
 		if(health)
 			amount_needed = 1
 		if(R.amount >= amount_needed)
-			user.visible_message(SPAN_NOTICE("[user] starts repairing [src] with [R]."),
-			SPAN_NOTICE("You start repairing [src] with [R]."))
+			user.visible_message(SPAN_NOTICE("[user]开始用[R]修复[src]。"),
+			SPAN_NOTICE("你开始用[R]修复[src]。"))
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 			if(do_after(user, 30 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
 				if(R.amount < amount_needed)
-					to_chat(user, SPAN_WARNING("You need more barbed wire to repair [src]."))
+					to_chat(user, SPAN_WARNING("你需要更多带刺铁丝才能修复[src]。"))
 					return
 				R.use(amount_needed)
 				health = health_max
@@ -109,21 +109,21 @@
 				density = TRUE
 				update_icon()
 				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-				user.visible_message(SPAN_NOTICE("[user] repairs [src] with [R]."),
-				SPAN_NOTICE("You repair [src] with [R]."))
+				user.visible_message(SPAN_NOTICE("[user]用[R]修好了[src]。"),
+				SPAN_NOTICE("你用[R]修好了[src]。"))
 				return
 		else
-			to_chat(user, SPAN_WARNING("You need more barbed wire to repair [src]."))
+			to_chat(user, SPAN_WARNING("你需要更多带刺铁丝才能修复[src]。"))
 			return
 
 	if(HAS_TRAIT(W, TRAIT_TOOL_WIRECUTTERS) && cut)
-		user.visible_message(SPAN_NOTICE("[user] starts cutting away the remains of [src] with [W]."),
-		SPAN_NOTICE("You start cutting away the remains of [src] with [W]."))
+		user.visible_message(SPAN_NOTICE("[user]开始用[W]剪除[src]的残骸。"),
+		SPAN_NOTICE("你开始用[W]剪除[src]的残骸。"))
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 		if(do_after(user, 50 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_NO_NEEDHAND|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-			user.visible_message(SPAN_NOTICE("[user] cuts away the remains of [src] with [W]."),
-			SPAN_NOTICE("You cut away the remains of [src] with [W]."))
+			user.visible_message(SPAN_NOTICE("[user]用[W]剪除了[src]的残骸。"),
+			SPAN_NOTICE("你用[W]剪除了[src]的残骸。"))
 			deconstruct()
 			return
 
@@ -138,17 +138,17 @@
 			user.drop_held_item()
 			switch(state)
 				if(GRAB_PASSIVE)
-					M.visible_message(SPAN_WARNING("[user] slams [M] against \the [src]!"))
+					M.visible_message(SPAN_WARNING("[user]将[M]猛推向\the [src]！"))
 					M.apply_damage(7)
 					health -= 10
 				if(GRAB_AGGRESSIVE)
-					M.visible_message(SPAN_DANGER("[user] bashes [M] against \the [src]!"))
+					M.visible_message(SPAN_DANGER("[user]将[M]砸向\the [src]！"))
 					if(prob(50))
 						M.apply_effect(1, WEAKEN)
 					M.apply_damage(10)
 					health -= 25
 				if(GRAB_CHOKE)
-					M.visible_message(SPAN_DANGER("[user] crushes [M] against \the [src]!"))
+					M.visible_message(SPAN_DANGER("[user]将[M]狠狠压向\the [src]！"))
 					M.apply_effect(5, WEAKEN)
 					M.apply_damage(20)
 					health -= 50
@@ -163,24 +163,24 @@
 	if(W.flags_item & NOBLUDGEON) return
 
 	if(HAS_TRAIT(W, TRAIT_TOOL_WIRECUTTERS))
-		user.visible_message(SPAN_NOTICE("[user] starts cutting through [src] with [W]."),
-		SPAN_NOTICE("You start cutting through [src] with [W]."))
+		user.visible_message(SPAN_NOTICE("[user]开始用[W]剪开[src]。"),
+		SPAN_NOTICE("你开始用[W]剪开[src]。"))
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 		if(do_after(user, 30 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-			user.visible_message(SPAN_NOTICE("[user] cuts through [src] with [W]."),
-			SPAN_NOTICE("You cut through [src] with [W]."))
+			user.visible_message(SPAN_NOTICE("[user]用[W]剪开了[src]。"),
+			SPAN_NOTICE("你用[W]剪开了[src]。"))
 			cut_grille()
 		return
 
 	if(istype(W, /obj/item/attachable/bayonet) || istype(W, /obj/item/weapon/knife) && get_dist(src, user) < 2)
-		user.visible_message(SPAN_NOTICE("[user] starts cutting through [src] with [W]."),
-		SPAN_NOTICE("You start cutting through [src] with [W]."))
+		user.visible_message(SPAN_NOTICE("[user]开始用[W]剪开[src]。"),
+		SPAN_NOTICE("你开始用[W]剪开[src]。"))
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 		if(do_after(user, 210 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-			user.visible_message(SPAN_NOTICE("[user] cuts through [src] with [W]."),
-			SPAN_NOTICE("You cut through [src] with [W]."))
+			user.visible_message(SPAN_NOTICE("[user]用[W]剪开了[src]。"),
+			SPAN_NOTICE("你用[W]剪开了[src]。"))
 			cut_grille()
 		return
 	else

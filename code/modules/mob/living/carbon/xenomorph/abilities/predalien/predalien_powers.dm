@@ -11,7 +11,7 @@
 		return
 
 	playsound(xeno.loc, pick(predalien_roar), 75, 0, status = 0)
-	xeno.visible_message(SPAN_XENOHIGHDANGER("[xeno] emits a guttural roar!"))
+	xeno.visible_message(SPAN_XENOHIGHDANGER("[xeno]发出低沉的咆哮！"))
 	xeno.create_shriekwave(7) //Adds the visual effect. Wom wom wom, 7 shriekwaves
 	FOR_DVIEW(var/mob/living/carbon/carbon, 7, xeno, HIDE_INVISIBLE_OBSERVER)
 		if(ishuman(carbon))
@@ -45,7 +45,7 @@
 	if(!istype(predalienbehavior))
 		return
 	if(targeting == AOETARGETGUT)
-		xeno.visible_message(SPAN_XENOHIGHDANGER("[xeno] begins digging in for a massive strike!"), SPAN_XENOHIGHDANGER("We begin digging in for a massive strike!"))
+		xeno.visible_message(SPAN_XENOHIGHDANGER("[xeno]开始站稳蓄力，准备发动猛烈打击！"), SPAN_XENOHIGHDANGER("我们开始站稳蓄力，准备发动猛烈打击！"))
 		ADD_TRAIT(xeno, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Eviscerate"))
 		xeno.anchored = TRUE
 		if (do_after(xeno, (activation_delay_aoe), INTERRUPT_ALL | BEHAVIOR_IMMOBILE, BUSY_ICON_HOSTILE))
@@ -62,7 +62,7 @@
 				if(!check_clear_path_to_target(xeno, carbon))
 					continue
 
-				xeno.visible_message(SPAN_XENOHIGHDANGER("[xeno] rips open the guts of [carbon]!"), SPAN_XENOHIGHDANGER("We rip open the guts of [carbon]!"))
+				xeno.visible_message(SPAN_XENOHIGHDANGER("[xeno]撕开了[carbon]的腹部！"), SPAN_XENOHIGHDANGER("我们撕开了[carbon]的腹部！"))
 				carbon.spawn_gibs()
 				xeno.animation_attack_on(carbon)
 				xeno.spin_circle()
@@ -79,20 +79,20 @@
 
 	//single target checks
 	if(xeno.can_not_harm(target))
-		to_chat(xeno, SPAN_XENOWARNING("We must target a hostile!"))
+		to_chat(xeno, SPAN_XENOWARNING("我们必须以敌人为目标！"))
 		return
 
 	if(!isliving(target))
 		return
 
 	if(get_dist_sqrd(target, xeno) > 2)
-		to_chat(xeno, SPAN_XENOWARNING("[target] is too far away!"))
+		to_chat(xeno, SPAN_XENOWARNING("[target]离得太远了！"))
 		return
 
 	var/mob/living/carbon/carbon = target
 
 	if(carbon.stat == DEAD)
-		to_chat(xeno, SPAN_XENOWARNING("[carbon] is dead, why would we want to touch them?"))
+		to_chat(xeno, SPAN_XENOWARNING("[carbon]已经死了，我们为什么还要碰它？"))
 		return
 	if(targeting == SINGLETARGETGUT) // single target
 		ADD_TRAIT(carbon, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Devastate"))
@@ -102,7 +102,7 @@
 		xeno.anchored = TRUE
 
 		if(do_after(xeno, activation_delay, INTERRUPT_ALL | BEHAVIOR_IMMOBILE, BUSY_ICON_HOSTILE))
-			xeno.visible_message(SPAN_XENOHIGHDANGER("[xeno] rips open the guts of [carbon]!"), SPAN_XENOHIGHDANGER("We rapidly slice into [carbon]!"))
+			xeno.visible_message(SPAN_XENOHIGHDANGER("[xeno]撕开了[carbon]的腹部！"), SPAN_XENOHIGHDANGER("我们迅速切入[carbon]的身体！"))
 			carbon.spawn_gibs()
 			playsound(get_turf(carbon), 'sound/effects/gibbed.ogg', 50, 1)
 			carbon.apply_effect(get_xeno_stun_duration(carbon, 0.5), WEAKEN)
@@ -131,7 +131,7 @@
 		return
 
 	if(armor_buff && speed_buff)
-		to_chat(predatoralien, SPAN_XENOHIGHDANGER("We cannot stack this!"))
+		to_chat(predatoralien, SPAN_XENOHIGHDANGER("这个效果无法叠加！"))
 		return
 
 	if(!check_and_use_plasma_owner())
@@ -141,7 +141,7 @@
 	addtimer(CALLBACK(src, PROC_REF(remove_rush_effects)), speed_duration)
 	addtimer(CALLBACK(src, PROC_REF(remove_armor_effects)), armor_duration) // calculate armor and speed differently, so it's a bit more armored while trying to get out
 	predatoralien.add_filter("predalien_toughen", 1, list("type" = "outline", "color" = "#421313", "size" = 1))
-	to_chat(predatoralien, SPAN_XENOWARNING("We feel our muscles tense as our speed and armor increase!"))
+	to_chat(predatoralien, SPAN_XENOWARNING("我们的肌肉绷紧，速度和护甲随之提升！"))
 	speed_buff = TRUE
 	armor_buff = TRUE
 	predatoralien.speed_modifier -= speed_buff_amount
@@ -157,7 +157,7 @@
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/predatoralien = owner
 	if(speed_buff == TRUE)
-		to_chat(predatoralien, SPAN_XENOWARNING("Our muscles relax as we feel our speed wane."))
+		to_chat(predatoralien, SPAN_XENOWARNING("我们的肌肉放松，速度也慢了下来。"))
 		predatoralien.remove_filter("predalien_toughen")
 		predatoralien.speed_modifier += speed_buff_amount
 		predatoralien.recalculate_speed()
@@ -168,7 +168,7 @@
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/predatoralien = owner
 	if(armor_buff)
-		to_chat(predatoralien, SPAN_XENOWARNING("We are no longer armored."))
+		to_chat(predatoralien, SPAN_XENOWARNING("我们的护甲强化结束了。"))
 		predatoralien.armor_modifier -= armor_buff_amount
 		predatoralien.recalculate_armor()
 		armor_buff = FALSE
@@ -189,11 +189,11 @@
 	if(guttype.targeting == SINGLETARGETGUT)
 		action_icon_result = "rav_scissor_cut"
 		guttype.targeting = AOETARGETGUT
-		to_chat(xeno, SPAN_XENOWARNING("We will now attack everyone around us during a Feral Frenzy."))
+		to_chat(xeno, SPAN_XENOWARNING("野性狂乱现在会攻击周围所有目标。"))
 	else
 		action_icon_result = "gut"
 		guttype.targeting = SINGLETARGETGUT
-		to_chat(xeno, SPAN_XENOWARNING("We will now focus our Feral Frenzy on one person!"))
+		to_chat(xeno, SPAN_XENOWARNING("野性狂乱现在会集中攻击一个目标！"))
 
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/hud/actions_xeno.dmi', button, action_icon_result)
@@ -205,7 +205,7 @@
 
 	if(!action_cooldown_check())
 		if(twitch_message_cooldown < world.time )
-			predalien_smash.visible_message(SPAN_XENOWARNING("[predalien_smash]'s muscles twitch."), SPAN_XENOWARNING("Our claws twitch as we try to grab onto the target but lack the strength. Wait a moment to try again."))
+			predalien_smash.visible_message(SPAN_XENOWARNING("[predalien_smash]的肌肉抽动着。"), SPAN_XENOWARNING("我们的利爪抽动着，想抓住目标却力不从心。稍等片刻再试。"))
 			twitch_message_cooldown = world.time + 5 SECONDS
 		return //this gives a little feedback on why your lunge didn't hit other than the lunge button going grey. Plus, it might spook marines that almost got lunged if they know why the message appeared, and extra spookiness is always good.
 
@@ -213,7 +213,7 @@
 		return
 
 	if(!isturf(predalien_smash.loc))
-		to_chat(predalien_smash, SPAN_XENOWARNING("We can't lunge from here!"))
+		to_chat(predalien_smash, SPAN_XENOWARNING("我们无法从这里猛扑！"))
 		return
 
 	if(!predalien_smash.check_state() || predalien_smash.agility)
@@ -247,7 +247,7 @@
 		animate(carbon, pixel_y = 0, time = 4, easing = BOUNCE_EASING) //animates the smash
 		carbon.apply_armoured_damage(get_xeno_damage_slash(carbon, smash_damage + smash_scale * predalienbehavior.kills), ARMOR_MELEE, BRUTE, "chest", 20)
 	else
-		predalien_smash.visible_message(SPAN_XENOWARNING("[predalien_smash]'s claws twitch."), SPAN_XENOWARNING("We couldn't grab our target. Wait a moment to try again."))
+		predalien_smash.visible_message(SPAN_XENOWARNING("[predalien_smash]的利爪抽动着。"), SPAN_XENOWARNING("我们没能抓住目标。稍等片刻再试。"))
 
 	return ..()
 
@@ -278,8 +278,8 @@
 				return
 
 		if(should_neckgrab && living_mob.mob_size < MOB_SIZE_BIG)
-			visible_message(SPAN_XENOWARNING("[src] grabs [living_mob] by the back of their leg and slams them onto the ground!"), \
-			SPAN_XENOWARNING("We grab [living_mob] by the back of their leg and slam them onto the ground!")) // more flair
+			visible_message(SPAN_XENOWARNING("[src]抓住[living_mob]的小腿后侧，将其猛摔在地！"), \
+			SPAN_XENOWARNING("我们抓住[living_mob]的小腿后侧，将其猛摔在地！")) // more flair
 			smashing = TRUE
 			living_mob.drop_held_items()
 			var/duration = get_xeno_stun_duration(living_mob, 1)

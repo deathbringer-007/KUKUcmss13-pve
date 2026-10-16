@@ -10,8 +10,8 @@
  * Filing Cabinets
  */
 /obj/structure/filingcabinet
-	name = "filing cabinet"
-	desc = "A large cabinet with drawers."
+	name = "文件柜"
+	desc = "带有抽屉的大柜子。"
 	icon = 'icons/obj/structures/props/misc.dmi'
 	icon_state = "filingcabinet"
 	density = TRUE
@@ -31,7 +31,7 @@
 	return ..()
 
 /obj/structure/filingcabinet/chestdrawer
-	name = "chest drawer"
+	name = "抽屉柜"
 	icon_state = "chestdrawer"
 
 
@@ -53,7 +53,7 @@
 	else
 		for(var/allowed_type in allowed_types)
 			if(istype(P, allowed_type))
-				to_chat(user, SPAN_NOTICE("You put [P] in [src]."))
+				to_chat(user, SPAN_NOTICE("你将[P]放入了[src]。"))
 				if(user.drop_inv_item_to_loc(P, src))
 					icon_state = "[initial(icon_state)]-open"
 					sleep(5)
@@ -61,11 +61,11 @@
 					updateUsrDialog()
 					break
 			else
-				to_chat(user, SPAN_NOTICE("You can't put [P] in [src]!"))
+				to_chat(user, SPAN_NOTICE("你无法将[P]放入[src]！"))
 
 /obj/structure/filingcabinet/attack_hand(mob/user as mob)
 	if(length(contents) <= 0)
-		to_chat(user, SPAN_NOTICE("\The [src] is empty."))
+		to_chat(user, SPAN_NOTICE("\The [src]是空的。"))
 		return
 
 	user.set_interaction(src)
@@ -112,15 +112,15 @@
 					break
 			if(S)
 				var/obj/item/paper/P = new /obj/item/paper(src)
-				P.info = "<CENTER><B>Security Record</B></CENTER><BR>"
-				P.info += "Name: [G.fields["name"]] ID: [G.fields["id"]]<BR>\nSex: [G.fields["sex"]]<BR>\nAge: [G.fields["age"]]<BR>\nPhysical Status: [G.fields["p_stat"]]<BR>\nMental Status: [G.fields["m_stat"]]<BR>"
-				P.info += "<BR>\n<CENTER><B>Security Data</B></CENTER><BR>\nCriminal Status: [S.fields["criminal"]]<BR>\n<BR>\nIncidents: [S.fields["incident"]]<BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
+				P.info = "<CENTER><B>安保档案</B></CENTER><BR>"
+				P.info += "姓名：[G.fields["name"]] 编号：[G.fields["id"]]<BR>\n性别：[G.fields["sex"]]<BR>\n年龄：[G.fields["age"]]<BR>\n身体状况：[G.fields["p_stat"]]<BR>\n精神状况：[G.fields["m_stat"]]<BR>"
+				P.info += "<BR>\n<CENTER><B>安保资料</B></CENTER><BR>\n犯罪状态：[S.fields["criminal"]]<BR>\n<BR>\n事件：[S.fields["incident"]]<BR>\n<BR>\n<CENTER><B>备注／记录</B></CENTER><BR>"
 				var/counter = 1
 				while(S.fields["com_[counter]"])
 					P.info += "[S.fields["com_[counter]"]]<BR>"
 					counter++
 				P.info += "</TT>"
-				P.name = "Security Record ([G.fields["name"]])"
+				P.name = "安保档案（[G.fields["name"]]）"
 			virgin = 0 //tabbing here is correct- it's possible for people to try and use it
 						//before the records have been generated, so we do this inside the loop.
 
@@ -144,16 +144,16 @@
 					break
 			if(M)
 				var/obj/item/paper/P = new /obj/item/paper(src)
-				P.info = "<CENTER><B>Medical Record</B></CENTER><BR>"
-				P.info += "Name: [G.fields["name"]] ID: [G.fields["id"]]<BR>\nSex: [G.fields["sex"]]<BR>\nAge: [G.fields["age"]]<BR>\nPhysical Status: [G.fields["p_stat"]]<BR>\nMental Status: [G.fields["m_stat"]]<BR>"
+				P.info = "<CENTER><B>医疗档案</B></CENTER><BR>"
+				P.info += "姓名：[G.fields["name"]] 编号：[G.fields["id"]]<BR>\n性别：[G.fields["sex"]]<BR>\n年龄：[G.fields["age"]]<BR>\n身体状况：[G.fields["p_stat"]]<BR>\n精神状况：[G.fields["m_stat"]]<BR>"
 
-				P.info += "<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: [M.fields["b_type"]]<BR>\n<BR>\nMinor Disabilities: [M.fields["mi_dis"]]<BR>\nDetails: [M.fields["mi_dis_d"]]<BR>\n<BR>\nMajor Disabilities: [M.fields["ma_dis"]]<BR>\nDetails: [M.fields["ma_dis_d"]]<BR>\n<BR>\nAllergies: [M.fields["alg"]]<BR>\nDetails: [M.fields["alg_d"]]<BR>\n<BR>\nCurrent Diseases: [M.fields["cdi"]] (per disease info placed in log/comment section)<BR>\nDetails: [M.fields["cdi_d"]]<BR>\n<BR>\nImportant Notes:<BR>\n\t[M.fields["notes"]]<BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
+				P.info += "<BR>\n<CENTER><B>医疗资料</B></CENTER><BR>\n血型：[M.fields["b_type"]]<BR>\n<BR>\n轻度残障：[M.fields["mi_dis"]]<BR>\n详情：[M.fields["mi_dis_d"]]<BR>\n<BR>\n重度残障：[M.fields["ma_dis"]]<BR>\n详情：[M.fields["ma_dis_d"]]<BR>\n<BR>\n过敏：[M.fields["alg"]]<BR>\n详情：[M.fields["alg_d"]]<BR>\n<BR>\n现有疾病：[M.fields["cdi"]]（各疾病的信息见记录／备注栏）<BR>\n详情：[M.fields["cdi_d"]]<BR>\n<BR>\n重要备注：<BR>\n\t[M.fields["notes"]]<BR>\n<BR>\n<CENTER><B>备注／记录</B></CENTER><BR>"
 				var/counter = 1
 				while(M.fields["com_[counter]"])
 					P.info += "[M.fields["com_[counter]"]]<BR>"
 					counter++
 				P.info += "</TT>"
-				P.name = "Medical Record ([G.fields["name"]])"
+				P.name = "医疗档案（[G.fields["name"]]）"
 			virgin = 0 //tabbing here is correct- it's possible for people to try and use it
 						//before the records have been generated, so we do this inside the loop.
 
@@ -166,11 +166,11 @@
  */
 
 /obj/structure/filingcabinet/seeds
-	name = "seeds cabinet"
-	desc = "A large cabinet with drawers. This one is meant for storing seed packets"
+	name = "种子柜"
+	desc = "带有抽屉的大柜子，用于存放种子包。"
 	allowed_types = list(/obj/item/seeds)
 
 /obj/structure/filingcabinet/disk
-	name = "disk cabinet"
-	desc = "A large cabinet with drawers. This one is meant for storing floral data disks"
+	name = "磁盘柜"
+	desc = "带有抽屉的大柜子，用于存放植物数据磁盘。"
 	allowed_types = list(/obj/item/disk)

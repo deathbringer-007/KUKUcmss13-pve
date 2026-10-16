@@ -1,6 +1,6 @@
 /obj/item/organ
-	name = "organ"
-	desc = "It looks like it probably just plopped out."
+	name = "器官"
+	desc = "看起来像是刚从身体里掉出来的。"
 	icon = 'icons/obj/items/organs.dmi'
 	icon_state = "appendix"
 
@@ -67,7 +67,7 @@
 		die()
 
 /obj/item/organ/proc/die()
-	name = "dead [initial(name)]"
+	name = "坏死的[initial(name)]"
 	if(dead_icon) icon_state = dead_icon
 	health = 0
 	STOP_PROCESSING(SSobj, src)
@@ -77,7 +77,7 @@
 
 // Brain is defined in brain_item.dm.
 /obj/item/organ/heart
-	name = "heart"
+	name = "心脏"
 	icon_state = "heart-on"
 	organ_tag = "heart"
 	fresh = 6 // Juicy.
@@ -86,14 +86,14 @@
 	black_market_value = 35
 
 /obj/item/organ/lungs
-	name = "lungs"
+	name = "肺"
 	icon_state = "lungs"
 	gender = PLURAL
 	organ_tag = "lungs"
 	organ_type = /datum/internal_organ/lungs
 
 /obj/item/organ/kidneys
-	name = "kidneys"
+	name = "肾脏"
 	icon_state = "kidneys"
 	gender = PLURAL
 	organ_tag = "kidneys"
@@ -101,7 +101,7 @@
 	black_market_value = 35
 
 /obj/item/organ/eyes
-	name = "eyeballs"
+	name = "眼球"
 	icon_state = "eyes"
 	gender = PLURAL
 	organ_tag = "eyes"
@@ -109,14 +109,14 @@
 	var/eyes_color
 
 /obj/item/organ/liver
-	name = "liver"
+	name = "肝脏"
 	icon_state = "liver"
 	organ_tag = "liver"
 	organ_type = /datum/internal_organ/liver
 
 /obj/item/organ/xeno
-	name = "acidic heart"
-	desc = "Acidic heart removed from a xenomorph. It spews droplets of acid every so often."
+	name = "酸性心脏"
+	desc = "从异形体内取出的酸性心脏，时不时喷出几滴酸液。"
 	icon_state = "heart_t1"
 	organ_tag = "heart"
 	black_market_value = 60
@@ -127,7 +127,7 @@
 
 //These are here so they can be printed out via the fabricator.
 /obj/item/organ/heart/prosthetic
-	name = "circulatory pump"
+	name = "循环泵"
 	icon_state = "heart-prosthetic"
 	robotic = ORGAN_ROBOT
 	organ_type = /datum/internal_organ/heart/prosthetic
@@ -135,35 +135,35 @@
 
 /obj/item/organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT
-	name = "gas exchange system"
+	name = "气体交换系统"
 	icon_state = "lungs-prosthetic"
 	organ_type = /datum/internal_organ/lungs/prosthetic
 	black_market_value = 0
 
 /obj/item/organ/kidneys/prosthetic
 	robotic = ORGAN_ROBOT
-	name = "prosthetic kidneys"
+	name = "人工肾脏"
 	icon_state = "kidneys-prosthetic"
 	organ_type = /datum/internal_organ/kidneys/prosthetic
 	black_market_value = 0
 
 /obj/item/organ/eyes/prosthetic
 	robotic = ORGAN_ROBOT
-	name = "visual prosthesis"
+	name = "视觉义体"
 	icon_state = "eyes-prosthetic"
 	organ_type = /datum/internal_organ/eyes/prosthetic
 	black_market_value = 0
 
 /obj/item/organ/liver/prosthetic
 	robotic = ORGAN_ROBOT
-	name = "toxin filter"
+	name = "毒素过滤器"
 	icon_state = "liver-prosthetic"
 	organ_type = /datum/internal_organ/liver/prosthetic
 	black_market_value = 0
 
 /obj/item/organ/brain/prosthetic
 	robotic = ORGAN_ROBOT
-	name = "cyberbrain"
+	name = "电子脑"
 	icon_state = "brain-prosthetic"
 	organ_type = /datum/internal_organ/brain/prosthetic
 
@@ -217,7 +217,7 @@
 	if(robotic)
 		return
 
-	to_chat(user, SPAN_NOTICE(" You take an experimental bite out of \the [src]."))
+	to_chat(user, SPAN_NOTICE("你试探着咬了一口\the [src]。"))
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
 	if(B)
 		var/turf/TU = get_turf(src)

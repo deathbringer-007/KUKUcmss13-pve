@@ -33,15 +33,15 @@
 /datum/simulator/proc/start_watching(mob/living/user)
 
 	if(user in users_in_sim)
-		to_chat(user, SPAN_WARNING("You are already looking at the simulation."))
+		to_chat(user, SPAN_WARNING("你已经在观看模拟了。"))
 		return
 	if(!sim_camera)
 		sim_camera = SAFEPICK(GLOB.simulator_cameras)
 	if(!sim_camera)
-		to_chat(user, SPAN_WARNING("GPU damaged! Unable to start simulation."))
+		to_chat(user, SPAN_WARNING("图形处理器损坏！无法开始模拟。"))
 		return
 	if(user.client.view != GLOB.world_view_size)
-		to_chat(user, SPAN_WARNING("You're too busy looking at something else."))
+		to_chat(user, SPAN_WARNING("你正忙着看别的东西。"))
 		return
 	user.reset_view(sim_camera)
 	users_in_sim += user
@@ -81,7 +81,7 @@
 /datum/simulator/proc/spawn_mobs(mob/living/user)
 
 	if(!sim_reboot_state)
-		to_chat(user, SPAN_WARNING("GPU damaged! Unable to start simulation."))
+		to_chat(user, SPAN_WARNING("图形处理器损坏！无法开始模拟。"))
 		return
 
 	COOLDOWN_START(src, detonation_cooldown, detonation_cooldown_time)
@@ -95,7 +95,7 @@
 					user.client.cmd_admin_dress_human(human_dummy, "CLF Soldier", no_logs = TRUE)
 				if(UPP_MODE)
 					user.client.cmd_admin_dress_human(human_dummy, "UPP Conscript", no_logs = TRUE)
-			human_dummy.name = "simulated human"
+			human_dummy.name = "模拟人类"
 
 			delete_targets += human_dummy
 			continue

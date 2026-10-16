@@ -2,9 +2,9 @@
 #define PLANTED_FLAG_RANGE 7
 
 /obj/structure/machinery/defenses/planted_flag
-	name = "\improper JIMA planted flag"
+	name = "\improper JIMA驻地军旗"
 	icon = 'icons/obj/structures/machinery/defenses/planted_flag.dmi'
-	desc = "A planted flag with the iconic USCM flag plastered all over it, you feel a burst of energy by its mere sight."
+	desc = "竖立的军旗上印着醒目的殖民地陆战队旗帜，光是看到它就让你精神一振。"
 	handheld_type = /obj/item/defenses/handheld/planted_flag
 	disassemble_time = 10
 	var/datum/shape/range_bounds
@@ -56,11 +56,11 @@
 /obj/structure/machinery/defenses/planted_flag/power_on_action()
 	apply_area_effect()
 	start_processing()
-	visible_message("[icon2html(src, viewers(src))] [SPAN_NOTICE("The [name] gives a short ring, as it comes alive.")]")
+	visible_message("[icon2html(src, viewers(src))] [SPAN_NOTICE("[name]发出短促铃声，启动了。")]")
 
 /obj/structure/machinery/defenses/planted_flag/power_off_action()
 	stop_processing()
-	visible_message("[icon2html(src, viewers(src))] [SPAN_NOTICE("The [name] gives a beep and powers down.")]")
+	visible_message("[icon2html(src, viewers(src))] [SPAN_NOTICE("[name]发出哔声，关闭了。")]")
 
 /obj/structure/machinery/defenses/planted_flag/process()
 	if(!turned_on)
@@ -92,7 +92,7 @@
 	H.activate_order_buff(COMMAND_ORDER_FOCUS, buff_intensity, 1.5 SECONDS)
 
 /obj/structure/machinery/defenses/planted_flag/range
-	name = "extended JIMA planted flag"
+	name = "扩展型JIMA驻地军旗"
 	health = 150
 	health_max = 150
 	area_range = PLANTED_FLAG_RANGE * 2 // Double range
@@ -101,7 +101,7 @@
 	defense_type = "Range"
 
 /obj/structure/machinery/defenses/planted_flag/warbanner
-	name = "JIMA planted warbanner"
+	name = "JIMA驻地战旗"
 	disassemble_time = 0.5 SECONDS
 	health = 250
 	health_max = 250
@@ -116,8 +116,8 @@
 	H.activate_order_buff(COMMAND_ORDER_MOVE, buff_intensity, 5 SECONDS)
 
 /obj/structure/machinery/defenses/planted_flag/wy
-	name = "WY planted flag"
-	desc = "A planted flag with the iconic WY flag plastered all over it, you feel a burst of energy by its mere sight."
+	name = "维兰德-汤谷驻地旗帜"
+	desc = "竖立的旗帜上印着醒目的维兰德-汤谷标志，光是看到它就让你精神一振。"
 	icon = 'icons/obj/structures/machinery/defenses/wy_defenses.dmi'
 	disassemble_time = 6 SECONDS
 	hack_time = 25 SECONDS
@@ -136,8 +136,8 @@
 	H.activate_order_buff(COMMAND_ORDER_MOVE, buff_intensity, 2 SECONDS)
 
 /obj/structure/machinery/defenses/planted_flag/upp
-	name = "UPP planted flag"
-	desc = "A planted flag with the iconic UPP flag plastered all over it, you feel a burst of energy by its mere sight."
+	name = "进步人民联盟驻地旗帜"
+	desc = "竖立的旗帜上印着醒目的进步人民联盟标志，光是看到它就让你精神一振。"
 	icon = 'icons/obj/structures/machinery/defenses/upp_defenses.dmi'
 	disassemble_time = 5 SECONDS
 	health = 300
@@ -150,7 +150,7 @@
 	)
 
 /obj/item/storage/backpack/jima
-	name = "JIMA frame mount"
+	name = "JIMA背架"
 	icon = 'icons/obj/items/clothing/backpacks.dmi'
 	icon_state = "flag_backpack"
 	max_storage_space = 10

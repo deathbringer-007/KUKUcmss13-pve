@@ -1,7 +1,7 @@
 
 /obj/item/xeno_egg
-	name = "egg"
-	desc = "Some sort of egg."
+	name = "异形卵"
+	desc = "某种卵。"
 	icon = 'icons/mob/xenos/effects.dmi'
 	icon_state = "egg_item"
 	w_class = SIZE_MASSIVE
@@ -39,10 +39,10 @@
 /obj/item/xeno_egg/get_examine_text(mob/user)
 	. = ..()
 	if(isxeno(user))
-		. += "A queen egg, it needs to be planted on weeds to start growing."
+		. += "一枚女皇卵，需要种在菌毯上才能开始生长。"
 		if(hivenumber != XENO_HIVE_NORMAL)
 			var/datum/hive_status/hive = GLOB.hive_datum[hivenumber]
-			. += "This one appears to belong to the [hive.name]"
+			. += "这枚卵似乎属于[hive.name]。"
 
 /obj/item/xeno_egg/afterattack(atom/target, mob/user, proximity)
 	if(istype(target, /obj/effect/alien/resin/special/eggmorph))
@@ -60,15 +60,15 @@
 /obj/item/xeno_egg/proc/plant_egg_human(mob/living/carbon/human/user, turf/T)
 	if(user.hivenumber != hivenumber)
 		if(!istype(T, /turf/open/floor/almayer/research/containment))
-			to_chat(user, SPAN_WARNING("Best not to plant this thing outside of a containment cell."))
+			to_chat(user, SPAN_WARNING("最好不要把这东西种在收容室外。"))
 			return
 		for (var/obj/O in T)
 			if (!istype(O,/obj/structure/machinery/light/small))
-				to_chat(user, SPAN_WARNING("The floor needs to be clear to plant this!"))
+				to_chat(user, SPAN_WARNING("必须清空地面才能种下它！"))
 				return
 
-	user.visible_message(SPAN_NOTICE("[user] starts planting [src]."), \
-					SPAN_NOTICE("You start planting [src]."), null, 5)
+	user.visible_message(SPAN_NOTICE("[user]开始种植[src]。"), \
+					SPAN_NOTICE("你开始种植[src]。"), null, 5)
 	if(!do_after(user, 50, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		return
 
@@ -88,7 +88,7 @@
 	if(!proximity)
 		return // no message because usual behavior is not to show any
 	if(!user.hive)
-		to_chat(user, SPAN_XENOWARNING("Your hive cannot procreate."))
+		to_chat(user, SPAN_XENOWARNING("你的虫巢无法繁殖。"))
 		return
 	if(!user.check_alien_construction(T))
 		return
@@ -109,24 +109,24 @@
 
 	var/datum/hive_status/hive = GLOB.hive_datum[hivenumber]
 	if(!any_weeds && !hive_weeds) //you need at least some weeds to plant on.
-		to_chat(user, SPAN_XENOWARNING("[src] must be planted on [lowertext(hive.prefix)]weeds."))
+		to_chat(user, SPAN_XENOWARNING("[src]必须种在[lowertext(hive.prefix)]菌毯上。"))
 		return
 
 	if(!hive_weeds && needs_hive_weeds)
-		to_chat(user, SPAN_XENOWARNING("[src] can only be planted on [lowertext(hive.prefix)]hive weeds."))
+		to_chat(user, SPAN_XENOWARNING("[src]只能种在[lowertext(hive.prefix)]虫巢菌毯上。"))
 		return
 
 	if(istype(get_area(T), /area/interior))
-		to_chat(user, SPAN_XENOWARNING("[src] cannot be planted inside a vehicle."))
+		to_chat(user, SPAN_XENOWARNING("[src]不能种在载具内部。"))
 		return
 
 	for(var/obj/object in T.contents)
 		var/obj/effect/alien/egg/xeno_egg = /obj/effect/alien/egg
 		if(object.layer > initial(xeno_egg.layer))
-			to_chat(user, SPAN_XENOWARNING("[src] cannot be planted below objects that would obscure it."))
+			to_chat(user, SPAN_XENOWARNING("[src]不能种在会遮住它的物体下方。"))
 			return
 
-	user.visible_message(SPAN_XENONOTICE("[user] starts planting [src]."), SPAN_XENONOTICE("You start planting [src]."), null, 5)
+	user.visible_message(SPAN_XENONOTICE("[user]开始种植[src]。"), SPAN_XENONOTICE("你开始种植[src]。"), null, 5)
 
 	var/plant_time = 35
 	if(isdrone(user))
@@ -149,7 +149,7 @@
 			else if(weed.weed_strength >= WEED_LEVEL_STANDARD)
 				newegg = new /obj/effect/alien/egg/carrier_egg(T,hivenumber, user)
 			else
-				to_chat(user, SPAN_XENOWARNING("[src] can't be planted on these weeds."))
+				to_chat(user, SPAN_XENOWARNING("[src]无法种在这种菌毯上。"))
 				return
 
 			newegg.flags_embryo = flags_embryo
@@ -182,7 +182,7 @@
 		return XENO_NO_DELAY_ACTION
 	if(user.caste.can_hold_eggs == CAN_HOLD_TWO_HANDS)
 		if(user.r_hand || user.l_hand)
-			to_chat(user, SPAN_XENOWARNING("You need two hands to hold [src]."))
+			to_chat(user, SPAN_XENOWARNING("你需要双手才能拿住[src]。"))
 		else
 			attack_hand(user)
 		return XENO_NO_DELAY_ACTION

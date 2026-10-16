@@ -95,7 +95,7 @@
 			light_disabled = !light_disabled
 
 		if(CAMERA_WIRE_ALARM)
-			src.visible_message("[icon2html(src, hearers(src))] *beep*", "[icon2html(src, hearers(src))] *beep*")
+			src.visible_message("[icon2html(src, hearers(src))] *哔*", "[icon2html(src, hearers(src))] *哔*")
 
 	src.interact(usr)
 
@@ -104,32 +104,32 @@
 		return
 
 	user.set_interaction(src)
-	var/t1 = text("<B>Access Panel</B><br>\n")
+	var/t1 = text("<B>检修面板</B><br>\n")
 	var/list/wires = list(
-		"Orange" = 1,
-		"Dark red" = 2,
-		"White" = 3,
-		"Yellow" = 4,
-		"Blue" = 5,
-		"Pink" = 6
+		"橙色" = 1,
+		"暗红色" = 2,
+		"白色" = 3,
+		"黄色" = 4,
+		"蓝色" = 5,
+		"粉色" = 6
 	)
 	for(var/wiredesc in wires)
 		var/is_uncut = src.wires & WireColorToFlag[wires[wiredesc]]
-		t1 += "[wiredesc] wire: "
+		t1 += "[wiredesc]电线："
 		if(!is_uncut)
-			t1 += "<a href='byond://?src=\ref[src];wires=[wires[wiredesc]]'>Mend</a>"
+			t1 += "<a href='byond://?src=\ref[src];wires=[wires[wiredesc]]'>接合</a>"
 		else
-			t1 += "<a href='byond://?src=\ref[src];wires=[wires[wiredesc]]'>Cut</a> "
-			t1 += "<a href='byond://?src=\ref[src];pulse=[wires[wiredesc]]'>Pulse</a> "
+			t1 += "<a href='byond://?src=\ref[src];wires=[wires[wiredesc]]'>剪断</a> "
+			t1 += "<a href='byond://?src=\ref[src];pulse=[wires[wiredesc]]'>脉冲</a> "
 		t1 += "<br>"
 
-	t1 += "<br>\n[(src.view_range == initial(view_range) ? "The focus light is on." : "The focus light is off.")]"
-	t1 += "<br>\n[(src.can_use() ? "The power link light is on." : "The power link light is off.")]"
-	t1 += "<br>\n[(light_disabled ? "The camera light is off." : "The camera light is on.")]"
-	t1 += "<br>\n[(alarm_on ? "The alarm light is on." : "The alarm light is off.")]"
+	t1 += "<br>\n[(src.view_range == initial(view_range) ? "聚焦指示灯亮着。" : "聚焦指示灯熄灭。")]"
+	t1 += "<br>\n[(src.can_use() ? "电源连接指示灯亮着。" : "电源连接指示灯熄灭。")]"
+	t1 += "<br>\n[(light_disabled ? "摄像头照明已关闭。" : "摄像头照明已开启。")]"
+	t1 += "<br>\n[(alarm_on ? "警报指示灯亮着。" : "警报指示灯熄灭。")]"
 
-	t1 += "<p><a href='byond://?src=\ref[src];close2=1'>Close</a></p>\n"
-	show_browser(user, t1, "Camera Access Panel", "wires")
+	t1 += "<p><a href='byond://?src=\ref[src];close2=1'>关闭</a></p>\n"
+	show_browser(user, t1, "摄像头检修面板", "wires")
 
 
 
@@ -141,7 +141,7 @@
 			var/t1 = text2num(href_list["wires"])
 			var/obj/item/held_item = usr.get_held_item()
 			if (!held_item || !HAS_TRAIT(held_item, TRAIT_TOOL_WIRECUTTERS))
-				to_chat(usr, SPAN_WARNING("You need wirecutters!"))
+				to_chat(usr, SPAN_WARNING("你需要剪线钳！"))
 				return
 			if (src.isWireColorCut(t1))
 				src.mend(t1)
@@ -151,10 +151,10 @@
 			var/t1 = text2num(href_list["pulse"])
 			var/obj/item/held_item = usr.get_held_item()
 			if (!held_item || !HAS_TRAIT(held_item, TRAIT_TOOL_MULTITOOL))
-				to_chat(usr, SPAN_WARNING("You need a multitool!"))
+				to_chat(usr, SPAN_WARNING("你需要多功能工具！"))
 				return
 			if (src.isWireColorCut(t1))
-				to_chat(usr, SPAN_WARNING("You can't pulse a cut wire."))
+				to_chat(usr, SPAN_WARNING("你无法向已剪断的电线发送脉冲。"))
 				return
 			else
 				src.pulse(t1)

@@ -3,9 +3,9 @@
 #define FRIDGE_WIRE_IDSCAN 3
 
 GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
-		FRIDGE_WIRE_SHOCK = "Ground safety",
-		FRIDGE_WIRE_SHOOT_INV = "Dispenser motor control",
-		FRIDGE_WIRE_IDSCAN = "ID scanner",
+		FRIDGE_WIRE_SHOCK = "接地保护",
+		FRIDGE_WIRE_SHOOT_INV = "出货电机控制",
+		FRIDGE_WIRE_IDSCAN = "身份卡扫描器",
 	)))
 
 #define FRIDGE_LOCK_COMPLETE 1
@@ -15,7 +15,7 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 /* SmartFridge.  Much todo
 */
 /obj/structure/machinery/smartfridge
-	name = "\improper SmartFridge"
+	name = "\improper 智能冰箱"
 	icon = 'icons/obj/structures/machinery/vending.dmi'
 	icon_state = "smartfridge"
 	layer = BELOW_OBJ_LAYER
@@ -96,7 +96,7 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 
 	if(HAS_TRAIT(O, TRAIT_TOOL_SCREWDRIVER))
 		panel_open = !panel_open
-		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
+		to_chat(user, "你[panel_open ? "打开" : "关闭"]了检修面板。")
 		overlays.Cut()
 		if(panel_open)
 			overlays += image(icon, icon_panel)
@@ -109,14 +109,14 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 		return
 
 	if(!ispowered)
-		to_chat(user, SPAN_NOTICE("\The [src] is unpowered and useless."))
+		to_chat(user, SPAN_NOTICE("\The [src]没有供电，无法使用。"))
 		return
 
 	if(accept_check(O))
 		if(user.drop_held_item())
 			add_local_item(O)
-			user.visible_message(SPAN_NOTICE("[user] has added \the [O] to \the [src]."), \
-								SPAN_NOTICE("You add \the [O] to \the [src]."))
+			user.visible_message(SPAN_NOTICE("[user]将\the [O]放入了\the [src]。"), \
+								SPAN_NOTICE("你将\the [O]放入了\the [src]。"))
 
 	else if(istype(O, /obj/item/storage/bag/plants))
 		var/obj/item/storage/bag/plants/P = O
@@ -129,13 +129,13 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 		if(plants_loaded)
 
 			user.visible_message( \
-				SPAN_NOTICE("[user] loads \the [src] with \the [P]."), \
-				SPAN_NOTICE("You load \the [src] with \the [P]."))
+				SPAN_NOTICE("[user]将\the [P]装进了\the [src]。"), \
+				SPAN_NOTICE("你将\the [P]装进了\the [src]。"))
 			if(length(P.contents) > 0)
-				to_chat(user, SPAN_NOTICE("Some items are refused."))
+				to_chat(user, SPAN_NOTICE("有些物品未被接收。"))
 
 	else if(!(O.flags_item & NOBLUDGEON)) //so we can spray, scan, c4 the machine.
-		to_chat(user, SPAN_NOTICE("\The [src] smartly refuses [O]."))
+		to_chat(user, SPAN_NOTICE("\The [src]明智地拒收了[O]。"))
 		return 1
 
 /obj/structure/machinery/smartfridge/attack_remote(mob/user)
@@ -143,7 +143,7 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 
 /obj/structure/machinery/smartfridge/attack_hand(mob/user)
 	if(!ispowered)
-		to_chat(user, SPAN_WARNING("[src] has no power."))
+		to_chat(user, SPAN_WARNING("[src]没有供电。"))
 		return
 	if(!COOLDOWN_FINISHED(src, electrified_cooldown))
 		if(shock(user, 100))
@@ -286,14 +286,14 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 	switch(action)
 		if("vend")
 			if(inoperable())
-				to_chat(user, SPAN_WARNING("\The [src] has no power."))
+				to_chat(user, SPAN_WARNING("\The [src]没有供电。"))
 				return FALSE
 			if(is_secure_fridge)
 				if(locked == FRIDGE_LOCK_COMPLETE)
-					to_chat(usr, SPAN_DANGER("Access denied."))
+					to_chat(usr, SPAN_DANGER("拒绝访问。"))
 					return FALSE
 				if(!allowed(usr) && locked == FRIDGE_LOCK_ID)
-					to_chat(usr, SPAN_DANGER("Access denied."))
+					to_chat(usr, SPAN_DANGER("拒绝访问。"))
 					return FALSE
 			var/index=params["index"]
 			var/amount=params["amount"]
@@ -320,14 +320,14 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 					return TRUE
 		if("transfer")
 			if(inoperable())
-				to_chat(user, SPAN_WARNING("\The [src] has no power."))
+				to_chat(user, SPAN_WARNING("\The [src]没有供电。"))
 				return FALSE
 			if(is_secure_fridge)
 				if(locked == FRIDGE_LOCK_COMPLETE)
-					to_chat(usr, SPAN_DANGER("Access denied."))
+					to_chat(usr, SPAN_DANGER("拒绝访问。"))
 					return FALSE
 				if(!allowed(usr) && locked == FRIDGE_LOCK_ID)
-					to_chat(usr, SPAN_DANGER("Access denied."))
+					to_chat(usr, SPAN_DANGER("拒绝访问。"))
 					return FALSE
 			var/index=params["index"]
 			var/amount=params["amount"]
@@ -356,11 +356,11 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 			if(!panel_open)
 				return FALSE
 			if(!skillcheck(usr, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-				to_chat(usr, SPAN_WARNING("You don't understand anything about this wiring..."))
+				to_chat(usr, SPAN_WARNING("你完全看不懂这些线路……"))
 				return FALSE
 			var/obj/item/held_item = user.get_held_item()
 			if (!held_item || !HAS_TRAIT(held_item, TRAIT_TOOL_WIRECUTTERS))
-				to_chat(user, SPAN_WARNING("You need wirecutters!"))
+				to_chat(user, SPAN_WARNING("你需要剪线钳！"))
 				return TRUE
 
 			var/wire = params["wire"]
@@ -370,11 +370,11 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 			if(!panel_open)
 				return FALSE
 			if(!skillcheck(usr, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-				to_chat(usr, SPAN_WARNING("You don't understand anything about this wiring..."))
+				to_chat(usr, SPAN_WARNING("你完全看不懂这些线路……"))
 				return FALSE
 			var/obj/item/held_item = user.get_held_item()
 			if (!held_item || !HAS_TRAIT(held_item, TRAIT_TOOL_WIRECUTTERS))
-				to_chat(user, SPAN_WARNING("You need wirecutters!"))
+				to_chat(user, SPAN_WARNING("你需要剪线钳！"))
 				return TRUE
 			var/wire = params["wire"]
 			mend(wire)
@@ -383,15 +383,15 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 			if(!panel_open)
 				return FALSE
 			if(!skillcheck(usr, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-				to_chat(usr, SPAN_WARNING("You don't understand anything about this wiring..."))
+				to_chat(usr, SPAN_WARNING("你完全看不懂这些线路……"))
 				return FALSE
 			var/obj/item/held_item = user.get_held_item()
 			if (!held_item || !HAS_TRAIT(held_item, TRAIT_TOOL_MULTITOOL))
-				to_chat(user, "You need multitool!")
+				to_chat(user, "你需要多功能工具！")
 				return TRUE
 			var/wire = params["wire"]
 			if (isWireCut(wire))
-				to_chat(usr, SPAN_WARNING("You can't pulse a cut wire."))
+				to_chat(usr, SPAN_WARNING("你无法向已剪断的电线发送脉冲。"))
 				return TRUE
 			pulse(wire)
 			return TRUE
@@ -407,14 +407,14 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 	switch(wire)
 		if(FRIDGE_WIRE_SHOCK)
 			COOLDOWN_START(src, electrified_cooldown, 12 HOURS)
-			visible_message(SPAN_DANGER("Electric arcs shoot off from \the [src]!"))
+			visible_message(SPAN_DANGER("\the [src]迸出一道道电弧！"))
 		if (FRIDGE_WIRE_SHOOT_INV)
 			if(!shoot_inventory)
 				shoot_inventory = TRUE
-				visible_message(SPAN_WARNING("\The [src] begins whirring noisily."))
+				visible_message(SPAN_WARNING("\The [src]开始发出嘈杂的嗡鸣。"))
 		if(FRIDGE_WIRE_IDSCAN)
 			locked = FRIDGE_LOCK_COMPLETE //totally lock it down
-			visible_message(SPAN_NOTICE("\The [src] emits a slight thunk."))
+			visible_message(SPAN_NOTICE("\The [src]发出轻微的咚声。"))
 
 /obj/structure/machinery/smartfridge/proc/mend(wire)
 	wires |= getWireFlag(wire)
@@ -423,25 +423,25 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 			COOLDOWN_RESET(src, electrified_cooldown)
 		if (FRIDGE_WIRE_SHOOT_INV)
 			shoot_inventory = FALSE
-			visible_message(SPAN_NOTICE("\The [src] stops whirring."))
+			visible_message(SPAN_NOTICE("\The [src]停止了嗡鸣。"))
 		if(FRIDGE_WIRE_IDSCAN)
 			locked = FRIDGE_LOCK_ID //back to normal
-			visible_message(SPAN_NOTICE("\The [src] emits a click."))
+			visible_message(SPAN_NOTICE("\The [src]发出咔嗒声。"))
 
 /obj/structure/machinery/smartfridge/proc/pulse(wire)
 	switch(wire)
 		if(FRIDGE_WIRE_SHOCK)
 			COOLDOWN_START(src, electrified_cooldown, 30 SECONDS)
-			visible_message(SPAN_DANGER("Electric arcs shoot off from \the [src]!"))
+			visible_message(SPAN_DANGER("\the [src]迸出一道道电弧！"))
 		if(FRIDGE_WIRE_SHOOT_INV)
 			shoot_inventory = !shoot_inventory
 			if(shoot_inventory)
-				visible_message(SPAN_WARNING("\The [src] begins whirring noisily."))
+				visible_message(SPAN_WARNING("\The [src]开始发出嘈杂的嗡鸣。"))
 			else
-				visible_message(SPAN_NOTICE("\The [src] stops whirring."))
+				visible_message(SPAN_NOTICE("\The [src]停止了嗡鸣。"))
 		if(FRIDGE_WIRE_IDSCAN)
 			locked = FRIDGE_LOCK_NOLOCK //open sesame
-			visible_message(SPAN_NOTICE("\The [src] emits a click."))
+			visible_message(SPAN_NOTICE("\The [src]发出咔嗒声。"))
 
 /obj/structure/machinery/smartfridge/proc/isWireCut(wire)
 	return !(wires & getWireFlag(wire))
@@ -464,7 +464,7 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 	if(!throw_item)
 		return 0
 	INVOKE_ASYNC(throw_item, /atom/movable/proc/throw_atom, target, 16, SPEED_AVERAGE, src)
-	src.visible_message(SPAN_DANGER("<b>[src] launches [throw_item.name] at [target.name]!</b>"))
+	src.visible_message(SPAN_DANGER("<b>[src]向[target.name]发射了[throw_item.name]！</b>"))
 	return 1
 
 /obj/structure/machinery/smartfridge/proc/is_in_network()
@@ -477,8 +477,8 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 //*********************/
 
 /obj/structure/machinery/smartfridge/seeds
-	name = "\improper MegaSeed Servitor"
-	desc = "When you need seeds fast!"
+	name = "\improper 超级种子供应机"
+	desc = "急需种子时的好帮手！"
 	icon = 'icons/obj/structures/machinery/vending.dmi'
 	icon_state = "seeds"
 	icon_on = "seeds"
@@ -491,8 +491,8 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 
 //the secure subtype does nothing, I'm only keeping it to avoid conflicts with maps.
 /obj/structure/machinery/smartfridge/secure/medbay
-	name = "\improper Refrigerated Medicine Storage"
-	desc = "A refrigerated storage unit for storing medicine and chemicals."
+	name = "\improper 药品冷藏柜"
+	desc = "用于存放药品和化学品的冷藏设备。"
 	icon_state = "smartfridge" //To fix the icon in the map editor.
 	icon_on = "smartfridge_chem"
 	is_secure_fridge = TRUE
@@ -509,8 +509,8 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 
 
 /obj/structure/machinery/smartfridge/secure/virology
-	name = "\improper Refrigerated Virus Storage"
-	desc = "A refrigerated storage unit for storing viral material."
+	name = "\improper 病毒冷藏柜"
+	desc = "用于存放病毒材料的冷藏设备。"
 	is_secure_fridge = TRUE
 	req_access = list(39)
 	icon_state = "smartfridge_virology"
@@ -524,8 +524,8 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 
 
 /obj/structure/machinery/smartfridge/chemistry
-	name = "\improper Smart Chemical Storage"
-	desc = "A refrigerated storage unit for medicine and chemical storage."
+	name = "\improper 智能化学品储存柜"
+	desc = "用于存放药品和化学品的冷藏设备。"
 	is_secure_fridge = TRUE
 	req_one_access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
 	networked = TRUE
@@ -539,13 +539,13 @@ GLOBAL_LIST_INIT(fridge_wire_descriptions, flatten_numeric_alist(alist(
 	req_one_access = list(ACCESS_ILLEGAL_PIRATE, ACCESS_UPP_GENERAL, ACCESS_CLF_GENERAL)
 
 /obj/structure/machinery/smartfridge/chemistry/virology
-	name = "\improper Smart Virus Storage"
-	desc = "A refrigerated storage unit for volatile sample storage."
+	name = "\improper 智能病毒储存柜"
+	desc = "用于存放不稳定样本的冷藏设备。"
 
 
 /obj/structure/machinery/smartfridge/drinks
-	name = "\improper Drink Showcase"
-	desc = "A refrigerated storage unit for tasty tasty alcohol."
+	name = "\improper 饮品展示柜"
+	desc = "用于存放美味酒水的冷藏设备。"
 
 /obj/structure/machinery/smartfridge/drinks/accept_check(obj/item/O as obj)
 	if(istype(O,/obj/item/reagent_container/glass) || istype(O,/obj/item/reagent_container/food/drinks) || istype(O,/obj/item/reagent_container/food/condiment))

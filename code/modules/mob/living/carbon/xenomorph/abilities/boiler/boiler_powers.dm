@@ -17,7 +17,7 @@
 			return
 
 		xeno.create_empower()
-		xeno.visible_message(SPAN_XENODANGER("[xeno] starts to gather its acid for a massive blast!"), SPAN_XENODANGER("We start to gather our acid for a massive blast!"))
+		xeno.visible_message(SPAN_XENODANGER("[xeno]开始聚集酸液，准备发动猛烈轰击！"), SPAN_XENODANGER("我们开始聚集酸液，准备发动猛烈轰击！"))
 		activated_once = TRUE
 		stack()
 		addtimer(CALLBACK(src, PROC_REF(timeout)), max_stacks*stack_time + time_after_max_before_end)
@@ -54,8 +54,8 @@
 
 			new /obj/effect/xenomorph/acid_damage_delay(turf, damage, 7, FALSE, "You are blasted with a stream of high-velocity acid!", xeno)
 
-		xeno.visible_message(SPAN_XENODANGER("[xeno] fires a massive blast of acid at [affected_atom]!"), SPAN_XENODANGER("We fire a massive blast of acid at [affected_atom]!"))
-		remove_stack_effects("We feel our speed return to normal!")
+		xeno.visible_message(SPAN_XENODANGER("[xeno]向[affected_atom]发射了一大股酸液！"), SPAN_XENODANGER("我们向[affected_atom]发射了一大股酸液！"))
+		remove_stack_effects("我们的速度恢复正常了！")
 		return TRUE
 
 /datum/action/xeno_action/activable/acid_lance/proc/stack()
@@ -74,7 +74,7 @@
 		addtimer(CALLBACK(src, PROC_REF(stack)), stack_time)
 		return
 	else
-		to_chat(xeno, SPAN_XENOHIGHDANGER("We have charged our acid lance to maximum!"))
+		to_chat(xeno, SPAN_XENOHIGHDANGER("酸液长枪已经蓄满力量！"))
 		return
 
 /datum/action/xeno_action/activable/acid_lance/proc/remove_stack_effects(message = null)
@@ -97,7 +97,7 @@
 /datum/action/xeno_action/activable/acid_lance/proc/timeout()
 	if (activated_once)
 		activated_once = FALSE
-		remove_stack_effects("We have waited too long and can no longer use our acid lance!")
+		remove_stack_effects("我们等得太久，已经无法施放酸液长枪了！")
 
 
 /datum/action/xeno_action/activable/acid_lance/action_cooldown_check()
@@ -132,7 +132,7 @@
 		addtimer(VARSET_CALLBACK(src, sound_play, TRUE), 2 SECONDS)
 
 	if (!do_after(xeno, xeno.ammo.spit_windup/6.5, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_HOSTILE, numticks = 2)) /// 0.7 seconds
-		to_chat(xeno, SPAN_XENODANGER("We decide to cancel our gas shroud."))
+		to_chat(xeno, SPAN_XENODANGER("我们决定取消酸雾屏障。"))
 		return
 
 	playsound(xeno,"acid_sizzle", 50, 1)
@@ -146,7 +146,7 @@
 	var/datum/cause_data/cause_data = create_cause_data("acid shroud gas", owner)
 	spicy_gas.set_up(1, 0, get_turf(xeno), null, 6, new_cause_data = cause_data)
 	spicy_gas.start()
-	to_chat(xeno, SPAN_XENOHIGHDANGER("We dump our acid through our pores, creating a shroud of gas!"))
+	to_chat(xeno, SPAN_XENOHIGHDANGER("我们从毛孔排出酸液，形成酸雾屏障！"))
 
 	for (var/action_type in action_types_to_cd)
 		var/datum/action/xeno_action/xeno_action = get_action(xeno, action_type)
@@ -177,7 +177,7 @@
 		return
 
 	if (!can_see(xeno, affected_atom, TRAPPER_VIEWRANGE))
-		to_chat(xeno, SPAN_XENODANGER("We cannot see that location!"))
+		to_chat(xeno, SPAN_XENODANGER("我们看不到那个位置！"))
 		return
 
 	if (!check_and_use_plasma_owner())
@@ -222,7 +222,7 @@
 		if(!mine.empowered)
 			mine.empowered = TRUE
 			mine.button.overlays += "+empowered"
-			to_chat(xeno, SPAN_XENODANGER("We tap into our reserves to prepare a stronger [mine.name]!"))
+			to_chat(xeno, SPAN_XENODANGER("我们调动储备，准备更强力的[mine.get_display_name()]！"))
 
 	apply_cooldown()
 	return ..()
@@ -243,18 +243,18 @@
 		return
 
 	if(!check_clear_path_to_target(xeno, affected_atom, TRUE, TRAPPER_VIEWRANGE))
-		to_chat(xeno, SPAN_XENOWARNING("Something is in the way!"))
+		to_chat(xeno, SPAN_XENOWARNING("有东西挡住了！"))
 		return
 
 	if (!check_and_use_plasma_owner())
 		return
 
 	var/turf/turf = get_turf(affected_atom)
-	var/acid_bolt_message = "a bolt of acid"
+	var/acid_bolt_message = "一股酸液"
 	if(empowered)
-		acid_bolt_message = "a powerful bolt of acid"
+		acid_bolt_message = "一股强劲的酸液"
 
-	xeno.visible_message(SPAN_XENODANGER("[xeno] fires " + acid_bolt_message + " at [affected_atom]!"), SPAN_XENODANGER("We fire " + acid_bolt_message + " at [affected_atom]!"))
+	xeno.visible_message(SPAN_XENODANGER("[xeno]发射了" + acid_bolt_message + "，射向[affected_atom]！"), SPAN_XENODANGER("我们发射了" + acid_bolt_message + "，射向[affected_atom]！"))
 	new /obj/effect/xenomorph/acid_damage_delay/boiler_landmine(turf, damage, delay, empowered, "You are blasted with " + acid_bolt_message + "!", xeno)
 
 	for (var/turf/target_turf in orange(1, turf))
@@ -278,7 +278,7 @@
 	if(!affected_atom || affected_atom.layer >= FLY_LAYER || !isturf(xeno.loc) || !xeno.check_state())
 		return
 
-	xeno.visible_message(SPAN_XENOWARNING("[xeno] fires a blast of acid at [affected_atom]!"), SPAN_XENOWARNING("We fire a blast of acid at [affected_atom]!"))
+	xeno.visible_message(SPAN_XENOWARNING("[xeno]向[affected_atom]发射了一股酸液！"), SPAN_XENOWARNING("我们向[affected_atom]发射了一股酸液！"))
 
 	var/turf/target_turf = locate(affected_atom.x, affected_atom.y, affected_atom.z)
 	var/obj/projectile/proj = new(xeno.loc, create_cause_data("acid shotgun", xeno))
@@ -291,7 +291,7 @@
 	return ..()
 
 /datum/ammo/xeno/acid_shotgun
-	name = "acid ball"
+	name = "酸液球"
 	ping = null
 	flags_ammo_behavior = AMMO_SKIPS_ALIENS|AMMO_STOPPED_BY_COVER|AMMO_IGNORE_ARMOR|AMMO_ACIDIC
 	bonus_projectiles_type = /datum/ammo/xeno/acid_shotgun/spread
@@ -310,7 +310,7 @@
 	shrapnel_chance = 100
 
 /datum/ammo/xeno/acid_shotgun/spread
-	name = "acid ball"
+	name = "酸液球"
 
 /datum/ammo/xeno/acid_shotgun/spread/New()
 	..()
@@ -331,7 +331,7 @@
 			if(!neuro_effect)
 				neuro_effect = new(carbon_target, owner)
 			neuro_effect.duration += 16
-			to_chat(carbon_target,SPAN_HIGHDANGER("You are injected with something from [stabbing_xeno]'s tailstab!"))
+			to_chat(carbon_target,SPAN_HIGHDANGER("[stabbing_xeno]的尾刺向你体内注入了某种东西！"))
 		else
 			CRASH("Globber has unknown ammo [stabbing_xeno.ammo]! Oh no!")
 		return TRUE

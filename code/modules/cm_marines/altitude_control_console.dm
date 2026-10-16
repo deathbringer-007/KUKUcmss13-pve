@@ -21,16 +21,16 @@ GLOBAL_VAR_INIT(ship_alt, SHIP_ALT_MED)
 
 /obj/structure/machinery/computer/altitude_control_console
 	icon_state = "overwatch"
-	name = "Altitude Control Console"
-	desc = "The A.C.C console monitors, regulates, and updates the ships attitude and altitude in relation to the AO. It's not rocket science."
+	name = "高度控制台"
+	desc = "高度控制台用于监测、调节并更新舰船相对作战区域的姿态和高度。这可没火箭科学那么难。"
 
 /obj/structure/machinery/computer/altitude_control_console/attack_hand()
 	. = ..()
 	if(!skillcheck(usr, SKILL_NAVIGATIONS, SKILL_NAVIGATIONS_TRAINED))
-		to_chat(usr, SPAN_WARNING("A window of complex orbital math opens up. You have no idea what you are doing and quickly close it."))
+		to_chat(usr, SPAN_WARNING("窗口弹出一堆复杂的轨道计算。你完全看不懂，赶紧把它关了。"))
 		return
 	if(GLOB.alt_ctrl_disabled)
-		to_chat(usr, SPAN_WARNING("The Altitude Control Console has been locked by ARES due to Delta Alert."))
+		to_chat(usr, SPAN_WARNING("由于德尔塔警报，ARES已锁定高度控制台。"))
 		return
 	tgui_interact(usr)
 
@@ -46,7 +46,7 @@ GLOBAL_VAR_INIT(ship_alt, SHIP_ALT_MED)
 	. = ..()
 	var/temperature_change
 	if(GLOB.ship_temp >= OVERHEAT)
-		ai_silent_announcement("Attention: orbital correction no longer sustainable, moving to geo-synchronous orbit until engine cooloff.", ";", TRUE)
+		ai_silent_announcement("注意：无法继续维持轨道修正，正在转入同步轨道，等待引擎冷却。", ";", TRUE)
 		GLOB.ship_alt = SHIP_ALT_HIGH
 		temperature_change = OVERHEAT_COOLING
 		for(var/mob/living/carbon/current_mob in GLOB.living_mob_list)
@@ -54,7 +54,7 @@ GLOBAL_VAR_INIT(ship_alt, SHIP_ALT_MED)
 				continue
 			current_mob.apply_effect(3, WEAKEN)
 			shake_camera(current_mob, 10, 2)
-		ai_silent_announcement("Attention performing high-G maneuverer", ";", TRUE)
+		ai_silent_announcement("注意：正在进行高过载机动。", ";", TRUE)
 	if(!temperature_change)
 		switch(GLOB.ship_alt)
 			if(SHIP_ALT_LOW)
@@ -71,7 +71,7 @@ GLOBAL_VAR_INIT(ship_alt, SHIP_ALT_MED)
 			if(!is_mainship_level(current_mob.z))
 				continue
 			shake_camera(current_mob, 10, 1)
-		ai_silent_announcement("Performing Attitude Control", ";", TRUE)
+		ai_silent_announcement("正在调整姿态。", ";", TRUE)
 
 //TGUI.... fun... years have gone by, I am dying of old age
 /obj/structure/machinery/computer/altitude_control_console/tgui_interact(mob/user, datum/tgui/ui)
@@ -117,7 +117,7 @@ GLOBAL_VAR_INIT(ship_alt, SHIP_ALT_MED)
 
 /obj/structure/machinery/computer/altitude_control_console/proc/change_altitude(mob/user, new_altitude)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ALTITUDE_CHANGE))
-		to_chat(user, SPAN_WARNING("The engines are not ready to burn yet."))
+		to_chat(user, SPAN_WARNING("引擎尚未准备好点火。"))
 		return
 	if(GLOB.ship_alt == new_altitude)
 		return
@@ -128,7 +128,7 @@ GLOBAL_VAR_INIT(ship_alt, SHIP_ALT_MED)
 			continue
 		current_mob.apply_effect(3, WEAKEN)
 		shake_camera(current_mob, 10, 2)
-	ai_silent_announcement("Attention: Performing high-G manoeuvre", ";", TRUE)
+	ai_silent_announcement("注意：正在进行高过载机动。", ";", TRUE)
 
 #undef COOLING
 #undef OVERHEAT_COOLING

@@ -1,5 +1,5 @@
 /datum/action/looc_toggle
-	name = "Toggle Overhead LOOC"
+	name = "切换头顶LOOC显示"
 	action_icon_state = "looc_toggle"
 
 /datum/action/looc_toggle/give_to(mob/M)
