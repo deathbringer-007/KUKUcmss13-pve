@@ -1,6 +1,6 @@
 /datum/caste_datum/carrier
 	caste_type = XENO_CASTE_CARRIER
-	caste_desc = "A carrier of huggies."
+	caste_desc = "抱脸虫的携带者。"
 	tier = 2
 
 	melee_damage_lower = XENO_DAMAGE_TIER_2
@@ -45,7 +45,7 @@
 /mob/living/carbon/xenomorph/carrier
 	caste_type = XENO_CASTE_CARRIER
 	name = XENO_CASTE_CARRIER
-	desc = "A strange-looking alien creature. It carries a number of scuttling jointed crablike creatures."
+	desc = "一只外形古怪的异形，身上携带着许多蟹状多足生物，它们不停地爬动。"
 	icon_size = 64
 	icon_xeno = 'icons/mob/xenos/carrier.dmi'
 	icon_state = "Carrier Walking"
@@ -182,7 +182,7 @@
 		if(huggers_cur)
 			//Hugger explosion, like an egg morpher
 			var/mob/living/carbon/xenomorph/facehugger/hugger
-			visible_message(SPAN_XENOWARNING("The chittering mass of tiny aliens is trying to escape [src]!"))
+			visible_message(SPAN_XENOWARNING("一群吱吱叫的小异形正试图逃离[src]！"))
 			for(var/i in 1 to huggers_cur)
 				if(prob(chance))
 					hugger = new(loc, null, hivenumber)
@@ -196,7 +196,7 @@
 		eggs_cur = 0
 
 		if(eggs_dropped) //Checks whether or not to announce egg drop.
-			xeno_message(SPAN_XENOANNOUNCE("[src] has dropped some precious eggs!"), 2, hive.hivenumber)
+			xeno_message(SPAN_XENOANNOUNCE("[src]掉落了几枚珍贵的卵！"), 2, hive.hivenumber)
 
 /mob/living/carbon/xenomorph/carrier/recalculate_actions()
 	. = ..()
@@ -206,32 +206,32 @@
 /mob/living/carbon/xenomorph/carrier/get_status_tab_items()
 	. = ..()
 	if(huggers_max > 0)
-		. += "Stored Huggers: [huggers_cur] / [huggers_max]"
-	. += "Stored Eggs: [eggs_cur] / [eggs_max]"
+		. += "储存的抱脸虫：[huggers_cur] / [huggers_max]"
+	. += "储存的卵：[eggs_cur] / [eggs_max]"
 
 /mob/living/carbon/xenomorph/carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F)
 	if(F.hivenumber != hivenumber)
-		to_chat(src, SPAN_WARNING("This hugger is tainted!"))
+		to_chat(src, SPAN_WARNING("这只抱脸虫受到异巢污染！"))
 		return
 
 	if(huggers_max > 0 && huggers_cur < huggers_max)
 		if(F.stat != DEAD && !F.sterile)
 			huggers_cur++
-			to_chat(src, SPAN_NOTICE("We store the facehugger and carry it for safekeeping. Now sheltering: [huggers_cur] / [huggers_max]."))
+			to_chat(src, SPAN_NOTICE("我们收起抱脸虫，随身保护。当前储存：[huggers_cur] / [huggers_max]。"))
 			update_icons()
 			qdel(F)
 		else
-			to_chat(src, SPAN_WARNING("This [F.name] looks too unhealthy."))
+			to_chat(src, SPAN_WARNING("这只[F.name]看起来太虚弱了。"))
 	else
-		to_chat(src, SPAN_WARNING("We can't carry more facehuggers on us."))
+		to_chat(src, SPAN_WARNING("我们无法携带更多抱脸虫了。"))
 
 /mob/living/carbon/xenomorph/carrier/proc/store_huggers_from_egg_morpher(obj/effect/alien/resin/special/eggmorph/morpher)
 	if(morpher.linked_hive && (morpher.linked_hive.hivenumber != hivenumber))
-		to_chat(src, SPAN_WARNING("That egg morpher is tainted!"))
+		to_chat(src, SPAN_WARNING("那个卵化器受到异巢污染！"))
 		return
 
 	if(morpher.stored_huggers == 0)
-		to_chat(src, SPAN_WARNING("The egg morpher is empty!"))
+		to_chat(src, SPAN_WARNING("卵化器是空的！"))
 		return
 
 	if(huggers_max > 0 && huggers_cur < huggers_max)
@@ -239,12 +239,12 @@
 		huggers_cur += huggers_to_transfer
 		morpher.stored_huggers -= huggers_to_transfer
 		if(huggers_to_transfer == 1)
-			to_chat(src, SPAN_NOTICE("We store one facehugger and carry it for safekeeping. Now sheltering: [huggers_cur] / [huggers_max]."))
+			to_chat(src, SPAN_NOTICE("我们收起一只抱脸虫，随身保护。当前储存：[huggers_cur] / [huggers_max]。"))
 		else
-			to_chat(src, SPAN_NOTICE("We store [huggers_to_transfer] facehuggers and carry them for safekeeping. Now sheltering: [huggers_cur] / [huggers_max]."))
+			to_chat(src, SPAN_NOTICE("我们收起[huggers_to_transfer]只抱脸虫，随身保护。当前储存：[huggers_cur] / [huggers_max]。"))
 		update_icons()
 	else
-		to_chat(src, SPAN_WARNING("We can't carry more facehuggers on you."))
+		to_chat(src, SPAN_WARNING("我们无法携带更多抱脸虫了。"))
 
 
 /mob/living/carbon/xenomorph/carrier/proc/throw_hugger(atom/T)
@@ -261,11 +261,11 @@
 		var/obj/item/clothing/mask/facehugger/F = T
 		if(isturf(F.loc) && Adjacent(F))
 			if(F.hivenumber != hivenumber)
-				to_chat(src, SPAN_WARNING("That facehugger is tainted!"))
+				to_chat(src, SPAN_WARNING("那只抱脸虫受到异巢污染！"))
 				drop_inv_item_on_ground(F)
 				return
 			if(on_fire)
-				to_chat(src, SPAN_WARNING("Touching \the [F] while you're on fire would burn it!"))
+				to_chat(src, SPAN_WARNING("我们身上着火时触碰[F]会烧伤它！"))
 				return
 			store_hugger(F)
 			return
@@ -275,10 +275,10 @@
 		var/obj/effect/alien/resin/special/eggmorph/morpher = T
 		if(Adjacent(morpher))
 			if(morpher.linked_hive && (morpher.linked_hive.hivenumber != hivenumber))
-				to_chat(src, SPAN_WARNING("That egg morpher is tainted!"))
+				to_chat(src, SPAN_WARNING("那个卵化器受到异巢污染！"))
 				return
 			if(on_fire)
-				to_chat(src, SPAN_WARNING("Touching \the [morpher] while you're on fire would burn the facehuggers in it!"))
+				to_chat(src, SPAN_WARNING("我们身上着火时触碰[morpher]会烧伤里面的抱脸虫！"))
 				return
 			store_huggers_from_egg_morpher(morpher)
 			return
@@ -287,22 +287,22 @@
 	if(!F) //empty active hand
 		//if no hugger in active hand, we take one from our storage
 		if(huggers_cur <= 0)
-			to_chat(src, SPAN_WARNING("We don't have any facehuggers to use!"))
+			to_chat(src, SPAN_WARNING("我们没有可用的抱脸虫！"))
 			return
 
 		if(on_fire)
-			to_chat(src, SPAN_WARNING("Retrieving a stored facehugger while we're on fire would burn it!"))
+			to_chat(src, SPAN_WARNING("我们身上着火时取出抱脸虫会烧伤它！"))
 			return
 
 		F = new(src, hivenumber)
 		huggers_cur--
 		put_in_active_hand(F)
-		to_chat(src, SPAN_XENONOTICE("We grab one of the facehugger in our storage. Now sheltering: [huggers_cur] / [huggers_max]."))
+		to_chat(src, SPAN_XENONOTICE("我们取出了一只储存的抱脸虫。当前储存：[huggers_cur] / [huggers_max]。"))
 		update_icons()
 		return
 
 	if(!istype(F)) //something else in our hand
-		to_chat(src, SPAN_WARNING("We need a facehugger in our hand to throw one!"))
+		to_chat(src, SPAN_WARNING("我们需要手里拿着抱脸虫才能投掷！"))
 		return
 
 	threw_a_hugger = TRUE
@@ -319,8 +319,8 @@
 	huggers_cur--
 	update_icons()
 
-	visible_message(SPAN_XENOWARNING("\The [src] throws something towards \the [target_turf]!"), \
-		SPAN_XENOWARNING("We throw a facehugger towards \the [target_turf]!"))
+	visible_message(SPAN_XENOWARNING("[src]朝[target_turf]扔出了什么东西！"), \
+		SPAN_XENOWARNING("我们朝[target_turf]投出了一只抱脸虫！"))
 
 	playsound(loc, get_sfx("alien_tail_swipe"), 120, 1)
 	child.throw_atom(target_turf, 6, caste.throwspeed)
@@ -333,18 +333,18 @@
 
 /mob/living/carbon/xenomorph/carrier/proc/store_egg(obj/item/xeno_egg/E)
 	if(E.hivenumber != hivenumber)
-		to_chat(src, SPAN_WARNING("That egg is tainted!"))
+		to_chat(src, SPAN_WARNING("那枚卵受到异巢污染！"))
 		return
 	if(eggs_cur < eggs_max)
 		if(stat == CONSCIOUS)
 			eggs_cur++
 			update_icons()
-			to_chat(src, SPAN_NOTICE("We store the egg and carry it for safekeeping. Now sheltering: [eggs_cur] / [eggs_max]."))
+			to_chat(src, SPAN_NOTICE("我们收起异形卵，随身保护。当前储存：[eggs_cur] / [eggs_max]。"))
 			qdel(E)
 		else
-			to_chat(src, SPAN_WARNING("This [E.name] looks too unhealthy."))
+			to_chat(src, SPAN_WARNING("这枚[E.name]看起来太虚弱了。"))
 	else
-		to_chat(src, SPAN_WARNING("We can't carry more eggs on ourselves."))
+		to_chat(src, SPAN_WARNING("我们无法携带更多卵了。"))
 
 /mob/living/carbon/xenomorph/carrier/proc/retrieve_egg(atom/T)
 	if(!T) return
@@ -369,17 +369,17 @@
 	if(!E) //empty active hand
 		//if no hugger in active hand, we take one from our storage
 		if(eggs_cur <= 0)
-			to_chat(src, SPAN_WARNING("We don't have any egg to use!"))
+			to_chat(src, SPAN_WARNING("我们没有可用的卵！"))
 			return
 		E = new(src, hivenumber)
 		eggs_cur--
 		update_icons()
 		put_in_active_hand(E)
-		to_chat(src, SPAN_XENONOTICE("We grab one of the eggs in our storage. Now sheltering: [eggs_cur] / [eggs_max]."))
+		to_chat(src, SPAN_XENONOTICE("我们取出了一枚储存的卵。当前储存：[eggs_cur] / [eggs_max]。"))
 		return
 
 	if(!istype(E)) //something else in our hand
-		to_chat(src, SPAN_WARNING("We need an empty hand to grab one of our stored eggs!"))
+		to_chat(src, SPAN_WARNING("我们需要腾出一只手，才能取出储存的卵！"))
 		return
 
 /mob/living/carbon/xenomorph/carrier/attack_ghost(mob/dead/observer/user)
@@ -390,19 +390,19 @@
 	if(!huggers_max) //Eggsac doesn't have huggers, do nothing!
 		return
 	if(stat == DEAD)
-		to_chat(user, SPAN_WARNING("\The [src] is dead and all their huggers died with it."))
+		to_chat(user, SPAN_WARNING("[src]已经死亡，它携带的抱脸虫也全都死了。"))
 		return
 	if(!huggers_cur)
-		to_chat(user, SPAN_WARNING("\The [src] doesn't have any facehuggers to inhabit."))
+		to_chat(user, SPAN_WARNING("[src]没有可供你接管的抱脸虫。"))
 		return
 	if(huggers_cur <= huggers_reserved)
-		to_chat(user, SPAN_WARNING("\The [src] has reserved the remaining facehuggers for themselves."))
+		to_chat(user, SPAN_WARNING("[src]已将剩余的抱脸虫留给自己使用。"))
 		return
 	if(!GLOB.hive_datum[hivenumber].can_spawn_as_hugger(user))
 		return
 	//Need to check again because time passed due to the confirmation window
 	if(!huggers_cur)
-		to_chat(user, SPAN_WARNING("\The [src] doesn't have any facehuggers to inhabit."))
+		to_chat(user, SPAN_WARNING("[src]没有可供你接管的抱脸虫。"))
 		return
 	GLOB.hive_datum[hivenumber].spawn_as_hugger(user, src)
 	huggers_cur--

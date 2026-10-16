@@ -1,7 +1,8 @@
 /datum/xeno_strain/eggsac
 	name = CARRIER_EGGSAC
-	description = "In exchange for your ability to store huggers and place traps, you gain larger plasma stores, strong pheromones, and the ability to lay eggs by using your plasma stores. In addition, you can now carry twelve eggs at once and can place eggs one pace further than normal. \n\nYou can also place a small number of fragile eggs on normal weeds. These eggs have a lifetime of five minutes while you remain within 14 tiles. Or one minute if you leave this range."
-	flavor_description = "An egg is always an adventure; the next one may be different."
+	localized_name = "卵囊"
+	description = "你失去储存抱脸虫和布置陷阱的能力，换取更大的等离子体容量、强力信息素，以及消耗等离子体产卵的能力。此外，你能同时携带十二枚卵，并能在比通常更远一格的位置放置卵。\n\n你也能在普通菌毯上放置少量脆弱的卵。只要你保持在十四格内，这些卵可存活五分钟；离开范围后只能存活一分钟。"
+	flavor_description = "每一枚卵都是一次冒险，下一枚也许会有所不同。"
 	icon_state_prefix = "Eggsac"
 
 	actions_to_remove = list(
@@ -46,7 +47,7 @@
 
 /datum/behavior_delegate/carrier_eggsac/append_to_stat()
 	. = list()
-	. += "Eggs sustained: [length(eggs_sustained)] / [egg_sustain_cap]"
+	. += "维持中的卵：[length(eggs_sustained)] / [egg_sustain_cap]"
 
 /datum/behavior_delegate/carrier_eggsac/on_update_icons()
 	var/mob/living/carbon/xenomorph/carrier/bound_carrier = bound_xeno
@@ -58,7 +59,7 @@
 		if(my_egg)
 			remove_egg_owner(my_egg)
 			my_egg.start_unstoppable_decay()
-			to_chat(bound_xeno, SPAN_XENOWARNING("You can only sustain [egg_sustain_cap] eggs off hive weeds! Your oldest placed egg is decaying rapidly."))
+			to_chat(bound_xeno, SPAN_XENOWARNING("你最多只能维持[egg_sustain_cap]枚位于虫巢菌毯之外的卵！最早放置的卵正在迅速衰败。"))
 
 	for(var/obj/effect/alien/egg/carrier_egg/my_egg as anything in eggs_sustained)
 		//Get the distance from us to our sustained egg
@@ -79,7 +80,7 @@
 		remove_egg_owner(my_egg)
 		my_egg.start_unstoppable_decay()
 
-	M.visible_message(SPAN_XENOWARNING("[M] throes as its eggsac bursts into a mess of acid!"))
+	M.visible_message(SPAN_XENOWARNING("[M]痛苦地抽搐，卵囊爆裂成一摊酸液！"))
 	playsound(M.loc, 'sound/effects/alien_egg_burst.ogg', 25, TRUE)
 
 ///Remove all references to src in eggs_sustained
@@ -90,14 +91,15 @@
 
 /datum/action/xeno_action/active_toggle/generate_egg
 	name = "Generate Eggs (50)"
+	localized_names = list("Generate Eggs (50)" = "产卵（50）")
 	action_icon_state = "lay_egg"
 	ability_name = "generate egg"
 	action_type = XENO_ACTION_CLICK
 	plasma_cost = 50
 	plasma_use_per_tick = 15
 
-	action_start_message = "You start forming eggs."
-	action_end_message = "We don't have enough plasma to support forming eggs."
+	action_start_message = "你开始孕育异形卵。"
+	action_end_message = "我们没有足够的等离子体继续产卵。"
 	var/egg_generation_progress = 0
 
 	ability_primacy = XENO_PRIMARY_ACTION_3
@@ -121,7 +123,7 @@
 			if(egg_generation_progress >= 15)
 				egg_generation_progress = 0
 				xeno.eggs_cur++
-				to_chat(xeno, SPAN_XENONOTICE("We generate an egg. Now sheltering: [xeno.eggs_cur] / [xeno.eggs_max]."))
+				to_chat(xeno, SPAN_XENONOTICE("我们产出了一枚卵。当前储存：[xeno.eggs_cur] / [xeno.eggs_max]。"))
 				xeno.update_icons()
 
 #undef EGGSAC_OFF_WEED_EGGCAP

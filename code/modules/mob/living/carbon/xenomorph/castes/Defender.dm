@@ -1,6 +1,6 @@
 /datum/caste_datum/defender
 	caste_type = XENO_CASTE_DEFENDER
-	caste_desc = "A sturdy front line combatant."
+	caste_desc = "坚实的前线战士。"
 	tier = 1
 
 	melee_damage_lower = XENO_DAMAGE_TIER_2
@@ -31,7 +31,7 @@
 /mob/living/carbon/xenomorph/defender
 	caste_type = XENO_CASTE_DEFENDER
 	name = XENO_CASTE_DEFENDER
-	desc = "A alien with an armored crest."
+	desc = "一只长着装甲头冠的异形。"
 	icon = 'icons/mob/xenos/defender.dmi'
 	icon_size = 64
 	icon_state = "Defender Walking"

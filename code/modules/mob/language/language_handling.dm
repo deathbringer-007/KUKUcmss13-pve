@@ -56,7 +56,7 @@
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "LanguageMenu", "Language Menu")
+		ui = new(user, src, "LanguageMenu", "语言菜单")
 		ui.open()
 
 /datum/language_menu/ui_data(mob/user)

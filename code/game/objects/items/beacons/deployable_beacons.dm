@@ -1,7 +1,7 @@
 /// Generic deployable beacon for objectives
 /obj/item/deployable_beacon
-	name = "deployable beacon"
-	desc = "A standard deployable beacon. Generally used by teams who may be out of regular communications range but must signal for various reasons. This one is branded with a Weyland Yutani symbol and sold en masse."
+	name = "可部署信标"
+	desc = "一种标准的可部署信标，通常供可能超出常规通信范围、却仍需发送信号的队伍使用。这款印有维兰德-汤谷标志，成批出售。"
 	icon = 'icons/obj/items/deployable_beacon.dmi'
 	icon_state = "beacon_inactive"
 	w_class = SIZE_SMALL
@@ -36,11 +36,11 @@
 
 	var/turf/open/floor = deploying_turf
 	if(!floor.allow_construction)
-		to_chat(user, SPAN_WARNING("You cannot deploy \a [src] here, find a more secure surface!"))
+		to_chat(user, SPAN_WARNING("无法在这里部署[src]，找一处更稳固的表面！"))
 		return FALSE
 
 	if(blocked)
-		to_chat(usr, SPAN_WARNING("You need a clear, open area to deploy [src], [blocked] is blocking the way!"))
+		to_chat(usr, SPAN_WARNING("部署[src]需要空旷区域，[blocked]挡住了位置！"))
 		return
 
 	if(user.action_busy)

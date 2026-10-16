@@ -15,7 +15,7 @@
 	speed = XENO_SPEED_TIER_4
 
 	deevolves_to = list(XENO_CASTE_DRONE)
-	caste_desc = "A digger and trapper."
+	caste_desc = "擅长掘地和布置陷阱的异形。"
 	acid_level = 2
 	weed_level = WEED_LEVEL_STANDARD
 	evolution_allowed = FALSE
@@ -40,7 +40,7 @@
 /mob/living/carbon/xenomorph/burrower
 	caste_type = XENO_CASTE_BURROWER
 	name = XENO_CASTE_BURROWER
-	desc = "A beefy alien with sharp claws."
+	desc = "一只体格粗壮、爪子锋利的异形。"
 	icon = 'icons/mob/xenos/burrower.dmi'
 	icon_size = 64
 	icon_state = "Burrower Walking"

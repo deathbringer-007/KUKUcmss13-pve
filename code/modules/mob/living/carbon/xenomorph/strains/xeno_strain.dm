@@ -1,6 +1,7 @@
 /datum/xeno_strain
 	/// The name of the strain. Should be short but informative.
 	var/name
+	var/localized_name
 	/// Description to be displayed on purchase.
 	var/description
 	/// (OPTIONAL) Flavor text to be shown on purchase. Semi-OOC
@@ -63,8 +64,8 @@
 
 
 /mob/living/carbon/xenomorph/verb/purchase_strain()
-	set name = "Purchase Strain"
-	set desc = "Purchase a strain for yourself"
+	set name = "选择变种"
+	set desc = "为自己选择一种变种。"
 	set category = "Alien"
 
 	// Firstly, make sure the xeno is actually able to take a strain.
@@ -74,10 +75,10 @@
 	// Make an assoc list of {name: typepath} from the strains available to the xeno's caste.
 	var/list/strain_list = list()
 	for(var/datum/xeno_strain/strain_type as anything in caste.available_strains)
-		strain_list[initial(strain_type.name)] = strain_type
+		strain_list[initial(strain_type.localized_name) || initial(strain_type.name)] = strain_type
 
 	// Ask the user which strain they want.
-	var/strain_choice = tgui_input_list(usr, "Which strain would you like to take?", "Choose Strain", strain_list, theme = "hive_status")
+	var/strain_choice = tgui_input_list(usr, "你想选择哪种变种？", "选择变种", strain_list, theme = "hive_status")
 	if(!strain_choice)
 		return
 	var/datum/xeno_strain/chosen_strain = strain_list[strain_choice]
@@ -86,7 +87,7 @@
 	if(!can_take_strain())
 		return
 	// Show the user the strain's description, and double check that they want it.
-	if(alert(usr, "[initial(chosen_strain.description)]\n\nConfirm mutation?", "Choose Strain", "Yes", "No") != "Yes")
+	if(alert(usr, "[initial(chosen_strain.description)]\n\n确认变异？", "选择变种", "是", "否") != "是")
 		return
 	// One more time after they confirm.
 	if(!can_take_strain())
@@ -105,31 +106,31 @@
 		return FALSE
 
 	if(SSticker.mode?.flags_round_type & MODE_NO_XENO_EVOLVE)
-		to_chat(src, SPAN_WARNING("This mode disallows xeno strains."))
+		to_chat(src, SPAN_WARNING("本模式不允许使用异形变种。"))
 		return FALSE
 
 	if(strain)
-		to_chat(src, SPAN_WARNING("We have already chosen a strain."))
+		to_chat(src, SPAN_WARNING("我们已经选择过变种了。"))
 		return FALSE
 
 	if(is_ventcrawling)
-		to_chat(src, SPAN_WARNING("This place is too constraining to take a strain."))
+		to_chat(src, SPAN_WARNING("这里太狭窄，无法进行变异。"))
 		return FALSE
 
 	if(!isturf(loc))
-		to_chat(src, SPAN_WARNING("We can't take a strain here."))
+		to_chat(src, SPAN_WARNING("我们无法在这里变异。"))
 		return FALSE
 
 	if(handcuffed || legcuffed)
-		to_chat(src, SPAN_WARNING("The restraints are too restricting to allow us to take a strain."))
+		to_chat(src, SPAN_WARNING("束缚物限制了我们，无法进行变异。"))
 		return FALSE
 
 	if(health < maxHealth)
-		to_chat(src, SPAN_WARNING("We must be at full health to take a strain."))
+		to_chat(src, SPAN_WARNING("我们必须完全健康才能变异。"))
 		return FALSE
 
 	if(agility || fortify || crest_defense || stealth)
-		to_chat(src, SPAN_WARNING("We cannot take a strain while in this stance."))
+		to_chat(src, SPAN_WARNING("我们无法在当前姿态下变异。"))
 		return FALSE
 
 	return TRUE

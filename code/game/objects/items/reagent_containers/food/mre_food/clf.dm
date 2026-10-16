@@ -1,8 +1,8 @@
 //CLF
 
 /obj/item/mre_food_packet/clf
-	name = "\improper wrapped makeshift meal"
-	desc = "Some home cooked or salvaged meal, you do what you must within your capabilities."
+	name = "包好的简易餐食"
+	desc = "一份家常饭菜或搜罗来的食物，条件有限，只能尽力而为。"
 	icon_state = "clf_mealpack"
 	no_packet_label = TRUE
 	icon = 'icons/obj/items/food/mre_food/clf.dmi'
@@ -19,9 +19,9 @@
 	icon = 'icons/obj/items/food/mre_food/clf.dmi'
 
 /obj/item/reagent_container/food/snacks/mre_food/clf/meatpie
-	name = "wrapped meat pie"
+	name = "包好的肉馅派"
 	icon_state = "clf_meatpie"
-	desc = "A wrapped homemade minced meat pie, made with love."
+	desc = "包好的自制肉馅派，满含心意。"
 
 /obj/item/reagent_container/food/snacks/mre_food/clf/meatpie/Initialize()
 	. = ..()
@@ -30,9 +30,9 @@
 	reagents.add_reagent("sodiumchloride", 4)
 
 /obj/item/reagent_container/food/snacks/mre_food/clf/bananapie
-	name = "wrapped banana pie"
+	name = "包好的香蕉派"
 	icon_state = "clf_pie"
-	desc = "A wrapped homemade banana pie, sweet and creamy, made by someone with a sense of humor."
+	desc = "包好的自制香蕉派，香甜绵密，出自一位颇有幽默感的人之手。"
 
 /obj/item/reagent_container/food/snacks/mre_food/clf/bananapie/Initialize()
 	. = ..()
@@ -42,9 +42,9 @@
 	reagents.add_reagent("sugar", 4)
 
 /obj/item/reagent_container/food/snacks/mre_food/clf/cheesepizza
-	name = "wrapped cheese pizza"
+	name = "包好的芝士披萨"
 	icon_state = "clf_cheesepizza"
-	desc = "A smaller size wrapped pizza, has multiple different kinds of cheese on it."
+	desc = "包好的小号披萨，上面铺着多种芝士。"
 
 /obj/item/reagent_container/food/snacks/mre_food/clf/cheesepizza/Initialize()
 	. = ..()
@@ -53,9 +53,9 @@
 	reagents.add_reagent("sodiumchloride", 4)
 
 /obj/item/reagent_container/food/snacks/mre_food/clf/mushroompizza
-	name = "wrapped mushroom pizza"
+	name = "包好的蘑菇披萨"
 	icon_state = "clf_mushroompizza"
-	desc = "A smaller size wrapped pizza, made with creamy sauce and some mushroom slices."
+	desc = "包好的小号披萨，配有奶油酱和蘑菇片。"
 
 /obj/item/reagent_container/food/snacks/mre_food/clf/mushroompizza/Initialize()
 	. = ..()
@@ -65,9 +65,9 @@
 	reagents.add_reagent("sodiumchloride", 4)
 
 /obj/item/reagent_container/food/snacks/mre_food/clf/vegetablepizza
-	name = "wrapped vegetable pizza"
+	name = "包好的蔬菜披萨"
 	icon_state = "clf_vegetablepizza"
-	desc = "A smaller size wrapped pizza, vegeterian friendly, has some cheese on it tho."
+	desc = "包好的小号披萨，适合素食者，不过上面还是有些芝士。"
 
 /obj/item/reagent_container/food/snacks/mre_food/clf/vegetablepizza/Initialize()
 	. = ..()
@@ -78,9 +78,9 @@
 	reagents.add_reagent("sodiumchloride", 4)
 
 /obj/item/reagent_container/food/snacks/mre_food/clf/meatpizza
-	name = "wrapped meat pizza"
+	name = "包好的肉类披萨"
 	icon_state = "clf_meatpizza"
-	desc = "A smaller size wrapped pizza, has some slices of beef and bacon on it."
+	desc = "包好的小号披萨，上面铺着牛肉片和培根。"
 
 /obj/item/reagent_container/food/snacks/mre_food/clf/meatpizza/Initialize()
 	. = ..()

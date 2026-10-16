@@ -1,8 +1,8 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 /obj/structure/machinery/implantchair
-	name = "loyalty implanter"
-	desc = "Used to implant occupants with loyalty implants."
+	name = "忠诚植入椅"
+	desc = "用于给座椅上的人植入忠诚植入物。"
 	icon = 'icons/obj/structures/machinery/implantchair.dmi'
 	icon_state = "implantchair"
 	density = TRUE
@@ -29,18 +29,18 @@
 	var/health_text = ""
 	if(src.occupant)
 		if(src.occupant.health <= -100)
-			health_text = "<FONT color=red>Dead</FONT>"
+			health_text = "<FONT color=red>死亡</FONT>"
 		else if(src.occupant.health < 0)
 			health_text = "<FONT color=red>[round(src.occupant.health,0.1)]</FONT>"
 		else
 			health_text = "[round(src.occupant.health,0.1)]"
 
-	var/dat ="<B>Implanter Status</B><BR>"
+	var/dat ="<B>植入装置状态</B><BR>"
 
-	dat +="<B>Current occupant:</B> [src.occupant ? "<BR>Name: [src.occupant]<BR>Health: [health_text]<BR>" : "<FONT color=red>None</FONT>"]<BR>"
-	dat += "<B>Implants:</B> [length(src.implant_list) ? "[length(implant_list)]" : "<A href='byond://?src=\ref[src];replenish=1'>Replenish</A>"]<BR>"
+	dat +="<B>当前乘员：</B>[src.occupant ? "<BR>姓名：[src.occupant]<BR>生命值：[health_text]<BR>" : "<FONT color=red>无</FONT>"]<BR>"
+	dat += "<B>植入物：</B>[length(src.implant_list) ? "[length(implant_list)]" : "<A href='byond://?src=\ref[src];replenish=1'>补充</A>"]<BR>"
 	if(src.occupant)
-		dat += "[src.ready ? "<A href='byond://?src=\ref[src];implant=1'>Implant</A>" : "Recharging"]<BR>"
+		dat += "[src.ready ? "<A href='byond://?src=\ref[src];implant=1'>植入</A>" : "充能中"]<BR>"
 	user.set_interaction(src)
 	user << browse(dat, "window=implant")
 	onclose(user, "implant")
@@ -98,10 +98,10 @@
 
 /obj/structure/machinery/implantchair/proc/put_mob(mob/living/carbon/M as mob)
 	if(!iscarbon(M))
-		to_chat(usr, SPAN_DANGER("<B>The [src.name] cannot hold this!</B>"))
+		to_chat(usr, SPAN_DANGER("<B>[src.name]无法容纳这个目标！</B>"))
 		return
 	if(src.occupant)
-		to_chat(usr, SPAN_DANGER("<B>The [src.name] is already occupied!</B>"))
+		to_chat(usr, SPAN_DANGER("<B>[src.name]已经有人了！</B>"))
 		return
 	M.forceMove(src)
 	src.occupant = M
@@ -118,7 +118,7 @@
 		if(!imp) continue
 		if(istype(imp, /obj/item/implant/loyalty))
 			for (var/mob/O in viewers(M, null))
-				O.show_message(SPAN_DANGER("[M] has been implanted by the [src.name]."), SHOW_MESSAGE_VISIBLE)
+				O.show_message(SPAN_DANGER("[src.name]已为[M]植入了植入物。"), SHOW_MESSAGE_VISIBLE)
 
 			if(imp.implanted(M))
 				imp.forceMove(M)
@@ -135,7 +135,7 @@
 	return
 
 /obj/structure/machinery/implantchair/verb/get_out()
-	set name = "Eject occupant"
+	set name = "移出乘员"
 	set category = "Object"
 	set src in oview(1)
 	if(usr.stat != 0)
@@ -145,7 +145,7 @@
 	return
 
 /obj/structure/machinery/implantchair/verb/move_inside()
-	set name = "Move Inside"
+	set name = "进入"
 	set category = "Object"
 	set src in oview(1)
 	if(usr.stat != 0 || inoperable())

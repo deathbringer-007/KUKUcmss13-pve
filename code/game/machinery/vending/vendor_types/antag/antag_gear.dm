@@ -1,8 +1,8 @@
 //------------ADAPTIVE ANTAG GEAR VENDOR---------------
 
 /obj/structure/machinery/cm_vending/gear/antag
-	name = "\improper Suspicious Automated Gear Rack"
-	desc = "While similar in function to ColMarTech automated racks, this one is clearly not of USCM origin. Contains various gear."
+	name = "可疑的自动装备架"
+	desc = "功能类似ColMarTech自动装备架，但显然并非美国殖民地海军陆战队制造。存放着各种装备。"
 	icon_state = "gear"
 
 	req_one_access = list(ACCESS_ILLEGAL_PIRATE, ACCESS_UPP_GENERAL, ACCESS_CLF_GENERAL)

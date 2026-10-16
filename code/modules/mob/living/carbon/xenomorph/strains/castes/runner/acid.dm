@@ -1,7 +1,8 @@
 /datum/xeno_strain/acider
 	name = RUNNER_ACIDER
-	description = "At the cost of a little bit of your speed and all of your current abilities, you gain a considerable amount of health, some armor, and a new organ that fills with volatile acid over time. Your Tail Stab and slashes apply acid to living lifeforms that slowly burns them, and slashes against targets with acid stacks fill your acid glands. You also gain Corrosive Acid equivalent to that of a boiler that you can deploy more quickly than any other caste, at the cost of a chunk of your acid reserves with each use. Finally, after a twenty second windup, you can force your body to explode, covering everything near you with acid. The more acid you have stored, the more devastating the explosion will be, but during those twenty seconds before detonation you are slowed and give off several warning signals which give talls an opportunity to end you before you can detonate. If you successfully explode, you will reincarnate as a larva again!"
-	flavor_description = "This one will be the last thing they hear. A martyr."
+	localized_name = "酸蚀者"
+	description = "你牺牲少量移速及现有的全部技能，换取大量生命值、一些护甲，以及一个会逐渐蓄满挥发性酸液的新器官。尾刺和爪击会给活体目标附上持续灼伤的酸液，爪击带有酸液层数的目标还会补充酸腺。你也获得与轰击者同等强度的腐蚀酸液，施放速度比任何其他阶级都快，但每次会消耗一部分酸液储备。经过二十秒蓄力后，你可以引爆身体，用酸液覆盖周围的一切。储酸越多，爆炸越强；但引爆前二十秒内你会减速并发出多次警示，给高大宿主提前杀死你的机会。如果成功自爆，你将重新转生为幼虫！"
+	flavor_description = "它将成为敌人听见的最后声响。一位殉道者。"
 	icon_state_prefix = "Acider"
 
 	actions_to_remove = list(
@@ -55,9 +56,9 @@
 
 /datum/behavior_delegate/runner_acider/append_to_stat()
 	. = list()
-	. += "Acid: [acid_amount]"
+	. += "酸液：[acid_amount]"
 	if(caboom_trigger)
-		. += "FOR THE HIVE!: in [caboom_left] seconds"
+		. += "为了虫巢！距离自爆还有[caboom_left]秒"
 
 /datum/behavior_delegate/runner_acider/melee_attack_additional_effects_target(mob/living/carbon/target_mob)
 	if(ishuman(target_mob)) //Will acid be applied to the mob
@@ -168,6 +169,6 @@
 /mob/living/carbon/xenomorph/runner/ventcrawl_carry()
 	var/datum/behavior_delegate/runner_acider/behavior_delegates = behavior_delegate
 	if(istype(behavior_delegates) && behavior_delegates.caboom_trigger)
-		to_chat(src, SPAN_XENOWARNING("You cannot ventcrawl when you are about to explode!"))
+		to_chat(src, SPAN_XENOWARNING("即将自爆时无法钻入通风管！"))
 		return FALSE
 	return ..()

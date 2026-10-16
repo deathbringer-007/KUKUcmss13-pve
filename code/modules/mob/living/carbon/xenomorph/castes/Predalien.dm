@@ -34,7 +34,7 @@
 
 	caste_type = XENO_CASTE_PREDALIEN
 	name = "Abomination" //snowflake name
-	desc = "A strange looking creature with fleshy strands on its head. It appears like a mixture of armor and flesh, smooth, but well carapaced."
+	desc = "一只外形奇特的生物，头部长着肉质长辫。它看起来仿佛装甲与血肉的结合体，表面光滑，却有坚实的甲壳保护。"
 	icon = 'icons/mob/xenos/predalien.dmi'
 	icon_xeno = 'icons/mob/xenos/predalien.dmi'
 	icon_xenonid = 'icons/mob/xenos/predalien.dmi'
@@ -81,7 +81,7 @@
 	if(should_announce_spawn)
 		addtimer(CALLBACK(src, PROC_REF(announce_spawn)), 3 SECONDS)
 		hunter_data.dishonored = TRUE
-		hunter_data.dishonored_reason = "An abomination upon the honor of us all!"
+		hunter_data.dishonored_reason = "这是对我们全族荣誉的亵渎！"
 		hunter_data.dishonored_set = src
 		hud_set_hunter()
 
@@ -93,10 +93,10 @@
 
 	to_chat(src, {"
 <span class='role_body'>|______________________|</span>
-<span class='role_header'>You are a yautja-alien hybrid!</span>
-<span class='role_body'>You are a xenomorph born from the body of your natural enemy, you are considered an abomination to all of the yautja race and they will do WHATEVER it takes to kill you.
-However, being born from one you also harbor their intelligence and strength. You are built to be able to take them on but that does not mean you are invincible. Stay with your hive and overwhelm them with your numbers. Your sisters have sacrificed a lot for you; Do not just wander off and die.
-You must still listen to the queen.
+<span class='role_header'>你是铁血战士与异形的混种！</span>
+<span class='role_body'>你是从天敌体内诞生的异形。整个铁血战士种族都将你视为亵渎之物，会不惜一切代价杀死你。
+但你也继承了宿主的智慧和力量。你有能力与他们抗衡，但并非无敌。与虫巢同伴一起行动，用数量优势压倒敌人。姐妹们为你付出了很多，不要独自游荡、白白送命。
+你仍然必须服从女皇。
 </span>
 <span class='role_body'>|______________________|</span>
 "})
@@ -113,7 +113,7 @@ You must still listen to the queen.
 /mob/living/carbon/xenomorph/predalien/get_examine_text(mob/user)
 	. = ..()
 	var/datum/behavior_delegate/predalien_base/predalienkills = behavior_delegate
-	. += "It has [predalienkills.kills] kills to its name!"
+	. += "它已经杀死了[predalienkills.kills]个猎物！"
 
 /mob/living/carbon/xenomorph/predalien/tutorial
 	AUTOWIKI_SKIP(TRUE)
@@ -132,7 +132,7 @@ You must still listen to the queen.
 
 /datum/behavior_delegate/predalien_base/append_to_stat()
 	. = list()
-	. += "Kills: [kills]/[max_kills]"
+	. += "击杀数：[kills]/[max_kills]"
 
 /datum/behavior_delegate/predalien_base/on_kill_mob(mob/M)
 	. = ..()

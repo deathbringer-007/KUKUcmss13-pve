@@ -25,7 +25,7 @@
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, SPAN_DANGER("You cannot send IC messages (muted)."))
+			to_chat(src, SPAN_DANGER("你已被禁言，无法发送角色内消息。"))
 			return
 		if (src.client.handle_spam_prevention(message,MUTE_IC))
 			return
@@ -72,13 +72,13 @@
 
 		for(var/mob/living/silicon/D in listeners)
 			if(D.client && istype(D,src.type))
-				to_chat(D, "<b>[src]</b> transmits, \"[message]\"")
+				to_chat(D, "<b>[src]</b>传输：“[message]”")
 
 		for (var/mob/M in GLOB.player_list)
 			if (istype(M, /mob/new_player))
 				continue
 			else if((M.stat == DEAD || isobserver(M)) &&  M.client.prefs.toggles_chat & CHAT_GHOSTEARS)
-				if(M.client) to_chat(M, "<b>[src]</b> transmits, \")[message]\"")
+				if(M.client) to_chat(M, "<b>[src]</b>传输：“[message]”")
 		return
 
 	switch(message_mode)

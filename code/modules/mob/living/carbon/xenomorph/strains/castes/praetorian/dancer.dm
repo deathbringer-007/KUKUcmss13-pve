@@ -1,8 +1,9 @@
 /datum/xeno_strain/dancer
 	// My name is Cuban Pete, I'm the King of the Rumba Beat
 	name = PRAETORIAN_DANCER
-	description = "You lose all of your acid-based abilities and a small amount of your armor in exchange for increased movement speed, evasion, and unparalleled agility that gives you an ability to move even more quickly, dodge bullets, and phase through enemies and allies alike. By slashing enemies, you temporarily increase your movement speed and you also you apply a tag that changes how your two new tail abilities function. By tagging enemies, you will make Impale hit twice instead of once and make Tail Trip knock enemies down instead of stunning them."
-	flavor_description = "A performance fit for a Queen, this one will become my instrument of death."
+	localized_name = "舞者"
+	description = "你失去所有酸液技能和少量护甲，换取更高移速、闪避率和无与伦比的灵活性。你能进一步加速、躲避子弹，并穿过敌我单位。爪击敌人会暂时提高移速，并施加一个改变两种新尾部技能效果的标记。对被标记的敌人使用贯穿会命中两次，扫尾绊倒则会将其击倒而非眩晕。"
+	flavor_description = "这场演出堪配女皇。它将成为我的死亡乐器。"
 	icon_state_prefix = "Dancer"
 
 	actions_to_remove = list(

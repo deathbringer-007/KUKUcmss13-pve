@@ -15,7 +15,7 @@
 
 	evolution_allowed = FALSE
 	deevolves_to = list(XENO_CASTE_WARRIOR, XENO_CASTE_SPITTER)
-	caste_desc = "The warleader of the hive."
+	caste_desc = "虫巢的战争领袖。"
 	spit_types = list(/datum/ammo/xeno/acid/praetorian)
 	acid_level = 2
 
@@ -43,7 +43,7 @@
 /mob/living/carbon/xenomorph/praetorian
 	caste_type = XENO_CASTE_PRAETORIAN
 	name = XENO_CASTE_PRAETORIAN
-	desc = "A huge, looming beast of an alien."
+	desc = "一只庞大骇人的异形巨兽。"
 	icon_size = 64
 	icon_state = "Praetorian Walking"
 	plasma_types = list(PLASMA_PHEROMONE,PLASMA_NEUROTOXIN)
@@ -101,5 +101,5 @@
 	if(!ismob(A))
 		return
 	bound_xeno.add_xeno_shield(reward_shield, XENO_SHIELD_SOURCE_BASE_PRAE, add_shield_on = TRUE, max_shield = 45)
-	to_chat(bound_xeno, SPAN_NOTICE("Your exoskeleton shimmers for a fraction of a second as the acid coats your target."))
+	to_chat(bound_xeno, SPAN_NOTICE("酸液覆盖目标时，你的外骨骼短暂地闪烁了一下。"))
 	return

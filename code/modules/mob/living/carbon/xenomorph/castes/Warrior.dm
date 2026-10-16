@@ -17,7 +17,7 @@
 
 	evolves_to = list(XENO_CASTE_PRAETORIAN, XENO_CASTE_CRUSHER)
 	deevolves_to = list(XENO_CASTE_DEFENDER)
-	caste_desc = "A powerful front line combatant."
+	caste_desc = "强大的前线战士。"
 	can_vent_crawl = 0
 
 	tackle_min = 2
@@ -34,7 +34,7 @@
 /mob/living/carbon/xenomorph/warrior
 	caste_type = XENO_CASTE_WARRIOR
 	name = XENO_CASTE_WARRIOR
-	desc = "A beefy alien with an armored carapace."
+	desc = "一只体格粗壮、覆盖着厚甲的异形。"
 	icon = 'icons/mob/xenos/warrior.dmi'
 	icon_size = 64
 	icon_state = "Warrior Walking"
@@ -87,7 +87,7 @@
 	var/should_neckgrab = !(src.can_not_harm(living_mob)) && lunge
 
 	if(!QDELETED(living_mob) && !QDELETED(living_mob.pulledby) && living_mob != src ) //override pull of other mobs
-		visible_message(SPAN_WARNING("[src] has broken [living_mob.pulledby]'s grip on [living_mob]!"), null, null, 5)
+		visible_message(SPAN_WARNING("[src]挣开了[living_mob.pulledby]对[living_mob]的抓握！"), null, null, 5)
 		living_mob.pulledby.stop_pulling()
 
 	. = ..(living_mob, lunge, should_neckgrab)
@@ -105,8 +105,8 @@
 			living_mob.Stun(duration)
 			if(living_mob.pulledby != src)
 				return // Grab was broken, probably as Stun side effect (eg. target getting knocked away from a manned M56D)
-			visible_message(SPAN_XENOWARNING("[src] grabs [living_mob] by the throat!"), \
-			SPAN_XENOWARNING("We grab [living_mob] by the throat!"))
+			visible_message(SPAN_XENOWARNING("[src]掐住了[living_mob]的喉咙！"), \
+			SPAN_XENOWARNING("我们掐住了[living_mob]的喉咙！"))
 			lunging = TRUE
 			addtimer(CALLBACK(src, PROC_REF(stop_lunging)), get_xeno_stun_duration(living_mob, 2) SECONDS + 1 SECONDS)
 
@@ -152,7 +152,7 @@
 // This part is then outside the for loop
 		if(final_lifesteal >= max_lifesteal)
 			bound_xeno.add_filter("empower_rage", 1, list("type" = "outline", "color" = color, "size" = 1, "alpha" = 90))
-			bound_xeno.visible_message(SPAN_DANGER("[bound_xeno.name] glows as it heals even more from its injuries!."), SPAN_XENODANGER("We glow as we heal even more from our injuries!"))
+			bound_xeno.visible_message(SPAN_DANGER("[bound_xeno.name]散发出光芒，伤势进一步恢复！"), SPAN_XENODANGER("我们散发出光芒，伤势进一步恢复！"))
 			bound_xeno.flick_heal_overlay(2 SECONDS, "#00B800")
 		if(istype(bound_xeno) && world.time > emote_cooldown && bound_xeno)
 			bound_xeno.emote("roar")
@@ -170,7 +170,7 @@
 /mob/living/carbon/xenomorph/warrior/pull_power(mob/mob)
 	if(!ripping_limb && mob.stat != DEAD)
 		if(mob.status_flags & XENO_HOST)
-			to_chat(src, SPAN_XENOWARNING("This would harm the embryo!"))
+			to_chat(src, SPAN_XENOWARNING("这样会伤到胚胎！"))
 			return
 		ripping_limb = TRUE
 		if(rip_limb(mob))
@@ -190,24 +190,24 @@
 	var/obj/limb/limb = human.get_limb(check_zone(zone_selected))
 
 	if(can_not_harm(human))
-		to_chat(src, SPAN_XENOWARNING("We can't harm this host!"))
+		to_chat(src, SPAN_XENOWARNING("我们不能伤害这个宿主！"))
 		return
 
 	if(!limb || limb.body_part == BODY_FLAG_CHEST || limb.body_part == BODY_FLAG_GROIN || (limb.status & LIMB_DESTROYED)) //Only limbs and head.
-		to_chat(src, SPAN_XENOWARNING("We can't rip off that limb."))
+		to_chat(src, SPAN_XENOWARNING("我们无法撕下那条肢体。"))
 		return FALSE
 	var/limb_time = rand(40,60)
 
 	if(limb.body_part == BODY_FLAG_HEAD)
 		limb_time = rand(90,110)
 
-	visible_message(SPAN_XENOWARNING("[src] begins pulling on [mob]'s [limb.display_name] with incredible strength!"), \
-	SPAN_XENOWARNING("We begin to pull on [mob]'s [limb.display_name] with incredible strength!"))
+	visible_message(SPAN_XENOWARNING("[src]开始以惊人的力量拉扯[mob]的[limb.display_name]！"), \
+	SPAN_XENOWARNING("我们开始以惊人的力量拉扯[mob]的[limb.display_name]！"))
 
 	if(!do_after(src, limb_time, INTERRUPT_ALL|INTERRUPT_DIFF_SELECT_ZONE, BUSY_ICON_HOSTILE) || mob.stat == DEAD || mob.status_flags & XENO_HOST)
-		to_chat(src, SPAN_NOTICE("We stop ripping off the limb."))
+		to_chat(src, SPAN_NOTICE("我们停止了撕扯肢体。"))
 		if(mob.status_flags & XENO_HOST)
-			to_chat(src, SPAN_NOTICE("We detect an embryo inside [mob] which overwhelms our instinct to rip."))
+			to_chat(src, SPAN_NOTICE("我们察觉到[mob]体内的胚胎，压下了撕扯的本能。"))
 		return FALSE
 
 	if(limb.status & LIMB_DESTROYED)
@@ -215,11 +215,11 @@
 
 	if(limb.status & (LIMB_ROBOT|LIMB_SYNTHSKIN))
 		limb.take_damage(rand(30,40), 0, 0) // just do more damage
-		visible_message(SPAN_XENOWARNING("You hear [mob]'s [limb.display_name] being pulled beyond its load limits!"), \
-		SPAN_XENOWARNING("[mob]'s [limb.display_name] begins to tear apart!"))
+		visible_message(SPAN_XENOWARNING("你听见[mob]的[limb.display_name]被拉扯到极限的声音！"), \
+		SPAN_XENOWARNING("[mob]的[limb.display_name]开始撕裂！"))
 	else
-		visible_message(SPAN_XENOWARNING("We hear the bones in [mob]'s [limb.display_name] snap with a sickening crunch!"), \
-		SPAN_XENOWARNING("[mob]'s [limb.display_name] bones snap with a satisfying crunch!"))
+		visible_message(SPAN_XENOWARNING("我们听见[mob]的[limb.display_name]骨头断裂，发出令人作呕的脆响！"), \
+		SPAN_XENOWARNING("[mob]的[limb.display_name]骨头断裂，发出令人满足的脆响！"))
 		limb.take_damage(rand(15,25), 0, 0)
 		limb.fracture(100)
 	mob.last_damage_data = create_cause_data(initial(caste_type), src)
@@ -228,14 +228,14 @@
 	log_attack("[src.name] ([src.ckey]) ripped the [limb.display_name] off of [mob.name] ([mob.ckey]) 1/2 progress")
 
 	if(!do_after(src, limb_time, INTERRUPT_ALL|INTERRUPT_DIFF_SELECT_ZONE, BUSY_ICON_HOSTILE)  || mob.stat == DEAD || iszombie(mob))
-		to_chat(src, SPAN_NOTICE("We stop ripping off the limb."))
+		to_chat(src, SPAN_NOTICE("我们停止了撕扯肢体。"))
 		return FALSE
 
 	if(limb.status & LIMB_DESTROYED)
 		return FALSE
 
-	visible_message(SPAN_XENOWARNING("[src] rips [mob]'s [limb.display_name] away from their body!"), \
-	SPAN_XENOWARNING("[mob]'s [limb.display_name] rips away from their body!"))
+	visible_message(SPAN_XENOWARNING("[src]将[mob]的[limb.display_name]从身体上撕了下来！"), \
+	SPAN_XENOWARNING("[mob]的[limb.display_name]被撕离了身体！"))
 	src.attack_log += text("\[[time_stamp()]\] <font color='red'>ripped the [limb.display_name] off of [mob.name] ([mob.ckey]) 2/2 progress</font>")
 	mob.attack_log += text("\[[time_stamp()]\] <font color='orange'>had their [limb.display_name] ripped off by [src.name] ([src.ckey]) 2/2 progress</font>")
 	log_attack("[src.name] ([src.ckey]) ripped the [limb.display_name] off of [mob.name] ([mob.ckey]) 2/2 progress")

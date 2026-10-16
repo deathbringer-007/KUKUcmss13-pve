@@ -1,5 +1,6 @@
 /datum/action/xeno_action/activable/pounce/facehugger
 	name = "Leap"
+	localized_names = list("Leap" = "跃扑")
 	action_icon_state = "pounce"
 	ability_name = "leap"
 	macro_path = /datum/action/xeno_action/verb/verb_pounce

@@ -3,16 +3,18 @@
 
 /datum/action/xeno_action/activable/xeno_spit/spitter
 	name = "Spit Acid"
+	localized_names = list("Spit Acid" = "酸液喷吐")
 	action_icon_state = "xeno_spit"
 	ability_name = "spit acid"
 	macro_path = /datum/action/xeno_action/verb/verb_xeno_spit
 	action_type = XENO_ACTION_CLICK
 	ability_primacy = XENO_PRIMARY_ACTION_1
-	cooldown_message = "We feel our corrosive glands swell with acid. We can spit again."
+	cooldown_message = "我们的腐蚀腺重新充满酸液，可以再次喷吐了。"
 	//xeno_cooldown = 60 SECONDS useless var. funny shitcode
 
 /datum/action/xeno_action/onclick/charge_spit
 	name = "Charge Spit"
+	localized_names = list("Charge Spit" = "蓄力喷吐")
 	action_icon_state = "charge_spit"
 	ability_name = "charge spit"
 	macro_path = /datum/action/xeno_action/verb/verb_charge_spit
@@ -44,3 +46,4 @@
 
 /datum/action/xeno_action/activable/tail_stab/spitter
 	name = "Corrosive Tail Stab"
+	localized_names = list("Corrosive Tail Stab" = "腐蚀尾刺")

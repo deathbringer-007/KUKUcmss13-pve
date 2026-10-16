@@ -1,7 +1,8 @@
 /datum/xeno_strain/vanguard
 	name = PRAETORIAN_VANGUARD
-	description = "You forfeit all of your acid-based abilities and some health for some extra speed and a rechargable shield that can block one attack. Use your Pierce from up to three paces away to stab through talls, while stabbing through two or more will completely recharge your shield. Use your charge to plow through enemies and use it again to unleash a powerful AoE slash that reaches up to three paces. You also have a Cleave ability, amplified by your shield, which you can toggle to either immobilize or fling a target away."
-	flavor_description = "Fearless you are born, fearless you serve, fearless you die. This one will become my Vanguard"
+	localized_name = "先锋"
+	description = "你舍弃所有酸液技能和部分生命值，换取更高移速，以及能够挡住一次攻击并重新充能的护盾。穿刺能刺穿最远三格外的高大宿主，一次刺穿至少两个目标即可完全恢复护盾。使用冲锋冲过敌群，再次使用可释放最远波及三格的强力范围爪击。你还拥有受护盾强化的劈斩技能，可切换为将目标定身或甩飞。"
+	flavor_description = "你无畏地诞生，无畏地效忠，无畏地死去。它将成为我的先锋。"
 	icon_state_prefix = "Vanguard"
 
 	actions_to_remove = list(
@@ -86,7 +87,7 @@
 		bound_xeno.explosivearmor_modifier += 1.5*XENO_EXPOSIVEARMOR_MOD_VERY_LARGE
 		bound_xeno.recalculate_armor()
 		new_shield.explosive_armor_amount = 1.5*XENO_EXPOSIVEARMOR_MOD_VERY_LARGE
-		to_chat(praetorian, SPAN_XENOHIGHDANGER("We feel our defensive shell regenerate! It will block one hit!"))
+		to_chat(praetorian, SPAN_XENOHIGHDANGER("我们感到防御外壳恢复了！它可以抵挡一次攻击！"))
 
 	var/datum/action/xeno_action/activable/cleave/caction = get_action(bound_xeno, /datum/action/xeno_action/activable/cleave)
 	if (istype(caction))

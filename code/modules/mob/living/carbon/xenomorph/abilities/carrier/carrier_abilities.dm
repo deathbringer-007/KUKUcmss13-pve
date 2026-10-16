@@ -1,5 +1,6 @@
 /datum/action/xeno_action/activable/throw_hugger
 	name = "Use/Throw Facehugger"
+	localized_names = list("Use/Throw Facehugger" = "使用／投掷抱脸虫")
 	action_icon_state = "throw_hugger"
 	ability_name = "throw facehugger"
 	macro_path = /datum/action/xeno_action/verb/verb_throw_facehugger
@@ -16,6 +17,7 @@
 
 /datum/action/xeno_action/activable/retrieve_egg
 	name = "Retrieve Egg"
+	localized_names = list("Retrieve Egg" = "取回异形卵")
 	action_icon_state = "retrieve_egg"
 	ability_name = "retrieve egg"
 	macro_path = /datum/action/xeno_action/verb/verb_retrieve_egg
@@ -24,4 +26,5 @@
 
 /datum/action/xeno_action/onclick/set_hugger_reserve
 	name = "Set Hugger Reserve"
+	localized_names = list("Set Hugger Reserve" = "设置抱脸虫预留数量")
 	action_icon_state = "xeno_banish"

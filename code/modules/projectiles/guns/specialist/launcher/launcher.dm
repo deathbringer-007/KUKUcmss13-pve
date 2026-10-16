@@ -45,7 +45,7 @@
 	return ..()
 
 /obj/item/weapon/gun/launcher/verb/toggle_draw_mode()
-	set name = "Switch Storage Drawing Method"
+	set name = "切换储物取出方式"
 	set category = "Object"
 	set src in usr
 

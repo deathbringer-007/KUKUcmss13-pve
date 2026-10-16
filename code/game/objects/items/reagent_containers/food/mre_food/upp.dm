@@ -10,8 +10,8 @@
 ///SNACK
 
 /obj/item/mre_food_packet/upp/snack
-	name = "\improper IRP snack"
-	desc = "An IRP snack, some nutritious snack to be eaten in a breaktime or combined with a main dish."
+	name = "\improper IRP单兵口粮零食"
+	desc = "IRP单兵口粮中的营养零食，适合休息时吃，也可搭配主菜。"
 	icon_state = "upp_snack"
 	food_list = list(
 		/obj/item/reagent_container/food/snacks/mre_food/upp/snack/driedfish,
@@ -21,9 +21,9 @@
 	)
 
 /obj/item/reagent_container/food/snacks/mre_food/upp/snack/driedfish
-	name = "dried cod slice"
+	name = "咸鳕鱼干片"
 	icon_state = "driedfish"
-	desc = "A dried and salted slice of cod, perfect snack for a sip of cold beer."
+	desc = "晒干腌咸的鳕鱼片，配上一口冰啤酒再合适不过。"
 
 /obj/item/reagent_container/food/snacks/mre_food/upp/snack/driedfish/Initialize()
 	. = ..()
@@ -31,14 +31,14 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/upp/snack/driedfish/alt
-	name = "dried taran"
+	name = "塔兰咸鱼干"
 	icon_state = "driedfish_2"
-	desc = "A dried and salted whole rutilus heckelii fish, perfect snack for a sip of cold beer."
+	desc = "整条晒干腌咸的塔兰鱼（Rutilus heckelii），配上一口冰啤酒再合适不过。"
 
 /obj/item/reagent_container/food/snacks/mre_food/upp/snack/mashed_potato
-	name = "mashed potatoes"
+	name = "土豆泥"
 	icon_state = "mashed potatoes"
-	desc = "Really soft and gentle garnish, small portion intended to be combined with something else."
+	desc = "口感细腻柔软的小份配菜，适合搭配其他食物。"
 
 /obj/item/reagent_container/food/snacks/mre_food/upp/snack/mashed_potato/Initialize()
 	. = ..()
@@ -47,9 +47,9 @@
 	reagents.add_reagent("sodiumchloride", 1)
 
 /obj/item/reagent_container/food/snacks/mre_food/upp/snack/riceball
-	name = "rice ball"
+	name = "饭团"
 	icon_state = "riceball"
-	desc = "Cooked rice in a form of a ball, has a slighly buttery taste, doesn't fall apart, surprisingly."
+	desc = "把熟米饭捏成的团子，带有淡淡的黄油味，居然没有散开。"
 
 /obj/item/reagent_container/food/snacks/mre_food/upp/snack/riceball/Initialize()
 	. = ..()
@@ -59,8 +59,8 @@
 ///DESSERT
 
 /obj/item/mre_food_packet/upp/dessert
-	name = "\improper IRP dessert"
-	desc = "An IRP side component. Contains a sweet dessert, to be eaten with tea or any other hot drink."
+	name = "\improper IRP单兵口粮甜点"
+	desc = "IRP单兵口粮的配餐部分，内含适合搭配茶或其他热饮的甜点。"
 	icon_state = "upp_dessert"
 	food_list = list(
 		/obj/item/reagent_container/food/snacks/mre_food/upp/dessert/birdmilk,
@@ -71,9 +71,9 @@
 	)
 
 /obj/item/reagent_container/food/snacks/mre_food/upp/dessert/birdmilk
-	name = "bird milk"
+	name = "鸟乳糖"
 	icon_state = "bird milk"
-	desc = "Bird milk or also known as ptasie mleczko, is a popular candy in Slavic parts of Eastern Europe, a small bar of creamy marshmallow like candy covered in a layer of chocolate."
+	desc = "鸟乳糖又称ptasie mleczko，是东欧斯拉夫地区流行的糖果。小块的奶油软糖口感类似棉花糖，外面裹着一层巧克力。"
 
 /obj/item/reagent_container/food/snacks/mre_food/upp/dessert/birdmilk/Initialize()
 	. = ..()
@@ -82,9 +82,9 @@
 	reagents.add_reagent("coco", 3)
 
 /obj/item/reagent_container/food/snacks/mre_food/upp/dessert/toffees
-	name = "toffees"
+	name = "太妃糖"
 	icon_state = "toffees"
-	desc = "A hard candy made out of condensed milk and sugar, caramelized together."
+	desc = "将炼乳和糖一起熬至焦糖化制成的硬糖。"
 
 /obj/item/reagent_container/food/snacks/mre_food/upp/dessert/toffees/Initialize()
 	. = ..()
@@ -92,9 +92,9 @@
 	reagents.add_reagent("milk", 4)
 
 /obj/item/reagent_container/food/snacks/mre_food/upp/dessert/hematogen
-	name = "hematogen bar"
+	name = "血源营养糖条"
 	icon_state = "hematogen"
-	desc = "A bar of candy, origin of which tracks back to Soviet Union times. The bar is claimed to have blood regenerating and blood circulation improving properties, the bar itself is made out of: cow blood, condensed milk, honey and ascorbic acid."
+	desc = "一种起源可追溯到苏联时期的糖条。它宣称能够促进造血和血液循环，原料包括牛血、炼乳、蜂蜜和抗坏血酸。"
 
 /obj/item/reagent_container/food/snacks/mre_food/upp/dessert/hematogen/Initialize()
 	. = ..()
@@ -105,9 +105,9 @@
 	reagents.add_reagent("honey", 3)
 
 /obj/item/reagent_container/food/snacks/mre_food/upp/dessert/darkchocolate
-	name = "dark chocolate bar"
+	name = "黑巧克力条"
 	icon_state = "dark chocolate"
-	desc = "56% coco true dark chocolate, rich in flavor, classic, combines well with hot drinks and other snacks."
+	desc = "可可含量56%的纯正黑巧克力，风味浓郁经典，适合搭配热饮和其他零食。"
 
 /obj/item/reagent_container/food/snacks/mre_food/upp/dessert/darkchocolate/Initialize()
 	. = ..()
@@ -115,9 +115,9 @@
 	reagents.add_reagent("sugar", 2)
 
 /obj/item/reagent_container/food/snacks/mre_food/upp/dessert/ricecandy
-	name = "chocolate rice candies"
+	name = "巧克力米糖"
 	icon_state = "rice candies"
-	desc = "An assortment of rice candies covered in white chocolate, smooth on the outside, crunchy on the inside."
+	desc = "各式裹着白巧克力的米糖，外层顺滑，内里酥脆。"
 
 /obj/item/reagent_container/food/snacks/mre_food/upp/dessert/ricecandy/Initialize()
 	. = ..()

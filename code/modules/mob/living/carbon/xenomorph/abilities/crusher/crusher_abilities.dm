@@ -1,5 +1,6 @@
 /datum/action/xeno_action/activable/pounce/crusher_charge
 	name = "Charge"
+	localized_names = list("Charge" = "冲锋")
 	action_icon_state = "ready_charge"
 	ability_name = "charge"
 	macro_path = /datum/action/xeno_action/verb/verb_crusher_charge
@@ -37,6 +38,7 @@
 
 /datum/action/xeno_action/onclick/crusher_stomp
 	name = "Stomp"
+	localized_names = list("Stomp" = "践踏")
 	action_icon_state = "stomp"
 	ability_name = "stomp"
 	macro_path = /datum/action/xeno_action/verb/verb_crusher_stomp
@@ -60,6 +62,7 @@
 
 /datum/action/xeno_action/onclick/crusher_shield
 	name = "Defensive Shield"
+	localized_names = list("Defensive Shield" = "防御护盾")
 	action_icon_state = "empower"
 	ability_name = "defensive shield"
 	macro_path = /datum/action/xeno_action/verb/verb_crusher_charge
@@ -71,6 +74,7 @@
 
 /datum/action/xeno_action/activable/fling/charger
 	name = "Headbutt"
+	localized_names = list("Headbutt" = "头槌")
 	action_icon_state = "ram"
 	ability_name = "Headbutt"
 	macro_path = /datum/action/xeno_action/verb/verb_fling
@@ -95,6 +99,7 @@
 
 /datum/action/xeno_action/onclick/charger_charge
 	name = "Toggle Charging"
+	localized_names = list("Toggle Charging" = "切换冲锋")
 	action_icon_state = "ready_charge"
 	plasma_cost = 0 // manually applied in the proc
 	macro_path = /datum/action/xeno_action/verb/verb_crusher_toggle_charging
@@ -286,8 +291,8 @@
 
 	for(var/mob/living/carbon/human/Mob in xeno.loc)
 		if(Mob.body_position == LYING_DOWN && Mob.stat != DEAD)
-			xeno.visible_message(SPAN_DANGER("[xeno] runs [Mob] over!"),
-				SPAN_DANGER("We run [Mob] over!")
+			xeno.visible_message(SPAN_DANGER("[xeno]从[Mob]身上碾了过去！"),
+				SPAN_DANGER("我们从[Mob]身上碾了过去！")
 			)
 			var/ram_dir = pick(get_perpen_dir(xeno.dir))
 			var/dist = 1
@@ -311,7 +316,7 @@
 			if(hit_human.buckled)
 				hit_human.buckled.unbuckle()
 			INVOKE_ASYNC(xeno, TYPE_PROC_REF(/mob/living/carbon/xenomorph, throw_carbon), hit_human, get_dir(xeno, hit_human), 1, FALSE)
-			to_chat(hit_human, SPAN_XENOHIGHDANGER("You fall backwards as [xeno] gives you a glancing blow!"))
+			to_chat(hit_human, SPAN_XENOHIGHDANGER("[xeno]擦身撞中了你，你向后摔倒！"))
 			hit_human.take_overall_armored_damage(momentum * 4)
 			hit_human.apply_effect(0.5, WEAKEN)
 			animation_flash_color(hit_human)
@@ -338,7 +343,7 @@
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/Xeno = owner
 	if(momentum == max_momentum)
-		Xeno.visible_message(SPAN_DANGER("[Xeno] skids to a halt!"))
+		Xeno.visible_message(SPAN_DANGER("[Xeno]滑行着停了下来！"))
 
 	REMOVE_TRAIT(Xeno, TRAIT_CHARGING, TRAIT_SOURCE_XENO_ACTION_CHARGE)
 	SEND_SIGNAL(Xeno, COMSIG_XENO_STOPPED_CHARGING)
@@ -375,6 +380,7 @@
 
 /datum/action/xeno_action/activable/tumble
 	name = "Tumble"
+	localized_names = list("Tumble" = "翻滚")
 	ability_name = "tumble"
 	action_icon_state = "tumble"
 	macro_path = /datum/action/xeno_action/verb/verb_crusher_tumble
@@ -393,7 +399,7 @@
 
 /datum/action/xeno_action/activable/tumble/proc/handle_mob_collision(mob/living/carbon/Mob)
 	var/mob/living/carbon/xenomorph/Xeno = owner
-	Xeno.visible_message(SPAN_XENODANGER("[Xeno] Sweeps to the side, knocking down [Mob]!"), SPAN_XENODANGER("We knock over [Mob] as we sweep to the side!"))
+	Xeno.visible_message(SPAN_XENODANGER("[Xeno]猛地横扫，将[Mob]撞倒！"), SPAN_XENODANGER("我们向侧面横扫，将[Mob]撞倒！"))
 	var/turf/target_turf = get_turf(Mob)
 	playsound(Mob,'sound/weapons/alien_claw_block.ogg', 50, 1)
 	Mob.apply_damage(15,BRUTE)

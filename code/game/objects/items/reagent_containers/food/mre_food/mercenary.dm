@@ -6,8 +6,8 @@
 ///ENTREE
 
 /obj/item/mre_food_packet/entree/merc
-	name = "\improper FSR main dish"
-	desc = "An FRS entree component. Contains the main course for nutrients."
+	name = "FSR突击口粮主菜"
+	desc = "FSR突击口粮的主菜包，提供主要营养来源。"
 	icon = 'icons/obj/items/food/mre_food/merc.dmi'
 	icon_state = "entree"
 	food_list = list(
@@ -23,8 +23,8 @@
 ///SIDE
 
 /obj/item/mre_food_packet/merc/side
-	name = "\improper FSR side dish"
-	desc = "An FSR side component. Contains a side, to be eaten alongside the main."
+	name = "FSR突击口粮配菜"
+	desc = "FSR突击口粮的配菜包，用于搭配主菜食用。"
 	icon_state = "side"
 	food_list = list(
 		/obj/item/reagent_container/food/snacks/mre_food/uscm/side/cracker,
@@ -38,8 +38,8 @@
 ///SNACK
 
 /obj/item/mre_food_packet/merc/snack
-	name = "\improper FSR snack"
-	desc = "An FSR snack component. Contains a light snack in case you weren't feeling terribly hungry."
+	name = "FSR突击口粮零食"
+	desc = "FSR突击口粮的零食包，适合不太饿时垫垫肚子。"
 	icon_state = "snack"
 	food_list = list(
 		/obj/item/reagent_container/food/snacks/mre_food/uscm/snack/biscuit,
@@ -52,8 +52,8 @@
 ///DESSERT
 
 /obj/item/mre_food_packet/merc/dessert
-	name = "\improper FSR dessert"
-	desc = "An FSR side component. Contains a sweet dessert, to be eaten after the main (or before, if you're rebellious)."
+	name = "FSR突击口粮甜点"
+	desc = "FSR突击口粮的甜点包，适合餐后享用（如果你够叛逆，餐前吃也行）。"
 	icon_state = "dessert"
 	food_list = list(
 		/obj/item/reagent_container/food/snacks/mre_food/uscm/dessert/spicedapples,

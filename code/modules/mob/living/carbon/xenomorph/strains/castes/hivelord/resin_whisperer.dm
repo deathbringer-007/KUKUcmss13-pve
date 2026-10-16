@@ -1,7 +1,8 @@
 /datum/xeno_strain/resin_whisperer
 	name = HIVELORD_RESIN_WHISPERER
-	description = "You lose your corrosive acid, your ability to secrete thick resin, your ability to reinforce resin secretions, sacrifice your ability to plant weed nodes outside of weeds, and you sacrifice a fifth of your plasma reserves to enhance your vision and gain a stronger connection to the resin. You can now remotely place resin secretions including weed nodes up to a distance of twelve paces!"
-	flavor_description = "We let the resin guide us. It whispers, so listen closely."
+	localized_name = "树脂低语者"
+	description = "你失去腐蚀酸液、分泌厚实树脂、加固树脂建筑以及在菌毯之外种植节点的能力，并牺牲五分之一的等离子体容量，换取更好的视野及与树脂更紧密的联系。现在你可以在最远十二格外远程建造树脂建筑，包括菌毯节点！"
+	flavor_description = "让树脂指引我们。它正在低语，仔细聆听。"
 	icon_state_prefix = "Resin Whisperer"
 
 	actions_to_remove = list(
@@ -41,6 +42,7 @@
 // Remote resin building
 /datum/action/xeno_action/activable/secrete_resin/remote
 	name = "Coerce Resin (100)"
+	localized_names = list("Coerce Resin (100)" = "驱使树脂（100）")
 	action_icon_state = "secrete_resin"
 	ability_name = "coerce resin"
 	xeno_cooldown = 1 SECONDS
@@ -59,7 +61,7 @@
 
 /datum/action/xeno_action/activable/secrete_resin/remote/use_ability(atom/target_atom, mods)
 	if(!can_remote_build())
-		to_chat(owner, SPAN_XENONOTICE("We must be standing on weeds to establish a connection to the resin."))
+		to_chat(owner, SPAN_XENONOTICE("我们必须站在菌毯上才能与树脂建立联系。"))
 		return
 
 	if(!action_cooldown_check())
@@ -73,7 +75,7 @@
 		return
 
 	if(care_about_adjacency && !(target_turf in view(10, owner)))
-		to_chat(owner, SPAN_XENONOTICE("We must have a direct line of sight!"))
+		to_chat(owner, SPAN_XENONOTICE("目标必须在我们的直视范围内！"))
 		return
 
 	/// Check if the target is a resin door and open or close it
@@ -81,9 +83,9 @@
 		var/obj/structure/mineral_door/resin/resin_door = target_atom
 		resin_door.TryToSwitchState(owner)
 		if(resin_door.open)
-			to_chat(owner, SPAN_XENONOTICE("We focus our connection to the resin and remotely close the resin door."))
+			to_chat(owner, SPAN_XENONOTICE("我们集中与树脂的联系，远程关闭了树脂门。"))
 		else
-			to_chat(owner, SPAN_XENONOTICE("We focus our connection to the resin and remotely open the resin door."))
+			to_chat(owner, SPAN_XENONOTICE("我们集中与树脂的联系，远程打开了树脂门。"))
 		return
 
 	// since actions are instanced per hivelord, and only one construction can be made at a time, tweaking the datum on the fly here is fine. you're going to have to figure something out if these conditions change, though
@@ -101,8 +103,8 @@
 		return
 
 	var/datum/resin_construction/resing_construction = GLOB.resin_constructions_list[hivelord.selected_resin]
-	target_turf.visible_message(SPAN_XENONOTICE("The weeds begin pulsating wildly and secrete resin in the shape of \a [resing_construction.construction_name]!"), null, 5)
-	to_chat(owner, SPAN_XENONOTICE("We focus our plasma into the weeds below us and force the weeds to secrete resin in the shape of \a [resing_construction.construction_name]."))
+	target_turf.visible_message(SPAN_XENONOTICE("菌毯开始剧烈搏动，分泌树脂形成了[resing_construction.construction_name]！"), null, 5)
+	to_chat(owner, SPAN_XENONOTICE("我们将等离子体注入脚下的菌毯，驱使其分泌树脂形成[resing_construction.construction_name]。"))
 	playsound(target_turf, "alien_resin_build", 25)
 	return TRUE
 

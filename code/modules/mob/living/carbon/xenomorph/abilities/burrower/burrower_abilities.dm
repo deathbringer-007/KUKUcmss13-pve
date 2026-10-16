@@ -3,6 +3,7 @@
 // Burrow
 /datum/action/xeno_action/activable/burrow
 	name = "Burrow"
+	localized_names = list("Burrow" = "掘地")
 	action_icon_state = "agility_on"
 	ability_name = "burrow"
 	macro_path = /datum/action/xeno_action/verb/verb_burrow
@@ -13,7 +14,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	if(SSticker?.mode?.hardcore)
-		to_chat(X, SPAN_XENOWARNING("A certain presence is preventing us from burrowing here."))
+		to_chat(X, SPAN_XENOWARNING("某种存在阻止了我们在此掘地。"))
 		return
 
 	if(HAS_TRAIT(X, TRAIT_ABILITY_BURROWED))
@@ -24,6 +25,7 @@
 
 /datum/action/xeno_action/onclick/tremor
 	name = "Tremor (100)"
+	localized_names = list("Tremor (100)" = "震颤（100）")
 	action_icon_state = "stomp"
 	ability_name = "tremor"
 	macro_path = /datum/action/xeno_action/verb/verb_tremor

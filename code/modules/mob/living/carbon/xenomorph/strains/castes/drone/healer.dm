@@ -1,7 +1,8 @@
 /datum/xeno_strain/healer
 	name = DRONE_HEALER
-	description = "You lose your choice of resin secretions, a chunk of your slash damage, and you will experience a slighty-increased difficulty in tackling hosts in exchange for strong pheromones, the ability to use a bit of your health to plant a maximum of three lesser resin fruits, and the ability to heal your sisters' wounds by secreting a regenerative resin salve by using your vital fluids and a fifth of your plasma. Be wary, this is a dangerous process; overexert yourself and you may exhaust yourself to unconsciousness, or die..."
-	flavor_description = "Divided we fall, united we win. We live for the hive, we die for the hive."
+	localized_name = "治疗者"
+	description = "你失去自由选择树脂建筑的能力和一部分爪击伤害，扑倒宿主也会稍微困难一些，换取强力信息素、消耗少量生命值种植最多三枚次级树脂果实的能力，以及用生命体液和五分之一等离子体分泌再生树脂药膏、治疗姐妹伤势的能力。务必谨慎：这个过程很危险，过度消耗可能让你筋疲力尽而昏迷，甚至死亡……"
+	flavor_description = "分则败，合则胜。我们为虫巢而生，为虫巢而死。"
 	icon_state_prefix = "Healer"
 
 	actions_to_remove = list(
@@ -50,6 +51,7 @@
 
 /datum/action/xeno_action/activable/apply_salve
 	name = "Apply Resin Salve"
+	localized_names = list("Apply Resin Salve" = "涂抹树脂药膏")
 	action_icon_state = "apply_salve"
 	ability_name = "Apply Resin Salve"
 	var/health_transfer_amount = 100
@@ -84,34 +86,34 @@
 		return
 
 	if(target_xeno == src)
-		to_chat(src, SPAN_XENOWARNING("We can't heal ourself with our own resin salve!"))
+		to_chat(src, SPAN_XENOWARNING("我们不能用自己的树脂药膏治疗自己！"))
 		return
 
 	if(!check_state())
 		return
 
 	if(SEND_SIGNAL(target_xeno, COMSIG_XENO_PRE_HEAL) & COMPONENT_CANCEL_XENO_HEAL)
-		to_chat(src, SPAN_XENOWARNING("Extinguish [target_xeno] first or the flames will burn our resin salve away!"))
+		to_chat(src, SPAN_XENOWARNING("先扑灭[target_xeno]身上的火，否则火焰会烧掉树脂药膏！"))
 		return
 
 	if(!can_not_harm(target_xeno)) //We don't wanna heal hostile hives, but we do want to heal our allies!
-		to_chat(src, SPAN_XENOWARNING("[target_xeno] is hostile to our hive!"))
+		to_chat(src, SPAN_XENOWARNING("[target_xeno]与我们的虫巢敌对！"))
 		return
 
 	if(!isturf(loc))
-		to_chat(src, SPAN_XENOWARNING("We can't apply our resin salve from here!"))
+		to_chat(src, SPAN_XENOWARNING("我们无法从这里涂抹树脂药膏！"))
 		return
 
 	if(get_dist(src, target_xeno) > max_range)
-		to_chat(src, SPAN_XENOWARNING("We need to be closer to [target_xeno] to apply our resin salve!"))
+		to_chat(src, SPAN_XENOWARNING("我们需要更靠近[target_xeno]才能涂抹树脂药膏！"))
 		return
 
 	if(target_xeno.stat == DEAD)
-		to_chat(src, SPAN_XENOWARNING("[target_xeno] is dead!"))
+		to_chat(src, SPAN_XENOWARNING("[target_xeno]已经死了！"))
 		return
 
 	if(target_xeno.health >= target_xeno.maxHealth)
-		to_chat(src, SPAN_XENOWARNING("[target_xeno] is already at max health!"))
+		to_chat(src, SPAN_XENOWARNING("[target_xeno]已经完全健康了！"))
 		return
 
 	//Tiny xenos (Larva and Facehuggers), don't need as much health so don't cost as much.
@@ -131,8 +133,8 @@
 	new /datum/effects/heal_over_time(target_xeno, heal_amount = amount)
 	target_xeno.xeno_jitter(1 SECONDS)
 	target_xeno.flick_heal_overlay(5 SECONDS, "#00be6f")
-	to_chat(target_xeno, SPAN_XENOWARNING("[src] covers our wounds with a regenerative resin salve. We feel reinvigorated!"))
-	to_chat(src, SPAN_XENOWARNING("We regurgitate our vital fluids and some plasma to create a regenerative resin salve and apply it to [target_xeno]'s wounds. We feel weakened..."))
+	to_chat(target_xeno, SPAN_XENOWARNING("[src]为我们的伤口涂上再生树脂药膏，我们感到重新焕发了活力！"))
+	to_chat(src, SPAN_XENOWARNING("我们吐出生命体液与一些等离子体，制成再生树脂药膏，涂在[target_xeno]的伤口上。我们感到虚弱……"))
 	playsound(src, "alien_drool", 25)
 	var/datum/behavior_delegate/drone_healer/healer_delegate = behavior_delegate
 	healer_delegate.salve_applied_recently = TRUE
@@ -185,9 +187,9 @@
 
 /datum/behavior_delegate/drone_healer/append_to_stat()
 	. = list()
-	. += "Transferred health amount: [transferred_amount]/[required_transferred_amount]"
+	. += "已转移生命值：[transferred_amount]/[required_transferred_amount]"
 	if(transferred_amount >= required_transferred_amount)
-		. += "Sacrifice will grant you new life."
+		. += "牺牲将赐予你新生。"
 
 /datum/behavior_delegate/drone_healer/on_life()
 	if(!bound_xeno)
@@ -206,6 +208,7 @@
 
 /datum/action/xeno_action/activable/healer_sacrifice
 	name = "Sacrifice"
+	localized_names = list("Sacrifice" = "牺牲")
 	action_icon_state = "screech"
 	ability_name = "sacrifice"
 	var/max_range = 1
@@ -229,37 +232,37 @@
 		return
 
 	if(target == xeno)
-		to_chat(xeno, "We can't heal ourself!")
+		to_chat(xeno, "我们无法治疗自己！")
 		return
 
 	if(isfacehugger(target) || islesserdrone(target))
-		to_chat(xeno, "It would be a waste...")
+		to_chat(xeno, "那只会白白浪费……")
 		return
 
 	if(!xeno.check_state())
 		return
 
 	if(!xeno.can_not_harm(target)) //so we can heal only allies
-		to_chat(xeno, SPAN_WARNING("[target] is an enemy of our hive!"))
+		to_chat(xeno, SPAN_WARNING("[target]是虫巢的敌人！"))
 		return
 
 	if(target.stat == DEAD)
-		to_chat(xeno, SPAN_WARNING("[target] is already dead!"))
+		to_chat(xeno, SPAN_WARNING("[target]已经死了！"))
 		return
 
 	if(target.health >= target.maxHealth)
-		to_chat(xeno, SPAN_WARNING("[target] is already at max health!"))
+		to_chat(xeno, SPAN_WARNING("[target]已经完全健康了！"))
 		return
 
 	if(!isturf(xeno.loc))
-		to_chat(xeno, SPAN_WARNING("We cannot transfer health from here!"))
+		to_chat(xeno, SPAN_WARNING("我们无法从这里转移生命值！"))
 		return
 
 	if(get_dist(xeno, target) > max_range)
-		to_chat(xeno, SPAN_WARNING("We need to be closer to [target]."))
+		to_chat(xeno, SPAN_WARNING("我们需要更靠近[target]。"))
 		return
 
-	xeno.say(";MY LIFE FOR THE QUEEN!!!")
+	xeno.say(";为女皇献出生命！！！")
 
 	if(target.health < 0)
 		target.gain_health(abs(target.health)) // gets them out of crit first
@@ -270,8 +273,8 @@
 	target.xeno_jitter(1 SECONDS)
 	target.flick_heal_overlay(3 SECONDS, "#44253d")
 
-	target.visible_message(SPAN_XENONOTICE("[xeno] explodes in a deluge of regenerative resin salve, covering [target] in it!"))
-	xeno_message(SPAN_XENOANNOUNCE("[xeno] sacrifices itself to heal [target]!"), 2, target.hive.hivenumber)
+	target.visible_message(SPAN_XENONOTICE("[xeno]爆裂成大量再生树脂药膏，覆盖了[target]全身！"))
+	xeno_message(SPAN_XENOANNOUNCE("[xeno]牺牲自己，治愈了[target]！"), 2, target.hive.hivenumber)
 
 	var/datum/behavior_delegate/drone_healer/behavior_delegate = xeno.behavior_delegate
 	if(istype(behavior_delegate) && behavior_delegate.transferred_amount >= behavior_delegate.required_transferred_amount && xeno.client && xeno.hive)
@@ -294,6 +297,6 @@
 	if(!istype(behavior_delegate))
 		return
 	if(behavior_delegate.transferred_amount < behavior_delegate.required_transferred_amount)
-		to_chat(xeno, SPAN_HIGHDANGER("Warning: [name] is a last measure skill. Using it will kill us."))
+		to_chat(xeno, SPAN_HIGHDANGER("警告：[get_display_name()]是最后的手段，使用它会让我们死亡。"))
 	else
-		to_chat(xeno, SPAN_HIGHDANGER("Warning: [name] is a last measure skill. Using it will kill us, but new life will be granted for our hard work for the hive."))
+		to_chat(xeno, SPAN_HIGHDANGER("警告：[get_display_name()]是最后的手段。使用它会让我们死亡，但为虫巢的辛劳付出将使我们获得新生。"))

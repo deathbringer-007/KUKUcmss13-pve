@@ -1,6 +1,6 @@
 /datum/caste_datum/hellhound
 	caste_type = XENO_CASTE_HELLHOUND
-	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
+	caste_desc = "行动迅捷的四足恐怖生物，但不擅长持久作战。"
 	tier = 0
 	melee_damage_lower = XENO_DAMAGE_TIER_3
 	melee_damage_upper = XENO_DAMAGE_TIER_4
@@ -34,7 +34,7 @@
 
 	caste_type = XENO_CASTE_HELLHOUND
 	name = XENO_CASTE_HELLHOUND
-	desc = "A disgusting beast from hell, it has four menacing spikes growing from its head."
+	desc = "来自地狱的骇人野兽，头部长着四根狰狞的尖刺。"
 	icon = 'icons/mob/xenos/hellhound.dmi'
 	icon_state = "Hellhound Walking"
 	icon_size = 32
@@ -49,8 +49,8 @@
 	speaking_noise = "hiss_talk"
 	langchat_color = "#9c7463"
 
-	slash_verb = "rend"
-	slashes_verb = "rends"
+	slash_verb = "撕裂"
+	slashes_verb = "撕裂"
 	slash_sound = 'sound/weapons/bite.ogg'
 
 	mob_size = MOB_SIZE_XENO_SMALL
@@ -102,16 +102,16 @@
 /mob/living/carbon/xenomorph/hellhound/Login()
 	. = ..()
 	if(SSticker.mode) SSticker.mode.xenomorphs -= mind
-	to_chat(src, "<span style='font-weight: bold; color: red;'>Attention!! You are playing as a hellhound. You can get server banned if you are shitty so listen up!</span>")
-	to_chat(src, "<span style='color: red;'>You MUST listen to and obey the Predator's commands at all times. Die if they demand it. Not following them is unthinkable to a hellhound.</span>")
-	to_chat(src, "<span style='color: red;'>You are not here to go hog wild rambo. You're here to be part of something rare, a Predator hunt.</span>")
-	to_chat(src, "<span style='color: red;'>The Predator players must follow a strict code of role-play and you are expected to as well.</span>")
-	to_chat(src, "<span style='color: red;'>The Predators cannot understand your speech. They can only give you orders and expect you to follow them.</span>")
-	to_chat(src, "<span style='color: red;'>Hellhounds are fiercely protective of their masters and will never leave their side if under attack.</span>")
-	to_chat(src, "<span style='color: red;'>Note that ANY Predator can give you orders. If they conflict, follow the latest one. If they dislike your performance they can ask for another ghost and everyone will mock you. So do a good job!</span>")
+	to_chat(src, "<span style='font-weight: bold; color: red;'>注意！！你正在扮演地狱猎犬。违反规则可能导致服务器封禁，请仔细阅读！</span>")
+	to_chat(src, "<span style='color: red;'>你必须时刻听从铁血战士的命令，哪怕他们命令你去死。对地狱猎犬而言，违抗主人是不可想象的。</span>")
+	to_chat(src, "<span style='color: red;'>你来这里不是为了孤身大开杀戒，而是参与一场难得的铁血战士狩猎。</span>")
+	to_chat(src, "<span style='color: red;'>铁血战士玩家必须遵守严格的角色扮演准则，你也一样。</span>")
+	to_chat(src, "<span style='color: red;'>铁血战士听不懂你的语言。他们只能向你下令，并期待你服从。</span>")
+	to_chat(src, "<span style='color: red;'>地狱猎犬会拼死保护主人，主人遭受攻击时绝不会离开其身边。</span>")
+	to_chat(src, "<span style='color: red;'>注意，任何铁血战士都能向你下令。若命令冲突，服从最新的命令。如果他们不满意你的表现，可以要求换一位幽灵接手，届时你会遭到嘲笑。所以好好表现！</span>")
 
 /mob/living/carbon/xenomorph/hellhound/death(cause, gibbed)
-	. = ..(cause, gibbed, "lets out a horrible roar as it collapses and stops moving...")
+	. = ..(cause, gibbed, "发出骇人的咆哮，随后倒地不动了……")
 	if(!.)
 		return
 	emote("roar")

@@ -1,5 +1,6 @@
 /datum/action/xeno_action
 	icon_file = 'icons/mob/hud/actions_xeno.dmi'
+	var/list/localized_names
 	var/ability_name // Our name
 
 	var/plasma_cost = 0
@@ -36,11 +37,15 @@
 
 /datum/action/xeno_action/New(Target, override_icon_state)
 	. = ..()
+	button.name = get_display_name()
 	if(charges != NO_ACTION_CHARGES)
 		RegisterSignal(src, COMSIG_XENO_ACTION_USED, PROC_REF(remove_charge))
 	if(charge_time)
 		charge_ready = FALSE
 	update_button_icon()
+
+/datum/action/xeno_action/proc/get_display_name()
+	return localized_names?[name] || name
 
 /datum/action/xeno_action/proc/remove_charge()
 	SIGNAL_HANDLER
@@ -103,6 +108,7 @@
 /datum/action/xeno_action/update_button_icon()
 	if(!button)
 		return
+	button.name = get_display_name()
 	if(!can_use_action())
 		button.color = rgb(128,0,0,128)
 	else if(!action_cooldown_check())
@@ -201,13 +207,13 @@
 			return // We clicked the same ability in a very short time
 		if(xeno.client && xeno.client.prefs && xeno.client.prefs.toggle_prefs & TOGGLE_ABILITY_DEACTIVATION_OFF)
 			return
-		to_chat(xeno, "You will no longer use [ability_name] with [xeno.get_ability_mouse_name()].")
+		to_chat(xeno, "使用[xeno.get_ability_mouse_name()]时将不再施放[get_display_name()]。")
 		button.icon_state = "template"
 		xeno.set_selected_ability(null)
 		if(charge_time)
 			stop_charging_ability()
 	else
-		to_chat(xeno, "You will now use [ability_name] with [xeno.get_ability_mouse_name()].")
+		to_chat(xeno, "使用[xeno.get_ability_mouse_name()]时将施放[get_display_name()]。")
 		if(xeno.selected_ability)
 			xeno.selected_ability.action_deselect()
 			if(xeno.selected_ability.charge_time)
@@ -216,7 +222,7 @@
 		xeno.set_selected_ability(src)
 		xeno.deselect_timer = world.time + 5 // Half a second
 		if(charges != NO_ACTION_CHARGES)
-			to_chat(xeno, SPAN_INFO("It has [charges] uses left."))
+			to_chat(xeno, SPAN_INFO("还可使用[charges]次。"))
 		if(charge_time)
 			start_charging_ability()
 
@@ -383,11 +389,11 @@
 		if(cooldown_message)
 			to_chat(owner, SPAN_XENODANGER("[cooldown_message]"))
 		else
-			to_chat(owner, SPAN_XENODANGER("We feel our strength return! We can use [name] again!"))
+			to_chat(owner, SPAN_XENODANGER("我们的力量恢复了！可以再次使用[get_display_name()]了！"))
 
 /datum/action/xeno_action/proc/start_charging_ability()
 	charge_timer_id = addtimer(CALLBACK(src, PROC_REF(finish_charging_ability)), charge_time, TIMER_UNIQUE|TIMER_STOPPABLE)
-	to_chat(owner, SPAN_XENOWARNING("We start charging up our <b>[name]</b>!"))
+	to_chat(owner, SPAN_XENOWARNING("我们开始为<b>[get_display_name()]</b>蓄力！"))
 
 /datum/action/xeno_action/proc/finish_charging_ability()
 	charge_timer_id = TIMER_ID_NULL

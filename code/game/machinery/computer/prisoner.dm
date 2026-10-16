@@ -1,7 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 /obj/structure/machinery/computer/prisoner
-	name = "Prisoner Management"
+	name = "囚犯管理终端"
 	icon = 'icons/obj/structures/machinery/computer.dmi'
 	icon_state = "explosive"
 	density = TRUE
@@ -25,37 +25,37 @@
 		return
 	user.set_interaction(src)
 	var/dat
-	dat += "<B>Prisoner Implant Manager System</B><BR>"
+	dat += "<B>囚犯植入物管理系统</B><BR>"
 	if(screen == 0)
-		dat += "<HR><A href='byond://?src=\ref[src];lock=1'>Unlock Console</A>"
+		dat += "<HR><A href='byond://?src=\ref[src];lock=1'>解锁控制台</A>"
 	else if(screen == 1)
-		dat += "<HR>Chemical Implants<BR>"
+		dat += "<HR>化学植入物<BR>"
 		var/turf/Tr = null
 		for(var/i in GLOB.chem_implant_list)
 			var/obj/item/implant/chem/C = i
 			Tr = get_turf(C)
 			if((Tr) && (Tr.z != src.z)) continue//Out of range
 			if(!C.implanted) continue
-			dat += "[C.imp_in.name]|Remaining Units: [C.reagents.total_volume]|Inject: "
+			dat += "[C.imp_in.name]|剩余单位：[C.reagents.total_volume]|注射："
 			dat += "<A href='byond://?src=\ref[src];inject1=\ref[C]'>(<font color=red>(1)</font>)</A>"
 			dat += "<A href='byond://?src=\ref[src];inject5=\ref[C]'>(<font color=red>(5)</font>)</A>"
 			dat += "<A href='byond://?src=\ref[src];inject10=\ref[C]'>(<font color=red>(10)</font>)</A><BR>"
 			dat += "********************************<BR>"
-		dat += "<HR>Tracking Implants<BR>"
+		dat += "<HR>追踪植入物<BR>"
 		for(var/i in GLOB.tracking_implant_list)
 			var/obj/item/implant/tracking/T = i
 			Tr = get_turf(T)
 			if((Tr) && (Tr.z != src.z)) continue//Out of range
 			if(!T.implanted) continue
-			var/loc_display = "Unknown"
+			var/loc_display = "未知"
 			var/mob/living/carbon/M = T.imp_in
 			if(is_ground_level(M.z) && !istype(M.loc, /turf/open/space))
 				var/turf/mob_loc = get_turf(M)
 				loc_display = mob_loc.loc
-			dat += "ID: [T.id]|Location: [loc_display]<BR>"
-			dat += "<A href='byond://?src=\ref[src];[HrefToken(forceGlobal = TRUE)];warn=\ref[T]'>(<font color=red><i>Message Holder</i></font>)</A> |<BR>"
+			dat += "编号：[T.id]|位置：[loc_display]<BR>"
+			dat += "<A href='byond://?src=\ref[src];[HrefToken(forceGlobal = TRUE)];warn=\ref[T]'>(<font color=red><i>向植入者发送消息</i></font>)</A> |<BR>"
 			dat += "********************************<BR>"
-		dat += "<HR><A href='byond://?src=\ref[src];lock=1'>Lock Console</A>"
+		dat += "<HR><A href='byond://?src=\ref[src];lock=1'>锁定控制台</A>"
 
 	show_browser(user, dat, name, "computer")
 	onclose(user, "computer")
@@ -90,15 +90,15 @@
 			if(src.allowed(usr))
 				screen = !screen
 			else
-				to_chat(usr, "Unauthorized Access.")
+				to_chat(usr, "访问未获授权。")
 
 		else if(href_list["warn"])
-			var/warning = strip_html(input(usr,"Message:","Enter your message here!",""))
+			var/warning = strip_html(input(usr,"消息：","在此输入消息！",""))
 			if(!warning) return
 			var/obj/item/implant/I = locate(href_list["warn"])
 			if((I)&&(I.imp_in))
 				var/mob/living/carbon/R = I.imp_in
-				to_chat(R, SPAN_XENOWARNING(" You hear a voice in your head saying: '[warning]'"))
+				to_chat(R, SPAN_XENOWARNING("你听见脑海中响起一个声音：“[warning]”"))
 
 		src.add_fingerprint(usr)
 	src.updateUsrDialog()

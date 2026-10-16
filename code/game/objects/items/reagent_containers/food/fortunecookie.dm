@@ -1,7 +1,7 @@
 //The fortune
 
 /obj/item/paper/fortune
-	name = "fortune"
+	name = "幸运签"
 	icon_state = "fortune"
 
 /obj/item/paper/fortune/premade
@@ -16,7 +16,7 @@
 	var/num3 = rand(1,99)
 	var/num4 = rand(1,99)
 	var/num5 = rand(1,99)
-	var/luckynumbers = "[num1], [num2], [num3], [num4], and [num5]"
+	var/luckynumbers = "[num1]、[num2]、[num3]、[num4]和[num5]"
 	return luckynumbers
 
 /obj/item/paper/fortune/premade/Initialize(mapload, message = "Random", numbers = "Random")
@@ -29,7 +29,7 @@
 	if(numbers == "None")
 		numbers = null
 	else
-		numbers = "Your lucky numbers are [numbers == "Random" ? get_lucky_numbers() : numbers]."
+		numbers = "你的幸运数字是[numbers == "Random" ? get_lucky_numbers() : numbers]。"
 	if(message || numbers)
 		info = "<p style=\"text-align: center;\"><span style=\"text-align: center; color: #0000ff;\"><b>[message]</b><br/>[numbers]</p></span>"
 	else
@@ -38,8 +38,8 @@
 //The cookie
 
 /obj/item/reagent_container/food/snacks/fortunecookie
-	name = "fortune cookie"
-	desc = "A golden brown fortune cookie. Some say the paper inside even has the ability to predict the future, whatever that means."
+	name = "幸运饼干"
+	desc = "一块金黄酥脆的幸运饼干。有人说里面的纸签甚至能预测未来，谁知道呢。"
 	icon_state = "fortune_cookie"
 	icon = 'icons/obj/items/food/mre_food/USCM.dmi'
 	filling_color = "#E8E79E"
@@ -58,12 +58,12 @@
 /obj/item/reagent_container/food/snacks/fortunecookie/get_examine_text(mob/user)
 	. = ..()
 	if(cookie_broken)
-		. += SPAN_WARNING("It's cracked open!")
+		. += SPAN_WARNING("它已经裂开了！")
 	else
 		if(cookiefortune)
-			. += SPAN_NOTICE("It has a fortune inside it already.")
+			. += SPAN_NOTICE("里面已经有幸运签了。")
 		else
-			. += SPAN_NOTICE("It's empty.")
+			. += SPAN_NOTICE("里面是空的。")
 
 /obj/item/reagent_container/food/snacks/fortunecookie/Initialize()
 	. = ..()
@@ -73,28 +73,28 @@
 /obj/item/reagent_container/food/snacks/fortunecookie/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/paper))
 		if(cookie_broken)
-			to_chat(user,SPAN_WARNING("[src] is cracked open! How are you gonna slip something in that?"))
+			to_chat(user,SPAN_WARNING("[src]已经裂开了！你还怎么把东西塞进去？"))
 		else
 			if(!cookiefortune)
-				to_chat(user, SPAN_NOTICE("You slip the paper into [src]."))
+				to_chat(user, SPAN_NOTICE("你把纸条塞进[src]。"))
 				cookiefortune = W
 				user.drop_inv_item_to_loc(W, src)
 			else
-				to_chat(user,SPAN_WARNING("[src] already has a fortune inside it!"))
+				to_chat(user,SPAN_WARNING("[src]里面已经有幸运签了！"))
 
 //Break open the cookie first before eating it (with use)
 /obj/item/reagent_container/food/snacks/fortunecookie/attack_self(mob/user)
 	if(!cookie_broken)
 		cookie_broken = TRUE
 		playsound(user,'sound/effects/pillbottle.ogg',10,TRUE)
-		name = "broken fortune cookie"
+		name = "掰开的幸运饼干"
 		update_icon()
 		if(cookiefortune)
-			to_chat(user,SPAN_NOTICE("You break open the fortune cookie, revealing a fortune inside!"))
+			to_chat(user,SPAN_NOTICE("你掰开幸运饼干，露出里面的幸运签！"))
 			user.put_in_hands(cookiefortune)
 			cookiefortune = null
 		else
-			to_chat(user, SPAN_WARNING("You break open the fortune cookie, but there's no fortune inside! Oh no!"))
+			to_chat(user, SPAN_WARNING("你掰开幸运饼干，里面却没有幸运签！真糟糕！"))
 	else
 		. = ..()
 
@@ -103,14 +103,14 @@
 	if(!cookie_broken)
 		cookie_broken = TRUE
 		playsound(user,'sound/effects/pillbottle.ogg',10,TRUE)
-		name = "broken fortune cookie"
+		name = "掰开的幸运饼干"
 		update_icon()
 		if(cookiefortune)
-			to_chat(user,SPAN_NOTICE("You break open the fortune cookie, revealing a fortune inside!"))
+			to_chat(user,SPAN_NOTICE("你掰开幸运饼干，露出里面的幸运签！"))
 			user.put_in_hands(cookiefortune)
 			cookiefortune = null
 		else
-			to_chat(user, SPAN_WARNING("You break open the fortune cookie, but there's no fortune inside! Oh no!"))
+			to_chat(user, SPAN_WARNING("你掰开幸运饼干，里面却没有幸运签！真糟糕！"))
 	else
 		. = ..()
 

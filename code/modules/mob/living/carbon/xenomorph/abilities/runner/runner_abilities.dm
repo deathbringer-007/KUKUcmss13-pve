@@ -1,5 +1,6 @@
 /datum/action/xeno_action/activable/pounce/runner
 	name = "Pounce"
+	localized_names = list("Pounce" = "扑击")
 	action_icon_state = "pounce"
 	ability_name = "pounce"
 	macro_path = /datum/action/xeno_action/verb/verb_pounce
@@ -23,6 +24,7 @@
 
 /datum/action/xeno_action/activable/runner_skillshot
 	name = "Bone Spur"
+	localized_names = list("Bone Spur" = "骨刺")
 	action_icon_state = "runner_bonespur"
 	ability_name = "bone spur"
 	macro_path = /datum/action/xeno_action/verb/verb_runner_bonespurs
@@ -35,6 +37,7 @@
 
 /datum/action/xeno_action/activable/acider_acid
 	name = "Corrosive Acid"
+	localized_names = list("Corrosive Acid" = "腐蚀酸液")
 	action_icon_state = "corrosive_acid"
 	ability_name = "acider acid"
 	var/acid_type = /obj/effect/xenomorph/acid/strong
@@ -45,6 +48,7 @@
 
 /datum/action/xeno_action/activable/acider_for_the_hive
 	name = "For the Hive!"
+	localized_names = list("For the Hive!" = "为了虫巢！")
 	action_icon_state = "screech"
 	ability_name = "for the hive"
 	macro_path = /datum/action/xeno_action/verb/verb_acider_sacrifice

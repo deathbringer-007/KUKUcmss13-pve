@@ -16,7 +16,7 @@
 	available_strains = list(/datum/xeno_strain/resin_whisperer)
 
 	evolution_allowed = FALSE
-	caste_desc = "A builder of really big hives."
+	caste_desc = "宏伟虫巢的建造者。"
 	deevolves_to = list(XENO_CASTE_DRONE)
 	can_hold_facehuggers = 1
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
@@ -46,7 +46,7 @@
 /mob/living/carbon/xenomorph/hivelord
 	caste_type = XENO_CASTE_HIVELORD
 	name = XENO_CASTE_HIVELORD
-	desc = "A builder of really big hives."
+	desc = "宏伟虫巢的建造者。"
 	icon = 'icons/mob/xenos/hivelord.dmi'
 	icon_size = 64
 	icon_state = "Hivelord Walking"
@@ -121,5 +121,5 @@
 	if(bound_xeno.plasma_stored > 0)
 		return
 	toggle_resin_walker()
-	to_chat(bound_xeno, SPAN_WARNING("You feel dizzy as the world slows down."))
+	to_chat(bound_xeno, SPAN_WARNING("周围的世界仿佛慢了下来，你感到一阵眩晕。"))
 	bound_xeno.recalculate_move_delay = TRUE

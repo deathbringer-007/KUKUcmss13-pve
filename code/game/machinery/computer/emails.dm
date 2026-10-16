@@ -2,8 +2,8 @@
 //computer that displays random emails from the Almayer crew, purely for backstory.
 
 /obj/structure/machinery/computer/emails
-	name = "Personal Computer"
-	desc = "A personal computer used to view emails"
+	name = "个人电脑"
+	desc = "用于查看电子邮件的个人电脑。"
 	icon = 'icons/obj/structures/machinery/computer.dmi'
 	icon_state = "terminal1"
 	var/screen = 0
@@ -34,16 +34,16 @@
 
 	switch(screen)
 		if(0)
-			dat += "<A href='byond://?src=\ref[src];open_inbox=1'><font size=4>Inbox</font></A><HR>"
+			dat += "<A href='byond://?src=\ref[src];open_inbox=1'><font size=4>收件箱</font></A><HR>"
 		if(1)
-			dat += "<font size=4>Inbox</font> | <A href='byond://?src=\ref[src];close_inbox=1'>Close</A><HR>"
+			dat += "<font size=4>收件箱</font> | <A href='byond://?src=\ref[src];close_inbox=1'>关闭</A><HR>"
 			if(selected_mail)
 				var/datum/fluff_email/E = email_list[selected_mail]
-				dat += "<b>SUBJECT: [E.title]</b><HR>"
-				dat += "<b>FROM:</b> NAME EXPUNGED<BR>"
-				dat += "<b>TO:</b> NAME EXPUNGED<BR><BR>"
+				dat += "<b>主题：[E.title]</b><HR>"
+				dat += "<b>发件人：</b>姓名已删除<BR>"
+				dat += "<b>收件人：</b>姓名已删除<BR><BR>"
 				dat += "[E.entry_text]<HR>"
-				dat += "<A href='byond://?src=\ref[src];back=1'>Back</A>"
+				dat += "<A href='byond://?src=\ref[src];back=1'>返回</A>"
 			else
 				var/i = 0
 				for(var/mail in email_list)
@@ -51,7 +51,7 @@
 					var/datum/fluff_email/FE = mail
 					dat += "<A href='byond://?src=\ref[src];selectmail=[i]'>[FE.title]</A><BR>"
 
-	show_browser(user, dat, "Personal Computer", "email", width = 600, height = 520)
+	show_browser(user, dat, "个人电脑", "email", width = 600, height = 520)
 
 
 /obj/structure/machinery/computer/emails/Topic(href, href_list)

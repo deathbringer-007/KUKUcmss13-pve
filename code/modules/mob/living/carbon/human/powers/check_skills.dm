@@ -1,8 +1,8 @@
 /mob/living/carbon/human/verb/checkSkills()
-	set name = "Check Skills"
+	set name = "查看技能"
 	set category = "IC"
 	if(!skills) //Stops null skills from a causing a runtime
-		to_chat(usr, SPAN_NOTICE("Unable to open the Skills Menu due to having null skills."))
+		to_chat(usr, SPAN_NOTICE("技能数据为空，无法打开技能菜单。"))
 		return
 
 	skills.tgui_interact(src)
@@ -13,7 +13,7 @@
 /datum/skills/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "SkillsMenu", "[owner]'s skills")
+		ui = new(user, src, "SkillsMenu", "[owner]的技能")
 		ui.open()
 		ui.set_autoupdate(FALSE)
 

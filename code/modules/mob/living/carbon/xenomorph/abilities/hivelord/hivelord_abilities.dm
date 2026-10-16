@@ -6,14 +6,15 @@
 
 /datum/action/xeno_action/active_toggle/toggle_speed
 	name = "Resin Walker (50)"
+	localized_names = list("Resin Walker (50)" = "树脂疾行（50）")
 	action_icon_state = "toggle_speed"
 	plasma_cost = 50
 	macro_path = /datum/action/xeno_action/verb/verb_resin_walker
 	action_type = XENO_ACTION_CLICK
 	ability_primacy = XENO_PRIMARY_ACTION_4
 
-	action_start_message = "We become one with the resin. We feel the urge to run!"
-	action_end_message = "We feel less in tune with the resin."
+	action_start_message = "我们与树脂融为一体，迫不及待地想奔跑！"
+	action_end_message = "我们与树脂的联系减弱了。"
 	plasma_use_per_tick = 30
 
 /datum/action/xeno_action/active_toggle/toggle_speed/can_use_action()

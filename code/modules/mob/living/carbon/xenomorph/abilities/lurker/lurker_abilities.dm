@@ -14,6 +14,7 @@
 
 /datum/action/xeno_action/onclick/lurker_invisibility
 	name = "Turn Invisible"
+	localized_names = list("Turn Invisible" = "隐身")
 	action_icon_state = "lurker_invisibility"
 	ability_name = "turn invisible"
 	macro_path = /datum/action/xeno_action/verb/verb_lurker_invisibility
@@ -29,6 +30,7 @@
 // tightly coupled 'buff next slash' action
 /datum/action/xeno_action/onclick/lurker_assassinate
 	name = "Crippling Strike"
+	localized_names = list("Crippling Strike" = "致残打击")
 	action_icon_state = "lurker_inject_neuro"
 	ability_name = "crippling strike"
 	macro_path = /datum/action/xeno_action/verb/verb_crippling_strike
@@ -60,6 +62,7 @@
 
 /datum/action/xeno_action/activable/pounce/rush
 	name = "Rush"
+	localized_names = list("Rush" = "突进")
 	action_icon_state = "pounce"
 	ability_name = "rush"
 	macro_path = /datum/action/xeno_action/verb/verb_rush
@@ -75,6 +78,7 @@
 
 /datum/action/xeno_action/activable/flurry
 	name = "Flurry"
+	localized_names = list("Flurry" = "连击")
 	action_icon_state = "rav_spike"
 	ability_name = "flurry"
 	macro_path = /datum/action/xeno_action/verb/verb_flurry
@@ -84,6 +88,7 @@
 
 /datum/action/xeno_action/activable/tail_jab
 	name = "Tail Jab"
+	localized_names = list("Tail Jab" = "尾部突刺")
 	action_icon_state = "prae_pierce"
 	ability_name = "tail jab"
 	macro_path = /datum/action/xeno_action/verb/verb_tail_jab
@@ -93,6 +98,7 @@
 
 /datum/action/xeno_action/activable/headbite
 	name = "Headbite"
+	localized_names = list("Headbite" = "咬头")
 	action_icon_state = "headbite"
 	ability_name = "headbite"
 	macro_path = /datum/action/xeno_action/verb/verb_headbite

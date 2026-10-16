@@ -1,6 +1,7 @@
 
 /datum/action/xeno_action/onclick/feralrush
 	name = "Feral Rush"
+	localized_names = list("Feral Rush" = "野性突进")
 	action_icon_state = "charge_spit"
 	ability_name = "toughen up"
 	macro_path = /datum/action/xeno_action/verb/verb_feralrush
@@ -20,6 +21,7 @@
 
 /datum/action/xeno_action/onclick/predalien_roar
 	name = "Roar"
+	localized_names = list("Roar" = "咆哮")
 	action_icon_state = "screech"
 	ability_name = "roar"
 	action_type = XENO_ACTION_CLICK
@@ -32,6 +34,7 @@
 
 /datum/action/xeno_action/activable/feral_smash
 	name = "Feral Smash"
+	localized_names = list("Feral Smash" = "野性猛击")
 	ability_name = "Feral Smash"
 	action_icon_state = "lunge"
 	action_type = XENO_ACTION_CLICK
@@ -48,6 +51,7 @@
 
 /datum/action/xeno_action/activable/feralfrenzy
 	name = "Feral Frenzy"
+	localized_names = list("Feral Frenzy" = "野性狂乱")
 	action_icon_state = "rav_eviscerate"
 	ability_name = "Feral Frenzy"
 	action_type = XENO_ACTION_CLICK
@@ -69,6 +73,7 @@
 
 /datum/action/xeno_action/onclick/toggle_gut_targeting
 	name = "Toggle Gutting Type"
+	localized_names = list("Toggle Gutting Type" = "切换剖腹方式")
 	action_icon_state = "gut" // starting targetting is SINGLETARGETGUT
 	macro_path = /datum/action/xeno_action/verb/verb_toggle_gut_targeting
 	action_type = XENO_ACTION_ACTIVATE

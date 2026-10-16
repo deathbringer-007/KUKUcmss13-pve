@@ -14,8 +14,9 @@
 
 /datum/xeno_strain/charger
 	name = CRUSHER_CHARGER
-	description = "In exchange for your shield, a little bit of your armor and damage, your slowdown resist from turrets, your influence under frenzy pheromones, your stomp no longer knocking down talls, and your ability to lock your direction, you gain a considerable amount of health, some speed, your stomp does extra damage when stomping over a grounded tall, and your charge is now manually-controlled and momentum-based; the further you go, the more damage and speed you will gain until you achieve maximum momentum, indicated by your roar. In addition, your armor is now directional, being the toughest on the front, weaker on the sides, and weakest from the back. In return, you gain an ability to tumble to pass through enemies and avoid enemy fire, and an ability to forcefully move enemies via ramming into them."
-	flavor_description = "Nothing stops this hive. This one will become both the immovable object and the unstoppable force."
+	localized_name = "冲撞者"
+	description = "你舍弃护盾、少量护甲和伤害、对炮塔减速的抗性、狂热信息素增益、践踏击倒高大宿主的能力，以及锁定朝向的能力，换取大量生命值、一些移速，以及践踏倒地宿主时的额外伤害。冲锋改为手动控制并依赖动量：前进越远，速度和伤害越高，达到最大动量时会发出咆哮。你的护甲现在具有方向性，正面最坚固，侧面较弱，背面最弱。你还获得翻滚技能，可穿过敌人、躲避火力，并能通过冲撞强行移动敌人。"
+	flavor_description = "没有什么能阻挡虫巢。它既是不可撼动之物，也是不可阻挡之力。"
 
 	actions_to_remove = list(
 		/datum/action/xeno_action/activable/pounce/crusher_charge,
@@ -140,8 +141,8 @@
 			charger_ability.stop_momentum()
 			return
 		xeno.visible_message(
-			SPAN_DANGER("[xeno] smashes straight into \the [src]!"),
-			SPAN_XENODANGER("You smash straight into \the [src]!")
+			SPAN_DANGER("[xeno]径直撞上了[src]！"),
+			SPAN_XENODANGER("你径直撞上了[src]！")
 		)
 		playsound(loc, "punch", 25, TRUE)
 		tip_over()
@@ -158,8 +159,8 @@
 /obj/structure/machinery/cm_vending/handle_charge_collision(mob/living/carbon/xenomorph/xeno, datum/action/xeno_action/onclick/charger_charge/charger_ability)
 	if(charger_ability.momentum >= CCA_MOMENTUM_LOSS_THIRD)
 		xeno.visible_message(
-			SPAN_DANGER("[xeno] smashes straight into \the [src]!"),
-			SPAN_XENODANGER("You smash straight into \the [src]!")
+			SPAN_DANGER("[xeno]径直撞上了[src]！"),
+			SPAN_XENODANGER("你径直撞上了[src]！")
 		)
 		playsound(loc, "punch", 25, TRUE)
 		tip_over()
@@ -191,8 +192,8 @@
 /obj/structure/barricade/handle_charge_collision(mob/living/carbon/xenomorph/xeno, datum/action/xeno_action/onclick/charger_charge/charger_ability)
 	if(charger_ability.momentum)
 		visible_message(
-			SPAN_DANGER("[xeno] rams into \the [src] and skids to a halt!"),
-			SPAN_XENOWARNING("You ram into \the [src] and skid to a halt!")
+			SPAN_DANGER("[xeno]猛撞[src]，随后滑行着停了下来！"),
+			SPAN_XENOWARNING("你猛撞[src]，随后滑行着停了下来！")
 		)
 		take_damage(charger_ability.momentum * 22)
 		playsound(src, barricade_hitsound, 25, TRUE)
@@ -332,8 +333,8 @@
 	take_overall_armored_damage(charger_ability.momentum * momentum_mult, ARMOR_MELEE, BRUTE, 60, 13) // Giving AP because this spreads damage out and then applies armor to them
 	apply_armoured_damage(charger_ability.momentum * momentum_mult/4, ARMOR_MELEE, BRUTE,"chest")
 	xeno.visible_message(
-		SPAN_DANGER("[xeno] rams [src]!"),
-		SPAN_XENODANGER("You ram [src]!")
+		SPAN_DANGER("[xeno]猛撞[src]！"),
+		SPAN_XENODANGER("你猛撞[src]！")
 	)
 	var/knockdown = 1
 	if(charger_ability.momentum == charger_ability.max_momentum)
@@ -382,8 +383,8 @@
 		var/target_turf = get_step(src, ram_dir)
 		if(LinkBlocked(src, cur_turf, target_turf))
 			xeno.emote("roar")
-			xeno.visible_message(SPAN_DANGER("[xeno] flings [src] over to the side!"),SPAN_DANGER( "You fling [src] out of the way!"))
-			to_chat(src, SPAN_XENOHIGHDANGER("[xeno] flings you out of its way! Move it!"))
+			xeno.visible_message(SPAN_DANGER("[xeno]将[src]甩到一旁！"),SPAN_DANGER( "你将挡路的[src]甩到一旁！"))
+			to_chat(src, SPAN_XENOHIGHDANGER("[xeno]把挡路的你甩开了！快躲开！"))
 			apply_effect(1, WEAKEN) // brief flicker stun
 			src.throw_atom(src.loc,1,3,xeno,TRUE)
 		step(src, ram_dir, charger_ability.momentum * 0.5)
@@ -403,8 +404,8 @@
 		momentum_mult = 8
 	take_overall_damage(charger_ability.momentum * momentum_mult)
 	xeno.visible_message(
-		SPAN_DANGER("[xeno] rams [src]!"),
-		SPAN_XENODANGER("You ram [src]!")
+		SPAN_DANGER("[xeno]猛撞[src]！"),
+		SPAN_XENODANGER("你猛撞[src]！")
 	)
 	var/knockdown = 1
 	if(charger_ability.momentum == charger_ability.max_momentum)
@@ -456,8 +457,8 @@
 	var/datum/effect_system/spark_spread/sparks = new
 	sparks.set_up(5, 1, loc)
 	xeno.visible_message(
-		SPAN_DANGER("[xeno] rams [src]!"),
-		SPAN_XENODANGER("You ram [src]!")
+		SPAN_DANGER("[xeno]猛撞[src]！"),
+		SPAN_XENODANGER("你猛撞[src]！")
 	)
 	if(health <= CHARGER_DAMAGE_SENTRY)
 		new /obj/effect/spawner/gibspawner/robot(src.loc) // if we goin down ,we going down with a show.
@@ -484,8 +485,8 @@
 	sparks.set_up(1, 1, loc)
 	sparks.start()
 	xeno.visible_message(
-		SPAN_DANGER("[xeno] rams [src]!"),
-		SPAN_XENODANGER("You ram [src]!")
+		SPAN_DANGER("[xeno]猛撞[src]！"),
+		SPAN_XENODANGER("你猛撞[src]！")
 	)
 	playsound(src, "sound/effects/metal_crash.ogg", 25, TRUE)
 
@@ -521,8 +522,8 @@
 	sparks.set_up(1, 1, loc)
 	sparks.start()
 	xeno.visible_message(
-		SPAN_DANGER("[xeno] rams [src]!"),
-		SPAN_XENODANGER("You ram [src]!")
+		SPAN_DANGER("[xeno]猛撞[src]！"),
+		SPAN_XENODANGER("你猛撞[src]！")
 	)
 	playsound(src, "sound/effects/metal_crash.ogg", 25, TRUE)
 
@@ -576,8 +577,8 @@
 		charger_ability.stop_momentum()
 		return
 	xeno.visible_message(
-		SPAN_DANGER("[xeno] rams [src]!"),
-		SPAN_XENODANGER("You ram [src]!")
+		SPAN_DANGER("[xeno]猛撞[src]！"),
+		SPAN_XENODANGER("你猛撞[src]！")
 	)
 	playsound(src, "sound/effects/metalhit.ogg", 25, TRUE)
 	qdel(src)
@@ -596,8 +597,8 @@
 		charger_ability.stop_momentum()
 		return
 	xeno.visible_message(
-		SPAN_DANGER("[xeno] rams [src]!"),
-		SPAN_XENODANGER("You ram [src]!")
+		SPAN_DANGER("[xeno]猛撞[src]！"),
+		SPAN_XENODANGER("你猛撞[src]！")
 	)
 	playsound(src, "sound/effects/metalhit.ogg", 25, TRUE)
 	qdel(src)

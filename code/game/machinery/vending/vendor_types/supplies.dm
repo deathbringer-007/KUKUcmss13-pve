@@ -1,6 +1,6 @@
 /obj/structure/machinery/cm_vending/sorted/supplies
-	name = "Supply Cabinet"
-	desc = "A cabinet containing various supplies."
+	name = "补给柜"
+	desc = "装有各种补给物资的柜子。"
 	icon = 'icons/obj/structures/machinery/lifeboat.dmi'
 	icon_state = "supplycab"
 	vend_delay = 0.3 SECONDS
@@ -10,8 +10,8 @@
 	wrenchable = TRUE
 
 /obj/structure/machinery/cm_vending/sorted/supplies/lifeboat
-	name = "Lifeboat Wall Cabinet"
-	desc = "A wall-mounted emergency cabinet containing survival supplies."
+	name = "救生艇壁柜"
+	desc = "装有求生物资的壁挂式应急柜。"
 	hackable = FALSE
 	unacidable = TRUE
 	unslashable = TRUE
@@ -20,17 +20,17 @@
 
 	listed_products = list(
 
-			list("FOOD AND BEVERAGE", -1, null, null),
-			list("MRE", 25, /obj/item/storage/box/mre, VENDOR_ITEM_REGULAR),
-			list("Water Bottle", 25, /obj/item/reagent_container/food/drinks/cans/waterbottle, VENDOR_ITEM_REGULAR),
+			list("食品与饮料", -1, null, null),
+			list("即食军粮", 25, /obj/item/storage/box/mre, VENDOR_ITEM_REGULAR),
+			list("瓶装水", 25, /obj/item/reagent_container/food/drinks/cans/waterbottle, VENDOR_ITEM_REGULAR),
 
-			list("UTILITY", -1, null, null),
-			list("M94 Marking Flare Pack", 5, /obj/item/storage/box/flare, VENDOR_ITEM_REGULAR),
-			list("M5 Bayonet", 8, /obj/item/attachable/bayonet, VENDOR_ITEM_REGULAR),
-			list("Handheld Radio", 5, /obj/item/device/radio, VENDOR_ITEM_REGULAR),
-			list("deck of UNO cards", 5, /obj/item/toy/deck/uno, VENDOR_ITEM_REGULAR),
+			list("实用工具", -1, null, null),
+			list("M94标记照明棒包", 5, /obj/item/storage/box/flare, VENDOR_ITEM_REGULAR),
+			list("M5刺刀", 8, /obj/item/attachable/bayonet, VENDOR_ITEM_REGULAR),
+			list("手持无线电", 5, /obj/item/device/radio, VENDOR_ITEM_REGULAR),
+			list("一副UNO牌", 5, /obj/item/toy/deck/uno, VENDOR_ITEM_REGULAR),
 
-			list("CLOTHING", -1, null, null),
-			list("Gas Mask", 15, /obj/item/clothing/mask/gas, VENDOR_ITEM_REGULAR),
-			list("Heat Absorbent Coif", 15, /obj/item/clothing/mask/rebreather/scarf, VENDOR_ITEM_REGULAR)
+			list("服装", -1, null, null),
+			list("防毒面具", 15, /obj/item/clothing/mask/gas, VENDOR_ITEM_REGULAR),
+			list("吸热头套", 15, /obj/item/clothing/mask/rebreather/scarf, VENDOR_ITEM_REGULAR)
 			)

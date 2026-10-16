@@ -2,6 +2,7 @@
 // Rav charge
 /datum/action/xeno_action/activable/pounce/charge
 	name = "Charge"
+	localized_names = list("Charge" = "冲锋")
 	action_icon_state = "charge"
 	ability_name = "charge"
 	macro_path = /datum/action/xeno_action/verb/verb_charge_rav
@@ -20,6 +21,7 @@
 // Base ravager shield ability
 /datum/action/xeno_action/onclick/empower
 	name = "Empower"
+	localized_names = list("Empower" = "强化")
 	action_icon_state = "empower"
 	ability_name = "empower"
 	macro_path = /datum/action/xeno_action/verb/verb_empower
@@ -42,6 +44,7 @@
 // Rav "Scissor Cut"
 /datum/action/xeno_action/activable/scissor_cut
 	name = "Scissor Cut"
+	localized_names = list("Scissor Cut" = "剪切斩")
 	ability_name = "scissor cut"
 	action_icon_state = "rav_scissor_cut"
 	macro_path = /datum/action/xeno_action/verb/verb_scissorcut
@@ -59,6 +62,7 @@
 
 /datum/action/xeno_action/onclick/apprehend
 	name = "Apprehend"
+	localized_names = list("Apprehend" = "擒拿")
 	action_icon_state = "rav_enrage"
 	ability_name = "apprehend"
 	macro_path = /datum/action/xeno_action/verb/verb_apprehend
@@ -74,6 +78,7 @@
 
 /datum/action/xeno_action/activable/clothesline
 	name = "Clothesline"
+	localized_names = list("Clothesline" = "横臂拦截")
 	action_icon_state = "rav_clothesline"
 	ability_name = "clothesline"
 	macro_path = /datum/action/xeno_action/verb/verb_clothesline
@@ -91,6 +96,7 @@
 
 /datum/action/xeno_action/activable/eviscerate
 	name = "Eviscerate"
+	localized_names = list("Eviscerate" = "开膛")
 	action_icon_state = "rav_eviscerate"
 	ability_name = "eviscerate"
 	macro_path = /datum/action/xeno_action/verb/verb_eviscerate
@@ -112,6 +118,7 @@
 
 /datum/action/xeno_action/onclick/spike_shield
 	name = "Spike Shield (150 shards)"
+	localized_names = list("Spike Shield (150 shards)" = "尖刺护盾（150碎片）")
 	action_icon_state = "rav_shard_shield"
 	ability_name = "spike shield"
 	macro_path = /datum/action/xeno_action/verb/verb_spike_shield
@@ -130,6 +137,7 @@
 
 /datum/action/xeno_action/activable/rav_spikes
 	name = "Fire Spikes (75 shards)"
+	localized_names = list("Fire Spikes (75 shards)" = "发射尖刺（75碎片）")
 	action_icon_state = "rav_spike"
 	ability_name = "fire spikes"
 	macro_path = /datum/action/xeno_action/verb/verb_fire_spikes
@@ -144,6 +152,7 @@
 
 /datum/action/xeno_action/onclick/spike_shed
 	name = "Spike Shed (50 shards)"
+	localized_names = list("Spike Shed (50 shards)" = "释放尖刺（50碎片）")
 	action_icon_state = "rav_shard_shed"
 	ability_name = "spike shed"
 	macro_path = /datum/action/xeno_action/verb/verb_shed_spikes

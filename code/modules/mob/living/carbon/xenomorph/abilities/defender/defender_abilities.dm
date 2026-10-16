@@ -1,5 +1,6 @@
 /datum/action/xeno_action/onclick/toggle_crest
 	name = "Toggle Crest Defense"
+	localized_names = list("Toggle Crest Defense" = "切换头冠防御")
 	action_icon_state = "crest_defense"
 	ability_name = "toggle crest defense"
 	macro_path = /datum/action/xeno_action/verb/verb_toggle_crest
@@ -13,6 +14,7 @@
 
 /datum/action/xeno_action/activable/headbutt
 	name = "Headbutt"
+	localized_names = list("Headbutt" = "头槌")
 	action_icon_state = "headbutt"
 	ability_name = "headbutt"
 	macro_path = /datum/action/xeno_action/verb/verb_headbutt
@@ -29,6 +31,7 @@
 
 /datum/action/xeno_action/onclick/tail_sweep
 	name = "Tail Sweep"
+	localized_names = list("Tail Sweep" = "扫尾")
 	action_icon_state = "tail_sweep"
 	ability_name = "tail sweep"
 	macro_path = /datum/action/xeno_action/verb/verb_tail_sweep
@@ -39,6 +42,7 @@
 
 /datum/action/xeno_action/activable/fortify
 	name = "Fortify"
+	localized_names = list("Fortify" = "固守")
 	action_icon_state = "fortify"
 	ability_name = "fortify"
 	macro_path = /datum/action/xeno_action/verb/verb_fortify
@@ -54,11 +58,13 @@
 
 /datum/action/xeno_action/activable/tail_stab/slam
 	name = "Tail Slam"
+	localized_names = list("Tail Slam" = "尾击")
 	ability_name = "tail slam"
 	blunt_stab = TRUE
 
 /datum/action/xeno_action/onclick/soak
 	name = "Soak"
+	localized_names = list("Soak" = "承伤")
 	action_icon_state = "soak"
 	ability_name = "soak"
 	macro_path = /datum/action/xeno_action/verb/verb_soak

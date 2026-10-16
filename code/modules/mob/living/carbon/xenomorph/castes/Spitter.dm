@@ -13,7 +13,7 @@
 	evasion = XENO_EVASION_NONE
 	speed = XENO_SPEED_TIER_5
 
-	caste_desc = "Ptui!"
+	caste_desc = "呸！"
 	spit_types = list(/datum/ammo/xeno/acid, /datum/ammo/xeno/acid/spatter)
 	evolves_to = list(XENO_CASTE_PRAETORIAN, XENO_CASTE_BOILER)
 	deevolves_to = list(XENO_CASTE_SENTINEL)
@@ -34,7 +34,7 @@
 /mob/living/carbon/xenomorph/spitter
 	caste_type = XENO_CASTE_SPITTER
 	name = XENO_CASTE_SPITTER
-	desc = "A gross, oozing alien of some kind."
+	desc = "一种不断渗出黏液的恶心异形。"
 	icon_size = 48
 	icon_state = "Spitter Walking"
 	plasma_types = list(PLASMA_NEUROTOXIN)

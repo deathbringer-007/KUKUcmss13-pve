@@ -6,7 +6,7 @@
 
 	if (src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)
-			to_chat(src, SPAN_DANGER("You cannot talk in deadchat (muted)."))
+			to_chat(src, SPAN_DANGER("你已被禁言，无法在亡者频道发言。"))
 			return
 
 		if (src.client.handle_spam_prevention(message, MUTE_DEADCHAT))
@@ -20,7 +20,7 @@
 
 
 
-/mob/dead/observer/hear_say(message, verb = "says", datum/language/language = null, alt_name = "", italics = 0, mob/speaker = null, sound/speech_sound, sound_vol)
+/mob/dead/observer/hear_say(message, verb = "说道", datum/language/language = null, alt_name = "", italics = 0, mob/speaker = null, sound/speech_sound, sound_vol)
 	if(!client)
 		return
 
@@ -50,11 +50,11 @@
 		return
 	if(speaker_name != speaker.real_name && speaker.real_name)
 		speaker_name = "[speaker.real_name] ([speaker_name])"
-	track = "(<a href='byond://?src=\ref[src];track=\ref[speaker]'>F</a>) "
+	track = "（<a href='byond://?src=\ref[src];track=\ref[speaker]'>跟随</a>）"
 	if(istype(speaker, /mob/living/carbon/xenomorph/queen))
 		var/mob/hologram/queen/queen_eye = speaker?.client?.eye
 		if(istype(queen_eye))
-			track += "(<a href='byond://?src=\ref[src];track=\ref[queen_eye]'>E</a>) "
+			track += "（<a href='byond://?src=\ref[src];track=\ref[queen_eye]'>视点</a>）"
 	if(client && client.prefs && client.prefs.toggles_chat & CHAT_GHOSTEARS && speaker.z == z && get_dist(speaker, src) <= GLOB.world_view_size)
 		message = "<b>[message]</b>"
 

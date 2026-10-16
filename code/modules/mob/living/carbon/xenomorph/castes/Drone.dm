@@ -19,7 +19,7 @@
 
 	build_time_mult = BUILD_TIME_MULT_BUILDER
 
-	caste_desc = "A builder of hives. Only drones may evolve into Queens."
+	caste_desc = "虫巢的建造者。只有工蜂能进化为女皇。"
 	evolves_to = list(XENO_CASTE_QUEEN, XENO_CASTE_BURROWER, XENO_CASTE_CARRIER, XENO_CASTE_HIVELORD) //Add more here separated by commas
 	deevolves_to = list("Larva")
 	can_hold_facehuggers = 1
@@ -47,7 +47,7 @@
 /mob/living/carbon/xenomorph/drone
 	caste_type = XENO_CASTE_DRONE
 	name = XENO_CASTE_DRONE
-	desc = "An alien drone"
+	desc = "一只异形工蜂。"
 	icon = 'icons/mob/xenos/drone.dmi'
 	icon_size = 48
 	icon_state = "Drone Walking"

@@ -6,12 +6,12 @@ GLOBAL_DATUM_INIT(relays_panel, /datum/ping_relay_tgui, new)
 /datum/ping_relay_tgui/tgui_interact(mob/user, datum/tgui/ui)
 	var/list/relay_ping_conf = CONFIG_GET(keyed_list/connection_relay_ping)
 	if(!length(relay_ping_conf))
-		to_chat(user, "There are no relays configured to test.")
+		to_chat(user, "尚未配置可检查延迟的中继服务器。")
 		return
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "PingRelaysPanel", "Relay Pings")
+		ui = new(user, src, "PingRelaysPanel", "中继服务器延迟")
 		ui.open()
 		ui.set_autoupdate(FALSE)
 
@@ -46,7 +46,7 @@ GLOBAL_DATUM_INIT(relays_panel, /datum/ping_relay_tgui, new)
 
 	switch(action)
 		if("connect")
-			to_chat(user, "Now connecting via [params["desc"]]. Please wait...");
+			to_chat(user, "正在通过[params["desc"]]连接，请稍候……");
 			user << link(params["url"])
 			ui.close()
 			return

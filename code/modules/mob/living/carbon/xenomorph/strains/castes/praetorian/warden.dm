@@ -1,8 +1,9 @@
 /datum/xeno_strain/warden
 	// i mean so basically im braum
 	name = PRAETORIAN_WARDEN
-	description = "You trade your acid ball, acid spray, dash, and a small bit of your slash damage and speed to become an effective medic. You gain the ability to emit strong pheromones, an ability that retrieves endangered, knocked-down or resting allies and pulls them to your location, and you gain an internal hitpoint pool that fills with every slash against your enemies, which can be spent to aid your allies and yourself by healing them or curing their ailments."
-	flavor_description = "This one will deny her sisters' deaths until they earn it. Fight or be forgotten."
+	localized_name = "守护者"
+	description = "你舍弃酸液球、喷洒酸液、疾冲，以及少量爪击伤害和移速，成为高效的治疗者。你获得强力信息素、将陷入危险且倒地或休息的同伴拉到身边的回收技能，以及一个可通过爪击敌人补充的内部生命储备池。你可以消耗储备，为自己或同伴治疗伤势、清除异常状态。"
+	flavor_description = "在姐妹们赢得应有的死亡之前，它不许她们死去。战斗，或被遗忘。"
 	icon_state_prefix = "Warden"
 
 	actions_to_remove = list(
@@ -46,8 +47,8 @@
 
 /datum/behavior_delegate/praetorian_warden/append_to_stat()
 	. = list()
-	. += "Energy Reserves: [internal_hitpoints]/[internal_hitpoints_max]"
-	. += "Healing Done: [transferred_healing]"
+	. += "能量储备：[internal_hitpoints]/[internal_hitpoints_max]"
+	. += "累计治疗量：[transferred_healing]"
 
 /datum/behavior_delegate/praetorian_warden/on_life()
 	internal_hitpoints = min(internal_hitpoints_max, internal_hitpoints + internal_hp_per_life)
@@ -80,7 +81,7 @@
 	if (amount > 0)
 		if (internal_hitpoints >= internal_hitpoints_max)
 			return
-		to_chat(bound_xeno, SPAN_XENODANGER("You feel your internal health reserves increase!"))
+		to_chat(bound_xeno, SPAN_XENODANGER("你感到体内的生命储备增加了！"))
 	internal_hitpoints = clamp(internal_hitpoints + amount, 0, internal_hitpoints_max)
 
 /datum/behavior_delegate/praetorian_warden/proc/remove_internal_hitpoints(amount)
@@ -88,7 +89,7 @@
 
 /datum/behavior_delegate/praetorian_warden/proc/use_internal_hp_ability(cost)
 	if (cost > internal_hitpoints)
-		to_chat(bound_xeno, SPAN_XENODANGER("Your health reserves are insufficient! You need at least [cost] to do that!"))
+		to_chat(bound_xeno, SPAN_XENODANGER("你的生命储备不足！至少需要[cost]才能这样做！"))
 		return FALSE
 	else
 		remove_internal_hitpoints(cost)

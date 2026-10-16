@@ -18,7 +18,7 @@
 	build_time_mult = BUILD_TIME_MULT_LESSER_DRONE
 	behavior_delegate_type = /datum/behavior_delegate/lesser_drone_base
 
-	caste_desc = "A builder of hives."
+	caste_desc = "虫巢的建造者。"
 	can_hold_facehuggers = TRUE
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 	acid_level = 1
@@ -40,7 +40,7 @@
 /mob/living/carbon/xenomorph/lesser_drone
 	caste_type = XENO_CASTE_LESSER_DRONE
 	name = XENO_CASTE_LESSER_DRONE
-	desc = "An alien drone. Looks... smaller."
+	desc = "一只异形工蜂，看起来……小了一些。"
 	icon = 'icons/mob/xenos/drone.dmi'
 	icon_size = 48
 	icon_state = "Lesser Drone Walking"
@@ -90,9 +90,9 @@
 
 	AddComponent(\
 		/datum/component/temporary_mute,\
-		"We aren't old enough to vocalize anything yet.",\
-		"We aren't old enough to communicate like this yet.",\
-		"We feel old enough to be able to vocalize and speak to the hivemind.",\
+		"我们还太年幼，无法发出声音。",\
+		"我们还太年幼，无法这样交流。",\
+		"我们感到自己已经长大，能够发声并通过虫巢意识交流了。",\
 		3 MINUTES,\
 	)
 

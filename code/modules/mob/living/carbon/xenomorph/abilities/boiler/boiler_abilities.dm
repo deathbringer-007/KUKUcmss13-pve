@@ -7,6 +7,7 @@
 
 /datum/action/xeno_action/activable/acid_lance
 	name = "Acid Lance"
+	localized_names = list("Acid Lance" = "酸液长枪")
 	ability_name = "acid lance"
 	action_icon_state = "acid_lance"
 	plasma_cost = 50
@@ -33,6 +34,7 @@
 
 /datum/action/xeno_action/onclick/shift_spits/boiler
 	name = "Toggle Gas Type"
+	localized_names = list("Toggle Gas Type" = "切换气体类型")
 	action_icon_state = "shift_spit_acid_glob"
 	macro_path = /datum/action/xeno_action/verb/verb_toggle_spit_type
 	action_type = XENO_ACTION_CLICK
@@ -50,9 +52,10 @@
 
 /datum/action/xeno_action/activable/xeno_spit/bombard
 	name = "Bombard"
+	localized_names = list("Bombard" = "轰击")
 	ability_name = "Bombard"
 	action_icon_state = "bombard"
-	cooldown_message = "Our belly fills with another gas glob. We are ready to bombard again."
+	cooldown_message = "我们的腹中又蓄满了一团气体，可以再次轰击了。"
 	sound_to_play = 'sound/effects/blobattack.ogg'
 	aim_turf = TRUE
 	/// These are actions that will be placed on cooldown for the cooldown_duration when activates. Added acid shroud for now because it can be abused
@@ -65,6 +68,7 @@
 
 /datum/action/xeno_action/onclick/acid_shroud  // acid dump alternative
 	name = "Acid Shroud"
+	localized_names = list("Acid Shroud" = "酸雾屏障")
 	ability_name = "Acid Shroud"
 	action_icon_state = "acid_shroud"
 	action_type = XENO_ACTION_ACTIVATE
@@ -90,6 +94,7 @@
 
 /datum/action/xeno_action/activable/boiler_trap
 	name = "Deploy Trap"
+	localized_names = list("Deploy Trap" = "部署陷阱")
 	ability_name = "deploy trap"
 	action_icon_state = "resin_pit"
 	plasma_cost = 60
@@ -106,6 +111,7 @@
 
 /datum/action/xeno_action/activable/acid_mine
 	name = "Acid Mine"
+	localized_names = list("Acid Mine" = "酸液地雷")
 	ability_name = "acid mine"
 	action_icon_state = "acid_mine"
 	plasma_cost = 40
@@ -121,6 +127,7 @@
 
 /datum/action/xeno_action/activable/acid_shotgun
 	name = "Acid Shotgun"
+	localized_names = list("Acid Shotgun" = "酸液霰弹")
 	ability_name = "acid shotgun"
 	action_icon_state = "acid_shotgun"
 	plasma_cost = 60
@@ -138,3 +145,4 @@
 
 /datum/action/xeno_action/activable/tail_stab/boiler
 	name = "Toxic Tail Stab"
+	localized_names = list("Toxic Tail Stab" = "毒性尾刺")

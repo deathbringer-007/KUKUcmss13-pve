@@ -1,7 +1,8 @@
 /datum/xeno_strain/hedgehog
 	name = RAVAGER_HEDGEHOG
-	description = "You lose your empower, charge, scissor cut, and some slash damage in exchange for more explosive resistance. Your resistance scales with your shard count and at 50% grants you immunity to some explosive stuns. You accumulate shards over time and when taking damage. You can use these shards to power three new abilities: Spike Shield which gives you a temporary shield that spits bone shards around you when damaged; Fire Spikes which launches spikes at your target to slow them and deal damage when they move; and Spike Shed which launches all your spikes, grants a temporary speed boost, and disables shard generation for thirty seconds."
-	flavor_description = "You will pierce them a million times, show them what it feels like. This one will become my shield."
+	localized_name = "刺猬"
+	description = "你失去强化、冲锋、剪切斩和部分爪击伤害，换取更高的抗爆能力。抗性随碎片数量提高，达到50%时免疫部分爆炸眩晕。碎片会随时间及受到伤害而积累，可用于三种新技能：尖刺护盾提供临时护盾，受击时向周围射出骨片；发射尖刺使目标减速，并在其移动时造成伤害；释放尖刺射出全部尖刺，暂时加速，但在三十秒内停止生成碎片。"
+	flavor_description = "刺穿它们千百次，让它们体会这种滋味。它将成为我的盾牌。"
 	icon_state_prefix = "Hedgehog"
 
 	actions_to_remove = list(
@@ -46,15 +47,15 @@
 
 /datum/behavior_delegate/ravager_hedgehog/append_to_stat()
 	. = list()
-	. += "Bone Shards: [shards]/[max_shards]"
-	. += "Shards Armor Bonus: [times_armor_buffed*armor_buff_per_fifty_shards]"
+	. += "骨片：[shards]/[max_shards]"
+	. += "碎片护甲加成：[times_armor_buffed*armor_buff_per_fifty_shards]"
 
 /datum/behavior_delegate/ravager_hedgehog/proc/lock_shards()
 
 	if (!bound_xeno)
 		return
 
-	to_chat(bound_xeno, SPAN_XENODANGER("You have shed your spikes and cannot gain any more for [shard_lock_duration/10] seconds!"))
+	to_chat(bound_xeno, SPAN_XENODANGER("你已释放尖刺，在[shard_lock_duration/10]秒内无法再积累尖刺！"))
 
 	bound_xeno.speed_modifier -= shard_lock_speed_mod
 	bound_xeno.recalculate_speed()
@@ -68,7 +69,7 @@
 	if (!bound_xeno)
 		return
 
-	to_chat(bound_xeno, SPAN_XENODANGER("You feel your ability to gather shards return!"))
+	to_chat(bound_xeno, SPAN_XENODANGER("你感到积累碎片的能力恢复了！"))
 
 	bound_xeno.speed_modifier += shard_lock_speed_mod
 	bound_xeno.recalculate_speed()

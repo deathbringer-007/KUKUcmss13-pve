@@ -12,7 +12,7 @@
 	evasion = XENO_EVASION_MEDIUM
 	speed = XENO_SPEED_HELLHOUND //Faster than drones, slower than lurkers.
 
-	caste_desc = "A warrior of the hive."
+	caste_desc = "虫巢的战士。"
 	evolves_to = list(XENO_CASTE_QUEEN, XENO_CASTE_BURROWER, XENO_CASTE_CARRIER, XENO_CASTE_HIVELORD) //Add more here separated by commas
 	deevolves_to = list("Drone")
 
@@ -24,7 +24,7 @@
 /mob/living/carbon/xenomorph/soldier
 	caste_type = XENO_CASTE_SOLDIER
 	name = XENO_CASTE_SOLDIER
-	desc = "An alien warrior."
+	desc = "一只异形战士。"
 	icon = 'icons/mob/xenos/soldier.dmi'
 	icon_size = 48
 	icon_state = "Soldier Walking"
@@ -231,7 +231,7 @@
 	var/should_neckgrab = !can_not_harm(L) && lunge
 
 	if(!QDELETED(L) && !QDELETED(L.pulledby) && L != src ) //override pull of other mobs
-		visible_message(SPAN_WARNING("[src] has broken [L.pulledby]'s grip on [L]!"), null, null, 5)
+		visible_message(SPAN_WARNING("[src]挣开了[L.pulledby]对[L]的抓握！"), null, null, 5)
 		L.pulledby.stop_pulling()
 
 	. = ..(L, lunge, should_neckgrab)
@@ -241,8 +241,8 @@
 		if(should_neckgrab && L.mob_size < MOB_SIZE_BIG)
 			pain_to_cause += PAIN_XENO_GRAB /// Neck grabs cause even more pain.
 			L.pulledby = src
-			visible_message(SPAN_XENOWARNING("\The [src] grabs [L] by the throat!"), \
-			SPAN_XENOWARNING("You grab [L] by the throat!"))
+			visible_message(SPAN_XENOWARNING("[src]掐住了[L]的喉咙！"), \
+			SPAN_XENOWARNING("你掐住了[L]的喉咙！"))
 
 		L.pain.apply_pain(pain_to_cause)
 		grab_level = GRAB_XENO /// Alien-specific grab level, with its own logic for escaping. AI only for the moment. See /mob/living/resist_grab()

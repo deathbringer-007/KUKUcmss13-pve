@@ -1,24 +1,28 @@
 /datum/action/xeno_action/onclick/remove_eggsac
 	name = "Remove Eggsac"
+	localized_names = list("Remove Eggsac" = "移除卵囊")
 	action_icon_state = "grow_ovipositor"
 	plasma_cost = 0
 
 /datum/action/xeno_action/onclick/grow_ovipositor
 	name = "Grow Ovipositor (500)"
+	localized_names = list("Grow Ovipositor (500)" = "生长产卵器（500）")
 	action_icon_state = "grow_ovipositor"
 	plasma_cost = 500
 	xeno_cooldown = 5 MINUTES
-	cooldown_message = "You are ready to grow an ovipositor again."
+	cooldown_message = "你可以再次生长产卵器了。"
 	no_cooldown_msg = FALSE // Needed for onclick actions
 
 /datum/action/xeno_action/onclick/set_xeno_lead
 	name = "Choose/Follow Xenomorph Leaders"
+	localized_names = list("Choose/Follow Xenomorph Leaders" = "选择／跟随异形领袖")
 	action_icon_state = "xeno_lead"
 	plasma_cost = 0
 	xeno_cooldown = 3 SECONDS
 
 /datum/action/xeno_action/activable/queen_heal
 	name = "Heal Xenomorph (600)"
+	localized_names = list("Heal Xenomorph (600)" = "治疗异形（600）")
 	action_icon_state = "heal_xeno"
 	ability_name = "xenomorph heal"
 	plasma_cost = 600
@@ -29,6 +33,7 @@
 
 /datum/action/xeno_action/activable/expand_weeds
 	name = "Expand Weeds (50)"
+	localized_names = list("Expand Weeds (50)" = "扩展菌毯（50）")
 	action_icon_state = "plant_weeds"
 	ability_name = "weed expansion"
 	plasma_cost = 50
@@ -42,11 +47,13 @@
 
 /datum/action/xeno_action/onclick/manage_hive
 	name = "Manage The Hive"
+	localized_names = list("Manage The Hive" = "管理虫巢")
 	action_icon_state = "xeno_readmit"
 	plasma_cost = 0
 
 /datum/action/xeno_action/activable/secrete_resin/remote/queen
 	name = "Projected Resin (100)"
+	localized_names = list("Projected Resin (100)" = "远程分泌树脂（100）")
 	action_icon_state = "secrete_resin"
 	ability_name = "projected resin"
 	plasma_cost = 100
@@ -85,7 +92,7 @@
 	UnregisterSignal(owner, COMSIG_XENO_THICK_RESIN_BYPASS)
 
 	if(owner)
-		to_chat(owner, SPAN_XENOHIGHDANGER("Your boosted building has been disabled!"))
+		to_chat(owner, SPAN_XENOHIGHDANGER("你的建造强化效果已结束！"))
 
 /datum/action/xeno_action/activable/secrete_resin/remote/queen/proc/override_secrete_thick_resin()
 	return COMPONENT_THICK_BYPASS
@@ -127,6 +134,7 @@
 
 /datum/action/xeno_action/activable/place_queen_beacon
 	name = "Place Queen Beacon"
+	localized_names = list("Place Queen Beacon" = "放置女皇信标")
 	action_icon_state = "place_queen_beacon"
 	ability_name = "place queen beacon"
 	plasma_cost = 0
@@ -164,6 +172,7 @@
 
 /datum/action/xeno_action/activable/blockade
 	name = "Place Blockade"
+	localized_names = list("Place Blockade" = "放置封锁障碍")
 	action_icon_state = "place_blockade"
 	ability_name = "place blockade"
 	plasma_cost = 300

@@ -3,8 +3,8 @@
 /*----------------------*/
 
 /obj/structure/barricade/snow
-	name = "snow barricade"
-	desc = "A mound of snow shaped into a sloped wall. Statistically better than thin air as cover."
+	name = "积雪路障"
+	desc = "堆成斜坡状矮墙的积雪。统计表明，总比躲在空气后面强。"
 	icon_state = "snow_0"
 	barricade_type = "snow"
 	health = 75 //Actual health depends on snow layer
@@ -27,7 +27,7 @@
 /obj/structure/barricade/snow/attackby(obj/item/W, mob/user)
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
 		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
+			to_chat(user, "它正在熔化，你无法靠近！")
 			return
 	//Removing the barricades
 	if(istype(W, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
@@ -35,13 +35,13 @@
 		if(ET.folded)
 			return
 		if(user.action_busy)
-			to_chat(user, SPAN_WARNING("You are already shoveling!"))
+			to_chat(user, SPAN_WARNING("你已经在铲了！"))
 			return
-		user.visible_message("[user.name] starts clearing out \the [src].","You start removing \the [src].")
+		user.visible_message("[user.name]开始清除\the [src]。","你开始清除\the [src]。")
 		if(!do_after(user, ET.shovelspeed * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, src))
 			return
 		if(!ET.folded)
-			user.visible_message(SPAN_NOTICE("\The [user] removes \the [src]."))
+			user.visible_message(SPAN_NOTICE("\The [user]清除了\the [src]。"))
 			deconstruct(TRUE)
 		return
 
@@ -62,8 +62,8 @@
 /*----------------------*/
 
 /obj/structure/barricade/wooden
-	name = "wooden barricade"
-	desc = "A wall made out of wooden planks nailed together. Not very sturdy, but can provide some concealment."
+	name = "木制路障"
+	desc = "用木板钉成的一堵墙，不太坚固，但能提供些许遮蔽。"
 	icon_state = "wooden"
 	health = 100
 	maxhealth = 100
@@ -82,20 +82,20 @@
 /obj/structure/barricade/wooden/attackby(obj/item/W as obj, mob/user as mob)
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
 		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
+			to_chat(user, "它正在熔化，你无法靠近！")
 			return
 	if(istype(W, /obj/item/stack/sheet/wood))
 		var/obj/item/stack/sheet/wood/D = W
 		if(health < maxhealth)
 			if(D.get_amount() < 1)
-				to_chat(user, SPAN_WARNING("You need one plank of wood to repair [src]."))
+				to_chat(user, SPAN_WARNING("你需要一块木板才能修复[src]。"))
 				return
-			visible_message(SPAN_NOTICE("[user] begins to repair [src]."))
+			visible_message(SPAN_NOTICE("[user]开始修复[src]。"))
 			if(do_after(user, 2 SECONDS, INTERRUPT_ALL, BUSY_ICON_FRIENDLY, src) && health < maxhealth)
 				if (D.use(1))
 					update_health(-0.5*maxhealth)
 					update_damage_state()
-					visible_message(SPAN_NOTICE("[user] clumsily repairs [src]."))
+					visible_message(SPAN_NOTICE("[user]笨拙地修好了[src]。"))
 		return
 
 	if(try_nailgun_usage(W, user))
@@ -113,8 +113,8 @@
 // Prop flipped tables
 
 /obj/structure/barricade/table
-	name = "table barricade"
-	desc = "A square metal surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
+	name = "桌子路障"
+	desc = "四条腿支撑着方形金属桌面，适合摆放物品，紧急时可以掀倒充当掩体。"
 	icon = 'icons/obj/structures/barricades.dmi'
 	icon_state = "metalflip"
 	health = 100
@@ -131,18 +131,18 @@
 
 /obj/structure/barricade/table/attackby(obj/item/W, mob/user)
 	if(HAS_TRAIT(W, TRAIT_TOOL_WRENCH) && !(user.a_intent == INTENT_HELP))
-		user.visible_message(SPAN_NOTICE("[user] starts disassembling [src]."),
-		SPAN_NOTICE("You start disassembling [src]."))
+		user.visible_message(SPAN_NOTICE("[user]开始拆除[src]。"),
+		SPAN_NOTICE("你开始拆除[src]。"))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		if(do_after(user, 50 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-			user.visible_message(SPAN_NOTICE("[user] disassembles [src]."),
-			SPAN_NOTICE("You disassemble [src]."))
+			user.visible_message(SPAN_NOTICE("[user]拆除了[src]。"),
+			SPAN_NOTICE("你拆除了[src]。"))
 			deconstruct(TRUE)
 		return
 
 /obj/structure/barricade/table/wood
-	name = "wooden table barricade"
-	desc = "A square wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
+	name = "木桌路障"
+	desc = "四条腿支撑着方形木桌面，适合摆放物品，紧急时可以掀倒充当掩体。"
 	icon_state = "woodflip"
 	barricade_hitsound = 'sound/effects/woodhit.ogg'
 	barricade_type = "woodflip"
@@ -151,29 +151,29 @@
 	debris = list(/obj/item/stack/sheet/wood)
 
 /obj/structure/barricade/table/wood/poor
-	name = "poor wooden table barricade"
-	desc = "A semi-poorly constructed wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
+	name = "劣质木桌路障"
+	desc = "做工有些粗糙的木桌面由四条腿支撑，适合摆放物品，紧急时可以掀倒充当掩体。"
 	icon_state = "pwoodflip"
 	barricade_type = "pwoodflip"
 
 /obj/structure/barricade/table/wood/gambling
-	name = "gambling table barricade"
-	desc = "A curved wood and carpet surface resting on four legs. Used for gambling games. Can be flipped in emergencies to act as cover."
+	name = "赌桌路障"
+	desc = "四条腿支撑着铺有毯面的弧形木桌，用于赌博游戏，紧急时可以掀倒充当掩体。"
 	icon_state = "gambleflip"
 	barricade_type = "gambleflip"
 
 /obj/structure/barricade/table/reinforced
-	name = "reinforced table barricade"
-	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
+	name = "加固桌子路障"
+	desc = "四条腿支撑着方形金属桌面，带有侧板，适合办公，却无法掀倒。"
 	icon_state = "reinfflip"
 	barricade_type = "reinfflip"
 
 /obj/structure/barricade/table/almayer
-	desc = "A square metal surface resting on its fat metal bottom. You can't flip something that doesn't have legs."
+	desc = "厚重的金属底座支撑着方形金属桌面。没有腿的桌子可没法掀倒。"
 	icon_state = "almflip"
 	barricade_type = "almflip"
 
 /obj/structure/barricade/table/prison
-	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
+	desc = "四条腿支撑着方形金属桌面，带有侧板，适合办公，却无法掀倒。"
 	icon_state = "prisonflip"
 	barricade_type = "prisonflip"

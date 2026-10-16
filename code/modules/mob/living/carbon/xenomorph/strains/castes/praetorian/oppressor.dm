@@ -1,8 +1,9 @@
 /datum/xeno_strain/oppressor
 	// Dread it, run from it, destiny still arrives... or should I say, I do
 	name = PRAETORIAN_OPPRESSOR
-	description = "You abandon all of your acid-based abilities, your dash, some speed, and a bit of your slash damage for some resistance against small explosives, slashes that deal extra damage to prone targets, and a powerful hook ability that pulls up to three enemies towards you, slows them, and has varying effects depending on how many enemies you pull. You also gain a powerful punch that reduces your other abilities' cooldowns, pierces through armor, and does double damage in addition to rooting slowed targets. You can also knock enemies back and slow them with your new Tail Lash and quickly grab a tall, slow it, and pull it towards you with your unique Tail Stab."
-	flavor_description = "My reach is endless, this one will pull down the heavens."
+	localized_name = "压迫者"
+	description = "你舍弃所有酸液技能、疾冲、部分移速及少量爪击伤害，换取对小型爆炸的抗性、对倒地目标更高的爪击伤害，以及强力钩拽技能。该技能最多将三个敌人拉向你并减速，效果随拉中的敌人数量变化。你还获得一记强力拳击，能缩短其他技能的冷却、穿透护甲，并对减速目标造成双倍伤害和定身。新的尾鞭可以击退并减速敌人，专属尾刺则能迅速抓住高大宿主，使其减速并将其拉向你。"
+	flavor_description = "我的触及之处没有尽头。它将把苍穹拖下。"
 	icon_state_prefix = "Oppressor"
 
 	actions_to_remove = list(
@@ -43,5 +44,5 @@
 	// impaired in some capacity
 	if(!(target_carbon.mobility_flags & MOBILITY_STAND) || !(target_carbon.mobility_flags & MOBILITY_MOVE) || target_carbon.slowed)
 		target_carbon.apply_armoured_damage(get_xeno_damage_slash(target_carbon, tearing_damage), ARMOR_MELEE, BRUTE, bound_xeno.zone_selected ? bound_xeno.zone_selected : "chest")
-		target_carbon.visible_message(SPAN_DANGER("[bound_xeno] tears into [target_carbon]!"))
+		target_carbon.visible_message(SPAN_DANGER("[bound_xeno]狠狠撕开了[target_carbon]的身体！"))
 		playsound(bound_xeno, 'sound/weapons/alien_tail_attack.ogg', 25, TRUE)

@@ -18,6 +18,7 @@
 
 /datum/action/xeno_action/onclick/plant_weeds
 	name = "Plant Weeds (75)"
+	localized_names = list("Plant Weeds (75)" = "种植菌毯（75）")
 	ability_name = "Plant Weeds"
 	action_icon_state = "plant_weeds"
 	plasma_cost = 75
@@ -32,6 +33,7 @@
 // Resting
 /datum/action/xeno_action/onclick/xeno_resting
 	name = "Rest"
+	localized_names = list("Rest" = "休息")
 	action_icon_state = "resting"
 	action_type = XENO_ACTION_CLICK
 
@@ -49,6 +51,7 @@
 // Shift Spits
 /datum/action/xeno_action/onclick/shift_spits
 	name = "Toggle Spit Type"
+	localized_names = list("Toggle Spit Type" = "切换喷吐类型")
 	action_icon_state = "shift_spit_neurotoxin"
 	plasma_cost = 0
 	macro_path = /datum/action/xeno_action/verb/verb_toggle_gas_type
@@ -63,6 +66,7 @@
 // Regurgitate
 /datum/action/xeno_action/onclick/regurgitate
 	name = "Regurgitate"
+	localized_names = list("Regurgitate" = "吐出吞食物")
 	action_icon_state = "regurgitate"
 	plasma_cost = 0
 	macro_path = /datum/action/xeno_action/verb/verb_regurgitate
@@ -71,6 +75,7 @@
 // Choose Resin
 /datum/action/xeno_action/onclick/choose_resin
 	name = "Choose Resin Structure"
+	localized_names = list("Choose Resin Structure" = "选择树脂建筑")
 	action_icon_state = "retrieve_egg"
 	plasma_cost = 0
 	macro_path = /datum/action/xeno_action/verb/verb_choose_resin_structure
@@ -83,6 +88,7 @@
 // Secrete Resin
 /datum/action/xeno_action/activable/secrete_resin
 	name = "Secrete Resin"
+	localized_names = list("Secrete Resin" = "分泌树脂")
 	action_icon_state = "secrete_resin"
 	ability_name = "secrete resin"
 	var/thick = FALSE
@@ -111,11 +117,13 @@
 
 /datum/action/xeno_action/activable/secrete_resin/hivelord
 	name = "Secrete Thick Resin"
+	localized_names = list("Secrete Thick Resin" = "分泌厚实树脂")
 	thick = TRUE
 
 //resin marker
 /datum/action/xeno_action/activable/info_marker
 	name = "Mark Resin"
+	localized_names = list("Mark Resin" = "标记树脂")
 	action_icon_state = "mark"
 	ability_name = "mark resin"
 	macro_path = /datum/action/xeno_action/verb/verb_mark_resin
@@ -137,6 +145,7 @@
 // Corrosive Acid
 /datum/action/xeno_action/activable/corrosive_acid
 	name = "Corrosive Acid (100)"
+	localized_names = list("Corrosive Acid (75)" = "腐蚀酸液（75）", "Corrosive Acid (100)" = "腐蚀酸液（100）", "Corrosive Acid (125)" = "腐蚀酸液（125）")
 	action_icon_state = "corrosive_acid"
 	ability_name = "corrosive acid"
 	var/acid_plasma_cost = 100
@@ -167,18 +176,21 @@
 
 /datum/action/xeno_action/activable/corrosive_acid/weak
 	name = "Corrosive Acid (75)"
+	localized_names = list("Corrosive Acid (75)" = "腐蚀酸液（75）", "Corrosive Acid (100)" = "腐蚀酸液（100）", "Corrosive Acid (125)" = "腐蚀酸液（125）")
 	acid_plasma_cost = 75
 	level = 1
 	acid_type = /obj/effect/xenomorph/acid/weak
 
 /datum/action/xeno_action/activable/corrosive_acid/strong
 	name = "Corrosive Acid (125)"
+	localized_names = list("Corrosive Acid (75)" = "腐蚀酸液（75）", "Corrosive Acid (100)" = "腐蚀酸液（100）", "Corrosive Acid (125)" = "腐蚀酸液（125）")
 	acid_plasma_cost = 125
 	level = 3
 	acid_type = /obj/effect/xenomorph/acid/strong
 
 /datum/action/xeno_action/onclick/emit_pheromones
 	name = "Emit Pheromones (30)"
+	localized_names = list("Emit Pheromones (30)" = "释放信息素（30）")
 	action_icon_state = "emit_pheromones"
 	plasma_cost = 30
 	macro_path = /datum/action/xeno_action/verb/verb_pheremones
@@ -193,6 +205,7 @@
 // Subtype this to customize behavior, or do it at runtime
 /datum/action/xeno_action/activable/pounce
 	name = "Pounce"
+	localized_names = list("Pounce" = "扑击")
 	action_icon_state = "pounce"
 	ability_name = "pounce"
 	macro_path = /datum/action/xeno_action/verb/verb_pounce
@@ -293,7 +306,7 @@
 	REMOVE_TRAIT(X, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Pounce"))
 	deltimer(freeze_timer_id)
 	freeze_timer_id = TIMER_ID_NULL
-	to_chat(X, SPAN_XENONOTICE("Slashing frenzies us! We feel free to move immediately!"))
+	to_chat(X, SPAN_XENONOTICE("爪击令我们狂热！我们可以立即移动了！"))
 
 /// Any effects to apply to the xenomorph before the windup occurs
 /datum/action/xeno_action/activable/pounce/proc/pre_windup_effects()
@@ -308,6 +321,7 @@
 
 /datum/action/xeno_action/onclick/toggle_long_range
 	name = "Toggle Long-Range Sight"
+	localized_names = list("Toggle Long-Range Sight" = "切换远视")
 	action_icon_state = "toggle_long_range"
 	macro_path = /datum/action/xeno_action/verb/verb_toggle_long_range
 	action_type = XENO_ACTION_ACTIVATE
@@ -344,8 +358,8 @@
 	if(xeno.is_zoomed)
 		xeno.zoom_out() // will call on_zoom_out()
 		return
-	xeno.visible_message(SPAN_NOTICE("[xeno] starts looking off into the distance."), \
-		SPAN_NOTICE("We start focusing our sight to look off into the distance."), null, 5)
+	xeno.visible_message(SPAN_NOTICE("[xeno]开始眺望远方。"), \
+		SPAN_NOTICE("我们开始集中视线，眺望远方。"), null, 5)
 	if (should_delay)
 		if(!do_after(xeno, delay, INTERRUPT_NO_NEEDHAND, BUSY_ICON_GENERIC)) return
 	if(xeno.is_zoomed)
@@ -361,8 +375,8 @@
 
 /datum/action/xeno_action/onclick/toggle_long_range/proc/on_zoom_out()
 	var/mob/living/carbon/xenomorph/xeno = owner
-	xeno.visible_message(SPAN_NOTICE("[xeno] stops looking off into the distance."), \
-	SPAN_NOTICE("We stop looking off into the distance."), null, 5)
+	xeno.visible_message(SPAN_NOTICE("[xeno]不再眺望远方。"), \
+	SPAN_NOTICE("我们不再眺望远方。"), null, 5)
 	if(movement_slowdown)
 		xeno.speed_modifier -= movement_slowdown
 		xeno.recalculate_speed()
@@ -386,6 +400,7 @@
 // ... as they are all safely mutable. (Except possibly xeno_cooldown)
 /datum/action/xeno_action/activable/spray_acid
 	name = "Spray Acid"
+	localized_names = list("Spray Acid" = "喷洒酸液")
 	action_icon_state = "spray_acid"
 	ability_name = "spray acid"
 	macro_path = /datum/action/xeno_action/verb/verb_spray_acid
@@ -407,6 +422,7 @@
 
 /datum/action/xeno_action/activable/transfer_plasma
 	name = "Transfer Plasma"
+	localized_names = list("Transfer Plasma" = "输送等离子体")
 	action_icon_state = "transfer_plasma"
 	ability_name = "transfer plasma"
 	var/plasma_transfer_amount = 50
@@ -423,6 +439,7 @@
 
 /datum/action/xeno_action/onclick/xenohide
 	name = "Hide"
+	localized_names = list("Hide" = "躲藏")
 	action_icon_state = "xenohide"
 	plasma_cost = 0
 	xeno_cooldown = 0.5 SECONDS
@@ -454,6 +471,7 @@
 
 /datum/action/xeno_action/onclick/place_trap
 	name = "Place resin hole (200)"
+	localized_names = list("Place resin hole (200)" = "放置树脂陷坑（200）")
 	action_icon_state = "place_trap"
 	plasma_cost = 200
 	macro_path = /datum/action/xeno_action/verb/verb_resin_hole
@@ -462,6 +480,7 @@
 
 /datum/action/xeno_action/activable/place_construction
 	name = "Order Construction (400)"
+	localized_names = list("Order Construction (400)" = "规划建造（400）")
 	action_icon_state = "morph_resin"
 	ability_name = "order construction"
 	macro_path = /datum/action/xeno_action/verb/place_construction
@@ -473,12 +492,13 @@
 
 /datum/action/xeno_action/activable/xeno_spit
 	name = "Xeno Spit"
+	localized_names = list("Xeno Spit" = "异形喷吐")
 	action_icon_state = "xeno_spit"
 	ability_name = "xeno spit"
 	macro_path = /datum/action/xeno_action/verb/verb_xeno_spit
 	action_type = XENO_ACTION_CLICK
 	ability_primacy = XENO_PRIMARY_ACTION_1
-	cooldown_message = "We feel our neurotoxin glands swell with ichor. We can spit again."
+	cooldown_message = "我们的神经毒素腺重新蓄满分泌物，可以再次喷吐了。"
 	xeno_cooldown = 60 SECONDS
 
 	/// Var that keeps track of in-progress wind-up spits like Bombard to prevent spitting multiple spits at the same time
@@ -491,6 +511,7 @@
 
 /datum/action/xeno_action/activable/bombard
 	name = "Bombard"
+	localized_names = list("Bombard" = "轰击")
 	ability_name = "bombard"
 	action_icon_state = "bombard"
 	plasma_cost = 75
@@ -508,6 +529,7 @@
 
 /datum/action/xeno_action/activable/tail_stab
 	name = "Tail Stab"
+	localized_names = list("Tail Stab" = "尾刺")
 	action_icon_state = "tail_attack"
 	ability_name = "tail stab"
 	action_type = XENO_ACTION_CLICK
@@ -519,6 +541,7 @@
 
 /datum/action/xeno_action/onclick/evolve
 	name = "Evolve"
+	localized_names = list("Evolve" = "进化")
 	action_icon_state = "evolve"
 	action_type = XENO_ACTION_CLICK
 	listen_signal = COMSIG_KB_XENO_EVOLVE
@@ -538,6 +561,7 @@
 
 /datum/action/xeno_action/onclick/tacmap
 	name = "View Tactical Map"
+	localized_names = list("View Tactical Map" = "查看战术地图")
 	action_icon_state = "toggle_queen_zoom"
 	ability_name = "view tacmap"
 
@@ -609,6 +633,7 @@
 
 /datum/action/xeno_action/active_toggle/toggle_meson_vision
 	name = "Toggle Meson Vision"
+	localized_names = list("Toggle Meson Vision" = "切换介子视觉")
 	action_icon_state = "project_xeno"
 	plasma_cost = 0
 	action_type = XENO_ACTION_CLICK

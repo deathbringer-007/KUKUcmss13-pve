@@ -7,8 +7,8 @@
 	..()
 
 /obj/item/reagent_container/food/snacks/csandwich
-	name = "sandwich"
-	desc = "The best thing since sliced bread."
+	name = "三明治"
+	desc = "切片面包问世以来最棒的发明。"
 	icon_state = "breadslice"
 	trash = /obj/item/trash/plate
 	bitesize = 2
@@ -18,7 +18,7 @@
 /obj/item/reagent_container/food/snacks/csandwich/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/reagent_container/food/snacks/csandwich))
 		//No sandwitch inception, it causes some bugs...
-		to_chat(user, SPAN_NOTICE("You can't put \a [W] in [src]."))
+		to_chat(user, SPAN_NOTICE("你不能把[W]放进[src]里。"))
 		return
 
 	var/sandwich_limit = 4
@@ -27,15 +27,15 @@
 			sandwich_limit += 4
 
 	if(length(src.contents) > sandwich_limit)
-		to_chat(user, SPAN_DANGER("If you put anything else on \the [src] it's going to collapse."))
+		to_chat(user, SPAN_DANGER("再往[src]上放东西，它就要塌了。"))
 		return
 	else if(istype(W,/obj/item/shard))
-		to_chat(user, SPAN_NOTICE(" You hide [W] in \the [src]."))
+		to_chat(user, SPAN_NOTICE("你把[W]藏进[src]里。"))
 		user.drop_inv_item_to_loc(W, src)
 		update()
 		return
 	else if(istype(W,/obj/item/reagent_container/food/snacks))
-		to_chat(user, SPAN_NOTICE(" You layer [W] over \the [src]."))
+		to_chat(user, SPAN_NOTICE("你把[W]叠在[src]上。"))
 		var/obj/item/reagent_container/F = W
 		if(F.reagents)
 			F.reagents.trans_to(src, F.reagents.total_volume)
@@ -57,9 +57,9 @@
 		if(i == 1)
 			fullname += "[O.name]"
 		else if(i == length(ingredients))
-			fullname += " and [O.name]"
+			fullname += "和[O.name]"
 		else
-			fullname += ", [O.name]"
+			fullname += "、[O.name]"
 
 		var/image/I = new(src.icon, "sandwich_filling")
 		I.color = O.filling_color
@@ -72,8 +72,8 @@
 	T.pixel_y = (length(ingredients) * 2)+1
 	overlays += T
 
-	name = lowertext("[fullname] sandwich")
-	if(length(name) > 80) name = "[pick(list("absurd","colossal","enormous","ridiculous"))] sandwich"
+	name = lowertext("[fullname]三明治")
+	if(length(name) > 80) name = "[pick(list("荒唐的","巨无霸","硕大的","离谱的"))]三明治"
 	w_class = ceil(clamp((length(ingredients)/2),1,3))
 
 /obj/item/reagent_container/food/snacks/csandwich/Destroy()
@@ -84,7 +84,7 @@
 	. = ..()
 	if(LAZYLEN(contents))
 		var/obj/item/O = pick(contents)
-		. += SPAN_NOTICE("You think you can see [O.name] in there.")
+		. += SPAN_NOTICE("你觉得里面似乎有[O.name]。")
 
 /obj/item/reagent_container/food/snacks/csandwich/attack(mob/M as mob, mob/user as mob)
 
@@ -99,6 +99,6 @@
 		H = M
 
 	if(H && shard && M == user) //This needs a check for feeding the food to other people, but that could be abusable.
-		to_chat(H, SPAN_DANGER("You lacerate your mouth on a [shard.name] in the sandwich!"))
+		to_chat(H, SPAN_DANGER("三明治里的[shard.name]割伤了你的嘴！"))
 		H.apply_damage(5, BRUTE)
 	..()

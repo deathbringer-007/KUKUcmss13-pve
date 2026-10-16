@@ -1,6 +1,7 @@
 // Warrior Fling
 /datum/action/xeno_action/activable/fling
 	name = "Fling"
+	localized_names = list("Fling" = "甩飞")
 	action_icon_state = "fling"
 	ability_name = "Fling"
 	macro_path = /datum/action/xeno_action/verb/verb_fling
@@ -17,6 +18,7 @@
 // Warrior Lunge
 /datum/action/xeno_action/activable/lunge
 	name = "Lunge"
+	localized_names = list("Lunge" = "猛扑")
 	action_icon_state = "lunge"
 	ability_name = "lunge"
 	macro_path = /datum/action/xeno_action/verb/verb_lunge
@@ -31,6 +33,7 @@
 
 /datum/action/xeno_action/activable/warrior_punch
 	name = "Punch"
+	localized_names = list("Punch" = "拳击")
 	action_icon_state = "punch"
 	ability_name = "punch"
 	macro_path = /datum/action/xeno_action/verb/verb_punch

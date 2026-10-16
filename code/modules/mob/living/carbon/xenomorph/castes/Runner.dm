@@ -1,6 +1,6 @@
 /datum/caste_datum/runner
 	caste_type = XENO_CASTE_RUNNER
-	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
+	caste_desc = "行动迅捷的四足恐怖生物，但不擅长持久作战。"
 	tier = 1
 	melee_damage_lower = XENO_DAMAGE_TIER_1
 	melee_damage_upper = XENO_DAMAGE_TIER_2
@@ -34,7 +34,7 @@
 /mob/living/carbon/xenomorph/runner
 	caste_type = XENO_CASTE_RUNNER
 	name = XENO_CASTE_RUNNER
-	desc = "A small red alien that looks like it could run fairly quickly..."
+	desc = "一只红色小型异形，看起来跑得相当快……"
 	icon = 'icons/mob/xenos/runner.dmi'
 	icon_state = "Runner Walking"
 	icon_size = 64

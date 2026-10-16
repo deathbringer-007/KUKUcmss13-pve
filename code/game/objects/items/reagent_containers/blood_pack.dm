@@ -2,8 +2,8 @@
 #define BLOOD_BAG_TAKING 0
 
 /obj/item/reagent_container/blood
-	name = "blood pack"
-	desc = "A blood pack. Contains fluids, typically used for transfusions."
+	name = "血袋"
+	desc = "装有液体的血袋，通常用于输血。"
 	icon = 'icons/obj/items/bloodpack.dmi'
 	icon_state = "bloodpack"
 	volume = 300
@@ -26,7 +26,7 @@
 		update_icon()
 		return
 	if(blood_type != null)
-		name = "[blood_type] blood pack"
+		name = "[blood_type]型血袋"
 		reagents.add_reagent("blood", initial(volume), list("viruses" = null, "blood_type" = blood_type, "resistances" = null))
 		update_icon()
 
@@ -66,13 +66,13 @@
 	. = ..()
 
 	if(attacked_mob == user)
-		to_chat(user, SPAN_WARNING("You cannot connect this to yourself!"))
+		to_chat(user, SPAN_WARNING("你不能给自己接上它！"))
 		return
 
 	if(connected_to == attacked_mob)
 		STOP_PROCESSING(SSobj, src)
-		user.visible_message("[user] detaches [src] from [connected_to].", \
-			"You detach [src] from [connected_to].")
+		user.visible_message("[user]断开了[src]与[connected_to]的连接。", \
+			"你断开了[src]与[connected_to]的连接。")
 		connected_to.active_transfusions -= src
 		connected_to.base_pixel_x = 0
 		connected_to = null
@@ -84,7 +84,7 @@
 		return
 
 	if(!do_after(user, skillcheck(user, SKILL_SURGERY, SKILL_SURGERY_NOVICE) ? (1 SECONDS) * user.get_skill_duration_multiplier(SKILL_SURGERY) : (8 SECONDS), INTERRUPT_ALL, BUSY_ICON_FRIENDLY, attacked_mob, INTERRUPT_MOVED, BUSY_ICON_MEDICAL))
-		to_chat(user, SPAN_WARNING("You were interrupted before you could finish!"))
+		to_chat(user, SPAN_WARNING("你还没完成就被打断了！"))
 		return
 
 	if(istype(attacked_mob, /mob/living/carbon/human))
@@ -93,8 +93,8 @@
 		connected_to.active_transfusions += src
 		connected_to.base_pixel_x = 5
 		START_PROCESSING(SSobj, src)
-		user.visible_message("[user] attaches \the [src] to [connected_to].", \
-			"You attach \the [src] to [connected_to].")
+		user.visible_message("[user]将\the [src]接在了[connected_to]身上。", \
+			"你将\the [src]接在了[connected_to]身上。")
 		update_beam()
 
 /obj/item/reagent_container/blood/process()
@@ -155,7 +155,7 @@
 	if(!connected_to)
 		return
 
-	connected_to.visible_message("[src] breaks free of [connected_to]!", "[src] is pulled out of you!")
+	connected_to.visible_message("[src]从[connected_to]身上被扯脱了！", "[src]从你身上被扯脱了！")
 	connected_to.apply_damage(3, BRUTE, pick("r_arm", "l_arm"))
 	if(connected_to.pain.feels_pain)
 		connected_to.emote("pain")
@@ -167,7 +167,7 @@
 
 /obj/item/reagent_container/blood/verb/toggle_mode()
 	set category = "Object"
-	set name = "Toggle Mode"
+	set name = "切换模式"
 	set src in view(1)
 
 	if(!istype(usr, /mob/living))
@@ -177,7 +177,7 @@
 		return
 
 	mode = !mode
-	to_chat(usr, "The blood bag is now [mode ? "giving blood" : "taking blood"].")
+	to_chat(usr, "血袋现在处于[mode ? "输血" : "抽血"]模式。")
 
 
 /obj/item/reagent_container/blood/APlus
@@ -199,18 +199,18 @@
 	blood_type = "O-"
 
 /obj/item/reagent_container/blood/empty
-	name = "empty blood pack"
-	desc = "An empty blood pack. Sorry, vampires, no luck here."
+	name = "空血袋"
+	desc = "空空的血袋。抱歉了，吸血鬼，今天没口福。"
 
 /obj/item/reagent_container/blood/saline
-	name = "saline solution pack"
+	name = "生理盐水输液袋"
 	volume = 100
 	bag_initial_reagents = 	list("saline" = 100)
 	item_state = "bloodpack_saline"
 
 /obj/item/reagent_container/blood/saline/Initialize()
 	. = ..()
-	desc = "A basic first aid solution of water, sodium chloride and glucose made to treat " + SPAN_HELPFUL("blood loss, the symptoms of minor poisoning and hyperthermia.") + "While it does not have any lasting negative effects when overdosed on, " + SPAN_WARNING("adminstering more than half a bag at a time causes temporary blurred vision and disorientation.")
+	desc = "由水、氯化钠和葡萄糖配制的基础急救液，用于缓解" + SPAN_HELPFUL("失血、轻度中毒症状和体温过高。") + "过量使用不会产生持久的负面影响，但" + SPAN_WARNING("一次输入超过半袋会造成暂时的视力模糊和方向感丧失。")
 
 #undef BLOOD_BAG_INJECTING
 #undef BLOOD_BAG_TAKING

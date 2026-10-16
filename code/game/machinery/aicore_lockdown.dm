@@ -1,5 +1,5 @@
 /obj/structure/machinery/aicore_lockdown
-	name = "AI Core Lockdown"
+	name = "AI核心封锁按钮"
 	icon_state = "big_red_button_tablev"
 	unslashable = TRUE
 	unacidable = TRUE
@@ -20,19 +20,19 @@
 	if(isxeno(user))
 		return FALSE
 	if(!allowed(user))
-		to_chat(user, SPAN_DANGER("Access Denied"))
+		to_chat(user, SPAN_DANGER("拒绝访问"))
 		flick(initial(icon_state) + "-denied", src)
 		return FALSE
 
 	if(!COOLDOWN_FINISHED(GLOB.ares_datacore, aicore_lockdown))
-		to_chat(user, SPAN_BOLDWARNING("AI Core Lockdown procedures are on cooldown! They will be ready in [COOLDOWN_SECONDSLEFT(GLOB.ares_datacore, aicore_lockdown)] seconds!"))
+		to_chat(user, SPAN_BOLDWARNING("AI核心封锁程序正在冷却！将在[COOLDOWN_SECONDSLEFT(GLOB.ares_datacore, aicore_lockdown)]秒后就绪！"))
 		return FALSE
 
 	add_fingerprint(user)
 	aicore_lockdown(user)
 
 /obj/structure/machinery/door/poddoor/almayer/blended/ai_lockdown
-	name = "ARES Emergency Lockdown Shutter"
+	name = "ARES紧急封锁闸门"
 	density = FALSE
 	open_layer = 1.9
 	plane = FLOOR_PLANE
@@ -84,7 +84,7 @@
 		return PROC_BLOCKED
 
 	var/log = "[key_name(user)] triggered AI core lockdown!"
-	var/ares_log = "Triggered triggered AI Core Emergency Lockdown."
+	var/ares_log = "启动了AI核心紧急封锁。"
 	var/person = user.name
 	if(message)
 		log = "[key_name(user)] triggered AI core emergency lockdown! (Using a custom announcement)."
@@ -95,9 +95,9 @@
 	if(GLOB.ares_datacore.ai_lockdown_active)
 		GLOB.ares_datacore.ai_lockdown_active = FALSE
 		if(!message)
-			message = "ATTENTION! \n\nAI CORE EMERGENCY LOCKDOWN LIFTED."
+			message = "注意！\n\nAI核心紧急封锁已解除。"
 		log = "[key_name(user)] lifted AI core lockdown!"
-		ares_log = "Lifted AI Core Emergency Lockdown."
+		ares_log = "解除了AI核心紧急封锁。"
 		if(admin)
 			log += " (Admin Triggered)."
 			person = MAIN_AI_SYSTEM
@@ -108,7 +108,7 @@
 	else
 		GLOB.ares_datacore.ai_lockdown_active = TRUE
 		if(!message)
-			message = "ATTENTION! \n\nCORE SECURITY ALERT. \n\nAI CORE UNDER LOCKDOWN."
+			message = "注意！\n\n核心安全警报。\n\nAI核心已封锁。"
 		if(GLOB.security_level < SEC_LEVEL_RED)
 			set_security_level(SEC_LEVEL_RED, TRUE, FALSE)
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AICORE_LOCKDOWN)
@@ -116,4 +116,4 @@
 	COOLDOWN_START(GLOB.ares_datacore, aicore_lockdown, 2 MINUTES)
 	shipwide_ai_announcement(message, MAIN_AI_SYSTEM, 'sound/effects/biohazard.ogg')
 	message_admins(log)
-	log_ares_security("AI Core Lockdown", ares_log, person)
+	log_ares_security("AI核心封锁", ares_log, person)

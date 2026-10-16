@@ -11,7 +11,7 @@
 //  Generic Item
 // -----------------------------
 /obj/item/storage/secure
-	name = "secstorage"
+	name = "安全储物箱"
 	var/icon_locking = "secureb"
 	var/icon_sparking = "securespark"
 	var/icon_opened = "secure0"
@@ -29,29 +29,29 @@
 
 /obj/item/storage/secure/get_examine_text(mob/user)
 	. = ..()
-	. += "The service panel is [src.open ? "open" : "closed"]."
+	. += "检修面板目前[src.open ? "已打开" : "已关闭"]。"
 
 /obj/item/storage/secure/attackby(obj/item/W as obj, mob/user as mob)
 	if(locked)
 		if (HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
 			if (do_after(user, 20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 				open =! open
-				var/msg_open_status = "[open ? "open" : "close"]"
-				user.show_message(SPAN_NOTICE("You [msg_open_status ] the service panel."), SHOW_MESSAGE_VISIBLE)
+				var/msg_open_status = "[open ? "打开" : "关闭"]"
+				user.show_message(SPAN_NOTICE("你[msg_open_status ]了检修面板。"), SHOW_MESSAGE_VISIBLE)
 			return
 		if (HAS_TRAIT(W, TRAIT_TOOL_MULTITOOL) && open == 1 && !l_hacking)
-			user.show_message(text(SPAN_DANGER("Now attempting to reset internal memory, please hold.")), SHOW_MESSAGE_VISIBLE)
+			user.show_message(text(SPAN_DANGER("正在尝试重置内部存储器，请稍候。")), SHOW_MESSAGE_VISIBLE)
 			l_hacking = 1
 			if (do_after(usr, 100, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 				if (prob(40))
 					l_setshort = 1
 					l_set = 0
-					user.show_message(text(SPAN_DANGER("Internal memory reset.  Please give it a few seconds to reinitialize.")), SHOW_MESSAGE_VISIBLE)
+					user.show_message(text(SPAN_DANGER("内部存储器已重置，请等待几秒以完成重新初始化。")), SHOW_MESSAGE_VISIBLE)
 					sleep(80)
 					l_setshort = 0
 					l_hacking = 0
 				else
-					user.show_message(text(SPAN_DANGER("Unable to reset internal memory.")), SHOW_MESSAGE_VISIBLE)
+					user.show_message(text(SPAN_DANGER("无法重置内部存储器。")), SHOW_MESSAGE_VISIBLE)
 					l_hacking = 0
 			else l_hacking = 0
 			return
@@ -73,16 +73,16 @@
 /obj/item/storage/secure/attack_self(mob/user)
 	..()
 	user.set_interaction(src)
-	var/dat = text("<TT><B>[]</B><BR>\n\nLock Status: []",src, (locked ? "LOCKED" : "UNLOCKED"))
-	var/message = "Code"
+	var/dat = text("<TT><B>[]</B><BR>\n\n锁定状态：[]",src, (locked ? "已锁定" : "已解锁"))
+	var/message = "密码"
 	if ((l_set == 0) && (!l_setshort))
-		dat += text("<p>\n<b>5-DIGIT PASSCODE NOT SET.<br>ENTER NEW PASSCODE.</b>")
+		dat += text("<p>\n<b>尚未设置5位数字密码。<br>请输入新密码。</b>")
 	if (l_setshort)
-		dat += text("<p>\n<font color=red><b>ALERT: MEMORY SYSTEM ERROR - 6040 201</b></font>")
-	message = text("[]", code)
+		dat += text("<p>\n<font color=red><b>警报：存储系统错误 - 6040 201</b></font>")
+	message = text("[]", code == "ERROR" ? "错误" : code)
 	if (!locked)
 		message = "*****"
-	dat += text("<HR>\n>[]<BR>\n<A href='byond://?src=\ref[];type=1'>1</A>-<A href='byond://?src=\ref[];type=2'>2</A>-<A href='byond://?src=\ref[];type=3'>3</A><BR>\n<A href='byond://?src=\ref[];type=4'>4</A>-<A href='byond://?src=\ref[];type=5'>5</A>-<A href='byond://?src=\ref[];type=6'>6</A><BR>\n<A href='byond://?src=\ref[];type=7'>7</A>-<A href='byond://?src=\ref[];type=8'>8</A>-<A href='byond://?src=\ref[];type=9'>9</A><BR>\n<A href='byond://?src=\ref[];type=R'>R</A>-<A href='byond://?src=\ref[];type=0'>0</A>-<A href='byond://?src=\ref[];type=E'>E</A><BR>\n</TT>", message, src, src, src, src, src, src, src, src, src, src, src, src)
+	dat += text("<HR>\n>[]<BR>\n<A href='byond://?src=\ref[];type=1'>1</A>-<A href='byond://?src=\ref[];type=2'>2</A>-<A href='byond://?src=\ref[];type=3'>3</A><BR>\n<A href='byond://?src=\ref[];type=4'>4</A>-<A href='byond://?src=\ref[];type=5'>5</A>-<A href='byond://?src=\ref[];type=6'>6</A><BR>\n<A href='byond://?src=\ref[];type=7'>7</A>-<A href='byond://?src=\ref[];type=8'>8</A>-<A href='byond://?src=\ref[];type=9'>9</A><BR>\n<A href='byond://?src=\ref[];type=R'>重置</A>-<A href='byond://?src=\ref[];type=0'>0</A>-<A href='byond://?src=\ref[];type=E'>确认</A><BR>\n</TT>", message, src, src, src, src, src, src, src, src, src, src, src, src)
 	user << browse(dat, "window=caselock;size=300x280")
 
 /obj/item/storage/secure/Topic(href, href_list)
@@ -122,11 +122,11 @@
 // Secure Briefcase
 // -----------------------------
 /obj/item/storage/secure/briefcase
-	name = "secure briefcase"
+	name = "密码公文包"
 	icon = 'icons/obj/items/storage/briefcases.dmi'
 	icon_state = "secure"
 	item_state = "sec-case"
-	desc = "A large briefcase with a digital locking system."
+	desc = "配有数字密码锁的大型公文包。"
 	force = 8
 	throw_speed = SPEED_FAST
 	throw_range = 4
@@ -140,7 +140,7 @@
 /obj/item/storage/secure/briefcase/attack_hand(mob/user as mob)
 	if (loc == user)
 		if (locked)
-			to_chat(usr, SPAN_DANGER("[src] is locked and cannot be opened!"))
+			to_chat(usr, SPAN_DANGER("[src]已锁定，无法打开！"))
 		else
 			open(usr)
 	else
@@ -154,7 +154,7 @@
 // -----------------------------
 
 /obj/item/storage/secure/safe
-	name = "secure safe"
+	name = "密码保险箱"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "wallsafe"
 	icon_opened = "safe0"

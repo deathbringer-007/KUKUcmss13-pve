@@ -25,7 +25,7 @@
 
 	evolution_allowed = FALSE
 	deevolves_to = list(XENO_CASTE_WARRIOR)
-	caste_desc = "A huge tanky xenomorph."
+	caste_desc = "庞大而坚韧的异形。"
 	fire_intensity_resistance = 20
 	fire_vulnerability_mult = 0.25
 
@@ -34,7 +34,7 @@
 /mob/living/carbon/xenomorph/crusher
 	caste_type = XENO_CASTE_CRUSHER
 	name = XENO_CASTE_CRUSHER
-	desc = "A huge alien with an enormous armored crest."
+	desc = "一只巨型异形，长着硕大的装甲头冠。"
 	icon_size = 64
 	icon_state = "Crusher Walking"
 	plasma_types = list(PLASMA_CHITIN)
@@ -91,8 +91,8 @@
 		return
 	for(var/mob/current_mob as anything in get_mobs_in_z_level_range(get_turf(src), 30) - src)
 		var/relative_dir = get_dir(current_mob, src)
-		var/final_dir = dir2text(relative_dir)
-		to_chat(current_mob, SPAN_HIGHDANGER("You hear a terrible roar coming from [final_dir ? "the [final_dir]" : "nearby"] as the ground shakes!"))
+		var/final_dir = list("north" = "北方", "south" = "南方", "east" = "东方", "west" = "西方", "northeast" = "东北方", "southeast" = "东南方", "northwest" = "西北方", "southwest" = "西南方")[dir2text(relative_dir)]
+		to_chat(current_mob, SPAN_HIGHDANGER("你听到[final_dir ? "[final_dir]" : "附近"]传来可怕的咆哮，大地随之震动！"))
 		for(var/turf/closed/wall/wall in orange(1, src))
 			wall.ex_act(1000 * 1.5)
 
@@ -110,21 +110,21 @@
 	//Barricade collision
 	else if (istype(target, /obj/structure/barricade))
 		var/obj/structure/barricade/B = target
-		visible_message(SPAN_DANGER("[src] rams into [B] and skids to a halt!"), SPAN_XENOWARNING("We ram into [B] and skid to a halt!"))
+		visible_message(SPAN_DANGER("[src]猛撞[B]，随后滑行着停下！"), SPAN_XENOWARNING("我们猛撞[B]，随后滑行着停下！"))
 
 		B.Collided(src)
 		. =  FALSE
 
 	else if (istype(target, /obj/vehicle/multitile))
 		var/obj/vehicle/multitile/M = target
-		visible_message(SPAN_DANGER("[src] rams into [M] and skids to a halt!"), SPAN_XENOWARNING("We ram into [M] and skid to a halt!"))
+		visible_message(SPAN_DANGER("[src]猛撞[M]，随后滑行着停下！"), SPAN_XENOWARNING("我们猛撞[M]，随后滑行着停下！"))
 
 		M.Collided(src)
 		. = FALSE
 
 	else if (istype(target, /obj/structure/machinery/m56d_hmg))
 		var/obj/structure/machinery/m56d_hmg/HMG = target
-		visible_message(SPAN_DANGER("[src] rams [HMG]!"), SPAN_XENODANGER("We ram [HMG]!"))
+		visible_message(SPAN_DANGER("[src]猛撞[HMG]！"), SPAN_XENODANGER("我们猛撞[HMG]！"))
 		playsound(loc, "punch", 25, 1)
 		HMG.CrusherImpact()
 		. =  FALSE
@@ -161,7 +161,7 @@
 
 	else if (istype(target, /obj/structure/machinery/defenses))
 		var/obj/structure/machinery/defenses/DF = target
-		visible_message(SPAN_DANGER("[src] rams [DF]!"), SPAN_XENODANGER("We ram [DF]!"))
+		visible_message(SPAN_DANGER("[src]猛撞[DF]！"), SPAN_XENODANGER("我们猛撞[DF]！"))
 
 		if (!DF.unacidable)
 			playsound(loc, "punch", 25, 1)
@@ -177,7 +177,7 @@
 		if (V.unslashable)
 			. = FALSE
 		else
-			visible_message(SPAN_DANGER("[src] smashes straight into [V]!"), SPAN_XENODANGER("We smash straight into [V]!"))
+			visible_message(SPAN_DANGER("[src]径直撞上了[V]！"), SPAN_XENODANGER("我们径直撞上了[V]！"))
 			playsound(loc, "punch", 25, 1)
 			V.tip_over()
 
@@ -194,7 +194,7 @@
 		if (V.unslashable)
 			. = FALSE
 		else
-			visible_message(SPAN_DANGER("[src] smashes straight into [V]!"), SPAN_XENODANGER("We smash straight into [V]!"))
+			visible_message(SPAN_DANGER("[src]径直撞上了[V]！"), SPAN_XENODANGER("我们径直撞上了[V]！"))
 			playsound(loc, "punch", 25, 1)
 			V.tip_over()
 
@@ -213,7 +213,7 @@
 			if (O.unacidable)
 				. = FALSE
 			else if (O.anchored)
-				visible_message(SPAN_DANGER("[src] crushes [O]!"), SPAN_XENODANGER("We crush [O]!"))
+				visible_message(SPAN_DANGER("[src]碾碎了[O]！"), SPAN_XENODANGER("我们碾碎了[O]！"))
 				if(length(O.contents)) //Hopefully won't auto-delete things inside crushed stuff.
 					var/turf/T = get_turf(src)
 					for(var/atom/movable/S in T.contents) S.forceMove(T)
@@ -224,7 +224,7 @@
 			else
 				if(O.buckled_mob)
 					O.unbuckle()
-				visible_message(SPAN_WARNING("[src] knocks [O] aside!"), SPAN_XENOWARNING("We knock [O] aside.")) //Canisters, crates etc. go flying.
+				visible_message(SPAN_WARNING("[src]将[O]撞到一旁！"), SPAN_XENOWARNING("我们将[O]撞到一旁。")) //Canisters, crates etc. go flying.
 				playsound(loc, "punch", 25, 1)
 
 				var/impact_range = 2
@@ -267,8 +267,8 @@
 
 		cdr_amount += 5
 
-		bound_xeno.visible_message(SPAN_DANGER("[bound_xeno] slashes [H]!"), \
-			SPAN_DANGER("You slash [H]!"), null, null, CHAT_TYPE_XENO_COMBAT)
+		bound_xeno.visible_message(SPAN_DANGER("[bound_xeno]爪击了[H]！"), \
+			SPAN_DANGER("你爪击了[H]！"), null, null, CHAT_TYPE_XENO_COMBAT)
 
 		bound_xeno.flick_attack_overlay(H, "slash")
 
@@ -306,7 +306,7 @@
 		if (XS.shield_source == XENO_SHIELD_SOURCE_CRUSHER)
 			shield_total += XS.amount
 
-	. += "Shield: [shield_total]"
+	. += "护盾：[shield_total]"
 
 /datum/behavior_delegate/crusher_base/on_update_icons()
 	if(HAS_TRAIT(bound_xeno, TRAIT_CHARGING) && bound_xeno.body_position == STANDING_UP)

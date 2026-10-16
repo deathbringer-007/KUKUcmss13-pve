@@ -1,5 +1,5 @@
 /obj/structure/machinery/ares
-	name = "ARES Machinery"
+	name = "ARES设备"
 	density = TRUE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
@@ -49,13 +49,13 @@
 	link = null
 
 /obj/structure/machinery/ares/processor
-	name = "ARES Processor"
-	desc = "An external processor for ARES, used to process vast amounts of information."
+	name = "ARES处理器"
+	desc = "ARES的外置处理器，用于处理海量信息。"
 	icon_state = "processor"
 
 /obj/structure/machinery/ares/processor/apollo
-	name = "ARES Processor (APOLLO)"
-	desc = "The external component of ARES' APOLLO processor. Primarily responsible for coordinating Working Joes and Maintenance Drones. It definitely wasn't stolen from Seegson."
+	name = "ARES处理器（APOLLO）"
+	desc = "ARES的APOLLO处理器外部组件，主要负责协调工作乔与维护无人机。绝对不是从西格森偷来的。"
 	icon_state = "apollo_processor"
 
 /obj/structure/machinery/ares/processor/apollo/link_systems(datum/ares_link/new_link = GLOB.ares_link, override)
@@ -68,8 +68,8 @@
 	..()
 
 /obj/structure/machinery/ares/processor/interface
-	name = "ARES Processor (Interface)"
-	desc = "An external processor for ARES; this one handles core processes for interfacing with the crew, including radio transmissions and broadcasts."
+	name = "ARES处理器（交互接口）"
+	desc = "ARES的外置处理器，负责与舰员交互的核心任务，包括无线电通信和广播。"
 	icon_state = "int_processor"
 
 /obj/structure/machinery/ares/processor/interface/link_systems(datum/ares_link/new_link = GLOB.ares_link, override)
@@ -82,8 +82,8 @@
 	..()
 
 /obj/structure/machinery/ares/processor/bioscan
-	name = "ARES Processor (Bioscan)"
-	desc = "The external component of ARES' Bioscan systems. Without this, the USS Almayer would be incapable of running bioscans!"
+	name = "ARES处理器（生命扫描）"
+	desc = "ARES生命扫描系统的外部组件。没有它，阿尔迈耶号就无法进行生命扫描！"
 	icon_state = "bio_processor"
 
 /obj/structure/machinery/ares/processor/bioscan/link_systems(datum/ares_link/new_link = GLOB.ares_link, override)
@@ -97,8 +97,8 @@
 
 /// Central Core
 /obj/structure/machinery/ares/cpu
-	name = "ARES CPU"
-	desc = "This is ARES' central processor. Made of a casing designed to withstand nuclear blasts, the CPU also contains ARES' blackbox recorder."
+	name = "ARES中央处理器"
+	desc = "ARES的中央处理器，外壳可承受核爆冲击，内部还装有ARES的黑匣子记录仪。"
 	icon_state = "CPU"
 
 /obj/structure/machinery/ares/cpu/link_systems(datum/ares_link/new_link = GLOB.ares_link, override)
@@ -112,6 +112,6 @@
 
 /// Memory Substrate,
 /obj/structure/machinery/ares/substrate
-	name = "ARES Substrate"
-	desc = "The memory substrate of ARES, containing complex protocols and information. Limited capabilities can operate on substrate alone, without the main ARES Unit operational."
+	name = "ARES存储基板"
+	desc = "ARES的存储基板，存有复杂的协议和信息。即使ARES主机停机，基板仍可独立维持部分功能。"
 	icon_state = "substrate"

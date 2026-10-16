@@ -1,5 +1,5 @@
 /obj/item/reagent_container
-	name = "Container"
+	name = "容器"
 	icon = 'icons/obj/items/chemistry.dmi'
 	throwforce = 3
 	w_class = SIZE_SMALL
@@ -41,7 +41,7 @@
 		return
 	if(isxeno(user))
 		return
-	var/reagent_desc = "[src] contains: "
+	var/reagent_desc = "[src]内含："
 
 	if(user.can_see_reagents())
 		reagent_desc += get_reagent_list_text()
@@ -50,13 +50,13 @@
 	if(!transparent)
 		return
 	if(user != loc && !in_range(src, user))
-		return SPAN_WARNING("[src] is too far away for you to see what's in it!")
+		return SPAN_WARNING("[src]离你太远，看不清里面的东西！")
 
 	if(!LAZYLEN(reagents.reagent_list))
-		reagent_desc += "Nothing"
+		reagent_desc += "空"
 		return SPAN_INFO(reagent_desc)
 
-	reagent_desc += "[reagents.total_volume] units of liquid"
+	reagent_desc += "[reagents.total_volume]单位液体"
 	return SPAN_INFO(reagent_desc)
 
 // this proc is general-purpose and primarily for medical items that you shouldn't need scigoggles to scan
@@ -66,14 +66,14 @@
 		return
 
 	if(!skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_TRAINED))
-		return "You don't know what's in it."
+		return "你不知道里面装着什么。"
 
-	return "[src] contains: [get_reagent_list_text()]."
+	return "[src]内含：[get_reagent_list_text()]。"
 
 /// Returns a string listing all reagents (and their volume) in the container
 /obj/item/reagent_container/proc/get_reagent_list_text()
 	if(!reagents || !LAZYLEN(reagents.reagent_list))
-		return "No reagents"
+		return "无试剂"
 
 	var/total_reagent_desc = ""
 	for(var/datum/reagent/current_reagent as anything in reagents.reagent_list)
@@ -84,7 +84,7 @@
 	return total_reagent_desc
 
 /datum/action/item_action/reagent_container/set_transfer_amount
-	name = "Set Transfer Amount"
+	name = "设置转移量"
 	/// The container that transfer amount will be set on
 	var/obj/item/reagent_container/container
 
@@ -102,8 +102,8 @@
 
 /datum/action/item_action/reagent_container/set_transfer_amount/action_activate()
 	. = ..()
-	var/new_reagent_amount = tgui_input_list(owner, "Amount per transfer from this:","[container]", container.possible_transfer_amounts)
+	var/new_reagent_amount = tgui_input_list(owner, "每次从此容器转移的量：","[container]", container.possible_transfer_amounts)
 	if(!new_reagent_amount)
 		return
-	to_chat(owner, SPAN_NOTICE("You change [container]'s reagent transfer amount to [new_reagent_amount]."))
+	to_chat(owner, SPAN_NOTICE("你将[container]每次转移的试剂量改为[new_reagent_amount]。"))
 	container.amount_per_transfer_from_this = new_reagent_amount

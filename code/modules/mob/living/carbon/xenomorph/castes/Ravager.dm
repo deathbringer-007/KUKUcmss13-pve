@@ -22,7 +22,7 @@
 
 	evolution_allowed = FALSE
 	deevolves_to = list(XENO_CASTE_LURKER)
-	caste_desc = "A brutal, devastating front-line attacker."
+	caste_desc = "凶猛而极具破坏力的前线进攻者。"
 	fire_immunity = FIRE_IMMUNITY_NO_DAMAGE|FIRE_IMMUNITY_XENO_FRENZY
 	attack_delay = -1
 
@@ -39,7 +39,7 @@
 /mob/living/carbon/xenomorph/ravager
 	caste_type = XENO_CASTE_RAVAGER
 	name = XENO_CASTE_RAVAGER
-	desc = "A huge, nasty red alien with enormous scythed claws."
+	desc = "一只凶恶的红色巨型异形，长着硕大的镰刀状利爪。"
 	icon = 'icons/mob/xenos/ravager.dmi'
 	icon_size = 64
 	icon_state = "Ravager Walking"
@@ -101,8 +101,8 @@
 		if (xeno_shield.shield_source == XENO_SHIELD_SOURCE_RAVAGER)
 			shield_total += xeno_shield.amount
 
-	. += "Empower Shield: [shield_total]"
-	. += "Bonus Slash Damage: [dmg_buff_per_target * empower_targets]"
+	. += "强化护盾：[shield_total]"
+	. += "额外爪击伤害：[dmg_buff_per_target * empower_targets]"
 
 /datum/behavior_delegate/ravager_base/on_life()
 	var/datum/xeno_shield/rav_shield
@@ -113,5 +113,5 @@
 
 	if (rav_shield && ((rav_shield.last_damage_taken + shield_decay_time) < world.time))
 		QDEL_NULL(rav_shield)
-		to_chat(bound_xeno, SPAN_XENODANGER("We feel our shield decay!"))
+		to_chat(bound_xeno, SPAN_XENODANGER("我们感到护盾正在衰减！"))
 		bound_xeno.overlay_shields()

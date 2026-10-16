@@ -45,7 +45,7 @@
 		return
 
 	xeno.queued_action = action
-	to_chat(xeno, SPAN_WARNING("Your next click will use [action.name]!"))
+	to_chat(xeno, SPAN_WARNING("下次点击将使用[action.get_display_name()]！"))
 
 	if(xeno.client?.prefs?.custom_cursors)
 		xeno.client.mouse_pointer_icon = 'icons/mob/hud/mecha_mouse.dmi'

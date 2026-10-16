@@ -1,7 +1,7 @@
 /// The bases onto which you attach dropship equipments.
 /obj/effect/attach_point
-	name = "equipment attach point"
-	desc = "A place where heavy equipment can be installed with a powerloader."
+	name = "设备挂载点"
+	desc = "可用动力装载机安装重型设备的位置。"
 	icon = 'icons/obj/structures/props/almayer_props.dmi'
 	icon_state = "equip_base"
 	unacidable = TRUE
@@ -38,7 +38,7 @@
 		return
 	var/obj/structure/dropship_equipment/ds_equipment = clamp.loaded
 	if(!(base_category in ds_equipment.equip_categories))
-		to_chat(user, SPAN_WARNING("[ds_equipment] doesn't fit on [src]."))
+		to_chat(user, SPAN_WARNING("[ds_equipment]无法装在[src]上。"))
 		return
 	if(installed_equipment)
 		return
@@ -50,7 +50,7 @@
 		return
 	if(installed_equipment || clamp.loaded != ds_equipment)
 		return
-	to_chat(user, SPAN_NOTICE("You install [ds_equipment] on [src]."))
+	to_chat(user, SPAN_NOTICE("你将[ds_equipment]装在了[src]上。"))
 	ds_equipment.forceMove(loc)
 	clamp.loaded = null
 	playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, TRUE)
@@ -69,7 +69,7 @@
 
 /// Weapon specific attachment point
 /obj/effect/attach_point/weapon
-	name = "weapon system attach point"
+	name = "武器系统挂载点"
 	icon_state = "equip_base_front"
 	base_category = DROPSHIP_WEAPON
 	layer = ABOVE_OBJ_LAYER

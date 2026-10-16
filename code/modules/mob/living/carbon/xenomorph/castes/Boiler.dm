@@ -19,7 +19,7 @@
 	evolution_allowed = FALSE
 	deevolves_to = list(XENO_CASTE_SPITTER)
 	spit_delay = 30 SECONDS
-	caste_desc = "Gross!"
+	caste_desc = "真恶心！"
 	acid_level = 3
 	caste_luminosity = 2
 	spit_types = list(/datum/ammo/xeno/boiler_gas, /datum/ammo/xeno/boiler_gas/acid)
@@ -39,7 +39,7 @@
 /mob/living/carbon/xenomorph/boiler
 	caste_type = XENO_CASTE_BOILER
 	name = XENO_CASTE_BOILER
-	desc = "A huge, grotesque xenomorph covered in glowing, oozing acid slime."
+	desc = "一只庞大而怪异的异形，全身覆盖着发光、不断渗出的酸性黏液。"
 	icon = 'icons/mob/xenos/boiler.dmi'
 	icon_size = 64
 	icon_state = "Boiler Walking"

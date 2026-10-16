@@ -1,7 +1,8 @@
 /datum/xeno_strain/berserker
 	name = RAVAGER_BERSERKER
-	description = "You lose your empower, charge, and scissor cut, decrease your health, and sacrifice a bit of your influence under frenzy pheromones to increase your movement speed, slightly increase your armor, and gain a new set of abilities that make you a terrifying melee monster. By slashing, you heal yourself and gain a stack of rage that increases your armor, movement speed, attack speed, and your heals per slash, to a maximum of six rage. Use your new Appehend ability to increase your movement speed and apply a slow on the next target you slash and use your Clothesline ability to fling your target to heal yourself, even more-so if you have a rage stack that will be used up. Finally, use your Eviscerate to unleash a devastating windmill attack that heals you for every enemy you hit after an immobilizing wind-up."
-	flavor_description = "Unbridled fury fills this one. You will become an extension of my rage."
+	localized_name = "狂战士"
+	description = "你失去强化、冲锋和剪切斩，降低生命值及狂热信息素对你的部分增益，换取更高移速、略高的护甲，以及一组让你成为恐怖近战怪物的新技能。每次爪击都能治疗自身并积累一层怒气，提高护甲、移速、攻速及每次爪击的治疗量，最多六层。擒拿能提高移速，并让下一次爪击减速目标；横臂拦截能甩飞目标并治疗自身，若消耗一层怒气，治疗更多。开膛则在无法移动的蓄力后释放毁灭性的旋转攻击，每命中一名敌人就治疗你。"
+	flavor_description = "它体内充盈着无拘无束的狂怒。你将成为我怒火的延伸。"
 	icon_state_prefix = "Berserker"
 
 	actions_to_remove = list(
@@ -70,14 +71,14 @@
 		if (rage == max_rage)
 			bound_xeno.add_filter("berserker_rage", 1, list("type" = "outline", "color" = "#000000ff", "size" = 1))
 			rage_lock()
-			to_chat(bound_xeno, SPAN_XENOHIGHDANGER("We feel a euphoric rush as we reach max rage! We are LOCKED at max Rage!"))
+			to_chat(bound_xeno, SPAN_XENOHIGHDANGER("怒气达到顶峰，狂喜涌遍全身！我们的怒气已锁定在最高水平！"))
 
 	// HP vamp
 	bound_xeno.gain_health((0.05*rage + hp_vamp_ratio)*((bound_xeno.melee_damage_upper - bound_xeno.melee_damage_lower)/2 + bound_xeno.melee_damage_lower))
 
 /datum/behavior_delegate/ravager_berserker/append_to_stat()
 	. = list()
-	. += "Rage: [rage]/[max_rage]"
+	. += "怒气：[rage]/[max_rage]"
 
 /datum/behavior_delegate/ravager_berserker/on_life()
 	// Compute our current rage (demerit if necessary)
@@ -120,7 +121,7 @@
 	rage_cooldown_start_time = world.time
 	decrement_rage(rage)
 	bound_xeno.remove_filter("berserker_rage")
-	to_chat(bound_xeno, SPAN_XENOWARNING("Our adrenal glands spasm. We cannot gain any rage for [rage_cooldown_duration/10] seconds."))
+	to_chat(bound_xeno, SPAN_XENOWARNING("我们的肾上腺发生痉挛，在[rage_cooldown_duration/10]秒内无法积累怒气。"))
 	addtimer(CALLBACK(src, PROC_REF(rage_cooldown_callback)), rage_cooldown_duration)
 	bound_xeno.add_filter("berserker_lockdown", 1, list("type" = "outline", "color" = "#fcfcfcff", "size" = 1))
 
@@ -134,8 +135,8 @@
 		return original_damage
 
 	if (next_slash_buffed)
-		to_chat(bound_xeno, SPAN_XENOHIGHDANGER("We significantly strengthen our attack, slowing [A]!"))
-		to_chat(A, SPAN_XENOHIGHDANGER("You feel a sharp pain as [bound_xeno] slashes you, slowing you down!"))
+		to_chat(bound_xeno, SPAN_XENOHIGHDANGER("我们大幅强化了攻击，使[A]减速！"))
+		to_chat(A, SPAN_XENOHIGHDANGER("[bound_xeno]的爪击让你感到剧痛，动作也慢了下来！"))
 		A.apply_effect(get_xeno_stun_duration(A, slash_slow_duration), SLOW)
 		next_slash_buffed = FALSE
 

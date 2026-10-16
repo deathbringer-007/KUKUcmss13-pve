@@ -36,7 +36,7 @@
 // Roar Emotes
 /datum/emote/living/carbon/human/yautja/species_sound/roar
 	key = "roar"
-	message = "roars!"
+	message = "咆哮！"
 	emote_type = EMOTE_AUDIBLE|EMOTE_VISIBLE
 
 /datum/emote/living/carbon/human/yautja/species_sound/roar/get_sound(mob/living/user)
@@ -45,12 +45,12 @@
 /datum/emote/living/carbon/human/yautja/species_sound/roar2
 	key = "roar2"
 	sound = 'sound/voice/pred_roar3.ogg'
-	message = "roars!"
+	message = "咆哮！"
 	emote_type = EMOTE_AUDIBLE|EMOTE_VISIBLE
 
 /datum/emote/living/carbon/human/yautja/species_sound/loudroar
 	key = "loudroar"
-	message = "roars loudly!"
+	message = "放声咆哮！"
 	volume = 60
 	cooldown = 120 SECONDS
 	emote_type = EMOTE_AUDIBLE|EMOTE_VISIBLE
@@ -66,5 +66,5 @@
 
 	for(var/mob/current_mob as anything in get_mobs_in_z_level_range(get_turf(user), 18) - user)
 		var/relative_dir = Get_Compass_Dir(current_mob, user)
-		var/final_dir = dir2text(relative_dir)
-		to_chat(current_mob, SPAN_HIGHDANGER("You hear a loud roar coming from [final_dir ? "the [final_dir]" : "nearby"]!"))
+		var/final_dir = list("north" = "北方", "south" = "南方", "east" = "东方", "west" = "西方", "northeast" = "东北方", "southeast" = "东南方", "northwest" = "西北方", "southwest" = "西南方")[dir2text(relative_dir)]
+		to_chat(current_mob, SPAN_HIGHDANGER("你听到[final_dir ? "[final_dir]" : "附近"]传来一声响亮的咆哮！"))

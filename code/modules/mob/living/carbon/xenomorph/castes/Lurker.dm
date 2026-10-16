@@ -19,7 +19,7 @@
 	behavior_delegate_type = /datum/behavior_delegate/lurker_base
 
 	deevolves_to = list(XENO_CASTE_RUNNER)
-	caste_desc = "A fast, powerful backline combatant."
+	caste_desc = "迅捷而强大的敌后作战者。"
 	evolves_to = list(XENO_CASTE_RAVAGER)
 
 	heal_resting = 1.5
@@ -31,7 +31,7 @@
 /mob/living/carbon/xenomorph/lurker
 	caste_type = XENO_CASTE_LURKER
 	name = XENO_CASTE_LURKER
-	desc = "A beefy, fast alien with sharp claws."
+	desc = "一只体格粗壮、动作迅捷且利爪锋利的异形。"
 	icon_size = 48
 	icon_state = "Lurker Walking"
 	plasma_types = list(PLASMA_CATECHOLAMINE)
@@ -142,8 +142,8 @@
 		return original_damage
 
 	if (next_slash_buffed)
-		to_chat(bound_xeno, SPAN_XENOHIGHDANGER("We significantly strengthen our attack, slowing [target_carbon]!"))
-		to_chat(target_carbon, SPAN_XENOHIGHDANGER("You feel a sharp pain as [bound_xeno] slashes you, slowing you down!"))
+		to_chat(bound_xeno, SPAN_XENOHIGHDANGER("我们大幅强化了攻击，使[target_carbon]减速！"))
+		to_chat(target_carbon, SPAN_XENOHIGHDANGER("[bound_xeno]的爪击让你感到剧痛，动作也慢了下来！"))
 		original_damage *= buffed_slash_damage_ratio
 		target_carbon.set_effect(get_xeno_stun_duration(target_carbon, 3), SLOW)
 		next_slash_buffed = FALSE
@@ -212,7 +212,7 @@
 	// Invisible
 	if(invis_start_time != -1)
 		var/time_left = (invis_duration-(world.time - invis_start_time)) / 10
-		. += "Invisibility Remaining: [time_left] second\s."
+		. += "剩余隐身时间：[time_left]秒。"
 		return
 
 	var/datum/action/xeno_action/onclick/lurker_invisibility/lurker_invisibility_action = get_action(bound_xeno, /datum/action/xeno_action/onclick/lurker_invisibility)
@@ -221,12 +221,12 @@
 
 	// Recharged
 	if(lurker_invisibility_action.cooldown_timer_id == TIMER_ID_NULL)
-		. += "Invisibility Recharge: Ready."
+		. += "隐身充能：就绪。"
 		return
 
 	// Recharging
 	var/time_left = timeleft(lurker_invisibility_action.cooldown_timer_id) / 10
-	. += "Invisibility Recharge: [time_left] second\s."
+	. += "隐身充能：[time_left]秒。"
 
 /datum/behavior_delegate/lurker_base/on_collide(atom/movable/movable_atom)
 	. = ..()
@@ -245,5 +245,5 @@
 	if(HAS_TRAIT(bumped_into, TRAIT_CLOAKED)) //ignore invisible scouts and preds
 		return
 
-	to_chat(bound_xeno, SPAN_XENOHIGHDANGER("We bumped into someone and lost our invisibility!"))
+	to_chat(bound_xeno, SPAN_XENOHIGHDANGER("我们撞到了人，隐身失效了！"))
 	lurker_invisibility_action.invisibility_off(0.5) // partial refund of remaining time

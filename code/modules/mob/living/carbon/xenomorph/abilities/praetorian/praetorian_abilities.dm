@@ -5,6 +5,7 @@
 
 /datum/action/xeno_action/activable/pierce
 	name = "Pierce"
+	localized_names = list("Pierce" = "穿刺")
 	action_icon_state = "prae_pierce"
 	ability_name = "pierce"
 	macro_path = /datum/action/xeno_action/verb/verb_pierce
@@ -20,6 +21,7 @@
 
 /datum/action/xeno_action/activable/pounce/prae_dash
 	name = "Dash"
+	localized_names = list("Dash" = "疾冲")
 	action_icon_state = "prae_dash"
 	ability_name = "dash"
 	macro_path = /datum/action/xeno_action/verb/verb_dash
@@ -46,6 +48,7 @@
 
 /datum/action/xeno_action/activable/cleave
 	name = "Cleave"
+	localized_names = list("Cleave" = "劈斩")
 	action_icon_state = "prae_cleave_action"
 	ability_name = "cleave"
 	macro_path = /datum/action/xeno_action/verb/verb_cleave
@@ -67,6 +70,7 @@
 
 /datum/action/xeno_action/onclick/toggle_cleave
 	name = "Toggle Cleave Type"
+	localized_names = list("Toggle Cleave Type" = "切换劈斩方式")
 	action_icon_state = "prae_cleave_root"
 	plasma_cost = 0
 	macro_path = /datum/action/xeno_action/verb/verb_toggle_cleave
@@ -97,10 +101,10 @@
 	var/action_icon_result
 	if (cAction.root_toggle)
 		action_icon_result = "prae_cleave_root"
-		to_chat(X, SPAN_WARNING("We will now root marines with our cleave."))
+		to_chat(X, SPAN_WARNING("现在，我们的劈斩会将陆战队员定身。"))
 	else
 		action_icon_result = "prae_cleave_fling" // TODO: update
-		to_chat(X, SPAN_WARNING("We will now throw marines with our cleave."))
+		to_chat(X, SPAN_WARNING("现在，我们的劈斩会将陆战队员甩飞。"))
 
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/hud/actions_xeno.dmi', button, action_icon_result)
@@ -110,6 +114,7 @@
 
 /datum/action/xeno_action/activable/tail_stab/tail_seize //no verbmacrohotkey, its just tail stab.
 	name = "Tail Seize"
+	localized_names = list("Tail Seize" = "尾部擒抱")
 	action_icon_state = "tail_seize"
 	ability_name = "tail seize"
 	action_type = XENO_ACTION_CLICK
@@ -119,6 +124,7 @@
 
 /datum/action/xeno_action/activable/prae_abduct
 	name = "Abduct"
+	localized_names = list("Abduct" = "掳掠")
 	action_icon_state = "abduct"
 	ability_name = "abduct"
 	macro_path = /datum/action/xeno_action/verb/verb_prae_abduct
@@ -133,6 +139,7 @@
 
 /datum/action/xeno_action/activable/oppressor_punch
 	name = "Dislocate"
+	localized_names = list("Dislocate" = "卸骨")
 	action_icon_state = "punch"
 	ability_name = "dislocate"
 	macro_path = /datum/action/xeno_action/verb/verb_oppressor_punch
@@ -159,6 +166,7 @@
 // Tail lash
 /datum/action/xeno_action/activable/tail_lash
 	name = "Tail Lash"
+	localized_names = list("Tail Lash" = "尾鞭")
 	action_icon_state = "prae_tail_lash"
 	ability_name = "tail lash"
 	macro_path = /datum/action/xeno_action/verb/verb_crush
@@ -175,6 +183,7 @@
 
 /datum/action/xeno_action/activable/prae_impale
 	name = "Impale"
+	localized_names = list("Impale" = "贯穿")
 	action_icon_state = "prae_impale"
 	ability_name = "impale"
 	macro_path = /datum/action/xeno_action/verb/verb_prae_impale
@@ -185,6 +194,7 @@
 
 /datum/action/xeno_action/onclick/prae_dodge
 	name = "Dodge"
+	localized_names = list("Dodge" = "闪避")
 	action_icon_state = "prae_dodge"
 	ability_name = "dodge"
 	macro_path = /datum/action/xeno_action/verb/verb_prae_dodge
@@ -199,6 +209,7 @@
 
 /datum/action/xeno_action/activable/prae_tail_trip
 	name = "Tail Trip"
+	localized_names = list("Tail Trip" = "扫尾绊倒")
 	action_icon_state = "prae_tail_trip"
 	ability_name = "tail trip"
 	macro_path = /datum/action/xeno_action/verb/verb_prae_tail_trip
@@ -219,6 +230,7 @@
 
 /datum/action/xeno_action/activable/pounce/base_prae_dash
 	name = "Dash"
+	localized_names = list("Dash" = "疾冲")
 	action_icon_state = "prae_dash"
 	ability_name = "dash"
 	macro_path = /datum/action/xeno_action/verb/verb_dash
@@ -235,6 +247,7 @@
 
 /datum/action/xeno_action/activable/prae_acid_ball
 	name = "Acid Ball"
+	localized_names = list("Acid Ball" = "酸液球")
 	action_icon_state = "prae_acid_ball"
 	ability_name = "acid ball"
 	macro_path = /datum/action/xeno_action/verb/verb_acid_ball
@@ -248,6 +261,7 @@
 
 /datum/action/xeno_action/activable/spray_acid/base_prae_spray_acid
 	name = "Spray Acid"
+	localized_names = list("Spray Acid" = "喷洒酸液")
 	action_icon_state = "spray_acid"
 	ability_name = "spray acid"
 	macro_path = /datum/action/xeno_action/verb/verb_spray_acid
@@ -283,6 +297,7 @@
 
 /datum/action/xeno_action/activable/warden_heal
 	name = "Aid Xenomorph"
+	localized_names = list("Aid Xenomorph" = "援助异形")
 	action_icon_state = "prae_aid"
 	ability_name = "aid"
 	// todo: macro
@@ -310,6 +325,7 @@
 
 /datum/action/xeno_action/onclick/prae_switch_heal_type
 	name = "Toggle Aid Type"
+	localized_names = list("Toggle Aid Type" = "切换援助方式")
 	action_icon_state = "warden_heal" // default = heal
 	macro_path = /datum/action/xeno_action/verb/verb_prae_switch_heal_types
 	action_type = XENO_ACTION_ACTIVATE
@@ -335,12 +351,12 @@
 	if (WH.curr_effect_type == WARDEN_HEAL_HP)
 		action_icon_result = "warden_rejuvenate"
 		WH.curr_effect_type = WARDEN_HEAL_DEBUFFS
-		to_chat(X, SPAN_XENOWARNING("We will now aid our sisters by curing their ailments!"))
+		to_chat(X, SPAN_XENOWARNING("现在，我们将通过消除异常状态来援助姐妹！"))
 
 	else
 		action_icon_result = "warden_heal"
 		WH.curr_effect_type = WARDEN_HEAL_HP
-		to_chat(X, SPAN_XENOWARNING("We will now aid our sisters by healing them!"))
+		to_chat(X, SPAN_XENOWARNING("现在，我们将通过治疗伤势来援助姐妹！"))
 
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/hud/actions_xeno.dmi', button, action_icon_result)
@@ -348,6 +364,7 @@
 
 /datum/action/xeno_action/activable/prae_retrieve
 	name = "Retrieve"
+	localized_names = list("Retrieve" = "回收")
 	action_icon_state = "retrieve"
 	ability_name = "retrieve"
 	macro_path = /datum/action/xeno_action/verb/verb_prae_retrieve

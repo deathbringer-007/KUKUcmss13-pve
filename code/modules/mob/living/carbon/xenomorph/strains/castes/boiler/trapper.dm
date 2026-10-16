@@ -1,7 +1,8 @@
 /datum/xeno_strain/trapper
 	name = BOILER_TRAPPER
-	description = "You trade your ability to bombard, lance, and dump your acid in order to gain some speed and the ability to create acid explosions and restrain enemies within them. With your longer-range vision, set up traps that immobilize your opponents and place acid mines which deal damage to enemies and barricades and reduce the cooldown of your trap deployment for every enemy hit. Finally, hit enemies with your Acid Shotgun ability which adds a stack of insight to empower the next trap you place once you reach a maximum of ten insight. A point-blank shot or a shot on a stunned target will instantly apply ten stacks."
-	flavor_description = "The battlefield is my canvas, this one, my painter. Melt them where they stand."
+	localized_name = "设陷者"
+	description = "你舍弃轰击、酸液长枪和倾泻酸液的能力，换取更高移速，以及制造酸液爆炸并将敌人困在其中的能力。利用远视布置定身陷阱，并放置能伤害敌人和路障的酸液地雷；地雷每命中一个敌人，都会缩短部署陷阱的冷却。酸液霰弹每命中一次便积累一层洞察，达到十层上限后强化下一次陷阱。贴身射击或命中眩晕目标会立即叠满十层。"
+	flavor_description = "战场是我的画布，它就是我的画师。让敌人在原地熔化。"
 
 	actions_to_remove = list(
 		/datum/action/xeno_action/activable/xeno_spit/bombard,
@@ -84,7 +85,7 @@
 	if(!trap_ability.empowered && trap_ability.empowering_charge_counter >= trap_ability.empower_charge_max)
 		trap_ability.empowered = TRUE
 		trap_ability.button.overlays += "+empowered"
-		to_chat(bound_xeno, SPAN_XENODANGER("You have gained sufficient insight in your prey to empower your next [trap_ability.name]."))
+		to_chat(bound_xeno, SPAN_XENODANGER("你对猎物已有足够的洞察，下一次[trap_ability.get_display_name()]将得到强化。"))
 
 	if(trap_ability.empowering_charge_counter > trap_ability.empower_charge_max)
 		trap_ability.empowering_charge_counter = trap_ability.empower_charge_max
@@ -92,7 +93,7 @@
 /datum/behavior_delegate/boiler_trapper/on_life()
 	if ((temp_movespeed_time_used + temp_movespeed_cooldown) < world.time)
 		if (!temp_movespeed_messaged)
-			to_chat(bound_xeno, SPAN_XENODANGER("You feel your adrenaline glands refill! Your speedboost will activate again."))
+			to_chat(bound_xeno, SPAN_XENODANGER("你感到肾上腺重新蓄满了！加速效果可以再次触发。"))
 			temp_movespeed_messaged = TRUE
 		temp_movespeed_usable = TRUE
 		return

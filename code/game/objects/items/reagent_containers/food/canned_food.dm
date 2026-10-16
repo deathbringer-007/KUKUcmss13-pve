@@ -1,6 +1,6 @@
 /obj/item/reagent_container/food/drinks/cans/food
-	name = "canned food"
-	desc = "some food can."
+	name = "罐头食品"
+	desc = "一罐食物。"
 	icon_state = ""
 	item_icons = list(
 		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/items/canned_food_lefthand.dmi',
@@ -9,9 +9,9 @@
 	needs_can_opener = TRUE
 	crushable = FALSE
 	open_sound = 'sound/items/can_opened.ogg'
-	open_message = "You open the can with a metal clank!"
+	open_message = "你伴着金属碰响打开了罐头！"
 	consume_sound = 'sound/items/eatfood.ogg'
-	object_fluff = "can"
+	object_fluff = "罐头"
 	has_open_icon = TRUE
 	delete_on_empty = TRUE
 
@@ -19,8 +19,8 @@
 	icon = 'icons/obj/items/food/mre_food/upp.dmi'
 
 /obj/item/reagent_container/food/drinks/cans/food/upp/meat
-	name = "canned beef"
-	desc = "Canned premium 100% beef. The question of, what part of cow is here exactly, is open to debate."
+	name = "牛肉罐头"
+	desc = "号称100%优质牛肉的罐头。至于究竟是牛的哪个部位，还有待商榷。"
 	icon_state = "Canned_meat"
 	volume = 20
 
@@ -30,8 +30,8 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/drinks/cans/food/upp/stew
-	name = "canned stew"
-	desc = "Canned stew consisting of carrot, tomato, mushroom, meat, beans and god knows what else, makes for a great food when heated."
+	name = "炖菜罐头"
+	desc = "内含胡萝卜、番茄、蘑菇、肉、豆子，以及天知道还有什么的炖菜罐头。加热后是顿不错的饭。"
 	icon_state = "Canned_stew"
 	volume = 30
 
@@ -45,8 +45,8 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/drinks/cans/food/upp/speck
-	name = "canned fatback"
-	desc = "Canned cooked and salted pig fat, also known as speck. It is often used as a bread spread, or eaten on itself."
+	name = "咸肥膘罐头"
+	desc = "煮熟腌咸的猪肥膘罐头，也称斯佩克。常用来抹面包，也可以直接吃。"
 	icon_state = "Canned_speck"
 	food_interactable = TRUE
 	volume = 20
@@ -57,8 +57,8 @@
 	reagents.add_reagent("sodiumchloride", 5)
 
 /obj/item/reagent_container/food/drinks/cans/food/upp/soup
-	name = "canned soup"
-	desc = "Canned soup consisting of beef boullion, potato, peas and god knows what else, makes for a great food when heated."
+	name = "汤罐头"
+	desc = "内含牛肉清汤、土豆、豌豆，以及天知道还有什么的汤罐头。加热后是顿不错的饭。"
 	icon_state = "Canned_stew"
 	consume_sound = 'sound/items/drink.ogg'
 	volume = 25
@@ -72,8 +72,8 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/drinks/cans/food/upp/rice
-	name = "canned rice and beef"
-	desc = "Canned boiled rice with bits of beef."
+	name = "牛肉米饭罐头"
+	desc = "拌有牛肉碎的熟米饭罐头。"
 	icon_state = "Canned_rice"
 	needs_can_opener = FALSE
 	volume = 10
@@ -85,8 +85,8 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/drinks/cans/food/upp/buckwheat
-	name = "canned buckwheat and pork"
-	desc = "Canned buckwheat porridge with bits of pork. As they said, eat kasha, grow strong!"
+	name = "猪肉荞麦粥罐头"
+	desc = "拌有猪肉碎的荞麦粥罐头。正所谓，多喝粥，长得壮！"
 	icon_state = "Canned_buckwheat"
 	needs_can_opener = FALSE
 	volume = 10
@@ -98,8 +98,8 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/drinks/cans/food/upp/pasta
-	name = "canned navy pasta"
-	desc = "Dish originated on a revolted Russian dreadnought, dish itself being a cooked pasta with minced meat."
+	name = "海军肉末面罐头"
+	desc = "这道菜起源于一艘发生哗变的俄国无畏舰，其实就是拌着肉末的熟意面。"
 	icon_state = "Canned_pasta"
 	needs_can_opener = FALSE
 	volume = 10
@@ -111,8 +111,8 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/drinks/cans/food/upp/vegetables
-	name = "canned vegetables"
-	desc = "An assortment of cooked and mixed corn, eggplant, tomato, garlic, onion and probably something else."
+	name = "什锦蔬菜罐头"
+	desc = "煮熟混合的玉米、茄子、番茄、大蒜、洋葱，可能还有些别的蔬菜。"
 	icon_state = "Canned_vegetables"
 	needs_can_opener = FALSE
 	volume = 10
@@ -123,8 +123,8 @@
 	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/reagent_container/food/drinks/cans/food/upp/condensed_milk
-	name = "canned condensed milk"
-	desc = "A milk can preserved with sugar, can be eaten on itself or added to drinks or used as an ingredient."
+	name = "炼乳罐头"
+	desc = "加糖保存的浓缩牛奶罐头，可以直接吃、加入饮品或用作食材。"
 	icon_state = "Canned_condensed_milk"
 	food_interactable = TRUE
 	volume = 30
@@ -135,8 +135,8 @@
 	reagents.add_reagent("milk", 15)
 
 /obj/item/reagent_container/food/drinks/cans/food/upp/condensed_boiled_milk
-	name = "canned boiled condensed milk"
-	desc = "A caramelized boiled milk can preserved with sugar, can be eaten on itself or added to drinks or used as an ingredient."
+	name = "焦糖炼乳罐头"
+	desc = "加糖熬煮至焦糖化的牛奶罐头，可以直接吃、加入饮品或用作食材。"
 	icon_state = "Canned_boiled_condensed_milk"
 	food_interactable = TRUE
 	volume = 30

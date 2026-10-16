@@ -1,6 +1,6 @@
 /datum/caste_datum/king
 	caste_type = XENO_CASTE_KING
-	caste_desc = "The end of the line."
+	caste_desc = "进化的终点。"
 	tier = 4
 
 	melee_damage_lower = XENO_DAMAGE_TIER_6
@@ -30,7 +30,7 @@
 /mob/living/carbon/xenomorph/king
 	caste_type = XENO_CASTE_KING
 	name = XENO_CASTE_KING
-	desc = "A massive alien covered in spines and armoured plates."
+	desc = "一只遍布棘刺与装甲板的巨型异形。"
 	icon = 'icons/mob/xenos/king.dmi'
 	icon_size = 64
 	icon_state = "King Walking"
@@ -79,8 +79,9 @@
 		return
 	for(var/mob/current_mob as anything in get_mobs_in_z_level_range(get_turf(src), 30) - src)
 		var/relative_dir = get_dir(current_mob, src)
-		var/final_dir = dir2text(relative_dir)
-		to_chat(current_mob, SPAN_HIGHDANGER("You hear a terrible roar from [final_dir ? "the [final_dir]" : "nearby"] as the VIOLENTLY ground shakes!"))
+		var/list/direction_labels = list("north" = "北方", "south" = "南方", "east" = "东方", "west" = "西方", "northeast" = "东北方", "southeast" = "东南方", "northwest" = "西北方", "southwest" = "西南方")
+		var/final_dir = direction_labels[dir2text(relative_dir)]
+		to_chat(current_mob, SPAN_HIGHDANGER("你听到[final_dir ? "[final_dir]" : "附近"]传来可怕的咆哮，大地随之剧烈震动！"))
 
 /mob/living/carbon/xenomorph/king/proc/check_block(mob/king, turf/new_loc)
 	SIGNAL_HANDLER

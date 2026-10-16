@@ -1,6 +1,6 @@
 /obj/structure/barricade/sandbags
-	name = "sandbag barricade"
-	desc = "A bunch of bags filled with sand, stacked into a small wall. Surprisingly sturdy, albeit labour intensive to set up. Trusted to do the job since 1914."
+	name = "沙袋路障"
+	desc = "用装满沙子的袋子堆成的一堵矮墙。搭建起来虽然费力，却出奇地坚固。自1914年以来一直值得信赖。"
 	icon_state = "sandbag1"
 	force_level_absorption = 15
 	health = BARRICADE_SANDBAG_TRESHOLD_1
@@ -65,17 +65,17 @@
 /obj/structure/barricade/sandbags/attackby(obj/item/W, mob/user)
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
 		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
+			to_chat(user, "它正在熔化，你无法靠近！")
 			return
 
 	if(istype(W, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
 		var/obj/item/tool/shovel/ET = W
 		if(!ET.folded)
-			user.visible_message(SPAN_NOTICE("[user] starts disassembling [src]."), \
-			SPAN_NOTICE("You start disassembling [src]."))
+			user.visible_message(SPAN_NOTICE("[user]开始拆除[src]。"), \
+			SPAN_NOTICE("你开始拆除[src]。"))
 			if(do_after(user, ET.shovelspeed * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, src))
-				user.visible_message(SPAN_NOTICE("[user] disassembles [src]."),
-				SPAN_NOTICE("You disassemble [src]."))
+				user.visible_message(SPAN_NOTICE("[user]拆除了[src]。"),
+				SPAN_NOTICE("你拆除了[src]。"))
 				deconstruct(TRUE)
 		return TRUE
 
@@ -84,19 +84,19 @@
 		if(user.action_busy)
 			return
 		if(build_stage == BARRICADE_SANDBAG_5)
-			to_chat(user, SPAN_WARNING("You can't stack more on [src]."))
+			to_chat(user, SPAN_WARNING("[src]已经不能再往上堆了。"))
 			return
 
-		user.visible_message(SPAN_NOTICE("[user] starts adding more [SB] to [src]."), \
-			SPAN_NOTICE("You start adding sandbags to [src]."))
+		user.visible_message(SPAN_NOTICE("[user]开始往[src]上堆放更多[SB]。"), \
+			SPAN_NOTICE("你开始往[src]上堆放更多沙袋。"))
 		for(var/i = build_stage to BARRICADE_SANDBAG_5)
 			if(build_stage >= BARRICADE_SANDBAG_5 || !do_after(user, 5, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY, src) || build_stage >= BARRICADE_SANDBAG_5 || SB.amount == 0)
 				break
 			SB.use(1)
 			increment_build_stage()
 			update_icon()
-		user.visible_message(SPAN_NOTICE("[user] finishes stacking [SB] onto [src]."), \
-			SPAN_NOTICE("You stack [SB] onto [src]."))
+		user.visible_message(SPAN_NOTICE("[user]将[SB]堆放到了[src]上。"), \
+			SPAN_NOTICE("你将[SB]堆放到了[src]上。"))
 		return
 	else
 		. = ..()

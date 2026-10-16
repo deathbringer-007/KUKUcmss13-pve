@@ -1,6 +1,7 @@
 /// 3 x 3 damage centred on the xenomorph
 /datum/action/xeno_action/onclick/rend
 	name = "Rend"
+	localized_names = list("Rend" = "撕裂")
 	action_icon_state = "rav_eviscerate"
 	ability_name = "rend"
 	macro_path = /datum/action_xeno_action/verb/verb_rend
@@ -35,6 +36,7 @@
 /// Screech which puts out lights in a 7 tile radius, slows and dazes.
 /datum/action/xeno_action/onclick/doom
 	name = "Doom"
+	localized_names = list("Doom" = "末日")
 	action_icon_state = "screech"
 	ability_name = "doom"
 	macro_path = /datum/action_xeno_action/verb/verb_doom
@@ -67,6 +69,7 @@
 /// Leap ability, crashing down dealing major damage to mobs and structures in the area.
 /datum/action/xeno_action/onclick/destroy
 	name = "Destroy"
+	localized_names = list("Destroy" = "毁灭")
 	action_icon_state = "charge"
 	ability_name = "destroy"
 	macro_path = /datum/action/xeno_action/verb/verb_destroy
@@ -95,6 +98,7 @@
 /// Shield ability, limits the amount of damage from a single instance of damage to 10% of the xenomorph's max health.
 /datum/action/xeno_action/onclick/king_shield
 	name = "Bulwark of the Hive"
+	localized_names = list("Bulwark of the Hive" = "虫巢壁垒")
 	action_icon_state = "soak"
 	ability_name = "legion_shield"
 	macro_path = /datum/action_xeno_action/verb/king_shield
@@ -128,6 +132,7 @@
 
 /datum/action/xeno_action/onclick/king_frenzy
 	name = "King_frenzy"
+	localized_names = list("King_frenzy" = "异形王狂热")
 	action_icon_state = "charge_spit"
 	ability_name = "King Frenzy"
 	macro_path = /datum/action/xeno_action/verb/verb_charge_spit

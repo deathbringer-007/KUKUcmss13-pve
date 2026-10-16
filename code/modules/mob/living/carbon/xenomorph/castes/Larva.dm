@@ -7,7 +7,7 @@
 	melee_damage_upper = 0
 	melee_vehicle_damage = 0
 	max_health = XENO_HEALTH_LARVA
-	caste_desc = "D'awwwww, so cute!"
+	caste_desc = "哎呀，真可爱！"
 	speed = XENO_SPEED_TIER_10
 	innate_healing = TRUE //heals even outside weeds so you're not stuck unable to evolve when hiding on the ship wounded.
 	evolves_to = XENO_T1_CASTES
@@ -29,7 +29,7 @@
 
 	name = XENO_CASTE_LARVA
 	caste_type = XENO_CASTE_LARVA
-	speak_emote = list("hisses")
+	speak_emote = list("嘶鸣")
 	icon_state = "Bloody Larva"
 	icon_size = 32
 	layer = MOB_LAYER
@@ -110,12 +110,12 @@
 /mob/living/carbon/xenomorph/larva/predalien/Initialize(mapload, mob/living/carbon/xenomorph/oldxeno, h_number)
 	. = ..()
 	hunter_data.dishonored = TRUE
-	hunter_data.dishonored_reason = "An abomination upon the honor of us all!"
+	hunter_data.dishonored_reason = "这是对我们全族荣誉的亵渎！"
 	hunter_data.dishonored_set = src
 	hud_set_hunter()
 
 /mob/living/carbon/xenomorph/larva/evolve_message()
-	to_chat(src, SPAN_XENODANGER("Strength ripples through your small form. You are ready to be shaped to the Queen's will. <a href='byond://?src=\ref[src];evolve=1;'>Evolve</a>"))
+	to_chat(src, SPAN_XENODANGER("力量在你幼小的身躯中涌动。你已准备好遵循女皇的意志蜕变。<a href='byond://?src=\ref[src];evolve=1;'>进化</a>"))
 	playsound_client(client, sound('sound/effects/xeno_evolveready.ogg'))
 
 	var/datum/action/xeno_action/onclick/evolve/evolve_action = new()
@@ -178,14 +178,14 @@
 
 	switch(stat)
 		if(UNCONSCIOUS)
-			to_chat(src, SPAN_WARNING("You cannot emote while unconscious!"))
+			to_chat(src, SPAN_WARNING("昏迷时无法做出表情动作！"))
 			return FALSE
 		if(DEAD)
-			to_chat(src, SPAN_WARNING("You cannot emote while dead!"))
+			to_chat(src, SPAN_WARNING("死亡时无法做出表情动作！"))
 			return FALSE
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, SPAN_DANGER("You cannot emote (muted)."))
+			to_chat(src, SPAN_DANGER("你已被禁言，无法做出表情动作。"))
 			return FALSE
 		if(!client.attempt_talking())
 			return FALSE
