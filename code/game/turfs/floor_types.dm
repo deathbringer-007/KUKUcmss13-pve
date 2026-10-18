@@ -904,7 +904,7 @@
 			return
 		var/mob/living/carbon/human/thrown_human = AM
 		for(var/atom/computer as anything in GLOB.supply_controller.bound_supply_computer_list)
-			computer.balloon_alert_to_viewers("you hear horrifying noises coming from the elevator!")
+			computer.balloon_alert_to_viewers("你听到电梯里传来可怕的声响！")
 
 		var/list/depths_turfs = get_depths_turfs()
 		if(!length(depths_turfs))

@@ -92,7 +92,7 @@
 	current_menu = "login"
 	last_menu = "off"
 	if(last_login)
-		datacore.apollo_login_list += "[last_login] logged out at [worldtime2text()]."
+		datacore.apollo_login_list += "[last_login]于[worldtime2text()]退出登录。"
 	last_login = null
 	update_icon()
 
@@ -104,7 +104,7 @@
 
 	data["logged_in"] = last_login
 
-	data["access_text"] = "access level [authentication], [ares_auth_to_text(authentication)]."
+	data["access_text"] = "访问等级[authentication]，[localized_player_label(ares_auth_to_text(authentication))]。"
 	data["access_level"] = authentication
 
 	data["alert_level"] = GLOB.security_level
@@ -207,7 +207,7 @@
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 			if(authentication)
-				datacore.apollo_login_list += "[last_login] at [worldtime2text()], Access Level [authentication] - [ares_auth_to_text(authentication)]."
+				datacore.apollo_login_list += "[last_login]于[worldtime2text()]登录，访问等级[authentication]——[localized_player_label(ares_auth_to_text(authentication))]。"
 			current_menu = "main"
 			last_menu = "main"
 			update_icon()
@@ -215,7 +215,7 @@
 		if("logout")
 			last_menu = current_menu
 			current_menu = "login"
-			datacore.apollo_login_list += "[last_login] logged out at [worldtime2text()]."
+			datacore.apollo_login_list += "[last_login]于[worldtime2text()]退出登录。"
 			update_icon()
 
 		if("home")
@@ -248,7 +248,7 @@
 
 		if("new_report")
 			var/priority_report = FALSE
-			var/maint_type = tgui_input_list(user, "你要报告哪类维护问题？", "报告类别", GLOB.maintenance_categories, 30 SECONDS)
+			var/maint_type = localized_input_list(user, "你要报告哪类维护问题？", "报告类别", GLOB.maintenance_categories, 30 SECONDS)
 			switch(maint_type)
 				if("Major Structural Damage", "Fire", "Communications Failure",	"Power Generation Failure")
 					priority_report = TRUE
@@ -264,13 +264,13 @@
 				if(is_priority == "Yes")
 					priority_report = TRUE
 
-			var/confirm = alert(user, "请确认提交维护报告。\n\n优先处理：[priority_report ? "是" : "否"]\n类别：“[maint_type]”\n详情：“[details]”\n\n内容是否正确？", "确认", "Yes", "No")
+			var/confirm = localized_native_alert(user, "请确认提交维护报告。\n\n优先处理：[priority_report ? "是" : "否"]\n类别：“[localized_player_label(maint_type)]”\n详情：“[details]”\n\n内容是否正确？", "确认", "Yes", "No")
 			if(confirm == "Yes")
 				if(link)
 					var/datum/ares_ticket/maintenance/maint_ticket = new(last_login, maint_type, details, priority_report)
 					link.tickets_maintenance += maint_ticket
 					if(priority_report)
-						ares_apollo_talk("Priority Maintenance Report: [maint_type] - ID [maint_ticket.ticket_id]. Seek and resolve.")
+						ares_apollo_talk("优先维护报告：[localized_player_label(maint_type)]，编号[maint_ticket.ticket_id]。请前往处理。")
 					else
 						send_notifcation()
 					log_game("ARES: Maintenance Ticket '\ref[maint_ticket]' created by [key_name(user)] as [last_login] with Category '[maint_type]' and Details of '[details]'.")
@@ -307,10 +307,10 @@
 			if(ticket.ticket_submitter != last_login)
 				to_chat(user, SPAN_WARNING("你不能取消不属于自己的工单！"))
 				return FALSE
-			to_chat(user, SPAN_WARNING("[ticket.ticket_type]工单[ticket.ticket_id]已取消。"))
+			to_chat(user, SPAN_WARNING("[localized_player_label(ticket.ticket_type)]工单[ticket.ticket_id]已取消。"))
 			ticket.ticket_status = TICKET_CANCELLED
 			if(ticket.ticket_priority)
-				ares_apollo_talk("Priority [ticket.ticket_type] [ticket.ticket_id] has been cancelled.")
+				ares_apollo_talk("优先[localized_player_label(ticket.ticket_type)][ticket.ticket_id]已取消。")
 			else
 				send_notifcation()
 			return TRUE
@@ -331,10 +331,10 @@
 				else
 					return FALSE
 			if(ticket.ticket_priority)
-				ares_apollo_talk("Priority [ticket.ticket_type] [ticket.ticket_id] has been [choice] by [last_login].")
+				ares_apollo_talk("优先[localized_player_label(ticket.ticket_type)][ticket.ticket_id]已由[last_login]标记为[localized_player_label(choice)]。")
 			else
 				send_notifcation()
-			to_chat(user, SPAN_NOTICE("[ticket.ticket_type]工单[ticket.ticket_id]已标记为[choice]。"))
+			to_chat(user, SPAN_NOTICE("[localized_player_label(ticket.ticket_type)]工单[ticket.ticket_id]已标记为[localized_player_label(choice)]。"))
 			return TRUE
 
 		if("new_access")
@@ -359,7 +359,7 @@
 			if(!details)
 				return FALSE
 
-			var/confirm = alert(user, "请确认提交访问工单申请。\n\n持有人：“[last_login]”\n详情：“[details]”\n\n内容是否正确？", "确认", "Yes", "No")
+			var/confirm = localized_native_alert(user, "请确认提交访问工单申请。\n\n持有人：“[last_login]”\n详情：“[details]”\n\n内容是否正确？", "确认", "Yes", "No")
 			if(confirm != "Yes" || !link)
 				return FALSE
 			var/datum/ares_ticket/access/access_ticket = new(last_login, details, FALSE, idcard.registered_gid)
@@ -367,7 +367,7 @@
 			link.tickets_access += access_ticket
 			log_game("ARES: Access Ticket '\ref[access_ticket]' created by [key_name(user)] as [last_login] with Details of '[details]'.")
 			message_admins(SPAN_STAFF_IC("[key_name_admin(user)] created a new ARES Access Ticket."), 1)
-			ares_apollo_talk("Access Ticket [access_ticket.ticket_id]: [access_ticket.ticket_submitter] requesting access for '[details].")
+			ares_apollo_talk("访问工单[access_ticket.ticket_id]：[access_ticket.ticket_submitter]申请访问权限，事由为“[details]”。")
 			return TRUE
 
 		if("return_access")
@@ -387,15 +387,15 @@
 
 				access_ticket.ticket_status = TICKET_RETURNED
 				identification.access -= ACCESS_MARINE_AI_TEMP
-				identification.modification_log += "Temporary AI Access self-returned by [key_name(user)]."
+				identification.modification_log += "临时AI访问权限已由[key_name(user)]自行交还。"
 
 				to_chat(user, SPAN_NOTICE("临时通行工单已交回。"))
 				playsound(src, 'sound/machines/chime.ogg', 15, 1)
-				ares_apollo_talk("Access Ticket [access_ticket.ticket_id]: [access_ticket.ticket_submitter] surrendered their access.")
+				ares_apollo_talk("访问工单[access_ticket.ticket_id]：[access_ticket.ticket_submitter]已交还访问权限。")
 
 				authentication = get_ares_access(identification)
 				if(authentication)
-					datacore.apollo_login_list += "[last_login] at [worldtime2text()], Surrendered Temporary Access Ticket."
+					datacore.apollo_login_list += "[last_login]于[worldtime2text()]交还临时访问权限。"
 				return TRUE
 
 			to_chat(user, SPAN_WARNING("此身份卡没有通行工单！"))
@@ -413,7 +413,7 @@
 				identification.handle_ares_access(last_login, user)
 				access_ticket.ticket_status = TICKET_GRANTED
 				playsound(src, 'sound/machines/chime.ogg', 15, 1)
-				ares_apollo_talk("Access Ticket [access_ticket.ticket_id]: [access_ticket.ticket_submitter] was granted access by [last_login].")
+				ares_apollo_talk("访问工单[access_ticket.ticket_id]：[last_login]已向[access_ticket.ticket_submitter]授予访问权限。")
 				return TRUE
 			for(var/obj/item/card/id/identification in link.active_ids)
 				if(identification.registered_gid != access_ticket.user_id_num)
@@ -421,7 +421,7 @@
 				identification.handle_ares_access(last_login, user)
 				access_ticket.ticket_status = TICKET_REVOKED
 				playsound(src, 'sound/machines/chime.ogg', 15, 1)
-				ares_apollo_talk("Access Ticket [access_ticket.ticket_id]: [access_ticket.ticket_submitter] had access revoked by [last_login].")
+				ares_apollo_talk("访问工单[access_ticket.ticket_id]：[last_login]已撤销[access_ticket.ticket_submitter]的访问权限。")
 				return TRUE
 			return FALSE
 
@@ -433,8 +433,8 @@
 				to_chat(user, SPAN_WARNING("你不能更新未分配给自己的工单！"))
 				return FALSE
 			access_ticket.ticket_status = TICKET_REJECTED
-			to_chat(user, SPAN_NOTICE("[access_ticket.ticket_type]工单[access_ticket.ticket_id]已标记为拒绝。"))
-			ares_apollo_talk("Access Ticket [access_ticket.ticket_id]: [access_ticket.ticket_submitter] was rejected access by [last_login].")
+			to_chat(user, SPAN_NOTICE("[localized_player_label(access_ticket.ticket_type)]工单[access_ticket.ticket_id]已标记为拒绝。"))
+			ares_apollo_talk("访问工单[access_ticket.ticket_id]：[last_login]已拒绝[access_ticket.ticket_submitter]的访问申请。")
 			for(var/obj/item/card/id/identification in link.waiting_ids)
 				if(identification.registered_gid != access_ticket.user_id_num)
 					continue
@@ -458,8 +458,8 @@
 			to_chat(user, SPAN_WARNING("开始从[sec_vent.vent_tag]释放气体。"))
 			playsound(src, 'sound/machines/chime.ogg', 15, 1)
 			COOLDOWN_START(sec_vent, vent_trigger_cooldown, COOLDOWN_ARES_VENT)
-			ares_apollo_talk("Nerve Gas release imminent from [sec_vent.vent_tag].")
-			log_ares_security("Nerve Gas Release", "Released Nerve Gas from Vent '[sec_vent.vent_tag]'.", last_login)
+			ares_apollo_talk("[sec_vent.vent_tag]即将释放神经毒气。")
+			log_ares_security("神经毒气释放", "已从通风口“[sec_vent.vent_tag]”释放神经毒气。", last_login)
 			sec_vent.create_gas(VENT_GAS_CN20_XENO, 6, 5 SECONDS)
 			log_admin("[key_name(user)] released nerve gas from Vent '[sec_vent.vent_tag]' via ARES.")
 

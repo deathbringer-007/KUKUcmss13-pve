@@ -7,19 +7,19 @@
 	gear_preset = /datum/equipment_preset/wo/commander
 
 /datum/job/command/commander/whiskey/generate_entry_message()
-	. = {"Your job is HEAVY ROLE PLAY and requires you to stay IN CHARACTER at all times.
-The local population warned you about establishing a base in the jungles of LV-624...
-Hold the outpost for one hour until the distress beacon can be broadcast to the remaining Dust Raiders!
-Coordinate your team and prepare defenses, whatever wiped out the patrols is en-route!
-Count on your Lieutenant Commander, and your Honor Guard Squad Leader to assist you!
-Stay alive, and Godspeed, commander!"}
+	. = {"这一职位需要深入的角色扮演，你必须始终保持角色身份。
+当地居民曾警告过你，在LV-624的丛林中建立基地可不是什么好主意……
+坚守哨站一小时，直到能启动求救信标，向其余尘土突袭者发送信号！
+协调队伍，准备防御，消灭巡逻队的东西正在赶来！
+依靠海军少校和荣誉卫队队长的协助！
+活下去，祝你顺利，指挥官！"}
 
 /datum/job/command/commander/whiskey/announce_entry_message(mob/living/carbon/human/H)
 	if(..())
 		return
 	sleep(15)
 	if(H?.loc)
-		marine_announcement("All forces, Ground Commander [H.real_name] is in command!")
+		marine_announcement("全体部队注意，地面指挥官[H.real_name]现已接管指挥！")
 
 
 //*************************************
@@ -30,9 +30,9 @@ Stay alive, and Godspeed, commander!"}
 	gear_preset = /datum/equipment_preset/wo/xo
 
 /datum/job/command/executive/whiskey/generate_entry_message(mob/living/carbon/human/H)
-	. = {"You've been with the commander for as long as you can remember. You've always been the bookish nerd to the Honor Guard Squad Leader's jock; as such, you're the commander's right-hand man.
-Assist the commander in ensuring that Whiskey Outpost stands long enough for a distress signal to be sent out.
-Make the USCM proud!"}
+	. = {"从记事起，你就一直追随指挥官。与荣誉卫队队长那位运动健将相比，你向来是个埋头书本的书呆子，也因此成了指挥官的得力助手。
+协助指挥官确保威士忌哨站坚持足够长的时间，直到能够发出求救信号。
+为USCM争光！"}
 
 
 //*************************************
@@ -46,9 +46,9 @@ Make the USCM proud!"}
 	gear_preset = /datum/equipment_preset/wo/cmp
 
 /datum/job/command/warrant/whiskey/generate_entry_message(mob/living/carbon/human/H)
-	. = {"The Commander is the best hope for this outpost! At least in your eyes. You two have saved each-other's asses enough times to testify to that, and have been together for longer than anyone cares to remember. You're his left-hand man, behind the Lieutenant Commander. You two are men. Manly men.
-Your veterans have lived enough years that they are able to command others using the overwatch consoles, but the young ones are still fresh out of boot camp - it's your job to shape 'em up into proper soldiers!
-You must lead his Honor guard, his elite unit of marines, to protect the commander, and ensure victory!
+	. = {"指挥官是这座哨站最大的希望！至少在你看来如此。你们多次互救性命，足以证明这一点；相识之久，已经没人记得清了。你是他的左膀右臂，位次仅在海军少校之后。你俩都是汉子，铁骨铮铮的汉子。
+你的老兵经验丰富，能够使用战场监控台指挥其他人，但年轻人仍是刚从新兵营出来的菜鸟；把他们锻造成合格士兵，就是你的职责！
+你必须率领指挥官的荣誉卫队，也就是他的精锐陆战队员，保护指挥官，确保胜利！
 "}
 
 
@@ -60,10 +60,10 @@ You must lead his Honor guard, his elite unit of marines, to protect the command
 	gear_preset = /datum/equipment_preset/wo/vhg
 
 /datum/job/command/bridge/whiskey/generate_entry_message(mob/living/carbon/human/H)
-	. = {"You were assigned to guard the commander in this hostile environment; that hasn't changed. Ensure your extra training and equipment isn't wasted!
-You've survived through enough battles that you've been entrusted with more training, and can use overwatch consoles, as well as give orders.
-You're expected to defend not only the commander, but the bunker at large; leave the outside defenses to the marines.
-Glory to the commander. Glory to the USCM."}
+	. = {"你奉命在这片危险环境中保护指挥官，这一点并未改变。别浪费你接受的额外训练和配发的装备！
+你历经多次战斗，因而获准接受更多训练，能够使用战场监控台并下达命令。
+除了指挥官，你还应保卫整个掩体；外围防御就交给陆战队员。
+荣耀归于指挥官，荣耀归于USCM。"}
 
 
 //*************************************
@@ -74,10 +74,10 @@ Glory to the commander. Glory to the USCM."}
 	gear_preset = /datum/equipment_preset/wo/hgs
 
 /datum/job/command/tank_crew/whiskey/generate_entry_message(mob/living/carbon/human/H)
-	. = {"You were assigned to guard the commander in this hostile environment; that hasn't changed. Ensure your extra training and equipment isn't wasted!
-You're expected to defend not only the commander, but the bunker at large; leave the outside defenses to the marines.
-You've been through much, and as such, have been given special-weapons training. Use it well.
-Glory to the commander. Glory to the USCM."}
+	. = {"你奉命在这片危险环境中保护指挥官，这一点并未改变。别浪费你接受的额外训练和配发的装备！
+除了指挥官，你还应保卫整个掩体；外围防御就交给陆战队员。
+你经历过许多战斗，因此接受了特种武器训练。好好发挥。
+荣耀归于指挥官，荣耀归于USCM。"}
 
 
 //*************************************
@@ -88,9 +88,9 @@ Glory to the commander. Glory to the USCM."}
 	gear_preset = /datum/equipment_preset/wo/hg
 
 /datum/job/command/police/whiskey/generate_entry_message(mob/living/carbon/human/H)
-	. = {"You were assigned to guard the commander in this hostile environment; that hasn't changed. Ensure your extra training and equipment isn't wasted!
-You're expected to defend not only the commander, but the bunker at large; leave the outside defenses to the marines.
-Glory to the commander. Glory to the USCM."}
+	. = {"你奉命在这片危险环境中保护指挥官，这一点并未改变。别浪费你接受的额外训练和配发的装备！
+除了指挥官，你还应保卫整个掩体；外围防御就交给陆战队员。
+荣耀归于指挥官，荣耀归于USCM。"}
 
 
 //*************************************
@@ -101,8 +101,8 @@ Glory to the commander. Glory to the USCM."}
 	gear_preset = /datum/equipment_preset/wo/mortar_crew
 
 /datum/job/command/pilot/whiskey/generate_entry_message(mob/living/carbon/human/H)
-	. = {"You're entrusted with the maintaining of the mortars for the outpost. You were expecting to bomb some CLF, maybe, but not this...
-Listen in on your radio, and pay attention to provide fire support for the marines. Watch out for friendly-fire!"}
+	. = {"你受托维护哨站的迫击炮。你原以为顶多炮击一些殖民地解放阵线人员，没想到会碰上这种情况……
+监听无线电，集中注意力，为陆战队员提供火力支援。小心误伤友军！"}
 
 
 //*************************************
@@ -113,9 +113,9 @@ Listen in on your radio, and pay attention to provide fire support for the marin
 	gear_preset = /datum/equipment_preset/wo/quartermaster
 
 /datum/job/logistics/requisition/whiskey/generate_entry_message(mob/living/carbon/human/H)
-	. = {"This is YOUR Depot - ain't no body, marine or monster, are gonna have their way with it.
-Ensure that supplies are rationed out, and not wasted. Other outposts will send you what they can, so make it count!
-You can order bunker crew to assist you, in place of proper cargo technicians."}
+	. = {"这是你的补给库，无论陆战队员还是怪物，谁都别想在这里为所欲为。
+确保物资得到合理配给，不要浪费。其他哨站会尽力送来补给，务必物尽其用！
+没有专职货运技师时，你可以命令掩体组员协助。"}
 
 
 //*************************************
@@ -126,8 +126,8 @@ You can order bunker crew to assist you, in place of proper cargo technicians."}
 	gear_preset = /datum/equipment_preset/wo/head_surgeon
 
 /datum/job/civilian/professor/whiskey/generate_entry_message()
-	. = {"You volunteered to assist ground-side with medical duties. That may have been a mistake.
-Treat the wounded, guide triage, and survive for as long as possible."}
+	. = {"你自愿协助地面的医疗工作。现在看来，这或许是个错误。
+治疗伤员，指导分诊，并尽可能活得久一点。"}
 
 
 //*************************************
@@ -142,8 +142,8 @@ Treat the wounded, guide triage, and survive for as long as possible."}
 	return
 
 /datum/job/civilian/doctor/whiskey/generate_entry_message(mob/living/carbon/human/H)
-	. = {"You volunteered to assist ground-side with medical duties. That may have been a mistake.
-Treat the wounded, perform triage, and survive for as long as possible."}
+	. = {"你自愿协助地面的医疗工作。现在看来，这或许是个错误。
+治疗伤员，进行分诊，并尽可能活得久一点。"}
 
 
 //*************************************
@@ -154,8 +154,8 @@ Treat the wounded, perform triage, and survive for as long as possible."}
 	gear_preset = /datum/equipment_preset/wo/chemist
 
 /datum/job/civilian/researcher/whiskey/generate_entry_message(mob/living/carbon/human/H)
-	. = {"You volunteered to help produce medicine, and perform tests on the local wildlife, to see if it was safe for consumption. That may have been a mistake.
-Hey, at least now, you can try out all those chems that are outlawed - not like there's anyone to enforce the law, here, anyways."}
+	. = {"你自愿协助生产药物，并检验本地野生动物能否安全食用。现在看来，这或许是个错误。
+嘿，至少你现在可以试试那些被禁用的化学品了；反正这里也没人执法。"}
 
 
 //*************************************
@@ -166,8 +166,8 @@ Hey, at least now, you can try out all those chems that are outlawed - not like 
 	gear_preset = /datum/equipment_preset/wo/bcm
 
 /datum/job/logistics/engineering/whiskey/generate_entry_message(mob/living/carbon/human/H)
-	. = {"Everything in this bunker is yours. At least, you act like it is. You and your men keep it well maintained. You're not gonna let any filthy aliens take it.
-Ensure power is up, and the bunker is well defended. You share your bunker crew with the Quartermaster."}
+	. = {"这座掩体里的一切都是你的，至少你表现得像是这样。你和手下把这里维护得很好，绝不会让任何肮脏的异形夺走它。
+确保电力正常、掩体防御稳固。你与军需官共用这支掩体工作队。"}
 
 
 //*************************************
@@ -179,8 +179,8 @@ Ensure power is up, and the bunker is well defended. You share your bunker crew 
 	gear_preset = /datum/equipment_preset/wo/bc
 
 /datum/job/logistics/tech/maint/whiskey/generate_entry_message(mob/living/carbon/human/H)
-	. = {"You've worked here for a while, figuring it was a pretty comfy job. Now you gotta fight for your life. Have fun with that.
-Assist both the Bunker Crew Master and the Quartermaster in their duties."}
+	. = {"你在这里工作了一阵子，本以为这份差事挺安逸。现在却得为自己的性命而战了。祝你玩得开心。
+协助掩体班长和军需官履行职责。"}
 
 
 //*************************************
@@ -194,8 +194,8 @@ Assist both the Bunker Crew Master and the Quartermaster in their duties."}
 
 
 /datum/job/logistics/cargo/whiskey/generate_entry_message(mob/living/carbon/human/H)
-	. = {"You've worked here for a while, figuring it was a pretty comfy job. Now you gotta fight for your life. Have fun with that.
-Assist both the Bunker Crew Master and the Quartermaster in their duties."}
+	. = {"你在这里工作了一阵子，本以为这份差事挺安逸。现在却得为自己的性命而战了。祝你玩得开心。
+协助掩体班长和军需官履行职责。"}
 
 
 //Giving the liaison a role on whiskey outpost! Nothing can go wrong here. N o t h i n g.
@@ -208,9 +208,9 @@ Assist both the Bunker Crew Master and the Quartermaster in their duties."}
 	gear_preset = /datum/equipment_preset/wo/reporter
 
 /datum/job/civilian/liaison/whiskey/generate_entry_message(mob/living/carbon/human/H)
-	. = {"What a scoop! You followed the marines down to LV-624 to see what kinda mischief they'd get into down here, but it seems that trouble has come to them!
-This could be the story of the world! 'Brave Marines in brutal combat with unknown hostile alien lifeforms!' It'd surely get Mr. Parkerson to notice you in the office if you brought him a story like this!
-You just gotta get out of this jungle to tell the tale!"}
+	. = {"大新闻！你跟着陆战队来到LV-624，想看看他们又会在这里惹出什么麻烦，结果麻烦自己找上门了！
+这可能成为轰动全球的报道！“英勇陆战队员与未知敌对外星生命展开残酷战斗！”如果带回这样的新闻，办公室里的帕克森先生一定会注意到你！
+你只需要先活着走出这片丛林，才能把故事讲出去！"}
 
 //this calls  self-setting headsets for marines AFTER they are assigned squads
 /datum/game_mode/whiskey_outpost/proc/self_set_headset(mob/living/carbon/human/H)

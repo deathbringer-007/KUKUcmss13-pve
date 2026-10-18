@@ -16,16 +16,16 @@
 /datum/decorator/christmas/food/decorate(obj/structure/machinery/cm_vending/sorted/marine_food/dispenser)
 	// This happens during atom init before vending init, so we can hotswap the list before it gets processed
 	dispenser.listed_products = list(
-		list("CHRISTMAS MEALS", -1, null, null), //Jummy Christmas Food
-		list("Xmas Prepared Meal (Fruitcake)", 25, /obj/item/reagent_container/food/snacks/mre_pack/xmas3, VENDOR_ITEM_REGULAR),
-		list("Xmas Prepared Meal (Gingerbread Cookies)", 25, /obj/item/reagent_container/food/snacks/mre_pack/xmas2, VENDOR_ITEM_REGULAR),
-		list("Xmas Prepared Meal (Sugar Cookies)", 25, /obj/item/reagent_container/food/snacks/mre_pack/xmas1, VENDOR_ITEM_REGULAR),
+		list("圣诞餐食", -1, null, null), //Jummy Christmas Food
+		list("圣诞预制餐（水果蛋糕）", 25, /obj/item/reagent_container/food/snacks/mre_pack/xmas3, VENDOR_ITEM_REGULAR),
+		list("圣诞预制餐（姜饼饼干）", 25, /obj/item/reagent_container/food/snacks/mre_pack/xmas2, VENDOR_ITEM_REGULAR),
+		list("圣诞预制餐（糖饼干）", 25, /obj/item/reagent_container/food/snacks/mre_pack/xmas1, VENDOR_ITEM_REGULAR),
 
-		list("FLASKS", -1, null, null),
-		list("Canteen", 10, /obj/item/reagent_container/food/drinks/flask/canteen, VENDOR_ITEM_REGULAR),
-		list("Metal Flask", 10, /obj/item/reagent_container/food/drinks/flask, VENDOR_ITEM_REGULAR),
-		list("USCM Flask", 5, /obj/item/reagent_container/food/drinks/flask/marine, VENDOR_ITEM_REGULAR),
-		list("W-Y Flask", 5, /obj/item/reagent_container/food/drinks/flask/weylandyutani, VENDOR_ITEM_REGULAR),
+		list("水壶与酒壶", -1, null, null),
+		list("军用水壶", 10, /obj/item/reagent_container/food/drinks/flask/canteen, VENDOR_ITEM_REGULAR),
+		list("金属酒壶", 10, /obj/item/reagent_container/food/drinks/flask, VENDOR_ITEM_REGULAR),
+		list("USCM酒壶", 5, /obj/item/reagent_container/food/drinks/flask/marine, VENDOR_ITEM_REGULAR),
+		list("维兰德-汤谷酒壶", 5, /obj/item/reagent_container/food/drinks/flask/weylandyutani, VENDOR_ITEM_REGULAR),
 	)
 
 /datum/decorator/christmas/builder_list/get_decor_types()

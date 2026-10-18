@@ -1,16 +1,16 @@
 /datum/disease/brainrot
-	name = "Brainrot"
+	name = "脑腐病"
 	max_stages = 4
-	spread = "On contact"
+	spread = "接触传播"
 	spread_type = CONTACT_GENERAL
-	cure = "Alkysine"
+	cure = "神经修复素"
 	cure_id = list("alkysine")
-	agent = "Cryptococcus Cosmosis"
+	agent = "宇宙隐球菌"
 	affected_species = list("Human")
 	curable = 0
 	cure_chance = 15//higher chance to cure, since two reagents are required
 	desc = "这种疾病会破坏脑细胞，导致脑热、脑坏死和全身中毒。"
-	severity = "Major"
+	severity = "严重"
 
 /datum/disease/brainrot/stage_act() //Removed toxloss because damaging diseases are pretty horrible. Last round it killed the entire station because the cure didn't work -- Urist
 	..()

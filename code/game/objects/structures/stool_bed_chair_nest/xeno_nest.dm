@@ -161,7 +161,7 @@
 			to_chat(user, SPAN_WARNING("[H]刚被固定进巢穴，请稍等。"))
 			return
 		if(H.stat != DEAD)
-			if(alert(user, "[H] 还活蹦乱跳的！确定要将其移出巢穴吗？", "确认", "Yes", "No") != "Yes")
+			if(localized_native_alert(user, "[H] 还活蹦乱跳的！确定要将其移出巢穴吗？", "确认", "Yes", "No") != "Yes")
 				return
 			if(!buckled_mob || !user.Adjacent(H) || user.is_mob_incapacitated(FALSE))
 				return

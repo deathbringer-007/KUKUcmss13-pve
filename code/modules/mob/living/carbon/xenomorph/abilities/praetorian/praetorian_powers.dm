@@ -188,7 +188,7 @@
 
 		if(target_carbon.mob_size >= MOB_SIZE_BIG)
 			fling_distance *= 0.1
-		vanguard_user.visible_message(SPAN_XENODANGER("[vanguard_user]重击[target_atom]，将其击飞！"), SPAN_XENOHIGHDANGER("We deal [target_atom] a massive blow, sending them flying!"))
+		vanguard_user.visible_message(SPAN_XENODANGER("[vanguard_user]重击[target_atom]，将其击飞！"), SPAN_XENOHIGHDANGER("我们重击[target_atom]，将其击飞！"))
 		vanguard_user.flick_attack_overlay(target_carbon, "slam")
 		vanguard_user.throw_carbon(target_atom, null, fling_distance)
 
@@ -215,7 +215,7 @@
 	if(!check_and_use_plasma_owner())
 		return FALSE
 
-	stabbing_xeno.visible_message(SPAN_XENODANGER("\The [stabbing_xeno] uncoils and wildly throws out its tail!"), SPAN_XENODANGER("We uncoil our tail wildly in front of us!"))
+	stabbing_xeno.visible_message(SPAN_XENODANGER("[stabbing_xeno]展开尾巴，猛烈地甩了出去！"), SPAN_XENODANGER("我们向前猛烈地甩出尾巴！"))
 
 	var/obj/projectile/hook_projectile = new /obj/projectile(stabbing_xeno.loc, create_cause_data(initial(stabbing_xeno.caste_type), stabbing_xeno))
 
@@ -281,17 +281,17 @@
 		telegraph_atom_list += new /obj/effect/xenomorph/xeno_telegraph/abduct_hook(turf, windup)
 
 	if(!length(turflist))
-		to_chat(xeno, SPAN_XENOWARNING("We don't have any room to do our abduction!"))
+		to_chat(xeno, SPAN_XENOWARNING("这里没有足够空间让我们掳走目标！"))
 		return
 
-	xeno.visible_message(SPAN_XENODANGER("\The [xeno]'s segmented tail starts coiling..."), SPAN_XENODANGER("We begin coiling our tail, aiming towards \the [atom]..."))
+	xeno.visible_message(SPAN_XENODANGER("[xeno]的分节尾巴开始卷曲……"), SPAN_XENODANGER("我们开始盘起尾巴，瞄准[atom]……"))
 	xeno.emote("roar")
 
 	var/throw_target_turf = get_step(xeno.loc, facing)
 
 	ADD_TRAIT(xeno, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Abduct"))
 	if(!do_after(xeno, windup, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE, numticks = 1))
-		to_chat(xeno, SPAN_XENOWARNING("You relax your tail."))
+		to_chat(xeno, SPAN_XENOWARNING("我们放松了尾巴。"))
 		apply_cooldown()
 
 		for (var/obj/effect/xenomorph/xeno_telegraph/xenotelegraph in telegraph_atom_list)

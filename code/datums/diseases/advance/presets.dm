@@ -2,7 +2,7 @@
 
 /datum/disease/advance/cold/New(process = 1, datum/disease/advance/D, copy = 0)
 	if(!D)
-		name = "Cold"
+		name = "感冒"
 		symptoms = list(new/datum/symptom/sneeze)
 	..(process, D, copy)
 
@@ -11,7 +11,7 @@
 
 /datum/disease/advance/flu/New(process = 1, datum/disease/advance/D, copy = 0)
 	if(!D)
-		name = "Flu"
+		name = "流感"
 		symptoms = list(new/datum/symptom/cough)
 	..(process, D, copy)
 
@@ -20,7 +20,7 @@
 
 /datum/disease/advance/voice_change/New(process = 1, datum/disease/advance/D, copy = 0)
 	if(!D)
-		name = "Epiglottis Mutation"
+		name = "会厌突变"
 		symptoms = list(new/datum/symptom/voice_change)
 	..(process, D, copy)
 
@@ -29,7 +29,7 @@
 
 /datum/disease/advance/heal/New(process = 1, datum/disease/advance/D, copy = 0)
 	if(!D)
-		name = "Liver Enhancer"
+		name = "肝脏强化"
 		symptoms = list(new/datum/symptom/heal)
 	..(process, D, copy)
 
@@ -38,6 +38,6 @@
 
 /datum/disease/advance/hullucigen/New(process = 1, datum/disease/advance/D, copy = 0)
 	if(!D)
-		name = "Reality Impairment"
+		name = "现实感障碍"
 		symptoms = list(new/datum/symptom/hallucigen)
 	..(process, D, copy)

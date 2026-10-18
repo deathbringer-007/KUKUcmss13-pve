@@ -602,14 +602,14 @@
 			if(1)
 				true_desc += SPAN_BLUE("\n这件战利品是[user.real_name]在一次成功的狩猎后取得的。")
 			if(2)
-				true_desc += SPAN_BLUE("\nThis fine trophy was taken by [user.real_name] after a successful hunt.")
+				true_desc += SPAN_BLUE("\n这件精美的战利品是[user.real_name]在一次成功的狩猎后取得的。")
 
 /obj/item/scalp/get_examine_text(mob/user)
 	. = ..()
 	if(isyautja(user) || isobserver(user))
 		. += true_desc
 	else
-		. += SPAN_WARNING("Scalp-collecting is supposed to be a <i>joke</i>. Has someone been going around doing this shit for real? What next, a necklace of severed ears? Jesus Christ.")
+		. += SPAN_WARNING("收集头皮本该只是个<i>玩笑</i>。难道真有人到处干这种破事？接下来是什么，拿割下的耳朵串项链？天啊。")
 
 /obj/item/explosive/grenade/spawnergrenade/hellhound
 	name = "hellhound caller"
@@ -631,9 +631,9 @@
 	..()
 	if(!active)
 		if(!HAS_TRAIT(user, TRAIT_YAUTJA_TECH))
-			to_chat(user, SPAN_WARNING("What's this thing?"))
+			to_chat(user, SPAN_WARNING("这是什么东西？"))
 			return
-		to_chat(user, SPAN_WARNING("You activate the hellhound beacon!"))
+		to_chat(user, SPAN_WARNING("你启动了地狱猎犬信标！"))
 		activate(user)
 		add_fingerprint(user)
 		if(iscarbon(user))
@@ -724,7 +724,7 @@
 		armed = TRUE
 		anchored = TRUE
 		icon_state = "yauttrap[armed]"
-		to_chat(user, SPAN_NOTICE("[src] is now armed."))
+		to_chat(user, SPAN_NOTICE("[src]现已设为待发状态。"))
 		user.attack_log += text("\[[time_stamp()]\] <font color='orange'>[key_name(user)] has armed \the [src] at [get_location_in_text(user)].</font>")
 		log_attack("[key_name(user)] has armed \a [src] at [get_location_in_text(user)].")
 		user.drop_held_item()
@@ -734,7 +734,7 @@
 		disarm(user)
 	//Humans and synths don't know how to handle those traps!
 	if(ishumansynth_strict(user) && armed)
-		to_chat(user, SPAN_WARNING("You foolishly reach out for \the [src]..."))
+		to_chat(user, SPAN_WARNING("你愚蠢地伸手触碰[src]……"))
 		trapMob(user)
 		return
 	. = ..()
@@ -754,7 +754,7 @@
 
 	icon_state = "yauttrap0"
 	playsound(C,'sound/weapons/tablehit1.ogg', 25, 1)
-	to_chat(C, "[icon2html(src, C)] \red <B>You get caught in \the [src]!</B>")
+	to_chat(C, "[icon2html(src, C)] \red <B>你被[src]夹住了！</B>")
 
 	C.attack_log += text("\[[time_stamp()]\] <font color='orange'>[key_name(C)] was caught in \a [src] at [get_location_in_text(C)].</font>")
 	log_attack("[key_name(C)] was caught in \a [src] at [get_location_in_text(C)].")

@@ -303,7 +303,7 @@
 				decloak(wearer, TRUE, DECLOAK_EMP)
 		else
 			var/turf/our_turf = get_turf(src)
-			our_turf.visible_message(SPAN_DANGER("你听到嘶嘶声和噼啪声！"), SPAN_DANGER("You hear a hiss and crackle!"))
+			our_turf.visible_message(SPAN_DANGER("你听到嘶嘶声和噼啪声！"), SPAN_DANGER("你听到嘶嘶声和噼啪声！"))
 
 /obj/item/clothing/gloves/yautja/hunter/equipped(mob/user, slot)
 	. = ..()
@@ -403,7 +403,7 @@
 	O = user.get_limb(check_zone("l_arm"))
 	O.droplimb()
 
-	to_chat(user, SPAN_NOTICE("The device emits a strange noise and falls off... Along with your arms!"))
+	to_chat(user, SPAN_NOTICE("装置发出怪声后脱落……连同你的双臂一起！"))
 	playsound(user,'sound/weapons/wristblades_on.ogg', 15, 1)
 	return TRUE
 
@@ -429,18 +429,18 @@
 		if(right_wristblades.loc == user)
 			user.drop_inv_item_to_loc(right_wristblades, src, FALSE, TRUE)
 		wristblades_deployed = FALSE
-		to_chat(user, SPAN_NOTICE("You retract your [left_wristblades.name]."))
+		to_chat(user, SPAN_NOTICE("你收回了[left_wristblades.name]。"))
 		playsound(user, 'sound/weapons/wristblades_off.ogg', 15, TRUE)
 	else
 		if(!drain_power(user, 50))
 			return
 		var/deploying_into_left_hand = user.hand ? TRUE : FALSE
 		if(user.get_active_hand())
-			to_chat(user, SPAN_WARNING("Your hand must be free to activate your wristblade!"))
+			to_chat(user, SPAN_WARNING("必须空出手，才能展开腕刃！"))
 			return
 		var/obj/limb/hand = user.get_limb(deploying_into_left_hand ? "l_hand" : "r_hand")
 		if(!istype(hand) || !hand.is_usable())
-			to_chat(user, SPAN_WARNING("You can't hold that!"))
+			to_chat(user, SPAN_WARNING("你无法持握它！"))
 			return
 		var/is_offhand_full = FALSE
 		var/obj/limb/off_hand = user.get_limb(deploying_into_left_hand ? "r_hand" : "l_hand")
@@ -455,7 +455,7 @@
 			if(!is_offhand_full)
 				user.put_in_inactive_hand(left_wristblades)
 		wristblades_deployed = TRUE
-		to_chat(user, SPAN_NOTICE("You activate your [left_wristblades.plural_name]."))
+		to_chat(user, SPAN_NOTICE("你展开了[left_wristblades.plural_name]。"))
 		playsound(user, 'sound/weapons/wristblades_on.ogg', 15, TRUE)
 
 	var/datum/action/predator_action/bracer/wristblade/wb_action
@@ -533,7 +533,7 @@
 	var/output = FALSE
 	if(dead_on_planet || dead_on_almayer || dead_low_orbit)
 		output = TRUE
-		to_chat(M, SPAN_NOTICE("Your bracer shows a readout of deceased Yautja bio signatures[dead_on_planet ? ", <b>[dead_on_planet]</b> in the hunting grounds" : ""][dead_on_almayer ? ", <b>[dead_on_almayer]</b> in orbit" : ""][dead_low_orbit ? ", <b>[dead_low_orbit]</b> in low orbit" : ""]."))
+		to_chat(M, SPAN_NOTICE("你的护腕显示已死亡铁血战士的生物信号统计[dead_on_planet ? "，猎场内<b>[dead_on_planet]</b>个" : ""][dead_on_almayer ? "，轨道上<b>[dead_on_almayer]</b>个" : ""][dead_low_orbit ? "，低轨道上<b>[dead_low_orbit]</b>个" : ""]。"))
 	if(gear_on_planet || gear_on_almayer || gear_low_orbit)
 		output = TRUE
 		to_chat(M, SPAN_NOTICE("Your bracer shows a readout of Yautja technology signatures[gear_on_planet ? ", <b>[gear_on_planet]</b> in the hunting grounds" : ""][gear_on_almayer ? ", <b>[gear_on_almayer]</b> in orbit" : ""][gear_low_orbit ? ", <b>[gear_low_orbit]</b> in low orbit" : ""]."))

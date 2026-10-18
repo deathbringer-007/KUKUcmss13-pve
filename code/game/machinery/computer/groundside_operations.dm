@@ -59,7 +59,7 @@
 	user.set_interaction(src)
 
 	var/dat = "<head><title>地面行动控制台</title></head><body>"
-	dat += "<BR><A href='byond://?src=\ref[src];operation=announce'>[is_announcement_active ? "Make An Announcement" : "*Unavailable*"]</A>"
+	dat += "<BR><A href='byond://?src=\ref[src];operation=announce'>[is_announcement_active ? "发布公告" : "*暂不可用*"]</A>"
 	dat += "<BR><A href='byond://?src=\ref[src];operation=mapview'>战术地图</A>"
 	dat += "<BR><hr>"
 	var/datum/squad/marine/echo/echo_squad = locate() in GLOB.RoleAuthority.squads
@@ -79,7 +79,7 @@
 		if(current_squad || show_command_squad)
 			dat += get_overwatch_info()
 
-	dat += "<BR><A href='byond://?src=\ref[user];mach_close=groundside_operations'>Close</A>"
+	dat += "<BR><A href='byond://?src=\ref[user];mach_close=groundside_operations'>关闭</A>"
 	show_browser(user, dat, name, "groundside_operations", width = 600, height = 700)
 	onclose(user, "groundside_operations")
 
@@ -117,7 +117,7 @@
 	else
 		dat += "未选择小队！<BR>"
 	dat += "<br><hr>"
-	dat += "<A href='byond://?src=\ref[src];operation=refresh'>Refresh</a><br>"
+	dat += "<A href='byond://?src=\ref[src];operation=refresh'>刷新</a><br>"
 	return dat
 
 /obj/structure/machinery/computer/groundside_operations/proc/format_list_of_marines(list/mob/living/carbon/human/marine_list, list/jobs_in_order)
@@ -139,9 +139,9 @@
 		if(!X)
 			continue //just to be safe
 		total_count++
-		var/mob_name = "unknown"
+		var/mob_name = "未知"
 		var/mob_state = ""
-		var/role = "unknown"
+		var/role = "未知"
 		var/area_name = "<b>???</b>"
 		var/mob/living/carbon/human/H
 		var/act_sl = ""
@@ -161,10 +161,10 @@
 
 			switch(H.stat)
 				if(CONSCIOUS)
-					mob_state = "Conscious"
+					mob_state = "清醒"
 					living_count++
 				if(UNCONSCIOUS)
-					mob_state = "<b>Unconscious</b>"
+					mob_state = "<b>昏迷</b>"
 					living_count++
 				else
 					continue
@@ -188,11 +188,11 @@
 			job_order[role] += marine_infos
 		else
 			misc_text += marine_infos
-	dat += "<b>Total: [total_count] Deployed</b><BR>"
+	dat += "<b>已部署人员总数：[total_count]</b><BR>"
 	dat += "<b>检测到陆战队员：[living_count]人（[helmetless_count]人未戴头盔，[SSD_count]人断线，[almayer_count]人在阿尔迈耶号上）</b><BR>"
-	dat += "<center><b>Search:</b> <input type='search' id='filter' value='' onkeyup='updateSearch()' onblur='updateSearch()' style='width:300px;'></center>"
+	dat += "<center><b>搜索：</b><input type='search' id='filter' value='' onkeyup='updateSearch()' onblur='updateSearch()' style='width:300px;'></center>"
 	dat += "<table id='marine_list' border='2px' style='width: 100%; border-collapse: collapse;' align='center'><tr>"
-	dat += "<th>Name</th><th>Role</th><th>State</th><th>Location</th></tr>"
+	dat += "<th>姓名</th><th>职位</th><th>状态</th><th>位置</th></tr>"
 	for(var/job in job_order)
 		dat += job_order[job]
 	dat += misc_text
@@ -234,7 +234,7 @@
 			if(announcement_faction != FACTION_MARINE && usr.faction != announcement_faction)
 				to_chat(usr, SPAN_WARNING("访问被拒绝。"))
 				return
-			var/input = stripped_multiline_input(usr, "Please write a message to announce to the station crew.", "Priority Announcement", "")
+			var/input = stripped_multiline_input(usr, "请输入要向全体舰员发布的公告。", "优先公告", "")
 			if(!input || !is_announcement_active || !(usr in dview(1, src)))
 				return FALSE
 
@@ -260,7 +260,7 @@
 			if(SSticker.mode.active_lz)
 				return
 			var/lz_choices = list("lz1", "lz2")
-			var/new_lz = tgui_input_list(usr, "选择主要着陆区", "选择着陆区", lz_choices)
+			var/new_lz = localized_input_list(usr, "选择主要着陆区", "选择着陆区", lz_choices)
 			if(!new_lz)
 				return
 			if(new_lz == "lz1")
@@ -275,7 +275,7 @@
 					squad_list += S.name
 			squad_list += COMMAND_SQUAD
 
-			var/name_sel = tgui_input_list(usr, "你想查看哪个小队？", "选择小队", squad_list)
+			var/name_sel = localized_input_list(usr, "你想查看哪个小队？", "选择小队", squad_list)
 			if(!name_sel)
 				return
 
@@ -333,7 +333,7 @@
 			var/reason = strip_html(input(usr, "埃科小队将执行什么任务？", "启用事由"))
 			if(!reason)
 				return
-			if(alert(usr, "确认因“[reason]”启用埃科小队。", "确认启用", "Yes", "No") != "Yes") return
+			if(localized_native_alert(usr, "确认因“[reason]”启用埃科小队。", "确认启用", "Yes", "No") != "Yes") return
 			var/datum/squad/marine/echo/echo_squad = locate() in GLOB.RoleAuthority.squads
 			if(!echo_squad)
 				visible_message(SPAN_BOLDNOTICE("错误：无法找到埃科小队数据库。"))

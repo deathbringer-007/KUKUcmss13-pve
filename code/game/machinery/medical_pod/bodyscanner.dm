@@ -303,7 +303,7 @@
 
 	for(var/datum/disease/D in occ["tg_diseases_list"])
 		if(!D.hidden[SCANNER])
-			dat += SET_CLASS("<B>警告：检测到[D.form]</B>\n名称：[D.name]。\n传播方式：[D.spread]。\n阶段：[D.stage]/[D.max_stages]。\n可能的疗法：[D.cure]</b>", INTERFACE_RED)
+			dat += SET_CLASS("<B>警告：检测到[D.form]</B>\n名称：[localized_player_label(D.name)]。\n传播方式：[D.spread]。\n阶段：[D.stage]/[D.max_stages]。\n可能的疗法：[D.cure]</b>", INTERFACE_RED)
 			dat += "<BR>"
 
 	dat += "<HR><table>"
@@ -388,14 +388,14 @@
 			mech = "无"
 
 		dat += "<tr>"
-		dat += "<td>[i.name]</td><td>不适用</td><td>[i.damage]</td><td>[mech]</td>"
+		dat += "<td>[localized_player_label(i.name)]</td><td>不适用</td><td>[i.damage]</td><td>[mech]</td>"
 		dat += "</tr>"
 	dat += "</table>"
 
 	var/list/species_organs = occ["species_organs"]
 	for(var/organ_name in species_organs)
-		if(!locate(species_organs[organ_name]) in occ["internal_organs"])
-			dat += SET_CLASS("未检测到[organ_name]。", INTERFACE_RED)
+		if(!locate(species_organs[localized_player_label(organ_name)]) in occ["internal_organs"])
+			dat += SET_CLASS("未检测到[localized_player_label(organ_name)]。", INTERFACE_RED)
 			dat += "<BR>"
 
 	if(occ["sdisabilities"] & DISABILITY_BLIND)

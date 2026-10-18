@@ -151,7 +151,7 @@
 		if(hijack_delete)
 			return ..()
 
-		marine_announcement("ALERT.\n\nEnergy build up around communication relay at [get_area(src)] halted.", "[MAIN_AI_SYSTEM] Biological Scanner")
+		marine_announcement("警报。\n\n[get_area(src)]通信中继站附近的能量积聚已停止。", "[MAIN_AI_SYSTEM]生物扫描仪")
 
 		for(var/hivenumber in GLOB.hive_datum)
 			var/datum/hive_status/checked_hive = GLOB.hive_datum[hivenumber]
@@ -167,7 +167,7 @@
 
 /// Checks if all comms towers are connected and then starts end game content on all pylons if they are
 /obj/effect/alien/resin/special/pylon/endgame/proc/comms_relay_connection()
-	marine_announcement("ALERT.\n\nIrregular build up of energy around communication relays at [get_area(src)], biological hazard detected.\n\nDANGER: Hazard is generating new xenomorph entities, advise urgent termination of hazard by ground forces.", "[MAIN_AI_SYSTEM] Biological Scanner")
+	marine_announcement("警报。\n\n[get_area(src)]通信中继站附近出现异常能量积聚，检测到生物危害。\n\n危险：该危害源正在生成新的异形个体，建议地面部队立即将其清除。", "[MAIN_AI_SYSTEM]生物扫描仪")
 
 	for(var/hivenumber in GLOB.hive_datum)
 		var/datum/hive_status/checked_hive = GLOB.hive_datum[hivenumber]
@@ -276,7 +276,7 @@
 			linked_hive.stored_larva++
 			linked_hive.hijack_burrowed_left--
 			if(GLOB.xeno_queue_candidate_count < 1 + count_spawned)
-				notify_ghosts(header = "Claim Xeno", message = "The Hive has gained another burrowed larva! Click to take it.", source = src, action = NOTIFY_JOIN_XENO, enter_link = "join_xeno=1")
+				notify_ghosts(header = "接管异形", message = "虫巢新增了一只地底幼体！点击接管。", source = src, action = NOTIFY_JOIN_XENO, enter_link = "join_xeno=1")
 			if(surge_cooldown > 30 SECONDS) //mostly for sanity purposes
 				surge_cooldown = surge_cooldown - surge_incremental_reduction //ramps up over time
 			if(linked_hive.hijack_burrowed_left < 1)
@@ -368,14 +368,14 @@
 			return XENO_NO_DELAY_ACTION
 
 		else if(warn && world.time > XENOMORPH_PRE_SETUP_CUTOFF)
-			if((alert(M, "确定要摧毁虫巢核心吗？（再次建造前需要等待5分钟。）", , "Yes", "No") != "Yes"))
+			if((localized_native_alert(M, "确定要摧毁虫巢核心吗？（再次建造前需要等待5分钟。）", , "Yes", "No") != "Yes"))
 				return XENO_NO_DELAY_ACTION
 
 			INVOKE_ASYNC(src, PROC_REF(startDestroying),M)
 			return XENO_NO_DELAY_ACTION
 
 		else if(world.time < XENOMORPH_PRE_SETUP_CUTOFF)
-			if((alert(M, "确定要移除虫巢核心吗？此操作不会触发冷却。", , "Yes", "No") != "Yes"))
+			if((localized_native_alert(M, "确定要移除虫巢核心吗？此操作不会触发冷却。", , "Yes", "No") != "Yes"))
 				return XENO_NO_DELAY_ACTION
 
 			INVOKE_ASYNC(src, PROC_REF(startDestroying),M)
@@ -407,7 +407,7 @@
 			linked_hive.hardcore = TRUE
 			linked_hive.allow_queen_evolve = FALSE
 			linked_hive.hive_structures_limit[XENO_STRUCTURE_CORE] = 0
-			xeno_announcement("\The [linked_hive.name] has lost their hive core!", "everything", HIGHER_FORCE_ANNOUNCE)
+			xeno_announcement("[preference_label(linked_hive.name)]失去了虫巢核心！", "everything", HIGHER_FORCE_ANNOUNCE)
 
 		if(linked_hive.hijack_burrowed_surge)
 			visible_message(SPAN_XENODANGER("[src]被摧毁时，我们听见了类似尖叫的声音！"))

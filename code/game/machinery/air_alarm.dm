@@ -615,22 +615,22 @@ Pressure: <span class='dl[pressure_dangerlevel]'>[environment_pressure]</span>kP
 /obj/structure/machinery/alarm/proc/rcon_text()
 	var/dat = "<table width=\"100%\"><td align=\"center\"><b>远程控制：</b><br>"
 	if(rcon_setting == RCON_NO)
-		dat += "<b>Off</b>"
+		dat += "<b>关闭</b>"
 	else
-		dat += "<a href='byond://?src=\ref[src];rcon=[RCON_NO]'>Off</a>"
+		dat += "<a href='byond://?src=\ref[src];rcon=[RCON_NO]'>关闭</a>"
 	dat += "|"
 	if(rcon_setting == RCON_AUTO)
-		dat += "<b>Auto</b>"
+		dat += "<b>自动</b>"
 	else
-		dat += "<a href='byond://?src=\ref[src];rcon=[RCON_AUTO]'>Auto</a>"
+		dat += "<a href='byond://?src=\ref[src];rcon=[RCON_AUTO]'>自动</a>"
 	dat += "|"
 	if(rcon_setting == RCON_YES)
-		dat += "<b>On</b>"
+		dat += "<b>开启</b>"
 	else
-		dat += "<a href='byond://?src=\ref[src];rcon=[RCON_YES]'>On</a></td>"
+		dat += "<a href='byond://?src=\ref[src];rcon=[RCON_YES]'>开启</a></td>"
 
 	//Hackish, I know.  I didn't feel like bothering to rework all of this.
-	dat += "<td align=\"center\"><b>Thermostat:</b><br><a href='byond://?src=\ref[src];temperature=1'>[target_temperature - T0C]C</a></td></table>"
+	dat += "<td align=\"center\"><b>恒温器：</b><br><a href='byond://?src=\ref[src];temperature=1'>[target_temperature - T0C]C</a></td></table>"
 
 	return dat
 

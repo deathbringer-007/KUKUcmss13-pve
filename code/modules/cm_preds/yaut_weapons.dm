@@ -110,7 +110,7 @@
 			user.visible_message(SPAN_DANGER("[user]用[name]推着[door]，试图强行将其关闭……"), SPAN_DANGER("你用[name]推着[door]，试图强行将其关闭……"))
 			playsound(user, 'sound/weapons/wristblades_hit.ogg', 15, TRUE)
 			if(do_after(user, 2 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE) && !door.density)
-				user.visible_message(SPAN_DANGER("[user] forces [door] closed using the [name]!"), SPAN_DANGER("You force [door] closed with your [name]."))
+				user.visible_message(SPAN_DANGER("[user]用[name]强行关闭了[door]！"), SPAN_DANGER("你用[name]强行关闭了[door]。"))
 				door.close()
 
 /obj/item/weapon/wristblades/attack_self(mob/living/carbon/human/user)
@@ -217,7 +217,7 @@
 		xenomorph.AddComponent(/datum/component/status_effect/interference, 15, 15)
 
 	if(prob(15))
-		user.visible_message(SPAN_DANGER("An opening in combat presents itself!"),SPAN_DANGER("You manage to strike at your foe once more!"))
+		user.visible_message(SPAN_DANGER("战斗中出现了一线破绽！"),SPAN_DANGER("你抓住机会，再次击中了敌人！"))
 		user.spin(5, 1)
 		..() //Do it again! CRIT! This will be replaced by a bleed effect.
 
@@ -271,7 +271,7 @@
 
 /obj/item/weapon/yautja/combistick/try_to_throw(mob/living/user)
 	if(!charged)
-		to_chat(user, SPAN_WARNING("Your combistick refuses to leave your hand. You must charge it with blood from prey before throwing it."))
+		to_chat(user, SPAN_WARNING("你的伸缩战矛不肯离开手掌。投掷前，必须先用猎物的鲜血为其蓄能。"))
 		return FALSE
 	charged = FALSE
 	remove_filter("combistick_charge")
@@ -314,7 +314,7 @@
 /obj/item/weapon/yautja/combistick/proc/on_pickup(datum/source, mob/user)
 	SIGNAL_HANDLER
 	if(user != chain.affected_atom)
-		to_chat(chain.affected_atom, SPAN_WARNING("You feel the chain of [src] be torn from your grasp!")) // Recall the fuckin combi my man
+		to_chat(chain.affected_atom, SPAN_WARNING("你感觉[src]的链条被从手中扯走了！")) // Recall the fuckin combi my man
 
 	cleanup_chain()
 
@@ -334,7 +334,7 @@
 	if(user.put_in_hands(src, TRUE))
 		if(!pred_gloves.drain_power(user, 70))
 			return TRUE
-		user.visible_message(SPAN_WARNING("<b>[user] yanks [src]'s chain back, catching it in [user.p_their()] hand!</b>"), SPAN_WARNING("<b>You yank [src]'s chain back, catching it inhand!</b>"))
+		user.visible_message(SPAN_WARNING("<b>[user]猛拽[src]的链条，将其接回手中！</b>"), SPAN_WARNING("<b>You yank [src]'s chain back, catching it inhand!</b>"))
 		cleanup_chain()
 
 	else

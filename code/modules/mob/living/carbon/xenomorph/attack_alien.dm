@@ -87,7 +87,7 @@
 				playsound(attacking_xeno.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 				attacking_xeno.animation_attack_on(src)
 				attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno]猛扑向[src]！"), \
-				SPAN_DANGER("We lunge at [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+				SPAN_DANGER("我们猛扑向[src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 				return XENO_ATTACK_ACTION
 
 			attacking_xeno.flick_attack_overlay(src, "slash")
@@ -110,8 +110,8 @@
 					knock_chance += min(floor(damage * 0.25), 10) //Maximum of 15% chance.
 					if(prob(knock_chance))
 						playsound(loc, "alien_claw_metal", 25, 1)
-						attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno] smashes off [src]'s [wear_mask.name]!"), \
-						SPAN_DANGER("We smash off [src]'s [wear_mask.name]!"), null, 5)
+						attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno]打落了[src]的[wear_mask.name]！"), \
+						SPAN_DANGER("我们打落了[src]的[wear_mask.name]！"), null, 5)
 						drop_inv_item_on_ground(wear_mask)
 						if(isyautja(src))
 							emote("roar")
@@ -157,9 +157,9 @@
 
 			//nice messages so people know that armor works
 			if(f_damage <= 0.34*damage)
-				to_chat(src, SPAN_WARNING("Your armor absorbs the blow!"))
+				to_chat(src, SPAN_WARNING("你的护甲挡下了这一击！"))
 			else if(f_damage <= 0.67*damage)
-				to_chat(src, SPAN_WARNING("Your armor softens the blow!"))
+				to_chat(src, SPAN_WARNING("你的护甲减轻了这一击的伤害！"))
 
 			apply_damage(f_damage, BRUTE, affecting, sharp = 1, edge = 1) //This should slicey dicey
 			if(acid_damage)
@@ -168,9 +168,9 @@
 				var/n_acid_damage = armor_damage_reduction(GLOB.marine_melee, acid_damage, armor_block_acid)
 				//nice messages so people know that armor works
 				if(n_acid_damage <= 0.34*acid_damage)
-					to_chat(src, SPAN_WARNING("Your armor absorbs the acid!"))
+					to_chat(src, SPAN_WARNING("你的护甲挡住了酸液！"))
 				else if(n_acid_damage <= 0.67*acid_damage)
-					to_chat(src, SPAN_WARNING("Your armor softens the acid!"))
+					to_chat(src, SPAN_WARNING("你的护甲减轻了酸液的伤害！"))
 				apply_damage(n_acid_damage, BURN, affecting) //Burn damage
 
 			SEND_SIGNAL(attacking_xeno, COMSIG_HUMAN_ALIEN_ATTACK, src)

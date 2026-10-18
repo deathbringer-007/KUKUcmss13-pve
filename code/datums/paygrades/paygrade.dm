@@ -6,6 +6,8 @@ GLOBAL_LIST_INIT_TYPED(paygrades, /datum/paygrade, setup_paygrades())
 /datum/paygrade
 	var/paygrade
 	var/name
+	var/localized_name
+	var/localized_prefix
 	var/prefix
 	/// Factional prefix, currently only used by PMCs. In essence, a pre-prefix.
 	var/fprefix

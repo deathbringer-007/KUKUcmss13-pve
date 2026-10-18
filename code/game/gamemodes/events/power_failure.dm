@@ -22,7 +22,7 @@
 
 	sleep(100)
 	if(announce)
-		marine_announcement("Abnormal activity detected in the ship power system. As a precaution, power must be shut down for an indefinite duration.", "Critical Power Failure", 'sound/AI/poweroff.ogg')
+		marine_announcement("检测到舰艇供电系统存在异常活动。作为预防措施，将中断供电，恢复时间待定。", "严重电力故障", 'sound/AI/poweroff.ogg')
 
 /proc/power_restore(announce = 0)
 	for(var/obj/structure/machinery/power/smes/S in GLOB.machines)
@@ -40,7 +40,7 @@
 
 	sleep(100)
 	if(announce)
-		marine_announcement("Power has been restored. Reason: Unknown.", "Power Systems Nominal", 'sound/AI/poweron.ogg')
+		marine_announcement("供电已恢复。原因：未知。", "供电系统正常", 'sound/AI/poweron.ogg')
 
 /proc/power_restore_quick(announce = 0)
 
@@ -55,7 +55,7 @@
 
 	sleep(100)
 	if(announce)
-		marine_announcement("Power has been restored. Reason: Unknown.", "Power Systems Nominal", 'sound/AI/poweron.ogg')
+		marine_announcement("供电已恢复。原因：未知。", "供电系统正常", 'sound/AI/poweron.ogg')
 
 /proc/power_restore_everything(announce = 0)
 
@@ -72,7 +72,7 @@
 
 	sleep(100)
 	if(announce)
-		marine_announcement("Power has been restored. Reason: Unknown.", "Power Systems Nominal", 'sound/AI/poweron.ogg')
+		marine_announcement("供电已恢复。原因：未知。", "供电系统正常", 'sound/AI/poweron.ogg')
 
 /proc/power_restore_ship_reactors(announce = TRUE)
 	for(var/obj/structure/machinery/power/reactor/reactor in GLOB.machines)
@@ -85,4 +85,4 @@
 		reactor.start_functioning(TRUE)
 
 	if(announce)
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(marine_announcement), "Power has been restored. Reason: Unknown.", "Power Systems Nominal", 'sound/AI/poweron.ogg'), 10 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(marine_announcement), "供电已恢复。原因：未知。", "供电系统正常", 'sound/AI/poweron.ogg'), 10 SECONDS)

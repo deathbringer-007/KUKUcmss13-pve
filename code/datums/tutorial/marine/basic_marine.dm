@@ -1,5 +1,5 @@
 /datum/tutorial/marine/basic
-	name = "Marine - Basic"
+	name = "陆战队员——基础"
 	desc = "帮助你熟悉地面陆战队岗位最基础玩法的教学。"
 	tutorial_id = "marine_basic_1"
 	tutorial_template = /datum/map_template/tutorial/s8x9/no_baselight
@@ -24,16 +24,16 @@
 	add_to_tracking_atoms(flashlight)
 
 	init_mob()
-	message_to_player("This is the tutorial for marine rifleman. Leave the cryopod by pressing <b>[retrieve_bind("North")]</b> or <b>[retrieve_bind("East")]</b> to continue.")
-	update_objective("Exit the cryopod by pressing [retrieve_bind("North")] or [retrieve_bind("East")].")
+	message_to_player("这是陆战队步枪兵教程。按<b>[retrieve_bind("North")]</b>或<b>[retrieve_bind("East")]</b>离开休眠舱，继续教程。")
+	update_objective("按[retrieve_bind("North")]或[retrieve_bind("East")]离开休眠舱。")
 	RegisterSignal(tracking_atoms[/obj/structure/machinery/cryopod/tutorial], COMSIG_CRYOPOD_GO_OUT, PROC_REF(on_cryopod_exit))
 
 /datum/tutorial/marine/basic/proc/on_cryopod_exit()
 	SIGNAL_HANDLER
 
 	UnregisterSignal(tracking_atoms[/obj/structure/machinery/cryopod/tutorial], COMSIG_CRYOPOD_GO_OUT)
-	message_to_player("Good. You may notice the yellow \"food\" icon on the right side of your screen. Proceed to the outlined <b>Food Vendor</b> and vend the <b>USCM Protein Bar</b>.")
-	update_objective("Vend a USCM Protein Bar from the outlined ColMarTech Food Vendor.")
+	message_to_player("很好。你可能注意到了屏幕右侧黄色的“食物”图标。前往高亮的<b>食品售货机</b>，领取<b>USCM蛋白棒</b>。")
+	update_objective("从高亮的ColMarTech食品售货机领取一根USCM蛋白棒。")
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/structure/machinery/cm_vending/sorted/marine_food/tutorial, food_vendor)
 	add_highlight(food_vendor)
 	food_vendor.req_access = list()
@@ -46,8 +46,8 @@
 	UnregisterSignal(food_vendor, COMSIG_VENDOR_SUCCESSFUL_VEND)
 	remove_highlight(food_vendor)
 	food_vendor.req_access = list(ACCESS_TUTORIAL_LOCKED)
-	message_to_player("Now click on your character with the <b>USCM Protein Bar</b> in-hand until it is fully eaten. If you accidentally switched hands, switch back with <b>[retrieve_bind("swap_hands")]</b>.")
-	update_objective("Eat the USCM Protein Bar by clicking on yourself while holding it, until it is gone.")
+	message_to_player("现在手持<b>USCM蛋白棒</b>点击自己的角色，直到吃完。如果不小心切换了手，按<b>[retrieve_bind("swap_hands")]</b>切换回来。")
+	update_objective("手持USCM蛋白棒点击自己，直到把它吃完。")
 	RegisterSignal(tutorial_mob, COMSIG_MOB_EATEN_SNACK, PROC_REF(on_foodbar_eaten))
 
 /datum/tutorial/marine/basic/proc/on_foodbar_eaten(datum/source, obj/item/reagent_container/food/snacks/eaten_food)
@@ -57,8 +57,8 @@
 		return
 
 	UnregisterSignal(source, COMSIG_MOB_EATEN_SNACK)
-	message_to_player("Good. Now move to the outlined vendor and vend everything inside.")
-	update_objective("Vend everything inside the ColMarTech Automated Closet.")
+	message_to_player("很好。现在前往高亮的售货机，领取里面的所有物品。")
+	update_objective("领取ColMarTech自动装备柜里的全部物品。")
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/structure/machinery/cm_vending/clothing/tutorial, clothing_vendor)
 	add_highlight(clothing_vendor)
 	clothing_vendor.req_access = list()
@@ -73,8 +73,8 @@
 		UnregisterSignal(clothing_vendor, COMSIG_VENDOR_SUCCESSFUL_VEND)
 		clothing_vendor.req_access = list(ACCESS_TUTORIAL_LOCKED)
 		remove_highlight(clothing_vendor)
-		message_to_player("Now, the room will darken. Take a <b>flare</b> out of your <b>flare pouch</b> by clicking on it with an empty hand, and then light it by using it in-hand with <b>[retrieve_bind("activate_inhand")]</b>.")
-		update_objective("Click on your flare pouch to remove a flare before using it in-hand.")
+		message_to_player("现在房间会变暗。空手点击<b>照明弹袋</b>取出一枚<b>照明弹</b>，然后按<b>[retrieve_bind("activate_inhand")]</b>使用手中的照明弹，将其点燃。")
+		update_objective("点击照明弹袋取出一枚照明弹，然后在手中使用。")
 		var/obj/item/storage/pouch/flare/flare_pouch = locate(/obj/item/storage/pouch/flare) in tutorial_mob.contents
 		if(flare_pouch)
 			add_highlight(flare_pouch)
@@ -92,8 +92,8 @@
 	if(flare_pouch)
 		remove_highlight(flare_pouch)
 
-	message_to_player("Now throw the <b>flare</b> by <b>clicking</b> on a nearby tile, or dropping it with <b>[retrieve_bind("drop_item")]</b>.")
-	update_objective("Throw the flare by clicking on a nearby tile, or dropping it with [retrieve_bind("drop_item")].")
+	message_to_player("现在<b>点击</b>附近的地面扔出<b>照明弹</b>，或按<b>[retrieve_bind("drop_item")]</b>将其丢下。")
+	update_objective("点击附近的地面扔出照明弹，或按[retrieve_bind("drop_item")]将其丢下。")
 	RegisterSignal(tutorial_mob, COMSIG_MOB_ITEM_DROPPED, PROC_REF(on_flare_throw))
 
 /datum/tutorial/marine/basic/proc/on_flare_throw(datum/source, obj/item/thrown)
@@ -103,8 +103,8 @@
 		return
 
 	UnregisterSignal(tutorial_mob, COMSIG_MOB_ITEM_DROPPED)
-	message_to_player("Good. Now, the room will brighten again. Proceed to the highlighted vendor and vend a <b>M41A Pulse Rifle MK2</b>, along with a <b>magazine</b>.")
-	update_objective("Vend everything from the ColMarTech Automated Weapons Rack.")
+	message_to_player("很好。现在房间会重新亮起来。前往高亮的售货机，领取一把<b>M41A MK2脉冲步枪</b>和一个<b>弹匣</b>。")
+	update_objective("领取ColMarTech自动武器架里的全部物品。")
 	addtimer(CALLBACK(src, PROC_REF(brighten_room)), 1.5 SECONDS)
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/structure/machinery/cm_vending/sorted/cargo_guns/squad_prep/tutorial, gun_vendor)
 	gun_vendor.req_access = list()
@@ -120,16 +120,16 @@
 		gun_vendor.req_access = list(ACCESS_TUTORIAL_LOCKED)
 		remove_highlight(gun_vendor)
 		UnregisterSignal(gun_vendor, COMSIG_VENDOR_SUCCESSFUL_VEND)
-		message_to_player("Now insert the <b>magazine</b> into the <b>M41A Pulse Rifle</b> by having the <b>magazine</b> in your active hand and hitting the <b>Pulse Rifle</b> with it. If it is in the off-hand, switch with <b>[retrieve_bind("swap_hands")]</b>.")
-		update_objective("Insert the M41A magazine by hitting the M41A Pulse Rifle with it.")
+		message_to_player("现在将<b>弹匣</b>装入<b>M41A脉冲步枪</b>：用当前操作的手拿住<b>弹匣</b>，点击<b>脉冲步枪</b>。如果弹匣在另一只手，按<b>[retrieve_bind("swap_hands")]</b>切换。")
+		update_objective("用手持的M41A弹匣点击M41A脉冲步枪，将弹匣装入。")
 		RegisterSignal(tutorial_mob, COMSIG_MOB_RELOADED_GUN, PROC_REF(on_magazine_insert))
 
 /datum/tutorial/marine/basic/proc/on_magazine_insert(datum/source, atom/attacked, obj/item/attacked_with)
 	SIGNAL_HANDLER
 
 	UnregisterSignal(tutorial_mob, COMSIG_MOB_RELOADED_GUN)
-	message_to_player("Good. Now wield your gun by using it in-hand with <b>[retrieve_bind("activate_inhand")]</b>.")
-	update_objective("Wield your gun with two hands by pressing [retrieve_bind("activate_inhand")] with the gun in your main hand.")
+	message_to_player("很好。现在按<b>[retrieve_bind("activate_inhand")]</b>使用手中的枪，将其改为双手持握。")
+	update_objective("当前操作的手拿着枪时，按[retrieve_bind("activate_inhand")]双手持枪。")
 	RegisterSignal(tutorial_mob, COMSIG_MOB_ITEM_ATTACK_SELF, PROC_REF(on_gun_wield))
 
 /datum/tutorial/marine/basic/proc/on_gun_wield(datum/source, obj/item/used)
@@ -139,8 +139,8 @@
 		return
 
 	UnregisterSignal(tutorial_mob, COMSIG_MOB_ITEM_ATTACK_SELF)
-	message_to_player("Now, shoot at the highlighted <b>Xenomorph</b> until it dies.")
-	update_objective("Shoot at the Xenomorph until it dies.")
+	message_to_player("现在向高亮的<b>异形</b>射击，直到将其击杀。")
+	update_objective("射杀异形。")
 	var/mob/living/carbon/xenomorph/drone/tutorial/xeno_dummy = new(loc_from_corner(4, 5))
 	add_to_tracking_atoms(xeno_dummy)
 	add_highlight(xeno_dummy, COLOR_VIVID_RED)
@@ -152,7 +152,7 @@
 	SIGNAL_HANDLER
 
 	UnregisterSignal(tutorial_mob, COMSIG_MOB_GUN_EMPTY)
-	message_to_player("Your gun's out of ammo. Go grab some more from the <b>Weaponry Vendor</b> and kill the <b>Xenomorph</b>.")
+	message_to_player("你的枪没子弹了。从<b>武器售货机</b>补充弹药，再击杀<b>异形</b>。")
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/structure/machinery/cm_vending/sorted/cargo_guns/squad_prep/tutorial, gun_vendor)
 	gun_vendor.req_access = list()
 	gun_vendor.load_ammo() // 99 magazines, to make sure that the xeno dies
@@ -165,7 +165,7 @@
 	UnregisterSignal(tutorial_mob, COMSIG_MOB_GUN_EMPTY)
 	remove_highlight(xeno_dummy)
 	addtimer(CALLBACK(src, PROC_REF(disappear_xeno)), 2.5 SECONDS)
-	message_to_player("Very good. This is the end of the tutorial, proceed to the next one to learn the basics of <b>Medical</b>. You will be sent back to the lobby screen momentarily.")
+	message_to_player("很好。本教程到此结束。接下来可以学习<b>医疗基础</b>教程。你即将返回大厅。")
 	update_objective("")
 	tutorial_end_in(7.5 SECONDS, TRUE)
 

@@ -3,7 +3,7 @@
 		new /atom/movable/screen/escape_menu/home_button(
 			null,
 			src,
-			"Resume",
+			"继续游戏",
 			/* offset = */ 0,
 			CALLBACK(src, PROC_REF(home_resume)),
 		)
@@ -13,7 +13,7 @@
 		new /atom/movable/screen/escape_menu/home_button(
 			null,
 			src,
-			"Edit Character",
+			"编辑角色",
 			/* offset = */ 1,
 			CALLBACK(src, PROC_REF(home_open_settings)),
 		)
@@ -23,7 +23,7 @@
 		new /atom/movable/screen/escape_menu/home_button(
 			null,
 			src,
-			"Edit Hotkeys",
+			"编辑快捷键",
 			/* offset = */ 2,
 			CALLBACK(src, PROC_REF(home_open_hotkeys)),
 		)
@@ -33,7 +33,7 @@
 		new /atom/movable/screen/escape_menu/home_button/admin_help(
 			null,
 			src,
-			"Admin Help",
+			"管理员求助",
 			/* offset = */ 3,
 		)
 	)
@@ -42,7 +42,7 @@
 		new /atom/movable/screen/escape_menu/home_button(
 			null,
 			src,
-			"Mentor Help",
+			"导师求助",
 			/* offset = */ 4,
 			CALLBACK(src, PROC_REF(home_mentor_help)),
 		)
@@ -329,7 +329,7 @@
 	. = ..()
 
 	if (is_blinking)
-		openToolTip(usr, src, params, content = "An admin is trying to talk to you!")
+		openToolTip(usr, src, params, content = "管理员正在尝试与你沟通！")
 
 /atom/movable/screen/escape_menu/home_button/admin_help/MouseExited(location, control, params)
 	. = ..()

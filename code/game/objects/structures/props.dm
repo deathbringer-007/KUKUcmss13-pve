@@ -1,6 +1,6 @@
 /obj/structure/prop/tower
 	name = "destroyed comms tower"
-	desc = "An old company comms tower used to transmit communications between subspace bodies. Looks like this one has seen better days."
+	desc = "一座老旧的公司通讯塔，通过子空间链路在天体之间传递通讯。看起来已饱经风霜。"
 	icon = 'icons/obj/structures/machinery/comm_tower.dmi'
 	icon_state = "comm_tower_destroyed"
 	unslashable = TRUE
@@ -15,7 +15,7 @@
 
 /obj/structure/prop/dam/drill
 	name = "mining drill"
-	desc = "An old mining drill, seemingly used for mining. And possibly drilling."
+	desc = "一台老旧的采矿钻机，显然用于采矿。可能也用于钻孔。"
 	icon = 'icons/obj/structures/props/drill.dmi'
 	icon_state = "drill"
 	bound_height = 96
@@ -47,7 +47,7 @@
 
 /obj/structure/prop/dam/truck
 	name = "truck"
-	desc = "An old truck, seems to be broken down."
+	desc = "一辆老旧的卡车，似乎已经抛锚。"
 	icon = 'icons/obj/structures/props/vehicles.dmi'
 	icon_state = "truck"
 	bound_height = 64
@@ -60,17 +60,17 @@
 
 /obj/structure/prop/dam/truck/mining
 	name = "mining truck"
-	desc = "An old mining truck, seems to be broken down."
+	desc = "一辆老旧的采矿卡车，似乎已经抛锚。"
 	icon_state = "truck_mining"
 
 /obj/structure/prop/dam/truck/cargo
 	name = "cargo truck"
-	desc = "An old cargo truck, seems to be broken down."
+	desc = "一辆老旧的货运卡车，似乎已经抛锚。"
 	icon_state = "truck_cargo"
 
 /obj/structure/prop/dam/van
 	name = "van"
-	desc = "An old van, seems to be broken down."
+	desc = "一辆老旧的厢型车，似乎已经抛锚。"
 	icon = 'icons/obj/structures/props/vehicles.dmi'
 	icon_state = "van"
 	bound_height = 64
@@ -98,7 +98,7 @@
 
 /obj/structure/prop/dam/torii
 	name = "torii arch"
-	desc = "A traditional Japanese archway, made out of wood, and adorned with lanterns."
+	desc = "一座传统日式木制鸟居，装饰着灯笼。"
 	icon = 'icons/obj/structures/props/torii.dmi'
 	icon_state = "torii"
 	density = FALSE

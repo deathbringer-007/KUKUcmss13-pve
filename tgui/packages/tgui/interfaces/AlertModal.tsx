@@ -17,6 +17,12 @@ const buttonLabels = new Map([
   ['Continue', '继续'],
   ['Close', '关闭'],
   ['Back', '返回'],
+  ['Hotkey', '快捷键'],
+  ['Classic', '经典'],
+  ['Customize', '自定义'],
+  ['Wrap', '包装'],
+  ['Completed', '已完成'],
+  ['Rejected', '已拒绝'],
 ]);
 
 type Data = {

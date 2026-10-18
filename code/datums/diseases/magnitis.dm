@@ -1,15 +1,15 @@
 /datum/disease/magnitis
-	name = "Magnitis"
+	name = "磁化症"
 	max_stages = 4
-	spread = "Airborne"
-	cure = "Iron"
+	spread = "空气传播"
+	cure = "铁"
 	cure_id = "iron"
-	agent = "Fukkos Miracos"
+	agent = "福科斯·米拉科斯"
 	affected_species = list("Human")
 	curable = 0
 	permeability_mod = 0.75
 	desc = "这种疾病会扰乱身体的磁场，使身体像强力磁铁一样吸引物体。注射铁有助于稳定磁场。"
-	severity = "Medium"
+	severity = "中等"
 
 /datum/disease/magnitis/stage_act()
 	..()

@@ -354,7 +354,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/structure/bed/medevac_stretcher/verb/toggle_medevac_beacon_verb()
 	set name = "Toggle medevac"
-	set desc = "Toggle the medevac beacon inside the stretcher."
+	set desc = "切换担架内的医疗后送信标。"
 	set category = "Object"
 	set src in oview(1)
 

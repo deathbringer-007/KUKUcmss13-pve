@@ -89,7 +89,7 @@
 				to_chat(xeno_candidate, SPAN_WARNING("那位玩家离开的时间还不够长，请再等[to_wait]秒。"))
 				return FALSE
 
-		if(alert(xeno_candidate, "检查无误。确定要转入 [new_xeno] 的身体吗？", "确认转移", "Yes", "No") == "Yes")
+		if(localized_native_alert(xeno_candidate, "检查无误。确定要转入 [new_xeno] 的身体吗？", "确认转移", "Yes", "No") == "Yes")
 			if(new_xeno.client || !(new_xeno in GLOB.living_xeno_list) || new_xeno.stat == DEAD || !xeno_candidate) // Do it again, just in case
 				to_chat(xeno_candidate, SPAN_WARNING("那只异形已无法控制，请换一只。"))
 				return FALSE
@@ -120,7 +120,7 @@
 	wave_number = 1
 	wave_castes = list(XENO_CASTE_RUNNER)
 	sound_effect = list('sound/effects/siren.ogg')
-	command_announcement = list("We're tracking the creatures that wiped out our patrols heading towards your outpost, Multiple small life-signs detected enroute to the outpost. Stand-by while we attempt to establish a signal with the USS Alistoun to alert them of these creatures.", "Captain Naiche, 3rd Battalion Command, LV-624 Garrison")
+	command_announcement = list("我们正在追踪那些消灭了巡逻队的生物，它们正朝你们的前哨站移动。途中检测到多个小型生命信号。请待命，我们正在尝试与USS阿利斯顿号建立联系，向其报告这些生物。", "奈奇上尉，第3营指挥部，LV-624驻军")
 	scaling_factor = 0.3
 	wave_delay = 1 MINUTES //Early, quick waves
 
@@ -198,7 +198,7 @@
 	wave_castes = list(XENO_CASTE_BURROWER)
 	wave_type = WO_STATIC_WAVE
 	number_of_xenos = 3
-	command_announcement = list("First Lieutenant Ike Saker, Executive Officer of Captain Naiche, speaking. The Captain is still trying to try and get off world contact. An engineer platoon managed to destroy the main entrance into this valley this should give you a short break while the aliens find another way in. We are receiving reports of seismic waves occurring nearby, there might be creatures burrowing underground, keep an eye on your defenses. I have also received word that marines from an overrun outpost are evacuating to you and will help you. I used to be stationed with them, they are top notch!", "First Lieutenant Ike Saker, 3rd Battalion Command, LV-624 Garrison")
+	command_announcement = list("这里是奈奇上尉的副官艾克·萨克中尉。上尉仍在尝试联系星球外的部队。一支工兵排摧毁了通往山谷的主要入口，在异形找到其他入口前，你们应该能稍作喘息。我们收到报告，附近出现了地震波，可能有生物正在地下掘进，注意防线。我还获悉，一处失守前哨站的陆战队员正在向你们撤离，会协助你们。我以前和他们一起驻防过，他们都是精锐！", "艾克·萨克中尉，第3营指挥部，LV-624驻军")
 
 /datum/whiskey_outpost_wave/wave8
 	wave_number = 8
@@ -214,7 +214,7 @@
 		XENO_CASTE_WARRIOR,
 	)
 	sound_effect = list()
-	command_announcement = list("Captain Naiche speaking, we've been unsuccessful in establishing offworld communication for the moment. We're prepping our M402 mortars to destroy the inbound xeno force on the main road. Standby for fire support.", "Captain Naiche, 3rd Battalion Command, LV-624 Garrison")
+	command_announcement = list("这里是奈奇上尉，我们暂时还没能与星球外建立联系。我们正在准备M402迫击炮，打击沿主路逼近的异形部队。请等待火力支援。", "奈奇上尉，第3营指挥部，LV-624驻军")
 
 /datum/whiskey_outpost_wave/wave9 //Ravager and Praetorian Added, Tier II more common, Tier I less common
 	wave_number = 9
@@ -237,7 +237,7 @@
 		XENO_CASTE_WARRIOR,
 	)
 	sound_effect = list('sound/voice/alien_queen_command.ogg')
-	command_announcement = list("Our garrison forces are reaching seventy percent casualties, we are losing our grip on LV-624. It appears that vanguard of the hostile force is still approaching, and most of the other Dust Raider platoons have been shattered. We're counting on you to keep holding.", "Captain Naiche, 3rd Battalion Command, LV-624 Garrison")
+	command_announcement = list("驻军伤亡已达到七成，我们正在失去对LV-624的控制。敌军先锋似乎仍在逼近，其他尘土突袭者排大多已经溃散。我们只能指望你们继续坚守。", "奈奇上尉，第3营指挥部，LV-624驻军")
 
 /datum/whiskey_outpost_wave/wave10
 	wave_number = 10
@@ -307,7 +307,7 @@
 		XENO_CASTE_PRAETORIAN,
 		XENO_CASTE_PRAETORIAN,
 	)
-	command_announcement = list("This is Captain Naiche, we are picking up large signatures inbound, we'll see what we can do to delay them.", "Captain Naiche, 3rd Battalion Command, LV-624")
+	command_announcement = list("这里是奈奇上尉，我们检测到大型目标正在逼近，正在设法拖延它们。", "奈奇上尉，第3营指挥部，LV-624")
 
 /datum/whiskey_outpost_wave/wave13
 	wave_number = 13
@@ -376,7 +376,7 @@
 	)
 	wave_type = WO_STATIC_WAVE
 	number_of_xenos = 50
-	command_announcement = list("This is Captain Naiche, we've established our distress beacon for the USS Alistoun and the remaining Dust Raiders. Hold on for a bit longer while we trasmit our coordinates!", "Captain Naiche, 3rd Battalion Command, LV-624 Garrison")
+	command_announcement = list("这里是奈奇上尉，我们已建立向USS阿利斯顿号和其余尘土突袭者部队发送求救信号的信标！再坚持一会儿，我们正在传输坐标！", "奈奇上尉，第3营指挥部，LV-624驻军")
 
 /datum/whiskey_outpost_wave/random
 	wave_type = WO_STATIC_WAVE

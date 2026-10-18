@@ -74,7 +74,7 @@ GLOBAL_VAR_INIT(med_lockdown_state, LOCKDOWN_READY)
 		return PROC_BLOCKED
 
 	var/log = "[key_name(user)] triggered research bio lockdown!"
-	var/ares_log = "Triggered Medical Research Biohazard Containment Lockdown."
+	var/ares_log = "启动了医疗科研生物危害收容封锁。"
 	var/person = user.name
 	if(!message)
 		message = "注意！\n\n生物危害收容失效。\n\n科研部门现已封锁。"
@@ -94,7 +94,7 @@ GLOBAL_VAR_INIT(med_lockdown_state, LOCKDOWN_READY)
 			GLOB.med_lockdown_state = LOCKDOWN_READY
 			message = "注意！\n\n生物危害收容封锁已解除。"
 			log = "[key_name(user)] lifted research bio lockdown!"
-			ares_log = "Lifted Medical Research Biohazard Containment Lockdown."
+			ares_log = "解除了医疗科研生物危害收容封锁。"
 			if(admin)
 				log += " (Admin Triggered)."
 				person = MAIN_AI_SYSTEM
@@ -105,7 +105,7 @@ GLOBAL_VAR_INIT(med_lockdown_state, LOCKDOWN_READY)
 
 	shipwide_ai_announcement(message, MAIN_AI_SYSTEM, 'sound/effects/biohazard.ogg')
 	message_admins(log)
-	log_ares_security("Containment Lockdown", ares_log, person)
+	log_ares_security("生物危害收容封锁", ares_log, person)
 
 #undef LOCKDOWN_READY
 #undef LOCKDOWN_ACTIVE

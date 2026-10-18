@@ -1,5 +1,5 @@
 /datum/tutorial/ss13/intents
-	name = "Space Station 13 - Intents"
+	name = "空间站13——意图"
 	desc = "学习意图交互系统的运作方式。"
 	icon_state = "intents"
 	tutorial_id = "ss13_intents_1"
@@ -13,7 +13,7 @@
 		return
 
 	init_mob()
-	message_to_player("This is the tutorial for the <b>intents</b> system of Space Station 13. The highlighted UI element in the bottom-right corner is your current intent.")
+	message_to_player("本教程介绍空间站13的<b>意图</b>系统。右下角高亮的界面图标表示你当前的意图。")
 	var/datum/hud/human/human_hud = tutorial_mob.hud_used
 	add_highlight(human_hud.action_intent)
 
@@ -21,8 +21,8 @@
 
 /datum/tutorial/ss13/intents/proc/require_help()
 	tutorial_mob.a_intent_change(INTENT_DISARM)
-	message_to_player("Your intent has been changed off of <b>help</b>. Change back to it by pressing <b>[retrieve_bind("select_help_intent")]</b>.")
-	update_objective("Change to help intent by pressing [retrieve_bind("select_help_intent")].")
+	message_to_player("你现在不处于<b>帮助</b>意图。按<b>[retrieve_bind("select_help_intent")]</b>切换回帮助意图。")
+	update_objective("按[retrieve_bind("select_help_intent")]切换到帮助意图。")
 
 	RegisterSignal(tutorial_mob, COMSIG_MOB_INTENT_CHANGE, PROC_REF(on_help_intent))
 
@@ -37,8 +37,8 @@
 	var/mob/living/carbon/human/dummy/tutorial/tutorial_dummy = new(loc_from_corner(2, 3))
 	add_to_tracking_atoms(tutorial_dummy)
 
-	message_to_player("The first of the intents is <b>help</b> intent. It is used to harmlessly touch others, put out fire, give CPR, and similar. Click on the <b>Test Dummy</b> to give them a pat on the back.")
-	update_objective("Click on the dummy on help intent.")
+	message_to_player("第一种是<b>帮助</b>意图，用于友善地触碰他人、灭火或进行心肺复苏等。点击<b>训练假人</b>，拍拍它的背。")
+	update_objective("使用帮助意图点击假人。")
 
 	RegisterSignal(tutorial_mob, COMSIG_LIVING_ATTACKHAND_HUMAN, PROC_REF(on_help_attack))
 
@@ -54,8 +54,8 @@
 	REMOVE_TRAIT(tutorial_dummy, TRAIT_IMMOBILIZED, TRAIT_SOURCE_TUTORIAL)
 	tutorial_dummy.anchored = FALSE
 
-	message_to_player("The second intent is <b>disarm</b>, selectable with <b>[retrieve_bind("select_disarm_intent")]</b>. Disarm is used to shove people, which can make them drop items or fall to the ground. Shove the <b>Test Dummy</b> until it falls over.")
-	update_objective("Switch to disarm intent by pressing [retrieve_bind("select_disarm_intent")] and shove the dummy to the ground.")
+	message_to_player("第二种是<b>缴械</b>意图，按<b>[retrieve_bind("select_disarm_intent")]</b>选择。缴械可以推搡他人，使其掉落物品或摔倒。推搡<b>训练假人</b>，直到它倒地。")
+	update_objective("按[retrieve_bind("select_disarm_intent")]切换到缴械意图，把假人推倒。")
 
 	RegisterSignal(tutorial_dummy, COMSIG_LIVING_APPLY_EFFECT, PROC_REF(on_shove_down))
 
@@ -69,8 +69,8 @@
 	UnregisterSignal(tutorial_dummy, COMSIG_LIVING_APPLY_EFFECT)
 	tutorial_dummy.rejuvenate()
 
-	message_to_player("The third intent is <b>grab</b>. Grab is used to grab people in either a passive, aggressive, or chokehold grab. Grab successively to \"upgrade\" your grab. Aggressively grab the <b>Test Dummy</b>.")
-	update_objective("Aggressively grab the dummy by grabbing them twice.")
+	message_to_player("第三种是<b>抓取</b>意图。抓取分为被动抓取、强力抓取和锁喉。连续抓取可以提升抓取强度。对<b>训练假人</b>进行强力抓取。")
+	update_objective("连续抓取假人两次，进行强力抓取。")
 
 
 	RegisterSignal(tutorial_dummy, COMSIG_MOB_AGGRESSIVELY_GRABBED, PROC_REF(on_aggrograb))
@@ -81,8 +81,8 @@
 	TUTORIAL_ATOM_FROM_TRACKING(/mob/living/carbon/human/dummy/tutorial, tutorial_dummy)
 	UnregisterSignal(tutorial_dummy, COMSIG_MOB_AGGRESSIVELY_GRABBED)
 
-	message_to_player("The final intent is <b>harm</b>. Harm is used to injure people with your fists or a melee weapon. Punch the <b>Test Dummy</b> with an empty hand.")
-	update_objective("Attack the dummy with an empty hand.")
+	message_to_player("最后一种是<b>伤害</b>意图，用拳头或近战武器伤害他人。空手点击<b>训练假人</b>，挥拳攻击。")
+	update_objective("空手攻击假人。")
 
 	RegisterSignal(tutorial_mob, COMSIG_LIVING_ATTACKHAND_HUMAN, PROC_REF(on_harm_attack))
 
@@ -96,7 +96,7 @@
 	TUTORIAL_ATOM_FROM_TRACKING(/mob/living/carbon/human/dummy/tutorial, tutorial_dummy)
 	tutorial_dummy.status_flags = GODMODE
 
-	message_to_player("Excellent. Those are the basics of the intent system. The tutorial will end shortly.")
+	message_to_player("很好。意图系统的基础操作到此介绍完毕。本教程即将结束。")
 	update_objective("")
 
 	tutorial_end_in(5 SECONDS, TRUE)

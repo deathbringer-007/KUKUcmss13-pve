@@ -163,13 +163,13 @@
 		xeno_stats.death_list.Insert(1, new_death)
 
 /mob/proc/handle_observer_message(datum/cause_data/cause_data, mob/cause_mob, turf/death_loc, area/death_area)
-	var/observer_message = "<b>[real_name]</b> has died"
+	var/observer_message = "<b>[real_name]</b>已死亡"
 	if(cause_data && cause_data.cause_name)
-		observer_message += " to <b>[cause_data.cause_name]</b>"
+		observer_message += "，死因为<b>[cause_data.cause_name]</b>"
 	if(death_area.name)
-		observer_message += " at \the <b>[death_area.name]</b>"
+		observer_message += "，地点是<b>[death_area.name]</b>"
 	if(cause_data && cause_mob)
-		observer_message += " from <b>[cause_mob]</b>"
+		observer_message += "，凶手为<b>[cause_mob]</b>"
 
 	msg_admin_attack(observer_message, death_loc.x, death_loc.y, death_loc.z)
 

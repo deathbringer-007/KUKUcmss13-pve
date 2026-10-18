@@ -1,5 +1,5 @@
 /datum/tutorial/ss13/basic
-	name = "Space Station 13 - Basic"
+	name = "空间站13——基础"
 	desc = "学习《空间站13》的基础玩法。推荐首次游玩的玩家学习。"
 	tutorial_id = "ss13_basic_1"
 	tutorial_template = /datum/map_template/tutorial/s7x7
@@ -12,14 +12,14 @@
 		return
 
 	init_mob()
-	message_to_player("This is the tutorial for the basics of <b>Space Station 13</b>. Any current instructions can be found in the top-right corner, in the status panel.")
-	update_objective("Here's where it'll be!")
+	message_to_player("这是<b>空间站13</b>基础教程。当前操作指引会显示在右上角的状态面板中。")
+	update_objective("指引就会显示在这里！")
 
 	addtimer(CALLBACK(src, PROC_REF(require_move)), 4 SECONDS) // check if this is a good amount of time
 
 /datum/tutorial/ss13/basic/proc/require_move()
-	message_to_player("Now, move in any direction using <b>[retrieve_bind("North")]</b>, <b>[retrieve_bind("West")]</b>, <b>[retrieve_bind("South")]</b>, or <b>[retrieve_bind("East")]</b>.")
-	update_objective("Move in any direction using the [retrieve_bind("North")][retrieve_bind("West")][retrieve_bind("South")][retrieve_bind("East")] keys.")
+	message_to_player("现在用<b>[retrieve_bind("North")]</b>、<b>[retrieve_bind("West")]</b>、<b>[retrieve_bind("South")]</b>或<b>[retrieve_bind("East")]</b>向任意方向移动。")
+	update_objective("用[retrieve_bind("North")][retrieve_bind("West")][retrieve_bind("South")][retrieve_bind("East")]键向任意方向移动。")
 
 	RegisterSignal(tutorial_mob, COMSIG_MOB_MOVE_OR_LOOK, PROC_REF(on_move))
 
@@ -31,8 +31,8 @@
 
 	UnregisterSignal(tutorial_mob, COMSIG_MOB_MOVE_OR_LOOK)
 
-	message_to_player("Good. Now, switch hands with <b>[retrieve_bind("swap_hands")]</b>.")
-	update_objective("Switch hands with [retrieve_bind("swap_hands")].")
+	message_to_player("很好。现在按<b>[retrieve_bind("swap_hands")]</b>切换双手。")
+	update_objective("按[retrieve_bind("swap_hands")]切换双手。")
 
 	RegisterSignal(tutorial_mob, COMSIG_MOB_SWAPPED_HAND, PROC_REF(on_hand_swap))
 
@@ -41,8 +41,8 @@
 
 	UnregisterSignal(tutorial_mob, COMSIG_MOB_SWAPPED_HAND)
 
-	message_to_player("Good. Now, pick up the <b>satchel</b> that just spawned and equip it with <b>[retrieve_bind("quick_equip")]</b>.")
-	update_objective("Pick up the satchel and equip it with [retrieve_bind("quick_equip")].")
+	message_to_player("很好。现在拿起刚出现的<b>斜挎包</b>，按<b>[retrieve_bind("quick_equip")]</b>将其装备。")
+	update_objective("拿起斜挎包，按[retrieve_bind("quick_equip")]将其装备。")
 
 	var/obj/item/storage/backpack/marine/satchel/satchel = new(loc_from_corner(2, 2))
 	add_to_tracking_atoms(satchel)
@@ -59,8 +59,8 @@
 	UnregisterSignal(tutorial_mob, COMSIG_HUMAN_EQUIPPED_ITEM)
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/item/storage/backpack/marine/satchel, satchel)
 	remove_highlight(satchel)
-	message_to_player("Now, say anything by pressing <b>[retrieve_bind("Say")]</b>.")
-	update_objective("Speak using [retrieve_bind("Say")].")
+	message_to_player("现在按<b>[retrieve_bind("Say")]</b>，随便说点什么。")
+	update_objective("按[retrieve_bind("Say")]发言。")
 
 	RegisterSignal(tutorial_mob, COMSIG_LIVING_SPEAK, PROC_REF(on_speak))
 
@@ -68,7 +68,7 @@
 	SIGNAL_HANDLER
 
 	UnregisterSignal(tutorial_mob, COMSIG_LIVING_SPEAK)
-	message_to_player("Excellent. The next tutorial will cover <b>intents</b>. The tutorial will end shortly.")
+	message_to_player("很好。下一个教程将介绍<b>意图</b>。本教程即将结束。")
 	update_objective("")
 	tutorial_end_in(5 SECONDS, TRUE)
 

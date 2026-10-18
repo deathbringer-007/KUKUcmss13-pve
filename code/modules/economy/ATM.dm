@@ -76,7 +76,7 @@ log transactions
 			//create a transaction log entry
 			var/datum/transaction/T = new()
 			T.target_name = authenticated_account.owner_name
-			T.purpose = "Credit deposit"
+			T.purpose = "存款"
 			T.amount = I:worth
 			T.source_terminal = machine_id
 			T.date = GLOB.current_date_string
@@ -199,7 +199,7 @@ log transactions
 					var/transfer_amount = text2num(href_list["funds_amount"])
 					transfer_amount = round(transfer_amount, 0.01)
 					if(transfer_amount <= 0)
-						alert("金额无效。")
+						localized_native_alert(usr, "金额无效。")
 					else if(transfer_amount <= authenticated_account.money)
 						var/target_account_number = text2num(href_list["target_acc_number"])
 						var/transfer_purpose = href_list["purpose"]
@@ -209,7 +209,7 @@ log transactions
 
 							//create an entry in the account transaction log
 							var/datum/transaction/T = new()
-							T.target_name = "Account #[target_account_number]"
+							T.target_name = "账户#[target_account_number]"
 							T.purpose = transfer_purpose
 							T.source_terminal = machine_id
 							T.date = GLOB.current_date_string
@@ -252,7 +252,7 @@ log transactions
 								if(failed_account)
 									var/datum/transaction/T = new()
 									T.target_name = failed_account.owner_name
-									T.purpose = "Unauthorised login attempt"
+									T.purpose = "未经授权的登录尝试"
 									T.source_terminal = machine_id
 									T.date = GLOB.current_date_string
 									T.time = worldtime2text()
@@ -273,7 +273,7 @@ log transactions
 						//create a transaction log entry
 						var/datum/transaction/T = new()
 						T.target_name = authenticated_account.owner_name
-						T.purpose = "Remote terminal access"
+						T.purpose = "远程终端访问"
 						T.source_terminal = machine_id
 						T.date = GLOB.current_date_string
 						T.time = worldtime2text()
@@ -284,12 +284,12 @@ log transactions
 					previous_account_number = tried_account_num
 			if("e_withdrawal")
 				if(withdrawal_timer > world.time)
-					alert("请等待 [floor((withdrawal_timer-world.time)/10)] 秒后再尝试取款。")
+					localized_native_alert(usr, "请等待 [floor((withdrawal_timer-world.time)/10)] 秒后再尝试取款。")
 					return
 				var/amount = max(text2num(href_list["funds_amount"]),0)
 				amount = round(amount, 0.01)
 				if(amount <= 0)
-					alert("金额无效。")
+					localized_native_alert(usr, "金额无效。")
 					withdrawal_timer = world.time + 20
 				else if(authenticated_account && amount > 0)
 					if(amount <= authenticated_account.money)
@@ -304,7 +304,7 @@ log transactions
 						//create an entry in the account transaction log
 						var/datum/transaction/T = new()
 						T.target_name = authenticated_account.owner_name
-						T.purpose = "Credit withdrawal"
+						T.purpose = "取款"
 						T.amount = "([amount])"
 						T.source_terminal = machine_id
 						T.date = GLOB.current_date_string
@@ -316,12 +316,12 @@ log transactions
 						withdrawal_timer = world.time + 20
 			if("withdrawal")
 				if(withdrawal_timer > world.time)
-					alert("请等待 [floor((withdrawal_timer-world.time)/10)] 秒后再尝试取款。")
+					localized_native_alert(usr, "请等待 [floor((withdrawal_timer-world.time)/10)] 秒后再尝试取款。")
 					return
 				var/amount = max(text2num(href_list["funds_amount"]),0)
 				amount = round(amount, 0.01)
 				if(amount <= 0)
-					alert("金额无效。")
+					localized_native_alert(usr, "金额无效。")
 					withdrawal_timer = world.time + 20
 				else if(authenticated_account && amount > 0)
 					if(amount <= authenticated_account.money)
@@ -335,7 +335,7 @@ log transactions
 						//create an entry in the account transaction log
 						var/datum/transaction/T = new()
 						T.target_name = authenticated_account.owner_name
-						T.purpose = "Credit withdrawal"
+						T.purpose = "取款"
 						T.amount = "([amount])"
 						T.source_terminal = machine_id
 						T.date = GLOB.current_date_string
@@ -443,7 +443,7 @@ log transactions
 	//create a transaction log entry
 	var/datum/transaction/log = new()
 	log.target_name = authenticated_account.owner_name
-	log.purpose = "Remote terminal access"
+	log.purpose = "远程终端访问"
 	log.source_terminal = machine_id
 	log.date = GLOB.current_date_string
 	log.time = worldtime2text()

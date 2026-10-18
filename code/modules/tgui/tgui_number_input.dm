@@ -16,7 +16,7 @@
  * * integer_only - whether the inputted number is rounded down into an integer.
  * * ui_state - The TGUI UI state that will be returned in ui_state(). Default: always_state
  */
-/proc/tgui_input_number(mob/user, message, title = "Number Input", default = 0, max_value = 10000, min_value = 0, timeout = 0, integer_only = TRUE, ui_state = GLOB.always_state)
+/proc/tgui_input_number(mob/user, message, title = "数字输入", default = 0, max_value = 10000, min_value = 0, timeout = 0, integer_only = TRUE, ui_state = GLOB.always_state)
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -37,7 +37,7 @@
 		qdel(number_input)
 
 ///A clone of tgui_input_number that defaults to accepting negative inputs too.
-/proc/tgui_input_real_number(mob/user, message, title = "Number Input", default = 0, max_value = SHORT_REAL_LIMIT, min_value = -SHORT_REAL_LIMIT, timeout = 0, integer_only = FALSE, ui_state = GLOB.always_state)
+/proc/tgui_input_real_number(mob/user, message, title = "数字输入", default = 0, max_value = SHORT_REAL_LIMIT, min_value = -SHORT_REAL_LIMIT, timeout = 0, integer_only = FALSE, ui_state = GLOB.always_state)
 	return tgui_input_number(user, message, title, default, max_value, min_value, timeout, integer_only, ui_state)
 
 /**
@@ -57,7 +57,7 @@
  * * integer_only - whether the inputted number is rounded down into an integer.
  * * ui_state - The TGUI UI state that will be returned in ui_state(). Default: always_state
  */
-/proc/tgui_input_number_async(mob/user, message, title = "Number Input", default  = 0, max_value = 10000, min_value  = 0, datum/callback/callback, timeout = 60 SECONDS, integer_only = TRUE, ui_state = GLOB.always_state)
+/proc/tgui_input_number_async(mob/user, message, title = "数字输入", default  = 0, max_value = 10000, min_value  = 0, datum/callback/callback, timeout = 60 SECONDS, integer_only = TRUE, ui_state = GLOB.always_state)
 	if (!user)
 		user = usr
 	if (!istype(user))

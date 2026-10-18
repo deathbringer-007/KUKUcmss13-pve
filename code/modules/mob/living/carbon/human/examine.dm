@@ -188,23 +188,23 @@
 
 	//Restraints
 	if(handcuffed)
-		msg += SPAN_ORANGE("[capitalize(t_his)] arms are restrained by [handcuffed].\n")
+		msg += SPAN_ORANGE("[src]的双臂被[handcuffed]束缚住了。\n")
 
 	if(legcuffed)
-		msg += SPAN_ORANGE("[capitalize(t_his)] ankles are restrained by [legcuffed].\n")
+		msg += SPAN_ORANGE("[src]的脚踝被[legcuffed]束缚住了。\n")
 
 	//Admin-slept
 	if(sleeping > 8000000)
-		msg += SPAN_HIGHDANGER(SPAN_BOLD("This player has been slept by staff.\n"))
+		msg += SPAN_HIGHDANGER(SPAN_BOLD("此玩家已被工作人员强制休眠。\n"))
 
 	//Jitters
 	if(is_jittery)
 		if(jitteriness >= 300)
-			msg += SPAN_WARNING(SPAN_BOLD("[t_He] [t_is] convulsing violently!\n"))
+			msg += SPAN_WARNING(SPAN_BOLD("[src]正在剧烈抽搐！\n"))
 		else if(jitteriness >= 200)
-			msg += SPAN_WARNING("[t_He] [t_is] extremely jittery.\n")
+			msg += SPAN_WARNING("[src]浑身抖个不停。\n")
 		else if(jitteriness >= 100)
-			msg += SPAN_WARNING("[t_He] [t_is] twitching ever so slightly.\n")
+			msg += SPAN_WARNING("[src]正轻微地抽动。\n")
 
 	//splints & surgical incisions
 	for(var/organ in list("l_leg","r_leg","l_arm","r_arm","l_foot","r_foot","l_hand","r_hand","chest","groin","head"))
@@ -232,7 +232,7 @@
 	if(istype(user, /mob/dead/observer) || user.stat == DEAD) // ghosts can see anything
 		distance = 1
 	if (stat || status_flags & FAKEDEATH)
-		msg += SPAN_WARNING("[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep.\n")
+		msg += SPAN_WARNING("[src]对周围的一切都没有反应，似乎睡着了。\n")
 		if(stat == DEAD && distance <= 3)
 			msg += SPAN_WARNING("[t_He] does not appear to be breathing.\n")
 		if(paralyzed > 1 && distance <= 3)

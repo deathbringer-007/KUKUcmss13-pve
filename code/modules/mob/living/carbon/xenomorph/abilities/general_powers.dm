@@ -66,7 +66,7 @@
 		to_convert = node.children.Copy()
 
 	xeno.visible_message(SPAN_XENONOTICE("[xeno]吐出一个搏动的节点，将其种在地上！"), \
-	SPAN_XENONOTICE("We regurgitate a pulsating node and plant it on the ground!"), null, 5)
+	SPAN_XENONOTICE("我们吐出一个搏动的节点，将其种在地上！"), null, 5)
 	var/obj/effect/alien/weeds/node/new_node = new node_type(xeno.loc, xeno.hivenumber, xeno)
 
 	if(to_convert)
@@ -83,19 +83,19 @@
 
 /mob/living/carbon/xenomorph/lay_down()
 	if(hardcore)
-		to_chat(src, SPAN_WARNING("No time to rest, must KILL!"))
+		to_chat(src, SPAN_WARNING("没时间休息，必须杀戮！"))
 		return
 
 	if(fortify)
-		to_chat(src, SPAN_WARNING("We cannot rest while fortified!"))
+		to_chat(src, SPAN_WARNING("我们在筑防状态下无法休息！"))
 		return
 
 	if(HAS_TRAIT(src, TRAIT_ABILITY_BURROWED))
-		to_chat(src, SPAN_WARNING("We cannot rest while burrowed!"))
+		to_chat(src, SPAN_WARNING("我们在潜地状态下无法休息！"))
 		return
 
 	if(crest_defense)
-		to_chat(src, SPAN_WARNING("We cannot rest while our crest is down!"))
+		to_chat(src, SPAN_WARNING("我们在放下头冠时无法休息！"))
 		return
 
 	return ..()
@@ -129,7 +129,7 @@
 		return
 
 	if(!isturf(X.loc))
-		to_chat(X, SPAN_WARNING("We cannot regurgitate here."))
+		to_chat(X, SPAN_WARNING("我们无法在这里吐出东西。"))
 		return
 
 	if(length(X.stomach_contents))

@@ -201,17 +201,17 @@
 /obj/structure/machinery/bot/mulebot/interact(mob/user, ai=0)
 	var/dat
 	dat += "<TT><B>多用途载荷搬运机Ⅲ型</B></TT><BR><BR>"
-	dat += "ID: [suffix]<BR>"
-	dat += "Power: [on ? "On" : "Off"]<BR>"
+	dat += "编号：[suffix]<BR>"
+	dat += "电源：[on ? "开启" : "关闭"]<BR>"
 
 	if(!open)
 
-		dat += "Status: "
+		dat += "状态："
 		switch(mode)
 			if(0)
-				dat += "Ready"
+				dat += "待命"
 			if(1)
-				dat += "Loading/Unloading"
+				dat += "正在装卸"
 			if(2)
 				dat += "正在前往送货地点"
 			if(3)
@@ -225,11 +225,11 @@
 
 
 		dat += "<BR>当前载荷：[load ? load.name : "<i>无</i>"]<BR>"
-		dat += "Destination: [!destination ? "<i>none</i>" : destination]<BR>"
+		dat += "目的地：[!destination ? "<i>无</i>" : destination]<BR>"
 		dat += "电量：[cell ? cell.percent() : 0]%<BR>"
 
 		if(locked && !ai)
-			dat += "<HR>Controls are locked <A href='byond://?src=\ref[src];op=unlock'><I>(unlock)</I></A>"
+			dat += "<HR>控制面板已锁定<A href='byond://?src=\ref[src];op=unlock'><I>（解锁）</I></A>"
 		else
 			dat += "<HR>Controls are unlocked <A href='byond://?src=\ref[src];op=lock'><I>(lock)</I></A><BR><BR>"
 

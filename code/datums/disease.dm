@@ -11,7 +11,7 @@ GLOBAL_LIST_INIT(diseases, typesof(/datum/disease) - /datum/disease)
 
 
 /datum/disease
-	var/form = "Virus" //During medscans, what the disease is referred to as
+	var/form = "病毒" //During medscans, what the disease is referred to as
 	var/name = "No disease"
 	var/stage = 1 //all diseases start at stage 1
 	var/max_stages = 0
@@ -30,7 +30,7 @@ GLOBAL_LIST_INIT(diseases, typesof(/datum/disease) - /datum/disease)
 	var/curable = 0 //can this disease be cured? (By itself...)
 	var/list/strain_data = list() //This is passed on to infectees
 	var/stage_prob = 4 // probability of advancing to next stage, default 4% per check
-	var/agent = "some microbes"//name of the disease agent
+	var/agent = "某种微生物"//name of the disease agent
 	var/permeability_mod = 1//permeability modifier coefficient.
 	var/desc = null//description. Leave it null and this disease won't show in med records.
 	var/severity = null//severity descr
@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(diseases, typesof(/datum/disease) - /datum/disease)
 	if(carrier && !cure_present)
 		return
 
-	spread = (cure_present?"Remissive":initial_spread)
+	spread = (cure_present?"缓解期":initial_spread)
 	if(stage > max_stages)
 		stage = max_stages
 

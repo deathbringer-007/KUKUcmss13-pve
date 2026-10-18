@@ -12,7 +12,7 @@
 /datum/statbrowser_options/tgui_interact(mob/user = client.mob, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "StatbrowserOptions", "Statbrowser Options")
+		ui = new(user, src, "StatbrowserOptions", "状态面板设置")
 		ui.open()
 
 /datum/statbrowser_options/ui_data(mob/user)

@@ -762,7 +762,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 /mob/proc/yank_out_object()
 	set category = "Object"
 	set name = "Yank out object"
-	set desc = "Remove an embedded item at the cost of bleeding and pain."
+	set desc = "取出嵌入体内的物品，代价是流血和疼痛。"
 	set src in view(1)
 
 	if(!isliving(usr) || usr.next_move > world.time)

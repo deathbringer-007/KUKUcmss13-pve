@@ -320,7 +320,7 @@
 
 /obj/item/storage/large_holster/fuelpack/verb/toggle_fuel()
 	set name = "Toggle Fuel Type"
-	set desc = "Toggle between the fuel types."
+	set desc = "切换燃料类型。"
 	set category = "Pyro"
 	set src in usr
 	do_toggle_fuel(usr)

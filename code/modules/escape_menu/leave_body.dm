@@ -11,8 +11,8 @@
 	page_holder.give_screen_object(
 		new /atom/movable/screen/escape_menu/leave_body_button(
 			src,
-			"Ghost",
-			"Exit quietly, leaving your body",
+			"成为幽灵",
+			"悄然离开，留下你的身体",
 			/* pixel_offset = */ 0,
 			CALLBACK(src, PROC_REF(leave_ghost)),
 			/* button_overlay = */ "ghost",
@@ -22,7 +22,7 @@
 	page_holder.give_screen_object(
 		new /atom/movable/screen/escape_menu/leave_body_button(
 			src,
-			"Back",
+			"返回",
 			/* tooltip_text = */ null,
 			/* pixel_offset = */ 105,
 			CALLBACK(src, PROC_REF(open_home_page)),

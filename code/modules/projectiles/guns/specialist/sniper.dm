@@ -324,7 +324,7 @@
 /obj/item/weapon/gun/rifle/sniper/verb/toggle_gun_laser()
 	set category = "Weapons"
 	set name = "Toggle Laser"
-	set desc = "Toggles your laser on or off."
+	set desc = "开启或关闭激光瞄准器。"
 	set src = usr.contents
 
 	var/obj/item/weapon/gun/rifle/sniper/sniper = get_active_firearm(usr)

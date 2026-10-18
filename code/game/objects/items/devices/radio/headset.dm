@@ -445,7 +445,7 @@
 
 /obj/item/device/radio/headset/almayer/verb/give_medal_recommendation()
 	set name = "Give Medal Recommendation"
-	set desc = "Send a medal recommendation for approval by the Commanding Officer"
+	set desc = "提交勋章推荐，交由指挥官审批。"
 	set category = "Object.Medals"
 	set src in usr
 

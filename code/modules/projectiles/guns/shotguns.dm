@@ -1249,7 +1249,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/pump/dual_tube/verb/toggle_tube()
 	set category = "Weapons"
 	set name = "Toggle Shotgun Tube"
-	set desc = "Toggles which shotgun tube your gun loads from."
+	set desc = "切换霰弹枪供弹所用的弹管。"
 	set src = usr.contents
 
 	var/obj/item/weapon/gun/shotgun/pump/dual_tube/shotgun = get_active_firearm(usr)

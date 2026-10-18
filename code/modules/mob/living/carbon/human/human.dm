@@ -1563,14 +1563,14 @@
 
 /mob/living/carbon/human/verb/pose()
 	set name = "Set Pose"
-	set desc = "Sets a description which will be shown when someone examines you."
+	set desc = "设置其他人查看你时会显示的描述。"
 	set category = "IC"
 
 	pose =  strip_html(input(usr, "这是 [src]。其样子是……", "姿态描述", null)  as message, MAX_FLAVOR_MESSAGE_LEN)
 
 /mob/living/carbon/human/verb/set_flavor()
 	set name = "Set Flavour Text"
-	set desc = "Sets an extended description of your character's features."
+	set desc = "设置关于角色外貌特征的扩展描述。"
 	set category = "IC"
 
 	var/HTML = "<body>"

@@ -603,7 +603,7 @@ DEFINES in setup.dm, referenced here.
 /obj/item/weapon/gun/verb/field_strip()
 	set category = "Weapons"
 	set name = "Field Strip Weapon"
-	set desc = "Remove all attachables from a weapon."
+	set desc = "拆下武器上的所有配件。"
 	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
 
 	var/obj/item/weapon/gun/active_firearm = get_active_firearm(usr, FALSE) // don't see why it should be restrictive
@@ -738,7 +738,7 @@ DEFINES in setup.dm, referenced here.
 /obj/item/weapon/gun/verb/use_toggle_burst()
 	set category = "Weapons"
 	set name = "Toggle Firemode"
-	set desc = "Cycles through your gun's firemodes. Automatic modes greatly reduce accuracy."
+	set desc = "循环切换枪械的射击模式。自动射击模式会大幅降低精度。"
 	set src = usr.contents
 
 	var/obj/item/weapon/gun/active_firearm = get_active_firearm(usr)
@@ -751,7 +751,7 @@ DEFINES in setup.dm, referenced here.
 /obj/item/weapon/gun/verb/empty_mag()
 	set category = "Weapons"
 	set name = "Unload Weapon"
-	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
+	set desc = "卸下当前枪械的弹匣并将其丢在地上；如果枪械已无弹匣，则清空弹膛。"
 	set src = usr.contents
 
 	var/mob/user = usr
@@ -781,7 +781,7 @@ DEFINES in setup.dm, referenced here.
 /obj/item/weapon/gun/verb/use_unique_action()
 	set category = "Weapons"
 	set name = "Unique Action"
-	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver. If you have an active attachment, this will activate on the attachment instead."
+	set desc = "使用枪械的特殊操作，例如给霰弹枪泵动上膛或转动左轮弹巢。如果当前启用了配件，则改为操作该配件。"
 	set src = usr.contents
 
 	var/obj/item/weapon/gun/active_firearm = get_active_firearm(usr)
@@ -797,7 +797,7 @@ DEFINES in setup.dm, referenced here.
 /obj/item/weapon/gun/verb/toggle_gun_safety()
 	set category = "Weapons"
 	set name = "Toggle Gun Safety"
-	set desc = "Toggle the safety of the held gun."
+	set desc = "切换手持枪械的保险。"
 	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
 
 	var/obj/item/weapon/gun/active_firearm = get_active_firearm(usr,FALSE) // safeties shouldn't be restrictive
@@ -828,7 +828,7 @@ DEFINES in setup.dm, referenced here.
 /obj/item/weapon/gun/verb/activate_attachment_verb()
 	set category = "Weapons"
 	set name = "Use Attachment"
-	set desc = "Activates one of the attached attachments on the gun."
+	set desc = "启用枪械上安装的某个配件。"
 	set src = usr.contents
 
 	var/obj/item/weapon/gun/active_firearm = get_active_firearm(usr, FALSE)
@@ -860,7 +860,7 @@ DEFINES in setup.dm, referenced here.
 /obj/item/weapon/gun/verb/activate_rail_attachment_verb()
 	set category = "Weapons"
 	set name = "Use Rail Attachment"
-	set desc = "Use the attachment that is mounted on your rail."
+	set desc = "使用安装在导轨上的配件。"
 	set src = usr.contents
 
 	var/obj/item/weapon/gun/active_firearm = get_active_firearm(usr, FALSE)
@@ -878,7 +878,7 @@ DEFINES in setup.dm, referenced here.
 /obj/item/weapon/gun/verb/toggle_auto_eject_verb()
 	set category = "Weapons"
 	set name = "Toggle Auto Eject"
-	set desc = "Enable/Disable the gun's magazine ejection system"
+	set desc = "启用或禁用枪械的自动退匣系统。"
 	set src = usr.contents
 
 	var/obj/item/weapon/gun/active_firearm = get_active_firearm(usr)
@@ -897,7 +897,7 @@ DEFINES in setup.dm, referenced here.
 /obj/item/weapon/gun/verb/toggle_underbarrel_attachment_verb()
 	set category = "Weapons"
 	set name = "Toggle Underbarrel Attachment"
-	set desc = "Use the attachment that is mounted on your underbarrel."
+	set desc = "使用安装在枪管下方的配件。"
 	set src = usr.contents
 
 	var/obj/item/weapon/gun/active_firearm = get_active_firearm(usr,FALSE)
@@ -915,7 +915,7 @@ DEFINES in setup.dm, referenced here.
 /obj/item/weapon/gun/verb/toggle_stock_attachment_verb()
 	set category = "Weapons"
 	set name = "Toggle Stock Attachment"
-	set desc = "Use the stock attachment that is mounted on your gun."
+	set desc = "使用枪械上安装的枪托配件。"
 	set src = usr.contents
 
 	var/obj/item/weapon/gun/active_firearm = get_active_firearm(usr, FALSE) // incase someone

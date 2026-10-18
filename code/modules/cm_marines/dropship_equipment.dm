@@ -179,7 +179,7 @@
 /obj/structure/dropship_equipment/sentry_holder/get_examine_text(mob/user)
 	. = ..()
 	if(!deployed_turret)
-		. += "Its turret is missing."
+		. += "它的炮塔不见了。"
 
 /obj/structure/dropship_equipment/sentry_holder/ui_data(mob/user)
 	var/obj/structure/machinery/defenses/defense = deployed_turret
@@ -222,7 +222,7 @@
 			to_chat(user, SPAN_NOTICE("你收回了[src]。"))
 			undeploy_sentry()
 	else
-		to_chat(user, SPAN_WARNING("[src] is unresponsive."))
+		to_chat(user, SPAN_WARNING("[src]没有反应。"))
 
 /obj/structure/dropship_equipment/sentry_holder/update_equipment()
 	if(ship_base)
@@ -348,7 +348,7 @@
 /obj/structure/dropship_equipment/mg_holder/get_examine_text(mob/user)
 	. = ..()
 	if(!deployed_mg)
-		. += "Its machine gun is missing."
+		. += "它的机枪不见了。"
 
 /obj/structure/dropship_equipment/mg_holder/on_launch()
 	if(ship_base && ship_base.base_category == DROPSHIP_WEAPON) //only external mgs are automatically undeployed
@@ -358,16 +358,16 @@
 	if(ship_base)
 		if(deployed_mg)
 			if(deployment_cooldown > world.time)
-				to_chat(user, SPAN_WARNING("[src] is not ready."))
+				to_chat(user, SPAN_WARNING("[src]尚未准备就绪。"))
 				return //prevents spamming deployment/undeployment
 			if(deployed_mg.loc == src) //not deployed
 				if(is_reserved_level(z) && ship_base.base_category == DROPSHIP_WEAPON)
-					to_chat(user, SPAN_WARNING("[src] can't be deployed mid-flight."))
+					to_chat(user, SPAN_WARNING("[src]无法在飞行中部署。"))
 				else
-					to_chat(user, SPAN_NOTICE("You pull out [deployed_mg]."))
+					to_chat(user, SPAN_NOTICE("你拉出了[deployed_mg]。"))
 					deploy_mg(user)
 			else
-				to_chat(user, SPAN_NOTICE("You stow [deployed_mg]."))
+				to_chat(user, SPAN_NOTICE("你收起了[deployed_mg]。"))
 				undeploy_mg()
 		else
 			to_chat(user, SPAN_WARNING("[src] is empty."))

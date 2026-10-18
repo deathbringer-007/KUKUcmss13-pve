@@ -441,7 +441,7 @@
 			temp = rand(120, 160)
 			return num2text(method ? temp : temp + rand(-10, 10))
 		if(PULSE_THREADY)
-			return method ? ">250" : "extremely weak and fast, patient's artery feels like a thread"
+			return method ? ">250" : "极其微弱而急促，患者的动脉细得像线一样"
 // output for machines^ ^^^^^^^output for people^^^^^^^^^
 
 /mob/living/carbon/verb/mob_sleep()
@@ -451,7 +451,7 @@
 	if(sleeping)
 		to_chat(usr, SPAN_DANGER("你已经在睡觉了。"))
 		return
-	if(alert(src,"确定要睡一会儿吗？","睡觉","Yes","No") == "Yes")
+	if(localized_native_alert(src,"确定要睡一会儿吗？","睡觉","Yes","No") == "Yes")
 		sleeping = 20 //Short nap
 
 

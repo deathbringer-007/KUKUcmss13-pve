@@ -1,6 +1,6 @@
 /datum/weather_event/clash_rain
 	name = "Rainstorm"
-	display_name = "Rainstorm"
+	display_name = "暴雨"
 	length = INFINITY
 
 	turf_overlay_icon_state = "strata_storm"

@@ -1,15 +1,15 @@
 /datum/disease/flu
-	name = "The Flu"
+	name = "流感"
 	max_stages = 3
-	spread = "Airborne"
-	cure = "Spaceacillin"
+	spread = "空气传播"
+	cure = "太空西林"
 	cure_id = "spaceacillin"
 	cure_chance = 10
-	agent = "H13N1 flu virion"
+	agent = "H13N1流感病毒粒子"
 	affected_species = list("Human", "Monkey")
 	permeability_mod = 0.75
 	desc = "若不治疗，患者会感到十分不适。"
-	severity = "Medium"
+	severity = "中等"
 
 /datum/disease/flu/stage_act()
 	..()

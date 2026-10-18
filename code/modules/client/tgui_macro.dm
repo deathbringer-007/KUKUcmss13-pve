@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(ui_data_keybindings)
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "KeyBinds", "Keybind Preference")
+		ui = new(user, src, "KeyBinds", "按键绑定设置")
 		ui.open()
 		ui.set_autoupdate(FALSE)
 

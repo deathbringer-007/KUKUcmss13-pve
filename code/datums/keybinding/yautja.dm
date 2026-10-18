@@ -13,7 +13,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "butcher"
-	full_name = "Butcher"
+	full_name = "屠宰"
 	keybind_signal = COMSIG_KB_YAUTJA_BUTCHER
 
 /datum/keybinding/yautja/butcher/down(client/user)
@@ -29,21 +29,21 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "pred_buy"
-	full_name = "Claim equipment"
+	full_name = "认领装备"
 	keybind_signal = COMSIG_KB_YAUTJA_PRED_BUY
 
 /datum/keybinding/yautja/mark_panel
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "mark_panel"
-	full_name = "Mark panel"
+	full_name = "标记面板"
 	keybind_signal = COMSIG_KB_YAUTJA_MARK_PANEL
 
 /datum/keybinding/yautja/mark_for_hunt
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "mark_for_hunt"
-	full_name = "Toggle mark for hunt"
+	full_name = "切换狩猎标记"
 	keybind_signal = COMSIG_KB_YAUTJA_TOGGLE_MARK_FOR_HUNT
 
 // BRACER SPECIFIC \\
@@ -64,7 +64,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "toggle_notification_sound"
-	full_name = "Toggle bracer notification sound"
+	full_name = "切换护腕提示音"
 	keybind_signal = COMSIG_KB_YAUTJA_TOGGLE_NOTIFICATION_SOUND
 
 /datum/keybinding/yautja/bracer/toggle_notification_sound/down(client/user)
@@ -87,7 +87,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "bracer_message"
-	full_name = "Bracer message"
+	full_name = "护腕通信"
 	keybind_signal = COMSIG_KB_YAUTJA_TOGGLE_NOTIFICATION_SOUND
 
 /datum/keybinding/yautja/bracer/bracer_message/down(client/user)
@@ -122,14 +122,14 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "wristblades"
-	full_name = "Toggle wristblades"
+	full_name = "切换腕刃"
 	keybind_signal = COMSIG_KB_YAUTJA_WRISTBLADES
 
 /datum/keybinding/yautja/bracer_hunter/track_gear
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "track_gear"
-	full_name = "Track gear"
+	full_name = "追踪装备"
 	keybind_signal = COMSIG_KB_YAUTJA_TRACK_GEAR
 
 /datum/keybinding/yautja/bracer_hunter/track_gear/down(client/user)
@@ -152,21 +152,21 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "cloaker"
-	full_name = "Toggle cloak"
+	full_name = "切换隐形"
 	keybind_signal = COMSIG_KB_YAUTJA_CLOAKER
 
 /datum/keybinding/yautja/bracer_hunter/caster
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "caster"
-	full_name = "Toggle plasma caster"
+	full_name = "切换等离子肩炮"
 	keybind_signal = COMSIG_KB_YAUTJA_CASTER
 
 /datum/keybinding/yautja/bracer_hunter/change_explosion_type
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "change_explosion_type"
-	full_name = "Change explosion type"
+	full_name = "切换爆炸类型"
 	keybind_signal = COMSIG_KB_YAUTJA_CHANGE_EXPLOSION_TYPE
 
 /datum/keybinding/yautja/bracer_hunter/change_explosion_type/down(client/user)
@@ -189,35 +189,35 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "activate_suicide"
-	full_name = "Self-destruct"
+	full_name = "自毁"
 	keybind_signal = COMSIG_KB_YAUTJA_ACTIVATE_SUICIDE
 
 /datum/keybinding/yautja/bracer_hunter/injectors
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "injectors"
-	full_name = "Create Stabilising Crystal"
+	full_name = "制造稳定水晶"
 	keybind_signal = COMSIG_KB_YAUTJA_INJECTORS
 
 /datum/keybinding/yautja/bracer_hunter/healing_capsule
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "capsule"
-	full_name = "Create Healing Capsule"
+	full_name = "制造治疗胶囊"
 	keybind_signal = COMSIG_KB_YAUTJA_CAPSULE
 
 /datum/keybinding/yautja/bracer_hunter/call_disc
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "call_disc"
-	full_name = "Call smart-disc"
+	full_name = "召回智能飞盘"
 	keybind_signal = COMSIG_KB_YAUTJA_CALL_DISC
 
 /datum/keybinding/yautja/bracer_hunter/remove_tracked_item
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "remove_tracked_item"
-	full_name = "Remove item from tracker"
+	full_name = "从追踪器移除物品"
 	keybind_signal = COMSIG_KB_YAUTJA_REMOVE_TRACKED_ITEM
 
 /datum/keybinding/yautja/bracer_hunter/remove_tracked_item/down(client/user)
@@ -240,7 +240,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "add_tracked_item"
-	full_name = "Add item to tracker"
+	full_name = "将物品加入追踪器"
 	keybind_signal = COMSIG_KB_YAUTJA_ADD_TRACKED_ITEM
 
 /datum/keybinding/yautja/bracer_hunter/add_tracked_item/down(client/user)
@@ -263,21 +263,21 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "call_combi"
-	full_name = "Yank combi-stick"
+	full_name = "拉回伸缩战矛"
 	keybind_signal = COMSIG_KB_YAUTJA_CALL_COMBI
 
 /datum/keybinding/yautja/bracer_hunter/translate
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "translate"
-	full_name = "Translator"
+	full_name = "翻译器"
 	keybind_signal = COMSIG_KB_YAUTJA_TRANSLATE
 
 /datum/keybinding/yautja/bracer_hunter/bracername
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "bracername"
-	full_name = "Toggle bracer name"
+	full_name = "切换护腕姓名显示"
 	keybind_signal = COMSIG_KB_YAUTJA_BRACERNAME
 
 /datum/keybinding/yautja/bracer_hunter/bracername/down(client/user)
@@ -300,7 +300,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "idchip"
-	full_name = "Toggle ID chip"
+	full_name = "切换身份芯片"
 	keybind_signal = COMSIG_KB_YAUTJA_IDCHIP
 
 /datum/keybinding/yautja/bracer_hunter/idchip/down(client/user)
@@ -323,7 +323,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "link_bracer"
-	full_name = "Link thrall bracer"
+	full_name = "连接仆从护腕"
 	keybind_signal = COMSIG_KB_YAUTJA_LINK_BRACER
 
 /datum/keybinding/yautja/bracer_hunter/link_bracer/down(client/user)
@@ -346,7 +346,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "control_falcon"
-	full_name = "Control falcon drone"
+	full_name = "控制猎鹰无人机"
 	keybind_signal = COMSIG_KB_YAUTJA_CONTROL_FALCON
 
 // Misc stuff - mask, teleporter \\
@@ -365,14 +365,14 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "toggle_zoom"
-	full_name = "Toggle mask zoom"
+	full_name = "切换面罩变焦"
 	keybind_signal = COMSIG_KB_YAUTJA_MASK_TOGGLE_ZOOM
 
 /datum/keybinding/yautja/mask/togglesight
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "togglesight"
-	full_name = "Toggle mask visors"
+	full_name = "切换面罩视觉模式"
 	keybind_signal = COMSIG_KB_YAUTJA_MASK_TOGGLESIGHT
 
 // teleporter
@@ -387,7 +387,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "tele_loc"
-	full_name = "Add teleporter location"
+	full_name = "添加传送位置"
 	keybind_signal = COMSIG_KB_YAUTJA_TELE_LOC
 
 /datum/keybinding/yautja/tele_loc/down(client/user)
@@ -403,7 +403,7 @@
 	hotkey_keys = list("Space")
 	classic_keys = list("Unbound")
 	name = "fold_combi"
-	full_name = "Collapse Combi-stick"
+	full_name = "收起伸缩战矛"
 	keybind_signal = COMSIG_KB_YAUTJA_FOLD_COMBISTICK
 
 /datum/keybinding/yautja/fold_combi/down(client/user)

@@ -294,7 +294,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		data["limbs_damaged"] = length(limb_data_lists)
 		data["internal_bleeding"] = internal_bleeding
 		data["body_temperature"] = "[round(human_target_mob.bodytemperature-T0C, 0.1)]℃ ([round(human_target_mob.bodytemperature*1.8-459.67, 0.1)]℉)" // METRIC RULES IMPERIAL DROOLS
-		data["pulse"] = "[human_target_mob.get_pulse(GETPULSE_TOOL)] bpm"
+		data["pulse"] = "[human_target_mob.get_pulse(GETPULSE_TOOL)] 次/分"
 		data["implants"] = unknown_implants
 		data["core_fracture"] = core_fracture_detected
 
@@ -304,7 +304,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			if(!organ.damage)
 				continue
 			var/current_organ = list(
-				"name" = organ.name,
+				"name" = localized_player_label(organ.name),
 				"damage" = organ.damage,
 				"status" = organ.organ_status == ORGAN_BROKEN ? "Broken" : "Bruised",
 				"robotic" = organ.robotic
@@ -466,7 +466,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		for(var/datum/disease/disease in target_mob.viruses)
 			if(!disease.hidden[SCANNER] || detail_level >= DETAIL_LEVEL_FULL)
 				var/current_disease = list(
-					"name" = disease.name,
+					"name" = localized_player_label(disease.name),
 					"form" = disease.form,
 					"type" = disease.spread,
 					"stage" = disease.stage,
@@ -686,7 +686,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		dat += "\t<span class='scanner'> *患者似乎存在克隆缺陷。</span>\n"
 	for(var/datum/disease/D in src.viruses)
 		if(!D.hidden[SCANNER])
-			dat += "\t<span class='scannerb'> *警告：检测到[D.form]</span><span class='scanner'>\n名称：[D.name]。\n传播方式：[D.spread]。\n阶段：[D.stage]/[D.max_stages]。\n可能的疗法：[D.cure]</span>\n"
+			dat += "\t<span class='scannerb'> *警告：检测到[D.form]</span><span class='scanner'>\n名称：[localized_player_label(D.name)]。\n传播方式：[D.spread]。\n阶段：[D.stage]/[D.max_stages]。\n可能的疗法：[D.cure]</span>\n"
 	if (src.getBrainLoss() >= 100 || !src.has_brain())
 		dat += "\t<span class='scanner'> *患者遭受了极其严重的<b>脑损伤</b></span>。\n"
 

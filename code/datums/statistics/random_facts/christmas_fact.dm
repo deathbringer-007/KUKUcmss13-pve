@@ -17,15 +17,15 @@
 	var/additional_message
 	switch(festivizer_hits_total_max)
 		if(0 to 30)
-			additional_message = "Good work!"
+			additional_message = "干得好！"
 		if(30 to 60)
-			additional_message = "Great work!"
+			additional_message = "干得漂亮！"
 		if(90 to 120)
-			additional_message = "INCREDIBLE work!"
+			additional_message = "表现太出色了！"
 		if(120 to 150)
-			additional_message = "MERRY CHRISTMAS!!"
+			additional_message = "圣诞快乐！！"
 		else
-			additional_message = "<b>[name] is the VERY SPIRIT of CHRISTMAS!!!</b>"
+			additional_message = "<b>[name]就是圣诞精神的化身！！！</b>"
 
 	message = "<b>[name]</b>总共为<b>[festivizer_hits_total_max]件物品</b>增添了节日装饰！[additional_message]"
 

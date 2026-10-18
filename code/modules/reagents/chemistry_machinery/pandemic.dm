@@ -66,7 +66,7 @@
 						D = new vaccine_type(0, null)
 
 				if(D)
-					B.name = "[D.name]疫苗瓶"
+					B.name = "[localized_player_label(D.name)]疫苗瓶"
 					B.reagents.add_reagent("vaccine",15,vaccine_type)
 					wait = 1
 					var/datum/reagent/blood/Blood = null
@@ -97,8 +97,8 @@
 				if(virus_type in GLOB.diseases) // Make sure this is a disease
 					D = new virus_type(0, null)
 			var/list/data = list("viruses"=list(D))
-			var/name = strip_html(input(user,"名称：","为培养物命名",D.name))
-			if(!name || name == " ") name = D.name
+			var/name = strip_html(input(user,"名称：","为培养物命名",localized_player_label(D.name)))
+			if(!name || name == " ") name = localized_player_label(D.name)
 			B.name = "[name]培养物瓶"
 			B.desc = "一个小瓶，装有以合成血液为培养基的[D.agent]培养物。"
 			B.reagents.add_reagent("blood",20,data)
@@ -193,7 +193,7 @@
 								CRASH("We weren't able to get the advance disease from the archive.")
 
 							dat += "<b>病原体：</b> [D?"[D.agent] - <A href='byond://?src=\ref[src];create_virus_culture=[disease_creation]'>制造病毒培养物瓶</A>":"无"]<BR>"
-							dat += "<b>常用名称：</b> [(D.name||"无")]<BR>"
+							dat += "<b>常用名称：</b> [(localized_player_label(D.name)||"无")]<BR>"
 							dat += "<b>描述：</b> [(D.desc||"无")]<BR>"
 							dat += "<b>传播途径：</b> [(D.spread||"无")]<BR>"
 							dat += "<b>可能的疗法：</b> [(D.cure||"无")]<BR><BR>"
@@ -223,9 +223,9 @@
 							if(!(type in discovered_diseases))
 								discovered_diseases += type
 							var/datum/disease/D = new type(0, null)
-							disease_name = D.name
+							disease_name = localized_player_label(D.name)
 
-						dat += "<li>[disease_name] - <A href='byond://?src=\ref[src];create_vaccine=[type]'>制造疫苗瓶</A></li>"
+						dat += "<li>[localized_player_label(disease_name)] - <A href='byond://?src=\ref[src];create_vaccine=[type]'>制造疫苗瓶</A></li>"
 					dat += "</ul><BR>"
 				else
 					dat += "无<BR>"

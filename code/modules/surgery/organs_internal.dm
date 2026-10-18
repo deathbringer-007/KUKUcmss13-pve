@@ -69,7 +69,7 @@ and organ transplant code which may come in handy in future but haven't been edi
 			SPAN_NOTICE("[user]开始用[toolname]治疗你受损的[damaged_organs[1]]。"),
 			SPAN_NOTICE("[user]开始用[toolname]治疗[target]受损的[damaged_organs[1]]。"))
 
-	target.custom_pain("The pain in your [surgery.affected_limb.display_name] is living hell!", 1)
+	target.custom_pain("你的[surgery.affected_limb.display_name]痛得如同身在地狱！", 1)
 	playsound(target.loc, 'sound/handling/bandage.ogg', 25, TRUE)
 	log_interact(user, target, "[key_name(user)] began mending organs in [key_name(target)]'s [surgery.affected_limb.display_name], beginning [surgery].")
 
@@ -91,7 +91,7 @@ and organ transplant code which may come in handy in future but haven't been edi
 	user.affected_message(target,
 		SPAN_WARNING("你的手一滑，挫伤了[target]的器官，并污染了[surgery.affected_limb.cavity == "thoracic cavity" ? "胸腔" : surgery.affected_limb.cavity == "abdominal cavity" ? "腹腔" : surgery.affected_limb.cavity == "cranial cavity" ? "颅腔" : surgery.affected_limb.cavity]！"),
 		SPAN_WARNING("[user]的手一滑，挫伤了你的器官，并污染了你的[surgery.affected_limb.cavity == "thoracic cavity" ? "胸腔" : surgery.affected_limb.cavity == "abdominal cavity" ? "腹腔" : surgery.affected_limb.cavity == "cranial cavity" ? "颅腔" : surgery.affected_limb.cavity]！"),
-		SPAN_WARNING("[user]'s hand slips, bruising [target]'s organs and contaminating \his [surgery.affected_limb.cavity]!"))
+		SPAN_WARNING("[user]的手一滑，挫伤了[target]的器官，并污染了[surgery.affected_limb.cavity == "thoracic cavity" ? "胸腔" : surgery.affected_limb.cavity == "abdominal cavity" ? "腹腔" : surgery.affected_limb.cavity == "cranial cavity" ? "颅腔" : surgery.affected_limb.cavity]！"))
 
 	var/dam_amt = 2
 	switch(tool_type)

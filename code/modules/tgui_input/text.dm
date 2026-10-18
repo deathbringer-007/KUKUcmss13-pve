@@ -17,7 +17,7 @@
  * * trim - Whether or not to trim leading and trailing whitespace from your input. Defaults to TRUE
  * * ui_state - The TGUI UI state that will be returned in ui_state(). Default: always_state
  */
-/proc/tgui_input_text(mob/user, message = "", title = "Text Input", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, timeout = 0, trim = TRUE, ui_state = GLOB.always_state)
+/proc/tgui_input_text(mob/user, message = "", title = "文本输入", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, timeout = 0, trim = TRUE, ui_state = GLOB.always_state)
 	if (!user)
 		user = usr
 	if (!istype(user))

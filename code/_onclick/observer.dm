@@ -1,7 +1,7 @@
 /client/var/inquisitive_ghost = 1
 /mob/dead/observer/verb/toggle_inquisition() // warning: unexpected inquisition
 	set name = "Toggle Inquisitiveness"
-	set desc = "Sets whether your ghost examines everything on click by default"
+	set desc = "设置幽灵是否默认查看每个点击的对象。"
 	set category = "Ghost.Settings"
 	if(!client) return
 	client.inquisitive_ghost = !client.inquisitive_ghost
@@ -22,7 +22,7 @@
 		if(target == src)
 			if(!can_reenter_corpse || !mind || !mind.current)
 				return
-			if(alert(src, "确定要重新进入自己的尸体吗？", "确认", "Yes", "No") == "Yes")
+			if(localized_native_alert(src, "确定要重新进入自己的尸体吗？", "确认", "Yes", "No") == "Yes")
 				reenter_corpse()
 				return TRUE
 
@@ -46,7 +46,7 @@
 
 					var/deathtime = world.time - timeofdeath
 					if(deathtime < XENO_JOIN_DEAD_LARVA_TIME)
-						var/message = "You have been dead for [DisplayTimeText(deathtime)]."
+						var/message = "你已经死亡[DisplayTimeText(deathtime)]。"
 						message = SPAN_WARNING("[message]")
 						to_chat(src, message)
 						to_chat(src, SPAN_WARNING("重新加入游戏前，你必须等待至少2.5分钟！"))
@@ -60,10 +60,10 @@
 							do_observe(target)
 							return FALSE
 
-				if(alert(src, "确定要转入 [xeno] 的身体吗？", "确认转移", "Yes", "No") != "Yes")
+				if(localized_native_alert(src, "确定要转入 [xeno] 的身体吗？", "确认转移", "Yes", "No") != "Yes")
 					return FALSE
 				if(((!islarva(xeno) && xeno.away_timer < XENO_LEAVE_TIMER) || (islarva(xeno) && xeno.away_timer < XENO_LEAVE_TIMER_LARVA)) || xeno.stat == DEAD) // Do it again, just in case
-					to_chat(src, SPAN_WARNING("That xenomorph can no longer be controlled. Please try another."))
+					to_chat(src, SPAN_WARNING("这只异形已无法接管，请换一个目标。"))
 					return FALSE
 				SSticker.mode.transfer_xeno(src, xeno)
 				return TRUE
@@ -106,7 +106,7 @@
 
 /obj/structure/ladder/attack_ghost(mob/user as mob)
 	if(up && down)
-		switch( alert("要沿梯子向上爬，还是向下爬？", "梯子", "Up", "Down", "Cancel") )
+		switch( localized_native_alert(usr, "要沿梯子向上爬，还是向下爬？", "梯子", "Up", "Down", "Cancel") )
 			if("Up")
 				user.forceMove(get_turf(up))
 			if("Down")

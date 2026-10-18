@@ -1,6 +1,6 @@
 /datum/weather_event/light_rain/redemption_valley
 	name = "Valley Rain"
-	display_name = "Light Rain"
+	display_name = "小雨"
 	length = 12 MINUTES
 
 	has_process = TRUE
@@ -12,7 +12,7 @@
 
 /datum/weather_event/heavy_rain/redemption_valley
 	name = "Valley Storm"
-	display_name = "Heavy Rain"
+	display_name = "大雨"
 	length = 8 MINUTES
 
 	turf_overlay_alpha = 100

@@ -141,6 +141,6 @@
 				Cl = shoes
 				protection += (Cl.permeability_coefficient*100)-100
 		else
-			to_chat(src, "Something bad happened with disease target zone code, tell a dev or admin ")
+			to_chat(src, "疾病目标部位处理异常，请告知开发者或管理员。")
 	return prob(clamp(protection, 5, 90))
 

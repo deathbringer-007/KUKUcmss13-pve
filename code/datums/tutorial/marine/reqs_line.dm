@@ -10,7 +10,7 @@
 
 /// Simulates the Requisitions Line experience for newcomers
 /datum/tutorial/marine/reqs_line
-	name = "Marine - Requistions Line"
+	name = "陆战队员——军需发放"
 	desc = "学习如何作为货运技师处理军需部发放队列。"
 	icon_state = "cargotech"
 	tutorial_id = "requisitions_line"
@@ -54,50 +54,50 @@
 	 */
 	var/static/shopping_catalogue = list(
 		/* ATTACHIES */
-		/obj/item/attachable/extended_barrel = list("EB", "EB", "Extended", "Extended Barrel", "Extendo", "Ext Barrel"),
-		/obj/item/attachable/magnetic_harness = list("MH", "MH", "Magharn", "Mag Harn", "Mag Harness", "Harness", "Magnetic Harness"),
-		/obj/item/attachable/reddot = list("RDS", "Red Dot", "S5", "Red Dot Sight", "reddot"),
-		/obj/item/attachable/reflex = list("Reflex", "S6", "Reflex Sight", "S6"),
-		/obj/item/attachable/scope = list("S8", "S8", "4x", "4x sight", "4x scope", "S8 scope"),
-		/obj/item/attachable/angledgrip = list("AG", "agrip", "Agrip", "Angled", "angled grip"),
-		/obj/item/attachable/gyro = list("Gyro"),
-		/obj/item/attachable/lasersight = list("Laser", "Laser sight", "LS"),
-		/obj/item/attachable/attached_gun/shotgun = list("U7", "Underbarrel", "Underbarrel Shotgun", "Mini Shotgun"),
-		/obj/item/attachable/verticalgrip = list("VG", "Vert Grip", "Vertical Grip"),
-		/obj/item/attachable/stock/rifle = list("Solid Stock", "M41 stock", "M41 Solid Stock"),
-		/obj/item/attachable/stock/shotgun = list("M37 Stock", "Wooden stock"),
+		/obj/item/attachable/extended_barrel = list("EB", "EB", "加长枪管", "加长枪管", "长枪管", "加长枪管"),
+		/obj/item/attachable/magnetic_harness = list("MH", "MH", "磁力背带", "磁力背带", "磁力背带", "背带", "磁力背带"),
+		/obj/item/attachable/reddot = list("RDS", "红点", "S5", "红点瞄准镜", "红点"),
+		/obj/item/attachable/reflex = list("反射瞄准镜", "S6", "反射式瞄准镜", "S6"),
+		/obj/item/attachable/scope = list("S8", "S8", "4倍镜", "4倍瞄准镜", "4倍瞄准镜", "S8瞄准镜"),
+		/obj/item/attachable/angledgrip = list("AG", "倾斜握把", "倾斜握把", "倾斜握把", "倾斜握把"),
+		/obj/item/attachable/gyro = list("陀螺稳定器"),
+		/obj/item/attachable/lasersight = list("激光指示器", "激光瞄准器", "LS"),
+		/obj/item/attachable/attached_gun/shotgun = list("U7", "下挂枪", "下挂霰弹枪", "迷你霰弹枪"),
+		/obj/item/attachable/verticalgrip = list("VG", "垂直握把", "垂直握把"),
+		/obj/item/attachable/stock/rifle = list("固定枪托", "M41枪托", "M41固定枪托"),
+		/obj/item/attachable/stock/shotgun = list("M37枪托", "木制枪托"),
 		/* GEAR */
-		/obj/item/weapon/gun/rifle/m41a = list("M41", "M41", "M41A", "Mk2", "M4 rifle"),
-		/obj/item/weapon/gun/shotgun/pump = list("M37", "shotgun"),
-		/obj/item/storage/box/guncase/mou53 = list("MOU", "MOU53", "MOU-53", "Mouse"),
-		/obj/item/storage/box/guncase/lmg = list("HPR", "HPR kit", "heavy pulse rifle"),
-		/obj/item/storage/box/guncase/m41aMK1 = list("MK1", "M41 Mk1", "MK1 Kit", "M41A MK1 Kit"),
+		/obj/item/weapon/gun/rifle/m41a = list("M41", "M41", "M41A", "Mk2", "M4步枪"),
+		/obj/item/weapon/gun/shotgun/pump = list("M37", "霰弹枪"),
+		/obj/item/storage/box/guncase/mou53 = list("MOU", "MOU53", "MOU-53", "鼠式霰弹枪"),
+		/obj/item/storage/box/guncase/lmg = list("HPR", "HPR套件", "重型脉冲步枪"),
+		/obj/item/storage/box/guncase/m41aMK1 = list("MK1", "M41 Mk1", "MK1套件", "M41A MK1套件"),
 		/obj/item/storage/box/guncase/m56d = list("M56D", "HMG", "M56"),
 		/obj/item/storage/box/guncase/m2c = list("M2C"),
-		/obj/item/storage/box/guncase/flamer = list("Flamer", "Flamer kit", "Incinerator"),
-		/obj/item/storage/box/guncase/m79 = list("GL", "Grenade launcher", "M79", "M79 Grenade launcher"),
-		/obj/item/clothing/accessory/storage/black_vest = list("Black webbing", "Black webbing vest"),
-		/obj/item/clothing/accessory/storage/black_vest/brown_vest = list("Brown webbing", "Brown webbing vest"),
-		/obj/item/clothing/accessory/storage/webbing = list("Webbing", "normal webbing", "web"),
-		/obj/item/storage/backpack/marine/engineerpack/flamethrower/kit = list("pyro pack", "pyro backpack", "g4-1 pack", "flamer backpack"),
-		/obj/item/storage/backpack/marine/satchel/rto = list("phone pack", "phone backpack", "radio pack"),
-		/obj/item/storage/backpack/general_belt = list("G8", "G8 belt"),
-		/obj/item/storage/pouch/magazine/large = list("Large mag pouch", "Large magazine pouch"),
-		/obj/item/storage/pouch/shotgun/large = list("Shotgun pouch", "Shotgun shells pouch", "Shells pouch", "Large shells pouch"),
-		/obj/item/storage/box/flare/signal = list("Signal flares", "box of signals", "CAS flares"),
-		/obj/item/device/motiondetector = list("MD", "Motion Detector"),
-		/obj/item/device/binoculars = list("Binos", "Binoculars"),
-		/obj/item/device/binoculars/range/designator = list("LD", "Designator", "Laser Designator", "Tac Binos"),
-		/obj/item/pamphlet/skill/jtac = list("JTAC Pamphlet"),
+		/obj/item/storage/box/guncase/flamer = list("喷火器", "喷火器套件", "焚烧器"),
+		/obj/item/storage/box/guncase/m79 = list("GL", "榴弹发射器", "M79", "M79榴弹发射器"),
+		/obj/item/clothing/accessory/storage/black_vest = list("黑色弹挂", "黑色弹挂背心"),
+		/obj/item/clothing/accessory/storage/black_vest/brown_vest = list("棕色弹挂", "棕色弹挂背心"),
+		/obj/item/clothing/accessory/storage/webbing = list("弹挂", "普通弹挂", "弹挂"),
+		/obj/item/storage/backpack/marine/engineerpack/flamethrower/kit = list("燃料背包", "喷火兵背包", "G4-1背包", "喷火器背包"),
+		/obj/item/storage/backpack/marine/satchel/rto = list("电话背包", "电话背包", "无线电背包"),
+		/obj/item/storage/backpack/general_belt = list("G8", "G8腰带"),
+		/obj/item/storage/pouch/magazine/large = list("大型弹匣袋", "大型弹匣袋"),
+		/obj/item/storage/pouch/shotgun/large = list("霰弹袋", "霰弹弹药袋", "霰弹袋", "大型霰弹袋"),
+		/obj/item/storage/box/flare/signal = list("信号照明弹", "一盒信号弹", "CAS信号弹"),
+		/obj/item/device/motiondetector = list("MD", "运动探测器"),
+		/obj/item/device/binoculars = list("望远镜", "双筒望远镜"),
+		/obj/item/device/binoculars/range/designator = list("LD", "目标指示器", "激光目标指示器", "战术望远镜"),
+		/obj/item/pamphlet/skill/jtac = list("JTAC训练手册"),
 		/* Explosives */
 		/obj/item/explosive/grenade/high_explosive = list("M40 HEDP", "HEDP"),
-		/obj/item/explosive/grenade/incendiary = list("M40 HIDP", "Incendiary nade", "Incendiary grenade", "HIDP", "Fire grenade"),
-		/obj/item/explosive/plastic = list("C4", "C4", "plastic", "plastic explosives"),
-		/obj/item/explosive/plastic/breaching_charge = list("Breaching", "breach charge", "breaching charge"),
+		/obj/item/explosive/grenade/incendiary = list("M40 HIDP", "燃烧雷", "燃烧手榴弹", "HIDP", "燃烧手榴弹"),
+		/obj/item/explosive/plastic = list("C4", "C4", "塑胶炸药", "塑胶炸药"),
+		/obj/item/explosive/plastic/breaching_charge = list("破门炸药", "破门装药", "破门装药"),
 		/* AMMO */
-		/obj/item/ammo_magazine/rifle/extended = list("Extended", "MK2 Extended", "Extended MK2 Mags"),
-		/obj/item/ammo_magazine/smg/m39/ap = list("M39 AP", "M39 AP", "SMG AP"),
-		/obj/item/ammo_magazine/smartgun = list("Smartgun drum", "SG drum"),
+		/obj/item/ammo_magazine/rifle/extended = list("加长弹匣", "MK2加长弹匣", "MK2加长弹匣"),
+		/obj/item/ammo_magazine/smg/m39/ap = list("M39 AP", "M39 AP", "冲锋枪穿甲弹匣"),
+		/obj/item/ammo_magazine/smartgun = list("智能枪弹鼓", "智能枪弹鼓"),
 	)
 
 /datum/tutorial/marine/reqs_line/Destroy(force)
@@ -193,7 +193,7 @@
 /// Called to generate a new survival wave of agents
 /datum/tutorial/marine/reqs_line/proc/spawn_survival_wave()
 	survival_wave++
-	message_to_player("Wave [survival_wave]")
+	message_to_player("第[survival_wave]波")
 	var/agents_to_spawn = min(max_survival_agents, 1 + survival_wave * TUTORIAL_REQS_LINE_SURVIVAL_DIFFICULTY * survival_difficulty)
 	for(var/agent_i in 1 to agents_to_spawn)
 		var/items_requested = 1 + survival_wave * survival_difficulty * 0.5
@@ -212,7 +212,7 @@
 		request += pick(catalogue)
 		if(i < 6) // Only telescope catalogues the first 5 times as the chances compound
 			catalogue += request
-	spawn_agent(request, "Lv [survival_wave]. ")
+	spawn_agent(request, "等级[survival_wave]·")
 
 /// Called when an agent presents at the line window and needs to make a request
 /datum/tutorial/marine/reqs_line/proc/a_new_challenger_appears(turf/source, mob/living/carbon/human/challenger)
@@ -227,8 +227,8 @@
 		return
 	restock_vendors()
 	var/speech = verbalize_request(request)
-	var/greeting = pick("Hello! ", "hi, ", "hey, ", "Good day. ", "I need ", "Please give me ", "", "") // Yes, no greeting is a greeting option for real world accuracy
-	var/trailing = pick("", "", ", please.", " - please and thank you", ", thanks.", ", hurry")
+	var/greeting = pick("你好！", "嗨，", "嘿，", "你好。", "我需要", "请给我", "", "") // Yes, no greeting is a greeting option for real world accuracy
+	var/trailing = pick("", "", "，麻烦了。", "，拜托啦，谢谢", "，谢谢。", "，快一点")
 	challenger.say("[greeting][speech][trailing]") // Pleasantries for the first exchange only
 	remind_timer = addtimer(CALLBACK(src, PROC_REF(remind_request)), 15 SECONDS, TIMER_STOPPABLE)
 	hint_timer = addtimer(CALLBACK(src, PROC_REF(send_hints)), 3 SECONDS, TIMER_STOPPABLE)
@@ -255,7 +255,7 @@
 		var/list/info = shopping_catalogue[item]
 		var/word = pick(info) // Pick one of the coded in designations for the item
 		if(!first) // Join list with commas
-			output_string += ", "
+			output_string += "、"
 		first = FALSE
 		if(counts[item] > 1)
 			output_string += "[counts[item]] "
@@ -280,7 +280,7 @@
 		confused_types |= item_type
 		if(COOLDOWN_FINISHED(src, confused_cooldown))
 			COOLDOWN_START(src, confused_cooldown, 5 SECONDS)
-			active_agent.say("Huh?")
+			active_agent.say("啊？")
 		QDEL_IN(item, 30 SECONDS)
 		return
 
@@ -324,7 +324,7 @@
 		return // Nani?
 
 	if(success && prob(80))
-		var/speech = pick("Thanks!", "Thanks", "Thanks bro", "Thank you.", "Bye", "Nice.")
+		var/speech = pick("谢谢！", "谢谢", "谢了，兄弟", "谢谢你。", "再见", "太好了。")
 		active_agent.say(speech)
 
 	// Immediately step the agent through the turnstile and towards exit
@@ -363,20 +363,20 @@
 		if(TUTORIAL_REQS_LINE_STAGE_ATTACHIES)
 			TUTORIAL_ATOM_FROM_TRACKING(/obj/structure/machinery/cm_vending/sorted/attachments/blend/tutorial, attachies_vendor)
 			add_highlight(attachies_vendor)
-			message_to_player("This marine wants 'attachies' for their weapon. You can find them in the leftmost vendor.")
-			update_objective("Serve the marine's request using the vendors.")
+			message_to_player("这名陆战队员想要一些武器配件。你可以在最左侧的售货机里找到。")
+			update_objective("使用售货机满足陆战队员的需求。")
 		if(TUTORIAL_REQS_LINE_STAGE_GEARBOX)
 			TUTORIAL_ATOM_FROM_TRACKING(/obj/structure/machinery/cm_vending/sorted/cargo_guns/cargo/blend/tutorial, gear_vendor)
 			add_highlight(gear_vendor)
-			message_to_player("This marine wants items from the gear vendor in the middle. You can use the search function at top right to find things more easily.")
-			update_objective("Serve the marine's request using the middle vendor. This one has a lot of things, you might want to use the search bar.")
+			message_to_player("这名陆战队员想要中间装备售货机里的物品。使用右上角的搜索栏可以更快找到物品。")
+			update_objective("使用中间的装备售货机满足陆战队员的需求。物品种类很多，建议使用搜索栏。")
 		if(TUTORIAL_REQS_LINE_STAGE_MIXED)
 			TUTORIAL_ATOM_FROM_TRACKING(/obj/structure/machinery/cm_vending/sorted/cargo_ammo/cargo/blend/tutorial, ammo_vendor)
 			add_highlight(ammo_vendor)
 			add_highlight(loser_agent)
-			loser_agent.say("Wait! I really NEED a Mk2 Extended Mag. Throw me one!")
-			message_to_player("Seems the marine wanted ammo too. Grab some and high-toss it over to him, with <b>[retrieve_bind("toggle_high_throw_mode")]</b>.")
-			update_objective("Get the M41 Extended magazine and perform a high toss to give it to the forgetful marine.")
+			loser_agent.say("等等！我还需要一个MK2加长弹匣。扔一个给我！")
+			message_to_player("看来这名陆战队员还想要弹药。拿一个弹匣，按<b>[retrieve_bind("toggle_high_throw_mode")]</b>切换高抛模式，再扔给他。")
+			update_objective("拿起M41A加长弹匣，用高抛将其扔给这名忘领弹药的陆战队员。")
 
 /datum/tutorial/marine/reqs_line/start_tutorial(mob/starting_mob)
 	. = ..()
@@ -386,8 +386,8 @@
 	init_mob()
 	START_PROCESSING(SSfastobj, src)
 
-	message_to_player("Welcome to Requisitions Line tutorial. Come in and have a seat.")
-	update_objective("Reach the line window to begin!")
+	message_to_player("欢迎来到军需发放教程。请进，找个位置坐下。")
+	update_objective("前往发放窗口，开始教程！")
 	var/turf/target_turf = loc_from_corner(3, 6)
 	RegisterSignal(target_turf, COMSIG_TURF_ENTERED, PROC_REF(user_in_position))
 
@@ -405,7 +405,7 @@
 /datum/tutorial/marine/reqs_line/proc/continue_stage_gearbox()
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/structure/machinery/cm_vending/sorted/attachments/blend/tutorial, attachies_vendor)
 	remove_highlight(attachies_vendor)
-	message_to_player("Success!")
+	message_to_player("成功！")
 	stage = TUTORIAL_REQS_LINE_STAGE_GEARBOX
 	var/list/request = list(/obj/item/storage/box/guncase/lmg, /obj/item/explosive/grenade/high_explosive)
 	spawn_agent(request)
@@ -414,7 +414,7 @@
 	loser_agent = active_agent
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/structure/machinery/cm_vending/sorted/cargo_guns/cargo/blend/tutorial, gear_vendor)
 	remove_highlight(gear_vendor)
-	message_to_player("Success!")
+	message_to_player("成功！")
 	stage = TUTORIAL_REQS_LINE_STAGE_MIXED
 	var/list/request = list(/obj/item/attachable/gyro, /obj/item/storage/box/guncase/m41aMK1, /obj/item/explosive/grenade/high_explosive)
 	spawn_agent(request)
@@ -427,7 +427,7 @@
 	if(prop.original_type != /obj/item/ammo_magazine/rifle/extended)
 		return
 	qdel(prop)
-	loser_agent.say("Nice.")
+	loser_agent.say("太好了。")
 	remove_highlight(loser_agent)
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/structure/machinery/cm_vending/sorted/cargo_ammo/cargo/blend/tutorial, ammo_vendor)
 	remove_highlight(ammo_vendor)
@@ -441,13 +441,13 @@
 
 /datum/tutorial/marine/reqs_line/proc/continue_stage_survival()
 	mark_completed()
-	message_to_player("Success! You have completed the tutorial!")
-	update_objective("You have finished the tutorial! But there's more if you want to practice.")
-	addtimer(CALLBACK(src, PROC_REF(message_to_player), "You may stay to practice with random orders, or quit with the button at top left."), 3 SECONDS)
+	message_to_player("成功！你已完成教程！")
+	update_objective("教程已完成！如果想继续练习，还可以留在这里。")
+	addtimer(CALLBACK(src, PROC_REF(message_to_player), "你可以留下来练习处理随机订单，或点击左上角按钮退出。"), 3 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(engage_survival_mode)), 12 SECONDS)
 
 /datum/tutorial/marine/reqs_line/proc/engage_survival_mode()
-	update_objective("Keep practicing with increasingly complex orders, or leave at any time with the button at top left.")
+	update_objective("继续处理越来越复杂的订单，或随时点击左上角按钮离开。")
 	stage = TUTORIAL_REQS_LINE_STAGE_SURVIVAL
 
 /datum/map_template/tutorial/reqs_line

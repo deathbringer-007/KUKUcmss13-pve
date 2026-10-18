@@ -9,7 +9,7 @@
 	hotkey_keys = list("B")
 	classic_keys = list("Unbound")
 	name = "resist"
-	full_name = "Resist"
+	full_name = "挣脱"
 	description = "挣脱当前束缚。被铐住了？着火了？使用抵抗动作！"
 	keybind_signal = COMSIG_KB_LIVING_RESIST_DOWN
 
@@ -25,7 +25,7 @@
 	hotkey_keys = list("Shift+R")
 	classic_keys = list("Unbound")
 	name = "rest"
-	full_name = "Rest"
+	full_name = "躺下休息"
 	description = "躺下或起身。"
 	keybind_signal = COMSIG_KB_LIVING_REST_DOWN
 
@@ -39,7 +39,7 @@
 
 /datum/keybinding/living/toggle_surgery
 	name = "toggle_surgery"
-	full_name = "Toggle Surgery Mode"
+	full_name = "切换手术模式"
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	description = "进入或退出手术准备状态。若原本未设置帮助意图安全模式，此操作也会启用或关闭该模式。"
@@ -58,7 +58,7 @@
 	hotkey_keys = list("/")
 	classic_keys = list("Unbound")
 	name = "mov_intent"
-	full_name = "Move Intent"
+	full_name = "切换移动意图"
 	description = "切换当前移动方式。"
 	keybind_signal = COMSIG_KB_MOB_MOVINTENT_DOWN
 
@@ -74,7 +74,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "cancel_camera_view"
-	full_name = "Cancel Camera View"
+	full_name = "退出摄像头视角"
 	description = "将视角重置到自己的角色。"
 	keybind_signal = COMSIG_KB_LIVING_CANCEL_CAMERA_VIEW
 

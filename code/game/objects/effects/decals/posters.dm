@@ -13,7 +13,7 @@
 		serial_number = rand(1, length(GLOB.poster_designs))
 	else
 		serial_number = given_serial
-	name += " - No. [serial_number]"
+	name += "——编号[serial_number]"
 	..(loc)
 
 //############################## THE ACTUAL DECALS ###########################
@@ -56,7 +56,7 @@
 	if(ruined)
 		return
 	var/temp_loc = user.loc
-	switch(alert("要把海报从墙上撕下来吗？","你在想……","Yes","No"))
+	switch(localized_native_alert(usr, "要把海报从墙上撕下来吗？","你在想……","Yes","No"))
 		if("Yes")
 			if(user.loc != temp_loc)
 				return
@@ -111,7 +111,7 @@
 
 	to_chat(user, SPAN_NOTICE("你贴好了海报！"))
 
-	SSclues.create_print(get_turf(user), user, "The fingerprint contains paper pieces.")
+	SSclues.create_print(get_turf(user), user, "指纹中夹有纸屑。")
 	SEND_SIGNAL(P, COMSIG_POSTER_PLACED, user)
 
 /datum/poster

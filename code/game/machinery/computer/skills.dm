@@ -57,21 +57,21 @@
 </p>
 <table style="text-align:center;" cellspacing="0" width="100%">
 <tr>
-<th>Records:</th>
+<th>记录：</th>
 </tr>
 </table>
 <table style="text-align:center;" border="1" cellspacing="0" width="100%">
 <tr>
-<th><A href='byond://?src=\ref[src];choice=Sorting;sort=name'>Name</A></th>
-<th><A href='byond://?src=\ref[src];choice=Sorting;sort=id'>ID</A></th>
-<th><A href='byond://?src=\ref[src];choice=Sorting;sort=rank'>Rank</A></th>
-<th><A href='byond://?src=\ref[src];choice=Sorting;sort=fingerprint'>Fingerprints</A></th>
+<th><A href='byond://?src=\ref[src];choice=Sorting;sort=name'>姓名</A></th>
+<th><A href='byond://?src=\ref[src];choice=Sorting;sort=id'>编号</A></th>
+<th><A href='byond://?src=\ref[src];choice=Sorting;sort=rank'>职位</A></th>
+<th><A href='byond://?src=\ref[src];choice=Sorting;sort=fingerprint'>指纹</A></th>
 </tr>"}
 					if(!isnull(GLOB.data_core.general))
 						for(var/datum/data/record/R in sortRecord(GLOB.data_core.general, sortBy, order))
 							dat += "<tr><td><A href='byond://?src=\ref[src];choice=Browse Record;d_rec=\ref[R]'>[R.fields["name"]]</a></td>"
 							dat += "<td>[R.fields["id"]]</td>"
-							dat += "<td>[R.fields["rank"]]</td>"
+							dat += "<td>[localized_player_label(R.fields["rank"])]</td>"
 						dat += "</table><hr width='75%' />"
 					dat += "<A href='byond://?src=\ref[src];choice=Record Maintenance'>记录维护</A><br><br>"
 					dat += "<A href='byond://?src=\ref[src];choice=Log Out'>{退出登录}</A>"
@@ -79,39 +79,39 @@
 					dat += "<B>记录维护</B><HR>"
 					dat += "<BR><A href='byond://?src=\ref[src];choice=Delete All Records'>删除全部记录</A><BR><BR><A href='byond://?src=\ref[src];choice=Return'>返回</A>"
 				if(3.0)
-					dat += "<CENTER><B>Employment Record</B></CENTER><BR>"
+					dat += "<CENTER><B>任职记录</B></CENTER><BR>"
 					if ((istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1)))
 						dat += "<table><tr><td> \
-						Name: <A href='byond://?src=\ref[src];choice=Edit Field;field=name'>[active1.fields["name"]]</A><BR> \
-						ID: <A href='byond://?src=\ref[src];choice=Edit Field;field=id'>[active1.fields["id"]]</A><BR>\n \
-						Sex: <A href='byond://?src=\ref[src];choice=Edit Field;field=sex'>[active1.fields["sex"]]</A><BR>\n \
-						Age: <A href='byond://?src=\ref[src];choice=Edit Field;field=age'>[active1.fields["age"]]</A><BR>\n \
-						Rank: <A href='byond://?src=\ref[src];choice=Edit Field;field=rank'>[active1.fields["rank"]]</A><BR>\n \
-						Physical Status: [active1.fields["p_stat"]]<BR>\n \
-						Mental Status: [active1.fields["m_stat"]]<BR><BR>\n \
-						Employment/skills summary:<BR> [decode(active1.fields["notes"])]<BR></td> \
-						<td align = center valign = top>Photo:<br><img src=front.png height=80 width=80 border=4> \
+						姓名：<A href='byond://?src=\ref[src];choice=Edit Field;field=name'>[active1.fields["name"]]</A><BR> \
+						编号：<A href='byond://?src=\ref[src];choice=Edit Field;field=id'>[active1.fields["id"]]</A><BR>\n \
+						性别：<A href='byond://?src=\ref[src];choice=Edit Field;field=sex'>[localized_player_label(active1.fields["sex"])]</A><BR>\n \
+						年龄：<A href='byond://?src=\ref[src];choice=Edit Field;field=age'>[active1.fields["age"]]</A><BR>\n \
+						职位：<A href='byond://?src=\ref[src];choice=Edit Field;field=rank'>[localized_player_label(active1.fields["rank"])]</A><BR>\n \
+						身体状况：[localized_player_label(active1.fields["p_stat"])]<BR>\n \
+						精神状态：[localized_player_label(active1.fields["m_stat"])]<BR><BR>\n \
+						任职与技能概要：<BR> [decode(active1.fields["notes"])]<BR></td> \
+						<td align = center valign = top>照片：<br><img src=front.png height=80 width=80 border=4> \
 						<img src=side.png height=80 width=80 border=4></td></tr></table>"
 					else
-						dat += "<B>General Record Lost!</B><BR>"
-					dat += "\n<A href='byond://?src=\ref[src];choice=Delete Record (ALL)'>Delete Record (ALL)</A><BR><BR>\n<A href='byond://?src=\ref[src];choice=Print Record'>Print Record</A><BR>\n<A href='byond://?src=\ref[src];choice=Return'>Back</A><BR>"
+						dat += "<B>常规记录丢失！</B><BR>"
+					dat += "\n<A href='byond://?src=\ref[src];choice=Delete Record (ALL)'>删除整份记录</A><BR><BR>\n<A href='byond://?src=\ref[src];choice=Print Record'>打印记录</A><BR>\n<A href='byond://?src=\ref[src];choice=Return'>返回</A><BR>"
 				if(4.0)
 					if(!length(Perp))
-						dat += "ERROR.  String could not be located.<br><br><A href='byond://?src=\ref[src];choice=Return'>Back</A>"
+						dat += "错误：找不到该字符串。<br><br><A href='byond://?src=\ref[src];choice=Return'>返回</A>"
 					else
 						dat += {"
 <table style="text-align:center;" cellspacing="0" width="100%">
 <tr> "}
-						dat += "<th>Search Results for '[tempname]':</th>"
+						dat += "<th>“[tempname]”的搜索结果：</th>"
 						dat += {"
 </tr>
 </table>
 <table style="text-align:center;" border="1" cellspacing="0" width="100%">
 <tr>
-<th>Name</th>
-<th>ID</th>
-<th>Rank</th>
-<th>Fingerprints</th>
+<th>姓名</th>
+<th>编号</th>
+<th>职位</th>
+<th>指纹</th>
 </tr> "}
 						for(var/i=1, i<=length(Perp), i += 2)
 							var/crimstat = ""
@@ -121,13 +121,13 @@
 								crimstat = E.fields["criminal"]
 							dat += "<tr style=background-color:#00FF7F><td><A href='byond://?src=\ref[src];choice=Browse Record;d_rec=\ref[R]'>[R.fields["name"]]</a></td>"
 							dat += "<td>[R.fields["id"]]</td>"
-							dat += "<td>[R.fields["rank"]]</td>"
-							dat += "<td>[crimstat]</td></tr>"
+							dat += "<td>[localized_player_label(R.fields["rank"])]</td>"
+							dat += "<td>[localized_player_label(crimstat)]</td></tr>"
 						dat += "</table><hr width='75%' />"
-						dat += "<br><A href='byond://?src=\ref[src];choice=Return'>Return to index.</A>"
+						dat += "<br><A href='byond://?src=\ref[src];choice=Return'>返回索引。</A>"
 		else
-			dat += "<A href='byond://?src=\ref[src];choice=Log In'>{Log In}</A>"
-	show_browser(user, dat, "Employment Records", "secure_rec", width = 600, height = 400)
+			dat += "<A href='byond://?src=\ref[src];choice=Log In'>{登录}</A>"
+	show_browser(user, dat, "任职记录", "secure_rec", width = 600, height = 400)
 	onclose(user, "secure_rec")
 	return
 
@@ -225,7 +225,7 @@ What a mess.*/
 			if ("Browse Record")
 				var/datum/data/record/R = locate(href_list["d_rec"])
 				if (!( GLOB.data_core.general.Find(R) ))
-					temp = "Record Not Found!"
+					temp = "未找到记录！"
 				else
 					active1 = R
 					screen = 3
@@ -235,35 +235,35 @@ What a mess.*/
 					printing = 1
 					sleep(50)
 					var/obj/item/paper/P = new /obj/item/paper( loc )
-					P.info = "<CENTER><B>Employment Record</B></CENTER><BR>"
+					P.info = "<CENTER><B>任职记录</B></CENTER><BR>"
 					if ((istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1)))
-						P.info += "Name: [active1.fields["name"]] ID: [active1.fields["id"]]<BR>\nSex: [active1.fields["sex"]]<BR>\nAge: [active1.fields["age"]]<BR>\nPhysical Status: [active1.fields["p_stat"]]<BR>\nMental Status: [active1.fields["m_stat"]]<BR>\nEmployment/Skills Summary:<BR>\n[decode(active1.fields["notes"])]<BR>"
-						P.name = "Employment Record ([active1.fields["name"]])"
+						P.info += "姓名：[active1.fields["name"]] 编号：[active1.fields["id"]]<BR>\n性别：[localized_player_label(active1.fields["sex"])]<BR>\n年龄：[active1.fields["age"]]<BR>\n身体状况：[localized_player_label(active1.fields["p_stat"])]<BR>\n精神状态：[localized_player_label(active1.fields["m_stat"])]<BR>\n任职与技能概要：<BR>\n[decode(active1.fields["notes"])]<BR>"
+						P.name = "任职记录（[active1.fields["name"]]）"
 					else
-						P.info += "<B>General Record Lost!</B><BR>"
-						P.name = "Employment Record (???)"
+						P.info += "<B>常规记录丢失！</B><BR>"
+						P.name = "任职记录（???）"
 					P.info += "</TT>"
 
 					printing = null
 //RECORD DELETE
 			if ("Delete All Records")
 				temp = ""
-				temp += "Are you sure you wish to delete all Employment records?<br>"
-				temp += "<a href='byond://?src=\ref[src];choice=Purge All Records'>Yes</a><br>"
-				temp += "<a href='byond://?src=\ref[src];choice=Clear Screen'>No</a>"
+				temp += "确定要删除全部任职记录吗？<br>"
+				temp += "<a href='byond://?src=\ref[src];choice=Purge All Records'>是</a><br>"
+				temp += "<a href='byond://?src=\ref[src];choice=Clear Screen'>否</a>"
 
 			if ("Purge All Records")
 				for(var/datum/data/record/R in GLOB.data_core.security)
 					GLOB.data_core.security -= R
 					qdel(R)
-				temp = "All Employment records deleted."
+				temp = "全部任职记录已删除。"
 				msg_admin_niche("[key_name_admin(usr)] deleted all employment records.")
 
 			if ("Delete Record (ALL)")
 				if(istype(active1, /datum/data/record))
-					temp = "<h5>Are you sure you wish to delete the record (ALL)?</h5>"
-					temp += "<a href='byond://?src=\ref[src];choice=Delete Record (ALL) Execute'>Yes</a><br>"
-					temp += "<a href='byond://?src=\ref[src];choice=Clear Screen'>No</a>"
+					temp = "<h5>确定要删除整份记录吗？</h5>"
+					temp += "<a href='byond://?src=\ref[src];choice=Delete Record (ALL) Execute'>是</a><br>"
+					temp += "<a href='byond://?src=\ref[src];choice=Clear Screen'>否</a>"
 //RECORD CREATE
 			if ("New Record (General)")
 				active1 = CreateGeneralRecord()
@@ -308,13 +308,13 @@ What a mess.*/
 						if(istype(active1, /datum/data/record))
 						//This was so silly before the change. Now it actually works without beating your head against the keyboard. /N
 							if(GLOB.uscm_highcom_paygrades.Find(rank))
-								temp = "<h5>Occupation:</h5>"
+								temp = "<h5>职位：</h5>"
 								temp += "<ul>"
 								for(var/rank in GLOB.joblist)
 									temp += "<li><a href='byond://?src=\ref[src];choice=Change Rank;rank=[rank]'>[rank]</a></li>"
 								temp += "</ul>"
 							else
-								alert(usr, "你的军衔不满足此操作要求！")
+								localized_native_alert(usr, "你的军衔不满足此操作要求！")
 
 					if("species")
 						if (istype(active1, /datum/data/record))
@@ -345,7 +345,7 @@ What a mess.*/
 							msg_admin_niche("[key_name_admin(usr)] deleted all employment records for [active1.fields["name"]] ([active1.fields["id"]]).")
 							QDEL_NULL(active1)
 					else
-						temp = "This function does not appear to be working at the moment. Our apologies."
+						temp = "此功能目前似乎无法正常使用，敬请谅解。"
 
 	add_fingerprint(usr)
 	updateUsrDialog()

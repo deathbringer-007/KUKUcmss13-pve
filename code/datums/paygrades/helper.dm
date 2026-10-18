@@ -10,19 +10,19 @@
 		if(P.fprefix)//Factional (pre)prefix
 			NP = "[P.fprefix] "
 		if(P.prefix)//Actual rank prefix
-			NP =  "[NP][P.prefix] "
+			NP =  "[NP][P.localized_prefix || P.prefix] "
 			if(P.prefix == "C")//Override for Civilian ranks that don't have occupational prefixes.
 				if(gender && gender == FEMALE)
-					NP = "Ms. "
+					NP = "女士 "
 				else if(gender && gender == MALE)
-					NP = "Mr. "
+					NP = "先生 "
 				else
-					NP = "Mx. " //inclusivity win!
+					NP = "阁下 " //inclusivity win!
 		return NP
 	else
 		if(!P)//For custom admin-made paygrades to not cause runtimes.
 			return "[paygrade]"
-		return P.name
+		return P.localized_name || P.name
 
 /proc/get_paygrade_id_by_name(paygrade_name)
 	var/datum/paygrade/paygrade

@@ -70,15 +70,15 @@
 </p>
 <table style="text-align:center;" cellspacing="0" width="100%">
 <tr>
-<th>Records:</th>
+<th>记录：</th>
 </tr>
 </table>
 <table style="text-align:center;" border="1" cellspacing="0" width="100%">
 <tr>
-<th><A href='byond://?src=\ref[src];choice=Sorting;sort=name'>Name</A></th>
-<th><A href='byond://?src=\ref[src];choice=Sorting;sort=id'>ID</A></th>
-<th><A href='byond://?src=\ref[src];choice=Sorting;sort=rank'>Rank</A></th>
-<th>Criminal Status</th>
+<th><A href='byond://?src=\ref[src];choice=Sorting;sort=name'>姓名</A></th>
+<th><A href='byond://?src=\ref[src];choice=Sorting;sort=id'>编号</A></th>
+<th><A href='byond://?src=\ref[src];choice=Sorting;sort=rank'>职位</A></th>
+<th>犯罪状态</th>
 </tr>"}
 				if(!isnull(GLOB.data_core.general))
 					for(var/datum/data/record/R in sortRecord(GLOB.data_core.general, sortBy, order))
@@ -106,71 +106,71 @@
 						dat += text("<tr style=[]><td><A href='byond://?src=\ref[];choice=Browse Record;d_rec=\ref[]'>[]</a></td>", background, src, R, R.fields["name"])
 						dat += text("<td>[]</td>", R.fields["id"])
 						dat += text("<td>[]</td>", R.fields["rank"])
-						dat += text("<td>[]</td></tr>", crimstat)
+						dat += text("<td>[]</td></tr>", localized_player_label(crimstat))
 					dat += "</table><hr width='75%' />"
 				dat += text("<A href='byond://?src=\ref[];choice=Record Maintenance'>记录维护</A><br><br>", src)
 			if(2.0)
 				dat += "<B>记录维护</B><HR>"
 				dat += "<BR><A href='byond://?src=\ref[src];choice=Delete All Records'>删除全部记录</A><BR><BR><A href='byond://?src=\ref[src];choice=Return'>返回</A>"
 			if(3.0)
-				dat += "<CENTER><B>Security Record</B></CENTER><BR>"
+				dat += "<CENTER><B>安保记录</B></CENTER><BR>"
 				if ((istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1)))
 					dat += text("<table><tr><td> \
-					Name: <A href='byond://?src=\ref[src];choice=Edit Field;field=name'>[active1.fields["name"]]</A><BR> \
-					ID: [active1.fields["id"]]<BR>\n \
-					Sex: <A href='byond://?src=\ref[src];choice=Edit Field;field=sex'>[active1.fields["sex"]]</A><BR>\n \
-					Age: <A href='byond://?src=\ref[src];choice=Edit Field;field=age'>[active1.fields["age"]]</A><BR>\n \
-					Rank: <A href='byond://?src=\ref[src];choice=Edit Field;field=rank'>[active1.fields["rank"]]</A><BR>\n \
-					Physical Status: [active1.fields["p_stat"]]<BR>\n \
-					Mental Status: [active1.fields["m_stat"]]<BR></td> \
-					<td align = center valign = top>Photo:<br> \
-					<table><td align = center><img src=front.png height=80 width=80 border=4><BR><A href='byond://?src=\ref[src];choice=Edit Field;field=photo front'>Update front photo</A></td> \
-					<td align = center><img src=side.png height=80 width=80 border=4><BR><A href='byond://?src=\ref[src];choice=Edit Field;field=photo side'>Update side photo</A></td></table> \
+					姓名：<A href='byond://?src=\ref[src];choice=Edit Field;field=name'>[active1.fields["name"]]</A><BR> \
+					编号：[active1.fields["id"]]<BR>\n \
+					性别：<A href='byond://?src=\ref[src];choice=Edit Field;field=sex'>[localized_player_label(active1.fields["sex"])]</A><BR>\n \
+					年龄：<A href='byond://?src=\ref[src];choice=Edit Field;field=age'>[active1.fields["age"]]</A><BR>\n \
+					职位：<A href='byond://?src=\ref[src];choice=Edit Field;field=rank'>[localized_player_label(active1.fields["rank"])]</A><BR>\n \
+					身体状况：[localized_player_label(active1.fields["p_stat"])]<BR>\n \
+					精神状态：[localized_player_label(active1.fields["m_stat"])]<BR></td> \
+					<td align = center valign = top>照片：<br> \
+					<table><td align = center><img src=front.png height=80 width=80 border=4><BR><A href='byond://?src=\ref[src];choice=Edit Field;field=photo front'>更新正面照</A></td> \
+					<td align = center><img src=side.png height=80 width=80 border=4><BR><A href='byond://?src=\ref[src];choice=Edit Field;field=photo side'>更新侧面照</A></td></table> \
 					</td></tr></table>")
 				else
-					dat += "<B>General Record Lost!</B><BR>"
+					dat += "<B>常规记录丢失！</B><BR>"
 				if ((istype(active2, /datum/data/record) && GLOB.data_core.security.Find(active2)))
-					dat += text("<BR>\n<CENTER><B>Security Data</B></CENTER><BR>\n \
-								Criminal Status: <A href='byond://?src=\ref[];choice=Edit Field;field=criminal'>[]</A><BR> \n \
-								Incidents: [active2.fields["incident"]]<BR>\n \
-								\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", \
-								src, active2.fields["criminal"])
+					dat += text("<BR>\n<CENTER><B>安保信息</B></CENTER><BR>\n \
+								犯罪状态：<A href='byond://?src=\ref[];choice=Edit Field;field=criminal'>[]</A><BR> \n \
+								事件：[active2.fields["incident"]]<BR>\n \
+								\n<BR>\n<CENTER><B>备注与日志</B></CENTER><BR>", \
+								src, localized_player_label(active2.fields["criminal"]))
 					if(islist(active2.fields["comments"]))
 						var/counter = 1
 						for(var/com_i in active2.fields["comments"])
 							var/comment = active2.fields["comments"][com_i]
 							var/comment_markup = text("<b>[] / [] ([])</b>\n", comment["created_at"], comment["created_by"]["name"], comment["created_by"]["rank"])
 							if (isnull(comment["deleted_by"]))
-								comment_markup += text("<a href='byond://?src=\ref[];choice=Delete Entry;del_c=[]'>Delete comment</a>", src, counter)
+								comment_markup += text("<a href='byond://?src=\ref[];choice=Delete Entry;del_c=[]'>删除备注</a>", src, counter)
 								comment_markup += text("<br />[]", comment["entry"])
 							else
-								comment_markup += text("<br /><i>Comment deleted by [] at []</i>", comment["deleted_by"], comment["deleted_at"])
+								comment_markup += text("<br /><i>备注已由[]于[]删除</i>", comment["deleted_by"], comment["deleted_at"])
 							counter++
 							dat += "[comment_markup]<br /><br />"
 					else
-						dat += "No comments<br><br>"
-					dat += text("<a href='byond://?src=\ref[];choice=Add Entry'>Add comment</a><br /><br />", src)
+						dat += "没有备注<br><br>"
+					dat += text("<a href='byond://?src=\ref[];choice=Add Entry'>添加备注</a><br /><br />", src)
 				else
-					dat += "<B>Security Record Lost!</B><BR>"
-					dat += text("<A href='byond://?src=\ref[];choice=New Record (Security)'>New Security Record</A><BR><BR>", src)
-				dat += text("\n<A href='byond://?src=\ref[];choice=Print Record'>Print Record</A><BR>\n<A href='byond://?src=\ref[];choice=Return'>Back</A><BR>", src, src)
+					dat += "<B>安保记录丢失！</B><BR>"
+					dat += text("<A href='byond://?src=\ref[];choice=New Record (Security)'>新建安保记录</A><BR><BR>", src)
+				dat += text("\n<A href='byond://?src=\ref[];choice=Print Record'>打印记录</A><BR>\n<A href='byond://?src=\ref[];choice=Return'>返回</A><BR>", src, src)
 			if(4.0)
 				if(!length(Perp))
-					dat += text("ERROR.  String could not be located.<br><br><A href='byond://?src=\ref[];choice=Return'>Back</A>", src)
+					dat += text("错误：找不到该字符串。<br><br><A href='byond://?src=\ref[];choice=Return'>返回</A>", src)
 				else
 					dat += {"
 <table style="text-align:center;" cellspacing="0" width="100%">
 <tr> "}
-					dat += text("<th>Search Results for '[]':</th>", tempname)
+					dat += text("<th>“[]”的搜索结果：</th>", tempname)
 					dat += {"
 </tr>
 </table>
 <table style="text-align:center;" border="1" cellspacing="0" width="100%">
 <tr>
-<th>Name</th>
-<th>ID</th>
-<th>Rank</th>
-<th>Criminal Status</th>
+<th>姓名</th>
+<th>编号</th>
+<th>职位</th>
+<th>犯罪状态</th>
 </tr> "}
 					for(var/i=1, i<=length(Perp), i += 2)
 						var/crimstat = ""
@@ -198,13 +198,13 @@
 						dat += text("<tr style=[]><td><A href='byond://?src=\ref[];choice=Browse Record;d_rec=\ref[]'>[]</a></td>", background, src, R, R.fields["name"])
 						dat += text("<td>[]</td>", R.fields["id"])
 						dat += text("<td>[]</td>", R.fields["rank"])
-						dat += text("<td>[]</td></tr>", crimstat)
+						dat += text("<td>[]</td></tr>", localized_player_label(crimstat))
 					dat += "</table><hr width='75%' />"
-					dat += text("<br><A href='byond://?src=\ref[];choice=Return'>Return to index.</A>", src)
+					dat += text("<br><A href='byond://?src=\ref[];choice=Return'>返回索引。</A>", src)
 			if(5)
 				dat += generate_fingerprint_menu()
 
-	show_browser(user, dat, "Security Records", "secure_rec", width = 600, height = 400)
+	show_browser(user, dat, "安保记录", "secure_rec", width = 600, height = 400)
 	return
 
 /*Revised /N
@@ -250,7 +250,7 @@ What a mess.*/
 				var/refkey = ""
 				for(var/obj/effect/decal/prints/print in scanner.print_list)
 					refkey += print.criminal_name
-				P.name = "fingerprint report ([md5(refkey)])"
+				P.name = "指纹报告（[md5(refkey)]）"
 				playsound(loc, 'sound/machines/twobeep.ogg', 15, 1)
 
 			if("return_menu")
@@ -297,7 +297,7 @@ What a mess.*/
 				var/datum/data/record/R = locate(href_list["d_rec"])
 				var/S = locate(href_list["d_rec"])
 				if (!( GLOB.data_core.general.Find(R) ))
-					temp = "Record Not Found!"
+					temp = "未找到记录！"
 				else
 					for(var/datum/data/record/E in GLOB.data_core.security)
 						if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
@@ -318,15 +318,15 @@ What a mess.*/
 						record2 = active2
 					sleep(50)
 					var/obj/item/paper/P = new /obj/item/paper( loc )
-					P.info = "<CENTER><B>Security Record</B></CENTER><BR>"
+					P.info = "<CENTER><B>安保记录</B></CENTER><BR>"
 					if (record1)
-						P.info += text("Name: []<br />\nID: []<br />\nSex: []<br />\nAge: []<br />\nRank: []<br />\nPhysical Status: []<br />\nMental Status: []<br />Criminal Status: []<br />", record1.fields["name"], record1.fields["id"], record1.fields["sex"], record1.fields["age"], record1.fields["rank"], record1.fields["p_stat"], record1.fields["m_stat"], record2.fields["criminal"])
-						P.name = text("Security Record ([])", record1.fields["name"])
+						P.info += text("姓名：[]<br />\n编号：[]<br />\n性别：[]<br />\n年龄：[]<br />\n职位：[]<br />\n身体状况：[]<br />\n精神状态：[]<br />犯罪状态：[]<br />", record1.fields["name"], record1.fields["id"], localized_player_label(record1.fields["sex"]), record1.fields["age"], localized_player_label(record1.fields["rank"]), localized_player_label(record1.fields["p_stat"]), localized_player_label(record1.fields["m_stat"]), localized_player_label(record2.fields["criminal"]))
+						P.name = text("安保记录（[]）", record1.fields["name"])
 					else
-						P.info += "<b>General Record Lost!</b><br />"
-						P.name = "Security Record"
+						P.info += "<b>常规记录丢失！</b><br />"
+						P.name = "安保记录"
 					if (record2)
-						P.info += text("<BR>\n<CENTER><B>Security Data</B></CENTER><BR>\nIncidents: [record2.fields["incident"]]<BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>")
+						P.info += text("<BR>\n<CENTER><B>安保信息</B></CENTER><BR>\n事件：[record2.fields["incident"]]<BR>\n<BR>\n<CENTER><B>备注与日志</B></CENTER><BR>")
 						if(islist(record2.fields["comments"]) || length(record2.fields["comments"]) > 0)
 							for(var/com_i in record2.fields["comments"])
 								var/comment = record2.fields["comments"][com_i]
@@ -334,27 +334,27 @@ What a mess.*/
 								if (isnull(comment["deleted_by"]))
 									comment_markup += comment["entry"]
 								else
-									comment_markup += text("<i>Comment deleted by [] at []</i>", comment["deleted_by"], comment["deleted_at"])
+									comment_markup += text("<i>备注已由[]于[]删除</i>", comment["deleted_by"], comment["deleted_at"])
 								P.info += "[comment_markup]<br /><br />"
 						else
-							P.info += text("<b>No comments</b><br />")
+							P.info += text("<b>没有备注</b><br />")
 					else
-						P.info += "<B>Security Record Lost!</B><BR>"
+						P.info += "<B>安保记录丢失！</B><BR>"
 					P.info += "</TT>"
 					printing = null
 					updateUsrDialog()
 //RECORD DELETE
 			if ("Delete All Records")
 				temp = ""
-				temp += "Are you sure you wish to delete all Security records?<br>"
-				temp += "<a href='byond://?src=\ref[src];choice=Purge All Records'>Yes</a><br>"
-				temp += "<a href='byond://?src=\ref[src];choice=Clear Screen'>No</a>"
+				temp += "确定要删除全部安保记录吗？<br>"
+				temp += "<a href='byond://?src=\ref[src];choice=Purge All Records'>是</a><br>"
+				temp += "<a href='byond://?src=\ref[src];choice=Clear Screen'>否</a>"
 
 			if ("Purge All Records")
 				for(var/datum/data/record/R in GLOB.data_core.security)
 					GLOB.data_core.security -= R
 					qdel(R)
-				temp = "All Security records deleted."
+				temp = "全部安保记录已删除。"
 				msg_admin_niche("[key_name_admin(usr)] deleted all security records.")
 
 			if ("Add Entry")
@@ -364,7 +364,7 @@ What a mess.*/
 				var/new_value = copytext(trim(strip_html(input("你的姓名和时间将记录在这条新备注中。", "添加备注", null, null)  as message)),1,MAX_RECORDS_MESSAGE_LEN)
 				if((!new_value || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isSilicon(usr))) || active2 != a2))
 					return
-				var/created_at = text("[]&nbsp;&nbsp;[]&nbsp;&nbsp;[]", time2text(world.realtime, "MMM DD"), time2text(world.time, "[worldtime2text()]:ss"), GLOB.game_year)
+				var/created_at = text("[]&nbsp;&nbsp;[]&nbsp;&nbsp;[]", time2text(world.realtime, "MM月DD日"), time2text(world.time, "[worldtime2text()]:ss"), GLOB.game_year)
 				var/new_comment = list("entry" = new_value, "created_by" = list("name" = "", "rank" = ""), "deleted_by" = null, "deleted_at" = null, "created_at" = created_at)
 				if(istype(usr,/mob/living/carbon/human))
 					var/mob/living/carbon/human/U = usr
@@ -374,7 +374,7 @@ What a mess.*/
 				else
 					var/new_com_i = length(active2.fields["comments"]) + 1
 					active2.fields["comments"]["[new_com_i]"] = new_comment
-				to_chat(usr, text("You have added a new comment to the Security Record of [].", active2.fields["name"]))
+				to_chat(usr, text("你已为[]的安保记录添加了一条备注。", active2.fields["name"]))
 				msg_admin_niche("[key_name_admin(usr)] added a security comment for [active1.fields["name"]] ([active1.fields["id"]]): [new_value].")
 
 			if ("Delete Entry")
@@ -387,9 +387,9 @@ What a mess.*/
 						var/mob/living/carbon/human/U = usr
 						deleter = "[U.get_authentification_name()] ([U.get_assignment()])"
 					updated_comments[href_list["del_c"]]["deleted_by"] = deleter
-					updated_comments[href_list["del_c"]]["deleted_at"] = text("[]&nbsp;&nbsp;[]&nbsp;&nbsp;[]", time2text(world.realtime, "MMM DD"), time2text(world.time, "[worldtime2text()]:ss"), GLOB.game_year)
+					updated_comments[href_list["del_c"]]["deleted_at"] = text("[]&nbsp;&nbsp;[]&nbsp;&nbsp;[]", time2text(world.realtime, "MM月DD日"), time2text(world.time, "[worldtime2text()]:ss"), GLOB.game_year)
 					active2.fields["comments"] = updated_comments
-					to_chat(usr, text("You have deleted a comment from the Security Record of [].", active2.fields["name"]))
+					to_chat(usr, text("你已从[]的安保记录中删除了一条备注。", active2.fields["name"]))
 //RECORD CREATE
 			if ("New Record (Security)")
 				if ((istype(active1, /datum/data/record) && !( istype(active2, /datum/data/record) )))
@@ -432,26 +432,26 @@ What a mess.*/
 
 					if("criminal")
 						if (istype(active2, /datum/data/record))
-							temp = "<h5>Criminal Status:</h5>"
+							temp = "<h5>犯罪状态：</h5>"
 							temp += "<ul>"
-							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=none'>None</a></li>"
-							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=arrest'>*Arrest*</a></li>"
-							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=incarcerated'>Incarcerated</a></li>"
-							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=released'>Released</a></li>"
-							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=suspect'>Suspect</a></li>"
-							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=njp'>NJP</a></li>"
+							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=none'>无</a></li>"
+							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=arrest'>*待逮捕*</a></li>"
+							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=incarcerated'>已监禁</a></li>"
+							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=released'>已释放</a></li>"
+							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=suspect'>嫌疑人</a></li>"
+							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=njp'>非司法惩处</a></li>"
 							temp += "</ul>"
 
 					if("rank")
 						//This was so silly before the change. Now it actually works without beating your head against the keyboard. /N
 						if (istype(active1, /datum/data/record) && GLOB.uscm_highcom_paygrades.Find(rank))
-							temp = "<h5>Occupation:</h5>"
+							temp = "<h5>职位：</h5>"
 							temp += "<ul>"
 							for(var/rank in GLOB.joblist)
 								temp += "<li><a href='byond://?src=\ref[src];choice=Change Rank;rank=[rank]'>[rank]</a></li>"
 							temp += "</ul>"
 						else
-							alert(usr, "你的军衔不满足此操作要求！")
+							localized_native_alert(usr, "你的军衔不满足此操作要求！")
 
 					if("species")
 						if (istype(active1, /datum/data/record))
@@ -505,17 +505,17 @@ What a mess.*/
 
 	for(var/obj/effect/decal/prints/prints in scanner.print_list)
 		dat += "<table><tr><td>"
-		dat += "Name: [prints.criminal_name]<BR>"
+		dat += "姓名：[prints.criminal_name]<BR>"
 		if(prints.criminal_squad)
-			dat += "Squad: [prints.criminal_squad]<BR>"
+			dat += "小队：[preference_label(prints.criminal_squad)]<BR>"
 		if(prints.criminal_rank)
-			dat += "Rank: [prints.criminal_rank]<BR>"
-		dat += "Description: [prints.description]<BR><hr><BR>"
+			dat += "职位：[preference_label(prints.criminal_rank)]<BR>"
+		dat += "描述：[prints.description]<BR><hr><BR>"
 		dat += "</td></tr></table>"
 
-	dat += "<a href='byond://?src=\ref[src];choice=print_report'>Print Evidence</a><BR>"
-	dat += "<a href='byond://?src=\ref[src];choice=return_menu'>Return</a><BR>"
-	dat += "<a href='byond://?src=\ref[src];choice=return_clear'>Clear Print and Return</a>"
+	dat += "<a href='byond://?src=\ref[src];choice=print_report'>打印证据</a><BR>"
+	dat += "<a href='byond://?src=\ref[src];choice=return_menu'>返回</a><BR>"
+	dat += "<a href='byond://?src=\ref[src];choice=return_clear'>清除指纹并返回</a>"
 
 	return dat
 

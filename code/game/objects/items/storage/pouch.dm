@@ -1163,7 +1163,7 @@
 /obj/item/storage/pouch/pressurized_reagent_canister/verb/flush_container()
 	set category = "Weapons"
 	set name = "Flush Container"
-	set desc = "Forces the container to empty its reagents."
+	set desc = "强制倒空容器内的试剂。"
 	set src in usr
 	if(!inner)
 		to_chat(usr, SPAN_WARNING("There is no container inside this pouch!"))
@@ -1179,7 +1179,7 @@
 /obj/item/storage/pouch/pressurized_reagent_canister/verb/remove_canister()
 	set category = "Weapons"
 	set name = "Remove Canister"
-	set desc = "Removes the Pressurized Canister from the pouch."
+	set desc = "从袋中取出加压罐。"
 	set src in usr
 	if(!inner)
 		to_chat(usr, SPAN_WARNING("There is no container inside this pouch!"))

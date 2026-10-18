@@ -9,7 +9,7 @@
 	hotkey_keys = list("R", "Southwest") // END
 	classic_keys =list("R", "Southwest")
 	name = "toggle_throw_mode"
-	full_name = "Toggle throw mode"
+	full_name = "切换投掷模式"
 	description = "切换当前物品的投掷模式。"
 	category = CATEGORY_CARBON
 	keybind_signal = COMSIG_KB_CARBON_TOGGLETHROWMODE_DOWN
@@ -27,7 +27,7 @@
 	hotkey_keys = list("Ctrl+R", "Ctrl+Southwest") // END
 	classic_keys = list("Ctrl+R", "Ctrl+Southwest")
 	name = "toggle_high_throw_mode"
-	full_name = "Toggle high throw mode"
+	full_name = "切换高抛模式"
 	description = "切换当前物品的投掷模式。此项使用高抛。"
 	category = CATEGORY_CARBON
 	keybind_signal = COMSIG_KB_CARBON_TOGGLETHROWMODE_HIGH_DOWN
@@ -37,7 +37,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Insert")
 	name = "cycle_intent"
-	full_name = "Cycle Intent"
+	full_name = "切换意图"
 	description = "循环切换当前选定的意图。"
 	category = CATEGORY_CARBON
 	keybind_signal = COMSIG_KB_CARBON_CYCLEINTENT_DOWN
@@ -53,7 +53,7 @@
 	hotkey_keys = list("1")
 	classic_keys = list("1")
 	name = "select_help_intent"
-	full_name = "Select help intent"
+	full_name = "选择帮助意图"
 	description = ""
 	category = CATEGORY_CARBON
 	keybind_signal = COMSIG_KB_CARBON_SELECTHELPINTENT_DOWN
@@ -70,7 +70,7 @@
 	hotkey_keys = list("2")
 	classic_keys = list("2")
 	name = "select_disarm_intent"
-	full_name = "Select disarm intent"
+	full_name = "选择缴械意图"
 	description = ""
 	category = CATEGORY_CARBON
 	keybind_signal = COMSIG_KB_CARBON_SELECTDISARMINTENT_DOWN
@@ -87,7 +87,7 @@
 	hotkey_keys = list("3")
 	classic_keys = list("3")
 	name = "select_grab_intent"
-	full_name = "Select grab intent"
+	full_name = "选择抓取意图"
 	description = ""
 	category = CATEGORY_CARBON
 	keybind_signal = COMSIG_KB_CARBON_SELECTGRABINTENT_DOWN
@@ -104,7 +104,7 @@
 	hotkey_keys = list("4")
 	classic_keys = list("4")
 	name = "select_harm_intent"
-	full_name = "Select harm intent"
+	full_name = "选择伤害意图"
 	description = ""
 	category = CATEGORY_CARBON
 	keybind_signal = COMSIG_KB_CARBON_SELECTHARMINTENT_DOWN
@@ -120,7 +120,7 @@
 	hotkey_keys = list("G")
 	classic_keys = list("Unbound")
 	name = "Give_Item"
-	full_name = "Give item"
+	full_name = "递交物品"
 	description = "递出你当前手持的物品。"
 	keybind_signal = COMSIG_KB_CARBON_GIVEITEM_DOWN
 

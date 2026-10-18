@@ -69,7 +69,7 @@
 
 /mob/dead/observer/verb/toggle_ghostsee()
 	set name = "Toggle Ghost Vision"
-	set desc = "Toggles your ability to see things only ghosts can see, like other ghosts"
+	set desc = "切换幽灵视觉，以查看其他幽灵等只有幽灵才能看到的事物。"
 	set category = "Ghost.Settings"
 	ghostvision = !ghostvision
 	if(ghostvision)
@@ -519,7 +519,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/living/verb/ghost()
 	set category = "OOC"
 	set name = "Ghost"
-	set desc = "Relinquish your life and enter the land of the dead."
+	set desc = "放弃生命，进入亡者的世界。"
 
 	do_ghost()
 
@@ -651,7 +651,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/verb/dead_teleport_area()
 	set category = "Ghost"
 	set name = "Teleport to Area"
-	set desc= "Teleport to a location"
+	set desc= "传送至某个位置。"
 
 	if(!istype(usr, /mob/dead/observer))
 		to_chat(src, "<span style='color: red;'>你还没死，不能这样做！</span>")
@@ -707,7 +707,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/verb/follow_local(mob/target in GLOB.mob_list)
 	set category = "Ghost.Follow"
 	set name = "Follow Local Mob"
-	set desc = "Follow on-screen mob"
+	set desc = "跟随屏幕上的角色。"
 
 	do_observe(target)
 
@@ -765,7 +765,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/verb/dead_teleport_mob() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
 	set name = "Teleport to Mob"
-	set desc = "Teleport to a mob"
+	set desc = "传送至某个角色身旁。"
 
 	if(istype(usr, /mob/dead/observer)) //Make sure they're an observer!
 
@@ -879,7 +879,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/verb/hive_status()
 	set name = "Hive Status"
-	set desc = "Check the status of the hive."
+	set desc = "查看巢群状态。"
 	set category = "Ghost.View"
 
 	var/list/hives = list()
@@ -925,7 +925,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/verb/join_as_alien()
 	set category = "Ghost.Join"
 	set name = "Join as Xeno"
-	set desc = "Select an alive but logged-out Xenomorph to rejoin the game."
+	set desc = "选择一只存活但已断线的异形，重新加入游戏。"
 
 	if (!client)
 		return
@@ -940,7 +940,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/verb/join_as_facehugger()
 	set category = "Ghost.Join"
 	set name = "Join as a Facehugger"
-	set desc = "Try joining as a Facehugger from a Carrier or Egg Morpher."
+	set desc = "尝试以搬运者或卵化器中的抱脸虫身份加入。"
 
 	if (!client)
 		return
@@ -955,7 +955,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/verb/join_as_lesser_drone()
 	set category = "Ghost.Join"
 	set name = "Join as a Lesser Drone"
-	set desc = "Try joining as a Lesser Drone to support the hive."
+	set desc = "尝试以次级工蜂身份加入，支援巢群。"
 
 	if (!client)
 		return
@@ -970,7 +970,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/verb/join_as_zombie() //Adapted from join as hellhoud
 	set category = "Ghost.Join"
 	set name = "Join as Zombie"
-	set desc = "Select an alive but logged-out Zombie to rejoin the game."
+	set desc = "选择一只存活但已断线的丧尸，重新加入游戏。"
 
 	if (!client)
 		return
@@ -1025,7 +1025,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/verb/join_as_freed_mob()
 	set category = "Ghost.Join"
 	set name = "Join as Freed Mob"
-	set desc = "Select a freed mob by staff."
+	set desc = "选择工作人员开放的可接管角色。"
 
 	var/mob/M = src
 	if(!M.stat || !M.mind)
@@ -1079,7 +1079,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/verb/join_as_hellhound()
 	set category = "Ghost.Join"
 	set name = "Join as Hellhound"
-	set desc = "Select an alive and available Hellhound. THIS COMES WITH STRICT RULES. READ THEM OR GET BANNED."
+	set desc = "选择一只存活且可接管的地狱猎犬。此角色受严格规则约束，请认真阅读，否则可能被封禁。"
 
 	var/mob/dead/current_mob = src
 	if(!current_mob.stat || !current_mob.mind)
@@ -1117,7 +1117,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/verb/join_as_yautja()
 	set category = "Ghost.Join"
 	set name = "Join the Hunt"
-	set desc = "If you are whitelisted, and it is the right type of round, join in."
+	set desc = "如果你拥有白名单资格，且当前回合类型适用，就可以加入。"
 
 	if (!client)
 		return
@@ -1132,7 +1132,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/verb/join_as_joe()
 	set category = "Ghost.Join"
 	set name = "Join as a Working Joe"
-	set desc = "If you are whitelisted, you'll be able to join in."
+	set desc = "如果你拥有白名单资格，就可以加入。"
 
 	if (!client)
 		return
@@ -1148,7 +1148,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/verb/drop_vote()
 	set category = "Ghost"
 	set name = "Spectator Vote"
-	set desc = "If it's on Hunter Games gamemode, vote on who gets a supply drop!"
+	set desc = "在猎人游戏模式中，投票决定谁能获得补给空投！"
 
 	if(SSticker.current_state < GAME_STATE_PLAYING || !SSticker.mode)
 		to_chat(src, SPAN_WARNING("The game hasn't started yet!"))
@@ -1188,7 +1188,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/verb/go_dnr()
 	set category = "Ghost.Body"
 	set name = "Go DNR"
-	set desc = "Prevent your character from being revived."
+	set desc = "阻止你的角色被复苏。"
 
 	if(alert("要设置为拒绝复苏吗？", "选择拒绝复苏", "Yes", "No") == "Yes")
 		can_reenter_corpse = FALSE
@@ -1202,7 +1202,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/verb/view_kill_feed()
 	set category = "Ghost.View"
 	set name = "View Kill Feed"
-	set desc = "View global kill statistics tied to the game."
+	set desc = "查看游戏的全局击杀统计。"
 
 	if(GLOB.round_statistics)
 		GLOB.round_statistics.show_kill_feed(src)

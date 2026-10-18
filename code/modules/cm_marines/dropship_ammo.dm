@@ -152,7 +152,7 @@
 
 /obj/structure/ship_ammo/heavygun/get_examine_text(mob/user)
 	. = ..()
-	. += "It has [ammo_count] round\s."
+	. += "它还装有[ammo_count]发弹药。"
 
 /obj/structure/ship_ammo/heavygun/show_loaded_desc(mob/user)
 	if(ammo_count)
@@ -417,7 +417,7 @@
 
 /obj/structure/ship_ammo/minirocket/get_examine_text(mob/user)
 	. = ..()
-	. += "It has [ammo_count] minirocket\s."
+	. += "它还装有[ammo_count]枚微型火箭弹。"
 
 
 /obj/structure/ship_ammo/minirocket/incendiary

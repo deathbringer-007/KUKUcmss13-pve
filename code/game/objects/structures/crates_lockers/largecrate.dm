@@ -401,11 +401,11 @@ GLOBAL_LIST_INIT(rbarrel_color_list, list(COLOR_SILVER,
 		to_chat(user, SPAN_NOTICE("你需要用锋利的物品割断绑带。"))
 		return
 
-	to_chat(user, SPAN_NOTICE("You begin to cut the straps off \the [src]..."))
+	to_chat(user, SPAN_NOTICE("你开始割断[src]上的绑带……"))
 
 	if (do_after(user, 15, INTERRUPT_ALL, BUSY_ICON_GENERIC))
 		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-		to_chat(user, SPAN_NOTICE("You cut the straps away."))
+		to_chat(user, SPAN_NOTICE("你割断了绑带。"))
 		icon_state = "secure_crate"
 		strapped = 0
 

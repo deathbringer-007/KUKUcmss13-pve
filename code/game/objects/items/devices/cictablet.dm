@@ -11,7 +11,7 @@
 	var/on = TRUE // 0 for off
 	var/cooldown_between_messages = COOLDOWN_COMM_MESSAGE
 
-	var/tablet_name = "Commanding Officer's Tablet"
+	var/tablet_name = "指挥官平板"
 
 	var/announcement_title = COMMAND_ANNOUNCE
 	var/announcement_faction = FACTION_MARINE
@@ -168,7 +168,7 @@
 /obj/item/device/cotablet/pmc
 	desc = "公司私人军事承包商主管使用的专用设备。"
 
-	tablet_name = "Site Director's Tablet"
+	tablet_name = "基地主管平板"
 
 	announcement_title = PMC_COMMAND_ANNOUNCE
 	announcement_faction = FACTION_PMC
@@ -179,7 +179,7 @@
 
 	desc = "UPP 战地指挥官使用的专用设备。"
 
-	tablet_name = "UPP Field Commander's Tablet"
+	tablet_name = "UPP战地指挥官平板"
 
 	announcement_title = UPP_COMMAND_ANNOUNCE
 	announcement_faction = FACTION_UPP
@@ -191,7 +191,7 @@
 
 	desc = "皇家陆战突击队战地指挥官使用的专用设备。"
 
-	tablet_name = "RMC Field Commander's Tablet"
+	tablet_name = "皇家海军陆战队战地指挥官平板"
 
 	announcement_title = TWE_COMMAND_ANNOUNCE
 	announcement_faction = FACTION_TWE

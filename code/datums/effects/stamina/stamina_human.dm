@@ -41,13 +41,13 @@
 	return PROCESS_KILL
 
 /datum/effects/stamina/human/tier2
-	pain_message = "You feel very tired."
+	pain_message = "你感到十分疲倦。"
 	slowdown = STAMINA_SPEED_MED
 
 
 /datum/effects/stamina/human/tier3
-	pain_message = "You feel exhausted."
-	emote_message = list("yawns.")
+	pain_message = "你感到筋疲力尽。"
+	emote_message = list("打了个哈欠。")
 	slowdown = STAMINA_SPEED_HIGH
 
 /datum/effects/stamina/human/tier3/process_mob()
@@ -63,8 +63,8 @@
 
 
 /datum/effects/stamina/human/tier4
-	pain_message = "You feel like you could drop any moment now!"
-	emote_message = list("is having trouble keeping their eyes open.")
+	pain_message = "你觉得自己随时都可能倒下！"
+	emote_message = list("困得几乎睁不开眼。")
 	slowdown = STAMINA_SPEED_SLOW
 
 /datum/effects/stamina/human/tier4/process_mob()
@@ -84,8 +84,8 @@
 
 
 /datum/effects/stamina/human/tier5
-	pain_message = "You feel like you could drop any moment now!"
-	emote_message = list("is having trouble standing.")
+	pain_message = "你觉得自己随时都可能倒下！"
+	emote_message = list("几乎站不稳了。")
 	slowdown = STAMINA_SPEED_VERYSLOW
 
 /datum/effects/stamina/human/tier5/process_mob()

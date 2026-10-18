@@ -363,13 +363,13 @@
 					if(!isnull(SSticker.mode) && !isnull(SSticker.mode.active_lz) && !isnull(SSticker.mode.active_lz.loc))
 						dat += "<BR>[SSticker.mode.active_lz.loc.loc]"
 					else
-						dat += "<BR><A href='byond://?src=\ref[src];operation=selectlz'>Select primary LZ</A>"
+						dat += "<BR><A href='byond://?src=\ref[src];operation=selectlz'>选择主要着陆区</A>"
 					dat += "<BR><hr>"
-					dat += "<BR><A href='byond://?src=\ref[src];operation=announce'>Make an announcement</A>"
-					dat += length(GLOB.admins) > 0 ? "<BR><A href='byond://?src=\ref[src];operation=messageUSCM'>Send a message to USCM</A>" : "<BR>USCM communication offline"
-					dat += "<BR><A href='byond://?src=\ref[src];operation=award'>Award a medal</A>"
-					dat += "<BR><A href='byond://?src=\ref[src];operation=distress'>Send Distress Beacon</A>"
-					dat += "<BR><A href='byond://?src=\ref[src];operation=destroy'>Activate Self-Destruct</A>"
+					dat += "<BR><A href='byond://?src=\ref[src];operation=announce'>发布公告</A>"
+					dat += length(GLOB.admins) > 0 ? "<BR><A href='byond://?src=\ref[src];operation=messageUSCM'>向USCM发送消息</A>" : "<BR>USCM通讯离线"
+					dat += "<BR><A href='byond://?src=\ref[src];operation=award'>授予勋章</A>"
+					dat += "<BR><A href='byond://?src=\ref[src];operation=distress'>发送求救信标</A>"
+					dat += "<BR><A href='byond://?src=\ref[src];operation=destroy'>启动自毁</A>"
 					switch(SShijack.evac_status)
 						if(EVACUATION_STATUS_NOT_INITIATED)
 							dat += "<BR><A href='byond://?src=\ref[src];operation=evacuation_start'>Initiate emergency evacuation</A>"

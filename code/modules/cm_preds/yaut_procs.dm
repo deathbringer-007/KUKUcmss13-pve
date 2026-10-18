@@ -46,7 +46,7 @@
 /mob/living/carbon/human/proc/butcher()
 	set category = "Yautja.Misc"
 	set name = "肢解"
-	set desc = "Butcher a corpse you're standing on for its tasty meats."
+	set desc = "肢解脚下的尸体，取得鲜美的肉。"
 
 	if(is_mob_incapacitated() || body_position != STANDING_UP || buckled)
 		return
@@ -60,7 +60,7 @@
 					continue
 			choices += M
 
-	var/mob/living/carbon/T = tgui_input_list(src, "你想肢解哪个目标？", "肢解", choices)
+	var/mob/living/carbon/T = localized_input_list(src, "你想肢解哪个目标？", "肢解", choices)
 
 	var/mob/living/carbon/xenomorph/xeno_victim
 	var/mob/living/carbon/human/victim
@@ -105,7 +105,7 @@
 		victim = T
 
 	if(victim)
-		procedure = tgui_input_list(src, "你想切取哪个部位？", "切取部位", procedure_choices)
+		procedure = localized_input_list(src, "你想切取哪个部位？", "切取部位", procedure_choices)
 		if(!procedure)
 			return
 
@@ -131,11 +131,11 @@
 				visible_message(SPAN_DANGER("[src]砍切[T]的四肢，割下滴血的肉条。"), SPAN_NOTICE("你切下[T]的几条肢体，确保取到最好的部位。"))
 				if(xeno_victim && isturf(xeno_victim.loc))
 					var/obj/item/reagent_container/food/snacks/meat/xenomeat = new /obj/item/reagent_container/food/snacks/meat/xenomeat(T.loc)
-					xenomeat.name = "raw [xeno_victim.age_prefix][xeno_victim.caste_type] steak"
+					xenomeat.name = "[localized_player_label(trim(xeno_victim.age_prefix))][localized_player_label(xeno_victim.caste_type)]生肉排"
 				else if(victim && isturf(victim.loc))
 					victim.apply_damage(100, BRUTE, pick("r_leg", "l_leg", "r_arm", "l_arm"), FALSE, TRUE) //Basically just rips off a random limb.
 					var/obj/item/reagent_container/food/snacks/meat/meat = new /obj/item/reagent_container/food/snacks/meat(victim.loc)
-					meat.name = "raw [victim.name] steak"
+					meat.name = "[victim.name]生肉排"
 				T.butchery_progress = 3
 				playsound(loc, 'sound/weapons/bladeslice.ogg', 25)
 			else
@@ -146,10 +146,10 @@
 				visible_message(SPAN_DANGER("[src]扯开[T]的胸腔，开始切下肉块。"), SPAN_NOTICE("你撕开[T]的胸腔，开始扯出最美味的部位。"))
 				if(xeno_victim && isturf(xeno_victim.loc))
 					var/obj/item/reagent_container/food/snacks/meat/xenomeat = new /obj/item/reagent_container/food/snacks/meat/xenomeat(T.loc)
-					xenomeat.name = "raw [xeno_victim.age_prefix][xeno_victim.caste_type] tenderloin"
+					xenomeat.name = "[localized_player_label(trim(xeno_victim.age_prefix))][localized_player_label(xeno_victim.caste_type)]生里脊肉"
 				else if(victim && isturf(T.loc))
 					var/obj/item/reagent_container/food/snacks/meat/meat = new /obj/item/reagent_container/food/snacks/meat(victim.loc)
-					meat.name = "raw [victim.name] tenderloin"
+					meat.name = "[victim.name]生里脊肉"
 					victim.apply_damage(100, BRUTE,"chest", FALSE, FALSE)
 				T.butchery_progress = 4
 				playsound(loc, 'sound/weapons/wristblades_hit.ogg', 25)
@@ -162,22 +162,22 @@
 					visible_message(SPAN_DANGER("[src]剥净了[victim]最后的外骨骼，只剩骨架！"), SPAN_NOTICE("你剥净了[victim]最后的外骨骼！"))
 					new /obj/effect/decal/remains/xeno(xeno_victim.loc)
 					var/obj/item/stack/sheet/animalhide/xeno/xenohide = new /obj/item/stack/sheet/animalhide/xeno(xeno_victim.loc)
-					xenohide.name = "[xeno_victim.age_prefix][xeno_victim.caste_type]-hide"
-					xenohide.singular_name = "[xeno_victim.age_prefix][xeno_victim.caste_type]-hide"
+					xenohide.name = "[localized_player_label(trim(xeno_victim.age_prefix))][localized_player_label(xeno_victim.caste_type)]外皮"
+					xenohide.singular_name = "[localized_player_label(trim(xeno_victim.age_prefix))][localized_player_label(xeno_victim.caste_type)]外皮"
 					xenohide.stack_id = "[xeno_victim.age_prefix][xeno_victim.caste_type]-hide"
 				else if(victim && isturf(T.loc))
 					visible_message(SPAN_DANGER("[src]俯身扯出了[T]的脊髓和头骨！"), SPAN_NOTICE("你牢牢抓住暴露的脊柱，将[T]的头扯了下来！"))
 					if(!(victim.get_limb("head").status & LIMB_DESTROYED))
 						victim.apply_damage(150, BRUTE, "head", FALSE, TRUE)
 						var/obj/item/clothing/accessory/limb/skeleton/head/spine/new_spine = new /obj/item/clothing/accessory/limb/skeleton/head/spine(victim.loc)
-						new_spine.name = "[victim]'s spine"
+						new_spine.name = "[victim]的脊柱"
 					else
 						var/obj/item/reagent_container/food/snacks/meat/meat = new /obj/item/reagent_container/food/snacks/meat(victim.loc)
-						meat.name = "raw [victim.real_name] steak"
+						meat.name = "[victim.real_name]生肉排"
 						new /obj/item/clothing/accessory/limb/skeleton/torso(victim.loc)
 					var/obj/item/stack/sheet/animalhide/human/hide = new /obj/item/stack/sheet/animalhide/human(victim.loc)
-					hide.name = "[victim.name]-hide"
-					hide.singular_name = "[victim.name]-hide"
+					hide.name = "[victim.name]外皮"
+					hide.singular_name = "[victim.name]外皮"
 					hide.stack_id = "[victim.name]-hide"
 					new /obj/effect/decal/remains/human(T.loc)
 				if(T.legcuffed)
@@ -187,7 +187,7 @@
 				if(hunter_data.prey == T)
 					to_chat(src, SPAN_YAUTJABOLD("你将[T]收为了战利品。"))
 					emote("roar2")
-					message_all_yautja("[src.real_name] has claimed [T] as their trophy.")
+					message_all_yautja("[src.real_name]已将[T]收为战利品。")
 					hunter_data.prey = null
 				else
 					to_chat(src, SPAN_NOTICE("你完成了肢解！"))
@@ -196,7 +196,7 @@
 				to_chat(src, SPAN_NOTICE("你暂停肢解，留待稍后继续。"))
 	else
 		var/limb = procedure_choices[procedure]
-		var/limbName = parse_zone(limb)
+		var/limbName = localized_player_label(parse_zone(limb))
 		if(victim.get_limb(limb).status & LIMB_DESTROYED)
 			to_chat(src, SPAN_WARNING("受害者没有[limbName]。"))
 			return
@@ -213,7 +213,7 @@
 			if(hunter_data.prey == T)
 				to_chat(src, SPAN_YAUTJABOLD("你将[T]收为了战利品。"))
 				emote("roar2")
-				message_all_yautja("[src.real_name] has claimed [T] as their trophy.")
+				message_all_yautja("[src.real_name]已将[T]收为战利品。")
 				hunter_data.prey = null
 			else
 				to_chat(src, SPAN_NOTICE("你完成了肢解！"))
@@ -230,7 +230,7 @@
 /mob/living/carbon/human/proc/pred_buy()
 	set category = "Yautja.Misc"
 	set name = "Claim Equipment"
-	set desc = "When you're on the Predator ship, claim some gear. You can only do this ONCE."
+	set desc = "在铁血飞船上领取装备。此操作只能进行一次。"
 
 	if(hunter_data.claimed_equipment)
 		to_chat(src, SPAN_WARNING("你已经领取过装备了。"))
@@ -253,7 +253,7 @@
 		to_chat(src, SPAN_WARNING("你需要佩戴护腕才能这样做。"))
 		return
 
-	var/sure = alert("一系列强力武器展现在你面前。请谨慎选择装备。若在任何一步取消，将无法领取装备。", "确定？", "Begin the Hunt", "No, not now")
+	var/sure = localized_native_alert(usr, "一系列强力武器展现在你面前。请谨慎选择装备。若在任何一步取消，将无法领取装备。", "确定？", "Begin the Hunt", "No, not now")
 	if(sure != "Begin the Hunt")
 		return
 
@@ -265,20 +265,20 @@
 	var/total_secondaries = 2
 
 	var/use_radials = src.client.prefs?.no_radials_preference ? FALSE : TRUE
-	var/main_weapon = use_radials ? show_radial_menu(src, src, melee) : tgui_input_list(usr, "你想使用哪种武器狩猎？", "近战武器", melee)
+	var/main_weapon = use_radials ? localized_radial_menu(src, src, melee) : localized_input_list(usr, "你想使用哪种武器狩猎？", "近战武器", melee)
 
 	if(main_weapon == YAUTJA_GEAR_SCYTHE)
 		var/list/scythe_variants = list(YAUTJA_GEAR_SCYTHE = image(icon = 'icons/obj/items/hunter/pred_gear.dmi', icon_state = "predscythe"), YAUTJA_GEAR_SCYTHE_ALT = image(icon = 'icons/obj/items/hunter/pred_gear.dmi', icon_state = "predscythe_alt"))
-		main_weapon = use_radials ? show_radial_menu(src, src, scythe_variants) : tgui_input_list(usr, "选择哪种战镰？", "近战武器", scythe_variants)
+		main_weapon = use_radials ? localized_radial_menu(src, src, scythe_variants) : localized_input_list(usr, "选择哪种战镰？", "近战武器", scythe_variants)
 
 	if(main_weapon == YAUTJA_GEAR_GLAIVE)
 		var/list/glaive_variants = list(YAUTJA_GEAR_GLAIVE = image(icon = 'icons/obj/items/hunter/pred_gear.dmi', icon_state = "glaive"), YAUTJA_GEAR_GLAIVE_ALT = image(icon = 'icons/obj/items/hunter/pred_gear.dmi', icon_state = "glaive_alt"))
-		main_weapon = use_radials ? show_radial_menu(src, src, glaive_variants) : tgui_input_list(usr, "选择哪种战刃？", "近战武器", glaive_variants)
+		main_weapon = use_radials ? localized_radial_menu(src, src, glaive_variants) : localized_input_list(usr, "选择哪种战刃？", "近战武器", glaive_variants)
 
 	if(!main_weapon)
 		return
 	for(var/i = 1 to total_secondaries)
-		var/secondary = use_radials ? show_radial_menu(src, src, other) : tgui_input_list(usr, "你想携带哪种辅助装备？", "物品[i]（共[total_secondaries]件）", other)
+		var/secondary = use_radials ? localized_radial_menu(src, src, other) : localized_input_list(usr, "你想携带哪种辅助装备？", "物品[i]（共[total_secondaries]件）", other)
 		if(!secondary)
 			return
 		secondaries += secondary

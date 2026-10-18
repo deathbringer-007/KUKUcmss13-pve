@@ -40,7 +40,7 @@
 			to_chat(user, SPAN_WARNING("你需要先设置目的地！"))
 
 	else if(HAS_TRAIT(W, TRAIT_TOOL_PEN))
-		switch(alert("你想修改什么？",,"Title","Description", "Cancel"))
+		switch(localized_native_alert(usr, "你想修改什么？",,"Title","Description", "Cancel"))
 			if("Title")
 				var/str = trim(strip_html(input(usr,"标签文字？","设置标签","")))
 				if(!str || !length(str))
@@ -48,7 +48,7 @@
 					return
 				user.visible_message("[user]用[W]给[src]题名，写下：\"[str]\"",\
 				SPAN_NOTICE("你给[src]题名：\"[str]\""),\
-				"You hear someone scribbling a note.")
+				"你听见有人正在写便条。")
 				name = "[name] ([str])"
 				if(!examtext && !nameset)
 					nameset = 1
@@ -67,7 +67,7 @@
 					examtext = str
 				user.visible_message("[user]用[W]给[src]贴上标签，写下：\"[examtext]\"",\
 				SPAN_NOTICE("你给[src]贴上标签：\"[examtext]\""),\
-				"You hear someone scribbling a note.")
+				"你听见有人正在写便条。")
 
 /obj/structure/bigDelivery/update_icon()
 	overlays = new()
@@ -147,7 +147,7 @@
 			to_chat(user, SPAN_WARNING("你需要先设置目的地！"))
 
 	else if(HAS_TRAIT(W, TRAIT_TOOL_PEN))
-		switch(alert("你想修改什么？",,"Title","Description", "Cancel"))
+		switch(localized_native_alert(usr, "你想修改什么？",,"Title","Description", "Cancel"))
 			if("Title")
 				var/str = trim(strip_html(input(usr,"标签文字？","设置标签","")))
 				if(!str || !length(str))
@@ -155,7 +155,7 @@
 					return
 				user.visible_message("[user]用[W]给[src]题名，写下：\"[str]\"",\
 				SPAN_NOTICE("你给[src]题名：\"[str]\""),\
-				"You hear someone scribbling a note.")
+				"你听见有人正在写便条。")
 				name = "[name] ([str])"
 				if(!examtext && !nameset)
 					nameset = 1
@@ -175,7 +175,7 @@
 					examtext = str
 				user.visible_message("[user]用[W]给[src]贴上标签，写下：\"[examtext]\"",\
 				SPAN_NOTICE("你给[src]贴上标签：\"[examtext]\""),\
-				"You hear someone scribbling a note.")
+				"你听见有人正在写便条。")
 	return
 
 /obj/item/smallDelivery/update_icon()
@@ -250,23 +250,23 @@
 			if(i in list(1,2,3,4,5))
 				P.icon_state = "deliverycrate[i]"
 				switch(i)
-					if(1) P.name = "tiny parcel"
-					if(3) P.name = "normal-sized parcel"
-					if(4) P.name = "large parcel"
-					if(5) P.name = "huge parcel"
+					if(1) P.name = "微型包裹"
+					if(3) P.name = "普通包裹"
+					if(4) P.name = "大型包裹"
+					if(5) P.name = "巨型包裹"
 			if(i < 1)
 				P.icon_state = "deliverycrate1"
-				P.name = "tiny parcel"
+				P.name = "微型包裹"
 			if(i > 5)
 				P.icon_state = "deliverycrate5"
-				P.name = "huge parcel"
+				P.name = "巨型包裹"
 			P.add_fingerprint(usr)
 			O.add_fingerprint(usr)
 			src.add_fingerprint(usr)
 			src.amount--
 			user.visible_message("[user]用[src]包装了[target]。",\
 			SPAN_NOTICE("你包装了[target]，[src]还剩[amount]单位包装纸。"),\
-			"You hear someone taping paper around a small object.")
+			"你听见有人正用胶带和包装纸包裹一件小物品。")
 	else if (istype(target, /obj/structure/closet/crate))
 		var/obj/structure/closet/crate/crate = target
 		var/answer = tgui_alert(user, "要包装箱子以便投递，还是自定义箱子？", "箱子包装", list("Customize", "Wrap"))
@@ -293,7 +293,7 @@
 				amount -= 3
 				user.visible_message("[user]用[src]包装了[target]。",\
 				SPAN_NOTICE("你包装了[target]，[src]还剩[amount]单位包装纸。"),\
-				"You hear someone taping paper around a large object.")
+				"你听见有人正用胶带和包装纸包裹一件大物品。")
 			else if(amount < 3)
 				to_chat(user, SPAN_WARNING("你需要更多包装纸。"))
 	else if (istype (target, /obj/structure/closet))
@@ -306,7 +306,7 @@
 			amount -= 3
 			user.visible_message("[user]用[src]包装了[target]。",\
 			SPAN_NOTICE("你包装了[target]，[src]还剩[amount]单位包装纸。"),\
-			"You hear someone taping paper around a large object.")
+			"你听见有人正用胶带和包装纸包裹一件大物品。")
 		else if(amount < 3)
 			to_chat(user, SPAN_WARNING("你需要更多包装纸。"))
 	else

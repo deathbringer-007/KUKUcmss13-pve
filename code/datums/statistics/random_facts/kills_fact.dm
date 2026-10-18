@@ -1,6 +1,6 @@
 /datum/random_fact/kills
-	statistic_name = "kills"
-	statistic_verb = "earned"
+	statistic_name = "次击杀"
+	statistic_verb = "获得了"
 
 /datum/random_fact/kills/life_grab_stat(mob/fact_mob)
 	return fact_mob.life_kills_total

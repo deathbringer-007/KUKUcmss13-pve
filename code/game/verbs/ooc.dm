@@ -60,7 +60,7 @@
 
 /client/proc/set_ooc_color_global(newColor as color)
 	set name = "OOC Text Color - Global"
-	set desc = "Set to yellow for eye burning goodness."
+	set desc = "设成黄色，体验刺眼的美妙感觉。"
 	set category = "OOC.OOC"
 	GLOB.ooc_color_override = newColor
 
@@ -87,7 +87,7 @@
 
 /client/verb/looc(msg as text)
 	set name = "LOOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
-	set desc = "Local OOC, seen only by those in view."
+	set desc = "本地场外聊天，只有视野范围内的人能看到。"
 	set category = "OOC.OOC"
 
 	if(!mob) return
@@ -173,7 +173,7 @@
 
 /client/verb/round_info()
 	set name = "Current Map" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
-	set desc = "Information about the current round"
+	set desc = "查看当前回合的信息。"
 	set category = "OOC"
 	to_chat_spaced(usr, html = FONT_SIZE_LARGE(SPAN_NOTICE("当前地图：[SSmapping.configs[GROUND_MAP].map_name]")))
 
@@ -181,7 +181,7 @@
 // If this happens, let the player manually close them all
 /client/verb/fixnanoui()
 	set name = "Fix Interfaces"
-	set desc = "Fixes all broken interfaces by forcing all existing ones to close"
+	set desc = "强制关闭所有现有界面，以修复失效的界面。"
 	set category = "OOC.Fix"
 
 	if(!mob)
@@ -200,7 +200,7 @@
 /client/verb/fit_viewport()
 	set name = "Fit Viewport"
 	set category = "OOC"
-	set desc = "Fit the width of the map window to match the viewport"
+	set desc = "调整地图窗口宽度，使其适配视口。"
 
 	// Fetch aspect ratio
 	var/view_size = getviewsize(view)

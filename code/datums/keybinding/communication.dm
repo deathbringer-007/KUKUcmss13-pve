@@ -5,41 +5,41 @@
 	hotkey_keys = list("T")
 	classic_keys = list("F3")
 	name = SAY_CHANNEL
-	full_name = "IC Say"
+	full_name = "角色发言"
 	keybind_signal = COMSIG_KB_CLIENT_SAY_DOWN
 
 /datum/keybinding/client/communication/ooc
 	hotkey_keys = list("O")
 	classic_keys = list("F2")
 	name = OOC_CHANNEL
-	full_name = "Out Of Character Say (OOC)"
+	full_name = "角色外发言（OOC）"
 	keybind_signal = COMSIG_KB_CLIENT_OOC_DOWN
 
 /datum/keybinding/client/communication/looc
 	hotkey_keys = list("L")
 	classic_keys = list("Unbound")
 	name = LOOC_CHANNEL
-	full_name = "Local Out Of Character Say (OOC)"
+	full_name = "本地角色外发言（LOOC）"
 	keybind_signal = COMSIG_KB_CLIENT_LOOC_DOWN
 
 /datum/keybinding/client/communication/me
 	hotkey_keys = list("M")
 	classic_keys = list("F4")
 	name = ME_CHANNEL
-	full_name = "Custom Emote (/Me)"
+	full_name = "自定义动作（/Me）"
 	keybind_signal = COMSIG_KB_CLIENT_ME_DOWN
 
 /datum/keybinding/client/communication/whisper
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = WHISPER_CHANNEL
-	full_name = "IC Whisper"
+	full_name = "角色低语"
 	keybind_signal = COMSIG_KB_CLIENT_WHISPER_DOWN
 
 /datum/keybinding/client/communication/radiochannels
 	hotkey_keys = list("Y")
 	name = COMMS_CHANNEL
-	full_name = "IC Comms (;)"
+	full_name = "角色无线电通信（;）"
 	keybind_signal = COMSIG_KG_CLIENT_RADIO_DOWN
 
 /datum/keybinding/client/communication/asay

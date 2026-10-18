@@ -34,18 +34,18 @@
 	icon_dead = "parrot_dead"
 	mob_size = MOB_SIZE_SMALL
 	status_flags = parent_type::status_flags & ~CANPUSH
-	speak = list("Hi","Hello!","Cracker?","BAWWWWK george mellons griffing me")
-	speak_emote = list("squawks","says","yells")
-	emote_hear = list("squawks","bawks")
-	emote_see = list("flutters its wings")
+	speak = list("嗨","你好！","饼干？","嘎——乔治·梅隆在捣乱！")
+	speak_emote = list("嘎嘎叫","说道","喊道")
+	emote_hear = list("嘎嘎叫","嘎嘎叫")
+	emote_see = list("扑扇翅膀")
 
 	speak_chance = 1//1% (1 in 100) chance every tick; So about once per 150 seconds, assuming an average tick is 1.5s
 	turns_per_move = 5
 	meat_type = /obj/item/reagent_container/food/snacks/cracker
 
-	response_help  = "pets the"
-	response_disarm = "gently moves aside the"
-	response_harm   = "swats the"
+	response_help  = "抚摸"
+	response_disarm = "轻轻推开"
+	response_harm   = "拍打"
 	stop_automated_movement = 1
 	universal_speak = 1
 
@@ -554,7 +554,7 @@
 /mob/living/simple_animal/parrot/proc/steal_from_ground()
 	set name = "Steal from ground"
 	set category = "Parrot"
-	set desc = "Grabs a nearby item."
+	set desc = "抓取附近的一件物品。"
 
 	if(stat)
 		return -1
@@ -582,7 +582,7 @@
 /mob/living/simple_animal/parrot/proc/steal_from_mob()
 	set name = "Steal from mob"
 	set category = "Parrot"
-	set desc = "Steals an item right out of a person's hand!"
+	set desc = "直接从某人手中偷走一件物品！"
 
 	if(stat)
 		return -1
@@ -612,7 +612,7 @@
 /mob/living/simple_animal/parrot/verb/drop_held_item_player()
 	set name = "Drop held item"
 	set category = "Parrot"
-	set desc = "Drop the item you're holding."
+	set desc = "放下你抓着的物品。"
 
 	if(stat)
 		return
@@ -624,7 +624,7 @@
 /mob/living/simple_animal/parrot/proc/drop_parrot_held_item(drop_gently = 1)
 	set name = "Drop held item"
 	set category = "Parrot"
-	set desc = "Drop the item you're holding."
+	set desc = "放下你抓着的物品。"
 
 	if(stat)
 		return -1
@@ -651,7 +651,7 @@
 /mob/living/simple_animal/parrot/proc/perch_player()
 	set name = "Sit"
 	set category = "Parrot"
-	set desc = "Sit on a nice comfy perch."
+	set desc = "坐上一处舒适的栖木。"
 
 	if(stat || !client)
 		return
@@ -672,7 +672,7 @@
 /mob/living/simple_animal/parrot/Poly
 	name = "Poly"
 	desc = "鹦鹉波利，量子饼干理论专家。"
-	speak = list("Poly wanna cracker!", ":e Check the singlo, you chucklefucks!",":e Wire the solars, you lazy bums!",":e WHO TOOK THE DAMN HARDSUITS?",":e OH GOD ITS FREE CALL THE SHUTTLE")
+	speak = list("波利想吃饼干！", ":e 去检查奇点，你们这群蠢货！",":e 给太阳能板接线，你们这群懒鬼！",":e 谁拿走了那该死的硬式太空服？",":e 天啊它跑出来了，快叫穿梭机！")
 
 /mob/living/simple_animal/parrot/Poly/Initialize()
 	ears = new /obj/item/device/radio/headset(src)

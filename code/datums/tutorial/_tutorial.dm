@@ -204,7 +204,7 @@ GLOBAL_LIST_EMPTY_TYPED(ongoing_tutorials, /datum/tutorial)
 		return
 
 	if(!(action_name in player_bind_dict))
-		return "Undefined"
+		return "未绑定"
 
 	return player_bind_dict[action_name][1]
 
@@ -213,7 +213,7 @@ GLOBAL_LIST_EMPTY_TYPED(ongoing_tutorials, /datum/tutorial)
 	completion_marked = TRUE
 
 /datum/action/tutorial_end
-	name = "Stop Tutorial"
+	name = "结束教程"
 	action_icon_state = "hologram_exit"
 	/// Weakref to the tutorial this is related to
 	var/datum/weakref/tutorial

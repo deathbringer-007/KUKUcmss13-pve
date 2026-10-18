@@ -29,10 +29,10 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 	name = "Unknown" // We will always let our Virologist name our disease.
 	desc = "一种经过人工改造、可包含多种症状的疾病。"
-	form = "Advance Disease" // Will let med-scanners know that this disease was engineered.
-	agent = "advance microbes"
+	form = "高级疾病" // Will let med-scanners know that this disease was engineered.
+	agent = "高级病原微生物"
 	max_stages = 5
-	spread = "Unknown"
+	spread = "未知"
 	affected_species = list("Human","Monkey")
 
 	// NEW VARS
@@ -219,15 +219,15 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	switch(spread_id)
 
 		if(NON_CONTAGIOUS)
-			spread = "None"
+			spread = "无"
 		if(SPECIAL)
-			spread = "None"
+			spread = "无"
 		if(CONTACT_GENERAL, CONTACT_HANDS, CONTACT_FEET)
-			spread = "On contact"
+			spread = "接触传播"
 		if(AIRBORNE)
-			spread = "Airborne"
+			spread = "空气传播"
 		if(BLOOD)
-			spread = "Blood"
+			spread = "血液传播"
 
 	spread_type = spread_id
 
@@ -236,19 +236,19 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	switch(level_sev)
 
 		if(-INFINITY to 0)
-			severity = "Non-Threat"
+			severity = "无威胁"
 		if(1)
-			severity = "Minor"
+			severity = "轻微"
 		if(2)
-			severity = "Medium"
+			severity = "中等"
 		if(3)
-			severity = "Harmful"
+			severity = "有害"
 		if(4)
-			severity = "Dangerous!"
+			severity = "危险！"
 		if(5 to INFINITY)
-			severity = "BIOHAZARD THREAT!"
+			severity = "生物危害威胁！"
 		else
-			severity = "Unknown"
+			severity = "未知"
 
 
 // Will generate a random cure, the less resistance the symptoms have, the harder the cure.

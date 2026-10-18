@@ -26,37 +26,37 @@ Template
 /datum/poster/poster_4
 	icon_state="poster4"
 	name = "President Schwarzenegger Campaign Poster"
-	desc = "This faded poster, while old, is a reproduction of President Schwarzenegger's campaign. He went missing halfway through his eighth term and was never found."
+	desc = "这张褪色的老海报是施瓦辛格总统竞选海报的复制品。他在第八届任期过半时失踪，此后再无下落。"
 
 /datum/poster/poster_5
 	icon_state="poster5"
 	name = "BETH"
-	desc = "This is a poster of the new multi-platinum pop group BETH that's sweeping the nation. They suck."
+	desc = "一张正席卷全国的新晋多白金唱片流行组合贝丝的海报。他们唱得真烂。"
 
 /datum/poster/poster_6
 	icon_state="poster6"
 	name = "art?"
-	desc = "Hell, you could have painted that and been rich."
+	desc = "见鬼，你也能画出这种东西，然后赚得盆满钵满。"
 
 /datum/poster/poster_7
 	icon_state="poster7"
 	name = "EAT"
-	desc = "This is less of a poster and more of an advertisement for those gross power bars."
+	desc = "与其说这是海报，不如说是那些难吃能量棒的广告。"
 
 /datum/poster/poster_8
 	icon_state="poster8"
 	name = "Arious Motion Tracker"
-	desc = "It's an ad for a civilian brand motion tracker, less reliable than the M314, but about half of the weight."
+	desc = "一则民用品牌运动探测器的广告。可靠性不如M314，但重量只有大约一半。"
 
 /datum/poster/poster_9
 	icon_state="poster9"
 	name = "Seegson"
-	desc = "Hey, Seegson! That's a blast from the past. They got bought out by Weyland-Yutani around the time one of their space stations de-orbited and fell into a planet's gravity well after a systems failure."
+	desc = "嘿，西格森！真是久违的名字。大约在他们的一座空间站因系统故障脱离轨道、坠入行星引力井的那段时期，他们被维兰德-汤谷收购了。"
 
 /datum/poster/poster_10
 	icon_state="poster10"
 	name = "Koorlander Gold"
-	desc = "Koorlander Golds, lovingly machine rolled for YOUR pleasure."
+	desc = "库尔兰德金装香烟，用心机卷，只为让你享受。"
 
 /datum/poster/poster_11
 	icon_state="poster11"

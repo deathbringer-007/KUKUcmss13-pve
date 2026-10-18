@@ -13,7 +13,7 @@
  * * theme - The ui theme to use for the TGUI window (optional).
  * * ui_state - The TGUI UI state that will be returned in ui_state(). Default: always_state
  */
-/proc/tgui_input_checkboxes(mob/user, message, title = "Select", list/items, min_checked = 1, max_checked = 50, timeout = 0, theme = null, ui_state = GLOB.always_state)
+/proc/tgui_input_checkboxes(mob/user, message, title = "选择", list/items, min_checked = 1, max_checked = 50, timeout = 0, theme = null, ui_state = GLOB.always_state)
 	if (!user)
 		user = usr
 	if(!length(items))
@@ -51,7 +51,7 @@
  * * theme - The ui theme to use for the TGUI window (optional).
  * * ui_state - The TGUI UI state that will be returned in ui_state(). Default: always_state
  */
-/proc/tgui_input_checkboxes_async(mob/user, message, title = "Select", list/items, min_checked = 1, max_checked = 50, datum/callback/callback, timeout = 0, theme = null, ui_state = GLOB.always_state)
+/proc/tgui_input_checkboxes_async(mob/user, message, title = "选择", list/items, min_checked = 1, max_checked = 50, datum/callback/callback, timeout = 0, theme = null, ui_state = GLOB.always_state)
 	if (!user)
 		user = usr
 	if(!length(items))

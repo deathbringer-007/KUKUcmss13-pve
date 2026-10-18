@@ -506,7 +506,7 @@
 	shuttle.door_control.control_doors("force-lock", "aft", TRUE)
 	visible_message(SPAN_WARNING("[src]失去空降目标，显示警报。"))
 	for(var/obj/structure/dropship_equipment/paradrop_system/parad in shuttle.equipments)
-		parad.visible_message(SPAN_WARNING("[parad] displays an alert as it loses the paradrop target."))
+		parad.visible_message(SPAN_WARNING("[parad]失去空降目标，显示警报。"))
 	UnregisterSignal(shuttle.paradrop_signal, COMSIG_PARENT_QDELETING)
 	UnregisterSignal(shuttle, COMSIG_SHUTTLE_SETMODE)
 	shuttle.paradrop_signal = null
@@ -644,27 +644,27 @@
 	if(ishuman(weapon_operator))
 		var/mob/living/carbon/human/human_operator = weapon_operator
 		if(!human_operator.allow_gun_usage)
-			to_chat(human_operator, SPAN_WARNING("Your programming prevents you from operating dropship weaponry!"))
+			to_chat(human_operator, SPAN_WARNING("你的程序禁止你操作运输机武器！"))
 			return FALSE
 	var/obj/structure/dropship_equipment/weapon/DEW = selected_equipment
 	if(!selected_equipment || !selected_equipment.is_weapon)
-		to_chat(weapon_operator, SPAN_WARNING("No weapon selected."))
+		to_chat(weapon_operator, SPAN_WARNING("未选择武器。"))
 		return FALSE
 	if(!skillcheck(weapon_operator, SKILL_PILOT, DEW.skill_required)) //only pilots can fire dropship weapons.
-		to_chat(weapon_operator, SPAN_WARNING("You don't have the training to fire this weapon!"))
+		to_chat(weapon_operator, SPAN_WARNING("你没有受过发射此武器所需的训练！"))
 		return FALSE
 	if(dropship.mode != SHUTTLE_CALL)
-		to_chat(weapon_operator, SPAN_WARNING("Dropship can only fire while in flight."))
+		to_chat(weapon_operator, SPAN_WARNING("运输机只能在飞行中开火。"))
 		return FALSE
 	if(!faction)
 		return FALSE//no faction, no weapons
 	if(!selected_equipment || !selected_equipment.is_weapon)
-		to_chat(weapon_operator, SPAN_WARNING("No weapon selected."))
+		to_chat(weapon_operator, SPAN_WARNING("未选择武器。"))
 		return FALSE
 	if(dropship.door_override)
 		return FALSE
 	if(!skillcheck(weapon_operator, SKILL_PILOT, DEW.skill_required)) //only pilots can fire dropship weapons.
-		to_chat(weapon_operator, SPAN_WARNING("You don't have the training to fire this weapon!"))
+		to_chat(weapon_operator, SPAN_WARNING("你没有受过发射此武器所需的训练！"))
 		return FALSE
 	if(!dropship.in_flyby && DEW.fire_mission_only)
 		to_chat(weapon_operator, SPAN_WARNING("[DEW] requires a fire mission flight type to be fired."))

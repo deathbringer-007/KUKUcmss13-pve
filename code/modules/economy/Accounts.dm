@@ -18,7 +18,7 @@
 	var/time = ""
 	var/source_terminal = ""
 
-/proc/create_account(new_owner_name = "Default user", starting_funds = 0, datum/paygrade/id_paygrade)
+/proc/create_account(new_owner_name = "默认用户", starting_funds = 0, datum/paygrade/id_paygrade)
 
 	//create a new account
 	var/datum/money_account/M = new()
@@ -29,12 +29,12 @@
 	//create an entry in the account transaction log for when it was created
 	var/datum/transaction/T = new()
 	T.target_name = new_owner_name
-	T.purpose = "Account creation"
+	T.purpose = "开立账户"
 	T.amount = starting_funds * id_paygrade.pay_multiplier
 	//set a random date, time and location some time over the past few decades
-	T.date = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [GLOB.game_year - rand(0, 10)]"
+	T.date = "[GLOB.game_year - rand(0, 10)]年[pick("1","2","3","4","5","6","7","8","9","10","11","12")]月[num2text(rand(1,31))]日"
 	T.time = "[rand(0,24)]:[rand(11,59)]"
-	T.source_terminal = "Weyland-Yutani Terminal #[rand(111,1111)]"
+	T.source_terminal = "维兰德-汤谷终端#[rand(111,1111)]"
 	for(var/attempt in 1 to 100) // Make up to 100 attempts to get a unique account number
 		M.account_number = rand(111111, 999999)
 		if(!get_account(M.account_number))

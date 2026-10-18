@@ -25,16 +25,16 @@
 	move_to_delay = LIZARD_SPEED_NORMAL
 	speed = LIZARD_SPEED_NORMAL_CLIENT //speed and move_to_delay are not the same in simplemob code (wow!)
 
-	response_help = "pets"
-	response_disarm = "tries to push away"
-	response_harm  = "punches"
+	response_help = "抚摸"
+	response_disarm = "试图推开"
+	response_harm  = "拳击"
 	friendly = "nuzzles"
 	see_in_dark = 50
 
 	speak_chance = 2
-	speak_emote = "hisses"
-	emote_hear = list("hisses.", "growls.", "roars.", "bellows.")
-	emote_see = list("shakes its head.", "wags its tail.", "flicks its tongue.", "yawns.")
+	speak_emote = "嘶嘶说道"
+	emote_hear = list("发出嘶嘶声。", "低吼着。", "咆哮着。", "发出震耳的吼声。")
+	emote_see = list("摇了摇头。", "摇了摇尾巴。", "吐了吐舌头。", "打了个哈欠。")
 
 	melee_damage_lower = 20
 	melee_damage_upper = 25
@@ -48,7 +48,7 @@
 	var/aggression_value = 0
 
 	///Emotes to play when being pet by a friend.
-	var/list/pet_emotes = list("closes its eyes.", "growls happily.", "wags its tail.", "rolls on the ground.")
+	var/list/pet_emotes = list("闭上了眼睛。", "愉快地低吼着。", "摇了摇尾巴。", "在地上打滚。")
 	///Cooldown to stop generic emote spam.
 	COOLDOWN_DECLARE(emote_cooldown)
 
@@ -102,9 +102,9 @@
 	if(!COOLDOWN_FINISHED(src, growl_message) && !ignore_cooldown)
 		return
 	if(target_mob)
-		manual_emote("growls at [target_mob].")
+		manual_emote("朝[target_mob]低吼。")
 	else
-		manual_emote("growls.")
+		manual_emote("低吼着。")
 	playsound(loc, "giant_lizard_growl", 60)
 	COOLDOWN_START(src, growl_message, rand(10, 14) SECONDS)
 
@@ -189,7 +189,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/giant_lizard/death()
 	playsound(loc, 'sound/effects/giant_lizard_death.ogg', 70)
-	manual_emote("lets out a waning growl.")
+	manual_emote("发出逐渐微弱的低吼。")
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/giant_lizard/attack_hand(mob/living/carbon/human/attacking_mob)
@@ -224,7 +224,7 @@
 			chance_to_rest = 0
 			if(COOLDOWN_FINISHED(src, emote_cooldown))
 				COOLDOWN_START(src, emote_cooldown, rand(5, 8) SECONDS)
-				manual_emote(pick(pick(pet_emotes), "stares at [attacking_mob].", "nuzzles [attacking_mob].", "licks [attacking_mob]'s hand."), "nibbles [attacking_mob]'s arm.", "flicks its tongue at [attacking_mob].")
+				manual_emote(pick(pick(pet_emotes), "盯着[attacking_mob]。", "蹭了蹭[attacking_mob]。", "舔了舔[attacking_mob]的手。"), "轻咬[attacking_mob]的手臂。", "朝[attacking_mob]吐了吐舌头。")
 				if(prob(50))
 					playsound(loc, "giant_lizard_hiss", 25)
 	if(attacking_mob.a_intent == INTENT_DISARM && prob(75))
@@ -264,7 +264,7 @@
 	target_mob = null
 	food_target = null
 	is_eating = FALSE
-	manual_emote("hisses in agony!")
+	manual_emote("痛苦地嘶叫！")
 	playsound(src, "giant_lizard_hiss", 40)
 	MoveTo(null, 9, TRUE, 4 SECONDS, FALSE)
 	COOLDOWN_START(src, calm_cooldown, 8 SECONDS)
@@ -308,7 +308,7 @@
 		enemies = list()
 		LoseTarget()
 		if(COOLDOWN_FINISHED(src, emote_cooldown))
-			manual_emote("calms down.")
+			manual_emote("平静了下来。")
 			COOLDOWN_START(src, calm_cooldown, 4 SECONDS)
 			COOLDOWN_START(src, emote_cooldown, 3 SECONDS)
 
@@ -412,7 +412,7 @@
 
 		face_atom(target)
 		var/attack_type = pick(ATTACK_SLASH, ATTACK_BITE)
-		attacktext = attack_type ? "claws" : "bites"
+		attacktext = attack_type ? "爪击" : "撕咬"
 		flick_attack_overlay(target, attack_type ? "slash" : "animalbite")
 		playsound(loc, attack_type ? "alien_claw_flesh" : "alien_bite", 25, 1)
 		target.attack_animal(src)
@@ -450,7 +450,7 @@
 
 ///Proc for when the mob finds food and starts DEVOURING it.
 /mob/living/simple_animal/hostile/retaliate/giant_lizard/proc/handle_food(obj/item/reagent_container/food/snacks/food)
-	manual_emote("starts gnawing [food].")
+	manual_emote("开始啃咬[food]。")
 	is_eating = TRUE
 	for(var/times_to_eat = rand(4, 6), times_to_eat--)
 		sleep(rand(1.7, 2.5) SECONDS)
@@ -463,7 +463,7 @@
 		if(nearest_mob != food.last_dropped_by || (nearest_mob in faction_group))
 			continue
 		face_atom(nearest_mob)
-		manual_emote("stares curiously at [nearest_mob].")
+		manual_emote("好奇地盯着[nearest_mob]。")
 		faction_group += nearest_mob.faction_group
 		break
 
@@ -614,7 +614,7 @@
 		if(Adjacent(target))
 			var/damage = rand(melee_damage_lower, melee_damage_upper) * 0.4
 			var/attack_type = pick(ATTACK_SLASH, ATTACK_BITE)
-			attacktext = attack_type ? "claws" : "bites"
+			attacktext = attack_type ? "爪击" : "撕咬"
 			flick_attack_overlay(target, attack_type ? "slash" : "animalbite")
 			playsound(loc, attack_type ? "alien_claw_flesh" : "alien_bite", 25, 1)
 			target.handle_blood_splatter(get_dir(src.loc, target.loc))
@@ -644,7 +644,7 @@
 
 	COOLDOWN_START(src, pounce_cooldown, pounce_cooldown_length)
 	var/pounce_distance = clamp((get_dist(src, target)), 1, 5)
-	manual_emote("pounces at [target]!")
+	manual_emote("扑向[target]！")
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, throw_atom), target, pounce_distance, SPEED_FAST, src, null, LOW_LAUNCH, PASS_OVER_THROW_MOB, null, pounce_callbacks)
 
 /mob/living/simple_animal/hostile/retaliate/giant_lizard/proc/pounced_mob_wrapper(mob/living/pounced_mob)
@@ -657,7 +657,7 @@
 
 	if(ishuman(pounced_mob) && (pounced_mob.dir in reverse_nearby_direction(dir)))
 		var/mob/living/carbon/human/human = pounced_mob
-		if(human.check_shields(15, "the pounce")) //Human shield block.
+		if(human.check_shields(15, "扑击")) //Human shield block.
 			visible_message(SPAN_DANGER("[src]撞上了[human]！"))
 			KnockDown(1)
 			Stun(1)
@@ -666,8 +666,8 @@
 			return
 
 		if(isyautja(human))
-			if(human.check_shields(0, "the pounce", 1))
-				visible_message(SPAN_DANGER("[human]用组合长矛挡住了[src]的扑击！"))
+			if(human.check_shields(0, "扑击", 1))
+				visible_message(SPAN_DANGER("[human]用伸缩战矛挡住了[src]的扑击！"))
 				apply_effect(3, WEAKEN)
 				throwing = FALSE
 				playsound(human, "bonk", 75, FALSE)

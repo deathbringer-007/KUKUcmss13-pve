@@ -134,7 +134,7 @@
 	return TRUE
 
 /datum/action/human_action/rest_legs
-	name = "Rest Leg"
+	name = "让伤腿休息"
 	action_icon_state = "stumble"
 	var/in_use = FALSE
 	var/datum/component/bad_leg/bound_component
@@ -142,7 +142,7 @@
 /datum/action/human_action/rest_legs/New(target, override_icon_state, datum/component/bad_leg/bound_component)
 	. = ..()
 	if(bound_component)
-		name = "Rest [bound_component.affected_limb.display_name]"
+		name = "让[bound_component.affected_limb.display_name]休息"
 		src.bound_component = bound_component
 		src.bound_component.bound_action = src
 	else

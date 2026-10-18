@@ -201,15 +201,15 @@
 /client/verb/adjust_volume_sfx()
 	set name = "Adjust Volume SFX"
 	set category = "Preferences.Sound"
-	adjust_volume_prefs(VOLUME_SFX, "Set the volume for sound effects", 0)
+	adjust_volume_prefs(VOLUME_SFX, "设置音效音量", 0)
 
 /client/verb/adjust_volume_ambience()
 	set name = "Adjust Volume Ambience"
 	set category = "Preferences.Sound"
-	adjust_volume_prefs(VOLUME_AMB, "Set the volume for ambience and soundscapes", 0)
+	adjust_volume_prefs(VOLUME_AMB, "设置环境音与背景声的音量", 0)
 	soundOutput.update_ambience(null, null, TRUE)
 
 /client/verb/adjust_volume_lobby_music()
 	set name = "Adjust Volume LobbyMusic"
 	set category = "Preferences.Sound"
-	adjust_volume_prefs(VOLUME_LOBBY, "Set the volume for Lobby Music", SOUND_CHANNEL_LOBBY)
+	adjust_volume_prefs(VOLUME_LOBBY, "设置大厅音乐音量", SOUND_CHANNEL_LOBBY)

@@ -1,5 +1,5 @@
 /datum/tutorial/xenomorph/abomination
-	name = "Xenomorph - Predalien"
+	name = "异形——憎恶异形"
 	desc = "学习扮演“铁血异形”（也称“憎恶异形”）品级。完成本教学后才能扮演憎恶异形。"
 	icon_state = "predalien"
 	tutorial_id = "xeno_abom_1"
@@ -18,20 +18,20 @@
 	init_mob()
 	xeno.lock_evolve = TRUE
 
-	message_to_player("Welcome to the tutorial for the Abomination xenomorph. As an Abomination, you are a frontline powerhouse whose damage scales with your kill count.")
-	message_to_player("Your kill count scales when you kill humans with your slash attack, up to 10 kills. Ability kills do not count towards this.")
+	message_to_player("欢迎来到憎恶异形教程。憎恶异形是强大的前线战士，其伤害会随击杀数提升。")
+	message_to_player("用爪击杀死人类会增加你的击杀数，最多累计10次。技能击杀不计入其中。")
 
 	addtimer(CALLBACK(src, PROC_REF(how_to_be_abom)), 12 SECONDS)
 
 /datum/tutorial/xenomorph/abomination/proc/how_to_be_abom()
-	message_to_player("Be aware that you are kill-on-sight to all Predators forever, and will very likely need to defend yourself against multiple.")
-	message_to_player("Be sure to stick close to other xenomorphs or over-extend. While you may be stronger than many, you don't have enough health or armor to go out on your own.")
+	message_to_player("注意，所有铁血战士都会始终将你视为必须立即击杀的目标，你很可能需要同时应付多名铁血战士。")
+	message_to_player("务必紧随其他异形，不要深入过远。虽然你比许多异形更强，但生命值和护甲仍不足以支撑独自作战。")
 	addtimer(CALLBACK(src, PROC_REF(feral_rush_tutorial)), 10.5 SECONDS)
 
 /datum/tutorial/xenomorph/abomination/proc/feral_rush_tutorial()
 	var/datum/action/rush = give_action(xeno, /datum/action/xeno_action/onclick/feralrush)
-	message_to_player("Your first unique ability is <b>Feral Rush</b>, an ability that temporarily increases your speed and your armor. Use <B>Feral Rush</b> to continue.")
-	update_objective("Use your Feral Rush ability.")
+	message_to_player("你的第一个独有技能是<b>野性突进</b>，可以暂时提升速度和护甲。使用<B>野性突进</b>继续。")
+	update_objective("使用野性突进技能。")
 	add_highlight(rush.button)
 	RegisterSignal(rush, COMSIG_XENO_ACTION_USED, PROC_REF(on_rush_used))
 
@@ -45,14 +45,14 @@
 /datum/tutorial/xenomorph/abomination/proc/predalien_roar_tutorial_1()
 	hide_action(xeno, /datum/action/xeno_action/onclick/feralrush)
 	xeno.cannot_slash = TRUE
-	message_to_player("Your next ability is <b>Roar</b>, a versatile ability that disables any motion detectors or cloaks in a medium radius around you.")
-	message_to_player("Additionally, it gives a slash and speed bonus to any friendly xenomorphs in range.")
+	message_to_player("接下来是<b>咆哮</b>，这种多用途技能可以干扰周围一定范围内的运动探测器和隐形装置。")
+	message_to_player("此外，它还能提高范围内友方异形的爪击伤害和速度。")
 	addtimer(CALLBACK(src, PROC_REF(predalien_roar_tutorial_2)), 8 SECONDS)
 
 /datum/tutorial/xenomorph/abomination/proc/predalien_roar_tutorial_2()
 	var/datum/action/roar = give_action(xeno, /datum/action/xeno_action/onclick/predalien_roar)
-	message_to_player("One of <b>Roar</b>'s most useful abilities is uncloaking nearby Predators. Use <b>Roar</b> to uncloak the newly spawned Predator.")
-	update_objective("Use your Roar ability to uncloak the nearby predator.")
+	message_to_player("<b>咆哮</b>最实用的作用之一，是让附近的铁血战士解除隐形。使用<b>咆哮</b>，让刚出现的铁血战士显形。")
+	update_objective("使用咆哮，让附近的铁血战士显形。")
 	add_highlight(roar.button)
 	var/mob/living/carbon/human/pred = new(loc_from_corner(3, 3))
 	add_to_tracking_atoms(pred)
@@ -60,7 +60,7 @@
 	arm_equipment(pred, /datum/equipment_preset/yautja/blooded)
 	var/obj/item/clothing/gloves/yautja/hunter/bracers = locate() in pred
 	if(!bracers)
-		message_to_player("Something has gone wrong. Please make a bug report.")
+		message_to_player("出现了异常，请提交错误报告。")
 		CRASH("predator spawned without bracers in tutorial")
 
 	bracers.cloaker_internal(pred, TRUE, TRUE, TRUE)
@@ -78,7 +78,7 @@
 
 /datum/tutorial/xenomorph/abomination/proc/smash_tutorial_2()
 	hide_action(xeno, /datum/action/xeno_action/onclick/predalien_roar)
-	message_to_player("Good. <b>Roar</b> will be one of your primary tools for defending against Predators. Your next ability is <b>Feral Smash</b>.")
+	message_to_player("很好。<b>咆哮</b>是对抗铁血战士的重要手段。下一个技能是<b>野性猛击</b>。")
 	xeno.cannot_slash = FALSE
 
 	TUTORIAL_ATOM_FROM_TRACKING(/mob/living/carbon/human, pred)
@@ -92,9 +92,9 @@
 	RegisterSignal(smash, COMSIG_XENO_PRE_ACTION_USED, PROC_REF(frenzy_tutorial_1))
 	add_highlight(smash.button)
 
-	message_to_player("<b>Feral Smash</b> is a strong lunge with a range of five tiles. It deals decent damage that scales with your kill count.")
-	message_to_player("Use <b>Feral Smash</b> on the marine to continue.")
-	update_objective("Use your Feral Smash ability on the marine.")
+	message_to_player("<b>野性猛击</b>是一种射程为五格的强力突袭，其伤害可观，并会随击杀数提升。")
+	message_to_player("对陆战队员使用<b>野性猛击</b>继续。")
+	update_objective("对陆战队员使用野性猛击。")
 
 	xeno.forceMove(loc_from_corner(0, 2))
 	xeno.anchored = TRUE
@@ -136,7 +136,7 @@
 
 /datum/tutorial/xenomorph/abomination/proc/frenzy_tutorial_3()
 	remove_action(xeno, /datum/action/xeno_action/activable/feral_smash)
-	message_to_player("Good. Your final ability is <b>Feral Frenzy</b>, a strong ability that can alternate between hitting a single target or all within a large radius. However, it locks you in place while it winds up.")
+	message_to_player("很好。最后一个技能是<b>野性狂乱</b>，这种强力技能可以切换为攻击单个目标，或攻击较大范围内的全部目标。但在蓄力时，你会被固定在原地。")
 
 	TUTORIAL_ATOM_FROM_TRACKING(/mob/living/carbon/human, marine)
 	remove_from_tracking_atoms(marine)
@@ -152,8 +152,8 @@
 
 	var/datum/action/frenzy = give_action(xeno, /datum/action/xeno_action/activable/feralfrenzy)
 	add_highlight(frenzy.button)
-	message_to_player("By default, <b>Feral Frenzy</b> is on single-target mode. Use <b>Feral Frenzy</b> on the newly spawned marine.")
-	update_objective("Use Feral Frenzy on the marine.")
+	message_to_player("<b>野性狂乱</b>默认采用单体模式。对刚出现的陆战队员使用<b>野性狂乱</b>。")
+	update_objective("对陆战队员使用野性狂乱。")
 
 	RegisterSignal(frenzy, COMSIG_XENO_ACTION_USED, PROC_REF(frenzy_tutorial_5))
 
@@ -169,8 +169,8 @@
 	remove_highlight(frenzy.button)
 	var/datum/action/frenzy_toggle = give_action(xeno, /datum/action/xeno_action/onclick/toggle_gut_targeting)
 	add_highlight(frenzy_toggle.button)
-	message_to_player("Good, now toggle <b>Feral Frenzy</b>'s AOE mode with the newly available <b>Toggle Gutting Type</b> ability.")
-	update_objective("Use the Toggle Gutting Type ability to change your frenzy mode.")
+	message_to_player("很好。现在使用刚获得的<b>切换剖腹方式</b>技能，把<b>野性狂乱</b>切换为范围模式。")
+	update_objective("使用切换剖腹方式技能，改变狂乱模式。")
 
 	RegisterSignal(frenzy_toggle, COMSIG_XENO_ACTION_USED, PROC_REF(frenzy_tutorial_6))
 
@@ -182,8 +182,8 @@
 	source.plasma_cost = INFINITY // slightly scuffed way of disabling the switch button
 	source.update_button_icon()
 
-	message_to_player("<b>Feral Frenzy</b> has now been changed into AOE mode. Use <b>Feral Frenzy</b> again anywhere within 2 tiles of the marine.")
-	update_objective("Use Feral Frenzy within 2 tiles of the marine.")
+	message_to_player("<b>野性狂乱</b>现已切换为范围模式。在距离陆战队员两格以内的位置再次使用<b>野性狂乱</b>。")
+	update_objective("在距离陆战队员两格以内使用野性狂乱。")
 	TUTORIAL_ATOM_FROM_TRACKING(/mob/living/carbon/human, marine)
 	marine.rejuvenate()
 	var/datum/action/xeno_action/activable/feralfrenzy/frenzy = get_action(xeno, /datum/action/xeno_action/activable/feralfrenzy)
@@ -205,11 +205,11 @@
 	UnregisterSignal(frenzy, COMSIG_XENO_ACTION_USED)
 	UnregisterSignal(marine, COMSIG_MOB_DEATH)
 	remove_highlight(frenzy.button)
-	message_to_player("Good. As you may have noticed, the AOE version of <b>Feral Frenzy</b> takes longer to wind up, in addition to doing less overall damage.")
+	message_to_player("很好。你可能已经注意到，范围版<b>野性狂乱</b>需要更长的蓄力时间，总伤害也更低。")
 	addtimer(CALLBACK(src, PROC_REF(kill_marines)), 6 SECONDS)
 
 /datum/tutorial/xenomorph/abomination/proc/kill_marines()
-	message_to_player("To finish the tutorial, kill the three newly-spawned marines using any of your attacks or abilities.")
+	message_to_player("使用任意攻击或技能击杀刚出现的三名陆战队员，完成教程。")
 
 	// Spawn/rejuv the dummies
 	TUTORIAL_ATOM_FROM_TRACKING(/mob/living/carbon/human, marine) // we can reuse this one though
@@ -243,7 +243,7 @@
 		ending_marines_killed++
 		return
 
-	message_to_player("Good work. The tutorial will end shortly.")
+	message_to_player("做得好。教程即将结束。")
 	tutorial_end_in(7 SECONDS, TRUE)
 
 // END OF SCRIPTING

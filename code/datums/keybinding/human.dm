@@ -9,7 +9,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "issue_order"
-	full_name = "Issue Order"
+	full_name = "下达命令"
 	description = "选择要下达的命令。"
 	keybind_signal = COMSIG_KB_HUMAN_ISSUE_ORDER
 	var/order
@@ -24,21 +24,21 @@
 
 /datum/keybinding/human/issue_order/move
 	name = "issue_order_move"
-	full_name = "Issue Move order"
+	full_name = "下达前进命令"
 	description = "提高机动性和躲避弹丸的概率。"
 	keybind_signal = COMSIG_KB_HUMAN_ISSUE_ORDER_MOVE
 	order = COMMAND_ORDER_MOVE
 
 /datum/keybinding/human/issue_order/hold
 	name = "issue_order_hold"
-	full_name = "Issue Hold order"
+	full_name = "下达坚守命令"
 	description = "提高对疼痛和战斗伤害的抵抗力。"
 	keybind_signal = COMSIG_KB_HUMAN_ISSUE_ORDER_HOLD
 	order = COMMAND_ORDER_HOLD
 
 /datum/keybinding/human/issue_order/focus
 	name = "issue_order_focus"
-	full_name = "Issue Focus order"
+	full_name = "下达集火命令"
 	description = "提高射击精度和有效射程。"
 	keybind_signal = COMSIG_KB_HUMAN_ISSUE_ORDER_FOCUS
 	order = COMMAND_ORDER_FOCUS
@@ -47,7 +47,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "specialist_activation_one"
-	full_name = "Specialist Activation One"
+	full_name = "专精技能一"
 	keybind_signal = COMSIG_KB_HUMAN_SPECIALIST_ACTIVATION_ONE
 
 /datum/keybinding/human/specialist_one/down(client/user)
@@ -62,7 +62,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "specialist_activation_two"
-	full_name = "Specialist Activation Two"
+	full_name = "专精技能二"
 	keybind_signal = COMSIG_KB_HUMAN_SPECIALIST_ACTIVATION_TWO
 
 /datum/keybinding/human/specialist_two/down(client/user)
@@ -77,7 +77,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "rotate_chair"
-	full_name = "Rotate Chair"
+	full_name = "旋转座椅"
 	description = "旋转附近的椅子。"
 	keybind_signal = COMSIG_KB_HUMAN_ROTATE_CHAIR
 
@@ -94,7 +94,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "show_held_item"
-	full_name = "Show Held Item"
+	full_name = "展示手持物品"
 	keybind_signal = COMSIG_KB_HUMAN_SHOW_HELD_ITEM
 
 /datum/keybinding/human/show_held_item/down(client/user)
@@ -112,7 +112,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "cycle_helmet_hud"
-	full_name = "Cycle Helmet HUD"
+	full_name = "切换头盔HUD"
 	keybind_signal = COMSIG_KB_HUMAN_CYCLE_HELMET_HUD
 
 /datum/keybinding/human/cycle_helmet_hud/down(client/user)

@@ -349,7 +349,7 @@
 
 /obj/structure/surface/table/verb/do_flip()
 	set name = "Flip table"
-	set desc = "Flips a non-reinforced table"
+	set desc = "掀翻一张未加固的桌子。"
 	set category = "Object"
 	set src in oview(1)
 
@@ -411,7 +411,7 @@
 
 /obj/structure/surface/table/proc/do_put()
 	set name = "Put table back"
-	set desc = "Puts flipped table back"
+	set desc = "将掀翻的桌子摆回原位。"
 	set category = "Object"
 	set src in oview(1)
 

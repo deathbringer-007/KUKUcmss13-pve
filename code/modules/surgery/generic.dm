@@ -44,7 +44,7 @@
 			SPAN_NOTICE("[user]开始用[tool]在你的[surgery.affected_limb.display_name]处切开一道口子。"),
 			SPAN_NOTICE("[user]开始用[tool]在[target]的[surgery.affected_limb.display_name]处切开一道口子。"))
 
-		target.custom_pain("You feel a horrible sharp pain in your [surgery.affected_limb.display_name]!", 1)
+		target.custom_pain("你的[surgery.affected_limb.display_name]传来一阵可怕的剧痛！", 1)
 
 	log_interact(user, target, "[key_name(user)] began making an incision in [key_name(target)]'s [surgery.affected_limb.display_name].")
 
@@ -61,15 +61,15 @@
 	else if(tool_type == /obj/item/tool/surgery/scalpel/laser && prob(las_scalpel.bloodlessprob))
 		user.affected_message(target,
 			SPAN_NOTICE("你用[tool]在[target]的[surgery.affected_limb.display_name]处完成了一个无血切口。"),
-			SPAN_NOTICE("[user] finishes making a bloodless incision on your [surgery.affected_limb.display_name] with \the [tool]."),
-			SPAN_NOTICE("[user] finishes making a bloodless incision on [target]'s [surgery.affected_limb.display_name] with \the [tool]."))
+			SPAN_NOTICE("[user]用[tool]在你的[surgery.affected_limb.display_name]处完成了一个无血切口。"),
+			SPAN_NOTICE("[user]用[tool]在[target]的[surgery.affected_limb.display_name]处完成了一个无血切口。"))
 
 		surgery.status++ //A laser scalpel may cauterise as it cuts.
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("You finish the incision on [target]'s [surgery.affected_limb.display_name]."),
-			SPAN_NOTICE("[user] finishes the incision on your [surgery.affected_limb.display_name]."),
-			SPAN_NOTICE("[user] finishes the incision on [target]'s [surgery.affected_limb.display_name]."))
+			SPAN_NOTICE("你完成了[target]的[surgery.affected_limb.display_name]处的切口。"),
+			SPAN_NOTICE("[user]完成了你[surgery.affected_limb.display_name]处的切口。"),
+			SPAN_NOTICE("[user]完成了[target]的[surgery.affected_limb.display_name]处的切口。"))
 
 		if(!(surgery.affected_limb.status & LIMB_SYNTHSKIN))
 			var/datum/effects/bleeding/external/incision_bleed = new(target, surgery.affected_limb, 10)
@@ -86,7 +86,7 @@
 	switch(tool_type)
 		if(/obj/item/tool/surgery/scalpel/manager)
 			user.affected_message(target,
-				SPAN_WARNING("Your hand jolts as the system sparks, ripping a gruesome hole in [target]'s [surgery.affected_limb.display_name] with \the [tool]!"),
+				SPAN_WARNING("系统迸出火花，你的手猛地一抖，[tool]在[target]的[surgery.affected_limb.display_name]上撕开了一个可怕的洞！"),
 				SPAN_WARNING("[user]'s hand jolts as the system sparks, ripping a gruesome hole in your [surgery.affected_limb.display_name] with \the [tool]!"),
 				SPAN_WARNING("[user]'s hand jolts as the system sparks, ripping a gruesome hole in [target]'s [surgery.affected_limb.display_name] with \the [tool]!"))
 

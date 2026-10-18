@@ -11,14 +11,14 @@
 /datum/disease/black_goo
 	name = "Black Goo"
 	max_stages = 4
-	cure = "Anti-Zed"
+	cure = "抗尸毒剂"
 	cure_id = "antiZed"
-	spread = "Bites"
+	spread = "咬伤传播"
 	spread_type = SPECIAL
 	affected_species = list("Human")
 	cure_chance = 100 //meaning the cure will kill the virus asap
-	severity = "Medium"
-	agent = "Unknown Biological Organism X-65"
+	severity = "中等"
+	agent = "未知生物体X-65"
 	hidden = list(1,0) //Hidden from med-huds, but not pandemic scanners.  BLOOD TESTS FOR THE WIN
 	permeability_mod = 2
 	survive_mob_death = TRUE //We want the dead to turn into zombie.
@@ -108,16 +108,16 @@
 						to_chat(infected_mob, SPAN_DANGER("你不能相信他们……"))
 						stage_level += 5
 					if(50 to 75)
-						to_chat(infected_mob, SPAN_DANGER("You feel really warm..."))
+						to_chat(infected_mob, SPAN_DANGER("你觉得浑身发热……"))
 						stage_level += 9
 					if(75 to 85)
-						to_chat(infected_mob, SPAN_DANGER("Your throat is really dry..."))
+						to_chat(infected_mob, SPAN_DANGER("你的喉咙干得厉害……"))
 						stage_level += 18
 					if(85 to 95)
 						infected_mob.vomit_on_floor()
 						stage_level += 36
 					if(95 to 100)
-						to_chat(infected_mob, SPAN_DANGER("You cough up some black fluid..."))
+						to_chat(infected_mob, SPAN_DANGER("你咳出了一些黑色液体……"))
 						stage_level += 42
 
 		if(ZOMBIE_INFECTION_STAGE_THREE)
@@ -129,7 +129,7 @@
 			if(!zombie_is_transforming)
 				// if your dead we inform you that you're going to turn into a zombie.
 				if(infected_mob.stat == DEAD && stage_counter != stage)
-					to_chat(infected_mob, SPAN_CENTERBOLD("Your zombie infection is now at stage three! Zombie transformation begin!"))
+					to_chat(infected_mob, SPAN_CENTERBOLD("你的丧尸感染已进入第三阶段！即将开始丧尸化！"))
 					stage_counter = stage
 				zombie_transform(infected_mob)
 				hidden = list(0,0)
@@ -172,7 +172,7 @@
 	force = MELEE_FORCE_TIER_5
 	w_class = SIZE_MASSIVE
 	sharp = 1
-	attack_verb = list("slashed", "torn", "scraped", "gashed", "ripped")
+	attack_verb = list("斩击", "撕扯", "刮伤", "划伤", "扯裂")
 	pry_capable = IS_PRY_CAPABLE_FORCE
 
 /obj/item/weapon/zombie_claws/attack(mob/living/target, mob/living/carbon/human/user)
@@ -188,7 +188,7 @@
 		var/mob/living/carbon/human/human = target
 
 		if(locate(/datum/disease/black_goo) in human.viruses)
-			to_chat(user, SPAN_XENOWARNING("<b>You sense your target is infected.</b>"))
+			to_chat(user, SPAN_XENOWARNING("<b>你感知到目标已被感染。</b>"))
 	target.apply_effect(1, SLOW)
 
 /obj/item/weapon/zombie_claws/afterattack(obj/O as obj, mob/user as mob, proximity)
@@ -199,20 +199,20 @@
 		if(!D.density)
 			return
 		if(D.heavy)
-			to_chat(usr, SPAN_DANGER("[D] is too heavy to be forced open."))
+			to_chat(usr, SPAN_DANGER("[D] 太沉重，无法强行打开。"))
 			return FALSE
 		if(user.action_busy || user.a_intent == INTENT_HARM)
 			return
 
-		user.visible_message(SPAN_DANGER("[user] jams their [name] into [O] and strains to rip it open."),
-		SPAN_DANGER("You jam your [name] into [O] and strain to rip it open."))
+		user.visible_message(SPAN_DANGER("[user] 将[name]插进[O]的缝隙，用力撬开。"),
+		SPAN_DANGER("你将[name]插进[O]的缝隙，用力撬开。"))
 		playsound(user, 'sound/weapons/wristblades_hit.ogg', 15, 1)
 		if(do_after(user, 3 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
 			if(!D.density)
 				return
 
-			user.visible_message(SPAN_DANGER("[user] forces [O] open with their [name]."),
-			SPAN_DANGER("You force [O] open with your [name]."))
+			user.visible_message(SPAN_DANGER("[user] 用[name]强行撬开了[O]。"),
+			SPAN_DANGER("你用[name]强行撬开了[O]。"))
 			D.open(1)
 
 	else if(istype(O, /obj/structure/mineral_door/resin))
@@ -220,12 +220,12 @@
 		if(D.isSwitchingStates) return
 		if(!D.density || user.action_busy || user.a_intent == INTENT_HARM)
 			return
-		user.visible_message(SPAN_DANGER("[user] jams their [name] into [D] and strains to rip it open."),
-		SPAN_DANGER("You jam your [name] into [D] and strain to rip it open."))
+		user.visible_message(SPAN_DANGER("[user] 将[name]插进[D]的缝隙，用力撬开。"),
+		SPAN_DANGER("你将[name]插进[D]的缝隙，用力撬开。"))
 		playsound(user, 'sound/weapons/wristblades_hit.ogg', 15, TRUE)
 		if(do_after(user, 3 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE) && D.density)
-			user.visible_message(SPAN_DANGER("[user] forces [D] open with their [name]."),
-			SPAN_DANGER("You force [D] open with your [name]."))
+			user.visible_message(SPAN_DANGER("[user] 用[name]强行撬开了[D]。"),
+			SPAN_DANGER("你用[name]强行撬开了[D]。"))
 			D.open()
 
 /obj/item/reagent_container/food/drinks/bottle/black_goo
@@ -262,15 +262,15 @@
 /datum/language/zombie
 	name = "Zombie"
 	desc = "一种低沉咆哮的交流方式，似乎只有僵尸能发出这种声音。"
-	speech_verb = "growls"
-	ask_verb = "grumbles"
-	exclaim_verb = "snarls"
+	speech_verb = "低吼道"
+	ask_verb = "咕哝道"
+	exclaim_verb = "咆哮道"
 	color = "monkey"
 	key = "h"
 	flags = RESTRICTED
 
 /datum/language/zombie/scramble(input)
-	return pick("Urrghh...", "Rrraaahhh...", "Aaaarghhh...", "Mmmrrrgggghhh...", "Huuuuhhhh...", "Sssssgrrrr...")
+	return pick("呃呃……", "嗷啊啊……", "啊呃呃……", "唔呃呃呃……", "呼呃呃……", "嘶呃呃……")
 
 /obj/item/clothing/glasses/zombie_eyes
 	name = "僵尸眼睛"
@@ -295,13 +295,13 @@
 
 /obj/item/storage/fancy/blackgoo/get_examine_text(mob/user)
 	. = ..()
-	. += "A strange looking metal container..."
+	. += "一个外观奇怪的金属容器……"
 	if(length(contents) <= 0)
-		. += "There are no bottles left inside it."
+		. += "里面已经没有瓶子了。"
 	else if(length(contents) == 1)
-		. += "There is one bottle left inside it."
+		. += "里面还剩一个瓶子。"
 	else
-		. += "There are [length(src.contents)] bottles inside the container."
+		. += "容器里有[length(src.contents)]个瓶子。"
 
 
 /obj/item/storage/fancy/blackgoo/Initialize()

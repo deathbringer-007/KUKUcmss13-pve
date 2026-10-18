@@ -7,7 +7,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "admin_help"
-	full_name = "Admin Help"
+	full_name = "管理员求助"
 	description = "向管理员求助。"
 	keybind_signal = COMSIG_KB_CLIENT_GETHELP_DOWN
 
@@ -23,7 +23,7 @@
 	hotkey_keys = list("F2")
 	classic_keys = list("Unbound")
 	name = "screenshot"
-	full_name = "Screenshot"
+	full_name = "截图"
 	description = "截取屏幕画面。"
 	keybind_signal = COMSIG_KB_CLIENT_SCREENSHOT_DOWN
 
@@ -38,7 +38,7 @@
 	hotkey_keys = list("F11")
 	classic_keys = list("F11")
 	name = "toggle_fullscreen"
-	full_name = "Toggle Fullscreen"
+	full_name = "切换全屏"
 	description = "在真正的全屏和普通窗口模式之间切换。"
 	keybind_signal = COMSIG_KB_CLIENT_TOGGLEFULLSCREEN_DOWN
 
@@ -53,7 +53,7 @@
 	hotkey_keys = list("F12")
 	classic_keys = list("F12")
 	name = "minimal_hud"
-	full_name = "Minimal HUD"
+	full_name = "精简HUD"
 	description = "隐藏大部分HUD元素。"
 	keybind_signal = COMSIG_KB_CLIENT_MINIMALHUD_DOWN
 

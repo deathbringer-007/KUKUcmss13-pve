@@ -328,12 +328,12 @@
 
 			user.visible_message(SPAN_WARNING("[user]猛砸[src]，毫无效果。"), \
 					SPAN_WARNING("你猛砸[src]，毫无效果。"), \
-					"You hear twisting metal.")
+					"你听到金属扭曲的声音。")
 
 	if(!damage_dealt)
 		user.visible_message(SPAN_WARNING("[user]敲打[src]，毫无效果。"), \
 					SPAN_WARNING("[user]敲打[src]。"), \
-					"You hear twisting metal.")
+					"你听到金属扭曲的声音。")
 
 /obj/structure/cargo_container/horizontal
 	name = "货运集装箱"

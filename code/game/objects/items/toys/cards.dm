@@ -95,7 +95,7 @@
 /obj/item/toy/deck/verb/draw_card()
 	set category = "Object"
 	set name = "Draw"
-	set desc = "Draw a card from a deck."
+	set desc = "从牌堆中抽一张牌。"
 	set src in view(1)
 
 	if(usr.stat || !Adjacent(usr))
@@ -121,7 +121,7 @@
 /obj/item/toy/deck/verb/draw_cards()
 	set category = "Object"
 	set name = "Draw X Cards"
-	set desc = "Draw amount cards from a deck."
+	set desc = "从牌堆中抽取指定数量的牌。"
 	set src in view(1)
 
 	handle_draw_cards(usr)
@@ -168,7 +168,7 @@
 
 /obj/item/toy/deck/verb/draw_pile()
 	set name = "Draw Pile (Concealed)"
-	set desc = "Draw a concealed pile from the deck."
+	set desc = "从牌堆中抽出一叠不公开的牌。"
 	set category = "Object"
 	set src in view(1)
 
@@ -198,7 +198,7 @@
 /obj/item/toy/deck/verb/deal_card()
 	set category = "Object"
 	set name = "Deal"
-	set desc = "Deal a card from a deck."
+	set desc = "从牌堆中发一张牌。"
 	set src in view(1)
 
 	if(usr.stat || !Adjacent(usr))
@@ -303,7 +303,7 @@
 
 /obj/item/toy/handcard/verb/toggle_discard_state()
 	set name = "Toggle Pile State"
-	set desc = "Set or Unset this hand as a pile. Try not having multiple discard piles nearby."
+	set desc = "将这手牌设为牌堆，或取消牌堆状态。尽量不要在附近放置多个弃牌堆。"
 	set category = "Object"
 	set src in usr
 
@@ -317,7 +317,7 @@
 /obj/item/toy/handcard/verb/sort_cards()
 	set category = "Object"
 	set name = "Sort Hand"
-	set desc = "Sort this hand by deck's initial order."
+	set desc = "按牌堆的初始顺序整理这手牌。"
 	set src in usr
 
 	if(usr.stat || !ishuman(usr))

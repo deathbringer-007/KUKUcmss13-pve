@@ -117,8 +117,8 @@
 	if(!(/mob/living/carbon/xenomorph/verb/Deevolve in target_xeno.verbs))
 		remove_verb(new_xeno, /mob/living/carbon/xenomorph/verb/Deevolve)
 
-	new_xeno.visible_message(SPAN_XENODANGER("A [new_xeno.caste.caste_type] emerges from the husk of \the [target_xeno]."), \
-	SPAN_XENODANGER("[user_xeno] makes us regress into your previous form."))
+	new_xeno.visible_message(SPAN_XENODANGER("一只[new_xeno.caste.display_name || new_xeno.caste.caste_type]从[target_xeno]的躯壳中钻出。"), \
+	SPAN_XENODANGER("[user_xeno]使我们退回了原先的形态。"))
 
 	if(user_xeno.hive.living_xeno_queen && user_xeno.hive.living_xeno_queen.observed_xeno == target_xeno)
 		user_xeno.hive.living_xeno_queen.overwatch(new_xeno)
@@ -148,8 +148,8 @@
 		return
 	if(!X.ovipositor)
 		return
-	X.visible_message(SPAN_XENOWARNING("\The [X] starts detaching itself from its ovipositor!"), \
-		SPAN_XENOWARNING("You start detaching yourself from your ovipositor."))
+	X.visible_message(SPAN_XENOWARNING("[X]开始将身体从产卵器上分离！"), \
+		SPAN_XENOWARNING("你开始将身体从产卵器上分离。"))
 	if(!do_after(X, 50, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE, numticks = 10)) return
 	if(!X.check_state())
 		return
@@ -168,17 +168,17 @@
 		return
 
 	if(!action_cooldown_check())
-		to_chat(xeno, SPAN_XENOWARNING("You're still recovering from detaching your old ovipositor. Wait [DisplayTimeText(timeleft(cooldown_timer_id))]."))
+		to_chat(xeno, SPAN_XENOWARNING("你仍在从脱离旧产卵器的状态中恢复。请等待[DisplayTimeText(timeleft(cooldown_timer_id))]。"))
 		return
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
 
 	if(!alien_weeds)
-		to_chat(xeno, SPAN_XENOWARNING("You need to be on resin to grow an ovipositor."))
+		to_chat(xeno, SPAN_XENOWARNING("你必须站在树脂上，才能生长产卵器。"))
 		return
 
 	if(SSinterior.in_interior(xeno))
-		to_chat(xeno, SPAN_XENOWARNING("It's too tight in here to grow an ovipositor."))
+		to_chat(xeno, SPAN_XENOWARNING("这里太狭窄，无法生长产卵器。"))
 		return
 
 	if(alien_weeds.linked_hive.hivenumber != xeno.hivenumber)

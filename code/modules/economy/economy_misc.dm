@@ -80,7 +80,7 @@ GLOBAL_VAR_INIT(economy_init, FALSE)
 	create_department_account("Vendor")
 	GLOB.vendor_account = GLOB.department_accounts["Vendor"]
 
-	GLOB.current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [GLOB.game_year]"
+	GLOB.current_date_string = "[GLOB.game_year]年[pick("1","2","3","4","5","6","7","8","9","10","11","12")]月[num2text(rand(1,31))]日"
 
 	GLOB.economy_init = TRUE
 	return 1
@@ -88,7 +88,7 @@ GLOBAL_VAR_INIT(economy_init, FALSE)
 /proc/create_station_account()
 	if(!GLOB.station_account)
 		GLOB.station_account = new()
-		GLOB.station_account.owner_name = "[MAIN_SHIP_NAME] Station Account"
+		GLOB.station_account.owner_name = "[MAIN_SHIP_NAME]舰艇账户"
 		GLOB.station_account.account_number = rand(111111, 999999)
 		GLOB.station_account.remote_access_pin = rand(1111, 111111)
 		GLOB.station_account.money = 75000
@@ -96,11 +96,11 @@ GLOBAL_VAR_INIT(economy_init, FALSE)
 		//create an entry in the account transaction log for when it was created
 		var/datum/transaction/T = new()
 		T.target_name = GLOB.station_account.owner_name
-		T.purpose = "Account creation"
+		T.purpose = "开立账户"
 		T.amount = 75000
-		T.date = "2nd April, 2555"
+		T.date = "2555年4月2日"
 		T.time = "11:24"
-		T.source_terminal = "Biesel GalaxyNet Terminal #277"
+		T.source_terminal = "比塞尔银河网络终端#277"
 
 		//add the account
 		GLOB.station_account.transaction_log.Add(T)
@@ -108,7 +108,7 @@ GLOBAL_VAR_INIT(economy_init, FALSE)
 
 /proc/create_department_account(department)
 	var/datum/money_account/department_account = new()
-	department_account.owner_name = "[department] Account"
+	department_account.owner_name = "[department == "Vendor" ? "售货系统" : preference_label(department)]账户"
 	department_account.account_number = rand(111111, 999999)
 	department_account.remote_access_pin = rand(1111, 111111)
 	department_account.money = 5000
@@ -116,11 +116,11 @@ GLOBAL_VAR_INIT(economy_init, FALSE)
 	//create an entry in the account transaction log for when it was created
 	var/datum/transaction/T = new()
 	T.target_name = department_account.owner_name
-	T.purpose = "Account creation"
+	T.purpose = "开立账户"
 	T.amount = department_account.money
-	T.date = "2nd April, 2555"
+	T.date = "2555年4月2日"
 	T.time = "11:24"
-	T.source_terminal = "Biesel GalaxyNet Terminal #277"
+	T.source_terminal = "比塞尔银河网络终端#277"
 
 	//add the account
 	department_account.transaction_log.Add(T)

@@ -19,20 +19,20 @@
 
 
 /datum/effects/pain/human/mild
-	pain_message = "You grimace in pain."
+	pain_message = "你痛苦地龇牙咧嘴。"
 
 
 /datum/effects/pain/human/discomforting
-	pain_message = "You could use some painkillers."
+	pain_message = "你需要一些止痛药。"
 
 
 /datum/effects/pain/human/moderate
-	pain_message = "You really need painkillers!"
+	pain_message = "你真的很需要止痛药！"
 
 
 /datum/effects/pain/human/distressing
-	pain_message = "The pain is excruciating!"
-	emote_message = list("grimaces in pain.")
+	pain_message = "疼痛难以忍受！"
+	emote_message = list("痛苦地龇牙咧嘴。")
 
 /datum/effects/pain/human/distressing/process_mob()
 	. = ..()
@@ -48,8 +48,8 @@
 
 
 /datum/effects/pain/human/severe
-	pain_message = "You feel like you could die any moment now!"
-	emote_message = list("is having trouble keeping their eyes open.")
+	pain_message = "你感觉自己随时都可能死去！"
+	emote_message = list("艰难地睁着双眼。")
 
 /datum/effects/pain/human/severe/process_mob()
 	. = ..()
@@ -73,8 +73,8 @@
 
 
 /datum/effects/pain/human/horrible
-	pain_message = "You feel like you could die any moment now!"
-	emote_message = list("is having trouble standing.")
+	pain_message = "你感觉自己随时都可能死去！"
+	emote_message = list("几乎站不稳了。")
 
 /datum/effects/pain/human/horrible/process_mob()
 	. = ..()

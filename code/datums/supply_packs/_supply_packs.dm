@@ -27,7 +27,7 @@
 
 /datum/supply_packs/New()
 	if(randomised_num_contained)
-		manifest += "Contains any [randomised_num_contained] of:"
+		manifest += "包含以下物品中的任意[randomised_num_contained]件："
 	manifest += "<ul>"
 	for(var/atom/movable/path in contains)
 		if(!path) continue

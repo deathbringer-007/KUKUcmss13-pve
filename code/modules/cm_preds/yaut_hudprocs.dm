@@ -1,7 +1,7 @@
 /mob/living/carbon/human/proc/mark_panel()
 	set name = "标记面板"
 	set category = "Yautja.Marks"
-	set desc = "Allows you to mark your prey."
+	set desc = "标记你的猎物。"
 
 	if(is_mob_incapacitated())
 		to_chat(src, SPAN_DANGER("你现在无法这样做。"))
@@ -32,7 +32,7 @@
 
 	options += optionsp
 
-	var/input = tgui_input_list(usr, "选择要施加的标记", "标记面板", options)
+	var/input = localized_input_list(usr, "选择要施加的标记", "标记面板", options)
 
 	if(!input)
 		return
@@ -67,7 +67,7 @@
 /mob/living/carbon/human/proc/mark_for_hunt()
 	set category = "Yautja.Marks"
 	set name = "Mark for Hunt"
-	set desc = "Mark a target for the hunt."
+	set desc = "将目标标记为狩猎对象。"
 
 	if(is_mob_incapacitated())
 		to_chat(src, SPAN_DANGER("你现在无法这样做。"))
@@ -89,7 +89,7 @@
 		if((ishuman_strict(prey) || isxeno(prey)) && prey.stat != DEAD)
 			target_list += prey
 
-	var/mob/living/carbon/M = tgui_input_list(usr, "目标", "选择猎物。", target_list)
+	var/mob/living/carbon/M = localized_input_list(usr, "目标", "选择猎物。", target_list)
 	if(!M)
 		return
 	if(M.hunter_data.hunter)
@@ -104,7 +104,7 @@
 	to_chat(src, SPAN_YAUTJABOLD("你选择[hunter_data.prey]作为下一个猎物。"))
 
 	// Notify other preds
-	message_all_yautja("[real_name] has chosen [hunter_data.prey] ([max(hunter_data.prey.life_kills_total, hunter_data.prey.default_honor_value)] honor) as their next target at \the [get_area_name(hunter_data.prey)].")
+	message_all_yautja("[real_name]已选定[get_area_name(hunter_data.prey)]的[hunter_data.prey]作为下一个猎物（荣誉值：[max(hunter_data.prey.life_kills_total, hunter_data.prey.default_honor_value)]）。")
 
 	// log to server file
 	log_interact(src, hunter_data.prey, "[key_name(src)] has marked [key_name(hunter_data.prey)] for the Hunt in [get_area(hunter_data.prey)] ([x],[y],[z]).")
@@ -113,7 +113,7 @@
 /mob/living/carbon/human/proc/remove_from_hunt()
 	set category = "Yautja.Marks"
 	set name = "Remove from Hunt"
-	set desc = "Unmark your hunt target."
+	set desc = "解除对当前猎物的狩猎标记。"
 
 	if(is_mob_incapacitated())
 		to_chat(src, SPAN_DANGER("你现在无法这样做。"))
@@ -127,7 +127,7 @@
 		to_chat(src, SPAN_WARNING("你是怎么获得这个指令的？"))
 		return
 
-	if (alert(usr, "确定要放弃这个猎物吗？", "移出狩猎名单：", "Yes", "No") != "Yes")
+	if (localized_native_alert(usr, "确定要放弃这个猎物吗？", "移出狩猎名单：", "Yes", "No") != "Yes")
 		return
 	var/mob/living/carbon/prey = hunter_data.prey
 	to_chat(src, SPAN_YAUTJABOLD("你将[prey]从狩猎名单中移除了。"))
@@ -153,7 +153,7 @@
 		if(ishuman_strict(target) && (target.stat != DEAD))
 			target_list += target
 
-	var/mob/living/carbon/T = tgui_input_list(usr, "目标", "选择目标。", target_list)
+	var/mob/living/carbon/T = localized_input_list(usr, "目标", "选择目标。", target_list)
 	if(!T)
 		return
 	if(T.hunter_data.honored)
@@ -166,12 +166,12 @@
 		return
 
 	log_interact(src, T, "[key_name(src)] has marked [key_name(T)] as Honored for '[reason]'.")
-	message_all_yautja("[real_name] has marked [T] as Honored for '[reason]'.")
+	message_all_yautja("[real_name]因“[reason]”将[T]标记为荣誉猎物。")
 
 	T.hunter_data.honored_set = src
 	hunter_data.honored_targets += T
 	T.hunter_data.honored = TRUE
-	T.hunter_data.honored_reason = "[reason]' by '[src.real_name]"
+	T.hunter_data.honored_reason = "[reason]（标记者：[src.real_name]）"
 	T.hud_set_hunter()
 
 
@@ -191,7 +191,7 @@
 			if(target.hunter_data.honored)
 				target_list += target
 
-	var/mob/living/carbon/T = tgui_input_list(usr, "目标", "选择目标。", target_list)
+	var/mob/living/carbon/T = localized_input_list(usr, "目标", "选择目标。", target_list)
 	if(!T)
 		return
 	if(!T.hunter_data.honored)
@@ -201,7 +201,7 @@
 	if(!T.hunter_data.honored_set || src == T.hunter_data.honored_set)
 
 		log_interact(src, T, "[key_name(src)] has un-marked [key_name(T)] as honored!")
-		message_all_yautja("[real_name] has un-marked [T] as honored!'.")
+		message_all_yautja("[real_name]已解除了[T]的荣誉猎物标记。")
 
 		T.hunter_data.honored_set = null
 		hunter_data.honored_targets += T
@@ -230,7 +230,7 @@
 	if(isyautja(src) && src.hunter_data.thrall)
 		target_list += src.hunter_data.thrall
 
-	var/mob/living/carbon/T = tgui_input_list(usr, "目标", "选择目标。", target_list)
+	var/mob/living/carbon/T = localized_input_list(usr, "目标", "选择目标。", target_list)
 	if(!T)
 		return
 	if(T.hunter_data.dishonored)
@@ -243,12 +243,12 @@
 		return
 
 	log_interact(src, T, "[key_name(src)] has marked [key_name(T)] as Dishonorable for '[reason]'.")
-	message_all_yautja("[real_name] has marked [T] as Dishonorable for '[reason]'.")
+	message_all_yautja("[real_name]因“[reason]”将[T]标记为不名誉猎物。")
 
 	T.hunter_data.dishonored_set = src
 	hunter_data.dishonored_targets += T
 	T.hunter_data.dishonored = TRUE
-	T.hunter_data.dishonored_reason = "[reason]' by '[src.real_name]"
+	T.hunter_data.dishonored_reason = "[reason]（标记者：[src.real_name]）"
 	T.hud_set_hunter()
 
 
@@ -272,7 +272,7 @@
 	if(isyautja(src) && src.hunter_data.thrall)
 		target_list += src.hunter_data.thrall
 
-	var/mob/living/carbon/T = tgui_input_list(usr, "目标", "选择目标。", target_list)
+	var/mob/living/carbon/T = localized_input_list(usr, "目标", "选择目标。", target_list)
 	if(!T)
 		return
 	if(!T.hunter_data.dishonored)
@@ -282,7 +282,7 @@
 	if(!T.hunter_data.dishonored_set || src == T.hunter_data.dishonored_set)
 
 		log_interact(src, T, "[key_name(src)] has un-marked [key_name(T)] as dishonorable!")
-		message_all_yautja("[real_name] has un-marked [T] as dishonorable!'.")
+		message_all_yautja("[real_name]已解除了[T]的不名誉猎物标记。")
 
 		T.hunter_data.dishonored_set = null
 		hunter_data.dishonored_targets -= T
@@ -308,7 +308,7 @@
 		if((ishuman_strict(target) && target.stat != DEAD))
 			target_list += target
 
-	var/mob/living/carbon/T = tgui_input_list(usr, "目标", "选择目标。", target_list)
+	var/mob/living/carbon/T = localized_input_list(usr, "目标", "选择目标。", target_list)
 	if(!T)
 		return
 	if(T.hunter_data.gear)
@@ -316,7 +316,7 @@
 		return
 
 	log_interact(src, T, "[key_name(src)] has marked [key_name(T)] as a Gear Carrier!")
-	message_all_yautja("[real_name] has marked [T] as a Gear Carrier!'.")
+	message_all_yautja("[real_name]已将[T]标记为铁血装备携带者。")
 
 	T.hunter_data.gear_set = src
 	hunter_data.gear_targets += T
@@ -340,7 +340,7 @@
 			if(target.hunter_data.gear)
 				target_list += target
 
-	var/mob/living/carbon/T = tgui_input_list(usr, "目标", "选择目标。", target_list)
+	var/mob/living/carbon/T = localized_input_list(usr, "目标", "选择目标。", target_list)
 	if(!T)
 		return
 	if(!T.hunter_data.gear)
@@ -350,7 +350,7 @@
 	if(!T.hunter_data.gear_set || src == T.hunter_data.gear_set)
 
 		log_interact(src, T, "[key_name(src)] has un-marked [key_name(T)] as a Gear Carrier!")
-		message_all_yautja("[real_name] has un-marked [T] as a Gear Carrier!'.")
+		message_all_yautja("[real_name]已解除了[T]的铁血装备携带者标记。")
 
 		T.hunter_data.gear_set = null
 		hunter_data.gear_targets -= T
@@ -380,7 +380,7 @@
 		if(ishuman_strict(target) && target.stat != DEAD)
 			target_list += target
 
-	var/mob/living/carbon/T = tgui_input_list(usr, "目标", "选择目标。", target_list)
+	var/mob/living/carbon/T = localized_input_list(usr, "目标", "选择目标。", target_list)
 	if(!T)
 		return
 	if(T.hunter_data.thralled)
@@ -393,7 +393,7 @@
 		return
 
 	log_interact(src, T, "[key_name(src)] has taken [key_name(T)] as their Thrall for '[reason]'.")
-	message_all_yautja("[real_name] has taken [T] as their Thrall for '[reason]'.")
+	message_all_yautja("[real_name]因“[reason]”将[T]收为仆从。")
 
 	T.hunter_data.thralled_set = src
 	T.hunter_data.thralled = TRUE
@@ -423,7 +423,7 @@
 	if(isyautja(src) && src.hunter_data.thrall)
 		target_list += src.hunter_data.thrall
 
-	var/mob/living/carbon/T = tgui_input_list(usr, "目标", "选择目标。", target_list)
+	var/mob/living/carbon/T = localized_input_list(usr, "目标", "选择目标。", target_list)
 	if(!T)
 		return
 	if(!T.hunter_data.thralled)
@@ -433,7 +433,7 @@
 	if(!T.hunter_data.thralled_set || src == T.hunter_data.thralled_set)
 
 		log_interact(src, T, "[key_name(src)] has released [key_name(T)] from thralldom!")
-		message_all_yautja("[real_name] has released [T] from thralldom!'.")
+		message_all_yautja("[real_name]已解除了[T]的仆从身份。")
 
 		T.hunter_data.thralled_set = null
 		T.hunter_data.thralled = FALSE
@@ -446,7 +446,7 @@
 /mob/living/carbon/human/proc/call_combi()
 	set name = "Yank combi-stick"
 	set category = "Yautja.Weapons"
-	set desc = "Yank on your combi-stick's chain, if it's in range. Otherwise... recover it yourself."
+	set desc = "若伸缩战矛仍在范围内，就拉动其锁链将其收回。否则……只能自己去捡。"
 
 	if(usr.is_mob_incapacitated())
 		return FALSE

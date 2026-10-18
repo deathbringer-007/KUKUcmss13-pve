@@ -12,7 +12,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "field_strip_weapon"
-	full_name = "Field Strip Weapon"
+	full_name = "拆卸武器配件"
 	keybind_signal = COMSIG_KB_HUMAN_WEAPON_FIELDSTRIP
 
 /datum/keybinding/human/combat/field_strip_weapon/down(client/user)
@@ -29,7 +29,7 @@
 	hotkey_keys = list("Ctrl+Space")
 	classic_keys = list("Unbound")
 	name = "toggle_burst_fire"
-	full_name = "Toggle Burst Fire"
+	full_name = "切换点射模式"
 	keybind_signal = COMSIG_KB_HUMAN_WEAPON_BURSTFIRE
 
 /datum/keybinding/human/combat/toggle_burst_fire/down(client/user)
@@ -45,7 +45,7 @@
 	hotkey_keys = list("Shift+X")
 	classic_keys = list("Unbound")
 	name = "toggle_stock_attachment"
-	full_name = "Toggle Stock Attachment"
+	full_name = "切换枪托配件"
 	keybind_signal = COMSIG_KB_HUMAN_WEAPON_STOCKATTACHMENT
 
 /datum/keybinding/human/combat/stock_attachment/down(client/user)
@@ -61,7 +61,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "toggle_auto_eject"
-	full_name = "Toggle Auto Eject"
+	full_name = "切换弹匣自动弹出"
 	keybind_signal = COMSIG_KB_HUMAN_WEAPON_AUTOEJECT
 
 /datum/keybinding/human/combat/auto_eject/down(client/user)
@@ -77,7 +77,7 @@
 	hotkey_keys = list("Shift+Space")
 	classic_keys = list("Unbound")
 	name = "toggle_underbarrel_attachment"
-	full_name = "Toggle Underbarrel Attachment"
+	full_name = "切换下挂配件"
 	keybind_signal = COMSIG_KB_HUMAN_WEAPON_UNDERBARREL
 
 /datum/keybinding/human/combat/underbarrel/down(client/user)
@@ -93,7 +93,7 @@
 	hotkey_keys = list("Space")
 	classic_keys = list("Unbound")
 	name = "unique_action"
-	full_name = "Unique Action"
+	full_name = "特殊操作"
 	keybind_signal = COMSIG_KB_HUMAN_WEAPON_UNIQUEACTION
 
 /datum/keybinding/human/combat/unique_action/down(client/user)
@@ -109,7 +109,7 @@
 	hotkey_keys = list("Shift+Z")
 	classic_keys = list("Unbound")
 	name = "unload_weapon"
-	full_name = "Unload Weapon"
+	full_name = "卸下弹匣"
 	keybind_signal = COMSIG_KB_HUMAN_WEAPON_UNLOAD
 
 /datum/keybinding/human/combat/unload_gun/down(client/user)
@@ -125,7 +125,7 @@
 	hotkey_keys = list("Shift+V")
 	classic_keys = list("Unbound")
 	name = "toggle_weapon_safety"
-	full_name = "Toggle Weapon Safety"
+	full_name = "切换武器保险"
 	keybind_signal = COMSIG_KB_HUMAN_WEAPON_SAFETY
 
 /datum/keybinding/human/combat/safety/down(client/user)
@@ -141,7 +141,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "toggle_attachment"
-	full_name = "Toggle Attachment"
+	full_name = "切换配件"
 	keybind_signal = COMSIG_KB_HUMAN_WEAPON_ATTACHMENT
 
 /datum/keybinding/human/combat/attachment/down(client/user)
@@ -157,7 +157,7 @@
 	hotkey_keys = list("Shift+G")
 	classic_keys = list("Unbound")
 	name = "toggle_rail_attachment"
-	full_name = "Toggle Rail Attachment"
+	full_name = "切换导轨配件"
 	keybind_signal = COMSIG_KB_HUMAN_WEAPON_ATTACHMENT_RAIL
 
 /datum/keybinding/human/combat/attachment_rail/down(client/user)
@@ -197,7 +197,7 @@
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
 	name = "toggle_shotgun_tube"
-	full_name = "Toggle Shotgun Tube"
+	full_name = "切换霰弹枪弹管"
 	keybind_signal = COMSIG_KB_HUMAN_WEAPON_SHOTGUN_TUBE
 
 /datum/keybinding/human/combat/toggle_shotgun_tube/down(client/user)

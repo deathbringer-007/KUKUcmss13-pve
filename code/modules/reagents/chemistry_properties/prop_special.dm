@@ -259,7 +259,7 @@
 	M.sleeping = 0
 	M.jitteriness = 0
 	for(var/datum/disease/D in M.viruses)
-		D.spread = "Remissive"
+		D.spread = "缓解期"
 		D.stage--
 		if(D.stage < 1)
 			D.cure()

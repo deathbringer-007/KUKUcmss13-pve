@@ -150,7 +150,7 @@
 /mob/dead/observer/verb/JoinResponseTeam()
 	set name = "Join Response Team"
 	set category = "Ghost.Join"
-	set desc = "Join an ongoing distress call response. You must be ghosted to do this."
+	set desc = "加入正在进行的求救响应任务。必须处于幽灵状态才能使用。"
 
 	do_join_response_team()
 

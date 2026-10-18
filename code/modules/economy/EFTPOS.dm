@@ -3,11 +3,11 @@
 	desc = "刷身份卡即可进行电子支付。"
 	icon_state = "eftpos"
 	var/machine_id = ""
-	var/eftpos_name = "Default EFTPOS scanner"
+	var/eftpos_name = "默认电子转账扫描器"
 	var/transaction_locked = 0
 	var/transaction_paid = 0
 	var/transaction_amount = 0
-	var/transaction_purpose = "Default charge"
+	var/transaction_purpose = "默认收费"
 	var/access_code = 0
 	var/datum/money_account/linked_account
 
@@ -133,7 +133,7 @@
 						//create entry in the EFTPOS linked account transaction log
 						var/datum/transaction/T = new()
 						T.target_name = E.owner_name //D.owner_name
-						T.purpose = (transaction_purpose ? transaction_purpose : "None supplied.")
+						T.purpose = (transaction_purpose ? transaction_purpose : "未提供事由。")
 						T.amount = transaction_amount
 						T.source_terminal = machine_id
 						T.date = GLOB.current_date_string
@@ -162,14 +162,14 @@
 					if(trycode >= 1000 && trycode <= 999999)
 						access_code = trycode
 					else
-						alert("密码无效！")
+						localized_native_alert(usr, "密码无效！")
 					print_reference()
 				else
 					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("输入的密码错误。")]")
 			if("change_id")
 				var/attempt_code = tgui_input_number(usr, "再次输入当前电子转账终端访问密码", "确认访问密码", 1000, 999999, 1000)
 				if(attempt_code == access_code)
-					eftpos_name = input("为此设备输入新的终端标识", "输入新终端标识") + " EFTPOS scanner"
+					eftpos_name = input("为此设备输入新的终端标识", "输入新终端标识") + "电子转账扫描器"
 					print_reference()
 				else
 					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("输入的密码错误。")]")
@@ -189,7 +189,7 @@
 			if("trans_value")
 				var/try_num = tgui_input_number(usr, "输入电子转账金额", "交易金额")
 				if(try_num < 0)
-					alert("金额无效！")
+					localized_native_alert(usr, "金额无效！")
 				else
 					transaction_amount = try_num
 			if("toggle_lock")
@@ -250,7 +250,7 @@
 
 								//create entries in the two account transaction logs
 								var/datum/transaction/T = new()
-								T.target_name = "[linked_account.owner_name] (via [eftpos_name])"
+								T.target_name = "[linked_account.owner_name]（经由[eftpos_name]）"
 								T.purpose = transaction_purpose
 								if(transaction_amount > 0)
 									T.amount = "([transaction_amount])"

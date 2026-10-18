@@ -1,11 +1,11 @@
 /datum/disease/rhumba_beat
-	name = "The Rhumba Beat"
+	name = "伦巴节拍病"
 	max_stages = 5
-	spread = "On contact"
+	spread = "接触传播"
 	spread_type = CONTACT_GENERAL
-	cure = "Chick Chicky Boom!"
+	cure = "奇卡奇卡砰！"
 	cure_id = list("phoron")
-	agent = "Unknown"
+	agent = "未知"
 	affected_species = list("Human")
 	permeability_mod = 1
 

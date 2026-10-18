@@ -1,6 +1,6 @@
 /datum/weather_event/light_rain/varadero
 	name = "Tropical Storm"
-	display_name = "Tropical Storm"
+	display_name = "热带风暴"
 	length = 4 MINUTES
 
 	turf_overlay_alpha = 40
@@ -10,7 +10,7 @@
 
 /datum/weather_event/monsoon
 	name = "Monsoon Warning"
-	display_name = "Monsoon Warning"
+	display_name = "季风预警"
 	length = 6 MINUTES
 
 	turf_overlay_icon_state = "strata_storm"

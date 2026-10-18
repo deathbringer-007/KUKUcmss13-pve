@@ -1,14 +1,14 @@
 /datum/disease/cold
-	name = "The Cold"
+	name = "感冒"
 	max_stages = 3
-	spread = "Airborne"
-	cure = "Rest & Spaceacillin"
+	spread = "空气传播"
+	cure = "休息与太空西林"
 	cure_id = "spaceacillin"
-	agent = "XY-rhinovirus"
+	agent = "XY鼻病毒"
 	affected_species = list("Human", "Monkey")
 	permeability_mod = 0.5
 	desc = "若不治疗，患者会进一步患上流感。"
-	severity = "Minor"
+	severity = "轻微"
 
 /datum/disease/cold/stage_act()
 	..()

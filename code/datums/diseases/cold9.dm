@@ -1,14 +1,14 @@
 /datum/disease/cold9
-	name = "The Cold"
+	name = "感冒"
 	max_stages = 3
-	spread = "On contact"
+	spread = "接触传播"
 	spread_type = CONTACT_GENERAL
-	cure = "Common Cold Anti-bodies & Spaceacillin"
+	cure = "普通感冒抗体与太空西林"
 	cure_id = "spaceacillin"
-	agent = "ICE9-rhinovirus"
+	agent = "ICE9鼻病毒"
 	affected_species = list("Human")
 	desc = "若不治疗，患者的动作会逐渐迟缓，仿佛身体被部分冻住。"
-	severity = "Moderate"
+	severity = "中度"
 
 /datum/disease/cold9/stage_act()
 	..()

@@ -145,7 +145,7 @@
 
 /obj/item/clothing/head/helmet/marine/fluff/standard_helmet //GENERIC DONOR
 	name = "Omega Team Helmet"
-	desc = "Helmet worn by Omega Team.  DONOR ITEM"
+	desc = "欧米伽小组佩戴的头盔。捐赠者物品。"
 	icon_state = "standard_helmet"
 	item_state = "standard_helmet"
 	flags_inventory = BLOCKSHARPOBJ
@@ -153,20 +153,20 @@
 
 /obj/item/clothing/suit/storage/marine/fluff/standard_armor //GENERIC DONOR
 	name = "Omega Team Armor"
-	desc = "Armor worn by the Omega Team.  DONOR ITEM"
+	desc = "欧米伽小组穿戴的护甲。捐赠者物品。"
 	icon_state = "standard_armor"
 	item_state = "standard_armor"
 
 /obj/item/clothing/under/marine/fluff/standard_jumpsuit //GENERIC DONOR
 	name = "Omega Team Uniform"
-	desc = "Uniform worn by Omega Team.  DONOR ITEM"
+	desc = "欧米伽小组穿着的制服。捐赠者物品。"
 	icon_state = "standard_jumpsuit"
 	worn_state = "standard_jumpsuit"
 	flags_jumpsuit = FALSE
 
 /obj/item/clothing/under/marine/fluff/turtleneck //GENERIC DONOR
 	name = "Black Ops Turtleneck"
-	desc = "A $900 black turtleneck woven from only the purest Azerbaijani cashmere wool.  DONOR ITEM"
+	desc = "一件售价900美元的黑色高领衫，仅以最纯净的阿塞拜疆羊绒织成。捐赠者物品。"
 	icon_state = "syndicate"
 	item_state = "bl_suit"
 	worn_state = "syndicate"
@@ -175,7 +175,7 @@
 
 /obj/item/clothing/mask/fluff/balaclava //GENERIC DONOR
 	name = "Balaclava"
-	desc = "A black Balaclava used for hiding your face.  DISCLAIMER: May not actually hide your face... DONOR ITEM"
+	desc = "一顶用于遮住面孔的黑色巴拉克拉法头套。免责声明：可能并不能真的遮住你的脸……捐赠者物品。"
 	item_state = "balaclava"
 	icon_state = "balaclava"
 	flags_inventory = COVERMOUTH|ALLOWREBREATH
@@ -183,7 +183,7 @@
 
 /obj/item/clothing/glasses/fluff/eyepatch //GENERIC DONOR
 	name = "An Eyepatch"
-	desc = "Badass +10.  Donor Item"
+	desc = "酷炫程度+10。捐赠者物品。"
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 
@@ -191,7 +191,7 @@
 
 /obj/item/clothing/suit/storage/marine/fluff/santa //CKEY=tophatpenguin
 	name = "Santa's suit"
-	desc = "Festive!  DONOR ITEM"
+	desc = "节日气氛拉满！捐赠者物品。"
 	icon_state = "santa"
 	item_state = "santa"
 

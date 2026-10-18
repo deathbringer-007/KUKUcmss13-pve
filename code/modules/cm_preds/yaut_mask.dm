@@ -111,7 +111,7 @@
 
 /obj/item/clothing/mask/gas/yautja/verb/toggle_zoom()
 	set name = "Toggle Mask Zoom"
-	set desc = "Toggle your mask's zoom function."
+	set desc = "切换面具的缩放功能。"
 	set src in usr
 	if(!usr || usr.stat)
 		return
@@ -132,7 +132,7 @@
 
 /obj/item/clothing/mask/gas/yautja/verb/togglesight()
 	set name = "Toggle Mask Visors"
-	set desc = "Toggle your mask visor sights. You must only be wearing a type of Yautja visor for this to work."
+	set desc = "切换面具目镜的视野模式。只有佩戴铁血战士目镜时才能使用。"
 	set src in usr
 	if(!usr || usr.stat)
 		return

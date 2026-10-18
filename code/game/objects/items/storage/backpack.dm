@@ -742,7 +742,7 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/verb/camouflage()
 	set name = "Activate Cloak"
-	set desc = "Activate your cloak's camouflage."
+	set desc = "启动披风的迷彩功能。"
 	set category = "Scout"
 	set src in usr
 	if(!usr || usr.is_mob_incapacitated(TRUE))

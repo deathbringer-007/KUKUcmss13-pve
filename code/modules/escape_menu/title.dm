@@ -26,7 +26,7 @@ GLOBAL_DATUM(escape_menu_title, /atom/movable/screen/escape_menu/title)
 	return ..()
 
 /atom/movable/screen/escape_menu/title/proc/update_text()
-	var/subtitle_text = MAPTEXT("<span style='font-size: 8px'>[SSmapping.configs[GROUND_MAP].disable_ship_map ? "Fighting on..." : "On the [SSmapping.configs[SHIP_MAP].map_name], orbiting..."]</span>")
+	var/subtitle_text = MAPTEXT("<span style='font-size: 8px'>[SSmapping.configs[GROUND_MAP].disable_ship_map ? "正在此地作战……" : "身处[SSmapping.configs[SHIP_MAP].map_name]，正绕行于……"]</span>")
 	var/short_name = SSmapping.configs[GROUND_MAP].short_name
 	var/title_text = {"
 		<span style='font-weight: bolder; font-size: 24px'>

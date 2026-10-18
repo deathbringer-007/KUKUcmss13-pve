@@ -1,6 +1,6 @@
 /datum/weather_event/light_rain
 	name = "Light Rain"
-	display_name = "Light Rain"
+	display_name = "小雨"
 	length = 8 MINUTES
 
 	turf_overlay_icon_state = "strata_storm"
@@ -15,7 +15,7 @@
 
 /datum/weather_event/heavy_rain
 	name = "Heavy Rain"
-	display_name = "Heavy Rain"
+	display_name = "大雨"
 	length = 12 MINUTES
 
 	turf_overlay_icon_state = "strata_storm"

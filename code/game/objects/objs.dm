@@ -106,41 +106,41 @@
 	if(blood_color)
 		. = SPAN_WARNING("[icon2html(src, user)] [gender==PLURAL?"一些":"一个"]沾有<font color='[blood_color]'>污迹</font>的[src.name]")
 	else
-		. = "[icon2html(src, user)] \a [src]"
+		. = "[icon2html(src, user)] [src]"
 
 /obj/item/proc/get_examine_location(mob/living/carbon/human/wearer, mob/examiner, slot, t_He = "They", t_his = "their", t_him = "them", t_has = "have", t_is = "are")
 	switch(slot)
 		if(WEAR_HEAD)
-			return "on [t_his] head"
+			return "戴在头部"
 		if(WEAR_L_EAR)
-			return "on [t_his] left ear"
+			return "戴在左耳"
 		if(WEAR_R_EAR)
-			return "on [t_his] right ear"
+			return "戴在右耳"
 		if(WEAR_EYES)
-			return "covering [t_his] eyes"
+			return "遮住双眼"
 		if(WEAR_FACE)
-			return "on [t_his] face"
+			return "戴在脸上"
 		if(WEAR_BODY)
-			return "wearing [get_examine_line(examiner)]"
+			return "穿着[get_examine_line(examiner)]"
 		if(WEAR_JACKET)
-			return "wearing [get_examine_line(examiner)]"
+			return "穿着[get_examine_line(examiner)]"
 		if(WEAR_WAIST)
-			return "about [t_his] waist"
+			return "系在腰间"
 		if(WEAR_ID)
-			return "wearing [get_examine_line(examiner)]"
+			return "穿着[get_examine_line(examiner)]"
 		if(WEAR_BACK)
-			return "on [t_his] back"
+			return "背在背上"
 		if(WEAR_J_STORE)
-			return "[wearer.wear_suit ? "on [t_his] [wearer.wear_suit.name]" : "around [t_his] back"]"
+			return "[wearer.wear_suit ? "挂在[wearer.wear_suit.name]上" : "挂在背部"]"
 		if(WEAR_HANDS)
-			return "on [t_his] hands"
+			return "戴在双手"
 		if(WEAR_L_HAND)
-			return "in [t_his] left hand"
+			return "拿在左手"
 		if(WEAR_R_HAND)
-			return "in [t_his] right hand"
+			return "拿在右手"
 		if(WEAR_FEET)
-			return "on [t_his] feet"
-	return "...somewhere?"
+			return "穿在双脚"
+	return "……某个地方？"
 
 /obj/proc/updateUsrDialog(mob/user)
 	if(!user)
@@ -205,7 +205,7 @@
 	return
 
 
-/obj/proc/hear_talk(mob/living/M as mob, msg, verb="says", datum/language/speaking, italics = 0)
+/obj/proc/hear_talk(mob/living/M as mob, msg, verb="说道", datum/language/speaking, italics = 0)
 	return
 
 /obj/proc/see_emote(mob/living/M as mob, emote, audible = FALSE)
@@ -427,7 +427,7 @@
 
 // Adding a text string at the end of the object
 /obj/proc/add_label(obj/O, user)
-	var/label = copytext(reject_bad_text(input(user,"Label text?", "Set label", "")), 1, MAX_NAME_LEN)
+	var/label = copytext(reject_bad_text(input(user,"标签内容？", "设置标签", "")), 1, MAX_NAME_LEN)
 
 	// Checks for valid labelling/name length
 	if(!label || !length(label))

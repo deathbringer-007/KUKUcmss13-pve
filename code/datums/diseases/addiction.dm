@@ -1,16 +1,16 @@
 /datum/disease/addiction
-	form = "Condition"
-	name = "Chemical Addiction"
+	form = "病症"
+	name = "药物成瘾"
 	max_stages = 4
-	cure = "Withdrawal"
+	cure = "戒断"
 	curable = 0
-	agent = "Chemical Addiction"
+	agent = "化学物质成瘾"
 	affected_species = list("Human")
 	permeability_mod = 1
 	can_carry = 0
 	spread_type = NON_CONTAGIOUS
 	desc = "使用成瘾性兴奋剂会导致生理和心理依赖。"
-	severity = "Medium"
+	severity = "中等"
 	longevity = 1000
 	hidden = list(1, 1) //hidden from med-huds and pandemic scanners
 	contagious_period = 900001 //additional safeguard to prevent spreading
@@ -51,7 +51,7 @@
 				if(prob(20))
 					affected_mob.halloss = max(affected_mob.halloss, min(20, withdrawal_progression*0.5) )
 					if(prob(50))
-						var/message = SPAN_DANGER( pick("You could use another hit.", "More of that would be nice.", "Another dose would help.", "One more dose wouldn't hurt", "Why not take one more?") )
+						var/message = SPAN_DANGER( pick("你觉得该再来一口。", "再多来一点就舒服了。", "再用一剂就会好起来。", "再来一剂也无妨。", "何不再来一次？") )
 						to_chat(affected_mob, message)
 
 				affected_mob.next_move_slowdown = max(affected_mob.next_move_slowdown, 5)
@@ -64,10 +64,10 @@
 			if(prob(20))
 				affected_mob.halloss = max(affected_mob.halloss, min(40, withdrawal_progression) )
 				if(prob(50))
-					var/message = SPAN_DANGER( pick("It's just not the same without it.", "You could use another hit.", "You should take another.", "Just one more.", "Looks like you need another one.") )
+					var/message = SPAN_DANGER( pick("没了它，感觉就是不一样。", "你觉得该再来一口。", "你该再用一次。", "就再来一次。", "看来你又需要它了。") )
 					to_chat(affected_mob, message)
 				if(prob(25))
-					affected_mob.emote("me",1, pick("winces slightly.", "grimaces.") )
+					affected_mob.emote("me",1, pick("微微抽搐了一下。", "露出痛苦的表情。") )
 
 			affected_mob.next_move_slowdown = max(affected_mob.next_move_slowdown, 7)
 
@@ -78,10 +78,10 @@
 			if(prob(20))
 				affected_mob.halloss = max(affected_mob.halloss, min(60, withdrawal_progression*1.5) )
 				if(prob(50))
-					var/message = SPAN_DANGER( pick("You need more.", "It's hard to go on like this.", "You want more. You need more.", "Just take another hit. Now.", "One more.") )
+					var/message = SPAN_DANGER( pick("你需要更多。", "这样下去实在难熬。", "你想要更多。你需要更多。", "再来一口。现在就来。", "再来一次。") )
 					to_chat(affected_mob, message)
 				if(prob(25))
-					affected_mob.emote("me",1, pick("winces.", "grimaces.", "groans!") )
+					affected_mob.emote("me",1, pick("痛苦地抽搐了一下。", "露出痛苦的表情。", "呻吟起来！") )
 
 			affected_mob.next_move_slowdown = max(affected_mob.next_move_slowdown, 10)
 
@@ -92,10 +92,10 @@
 			if(prob(20))
 				affected_mob.halloss = max(affected_mob.halloss, min(80, withdrawal_progression*2) )
 				if(prob(50))
-					var/message = SPAN_DANGER( pick("You need another dose, now. NOW.", "You can't stand it. You have to go back. You have to go back.", "You need more. YOU NEED MORE.", "MORE", "TAKE MORE.") )
+					var/message = SPAN_DANGER( pick("你需要再用一剂，现在。马上！", "你受不了了。你必须回去。必须回去。", "你需要更多。你必须得到更多！", "更多！", "再多用一点！") )
 					to_chat(affected_mob, message)
 				if(prob(25))
-					affected_mob.emote("me",1, pick("groans painfully!", "contorts with pain!"))
+					affected_mob.emote("me",1, pick("痛苦地呻吟着！", "痛得蜷缩起来！"))
 			affected_mob.next_move_slowdown = max(affected_mob.next_move_slowdown, 10)
 
 /datum/disease/addiction/proc/handle_chem()

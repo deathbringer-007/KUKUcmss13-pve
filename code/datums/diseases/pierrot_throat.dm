@@ -1,15 +1,15 @@
 /datum/disease/pierrot_throat
-	name = "Pierrot's Throat"
+	name = "皮埃罗喉炎"
 	max_stages = 4
-	spread = "Airborne"
-	cure = "A whole banana."
+	spread = "空气传播"
+	cure = "一整根香蕉。"
 	cure_id = "banana"
 	cure_chance = 75
-	agent = "H0NI<42 Virus"
+	agent = "H0NI<42病毒"
 	affected_species = list("Human")
 	permeability_mod = 0.75
 	desc = "若不治疗，患者很可能把周围的人逼疯。"
-	severity = "Medium"
+	severity = "中等"
 	longevity = 400
 
 /datum/disease/pierrot_throat/stage_act()
@@ -22,4 +22,4 @@
 		if(3)
 			if(prob(10)) to_chat(affected_mob, SPAN_DANGER("一声响亮的<b>喇叭声！</b>打断了你的思绪。"))
 		if(4)
-			if(prob(5)) affected_mob.say( pick( list("HONK!", "Honk!", "Honk.", "Honk?", "Honk!!", "Honk?!", "Honk...") ) )
+			if(prob(5)) affected_mob.say( pick( list("叭——！", "叭！", "叭。", "叭？", "叭！！", "叭？！", "叭……") ) )

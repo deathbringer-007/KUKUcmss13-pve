@@ -73,17 +73,17 @@
 
 /obj/structure/sign/kiddieplaque
 	name = "AI developers plaque"
-	desc = "Next to the extremely long list of names and job titles, there is a drawing of a little child. Beneath the image, someone has scratched the word \"PACKETS\""
+	desc = "长长的姓名与职务名单旁画着一个小孩。有人在画像下刻下了\"PACKETS\"。"
 	icon_state = "kiddieplaque"
 
 /obj/structure/sign/arcturianstopsign
 	name = "\improper Arcturian stop sign"
-	desc = "This is the Arcturian stop sign that some Bravos from First Platoon stole on the last shore leave."
+	desc = "这是第一排的几个布拉沃队员在上次上岸休假时，从大角星偷回来的停车标志。"
 	icon_state = "arcturian_stop_sign"
 
 /obj/structure/sign/double/maltesefalcon //The sign is 64x32, so it needs two tiles. ;3
 	name = "The Maltese Falcon"
-	desc = "The Maltese Falcon, Space Bar and Grill."
+	desc = "马耳他之鹰太空酒吧餐厅。"
 
 /obj/structure/sign/double/maltesefalcon/left
 	icon_state = "maltesefalcon-left"
@@ -100,21 +100,21 @@
 
 /obj/structure/sign/banners/happybirthdaysteve
 	name = "\improper Happy Birthday Steve banner"
-	desc = "A depressing looking paper banner wishing someone named Steve a happy birth ay."
+	desc = "一条看起来很寒酸的纸横幅，祝某个叫史蒂夫的人“生 快乐”，连“日”字都漏了。"
 	icon_state = "birthdaysteve"
 
 /obj/structure/sign/banners/maximumeffort
 	name = "\improper Maximum Effort banner"
-	desc = "This banner depicts Delta Squad's motto. The Marines of Delta Squad adopted it after picking an old bomber movie for movie night a while back."
+	desc = "这条横幅上写着德尔塔小队的格言。前些日子的小队电影之夜放了一部老轰炸机电影，此后陆战队员们便采用了这句格言。"
 	icon_state = "maximumeffort"
 
 /obj/structure/sign/banners/united_americas_flag
 	name = "\improper United Americas flag"
-	desc = "A flag of the United Americas. Inspires patriotism, fear, or revulsion depending on the viewer's political leanings."
+	desc = "一面美洲联盟旗帜。根据观看者的政治立场，可能激起爱国热情、恐惧或厌恶。"
 	icon_state = "uaflag"
 /obj/structure/sign/banners/united_americas_worn
 	name = "\improper United Americas flag"
-	desc = "A very worn flag of the United Americas. Inspires patriotism, fear, or revulsion depending on the viewer's political leanings."
+	desc = "一面严重磨损的美洲联盟旗帜。根据观看者的政治立场，可能激起爱国热情、恐惧或厌恶。"
 	icon_state = "uaflag_worn"
 //============//
 //  Flags    //
