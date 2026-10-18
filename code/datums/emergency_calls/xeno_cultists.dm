@@ -1,6 +1,7 @@
 //Xeno Cultists
 /datum/emergency_call/xeno_cult
 	name = "Xeno Cultists"
+	localized_name = "异形教徒"
 	mob_max = 6
 	arrival_message = "“咿呀！咿呀！”"
 	objectives = "尽一切可能支援异形，必要时为它们献出生命！"

@@ -1,6 +1,7 @@
 //USCM Provost
 /datum/emergency_call/inspection_provost
 	name = "Inspection - USCM Provost - ML knowledge and MP playtime required."
+	localized_name = "监察：陆战队军法监察署（须熟悉军法并有宪兵游戏时长）"
 	mob_max = 2
 	mob_min = 1
 	probability = 0
@@ -54,6 +55,7 @@
 //USCM High Command
 /datum/emergency_call/inspection_hc
 	name = "Inspection - USCM High Command"
+	localized_name = "监察：陆战队最高指挥部"
 	mob_max = 2
 	mob_min = 1
 	probability = 0
@@ -89,6 +91,7 @@
 //Weyland-Yutani
 /datum/emergency_call/inspection_wy
 	name = "Inspection - Corporate"
+	localized_name = "监察：企业"
 	mob_max = 2
 	mob_min = 1
 	home_base = /datum/lazy_template/ert/weyland_station
@@ -133,6 +136,7 @@
 
 /datum/emergency_call/inspection_wy/lawyer
 	name = "Lawyers - Corporate"
+	localized_name = "企业律师团"
 	mob_max = 2
 	mob_min = 1
 	name_of_spawn = /obj/effect/landmark/ert_spawns/distress_pmc
@@ -171,6 +175,7 @@
 // Colonial Marshals - UA Law Enforcement / Investigative Federal Agents which usually watch over Colonies. Also a good option for prisoner transfers, investigating corporate corruption, survivor rescues, or illict trade practices(black market).
 /datum/emergency_call/inspection_cmb
 	name = "Inspection - Colonial Marshals Investigation Team"
+	localized_name = "监察：殖民地执法局调查组"
 	mob_max = 4
 	mob_min = 1
 	probability = 0
@@ -270,6 +275,7 @@
 
 /datum/emergency_call/inspection_cmb/black_market
 	name = "Inspection - Colonial Marshals Ledger Investigation Team"
+	localized_name = "监察：殖民地执法局账目调查组"
 	mob_max = 3 //Marshal, Deputy, ICC CL
 	mob_min = 2
 	shuttle_id = MOBILE_SHUTTLE_ID_ERT2

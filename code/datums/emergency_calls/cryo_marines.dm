@@ -2,6 +2,7 @@
 
 /datum/emergency_call/cryo_squad
 	name = "Marine Cryo Reinforcements (Squad)"
+	localized_name = "陆战队冷冻休眠增援（小队）"
 	mob_max = 10
 	mob_min = 1
 	probability = 0
@@ -19,7 +20,7 @@
 	. = ..()
 	shipwide_ai_announcement("已成功部署[mob_max]名福克斯特罗特陆战队员，其中[length(members)]名已准备好执勤。")
 	if(mob_max > length(members))
-		announce_dchat("Some cryomarines were not taken, use the Join As Freed Mob verb to take one of them.")
+		announce_dchat("部分冷冻休眠陆战队员尚无人控制，可使用“加入可接管角色”指令接管。")
 
 /datum/emergency_call/cryo_squad/create_member(datum/mind/mind, turf/override_spawn_loc)
 	set waitfor = 0
@@ -85,6 +86,7 @@
 
 /datum/emergency_call/cryo_squad/platoon
 	name = "Marine Cryo Reinforcements (Platoon)"
+	localized_name = "陆战队冷冻休眠增援（排）"
 	mob_min = 8
 	mob_max = 30
 	probability = 0
@@ -95,6 +97,7 @@
 
 /datum/emergency_call/cryo_squad/tech
 	name = "Marine Cryo Reinforcements (Tech)"
+	localized_name = "陆战队冷冻休眠增援（科技解锁）"
 	mob_max = 5
 	max_engineers = 1
 	max_medics = 1

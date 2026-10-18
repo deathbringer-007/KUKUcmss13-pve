@@ -5,7 +5,7 @@
 */
 //Only when things screw up do we use this as a placeholder.
 /datum/ammo/bullet
-	name = "default bullet"
+	name = "默认子弹"
 	icon_state = "bullet"
 	headshot_state = HEADSHOT_OVERLAY_LIGHT
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -66,7 +66,7 @@
 	shake_camera(execution_target, 3, 4)
 	execution_target.update_headshot_overlay(headshot_state) //...and add a gory headshot overlay.
 
-	execution_target.visible_message(SPAN_HIGHDANGER(uppertext("[execution_target] WAS EXECUTED!")), \
+	execution_target.visible_message(SPAN_HIGHDANGER(uppertext("[execution_target]被处决了！")), \
 		SPAN_HIGHDANGER("你被处决了！"))
 
 	user.count_niche_stat(STATISTICS_NICHE_EXECUTION, 1, firing_projectile.weapon_cause_data?.cause_name)

@@ -18,31 +18,31 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 	ceiling = CEILING_METAL
 
 /area/supply/station
-	name = "Supply Shuttle"
+	name = "补给升降台"
 	icon_state = "shuttle3"
 	requires_power = 0
 	ambience_exterior = AMBIENCE_ALMAYER
 
 /area/supply/dock
-	name = "Supply Shuttle"
+	name = "补给升降台"
 	icon_state = "shuttle3"
 	requires_power = 0
 
 /area/supply/station_vehicle
-	name = "Vehicle ASRS"
+	name = "载具自动仓储检索系统"
 	icon_state = "shuttle3"
 	requires_power = 0
 
 /area/supply/dock_vehicle
-	name = "Vehicle ASRS"
+	name = "载具自动仓储检索系统"
 	icon_state = "shuttle3"
 	requires_power = 0
 
 //SUPPLY PACKS MOVED TO /code/defines/obj/supplypacks.dm
 
 /obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
-	name = "\improper plastic flaps"
-	desc = "Completely impassable - or are they?"
+	name = "\improper 塑料门帘"
+	desc = "完全无法通行——真的是这样吗？"
 	icon = 'icons/obj/structures/props/stationobjs.dmi' //Change this.
 	icon_state = "plasticflaps"
 	gender = PLURAL
@@ -91,13 +91,13 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 			deconstruct(FALSE)
 
 /obj/structure/plasticflaps/mining //A specific type for mining that doesn't allow airflow because of them damn crates
-	name = "\improper Airtight plastic flaps"
-	desc = "Heavy-duty, airtight, plastic flaps."
+	name = "\improper 气密塑料门帘"
+	desc = "厚实耐用的气密塑料门帘。"
 
 
 /obj/structure/machinery/computer/supplycomp
-	name = "ASRS console"
-	desc = "A console for the Automated Storage Retrieval System"
+	name = "自动仓储检索系统控制台"
+	desc = "用于操作自动仓储检索系统的控制台。"
 	icon = 'icons/obj/structures/machinery/computer.dmi'
 	icon_state = "supply"
 	density = TRUE
@@ -150,7 +150,7 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 			computer.black_market_lockout = TRUE
 
 /obj/structure/machinery/computer/ordercomp
-	name = "Supply ordering console"
+	name = "补给申请控制台"
 	icon = 'icons/obj/structures/machinery/computer.dmi'
 	icon_state = "request"
 	density = TRUE
@@ -160,8 +160,8 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 	var/last_viewed_group = "categories"
 
 /obj/structure/machinery/computer/supply_drop_console
-	name = "Supply Drop Console"
-	desc = "An old-fashioned computer hooked into the nearby Supply Drop system."
+	name = "补给空投控制台"
+	desc = "一台连接着附近补给空投系统的老式计算机。"
 	icon_state = "security_cam"
 	circuit = /obj/item/circuitboard/computer/supply_drop_console
 	req_access = list(ACCESS_MARINE_CARGO)
@@ -257,7 +257,7 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 		if("send_beacon")
 			if(current_squad)
 				if(!COOLDOWN_FINISHED(src, next_fire))
-					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Supply drop not yet available! Please wait [COOLDOWN_TIMELEFT(src, next_fire)/10] seconds!")]")
+					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("补给空投尚未就绪！请再等[COOLDOWN_TIMELEFT(src, next_fire)/10]秒！")]")
 					return
 				else
 					handle_supplydrop()
@@ -271,7 +271,7 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 	if(..())  //Checks for power outages
 		return
 	if(!allowed(user))
-		to_chat(user, SPAN_WARNING("Access denied."))
+		to_chat(user, SPAN_WARNING("拒绝访问。"))
 		return TRUE
 	tgui_interact(user)
 	return
@@ -292,7 +292,7 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 	SHOULD_NOT_SLEEP(TRUE)
 	var/obj/structure/closet/crate/crate = check_pad()
 	if(!crate)
-		to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("No crate was detected on the drop pad. Get Requisitions on the line!")]")
+		to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("空投平台上未检测到补给箱。快联系军需部门！")]")
 		return
 
 	var/x_coord = deobfuscate_x(x_supply)
@@ -305,25 +305,25 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 
 	var/turf/T = locate(x_coord, y_coord, z_coord)
 	if(!T)
-		to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Error, invalid coordinates.")]")
+		to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("错误：坐标无效。")]")
 		return
 
 	var/area/A = get_area(T)
 	if(A && CEILING_IS_PROTECTED(A.ceiling, CEILING_PROTECTION_TIER_2))
-		to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("The landing zone is underground. The supply drop cannot reach here.")]")
+		to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("着陆区位于地下，补给空投无法抵达。")]")
 		return
 
 	if(istype(T, /turf/open/space) || T.density)
-		to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("The landing zone appears to be obstructed or out of bounds. Package would be lost on drop.")]")
+		to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("着陆区似乎被阻挡或超出边界，空投将导致货物丢失。")]")
 		return
 
 	if(crate.opened)
-		to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("The crate is not secure on the drop pad. Please close it!")]")
+		to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("平台上的补给箱尚未封好，请将其关闭！")]")
 		return
 
-	crate.visible_message(SPAN_WARNING("\The [crate] loads into a launch tube. Stand clear!"))
-	current_squad.send_message("'[crate.name]' supply drop incoming. Heads up!")
-	current_squad.send_maptext(crate.name, "Incoming Supply Drop:")
+	crate.visible_message(SPAN_WARNING("[crate]装入了发射管。请退后！"))
+	current_squad.send_message("“[crate.name]”补给空投即将到达。小心头顶！")
+	current_squad.send_maptext(crate.name, "补给空投即将到达：")
 	COOLDOWN_START(src, next_fire, drop_cooldown)
 	if(ismob(usr))
 		var/mob/M = usr
@@ -335,7 +335,7 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 	pod.launch(T)
 	log_ares_requisition("Supply Drop", "Launch [crate.name] to X[x_supply], Y[y_supply].", usr.real_name)
 	log_game("[key_name(usr)] launched supply drop '[crate.name]' to X[x_coord], Y[y_coord].")
-	visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("'[crate.name]' supply drop launched! Another launch will be available in five minutes.")]")
+	visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("“[crate.name]”补给空投已发射！五分钟后可以再次发射。")]")
 
 //A limited version of the above console
 //Can't pick squads, drops less often
@@ -590,10 +590,10 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 
 	if(screams)
 		for(var/atom/computer as anything in bound_supply_computer_list)
-			computer.balloon_alert_to_viewers("you hear horrifying noises coming from the elevator!")
+			computer.balloon_alert_to_viewers("升降机里传来了可怕的声响！")
 
 /proc/maul_human(mob/living/carbon/human/mauled_human)
-	mauled_human.visible_message(SPAN_HIGHDANGER("The machinery crushes [mauled_human]"), SPAN_HIGHDANGER("The elevator machinery is CRUSHING YOU!"))
+	mauled_human.visible_message(SPAN_HIGHDANGER("机械正在碾压[mauled_human]！"), SPAN_HIGHDANGER("升降机的机械正在把你碾碎！"))
 
 	if(mauled_human.stat != DEAD)
 		mauled_human.emote("scream")
@@ -662,7 +662,7 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 		var/obj/item/paper/manifest/slip
 		if(!package.contraband) // I'm sorry boss i misplaced it...
 			slip = new /obj/item/paper/manifest(container)
-			slip.ordername = package.name
+			slip.ordername = package.get_display_name()
 			slip.ordernum = order.ordernum
 			slip.orderedby = order.orderedby
 			slip.approvedby = order.approvedby
@@ -672,7 +672,7 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 	shoppinglist.Cut()
 
 /obj/item/paper/manifest
-	name = "Supply Manifest"
+	name = "补给清单"
 	var/ordername
 	var/ordernum
 	var/orderedby
@@ -707,22 +707,22 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 		</style><div id='container'>   \
 		<div class='header'>   \
 			<p id='title' class='important'>A.S.R.S.</p>   \
-			<p class='important'>Automatic Storage Retrieval System</p>    \
-			<p class='field'>Order #[ordernum]</p> \
+			<p class='important'>自动仓储检索系统</p>    \
+			<p class='field'>订单 #[ordernum]</p> \
 		</div><hr><table>  \
 		<colgroup> \
 			<col class='tablelabel important'> \
 			<col class='field'>    \
 		</colgroup>    \
-		<tr><td>Shipment:</td> \
+		<tr><td>货物：</td> \
 		<td>[ordername]</td></tr>  \
-		<tr><td>Ordered by:</td>   \
+		<tr><td>申请人：</td>   \
 		<td>[orderedby]</td></tr>  \
-		<tr><td>Approved by:</td>  \
+		<tr><td>批准人：</td>  \
 		<td>[approvedby]</td></tr> \
-		<tr><td># packages:</td>   \
+		<tr><td>包裹数量：</td>   \
 		<td class='field'>[length(packages)]</td></tr> \
-		</table><hr><p class='header important'>Contents</p>   \
+		</table><hr><p class='header important'>内容</p>   \
 		<ul class='field'>"
 
 	for(var/packagename in packages)
@@ -730,7 +730,7 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 
 	info += "  \
 		</ul><br/><hr><br/><p class='important header'>    \
-			Please stamp below and return to confirm receipt of shipment   \
+			请在下方盖章并交回，确认货物已签收   \
 		</p></div>"
 
 	name = "[name] - [ordername]"
@@ -751,14 +751,14 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 	else
 		var/datum/shuttle/ferry/supply/shuttle = GLOB.supply_controller.shuttle
 		if (shuttle)
-			dat += {"Location: [shuttle.has_arrive_time() ? "Raising platform":shuttle.at_station() ? "Raised":"Lowered"]<BR>
-			<HR>Supply budget: $[GLOB.supply_controller.points * SUPPLY_TO_MONEY_MUPLTIPLIER]<BR>
-		<BR>\n<A href='byond://?src=\ref[src];order=categories'>Request items</A><BR><BR>
-		<A href='byond://?src=\ref[src];vieworders=1'>View approved orders</A><BR><BR>
-		<A href='byond://?src=\ref[src];viewrequests=1'>View requests</A><BR><BR>
-		<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
+			dat += {"位置：[shuttle.has_arrive_time() ? "平台正在升起":shuttle.at_station() ? "已升起":"已降下"]<BR>
+			<HR>补给预算：$[GLOB.supply_controller.points * SUPPLY_TO_MONEY_MUPLTIPLIER]<BR>
+		<BR>\n<A href='byond://?src=\ref[src];order=categories'>申请物品</A><BR><BR>
+		<A href='byond://?src=\ref[src];vieworders=1'>查看已批准订单</A><BR><BR>
+		<A href='byond://?src=\ref[src];viewrequests=1'>查看申请</A><BR><BR>
+		<A href='byond://?src=\ref[user];mach_close=computer'>关闭</A>"}
 
-	show_browser(user, dat, "Automated Storage and Retrieval System", "computer", width = 575, height = 450)
+	show_browser(user, dat, "自动仓储检索系统", "computer", width = 575, height = 450)
 	return
 
 /obj/structure/machinery/computer/ordercomp/Topic(href, href_list)
@@ -773,21 +773,21 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 			//all_supply_groups
 			//Request what?
 			last_viewed_group = "categories"
-			temp = "<b>Supply budget: $[GLOB.supply_controller.points * SUPPLY_TO_MONEY_MUPLTIPLIER]</b><BR>"
-			temp += "<A href='byond://?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
-			temp += "<b>Select a category</b><BR><BR>"
+			temp = "<b>补给预算：$[GLOB.supply_controller.points * SUPPLY_TO_MONEY_MUPLTIPLIER]</b><BR>"
+			temp += "<A href='byond://?src=\ref[src];mainmenu=1'>主菜单</A><HR><BR><BR>"
+			temp += "<b>选择分类</b><BR><BR>"
 			for(var/supply_group_name in GLOB.supply_controller.all_supply_groups)
-				temp += "<A href='byond://?src=\ref[src];order=[supply_group_name]'>[supply_group_name]</A><BR>"
+				temp += "<A href='byond://?src=\ref[src];order=[supply_group_name]'>[localized_supply_group_name(supply_group_name)]</A><BR>"
 		else
 			last_viewed_group = href_list["order"]
-			temp = "<b>Supply budget: $[GLOB.supply_controller.points * SUPPLY_TO_MONEY_MUPLTIPLIER]</b><BR>"
-			temp += "<A href='byond://?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
-			temp += "<b>Request from: [last_viewed_group]</b><BR><BR>"
+			temp = "<b>补给预算：$[GLOB.supply_controller.points * SUPPLY_TO_MONEY_MUPLTIPLIER]</b><BR>"
+			temp += "<A href='byond://?src=\ref[src];order=categories'>返回全部分类</A><HR><BR><BR>"
+			temp += "<b>申请分类：[localized_supply_group_name(last_viewed_group)]</b><BR><BR>"
 			for(var/supply_type in GLOB.supply_packs_datums)
 				var/datum/supply_packs/supply_pack = GLOB.supply_packs_datums[supply_type]
 				if(supply_pack.contraband || supply_pack.group != last_viewed_group || !supply_pack.buyable)
 					continue //Have to send the type instead of a reference to
-				temp += "<A href='byond://?src=\ref[src];doorder=[supply_pack.name]'>[supply_pack.name]</A> Cost: $[floor(supply_pack.cost) * SUPPLY_TO_MONEY_MUPLTIPLIER]<BR>" //the obj because it would get caught by the garbage
+				temp += "<A href='byond://?src=\ref[src];doorder=[supply_pack.name]'>[supply_pack.get_display_name()]</A> 价格：$[floor(supply_pack.cost) * SUPPLY_TO_MONEY_MUPLTIPLIER]<BR>" //the obj because it would get caught by the garbage
 
 	else if (href_list["doorder"])
 		if(world.time < reqtime)
@@ -809,8 +809,8 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 		if(world.time > timeout) return
 		if(!reason) return
 
-		var/idname = "*None Provided*"
-		var/idrank = "*None Provided*"
+		var/idname = "*未提供*"
+		var/idrank = "*未提供*"
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			idname = H.get_authentification_name()
@@ -820,18 +820,18 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 
 		GLOB.supply_controller.ordernum++
 		var/obj/item/paper/reqform = new /obj/item/paper(loc)
-		reqform.name = "Requisition Form - [supply_pack.name]"
-		reqform.info += "<h3>[MAIN_SHIP_NAME] Supply Requisition Form</h3><hr>"
-		reqform.info += "INDEX: #[GLOB.supply_controller.ordernum]<br>"
-		reqform.info += "REQUESTED BY: [idname]<br>"
-		reqform.info += "RANK: [idrank]<br>"
-		reqform.info += "REASON: [reason]<br>"
-		reqform.info += "SUPPLY CRATE TYPE: [supply_pack.name]<br>"
-		reqform.info += "ACCESS RESTRICTION: [get_access_desc(supply_pack.access)]<br>"
-		reqform.info += "CONTENTS:<br>"
+		reqform.name = "军需申请单：[supply_pack.get_display_name()]"
+		reqform.info += "<h3>[MAIN_SHIP_NAME]补给申请单</h3><hr>"
+		reqform.info += "编号：#[GLOB.supply_controller.ordernum]<br>"
+		reqform.info += "申请人：[idname]<br>"
+		reqform.info += "军衔：[localized_player_label(idrank)]<br>"
+		reqform.info += "原因：[reason]<br>"
+		reqform.info += "补给箱类型：[supply_pack.get_display_name()]<br>"
+		reqform.info += "权限限制：[get_access_desc(supply_pack.access)]<br>"
+		reqform.info += "内容：<br>"
 		reqform.info += supply_pack.manifest
 		reqform.info += "<hr>"
-		reqform.info += "STAMP BELOW TO APPROVE THIS REQUISITION:<br>"
+		reqform.info += "在下方盖章以批准此申请：<br>"
 
 		reqform.update_icon() //Fix for appearing blank when printed.
 		reqtime = (world.time + 5) % 1e5
@@ -843,22 +843,22 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 		supply_order.orderedby = idname
 		GLOB.supply_controller.requestlist += supply_order
 
-		temp = "Thanks for your request. The cargo team will process it as soon as possible.<BR>"
-		temp += "<BR><A href='byond://?src=\ref[src];order=[last_viewed_group]'>Back</A> <A href='byond://?src=\ref[src];mainmenu=1'>Main Menu</A>"
+		temp = "感谢提交申请，货运部门会尽快处理。<BR>"
+		temp += "<BR><A href='byond://?src=\ref[src];order=[last_viewed_group]'>返回</A> <A href='byond://?src=\ref[src];mainmenu=1'>主菜单</A>"
 
 	else if (href_list["vieworders"])
-		temp = "Current approved orders: <BR><BR>"
+		temp = "当前已批准的订单：<BR><BR>"
 		for(var/S in GLOB.supply_controller.shoppinglist)
 			var/datum/supply_order/SO = S
-			temp += "[SO.object.name] approved by [SO.approvedby]<BR>"
-		temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
+			temp += "[SO.object.get_display_name()]，批准人：[SO.approvedby]<BR>"
+		temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>确定</A>"
 
 	else if (href_list["viewrequests"])
-		temp = "Current requests: <BR><BR>"
+		temp = "当前申请：<BR><BR>"
 		for(var/S in GLOB.supply_controller.requestlist)
 			var/datum/supply_order/SO = S
-			temp += "#[SO.ordernum] - [SO.object.name] requested by [SO.orderedby]<BR>"
-		temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
+			temp += "#[SO.ordernum] - [SO.object.get_display_name()]，申请人：[SO.orderedby]<BR>"
+		temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>确定</A>"
 
 	else if (href_list["mainmenu"])
 		temp = null
@@ -870,7 +870,7 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 /obj/structure/machinery/computer/supplycomp/attack_hand(mob/user as mob)
 	if(!is_mainship_level(z)) return
 	if(!allowed(user))
-		to_chat(user, SPAN_DANGER("Access Denied."))
+		to_chat(user, SPAN_DANGER("拒绝访问。"))
 		return
 
 	if(..())
@@ -883,9 +883,9 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 	else
 		var/datum/shuttle/ferry/supply/shuttle = GLOB.supply_controller.shuttle
 		if (shuttle)
-			dat += "\nPlatform position: "
+			dat += "\n平台位置："
 			if (shuttle.has_arrive_time())
-				dat += "Moving<BR>"
+				dat += "移动中<BR>"
 			else
 				if (shuttle.at_station())
 					if (shuttle.docking_controller)
@@ -895,34 +895,34 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 							if ("docking") dat += "Raising [shuttle.can_force()? SPAN_WARNING("<A href='byond://?src=\ref[src];force_send=1'>Force</A>") : ""]<BR>"
 							if ("undocking") dat += "Lowering [shuttle.can_force()? SPAN_WARNING("<A href='byond://?src=\ref[src];force_send=1'>Force</A>") : ""]<BR>"
 					else
-						dat += "Raised<BR>"
+						dat += "已升起<BR>"
 
 					if (shuttle.can_launch())
-						dat += "<A href='byond://?src=\ref[src];send=1'>Lower platform</A>"
+						dat += "<A href='byond://?src=\ref[src];send=1'>降下平台</A>"
 					else if (shuttle.can_cancel())
-						dat += "<A href='byond://?src=\ref[src];cancel_send=1'>Cancel</A>"
+						dat += "<A href='byond://?src=\ref[src];cancel_send=1'>取消</A>"
 					else
-						dat += "*ASRS is busy*"
+						dat += "*自动仓储检索系统忙碌中*"
 					dat += "<BR>\n<BR>"
 				else
-					dat += "Lowered<BR>"
+					dat += "已降下<BR>"
 					if (shuttle.can_launch())
-						dat += "<A href='byond://?src=\ref[src];send=1'>Raise platform</A>"
+						dat += "<A href='byond://?src=\ref[src];send=1'>升起平台</A>"
 					else if (shuttle.can_cancel())
-						dat += "<A href='byond://?src=\ref[src];cancel_send=1'>Cancel</A>"
+						dat += "<A href='byond://?src=\ref[src];cancel_send=1'>取消</A>"
 					else
-						dat += "*ASRS is busy*"
+						dat += "*自动仓储检索系统忙碌中*"
 					dat += "<BR>\n<BR>"
 
 
-		dat += {"<HR>\nSupply budget: $[GLOB.supply_controller.points * SUPPLY_TO_MONEY_MUPLTIPLIER]<BR>\n<BR>
-		\n<A href='byond://?src=\ref[src];order=categories'>Order items</A><BR>\n<BR>
-		\n<A href='byond://?src=\ref[src];viewrequests=1'>View requests</A><BR>\n<BR>
-		\n<A href='byond://?src=\ref[src];vieworders=1'>View orders</A><BR>\n<BR>
-		\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
+		dat += {"<HR>\n补给预算：$[GLOB.supply_controller.points * SUPPLY_TO_MONEY_MUPLTIPLIER]<BR>\n<BR>
+		\n<A href='byond://?src=\ref[src];order=categories'>订购物品</A><BR>\n<BR>
+		\n<A href='byond://?src=\ref[src];viewrequests=1'>查看申请</A><BR>\n<BR>
+		\n<A href='byond://?src=\ref[src];vieworders=1'>查看订单</A><BR>\n<BR>
+		\n<A href='byond://?src=\ref[user];mach_close=computer'>关闭</A>"}
 
 
-	show_browser(user, dat, "Automated Storage and Retrieval System", "computer", width = 575, height = 450)
+	show_browser(user, dat, "自动仓储检索系统", "computer", width = 575, height = 450)
 	return
 
 /obj/structure/machinery/computer/supplycomp/Topic(href, href_list)
@@ -944,13 +944,13 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 	if(href_list["send"])
 		if(shuttle.at_station())
 			if (shuttle.forbidden_atoms_check())
-				temp = "For safety reasons, the Automated Storage and Retrieval System cannot store live organisms, classified nuclear weaponry or homing beacons.<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
+				temp = "出于安全考虑，自动仓储检索系统无法存放活体生物、机密核武器或定位信标。<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>确定</A>"
 			else
 				shuttle.launch(src)
-				temp = "Lowering platform. \[[SPAN_WARNING("<A href='byond://?src=\ref[src];force_send=1'>Force</A>")]\]<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
+				temp = "正在降下平台。\[[SPAN_WARNING("<A href='byond://?src=\ref[src];force_send=1'>强制执行</A>")]\]<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>确定</A>"
 		else
 			shuttle.launch(src)
-			temp = "Raising platform.<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
+			temp = "正在升起平台。<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>确定</A>"
 			post_signal("supply")
 
 	if (href_list["force_send"])
@@ -965,11 +965,11 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 			//all_supply_groups
 			//Request what?
 			last_viewed_group = "categories"
-			temp = "<b>Supply budget: $[GLOB.supply_controller.points * SUPPLY_TO_MONEY_MUPLTIPLIER]</b><BR>"
-			temp += "<A href='byond://?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
-			temp += "<b>Select a category</b><BR><BR>"
+			temp = "<b>补给预算：$[GLOB.supply_controller.points * SUPPLY_TO_MONEY_MUPLTIPLIER]</b><BR>"
+			temp += "<A href='byond://?src=\ref[src];mainmenu=1'>主菜单</A><HR><BR><BR>"
+			temp += "<b>选择分类</b><BR><BR>"
 			for(var/supply_group_name in GLOB.supply_controller.all_supply_groups)
-				temp += "<A href='byond://?src=\ref[src];order=[supply_group_name]'>[supply_group_name]</A><BR>"
+				temp += "<A href='byond://?src=\ref[src];order=[supply_group_name]'>[localized_supply_group_name(supply_group_name)]</A><BR>"
 			if(can_order_contraband)
 				temp += "<A href='byond://?src=\ref[src];order=["Black Market"]'>[SPAN_DANGER("$E4RR301¿")]</A><BR>"
 		else
@@ -979,14 +979,14 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 			else if(last_viewed_group in GLOB.supply_controller.contraband_supply_groups)
 				handle_black_market_groups()
 			else
-				temp = "<b>Supply budget: $[GLOB.supply_controller.points * SUPPLY_TO_MONEY_MUPLTIPLIER]</b><BR>"
-				temp += "<A href='byond://?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
-				temp += "<b>Request from: [last_viewed_group]</b><BR><BR>"
+				temp = "<b>补给预算：$[GLOB.supply_controller.points * SUPPLY_TO_MONEY_MUPLTIPLIER]</b><BR>"
+				temp += "<A href='byond://?src=\ref[src];order=categories'>返回全部分类</A><HR><BR><BR>"
+				temp += "<b>申请分类：[localized_supply_group_name(last_viewed_group)]</b><BR><BR>"
 				for(var/supply_type in GLOB.supply_packs_datums)
 					var/datum/supply_packs/supply_pack = GLOB.supply_packs_datums[supply_type]
 					if(!is_buyable(supply_pack))
 						continue
-					temp += "<A href='byond://?src=\ref[src];doorder=[supply_pack.name]'>[supply_pack.name]</A> Cost: $[floor(supply_pack.cost) * SUPPLY_TO_MONEY_MUPLTIPLIER]<BR>"		//the obj because it would get caught by the garbage
+					temp += "<A href='byond://?src=\ref[src];doorder=[supply_pack.name]'>[supply_pack.get_display_name()]</A> 价格：$[floor(supply_pack.cost) * SUPPLY_TO_MONEY_MUPLTIPLIER]<BR>"		//the obj because it would get caught by the garbage
 
 	else if (href_list["doorder"])
 		if(world.time < reqtime)
@@ -1006,12 +1006,12 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 
 		var/timeout = world.time + 600
 		//var/reason = copytext(sanitize(input(usr,"Reason:","Why do you require this item?","") as null|text),1,MAX_MESSAGE_LEN)
-		var/reason = "*None Provided*"
+		var/reason = "*未提供*"
 		if(world.time > timeout) return
 		if(!reason) return
 
-		var/idname = "*None Provided*"
-		var/idrank = "*None Provided*"
+		var/idname = "*未提供*"
+		var/idrank = "*未提供*"
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			idname = H.get_authentification_name()
@@ -1021,18 +1021,18 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 
 		GLOB.supply_controller.ordernum++
 		var/obj/item/paper/reqform = new /obj/item/paper(loc)
-		reqform.name = "Requisition Form - [supply_pack.name]"
-		reqform.info += "<h3>[MAIN_SHIP_NAME] Supply Requisition Form</h3><hr>"
-		reqform.info += "INDEX: #[GLOB.supply_controller.ordernum]<br>"
-		reqform.info += "REQUESTED BY: [idname]<br>"
-		reqform.info += "RANK: [idrank]<br>"
-		reqform.info += "REASON: [reason]<br>"
-		reqform.info += "SUPPLY CRATE TYPE: [supply_pack.name]<br>"
-		reqform.info += "ACCESS RESTRICTION: [get_access_desc(supply_pack.access)]<br>"
-		reqform.info += "CONTENTS:<br>"
+		reqform.name = "军需申请单：[supply_pack.get_display_name()]"
+		reqform.info += "<h3>[MAIN_SHIP_NAME]补给申请单</h3><hr>"
+		reqform.info += "编号：#[GLOB.supply_controller.ordernum]<br>"
+		reqform.info += "申请人：[idname]<br>"
+		reqform.info += "军衔：[localized_player_label(idrank)]<br>"
+		reqform.info += "原因：[reason]<br>"
+		reqform.info += "补给箱类型：[supply_pack.get_display_name()]<br>"
+		reqform.info += "权限限制：[get_access_desc(supply_pack.access)]<br>"
+		reqform.info += "内容：<br>"
 		reqform.info += supply_pack.manifest
 		reqform.info += "<hr>"
-		reqform.info += "STAMP BELOW TO APPROVE THIS REQUISITION:<br>"
+		reqform.info += "在下方盖章以批准此申请：<br>"
 
 		reqform.update_icon() //Fix for appearing blank when printed.
 		reqtime = (world.time + 5) % 1e5
@@ -1044,19 +1044,19 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 		supply_order.orderedby = idname
 		GLOB.supply_controller.requestlist += supply_order
 
-		temp = "Order request placed.<BR>"
-		temp += "<BR><A href='byond://?src=\ref[src];order=[last_viewed_group]'>Back</A>|<A href='byond://?src=\ref[src];mainmenu=1'>Main Menu</A>|<A href='byond://?src=\ref[src];confirmorder=[supply_order.ordernum]'>Authorize Order</A>"
+		temp = "订单申请已提交。<BR>"
+		temp += "<BR><A href='byond://?src=\ref[src];order=[last_viewed_group]'>返回</A>|<A href='byond://?src=\ref[src];mainmenu=1'>主菜单</A>|<A href='byond://?src=\ref[src];confirmorder=[supply_order.ordernum]'>批准订单</A>"
 
 	else if(href_list["confirmorder"])
 		//Find the correct supply_order datum
 		var/ordernum = text2num(href_list["confirmorder"])
 		var/datum/supply_order/supply_order
 		var/datum/supply_packs/supply_pack
-		temp = "Invalid Request"
-		temp += "<BR><A href='byond://?src=\ref[src];order=[last_viewed_group]'>Back</A>|<A href='byond://?src=\ref[src];mainmenu=1'>Main Menu</A>"
+		temp = "无效申请"
+		temp += "<BR><A href='byond://?src=\ref[src];order=[last_viewed_group]'>返回</A>|<A href='byond://?src=\ref[src];mainmenu=1'>主菜单</A>"
 
 		if(length(GLOB.supply_controller.shoppinglist) > 20)
-			to_chat(usr, SPAN_DANGER("Current retrieval load has reached maximum capacity."))
+			to_chat(usr, SPAN_DANGER("当前取货负载已达上限。"))
 			return
 
 		for(var/i=1, i<=length(GLOB.supply_controller.requestlist), i++)
@@ -1072,8 +1072,8 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 						GLOB.supply_controller.black_market_heat = clamp(GLOB.supply_controller.black_market_heat + supply_pack.crate_heat + (supply_pack.crate_heat * rand(rand(-0.25,0),0.25)), 0, 100) // black market heat added is crate heat +- up to 25% of crate heat
 					GLOB.supply_controller.shoppinglist += supply_order
 					supply_pack.cost = supply_pack.cost * SUPPLY_COST_MULTIPLIER
-					temp = "Thank you for your order.<BR>"
-					temp += "<BR><A href='byond://?src=\ref[src];viewrequests=1'>Back</A> <A href='byond://?src=\ref[src];mainmenu=1'>Main Menu</A>"
+					temp = "感谢订购。<BR>"
+					temp += "<BR><A href='byond://?src=\ref[src];viewrequests=1'>返回</A> <A href='byond://?src=\ref[src];mainmenu=1'>主菜单</A>"
 					supply_order.approvedby = usr.name
 					msg_admin_niche("[key_name(usr)] confirmed supply order of [supply_pack.name].")
 					if(GLOB.supply_controller.black_market_heat == 100)
@@ -1086,16 +1086,16 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 							pack_name = "Unknown"
 					log_ares_requisition(pack_source, pack_name, usr.name)
 				else
-					temp = "Not enough money left.<BR>"
-					temp += "<BR><A href='byond://?src=\ref[src];viewrequests=1'>Back</A> <A href='byond://?src=\ref[src];mainmenu=1'>Main Menu</A>"
+					temp = "剩余资金不足。<BR>"
+					temp += "<BR><A href='byond://?src=\ref[src];viewrequests=1'>返回</A> <A href='byond://?src=\ref[src];mainmenu=1'>主菜单</A>"
 				break
 
 	else if (href_list["vieworders"])
-		temp = "Current approved orders: <BR><BR>"
+		temp = "当前已批准的订单：<BR><BR>"
 		for(var/S in GLOB.supply_controller.shoppinglist)
 			var/datum/supply_order/SO = S
-			temp += "#[SO.ordernum] - [SO.object.name] approved by [SO.approvedby]<BR>"// <A href='byond://?src=\ref[src];cancelorder=[S]'>(Cancel)</A><BR>"
-		temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
+			temp += "#[SO.ordernum] - [SO.object.get_display_name()]，批准人：[SO.approvedby]<BR>"// <A href='byond://?src=\ref[src];cancelorder=[S]'>(Cancel)</A><BR>"
+		temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>确定</A>"
 /*
 	else if (href_list["cancelorder"])
 		var/datum/supply_order/remove_supply = href_list["cancelorder"]
@@ -1109,29 +1109,29 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 		temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 */
 	else if (href_list["viewrequests"])
-		temp = "Current requests: <BR><BR>"
+		temp = "当前申请：<BR><BR>"
 		for(var/S in GLOB.supply_controller.requestlist)
 			var/datum/supply_order/SO = S
-			temp += "#[SO.ordernum] - [SO.object.name] requested by [SO.orderedby] <A href='byond://?src=\ref[src];confirmorder=[SO.ordernum]'>Approve</A> <A href='byond://?src=\ref[src];rreq=[SO.ordernum]'>Remove</A><BR>"
+			temp += "#[SO.ordernum] - [SO.object.get_display_name()]，申请人：[SO.orderedby] <A href='byond://?src=\ref[src];confirmorder=[SO.ordernum]'>批准</A> <A href='byond://?src=\ref[src];rreq=[SO.ordernum]'>移除</A><BR>"
 
-		temp += "<BR><A href='byond://?src=\ref[src];clearreq=1'>Clear list</A>"
-		temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
+		temp += "<BR><A href='byond://?src=\ref[src];clearreq=1'>清空列表</A>"
+		temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>确定</A>"
 
 	else if (href_list["rreq"])
 		var/ordernum = text2num(href_list["rreq"])
-		temp = "Invalid Request.<BR>"
+		temp = "无效申请.<BR>"
 		for(var/i=1, i<=length(GLOB.supply_controller.requestlist), i++)
 			var/datum/supply_order/SO = GLOB.supply_controller.requestlist[i]
 			if(SO.ordernum == ordernum)
 				GLOB.supply_controller.requestlist.Cut(i,i+1)
-				temp = "Request removed.<BR>"
+				temp = "申请已移除。<BR>"
 				break
-		temp += "<BR><A href='byond://?src=\ref[src];viewrequests=1'>Back</A> <A href='byond://?src=\ref[src];mainmenu=1'>Main Menu</A>"
+		temp += "<BR><A href='byond://?src=\ref[src];viewrequests=1'>返回</A> <A href='byond://?src=\ref[src];mainmenu=1'>主菜单</A>"
 
 	else if (href_list["clearreq"])
 		GLOB.supply_controller.requestlist.Cut()
-		temp = "List cleared.<BR>"
-		temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
+		temp = "列表已清空。<BR>"
+		temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>确定</A>"
 
 	else if (href_list["mainmenu"])
 		temp = null
@@ -1142,78 +1142,78 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 
 /obj/structure/machinery/computer/supplycomp/proc/handle_black_market()
 
-	temp = "<b>W-Y Dollars: $[GLOB.supply_controller.black_market_points]</b><BR>"
-	temp += "<A href='byond://?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
-	temp += SPAN_DANGER("ERR0R UNK7OWN C4T2G#!$0-<HR><HR><HR>")
+	temp = "<b>维兰德-汤谷货币：$[GLOB.supply_controller.black_market_points]</b><BR>"
+	temp += "<A href='byond://?src=\ref[src];order=categories'>返回全部分类</A><HR><BR><BR>"
+	temp += SPAN_DANGER("错误：未知分类<HR><HR><HR>")
 	if(black_market_lockout)
-		temp += "<DIV ALIGN='center'><BR><img src='cmblogo.png'><BR><BR><BR><BR><FONT SIZE=4><B>Unauthorized Access Removed.<BR>This console is currently under CMB investigation.<BR>Thank you for your cooperation.</FONT></div></B>"
+		temp += "<DIV ALIGN='center'><BR><img src='cmblogo.png'><BR><BR><BR><BR><FONT SIZE=4><B>已移除未经授权的访问。<BR>该控制台目前正接受殖民地执法局调查。<BR>感谢配合。</FONT></div></B>"
 		return
-	temp += "KHZKNHZH#0-"
+	temp += "信号不稳定……"
 	if(!GLOB.supply_controller.mendoza_status) // he's daed
 		temp += "........."
 		return
 	handle_mendoza_dialogue() //mendoza has been in there for a while. he gets lonely sometimes
-	temp += "<b>[last_viewed_group]</b><BR><BR>"
+	temp += "<b>[localized_supply_group_name(last_viewed_group)]</b><BR><BR>"
 
 	for(var/supply_group_name in GLOB.supply_controller.contraband_supply_groups)
-		temp += "<A href='byond://?src=\ref[src];order=[supply_group_name]'>[supply_group_name]</A><BR>"
+		temp += "<A href='byond://?src=\ref[src];order=[supply_group_name]'>[localized_supply_group_name(supply_group_name)]</A><BR>"
 
 /obj/structure/machinery/computer/supplycomp/proc/handle_black_market_groups()
-	temp = "<b>W-Y Dollars: $[GLOB.supply_controller.black_market_points]</b><BR>"
-	temp += "<A href='byond://?src=\ref[src];order=Black Market'>Back to black market categories</A><HR><BR><BR>"
-	temp += "<b>Purchase from: [last_viewed_group]</b><BR><BR>"
+	temp = "<b>维兰德-汤谷货币：$[GLOB.supply_controller.black_market_points]</b><BR>"
+	temp += "<A href='byond://?src=\ref[src];order=Black Market'>返回黑市分类</A><HR><BR><BR>"
+	temp += "<b>购买分类：[localized_supply_group_name(last_viewed_group)]</b><BR><BR>"
 	for(var/supply_type in GLOB.supply_packs_datums)
 		var/datum/supply_packs/supply_pack = GLOB.supply_packs_datums[supply_type]
 		if(!is_buyable(supply_pack))
 			continue
-		temp += "<A href='byond://?src=\ref[src];doorder=[supply_pack.name]'>[supply_pack.name]</A> Cost: $[floor(supply_pack.dollar_cost)]<BR>"
+		temp += "<A href='byond://?src=\ref[src];doorder=[supply_pack.name]'>[supply_pack.get_display_name()]</A> 价格：$[floor(supply_pack.dollar_cost)]<BR>"
 
 /obj/structure/machinery/computer/supplycomp/proc/handle_mendoza_dialogue()
 
 	if(first_time)
 		first_time = FALSE
-		temp += SPAN_WARNING("Hold on- holy shit, what? Hey, hey! Finally! I've set THAT circuit board for replacement shipping off god knows who long ago. I had totally given up on it.<BR>")
-		temp += SPAN_WARNING("You probably have some questions, yes, yes... let me answer them.<BR><HR>")
+		temp += SPAN_WARNING("等等——我操，什么？喂，喂！终于接通了！天知道多久以前，我就把那块电路板塞进替换件发走了。我都彻底不抱希望了。<BR>")
+		temp += SPAN_WARNING("你大概有不少问题，对，对……让我来解释。<BR><HR>")
 		//linebreak
-		temp += SPAN_WARNING("Name's Mendoza, Cargo Technician. Formerly, I suppose. I tripped into this stupid pit god knows how long ago. A crate of mattresses broke my fall, thankfully. The fuckin' MPs never even bothered to look for me!<BR>")
-		temp += SPAN_WARNING("They probably wrote off my file as a friggin' clerical error. Bastards, all of them.... but I've got a plan. <BR>")
-		temp += SPAN_WARNING("I'm gonna smuggle all these ASRS goods out of the ship next time it docks. I'm gonna sell them, and use the money to sue the fuck out of the USCM!<BR>")
-		temp += SPAN_WARNING("Imagine the look on their faces! Mendoza, the little CT, in court as they lose all their fuckin' money!<BR><HR>")
+		temp += SPAN_WARNING("我叫门多萨，货运技术员。应该说，曾经是。天知道多久前，我掉进了这个蠢坑。幸好有一箱床垫接住了我。那群该死的宪兵居然都没来找过我！<BR>")
+		temp += SPAN_WARNING("他们大概把我的档案当成文书错误注销了。一群混蛋……不过我有个计划。<BR>")
+		temp += SPAN_WARNING("等这艘船下次停靠，我就把这些仓储货物全走私出去，卖掉，然后拿钱把殖民地陆战队告得倾家荡产！<BR>")
+		temp += SPAN_WARNING("想想他们会是什么表情！小小货运技术员门多萨站在法庭上，眼看他们赔个精光！<BR><HR>")
 		//linebreak
-		temp += SPAN_WARNING("I do need... money. You wouldn't believe the things I've seen here. There's an aisle full of auto-doc crates, and that's the least of it.<BR>")
-		temp += SPAN_WARNING("Here's the deal. There are certain... things that I need to pawn off for my plan. Anything valuable will do. Minerals, gold, unique items... lower them in the ASRS elevator.<BR>")
-		temp += SPAN_WARNING("Can't come back on it, the machinery's too damn dangerous. But in exchange for those valuables.. I'll give you... things. Confiscated equipment, 'Medicine', all the crap I've stumbled upon here.<BR>")
-		temp += SPAN_WARNING("The items will be delivered via the ASRS lift. Check the first item for a jury-rigged scanner, it'll tell you if I give a damn about whatever you're scanning or not.<BR><HR>")
+		temp += SPAN_WARNING("不过我需要……钱。你根本想不到我在这里见过什么。有整整一排自动手术舱箱子，这还只是冰山一角。<BR>")
+		temp += SPAN_WARNING("交易是这样的：有些……东西，我得卖掉才能实施计划。只要值钱就行，矿物、黄金、独特物品……用仓储升降机送下来。<BR>")
+		temp += SPAN_WARNING("送下来就拿不回去了，这里的机械危险得要命。不过，作为交换，我会给你们……一些东西。查扣装备、“药品”，还有我在这里翻到的各种玩意儿。<BR>")
+		temp += SPAN_WARNING("货物会通过仓储升降机送上去。第一件货物里有一台拼装扫描仪，用它就能知道我到底收不收你扫的东西。<BR><HR>")
 		//linebreak
-		temp += SPAN_WARNING("I'll repeat, just to clear it up since you chucklefucks can't do anything right. <b>Insert cash, buy my scanner, get valuables, bring them down the lift, gain dollars, buy contraband.</b><BR>")
-		temp += SPAN_WARNING("See you..<BR>")
+		temp += SPAN_WARNING("怕你们这群蠢货又搞砸，我再讲一遍：<b>塞现金，买扫描仪，找值钱货，用升降机送下来，赚货币，买违禁品。</b><BR>")
+		temp += SPAN_WARNING("回头见……<BR>")
 		return
 
 	var/rng = rand(1, 100) // Will only sometimes give messages
 	switch(rng)
 		if(1 to 5)
-			temp += "Sometimes I... hear things down 'ere. Crates bein' opened, shufflin', sometimes.. even breathing and chewin'. Even when the ASRS is on maintenance mode.<BR>"
-			temp += "Last month I swear I glimped some shirtless madman runnin' by at the edge of my screen. This place is haunted.<BR>"
+			temp += "有时候我……能听见这里有动静。开箱子、翻东西的声音，有时……甚至有呼吸声和咀嚼声。连仓储系统在维护模式时都一样。<BR>"
+			temp += "我发誓，上个月我在屏幕边缘瞥见一个光着膀子的疯子跑了过去。这地方闹鬼。<BR>"
 		if(6 to 10)
-			temp += "You know how I said there was a full aisle of autodoc crates? I just found <i>another!</i><BR>"
-			temp += "This one has body scanners, sleepers, WeyMeds.. why the fuck aren't these on the supply list? Why are they here to begin with?<BR>"
+			temp += "记得我说有整排自动手术舱箱子吗？我又找到<i>一整排！</i><BR>"
+			temp += "这排还有全身扫描仪、医疗休眠舱、维兰德医疗柜……这些东西怎么他妈的不在补给清单上？又为什么会堆在这里？<BR>"
 		if(11 to 15)
-			temp += "You know, this place is a real fuckin' massive safety hazard. Nobody does maintenance on this part of the ship.<BR>"
-			temp += "Ever since that colony operation in Schomberg cost us half the damn cargo hold, nothin' here quite works properly.<BR>"
-			temp += "Mechanical arms dropping crates in random places, from way too high up, knockin' shelves over.. it's fuckin' embarrassin'!<BR>"
-			temp += "I pity the damn' scrappers that'll be trying to salvage something from this junkyard of a ship once it's scuttled.<BR>"
+			temp += "你知道吗，这地方简直是个巨大的安全隐患。舰上这片区域根本没人维护。<BR>"
+			temp += "自从朔姆贝格那次殖民地行动毁了我们半个货舱，这里的东西就没怎么正常过。<BR>"
+			temp += "机械臂从老高的地方随便往下扔箱子，还把货架撞翻……真他妈丢人！<BR>"
+			temp += "等这破船被凿沉，想来废船场里捞点东西的拆船工可就倒霉了。<BR>"
 		if(16 to 20)
-			temp += "I still can't believe the whole ship's fucking supply of HEAP blew up. Some fuckin' moron decided our EXPLOSIVE AMMUNITION should be stored right next to the ship's hull.<BR>"
-			temp += "Even with the explosion concerns aside that's our main damn type of ammunition! What the hell are marines usin' this operation? Softpoint? Jesus.<BR>"
-			temp += "I do see a few scattered HEAP magazines every so often, but I know better than to throw them on the lift. Chances are some wet-behind-the-ears greenhorn is goin' to nab it and blow his fellow marines to shreds.<BR>"
+			temp += "我到现在都不敢相信，全舰的高爆穿甲弹居然全炸了。有个蠢货竟然把爆炸弹药堆在舰体旁边。<BR>"
+			temp += "先不说爆炸风险，那可是我们的主力弹药！这次行动陆战队用什么？软尖弹？老天。<BR>"
+			temp += "我偶尔还能找到零散的高爆穿甲弹匣，但我可不会把它们扔上升降机。八成会让某个乳臭未干的新兵捡走，把战友炸个粉碎。<BR>"
 		if(21 to 25)
-			temp += "Wanna know a secret? I'm the one pushin' all those crates with crap on the ASRS lift.<BR>"
-			temp += "Not because I know you guys need surplus SMG ammunition or whatever. The fuckin' crates are taking up way too much space here. Why do we have HUNDREDS of mortar shells? By god, it's almost like a WW2 historical reenactment in here!<BR>"
+			temp += "想知道个秘密吗？那些塞满乱七八糟东西的箱子，都是我推上仓储升降机的。<BR>"
+			temp += "不是因为我知道你们需要剩余冲锋枪弹药之类的。这些破箱子太占地方了。我们为什么要囤几百发迫击炮弹？天啊，这里简直像在重演第二次世界大战！<BR>"
 		if(26 to 30)
-			temp += "You know... don't tell anyone, but I actually really like blue-flavored Souto for some reason. Not the diet version, that cyan junk's as nasty as any other flavor, but... there's just somethin' about that blue-y goodness. If you see any, I wouldn't mind havin' them thrown down the elevator.<BR>"
+			temp += "这个……别告诉别人，不知道为什么，我特别喜欢蓝色口味的索托。不是无糖版，那种青色玩意儿和其他口味一样难喝；但蓝色那款就是……有股好滋味。看到的话，不妨给我从升降机扔几罐下来。<BR>"
 		if(31 to 35)
-			temp += "If you see any, er.. 'elite' equipment, be sure to throw it down here. I know a few people that'd offer quite the amount of money for a USCM commander's gun, or pet. Even the armor is worth a fortune. Don't kill yourself doin' it, though.<BR>"
-			temp += "Hell, any kind of wildlife too, actually! Anythin' that isn't a replicant animal is worth a truly ridiculous sum back on Terra, I'll give ya quite the amount of points for 'em. As long as it isn't plannin' on killing me.<BR>"
+			temp += "要是看到什么……“精锐”装备，记得送下来。我认识几个人，愿意出大价钱买殖民地陆战队指挥官的枪，或者宠物。连护甲都值一大笔钱。不过，可别为此送命。<BR>"
+			temp += "其实，野生动物也行！只要不是仿生动物，在地球都值一大笔钱，我会给你们不少点数。当然，前提是它不打算杀了我。<BR>"
 
 /proc/get_black_market_value(atom/movable/movable_atom)
 	var/return_value
@@ -1323,8 +1323,8 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 	frequency.post_signal(src, status_signal)
 
 /obj/structure/machinery/computer/supplycomp/vehicle
-	name = "vehicle ASRS console"
-	desc = "A console for an Automated Storage and Retrieval System. This one is tied to a deep storage unit for vehicles."
+	name = "载具自动仓储检索系统控制台"
+	desc = "自动仓储检索系统控制台，连接着载具深层储藏区。"
 	req_access = list(ACCESS_MARINE_CREWMAN)
 	circuit = /obj/item/circuitboard/computer/supplycomp/vehicle
 	// Can only retrieve one vehicle per round
@@ -1335,11 +1335,11 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 	var/list/vehicles
 
 /datum/vehicle_order
-	var/name = "vehicle order"
+	var/name = "载具订单"
 
 	var/obj/vehicle/ordered_vehicle
 	var/unlocked = TRUE
-	var/failure_message = "<font color=\"red\"><b>Not enough resources were allocated to repair this vehicle during this operation.</b></font><br>"
+	var/failure_message = "<font color=\"red\"><b>本次行动分配的资源不足，无法修复这辆载具。</b></font><br>"
 
 /datum/vehicle_order/proc/has_vehicle_lock()
 	return FALSE
@@ -1348,38 +1348,38 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 	return
 
 /datum/vehicle_order/tank
-	name = "M34A2 Longstreet Light Tank"
+	name = "M34A2“朗斯特里特”轻型坦克"
 	ordered_vehicle = /obj/effect/vehicle_spawner/tank/decrepit
 
 /datum/vehicle_order/tank/has_vehicle_lock()
 	return
 
 /datum/vehicle_order/tank/broken
-	name = "Smashed M34A2 Longstreet Light Tank"
+	name = "受损的M34A2“朗斯特里特”轻型坦克"
 	ordered_vehicle = /obj/effect/vehicle_spawner/tank/hull/broken
 
 /datum/vehicle_order/tank/plain
-	name = "M34A2 Longstreet Light Tank"
+	name = "M34A2“朗斯特里特”轻型坦克"
 	ordered_vehicle = /obj/effect/vehicle_spawner/tank
 
 /datum/vehicle_order/apc
-	name = "M577 Armored Personnel Carrier"
+	name = "M577装甲运兵车"
 	ordered_vehicle = /obj/effect/vehicle_spawner/apc/decrepit
 
 /datum/vehicle_order/apc/med
-	name = "M577-MED Armored Personnel Carrier"
+	name = "M577-MED医疗装甲运兵车"
 	ordered_vehicle = /obj/effect/vehicle_spawner/apc_med/decrepit
 
 /datum/vehicle_order/apc/cmd
-	name = "M577-CMD Armored Personnel Carrier"
+	name = "M577-CMD指挥装甲运兵车"
 	ordered_vehicle = /obj/effect/vehicle_spawner/apc_cmd/decrepit
 
 /datum/vehicle_order/apc/empty
-	name = "Barebones M577 Armored Personal Carrier"
+	name = "简装M577装甲运兵车"
 	ordered_vehicle = /obj/effect/vehicle_spawner/apc/unarmed/broken
 
 /datum/vehicle_order/arc
-	name = "M540-B Armored Recon Carrier"
+	name = "M540-B装甲侦察车"
 	ordered_vehicle = /obj/effect/vehicle_spawner/arc
 
 /datum/vehicle_order/arc/has_vehicle_lock()
@@ -1404,11 +1404,11 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 		return
 
 	if(LAZYLEN(allowed_roles) && !allowed_roles.Find(H.job)) //replaced Z-level restriction with role restriction.
-		to_chat(H, SPAN_WARNING("This console isn't for you."))
+		to_chat(H, SPAN_WARNING("你无法使用这台控制台。"))
 		return
 
 	if(!allowed(H))
-		to_chat(H, SPAN_DANGER("Access Denied."))
+		to_chat(H, SPAN_DANGER("拒绝访问。"))
 		return
 
 	H.set_interaction(src)
@@ -1419,22 +1419,22 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 	if(!SSshuttle.vehicle_elevator)
 		return
 
-	dat += "Platform position: "
+	dat += "平台位置："
 	if (SSshuttle.vehicle_elevator.mode != SHUTTLE_IDLE)
-		dat += "Moving"
+		dat += "移动中"
 	else
 		if(is_mainship_level(SSshuttle.vehicle_elevator.z))
-			dat += "Raised"
+			dat += "已升起"
 			if(!spent)
-				dat += "<br>\[<a href='byond://?src=\ref[src];lower_elevator=1'>Lower</a>\]"
+				dat += "<br>\[<a href='byond://?src=\ref[src];lower_elevator=1'>降下</a>\]"
 		else
-			dat += "Lowered"
+			dat += "已降下"
 	dat += "<br><hr>"
 
 	if(spent)
-		dat += "No vehicles are available for retrieval."
+		dat += "目前没有可供提取的载具。"
 	else
-		dat += "Available vehicles:<br>"
+		dat += "可用载具：<br>"
 
 		for(var/d in vehicles)
 			var/datum/vehicle_order/VO = d
@@ -1444,7 +1444,7 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 			else
 				dat += "<a href='byond://?src=\ref[src];get_vehicle=\ref[VO]'>[VO.name]</a><br>"
 
-	show_browser(H, dat, "Automated Storage and Retrieval System", "computer", width = 575, height = 450)
+	show_browser(H, dat, "自动仓储检索系统", "computer", width = 575, height = 450)
 
 /obj/structure/machinery/computer/supplycomp/vehicle/Topic(href, href_list)
 	. = ..()
@@ -1467,7 +1467,7 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 
 	if(href_list["get_vehicle"])
 		if(is_mainship_level(SSshuttle.vehicle_elevator.z) || SSshuttle.vehicle_elevator.mode != SHUTTLE_IDLE)
-			to_chat(usr, SPAN_WARNING("The elevator needs to be in the cargo bay dock to call a vehicle up!"))
+			to_chat(usr, SPAN_WARNING("升降机必须停靠在货舱，才能提取载具！"))
 			return
 		// dunno why the +1 is needed but the vehicles spawn off-center
 		var/turf/middle_turf = get_turf(SSshuttle.vehicle_elevator)

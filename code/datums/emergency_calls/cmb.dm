@@ -1,6 +1,7 @@
 // The Colonial Marshal Bureau, a UA Federal investigative/law enforcement functionary from Sol which oversees many colonies among the frontier. They are friendly to USCM.
 /datum/emergency_call/cmb
 	name = "CMB - Colonial Marshals Patrol Team (Friendly)"
+	localized_name = "殖民地执法局：执法官巡逻队（友军）"
 	mob_max = 5
 	probability = 10
 	home_base = /datum/lazy_template/ert/weyland_station
@@ -105,6 +106,7 @@
 // A Nearby Colonial Marshal patrol team responding to Marshals in Distress.
 /datum/emergency_call/cmb/alt
 	name = "CMB - Patrol Team - Marshals in Distress (Friendly)"
+	localized_name = "殖民地执法局：遇险执法官巡逻队（友军）"
 	mob_max = 5
 	mob_min = 1
 	probability = 0
@@ -117,6 +119,7 @@
 // Anchorpoint Station Colonial Marines, use this primarily for reinforcing or evacuating the CMB, as the CMB themselves are not equipped to handle heavy engagements.
 /datum/emergency_call/cmb/anchorpoint
 	name = "CMB - Anchorpoint Station Colonial Marine QRF (Friendly)"
+	localized_name = "殖民地执法局：锚点空间站陆战队快速反应部队（友军）"
 	mob_max = 6
 	mob_min = 3
 	max_medics = 1

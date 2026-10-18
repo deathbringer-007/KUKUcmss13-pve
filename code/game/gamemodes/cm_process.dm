@@ -69,7 +69,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 			if(!xeno_mob || !xeno_mob.loc)
 				xeno_mob = xeno_mind.original
 			if(xeno_mob && xeno_mob.loc && isqueen(xeno_mob) && xeno_mob.stat != DEAD) // Dead queens handled separately
-				dat += "<br>[xeno_mob.full_designation] was [xeno_mob] [SPAN_BOLDNOTICE("（存活）")]"
+				dat += "<br>[xeno_mob.full_designation]扮演了[xeno_mob] [SPAN_BOLDNOTICE("（存活）")]"
 
 		to_world("[dat]")
 
@@ -80,7 +80,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 		var/dat = "<br>"
 		dat += SPAN_ROUNDBODY("<br>铁血战士：")
 		for(var/entry in predators)
-			dat += "<br>[entry]扮演了[predators[entry]["Name"]] [SPAN_BOLDNOTICE("([predators[entry]["Status"]])")]"
+			dat += "<br>[entry]扮演了[predators[entry]["Name"]] [SPAN_BOLDNOTICE("([localized_player_label(predators[entry]["Status"])])")]"
 		to_world("[dat]")
 
 
@@ -93,7 +93,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 		for(var/recipient in GLOB.medal_awards)
 			var/datum/recipient_awards/recipient_award = GLOB.medal_awards[recipient]
 			for(var/i in 1 to length(recipient_award.medal_names))
-				dat += "<br><b>[recipient_award.recipient_rank] [recipient]</b>[recipient_award.posthumous[i] ? "被追授" : "获颁"]<span class='boldnotice'>[recipient_award.medal_names[i]]</span>：\'<i>[recipient_award.medal_citations[i]]</i>\'。"
+				dat += "<br><b>[localized_player_label(recipient_award.recipient_rank)] [recipient]</b>[recipient_award.posthumous[i] ? "被追授" : "获颁"]<span class='boldnotice'>[localized_player_label(recipient_award.medal_names[i])]</span>：\'<i>[recipient_award.medal_citations[i]]</i>\'。"
 		to_world(dat)
 	if(length(GLOB.jelly_awards))
 		var/dat = "<br>"
@@ -101,7 +101,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 		for(var/recipient in GLOB.jelly_awards)
 			var/datum/recipient_awards/recipient_award = GLOB.jelly_awards[recipient]
 			for(var/i in 1 to length(recipient_award.medal_names))
-				dat += "<br><b>[recipient]</b>[recipient_award.posthumous[i] ? "被追授" : "获颁"]<span class='boldnotice'>[recipient_award.medal_names[i]]</span>：\'<i>[recipient_award.medal_citations[i]]</i>\'[recipient_award.giver_rank[i] ? "，授勋人：[recipient_award.giver_rank[i]]" : ""][recipient_award.giver_name[i] ? "（[recipient_award.giver_name[i]]）" : ""]。"
+				dat += "<br><b>[recipient]</b>[recipient_award.posthumous[i] ? "被追授" : "获颁"]<span class='boldnotice'>[localized_player_label(recipient_award.medal_names[i])]</span>：\'<i>[recipient_award.medal_citations[i]]</i>\'[recipient_award.giver_rank[i] ? "，授勋人：[recipient_award.giver_rank[i]]" : ""][recipient_award.giver_name[i] ? "（[recipient_award.giver_name[i]]）" : ""]。"
 		to_world(dat)
 
 /datum/game_mode/proc/declare_fun_facts()
@@ -156,8 +156,8 @@ GLOBAL_VAR_INIT(next_admin_bioscan, 30 MINUTES)
 		return
 	active_lz = console
 	// The announcement to all Humans.
-	var/name = "[MAIN_AI_SYSTEM] Operation Staging Order"
-	var/input = "Command Order Issued.\n\n[active_lz?.loc?.loc] has been designated as the primary landing zone."
+	var/name = "[MAIN_AI_SYSTEM]行动集结命令"
+	var/input = "指挥命令已下达。\n\n[active_lz?.loc?.loc]已被指定为主要着陆区。"
 	marine_announcement(input, name)
 
 /datum/game_mode/proc/announce_bioscans()

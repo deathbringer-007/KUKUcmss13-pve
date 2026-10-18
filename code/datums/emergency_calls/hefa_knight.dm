@@ -1,6 +1,7 @@
 // The Order of HEFA has arrived!
 /datum/emergency_call/hefa_knight
 	name = "HEFA knights"
+	localized_name = "HEFA骑士团"
 	mob_max = 15
 	mob_min = 3
 	arrival_message = "“准备向本教团献出汝等的 HEFA 手榴弹！”"

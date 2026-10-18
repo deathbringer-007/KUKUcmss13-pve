@@ -1,5 +1,6 @@
 /datum/emergency_call/contractors
 	name = "Military Contractors (Squad) (Friendly)"
+	localized_name = "军事承包商（小队，友军）"
 	mob_max = 7
 	probability = 20
 
@@ -76,6 +77,7 @@
 
 /datum/emergency_call/contractors/platoon
 	name = "Military Contractors (Platoon) (Friendly)"
+	localized_name = "军事承包商（排，友军）"
 	mob_min = 7
 	mob_max = 28
 	probability = 0
@@ -86,6 +88,7 @@
 
 /datum/emergency_call/contractors/covert
 	name = "Military Contractors (Covert) (Hostile to WY)"
+	localized_name = "军事承包商（秘密行动，与维兰德-汤谷敌对）"
 	mob_max = 7
 	probability = 20
 	max_medics = 1

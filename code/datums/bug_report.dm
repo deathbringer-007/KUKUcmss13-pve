@@ -155,7 +155,7 @@
 
 // proc that creates a ticket for an admin to approve or deny a bug report request
 /datum/tgui_bug_report_form/proc/bug_report_request()
-	to_chat(initial_user, SPAN_WARNING("Your bug report has been submitted, thank you!"))
+	to_chat(initial_user, SPAN_WARNING("你的错误报告已提交，谢谢！"))
 	GLOB.bug_reports += src
 
 	var/general_message = "[initial_key] has created a bug report, you may find this report directly in the ticket panel. Feel free modify the issue to your liking before submitting it to GitHub."
@@ -172,7 +172,7 @@
 	switch(action)
 		if("confirm")
 			if(selected_confirm) // prevent someone from spamming the approve button
-				to_chat(user, SPAN_WARNING("you have already confirmed the submission, please wait a moment for the API to process your submission."))
+				to_chat(user, SPAN_WARNING("你已确认提交，请稍候，API正在处理你的报告。"))
 				return
 			bug_report_data = sanitize_payload(params)
 			selected_confirm = TRUE
@@ -197,6 +197,6 @@
 
 /datum/tgui_bug_report_form/proc/reject(client/user)
 	message_admins("[user.ckey] has rejected a bug report from [initial_key] titled [bug_report_data["title"]] at [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")].")
-	to_chat(initial_user, SPAN_WARNING("An admin has rejected your bug report, this can happen for several reasons. They will most likely get back to you shortly regarding your issue."))
+	to_chat(initial_user, SPAN_WARNING("管理员未通过你的错误报告。未通过的原因可能有多种，工作人员通常会很快就此问题与你联系。"))
 
 #undef STATUS_SUCCESS

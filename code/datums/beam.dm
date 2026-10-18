@@ -161,7 +161,7 @@
 	var/datum/beam/owner
 
 /obj/effect/ebeam/laser
-	name = "laser beam"
+	name = "激光束"
 	desc = "一道激光束！"
 	alpha = 200
 	var/strength = EYE_PROTECTION_FLAVOR
@@ -189,24 +189,24 @@
 		if(HAS_TRAIT(moving_human, TRAIT_BIMEX))
 			visible_message(SPAN_NOTICE("[src]扫过时，[moving_human]的比迈克斯©个人墨镜闪闪发亮。"), SPAN_NOTICE("[src]扫过时，你的比迈克斯©个人墨镜闪闪发亮。"))
 			//drip = bonus balloonchat
-			moving_human.balloon_alert_to_viewers("the laser bounces off [moving_human.gender == MALE ? "his" : "her"] BiMex© personal shades!", "the laser bounces off your BiMex© personal shades!")
+			moving_human.balloon_alert_to_viewers("激光被[moving_human.gender == MALE ? "他的" : "她的"]比迈克斯©个人墨镜反射了！", "激光被你的比迈克斯©个人墨镜反射了！")
 		else
-			visible_message(SPAN_NOTICE("[moving_human]'s headgear protects them from \the [src]."), SPAN_NOTICE("Your headgear protects you from  \the [src]."))
+			visible_message(SPAN_NOTICE("[moving_human]的头部装备挡住了[src]。"), SPAN_NOTICE("你的头部装备挡住了[src]。"))
 
 /obj/effect/ebeam/laser/intense
-	name = "intense laser beam"
+	name = "高强度激光束"
 	alpha = 255
 	strength = EYE_PROTECTION_FLASH
 	probability = 35
 
 /obj/effect/ebeam/laser/weak
-	name = "weak laser beam"
+	name = "低强度激光束"
 	alpha = 150
 	strength = EYE_PROTECTION_FLAVOR
 	probability = 5
 
 /obj/effect/ebeam/laser/plasma
-	name = "intense plasma beam"
+	name = "高强度等离子束"
 	alpha = 255
 	strength = EYE_PROTECTION_WELDING
 	probability = 80
@@ -216,7 +216,7 @@
 	return ..()
 
 /obj/effect/overlay/beam //Not actually a projectile, just an effect.
-	name="beam"
+	name="光束"
 	icon='icons/effects/beam.dmi'
 	icon_state="b_beam"
 	mouse_opacity = FALSE

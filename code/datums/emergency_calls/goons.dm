@@ -1,5 +1,6 @@
 /datum/emergency_call/goon
 	name = "Weyland-Yutani Corporate Security (Squad)"
+	localized_name = "维兰德-汤谷企业安保（小队）"
 	mob_max = 6
 	probability = 0
 	home_base = /datum/lazy_template/ert/weyland_station
@@ -40,6 +41,7 @@
 
 /datum/emergency_call/goon/chem_retrieval
 	name = "Weyland-Yutani Goon (Chemical Investigation Squad)"
+	localized_name = "维兰德-汤谷安保警卫（化学调查小队）"
 	mob_max = 6
 	mob_min = 2
 	max_medics = 1
@@ -99,6 +101,7 @@
 
 /datum/emergency_call/goon/bodyguard
 	name = "Weyland-Yutani Goon (Executive Bodyguard Detail)"
+	localized_name = "维兰德-汤谷安保警卫（高管护卫组）"
 	mob_max = 1
 	mob_min = 1
 
@@ -138,6 +141,7 @@
 
 /datum/emergency_call/goon/platoon
 	name = "Weyland-Yutani Corporate Security (Platoon)"
+	localized_name = "维兰德-汤谷企业安保（排）"
 	mob_min = 8
 	mob_max = 25
 	probability = 0

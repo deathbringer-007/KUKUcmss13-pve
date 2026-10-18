@@ -190,7 +190,7 @@
 /atom/movable/screen/alert
 	icon = 'icons/mob/screen_alert.dmi'
 	icon_state = "default"
-	name = "Alert"
+	name = "警报"
 	desc = "这条警报似乎出了问题，请报告此错误。"
 	mouse_opacity = MOUSE_OPACITY_ICON
 	/// If set to a number, this alert will clear itself after that many deciseconds
@@ -215,7 +215,7 @@
 	closeToolTip(usr)
 
 /atom/movable/screen/alert/notify_action
-	name = "Notification"
+	name = "通知"
 	desc = "一条新通知。你可以进入其中。"
 	icon_state = "template"
 	timeout = 15 SECONDS
@@ -247,17 +247,17 @@
 			GLOB.xeno_tacmap_status.tgui_interact(ghost_user)
 
 /atom/movable/screen/alert/buckled
-	name = "Buckled"
+	name = "已固定"
 	desc = "你被固定在某个物体上。若未被手铐铐住，点击此警报即可解除固定。"
 	icon_state = ALERT_BUCKLED
 
 /atom/movable/screen/alert/restrained/handcuffed
-	name = "Handcuffed"
+	name = "戴着手铐"
 	desc = "你被手铐铐住了，无法采取行动。若有人拖拽你，你将无法移动。点击此警报尝试挣脱。"
 	click_master = FALSE
 
 /atom/movable/screen/alert/restrained/legcuffed
-	name = "Legcuffed"
+	name = "戴着脚镣"
 	desc = "你被脚镣铐住了，行动大幅减缓。点击此警报尝试挣脱。"
 	click_master = FALSE
 

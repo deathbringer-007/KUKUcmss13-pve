@@ -4,6 +4,7 @@
 
 /datum/supply_packs/ammo_rpg_regular
 	name = "M5 RPG Rocket Crate (HE x1, AP x1, WP x1)"
+	localized_name = "M5 RPG火箭弹箱（高爆、穿甲、白磷弹各1发）"
 	contains = list(
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/ammo_magazine/rocket/ap,
@@ -11,11 +12,12 @@
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/explosives
-	containername = "\improper M5 RPG Rocket Crate"
+	containername = "\improper M5 RPG火箭弹箱"
 	group = "Weapons Specialist Ammo"
 
 /datum/supply_packs/ammo_rpg_he
 	name = "M5 RPG HE Rocket Crate (x3)"
+	localized_name = "M5 RPG高爆火箭弹箱（3发）"
 	contains = list(
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/ammo_magazine/rocket,
@@ -23,11 +25,12 @@
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/explosives
-	containername = "M5 RPG HE Rocket Crate"
+	containername = "M5 RPG高爆火箭弹箱"
 	group = "Weapons Specialist Ammo"
 
 /datum/supply_packs/ammo_rpg_ap
 	name = "M5 RPG AP Rocket Crate (x3)"
+	localized_name = "M5 RPG穿甲火箭弹箱（3发）"
 	contains = list(
 		/obj/item/ammo_magazine/rocket/ap,
 		/obj/item/ammo_magazine/rocket/ap,
@@ -35,11 +38,12 @@
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/explosives
-	containername = "M5 RPG AP Rockets Crate"
+	containername = "M5 RPG穿甲火箭弹箱"
 	group = "Weapons Specialist Ammo"
 
 /datum/supply_packs/ammo_rpg_wp
 	name = "M5 RPG WP Rocket Crate (x3)"
+	localized_name = "M5 RPG白磷火箭弹箱（3发）"
 	contains = list(
 		/obj/item/ammo_magazine/rocket/wp,
 		/obj/item/ammo_magazine/rocket/wp,
@@ -47,13 +51,14 @@
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/explosives
-	containername = "M5 RPG WP Rocket Crate"
+	containername = "M5 RPG白磷火箭弹箱"
 	group = "Weapons Specialist Ammo"
 
 //M42A
 
 /datum/supply_packs/ammo_sniper_mix
 	name = "M42A Sniper Mixed Magazine Crate (marksman x2, flak x2, incendiary x2)"
+	localized_name = "M42A狙击步枪混合弹匣箱（精确射击、破片、燃烧弹匣各2个）"
 	contains = list(
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/sniper,
@@ -64,11 +69,12 @@
 	)
 	cost = 40
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "M42A Mixed Magazine Crate"
+	containername = "M42A混合弹匣箱"
 	group = "Weapons Specialist Ammo"
 
 /datum/supply_packs/ammo_sniper_marksman
 	name = "M42A Sniper Standard Magazine Crate (x5)"
+	localized_name = "M42A狙击步枪标准弹匣箱（5个）"
 	contains = list(
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/sniper,
@@ -78,11 +84,12 @@
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "M42A Marksman Magazine Crate"
+	containername = "M42A精确射击弹匣箱"
 	group = "Weapons Specialist Ammo"
 
 /datum/supply_packs/ammo_sniper_flak
 	name = "M42A Sniper Flak Magazine Crate (x5)"
+	localized_name = "M42A狙击步枪破片弹匣箱（5个）"
 	contains = list(
 		/obj/item/ammo_magazine/sniper/flak,
 		/obj/item/ammo_magazine/sniper/flak,
@@ -92,11 +99,12 @@
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "M42A Flak Magazine Crate"
+	containername = "M42A破片弹匣箱"
 	group = "Weapons Specialist Ammo"
 
 /datum/supply_packs/ammo_sniper_incendiary
 	name = "M42A Sniper Incendiary Magazine Crate (x5)"
+	localized_name = "M42A狙击步枪燃烧弹匣箱（5个）"
 	contains = list(
 		/obj/item/ammo_magazine/sniper/incendiary,
 		/obj/item/ammo_magazine/sniper/incendiary,
@@ -106,11 +114,12 @@
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "M42A Incendiary Magazine Crate"
+	containername = "M42A燃烧弹匣箱"
 	group = "Weapons Specialist Ammo"
 
 /datum/supply_packs/ammo_amr_marksman
 	name = "XM43E1 anti-materiel rifle marksman magazines crate (x5)"
+	localized_name = "XM43E1反器材步枪精确射击弹匣箱（5个）"
 	contains = list(
 		/obj/item/ammo_magazine/sniper/anti_materiel,
 		/obj/item/ammo_magazine/sniper/anti_materiel,
@@ -120,13 +129,14 @@
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "XM43E1 Marksman Magazine Crate"
+	containername = "XM43E1精确射击弹匣箱"
 	group = "Weapons Specialist Ammo"
 
 //M49A
 
 /datum/supply_packs/ammo_scout_mix
 	name = "M49A Scout Mixed Magazine Crate (regular x2, incendiary x2, explosive x2)"
+	localized_name = "M49A侦察步枪混合弹匣箱（普通、燃烧、爆炸弹匣各2个）"
 	contains = list(
 		/obj/item/ammo_magazine/rifle/m49a/custom,
 		/obj/item/ammo_magazine/rifle/m49a/custom,
@@ -137,11 +147,12 @@
 	)
 	cost = 40
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "M49A Scout Mixed Magazine Crate"
+	containername = "M49A侦察步枪混合弹匣箱"
 	group = "Weapons Specialist Ammo"
 
 /datum/supply_packs/ammo_scout_regular
 	name = "M49A5 Magazine Crate (x5)"
+	localized_name = "M49A5弹匣箱（5个）"
 	contains = list(
 		/obj/item/ammo_magazine/rifle/m49a/custom,
 		/obj/item/ammo_magazine/rifle/m49a/custom,
@@ -151,11 +162,12 @@
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "M49A5 Magazine Crate"
+	containername = "M49A5弹匣箱"
 	group = "Weapons Specialist Ammo"
 
 /datum/supply_packs/ammo_scout_incendiary
 	name = "M49A5 Incendiary Magazine Crate (x3)"
+	localized_name = "M49A5燃烧弹匣箱（3个）"
 	contains = list(
 		/obj/item/ammo_magazine/rifle/m49a/custom/incendiary,
 		/obj/item/ammo_magazine/rifle/m49a/custom/incendiary,
@@ -163,11 +175,12 @@
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "M49A5 Incendiary Magazine"
+	containername = "M49A5燃烧弹匣"
 	group = "Weapons Specialist Ammo"
 
 /datum/supply_packs/ammo_scout_explosive
 	name = "M49A5 Explosive Magazine Crate (x3)"
+	localized_name = "M49A5爆炸弹匣箱（3个）"
 	contains = list(
 		/obj/item/ammo_magazine/rifle/m49a/custom/explosive,
 		/obj/item/ammo_magazine/rifle/m49a/custom/explosive,
@@ -175,13 +188,14 @@
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "M49A5 Explosive Magazine Crate"
+	containername = "M49A5爆炸弹匣箱"
 	group = "Weapons Specialist Ammo"
 
 //M240-T
 
 /datum/supply_packs/ammo_pyro_mix
 	name = "M240-T Mixed Fuel Tank Crate (extended x1, type-B x1, type-X x1)"
+	localized_name = "M240-T混合燃料罐箱（加大型、B型、X型各1罐）"
 	contains = list(
 		/obj/item/ammo_magazine/flamer_tank/large,
 		/obj/item/ammo_magazine/flamer_tank/large/B,
@@ -189,11 +203,12 @@
 	)
 	cost = 60
 	containertype = /obj/structure/closet/crate/ammo/alt/flame
-	containername = "\improper M240-T Mixed Fuel Tank Crate"
+	containername = "\improper M240-T混合燃料罐箱"
 	group = "Weapons Specialist Ammo"
 
 /datum/supply_packs/ammo_pyro_extended
 	name = "M240-T Extended Fuel Tank Crate (extended x3)"
+	localized_name = "M240-T加大型燃料罐箱（3罐）"
 	contains = list(
 		/obj/item/ammo_magazine/flamer_tank/large,
 		/obj/item/ammo_magazine/flamer_tank/large,
@@ -201,25 +216,27 @@
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/ammo/alt/flame
-	containername = "M240-T Extended Fuel Tank Crate"
+	containername = "M240-T加大型燃料罐箱"
 	group = "Weapons Specialist Ammo"
 
 /datum/supply_packs/ammo_pyro_b
 	name = "M240-T Type-B Fuel Tank Crate (x1)"
+	localized_name = "M240-T B型燃料罐箱（1罐）"
 	contains = list(
 		/obj/item/ammo_magazine/flamer_tank/large/B,
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/ammo/alt/flame
-	containername = "M240-T Type-B Fuel Tank Crate"
+	containername = "M240-T B型燃料罐箱"
 	group = "Weapons Specialist Ammo"
 
 /datum/supply_packs/ammo_pyro_x
 	name = "M240-T Type-X Fuel Tank Crate (x1)"
+	localized_name = "M240-T X型燃料罐箱（1罐）"
 	contains = list(
 		/obj/item/ammo_magazine/flamer_tank/large/X,
 	)
 	cost = 40
 	containertype = /obj/structure/closet/crate/ammo/alt/flame
-	containername = "M240-T Type-X Fuel Tank Crate"
+	containername = "M240-T X型燃料罐箱"
 	group = "Weapons Specialist Ammo"

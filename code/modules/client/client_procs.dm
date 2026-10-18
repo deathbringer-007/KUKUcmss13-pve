@@ -7,10 +7,10 @@
 									//I would just like the code ready should it ever need to be used.
 
 GLOBAL_LIST_INIT(blacklisted_builds, list(
-	"1407" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
-	"1408" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
-	"1428" = "bug causing right-click menus to show too many verbs that's been fixed in version 1429",
-	"1548" = "bug breaking the \"alpha\" functionality in the game, allowing clients to be able to see things/mobs they should not be able to see.",
+	"1407" = "该版本的客户端显示覆盖功能存在缺陷，会让玩家看到本不应看到的物体或生物",
+	"1408" = "该版本的客户端显示覆盖功能存在缺陷，会让玩家看到本不应看到的物体或生物",
+	"1428" = "该版本的右键菜单会显示过多指令，此问题已在1429版本修复",
+	"1548" = "该版本会破坏游戏的透明度功能，使玩家看到本不应看到的物体或生物。",
 	))
 
 #define LIMITER_SIZE 12
@@ -165,7 +165,7 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 			for(var/photo in info.photo_list)
 				usr << browse_rsc(info.photo_list[photo], photo)
 
-		show_browser(usr, "<body class='paper'>[info.data]</body>", "Fax Message", "Fax Message")
+		show_browser(usr, "<body class='paper'>[info.data]</body>", "传真讯息", "传真讯息")
 
 	else if(href_list["medals_panel"])
 		GLOB.medals_panel.tgui_interact(mob)
@@ -356,9 +356,9 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 	if (byond_version < breaking_version || (byond_version == breaking_version && byond_build < breaking_build)) //Out of date client.
 		to_chat_immediate(src, SPAN_DANGER("<b>你的BYOND版本过旧：</b>"))
 		to_chat_immediate(src, CONFIG_GET(string/client_error_message))
-		to_chat_immediate(src, "Your version: [byond_version].[byond_build]")
-		to_chat_immediate(src, "Required version: [breaking_version].[breaking_build] or later")
-		to_chat_immediate(src, "Visit <a href=\"https://www.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.")
+		to_chat_immediate(src, "你的版本：[byond_version].[byond_build]")
+		to_chat_immediate(src, "所需版本：[breaking_version].[breaking_build]或更高")
+		to_chat_immediate(src, "请访问<a href=\"https://www.byond.com/download\">BYOND官网</a>下载最新版BYOND。")
 		qdel(src)
 		return
 
@@ -366,9 +366,9 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 		if(CONFIG_GET(flag/client_warn_popup))
 			var/msg = "<b>你的BYOND版本可能已经过时：</b><br>"
 			msg += CONFIG_GET(string/client_warn_message) + "<br><br>"
-			msg += "Your version: [byond_version].[byond_build]<br>"
-			msg += "Required version to remove this message: [warn_version].[warn_build] or later<br>"
-			msg += "Visit <a href=\"https://www.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.<br>"
+			msg += "你的版本：[byond_version].[byond_build]<br>"
+			msg += "升级至[warn_version].[warn_build]或更高版本后将不再显示此提示。<br>"
+			msg += "请访问<a href=\"https://www.byond.com/download\">BYOND官网</a>下载最新版BYOND。<br>"
 			src << browse(msg, "window=warning_popup")
 		else
 			to_chat(src, SPAN_DANGER("<b>你的BYOND版本可能已经过时：</b>"))
@@ -379,10 +379,10 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 
 	if (num2text(byond_build) in GLOB.blacklisted_builds)
 		log_access("Failed login: [key] - blacklisted byond build ([byond_version].[byond_build])")
-		to_chat_immediate(src, SPAN_WARNING(FONT_SIZE_HUGE("Your version of byond is blacklisted.")))
-		to_chat_immediate(src, SPAN_WARNING(FONT_SIZE_LARGE("Byond build [byond_build] ([byond_version].[byond_build]) has been blacklisted for the following reason: [GLOB.blacklisted_builds[num2text(byond_build)]].")))
-		to_chat_immediate(src, SPAN_WARNING(FONT_SIZE_LARGE("Please download a new version of byond. If [byond_build] is the latest (which it shouldn't be), you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.")))
-		to_chat_immediate(src, SPAN_NOTICE(FONT_SIZE_LARGE("You will now be automatically disconnected. Have a CM day.")))
+		to_chat_immediate(src, SPAN_WARNING(FONT_SIZE_HUGE("你的BYOND版本已被禁用。")))
+		to_chat_immediate(src, SPAN_WARNING(FONT_SIZE_LARGE("BYOND构建版本[byond_build]（[byond_version].[byond_build]）已被禁用，原因：[GLOB.blacklisted_builds[num2text(byond_build)]]。")))
+		to_chat_immediate(src, SPAN_WARNING(FONT_SIZE_LARGE("请下载更新版本的BYOND。如果[byond_build]竟然是最新版，你可以前往<a href=\"https://secure.byond.com/download/build\">BYOND官网</a>下载其他版本。")))
+		to_chat_immediate(src, SPAN_NOTICE(FONT_SIZE_LARGE("即将自动断开连接。祝你在殖民地陆战队过得愉快。")))
 		qdel(src)
 		return
 
@@ -513,7 +513,7 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 				if( (connection != "web") && (M.computer_id == computer_id) )
 					if(matches) matches += " and "
 					matches += "ID ([computer_id])"
-					spawn() alert("You have logged in already with another key this round, please log out of this one NOW or risk being banned!")
+					spawn() alert("本回合你已使用另一个账号登录，请立即退出当前账号，否则可能遭到封禁！")
 				if(matches)
 					if(M.client)
 						message_admins("<font color='red'><B>Notice: </B>[SPAN_BLUE("<A href='byond://?src=\ref[usr];priv_msg=[src.ckey]'>[key_name_admin(src)]</A> has the same [matches] as <A href='byond://?src=\ref[usr];priv_msg=[src.ckey]'>[key_name_admin(M)]</A>.")]", 1)
@@ -868,16 +868,16 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 
 	var/list/actions_list = list()
 	for(var/datum/action/action as anything in user.actions)
-		var/action_name = action.name
+		var/action_name = localized_player_label(action.name)
 		if(action.player_hidden)
-			action_name += " (Hidden)"
+			action_name += "（已隐藏）"
 		actions_list[action_name] += action
 
 	if(!LAZYLEN(actions_list))
 		to_chat(user, SPAN_WARNING("你没有可用的动作。"))
 		return
 
-	var/selected_action_name = tgui_input_list(user, "Show or hide selected action", "Show/Hide Actions", actions_list, 30 SECONDS)
+	var/selected_action_name = tgui_input_list(user, "显示或隐藏选中的动作", "显示／隐藏动作", actions_list, 30 SECONDS)
 	if(!selected_action_name)
 		to_chat(user, SPAN_WARNING("你没有选择动作。"))
 		return

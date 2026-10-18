@@ -188,4 +188,4 @@
 /datum/teleporter/corsat
 	id = "Corsat_Teleporter"
 	cooldown = 5 MINUTES // Five minutes
-	name = "CORSAT Experimental Teleporter"
+	name = "CORSAT实验传送器"

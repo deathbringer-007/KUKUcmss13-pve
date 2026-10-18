@@ -25,29 +25,29 @@ GLOBAL_DATUM_INIT(revdata, /datum/getrev, new)
 
 /datum/getrev/proc/get_log_message()
 	var/list/msg = list()
-	msg += "Running CMSS13 revision: [date]"
+	msg += "当前CMSS13版本：[date]"
 	if(originmastercommit)
 		msg += "origin/master: [originmastercommit]"
 
 	for(var/line in testmerge)
 		var/datum/tgs_revision_information/test_merge/tm = line
-		msg += "Test merge active of PR #[tm.number] commit [tm.head_commit]"
+		msg += "已试合并PR #[tm.number]，提交：[tm.head_commit]"
 
 	if(commit && commit != originmastercommit)
 		msg += "HEAD: [commit]"
 	else if(!originmastercommit)
-		msg += "No commit information"
+		msg += "无提交信息"
 
 	return msg.Join("\n")
 
 /datum/getrev/proc/GetTestMergeInfo(header = TRUE)
 	if(!length(testmerge))
 		return ""
-	. = header ? "The following pull requests are currently test merged:<br>" : ""
+	. = header ? "当前已试合并以下拉取请求：<br>" : ""
 	for(var/line in testmerge)
 		var/datum/tgs_revision_information/test_merge/tm = line
 		var/cm = tm.head_commit
-		var/details = ": '" + html_encode(tm.title) + "' by " + html_encode(tm.author) + " at commit " + html_encode(copytext_char(cm, 1, 11))
+		var/details = "：“" + html_encode(tm.title) + "”，作者：" + html_encode(tm.author) + "，提交：" + html_encode(copytext_char(cm, 1, 11))
 		if(details && findtext(details, "\[s\]") && (!usr || !usr.client.admin_holder))
 			continue
 		. += "<a href=\"[CONFIG_GET(string/githuburl)]/pull/[tm.number]\">#[tm.number][details]</a><br>"
@@ -55,32 +55,32 @@ GLOBAL_DATUM_INIT(revdata, /datum/getrev, new)
 /client/verb/showrevinfo()
 	set category = "OOC"
 	set name = "Show Server Revision"
-	set desc = "Check the current server code revision"
+	set desc = "查看当前服务器的代码版本"
 
 	var/list/msg = list("")
 	// Round ID
 
-	msg += "<b>BYOND Version:</b> [world.byond_version].[world.byond_build]"
+	msg += "<b>BYOND版本：</b>[world.byond_version].[world.byond_build]"
 	if(DM_VERSION != world.byond_version || DM_BUILD != world.byond_build)
-		msg += "<b>Compiled with BYOND Version:</b> [DM_VERSION].[DM_BUILD]"
+		msg += "<b>编译所用BYOND版本：</b>[DM_VERSION].[DM_BUILD]"
 
 	// Revision information
 	var/datum/getrev/revdata = GLOB.revdata
-	msg += "<b>Server revision compiled on:</b> [revdata.date]"
+	msg += "<b>服务器版本编译日期：</b>[revdata.date]"
 	var/pc = revdata.originmastercommit
 	if(pc)
-		msg += "Master commit: <a href=\"[CONFIG_GET(string/githuburl)]/commit/[pc]\">[pc]</a>"
+		msg += "主分支提交：<a href=\"[CONFIG_GET(string/githuburl)]/commit/[pc]\">[pc]</a>"
 	if(length(revdata.testmerge))
 		msg += revdata.GetTestMergeInfo()
 	if(revdata.commit && revdata.commit != revdata.originmastercommit)
-		msg += "Local commit: [revdata.commit]"
+		msg += "本地提交：[revdata.commit]"
 	else if(!pc)
-		msg += "No commit information"
+		msg += "无提交信息"
 	if(world.TgsAvailable())
 		var/datum/tgs_version/version = world.TgsVersion()
-		msg += "TGS version: [version.raw_parameter]"
+		msg += "TGS版本：[version.raw_parameter]"
 		var/datum/tgs_version/api_version = world.TgsApiVersion()
-		msg += "DMAPI version: [api_version.raw_parameter]"
+		msg += "DMAPI版本：[api_version.raw_parameter]"
 
 	// Game mode odds
 	to_chat(src, SPAN_INFO(msg.Join("<br>")))

@@ -1,6 +1,6 @@
 /datum/cas_signal
 	var/signal_loc
-	var/name = "Unknown Electronic Signal"
+	var/name = "未知电子信号"
 	var/target_id = 0
 	var/obj/structure/machinery/camera/cas/linked_cam
 	var/z_initial
@@ -16,7 +16,7 @@
 
 /datum/cas_signal/proc/get_name()
 	var/area/laser_area = get_area(signal_loc)
-	var/obstructed = obstructed_signal()?"OBSTRUCTED":""
+	var/obstructed = obstructed_signal()?"受阻":""
 	if(laser_area)
 		return "[name] ([laser_area.name]) [obstructed]"
 	return "[name] [obstructed]"

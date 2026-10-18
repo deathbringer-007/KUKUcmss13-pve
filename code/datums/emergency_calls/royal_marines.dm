@@ -1,5 +1,6 @@
 /datum/emergency_call/royal_marines
 	name = "Royal Marines Commando (Squad) (Friendly)"
+	localized_name = "皇家陆战突击队（小队，友军）"
 	mob_max = 7
 	probability = 15
 	home_base = /datum/lazy_template/ert/twe_station
@@ -62,6 +63,7 @@
 
 /datum/emergency_call/royal_marines/platoon
 	name = "Royal Marines Commando (Platoon) (Friendly)"
+	localized_name = "皇家陆战突击队（排，友军）"
 	mob_min = 7
 	mob_max = 28
 	probability = 0

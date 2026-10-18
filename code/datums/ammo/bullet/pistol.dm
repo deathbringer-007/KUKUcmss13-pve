@@ -6,7 +6,7 @@
 
 // Used by M4A3, M4A3 Custom and B92FS
 /datum/ammo/bullet/pistol
-	name = "9x19 bullet"
+	name = "9x19子弹"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 	accuracy = HIT_ACCURACY_TIER_3
 	accuracy_var_low = PROJECTILE_VARIANCE_TIER_6
@@ -16,13 +16,13 @@
 	shell_casing = /obj/effect/decal/ammo_casing
 
 /datum/ammo/bullet/pistol/tiny
-	name = "light pistol bullet"
+	name = "轻型手枪弹"
 
 /datum/ammo/bullet/pistol/upp
-	name = "9x18 bullet"
+	name = "9x18子弹"
 
 /datum/ammo/bullet/pistol/tranq
-	name = "tranquilizer bullet"
+	name = "麻醉弹"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_IGNORE_RESIST
 	stamina_damage = 60
 	damage = 15
@@ -31,7 +31,7 @@
 //Limited by its lack of versatility and lower supply, so marines finally have an answer for flanker castes that isn't just buckshot.
 
 /datum/ammo/bullet/pistol/hollow
-	name = "hollowpoint 9x19 bullet"
+	name = "9x19空尖弹"
 
 	damage = 55 //hollowpoint is strong
 	penetration = -ARMOR_PENETRATION_TIER_3 //hollowpoint can't pierce armor!
@@ -39,14 +39,14 @@
 
 // Used by M4A3 AP and mod88
 /datum/ammo/bullet/pistol/ap
-	name = "armor-piercing 9x19 bullet"
+	name = "9x19穿甲弹"
 
 	damage = 25
 	accuracy = HIT_ACCURACY_TIER_2
 	penetration= ARMOR_PENETRATION_TIER_3
 
 /datum/ammo/bullet/pistol/ap/penetrating
-	name = "wall-penetrating 9x19 bullet"
+	name = "9x19穿墙弹"
 	shrapnel_chance = 0
 
 	damage = 30
@@ -59,7 +59,7 @@
 	))
 
 /datum/ammo/bullet/pistol/ap/toxin
-	name = "toxic 9x19 bullet"
+	name = "9x19毒性弹"
 	var/acid_per_hit = 10
 	var/organic_damage_mult = 3
 
@@ -78,14 +78,14 @@
 		P.damage *= organic_damage_mult
 
 /datum/ammo/bullet/pistol/le
-	name = "armor-shredding 9x19 bullet"
+	name = "9x19削甲弹"
 
 	damage = 15
 	penetration = ARMOR_PENETRATION_TIER_5
 	pen_armor_punch = 3
 
 /datum/ammo/bullet/pistol/rubber
-	name = "rubber 9x19 bullet"
+	name = "9x19橡胶弹"
 	sound_override = 'sound/weapons/gun_c99.ogg'
 
 	damage = 0
@@ -94,7 +94,7 @@
 
 // Reskinned rubber bullet used for the ES-4 CL pistol.
 /datum/ammo/bullet/pistol/electrostatic
-	name = "electrostatic pistol bullet"
+	name = "静电手枪弹"
 	sound_override = null
 	damage = 15
 
@@ -103,7 +103,7 @@
 
 // Used by M1911, Deagle and KT-42
 /datum/ammo/bullet/pistol/heavy
-	name = "heavy pistol bullet"
+	name = "重型手枪弹"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 	accuracy = HIT_ACCURACY_TIER_3
 	accuracy_var_low = PROJECTILE_VARIANCE_TIER_6
@@ -112,7 +112,7 @@
 	shrapnel_chance = SHRAPNEL_CHANCE_TIER_2
 
 /datum/ammo/bullet/pistol/heavy/special //That's a spicy meataball. Hits harder, moves faster, can only be used in select guns
-	name = "supersonic heavy pistol bullet"
+	name = "超音速重型手枪弹"
 	shell_speed = AMMO_SPEED_TIER_5
 	damage = 60
 	penetration = ARMOR_PENETRATION_TIER_2
@@ -123,25 +123,25 @@
 	pushback(entity, bullet, 2)
 
 /datum/ammo/bullet/pistol/heavy/super //Commander's variant //Not messing with this, it can retain The Funny Values
-	name = ".50 heavy pistol bullet"
+	name = ".50重型手枪弹"
 	damage = 60
 	damage_var_low = PROJECTILE_VARIANCE_TIER_8
 	damage_var_high = PROJECTILE_VARIANCE_TIER_6
 	penetration = ARMOR_PENETRATION_TIER_4
 
 /datum/ammo/bullet/pistol/heavy/super/highimpact
-	name = ".50 high-impact pistol bullet"
+	name = ".50高冲击手枪弹"
 	penetration = ARMOR_PENETRATION_TIER_1
 	debilitate = list(0,1.5,0,0,0,1,0,0)
 	flags_ammo_behavior = AMMO_BALLISTIC
 
 /datum/ammo/bullet/pistol/heavy/super/highimpact/ap
-	name = ".50 high-impact armor piercing pistol bullet"
+	name = ".50高冲击穿甲手枪弹"
 	penetration = ARMOR_PENETRATION_TIER_10
 	damage = 45
 
 /datum/ammo/bullet/pistol/heavy/super/highimpact/upp
-	name = "high-impact pistol bullet"
+	name = "高冲击手枪弹"
 	sound_override = 'sound/weapons/gun_DE50.ogg'
 	penetration = ARMOR_PENETRATION_TIER_6
 	debilitate = list(0,1.5,0,0,0,1,0,0)
@@ -155,7 +155,7 @@
 	knockback(M, P, 4)
 
 /datum/ammo/bullet/pistol/deagle
-	name = ".50 heavy pistol bullet"
+	name = ".50重型手枪弹"
 	damage = 45
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
 	accuracy = HIT_ACCURACY_TIER_3
@@ -164,7 +164,7 @@
 	shrapnel_chance = SHRAPNEL_CHANCE_TIER_5
 
 /datum/ammo/bullet/pistol/incendiary
-	name = "incendiary pistol bullet"
+	name = "燃烧手枪弹"
 	damage_type = BURN
 	shrapnel_chance = 0
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -184,7 +184,7 @@
 // maybe in the far flung future of 2280 someone screwed up the design.
 
 /datum/ammo/bullet/pistol/highpower
-	name = "high-powered pistol bullet"
+	name = "高威力手枪弹"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 
 	accuracy = HIT_ACCURACY_TIER_3
@@ -194,7 +194,7 @@
 
 // Used by VP78 and Auto 9
 /datum/ammo/bullet/pistol/squash
-	name = "squash-head pistol bullet"
+	name = "碎甲手枪弹"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 	debilitate = list(0,0,0,0,0,0,0,2)
 
@@ -206,7 +206,7 @@
 	damage_falloff = DAMAGE_FALLOFF_TIER_6
 
 /datum/ammo/bullet/pistol/squash/toxin
-	name = "toxic squash-head pistol bullet"
+	name = "毒性碎甲手枪弹"
 	var/acid_per_hit = 10
 	var/organic_damage_mult = 3
 
@@ -225,7 +225,7 @@
 		P.damage *= organic_damage_mult
 
 /datum/ammo/bullet/pistol/squash/penetrating
-	name = "wall-penetrating squash-head pistol bullet"
+	name = "穿墙碎甲手枪弹"
 	shrapnel_chance = 0
 	penetration = ARMOR_PENETRATION_TIER_10
 
@@ -236,7 +236,7 @@
 	))
 
 /datum/ammo/bullet/pistol/squash/incendiary
-	name = "incendiary squash-head pistol bullet"
+	name = "燃烧碎甲手枪弹"
 	damage_type = BURN
 	shrapnel_chance = 0
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -251,7 +251,7 @@
 
 
 /datum/ammo/bullet/pistol/mankey
-	name = "live monkey"
+	name = "活猴"
 	icon_state = "monkey1"
 	ping = null //no bounce off.
 	damage_type = BURN
@@ -274,7 +274,7 @@
 		new /mob/living/carbon/human/monkey(P.loc)
 
 /datum/ammo/bullet/pistol/smart
-	name = "smartpistol bullet"
+	name = "智能手枪弹"
 	flags_ammo_behavior = AMMO_BALLISTIC
 
 	accuracy = HIT_ACCURACY_TIER_8

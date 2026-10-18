@@ -3,6 +3,7 @@
 //Colonial Liberation Front
 /datum/emergency_call/clf
 	name = "Colonial Liberation Front (Squad)"
+	localized_name = "殖民地解放阵线（小队）"
 	mob_max = 10
 	arrival_message = "“注意，你们正侵犯我们的主权领土。别指望获得宽恕。”"
 	objectives = "攻击美国殖民地海军陆战队，并尽可能制造破坏。确保幸存者在你们的控制下撤离。"
@@ -72,6 +73,7 @@
 
 /datum/emergency_call/clf/platoon
 	name = "Colonial Liberation Front (Platoon)"
+	localized_name = "殖民地解放阵线（排）"
 	mob_min = 8
 	mob_max = 35
 	probability = 0

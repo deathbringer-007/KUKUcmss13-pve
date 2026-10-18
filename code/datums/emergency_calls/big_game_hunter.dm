@@ -2,6 +2,7 @@
 //A big-game hunter, willing to hunt anything that moves.
 /datum/emergency_call/van_bandolier
 	name = "Fun - Big Game Hunter (solo)"
+	localized_name = "趣味事件：大型猎物猎手（单人）"
 	mob_max = 1
 	mob_min = 1
 	probability = 0

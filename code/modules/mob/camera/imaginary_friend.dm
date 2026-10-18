@@ -43,7 +43,7 @@
 		return INITIALIZE_HINT_QDEL
 
 	src.owner = owner
-	owner.play_screen_text("An imaginary friend has appeared to help you! <br> The imaginary friend is an out of character aid for mentors to assist you. If someone asks you about it in character you can explain it as remembering something from the past, etc, but you are not insane.")
+	owner.play_screen_text("一位幻想朋友出现，前来帮助你！<br>幻想朋友是导师指导玩家的局外辅助工具。如果有人在角色扮演中问起，你可以解释为回想起了过去的事情等，并不表示你的角色精神失常。")
 
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 

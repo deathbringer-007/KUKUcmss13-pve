@@ -3,6 +3,7 @@
 //Blank colonist ERT for admin stuff.
 /datum/emergency_call/colonist
 	name = "Colonists"
+	localized_name = "殖民者"
 	mob_max = 8
 	mob_min = 1
 	arrival_message = "“这里是*杂音*。我们正在*杂音*。”"
@@ -29,12 +30,15 @@
 
 /datum/emergency_call/colonist/engineers
 	name = "Colonists - Engineers"
+	localized_name = "殖民者：工程师"
 	preset = /datum/equipment_preset/colonist/engineer
 
 /datum/emergency_call/colonist/security
 	name = "Colonists - Security"
+	localized_name = "殖民者：安保人员"
 	preset = /datum/equipment_preset/colonist/security
 
 /datum/emergency_call/colonist/doctors
 	name = "Colonists - Doctors"
+	localized_name = "殖民者：医生"
 	preset = /datum/equipment_preset/colonist/doctor

@@ -1,5 +1,5 @@
 /datum/ammo/bullet/re700
-	name = "rotary cannon bullet"
+	name = "转管炮弹"
 	icon_state = "bullet_large_red"
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC

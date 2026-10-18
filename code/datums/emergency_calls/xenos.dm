@@ -2,6 +2,7 @@
 //Xenomorphs, hostile to everyone.
 /datum/emergency_call/xenos
 	name = "Xenomorphs (Squad)"
+	localized_name = "异形（小队规模）"
 	mob_max = 7
 	probability = 5
 	auto_shuttle_launch = TRUE //because xenos can't use the shuttle console.
@@ -41,6 +42,7 @@
 
 /datum/emergency_call/xenos/platoon
 	name = "Xenomorphs (Platoon)"
+	localized_name = "异形（排规模）"
 	mob_min = 8
 	mob_max = 30
 	probability = 0

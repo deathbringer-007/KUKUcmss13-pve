@@ -2,6 +2,7 @@
 //A gaggle of gladiators
 /datum/emergency_call/deus_vult
 	name = "Deus Vult!"
+	localized_name = "天主所愿！"
 	mob_max = 35
 	mob_min = 10
 	max_heavies = 10

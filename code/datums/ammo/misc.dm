@@ -5,7 +5,7 @@
 */
 
 /datum/ammo/alloy_spike
-	name = "alloy spike"
+	name = "合金尖刺"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 	ping = "ping_s"
 	icon_state = "MSpearFlight"
@@ -22,7 +22,7 @@
 	shrapnel_type = /obj/item/shard/shrapnel
 
 /datum/ammo/flamethrower
-	name = "flame"
+	name = "火焰"
 	icon_state = "pulse0"
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_IGNORE_ARMOR|AMMO_HITS_TARGET_TURF
@@ -104,7 +104,7 @@
 	return ..()
 
 /datum/ammo/flamethrower/sentry_flamer/mini
-	name = "normal fire"
+	name = "普通火焰"
 
 /datum/ammo/flamethrower/sentry_flamer/mini/drop_flame(turf/T, datum/cause_data/cause_data)
 	if(!istype(T))
@@ -120,16 +120,16 @@
 	new /obj/flamer_fire(T, cause_data, reagent, 1)
 
 /datum/ammo/flamethrower/sentry_flamer/wy
-	name = "sticky fire"
+	name = "黏附火焰"
 	flamer_reagent_id = "stickynapalm"
 	shell_speed = AMMO_SPEED_TIER_4
 
 /datum/ammo/flamethrower/sentry_flamer/upp
-	name = "gel fire"
+	name = "凝胶火焰"
 	flamer_reagent_id = "napalmgel"
 
 /datum/ammo/flare
-	name = "flare"
+	name = "照明棒"
 	ping = null //no bounce off.
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_HITS_TARGET_TURF
@@ -173,7 +173,7 @@
 	return G
 
 /datum/ammo/flare/signal
-	name = "signal flare"
+	name = "信号照明棒"
 	icon_state = "flare_signal"
 	flare_type = /obj/item/device/flashlight/flare/signal/gun
 	handful_type = /obj/item/device/flashlight/flare/signal
@@ -186,7 +186,7 @@
 		flare_gun_fired_from.last_signal_flare_name = signal_flare.name
 
 /datum/ammo/flare/starshell
-	name = "starshell ash"
+	name = "照明弹余烬"
 	icon_state = "starshell_bullet"
 	max_range = 5
 	damage = 2.5
@@ -199,7 +199,7 @@
 	))
 
 /datum/ammo/souto
-	name = "Souto Can"
+	name = "索托饮料罐"
 	ping = null //no bounce off.
 	damage_type = BRUTE
 	shrapnel_type = /obj/item/reagent_container/food/drinks/cans/souto/classic
@@ -261,7 +261,7 @@
 	shrapnel_type = pick(typesof(/obj/item/reagent_container/food/drinks/cans/souto)-/obj/item/reagent_container/food/drinks/cans/souto)
 
 /datum/ammo/grenade_container
-	name = "grenade shell"
+	name = "榴弹"
 	ping = null
 	damage_type = BRUTE
 	var/nade_type = /obj/item/explosive/grenade/high_explosive
@@ -296,24 +296,24 @@
 	flags_ammo_behavior = NO_FLAGS
 
 /datum/ammo/grenade_container/smoke
-	name = "smoke grenade shell"
+	name = "烟雾榴弹"
 	nade_type = /obj/item/explosive/grenade/smokebomb
 	icon_state = "smoke_shell"
 
 /datum/ammo/grenade_container/smoke/upp
-	name = "smoke grenade shell"
+	name = "烟雾榴弹"
 	nade_type = /obj/item/explosive/grenade/smokebomb/upp
 	icon_state = "smoke_shell"
 
 /datum/ammo/grenade_container/incen
-	name = "incendiary smoke grenade shell"
+	name = "燃烧烟雾榴弹"
 	nade_type = /obj/item/explosive/grenade/phosphorus
 
 /datum/ammo/grenade_container/tank_glauncher
 	max_range = 8
 
 /datum/ammo/hugger_container
-	name = "hugger shell"
+	name = "抱脸虫弹"
 	ping = null
 	damage_type = BRUTE
 	var/hugger_hive = XENO_HIVE_NORMAL
@@ -346,7 +346,7 @@
 //========
 */
 /datum/ammo/rifle/sharp
-	name = "dart"
+	name = "飞镖"
 	ping = null //no bounce off.
 	damage_type = BRUTE
 	shrapnel_type = /obj/item/sharp
@@ -383,7 +383,7 @@
 	new embed_object(loc, P.dir)
 
 /datum/ammo/rifle/sharp/explosive
-	name = "9X-E sticky explosive dart"
+	name = "9X-E 黏附式爆炸镖"
 
 /datum/ammo/rifle/sharp/explosive/on_hit_mob(mob/living/M, obj/projectile/P)
 	if(!M || M == P.firer) return
@@ -422,7 +422,7 @@
 		playsound(get_turf(M), 'sound/weapons/gun_sharp_explode.ogg', 45)
 
 /datum/ammo/rifle/sharp/track
-	name = "9X-T sticky tracker dart"
+	name = "9X-T 黏附式追踪镖"
 	icon_state = "sonicharpoon_tracker"
 	embed_object = /obj/item/sharp/track
 	var/tracker_timer = 1 MINUTES
@@ -444,7 +444,7 @@
 	tracker_timer = 999 MINUTES
 
 /datum/ammo/rifle/sharp/flechette
-	name = "9X-F flechette dart"
+	name = "9X-F 箭形镖"
 	icon_state = "sonicharpoon_flechette"
 	embed_object = /obj/item/sharp/flechette
 	shrapnel_type = /datum/ammo/bullet/shotgun/flechette_spread/awesome
@@ -478,13 +478,13 @@
 
 /datum/ammo/rifle/sharp/flechette/proc/apply_explosion_overlay(turf/loc)
 	var/obj/effect/overlay/O = new /obj/effect/overlay(loc)
-	O.name = "grenade"
+	O.name = "手榴弹"
 	O.icon = 'icons/effects/explosion.dmi'
-	flick("grenade", O)
+	flick("手榴弹", O)
 	QDEL_IN(O, 7)
 
 /datum/ammo/anti_air
-	name = "anti-air missile"
+	name = "防空导弹"
 	ping = null //no bounce off.
 	damage_type = CLONE //Shouldn't ever hit anyone
 	flags_ammo_behavior = AMMO_MP //As above, ensures it'll miss if it ever travels any distance

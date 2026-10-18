@@ -5,6 +5,7 @@
 
 /datum/emergency_call/cryo_squad_equipped
 	name = "Marine Cryo Reinforcements (Full Equipment) (Squad)"
+	localized_name = "陆战队冷冻休眠增援（全套装备，小队）"
 	mob_max = 15
 	mob_min = 1
 	probability = 0
@@ -69,6 +70,7 @@
 
 /datum/emergency_call/cryo_squad_equipped/platoon
 	name = "Marine Cryo Reinforcements (Full Equipment) (Platoon)"
+	localized_name = "陆战队冷冻休眠增援（全套装备，排）"
 	mob_min = 8
 	mob_max = 30
 	probability = 0

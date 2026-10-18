@@ -2,6 +2,7 @@
 //Provost Enforcer Team
 /datum/emergency_call/provost_enforcer
 	name = "USCM Provost Enforcers"
+	localized_name = "陆战队军法监察执法队"
 	mob_max = 5
 	mob_min = 5
 	probability = 0

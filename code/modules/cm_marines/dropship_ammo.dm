@@ -82,7 +82,7 @@
 
 //what to show to the user that examines the weapon we're loaded on.
 /obj/structure/ship_ammo/proc/show_loaded_desc(mob/user)
-	return "It's loaded with \a [src]."
+	return "已装载[src]。"
 
 /obj/structure/ship_ammo/proc/detonate_on(turf/impact, obj/structure/dropship_equipment/weapon/fired_from)
 	return
@@ -95,7 +95,7 @@
 		to_chat(user, SPAN_NOTICE("[src]与[target]使用的弹药类型不兼容！"))
 		return
 	if(!transferable_ammo)
-		to_chat(user, SPAN_NOTICE("[src]不支持转移[ammo_name]！"))
+		to_chat(user, SPAN_NOTICE("[src]不支持转移[list("round" = "炮弹", "charge" = "电量", "rocket" = "火箭弹", "minirocket" = "微型火箭弹", "area denial sentry" = "区域封锁哨戒系统")[ammo_name] || ammo_name]！"))
 		return
 	var/obj/item/powerloader_clamp/PC
 	if(istype(loc, /obj/item/powerloader_clamp))
@@ -115,7 +115,7 @@
 	target.ammo_count += transf_amt
 	ammo_count -= transf_amt
 	playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-	to_chat(user, SPAN_NOTICE("你将[transf_amt]份[ammo_name]转移至[target]。"))
+	to_chat(user, SPAN_NOTICE("你将[transf_amt]份[list("round" = "炮弹", "charge" = "电量", "rocket" = "火箭弹", "minirocket" = "微型火箭弹", "area denial sentry" = "区域封锁哨戒系统")[ammo_name] || ammo_name]转移至[target]。"))
 	if(ammo_count < 1)
 		if(PC)
 			PC.loaded = null
@@ -156,9 +156,9 @@
 
 /obj/structure/ship_ammo/heavygun/show_loaded_desc(mob/user)
 	if(ammo_count)
-		return "It's loaded with \a [src] containing [ammo_count] round\s."
+		return "已装载[src]，内有[ammo_count]发弹药。"
 	else
-		return "It's loaded with an empty [name]."
+		return "已装载一个空的[name]。"
 
 /obj/structure/ship_ammo/heavygun/detonate_on(turf/impact, obj/structure/dropship_equipment/weapon/fired_from)
 	set waitfor = 0
@@ -230,14 +230,14 @@
 
 /obj/structure/ship_ammo/laser_battery/get_examine_text(mob/user)
 	. = ..()
-	. += "It's at [floor(100*ammo_count/max_ammo_count)]% charge."
+	. += "剩余电量为[floor(100*ammo_count/max_ammo_count)]%。"
 
 
 /obj/structure/ship_ammo/laser_battery/show_loaded_desc(mob/user)
 	if(ammo_count)
-		return "It's loaded with \a [src] at [floor(100*ammo_count/max_ammo_count)]% charge."
+		return "已装载[src]，剩余电量为[floor(100*ammo_count/max_ammo_count)]%。"
 	else
-		return "It's loaded with an empty [name]."
+		return "已装载一个空的[name]。"
 
 
 /obj/structure/ship_ammo/laser_battery/detonate_on(turf/impact, obj/structure/dropship_equipment/weapon/fired_from)
@@ -413,7 +413,7 @@
 
 /obj/structure/ship_ammo/minirocket/show_loaded_desc(mob/user)
 	if(ammo_count)
-		return "It's loaded with \a [src] containing [ammo_count] minirocket\s."
+		return "已装载[src]，内有[ammo_count]枚微型火箭弹。"
 
 /obj/structure/ship_ammo/minirocket/get_examine_text(mob/user)
 	. = ..()

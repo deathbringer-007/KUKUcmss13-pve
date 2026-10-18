@@ -2,6 +2,7 @@
 //Feral Xenomorphs, hostile to TRULY everyone.
 /datum/emergency_call/feral_xenos
 	name = "Xenomorphs (Feral)"
+	localized_name = "异形（野生）"
 	mob_min = 1
 	mob_max = 8
 	max_medics = 2 //Support T2 castes
@@ -13,7 +14,7 @@
 /datum/emergency_call/feral_xenos/New()
 	..()
 	arrival_message = "[MAIN_SHIP_NAME]，这里是USS弗里斯号，请回——杂音——信号……天啊，它们在通风管——……优先警告：信号丢失。"
-	objectives = "Destroy everything!"
+	objectives = "摧毁一切！"
 
 /datum/emergency_call/feral_xenos/spawn_items()
 	var/turf/drop_spawn = get_spawn_point(TRUE)
@@ -61,6 +62,7 @@
 
 /datum/emergency_call/feral_xenos/platoon
 	name = "Xenomorphs (Feral Platoon)"
+	localized_name = "异形（野生，排规模）"
 	mob_min = 1
 	mob_max = 30
 	probability = 0

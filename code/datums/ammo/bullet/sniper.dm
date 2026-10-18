@@ -5,7 +5,7 @@
 */
 
 /datum/ammo/bullet/sniper
-	name = "high explosive armor-piercing sniper bullet"
+	name = "高爆穿甲狙击弹"
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_IGNORE_COVER
@@ -27,7 +27,7 @@
 		to_chat(P.firer, SPAN_WARNING("正中目标！"))
 
 /datum/ammo/bullet/sniper/crude
-	name = "crude sniper bullet"
+	name = "粗制狙击弹"
 	damage = 42
 	penetration = -ARMOR_PENETRATION_TIER_2
 	shell_casing = /obj/effect/decal/ammo_casing/cartridge
@@ -37,19 +37,19 @@
 	pushback(M, P, 3)
 
 /datum/ammo/bullet/sniper/upp
-	name = "armor-piercing sniper bullet"
+	name = "穿甲狙击弹"
 	damage = 80
 	penetration = ARMOR_PENETRATION_TIER_6 //Instant deletion isn't fun.
 	shell_casing = /obj/effect/decal/ammo_casing/cartridge
 
 /datum/ammo/bullet/sniper/upp/heap
-	name = "high velocity armor-piercing sniper bullet"
+	name = "高速穿甲狙击弹"
 	damage = 110
 	penetration = ARMOR_PENETRATION_TIER_8
 	shell_casing = /obj/effect/decal/ammo_casing/cartridge
 
 /datum/ammo/bullet/sniper/upp/flak
-	name = "flak sniper bullet"
+	name = "破片狙击弹"
 	damage = 60
 	penetration = ARMOR_PENETRATION_TIER_2
 	shell_casing = /obj/effect/decal/ammo_casing/cartridge
@@ -67,13 +67,13 @@
 	burst(T,P,damage_type, 1 , 2 , 0)
 
 /datum/ammo/bullet/sniper/upp_pve
-	name = "high-power sniper bullet" //Now used by hAI CLF type 88 users
+	name = "高威力狙击弹" //Now used by hAI CLF type 88 users
 	damage = 60
 	penetration = ARMOR_PENETRATION_TIER_4
 	shell_casing = /obj/effect/decal/ammo_casing/cartridge
 
 /datum/ammo/bullet/sniper/anti_materiel
-	name = "anti-materiel sniper bullet"
+	name = "反器材狙击弹"
 
 	shrapnel_chance = 0 // This isn't leaving any shrapnel.
 	accuracy = HIT_ACCURACY_TIER_10
@@ -263,7 +263,7 @@
 	))
 
 /datum/ammo/bullet/sniper/anti_materiel/vulture/holo_target
-	name = "holo-targeting anti-materiel sniper bullet"
+	name = "全息标记反器材狙击弹"
 	damage = 60 // it's a big bullet but its purpose is to support marines, not to kill enemies by itself
 	/// inflicts this many holo stacks per bullet hit
 	var/holo_stacks = 333
@@ -285,7 +285,7 @@
 	))
 
 /datum/ammo/bullet/sniper/elite
-	name = "supersonic sniper bullet"
+	name = "超音速狙击弹"
 
 	shrapnel_chance = 0 // This isn't leaving any shrapnel.
 	accuracy = HIT_ACCURACY_TIER_8

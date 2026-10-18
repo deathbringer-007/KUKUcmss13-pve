@@ -1,5 +1,6 @@
 /datum/emergency_call/forecon
 	name = "FORECON (Squad)"
+	localized_name = "武装侦察部队（小队）"
 	arrival_message = "一支武装侦察小队已奉命前往你们的舰船。请待命。"
 	objectives = "处理当前出现的威胁。后续可能下达进一步命令。"
 	home_base = /datum/lazy_template/ert/uscm_station
@@ -49,6 +50,7 @@
 
 /datum/emergency_call/forecon/platoon
 	name = "FORECON (Platoon)"
+	localized_name = "武装侦察部队（排）"
 	mob_min = 6
 	mob_max = 30
 	probability = 0

@@ -1,6 +1,7 @@
 
 /datum/emergency_call/zombie
 	name = "Zombies"
+	localized_name = "丧尸"
 	mob_max = 8
 	mob_min = 1
 	probability = 0

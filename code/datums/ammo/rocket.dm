@@ -5,7 +5,7 @@
 */
 
 /datum/ammo/rocket
-	name = "high explosive rocket"
+	name = "高爆火箭弹"
 	icon_state = "missile"
 	ping = null //no bounce off.
 	sound_bounce = "rocket_ricochet"
@@ -53,7 +53,7 @@
 	smoke.start()
 
 /datum/ammo/rocket/ap
-	name = "anti-armor rocket"
+	name = "反装甲火箭弹"
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
 
@@ -139,7 +139,7 @@
 	smoke.start()
 
 /datum/ammo/rocket/ap/anti_tank
-	name = "anti-tank rocket"
+	name = "反坦克火箭弹"
 	damage = 200
 	vehicle_slowdown_time = 5 SECONDS
 
@@ -158,17 +158,17 @@
 	return ..()
 
 /datum/ammo/rocket/ap/tank_towlauncher
-	name = "anti-armor missile"
+	name = "反装甲导弹"
 	max_range = 16
 
 /datum/ammo/rocket/ap/tank_towlauncher/aa
-	name = "hypervelocity missile"
+	name = "超高速导弹"
 	max_range = 16
 	shell_speed = AMMO_SPEED_TIER_8
 
 //USCM Hornet AA missile
 /datum/ammo/rocket/ap/anti_air
-	name = "hypervelocity anti-air missile"
+	name = "超高速防空导弹"
 	damage = 250
 	max_range = 16
 	vehicle_slowdown_time = 4 SECONDS
@@ -181,7 +181,7 @@
 
 //UPP TANK RAILGUN CANNON
 /datum/ammo/rocket/ap/railgun
-	name = "railgun round"
+	name = "电磁轨道炮弹"
 	icon_state = "railgun"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
 
@@ -233,7 +233,7 @@
 
 //UPP Goose AA missile
 /datum/ammo/rocket/anti_air
-	name = "anti-air missile"
+	name = "防空导弹"
 	icon_state = "emblr"
 	damage = 100
 	max_range = 14
@@ -241,7 +241,7 @@
 
 //UA TANK CANNON
 /datum/ammo/rocket/ltb
-	name = "cannon round"
+	name = "炮弹"
 	icon_state = "ltb"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
 
@@ -286,13 +286,13 @@
 
 //UPP TANK CANNON
 /datum/ammo/rocket/ltb/p17702
-	name = "93mmm round"
+	name = "93毫米炮弹"
 	icon_state = "p17702"
 
 	shell_speed = AMMO_SPEED_TIER_4
 
 /datum/ammo/rocket/wp
-	name = "white phosphorous rocket"
+	name = "白磷火箭弹"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_EXPLOSIVE|AMMO_STRIKES_SURFACE
 	damage_type = BURN
 
@@ -333,7 +333,7 @@
 	drop_flame(get_turf(projectile), projectile.weapon_cause_data)
 
 /datum/ammo/rocket/wp/upp
-	name = "extreme-intensity incendiary rocket"
+	name = "超强燃烧火箭弹"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_EXPLOSIVE|AMMO_STRIKES_SURFACE
 	damage_type = BURN
 
@@ -369,7 +369,7 @@
 	drop_flame(get_turf(projectile), projectile.weapon_cause_data)
 
 /datum/ammo/rocket/wp/quad
-	name = "thermobaric rocket"
+	name = "温压火箭弹"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_STRIKES_SURFACE
 
 	damage = 100
@@ -393,7 +393,7 @@
 	explosion(projectile.loc,  -1, 2, 4, 5, , , ,projectile.weapon_cause_data)
 
 /datum/ammo/rocket/custom
-	name = "custom rocket"
+	name = "自制火箭弹"
 	accurate_range = 8
 	max_range = 8
 

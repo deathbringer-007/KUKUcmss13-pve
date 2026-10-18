@@ -219,7 +219,7 @@
 			signed = "[paygrade] [idcard.registered_name]"
 
 			COOLDOWN_START(src, cooldown_message, COOLDOWN_COMM_MESSAGE)
-			shipwide_ai_announcement(input, COMMAND_SHIP_ANNOUNCE, signature = signed)
+			shipwide_ai_announcement(input, "指挥舰公告", signature = signed)
 			message_admins("[key_name(user)] has made a shipwide annoucement.")
 			log_announcement("[key_name(user)] has announced the following to the ship: [input]")
 			. = TRUE

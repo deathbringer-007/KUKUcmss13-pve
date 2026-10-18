@@ -105,10 +105,10 @@ BSQL_PROTECT_DATUM(/datum/entity/player)
 		// notes_add already sends a message
 		message_admins("[key_name_admin(admin.mob)] has edited [ckey]'s [GLOB.note_categories[note_category]] notes: [sanitize(note_text)]")
 	if(!is_confidential && note_category == NOTE_ADMIN && owning_client)
-		to_chat_immediate(owning_client, SPAN_WARNING(FONT_SIZE_LARGE("You have been noted by [key_name_admin(admin.mob, FALSE)].")))
-		to_chat_immediate(owning_client, SPAN_WARNING(FONT_SIZE_BIG("The note is : [sanitize(note_text)]")))
-		to_chat_immediate(owning_client, SPAN_WARNING(FONT_SIZE_BIG("If you believe this was filed in error or misplaced, make a staff report at <a href='[CONFIG_GET(string/staffreport)]'><b>The CM Forums</b></a>")))
-		to_chat_immediate(owning_client, SPAN_WARNING(FONT_SIZE_BIG("You can also click the name of the staff member noting you to PM them.")))
+		to_chat_immediate(owning_client, SPAN_WARNING(FONT_SIZE_LARGE("[key_name_admin(admin.mob, FALSE)]已为你添加一条记录。")))
+		to_chat_immediate(owning_client, SPAN_WARNING(FONT_SIZE_BIG("记录内容：[sanitize(note_text)]")))
+		to_chat_immediate(owning_client, SPAN_WARNING(FONT_SIZE_BIG("如果你认为这条记录有误或添加对象错误，请前往<a href='[CONFIG_GET(string/staffreport)]'><b>CM论坛</b></a>提交工作人员投诉。")))
+		to_chat_immediate(owning_client, SPAN_WARNING(FONT_SIZE_BIG("你也可以点击添加记录的工作人员姓名，向其发送私信。")))
 	// create new instance of player_note entity
 	var/datum/entity/player_note/note = DB_ENTITY(/datum/entity/player_note)
 	// set its related data
@@ -257,12 +257,12 @@ BSQL_PROTECT_DATUM(/datum/entity/player)
 	ban_unban_log_save("[key_name_admin(admin)] [duration_text] [ckey] from [total_rank]. reason: [ban_text]")
 	log_admin("[key_name(admin)] [duration_text] [ckey] from [total_rank]")
 
-	to_chat(owning_client, SPAN_WARNING("<BIG><B>你已被[admin.ckey]禁止担任以下职位：[total_rank]。</B></BIG>"))
+	to_chat(owning_client, SPAN_WARNING("<BIG><B>你已被[admin.ckey]禁止担任以下职位：[jointext(localized_player_list(ranks), "、")]。</B></BIG>"))
 	to_chat(owning_client, SPAN_WARNING("<B>原因：[ban_text]</B>"))
 	if(!duration)
 		to_chat(owning_client, SPAN_WARNING("职位封禁仅可通过申请解除。"))
 	else
-		to_chat(owning_client, SPAN_WARNING("This jobban is timed and will expire in [duration] minutes."))
+		to_chat(owning_client, SPAN_WARNING("本次职业封禁为限时封禁，将在[duration]分钟后到期。"))
 
 	if(!job_bans)
 		job_bans = list()
@@ -337,8 +337,8 @@ BSQL_PROTECT_DATUM(/datum/entity/player)
 			add_note("Internal reason: [internal_reason]", TRUE, NOTE_ADMIN)
 
 	if(owning_client)
-		to_chat_forced(owning_client, SPAN_LARGE("<big><b>You have been permanently banned by [banner.ckey].\nReason: [reason].</b></big>"))
-		to_chat_forced(owning_client, SPAN_LARGE("This is a permanent ban. It will not be removed."))
+		to_chat_forced(owning_client, SPAN_LARGE("<big><b>你已被[banner.ckey]永久封禁。\n原因：[reason]。</b></big>"))
+		to_chat_forced(owning_client, SPAN_LARGE("这是永久封禁，不会解除。"))
 		QDEL_NULL(owning_client)
 
 	save()
@@ -555,9 +555,9 @@ BSQL_PROTECT_DATUM(/datum/entity/player)
 
 		var/appeal
 		if(CONFIG_GET(string/banappeals))
-			appeal = "\nFor more information on your ban, or to appeal, head to <a href='[CONFIG_GET(string/banappeals)]'>[CONFIG_GET(string/banappeals)]</a>"
+			appeal = "\n如需了解封禁详情或申诉，请前往<a href='[CONFIG_GET(string/banappeals)]'>[CONFIG_GET(string/banappeals)]</a>"
 
-		.["desc"] = "\nReason: Stickybanned - [sticky.message] Identifier: [sticky.identifier]\n[appeal]"
+		.["desc"] = "\n原因：关联封禁——[sticky.message]。识别码：[sticky.identifier]\n[appeal]"
 		.["reason"] = "ckey/id"
 
 		if(!is_telemetry)
@@ -570,16 +570,16 @@ BSQL_PROTECT_DATUM(/datum/entity/player)
 
 	var/appeal
 	if(CONFIG_GET(string/banappeals))
-		appeal = "\nFor more information on your ban, or to appeal, head to <a href='[CONFIG_GET(string/banappeals)]'>[CONFIG_GET(string/banappeals)]</a>"
+		appeal = "\n如需了解封禁详情或申诉，请前往<a href='[CONFIG_GET(string/banappeals)]'>[CONFIG_GET(string/banappeals)]</a>"
 	if(is_permabanned)
-		var/banner = "Host"
+		var/banner = "服务器所有者"
 		if(permaban_admin_id)
 			var/datum/view_record/players/banning_admin = locate() in DB_VIEW(/datum/view_record/players, DB_COMP("id", DB_EQUALS, permaban_admin_id))
 			banner = banning_admin.ckey
 		if(!is_telemetry)
 			log_access("Failed Login: [ckey] [last_known_cid] [last_known_ip] - Banned [permaban_reason]")
 			message_admins("Failed Login: [ckey] id:[last_known_cid] ip:[last_known_ip] - Banned [permaban_reason]")
-		.["desc"] = "\nReason: [permaban_reason]\nExpires: <B>PERMANENT</B>\nBy: [banner][appeal]"
+		.["desc"] = "\n原因：[permaban_reason]\n到期时间：<B>永久</B>\n执行人：[banner][appeal]"
 		.["reason"] = "ckey/id"
 		return .
 	if(is_time_banned)
@@ -589,15 +589,15 @@ BSQL_PROTECT_DATUM(/datum/entity/player)
 		time_ban_admin.sync()
 		var/timeleftstring
 		if (time_left >= 1440) //1440 = 1 day in minutes
-			timeleftstring = "[round(time_left / 1440, 0.1)] Days"
+			timeleftstring = "[round(time_left / 1440, 0.1)]天"
 		else if (time_left >= 60) //60 = 1 hour in minutes
-			timeleftstring = "[round(time_left / 60, 0.1)] Hours"
+			timeleftstring = "[round(time_left / 60, 0.1)]小时"
 		else
-			timeleftstring = "[time_left] Minutes"
+			timeleftstring = "[time_left]分钟"
 		if(!is_telemetry)
 			log_access("Failed Login: [ckey] [last_known_cid] [last_known_ip] - Banned [time_ban_reason]")
 			message_admins("Failed Login: [ckey] id:[last_known_cid] ip:[last_known_ip] - Banned [time_ban_reason]")
-		.["desc"] = "\nReason: [time_ban_reason]\nExpires: [timeleftstring]\nBy: [time_ban_admin.ckey][appeal]"
+		.["desc"] = "\n原因：[time_ban_reason]\n剩余时间：[timeleftstring]\n执行人：[time_ban_admin.ckey][appeal]"
 		.["reason"] = "ckey/id"
 		return .
 	// shouldn't be here

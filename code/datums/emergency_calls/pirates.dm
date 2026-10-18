@@ -2,6 +2,7 @@
 //A gaggle of gladiators
 /datum/emergency_call/pirates
 	name = "Fun - Pirates"
+	localized_name = "趣味事件：海盗"
 	mob_max = 35
 	mob_min = 10
 	arrival_message = "“醉醺醺的水手该怎么办？醉醺醺的水手该怎么办？醉醺醺的水手该怎么办，大清早的怎么办？”"

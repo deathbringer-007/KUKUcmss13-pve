@@ -226,7 +226,7 @@
 				var/rendered_message
 				var/xeno_track = "(<a href='byond://?src=\ref[ghost];track=\ref[xeno_player]'>F</a>)"
 				var/target_track = "(<a href='byond://?src=\ref[ghost];track=\ref[target_mob]'>F</a>)"
-				rendered_message = SPAN_XENOLEADER("PsychicWhisper: [xeno_player.real_name][xeno_track] to [target_mob.real_name][target_track], <span class='normal'>'[SPAN_PSYTALK(whisper)]'</span>")
+				rendered_message = SPAN_XENOLEADER("心灵低语：[xeno_player.real_name][xeno_track]对[target_mob.real_name][target_track]说：<span class='normal'>“[SPAN_PSYTALK(whisper)]”</span>")
 				ghost.show_message(rendered_message, SHOW_MESSAGE_AUDIBLE)
 
 	return ..()
@@ -265,7 +265,7 @@
 	FOR_DVIEW_END
 	if(!length(target_list))
 		return
-	var/targetstring = english_list(target_list)
+	var/targetstring = english_list(target_list, and_text = "和", comma_text = "、")
 	to_chat(xeno_player, SPAN_XENONOTICE("你向[targetstring]传递讯息：\"[whisper]\""))
 	log_say("PsychicRadiance: [key_name(xeno_player)]->[targetstring] : [whisper] (AREA: [get_area_name(xeno_player)])")
 	for (var/mob/dead/observer/ghost as anything in GLOB.observer_list)
@@ -274,7 +274,7 @@
 		if(ghost.client.prefs.toggles_chat & CHAT_GHOSTHIVEMIND)
 			var/rendered_message
 			var/xeno_track = "(<a href='byond://?src=\ref[ghost];track=\ref[xeno_player]'>F</a>)"
-			rendered_message = SPAN_XENOLEADER("PsychicRadiance: [xeno_player.real_name][xeno_track] to [targetstring], <span class='normal'>'[SPAN_PSYTALK(whisper)]'</span>")
+			rendered_message = SPAN_XENOLEADER("心灵广播：[xeno_player.real_name][xeno_track]向[targetstring]传达：<span class='normal'>“[SPAN_PSYTALK(whisper)]”</span>")
 			ghost.show_message(rendered_message, SHOW_MESSAGE_AUDIBLE)
 	return ..()
 

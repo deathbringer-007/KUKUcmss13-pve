@@ -302,7 +302,7 @@ FORENSIC SCANNER
 			if(limb_burn > 0 && !scan_data["limb_data_lists"][limb]["salved"])
 				burn_treated = FALSE
 			if(scan_data["limb_data_lists"][limb]["missing"])
-				dat += "[capitalize(scan_data["limb_data_lists"][limb]["name"])]：<span class='scannerb'>缺失！</span>\n"
+				dat += "[capitalize(localized_player_label(scan_data["limb_data_lists"][limb]["name"]))]：<span class='scannerb'>缺失！</span>\n"
 				continue
 
 			var/bleeding_check = FALSE
@@ -310,7 +310,7 @@ FORENSIC SCANNER
 				bleeding_check = TRUE
 			var/show_limb = (limb_brute > 0 || limb_burn > 0 || scan_data["limb_data_lists"][limb]["limb_splint"] || open_incision || bleeding_check || scan_data["internal_bleeding"])
 
-			var/org_name = "[capitalize(scan_data["limb_data_lists"][limb]["name"])]"
+			var/org_name = "[capitalize(localized_player_label(scan_data["limb_data_lists"][limb]["name"]))]"
 			if(scan_data["limb_data_lists"][limb]["limb_type"] == "Cybernetic")
 				if(scan_data["limb_data_lists"][limb]["limb_type"] == "Nonfunctional Cybernetic")
 					org_name += "（机械义肢失效）]"
@@ -344,12 +344,12 @@ FORENSIC SCANNER
 	if (scan_data["clone"])
 		dat += "\t<span class='scanner'> *患者似乎存在克隆缺陷。</span>\n"
 	for(var/disease in scan_data["diseases"])
-		dat += "\t<span class='scannerb'> *警告：检测到[scan_data["diseases"][disease]["form"]]</span><span class='scanner'>\n名称：[scan_data["diseases"][disease]["name"]]。\n类型：[scan_data["diseases"][disease]["form"]]。\n阶段：[scan_data["diseases"][disease]["stages"]]/[scan_data["diseases"][disease]["max_stages"]]。\n可能的疗法：[scan_data["diseases"][disease]["cure"]]</span>\n"
+		dat += "\t<span class='scannerb'> *警告：检测到[scan_data["diseases"][disease]["form"]]</span><span class='scanner'>\n名称：[localized_player_label(scan_data["diseases"][disease]["name"])]。\n类型：[scan_data["diseases"][disease]["form"]]。\n阶段：[scan_data["diseases"][disease]["stages"]]/[scan_data["diseases"][disease]["max_stages"]]。\n可能的疗法：[scan_data["diseases"][disease]["cure"]]</span>\n"
 	if(!scan_data["damaged_organs"] && !scan_data["damaged_organs"]["brain"] && scan_data["damaged_organs"]["brain"]["damage"] >= 100)
 		dat += "\t<span class='scanner'> *患者遭受了极其严重的<b>脑损伤</b></span>。\n"
 	if(scan_data["detail_level"])
 		for(var/organ in scan_data["damaged_organs"])
-			dat += ("\t<span class='scannerb'> [capitalize(organ["name"])]：[num2text(organ["damage"])] 损伤。</span> \n")
+			dat += ("\t<span class='scannerb'> [capitalize(localized_player_label(organ["name"]))]：[num2text(organ["damage"])] 损伤。</span> \n")
 	dat += SPAN_WARNING("\t[scan_data["ssd"]]\n") // SSD
 
 	if(species_of_patient == "Human" || synth_types.Find(species_of_patient))

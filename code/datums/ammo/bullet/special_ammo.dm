@@ -5,7 +5,7 @@
 */
 
 /datum/ammo/bullet/smartgun
-	name = "smartgun bullet"
+	name = "智能机枪弹"
 	icon_state = "bullet_red"
 	ammo_glowing = TRUE
 	bullet_light_color = COLOR_SOFT_RED
@@ -17,7 +17,7 @@
 	penetration = 0
 
 /datum/ammo/bullet/smartgun/armor_piercing
-	name = "armor-piercing smartgun bullet"
+	name = "智能机枪穿甲弹"
 	icon_state = "bullet"
 
 	accurate_range = 12
@@ -27,7 +27,7 @@
 	damage_armor_punch = 1
 
 /datum/ammo/bullet/smartgun/dirty
-	name = "irradiated smartgun bullet"
+	name = "智能机枪辐射弹"
 	debilitate = list(0,0,0,3,0,0,0,1)
 
 	shrapnel_chance = SHRAPNEL_CHANCE_TIER_7
@@ -58,7 +58,7 @@
 	slowdown(entity, bullet)
 
 /datum/ammo/bullet/smartgun/holo_target //Royal marines smartgun bullet has only diff between regular ammo is this one does holostacks
-	name = "holo-targeting smartgun bullet"
+	name = "智能机枪全息标记弹"
 	damage = 30
 	/// inflicts this many holo stacks per bullet hit
 	var/holo_stacks = 15
@@ -72,7 +72,7 @@
 	hit_mob.AddComponent(/datum/component/bonus_damage_stack, holo_stacks, world.time, bonus_damage_cap_increase, stack_loss_multiplier)
 
 /datum/ammo/bullet/smartgun/holo_target/ap
-	name = "armor-piercing smartgun bullet"
+	name = "智能机枪穿甲弹"
 	icon_state = "bullet"
 
 	accurate_range = 12
@@ -82,7 +82,7 @@
 	damage_armor_punch = 1
 
 /datum/ammo/bullet/smartgun/holo_target/impdet
-	name = "impact-detonating smartgun bullet"
+	name = "智能机枪触爆弹"
 	icon_state = "bullet"
 
 	accurate_range = 12
@@ -94,7 +94,7 @@
 	slowdown(entity, bullet)
 
 /datum/ammo/bullet/smartgun/m56_fpw
-	name = "\improper M56 FPW bullet"
+	name = "\improper M56 FPW子弹"
 	icon_state = "bullet_red"
 	ammo_glowing = TRUE
 	bullet_light_color = COLOR_SOFT_RED
@@ -106,7 +106,7 @@
 	penetration = ARMOR_PENETRATION_TIER_1
 
 /datum/ammo/bullet/smartgun/aa	//The base smartgun-bullet is kinda a woeful stand-in for AA cannon rounds, this should beef it up a bit more without being too OTT
-	name = "anti-aircraft bullet"
+	name = "防空子弹"
 	icon_state = "bullet_red"
 	ammo_glowing = TRUE
 	bullet_light_color = COLOR_SOFT_RED
@@ -118,7 +118,7 @@
 	penetration = ARMOR_PENETRATION_TIER_6
 
 /datum/ammo/bullet/turret
-	name = "autocannon bullet"
+	name = "自动炮弹"
 	icon_state = "bullet_red"
 	ammo_glowing = TRUE
 	bullet_light_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
@@ -146,7 +146,7 @@
 	flags_ammo_behavior = AMMO_BALLISTIC
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
-	name = "machinegun bullet"
+	name = "机枪弹"
 	icon_state = "bullet" // Keeping it bog standard with the turret but allows it to be changed
 
 	accurate_range = 12
@@ -167,7 +167,7 @@
 	bullet_light_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
 
 /datum/ammo/bullet/machinegun/auto // for M2C, automatic variant for M56D, stats for bullet should always be moderately overtuned to fulfill its ultra-offense + flank-push purpose
-	name = "heavy machinegun bullet"
+	name = "重机枪弹"
 
 	icon_state = "bullet_large_red"
 	ammo_glowing = TRUE
@@ -184,7 +184,7 @@
 	return
 
 /datum/ammo/bullet/minigun
-	name = "minigun bullet"
+	name = "转管机枪弹"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 
 	icon_state = "bullet_red"
@@ -217,7 +217,7 @@
 	shell_casing = /obj/effect/decal/ammo_casing/cartridge
 
 /datum/ammo/bullet/m60
-	name = "Mk70 bullet"
+	name = "Mk70子弹"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 	icon_state = "bullet_red"
 	ammo_glowing = TRUE
@@ -232,7 +232,7 @@
 	shell_casing = /obj/effect/decal/ammo_casing/cartridge
 
 /datum/ammo/bullet/pkp
-	name = "machinegun bullet"
+	name = "机枪弹"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 	icon_state = "bullet_green"
 	ammo_glowing = TRUE

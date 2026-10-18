@@ -1,5 +1,6 @@
 /datum/emergency_call/cryo_spec
 	name = "Marine Cryo Reinforcement (Spec)"
+	localized_name = "陆战队冷冻休眠增援（武器专家）"
 	mob_max = 1
 	mob_min = 1
 	probability = 0

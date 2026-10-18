@@ -3,6 +3,7 @@
 //whiskey outpost extra marines
 /datum/emergency_call/tank_crew
 	name = "Vehicle Crew Cryo Reinforcements"
+	localized_name = "车组冷冻休眠增援"
 	mob_max = 2
 	mob_min = 2
 	probability = 0

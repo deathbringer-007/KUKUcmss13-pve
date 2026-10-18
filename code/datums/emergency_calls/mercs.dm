@@ -4,6 +4,7 @@
 //Randomly-equipped mercenaries. May be friendly or hostile to the USCM, hostile to xenos.
 /datum/emergency_call/mercs
 	name = "Freelancers (Squad)"
+	localized_name = "自由佣兵（小队）"
 	mob_max = 8
 	probability = 20
 
@@ -19,6 +20,7 @@
 
 /datum/emergency_call/mercs/friendly //if admins want to specifically call in friendly ones
 	name = "Friendly Freelancers (Squad)"
+	localized_name = "友善自由佣兵（小队）"
 	mob_max = 8
 	probability = 0
 
@@ -30,6 +32,7 @@
 
 /datum/emergency_call/mercs/hostile //ditto
 	name = "Hostile Freelancers (Squad)"
+	localized_name = "敌对自由佣兵（小队）"
 	mob_max = 8
 	probability = 0
 
@@ -79,6 +82,7 @@
 
 /datum/emergency_call/mercs/platoon
 	name = "Freelancers (Platoon)"
+	localized_name = "自由佣兵（排）"
 	mob_min = 8
 	mob_max = 30
 	probability = 0
@@ -86,6 +90,7 @@
 
 /datum/emergency_call/heavy_mercs
 	name = "Elite Mercenaries (Random Alignment)"
+	localized_name = "精锐佣兵（随机立场）"
 	mob_min = 4
 	mob_max = 8
 	probability = 0
@@ -104,6 +109,7 @@
 
 /datum/emergency_call/heavy_mercs/hostile
 	name = "Elite Mercenaries (HOSTILE to USCM)"
+	localized_name = "精锐佣兵（与殖民地陆战队敌对）"
 
 /datum/emergency_call/heavy_mercs/hostile/New()
 	. = ..()
@@ -113,6 +119,7 @@
 
 /datum/emergency_call/heavy_mercs/friendly
 	name = "Elite Mercenaries (Friendly)"
+	localized_name = "精锐佣兵（友军）"
 
 /datum/emergency_call/heavy_mercs/friendly/New()
 	. = ..()

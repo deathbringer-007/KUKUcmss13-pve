@@ -7,7 +7,7 @@
 //Autocannon Ammo//
 
 /datum/ammo/bullet/tank/flak
-	name = "flak autocannon bullet"
+	name = "自动炮破片弹"
 	icon_state = "autocannon"
 	sound_hit  = 'sound/weapons/sting_boom_small1.ogg'
 	damage_falloff = 0
@@ -41,7 +41,7 @@
 	burst(get_turf(T),P,damage_type, 1 , 3 , 0)
 
 /datum/ammo/bullet/tank/dualcannon
-	name = "dualcannon bullet"
+	name = "双联炮弹"
 	icon_state = "autocannon"
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -79,7 +79,7 @@
 //Minigun Ammo//
 
 /datum/ammo/bullet/tank/minigun
-	name = "minigun bullet"
+	name = "转管机枪弹"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 	icon_state = "bullet_large_red"
 

@@ -1,5 +1,6 @@
 /datum/emergency_call/cbrn
 	name = "CBRN (Squad)"
+	localized_name = "核生化部队（小队）"
 	arrival_message = "注意，这里是USS库尔茨号。我们已响应求救，派出一支核生化小队前往你们的舰船。请等待抵达。"
 	objectives = "处理化学、生物、放射性或核威胁。后续可能下达进一步命令。"
 	home_base = /datum/lazy_template/ert/uscm_station
@@ -41,6 +42,7 @@
 
 /datum/emergency_call/cbrn/ert
 	name = "CBRN (Distress)"
+	localized_name = "核生化部队（求救响应）"
 	arrival_message = "注意，这里是USS库尔茨号。我们已响应求救，派出一支核生化小队前往你们的舰船。请等待抵达。"
 	probability = 10
 
@@ -50,13 +52,14 @@
 
 /datum/emergency_call/cbrn/specialists
 	name = "CBRN (Specialists)"
+	localized_name = "核生化部队（专家组）"
 	mob_min = 2
 	mob_max = 5
 	max_engineers = 0
 	max_medics = 0
 
 /datum/emergency_call/cbrn/specialists/New()
-	var/cbrn_ship_name = "Unit [pick(GLOB.nato_phonetic_alphabet)]-[rand(1, 99)]"
+	var/cbrn_ship_name = "[pick(GLOB.nato_phonetic_alphabet)]-[rand(1, 99)]部队"
 	arrival_message = "[MAIN_SHIP_NAME]，核生化部队 [cbrn_ship_name] 已出动。请遵从 [cbrn_ship_name] 下达的所有命令。"
 	objectives = "你们是 [cbrn_ship_name] 派出的专家小队，负责平息针对 [MAIN_SHIP_NAME] 的威胁。后续可能下达进一步命令。"
 

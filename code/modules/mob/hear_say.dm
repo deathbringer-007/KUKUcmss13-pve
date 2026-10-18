@@ -134,7 +134,7 @@
 		else
 			to_chat(src, "<span class=\"[fontsize_style]\">[part_a][comm_paygrade][speaker_name][part_b][verb], <span class=\"[style]\">\"[message]\"</span></span></span></span>", type = MESSAGE_TYPE_RADIO)
 
-/mob/proc/hear_signlang(message, verb = "gestures", datum/language/language, mob/speaker = null)
+/mob/proc/hear_signlang(message, verb = "打着手势", datum/language/language, mob/speaker = null)
 	var/comm_paygrade = ""
 	if(!client)
 		return

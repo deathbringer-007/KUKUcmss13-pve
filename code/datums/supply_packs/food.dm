@@ -2,6 +2,7 @@
 // crate of random ingredient that you can buy in vendor in kitchen
 /datum/supply_packs/ingredient
 	name = "surplus boxes of ingredients(x6 boxes)"
+	localized_name = "剩余库存食材盒（6盒）"
 	randomised_num_contained = 6
 	contains = list(
 		/obj/item/storage/fancy/egg_box,
@@ -38,13 +39,14 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate/freezer
-	containername = "\improper surplus of ingredients crate"
+	containername = "\improper 剩余库存食材箱"
 	group = "Food"
 
 //all the finish snacks.
 
 /datum/supply_packs/donuts
 	name = "box of donuts (x5)"
+	localized_name = "甜甜圈盒（5盒）"
 	contains = list(
 		/obj/item/storage/donut_box,
 		/obj/item/storage/donut_box,
@@ -54,26 +56,28 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate/supply
-	containername = "box of donuts (x5)"
+	containername = "甜甜圈盒（5盒）"
 	group = "Food"
 
 /datum/supply_packs/mre
 	name = "USCM MRE crate(x2)"
+	localized_name = "殖民地陆战队即食军粮箱（2份）"
 	contains = list(
 		/obj/item/ammo_box/magazine/misc/mre,
 		/obj/item/ammo_box/magazine/misc/mre,
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate/supply
-	containername = "\improper USCM MRE crate(x2)"
+	containername = "\improper 殖民地陆战队即食军粮箱（2份）"
 	group = "Food"
 
 /datum/supply_packs/pizzas
 	name = "pizza ready-to-eat (x3)"
+	localized_name = "即食披萨（3份）"
 	contains = list(
 		/obj/item/pizzabox/mystery/stack,
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/freezer
-	containername = "\improper Pizza crate"
+	containername = "\improper 披萨箱"
 	group = "Food"

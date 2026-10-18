@@ -32,9 +32,9 @@
 	name = "Drone"
 	desc = "那到底是什么鬼东西？"
 	layer = BIG_XENO_LAYER
-	voice_name = "xenomorph"
-	speak_emote = list("hisses")
-	attacktext = "claws"
+	voice_name = "异形"
+	speak_emote = list("嘶鸣")
+	attacktext = "爪击"
 	attack_sound = null
 	friendly = "nuzzles"
 	wall_smash = 0
@@ -590,10 +590,10 @@
 	var/name_display = ""
 	// Rare easter egg
 	if(nicknumber == 666)
-		number_decorator = "Infernal "
+		number_decorator = "炼狱 "
 	if(show_name_numbers)
 		name_display = show_only_numbers ? " ([nicknumber])" : " ([name_client_prefix][nicknumber][name_client_postfix])"
-	name = "[name_prefix][number_decorator][age_display][caste.display_name || caste.caste_type][name_display]"
+	name = "[localized_player_label(trim(name_prefix))][number_decorator][localized_player_label(trim(age_display))][caste.display_name || caste.caste_type][name_display]"
 
 	//Update linked data so they show up properly
 	change_real_name(src, name)
@@ -671,11 +671,11 @@
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/xeno = user
 		if(hivenumber != xeno.hivenumber)
-			. += "它似乎属于[hive?.name ? "[hive.name]" : "另一个虫巢"]。"
+			. += "它似乎属于[hive?.name ? "[localized_player_label(hive.name)]" : "另一个虫巢"]。"
 
 	if(isxeno(user) || isobserver(user))
 		if(strain)
-			. += "它已特化为[strain.name]。"
+			. += "它已特化为[localized_player_label(strain.name)]。"
 
 	if(iff_tag)
 		. += SPAN_NOTICE("它的甲壳上露出一枚敌我识别标签。")
@@ -1056,7 +1056,7 @@
 		handle_ghost_message()
 
 /mob/living/carbon/xenomorph/proc/handle_ghost_message()
-	notify_ghosts("[src] ([get_strain_name()] [caste_type]) has ghosted and their body is up for grabs!", source = src)
+	notify_ghosts("[src]（[localized_player_label(get_strain_name())] [localized_player_label(caste_type)]）已转为幽灵，其躯体可供接管！", source = src)
 
 /mob/living/carbon/xenomorph/larva/handle_ghost_message()
 	if(locate(/obj/effect/alien/resin/special/pylon/core) in range(2, get_turf(src)))

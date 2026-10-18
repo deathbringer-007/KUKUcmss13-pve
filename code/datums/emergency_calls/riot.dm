@@ -2,6 +2,7 @@
 //Anti-riot team
 /datum/emergency_call/riot
 	name = "USCM Riot Control"
+	localized_name = "陆战队防暴队"
 	mob_max = 10
 	mob_min = 5
 	objectives = "确保恢复秩序并维护《陆战队军法》。"

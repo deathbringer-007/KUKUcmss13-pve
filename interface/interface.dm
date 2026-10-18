@@ -1,7 +1,7 @@
 //Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
 /client/verb/wiki()
 	set name = "wiki"
-	set desc = "Visit the wiki."
+	set desc = "访问维基。"
 	set hidden = TRUE
 	if( CONFIG_GET(string/wikiurl_home_page) || CONFIG_GET(string/wikiurl) )
 		if(tgui_alert(src, "这将在浏览器中打开维基。确定继续吗？", "确认", list("Yes", "No")) != "Yes")
@@ -13,7 +13,7 @@
 
 /client/verb/worksheet()
 	set name = "Worksheet"
-	set desc = "Visit the worksheet."
+	set desc = "访问工作表。"
 	set hidden = TRUE
 	if( CONFIG_GET(string/forumurl) )
 		if(tgui_alert(src, "这将在浏览器中打开工作表。确定继续吗？", "确认", list("Yes", "No")) != "Yes")
@@ -37,7 +37,7 @@
 
 /client/verb/discord()
 	set name = "Discord"
-	set desc = "Join our Discord! Meet and talk with other players in the server."
+	set desc = "加入我们的Discord，与服务器的其他玩家交流！"
 	set hidden = TRUE
 
 	if(tgui_alert(src, "这将在浏览器中打开 Discord。确定继续吗？", "确认", list("Yes", "No")) != "Yes")
@@ -48,7 +48,7 @@
 
 /client/verb/github()
 	set name = "Github"
-	set desc = "View our github!."
+	set desc = "查看我们的GitHub仓库！"
 	set hidden = TRUE
 
 	if(tgui_alert(src, "这将在浏览器中打开 GitHub。确定继续吗？", "确认", list("Yes", "No")) != "Yes")
@@ -59,7 +59,7 @@
 
 /client/verb/set_fps()
 	set name = "Set FPS"
-	set desc = "Set client FPS. 20 is the default"
+	set desc = "设置客户端帧率，默认值为20。"
 	set category = "Preferences"
 	var/fps = tgui_input_number(usr,"新的帧率值。0表示与服务器同步，数值越高越容易出现不同步。","设置帧率", 0, MAX_FPS, MIN_FPS)
 	if(world.byond_version >= 511 && byond_version >= 511 && fps >= MIN_FPS && fps <= MAX_FPS)

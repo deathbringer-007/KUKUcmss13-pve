@@ -8,7 +8,7 @@
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
 
 /datum/ammo/bullet/shotgun/slug
-	name = "shotgun slug"
+	name = "霰弹枪独头弹"
 	handful_state = "slug_shell"
 	shell_casing = /obj/effect/decal/ammo_casing/greenshell
 
@@ -40,7 +40,7 @@
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)
 
 /datum/ammo/bullet/shotgun/beanbag
-	name = "beanbag slug"
+	name = "布袋独头弹"
 	headshot_state = HEADSHOT_OVERLAY_LIGHT //It's not meant to kill people... but if you put it in your mouth, it will.
 	handful_state = "beanbag_slug"
 	icon_state = "beanbag"
@@ -62,7 +62,7 @@
 
 
 /datum/ammo/bullet/shotgun/incendiary
-	name = "incendiary slug"
+	name = "燃烧独头弹"
 	handful_state = "incendiary_slug"
 	shell_casing = /obj/effect/decal/ammo_casing/redshell
 	damage_type = BURN
@@ -92,7 +92,7 @@
 
 
 /datum/ammo/bullet/shotgun/flechette
-	name = "flechette shell"
+	name = "箭形霰弹"
 	icon_state = "flechette"
 	handful_state = "flechette_shell"
 	shell_casing = /obj/effect/decal/ammo_casing/blueshell
@@ -113,7 +113,7 @@
 	knockback(M, P, 2)
 
 /datum/ammo/bullet/shotgun/flechette_spread
-	name = "additional flechette"
+	name = "额外箭形弹丸"
 	icon_state = "flechette"
 
 	accuracy_var_low = PROJECTILE_VARIANCE_TIER_6
@@ -129,7 +129,7 @@
 	damage = 80
 
 /datum/ammo/bullet/shotgun/buckshot
-	name = "buckshot shell"
+	name = "鹿弹"
 	icon_state = "buckshot"
 	handful_state = "buckshot_shell"
 	shell_casing = /obj/effect/decal/ammo_casing/redshell
@@ -169,7 +169,7 @@
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)
 
 /datum/ammo/bullet/shotgun/buckshot/incendiary
-	name = "incendiary buckshot shell"
+	name = "燃烧鹿弹"
 	handful_state = "incen_buckshot"
 	shell_casing = /obj/effect/decal/ammo_casing/redshell
 	handful_type = /obj/item/ammo_magazine/handful/shotgun/buckshot/incendiary
@@ -187,7 +187,7 @@
 	knockback(M, P)
 
 /datum/ammo/bullet/shotgun/buckshot/special
-	name = "buckshot shell, USCM special type"
+	name = "殖民地陆战队特种鹿弹"
 	handful_state = "special_buck"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread/special
 
@@ -204,7 +204,7 @@
 	damage = 55
 
 /datum/ammo/bullet/shotgun/spread
-	name = "additional buckshot"
+	name = "额外鹿弹弹丸"
 	icon_state = "buckshot"
 
 	accuracy_var_low = PROJECTILE_VARIANCE_TIER_6
@@ -241,7 +241,7 @@
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)
 
 /datum/ammo/bullet/shotgun/spread/special
-	name = "additional buckshot, USCM special type"
+	name = "殖民地陆战队特种额外鹿弹弹丸"
 
 	accurate_range = 8
 	max_range = 8
@@ -249,7 +249,7 @@
 	firing_freq_offset = SOUND_FREQ_LOW
 
 /datum/ammo/bullet/shotgun/spread/incendiary
-	name = "additional incendiary buckshot"
+	name = "额外燃烧鹿弹弹丸"
 	damage = 40
 	shell_speed = AMMO_SPEED_TIER_1
 
@@ -267,7 +267,7 @@
 */
 
 /datum/ammo/bullet/shotgun/heavy/buckshot
-	name = "heavy buckshot shell"
+	name = "重型鹿弹"
 	icon_state = "buckshot"
 	handful_state = "heavy_buckshot"
 	shell_casing = /obj/effect/decal/ammo_casing/redshell
@@ -300,7 +300,7 @@
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)
 
 /datum/ammo/bullet/shotgun/heavy/buckshot/spread
-	name = "additional heavy buckshot"
+	name = "额外重型鹿弹弹丸"
 	max_range = 7
 	scatter = SCATTER_AMOUNT_TIER_1
 	bonus_projectiles_amount = 0
@@ -321,7 +321,7 @@
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)
 
 /datum/ammo/bullet/shotgun/heavy/buckshot/special
-	name = "superheavy buckshot shell"
+	name = "超重型鹿弹"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/heavy/buckshot/spread/special
 	bonus_projectiles_amount = EXTRA_PROJECTILES_TIER_8
 	accurate_range = 8
@@ -333,7 +333,7 @@
 	pen_armor_punch = 0
 
 /datum/ammo/bullet/shotgun/heavy/buckshot/spread/special
-	name = "additional superheavy buckshot"
+	name = "额外超重型鹿弹弹丸"
 	accurate_range = 8
 	max_range = 8
 	damage = 100
@@ -341,7 +341,7 @@
 
 //basically the same
 /datum/ammo/bullet/shotgun/heavy/buckshot/dragonsbreath
-	name = "dragon's breath shell"
+	name = "龙息弹"
 	handful_state = "heavy_dragonsbreath"
 	multiple_handful_name = TRUE
 	damage_type = BURN
@@ -357,13 +357,13 @@
 	))
 
 /datum/ammo/bullet/shotgun/heavy/buckshot/dragonsbreath/spread
-	name = "additional dragon's breath"
+	name = "额外龙息弹丸"
 	bonus_projectiles_amount = 0
 	shell_speed = AMMO_SPEED_TIER_4
 
 
 /datum/ammo/bullet/shotgun/heavy/slug
-	name = "heavy shotgun slug"
+	name = "重型霰弹枪独头弹"
 	handful_state = "heavy_slug"
 	shell_casing = /obj/effect/decal/ammo_casing/greenshell
 
@@ -392,7 +392,7 @@
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)
 
 /datum/ammo/bullet/shotgun/heavy/beanbag
-	name = "heavy beanbag slug"
+	name = "重型布袋独头弹"
 	icon_state = "beanbag"
 	shell_casing = /obj/effect/decal/ammo_casing/blueshell
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
@@ -414,7 +414,7 @@
 		shake_camera(H, 2, 1)
 
 /datum/ammo/bullet/shotgun/heavy/flechette
-	name = "heavy flechette shell"
+	name = "重型箭形霰弹"
 	icon_state = "flechette"
 	handful_state = "heavy_flechette"
 	shell_casing = /obj/effect/decal/ammo_casing/blueshell
@@ -431,7 +431,7 @@
 	bonus_projectiles_amount = EXTRA_PROJECTILES_TIER_2
 
 /datum/ammo/bullet/shotgun/heavy/flechette_spread
-	name = "additional heavy flechette"
+	name = "额外重型箭形弹丸"
 	icon_state = "flechette"
 	accuracy_var_low = PROJECTILE_VARIANCE_TIER_6
 	accuracy_var_high = PROJECTILE_VARIANCE_TIER_6
@@ -447,7 +447,7 @@
 */
 
 /datum/ammo/bullet/shotgun/buckshot/light
-	name = "light buckshot"
+	name = "轻型鹿弹"
 	handful_state = "lightshot_shell"
 	multiple_handful_name = TRUE
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/buckshot/light/spread
@@ -461,7 +461,7 @@
 
 
 /datum/ammo/bullet/shotgun/buckshot/light/spread
-	name = "light buckshot spread"
+	name = "轻型鹿弹散射弹丸"
 	bonus_projectiles_amount = 0
 	accuracy_var_low = PROJECTILE_VARIANCE_TIER_10
 	accuracy_var_high = PROJECTILE_VARIANCE_TIER_1
@@ -470,7 +470,7 @@
 
 //Enormous shell for Van Bandolier's superheavy double-barreled hunting gun.
 /datum/ammo/bullet/shotgun/twobore
-	name = "two bore bullet"
+	name = "二号口径子弹"
 	icon_state = "autocannon"
 	handful_state = "twobore"
 
@@ -486,7 +486,7 @@
 	var/mob/shooter = P.firer
 	if(shooter && ismob(shooter) && HAS_TRAIT(shooter, TRAIT_TWOBORE_TRAINING) && M.stat != DEAD && prob(40)) //Death is handled by periodic life() checks so this should have a chance to fire on a killshot.
 		if(!length(hit_messages)) //Pick and remove lines, refill on exhaustion.
-			hit_messages = list("Got you!", "Aha!", "Bullseye!", "It's curtains for you, Sonny Jim!", "Your head will look fantastic on my wall!", "I have you now!", "You miserable coward! Come and fight me like a man!", "Tally ho!")
+			hit_messages = list("逮到你了！", "啊哈！", "正中靶心！", "你完蛋了，小子！", "把你的脑袋挂在我的墙上一定很好看！", "这下你逃不掉了！", "你这可怜的懦夫！像个男子汉一样和我正面交锋！", "追猎开始！")
 		var/message = pick_n_take(hit_messages)
 		shooter.say(message)
 

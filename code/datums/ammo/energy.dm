@@ -16,7 +16,7 @@
 	accuracy = HIT_ACCURACY_TIER_4
 
 /datum/ammo/energy/emitter //Damage is determined in emitter.dm
-	name = "emitter bolt"
+	name = "发射器能量束"
 	icon_state = "emitter"
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_ARMOR
 
@@ -24,7 +24,7 @@
 	max_range = 6
 
 /datum/ammo/energy/taser
-	name = "taser bolt"
+	name = "泰瑟电击束"
 	icon_state = "stun"
 	damage_type = OXY
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST|AMMO_ALWAYS_FF //Not that ignoring will do much right now.
@@ -40,11 +40,11 @@
 		humanus.make_jittery(40)
 
 /datum/ammo/energy/taser/precise
-	name = "precise taser bolt"
+	name = "精准泰瑟电击束"
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST|AMMO_MP
 
 /datum/ammo/energy/rxfm_eva
-	name = "laser blast"
+	name = "激光冲击束"
 	icon_state = "laser_new"
 	flags_ammo_behavior = AMMO_LASER
 	accurate_range = 14
@@ -59,7 +59,7 @@
 		M.fire_act()
 
 /datum/ammo/energy/laz_uzi
-	name = "laser bolt"
+	name = "激光束"
 	icon_state = "laser_new"
 	flags_ammo_behavior = AMMO_ENERGY
 	damage = 40
@@ -72,7 +72,7 @@
 	damage_falloff = DAMAGE_FALLOFF_TIER_8
 
 /datum/ammo/energy/plasma
-	name = "plasma bolt"
+	name = "等离子束"
 	icon_state = "arcane_barrage"
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_HITS_TARGET_TURF|AMMO_ANTISTRUCT
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
@@ -125,7 +125,7 @@
 	new /obj/effect/overlay/temp/plasma_impact(T)
 
 /datum/ammo/energy/plasma/heavy
-	name = "heavy plasma bolt"
+	name = "重型等离子束"
 	damage = 300
 	penetration = ARMOR_PENETRATION_TIER_10
 	accurate_range = 13
@@ -159,7 +159,7 @@
 	flags_ammo_behavior = AMMO_IGNORE_RESIST
 
 /datum/ammo/energy/yautja/pistol
-	name = "plasma pistol bolt"
+	name = "等离子手枪能量束"
 	icon_state = "ion"
 
 	damage = 40
@@ -175,7 +175,7 @@
 	))
 
 /datum/ammo/bullet/shrapnel/plasma
-	name = "plasma wave"
+	name = "等离子波"
 	shrapnel_chance = 0
 	penetration = ARMOR_PENETRATION_TIER_10
 	accuracy = HIT_ACCURACY_TIER_MAX
@@ -187,25 +187,25 @@
 	hit_mob.Stun(2)
 
 /datum/ammo/energy/yautja/caster
-	name = "root caster bolt"
+	name = "肩炮能量束"
 	icon_state = "ion"
 
 /datum/ammo/energy/yautja/caster/stun
-	name = "low power stun bolt"
+	name = "低功率眩晕能量束"
 	debilitate = list(2,2,0,0,0,1,0,0)
 
 	damage = 0
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST
 
 /datum/ammo/energy/yautja/caster/bolt
-	name = "plasma bolt"
+	name = "等离子束"
 	icon_state = "pulse1"
 	flags_ammo_behavior = AMMO_IGNORE_RESIST
 	shell_speed = AMMO_SPEED_TIER_6
 	damage = 35
 
 /datum/ammo/energy/yautja/caster/bolt/stun
-	name = "high power stun bolt"
+	name = "高功率眩晕能量束"
 	var/stun_time = 2
 
 	damage = 0
@@ -227,7 +227,7 @@
 	..()
 
 /datum/ammo/energy/yautja/caster/sphere
-	name = "plasma eradicator"
+	name = "等离子歼灭弹"
 	icon_state = "bluespace"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_HITS_TARGET_TURF
 	shell_speed = AMMO_SPEED_TIER_4
@@ -261,7 +261,7 @@
 
 
 /datum/ammo/energy/yautja/caster/sphere/stun
-	name = "plasma immobilizer"
+	name = "等离子定身弹"
 	damage = 0
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST
 	accurate_range = 20
@@ -297,7 +297,7 @@
 	FOR_DVIEW_END
 
 /datum/ammo/energy/yautja/rifle/bolt
-	name = "plasma rifle bolt"
+	name = "等离子步枪能量束"
 	icon_state = "ion"
 	damage_type = BURN
 	debilitate = list(0,2,0,0,0,0,0,0)

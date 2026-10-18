@@ -1,5 +1,6 @@
 /datum/emergency_call/forsaken_xenos
 	name = "Xenomorphs Groundside (Forsaken)"
+	localized_name = "地面异形（遗弃虫巢）"
 	mob_min = 1
 	mob_max = 4
 	hostility = TRUE

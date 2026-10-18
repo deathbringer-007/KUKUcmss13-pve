@@ -80,7 +80,7 @@
 					containers -= B
 					user.put_in_hands(B)
 			current_container_volume = 0
-		desc = initial(desc) + "\n Contains [length(containers)] containers[detonator?" and detonator":""]"
+		desc = initial(desc) + "\n内含[length(containers)]个容器[detonator?"和一个引爆器":""]。"
 		return
 	cause_data = create_cause_data(initial(name), user)
 	return TRUE
@@ -128,7 +128,7 @@
 		det.forceMove(src)
 		detonator = det
 		assembly_stage = ASSEMBLY_UNLOCKED
-		desc = initial(desc) + "\n Contains [length(containers)] containers[detonator?" and detonator":""]"
+		desc = initial(desc) + "\n内含[length(containers)]个容器[detonator?"和一个引爆器":""]。"
 		update_icon()
 	else if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
 		if(assembly_stage == ASSEMBLY_UNLOCKED)
@@ -143,7 +143,7 @@
 		else if(assembly_stage == ASSEMBLY_LOCKED)
 			to_chat(user, SPAN_NOTICE("你解锁了组件。"))
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 0, 6)
-			desc = initial(desc) + "\n Contains [length(containers)] containers[detonator?" and detonator":""]"
+			desc = initial(desc) + "\n内含[length(containers)]个容器[detonator?"和一个引爆器":""]。"
 			assembly_stage = ASSEMBLY_UNLOCKED
 		update_icon()
 	else if(is_type_in_list(W, allowed_containers) && (!assembly_stage || assembly_stage == ASSEMBLY_UNLOCKED))
@@ -161,7 +161,7 @@
 					containers += W
 					current_container_volume += W.reagents.maximum_volume
 					assembly_stage = ASSEMBLY_UNLOCKED
-					desc = initial(desc) + "\n Contains [length(containers)] containers[detonator?" and detonator":""]"
+					desc = initial(desc) + "\n内含[length(containers)]个容器[detonator?"和一个引爆器":""]。"
 			else
 				to_chat(user, SPAN_DANGER("[W]是空的。"))
 

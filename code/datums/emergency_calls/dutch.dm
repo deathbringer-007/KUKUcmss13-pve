@@ -2,6 +2,7 @@
 
 /datum/emergency_call/dutch
 	name = "Dutch's Dozen"
+	localized_name = "达奇十二人组"
 	mob_max = 6
 	mob_min = 4
 
@@ -40,6 +41,7 @@
 
 /datum/emergency_call/dutch/full_dozen //AWWW YEAH DA FULL DOZEN FO TODAY
 	name = "Dutch's Dozen - Full Strength"
+	localized_name = "达奇十二人组（满编）"
 	mob_max = 12
 	mob_min = 8
 	max_heavies = 2

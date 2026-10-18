@@ -4,6 +4,7 @@
 
 /datum/supply_packs/internals
 	name = "oxygen internals crate (x3 masks, x3 tanks)"
+	localized_name = "供氧设备箱（面罩3个、氧气罐3个）"
 	contains = list(
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/mask/gas,
@@ -14,11 +15,12 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate/internals
-	containername = "internals crate"
+	containername = "供氧设备箱"
 	group = "Supplies"
 
 /datum/supply_packs/evacuation
 	name = "emergency equipment (x2 toolbox, x2 hazard vest, x5 oxygen tank, x5 masks)"
+	localized_name = "应急装备（工具箱2个、警示背心2件、氧气罐5个、面罩5个）"
 	contains = list(
 		/obj/item/storage/toolbox/emergency,
 		/obj/item/storage/toolbox/emergency,
@@ -37,11 +39,12 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate/internals
-	containername = "emergency crate"
+	containername = "应急装备箱"
 	group = "Supplies"
 
 /datum/supply_packs/boxes
 	name = "empty boxes (x10)"
+	localized_name = "空盒（10个）"
 	contains = list(
 		/obj/item/storage/box,
 		/obj/item/storage/box,
@@ -56,11 +59,12 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate/supply
-	containername = "empty box crate"
+	containername = "空盒箱"
 	group = "Supplies"
 
 /datum/supply_packs/janitor
 	name = "assorted janitorial supplies"
+	localized_name = "各类清洁用品"
 	contains = list(
 		/obj/item/reagent_container/glass/bucket,
 		/obj/item/reagent_container/glass/bucket,
@@ -80,11 +84,12 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate/supply
-	containername = "\improper Janitorial supplies crate"
+	containername = "\improper 清洁用品箱"
 	group = "Supplies"
 
 /datum/supply_packs/poster
 	name = "posters"
+	localized_name = "海报"
 	contains = list(
 		/obj/item/poster,
 		/obj/item/poster,
@@ -94,11 +99,12 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate/supply
-	containername = "\improper posters crate"
+	containername = "\improper 海报箱"
 	group = "Supplies"
 
 /datum/supply_packs/crayons
 	name = "boxes of crayons"
+	localized_name = "蜡笔盒"
 	contains = list(
 		/obj/item/storage/fancy/crayons,
 		/obj/item/storage/fancy/crayons,
@@ -108,11 +114,12 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate/supply
-	containername = "\improper crayons crate"
+	containername = "\improper 蜡笔箱"
 	group = "Supplies"
 
 /datum/supply_packs/presents
 	name = "assorted presents"
+	localized_name = "各类礼物"
 	contains = list(
 		/obj/item/a_gift,
 		/obj/item/a_gift,
@@ -122,11 +129,12 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate/supply
-	containername = "\improper crate of presents"
+	containername = "\improper 礼物箱"
 	group = "Supplies"
 
 /datum/supply_packs/wrapping_supplies
 	name = "wrapping supplies"
+	localized_name = "包装用品"
 	contains = list(
 		/obj/item/wrapping_paper,
 		/obj/item/wrapping_paper,
@@ -137,5 +145,5 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate/supply
-	containername = "\improper wrapping supplies crate"
+	containername = "\improper 包装用品箱"
 	group = "Supplies"

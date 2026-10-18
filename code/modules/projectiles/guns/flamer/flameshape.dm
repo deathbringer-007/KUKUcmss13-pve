@@ -22,7 +22,7 @@
 	return TRUE
 
 /datum/flameshape/default
-	name = "Default"
+	name = "默认"
 	id = FLAMESHAPE_DEFAULT
 
 /datum/flameshape/default/handle_fire_spread(obj/flamer_fire/F, fire_spread_amount, burn_dam, fuel_pressure = 1)
@@ -56,11 +56,11 @@
 
 
 /datum/flameshape/default/irregular
-	name = "Irregular"
+	name = "不规则形"
 	id = FLAMESHAPE_IRREGULAR
 
 /datum/flameshape/star
-	name = "Star"
+	name = "星形"
 	id = FLAMESHAPE_STAR
 
 /datum/flameshape/star/proc/dirs_to_use()
@@ -97,7 +97,7 @@
 			prev_T = T
 
 /datum/flameshape/star/minor
-	name = "Minor Star"
+	name = "小星形"
 	id = FLAMESHAPE_MINORSTAR
 
 /datum/flameshape/star/minor/dirs_to_use()
@@ -107,7 +107,7 @@
 		return GLOB.diagonals
 
 /datum/flameshape/line
-	name = "Line"
+	name = "直线"
 	id = FLAMESHAPE_LINE
 
 /datum/flameshape/line/handle_fire_spread(obj/flamer_fire/F, fire_spread_amount, burn_dam, fuel_pressure = 1)
@@ -156,7 +156,7 @@
 		addtimer(F.to_call, distance + 1)
 
 /datum/flameshape/triangle
-	name = "Triangle"
+	name = "三角形"
 	id = FLAMESHAPE_TRIANGLE
 
 /datum/flameshape/triangle/handle_fire_spread(obj/flamer_fire/F, fire_spread_amount, burn_dam, fuel_pressure = 1)

@@ -30,7 +30,7 @@
 	//Copy of about 650-700 lines down for elevators
 	var/list/controls = list() //Used to announce failure
 	var/list/main_doors = list() //Used to check failure
-	var/fail_flavortext = "Could not launch the dropship due to blockage in the rear door."
+	var/fail_flavortext = "后舱门处有障碍物，运输艇无法起飞。"
 
 	// The ship section of the almayer that the dropship is aiming to crash into. Random if null
 	var/crash_target_section = null
@@ -85,7 +85,7 @@
 			automated_launch_timer = TIMER_ID_NULL
 
 /datum/shuttle/ferry/marine/proc/prepare_automated_launch()
-	ai_silent_announcement("The [name] will automatically depart in [automated_launch_delay * 0.1] seconds")
+	ai_silent_announcement("[name]将在[automated_launch_delay * 0.1]秒后自动出发。")
 	automated_launch_timer = addtimer(CALLBACK(src, PROC_REF(automated_launch)), automated_launch_delay, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
 
 /datum/shuttle/ferry/marine/proc/automated_launch()
@@ -94,7 +94,7 @@
 	else
 		automated_launch = FALSE
 	automated_launch_timer = TIMER_ID_NULL
-	ai_silent_announcement("Dropship '[name]' departing.")
+	ai_silent_announcement("运输艇“[name]”正在出发。")
 	log_ares_flight("Automated", "Dropship [name] launched on an automatic flight.")
 
 
@@ -110,7 +110,7 @@
 			if(!preflight_checks())
 				announce_preflight_failure()
 				if(automated_launch)
-					ai_silent_announcement("Automated launch of [name] failed. New launch in [DROPSHIP_AUTO_RETRY_COOLDOWN] SECONDS.")
+					ai_silent_announcement("[name]自动起飞失败，将于[DROPSHIP_AUTO_RETRY_COOLDOWN]秒后重试。")
 					automated_launch_timer = addtimer(CALLBACK(src, PROC_REF(automated_launch)), automated_launch_delay)
 
 				process_state = IDLE_STATE
@@ -220,8 +220,8 @@
 		for(var/turf/T in turfs_src)
 			var/mob/living/carbon/xenomorph/X = locate(/mob/living/carbon/xenomorph) in T
 			if(X && X.stat != DEAD)
-				var/name = "Unidentified Lifesigns"
-				var/input = "Unidentified lifesigns detected onboard. Recommendation: lockdown of exterior access ports, including ducting and ventilation."
+				var/name = "不明生命信号"
+				var/input = "舰上检测到不明生命信号。建议封锁所有外部入口，包括管道与通风系统。"
 				shipwide_ai_announcement(input, name, 'sound/AI/unidentified_lifesigns.ogg', ares_logging = ARES_LOG_SECURITY)
 				set_security_level(SEC_LEVEL_RED)
 				break
@@ -404,7 +404,7 @@
 		// At halftime, we announce whether or not the AA forced the dropship to divert
 		// The rounding is because transit time is decreased by 10 each loop. Travel time, however, might not be a multiple of 10
 		if(in_transit_time_left == round(travel_time / 2, 10) && true_crash_target_section != crash_target_section)
-			marine_announcement("A hostile aircraft on course for the [true_crash_target_section] has been successfully deterred.", "IX-50 MGAD System", logging = ARES_LOG_SECURITY)
+			marine_announcement("一架正飞向[true_crash_target_section]的敌机已被成功击退。", "IX-50 MGAD系统", logging = ARES_LOG_SECURITY)
 
 			var/area/shuttle_area
 			for(var/turf/T in turfs_int)
@@ -425,10 +425,10 @@
 
 	//This is where things change and shit gets real
 
-	marine_announcement("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT." , "EMERGENCY", 'sound/AI/dropship_emergency.ogg', logging = ARES_LOG_SECURITY)
+	marine_announcement("运输艇正驶向碰撞航线，即将坠毁。" , "紧急警报", 'sound/AI/dropship_emergency.ogg', logging = ARES_LOG_SECURITY)
 
 	for(var/mob/dead/observer/observer as anything in GLOB.observer_list)
-		to_chat(observer, SPAN_DEADSAY(FONT_SIZE_LARGE("The dropship is about to impact [get_area_name(T_trg)]" + " [OBSERVER_JMP(observer, T_trg)]")))
+		to_chat(observer, SPAN_DEADSAY(FONT_SIZE_LARGE("运输艇即将撞击[get_area_name(T_trg)]" + " [OBSERVER_JMP(observer, T_trg)]")))
 
 	playsound_area(get_area(turfs_int[sound_target]), sound_landing, 100)
 	playsound_area(get_area(turfs_int[sound_target]), channel = SOUND_CHANNEL_AMBIENCE, status = SOUND_UPDATE)
@@ -689,7 +689,7 @@
 /datum/shuttle/ferry/elevator
 	var/list/controls = list() //Used to announce failure
 	var/list/main_doors = list() //Used to check failure
-	var/fail_flavortext = "Could not move the elevator due to blockage in the main door."
+	var/fail_flavortext = "主门处有障碍物，升降机无法移动。"
 
 /datum/shuttle/ferry/elevator/New()
 	..()

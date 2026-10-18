@@ -2,6 +2,7 @@
 //Weyland-Yutani commandos. Friendly to USCM, hostile to xenos.
 /datum/emergency_call/pmc
 	name = "Weyland-Yutani PMC (Squad)"
+	localized_name = "维兰德-汤谷私人军事承包商（小队）"
 	mob_max = 6
 	probability = 20
 	shuttle_id = MOBILE_SHUTTLE_ID_ERT2
@@ -81,6 +82,7 @@
 
 /datum/emergency_call/pmc/platoon
 	name = "Weyland-Yutani PMC (Platoon)"
+	localized_name = "维兰德-汤谷私人军事承包商（排）"
 	mob_min = 8
 	mob_max = 25
 	probability = 0
@@ -91,6 +93,7 @@
 
 /datum/emergency_call/pmc/chem_retrieval
 	name = "Weyland-Yutani PMC (Chemical Investigation Squad)"
+	localized_name = "维兰德-汤谷私人军事承包商（化学调查小队）"
 	mob_max = 6
 	mob_min = 2
 	probability = 0

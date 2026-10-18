@@ -136,7 +136,7 @@
 		if(4)
 			if(prob(2))
 				affected_mob.pain.apply_pain(PAIN_CHESTBURST_WEAK)
-				var/message = pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")
+				var/message = pick("你的胸口疼得厉害", "你开始呼吸困难", "你的心跳开始加速，每一次跳动都伴随着疼痛")
 				message = SPAN_WARNING("[message]。")
 				to_chat(affected_mob, message)
 				if(prob(50))
@@ -277,8 +277,8 @@
 	// Inform observers to grab some popcorn if it isnt nested
 	if(!HAS_TRAIT(affected_mob, TRAIT_NESTED))
 		var/area/burst_area = get_area(src)
-		var/area_text = burst_area ? " at <b>[burst_area]</b>" : ""
-		notify_ghosts(header = "Burst Imminent", message = "A <b>[new_xeno.hive.prefix]Larva</b> is about to chestburst out of <b>[affected_mob]</b>[area_text]!", source = affected_mob)
+		var/area_text = burst_area ? "，位于<b>[burst_area]</b>" : ""
+		notify_ghosts(header = "即将破胸", message = "一只<b>[new_xeno.hive.prefix]幼体</b>即将从<b>[affected_mob]</b>的胸口破体而出[area_text]！", source = affected_mob)
 
 	stage = 7 // Begin the autoburst countdown
 
@@ -288,7 +288,7 @@
 	victim.emote("scream")
 	if(prob(50)) //dont want them passing out too quick D:
 		victim.pain.apply_pain(PAIN_CHESTBURST_STRONG)  //ow that really hurts larvie!
-	var/message = SPAN_HIGHDANGER( pick("IT'S IN YOUR INSIDES!", "IT'S GNAWING YOU!", "MAKE IT STOP!", "YOU ARE GOING TO DIE!", "IT'S TEARING YOU APART!"))
+	var/message = SPAN_HIGHDANGER( pick("它就在你体内！", "它在啃咬你！", "快让它停下来！", "你就要死了！", "它要撕碎你了！"))
 	to_chat(victim, message)
 	addtimer(CALLBACK(src, PROC_REF(cause_unbearable_pain), victim), rand(1, 3) SECONDS, TIMER_UNIQUE|TIMER_NO_HASH_WAIT)
 

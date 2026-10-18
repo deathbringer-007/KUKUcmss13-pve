@@ -495,7 +495,7 @@
 			continue
 
 		marine_card.assignment = "[new_name] [marine.job]"
-		marine_card.name = "[marine_card.registered_name]'s [marine_card.card_name] ([marine_card.assignment])"
+		marine_card.name = "[marine_card.registered_name]的[marine_card.card_name]（[localized_player_label(marine_card.assignment)]）"
 
 /datum/squad/proc/setup_supply_drop_list()
 	SIGNAL_HANDLER
@@ -567,7 +567,7 @@
 	var/datum/sound_template/sfx
 
 	if(user)
-		message = "[user.name] transmits: [FONT_SIZE_LARGE("<b>[message]<b>")]"
+		message = "[user.name]发来通信：[FONT_SIZE_LARGE("<b>[message]<b>")]"
 		sfx = new()
 		sfx.file = 'sound/effects/radiostatic.ogg'
 		sfx.channel = get_free_channel()
@@ -606,7 +606,7 @@
 /datum/squad/proc/send_message(text = "", plus_name = 0, only_leader = 0)
 	var/nametext = ""
 	if(plus_name)
-		nametext = "[usr.name] transmits: "
+		nametext = "[usr.name]发来通信："
 		text = "[FONT_SIZE_LARGE("<b>[text]<b>")]"
 
 	if(only_leader)
@@ -790,7 +790,7 @@
 
 	if(paygrade)
 		C.paygrade = paygrade
-	C.name = "[C.registered_name]'s [C.card_name] ([C.assignment])"
+	C.name = "[C.registered_name]的[C.card_name]（[localized_player_label(C.assignment)]）"
 
 	var/obj/item/device/radio/headset/almayer/marine/headset = locate() in list(M.wear_l_ear, M.wear_r_ear)
 	if(headset && radio_freq)
@@ -812,7 +812,7 @@
 
 	C.access -= src.access
 	C.assignment = M.assigned_equipment_preset.assignment
-	C.name = "[C.registered_name]'s [C.card_name] ([C.assignment])"
+	C.name = "[C.registered_name]的[C.card_name]（[localized_player_label(C.assignment)]）"
 
 	forget_marine_in_squad(M)
 
@@ -933,7 +933,7 @@
 			else
 				SStracking.stop_tracking(H.assigned_fireteam, H) //remove from previous FT group
 				if(H.stat == CONSCIOUS)
-					to_chat(fireteam_leaders[fireteam], FONT_SIZE_BIG(SPAN_BLUE("[H.mind ? H.comm_title : ""] [H]已被调离你的战斗组。")))
+					to_chat(fireteam_leaders[localized_player_label(fireteam)], FONT_SIZE_BIG(SPAN_BLUE("[H.mind ? H.comm_title : ""] [H]已被调离你的战斗组。")))
 		fireteams[H.assigned_fireteam].Remove(H)
 		var/ft = H.assigned_fireteam
 		H.assigned_fireteam = fireteam
@@ -943,12 +943,12 @@
 		if(fireteam_leaders[fireteam]) //if TL exists -> FT group, otherwise -> SL group
 			SStracking.start_tracking(fireteam, H)
 			if(H.stat == CONSCIOUS)
-				to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("你已被编入[fireteam]。请尽快向战斗组长报到。")))
-			to_chat(fireteam_leaders[fireteam], FONT_SIZE_BIG(SPAN_BLUE("[H.mind ? H.comm_title : ""] [H] was assigned to your fireteam.")))
+				to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("你已被编入[localized_player_label(fireteam)]。请尽快向战斗组长报到。")))
+			to_chat(fireteam_leaders[localized_player_label(fireteam)], FONT_SIZE_BIG(SPAN_BLUE("[H.mind ? H.comm_title : ""][H]已被分配到你的战斗组。")))
 		else
 			SStracking.start_tracking(tracking_id, H)
 			if(H.stat == CONSCIOUS)
-				to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("You were assigned to [fireteam].")))
+				to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("你已被分配到[localized_player_label(fireteam)]。")))
 	else
 		fireteams[fireteam].Add(H)
 		H.assigned_fireteam = fireteam //adding to fireteam
@@ -958,10 +958,10 @@
 			SStracking.stop_tracking(tracking_id, H) //remove from previous FT group
 			SStracking.start_tracking(fireteam, H)
 			if(H.stat == CONSCIOUS)
-				to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("You were assigned to [fireteam]. Report to your Fireteam Leader ASAP.")))
-			to_chat(fireteam_leaders[fireteam], FONT_SIZE_BIG(SPAN_BLUE("[H.mind ? H.comm_title : ""] [H] was assigned to your fireteam.")))
+				to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("你已被分配到[localized_player_label(fireteam)]。请尽快向战斗组长报到。")))
+			to_chat(fireteam_leaders[localized_player_label(fireteam)], FONT_SIZE_BIG(SPAN_BLUE("[H.mind ? H.comm_title : ""][H]已被分配到你的战斗组。")))
 		if(H.stat == CONSCIOUS)
-			to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("You were assigned to [fireteam].")))
+			to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("你已被分配到[localized_player_label(fireteam)]。")))
 	H.hud_set_squad()
 
 	// I'm not fixing how cursed these strings are, god save us all if someone (or me (https://i.imgur.com/nSy81Bn.png)) has to change these again
@@ -987,9 +987,9 @@
 	if(fireteam_leaders[ft])
 		SStracking.stop_tracking(ft, H) //remove from FT group
 		SStracking.start_tracking(tracking_id, H) //add to SL group
-		to_chat(fireteam_leaders[ft], FONT_SIZE_HUGE(SPAN_BLUE("[H.mind ? H.comm_title : ""] [H] was unassigned from your fireteam.")))
+		to_chat(fireteam_leaders[localized_player_label(ft)], FONT_SIZE_HUGE(SPAN_BLUE("[H.mind ? H.comm_title : ""][H]已被调离你的战斗组。")))
 	if(!H.stat)
-		to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("You were unassigned from [ft].")))
+		to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("你已被调离[localized_player_label(ft)]。")))
 	H.hud_set_squad()
 
 	var/obj/item/card/id/id = H.get_idcard()
@@ -1011,7 +1011,7 @@
 	SStracking.set_leader(H.assigned_fireteam, H) //Set FT leader as leader of this group
 	SStracking.start_tracking("marine_sl", H)
 	if(H.stat == CONSCIOUS)
-		to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("You were assigned as [fireteam] Team Leader.")))
+		to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("你已被任命为[localized_player_label(fireteam)]组长。")))
 
 	for(var/obj/item/device/radio/headset/cycled_headset in H)
 		if(!("Section Sergeant" in cycled_headset.tracking_options))
@@ -1029,7 +1029,7 @@
 		reassign_ft_tracker_group(fireteam, H.assigned_fireteam, tracking_id) //transfer whole FT to SL group
 		update_fireteam(fireteam)
 	if(!H.stat)
-		to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("You were unassigned as [fireteam] Team Leader.")))
+		to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("你已被解除[localized_player_label(fireteam)]组长职务。")))
 
 /datum/squad/proc/reassign_ft_tracker_group(fireteam, old_id, new_id)
 	for(var/mob/living/carbon/human/H in fireteams[fireteam])

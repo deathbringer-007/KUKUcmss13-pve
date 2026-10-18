@@ -6,7 +6,7 @@
 
 //====== 10X24 Pulse Rifle
 /datum/ammo/bullet/rifle
-	name = "10x24 bullet"
+	name = "10x24子弹"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 	damage = 40
 	penetration = ARMOR_PENETRATION_TIER_1
@@ -19,7 +19,7 @@
 	max_range = 24
 
 /datum/ammo/bullet/rifle/holo_target
-	name = "holo-targeting 10x24 bullet"
+	name = "10x24全息标记弹"
 	damage = 30
 	/// inflicts this many holo stacks per bullet hit
 	var/holo_stacks = 10
@@ -34,7 +34,7 @@
 
 
 /datum/ammo/bullet/rifle/holo_target/hunting
-	name = "holo-targeting 10x24 bullet"
+	name = "10x24全息标记弹"
 	damage = 25
 	holo_stacks = 15
 
@@ -44,7 +44,7 @@
 	bullet_light_color = COLOR_SOFT_RED
 
 /datum/ammo/bullet/rifle/explosive
-	name = "explosive 10x24 bullet"
+	name = "10x24爆炸弹"
 	damage = 25
 	accurate_range = 22
 	accuracy = 0
@@ -63,7 +63,7 @@
 
 
 /datum/ammo/bullet/rifle/ap
-	name = "armor-piercing 10x24 bullet"
+	name = "10x24穿甲弹"
 
 	damage = 30
 	penetration = ARMOR_PENETRATION_TIER_8
@@ -80,7 +80,7 @@
 
 // Basically AP but better. Focused at taking out armour temporarily
 /datum/ammo/bullet/rifle/ap/toxin
-	name = "toxic 10x24 bullet"
+	name = "10x24毒性弹"
 	var/acid_per_hit = 7
 	var/organic_damage_mult = 3
 
@@ -100,7 +100,7 @@
 
 
 /datum/ammo/bullet/rifle/ap/penetrating
-	name = "wall-penetrating 10x24 bullet"
+	name = "10x24穿墙弹"
 	shrapnel_chance = 0
 
 	damage = 35
@@ -114,14 +114,14 @@
 
 
 /datum/ammo/bullet/rifle/le
-	name = "armor-shredding 10x24 bullet"
+	name = "10x24削甲弹"
 	damage = 20
 	penetration = ARMOR_PENETRATION_TIER_4
 	pen_armor_punch = 5
 
 
 /datum/ammo/bullet/rifle/heap
-	name = "high-explosive armor-piercing 10x24 bullet"
+	name = "10x24高爆穿甲弹"
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
 	damage = 55//big damage, doesn't actually blow up because thats stupid.
 	penetration = ARMOR_PENETRATION_TIER_8
@@ -133,13 +133,13 @@
 	bullet_light_color = COLOR_SOFT_RED
 
 /datum/ammo/bullet/rifle/rubber
-	name = "rubber 10x24 bullet"
+	name = "10x24橡胶弹"
 	damage = 5
 	stamina_damage = 15
 	shrapnel_chance = 0
 
 /datum/ammo/bullet/rifle/incendiary
-	name = "incendiary 10x24 bullet"
+	name = "10x24燃烧弹"
 	damage_type = BURN
 	shrapnel_chance = 0
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -158,7 +158,7 @@
 //====== 10X28 Smartgun
 
 /datum/ammo/bullet/rifle/heavy
-	name = "10x28 bullet"
+	name = "10x28子弹"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 	damage = 55
 	penetration = ARMOR_PENETRATION_TIER_3
@@ -175,7 +175,7 @@
 		to_chat(P.firer, SPAN_WARNING("正中目标！"))
 
 /datum/ammo/bullet/rifle/heavy/rmcdmr
-	name = "8.88x51 squash-head bullet"
+	name = "8.88x51碎甲弹"
 	damage = 60
 	penetration = ARMOR_PENETRATION_TIER_6
 	accuracy = HIT_ACCURACY_TIER_3
@@ -188,7 +188,7 @@
 	bullet_light_color = COLOR_SOFT_RED
 
 /datum/ammo/bullet/rifle/heavy/ap
-	name = "armor-piercing 10x28 bullet"
+	name = "10x28穿甲弹"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 	damage = 40
 	penetration = ARMOR_PENETRATION_TIER_7
@@ -199,7 +199,7 @@
 	bullet_light_color = COLOR_SOFT_RED
 
 /datum/ammo/bullet/rifle/heavy/impdet
-	name = "impact-detonating 10x28 bullet"
+	name = "10x28触爆弹"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 	damage = 40
 	penetration = -ARMOR_PENETRATION_TIER_2
@@ -212,7 +212,7 @@
 	slowdown(entity, bullet)
 
 /datum/ammo/bullet/rifle/heavy/heap
-	name = "high explosive armor-piercing 10x28 bullet"
+	name = "10x28高爆穿甲弹"
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
 	damage = 70
 	penetration = ARMOR_PENETRATION_TIER_10
@@ -226,25 +226,25 @@
 // Terminator Smartgun
 
 /datum/ammo/bullet/rifle/heavy/dirty
-	name = "irradiated 10x28 bullet"
+	name = "10x28辐射弹"
 	debilitate = list(0,0,0,3,0,0,0,1)
 	damage = 60
 	shrapnel_chance = SHRAPNEL_CHANCE_TIER_7
 
 /datum/ammo/bullet/rifle/heavy/ap/dirty
-	name = "irradiated armor-piercing 10x28 bullet"
+	name = "10x28辐射穿甲弹"
 	debilitate = list(0,0,0,3,0,0,0,1)
 	damage = 45
 
 /datum/ammo/bullet/rifle/heavy/impdet/dirty
-	name = "irradiated impact-detonating 10x28 bullet"
+	name = "10x28辐射触爆弹"
 	damage = 45
 	shrapnel_chance = SHRAPNEL_CHANCE_TIER_7
 
 // RMC Smartgun
 
 /datum/ammo/bullet/rifle/heavy/holo_target //Royal marines smartgun bullet, less damage, holo-target effect & range-limited knock/pushback
-	name = "holo-targeting 10x28 bullet"
+	name = "10x28全息标记弹"
 	damage = 40
 	/// inflicts this many holo stacks per bullet hit
 	var/holo_stacks = 25
@@ -259,13 +259,13 @@
 	knockback(hit_mob, bullet, max_range = 2)
 
 /datum/ammo/bullet/rifle/heavy/holo_target/ap
-	name = "holo-targetting armor-piercing 10x28 bullet"
+	name = "10x28全息标记穿甲弹"
 	icon_state = "bullet"
 	damage = 30
 	penetration = ARMOR_PENETRATION_TIER_8
 
 /datum/ammo/bullet/rifle/heavy/holo_target/impdet
-	name = "holo-targetting impact-detonating 10x28 bullet"
+	name = "10x28全息标记触爆弹"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 	holo_stacks = 50 //holo's all over targets, or something
 	damage = 30
@@ -277,7 +277,7 @@
 	slowdown(entity, bullet)
 
 /datum/ammo/bullet/rifle/heavy/upp_smartgun
-	name = "12.7x40 bullet"
+	name = "12.7x40子弹"
 	damage = 90 //giant fuck off bullet
 	damage_falloff = 0
 
@@ -285,12 +285,12 @@
 	knockback(target, fired_proj, max_range = 5)
 
 /datum/ammo/bullet/rifle/heavy/upp_smartgun/ap
-	name = "12.7x40 armor-piercing bullet"
+	name = "12.7x40穿甲弹"
 	damage = 75
 	penetration = ARMOR_PENETRATION_TIER_8
 
 /datum/ammo/bullet/rifle/heavy/upp_smartgun/flak
-	name = "12.7x40 flak bullet" //the gun makes the round detonate really early or something
+	name = "12.7x40破片弹" //the gun makes the round detonate really early or something
 	damage = 20
 	penetration = -ARMOR_PENETRATION_TIER_2
 	bonus_projectiles_amount = EXTRA_PROJECTILES_TIER_3
@@ -304,7 +304,7 @@
 	knockback(target, fired_proj, max_range = 3)
 
 /datum/ammo/bullet/rifle/heavy/upp/flak_spread
-	name = "12.7x40 flak"
+	name = "12.7x40破片弹"
 	damage = 15
 	penetration = -ARMOR_PENETRATION_TIER_2
 	accuracy_var_low = PROJECTILE_VARIANCE_TIER_6
@@ -320,7 +320,7 @@
 // Specialist M42A rounds
 
 /datum/ammo/bullet/rifle/heavy/heap/sniper
-	name = "high explosive armor-piercing sniper bullet"
+	name = "高爆穿甲狙击弹"
 	damage = 90 //match-grade munitions developing better velocity from the rifle
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_IGNORE_COVER
 
@@ -333,7 +333,7 @@
 	shell_speed = AMMO_SPEED_TIER_8
 
 /datum/ammo/bullet/rifle/heavy/incendiary
-	name = "incendiary sniper bullet"
+	name = "燃烧狙击弹"
 	damage_type = BRUTE
 	damage = 60
 	penetration = ARMOR_PENETRATION_TIER_4
@@ -367,7 +367,7 @@
 		to_chat(P.firer, SPAN_WARNING("正中目标！"))
 
 /datum/ammo/bullet/rifle/heavy/flak
-	name = "flak sniper bullet"
+	name = "破片狙击弹"
 	damage_type = BRUTE
 	damage = 55
 	damage_var_high = PROJECTILE_VARIANCE_TIER_8 //Documenting old code: This converts to a variance of 96-109% damage. -Kaga
@@ -406,7 +406,7 @@
 // Custom Specialist M49A rounds
 
 /datum/ammo/bullet/rifle/heavy/spec
-	name = "high velocity 10x28 bullet"
+	name = "10x28高速弹"
 	shrapnel_chance = 0
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -418,7 +418,7 @@
 	shell_speed = AMMO_SPEED_TIER_7
 
 /datum/ammo/bullet/rifle/heavy/spec/incendiary
-	name = "high velocity incendiary 10x28 bullet"
+	name = "10x28高速燃烧弹"
 	flags_ammo_behavior = AMMO_BALLISTIC
 
 	damage = 50
@@ -431,7 +431,7 @@
 	))
 
 /datum/ammo/bullet/rifle/heavy/spec/explosive
-	name = "high velocity explosive 10x28 bullet"
+	name = "10x28高速爆炸弹"
 	flags_ammo_behavior = AMMO_BALLISTIC
 
 	damage = 50
@@ -460,7 +460,7 @@
 	return 1
 
 /datum/ammo/bullet/rifle/heavy/spec/du
-	name = "high velocity depleted uranium 10x28 bullet"
+	name = "10x28高速贫铀弹"
 
 	damage = 50 //Overall same damage as base rounds, but 15 tox DoT
 	penetration = ARMOR_PENETRATION_TIER_10 //DU's a heavy armour-piercing kind of material
@@ -489,7 +489,7 @@
 //====== 10x27 Type 71
 
 /datum/ammo/bullet/rifle/upp
-	name = "10x27 bullet"
+	name = "10x27子弹"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 	damage = 50
 	penetration = ARMOR_PENETRATION_TIER_2
@@ -499,7 +499,7 @@
 	damage_falloff = DAMAGE_FALLOFF_TIER_7
 
 /datum/ammo/bullet/rifle/upp/rubber
-	name = "rubber 10x27 bullet"
+	name = "10x27橡胶弹"
 	damage = 10
 	stamina_damage = 20
 	shrapnel_chance = 0
@@ -510,12 +510,12 @@
 	bullet_light_color = COLOR_SOFT_GREEN
 
 /datum/ammo/bullet/rifle/upp/ap
-	name = "armor-piercing 10x27 bullet"
+	name = "10x27穿甲弹"
 	damage = 43
 	penetration = ARMOR_PENETRATION_TIER_8
 
 /datum/ammo/bullet/rifle/upp/ap/penetrating
-	name = "wall-penerating 10x27 bullet"
+	name = "10x27穿墙弹"
 	damage = 40
 	penetration = ARMOR_PENETRATION_TIER_10
 
@@ -526,7 +526,7 @@
 	))
 
 /datum/ammo/bullet/rifle/upp/heap
-	name = "high-explosive armor-piercing 10x27 bullet"
+	name = "10x27高爆穿甲弹"
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
 	damage = 55
 	penetration = ARMOR_PENETRATION_TIER_8
@@ -538,7 +538,7 @@
 	bullet_light_color = COLOR_SOFT_GREEN
 
 /datum/ammo/bullet/rifle/upp/heap/tracer/super_tracer
-	name = "high-explosive armor-piercing magnesium tracer 10x27 bullet"
+	name = "10x27高爆穿甲镁曳光弹"
 
 /datum/ammo/bullet/rifle/upp/heap/tracer/super_tracer/set_bullet_traits()
 	. = ..()
@@ -562,7 +562,7 @@
 
 
 /datum/ammo/bullet/rifle/upp/heap/tracer/penetrating
-	name = "wall-penerating 10x27 bullet"
+	name = "10x27穿墙弹"
 	damage = 40
 	penetration = ARMOR_PENETRATION_TIER_10
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/upp.dmi'
@@ -580,43 +580,43 @@
 
 //10X31 AK500
 /datum/ammo/bullet/rifle/heavy/upp
-	name = "10x31 bullet"
+	name = "10x31子弹"
 
 // Misc
 
 /datum/ammo/bullet/rifle/mar40
-	name = "8.8x29 rifle bullet"
+	name = "8.8x29步枪弹"
 	damage = 45
 	shell_casing = /obj/effect/decal/ammo_casing/cartridge
 
 /datum/ammo/bullet/rifle/m16
-	name = "5.56x45 rifle bullet"
+	name = "5.56x45步枪弹"
 	damage = 35
 	shell_casing = /obj/effect/decal/ammo_casing/cartridge
 
 /datum/ammo/bullet/rifle/m16/ap
-	name = "armor-piercing 5.56x45 rifle bullet"
+	name = "5.56x45穿甲步枪弹"
 	damage = 30
 	penetration = ARMOR_PENETRATION_TIER_5
 
 /datum/ammo/bullet/rifle/ar10
-	name = "7.62x51 rifle bullet"
+	name = "7.62x51步枪弹"
 	damage = 55
 	shell_casing = /obj/effect/decal/ammo_casing/cartridge
 
 //NSG TWE RMC AMMO
 
 /datum/ammo/bullet/rifle/twe
-	name = "8.5x33 bullet"
+	name = "8.5x33子弹"
 	damage = 36
 	penetration = ARMOR_PENETRATION_TIER_2
 	accurate_range = 20
 
 /datum/ammo/bullet/rifle/ap/twe
-	name = "armor-piercing 8.5x33 bullet"
+	name = "8.5x33穿甲弹"
 
 /datum/ammo/bullet/rifle/heap/twe
-	name = "high-explosive armor-piercing 8.5x33 bullet"
+	name = "8.5x33高爆穿甲弹"
 	damage = 50
 	penetration = ARMOR_PENETRATION_TIER_9
 	shrapnel_chance = SHRAPNEL_CHANCE_TIER_4
@@ -624,7 +624,7 @@
 //9.7x16 AG80
 
 /datum/ammo/bullet/rifle/ag80
-	name = "9.7x16 bullet"
+	name = "9.7x16子弹"
 	damage = 35
 	penetration = ARMOR_PENETRATION_TIER_1 // shouldn't be higher pen than 10x24
 
@@ -634,18 +634,18 @@
 	bullet_light_color = COLOR_SOFT_GREEN
 
 /datum/ammo/bullet/rifle/ag80/ap
-	name = "armor-piercing 9.7x16 bullet"
+	name = "9.7x16穿甲弹"
 	damage = 30
 	penetration = ARMOR_PENETRATION_TIER_7 // not as good as 10x24 AP but still impressive for calibre size
 
 /datum/ammo/bullet/rifle/ag80/rubber
-	name = "rubber 9.7x16 bullet"
+	name = "9.7x16橡胶弹"
 	damage = 4
 	stamina_damage = 12
 	shrapnel_chance = 0
 
 /datum/ammo/bullet/rifle/ag80/heap
-	name = "high-explosive armor-piercing 9.7x16 bullet"
+	name = "9.7x16高爆穿甲弹"
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
 	damage = 45 //big damage, doesn't actually blow up because thats stupid.
 	penetration = ARMOR_PENETRATION_TIER_6
@@ -657,17 +657,17 @@
 	bullet_light_color = COLOR_SOFT_GREEN
 
 /datum/ammo/bullet/rifle/lw317
-	name = "6x38 bullet"
+	name = "6x38子弹"
 	damage = 35
 	penetration = ARMOR_PENETRATION_TIER_1
 
 /datum/ammo/bullet/rifle/lw317/ap
-	name = "armor-piercing 6x38 bullet"
+	name = "6x38穿甲弹"
 	damage = 30
 	penetration = ARMOR_PENETRATION_TIER_5
 
 /datum/ammo/bullet/rifle/isr
-	name = "heavy 9.2x34mm bullet"
+	name = "9.2x34毫米重型子弹"
 
 	damage = 35
 	penetration = ARMOR_PENETRATION_TIER_1

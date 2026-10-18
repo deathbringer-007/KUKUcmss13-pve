@@ -4,6 +4,7 @@
 
 /datum/supply_packs/assembly
 	name = "assembly crate"
+	localized_name = "组件箱"
 	contains = list(
 		/obj/item/device/assembly/igniter,
 		/obj/item/device/assembly/igniter,
@@ -23,7 +24,7 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/phoron
-	containername = "assembly crate"
+	containername = "组件箱"
 	access = ACCESS_MARINE_ENGINEERING
 	group = "Research"
 
@@ -31,6 +32,7 @@
 
 /datum/supply_packs/pyrotec
 	name = "pyrotechnics crate"
+	localized_name = "烟火材料箱"
 	contains = list(
 		/obj/item/reagent_container/glass/beaker/sulphuric,
 		/obj/item/reagent_container/glass/beaker/sulphuric,
@@ -50,36 +52,39 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/phoron
-	containername = "pyrotechnics crate"
+	containername = "烟火材料箱"
 	access = ACCESS_MARINE_ENGINEERING
 	group = "Research"
 
 /datum/supply_packs/phoron
 	name = "phoron crate"
+	localized_name = "弗燃素箱"
 	contains = list(
 		/obj/item/stack/sheet/mineral/phoron/medium_stack,
 		/obj/item/stack/sheet/mineral/phoron/medium_stack,
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure/phoron
-	containername = "phoron crate"
+	containername = "弗燃素箱"
 	access = ACCESS_MARINE_ENGINEERING
 	group = "Research"
 
 /datum/supply_packs/plastic
 	name = "plastic crate"
+	localized_name = "塑料箱"
 	contains = list(
 		/obj/item/stack/sheet/mineral/plastic/small_stack,
 		/obj/item/stack/sheet/mineral/plastic/small_stack,
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/phoron
-	containername = "plastic crate"
+	containername = "塑料箱"
 	access = ACCESS_MARINE_ENGINEERING
 	group = "Research"
 
 /datum/supply_packs/precious_metals
 	name = "precious metals crate"
+	localized_name = "贵金属箱"
 	contains = list(
 		/obj/item/stack/sheet/mineral/gold/small_stack,
 		/obj/item/stack/sheet/mineral/silver/small_stack,
@@ -87,12 +92,13 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/phoron
-	containername = "precious metals crate"
+	containername = "贵金属箱"
 	access = ACCESS_MARINE_ENGINEERING
 	group = "Research"
 
 /datum/supply_packs/exp_production
 	name = "explosives production crate"
+	localized_name = "炸药生产用品箱"
 	contains = list(
 		/obj/item/reagent_container/glass/canister,
 		/obj/item/reagent_container/glass/canister,
@@ -107,7 +113,7 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/phoron
-	containername = "explosives production crate"
+	containername = "炸药生产用品箱"
 	access = ACCESS_MARINE_ENGINEERING
 	group = "Research"
 
@@ -115,10 +121,11 @@
 
 /datum/supply_packs/xeno_tags
 	name = "Xenomorph IFF Tag Case (x7 tags)"
+	localized_name = "异形敌我识别标签盒（7枚标签）"
 	contains = list(
 		/obj/item/storage/xeno_tag_case/full,
 	)
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure/weyland
-	containername = "IFF tag crate"
+	containername = "敌我识别标签箱"
 	group = "Research"

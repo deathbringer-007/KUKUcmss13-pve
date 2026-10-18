@@ -2,6 +2,7 @@
 
 /datum/emergency_call/souto
 	name = "Souto Man"
+	localized_name = "索托侠"
 	mob_max = 1
 	mob_min = 1
 	objectives = "像在1999年那样尽情狂欢！"
@@ -29,6 +30,7 @@
 
 /datum/emergency_call/souto/cryo
 	name = "Souto Man (Cryo)"
+	localized_name = "索托侠（冷冻休眠）"
 	probability = 0
 	name_of_spawn = /obj/effect/landmark/ert_spawns/distress_cryo
 	shuttle_id = ""

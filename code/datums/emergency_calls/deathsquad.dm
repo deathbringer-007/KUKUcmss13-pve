@@ -4,6 +4,7 @@
 //Weyland-Yutani Deathsquad - W-Y Deathsquad. Event only
 /datum/emergency_call/death
 	name = "Weyland Whiteout Operators (!DEATHSQUAD!)"
+	localized_name = "维兰德白幕行动人员（死亡小队！）"
 	mob_max = 8
 	mob_min = 5
 	arrival_message = "“*杂音*杀光他们……不留目击者……通话完毕……*杂音*”"
@@ -52,6 +53,7 @@
 
 /datum/emergency_call/death/low_threat
 	name = "Weyland Whiteout Operators"
+	localized_name = "维兰德白幕行动人员"
 
 // DEATH SQUAD--------------------------------------------------------------------------------
 /datum/emergency_call/death/low_threat/create_member(datum/mind/player, turf/override_spawn_loc)

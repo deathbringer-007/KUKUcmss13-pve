@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(human_medals, list(MARINE_CONDUCT_MEDAL))
 		return FALSE
 
 	// Pick a medal
-	var/medal_type = tgui_input_list(usr, "你想颁发哪种勋章？", "勋章类型", GLOB.human_medals)
+	var/medal_type = localized_input_list(usr, "你想颁发哪种勋章？", "勋章类型", GLOB.human_medals)
 	if(!medal_type)
 		return FALSE
 
@@ -323,17 +323,17 @@ GLOBAL_LIST_INIT(xeno_medals, list(XENO_SLAUGHTER_MEDAL, XENO_RESILIENCE_MEDAL, 
 		recipient_castes[recipient_name] = xeno.caste_type
 		recipient_mobs[recipient_name] = xeno
 		possible_recipients += recipient_name
-	var/chosen_recipient = tgui_input_list(usr, "Who do you want to award jelly to?", "Jelly Recipient", possible_recipients, theme="hive_status")
+	var/chosen_recipient = tgui_input_list(usr, "你想奖赏谁蜂王浆？", "蜂王浆受奖者", possible_recipients, theme="hive_status")
 	if(!chosen_recipient)
 		return FALSE
 
 	// Pick a jelly
-	var/medal_type = tgui_input_list(usr, "What type of jelly do you want to award?", "Jelly Type", GLOB.xeno_medals, theme="hive_status")
+	var/medal_type = localized_input_list(usr, "你想奖赏哪种蜂王浆？", "蜂王浆类型", GLOB.xeno_medals, theme="hive_status")
 	if(!medal_type)
 		return FALSE
 
 	// Write the pheromone
-	var/citation = strip_html(input("What should the pheromone read?", "Jelly Pheromone", null, null) as message|null, MAX_PAPER_MESSAGE_LEN)
+	var/citation = strip_html(input("信息素应传达什么内容？", "蜂王浆奖赏信息素", null, null) as message|null, MAX_PAPER_MESSAGE_LEN)
 	if(!citation)
 		return FALSE
 
@@ -493,15 +493,15 @@ GLOBAL_LIST_INIT(xeno_medals, list(XENO_SLAUGHTER_MEDAL, XENO_RESILIENCE_MEDAL, 
 		recipient_ranks[recipient_name] = record.fields["rank"]
 		possible_recipients += recipient_name
 	if(length(possible_recipients) == 0)
-		to_chat(recommendation_giver, SPAN_WARNING("It's not possible to give medals when the ship is empty. Tough luck, partner..."))
+		to_chat(recommendation_giver, SPAN_WARNING("舰上没有人员，无法颁发勋章。真遗憾，伙计……"))
 		return FALSE
 
-	var/chosen_recipient = tgui_input_list(recommendation_giver, "Who do you want to recommend a medal for?", "Medal Recommendation", possible_recipients)
+	var/chosen_recipient = tgui_input_list(recommendation_giver, "你想推荐谁获颁勋章？", "授勋推荐", possible_recipients)
 	if(!chosen_recipient)
 		return FALSE
 
 	// Write a citation
-	var/reason = strip_html(tgui_input_text(recommendation_giver, "Why does this person deserve a medal?", "Medal Recommendation", null, MAX_PAPER_MESSAGE_LEN, TRUE), MAX_PAPER_MESSAGE_LEN)
+	var/reason = strip_html(tgui_input_text(recommendation_giver, "此人为何值得获颁勋章？", "授勋推荐", null, MAX_PAPER_MESSAGE_LEN, TRUE), MAX_PAPER_MESSAGE_LEN)
 	if(!reason)
 		return FALSE
 
@@ -548,13 +548,13 @@ GLOBAL_LIST_INIT(xeno_medals, list(XENO_SLAUGHTER_MEDAL, XENO_RESILIENCE_MEDAL, 
 GLOBAL_DATUM_INIT(ic_medals_panel, /datum/ic_medal_panel, new)
 
 /datum/ic_medal_panel
-	var/name = "Medals Panel"
+	var/name = "勋章面板"
 	var/list/datum/weakref/user_locs = list()
 
 /datum/ic_medal_panel/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "IcMedalsPanel", "Medals Panel")
+		ui = new(user, src, "IcMedalsPanel", "勋章面板")
 		ui.open()
 		ui.set_autoupdate(FALSE)
 
@@ -596,11 +596,11 @@ GLOBAL_DATUM_INIT(ic_medals_panel, /datum/ic_medal_panel, new)
 	var/mob/living/carbon/human/user = ui.user
 	var/obj/item/card/id/card = user?.get_idcard()
 	if(!card)
-		to_chat(user, SPAN_WARNING("You must have an authenticated ID Card to award medals."))
+		to_chat(user, SPAN_WARNING("你必须持有通过认证的身份卡才能颁发勋章。"))
 		return
 
 	if(!((card.paygrade in GLOB.co_paygrades) || (card.paygrade in GLOB.platco_paygrades) || (card.paygrade in GLOB.uscm_highcom_paygrades)))
-		to_chat(user, SPAN_WARNING("Only an Officer can award medals!"))
+		to_chat(user, SPAN_WARNING("只有军官才能颁发勋章！"))
 		return
 
 	if(!card.registered_ref)
@@ -622,7 +622,7 @@ GLOBAL_DATUM_INIT(ic_medals_panel, /datum/ic_medal_panel, new)
 	switch(action)
 		if("grant_new_medal")
 			if(give_medal_award(actual_loc))
-				actual_loc.visible_message(SPAN_NOTICE("[actual_loc] prints a medal."))
+				actual_loc.visible_message(SPAN_NOTICE("[actual_loc]打印出了一枚勋章。"))
 			. = TRUE
 
 		if("approve_medal")
@@ -634,22 +634,22 @@ GLOBAL_DATUM_INIT(ic_medals_panel, /datum/ic_medal_panel, new)
 			if(!recommendation)
 				return
 			if(recommendation.recipient_name == user.real_name)
-				to_chat(user, SPAN_WARNING("You cannot give medals to yourself!"))
+				to_chat(user, SPAN_WARNING("你不能给自己颁发勋章！"))
 				return
 
-			var/choice = tgui_alert(user, "Would you like to change the medal text?", "Medal Citation", list("Yes", "No"))
+			var/choice = tgui_alert(user, "要修改勋章嘉奖词吗？", "勋章嘉奖词", list("Yes", "No"))
 			var/medal_citation = recommendation.reason
 			if(choice == "Yes")
-				medal_citation = strip_html(tgui_input_text(user, "What should the medal citation read?", "Medal Citation", null, MAX_PAPER_MESSAGE_LEN, TRUE), MAX_PAPER_MESSAGE_LEN)
+				medal_citation = strip_html(tgui_input_text(user, "勋章嘉奖词应写些什么？", "勋章嘉奖词", null, MAX_PAPER_MESSAGE_LEN, TRUE), MAX_PAPER_MESSAGE_LEN)
 
-			var/confirm_choice = tgui_alert(user, "Are you sure you want to give a medal to [recommendation.recipient_name]?", "Medal Confirmation", list("Yes", "No"))
+			var/confirm_choice = tgui_alert(user, "确定要向[recommendation.recipient_name]颁发勋章吗？", "授勋确认", list("Yes", "No"))
 			if(confirm_choice != "Yes")
 				return
 
 			if(give_medal_award_prefilled(actual_loc, user, recommendation.recipient_name, recommendation.recipient_rank, recommendation.recipient_ckey, medal_citation, medal_type, recommendation.recommended_by_ckey, recommendation.recommended_by_name))
 				GLOB.medal_recommendations -= recommendation
 				qdel(recommendation)
-				user.visible_message(SPAN_NOTICE("[actual_loc] prints a medal."))
+				user.visible_message(SPAN_NOTICE("[actual_loc]打印出了一枚勋章。"))
 				. = TRUE
 
 		if("deny_medal")
@@ -657,7 +657,7 @@ GLOBAL_DATUM_INIT(ic_medals_panel, /datum/ic_medal_panel, new)
 			var/datum/medal_recommendation/recommendation = locate(recommendation_ref) in GLOB.medal_recommendations
 			if(!recommendation)
 				return
-			var/confirm = tgui_alert(user, "Are you sure you want to deny this medal recommendation?", "Medal Confirmation", list("Yes", "No"))
+			var/confirm = tgui_alert(user, "确定要否决这项授勋推荐吗？", "授勋确认", list("Yes", "No"))
 			if(confirm != "Yes")
 				return
 			GLOB.medal_recommendations -= recommendation

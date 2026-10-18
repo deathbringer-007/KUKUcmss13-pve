@@ -2,6 +2,7 @@
 //Terrified pizza delivery
 /datum/emergency_call/pizza
 	name = "Pizza Delivery"
+	localized_name = "披萨外送"
 	mob_max = 1
 	mob_min = 1
 	arrival_message = "“一共是……十六份芝士薯条、八个双配料大披萨、九瓶 Four Loko……喂？船上有人吗？你们的披萨快凉了。”"
@@ -31,6 +32,7 @@
 
 /datum/emergency_call/pizza/cryo
 	name = "Pizza Delivery (Cryo)"
+	localized_name = "披萨外送（冷冻休眠）"
 	probability = 0
 	name_of_spawn = /obj/effect/landmark/ert_spawns/distress_cryo
 	shuttle_id = MOBILE_SHUTTLE_ID_ERT_SMALL

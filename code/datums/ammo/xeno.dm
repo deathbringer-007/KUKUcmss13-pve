@@ -22,7 +22,7 @@
 	max_range = 12
 
 /datum/ammo/xeno/toxin
-	name = "neurotoxic spit"
+	name = "神经毒素喷吐物"
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_XENO|AMMO_IGNORE_RESIST
 	spit_cost = 25
@@ -95,14 +95,14 @@
 	neuro_callback.Invoke(M, effect_power, FALSE)
 
 /datum/ammo/xeno/toxin/medium //Spitter
-	name = "neurotoxic spatter"
+	name = "飞溅的神经毒素"
 	spit_cost = 50
 	effect_power = 1
 
 	shell_speed = AMMO_SPEED_TIER_3
 
 /datum/ammo/xeno/toxin/queen
-	name = "neurotoxic spit"
+	name = "神经毒素喷吐物"
 	spit_cost = 50
 	effect_power = 2
 
@@ -113,7 +113,7 @@
 	neuro_callback.Invoke(M, effect_power, TRUE)
 
 /datum/ammo/xeno/toxin/shotgun
-	name = "neurotoxic droplet"
+	name = "神经毒素液滴"
 	flags_ammo_behavior = AMMO_XENO|AMMO_IGNORE_RESIST
 	bonus_projectiles_type = /datum/ammo/xeno/toxin/shotgun/additional
 
@@ -130,12 +130,12 @@
 	neuro_callback = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(apply_scatter_neuro))
 
 /datum/ammo/xeno/toxin/shotgun/additional
-	name = "additional neurotoxic droplets"
+	name = "额外神经毒素液滴"
 
 	bonus_projectiles_amount = 0
 
 /datum/ammo/xeno/acid
-	name = "acid spit"
+	name = "酸液喷吐物"
 	icon_state = "xeno_acid"
 	sound_hit  = "acid_hit"
 	sound_bounce = "acid_bounce"
@@ -159,7 +159,7 @@
 	..()
 
 /datum/ammo/xeno/acid/spatter
-	name = "acid spatter"
+	name = "飞溅的酸液"
 
 	damage = 30
 	max_range = 6
@@ -172,7 +172,7 @@
 	new /datum/effects/acid(M, P.firer)
 
 /datum/ammo/xeno/acid/praetorian
-	name = "acid splash"
+	name = "泼洒的酸液"
 
 	accuracy = HIT_ACCURACY_TIER_10 + HIT_ACCURACY_TIER_5
 	max_range = 8
@@ -181,10 +181,10 @@
 	added_spit_delay = 0
 
 /datum/ammo/xeno/acid/dot
-	name = "acid spit"
+	name = "酸液喷吐物"
 
 /datum/ammo/xeno/acid/prae_nade // Used by base prae's acid nade
-	name = "acid scatter"
+	name = "散射酸液"
 
 	flags_ammo_behavior = AMMO_ACIDIC|AMMO_XENO|AMMO_STOPPED_BY_COVER
 	accuracy = HIT_ACCURACY_TIER_5
@@ -213,7 +213,7 @@
 		PAS.increment_stack_count()
 
 /datum/ammo/xeno/boiler_gas
-	name = "glob of neuro gas"
+	name = "神经毒气团"
 	icon_state = "neuro_glob"
 	ping = "ping_x"
 	debilitate = list(2,2,0,1,11,12,1,10) // Stun,knockdown,knockout,irradiate,stutter,eyeblur,drowsy,agony
@@ -281,7 +281,7 @@
 
 
 /datum/ammo/xeno/boiler_gas/acid
-	name = "glob of acid gas"
+	name = "酸性毒气团"
 	icon_state = "acid_glob"
 	ping = "ping_x"
 	accuracy_var_high = PROJECTILE_VARIANCE_TIER_4
@@ -303,7 +303,7 @@
 	drop_nade(get_turf(proj), proj,TRUE)
 
 /datum/ammo/xeno/bone_chips
-	name = "bone chips"
+	name = "骨片"
 	icon_state = "shrapnel_light"
 	ping = null
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_STOPPED_BY_COVER|AMMO_IGNORE_ARMOR
@@ -330,19 +330,19 @@
 			M.apply_effect(3, SLOW)
 
 /datum/ammo/xeno/bone_chips/spread
-	name = "small bone chips"
+	name = "细小骨片"
 
 	scatter = 30 // We want a wild scatter angle
 	max_range = 5
 	bonus_projectiles_amount = 0
 
 /datum/ammo/xeno/bone_chips/spread/short_range
-	name = "small bone chips"
+	name = "细小骨片"
 
 	max_range = 3 // Very short range
 
 /datum/ammo/xeno/bone_chips/spread/runner_skillshot
-	name = "bone chips"
+	name = "骨片"
 
 	scatter = 0
 	max_range = 5
@@ -360,7 +360,7 @@
 			M.apply_effect(6, SLOW)
 
 /datum/ammo/xeno/oppressor_tail
-	name = "tail hook"
+	name = "尾钩"
 	icon_state = "none"
 	ping = null
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_STOPPED_BY_COVER

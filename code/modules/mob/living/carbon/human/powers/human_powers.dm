@@ -165,7 +165,7 @@
 	var/mob/M = targets[target]
 
 	if(istype(M, /mob/dead/observer) || M.stat == DEAD)
-		to_chat(src, "即使是[species.name]也无法与死者交谈。")
+		to_chat(src, "即使是[localized_player_label(species.name)]也无法与死者交谈。")
 		return
 
 	log_say("[key_name(src)] communed to [key_name(M)]: [text] (AREA: [get_area_name(loc)])")
@@ -195,7 +195,7 @@
 				var/rendered_message
 				var/human_track = "(<a href='byond://?src=\ref[ghost];track=\ref[src]'>F</a>)"
 				var/target_track = "(<a href='byond://?src=\ref[ghost];track=\ref[target_mob]'>F</a>)"
-				rendered_message = SPAN_XENOLEADER("PsychicWhisper: [real_name][human_track] to [target_mob.real_name][target_track], <span class='normal'>'[SPAN_PSYTALK(whisper)]'</span>")
+				rendered_message = SPAN_XENOLEADER("心灵低语：[real_name][human_track]对[target_mob.real_name][target_track]说：<span class='normal'>“[SPAN_PSYTALK(whisper)]”</span>")
 				ghost.show_message(rendered_message, SHOW_MESSAGE_AUDIBLE)
 	return
 

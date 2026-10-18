@@ -3,6 +3,7 @@
 //whiskey outpost extra marines
 /datum/emergency_call/wo
 	name = "Marine Reinforcements (Squad)"
+	localized_name = "陆战队增援（小队）"
 	mob_max = 15
 	mob_min = 1
 	probability = 0
@@ -65,6 +66,7 @@
 
 /datum/emergency_call/wo/platoon
 	name = "Marine Reinforcements (Platoon)"
+	localized_name = "陆战队增援（排）"
 	mob_min = 8
 	mob_max = 30
 	probability = 0
@@ -74,12 +76,14 @@
 
 /datum/emergency_call/wo/platoon/cryo
 	name = "Marine Reinforcements (Platoon) (Cryo)"
+	localized_name = "陆战队增援（排，冷冻休眠）"
 	probability = 0
 	name_of_spawn = /obj/effect/landmark/ert_spawns/distress_cryo
 	shuttle_id = ""
 
 /datum/emergency_call/wo/cryo
 	name = "Marine Reinforcements (Squad) (Cryo)"
+	localized_name = "陆战队增援（小队，冷冻休眠）"
 	probability = 0
 	name_of_spawn = /obj/effect/landmark/ert_spawns/distress_cryo
 	shuttle_id = ""

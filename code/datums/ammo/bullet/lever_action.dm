@@ -5,7 +5,7 @@
 */
 
 /datum/ammo/bullet/lever_action
-	name = "lever-action bullet"
+	name = "杠杆步枪弹"
 
 	damage = 80
 	penetration = 0
@@ -18,7 +18,7 @@
 //unused and not working. need to refactor MD code. Unobtainable.
 //intended mechanic is to have xenos hit with it show up very frequently on any MDs around
 /datum/ammo/bullet/lever_action/tracker
-	name = "tracking lever-action bullet"
+	name = "杠杆步枪追踪弹"
 	icon_state = "redbullet"
 	damage = 70
 	penetration = ARMOR_PENETRATION_TIER_3
@@ -30,7 +30,7 @@
 	M.visible_message(SPAN_DANGER("你听到 [M] 的[M.mob_size > MOB_SIZE_HUMAN ? "几丁质外壳" : "皮肤"]下传来微弱的哔声。"))
 
 /datum/ammo/bullet/lever_action/training
-	name = "lever-action blank"
+	name = "杠杆步枪空包弹"
 	icon_state = "blank"
 	damage = 70  //blanks CAN hurt you if shot very close
 	penetration = 0
@@ -41,7 +41,7 @@
 
 //unused, and unobtainable... for now
 /datum/ammo/bullet/lever_action/marksman
-	name = "marksman lever-action bullet"
+	name = "杠杆步枪精确射击弹"
 	shrapnel_chance = 0
 	damage_falloff = 0
 	accurate_range = 12
@@ -51,7 +51,7 @@
 	handful_state = "marksman_lever_action_bullet"
 
 /datum/ammo/bullet/lever_action/xm88
-	name = ".458 SOCOM round"
+	name = ".458 SOCOM子弹"
 
 	damage = 104
 	penetration = ARMOR_PENETRATION_TIER_2

@@ -2,7 +2,7 @@
 #define HYDRO_WATER_CONSUMPTION_MULTIPLIER 1.5
 
 /obj/structure/machinery/portable_atmospherics/hydroponics
-	name = "hydroponics tray"
+	name = "水培槽"
 	icon = 'icons/obj/structures/machinery/hydroponics.dmi'
 	icon_state = "hydrotray3"
 	density = TRUE
@@ -693,7 +693,7 @@
 
 	if(!usr || usr.stat || usr.is_mob_restrained())
 		return
-	if (alert(usr, "确定要冲洗水培槽吗？", "冲洗水培槽：", "Yes", "No") != "Yes")
+	if (localized_native_alert(usr, "确定要冲洗水培槽吗？", "冲洗水培槽：", "Yes", "No") != "Yes")
 		return
 
 	seed = null
@@ -715,7 +715,7 @@
 	update_icon()
 
 /obj/structure/machinery/portable_atmospherics/hydroponics/soil
-	name = "soil"
+	name = "土壤"
 	icon = 'icons/obj/structures/machinery/hydroponics.dmi'
 	icon_state = "soil"
 	density = FALSE
