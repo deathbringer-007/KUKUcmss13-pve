@@ -7,7 +7,7 @@
 		return
 	for(var/atom/A as anything in src)
 		if(!(is_type_in_list(A, canEnterVentWith)))
-			to_chat(src, SPAN_WARNING("We cannot be carrying items or have items equipped when vent crawling!"))
+			to_chat(src, SPAN_WARNING("钻通风管道时，我们不能携带或装备物品！"))
 			return FALSE
 
 /mob/living/click(atom/A, list/mods)
@@ -25,12 +25,12 @@
 		if(Adjacent(V) && !V.welded)
 			pipes |= V
 	if(!LAZYLEN(pipes))
-		to_chat(src, SPAN_WARNING("There are no pipes that we can ventcrawl into within range!"))
+		to_chat(src, SPAN_WARNING("范围内没有可以钻入的管道！"))
 		return
 	if(length(pipes) == 1)
 		pipe = pipes[1]
 	else
-		pipe = tgui_input_list(usr, "Crawl Through Vent", "Pick a pipe", pipes)
+		pipe = tgui_input_list(usr, "钻通风管道", "选择管道", pipes)
 	if(!is_mob_incapacitated() && pipe)
 		return pipe
 
@@ -42,11 +42,11 @@
 
 /mob/living/proc/handle_ventcrawl(atom/clicked_on)
 	if(stat)
-		to_chat(src, SPAN_WARNING("We must be conscious to do this!"))
+		to_chat(src, SPAN_WARNING("我们必须保持清醒才能这么做！"))
 		return
 
 	if(is_mob_incapacitated())
-		to_chat(src, SPAN_WARNING("We can't vent crawl while we are stunned!"))
+		to_chat(src, SPAN_WARNING("眩晕时无法钻通风管道！"))
 		return
 
 	var/obj/structure/pipes/vents/vent_found
@@ -59,11 +59,11 @@
 		vent_found = locate(/obj/structure/pipes/vents/) in range(1, src)
 
 	if(!vent_found)
-		to_chat(src, SPAN_WARNING("We must be standing on or beside an air vent to enter it."))
+		to_chat(src, SPAN_WARNING("我们必须站在通风口上或旁边才能进入。"))
 		return
 
 	if(vent_found.welded)
-		to_chat(src, SPAN_WARNING("This vent is closed off, we cannot climb through it."))
+		to_chat(src, SPAN_WARNING("这个通风口已被封住，无法钻入。"))
 		return
 
 	if(!ventcrawl_carry())
@@ -73,15 +73,15 @@
 	if(W)
 		var/mob/living/carbon/xenomorph/X = src
 		if(!istype(X) || X.hivenumber != W.linked_hive.hivenumber)
-			to_chat(src, SPAN_WARNING("The weeds are blocking the entrance of this vent"))
+			to_chat(src, SPAN_WARNING("菌毯堵住了这个通风口的入口。"))
 			return
 
 	if(length(vent_found.connected_to))
 		if(src.action_busy)
-			to_chat(src, SPAN_WARNING("We are already busy with something."))
+			to_chat(src, SPAN_WARNING("我们正忙着别的事。"))
 			return
 
-		visible_message(SPAN_NOTICE("[src] begins climbing into [vent_found]."), SPAN_NOTICE("We begin climbing into [vent_found]."))
+		visible_message(SPAN_NOTICE("[src] 开始钻进 [vent_found]。"), SPAN_NOTICE("我们开始钻进 [vent_found]。"))
 		vent_found.animate_ventcrawl()
 		if(!do_after(src, 45, INTERRUPT_NO_NEEDHAND, BUSY_ICON_GENERIC))
 			vent_found.animate_ventcrawl_reset()
@@ -93,12 +93,12 @@
 			return
 
 		vent_found.animate_ventcrawl_reset()
-		visible_message(SPAN_DANGER("[src] scrambles into [vent_found]!"), SPAN_WARNING("You climb into [vent_found]."))
+		visible_message(SPAN_DANGER("[src] 迅速钻进了 [vent_found]！"), SPAN_WARNING("你钻进了 [vent_found]。"))
 		playsound(src, pick('sound/effects/alien_ventpass1.ogg', 'sound/effects/alien_ventpass2.ogg'), 35, 1)
 		forceMove(vent_found)
 		update_pipe_icons(vent_found)
 	else
-		to_chat(src, SPAN_WARNING("This vent is not connected to anything."))
+		to_chat(src, SPAN_WARNING("这个通风口没有连接任何管道。"))
 
 /mob/living/proc/update_pipe_icons(obj/structure/pipes/P)
 	is_ventcrawling = TRUE

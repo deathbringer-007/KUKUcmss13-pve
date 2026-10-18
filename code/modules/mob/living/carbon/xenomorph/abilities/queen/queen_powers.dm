@@ -5,7 +5,7 @@
 	if(!user_xeno.check_state())
 		return
 	if(!user_xeno.observed_xeno)
-		to_chat(user_xeno, SPAN_WARNING("You must overwatch the xeno you want to de-evolve."))
+		to_chat(user_xeno, SPAN_WARNING("你必须先监视要退化的异形。"))
 		return
 
 	var/mob/living/carbon/xenomorph/target_xeno = user_xeno.observed_xeno
@@ -13,27 +13,27 @@
 		return
 
 	if(target_xeno.hivenumber != user_xeno.hivenumber)
-		to_chat(user_xeno, SPAN_XENOWARNING("[target_xeno] doesn't belong to your hive!"))
+		to_chat(user_xeno, SPAN_XENOWARNING("[target_xeno]不属于你的巢群！"))
 		return
 
 	if(target_xeno.is_ventcrawling)
-		to_chat(user_xeno, SPAN_XENOWARNING("[target_xeno] can't be deevolved here."))
+		to_chat(user_xeno, SPAN_XENOWARNING("[target_xeno]无法在此处退化。"))
 		return
 
 	if(!isturf(target_xeno.loc))
-		to_chat(user_xeno, SPAN_XENOWARNING("[target_xeno] can't be deevolved here."))
+		to_chat(user_xeno, SPAN_XENOWARNING("[target_xeno]无法在此处退化。"))
 		return
 
 	if(target_xeno.health <= 0)
-		to_chat(user_xeno, SPAN_XENOWARNING("[target_xeno] is too weak to be deevolved."))
+		to_chat(user_xeno, SPAN_XENOWARNING("[target_xeno]太虚弱，无法退化。"))
 		return
 
 	if(length(target_xeno.caste.deevolves_to) < 1)
-		to_chat(user_xeno, SPAN_XENOWARNING("[target_xeno] can't be deevolved."))
+		to_chat(user_xeno, SPAN_XENOWARNING("[target_xeno]无法退化。"))
 		return
 
 	if(target_xeno.banished)
-		to_chat(user_xeno, SPAN_XENOWARNING("[target_xeno] is banished and can't be deevolved."))
+		to_chat(user_xeno, SPAN_XENOWARNING("[target_xeno]已被放逐，无法退化。"))
 		return
 
 
@@ -42,31 +42,31 @@
 	if(length(target_xeno.caste.deevolves_to) == 1)
 		newcaste = target_xeno.caste.deevolves_to[1]
 	else if(length(target_xeno.caste.deevolves_to) > 1)
-		newcaste = tgui_input_list(user_xeno, "Choose a caste you want to de-evolve [target_xeno] to.", "De-evolve", target_xeno.caste.deevolves_to, theme="hive_status")
+		newcaste = tgui_input_list(user_xeno, "选择要将 [target_xeno] 退化成的品级。", "退化", target_xeno.caste.deevolves_to, theme="hive_status")
 
 	if(!newcaste)
 		return
 
 	if(newcaste == "Larva")
-		to_chat(user_xeno, SPAN_XENOWARNING("You cannot deevolve xenomorphs to larva."))
+		to_chat(user_xeno, SPAN_XENOWARNING("你无法将异形退化为幼体。"))
 		return
 
 	if (user_xeno.observed_xeno != target_xeno)
 		return
 
-	var/confirm = tgui_alert(user_xeno, "Are you sure you want to deevolve [target_xeno] from [target_xeno.caste.caste_type] to [newcaste]?", "Deevolution", list("Yes", "No"))
+	var/confirm = tgui_alert(user_xeno, "确定要将 [target_xeno] 从 [target_xeno.caste.caste_type] 退化为 [newcaste] 吗？", "退化", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
-	var/reason = stripped_input(user_xeno, "Provide a reason for deevolving this xenomorph, [target_xeno]")
+	var/reason = stripped_input(user_xeno, "请说明将异形 [target_xeno] 退化的理由。")
 	if(!reason)
-		to_chat(user_xeno, SPAN_XENOWARNING("You must provide a reason for deevolving [target_xeno]."))
+		to_chat(user_xeno, SPAN_XENOWARNING("你必须说明将[target_xeno]退化的理由。"))
 		return
 
 	if (!check_and_use_plasma_owner(plasma_cost))
 		return
 
-	to_chat(target_xeno, SPAN_XENOWARNING("The queen is deevolving you for the following reason: [reason]"))
+	to_chat(target_xeno, SPAN_XENOWARNING("女王正将你退化，理由如下：[reason]"))
 
 	var/xeno_type
 	var/level_to_switch_to = target_xeno.get_vision_level()
@@ -95,7 +95,7 @@
 
 	if(!istype(new_xeno))
 		//Something went horribly wrong!
-		to_chat(user_xeno, SPAN_WARNING("Something went terribly wrong here. Your new xeno is null! Tell a coder immediately!"))
+		to_chat(user_xeno, SPAN_WARNING("发生严重错误，未能生成你的新异形！请立即联系开发者！"))
 		if(new_xeno)
 			qdel(new_xeno)
 		return
@@ -141,7 +141,7 @@
 		return
 
 	if(X.action_busy) return
-	var/answer = alert(X, "Are you sure you want to remove your ovipositor? (5min cooldown to grow a new one)", , "Yes", "No")
+	var/answer = alert(X, "确定要移除产卵器吗？（再次生长需要等待5分钟。）", , "Yes", "No")
 	if(answer != "Yes")
 		return
 	if(!X.check_state())
@@ -240,7 +240,7 @@
 			possible_xenos += T
 
 		if(length(possible_xenos) > 1)
-			var/mob/living/carbon/xenomorph/selected_xeno = tgui_input_list(X, "Target", "Watch which leader?", possible_xenos, theme="hive_status")
+			var/mob/living/carbon/xenomorph/selected_xeno = tgui_input_list(X, "目标", "要监控哪位领袖？", possible_xenos, theme="hive_status")
 			if(!selected_xeno || selected_xeno.hive_pos == NORMAL_XENO || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z != X.z || !X.check_state())
 				return
 			X.overwatch(selected_xeno)
@@ -310,7 +310,7 @@
 		to_chat(usr, SPAN_XENOWARNING("You must give some time for larva to spawn before sacrificing them. Please wait another [floor((SSticker.mode.round_time_lobby + SHUTTLE_TIME_LOCK - world.time) / 600)] minutes."))
 		return
 
-	var/choice = tgui_input_list(user_xeno, "Choose a xenomorph to give evolution points for a burrowed larva:", "Give Evolution Points", user_xeno.hive.totalXenos, theme="hive_status")
+	var/choice = tgui_input_list(user_xeno, "选择要以地底幼体为代价、给予进化点数的异形：", "给予进化点数", user_xeno.hive.totalXenos, theme="hive_status")
 
 	if(!choice)
 		return
@@ -343,7 +343,7 @@
 		to_chat(user_xeno, SPAN_XENOWARNING("You need at least [required_larva] burrowed larva to sacrifice one for evolution points."))
 		return
 
-	if(tgui_alert(user_xeno, "Are you sure you want to sacrifice a larva to give [target_xeno] [evo_points_per_larva] evolution points?", "Give Evolution Points", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user_xeno, "确定要牺牲一只幼体，为 [target_xeno] 提供 [evo_points_per_larva] 点进化点数吗？", "给予进化点数", list("Yes", "No")) != "Yes")
 		return
 
 	if(!user_xeno.check_state() || !check_and_use_plasma_owner(plasma_cost) || target_xeno.health < 0 || user_xeno.hive.stored_larva < required_larva)
@@ -383,7 +383,7 @@
 			options += "Remove Personal Ally"
 			options += "Clear Personal Allies"
 
-	var/choice = tgui_input_list(queen_manager, "Manage The Hive", "Hive Management",  options, theme="hive_status")
+	var/choice = tgui_input_list(queen_manager, "管理巢群", "巢群管理",  options, theme="hive_status")
 	switch(choice)
 		if("Banish (500)")
 			banish()
@@ -427,7 +427,7 @@
 	if(!length(target_list))
 		to_chat(user_xeno, SPAN_WARNING("No talls in view."))
 		return
-	var/mob/living/target_mob = tgui_input_list(usr, "Target", "Set Up a Personal Alliance With...", target_list, theme="hive_status")
+	var/mob/living/target_mob = tgui_input_list(usr, "目标", "与以下对象建立个人同盟……", target_list, theme="hive_status")
 
 	if(!user_xeno.check_state(TRUE))
 		return
@@ -470,7 +470,7 @@
 		to_chat(user_xeno, SPAN_WARNING("We don't have personal allies."))
 		return
 
-	var/mob/living/target_mob = tgui_input_list(usr, "Target", "Break the Personal Alliance With...", allies, theme="hive_status")
+	var/mob/living/target_mob = tgui_input_list(usr, "目标", "与以下对象解除个人同盟……", allies, theme="hive_status")
 
 	if(!target_mob)
 		return
@@ -498,7 +498,7 @@
 		to_chat(user_xeno, SPAN_WARNING("We don't have personal allies."))
 		return
 
-	if(tgui_alert(user_xeno, "Are you sure you want to clear personal allies?", "Clear Personal Allies", list("No", "Yes"), 10 SECONDS) != "Yes")
+	if(tgui_alert(user_xeno, "确定要清除个人盟友吗？", "清除个人盟友", list("No", "Yes"), 10 SECONDS) != "Yes")
 		return
 
 	if(!length(hive.personal_allies))
@@ -516,7 +516,7 @@
 	if(!user_xeno.check_plasma(plasma_cost_banish))
 		return
 
-	var/choice = tgui_input_list(user_xeno, "Choose a xenomorph to banish:", "Banish", user_xeno.hive.totalXenos, theme="hive_status")
+	var/choice = tgui_input_list(user_xeno, "选择要放逐的异形：", "放逐", user_xeno.hive.totalXenos, theme="hive_status")
 
 	if(!choice)
 		return
@@ -545,11 +545,11 @@
 		to_chat(user_xeno, SPAN_XENOWARNING("What's the point? They're already about to die."))
 		return
 
-	var/confirm = tgui_alert(user_xeno, "Are you sure you want to banish [target_xeno] from the hive? This should only be done with good reason. (Note this prevents them from rejoining the hive after dying for 30 minutes as well unless readmitted)", "Banishment", list("Yes", "No"))
+	var/confirm = tgui_alert(user_xeno, "确定要将 [target_xeno] 放逐出巢群吗？必须有充分理由才能这么做。（除非重新接纳，否则其死亡后30分钟内也无法重新加入巢群。）", "放逐", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
-	var/reason = stripped_input(user_xeno, "Provide a reason for banishing [target_xeno]. This will be announced to the entire hive!")
+	var/reason = stripped_input(user_xeno, "请说明放逐 [target_xeno] 的理由。这将向整个巢群公告！")
 	if(!reason)
 		to_chat(user_xeno, SPAN_XENOWARNING("You must provide a reason for banishing [target_xeno]."))
 		return
@@ -585,7 +585,7 @@
 	if(!user_xeno.check_plasma(plasma_cost_readmit))
 		return
 
-	var/choice = tgui_input_list(user_xeno, "Choose a xenomorph to readmit:", "Re-admit", user_xeno.hive.banished_ckeys, theme="hive_status")
+	var/choice = tgui_input_list(user_xeno, "选择要重新接纳的异形：", "重新接纳", user_xeno.hive.banished_ckeys, theme="hive_status")
 
 	if(!choice)
 		return
@@ -613,7 +613,7 @@
 			to_chat(user_xeno, SPAN_XENOWARNING("This xenomorph isn't banished!"))
 			return
 
-		var/confirm = tgui_alert(user_xeno, "Are you sure you want to readmit [target_xeno] into the hive?", "Readmittance", list("Yes", "No"))
+		var/confirm = tgui_alert(user_xeno, "确定要重新接纳 [target_xeno] 加入巢群吗？", "重新接纳", list("Yes", "No"))
 		if(confirm != "Yes")
 			return
 

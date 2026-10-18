@@ -143,11 +143,11 @@
 	if(scorchedness)
 		switch(scorchedness)
 			if(1)
-				. += "Lightly Toasted."
+				. += "微微烤热。"
 			if(2)
-				. += "Medium Roasted."
+				. += "烤至半熟。"
 			if(3)
-				. += "Well Done."
+				. += "彻底烤熟。"
 
 // Black & invisible to the mouse. used by vehicle interiors
 /turf/open/void
@@ -423,14 +423,14 @@
 	if(istype(I, /obj/item/lightstick))
 		var/obj/item/lightstick/L = I
 		if(locate(/obj/item/lightstick) in get_turf(src))
-			to_chat(user, "There's already \a [L] at this position!")
+			to_chat(user, "这里已经有[L]了！")
 			return
 
-		to_chat(user, "Now planting \the [L].")
+		to_chat(user, "正在种下[L]。")
 		if(!do_after(user,20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			return
 
-		user.visible_message("\blue[user.name] planted \the [L] into [src].")
+		user.visible_message("\blue[user.name] 将 \the [L] 种进了 [src]。")
 		L.anchored = TRUE
 		L.icon_state = "lightstick_[L.s_color][L.anchored]"
 		user.drop_held_item()
@@ -701,7 +701,7 @@
 				if(istype(H.gloves,/obj/item/clothing/gloves/yautja/hunter))
 					var/obj/item/clothing/gloves/yautja/hunter/Y = H.gloves
 					if(Y && istype(Y) && HAS_TRAIT(H, TRAIT_CLOAKED))
-						to_chat(H, SPAN_WARNING(" Your bracers hiss and spark as they short out!"))
+						to_chat(H, SPAN_WARNING(" 你的护腕短路了，发出嘶嘶声并迸出火花！"))
 						Y.decloak(H, TRUE, DECLOAK_SUBMERGED)
 
 		else if(isxeno(C))
@@ -1121,7 +1121,7 @@
 		if(!do_after(user,20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			return
 
-		user.visible_message("\blue[user.name] planted \the [L] into [src].")
+		user.visible_message("\blue[user.name] 将 \the [L] 种进了 [src]。")
 		L.anchored = TRUE
 		L.icon_state = "lightstick_[L.s_color][L.anchored]"
 		user.drop_held_item()

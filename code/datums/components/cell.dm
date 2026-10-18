@@ -92,7 +92,7 @@
 	if((charge_examine_range != UNLIMITED_DISTANCE) && get_dist(examiner, parent) > charge_examine_range)
 		return
 
-	examine_text += "A small gauge in the corner reads \"Power: [floor(100 * charge / max_charge)]%\"."
+	examine_text += "角落里的小表盘显示：\"电量：[floor(100 * charge / max_charge)]%\"。"
 
 /datum/component/cell/proc/on_object_hit(datum/source, obj/item/cell/attack_obj, mob/living/attacker, params)
 	SIGNAL_HANDLER
@@ -110,7 +110,7 @@
 
 /datum/component/cell/proc/insert_cell(obj/item/cell/power_cell, mob/living/user)
 	if(inserted_cell)
-		to_chat(user, SPAN_WARNING("There's already a power cell in [parent]!"))
+		to_chat(user, SPAN_WARNING("[parent] 里已经装有电池了！"))
 		return
 
 	if(SEND_SIGNAL(parent, COMSIG_CELL_TRY_INSERT_CELL) & COMPONENT_CANCEL_CELL_INSERT)
@@ -126,14 +126,14 @@
 	SIGNAL_HANDLER
 
 	user.put_in_hands(inserted_cell, TRUE)
-	to_chat(user, SPAN_NOTICE("You remove [inserted_cell] from [parent]."))
+	to_chat(user, SPAN_NOTICE("你从 [parent] 中取出了 [inserted_cell]。"))
 	inserted_cell = null
 	max_charge = initial_max_charge
 	charge = 0
 
 /datum/component/cell/proc/charge_from_cell(obj/item/cell/power_cell, mob/living/user)
 	if(max_charge == UNLIMITED_CHARGE)
-		to_chat(user, SPAN_WARNING("[parent] doesn't need more power."))
+		to_chat(user, SPAN_WARNING("[parent] 不需要更多电能。"))
 		return
 
 	while(charge < max_charge)
@@ -141,11 +141,11 @@
 			return
 
 		if(power_cell.charge <= 0)
-			to_chat(user, SPAN_WARNING("[power_cell] is completely dry."))
+			to_chat(user, SPAN_WARNING("[power_cell] 的电量已经完全耗尽。"))
 			return
 
 		if(!do_after(user, 1 SECONDS, (INTERRUPT_ALL & (~INTERRUPT_MOVED)), BUSY_ICON_BUILD, power_cell, INTERRUPT_DIFF_LOC))
-			to_chat(user, SPAN_WARNING("You were interrupted."))
+			to_chat(user, SPAN_WARNING("你的操作被打断了。"))
 			return
 
 		if(power_cell.charge <= 0)
@@ -154,7 +154,7 @@
 		var/to_transfer = min(max_recharge_tick, power_cell.charge, (max_charge - charge))
 		if(power_cell.use(to_transfer))
 			add_charge(null, to_transfer)
-			to_chat(user, "You transfer some power between [power_cell] and [parent]. The gauge now reads: [floor(100 * charge / max_charge)]%.")
+			to_chat(user, "你在 [power_cell] 和 [parent] 之间转移了一些电能。电量表现在显示：[floor(100 * charge / max_charge)]%。")
 
 /datum/component/cell/proc/add_charge(datum/source, charge_add = 0)
 	SIGNAL_HANDLER

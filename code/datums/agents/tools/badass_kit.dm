@@ -1,6 +1,6 @@
 /obj/item/storage/box/badass_kit
-	name = "suspicious box"
-	desc = "A compact and suspicious looking box. This one is small enough to fit into a bag."
+	name = "可疑的盒子"
+	desc = "一个小巧而可疑的盒子，小到能装进包里。"
 
 	w_class = SIZE_MEDIUM
 

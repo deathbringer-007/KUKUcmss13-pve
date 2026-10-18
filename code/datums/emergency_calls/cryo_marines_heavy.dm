@@ -8,7 +8,7 @@
 	mob_max = 15
 	mob_min = 1
 	probability = 0
-	objectives = "Assist the USCM forces"
+	objectives = "协助美国殖民地海军陆战队。"
 	max_heavies = 4
 	max_medics = 2
 	name_of_spawn = /obj/effect/landmark/ert_spawns/distress_cryo
@@ -21,7 +21,7 @@
 	leaders = cryo_squad.num_leaders
 	. = ..()
 	if(length(members))
-		shipwide_ai_announcement("Successfully deployed [length(members)] Foxtrot marines.")
+		shipwide_ai_announcement("已成功部署[length(members)]名福克斯特罗特陆战队员。")
 
 /datum/emergency_call/cryo_squad_equipped/create_member(datum/mind/M, turf/override_spawn_loc)
 	set waitfor = 0
@@ -39,32 +39,32 @@
 	if(leaders < cryo_squad.max_leaders && HAS_FLAG(H.client.prefs.toggles_ert, PLAY_LEADER) && check_timelock(H.client, JOB_SQUAD_LEADER, time_required_for_job))
 		leader = H
 		leaders++
-		to_chat(H, SPAN_ROLE_HEADER("You are a Squad Leader in the USCM"))
-		to_chat(H, SPAN_ROLE_BODY("Your squad is here to assist in the defence of [SSmapping.configs[GROUND_MAP].map_name]."))
+		to_chat(H, SPAN_ROLE_HEADER("你是美国殖民地海军陆战队的一名小队长。"))
+		to_chat(H, SPAN_ROLE_BODY("你的小队前来协助保卫 [SSmapping.configs[GROUND_MAP].map_name]。"))
 	else if (heavies < max_heavies && HAS_FLAG(H.client.prefs.toggles_ert, PLAY_HEAVY) && check_timelock(H.client, JOB_SQUAD_SPECIALIST, time_required_for_job))
 		heavies++
 		arm_equipment(H, /datum/equipment_preset/uscm/specialist_equipped, TRUE, TRUE)
-		to_chat(H, SPAN_ROLE_HEADER("You are a Weapons Specialist in the USCM"))
-		to_chat(H, SPAN_ROLE_BODY("Your squad is here to assist in the defence of [SSmapping.configs[GROUND_MAP].map_name]."))
+		to_chat(H, SPAN_ROLE_HEADER("你是美国殖民地海军陆战队的一名武器专家。"))
+		to_chat(H, SPAN_ROLE_BODY("你的小队前来协助保卫 [SSmapping.configs[GROUND_MAP].map_name]。"))
 	else if(smartgunners < max_smartgunners && HAS_FLAG(H.client.prefs.toggles_ert, PLAY_SMARTGUNNER) && check_timelock(H.client, JOB_SQUAD_SMARTGUN, time_required_for_job))
 		smartgunners++
-		to_chat(H, SPAN_ROLE_HEADER("You are a Smartgunner in the USCM"))
-		to_chat(H, SPAN_ROLE_BODY("Your squad is here to assist in the defence of [SSmapping.configs[GROUND_MAP].map_name]."))
+		to_chat(H, SPAN_ROLE_HEADER("你是美国殖民地海军陆战队的一名智能机枪手。"))
+		to_chat(H, SPAN_ROLE_BODY("你的小队前来协助保卫 [SSmapping.configs[GROUND_MAP].map_name]。"))
 	else if(engineers < max_engineers && HAS_FLAG(H.client.prefs.toggles_ert, PLAY_ENGINEER) && check_timelock(H.client, JOB_SQUAD_ENGI, time_required_for_job))
 		engineers++
 		arm_equipment(H, /datum/equipment_preset/uscm/engineer_equipped, TRUE, TRUE)
-		to_chat(H, SPAN_ROLE_HEADER("You are an Engineer in the USCM"))
-		to_chat(H, SPAN_ROLE_BODY("Your squad is here to assist in the defence of [SSmapping.configs[GROUND_MAP].map_name]."))
+		to_chat(H, SPAN_ROLE_HEADER("你是美国殖民地海军陆战队的一名工程兵。"))
+		to_chat(H, SPAN_ROLE_BODY("你的小队前来协助保卫 [SSmapping.configs[GROUND_MAP].map_name]。"))
 	else if (medics < max_medics && HAS_FLAG(H.client.prefs.toggles_ert, PLAY_MEDIC) && check_timelock(H.client, JOB_SQUAD_MEDIC, time_required_for_job))
 		medics++
-		to_chat(H, SPAN_ROLE_HEADER("You are a Hospital Corpsman in the USCM"))
-		to_chat(H, SPAN_ROLE_BODY("Your squad is here to assist in the defence of [SSmapping.configs[GROUND_MAP].map_name]."))
+		to_chat(H, SPAN_ROLE_HEADER("你是美国殖民地海军陆战队的一名医疗兵。"))
+		to_chat(H, SPAN_ROLE_BODY("你的小队前来协助保卫 [SSmapping.configs[GROUND_MAP].map_name]。"))
 	else
-		to_chat(H, SPAN_ROLE_HEADER("You are a Rifleman in the USCM"))
-		to_chat(H, SPAN_ROLE_BODY("Your squad is here to assist in the defence of [SSmapping.configs[GROUND_MAP].map_name]."))
+		to_chat(H, SPAN_ROLE_HEADER("你是美国殖民地海军陆战队的一名步枪兵。"))
+		to_chat(H, SPAN_ROLE_BODY("你的小队前来协助保卫 [SSmapping.configs[GROUND_MAP].map_name]。"))
 
 	sleep(10)
-	to_chat(H, SPAN_BOLD("Objectives: [objectives]"))
+	to_chat(H, SPAN_BOLD("目标：[objectives]"))
 
 
 /datum/emergency_call/cryo_squad_equipped/platoon

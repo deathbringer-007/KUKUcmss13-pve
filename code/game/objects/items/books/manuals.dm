@@ -10,7 +10,7 @@
 
 
 /obj/item/book/manual/engineering_construction
-	name = "Station Repairs and Construction"
+	name = "《设施维修与建造》"
 	icon_state ="book_engineering"
 	author = "Engineering Encyclopedia"
 	title = "Station Repairs and Construction"
@@ -30,7 +30,7 @@
 
 
 /obj/item/book/manual/engineering_hacking
-	name = "Hacking"
+	name = "《入侵技术》"
 	icon_state ="book_hacking"
 	author = "Engineering Encyclopedia"
 	title = "Hacking"
@@ -50,7 +50,7 @@
 
 
 /obj/item/book/manual/ripley_build_and_repair
-	name = "APLU \"Ripley\" Construction and Operation Manual"
+	name = "《APLU“里普利”建造与操作手册》"
 	icon_state ="book_engineering"
 	author = "Randall Varn, Einstein Engines Senior Mechanic"
 	title = "APLU \"Ripley\" Construction and Operation Manual"
@@ -127,7 +127,7 @@
 
 
 /obj/item/book/manual/research_and_development
-	name = "Research and Development 101"
+	name = "《研究与开发入门》"
 	icon_state = "book_white"
 	author = "Dr. L. Ight"
 	title = "Research and Development 101"
@@ -147,8 +147,8 @@
 
 
 /obj/item/book/manual/security_space_law
-	name = "Standard Operating Procedure"
-	desc = "A set of USCM guidelines for keeping law and order on their vessels."
+	name = "《标准操作规程》"
+	desc = "美国殖民地海军陆战队用于维护舰上法律与秩序的规章手册。"
 	icon_state = "book_sop"
 	author = "USCM High Command"
 	title = "Standard Operating Procedure"
@@ -168,8 +168,8 @@
 
 
 /obj/item/book/manual/marine_law
-	name = "Marine Law"
-	desc = "A set of guidelines for keeping law and order on military vessels."
+	name = "《陆战队军法》"
+	desc = "维护军舰上法律与秩序的规章手册。"
 	icon_state = "book_law"
 	author = "USCM High Command"
 	title = "Marine Law"
@@ -189,8 +189,8 @@
 
 
 /obj/item/book/manual/surgery
-	name = "Surgical Reference Manual"
-	desc = "A quick reference manual for surgical procedures."
+	name = "《外科手术参考手册》"
+	desc = "手术操作快速参考手册。"
 	icon_state = "book_medical"
 	author = "Weyland-Yutani Medicine Department"
 	title = "Surgical Reference Manual"
@@ -210,8 +210,8 @@
 
 
 /obj/item/book/manual/medical_diagnostics_manual
-	name = "WY Medical Diagnostics Manual"
-	desc = "First, do no harm. A detailed medical practitioner's guide."
+	name = "《维兰德-汤谷医疗诊断手册》"
+	desc = "首先，不造成伤害。一本详尽的医师指南。"
 	icon_state = "book_medical"
 	author = "Weyland-Yutani Medicine Department"
 	title = "WY Medical Diagnostics Manual"
@@ -256,7 +256,7 @@
 
 
 /obj/item/book/manual/engineering_guide
-	name = "Engineering Textbook"
+	name = "《工程学教材》"
 	icon_state ="book_engineering"
 	author = "Engineering Encyclopedia"
 	title = "Engineering Textbook"
@@ -275,7 +275,7 @@
 
 
 /obj/item/book/manual/chef_recipes
-	name = "Chef Recipes"
+	name = "《厨师食谱》"
 	icon_state = "book_white"
 	author = "Victoria Ponsonby"
 	title = "Chef Recipes"
@@ -334,7 +334,7 @@
 
 
 /obj/item/book/manual/barman_recipes
-	name = "Barman Recipes"
+	name = "《酒保配方》"
 	icon_state = "book_purple"
 	author = "Sir John Rose"
 	title = "Barman Recipes"
@@ -389,7 +389,7 @@
 
 
 /obj/item/book/manual/detective
-	name = "The Film Noir: Proper Procedures for Investigations"
+	name = "《黑色电影：规范调查程序》"
 	icon_state ="book_black"
 	author = "Weyland-Yutani"
 	title = "The Film Noir: Proper Procedures for Investigations"
@@ -433,7 +433,7 @@
 
 
 /obj/item/book/manual/nuclear
-	name = "Fission Mailed: Nuclear Sabotage 101"
+	name = "《裂变未遂：核破坏入门》"
 	icon_state ="book_sop"
 	author = "The Colonial Liberation Front"
 	title = "Fission Mailed: Nuclear Sabotage 101"
@@ -485,7 +485,7 @@
 
 
 /obj/item/book/manual/atmospipes
-	name = "Pipes and You: Getting To Know Your Scary Tools"
+	name = "《管道与你：认识那些吓人的工具》"
 	icon_state = "book_piping"
 	author = "Maria Crash, Senior Atmospherics Technician"
 	title = "Pipes and You: Getting To Know Your Scary Tools"
@@ -593,7 +593,7 @@
 
 
 /obj/item/book/manual/evaguide
-	name = "EVA Gear and You: Not Spending All Day Inside"
+	name = "《出舱装备与你：别整天待在室内》"
 	icon_state = "book_engineering"
 	author = "Maria Crash, Senior Atmospherics Technician"
 	title = "EVA Gear and You: Not Spending All Day Inside"
@@ -665,7 +665,7 @@
 
 
 /obj/item/book/manual/hydroponics_beekeeping
-	name = "The Ins and Outs of Apiculture - A Precise Art"
+	name = "《养蜂的门道：一门精细技艺》"
 	icon_state ="book_green"
 	author = "Beekeeper Dave"
 	title = "The Ins and Outs of Apiculture - A Precise Art"
@@ -697,7 +697,7 @@
 
 
 /obj/item/book/manual/orbital_cannon_manual
-	name = "USCM Orbital Bombardment System Manual"
+	name = "《美国殖民地海军陆战队轨道轰炸系统手册》"
 	icon_state = "book_dark"
 	author = "USCM R&D"
 	title = "USCM Orbital Bombardment System Manual"

@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/antag
-	name = "suspicious gloves"
-	desc = "Black gloves, both insulated and immune to the detection of " + MAIN_AI_SYSTEM + "."
+	name = "可疑的手套"
+	desc = "一副黑色手套，既绝缘，又能躲过" + MAIN_AI_SYSTEM + "的侦测。"
 	// "[]" won't work here because it wouldn't be a constant expression
 
 	icon_state = "black"
@@ -17,6 +17,6 @@
 
 /obj/item/clothing/gloves/antag/mob_can_equip(mob/user, slot)
 	if(!skillcheckexplicit(user, SKILL_ANTAG, SKILL_ANTAG_AGENT))
-		to_chat(user, SPAN_WARNING("It wouldn't be wise to put these gloves on!"))
+		to_chat(user, SPAN_WARNING("戴上这副手套可不是明智之举！"))
 		return FALSE
 	. = ..()

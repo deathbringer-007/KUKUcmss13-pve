@@ -42,8 +42,8 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	GLOB.fallen_list += GLOB.fallen_list_cross
 	if(length(GLOB.fallen_list))
 		var/dat = "<br>"
-		dat += SPAN_ROUNDBODY("In Flanders fields...<br>")
-		dat += SPAN_CENTERBOLD("In memoriam of our fallen soldiers: <br>")
+		dat += SPAN_ROUNDBODY("在佛兰德斯的田野上……<br>")
+		dat += SPAN_CENTERBOLD("谨以此纪念阵亡将士：<br>")
 		for(var/i = 1 to length(GLOB.fallen_list))
 			if(i != length(GLOB.fallen_list))
 				dat += "[GLOB.fallen_list[i]], "
@@ -57,7 +57,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	sleep(2 SECONDS)
 	if(LAZYLEN(xenomorphs) || LAZYLEN(dead_queens))
 		var/dat = "<br>"
-		dat += SPAN_ROUNDBODY("<br>The xenomorph Queen(s) were:")
+		dat += SPAN_ROUNDBODY("<br>异形女皇：")
 		var/mob/living/carbon/xenomorph/xeno_mob
 		for (var/msg in dead_queens)
 			dat += msg
@@ -69,7 +69,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 			if(!xeno_mob || !xeno_mob.loc)
 				xeno_mob = xeno_mind.original
 			if(xeno_mob && xeno_mob.loc && isqueen(xeno_mob) && xeno_mob.stat != DEAD) // Dead queens handled separately
-				dat += "<br>[xeno_mob.full_designation] was [xeno_mob] [SPAN_BOLDNOTICE("(SURVIVED)")]"
+				dat += "<br>[xeno_mob.full_designation] was [xeno_mob] [SPAN_BOLDNOTICE("（存活）")]"
 
 		to_world("[dat]")
 
@@ -78,9 +78,9 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	sleep(2 SECONDS)
 	if(length(predators))
 		var/dat = "<br>"
-		dat += SPAN_ROUNDBODY("<br>The Predators were:")
+		dat += SPAN_ROUNDBODY("<br>铁血战士：")
 		for(var/entry in predators)
-			dat += "<br>[entry] was [predators[entry]["Name"]] [SPAN_BOLDNOTICE("([predators[entry]["Status"]])")]"
+			dat += "<br>[entry]扮演了[predators[entry]["Name"]] [SPAN_BOLDNOTICE("([predators[entry]["Status"]])")]"
 		to_world("[dat]")
 
 
@@ -89,26 +89,26 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	sleep(2 SECONDS)
 	if(length(GLOB.medal_awards))
 		var/dat = "<br>"
-		dat +=  SPAN_ROUNDBODY("<br>Medal Awards:")
+		dat +=  SPAN_ROUNDBODY("<br>勋章授予：")
 		for(var/recipient in GLOB.medal_awards)
 			var/datum/recipient_awards/recipient_award = GLOB.medal_awards[recipient]
 			for(var/i in 1 to length(recipient_award.medal_names))
-				dat += "<br><b>[recipient_award.recipient_rank] [recipient]</b> is awarded [recipient_award.posthumous[i] ? "posthumously " : ""]the <span class='boldnotice'>[recipient_award.medal_names[i]]</span>: \'<i>[recipient_award.medal_citations[i]]</i>\'."
+				dat += "<br><b>[recipient_award.recipient_rank] [recipient]</b>[recipient_award.posthumous[i] ? "被追授" : "获颁"]<span class='boldnotice'>[recipient_award.medal_names[i]]</span>：\'<i>[recipient_award.medal_citations[i]]</i>\'。"
 		to_world(dat)
 	if(length(GLOB.jelly_awards))
 		var/dat = "<br>"
-		dat +=  SPAN_ROUNDBODY("<br>Royal Jelly Awards:")
+		dat +=  SPAN_ROUNDBODY("<br>蜂王浆奖赏：")
 		for(var/recipient in GLOB.jelly_awards)
 			var/datum/recipient_awards/recipient_award = GLOB.jelly_awards[recipient]
 			for(var/i in 1 to length(recipient_award.medal_names))
-				dat += "<br><b>[recipient]</b> is awarded [recipient_award.posthumous[i] ? "posthumously " : ""]a <span class='boldnotice'>[recipient_award.medal_names[i]]</span>: \'<i>[recipient_award.medal_citations[i]]</i>\'[recipient_award.giver_rank[i] ? " by [recipient_award.giver_rank[i]]" : ""][recipient_award.giver_name[i] ? " ([recipient_award.giver_name[i]])" : ""]."
+				dat += "<br><b>[recipient]</b>[recipient_award.posthumous[i] ? "被追授" : "获颁"]<span class='boldnotice'>[recipient_award.medal_names[i]]</span>：\'<i>[recipient_award.medal_citations[i]]</i>\'[recipient_award.giver_rank[i] ? "，授勋人：[recipient_award.giver_rank[i]]" : ""][recipient_award.giver_name[i] ? "（[recipient_award.giver_name[i]]）" : ""]。"
 		to_world(dat)
 
 /datum/game_mode/proc/declare_fun_facts()
 	set waitfor = 0
 	sleep(2 SECONDS)
 	to_chat_spaced(world, margin_bottom = 0, html = SPAN_ROLE_BODY("|______________________|"))
-	to_world(SPAN_ROLE_HEADER("FUN FACTS"))
+	to_world(SPAN_ROLE_HEADER("趣闻统计"))
 	var/list/fact_types = subtypesof(/datum/random_fact)
 	for(var/fact_type as anything in fact_types)
 		var/datum/random_fact/fact_human = new fact_type(set_check_human = TRUE, set_check_xeno = FALSE)
@@ -127,8 +127,8 @@ of predators), but can be added to include variant game modes (like humans vs. h
 //Spawns a larva in an appropriate location
 /datum/game_mode/proc/spawn_latejoin_larva()
 	var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(get_turf(pick(GLOB.xeno_spawns)))
-	new_xeno.visible_message(SPAN_XENODANGER("A larva suddenly burrows out of the ground!"),
-	SPAN_XENODANGER("You burrow out of the ground and awaken from your slumber. For the Hive!"))
+	new_xeno.visible_message(SPAN_XENODANGER("一只幼体突然从地下钻了出来！"),
+	SPAN_XENODANGER("你从地下钻出，从沉眠中苏醒。为了虫巢！"))
 	new_xeno << sound('sound/effects/xeno_newlarva.ogg')
 
 // Open podlocks with the given ID if they aren't already opened.

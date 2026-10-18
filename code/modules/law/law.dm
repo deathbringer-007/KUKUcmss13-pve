@@ -6,7 +6,7 @@
 
 /datum/law
 	var/name = "Law" // This is the name of the law.
-	var/desc = "Pay the court a fine or serve your sentence." // This is used for the description of the crime.
+	var/desc = "向法庭缴纳罚款，或服完你的刑期。" // This is used for the description of the crime.
 	var/explanation //This is used by the mp to describe what the person did for the charge.
 	var/brig_time = 0 //The amount of time the sentence brings
 	var/severity = NO_FLAGS//Bitflags are used here to indicate the severity of the crime.

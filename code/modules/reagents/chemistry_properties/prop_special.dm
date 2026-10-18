@@ -6,7 +6,7 @@
 /datum/chem_property/special/boosting
 	name = PROPERTY_BOOSTING
 	code = "BST"
-	description = "Boosts the potency of all other properties in this chemical when inside the body by 0.5 levels for every level that this property has."
+	description = "在体内，每一级该特性都会使本化学品的所有其他特性效力提高0.5级。"
 	rarity = PROPERTY_LEGENDARY
 	category = PROPERTY_TYPE_METABOLITE
 
@@ -16,7 +16,7 @@
 /datum/chem_property/special/hypergenetic
 	name = PROPERTY_HYPERGENETIC
 	code = "HGN"
-	description = "Regenerates all types of cell membranes mending damage in all organs and limbs."
+	description = "再生所有类型的细胞膜，修复全部器官和肢体的损伤。"
 	rarity = PROPERTY_LEGENDARY
 	category = PROPERTY_TYPE_MEDICINE
 
@@ -48,7 +48,7 @@
 /datum/chem_property/special/organhealing
 	name = PROPERTY_ORGAN_HEALING
 	code = "OHG"
-	description = "Regenerates all types of cell membranes mending damage in all organs."
+	description = "再生所有类型的细胞膜，修复全部器官的损伤。"
 	rarity = PROPERTY_ADMIN
 	category = PROPERTY_TYPE_MEDICINE
 
@@ -68,7 +68,7 @@
 /datum/chem_property/special/DNA_Disintegrating
 	name = PROPERTY_DNA_DISINTEGRATING
 	code = "DDI"
-	description = "Immediately disintegrates the DNA of all organic cells it comes into contact with. This property is highly valued by WY."
+	description = "立即瓦解接触到的所有有机细胞的DNA。维兰德-汤谷公司高度重视这种特性。"
 	rarity = PROPERTY_LEGENDARY
 	category = PROPERTY_TYPE_TOXICANT|PROPERTY_TYPE_ANOMALOUS
 	value = 16
@@ -90,7 +90,7 @@
 /datum/chem_property/special/ciphering
 	name = PROPERTY_CIPHERING
 	code = "CIP"
-	description = "This extremely complex chemical structure represents some kind of biological cipher."
+	description = "这种极为复杂的化学结构似乎构成了某种生物密码。"
 	rarity = PROPERTY_DISABLED
 	category = PROPERTY_TYPE_ANOMALOUS
 	value = 16
@@ -128,7 +128,7 @@
 	if((E.flags_embryo & FLAG_EMBRYO_PREDATOR) && E.hivenumber == GLOB.hive_datum[level])
 		return
 
-	E.visible_message(SPAN_DANGER("\the [E] rapidly mutates"))
+	E.visible_message(SPAN_DANGER("[E]迅速发生变异。"))
 
 	playsound(E, 'sound/effects/attackblob.ogg', 25, TRUE)
 
@@ -139,7 +139,7 @@
 /datum/chem_property/special/crossmetabolizing
 	name = PROPERTY_CROSSMETABOLIZING
 	code = "XMB"
-	description = "Can be metabolized in certain non-human species."
+	description = "能够在某些非人类物种体内代谢。"
 	rarity = PROPERTY_ADMIN
 	category = PROPERTY_TYPE_METABOLITE|PROPERTY_TYPE_ANOMALOUS|PROPERTY_TYPE_CATALYST
 	value = 666
@@ -157,7 +157,7 @@
 /datum/chem_property/special/embryonic
 	name = PROPERTY_EMBRYONIC
 	code = "MYO"
-	description = "The chemical agent carries causes an infection of type REDACTED parasitic embryonic organism."
+	description = "药剂携带的寄生胚胎生物会引发感染，其类型为【已删节】。"
 	rarity = PROPERTY_ADMIN
 	category = PROPERTY_TYPE_ANOMALOUS
 	value = 666
@@ -176,7 +176,7 @@
 /datum/chem_property/special/transforming
 	name = PROPERTY_TRANSFORMING
 	code = "HGN"
-	description = "The chemical agent carries REDACTED, altering the host psychologically and physically."
+	description = "药剂携带【已删节】，会改变宿主的心理和生理状态。"
 	rarity = PROPERTY_ADMIN
 	category = PROPERTY_TYPE_ANOMALOUS
 	value = 666
@@ -190,7 +190,7 @@
 /datum/chem_property/special/ravening
 	name = PROPERTY_RAVENING
 	code = "RAV"
-	description = "The chemical agent carries the X-65 biological organism."
+	description = "药剂携带X-65生物体。"
 	rarity = PROPERTY_ADMIN
 	category = PROPERTY_TYPE_ANOMALOUS
 	value = 666
@@ -204,7 +204,7 @@
 /datum/chem_property/special/curing
 	name = PROPERTY_CURING
 	code = "CUR"
-	description = "Binds to and neutralizes specific microbiological organisms."
+	description = "与特定微生物结合并将其中和。"
 	rarity = PROPERTY_ADMIN
 	category = PROPERTY_TYPE_MEDICINE|PROPERTY_TYPE_ANOMALOUS
 	value = 666
@@ -231,7 +231,7 @@
 /datum/chem_property/special/omnipotent
 	name = PROPERTY_OMNIPOTENT
 	code = "OMN"
-	description = "Fully revitalizes all bodily functions."
+	description = "全面恢复身体的所有功能。"
 	rarity = PROPERTY_ADMIN
 	category = PROPERTY_TYPE_MEDICINE|PROPERTY_TYPE_ANOMALOUS
 	value = 666
@@ -272,7 +272,7 @@
 /datum/chem_property/special/radius
 	name = PROPERTY_RADIUS
 	code = "RAD"
-	description = "Controls the radius of a fire, using unknown means"
+	description = "以未知方式控制火焰范围。"
 	rarity = PROPERTY_ADMIN
 	category = PROPERTY_TYPE_REACTANT|PROPERTY_TYPE_ANOMALOUS
 	value = 666
@@ -296,7 +296,7 @@
 /datum/chem_property/special/intensity
 	name = PROPERTY_INTENSITY
 	code = "INT"
-	description = "Controls the intensity of a fire, using unknown means"
+	description = "以未知方式控制火焰强度。"
 	rarity = PROPERTY_ADMIN
 	category = PROPERTY_TYPE_REACTANT|PROPERTY_TYPE_ANOMALOUS
 	value = 666
@@ -318,7 +318,7 @@
 /datum/chem_property/special/duration
 	name = PROPERTY_DURATION
 	code = "DUR"
-	description = "Controls the duration of a fire, using unknown means"
+	description = "以未知方式控制火焰持续时间。"
 	rarity = PROPERTY_ADMIN
 	category = PROPERTY_TYPE_REACTANT|PROPERTY_TYPE_ANOMALOUS
 	value = 666
@@ -340,7 +340,7 @@
 /datum/chem_property/special/revitalizing
 	name = PROPERTY_REVITALIZING
 	code = "REV"
-	description = "For a period of time, revitalizes the main systems of the body and prevents unconciousness."
+	description = "在一段时间内恢复身体主要系统的活力，并防止失去意识。"
 	rarity = PROPERTY_ADMIN
 	category = PROPERTY_TYPE_STIMULANT
 	value = 666

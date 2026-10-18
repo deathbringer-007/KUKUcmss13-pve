@@ -1,6 +1,6 @@
 /obj/item/device/debugger
-	name = "debugger"
-	desc = "Used to debug electronic equipment."
+	name = "电子故障诊断器"
+	desc = "用于排查电子设备的故障。"
 	icon_state = "hacktool-g"
 	flags_atom = FPRINT|CONDUCT
 	force = 5
@@ -8,7 +8,7 @@
 	throwforce = 5
 	throw_range = 15
 	throw_speed = SPEED_VERY_FAST
-	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."
+	desc = "可以用它尝试入侵气闸门或区域电力控制器，无需剪断电线。"
 
 	matter = list("metal" = 50,"glass" = 20)
 
@@ -17,15 +17,15 @@
 
 /obj/item/device/debugger/is_used_on(obj/O, mob/user)
 	if(istype(O, /obj/structure/machinery/power/apc))
-		to_chat(user, SPAN_NOTICE(" The device's software appears to be fine."))
+		to_chat(user, SPAN_NOTICE(" 设备的软件似乎没有问题。"))
 		return 1
 	if(istype(O, /obj/structure/machinery/door))
 		var/obj/structure/machinery/door/D = O
 		if(D.operating == -1)
-			to_chat(user, SPAN_DANGER("There is a software error with the device."))
+			to_chat(user, SPAN_DANGER("设备存在软件错误。"))
 		else
-			to_chat(user, SPAN_NOTICE(" The device's software appears to be fine."))
+			to_chat(user, SPAN_NOTICE(" 设备的软件似乎没有问题。"))
 		return 1
 	else if(istype(O, /obj/structure/machinery))
-		to_chat(user, SPAN_NOTICE(" The device's software appears to be fine."))
+		to_chat(user, SPAN_NOTICE(" 设备的软件似乎没有问题。"))
 		return 1

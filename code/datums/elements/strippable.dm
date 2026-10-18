@@ -83,12 +83,12 @@
 	if ((equipping.flags_item & ITEM_ABSTRACT))
 		return FALSE
 	if ((equipping.flags_item & NODROP))
-		to_chat(user, SPAN_WARNING("You can't put [equipping] on [source], it's stuck to your hand!"))
+		to_chat(user, SPAN_WARNING("你无法把 [equipping] 放到 [source] 身上，它粘在你手上了！"))
 		return FALSE
 	if (ishuman(source))
 		var/mob/living/carbon/human/sourcehuman = source
 		if(HAS_TRAIT(sourcehuman, TRAIT_UNSTRIPPABLE) && !sourcehuman.is_mob_incapacitated())
-			to_chat(src, SPAN_DANGER("[sourcehuman] is too strong to force [equipping] onto them!"))
+			to_chat(src, SPAN_DANGER("[sourcehuman] 力量太强，无法强行给其装备 [equipping]！"))
 			return
 	return TRUE
 
@@ -96,8 +96,8 @@
 /// Returns TRUE/FALSE depending on if it is allowed.
 /datum/strippable_item/proc/start_equip(atom/source, obj/item/equipping, mob/user)
 	source.visible_message(
-		SPAN_NOTICE("[user] tries to put [equipping] on [source]."),
-		SPAN_NOTICE("[user] tries to put [equipping] on you.")
+		SPAN_NOTICE("[user] 试图将 [equipping] 装到 [source] 身上。"),
+		SPAN_NOTICE("[user] 试图给你装备 [equipping]。")
 	)
 
 	if (ismob(source))
@@ -123,15 +123,15 @@
 		return FALSE
 
 	if (user.action_busy && !skillcheck(user, SKILL_POLICE, SKILL_POLICE_SKILLED))
-		to_chat(user, SPAN_WARNING("You can't do this right now."))
+		to_chat(user, SPAN_WARNING("你现在无法这么做。"))
 		return FALSE
 
 	if (user.is_mob_incapacitated())
-		to_chat(user, SPAN_WARNING("You can't do this right now."))
+		to_chat(user, SPAN_WARNING("你现在无法这么做。"))
 		return FALSE
 
 	if (HAS_TRAIT(user, TRAIT_IMMOBILIZED) || HAS_TRAIT(user, TRAIT_FLOORED))
-		to_chat(user, SPAN_WARNING("You can't do this right now."))
+		to_chat(user, SPAN_WARNING("你现在无法这么做。"))
 		return FALSE
 
 	if ((item.flags_inventory & CANTSTRIP) || ((item.flags_item & NODROP) && !(item.flags_item & FORCEDROP_CONDITIONAL)) || (item.flags_item & ITEM_ABSTRACT))
@@ -140,11 +140,11 @@
 	if (ishuman(source))
 		var/mob/living/carbon/human/sourcehuman = source
 		if(MODE_HAS_TOGGLEABLE_FLAG(MODE_NO_STRIPDRAG_ENEMY) && (sourcehuman.stat == DEAD || sourcehuman.health < HEALTH_THRESHOLD_CRIT) && !sourcehuman.get_target_lock(user.faction_group))
-			to_chat(user, SPAN_WARNING("You can't strip items of a crit or dead member of another faction!"))
+			to_chat(user, SPAN_WARNING("你不能剥取其他阵营重伤或死亡成员的物品！"))
 			return FALSE
 
 		if(HAS_TRAIT(sourcehuman, TRAIT_UNSTRIPPABLE) && !sourcehuman.is_mob_incapacitated())
-			to_chat(src, SPAN_DANGER("[sourcehuman] has an unbreakable grip on their equipment!"))
+			to_chat(src, SPAN_DANGER("[sourcehuman] 死死抓住了自己的装备，根本无法取走！"))
 			return
 
 	return TRUE
@@ -157,8 +157,8 @@
 		return FALSE
 
 	source.visible_message(
-		SPAN_WARNING("[user] tries to remove [source]'s [item]."),
-		SPAN_DANGER("[user] tries to remove your [item].")
+		SPAN_WARNING("[user] 试图取下 [source] 的 [item]。"),
+		SPAN_DANGER("[user] 试图取下你的 [item]。")
 	)
 
 	if (ismob(source))
@@ -215,13 +215,13 @@
 	if (!ismob(source))
 		return FALSE
 	if (user.action_busy)
-		to_chat(user, SPAN_WARNING("You can't do this right now."))
+		to_chat(user, SPAN_WARNING("你现在无法这么做。"))
 		return FALSE
 	if (!equipping.mob_can_equip(
 		source,
 		key
 	))
-		to_chat(user, SPAN_WARNING("\The [equipping] doesn't fit in that place!"))
+		to_chat(user, SPAN_WARNING("\The [equipping] 无法放入那个位置！"))
 		return FALSE
 	if(equipping.flags_item & WIELDED)
 		equipping.unwield(user)

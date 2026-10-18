@@ -208,13 +208,13 @@ SUBSYSTEM_DEF(hijack)
 
 		switch(announce)
 			if(1)
-				xeno_announcement(SPAN_XENOANNOUNCE("The talls are a quarter of the way towards their goals. Disable the following areas: [xeno_warning_areas]"), hive.hivenumber, XENO_HIJACK_ANNOUNCE)
+				xeno_announcement(SPAN_XENOANNOUNCE("高个子已完成四分之一的目标。瘫痪以下区域：[xeno_warning_areas]"), hive.hivenumber, XENO_HIJACK_ANNOUNCE)
 			if(2)
-				xeno_announcement(SPAN_XENOANNOUNCE("The talls are half way towards their goals. Disable the following areas: [xeno_warning_areas]"), hive.hivenumber, XENO_HIJACK_ANNOUNCE)
+				xeno_announcement(SPAN_XENOANNOUNCE("高个子已完成一半的目标。瘫痪以下区域：[xeno_warning_areas]"), hive.hivenumber, XENO_HIJACK_ANNOUNCE)
 			if(3)
-				xeno_announcement(SPAN_XENOANNOUNCE("The talls are three quarters of the way towards their goals. Disable the following areas: [xeno_warning_areas]"), hive.hivenumber, XENO_HIJACK_ANNOUNCE)
+				xeno_announcement(SPAN_XENOANNOUNCE("高个子已完成四分之三的目标。瘫痪以下区域：[xeno_warning_areas]"), hive.hivenumber, XENO_HIJACK_ANNOUNCE)
 			if(4)
-				xeno_announcement(SPAN_XENOANNOUNCE("The talls have completed their goals!"), hive.hivenumber, XENO_HIJACK_ANNOUNCE)
+				xeno_announcement(SPAN_XENOANNOUNCE("高个子已完成全部目标！"), hive.hivenumber, XENO_HIJACK_ANNOUNCE)
 
 	switch(announce)
 		if(1)
@@ -312,7 +312,7 @@ SUBSYSTEM_DEF(hijack)
 			if(!length(hive.totalXenos))
 				continue
 
-			xeno_announcement(SPAN_XENOANNOUNCE("The talls may be attempting to take their ship down with them in Engineering, stop them!"), hive.hivenumber, XENO_HIJACK_ANNOUNCE)
+			xeno_announcement(SPAN_XENOANNOUNCE("高个子可能正试图在工程区引爆舰船、同归于尽，快阻止他们！"), hive.hivenumber, XENO_HIJACK_ANNOUNCE)
 
 	adjust_generator_overload_count(new_overloading ? 1 : -1)
 
@@ -333,7 +333,7 @@ SUBSYSTEM_DEF(hijack)
 	for(var/mob/current_mob as anything in GLOB.mob_list)
 		var/area/mob_area = get_area(current_mob)
 		if(istype(mob_area, /area/almayer/engineering/lower/engine_core))
-			to_chat(current_mob, SPAN_BOLDWARNING("You feel the heat of the room increase as the fusion engines whirr louder."))
+			to_chat(current_mob, SPAN_BOLDWARNING("聚变引擎的轰鸣越来越响，你感到房间里的温度正在升高。"))
 
 /datum/controller/subsystem/hijack/proc/superheat_engine_room()
 	engine_room_superheated = TRUE
@@ -343,7 +343,7 @@ SUBSYSTEM_DEF(hijack)
 	for(var/mob/current_mob as anything in GLOB.mob_list)
 		var/area/mob_area = get_area(current_mob)
 		if(istype(mob_area, /area/almayer/engineering/lower/engine_core))
-			to_chat(current_mob, SPAN_BOLDWARNING("The room feels incredibly hot, you can't take much more of this!"))
+			to_chat(current_mob, SPAN_BOLDWARNING("房间里热得难以忍受，你快撑不住了！"))
 
 /datum/controller/subsystem/hijack/proc/announce_sd_halfway()
 	ares_sd_announced = TRUE
@@ -358,7 +358,7 @@ SUBSYSTEM_DEF(hijack)
 		if(!current_mob?.loc || !current_mob.client || !current_turf || !is_mainship_level(current_turf.z))
 			continue
 
-		to_chat(current_mob, SPAN_BOLDWARNING("The ship's deck worryingly creaks underneath you."))
+		to_chat(current_mob, SPAN_BOLDWARNING("脚下的甲板发出令人不安的吱嘎声。"))
 		playsound_client(current_mob.client, creak_picked, vol = 50)
 
 	sleep(7 SECONDS)
@@ -425,7 +425,7 @@ SUBSYSTEM_DEF(hijack)
 		SSticker.mode.check_win()
 
 	if(!SSticker.mode) //Just a safety, just in case a mode isn't running, somehow.
-		to_world(SPAN_ROUNDBODY("Resetting in 30 seconds!"))
+		to_world(SPAN_ROUNDBODY("30秒后重置！"))
 		sleep(30 SECONDS)
 		log_game("Rebooting due to nuclear detonation.")
 		world.Reboot()

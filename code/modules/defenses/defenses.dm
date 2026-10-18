@@ -1,6 +1,6 @@
 /obj/structure/machinery/defenses
 	name = "Don't see this"
-	desc = "Call for help."
+	desc = "请求帮助。"
 	icon = 'icons/obj/structures/machinery/defenses/sentry.dmi'
 	icon_state = "defense_base"
 	var/icon_off = "defense_base_off"
@@ -87,16 +87,16 @@
 
 	var/message = ""
 	if(ishuman(user))
-		message += SPAN_INFO("A multitool can be used to disassemble it.")
+		message += SPAN_INFO("可用多用工具拆解。")
 		message += "\n"
-		message += SPAN_INFO("It is currently [locked? "locked" : "unlocked"] to non-engineers.")
+		message += SPAN_INFO("目前对非工程人员[locked? "锁定" : "开放"]。")
 		message += "\n"
-		message += SPAN_INFO("It has [SPAN_HELPFUL("[health]/[health_max]")] health.")
+		message += SPAN_INFO("它的生命值为[SPAN_HELPFUL("[health]/[health_max]")]。")
 	message += "\n"
 	if(display_additional_stats)
-		message += SPAN_INFO("Its display reads - Kills: [kills] | Shots: [shots].")
+		message += SPAN_INFO("显示屏读数——击杀：[kills]；射击：[shots]。")
 	if(length(nickname) > 0)
-		message += SPAN_INFO("\nIt has been assigned the name: [nickname]")
+		message += SPAN_INFO("\n指定名称：[nickname]")
 	. += message
 
 /obj/structure/machinery/defenses/proc/power_on()
@@ -211,7 +211,7 @@
 
 	if(HAS_TRAIT(O, TRAIT_TOOL_MULTITOOL))
 		if(!friendly_faction(user.faction))
-			to_chat(user, SPAN_WARNING("This doesn't seem safe..."))
+			to_chat(user, SPAN_WARNING("这似乎不太安全……"))
 			var/additional_shock = 1
 			if(!do_after(user, hack_time * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, src))
 				additional_shock++
@@ -233,11 +233,11 @@
 			LAZYCLEARLIST(faction_group)
 			for(var/i in user.faction_group)
 				LAZYADD(faction_group, i)
-			to_chat(user, SPAN_WARNING("You've hacked \the [src], it's now ours!"))
+			to_chat(user, SPAN_WARNING("你破解了[src]，它现在归我们了！"))
 			return
 
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_NOVICE))
-			to_chat(user, SPAN_WARNING("You don't have the training to do this."))
+			to_chat(user, SPAN_WARNING("你没有接受过这方面的训练。"))
 			return
 		// if the sentry can have key interacted with
 		// and if the multitool is able to do it
@@ -253,7 +253,7 @@
 
 		var/result = null
 		if(length(multitool_actions) > 1)
-			result = tgui_input_list(user, "What do you want to do with the multitool", "Multitool interaction", multitool_actions)
+			result = tgui_input_list(user, "你想用多功能工具做什么？", "多功能工具操作", multitool_actions)
 		else if (length(multitool_actions) == 1)
 			result = multitool_actions[1]
 
@@ -267,24 +267,24 @@
 					var/obj/item = ref.resolve()
 					if(istype(item, /obj/item/device/sentry_computer))
 						var/obj/item/device/sentry_computer/computer = item
-						to_chat(usr, SPAN_NOTICE("Attempting link to [item] [computer.serial_number]."))
+						to_chat(usr, SPAN_NOTICE("正在尝试关联[item] [computer.serial_number]。"))
 						playsound(src, 'sound/machines/scanning.ogg', 25, FALSE)
 						computer.register(tool, user, src)
 						key_found = TRUE
 						break
 				if(!key_found)
-					to_chat(user, SPAN_WARNING("No valid encryption key found. Link \the [tool] with a sentry computer."))
+					to_chat(user, SPAN_WARNING("未找到有效加密密钥。请将[tool]与哨戒炮计算机关联。"))
 				return
 			if("decrypt")
 				// unregister
 				var/loaded_key = linked_laptop.serial_number
 				if(length(tool.encryption_keys) == 0)
-					to_chat(user, SPAN_NOTICE("\The [src] is encrypted. To use \the [tool] it must be paired with the laptop [linked_laptop.serial_number]."))
+					to_chat(user, SPAN_NOTICE("[src]已加密。要使用[tool]，必须先与笔记本电脑[linked_laptop.serial_number]配对。"))
 				if(tool.encryption_keys[loaded_key])
-					to_chat(user, SPAN_NOTICE("Attempting decryption of [src]."))
+					to_chat(user, SPAN_NOTICE("正在尝试解密[src]。"))
 					linked_laptop.unregister(tool, user, src)
 				else
-					to_chat(user, SPAN_WARNING("\The [src] is already encrypted by laptop [linked_laptop.serial_number]. You must load its encryption key to decrypt."))
+					to_chat(user, SPAN_WARNING("[src]已被笔记本电脑[linked_laptop.serial_number]加密。你必须加载它的密钥才能解密。"))
 				return
 
 		disassemble(user)
@@ -293,54 +293,54 @@
 	if(HAS_TRAIT(O, TRAIT_TOOL_WRENCH))
 		if(anchored)
 			if(turned_on)
-				to_chat(user, SPAN_WARNING("[src] is currently active. The motors will prevent you from unanchoring it safely."))
+				to_chat(user, SPAN_WARNING("[src]正在运行，电机会妨碍你安全地解除固定。"))
 				return
 
-			user.visible_message(SPAN_NOTICE("[user] begins unanchoring [src] from the ground."),
-			SPAN_NOTICE("You begin unanchoring [src] from the ground."))
+			user.visible_message(SPAN_NOTICE("[user]开始将[src]从地面上松开。"),
+			SPAN_NOTICE("你开始将[src]从地面上松开。"))
 
 			if(!do_after(user, 20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, src))
 				return
-			user.visible_message(SPAN_NOTICE("[user] unanchors [src] from the ground."),
-			SPAN_NOTICE("You unanchor [src] from the ground."))
+			user.visible_message(SPAN_NOTICE("[user]将[src]从地面上松开了。"),
+			SPAN_NOTICE("你将[src]从地面上松开了。"))
 			anchored = FALSE
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			return
 		else
 			var/turf/open/floor = get_turf(src)
 			if(!floor.allow_construction)
-				to_chat(user, SPAN_WARNING("You cannot secure \the [src] here, find a more secure surface!"))
+				to_chat(user, SPAN_WARNING("无法将[src]固定在这里，请寻找更稳固的表面！"))
 				return FALSE
-			user.visible_message(SPAN_NOTICE("[user] begins securing [src] to the ground."),
-			SPAN_NOTICE("You begin securing [src] to the ground."))
+			user.visible_message(SPAN_NOTICE("[user]开始将[src]固定在地面上。"),
+			SPAN_NOTICE("你开始将[src]固定在地面上。"))
 
 			if(!do_after(user, 20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, src))
 				return
-			user.visible_message(SPAN_NOTICE("[user] secures [src] to the ground."),
-			SPAN_NOTICE("You secure [src] to the ground."))
+			user.visible_message(SPAN_NOTICE("[user]将[src]固定在了地面上。"),
+			SPAN_NOTICE("你将[src]固定在了地面上。"))
 			anchored = TRUE
 			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 			return
 
 	if(iswelder(O))
 		if(!HAS_TRAIT(O, TRAIT_TOOL_BLOWTORCH))
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要更强力的焊炬！"))
 			return
 		var/obj/item/tool/weldingtool/WT = O
 		if(health < 0)
-			to_chat(user, SPAN_WARNING("[src]'s internal circuitry is ruined, there's no way you can salvage this on the go."))
+			to_chat(user, SPAN_WARNING("[src]的内部电路已经毁坏，无法在现场抢修。"))
 			return
 
 		if(health >= health_max)
-			to_chat(user, SPAN_WARNING("[src] isn't in need of repairs."))
+			to_chat(user, SPAN_WARNING("[src]无需修复。"))
 			return
 
 		if(WT.remove_fuel(0, user))
-			user.visible_message(SPAN_NOTICE("[user] begins repairing [src]."),
-			SPAN_NOTICE("You begin repairing [src]."))
+			user.visible_message(SPAN_NOTICE("[user]开始修复[src]。"),
+			SPAN_NOTICE("你开始修复[src]。"))
 			if(do_after(user, 40 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_FRIENDLY, src))
-				user.visible_message(SPAN_NOTICE("[user] repairs [src]."),
-				SPAN_NOTICE("You repair [src]."))
+				user.visible_message(SPAN_NOTICE("[user]修复了[src]。"),
+				SPAN_NOTICE("你修复了[src]。"))
 				if(stat == DEFENSE_DAMAGED)
 					stat &= ~DEFENSE_DAMAGED
 				update_health(-50)
@@ -352,27 +352,27 @@
 
 /obj/structure/machinery/defenses/proc/disassemble(mob/user)
 	if(health < health_max * 0.25)
-		to_chat(user, SPAN_WARNING("\The [src] is too damaged to pick up!"))
+		to_chat(user, SPAN_WARNING("[src]损坏过于严重，无法拾起！"))
 		return
 
 	if(static)
-		to_chat(user, SPAN_WARNING("\The [src] is bolted to the ground!"))
+		to_chat(user, SPAN_WARNING("[src]已被螺栓固定在地面上！"))
 		return
 
 	if(linked_laptop)
-		to_chat(user, SPAN_WARNING("\The [src] is currently encrypted by [linked_laptop]. To deconstruct \the [src] it must first be unlinked."))
+		to_chat(user, SPAN_WARNING("[src]目前由[linked_laptop]加密。必须先解除[src]的关联才能拆解。"))
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] begins disassembling \the [src]."), SPAN_NOTICE("You begin disassembling \the [src]."))
+	user.visible_message(SPAN_NOTICE("[user]开始拆解[src]。"), SPAN_NOTICE("你开始拆解[src]。"))
 
 	if(!do_after(user, disassemble_time * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, src))
 		return
 
 	if(health < health_max * 0.25) //repeat check
-		to_chat(user, SPAN_WARNING("\The [src] is too damaged to pick up!"))
+		to_chat(user, SPAN_WARNING("[src]损坏过于严重，无法拾起！"))
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] disassembles [src]."), SPAN_NOTICE("You disassemble [src]."))
+	user.visible_message(SPAN_NOTICE("[user]拆解了[src]。"), SPAN_NOTICE("你拆解了[src]。"))
 
 	playsound(loc, 'sound/mecha/mechmove04.ogg', 30, 1)
 	var/turf/T = get_turf(src)
@@ -392,7 +392,7 @@
 		return
 
 	if(isyautja(user))
-		to_chat(user, SPAN_WARNING("You punch [src] but nothing happens."))
+		to_chat(user, SPAN_WARNING("你挥拳打向[src]，但什么也没发生。"))
 		return
 
 	add_fingerprint(user)
@@ -401,14 +401,14 @@
 		return
 
 	if(!anchored)
-		to_chat(user, SPAN_WARNING("It must be anchored to the ground before you can activate it."))
+		to_chat(user, SPAN_WARNING("必须先将它固定在地面上才能启动。"))
 		return
 
 	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
 		if(locked)
-			to_chat(user, SPAN_WARNING("The control panel on [src] is locked to non-engineers."))
+			to_chat(user, SPAN_WARNING("[src]的控制面板对非工程人员锁定。"))
 			return
-		user.visible_message(SPAN_NOTICE("[user] begins switching [src] [turned_on? "off" : "on"]."), SPAN_NOTICE("You begin switching [src] [turned_on? "off" : "on"]."))
+		user.visible_message(SPAN_NOTICE("[user]开始[turned_on? "关闭" : "开启"][src]。"), SPAN_NOTICE("你开始[turned_on? "关闭" : "开启"][src]。"))
 		if(!(do_after(user, 20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_FRIENDLY, src)))
 			return
 
@@ -416,7 +416,7 @@
 		if(!can_be_near_defense)
 			for(var/obj/structure/machinery/defenses/def in urange(defense_check_range, loc))
 				if(def != src && def.turned_on && !def.can_be_near_defense)
-					to_chat(user, SPAN_WARNING("This is too close to \a [def]!"))
+					to_chat(user, SPAN_WARNING("这里离[def]太近了！"))
 					return
 
 		power_on()
@@ -457,7 +457,7 @@
 	update_icon()
 
 /obj/structure/machinery/defenses/proc/destroyed_action()
-	visible_message("[icon2html(src, viewers(src))] [SPAN_WARNING("The [name] starts to blink rapidly!")]")
+	visible_message("[icon2html(src, viewers(src))] [SPAN_WARNING("[name]开始快速闪烁！")]")
 	playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
 
 	sleep(5)
@@ -468,7 +468,7 @@
 
 /obj/structure/machinery/defenses/proc/damaged_action(damage)
 	if(health < health_max * 0.15)
-		visible_message(SPAN_DANGER("[icon2html(src, viewers(src))] The [name] cracks and breaks apart!"))
+		visible_message(SPAN_DANGER("[icon2html(src, viewers(src))] [name]开裂并散架了！"))
 		stat |= DEFENSE_DAMAGED
 		turned_on = FALSE
 
@@ -476,7 +476,7 @@
 	. = ..()
 	if(turned_on)
 		if(prob(50))
-			visible_message("[icon2html(src, viewers(src))] <span class='danger'>[src] beeps and buzzes wildly, flashing odd symbols on its screen before shutting down!</span>")
+			visible_message("[icon2html(src, viewers(src))] <span class='danger'>[src]疯狂鸣响，屏幕闪过奇怪符号，随后停止运转！</span>")
 			playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
 			for(var/i = 1 to 6)
 				setDir(pick(1, 2, 3, 4))
@@ -493,7 +493,7 @@
 
 /obj/structure/machinery/defenses/bullet_act(obj/projectile/P)
 	bullet_ping(P)
-	visible_message(SPAN_WARNING("[src] is hit by [P]!"))
+	visible_message(SPAN_WARNING("[P]击中了[src]！"))
 	var/ammo_flags = P.ammo.flags_ammo_behavior | P.projectile_override_flags
 	if(ammo_flags & AMMO_ACIDIC) //Fix for xenomorph spit doing baby damage.
 		update_health(floor(P.damage/3))
@@ -507,8 +507,8 @@
 	return
 
 /obj/structure/machinery/defenses/verb/toggle_turret_locks_verb()
-	set name = "Toggle Turret Lock"
-	set desc = "Toggles allowing non-engineers to turn turrets on and off"
+	set name = "切换炮塔锁定"
+	set desc = "切换是否允许非工程人员开关炮塔。"
 	set category = "Object"
 	set src in view(1)
 	if(static)
@@ -518,9 +518,9 @@
 	if(!friendly_faction(usr.faction))
 		return
 	if(!skillcheck(usr, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-		to_chat(usr, SPAN_WARNING("You don't have the training to do this."))
+		to_chat(usr, SPAN_WARNING("你没有接受过这方面的训练。"))
 		return
 
 	locked = !locked
-	to_chat(usr, SPAN_NOTICE("You [locked? "lock" : "unlock"] [src] to non-engineers."))
+	to_chat(usr, SPAN_NOTICE("你[locked? "禁止" : "允许"]非工程人员操作[src]。"))
 	update_icon()

@@ -369,7 +369,7 @@
 
 /mob/living/proc/toggle_mov_intent()
 	if(legcuffed)
-		to_chat(src, SPAN_NOTICE("You are legcuffed! You cannot run until you get \the [legcuffed] removed!"))
+		to_chat(src, SPAN_NOTICE("你的双腿被铐住了！必须先取下[legcuffed]才能奔跑！"))
 		set_movement_intent(MOVE_INTENT_WALK)
 		return FALSE
 	switch(m_intent)
@@ -540,7 +540,7 @@
 		for(var/obj/structure/tunnel/tunnel as anything in sorted_tunnels)
 			options["Tunnel [tunnel.tunnel_desc]"] = list(tunnel, TRACKER_TUNNEL)
 
-		var/list/selected = tgui_input_list(user, "Select what you want the locator to track.", "Locator Options", options)
+		var/list/selected = tgui_input_list(user, "选择定位器要追踪的目标。", "定位器选项", options)
 		if(selected)
 			var/selected_data = options[selected]
 			tracking_ref = WEAKREF(selected_data[1]) // Weakref to the tracked atom (or null)

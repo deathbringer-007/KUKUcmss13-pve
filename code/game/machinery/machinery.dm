@@ -287,7 +287,7 @@ Class Procs:
 
 /obj/structure/machinery/proc/ping(text=null)
 	if (!text)
-		text = "\The [src] pings."
+		text = "[src]发出叮的一声。"
 
 	state(text, "blue")
 	playsound(src.loc, 'sound/machines/ping.ogg', 25, 0)

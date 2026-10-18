@@ -19,8 +19,8 @@
 ############## Misc Weapons ###############
 #########################################*/
 /obj/item/weapon/harpoon/yautja
-	name = "large harpoon"
-	desc = "A huge metal spike with a hook at the end. It's carved with mysterious alien writing."
+	name = "大型鱼叉"
+	desc = "一根末端带钩的巨大金属尖刺，上面刻着神秘的外星文字。"
 
 	icon = 'icons/obj/items/hunter/pred_gear.dmi'
 	icon_state = "spike"
@@ -45,9 +45,9 @@
 	throwforce = MELEE_FORCE_TIER_6
 
 /obj/item/weapon/wristblades
-	name = "wrist blades"
+	name = "腕刃"
 	var/plural_name = "wrist blades"
-	desc = "A pair of huge, serrated blades extending out from metal gauntlets."
+	desc = "一对从金属护手中伸出的巨大锯齿刀刃。"
 
 	icon = 'icons/obj/items/hunter/pred_gear.dmi'
 	icon_state = "wrist"
@@ -88,12 +88,12 @@
 		if(door.operating || !door.density || door.locked)
 			return FALSE
 		if(door.heavy)
-			to_chat(usr, SPAN_DANGER("[door] is too heavy to be forced open."))
+			to_chat(usr, SPAN_DANGER("[door]太重，无法强行打开。"))
 			return FALSE
-		user.visible_message(SPAN_DANGER("[user] jams their [name] into [door] and strains to rip it open..."), SPAN_DANGER("You jam your [name] into [door] and strain to rip it open..."))
+		user.visible_message(SPAN_DANGER("[user]将[name]卡进[door]，奋力将其撬开……"), SPAN_DANGER("你将[name]卡进[door]，奋力将其撬开……"))
 		playsound(user,'sound/weapons/wristblades_hit.ogg', 15, TRUE)
 		if(do_after(user, 3 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE) && door.density)
-			user.visible_message(SPAN_DANGER("[user] forces [door] open with the [name]!"), SPAN_DANGER("You force [door] open with the [name]."))
+			user.visible_message(SPAN_DANGER("[user]用[name]强行打开了[door]！"), SPAN_DANGER("你用[name]强行打开了[door]。"))
 			door.open(TRUE)
 
 	else if(istype(attacked_target, /obj/structure/mineral_door/resin))
@@ -101,13 +101,13 @@
 		if(door.isSwitchingStates || user.a_intent == INTENT_HARM)
 			return
 		if(door.density)
-			user.visible_message(SPAN_DANGER("[user] jams their [name] into [door] and strains to rip it open..."), SPAN_DANGER("You jam your [name] into [door] and strain to rip it open..."))
+			user.visible_message(SPAN_DANGER("[user]将[name]卡进[door]，奋力将其撬开……"), SPAN_DANGER("你将[name]卡进[door]，奋力将其撬开……"))
 			playsound(user, 'sound/weapons/wristblades_hit.ogg', 15, TRUE)
 			if(do_after(user, 1.5 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE) && door.density)
-				user.visible_message(SPAN_DANGER("[user] forces [door] open using the [name]!"), SPAN_DANGER("You force [door] open with your [name]."))
+				user.visible_message(SPAN_DANGER("[user]用[name]强行打开了[door]！"), SPAN_DANGER("你用[name]强行打开了[door]。"))
 				door.open()
 		else
-			user.visible_message(SPAN_DANGER("[user] pushes [door] with their [name] to force it closed..."), SPAN_DANGER("You push [door] with your [name] to force it closed..."))
+			user.visible_message(SPAN_DANGER("[user]用[name]推着[door]，试图强行将其关闭……"), SPAN_DANGER("你用[name]推着[door]，试图强行将其关闭……"))
 			playsound(user, 'sound/weapons/wristblades_hit.ogg', 15, TRUE)
 			if(do_after(user, 2 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE) && !door.density)
 				user.visible_message(SPAN_DANGER("[user] forces [door] closed using the [name]!"), SPAN_DANGER("You force [door] closed with your [name]."))
@@ -120,9 +120,9 @@
 		gloves.wristblades_internal(user, TRUE) // unlikely that the yaut would have gloves without blades, so if they do, runtime logs here would be handy
 
 /obj/item/weapon/wristblades/scimitar
-	name = "wrist scimitar"
+	name = "腕弯刀"
 	plural_name = "wrist scimitars"
-	desc = "A huge, serrated blade extending from metal gauntlets."
+	desc = "一把从金属护手中伸出的巨大锯齿刀刃。"
 	icon_state = "scim"
 	item_state = "scim"
 	attack_speed = 5
@@ -143,8 +143,8 @@
 	var/human_adapted = FALSE
 
 /obj/item/weapon/yautja/chain
-	name = "chainwhip"
-	desc = "A segmented, lightweight whip made of durable, acid-resistant metal. Not very common among Yautja Hunters, but still a dangerous weapon capable of shredding prey."
+	name = "链鞭"
+	desc = "由耐用抗酸金属制成的分节轻型鞭子。铁血猎人不常使用，但仍是一件能撕碎猎物的危险武器。"
 	icon_state = "whip"
 	item_state = "whip"
 	flags_atom = FPRINT|QUICK_DRAWABLE|CONDUCT
@@ -169,8 +169,8 @@
 		xenomorph.AddComponent(/datum/component/status_effect/interference, 30, 30)
 
 /obj/item/weapon/yautja/sword
-	name = "clan sword"
-	desc = "An expertly crafted Yautja blade carried by hunters who wish to fight up close. Razor sharp and capable of cutting flesh into ribbons. Commonly carried by aggressive and lethal hunters."
+	name = "氏族战刀"
+	desc = "精工打造的铁血战士刀刃，由偏好近身搏斗的猎人携带。极其锋利，足以将血肉切成细条，常见于凶猛致命的猎人手中。"
 	icon_state = "clansword"
 	flags_atom = FPRINT|QUICK_DRAWABLE|CONDUCT
 	flags_item = ITEM_PREDATOR
@@ -193,8 +193,8 @@
 		xenomorph.AddComponent(/datum/component/status_effect/interference, 30, 30)
 
 /obj/item/weapon/yautja/scythe
-	name = "dual war scythe"
-	desc = "A huge, incredibly sharp dual blade used for hunting dangerous prey. This weapon is commonly carried by Yautja who wish to disable and slice apart their foes."
+	name = "双刃战镰"
+	desc = "巨大而极其锋利的双刃武器，用于猎杀危险猎物，常见于希望先制服、再肢解敌人的铁血战士手中。"
 	icon_state = "predscythe"
 	item_state = "scythe_dual"
 	flags_atom = FPRINT|QUICK_DRAWABLE|CONDUCT
@@ -224,15 +224,15 @@
 	return
 
 /obj/item/weapon/yautja/scythe/alt
-	name = "double war scythe"
-	desc = "A huge, incredibly sharp double blade used for hunting dangerous prey. This weapon is commonly carried by Yautja who wish to disable and slice apart their foes."
+	name = "双头战镰"
+	desc = "巨大而极其锋利的双头武器，用于猎杀危险猎物，常见于希望先制服、再肢解敌人的铁血战士手中。"
 	icon_state = "predscythe_alt"
 	item_state = "scythe_double"
 
 //Combistick
 /obj/item/weapon/yautja/combistick
-	name = "combi-stick"
-	desc = "A compact yet deadly personal weapon. Can be concealed when folded. Functions well as a throwing weapon or defensive tool. A common sight in Yautja packs due to its versatility."
+	name = "伸缩战矛"
+	desc = "小巧而致命的随身武器，折叠后便于隐藏，也适合投掷或防御。用途广泛，因此常见于铁血战士的装备中。"
 	icon_state = "combistick"
 	flags_atom = FPRINT|QUICK_DRAWABLE|CONDUCT
 	flags_equip_slot = SLOT_BACK
@@ -471,8 +471,8 @@
 	..()
 
 /obj/item/weapon/yautja/knife
-	name = "ceremonial dagger"
-	desc = "A viciously sharp dagger inscribed with ancient Yautja markings. Smells thickly of blood. Carried by some hunters."
+	name = "仪式匕首"
+	desc = "锋利得骇人的匕首，上面刻着古老的铁血战士符号，散发着浓重的血腥味。一些猎人会携带它。"
 	icon_state = "predknife"
 	item_state = "knife"
 	flags_atom = FPRINT|QUICK_DRAWABLE|CONDUCT
@@ -662,8 +662,8 @@
 	current_limb.flayed = TRUE
 
 /obj/item/weapon/yautja/knife/marine
-	name = "\improper extremely sharp M5 'Night Raider' bayonet"
-	desc = "USCMC standard issue combat knife. Can be put into boot holster, but not attached to a rifle. This one is incredibly sharp. Can also be used to extract shrapnel..."
+	name = "\improper 极其锋利的M5“夜袭者”刺刀"
+	desc = "美国殖民地海军陆战队制式战斗刀，可收入靴内刀鞘，但无法安装到步枪上。这把极其锋利，也能用来取出弹片……"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "bayonet"
 	item_state = "combat_knife"
@@ -703,8 +703,8 @@
 	var/human_adapted = FALSE
 
 /obj/item/weapon/twohanded/yautja/spear
-	name = "hunter spear"
-	desc = "A spear of exquisite design, used by an ancient civilisation."
+	name = "猎人长矛"
+	desc = "一支由古老文明精心设计的长矛。"
 	icon_state = "spearhunter"
 	item_state = "spearhunter"
 	flags_item = NOSHIELD|TWOHANDED
@@ -758,8 +758,8 @@
 		busy_fishing = FALSE
 
 /obj/item/weapon/twohanded/yautja/glaive
-	name = "war glaive"
-	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon."
+	name = "战戟"
+	desc = "装在金属长杆上的巨大强力刀刃，上面刻着神秘文字。"
 	icon_state = "glaive"
 	item_state = "glaive"
 	force = MELEE_FORCE_TIER_3
@@ -784,8 +784,8 @@
 	item_state = "glaive_alt"
 
 /obj/item/weapon/twohanded/yautja/glaive/damaged
-	name = "ancient war glaive"
-	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon. This one is ancient and has suffered serious acid damage, making it near-useless."
+	name = "远古战戟"
+	desc = "装在金属长杆上的巨大强力刀刃，上面刻着神秘文字。这一把年代久远，受到严重酸蚀，几乎无法使用。"
 	force = MELEE_FORCE_WEAK
 	force_wielded = MELEE_FORCE_NORMAL
 	throwforce = MELEE_FORCE_WEAK
@@ -801,8 +801,8 @@
 
 //Spike launcher
 /obj/item/weapon/gun/launcher/spike
-	name = "spike launcher"
-	desc = "A compact Yautja device in the shape of a crescent. It can rapidly fire damaging spikes and automatically recharges."
+	name = "尖刺发射器"
+	desc = "新月形的紧凑铁血战士装置，能快速射出致命尖刺，并会自动补充弹药。"
 
 	icon = 'icons/obj/items/hunter/pred_gear.dmi'
 	icon_state = "spikelauncher"
@@ -911,8 +911,8 @@
 	)
 
 /obj/item/weapon/gun/energy/yautja/plasmarifle
-	name = "plasma rifle"
-	desc = "A long-barreled heavy plasma weapon. Intended for combat, not hunting. Has an integrated battery that allows for a functionally unlimited amount of shots to be discharged. Equipped with an internal gyroscopic stabilizer allowing its operator to fire the weapon one-handed if desired"
+	name = "等离子步枪"
+	desc = "长枪管的重型等离子武器，用于作战，而非狩猎。内置电池，实际上可无限射击；内置陀螺稳定器，使操作者在需要时能单手开火。"
 	icon_state = "plasmarifle"
 	item_state = "plasmarifle"
 	unacidable = TRUE
@@ -1004,8 +1004,8 @@
 #define FIRE_MODE_INCENDIARY "Incendiary"
 
 /obj/item/weapon/gun/energy/yautja/plasmapistol
-	name = "plasma pistol"
-	desc = "A plasma pistol capable of rapid fire. It has an integrated battery. Can be used to set fires, either to braziers or on people."
+	name = "等离子手枪"
+	desc = "可快速射击的等离子手枪，带有内置电池。可用来点燃火盆，也可以点燃人。"
 	icon_state = "plasmapistol"
 	item_state = "plasmapistol"
 
@@ -1122,8 +1122,8 @@
 #undef FIRE_MODE_INCENDIARY
 
 /obj/item/weapon/gun/energy/yautja/plasma_caster
-	name = "plasma caster"
-	desc = "A powerful, shoulder-mounted energy weapon."
+	name = "等离子肩炮"
+	desc = "威力强大的肩载能量武器。"
 	icon_state = "plasma_ebony"
 	var/base_icon_state = "plasma"
 	var/base_item_state = "plasma_wear"

@@ -5,8 +5,8 @@
 	name = "Colonists"
 	mob_max = 8
 	mob_min = 1
-	arrival_message = "'This is the *static*. We are *static*.'"
-	objectives = "Follow the orders given to you."
+	arrival_message = "“这里是*杂音*。我们正在*杂音*。”"
+	objectives = "服从下达给你的命令。"
 	probability = 0
 	var/preset = /datum/equipment_preset/colonist
 
@@ -24,8 +24,8 @@
 
 	sleep(20)
 	if(H && H.loc)
-		to_chat(H, SPAN_ROLE_HEADER("You are a colonist!"))
-		to_chat(H, SPAN_ROLE_BODY("You have been put into the game by a staff member. Please follow all staff instructions."))
+		to_chat(H, SPAN_ROLE_HEADER("你是一名殖民者！"))
+		to_chat(H, SPAN_ROLE_BODY("工作人员已将你加入游戏。请遵循工作人员的所有指示。"))
 
 /datum/emergency_call/colonist/engineers
 	name = "Colonists - Engineers"

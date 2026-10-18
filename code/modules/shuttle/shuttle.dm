@@ -922,7 +922,7 @@
 	var/obj/docking_port/stationary/dockedAt = get_docked()
 
 	if(mode == SHUTTLE_RECHARGING)
-		return "recharging, [timeLeft()] seconds remaining"
+		return "正在充能，剩余[timeLeft()]秒"
 
 	if(istype(dockedAt, /obj/docking_port/stationary/transit))
 		if (timeLeft() > 1 HOURS)
@@ -933,7 +933,7 @@
 				dst = previous
 			else
 				dst = destination
-			. = "transit towards [dst?.name || "unknown location"] ([getTimerStr()])"
+			. = "正在前往[dst?.name || "未知地点"]（[getTimerStr()]）"
 	else
 		return dockedAt?.name || "unknown"
 
@@ -1076,13 +1076,13 @@
 
 /obj/docking_port/mobile/proc/can_move_topic(mob/user)
 	if(mode == SHUTTLE_RECHARGING)
-		to_chat(user, SPAN_WARNING("The engines are not ready to use yet!"))
+		to_chat(user, SPAN_WARNING("引擎尚未准备就绪！"))
 		return FALSE
 	if(launch_status == ENDGAME_LAUNCHED)
-		to_chat(user, SPAN_WARNING("You've already escaped. Never going back to that place again!"))
+		to_chat(user, SPAN_WARNING("你已经逃出来了，绝不再回那个地方！"))
 		return FALSE
 	if(mode != SHUTTLE_IDLE)
-		to_chat(user, SPAN_WARNING("Shuttle already in transit."))
+		to_chat(user, SPAN_WARNING("穿梭机已经在航行中。"))
 		return FALSE
 	return TRUE
 

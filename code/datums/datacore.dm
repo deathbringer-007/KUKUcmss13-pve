@@ -164,13 +164,13 @@ GLOBAL_DATUM_INIT(data_core, /datum/datacore, new)
 				dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[cic[real_rank][name]]</td><td>[isactive[name]]</td></tr>"
 				even = !even
 	if(dept_flags & FLAG_SHOW_AUXIL_SUPPORT)
-		dat += "<tr><th colspan=3>Auxiliary Combat Support</th></tr>"
+		dat += "<tr><th colspan=3>辅助作战支援</th></tr>"
 		for(real_rank in auxil)
 			for(name in auxil[real_rank])
 				dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[auxil[real_rank][name]]</td><td>[isactive[name]]</td></tr>"
 				even = !even
 	if(dept_flags & FLAG_SHOW_MARINES)
-		dat += "<tr><th colspan=3>Combat Forces</th></tr>"
+		dat += "<tr><th colspan=3>作战部队</th></tr>"
 		for(var/squad_name in GLOB.ROLES_SQUAD_ALL)
 			if(!squad_sublists[squad_name])
 				continue
@@ -180,7 +180,7 @@ GLOBAL_DATUM_INIT(data_core, /datum/datacore, new)
 					dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[marines_by_squad[squad_name][real_rank][name]]</td><td>[isactive[name]]</td></tr>"
 					even = !even
 	if(dept_flags & FLAG_SHOW_POLICE)
-		dat += "<tr><th colspan=3>Military Police</th></tr>"
+		dat += "<tr><th colspan=3>宪兵</th></tr>"
 		for(real_rank in mp)
 			for(name in mp[real_rank])
 				dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[mp[real_rank][name]]</td><td>[isactive[name]]</td></tr>"

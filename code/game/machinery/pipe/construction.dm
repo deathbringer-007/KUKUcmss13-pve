@@ -577,9 +577,9 @@ Buildable meters
 
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 	user.visible_message(
-		"[user] fastens [src].",
+		"[user] 固定好了 [src]。",
 		SPAN_NOTICE("你固定了[src]。"),
-		"You hear ratchet.")
+		"你听到棘轮转动的声音。")
 	qdel(src) // remove the pipe item
 
 	return

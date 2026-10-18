@@ -29,7 +29,7 @@ PLANT_CUT_MACHETE = 3 = Needs at least a machete to be cut down
 #define FLORA_BURN_SPREAD_ALL 4
 
 /obj/structure/flora
-	name = "plant"
+	name = "植物"
 	anchored = TRUE
 	density = TRUE
 	unslashable = TRUE
@@ -53,7 +53,7 @@ PLANT_CUT_MACHETE = 3 = Needs at least a machete to be cut down
 		else
 			cut_hits = 0
 		user.animation_attack_on(src)
-		to_chat(user, SPAN_WARNING("You cut [cut_hits > 0 ? "some of" : "all of"] \the [src] away with \the [W]."))
+		to_chat(user, SPAN_WARNING("你用[W]切除了[src]的[cut_hits > 0 ? "一部分" : "全部"]。"))
 		playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)
 		if(cut_hits <= 0)
 			qdel(src)
@@ -100,17 +100,17 @@ PLANT_CUT_MACHETE = 3 = Needs at least a machete to be cut down
 
 //trees
 /obj/structure/flora/tree
-	name = "tree"
+	name = "树"
 	pixel_x = -16
 	layer = ABOVE_FLY_LAYER
 
 /obj/structure/flora/tree/pine
-	name = "pine tree"
+	name = "松树"
 	icon = 'icons/obj/structures/props/pinetrees.dmi'
 	icon_state = "pine_1"
 
 /obj/structure/flora/tree/pine/xmas
-	name = "xmas tree"
+	name = "圣诞树"
 	icon = 'icons/obj/structures/props/pinetrees.dmi'
 	icon_state = "pine_c"
 
@@ -139,8 +139,8 @@ PLANT_CUT_MACHETE = 3 = Needs at least a machete to be cut down
 
 //joshua
 /obj/structure/flora/tree/joshua
-	name = "joshua tree"
-	desc = "A tall tree covered in spiky-like needles, covering its trunk."
+	name = "约书亚树"
+	desc = "一棵高大的树，树干上长满尖刺般的针叶。"
 	icon = 'icons/obj/structures/props/joshuatree.dmi'
 	icon_state = "joshua_1"
 	pixel_x = 0
@@ -149,9 +149,9 @@ PLANT_CUT_MACHETE = 3 = Needs at least a machete to be cut down
 	unacidable = TRUE
 
 /obj/structure/flora/tree/jungle
-	name = "huge tree"
+	name = "巨树"
 	icon = 'icons/obj/structures/props/ground_map64.dmi'
-	desc = "What an enormous tree!"
+	desc = "好大的一棵树！"
 	density = FALSE
 	layer = ABOVE_XENO_LAYER
 
@@ -167,7 +167,7 @@ PLANT_CUT_MACHETE = 3 = Needs at least a machete to be cut down
 
 //grass
 /obj/structure/flora/grass
-	name = "grass"
+	name = "草"
 	icon = 'icons/obj/structures/props/ausflora.dmi'
 	density = FALSE
 	fire_flag = FLORA_BURN_NO_SPREAD
@@ -318,7 +318,7 @@ ICEY GRASS. IT LOOKS LIKE IT'S MADE OF ICE.
 */
 
 /obj/structure/flora/grass/tallgrass
-	name = "tallgrass"
+	name = "高草"
 	icon = 'icons/obj/structures/props/tallgrass.dmi'
 	unslashable = TRUE
 	unacidable = TRUE
@@ -353,7 +353,7 @@ ICEY GRASS. IT LOOKS LIKE IT'S MADE OF ICE.
 /obj/structure/flora/grass/tallgrass/ice
 	color = COLOR_G_ICE
 	icon_state = "tallgrass"
-	desc = "A large swathe of bristling snowgrass"
+	desc = "一大片硬挺的雪草。"
 
 /obj/structure/flora/grass/tallgrass/ice/corner
 	icon_state = "tallgrass_corner"
@@ -365,7 +365,7 @@ ICEY GRASS. IT LOOKS LIKE IT'S MADE OF ICE.
 /obj/structure/flora/grass/tallgrass/jungle
 	color = COLOR_G_JUNG
 	icon_state = "tallgrass"
-	desc = "A clump of vibrant jungle grasses"
+	desc = "一丛生机勃勃的丛林草。"
 	fire_flag = FLORA_BURN_SPREAD_ONCE
 
 /obj/structure/flora/grass/tallgrass/jungle/corner
@@ -376,11 +376,11 @@ ICEY GRASS. IT LOOKS LIKE IT'S MADE OF ICE.
 //REDEMPTION VALLEY//
 /obj/structure/flora/grass/tallgrass/crop
 	//color = COLOR_G_DES
-	name = "crop patch"
+	name = "作物田"
 	icon = 'icons/obj/structures/props/dam.dmi' //Override since the greyscale can't match
 	color = "#bfff00"
 	icon_state = "tallgrass"
-	desc = "A growing crop, it looks a lot like wheat"
+	desc = "正在生长的作物，看起来很像小麦。"
 	fire_flag = FLORA_BURN_SPREAD_ALL
 
 /obj/structure/flora/grass/tallgrass/crop/corner
@@ -397,7 +397,7 @@ ICEY GRASS. IT LOOKS LIKE IT'S MADE OF ICE.
 */
 
 /obj/structure/flora/bush
-	name = "bush"
+	name = "灌木"
 	icon = 'icons/obj/structures/props/snowflora.dmi'
 	icon_state = "snowbush_1"
 	density = FALSE
@@ -513,19 +513,19 @@ ICEY GRASS. IT LOOKS LIKE IT'S MADE OF ICE.
 
 /obj/structure/flora/bush/desert
 	icon = 'icons/obj/structures/props/dam.dmi'
-	desc = "A small, leafy bush."
+	desc = "一丛枝叶繁茂的小灌木。"
 	icon_state = "tree_1"
 	cut_level = PLANT_CUT_KNIFE
 	layer = ABOVE_XENO_LAYER
 
 /obj/structure/flora/bush/desert/cactus
-	name = "cactus"
-	desc = "It's a small, spiky cactus."
+	name = "仙人掌"
+	desc = "一株长满尖刺的小仙人掌。"
 	icon_state = "cactus_3"
 	layer = BELOW_MOB_LAYER
 
 /obj/structure/flora/bush/desert/cactus/multiple
-	name = "cacti"
+	name = "仙人掌丛"
 	icon_state = "cacti_1"
 
 /*
@@ -535,7 +535,7 @@ ICEY GRASS. IT LOOKS LIKE IT'S MADE OF ICE.
 */
 
 /obj/structure/flora/pottedplant
-	name = "potted plant"
+	name = "盆栽"
 	icon = 'icons/obj/structures/props/plants.dmi'
 	icon_state = "pottedplant_26"
 	density = FALSE
@@ -557,26 +557,26 @@ ICEY GRASS. IT LOOKS LIKE IT'S MADE OF ICE.
 
 /obj/structure/flora/pottedplant/attackby(obj/item/stash, mob/user)
 	if(stashed_item)
-		to_chat(user, SPAN_WARNING("There's already something stashed here!"))
+		to_chat(user, SPAN_WARNING("这里已经藏着东西了！"))
 		return
 
 	if(is_type_in_typecache(stash, blacklist_typecache))
-		to_chat(user, SPAN_WARNING("You probably shouldn't hide [stash] in [src]."))
+		to_chat(user, SPAN_WARNING("你最好别把[stash]藏进[src]。"))
 		return
 
 	if(stash.w_class == SIZE_TINY)
 		user.drop_inv_item_to_loc(stash, src)
 		stashed_item = stash
-		user.visible_message("[user] puts something in [src].", "You hide [stash] in [src].")
+		user.visible_message("[user]将什么东西放进了[src]。", "你把 [stash] 藏进了 [src]。")
 		return
 
-	to_chat(user, SPAN_WARNING("[stash] is too big to fit into [src]!"))
+	to_chat(user, SPAN_WARNING("[stash]太大，无法塞进[src]！"))
 
 /obj/structure/flora/pottedplant/attack_hand(mob/user)
 	if(!stashed_item)
 		return
 	user.put_in_hands(contents[1])
-	user.visible_message( "[user] takes something out of [src].", "You take [stashed_item] from [src].")
+	user.visible_message( "[user]从[src]里取出了什么东西。", "你从 [src] 里取出了 [stashed_item]。")
 	stashed_item = null
 
 /obj/structure/flora/pottedplant/Destroy()
@@ -597,47 +597,47 @@ ICEY GRASS. IT LOOKS LIKE IT'S MADE OF ICE.
 */
 
 /obj/structure/flora/jungle
-	name = "jungle foliage"
+	name = "丛林植被"
 	icon = 'icons/turf/ground_map.dmi'
 	density = FALSE
 	layer = ABOVE_XENO_LAYER
 	projectile_coverage = PROJECTILE_COVERAGE_NONE
 
 /obj/structure/flora/jungle/shrub
-	desc = "Pretty thick scrub, it'll take something sharp and a lot of determination to clear away."
+	desc = "相当茂密的灌木丛，需要利器和足够耐心才能清除。"
 	icon_state = "grass4"
 
 /obj/structure/flora/jungle/plantbot1
-	name = "strange tree"
-	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
+	name = "怪树"
+	desc = "某种奇异的外星树木，渗出病态的黄色树液。"
 	icon_state = "plantbot1"
 
 /obj/structure/flora/jungle/cart_wreck
-	name = "old janicart"
-	desc = "Doesn't look like it'll do much cleaning any more."
+	name = "旧清洁车"
+	desc = "看起来已经没法再清洁多少东西了。"
 	icon_state = "cart_wreck"
 
 /obj/structure/flora/jungle/alienplant1
-	name = "strange tree"
-	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
+	name = "怪树"
+	desc = "某种奇异的外星树木，渗出病态的黄色树液。"
 	icon_state = "alienplant1"
 	light_range = 2
 
 /obj/structure/flora/jungle/planttop1
-	name = "strange tree"
-	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
+	name = "怪树"
+	desc = "某种奇异的外星树木，渗出病态的黄色树液。"
 	icon_state = "planttop1"
 
 
 /obj/structure/flora/jungle/treeblocker
-	name = "huge tree"
+	name = "巨树"
 	icon_state = "" //will this break it?? - Nope
 	density = TRUE
 
 //light vines
 /obj/structure/flora/jungle/vines
-	name = "vines"
-	desc = "A mass of twisted vines."
+	name = "藤蔓"
+	desc = "一团盘根错节的藤蔓。"
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "light_1"
 	icon_tag = "light"
@@ -659,7 +659,7 @@ ICEY GRASS. IT LOOKS LIKE IT'S MADE OF ICE.
 
 //heavy hide you
 /obj/structure/flora/jungle/vines/heavy
-	desc = "A thick, coiled mass of twisted vines."
+	desc = "一大团粗厚盘绕的藤蔓。"
 	opacity = TRUE
 	icon_state = "heavy_6"
 	icon_tag = "heavy"
@@ -670,8 +670,8 @@ ICEY GRASS. IT LOOKS LIKE IT'S MADE OF ICE.
 	icon_state = pick("heavy_1","heavy_2","heavy_3","heavy_4","heavy_5","heavy_6")
 
 /obj/structure/flora/jungle/thickbush
-	name = "dense vegetation"
-	desc = "Pretty thick scrub, it'll take something sharp and a lot of determination to clear away."
+	name = "茂密植被"
+	desc = "相当茂密的灌木丛，需要利器和足够耐心才能清除。"
 	icon = 'icons/obj/structures/props/jungleplants.dmi'
 	icon_state = "bush_1"
 	layer = BUSH_LAYER
@@ -716,20 +716,20 @@ ICEY GRASS. IT LOOKS LIKE IT'S MADE OF ICE.
 						var/new_slowdown = H.next_move_slowdown + rand(2,3)
 						H.next_move_slowdown = new_slowdown
 						if(prob(2))
-							to_chat(H, SPAN_WARNING("Moving through [src] slows you down."))
+							to_chat(H, SPAN_WARNING("穿过[src]会减慢你的速度。"))
 					if(5 to 7)
 						var/new_slowdown = H.next_move_slowdown + rand(4,7)
 						H.next_move_slowdown = new_slowdown
 						if(prob(10))
-							to_chat(H, SPAN_WARNING("It is very hard to move through this [src]..."))
+							to_chat(H, SPAN_WARNING("穿过[src]非常困难……"))
 					if(8 to 9)
 						var/new_slowdown = H.next_move_slowdown + rand(8,11)
 						H.next_move_slowdown = new_slowdown
-						to_chat(H, SPAN_WARNING("You got tangled in [src]!"))
+						to_chat(H, SPAN_WARNING("你被[src]缠住了！"))
 					if(10)
 						var/new_slowdown = H.next_move_slowdown + rand(12,20)
 						H.next_move_slowdown = new_slowdown
-						to_chat(H, SPAN_WARNING("You got completely tangled in [src]! Oh boy..."))
+						to_chat(H, SPAN_WARNING("你被[src]彻底缠住了！真糟……"))
 
 /obj/structure/flora/jungle/thickbush/attackby(obj/item/I as obj, mob/user as mob)
 	//hatchets and shiet can clear away undergrowth
@@ -739,13 +739,13 @@ ICEY GRASS. IT LOOKS LIKE IT'S MADE OF ICE.
 			damage = rand(8,18)
 		if(indestructable)
 			//this bush marks the edge of the map, you can't destroy it
-			to_chat(user, SPAN_DANGER("You chop at the undergrowth, but it's too thick here."))
+			to_chat(user, SPAN_DANGER("你砍向灌木，但这里太茂密了。"))
 		else
-			user.visible_message(SPAN_DANGER("[user] chops at [src] with [I]."), SPAN_DANGER("You chop at [src] with [I]."))
+			user.visible_message(SPAN_DANGER("[user]用[I]砍向[src]。"), SPAN_DANGER("你用[I]砍向[src]。"))
 			playsound(src.loc, 'sound/effects/vegetation_hit.ogg', 25, 1)
 			health -= damage
 			if(health < 0)
-				to_chat(user, SPAN_NOTICE("You clear away [src]."))
+				to_chat(user, SPAN_NOTICE("你清除了[src]。"))
 			healthcheck()
 	else
 		return ..()
@@ -756,8 +756,8 @@ ICEY GRASS. IT LOOKS LIKE IT'S MADE OF ICE.
 	if(health < 0)
 		if(prob(10))
 			icon_state = "stump[rand(1,2)]"
-			name = "cleared foliage"
-			desc = "There used to be dense undergrowth here."
+			name = "清理过的植被"
+			desc = "这里曾是一片茂密的灌木丛。"
 			stump = 1
 			pixel_x = rand(-6,6)
 			pixel_y = rand(-6,6)
@@ -771,6 +771,6 @@ ICEY GRASS. IT LOOKS LIKE IT'S MADE OF ICE.
 
 /obj/structure/flora/jungle/thickbush/jungle_plant
 	icon_state = "plant_1"
-	desc = "Looks like some of that fruit might be edible."
+	desc = "其中一些果实似乎可以食用。"
 	icon_tag = "plant"
 	variations  = 7

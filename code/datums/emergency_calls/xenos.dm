@@ -9,8 +9,8 @@
 
 /datum/emergency_call/xenos/New()
 	..()
-	arrival_message = "[MAIN_SHIP_NAME], this is USS Vriess respond-- #&...*#&^#.. signal... oh god, they're in the vent---... Priority Warning: Signal lost."
-	objectives = "For the Empress!"
+	arrival_message = "[MAIN_SHIP_NAME]，这里是USS弗里斯号，请回——杂音——信号……天啊，它们在通风管——……优先警告：信号丢失。"
+	objectives = "为了女帝！"
 
 
 /datum/emergency_call/xenos/spawn_items()

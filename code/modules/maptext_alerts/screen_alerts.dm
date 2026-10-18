@@ -191,7 +191,7 @@
 	icon = 'icons/mob/screen_alert.dmi'
 	icon_state = "default"
 	name = "Alert"
-	desc = "Something seems to have gone wrong with this alert, so report this bug please"
+	desc = "这条警报似乎出了问题，请报告此错误。"
 	mouse_opacity = MOUSE_OPACITY_ICON
 	/// If set to a number, this alert will clear itself after that many deciseconds
 	var/timeout = 0
@@ -216,7 +216,7 @@
 
 /atom/movable/screen/alert/notify_action
 	name = "Notification"
-	desc = "A new notification. You can enter it."
+	desc = "一条新通知。你可以进入其中。"
 	icon_state = "template"
 	timeout = 15 SECONDS
 	var/atom/target = null
@@ -248,17 +248,17 @@
 
 /atom/movable/screen/alert/buckled
 	name = "Buckled"
-	desc = "You've been buckled to something. Click the alert to unbuckle unless you're handcuffed."
+	desc = "你被固定在某个物体上。若未被手铐铐住，点击此警报即可解除固定。"
 	icon_state = ALERT_BUCKLED
 
 /atom/movable/screen/alert/restrained/handcuffed
 	name = "Handcuffed"
-	desc = "You're handcuffed and can't act. If anyone drags you, you won't be able to move. Click the alert to free yourself."
+	desc = "你被手铐铐住了，无法采取行动。若有人拖拽你，你将无法移动。点击此警报尝试挣脱。"
 	click_master = FALSE
 
 /atom/movable/screen/alert/restrained/legcuffed
 	name = "Legcuffed"
-	desc = "You're legcuffed, which slows you down considerably. Click the alert to free yourself."
+	desc = "你被脚镣铐住了，行动大幅减缓。点击此警报尝试挣脱。"
 	click_master = FALSE
 
 /atom/movable/screen/alert/restrained/clicked()

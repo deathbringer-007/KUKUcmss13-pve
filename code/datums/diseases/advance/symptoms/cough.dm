@@ -17,7 +17,7 @@ BONUS
 
 /datum/symptom/cough
 
-	name = "Cough"
+	name = "咳嗽"
 	stealth = -1
 	resistance = 3
 	stage_speed = 1
@@ -30,7 +30,7 @@ BONUS
 		var/mob/living/M = A.affected_mob
 		switch(A.stage)
 			if(1, 2, 3)
-				to_chat(M, SPAN_NOTICE("[pick("You swallow excess mucus.", "You lightly cough.")]"))
+				to_chat(M, SPAN_NOTICE("[pick("你咽下了多余的黏液。", "你轻轻咳了几声。")]"))
 			else
 				M.emote("cough")
 				var/obj/item/I = M.get_active_hand()

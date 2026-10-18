@@ -1,10 +1,10 @@
 /datum/job/trooper/standard
 	title = JOB_ARMY_TROOPER
-	supervisors = "the ranking Army member present"
+	supervisors = "在场军衔最高的陆军成员"
 	gear_preset = /datum/equipment_preset/usa/trooper
 
 /datum/job/trooper/standard/on_config_load()
-	entry_message_body = "You are a rank-and-file Soldier of your standing army, and that is your strength. What you lack alone, you gain standing shoulder to shoulder with the men and women of the platoon. Hoo-ah!"
+	entry_message_body = "你是常备军中一名普通士兵，而这正是你的力量所在。个人的不足，可以在与全排战友并肩作战时得到弥补。呼哈！"
 	return ..()
 
 /datum/job/trooper/grenadier

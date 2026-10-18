@@ -17,7 +17,7 @@ Bonus
 
 /datum/symptom/dizzy // Not the egg
 
-	name = "Dizziness"
+	name = "眩晕"
 	stealth = 2
 	resistance = -2
 	stage_speed = -3
@@ -30,8 +30,8 @@ Bonus
 		var/mob/living/M = A.affected_mob
 		switch(A.stage)
 			if(1, 2, 3, 4)
-				to_chat(M, SPAN_NOTICE("[pick("You feel dizzy.", "Your head starts spinning.")]"))
+				to_chat(M, SPAN_NOTICE("[pick("你感到头晕。", "你开始感到天旋地转。")]"))
 			else
-				to_chat(M, SPAN_NOTICE("You are unable to look straight!"))
+				to_chat(M, SPAN_NOTICE("你无法看清眼前的东西！"))
 				M.make_dizzy(5)
 	return

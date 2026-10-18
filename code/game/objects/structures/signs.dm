@@ -12,7 +12,7 @@
 
 /obj/structure/sign/attackby(obj/item/tool as obj, mob/user as mob) //deconstruction
 	if(HAS_TRAIT(tool, TRAIT_TOOL_SCREWDRIVER) && !istype(src, /obj/structure/sign/double))
-		to_chat(user, "You unfasten the sign with your [tool].")
+		to_chat(user, "你用 [tool] 松开了标牌的固定件。")
 		var/obj/item/sign/S = new(src.loc)
 		S.name = name
 		S.desc = desc
@@ -31,7 +31,7 @@
 
 /obj/item/sign/attackby(obj/item/tool as obj, mob/user as mob) //construction
 	if(HAS_TRAIT(tool, TRAIT_TOOL_SCREWDRIVER) && isturf(user.loc))
-		var/direction = tgui_input_list(usr, "In which direction?", "Select direction.", list("North", "East", "South", "West", "Cancel"))
+		var/direction = tgui_input_list(usr, "朝哪个方向？", "选择方向。", list("North", "East", "South", "West", "Cancel"))
 		if(direction == "Cancel") return
 		var/obj/structure/sign/S = new(user.loc)
 		switch(direction)
@@ -48,7 +48,7 @@
 		S.desc = desc
 		S.icon_state = sign_state
 		S.icon = icon
-		to_chat(user, "You fasten \the [S] with your [tool].")
+		to_chat(user, "你用 [tool] 固定好了 \the [S]。")
 		qdel(src)
 	else ..()
 
@@ -58,17 +58,17 @@
 
 /obj/structure/sign/nosmoking_1
 	name = "\improper NO SMOKING"
-	desc = "A warning sign which reads 'NO SMOKING'."
+	desc = "一块写着“禁止吸烟”的警示牌。"
 	icon_state = "nosmoking"
 
 /obj/structure/sign/nosmoking_2
 	name = "\improper NO SMOKING"
-	desc = "A warning sign which reads 'NO SMOKING'."
+	desc = "一块写着“禁止吸烟”的警示牌。"
 	icon_state = "nosmoking2"
 
 /obj/structure/sign/goldenplaque
 	name = "The Most Robust Men Award for Robustness"
-	desc = "To be Robust is not an action or a way of life, but a mental state. Only those with the force of Will strong enough to act during a crisis, saving friend from foe, are truly Robust. Stay Robust my friends."
+	desc = "强大并非某个动作或一种生活方式，而是一种精神状态。唯有意志足够坚定，能在危机中挺身而出、从敌人手中救下同伴的人，才称得上真正强大。朋友们，保持强大。"
 	icon_state = "goldenplaque"
 
 /obj/structure/sign/kiddieplaque

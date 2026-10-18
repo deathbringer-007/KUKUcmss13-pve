@@ -16,7 +16,7 @@
 	gear_preset_secondary = /datum/equipment_preset/uscm/medic/lance_corporal
 	gear_preset_tertiary = /datum/equipment_preset/uscm/medic/pfc
 	gear_preset_quaternary = /datum/equipment_preset/uscm/medic/private
-	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>You tend the wounds of your fellow Marines</a> and make sure they are healthy and active. You may not be a fully-fledged doctor, but you stand between life and death when it matters.<br>You might be the same rank as a squad leader, but they have precedence over you for command should the situation call upon it.<br><b>You remember that you've stored your personal gear and uniform are located in your medical office.</b>"
+	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>你负责治疗陆战队战友的伤势</a>，让他们保持健康与战斗力。你或许不是一名全科医生，但关键时刻，你守在生与死之间。<br>你的军衔可能与小队长相同，但需要接替指挥时，小队长的顺位在你之前。<br><b>你记得自己的个人装备和制服存放在医疗办公室内。</b>"
 
 	job_options = list(PVT_VARIANT = "PVT", PFC_VARIANT = "PFC", LCPL_VARIANT = "LCPL", CPL_VARIANT = "CPL")
 
@@ -157,8 +157,8 @@
 	title = JOB_TWE_RMC_MEDIC
 	gear_preset = /datum/equipment_preset/uscm/rmc/med
 	job_options = null
-	supervisors = "the section leader and troop commander"
-	entry_message_body = "You are a commando-trained member of the Royal Navy Medical Service, serving with the Royal Marines Commando forces. You tend the serious wounds of the Royal Marines under your charge and make sure they are healthy and active. Whilst you have the skills to rival doctors, you often lack the full compliment of equipment, but you stand between life and death when it matters.<br><b>You remember that you've stored your personal gear and uniform in the locker rooms, and that your equipment can be located in the Sick Bay.</b>"
+	supervisors = "班长与突击排指挥官"
+	entry_message_body = "你是经过突击队训练的皇家海军医疗勤务部成员，随皇家陆战突击队服役。你负责治疗所辖皇家陆战队员的重伤，让他们保持健康与战斗力。虽然你的医术足以媲美医生，却往往缺乏完整的医疗设备；即便如此，关键时刻，你仍守在生与死之间。<br><b>你记得自己的个人装备和制服存放在更衣室内，医疗装备位于医务室。</b>"
 
 /obj/effect/landmark/start/marine/medic/rmc
 	name = JOB_TWE_RMC_MEDIC

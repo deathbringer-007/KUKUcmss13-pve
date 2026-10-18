@@ -10,7 +10,7 @@
 	classic_keys = list("Unbound")
 	name = "resist"
 	full_name = "Resist"
-	description = "Break free of your current state. Handcuffed? on fire? Resist!"
+	description = "挣脱当前束缚。被铐住了？着火了？使用抵抗动作！"
 	keybind_signal = COMSIG_KB_LIVING_RESIST_DOWN
 
 /datum/keybinding/living/resist/down(client/user)
@@ -26,7 +26,7 @@
 	classic_keys = list("Unbound")
 	name = "rest"
 	full_name = "Rest"
-	description = "Lay down, or get up."
+	description = "躺下或起身。"
 	keybind_signal = COMSIG_KB_LIVING_REST_DOWN
 
 /datum/keybinding/living/rest/down(client/user)
@@ -42,7 +42,7 @@
 	full_name = "Toggle Surgery Mode"
 	hotkey_keys = list("Unbound")
 	classic_keys = list("Unbound")
-	description = "Ready yourself to perform surgery, or not. Also activates or disables Help Intent Safety, if you didn't have that set originally."
+	description = "进入或退出手术准备状态。若原本未设置帮助意图安全模式，此操作也会启用或关闭该模式。"
 	keybind_signal = COMSIG_KB_SURGERY_INTENT_DOWN
 
 /datum/keybinding/living/toggle_surgery/down(client/user)
@@ -59,7 +59,7 @@
 	classic_keys = list("Unbound")
 	name = "mov_intent"
 	full_name = "Move Intent"
-	description = "Toggles your current move intent."
+	description = "切换当前移动方式。"
 	keybind_signal = COMSIG_KB_MOB_MOVINTENT_DOWN
 
 /datum/keybinding/living/mov_intent/down(client/user)
@@ -75,7 +75,7 @@
 	classic_keys = list("Unbound")
 	name = "cancel_camera_view"
 	full_name = "Cancel Camera View"
-	description = "Reset your view to your mob"
+	description = "将视角重置到自己的角色。"
 	keybind_signal = COMSIG_KB_LIVING_CANCEL_CAMERA_VIEW
 
 /datum/keybinding/living/cancel_camera_view/down(client/user)

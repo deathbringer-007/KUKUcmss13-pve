@@ -82,11 +82,11 @@
 				animation_attack_on(target)
 				playsound(loc, 'sound/weapons/alien_claw_swipe.ogg', 10, 1) //Quiet to limit spam/nuisance.
 				if(firepatted)
-					src.visible_message(SPAN_DANGER("\The [src] pats at the fire!"), \
-					SPAN_DANGER("We pat the fire!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+					src.visible_message(SPAN_DANGER("\The [src] 拍打着身上的火焰！"), \
+					SPAN_DANGER("我们拍打着身上的火焰！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 				else
-					src.visible_message(SPAN_DANGER("\The [src] swipes at \the [target]!"), \
-					SPAN_DANGER("We swipe at \the [target]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+					src.visible_message(SPAN_DANGER("\The [src] 向 \the [target] 挥出利爪！"), \
+					SPAN_DANGER("我们向 \the [target] 挥出利爪！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	return TRUE
 
 /mob/living/carbon/xenomorph/RangedAttack(atom/A)

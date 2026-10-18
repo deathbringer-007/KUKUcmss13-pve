@@ -1,7 +1,7 @@
 /obj/item/device/working_joe_pda
 	icon = 'icons/obj/items/synth/wj_pda.dmi'
-	name = "KN5500 PDA"
-	desc = "A portable interface used by Working-Joes, capable of connecting to the local command AI to relay tasking information. Built to withstand a nuclear bomb."
+	name = "KN5500掌上终端"
+	desc = "供工作乔使用的便携式终端，可连接本地指挥人工智能，传递任务信息。坚固得足以抵御核爆。"
 	icon_state = "karnak_off"
 	unacidable = TRUE
 	indestructible = TRUE
@@ -186,7 +186,7 @@
 	switch (action)
 		if("go_back")
 			if(!last_menu)
-				return to_chat(user, SPAN_WARNING("Error, no previous page detected."))
+				return to_chat(user, SPAN_WARNING("错误：未检测到上一页面。"))
 			var/temp_holder = current_menu
 			current_menu = last_menu
 			last_menu = temp_holder
@@ -203,7 +203,7 @@
 					authentication = get_ares_access(idcard)
 					last_login = idcard.registered_name
 			else
-				to_chat(user, SPAN_WARNING("You require an ID card to access this terminal!"))
+				to_chat(user, SPAN_WARNING("你需要身份卡才能访问此终端！"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 			if(authentication)
@@ -248,23 +248,23 @@
 
 		if("new_report")
 			var/priority_report = FALSE
-			var/maint_type = tgui_input_list(user, "What is the type of maintenance item you wish to report?", "Report Category", GLOB.maintenance_categories, 30 SECONDS)
+			var/maint_type = tgui_input_list(user, "你要报告哪类维护问题？", "报告类别", GLOB.maintenance_categories, 30 SECONDS)
 			switch(maint_type)
 				if("Major Structural Damage", "Fire", "Communications Failure",	"Power Generation Failure")
 					priority_report = TRUE
 
 			if(!maint_type)
 				return FALSE
-			var/details = tgui_input_text(user, "What are the details for this report?", "Ticket Details", encode = FALSE)
+			var/details = tgui_input_text(user, "请输入此报告的详细情况。", "工单详情", encode = FALSE)
 			if(!details)
 				return FALSE
 
 			if((authentication >= APOLLO_ACCESS_REPORTER) && !priority_report)
-				var/is_priority = tgui_alert(user, "Is this a priority report?", "Priority designation", list("Yes", "No"))
+				var/is_priority = tgui_alert(user, "这是优先报告吗？", "优先级设置", list("Yes", "No"))
 				if(is_priority == "Yes")
 					priority_report = TRUE
 
-			var/confirm = alert(user, "Please confirm the submission of your maintenance report. \n\n Priority: [priority_report ? "Yes" : "No"]\n Category: '[maint_type]'\n Details: '[details]'\n\n Is this correct?", "Confirmation", "Yes", "No")
+			var/confirm = alert(user, "请确认提交维护报告。\n\n优先处理：[priority_report ? "是" : "否"]\n类别：“[maint_type]”\n详情：“[details]”\n\n内容是否正确？", "确认", "Yes", "No")
 			if(confirm == "Yes")
 				if(link)
 					var/datum/ares_ticket/maintenance/maint_ticket = new(last_login, maint_type, details, priority_report)
@@ -285,14 +285,14 @@
 			var/assigned = ticket.ticket_assignee
 			if(assigned)
 				if(assigned == last_login)
-					var/prompt = tgui_alert(user, "You already claimed this ticket! Do you wish to drop your claim?", "Unclaim ticket", list("Yes", "No"))
+					var/prompt = tgui_alert(user, "你已经接取了这张工单！要放弃接取吗？", "放弃工单", list("Yes", "No"))
 					if(prompt != "Yes")
 						return FALSE
 					/// set ticket back to pending
 					ticket.ticket_assignee = null
 					ticket.ticket_status = TICKET_PENDING
 					return claim
-				var/choice = tgui_alert(user, "This ticket has already been claimed by [assigned]! Do you wish to override their claim?", "Claim Override", list("Yes", "No"))
+				var/choice = tgui_alert(user, "这张工单已由 [assigned] 接取！要覆盖对方的接取记录吗？", "覆盖接取记录", list("Yes", "No"))
 				if(choice != "Yes")
 					claim = FALSE
 			if(claim)
@@ -305,9 +305,9 @@
 			if(!istype(ticket))
 				return FALSE
 			if(ticket.ticket_submitter != last_login)
-				to_chat(user, SPAN_WARNING("You cannot cancel a ticket that does not belong to you!"))
+				to_chat(user, SPAN_WARNING("你不能取消不属于自己的工单！"))
 				return FALSE
-			to_chat(user, SPAN_WARNING("[ticket.ticket_type] [ticket.ticket_id] has been cancelled."))
+			to_chat(user, SPAN_WARNING("[ticket.ticket_type]工单[ticket.ticket_id]已取消。"))
 			ticket.ticket_status = TICKET_CANCELLED
 			if(ticket.ticket_priority)
 				ares_apollo_talk("Priority [ticket.ticket_type] [ticket.ticket_id] has been cancelled.")
@@ -320,9 +320,9 @@
 			if(!istype(ticket))
 				return FALSE
 			if(ticket.ticket_assignee != last_login && ticket.ticket_assignee) //must be claimed by you or unclaimed.)
-				to_chat(user, SPAN_WARNING("You cannot update a ticket that is not assigned to you!"))
+				to_chat(user, SPAN_WARNING("你不能更新未分配给自己的工单！"))
 				return FALSE
-			var/choice = tgui_alert(user, "What do you wish to mark the ticket as?", "Mark", list(TICKET_COMPLETED, TICKET_REJECTED), 20 SECONDS)
+			var/choice = tgui_alert(user, "你想将工单标记为什么状态？", "标记", list(TICKET_COMPLETED, TICKET_REJECTED), 20 SECONDS)
 			switch(choice)
 				if(TICKET_COMPLETED)
 					ticket.ticket_status = TICKET_COMPLETED
@@ -334,7 +334,7 @@
 				ares_apollo_talk("Priority [ticket.ticket_type] [ticket.ticket_id] has been [choice] by [last_login].")
 			else
 				send_notifcation()
-			to_chat(user, SPAN_NOTICE("[ticket.ticket_type] [ticket.ticket_id] marked as [choice]."))
+			to_chat(user, SPAN_NOTICE("[ticket.ticket_type]工单[ticket.ticket_id]已标记为[choice]。"))
 			return TRUE
 
 		if("new_access")
@@ -347,19 +347,19 @@
 				if(idcard)
 					has_id = TRUE
 			if(!has_id)
-				to_chat(user, SPAN_WARNING("You require an ID card to request an access ticket!"))
+				to_chat(user, SPAN_WARNING("你需要身份卡才能申请通行工单！"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 			if(idcard.registered_name != last_login)
-				to_chat(user, SPAN_WARNING("This ID card does not match the active login!"))
+				to_chat(user, SPAN_WARNING("此身份卡与当前登录身份不符！"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 
-			var/details = tgui_input_text(user, "What is the purpose of this access ticket?", "Ticket Details", encode = FALSE)
+			var/details = tgui_input_text(user, "这张通行工单的用途是什么？", "工单详情", encode = FALSE)
 			if(!details)
 				return FALSE
 
-			var/confirm = alert(user, "Please confirm the submission of your access ticket request.\n\nHolder: '[last_login]'\nDetails: '[details]'\n\nIs this correct?", "Confirmation", "Yes", "No")
+			var/confirm = alert(user, "请确认提交访问工单申请。\n\n持有人：“[last_login]”\n详情：“[details]”\n\n内容是否正确？", "确认", "Yes", "No")
 			if(confirm != "Yes" || !link)
 				return FALSE
 			var/datum/ares_ticket/access/access_ticket = new(last_login, details, FALSE, idcard.registered_gid)
@@ -389,7 +389,7 @@
 				identification.access -= ACCESS_MARINE_AI_TEMP
 				identification.modification_log += "Temporary AI Access self-returned by [key_name(user)]."
 
-				to_chat(user, SPAN_NOTICE("Temporary Access Ticket surrendered."))
+				to_chat(user, SPAN_NOTICE("临时通行工单已交回。"))
 				playsound(src, 'sound/machines/chime.ogg', 15, 1)
 				ares_apollo_talk("Access Ticket [access_ticket.ticket_id]: [access_ticket.ticket_submitter] surrendered their access.")
 
@@ -398,7 +398,7 @@
 					datacore.apollo_login_list += "[last_login] at [worldtime2text()], Surrendered Temporary Access Ticket."
 				return TRUE
 
-			to_chat(user, SPAN_WARNING("This ID card does not have an access ticket!"))
+			to_chat(user, SPAN_WARNING("此身份卡没有通行工单！"))
 			playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 			return FALSE
 
@@ -430,17 +430,17 @@
 			if(!istype(access_ticket))
 				return FALSE
 			if(access_ticket.ticket_assignee != last_login && access_ticket.ticket_assignee) //must be claimed by you or unclaimed.)
-				to_chat(user, SPAN_WARNING("You cannot update a ticket that is not assigned to you!"))
+				to_chat(user, SPAN_WARNING("你不能更新未分配给自己的工单！"))
 				return FALSE
 			access_ticket.ticket_status = TICKET_REJECTED
-			to_chat(user, SPAN_NOTICE("[access_ticket.ticket_type] [access_ticket.ticket_id] marked as rejected."))
+			to_chat(user, SPAN_NOTICE("[access_ticket.ticket_type]工单[access_ticket.ticket_id]已标记为拒绝。"))
 			ares_apollo_talk("Access Ticket [access_ticket.ticket_id]: [access_ticket.ticket_submitter] was rejected access by [last_login].")
 			for(var/obj/item/card/id/identification in link.waiting_ids)
 				if(identification.registered_gid != access_ticket.user_id_num)
 					continue
 				var/mob/living/carbon/human/id_owner = identification.registered_ref?.resolve()
 				if(id_owner)
-					to_chat(id_owner, SPAN_WARNING("AI visitation access rejected."))
+					to_chat(id_owner, SPAN_WARNING("人工智能核心参观权限已被拒绝。"))
 					playsound_client(id_owner?.client, 'sound/machines/pda_ping.ogg', src, 25, 0)
 			return TRUE
 
@@ -448,14 +448,14 @@
 			playsound = FALSE
 			var/obj/structure/pipes/vents/pump/no_boom/gas/sec_vent = locate(params["vent"])
 			if(!istype(sec_vent) || sec_vent.welded)
-				to_chat(user, SPAN_WARNING("ERROR: Gas release failure."))
+				to_chat(user, SPAN_WARNING("错误：气体释放失败。"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 			if(!COOLDOWN_FINISHED(sec_vent, vent_trigger_cooldown))
-				to_chat(user, SPAN_WARNING("ERROR: Insufficient gas reserve for this vent."))
+				to_chat(user, SPAN_WARNING("错误：此排气口的气体储备不足。"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
-			to_chat(user, SPAN_WARNING("Initiating gas release from [sec_vent.vent_tag]."))
+			to_chat(user, SPAN_WARNING("开始从[sec_vent.vent_tag]释放气体。"))
 			playsound(src, 'sound/machines/chime.ogg', 15, 1)
 			COOLDOWN_START(sec_vent, vent_trigger_cooldown, COOLDOWN_ARES_VENT)
 			ares_apollo_talk("Nerve Gas release imminent from [sec_vent.vent_tag].")
@@ -465,7 +465,7 @@
 
 		if("security_lockdown")
 			if(!COOLDOWN_FINISHED(datacore, aicore_lockdown))
-				to_chat(user, SPAN_BOLDWARNING("AI Core Lockdown procedures are on cooldown! They will be ready in [COOLDOWN_SECONDSLEFT(datacore, aicore_lockdown)] seconds!"))
+				to_chat(user, SPAN_BOLDWARNING("人工智能核心封锁程序正在冷却！还需[COOLDOWN_SECONDSLEFT(datacore, aicore_lockdown)]秒才能使用！"))
 				return FALSE
 			aicore_lockdown(user)
 			return TRUE

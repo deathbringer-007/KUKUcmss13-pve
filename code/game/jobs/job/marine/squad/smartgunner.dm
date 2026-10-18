@@ -17,7 +17,7 @@
 	gear_preset_secondary = /datum/equipment_preset/uscm/sg/lance_corporal
 	gear_preset_tertiary = /datum/equipment_preset/uscm/sg/pfc
 	gear_preset_quaternary = /datum/equipment_preset/uscm/sg/private
-	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>You are a specialized automatic rifleman.</a> Your task is to provide heavy weapons support for your squad.<br>You might be the same rank as a squad leader, but they have precedence over you for command should the situation call upon it.<br><b>You remember that you've stored your personal gear and uniform are located in the dorm or locker rooms.</b>"
+	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>你是一名专门操作自动武器的步枪兵。</a>你的任务是为小队提供重武器支援。<br>你的军衔可能与小队长相同，但需要接替指挥时，小队长的顺位在你之前。<br><b>你记得自己的个人装备和制服存放在宿舍或更衣室内。</b>"
 
 	job_options = list(PVT_VARIANT = "PVT", PFC_VARIANT = "PFC", LCPL_VARIANT = "LCPL", CPL_VARIANT = "CPL")
 
@@ -157,8 +157,8 @@
 	spawn_positions = 1
 	gear_preset = /datum/equipment_preset/uscm/rmc/sg
 	job_options = null
-	supervisors = "the team leader and troop commander"
-	entry_message_body = "You are a specialized automatic rifleman in the Royal Marines Commando. Your task is to provide heavy weapons support for the Rifle Section as part of the Fire Support Team.<br><b>You remember that you've stored your personal gear and uniform in the locker rooms, and that your specialist equipment can be located in the armoury.</b>"
+	supervisors = "战斗组长与突击排指挥官"
+	entry_message_body = "你是皇家陆战突击队中专门操作自动武器的步枪兵。作为火力支援组的一员，你的任务是为步枪班提供重武器支援。<br><b>你记得自己的个人装备和制服存放在更衣室内，专业装备位于军械库。</b>"
 
 /obj/effect/landmark/start/marine/smartgunner/rmc
 	name = JOB_TWE_RMC_SMARTGUNNER

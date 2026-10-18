@@ -6,8 +6,8 @@
 #define LIZARD_SPEED_RETREAT_CLIENT -1.5
 
 /mob/living/simple_animal/hostile/retaliate/giant_lizard
-	name = "giant lizard"
-	desc = "A large, wolf-like reptile. Its eyes are keenly focused on yours."
+	name = "巨蜥"
+	desc = "一只像狼的大型爬行动物，正目不转睛地盯着你。"
 	icon = 'icons/mob/mob_64.dmi'
 	icon_state = "Giant Lizard Running"
 	icon_living = "Giant Lizard Running"
@@ -111,9 +111,9 @@
 /mob/living/simple_animal/hostile/retaliate/giant_lizard/get_status_tab_items()
 	. = ..()
 	. += ""
-	. += "Health: [floor(health)]/[floor(maxHealth)]"
+	. += "生命值：[floor(health)]/[floor(maxHealth)]"
 	if(!COOLDOWN_FINISHED(src, pounce_cooldown))
-		. += "Pounce Cooldown: [COOLDOWN_SECONDSLEFT(src, pounce_cooldown)] seconds"
+		. += "扑击冷却：[COOLDOWN_SECONDSLEFT(src, pounce_cooldown)]秒"
 
 //the AI gets funky when it gets stunned midcombat. this will help them get back into the fight more organically.
 /mob/living/simple_animal/hostile/retaliate/giant_lizard/on_immobilized_trait_loss(datum/source)
@@ -168,17 +168,17 @@
 /mob/living/simple_animal/hostile/retaliate/giant_lizard/get_examine_text(mob/user)
 	. = ..()
 	if(stat == DEAD || user == src)
-		desc = "A large, wolf-like reptile."
+		desc = "一只像狼的大型爬行动物。"
 		if(user == src)
-			. += SPAN_NOTICE("\nRest on the ground to restore 5% of your health every second.")
-			. += SPAN_NOTICE("You're able to pounce targets by using [get_ability_mouse_name()].")
-			. += SPAN_NOTICE("You will aggressively maul targets that are prone. Any click on yourself will be passed down to mobs below you, so feel free to click on your sprite in order to attack pounced targets.")
+			. += SPAN_NOTICE("\n趴在地上休息，每秒可恢复5%生命值。")
+			. += SPAN_NOTICE("你可以通过[get_ability_mouse_name()]扑击目标。")
+			. += SPAN_NOTICE("你会凶狠撕咬倒地的目标。点击自己会将操作传递给身下的生物，因此可以点击自己的角色来攻击被扑倒的目标。")
 	else if((user.faction in faction_group))
-		desc = "[initial(desc)] There's a hint of warmth in them."
+		desc = "[initial(desc)] 它们带着些许暖意。"
 	else
 		desc = initial(desc)
 	if(isxeno(user)) //simplemobs aren't coded to handle larva infection so we'll just let them know
-		. += SPAN_DANGER("This is an unsuitable host for the hive.")
+		. += SPAN_DANGER("这不是适合虫巢寄生的宿主。")
 	return .
 
 /mob/living/simple_animal/hostile/retaliate/giant_lizard/set_resting(new_resting, silent, instant)
@@ -212,11 +212,11 @@
 		if(on_fire)
 			adjust_fire_stacks(-5, min_stacks = 0)
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-			visible_message(SPAN_DANGER("[attacking_mob] tries to put out the fire on [src]!"), \
-			SPAN_WARNING("You try to put out the fire on [src]!"), null, 5)
+			visible_message(SPAN_DANGER("[attacking_mob]试图扑灭[src]身上的火！"), \
+			SPAN_WARNING("你试图扑灭[src]身上的火！"), null, 5)
 			if(fire_stacks <= 0)
-				visible_message(SPAN_DANGER("[attacking_mob] has successfully extinguished the fire on [src]!"), \
-				SPAN_NOTICE("You extinguished the fire on [src]."), null, 5)
+				visible_message(SPAN_DANGER("[attacking_mob]成功扑灭了[src]身上的火！"), \
+				SPAN_NOTICE("你扑灭了[src]身上的火。"), null, 5)
 			return
 		if(!resting)
 			chance_to_rest += 15
@@ -244,7 +244,7 @@
 	if(prob(retreat_chance) && health <= maxHealth * 0.66 && COOLDOWN_FINISHED(src, retreat_cooldown))
 		if(client && !is_retreating)
 			is_retreating = TRUE
-			to_chat(src, SPAN_USERDANGER("Your fight or flight response kicks in, run!"))
+			to_chat(src, SPAN_USERDANGER("你的战斗或逃跑本能被激发，快跑！"))
 			speed = LIZARD_SPEED_RETREAT_CLIENT
 			addtimer(VARSET_CALLBACK(src, speed, LIZARD_SPEED_NORMAL_CLIENT), 8 SECONDS)
 			addtimer(VARSET_CALLBACK(src, is_retreating, FALSE), 8 SECONDS)
@@ -403,7 +403,7 @@
 	if(isliving(inherited_target))
 		var/mob/living/target = inherited_target
 		if(target.stat == DEAD)
-			to_chat(src, SPAN_WARNING("[target] is dead. There's nothing interesting about a corpse."))
+			to_chat(src, SPAN_WARNING("[target]已经死了，尸体没什么有趣的。"))
 			return
 		//decimate mobs that are on the ground
 		if(target.body_position == LYING_DOWN)
@@ -421,7 +421,7 @@
 		if(prob(33))
 			if(client && !is_retreating)
 				is_retreating = TRUE
-				to_chat(src, SPAN_USERDANGER("You gain a rush of speed!"))
+				to_chat(src, SPAN_USERDANGER("你的速度骤然提升！"))
 				speed = LIZARD_SPEED_RETREAT_CLIENT
 				addtimer(VARSET_CALLBACK(src, speed, LIZARD_SPEED_NORMAL_CLIENT), 2 SECONDS)
 				addtimer(VARSET_CALLBACK(src, is_retreating, FALSE), 2 SECONDS)
@@ -597,7 +597,7 @@
 		MoveTo(target_mob)
 
 /mob/living/simple_animal/hostile/retaliate/giant_lizard/resist_fire()
-	visible_message(SPAN_NOTICE("[src] rolls frantically on the ground to extinguish itself!"))
+	visible_message(SPAN_NOTICE("[src]疯狂地在地上打滚，试图灭火！"))
 	adjust_fire_stacks(-10)
 	KnockDown(2)
 	Stun(2)
@@ -607,7 +607,7 @@
 	if(is_ravaging || !isliving(target))
 		return
 	is_ravaging = TRUE
-	visible_message(SPAN_DANGER("<B>[src]</B> tears into [target] repeatedly!"))
+	visible_message(SPAN_DANGER("<B>[src]</B>连续撕咬[target]！"))
 
 	var/successful_attacks = 0
 	for(var/times_to_attack = 3, times_to_attack > 0, times_to_attack--)
@@ -629,7 +629,7 @@
 			sleep(0.5 SECONDS)
 			successful_attacks++
 	if(successful_attacks == 3 && !COOLDOWN_FINISHED(src, pounce_cooldown))
-		to_chat(src, SPAN_BOLDWARNING("The bloodlust invigorates you! You will be ready to pounce much sooner."))
+		to_chat(src, SPAN_BOLDWARNING("嗜血的快感令你振奋！你很快就能再次扑击。"))
 		COOLDOWN_START(src, pounce_cooldown, COOLDOWN_TIMELEFT(src, pounce_cooldown) * 0.5)
 	is_ravaging = FALSE
 
@@ -639,7 +639,7 @@
 	if(stat == DEAD || HAS_TRAIT(src, TRAIT_INCAPACITATED) || HAS_TRAIT(src, TRAIT_FLOORED))
 		return
 	if(!COOLDOWN_FINISHED(src, pounce_cooldown))
-		to_chat(src, SPAN_WARNING("You can't pounce again that fast! You need to wait [COOLDOWN_SECONDSLEFT(src, pounce_cooldown)] seconds."))
+		to_chat(src, SPAN_WARNING("你不能这么快再次扑击！还需等待[COOLDOWN_SECONDSLEFT(src, pounce_cooldown)]秒。"))
 		return
 
 	COOLDOWN_START(src, pounce_cooldown, pounce_cooldown_length)
@@ -658,7 +658,7 @@
 	if(ishuman(pounced_mob) && (pounced_mob.dir in reverse_nearby_direction(dir)))
 		var/mob/living/carbon/human/human = pounced_mob
 		if(human.check_shields(15, "the pounce")) //Human shield block.
-			visible_message(SPAN_DANGER("[src] slams into [human]!"))
+			visible_message(SPAN_DANGER("[src]撞上了[human]！"))
 			KnockDown(1)
 			Stun(1)
 			throwing = FALSE //Reset throwing manually.
@@ -667,20 +667,20 @@
 
 		if(isyautja(human))
 			if(human.check_shields(0, "the pounce", 1))
-				visible_message(SPAN_DANGER("[human] blocks the pounce of [src] with the combistick!"))
+				visible_message(SPAN_DANGER("[human]用组合长矛挡住了[src]的扑击！"))
 				apply_effect(3, WEAKEN)
 				throwing = FALSE
 				playsound(human, "bonk", 75, FALSE)
 				return
 			else if(prob(75)) //Body slam.
-				visible_message(SPAN_DANGER("[human] body slams [src]!"))
+				visible_message(SPAN_DANGER("[human]用身体猛撞[src]！"))
 				KnockDown(3)
 				Stun(3)
 				throwing = FALSE
 				playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 				return
 		if(iscolonysynthetic(human) && prob(60))
-			visible_message(SPAN_DANGER("[human] withstands being pounced and slams down [src]!"))
+			visible_message(SPAN_DANGER("[human]扛住了扑击，将[src]摔倒在地！"))
 			KnockDown(1.5)
 			Stun(1.5)
 			throwing = FALSE
@@ -745,13 +745,13 @@
 
 /datum/emote/living/giant_lizard/growl
 	key = "growl"
-	message = "growls."
+	message = "低吼起来。"
 	sound = "giant_lizard_growl"
 	emote_type = EMOTE_AUDIBLE|EMOTE_VISIBLE
 
 /datum/emote/living/giant_lizard/hiss
 	key = "hiss"
-	message = "hisses."
+	message = "发出嘶嘶声。"
 	sound = "giant_lizard_hiss"
 	emote_type = EMOTE_AUDIBLE|EMOTE_VISIBLE
 

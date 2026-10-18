@@ -18,7 +18,7 @@ Bonus
 
 /datum/symptom/sneeze
 
-	name = "Sneezing"
+	name = "喷嚏"
 	stealth = -2
 	resistance = 3
 	stage_speed = 0

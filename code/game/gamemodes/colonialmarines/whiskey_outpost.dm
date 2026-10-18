@@ -117,12 +117,12 @@
 
 	CONFIG_SET(flag/remove_gun_restrictions, TRUE)
 	sleep(10)
-	to_world(SPAN_ROUND_HEADER("The current game mode is - WHISKEY OUTPOST!"))
-	to_world(SPAN_ROUNDBODY("It is the year 2177 on the planet LV-624, five years before the arrival of the USS Almayer and the 2nd 'Falling Falcons' Battalion in the sector"))
-	to_world(SPAN_ROUNDBODY("The 3rd 'Dust Raiders' Battalion is charged with establishing a USCM presence in the Neroid Sector"))
-	to_world(SPAN_ROUNDBODY("[SSmapping.configs[GROUND_MAP].map_name], one of the Dust Raider bases being established in the sector, has come under attack from unrecognized alien forces"))
-	to_world(SPAN_ROUNDBODY("With casualties mounting and supplies running thin, the Dust Raiders at [SSmapping.configs[GROUND_MAP].map_name] must survive for an hour to alert the rest of their battalion in the sector"))
-	to_world(SPAN_ROUNDBODY("Hold out for as long as you can."))
+	to_world(SPAN_ROUND_HEADER("当前游戏模式——威士忌前哨站！"))
+	to_world(SPAN_ROUNDBODY("2177年，LV-624行星。此时距离USS阿尔迈耶号与“坠落猎鹰”第2营抵达该星区还有五年。"))
+	to_world(SPAN_ROUNDBODY("“尘土突袭者”第3营受命在尼洛德星区建立美国殖民地海军陆战队的存在。"))
+	to_world(SPAN_ROUNDBODY("[SSmapping.configs[GROUND_MAP].map_name]是尘土突袭者在该星区建立的基地之一，如今正遭受未知外星势力的攻击。"))
+	to_world(SPAN_ROUNDBODY("伤亡不断增加，补给日渐匮乏。驻守[SSmapping.configs[GROUND_MAP].map_name]的尘土突袭者必须撑过一小时，才能向星区内其余部队发出警报。"))
+	to_world(SPAN_ROUNDBODY("尽可能长时间地坚守。"))
 	world << sound('sound/effects/siren.ogg')
 
 	sleep(10)
@@ -223,7 +223,7 @@
 			J.spawn_positions = J.current_positions
 			J.total_positions = J.current_positions
 		J.current_positions = J.get_total_positions(TRUE)
-	to_world("<B>New players may no longer join the game.</B>")
+	to_world("<B>新玩家已无法加入本局游戏。</B>")
 	message_admins("Wave one has begun. Disabled new player game joining.")
 	message_admins("Wave one has begun. Disabled new player game joining except for replacement of cryoed marines.")
 	world.update_status()
@@ -261,10 +261,10 @@
 		GLOB.round_statistics.track_round_end()
 	if(finished == 1)
 		log_game("Round end result - xenos won")
-		to_world(SPAN_ROUND_HEADER("The Xenos have successfully defended their hive from colonization."))
-		to_world(SPAN_ROUNDBODY("Well done, you've secured LV-624 for the hive!"))
-		to_world(SPAN_ROUNDBODY("It will be another five years before the USCM returns to the Neroid Sector, with the arrival of the 2nd 'Falling Falcons' Battalion and the USS Almayer."))
-		to_world(SPAN_ROUNDBODY("The xenomorph hive on LV-624 remains unthreatened until then..."))
+		to_world(SPAN_ROUND_HEADER("异形成功保卫虫巢，阻止了殖民者入侵。"))
+		to_world(SPAN_ROUNDBODY("干得好，你们为虫巢守住了LV-624！"))
+		to_world(SPAN_ROUNDBODY("五年后，美国殖民地海军陆战队才会随“坠落猎鹰”第2营和USS阿尔迈耶号重返尼洛德星区。"))
+		to_world(SPAN_ROUNDBODY("在那之前，LV-624上的异形虫巢将安然无恙……"))
 		world << sound('sound/misc/Game_Over_Man.ogg')
 		if(GLOB.round_statistics)
 			GLOB.round_statistics.round_result = MODE_INFESTATION_X_MAJOR
@@ -274,10 +274,10 @@
 
 	else if(finished == 2)
 		log_game("Round end result - marines won")
-		to_world(SPAN_ROUND_HEADER("Against the onslaught, the marines have survived."))
-		to_world(SPAN_ROUNDBODY("The signal rings out to the USS Alistoun, and Dust Raiders stationed elsewhere in the Neroid Sector begin to converge on LV-624."))
-		to_world(SPAN_ROUNDBODY("Eventually, the Dust Raiders secure LV-624 and the entire Neroid Sector in 2182, pacifiying it and establishing peace in the sector for decades to come."))
-		to_world(SPAN_ROUNDBODY("The USS Almayer and the 2nd 'Falling Falcons' Battalion are never sent to the sector and are spared their fate in 2186."))
+		to_world(SPAN_ROUND_HEADER("面对猛烈攻势，陆战队员活了下来。"))
+		to_world(SPAN_ROUNDBODY("求救信号传到USS阿利斯顿号，驻扎在尼洛德星区其他地方的尘土突袭者开始向LV-624集结。"))
+		to_world(SPAN_ROUNDBODY("最终，尘土突袭者在2182年控制了LV-624和整个尼洛德星区，平息了动荡，为该星区带来数十年的和平。"))
+		to_world(SPAN_ROUNDBODY("USS阿尔迈耶号与“坠落猎鹰”第2营从未被派往该星区，因而避开了2186年的命运。"))
 		world << sound('sound/misc/hell_march.ogg')
 		if(GLOB.round_statistics)
 			GLOB.round_statistics.round_result = MODE_INFESTATION_M_MAJOR
@@ -287,8 +287,8 @@
 
 	else
 		log_game("Round end result - no winners")
-		to_world(SPAN_ROUND_HEADER("NOBODY WON!"))
-		to_world(SPAN_ROUNDBODY("How? Don't ask me..."))
+		to_world(SPAN_ROUND_HEADER("无人获胜！"))
+		to_world(SPAN_ROUNDBODY("怎么会这样？别问我……"))
 		world << 'sound/misc/sadtrombone.ogg'
 		if(GLOB.round_statistics)
 			GLOB.round_statistics.round_result = MODE_INFESTATION_DRAW_DEATH
@@ -506,8 +506,8 @@
 	icon_state = "grinder-o0"
 	var/icon_on = "grinder-o1"
 
-	name = "Recycler"
-	desc = "Instructions: Place objects you want to destroy on top of it and use the machine. Use with care"
+	name = "回收机"
+	desc = "使用说明：将要销毁的物品放在上面，然后启动机器。请谨慎使用。"
 	density = FALSE
 	anchored = TRUE
 	unslashable = TRUE
@@ -520,23 +520,23 @@
 	if(user.is_mob_incapacitated())
 		return
 	if(istype(usr, /mob/living/carbon/xenomorph))
-		to_chat(usr, SPAN_DANGER("You don't have the dexterity to do this!"))
+		to_chat(usr, SPAN_DANGER("你的手不够灵巧，无法这样做！"))
 		return
 	if(working)
-		to_chat(user, SPAN_DANGER("Wait for it to recharge first."))
+		to_chat(user, SPAN_DANGER("先等它充能完毕。"))
 		return
 
 	var/remove_max = 10
 	var/turf/T = src.loc
 	if(T)
-		to_chat(user, SPAN_DANGER("You turn on the recycler."))
+		to_chat(user, SPAN_DANGER("你开启了回收器。"))
 		var/removed = 0
 		for(var/i, i < remove_max, i++)
 			for(var/obj/O in T)
 				if(istype(O,/obj/structure/closet/crate))
 					var/obj/structure/closet/crate/C = O
 					if(length(C.contents))
-						to_chat(user, SPAN_DANGER("[O] must be emptied before it can be recycled"))
+						to_chat(user, SPAN_DANGER("[O]必须先清空才能回收。"))
 						continue
 					new /obj/item/stack/sheet/metal(get_step(src,dir))
 					O.forceMove(get_turf(locate(84,237,2))) //z.2
@@ -589,7 +589,7 @@
 
 /obj/item/device/whiskey_supply_beacon //Whiskey Outpost Supply beacon. Might as well reuse the IR target beacon (Time to spook the fucking shit out of people.)
 	name = "ASB beacon"
-	desc = "Ammo Supply Beacon, it has 5 different settings for different supplies. Look at your weapons verb tab to be able to switch ammo drops."
+	desc = "弹药补给信标，具有5种设置，对应不同补给。可在武器命令分页中切换空投弹药类型。"
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "ir_beacon"
 	w_class = SIZE_SMALL
@@ -603,7 +603,7 @@
 	if(!ishuman(user))
 		return
 	if(!user.mind)
-		to_chat(user, "It doesn't seem to do anything for you.")
+		to_chat(user, "它对你似乎不起作用。")
 		return
 
 	playsound(src,'sound/machines/click.ogg', 15, 1)
@@ -619,42 +619,42 @@
 		"Smartgun ammo",
 	)
 
-	var/supply_drop_choice = tgui_input_list(user, "Which supplies to call down?", "Supply Drop", supplies)
+	var/supply_drop_choice = tgui_input_list(user, "要呼叫哪种补给？", "补给空投", supplies)
 
 	switch(supply_drop_choice)
 		if("10x24mm, slugs, buckshot, and 10x20mm rounds")
 			supply_drop = 0
-			to_chat(usr, SPAN_NOTICE("10x24mm, slugs, buckshot, and 10x20mm rounds will now drop!"))
+			to_chat(usr, SPAN_NOTICE("现在会投放10×24毫米弹、独头弹、鹿弹与10×20毫米弹！"))
 		if("Rocket ammo")
 			supply_drop = 1
-			to_chat(usr, SPAN_NOTICE("Rocket ammo will now drop!"))
+			to_chat(usr, SPAN_NOTICE("现在会投放火箭弹！"))
 		if("Smartgun ammo")
 			supply_drop = 2
-			to_chat(usr, SPAN_NOTICE("Smartgun ammo will now drop!"))
+			to_chat(usr, SPAN_NOTICE("现在会投放智能机枪弹药！"))
 		if("Sniper ammo")
 			supply_drop = 3
-			to_chat(usr, SPAN_NOTICE("Sniper ammo will now drop!"))
+			to_chat(usr, SPAN_NOTICE("现在会投放狙击弹药！"))
 		if("Anti-Material Sniper ammo")
 			supply_drop = 4
-			to_chat(usr, SPAN_NOTICE("Anti-Material Sniper ammo will now drop!"))
+			to_chat(usr, SPAN_NOTICE("现在会投放反器材狙击弹药！"))
 		if("Explosives and grenades")
 			supply_drop = 5
-			to_chat(usr, SPAN_NOTICE("Explosives and grenades will now drop!"))
+			to_chat(usr, SPAN_NOTICE("现在会投放炸药与手榴弹！"))
 		if("Pyrotechnician tanks")
 			supply_drop = 6
-			to_chat(usr, SPAN_NOTICE("Pyrotechnician tanks will now drop!"))
+			to_chat(usr, SPAN_NOTICE("现在会投放火焰兵燃料罐！"))
 		if("Scout ammo")
 			supply_drop = 7
-			to_chat(usr, SPAN_NOTICE("Scout ammo will now drop!"))
+			to_chat(usr, SPAN_NOTICE("现在会投放侦察兵弹药！"))
 		else
 			return
 
 	if(activated)
-		to_chat(user, "Toss it to get supplies!")
+		to_chat(user, "把它扔出去以获取补给！")
 		return
 
 	if(!is_ground_level(user.z))
-		to_chat(user, "You have to be on the ground to use this or it won't transmit.")
+		to_chat(user, "你必须站在地面上使用它，否则无法发送信号。")
 		return
 
 	activated = 1
@@ -662,7 +662,7 @@
 	w_class = 10
 	icon_state = "[icon_activated]"
 	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
-	to_chat(user, "You activate the [src]. Now toss it, the supplies will arrive in a moment!")
+	to_chat(user, "你启动了[src]。现在把它扔出去，补给很快就到！")
 
 	var/mob/living/carbon/C = user
 	if(istype(C) && !C.throw_mode)
@@ -761,8 +761,8 @@
 		new path(crate)
 
 /obj/item/storage/box/attachments
-	name = "attachment package"
-	desc = "A package containing some random attachments. Why not see what's inside?"
+	name = "配件包"
+	desc = "装有随机配件的包裹。不打开看看吗？"
 	icon_state = "circuit"
 	w_class = SIZE_TINY
 	can_hold = list()

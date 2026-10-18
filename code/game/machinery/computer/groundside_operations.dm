@@ -58,24 +58,24 @@
 /obj/structure/machinery/computer/groundside_operations/ui_interact(mob/user as mob)
 	user.set_interaction(src)
 
-	var/dat = "<head><title>Groundside Operations Console</title></head><body>"
+	var/dat = "<head><title>地面行动控制台</title></head><body>"
 	dat += "<BR><A href='byond://?src=\ref[src];operation=announce'>[is_announcement_active ? "Make An Announcement" : "*Unavailable*"]</A>"
-	dat += "<BR><A href='byond://?src=\ref[src];operation=mapview'>Tactical Map</A>"
+	dat += "<BR><A href='byond://?src=\ref[src];operation=mapview'>战术地图</A>"
 	dat += "<BR><hr>"
 	var/datum/squad/marine/echo/echo_squad = locate() in GLOB.RoleAuthority.squads
 	if(!echo_squad.active && faction == FACTION_MARINE)
-		dat += "<BR><A href='byond://?src=\ref[src];operation=activate_echo'>Designate Echo Squad</A>"
+		dat += "<BR><A href='byond://?src=\ref[src];operation=activate_echo'>启用埃科小队</A>"
 		dat += "<BR><hr>"
 
 	if(lz_selection && SSticker.mode && (isnull(SSticker.mode.active_lz) || isnull(SSticker.mode.active_lz.loc)))
-		dat += "<BR><A href='byond://?src=\ref[src];operation=selectlz'>Designate Primary LZ</A><BR>"
+		dat += "<BR><A href='byond://?src=\ref[src];operation=selectlz'>指定主要着陆区</A><BR>"
 		dat += "<BR><hr>"
 
 	if(has_squad_overwatch)
 		if(show_command_squad)
-			dat += "Current Squad: <A href='byond://?src=\ref[src];operation=pick_squad'>Command</A><BR>"
+			dat += "当前小队：<A href='byond://?src=\ref[src];operation=pick_squad'>指挥部</A><BR>"
 		else
-			dat += "Current Squad: <A href='byond://?src=\ref[src];operation=pick_squad'>[!isnull(current_squad) ? "[current_squad.name]" : "----------"]</A><BR>"
+			dat += "当前小队：<A href='byond://?src=\ref[src];operation=pick_squad'>[!isnull(current_squad) ? "[preference_label(current_squad.name)]" : "----------"]</A><BR>"
 		if(current_squad || show_command_squad)
 			dat += get_overwatch_info()
 
@@ -115,7 +115,7 @@
 	else if(current_squad)
 		dat += format_list_of_marines(current_squad.marines_list, list(JOB_SQUAD_LEADER, JOB_SQUAD_SPECIALIST, JOB_SQUAD_MEDIC, JOB_SQUAD_ENGI, JOB_SQUAD_SMARTGUN, JOB_SQUAD_MARINE))
 	else
-		dat += "No Squad selected!<BR>"
+		dat += "未选择小队！<BR>"
 	dat += "<br><hr>"
 	dat += "<A href='byond://?src=\ref[src];operation=refresh'>Refresh</a><br>"
 	return dat
@@ -189,7 +189,7 @@
 		else
 			misc_text += marine_infos
 	dat += "<b>Total: [total_count] Deployed</b><BR>"
-	dat += "<b>Marines detected: [living_count] ([helmetless_count] no helmet, [SSD_count] SSD, [almayer_count] on Almayer)</b><BR>"
+	dat += "<b>检测到陆战队员：[living_count]人（[helmetless_count]人未戴头盔，[SSD_count]人断线，[almayer_count]人在阿尔迈耶号上）</b><BR>"
 	dat += "<center><b>Search:</b> <input type='search' id='filter' value='' onkeyup='updateSearch()' onblur='updateSearch()' style='width:300px;'></center>"
 	dat += "<table id='marine_list' border='2px' style='width: 100%; border-collapse: collapse;' align='center'><tr>"
 	dat += "<th>Name</th><th>Role</th><th>State</th><th>Location</th></tr>"
@@ -330,13 +330,13 @@
 				to_chat(human_user, SPAN_WARNING("生物特征验证失败！你需要一张通过认证的身份卡才能执行此操作！"))
 				return FALSE
 
-			var/reason = strip_html(input(usr, "What is the purpose of Echo Squad?", "Activation Reason"))
+			var/reason = strip_html(input(usr, "埃科小队将执行什么任务？", "启用事由"))
 			if(!reason)
 				return
-			if(alert(usr, "Confirm activation of Echo Squad for [reason]", "Confirm Activation", "Yes", "No") != "Yes") return
+			if(alert(usr, "确认因“[reason]”启用埃科小队。", "确认启用", "Yes", "No") != "Yes") return
 			var/datum/squad/marine/echo/echo_squad = locate() in GLOB.RoleAuthority.squads
 			if(!echo_squad)
-				visible_message(SPAN_BOLDNOTICE("错误：无法找到回声小队数据库。"))
+				visible_message(SPAN_BOLDNOTICE("错误：无法找到埃科小队数据库。"))
 				return
 			echo_squad.engage_squad(TRUE)
 			message_admins("[key_name(usr)] activated Echo Squad for '[reason]'.")

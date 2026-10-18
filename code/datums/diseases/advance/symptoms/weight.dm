@@ -17,7 +17,7 @@ Bonus
 
 /datum/symptom/weight_gain
 
-	name = "Weight Gain"
+	name = "体重增加"
 	stealth = -3
 	resistance = -3
 	stage_speed = -2
@@ -30,7 +30,7 @@ Bonus
 		var/mob/living/M = A.affected_mob
 		switch(A.stage)
 			if(1, 2, 3, 4)
-				to_chat(M, SPAN_NOTICE("[pick("You feel blubbery.", "You feel full.")]"))
+				to_chat(M, SPAN_NOTICE("[pick("你觉得自己胖乎乎的。", "你觉得肚子很饱。")]"))
 			else
 				M.overeatduration = min(M.overeatduration + 100, 600)
 				M.nutrition = min(M.nutrition + 100, 500)
@@ -58,7 +58,7 @@ Bonus
 
 /datum/symptom/weight_loss
 
-	name = "Weight Loss"
+	name = "体重减轻"
 	stealth = -3
 	resistance = -2
 	stage_speed = -2
@@ -71,9 +71,9 @@ Bonus
 		var/mob/living/M = A.affected_mob
 		switch(A.stage)
 			if(1, 2, 3, 4)
-				to_chat(M, SPAN_NOTICE("[pick("You feel hungry.", "You crave for food.")]"))
+				to_chat(M, SPAN_NOTICE("[pick("你感到饥饿。", "你渴望吃点东西。")]"))
 			else
-				to_chat(M, SPAN_NOTICE("Your stomach rumbles."))
+				to_chat(M, SPAN_NOTICE("你的肚子咕咕叫。"))
 				M.overeatduration = max(M.overeatduration - 100, 0)
 				M.nutrition = max(M.nutrition - 100, 0)
 
@@ -100,7 +100,7 @@ Bonus
 
 /datum/symptom/weight_even
 
-	name = "Weight Even"
+	name = "体重稳定"
 	stealth = -3
 	resistance = -2
 	stage_speed = -2

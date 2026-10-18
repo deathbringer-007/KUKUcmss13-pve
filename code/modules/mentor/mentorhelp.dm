@@ -47,7 +47,7 @@
 // Helper to check that the thread is still open
 /datum/mentorhelp/proc/check_open(client/C)
 	if(!open)
-		to_chat(C, SPAN_NOTICE("This mentorhelp thread is closed!"))
+		to_chat(C, SPAN_NOTICE("这条导师求助会话已关闭！"))
 		return FALSE
 	return TRUE
 
@@ -79,7 +79,7 @@
 	if(mentor)
 		return TRUE // No need
 
-	var/message = strip_html(input("Please enter your message:", "MentorHelp", null, null) as message|null)
+	var/message = strip_html(input("请输入消息：", "导师求助", null, null) as message|null)
 	if(!message)
 		return FALSE
 	broadcast_unhandled(message, opener)
@@ -100,7 +100,7 @@
 		log_message(msg, sender.key, "All mentors")
 
 	// Sender feedback
-	to_chat(sender, "[SPAN_MENTORHELP("<span class='prefix'>MentorHelp:</span> Message to [(recipient?.key) ? "<a href='byond://?src=\ref[src];action=message'>[recipient.key]</a>" : "mentors"]:")] [SPAN_MENTORBODY(msg)]")
+	to_chat(sender, "[SPAN_MENTORHELP("<span class='prefix'>导师求助：</span>发送给[(recipient?.key) ? "<a href='byond://?src=\ref[src];action=message'>[recipient.key]</a>" : "导师"]的讯息：")] [SPAN_MENTORBODY(msg)]")
 
 	// Recipient direct message
 	if(recipient)
@@ -153,7 +153,7 @@
 	if(sender == mentor)
 		target = author
 
-	var/message = input("Please enter your message:", "Mentor Help", null, null) as message|null
+	var/message = input("请输入消息：", "导师求助", null, null) as message|null
 	if(message)
 		message = strip_html(message)
 		message_handlers(message, sender, target)
@@ -205,7 +205,7 @@
 
 	log_mhelp("[mentor.key] has marked [author_key]'s mentorhelp")
 	notify("<font style='color:red;'>[mentor.key]</font> has marked <font style='color:red;'>[author_key]</font>'s mentorhelp.")
-	to_chat(author, SPAN_NOTICE("<b>NOTICE:</b> <font style='color:red;'>[mentor.key]</font> has marked your thread and is preparing to respond."))
+	to_chat(author, SPAN_NOTICE("<b>提示：</b><font style='color:red;'>[mentor.key]</font>已接下你的求助，正准备回复。"))
 
 // Unmarks the mentorhelp thread and notifies the author that the thread is no longer being handled by a mentor
 /datum/mentorhelp/proc/unmark(client/thread_mentor)
@@ -225,7 +225,7 @@
 
 	log_mhelp("[mentor.key] has unmarked [author_key]'s mentorhelp")
 	notify("<font style='color:red;'>[mentor.key]</font> has unmarked <font style='color:red;'><a href='byond://?src=\ref[src];action=message'>[author_key]</a></font>'s mentorhelp.")
-	to_chat(author, SPAN_NOTICE("<b>NOTICE:</b> <font style='color:red;'>[mentor.key]</font> has unmarked your thread and is no longer responding to it."))
+	to_chat(author, SPAN_NOTICE("<b>提示：</b><font style='color:red;'>[mentor.key]</font>已取消接下你的求助，不再处理这次会话。"))
 	mentor = null
 
 /*
@@ -252,10 +252,10 @@
 	if(closer)
 		log_mhelp("[closer.key] closed [author_key]'s mentorhelp")
 		if(closer == author)
-			to_chat(author, SPAN_NOTICE("You have closed your mentorhelp thread."))
+			to_chat(author, SPAN_NOTICE("你关闭了自己的导师求助会话。"))
 			notify("<font style='color:red;'>[author_key]</font> closed their mentorhelp thread.")
 			return
-	to_chat(author, SPAN_NOTICE("Your mentorhelp thread has been closed."))
+	to_chat(author, SPAN_NOTICE("你的导师求助会话已关闭。"))
 	notify("<font style='color:red;'>[author_key]</font>'s mentorhelp thread has been closed.")
 
 /datum/mentorhelp/Topic(href, list/href_list)
@@ -302,7 +302,7 @@
 		to_chat(responder, SPAN_NOTICE("<b>NOTICE:</b> A mentor is already handling this thread!"))
 		return
 
-	var/choice = tgui_input_list(usr, "Which autoresponse option do you want to send to the player?\n\n L - A webpage link.\n A - An answer to a common question.", "Autoresponse", list ("L: Discord", "L: Xeno Quickstart Guide", "L: Marine Quickstart Guide", "L: Current Map", "A: No plasma regen", "A: Devour as Xeno", "T: Tunnel", "E: Event in progress", "R: Radios", "B: Binoculars", "D: Joining disabled", "L: Leaving the server", "M: Macros", "C: Changelog", "H: Clear Cache", "O: Combat Click-Drag Override"))
+	var/choice = tgui_input_list(usr, "要向玩家发送哪种自动回复？\n\nL：网页链接。\nA：常见问题解答。", "自动回复", list ("L: Discord", "L: Xeno Quickstart Guide", "L: Marine Quickstart Guide", "L: Current Map", "A: No plasma regen", "A: Devour as Xeno", "T: Tunnel", "E: Event in progress", "R: Radios", "B: Binoculars", "D: Joining disabled", "L: Leaving the server", "M: Macros", "C: Changelog", "H: Clear Cache", "O: Combat Click-Drag Override"))
 	if(!choice)
 		return
 
@@ -322,14 +322,14 @@
 		to_chat(responder, SPAN_NOTICE("<b>NOTICE:</b> A mentor is already handling this thread!"))
 		return
 
-	var/msg = SPAN_MENTORSAY("<span class='prefix'>Autoresponse:</span> <span class='message'>[choice]</span>")
+	var/msg = SPAN_MENTORSAY("<span class='prefix'>自动回复：</span><span class='message'>[choice]</span>")
 	switch(choice)
 		if("L: Discord")
-			msg += "You can join our Discord server by using <a href='[CONFIG_GET(string/discordurl)]'>this link</a>!"
+			msg += "你可以通过<a href='[CONFIG_GET(string/discordurl)]'>此链接</a>加入我们的Discord服务器！"
 		if("L: Xeno Quickstart Guide")
-			msg += "Your answer can be found on the Xeno Quickstart Guide on our wiki. <a href='[CONFIG_GET(string/wikiarticleurl)]/[URL_WIKI_XENO_QUICKSTART]'>Check it out here.</a>"
+			msg += "我们的维基《异形快速入门指南》中有你需要的答案。<a href='[CONFIG_GET(string/wikiarticleurl)]/[URL_WIKI_XENO_QUICKSTART]'>点击此处查看。</a>"
 		if("L: Marine Quickstart Guide")
-			msg += "Your answer can be found on the Marine Quickstart Guide on our wiki. <a href='[CONFIG_GET(string/wikiarticleurl)]/[URL_WIKI_MARINE_QUICKSTART]'>Check it out here.</a>"
+			msg += "我们的维基《陆战队员快速入门指南》中有你需要的答案。<a href='[CONFIG_GET(string/wikiarticleurl)]/[URL_WIKI_MARINE_QUICKSTART]'>点击此处查看。</a>"
 		if("L: Current Map")
 			msg += "If you need a map overview of the current round, use Current Map verb in OOC tab to check name of the map. Then open our <a href='[CONFIG_GET(string/wikiurl)]'>wiki front page</a> and look for the map overview in the 'Maps' section. If the map is not listed, it's a new or rare map and the overview hasn't been finished yet."
 		if("A: No plasma regen")

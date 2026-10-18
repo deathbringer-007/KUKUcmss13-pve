@@ -10,7 +10,7 @@
 	classic_keys = list("Unbound")
 	name = "issue_order"
 	full_name = "Issue Order"
-	description = "Select an order to issue."
+	description = "选择要下达的命令。"
 	keybind_signal = COMSIG_KB_HUMAN_ISSUE_ORDER
 	var/order
 
@@ -25,21 +25,21 @@
 /datum/keybinding/human/issue_order/move
 	name = "issue_order_move"
 	full_name = "Issue Move order"
-	description = "Increased mobility and chance to dodge projectiles."
+	description = "提高机动性和躲避弹丸的概率。"
 	keybind_signal = COMSIG_KB_HUMAN_ISSUE_ORDER_MOVE
 	order = COMMAND_ORDER_MOVE
 
 /datum/keybinding/human/issue_order/hold
 	name = "issue_order_hold"
 	full_name = "Issue Hold order"
-	description = "Increased resistance to pain and combat wounds."
+	description = "提高对疼痛和战斗伤害的抵抗力。"
 	keybind_signal = COMSIG_KB_HUMAN_ISSUE_ORDER_HOLD
 	order = COMMAND_ORDER_HOLD
 
 /datum/keybinding/human/issue_order/focus
 	name = "issue_order_focus"
 	full_name = "Issue Focus order"
-	description = "Increased gun accuracy and effective range."
+	description = "提高射击精度和有效射程。"
 	keybind_signal = COMSIG_KB_HUMAN_ISSUE_ORDER_FOCUS
 	order = COMMAND_ORDER_FOCUS
 
@@ -78,7 +78,7 @@
 	classic_keys = list("Unbound")
 	name = "rotate_chair"
 	full_name = "Rotate Chair"
-	description = "Rotate a nearby chair"
+	description = "旋转附近的椅子。"
 	keybind_signal = COMSIG_KB_HUMAN_ROTATE_CHAIR
 
 /datum/keybinding/human/rotate_chair/down(client/user)

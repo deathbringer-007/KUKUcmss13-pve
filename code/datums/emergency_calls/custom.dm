@@ -10,7 +10,7 @@
 
 	shuttle_id = null
 
-	ert_message = "Several characters have been offered up to be played by the admins"
+	ert_message = "管理员已开放若干角色供玩家接管。"
 
 /datum/emergency_call/custom/create_member(datum/mind/M, turf/override_spawn_loc)
 	set waitfor = 0

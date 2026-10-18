@@ -6,7 +6,7 @@
 /datum/chem_property/neutral/cryometabolizing
 	name = PROPERTY_CRYOMETABOLIZING
 	code = "CMB"
-	description = "The chemical is passively metabolized with no other effects in temperatures above 170 kelvin. Below however, the chemical will metabolize with increased effect."
+	description = "温度高于170开尔文时，这种化学品只会被动代谢，不产生其他效果。温度低于此值时，其代谢效果会增强。"
 	rarity = PROPERTY_COMMON
 	category = PROPERTY_TYPE_METABOLITE
 	value = 1
@@ -19,7 +19,7 @@
 /datum/chem_property/neutral/thanatometabolizing
 	name = PROPERTY_THANATOMETABOL
 	code = "TMB"
-	description = "This chemical requires either low oxygen levels or low bloodflow to function. The potency of this property will affect the efficiency of other properties."
+	description = "这种化学品需要在低氧或低血流状态下才能发挥作用。该特性的效力会影响其他特性的效率。"
 	rarity = PROPERTY_RARE
 	category = PROPERTY_TYPE_METABOLITE
 	value = 1
@@ -35,7 +35,7 @@
 /datum/chem_property/neutral/excreting
 	name = PROPERTY_EXCRETING
 	code = "EXT"
-	description = "Excretes all chemicals contained in the blood stream by using the kidneys to turn it into urine."
+	description = "利用肾脏将血液中的所有化学物质转化为尿液并排出体外。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_IRRITANT
 
@@ -45,7 +45,7 @@
 /datum/chem_property/neutral/nutritious
 	name = PROPERTY_NUTRITIOUS
 	code = "NTR"
-	description = "The compound can be used as, or be broken into, nutrition for cell metabolism."
+	description = "这种化合物可直接作为营养，或被分解为供细胞代谢使用的营养物质。"
 	rarity = PROPERTY_COMMON
 	category = PROPERTY_TYPE_METABOLITE
 	value = 0
@@ -71,7 +71,7 @@
 /datum/chem_property/neutral/ketogenic
 	name = PROPERTY_KETOGENIC
 	code = "KTG"
-	description = "Activates ketosis causing the liver to rapidly burn fatty acids and alcohols in the body, resulting in weight loss. Can cause ketoacidosis in high concentrations, resulting in a buildup of acids and lowered pH levels in the blood."
+	description = "启动酮症，使肝脏快速燃烧体内的脂肪酸和酒精，从而减轻体重。浓度过高可能引发酮症酸中毒，导致酸性物质积累、血液pH值降低。"
 	rarity = PROPERTY_COMMON
 	category = PROPERTY_TYPE_METABOLITE
 
@@ -95,7 +95,7 @@
 /datum/chem_property/neutral/neuroinhibiting
 	name = PROPERTY_NEUROINHIBITING
 	code = "NIH"
-	description = "Inhibits neurological processes in the brain such to sight, hearing and speech which can result in various associated disabilities. Restoration will require surgery."
+	description = "抑制大脑中与视觉、听觉和语言有关的神经活动，可能造成相应残疾。需要手术才能恢复。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_TOXICANT
 	value = -1
@@ -125,7 +125,7 @@
 /datum/chem_property/neutral/alcoholic
 	name = PROPERTY_ALCOHOLIC
 	code = "AOL"
-	description = "Binds to glutamate neurotransmitters and gamma aminobutyric acid (GABA), slowing brain functions response to stimuli. This effect is also known as intoxication."
+	description = "与谷氨酸神经递质和γ-氨基丁酸（GABA）结合，减缓大脑对刺激的反应。这种效果也称为醉酒。"
 	rarity = PROPERTY_COMMON
 	category = PROPERTY_TYPE_STIMULANT
 	value = 0
@@ -186,7 +186,7 @@
 /datum/chem_property/neutral/hallucinogenic
 	name = PROPERTY_HALLUCINOGENIC
 	code = "HLG"
-	description = "Causes perception-like experiences that occur without an external stimulus, which are vivid and clear, with the full force and impact of normal perceptions, though not under voluntary control."
+	description = "在没有外界刺激的情况下产生类似真实感知的体验。这些体验生动清晰，具有正常感知的强度和影响，却不受意志控制。"
 	rarity = PROPERTY_COMMON
 	category = PROPERTY_TYPE_STIMULANT
 
@@ -211,7 +211,7 @@
 /datum/chem_property/neutral/relaxing
 	name = PROPERTY_RELAXING
 	code = "RLX"
-	description = "Has a sedative effect on neuromuscular junctions depressing the force of muscle contractions. High concentrations can cause respiratory failure and cardiac arrest."
+	description = "镇静神经肌肉接头，减弱肌肉收缩力。浓度过高可能引发呼吸衰竭和心脏骤停。"
 	rarity = PROPERTY_COMMON
 	category = PROPERTY_TYPE_STIMULANT
 
@@ -225,7 +225,7 @@
 	//heart beats slower
 	M.reagent_move_delay_modifier += POTENCY_MULTIPLIER_MEDIUM * potency
 	if(prob(10))
-		to_chat(M, SPAN_WARNING("You feel incredibly weak!"))
+		to_chat(M, SPAN_WARNING("你感到极度虚弱！"))
 
 /datum/chem_property/neutral/relaxing/process_critical(mob/living/M, potency = 1, delta_time)
 	//heart stops beating, lungs stop working
@@ -233,13 +233,13 @@
 		M.apply_effect(potency, PARALYZE)
 	M.apply_damage(0.5 * potency * delta_time, OXY)
 	if(prob(2.5 * delta_time))
-		to_chat(M, SPAN_WARNING("You can hardly breathe!"))
+		to_chat(M, SPAN_WARNING("你几乎喘不过气！"))
 	M.apply_internal_damage(POTENCY_MULTIPLIER_LOW * potency, "heart")
 
 /datum/chem_property/neutral/hyperthermic
 	name = PROPERTY_HYPERTHERMIC
 	code = "HPR"
-	description = "Causes an exothermic reaction when metabolized in the body, increasing internal body temperature. Warning: this can ignite chemicals on reaction."
+	description = "在体内代谢时发生放热反应，提高核心体温。警告：此反应可能点燃化学品。"
 	rarity = PROPERTY_COMMON
 	category = PROPERTY_TYPE_METABOLITE
 	volatile = TRUE
@@ -247,7 +247,7 @@
 /datum/chem_property/neutral/hyperthermic/process(mob/living/M, potency = 1, delta_time)
 	if(prob(5 * delta_time))
 		M.emote("gasp")
-		to_chat(M, SPAN_DANGER("<b>Your insides feel uncomfortably hot !</b>"))
+		to_chat(M, SPAN_DANGER("<b>你的体内热得难受！</b>"))
 	M.bodytemperature = max(M.bodytemperature + POTENCY_MULTIPLIER_MEDIUM * potency,0)
 	if(potency >= CREATE_MAX_TIER_1)
 		M.make_dizzy(potency * POTENCY_MULTIPLIER_MEDIUM)
@@ -264,7 +264,7 @@
 /datum/chem_property/neutral/hypothermic
 	name = PROPERTY_HYPOTHERMIC
 	code = "HPO"
-	description = "Causes an endothermic reaction when metabolized in the body, decreasing internal body temperature."
+	description = "在体内代谢时发生吸热反应，降低核心体温。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_METABOLITE
 
@@ -299,7 +299,7 @@
 /datum/chem_property/neutral/balding
 	name = PROPERTY_BALDING
 	code = "BLD"
-	description = "Damages the hair follicles in the skin causing extreme alopecia, also refered to as baldness."
+	description = "损伤皮肤中的毛囊，引发严重脱发，也就是秃头。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_IRRITANT
 	value = 0
@@ -309,7 +309,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if((H.h_style != "Bald" || H.f_style != "Shaved"))
-			to_chat(M, SPAN_WARNING("Your hair falls out!"))
+			to_chat(M, SPAN_WARNING("你的头发脱落了！"))
 			H.h_style = "Bald"
 			H.f_style = "Shaved"
 			H.update_hair()
@@ -323,7 +323,7 @@
 /datum/chem_property/neutral/fluffing
 	name = PROPERTY_FLUFFING
 	code = "FLF"
-	description = "Accelerates cell division in the hair follicles resulting in random and excessive hairgrowth."
+	description = "加速毛囊中的细胞分裂，导致毛发随机、过度生长。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_IRRITANT
 	value = 0
@@ -336,21 +336,21 @@
 		H.h_style = pick(GLOB.hair_styles_list)
 		H.f_style = pick(GLOB.facial_hair_styles_list)
 		H.update_hair()
-		to_chat(M, SPAN_NOTICE("Your head feels different..."))
+		to_chat(M, SPAN_NOTICE("你的头感觉有些不一样……"))
 
 /datum/chem_property/neutral/fluffing/process_overdose(mob/living/M, potency = 1, delta_time)
 	if(prob(2.5 * potency * delta_time))
-		to_chat(M, SPAN_WARNING("You feel itchy all over!"))
+		to_chat(M, SPAN_WARNING("你浑身发痒！"))
 		M.take_limb_damage(potency) //Hair growing inside your body
 
 /datum/chem_property/neutral/fluffing/process_critical(mob/living/M, potency = 1, delta_time)
-	to_chat(M, SPAN_WARNING("You feel like something is penetrating your skull!"))
+	to_chat(M, SPAN_WARNING("你感觉有什么东西正刺入头骨！"))
 	M.apply_damage(0.5 * potency * delta_time, BRAIN) //Hair growing into brain
 
 /datum/chem_property/neutral/allergenic
 	name = PROPERTY_ALLERGENIC
 	code = "ALG"
-	description = "Creates a hyperactive immune response in the body, resulting in irritation."
+	description = "引发过度免疫反应，造成刺激症状。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_IRRITANT
 	value = 0
@@ -362,7 +362,7 @@
 /datum/chem_property/neutral/euphoric
 	name = PROPERTY_EUPHORIC
 	code = "EPH"
-	description = "Causes the release of endorphin hormones resulting intense excitement and happiness."
+	description = "促使内啡肽释放，产生强烈的兴奋感和愉悦感。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_STIMULANT
 	value = 1
@@ -386,12 +386,12 @@
 
 /datum/chem_property/neutral/euphoric/process_critical(mob/living/M, potency = 1)
 	M.apply_damage(POTENCY_MULTIPLIER_VHIGH * potency, OXY)
-	to_chat(M, SPAN_WARNING("You are laughing so much you can't breathe!"))
+	to_chat(M, SPAN_WARNING("你笑得喘不过气！"))
 
 /datum/chem_property/neutral/emetic
 	name = PROPERTY_EMETIC
 	code = "EME"
-	description = "Acts on the enteric nervous system to induce emesis, the forceful emptying of the stomach."
+	description = "作用于肠神经系统，诱发呕吐，使胃内容物被强行排空。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_IRRITANT
 
@@ -409,7 +409,7 @@
 /datum/chem_property/neutral/psychostimulating
 	name = PROPERTY_PSYCHOSTIMULATING
 	code = "PST"
-	description = "Stimulates psychological functions causing increased awareness, focus and anti-depressing effects."
+	description = "刺激心理活动，提高感知力与专注度，并产生抗抑郁效果。"
 	rarity = PROPERTY_COMMON
 	category = PROPERTY_TYPE_STIMULANT
 	value = 0
@@ -419,27 +419,27 @@
 	if(holder.volume <= 0.1 && holder.data != -1)
 		holder.data = -1
 		if(potency == 1)
-			to_chat(M, SPAN_WARNING("Your mind feels a little less stable..."))
+			to_chat(M, SPAN_WARNING("你的精神似乎有点不稳定了……"))
 		else if(potency == 2)
-			to_chat(M, SPAN_WARNING("You lose focus..."))
+			to_chat(M, SPAN_WARNING("你的注意力开始涣散……"))
 		else if(potency == 3)
-			to_chat(M, SPAN_WARNING("Your mind feels much less stable..."))
+			to_chat(M, SPAN_WARNING("你的精神似乎更加不稳定了……"))
 		else
-			to_chat(M, SPAN_WARNING("You lose your perfect focus..."))
+			to_chat(M, SPAN_WARNING("你失去了原本完美的专注……"))
 	else
 		if(world.time > holder.data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			holder.data = world.time
 			if(potency == 1)
-				to_chat(M, SPAN_NOTICE("Your mind feels stable... a little stable."))
+				to_chat(M, SPAN_NOTICE("你的精神感觉稳定了……稍微稳定了一些。"))
 				M.confused = max(M.confused-1,0)
 			else if(potency == 2)
-				to_chat(M, SPAN_NOTICE("Your mind feels focused and undivided."))
+				to_chat(M, SPAN_NOTICE("你的思绪专注而统一。"))
 				M.confused = max(M.confused-2,0)
 			else if(potency == 3)
-				to_chat(M, SPAN_NOTICE("Your mind feels much more stable."))
+				to_chat(M, SPAN_NOTICE("你的精神稳定多了。"))
 				M.confused = max(M.confused-3,0)
 			else
-				to_chat(M, SPAN_NOTICE("Your mind feels perfectly focused."))
+				to_chat(M, SPAN_NOTICE("你的注意力无比集中。"))
 				M.confused = 0
 
 /datum/chem_property/neutral/psychostimulating/process_overdose(mob/living/M, potency = 1, delta_time)
@@ -452,7 +452,7 @@
 /datum/chem_property/neutral/antihallucinogenic
 	name = PROPERTY_ANTIHALLUCINOGENIC
 	code = "AHL"
-	description = "Stabilizes perseptive abnormalities such as hallucinations caused by mindbreaker toxin."
+	description = "缓解摧心毒素引发的幻觉等感知异常。"
 	rarity = PROPERTY_COMMON
 	category = PROPERTY_TYPE_STIMULANT
 	value = 1
@@ -472,7 +472,7 @@
 /datum/chem_property/neutral/hypometabolic
 	name = PROPERTY_HYPOMETABOLIC
 	code = "OMB"
-	description = "Takes longer for this chemical to metabolize, resulting in it being in the bloodstream for more time per unit."
+	description = "延长这种化学品的代谢时间，使每单位药剂在血液中停留得更久。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_METABOLITE
 	value = 2
@@ -488,7 +488,7 @@
 /datum/chem_property/neutral/sedative
 	name = PROPERTY_SEDATIVE
 	code = "SDT"
-	description = "Causes the body to release melatonin resulting in increased sleepiness."
+	description = "促使身体释放褪黑素，加重困意。"
 	rarity = PROPERTY_COMMON
 	category = PROPERTY_TYPE_STIMULANT
 
@@ -510,7 +510,7 @@
 /datum/chem_property/neutral/hyperthrottling
 	name = PROPERTY_HYPERTHROTTLING
 	code = "HTR"
-	description = "Causes the brain to operate at several thousand times the normal speed. For some reason, this allows one to understand all languages spoken before them, even without knowing the language."
+	description = "使大脑以正常速度的数千倍运转。出于某种原因，即使原本不懂某种语言，也能理解面前所说的所有语言。"
 	rarity = PROPERTY_RARE
 	category = PROPERTY_TYPE_STIMULANT
 	value = 3
@@ -525,7 +525,7 @@
 	if(H.chem_effect_flags & CHEM_EFFECT_HYPER_THROTTLE)
 		return
 	H.chem_effect_flags |= CHEM_EFFECT_HYPER_THROTTLE
-	to_chat(M, SPAN_NOTICE("You feel like you're in a dream. It is as if the world is standing still."))
+	to_chat(M, SPAN_NOTICE("你仿佛置身梦境，整个世界似乎静止了。"))
 	M.universal_understand = TRUE //Brain is working so fast it can understand the intension of everything it hears
 
 /datum/chem_property/neutral/hyperthrottling/process_overdose(mob/living/M, potency = 1, delta_time)
@@ -537,7 +537,7 @@
 /datum/chem_property/neutral/encephalophrasive
 	name = PROPERTY_ENCEPHALOPHRASIVE
 	code = "ESP"
-	description = "Drastically increases the amplitude of Gamma and Beta brain waves, allowing the host to broadcast their mind."
+	description = "大幅提高γ和β脑波的振幅，使宿主能够广播自己的思维。"
 	rarity = PROPERTY_LEGENDARY
 	category = PROPERTY_TYPE_STIMULANT
 	value = 8
@@ -547,11 +547,11 @@
 
 	chem_host.pain.recalculate_pain()
 	remove_action(chem_host, /datum/action/human_action/psychic_whisper)
-	to_chat(chem_host, SPAN_NOTICE("The pain in your head subsides, and you are left feeling strangely alone."))
+	to_chat(chem_host, SPAN_NOTICE("头痛消退，你却感到一种奇怪的孤独。"))
 
 /datum/chem_property/neutral/encephalophrasive/reaction_mob(mob/chem_host, method=INGEST, volume, potency)
 	give_action(chem_host, /datum/action/human_action/psychic_whisper)
-	to_chat(chem_host, SPAN_NOTICE("A terrible headache manifests, and suddenly it feels as though your mind is outside of your skull."))
+	to_chat(chem_host, SPAN_NOTICE("剧烈头痛袭来，随后你突然觉得自己的意识离开了头骨。"))
 
 /datum/chem_property/neutral/encephalophrasive/process(mob/living/chem_host, potency = 1, delta_time)
 	chem_host.pain.apply_pain(1 * potency)
@@ -565,7 +565,7 @@
 /datum/chem_property/neutral/viscous
 	name = PROPERTY_VISCOUS
 	code = "VIS"
-	description = "The chemical is thick and gooey due to high surface tension. It will not spread very far when spilled. This would decrease the radius of a chemical fire."
+	description = "这种化学品表面张力较高，质地浓稠黏滞，泼洒后不会扩散太远，可缩小化学火焰的范围。"
 	rarity = PROPERTY_COMMON
 	category = PROPERTY_TYPE_REACTANT|PROPERTY_TYPE_COMBUSTIBLE
 
@@ -583,7 +583,7 @@
 /datum/chem_property/neutral/thermostabilizing
 	name = PROPERTY_THERMOSTABILIZING
 	code = "TSL"
-	description = "Causes a mix of endothermic and exothermic reactions in the bloodstream in order to stabilize internal body temperature."
+	description = "在血液中同时引发吸热与放热反应，以稳定核心体温。"
 	rarity = PROPERTY_DISABLED
 	category = PROPERTY_TYPE_REACTANT
 	value = 1
@@ -605,7 +605,7 @@
 /datum/chem_property/neutral/focusing
 	name = PROPERTY_FOCUSING
 	code = "FCS"
-	description = "Removes common alcoholic substances from the bloodstream and increases focus."
+	description = "清除血液中的常见酒精类物质，并提高专注力。"
 	rarity = PROPERTY_COMMON
 	category = PROPERTY_TYPE_STIMULANT
 	value = 0
@@ -631,7 +631,7 @@
 /datum/chem_property/neutral/transformative
 	name = PROPERTY_TRANSFORMATIVE
 	code = "TRF"
-	description = "Mends damaged tissue, in the process creating a small amount of weak toxin as a byproduct, which then seeps into the bloodstream and damages the recipient."
+	description = "修复受损组织，同时产生少量弱毒素作为副产物。毒素随后进入血液，对受药者造成伤害。"
 	rarity = PROPERTY_RARE
 	starter = FALSE
 	value = 3
@@ -656,7 +656,7 @@
 /datum/chem_property/neutral/unknown
 	name = PROPERTY_UNKNOWN
 	code = "UNK"
-	description = "The chemical has a unique property which can not be defined by the Synthesis Simulator. This property might no longer work if the chemical is modified."
+	description = "这种化学品具有合成模拟器无法定义的独特特性。修改化学品后，该特性可能失效。"
 	rarity = PROPERTY_DISABLED
 	category = PROPERTY_TYPE_ANOMALOUS|PROPERTY_TYPE_UNADJUSTABLE
 

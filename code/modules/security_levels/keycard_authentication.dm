@@ -1,6 +1,6 @@
 /obj/structure/machinery/keycard_auth
-	name = "Keycard Authentication Device"
-	desc = "This device is used to trigger station functions, which require multiple swipes of an ID card to authenticate."
+	name = "身份卡认证装置"
+	desc = "用于触发空间站功能，需要多次刷身份卡才能通过认证。"
 	icon = 'icons/obj/structures/machinery/monitors.dmi'
 	icon_state = "auth_off"
 	unacidable = TRUE
@@ -23,12 +23,12 @@
 	power_channel = POWER_CHANNEL_ENVIRON
 
 /obj/structure/machinery/keycard_auth/attack_remote(mob/user as mob)
-	to_chat(user, "The station AI is not to interact with these devices.")
+	to_chat(user, "空间站人工智能不得操作这些设备。")
 	return
 
 /obj/structure/machinery/keycard_auth/attackby(obj/item/W as obj, mob/user as mob)
 	if(inoperable())
-		to_chat(user, "This device is not powered.")
+		to_chat(user, "设备未通电。")
 		return
 	if(istype(W,/obj/item/card/id))
 		var/obj/item/card/id/ID = W
@@ -49,31 +49,31 @@
 
 /obj/structure/machinery/keycard_auth/attack_hand(mob/user as mob)
 	if(user.stat || inoperable())
-		to_chat(user, "This device is not powered.")
+		to_chat(user, "设备未通电。")
 		return
 	if(busy)
-		to_chat(user, "This device is busy.")
+		to_chat(user, "设备正忙。")
 		return
 
 	user.set_interaction(src)
 
-	var/dat = "<h1>Keycard Authentication Device</h1>"
+	var/dat = "<h1>钥匙卡认证装置</h1>"
 
-	dat += "This device is used to trigger some high security events. It requires the simultaneous swipe of two high-level ID cards."
+	dat += "此装置用于触发某些需要高度授权的事件，必须同时刷入两张高权限身份卡。"
 	dat += "<br><hr><br>"
 
 	if(screen == 1)
-		dat += "Select an event to trigger:<ul>"
-		dat += "<li><A href='byond://?src=\ref[src];triggerevent=Red alert'>Red alert</A></li>"
+		dat += "请选择要触发的事件：<ul>"
+		dat += "<li><A href='byond://?src=\ref[src];triggerevent=Red alert'>红色警报</A></li>"
 		if(!CONFIG_GET(flag/ert_admin_call_only))
-			dat += "<li><A href='byond://?src=\ref[src];triggerevent=Emergency Response Team'>Emergency Response Team</A></li>"
+			dat += "<li><A href='byond://?src=\ref[src];triggerevent=Emergency Response Team'>紧急响应小组</A></li>"
 
-		dat += "<li><A href='byond://?src=\ref[src];triggerevent=enable_maint_sec'>Enable Maintenance Security</A></li>"
-		dat += "<li><A href='byond://?src=\ref[src];triggerevent=disable_maint_sec'>Disable Maintenance Security</A></li>"
+		dat += "<li><A href='byond://?src=\ref[src];triggerevent=enable_maint_sec'>启用维护区安保</A></li>"
+		dat += "<li><A href='byond://?src=\ref[src];triggerevent=disable_maint_sec'>关闭维护区安保</A></li>"
 		dat += "</ul>"
 	if(screen == 2)
-		dat += "Please swipe your card to authorize the following event: <b>[event]</b>"
-		dat += "<p><A href='byond://?src=\ref[src];reset=1'>Back</A>"
+		dat += "请刷卡授权以下事件：<b>[event == "Red alert" ? "红色警报" : event == "Emergency Response Team" ? "紧急响应小组" : event == "enable_maint_sec" ? "启用维护区安保" : event == "disable_maint_sec" ? "关闭维护区安保" : event]</b>"
+		dat += "<p><A href='byond://?src=\ref[src];reset=1'>返回</A>"
 	show_browser(user, dat, name, "keycard_auth")
 	return
 
@@ -81,10 +81,10 @@
 /obj/structure/machinery/keycard_auth/Topic(href, href_list)
 	..()
 	if(busy)
-		to_chat(usr, "This device is busy.")
+		to_chat(usr, "设备正忙。")
 		return
 	if(usr.stat || inoperable())
-		to_chat(usr, "This device is without power.")
+		to_chat(usr, "设备没有电力。")
 		return
 	if(href_list["triggerevent"])
 		event = href_list["triggerevent"]
@@ -161,8 +161,8 @@ GLOBAL_VAR_INIT(maint_all_access, TRUE)
 
 // Keycard reader at the CORSAT locks
 /obj/structure/machinery/keycard_auth/lockdown
-	name = "automated lockdown override"
-	desc = "This device is used override the security lockdown."
+	name = "自动封锁覆盖装置"
+	desc = "用于解除安全封锁的设备。"
 	channel = "map_lockdown"
 	var/window_desc = "This device is used to override the security lockdown. It requires both of the authentication disks."
 	var/announce_title = "Station Security Authority automated announcement"
@@ -172,11 +172,11 @@ GLOBAL_VAR_INIT(maint_all_access, TRUE)
 	confirm_delay = 30
 
 /obj/structure/machinery/keycard_auth/lockdown/corsat
-	name = "CORSAT automated biohazard override"
+	name = "CORSAT自动生化封锁覆盖装置"
 	card_type = /obj/item/card/data/corsat
 	announce_title = "CORSAT Security Authority automated announcement"
 	window_desc = "This device is used to override the CORSAT automated lockdown. It requires both of the authentication disks, which can be found in the offices of various heads of departments around the station."
-	desc = "This device is used override the CORSAT automatic biohazard lockdown."
+	desc = "用于解除CORSAT自动生化封锁的设备。"
 
 /obj/structure/machinery/keycard_auth/lockdown/prison
 	card_type = /obj/item/card/data/prison
@@ -184,7 +184,7 @@ GLOBAL_VAR_INIT(maint_all_access, TRUE)
 
 /obj/structure/machinery/keycard_auth/lockdown/attackby(obj/item/W as obj, mob/user as mob)
 	if(inoperable())
-		to_chat(user, "This device is not powered.")
+		to_chat(user, "设备未通电。")
 		return
 	if(!istype(W, card_type))
 		return
@@ -201,7 +201,7 @@ GLOBAL_VAR_INIT(maint_all_access, TRUE)
 			event_source.confirmed = 1
 			event_source.event_confirmed_by = usr
 		else
-			visible_message(SPAN_NOTICE("[src] states: ONLY ONE UNIQUE CODE DISK DETECTED"))
+			visible_message(SPAN_NOTICE("[src]播报：仅检测到一张独立代码磁盘。"))
 
 	else if(screen == 2)
 		event_triggered_by = usr
@@ -225,10 +225,10 @@ GLOBAL_VAR_INIT(maint_all_access, TRUE)
 
 /obj/structure/machinery/keycard_auth/lockdown/attack_hand(mob/user as mob)
 	if(user.stat || inoperable())
-		to_chat(user, "This device is not powered.")
+		to_chat(user, "设备未通电。")
 		return
 	if(busy)
-		to_chat(user, "This device is busy.")
+		to_chat(user, "设备正忙。")
 		return
 
 	user.set_interaction(src)
@@ -237,13 +237,13 @@ GLOBAL_VAR_INIT(maint_all_access, TRUE)
 	dat += "<br><hr><br>"
 
 	if(screen == 1)
-		dat += "Select an event to trigger:<ul>"
-		dat += "<li><A href='byond://?src=\ref[src];triggerevent=Lift Biohazard Lockdown'>Lift Lockdown</A></li>"
+		dat += "请选择要触发的事件：<ul>"
+		dat += "<li><A href='byond://?src=\ref[src];triggerevent=Lift Biohazard Lockdown'>解除封锁</A></li>"
 		dat += "</ul>"
 		show_browser(user, dat, name, "keycard_auth", width = 500, height = 300)
 	if(screen == 2)
-		dat += "Please swipe your card to authorize the following event: <b>[event]</b>"
-		dat += "<p><A href='byond://?src=\ref[src];reset=1'>Back</A>"
+		dat += "请刷卡授权以下事件：<b>[event == "Lift Biohazard Lockdown" ? "解除生物危害封锁" : event]</b>"
+		dat += "<p><A href='byond://?src=\ref[src];reset=1'>返回</A>"
 		show_browser(user, dat, name, "keycard_auth", width = 500, height = 300)
 	return
 
@@ -257,7 +257,7 @@ GLOBAL_VAR_INIT(maint_all_access, TRUE)
 	if(istype(SSticker.mode, /datum/game_mode/colonialmarines))
 		var/datum/game_mode/colonialmarines/gCM = SSticker.mode
 		if(gCM.round_status_flags & ROUNDSTATUS_PODDOORS_OPEN)
-			visible_message(SPAN_NOTICE("[src] states: LOCKDOWN ALREADY LIFTED"))
+			visible_message(SPAN_NOTICE("[src]播报：封锁已经解除。"))
 			return
 		gCM.round_status_flags |= ROUNDSTATUS_PODDOORS_OPEN // So we don't spam the message twice
 
@@ -275,8 +275,8 @@ GLOBAL_VAR_INIT(maint_all_access, TRUE)
 	for(var/mob/M in GLOB.player_list)
 		if(isxeno(M))
 			sound_to(M, sound(get_sfx("queen"), wait = 0, volume = 50))
-			to_chat(M, SPAN_XENOANNOUNCE("The Queen Mother reaches into your mind from worlds away."))
-			to_chat(M, SPAN_XENOANNOUNCE("To my children and their Queen. I sense the large doors that trap us will open in [text_timeleft]."))
+			to_chat(M, SPAN_XENOANNOUNCE("母皇的意志跨越遥远星际，触及你的脑海。"))
+			to_chat(M, SPAN_XENOANNOUNCE("致我的孩子们及其女皇：我感应到，困住我们的大门将在[text_timeleft]后开启。"))
 	var/new_timeleft = timeleft - next_interval
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/machinery/keycard_auth/lockdown, timed_countdown), new_timeleft), next_interval)
 
@@ -287,7 +287,7 @@ GLOBAL_VAR_INIT(maint_all_access, TRUE)
 			if(istype(SSticker.mode, /datum/game_mode/colonialmarines))
 				var/datum/game_mode/colonialmarines/gCM = SSticker.mode
 				if(gCM.round_status_flags & ROUNDSTATUS_PODDOORS_OPEN)
-					visible_message(SPAN_NOTICE("[src] states: LOCKDOWN ALREADY LIFTED"))
+					visible_message(SPAN_NOTICE("[src]播报：封锁已经解除。"))
 					return
 				gCM.round_status_flags |= ROUNDSTATUS_PODDOORS_OPEN // So we don't spam the message twice
 			timed_countdown(3 MINUTES)

@@ -43,16 +43,16 @@
 	var/dat
 
 	if (temp)
-		dat = "<TT>[temp]</TT><BR><BR><A href='byond://?src=\ref[src];choice=Clear Screen'>Clear Screen</A>"
+		dat = "<TT>[temp]</TT><BR><BR><A href='byond://?src=\ref[src];choice=Clear Screen'>清屏</A>"
 	else
-		dat = "Confirm Identity: <A href='byond://?src=\ref[src];choice=Confirm Identity'>[scan ? scan.name : "----------"]</A><HR>"
+		dat = "确认身份：<A href='byond://?src=\ref[src];choice=Confirm Identity'>[scan ? scan.name : "----------"]</A><HR>"
 		if (authenticated)
 			switch(screen)
 				if(1.0)
 					dat += {"
 <p style='text-align:center;'>"}
-					dat += "<A href='byond://?src=\ref[src];choice=Search Records'>Search Records</A><BR>"
-					dat += "<A href='byond://?src=\ref[src];choice=New Record (General)'>New Record</A><BR>"
+					dat += "<A href='byond://?src=\ref[src];choice=Search Records'>搜索记录</A><BR>"
+					dat += "<A href='byond://?src=\ref[src];choice=New Record (General)'>新建记录</A><BR>"
 					dat += {"
 </p>
 <table style="text-align:center;" cellspacing="0" width="100%">
@@ -73,11 +73,11 @@
 							dat += "<td>[R.fields["id"]]</td>"
 							dat += "<td>[R.fields["rank"]]</td>"
 						dat += "</table><hr width='75%' />"
-					dat += "<A href='byond://?src=\ref[src];choice=Record Maintenance'>Record Maintenance</A><br><br>"
-					dat += "<A href='byond://?src=\ref[src];choice=Log Out'>{Log Out}</A>"
+					dat += "<A href='byond://?src=\ref[src];choice=Record Maintenance'>记录维护</A><br><br>"
+					dat += "<A href='byond://?src=\ref[src];choice=Log Out'>{退出登录}</A>"
 				if(2.0)
-					dat += "<B>Records Maintenance</B><HR>"
-					dat += "<BR><A href='byond://?src=\ref[src];choice=Delete All Records'>Delete All Records</A><BR><BR><A href='byond://?src=\ref[src];choice=Return'>Back</A>"
+					dat += "<B>记录维护</B><HR>"
+					dat += "<BR><A href='byond://?src=\ref[src];choice=Delete All Records'>删除全部记录</A><BR><BR><A href='byond://?src=\ref[src];choice=Return'>返回</A>"
 				if(3.0)
 					dat += "<CENTER><B>Employment Record</B></CENTER><BR>"
 					if ((istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1)))
@@ -195,7 +195,7 @@ What a mess.*/
 						screen = 1
 //RECORD FUNCTIONS
 			if("Search Records")
-				var/t1 = input("Search String: (Partial Name or ID or Fingerprints or Rank)", "Secure. records", null, null)  as text
+				var/t1 = input("搜索内容（部分姓名、编号、指纹或军衔）：", "安保档案", null, null)  as text
 				if ((!( t1 ) || usr.stat || !( authenticated ) || usr.is_mob_restrained() || !in_range(src, usr)))
 					return
 				Perp = new/list()
@@ -274,7 +274,7 @@ What a mess.*/
 				switch(href_list["field"])
 					if("name")
 						if (istype(active1, /datum/data/record))
-							var/new_value = reject_bad_name(input("Please input name:", "Secure. records", active1.fields["name"], null)  as text)
+							var/new_value = reject_bad_name(input("请输入姓名：", "安保档案", active1.fields["name"], null)  as text)
 							if ((!( new_value ) || !length(trim(new_value)) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr)))) || active1 != a1)
 								return
 							message_admins("[key_name(usr)] changed the employment record name of [active1.fields["name"]] to [new_value]")
@@ -282,7 +282,7 @@ What a mess.*/
 
 					if("id")
 						if (istype(active1, /datum/data/record))
-							var/new_value = copytext(trim(sanitize(input("Please input id:", "Secure. records", active1.fields["id"], null)  as text)),1,MAX_MESSAGE_LEN)
+							var/new_value = copytext(trim(sanitize(input("请输入编号：", "安保档案", active1.fields["id"], null)  as text)),1,MAX_MESSAGE_LEN)
 							if ((!( new_value ) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr))) || active1 != a1))
 								return
 							msg_admin_niche("[key_name_admin(usr)] changed the employment record id for [active1.fields["name"]] ([active1.fields["id"]]) to [new_value].")
@@ -298,7 +298,7 @@ What a mess.*/
 
 					if("age")
 						if (istype(active1, /datum/data/record))
-							var/new_value = input("Please input age:", "Secure. records", active1.fields["age"], null)  as num
+							var/new_value = input("请输入年龄：", "安保档案", active1.fields["age"], null)  as num
 							if ((!( new_value ) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr))) || active1 != a1))
 								return
 							active1.fields["age"] = new_value
@@ -314,11 +314,11 @@ What a mess.*/
 									temp += "<li><a href='byond://?src=\ref[src];choice=Change Rank;rank=[rank]'>[rank]</a></li>"
 								temp += "</ul>"
 							else
-								alert(usr, "You do not have the required rank to do this!")
+								alert(usr, "你的军衔不满足此操作要求！")
 
 					if("species")
 						if (istype(active1, /datum/data/record))
-							var/new_value = copytext(trim(sanitize(input("Please enter race:", "General records", active1.fields["species"], null)  as message)),1,MAX_MESSAGE_LEN)
+							var/new_value = copytext(trim(sanitize(input("请输入种族：", "一般档案", active1.fields["species"], null)  as message)),1,MAX_MESSAGE_LEN)
 							if ((!( new_value ) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr))) || active1 != a1))
 								return
 							active1.fields["species"] = new_value

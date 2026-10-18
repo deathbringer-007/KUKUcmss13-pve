@@ -69,7 +69,7 @@
 	switch(stage)
 		if(ZOMBIE_INFECTION_STAGE_ONE)
 			if(infected_mob.stat == DEAD && stage_counter != stage)
-				to_chat(infected_mob, SPAN_CENTERBOLD("Your zombie infection is now at stage one! Zombie transformation begins at stage three."))
+				to_chat(infected_mob, SPAN_CENTERBOLD("你的丧尸感染已进入第一阶段！第三阶段开始时，你将变成丧尸。"))
 				stage_counter = stage
 
 			// dead mobs should not have symptoms, because... they are dead.
@@ -82,18 +82,18 @@
 					if(0 to 25)
 						return
 					if(25 to 75)
-						to_chat(infected_mob, SPAN_DANGER("You feel warm..."))
+						to_chat(infected_mob, SPAN_DANGER("你感到有些发热……"))
 						stage_level += 9
 					if(75 to 95)
-						to_chat(infected_mob, SPAN_DANGER("Your throat is really dry..."))
+						to_chat(infected_mob, SPAN_DANGER("你的喉咙干得厉害……"))
 						stage_level += 18
 					if(95 to 100)
-						to_chat(infected_mob, SPAN_DANGER("You can't trust them..."))
+						to_chat(infected_mob, SPAN_DANGER("你不能相信他们……"))
 						stage_level += 36
 
 		if(ZOMBIE_INFECTION_STAGE_TWO)
 			if(infected_mob.stat == DEAD && stage_counter != stage)
-				to_chat(infected_mob, SPAN_CENTERBOLD("Your zombie infection is now at stage two! Zombie transformation begins at stage three."))
+				to_chat(infected_mob, SPAN_CENTERBOLD("你的丧尸感染已进入第二阶段！第三阶段开始时，你将变成丧尸。"))
 				stage_counter = stage
 
 			if(infected_mob.stat != DEAD)
@@ -105,7 +105,7 @@
 					if(0 to 25)
 						return
 					if(25 to 50)
-						to_chat(infected_mob, SPAN_DANGER("You can't trust them..."))
+						to_chat(infected_mob, SPAN_DANGER("你不能相信他们……"))
 						stage_level += 5
 					if(50 to 75)
 						to_chat(infected_mob, SPAN_DANGER("You feel really warm..."))
@@ -165,7 +165,7 @@
 
 /obj/item/weapon/zombie_claws
 	gender = PLURAL
-	name = "claws"
+	name = "利爪"
 	icon = 'icons/mob/humans/species/r_zombie.dmi'
 	icon_state = "claw_l"
 	flags_item = NODROP|DELONDROP|ITEM_ABSTRACT
@@ -229,8 +229,8 @@
 			D.open()
 
 /obj/item/reagent_container/food/drinks/bottle/black_goo
-	name = "strange bottle"
-	desc = "A strange bottle of unknown origin."
+	name = "奇怪的瓶子"
+	desc = "一瓶来源不明的奇怪液体。"
 	icon = 'icons/obj/items/black_goo_stuff.dmi'
 	icon_state = "blackgoo"
 	garbage = FALSE
@@ -241,8 +241,8 @@
 
 
 /obj/item/reagent_container/food/drinks/bottle/black_goo_cure
-	name = "even stranger bottle"
-	desc = "A bottle of black labeled CURE..."
+	name = "更奇怪的瓶子"
+	desc = "一瓶贴着“解药”标签的黑色液体……"
 	icon = 'icons/obj/items/black_goo_stuff.dmi'
 	icon_state = "blackgoo"
 
@@ -251,8 +251,8 @@
 	reagents.add_reagent("antiZed", 30)
 
 /obj/item/reagent_container/glass/bottle/labeled_black_goo_cure
-	name = "\"Pathogen\" cure bottle"
-	desc = "The bottle has a biohazard symbol on the front, and has a label, designating its use against Agent A0-3959X.91–15, colloquially known as the \"Black Goo\"."
+	name = "“病原体”解药瓶"
+	desc = "瓶子正面印有生物危害标志，标签注明用于对抗A0-3959X.91–15药剂，也就是俗称的“黑色黏液”。"
 	icon_state = "bottle20"
 
 /obj/item/reagent_container/glass/bottle/labeled_black_goo_cure/Initialize()
@@ -261,7 +261,7 @@
 
 /datum/language/zombie
 	name = "Zombie"
-	desc = "A growling, guttural method of communication, only Zombies seem to be capable of producing these sounds."
+	desc = "一种低沉咆哮的交流方式，似乎只有僵尸能发出这种声音。"
 	speech_verb = "growls"
 	ask_verb = "grumbles"
 	exclaim_verb = "snarls"
@@ -273,7 +273,7 @@
 	return pick("Urrghh...", "Rrraaahhh...", "Aaaarghhh...", "Mmmrrrgggghhh...", "Huuuuhhhh...", "Sssssgrrrr...")
 
 /obj/item/clothing/glasses/zombie_eyes
-	name = "zombie eyes"
+	name = "僵尸眼睛"
 	gender = PLURAL
 	icon_state = "stub"
 	item_state = "BLANK"
@@ -288,8 +288,8 @@
 	icon = 'icons/obj/items/black_goo_stuff.dmi'
 	icon_state = "goobox"
 	icon_type = "goo"
-	name = "strange canister"
-	desc = "A strange looking metal container."
+	name = "奇怪的罐子"
+	desc = "一个外观奇怪的金属容器。"
 	storage_slots = 3
 	can_hold = list(/obj/item/reagent_container/food/drinks/bottle/black_goo)
 

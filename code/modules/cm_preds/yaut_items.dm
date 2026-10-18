@@ -328,12 +328,12 @@
 
 /obj/item/device/radio/headset/yautja/talk_into(mob/living/M as mob, message, channel, verb = "commands", datum/language/speaking)
 	if(!isyautja(M)) //Nope.
-		to_chat(M, SPAN_WARNING("You try to talk into the headset, but just get a horrible shrieking in your ears!"))
+		to_chat(M, SPAN_WARNING("你试着对耳机说话，耳中却只传来刺耳的尖啸！"))
 		return
 
 	for(var/mob/living/carbon/xenomorph/hellhound/hellhound as anything in GLOB.hellhound_list)
 		if(!hellhound.stat)
-			to_chat(hellhound, "\[Radio\]: [M.real_name] [verb], '<B>[message]</b>'.")
+			to_chat(hellhound, "\[无线电\]：[M.real_name] [verb]，“<B>[message]</b>”。")
 	..()
 
 /obj/item/device/radio/headset/yautja/elder //primarily for use in another MR
@@ -394,7 +394,7 @@
 	var/ship_to_tele = list("Yautja Ship" = -1, "Human Ship" = "Human")
 
 	if(!HAS_TRAIT(H, TRAIT_YAUTJA_TECH) || should_block_game_interaction(H))
-		to_chat(user, SPAN_WARNING("You fiddle with it, but nothing happens!"))
+		to_chat(user, SPAN_WARNING("你摆弄了一下，但什么也没发生！"))
 		return
 
 	if(H.client && H.client.clan_info)
@@ -408,7 +408,7 @@
 		if(SSpredships.is_clanship_loaded(clan_info?.clan_id))
 			ship_to_tele += list("Your clan" = "[clan_info.clan_id]")
 
-	var/clan = ship_to_tele[tgui_input_list(H, "Select a ship to teleport to", "[src]", ship_to_tele)]
+	var/clan = ship_to_tele[tgui_input_list(H, "选择要传送前往的舰船。", "[src]", ship_to_tele)]
 	if(clan != "Human" && !SSpredships.is_clanship_loaded(clan))
 		return // Checking ship is valid
 
@@ -425,17 +425,17 @@
 	// Let's go
 	playsound(src,'sound/ambience/signal.ogg', 25, 1, sound_range = 6)
 	timer = 1
-	user.visible_message(SPAN_INFO("[user] starts becoming shimmery and indistinct..."))
+	user.visible_message(SPAN_INFO("[user]的身影开始闪烁，变得模糊不清……"))
 
 	if(do_after(user, 10 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC))
 		// Display fancy animation for you and the person you might be pulling (Legacy)
 		SEND_SIGNAL(user, COMSIG_MOB_EFFECT_CLOAK_CANCEL)
-		user.visible_message(SPAN_WARNING("[icon2html(user, viewers(src))][user] disappears!"))
+		user.visible_message(SPAN_WARNING("[icon2html(user, viewers(src))][user]消失了！"))
 		var/tele_time = animation_teleport_quick_out(user)
 		var/mob/living/M = user.pulling
 		if(istype(M)) // Pulled person
 			SEND_SIGNAL(M, COMSIG_MOB_EFFECT_CLOAK_CANCEL)
-			M.visible_message(SPAN_WARNING("[icon2html(M, viewers(src))][M] disappears!"))
+			M.visible_message(SPAN_WARNING("[icon2html(M, viewers(src))][M]消失了！"))
 			animation_teleport_quick_out(M)
 
 		sleep(tele_time) // Animation delay
@@ -461,17 +461,17 @@
 		return FALSE
 
 	if(!HAS_TRAIT(usr, TRAIT_YAUTJA_TECH))
-		to_chat(usr, SPAN_WARNING("You have no idea how this thing works!"))
+		to_chat(usr, SPAN_WARNING("你完全不知道这东西怎么用！"))
 		return FALSE
 
 	if(loc && istype(usr.loc, /turf))
 		var/turf/location = usr.loc
 		GLOB.yautja_teleports += location
-		var/name = input("What would you like to name this location?", "Text") as null|text
+		var/name = input("你想给这个地点起什么名字？", "文字") as null|text
 		if(!name)
 			return FALSE
 		GLOB.yautja_teleport_descs[name + location.loc_to_string()] = location
-		to_chat(usr, SPAN_WARNING("You can now teleport to this location!"))
+		to_chat(usr, SPAN_WARNING("你现在可以传送到这个位置了！"))
 		log_game("[usr] ([usr.key]) has created a new teleport location at [get_area(usr)]")
 		message_all_yautja("[usr.real_name] has created a new teleport location, [name], at [usr.loc] in [get_area(usr)]")
 		return TRUE
@@ -596,11 +596,11 @@
 	if(scalpee.hunter_data.hunter == user) //You don't get your name on it unless you hunted them yourself.
 		switch(worth)
 			if(-1)
-				true_desc += SPAN_BLUE("\n[user.real_name] had the unpleasant duty of running [them] to ground.")
+				true_desc += SPAN_BLUE("\n[user.real_name]不得不执行追捕这头猎物的苦差事。")
 			if(0) //You hunted someone with no kills for no real reason.
-				true_desc += SPAN_BLUE("\nAn honourable first trophy for a truly precocious child. [user.real_name]'s parents must be so proud.")
+				true_desc += SPAN_BLUE("\n这是一名早慧孩童值得骄傲的首件战利品。[user.real_name]的父母一定很自豪。")
 			if(1)
-				true_desc += SPAN_BLUE("\nThis trophy was taken by [user.real_name] after a successful hunt.")
+				true_desc += SPAN_BLUE("\n这件战利品是[user.real_name]在一次成功的狩猎后取得的。")
 			if(2)
 				true_desc += SPAN_BLUE("\nThis fine trophy was taken by [user.real_name] after a successful hunt.")
 
@@ -822,7 +822,7 @@
 	if(!HAS_TRAIT(H, TRAIT_YAUTJA_TECH))
 		to_chat(H, SPAN_WARNING("You do not know how to configure the trap."))
 		return
-	var/range = tgui_input_list(H, "Which range would you like to set the hunting trap to?", "Hunting Trap Range", list(2, 3, 4, 5, 6, 7))
+	var/range = tgui_input_list(H, "你想将狩猎陷阱的作用范围设为多少？", "狩猎陷阱范围", list(2, 3, 4, 5, 6, 7))
 	if(isnull(range))
 		return
 	tether_range = range

@@ -17,7 +17,7 @@
 	job_options = list(PVT_VARIANT = "PVT", PFC_VARIANT = "PFC", LCPL_VARIANT = "LCPL")
 
 /datum/job/marine/standard/on_config_load()
-	entry_message_body = "You are a rank-and-file <a href='[CONFIG_GET(string/wikiarticleurl)]/[URL_WIKI_MARINE_QUICKSTART]'>Soldier of your standing army</a>, and that is your strength. What you lack alone, you gain standing shoulder to shoulder with the men and women of the platoon. Ooh-rah!<br><b>You remember that you've stored your personal gear and uniform are located in the dorm or locker rooms.</b>"
+	entry_message_body = "你是常备军中一名普通的<a href='[CONFIG_GET(string/wikiarticleurl)]/[URL_WIKI_MARINE_QUICKSTART]'>士兵</a>，而这正是你的力量所在。个人的不足，可以在与全排战友并肩作战时得到弥补。乌拉！<br><b>你记得自己的个人装备和制服存放在宿舍或更衣室内。</b>"
 	return ..()
 
 /datum/job/marine/standard/set_spawn_positions(count)
@@ -150,8 +150,8 @@
 	spawn_positions = 2
 	gear_preset = /datum/equipment_preset/uscm/rmc
 	job_options = null
-	supervisors = "the section leader and troop commander"
-	entry_message_body = "You are a highly trained member of the Royal Marines Commando. Whilst you may not have a primary specialisation, that offers you a greater degree of flexibility in additional equipment you can bring to the field.<br><b>You remember that you've stored your personal gear and uniform in the locker rooms.</b>"
+	supervisors = "班长与突击排指挥官"
+	entry_message_body = "你是皇家陆战突击队中一名训练有素的成员。虽然你没有主要专长，但这也让你能更灵活地选择携带到战场的附加装备。<br><b>你记得自己的个人装备和制服存放在更衣室内。</b>"
 
 /obj/effect/landmark/start/marine/rmc
 	name = JOB_TWE_RMC_RIFLEMAN

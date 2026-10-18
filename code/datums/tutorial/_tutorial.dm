@@ -111,7 +111,7 @@ GLOBAL_LIST_EMPTY_TYPED(ongoing_tutorials, /datum/tutorial)
 
 /// Something went very, very wrong during load so let's abort
 /datum/tutorial/proc/abort_tutorial()
-	to_chat(tutorial_mob, SPAN_BOLDWARNING("Something went wrong during tutorial load, please try again!"))
+	to_chat(tutorial_mob, SPAN_BOLDWARNING("教学加载出错，请重试！"))
 	end_tutorial(FALSE)
 
 /datum/tutorial/proc/add_highlight(atom/target, color = "#d19a02")

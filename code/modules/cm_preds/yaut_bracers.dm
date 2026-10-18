@@ -76,7 +76,7 @@
 /obj/item/clothing/gloves/yautja/pickup(mob/living/user)
 	..()
 	if(!isyautja(user))
-		to_chat(user, SPAN_WARNING("The bracer feels cold against your skin, heavy with an unfamiliar, almost alien weight."))
+		to_chat(user, SPAN_WARNING("护腕贴着你的皮肤，冰冷而沉重，带着陌生、近乎外星造物的质感。"))
 
 /obj/item/clothing/gloves/yautja/process()
 	if(!ishuman(loc))
@@ -142,7 +142,7 @@
 	if(!human)
 		return FALSE
 	if(charge < amount)
-		to_chat(human, SPAN_WARNING("Your bracers lack the energy. They have only <b>[charge]/[charge_max]</b> remaining and need <B>[amount]</b>."))
+		to_chat(human, SPAN_WARNING("你的护腕能量不足。当前剩余<b>[charge]/[charge_max]</b>，需要<B>[amount]</b>。"))
 		return FALSE
 
 	charge -= amount
@@ -158,7 +158,7 @@
 		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 		s.set_up(2, 1, src)
 		s.start()
-		M.visible_message(SPAN_WARNING("[src] beeps and sends a shock through [M]'s body!"))
+		M.visible_message(SPAN_WARNING("[src]发出哔声，电流穿过[M]的身体！"))
 		//Stun and knock out, scream in pain
 		M.apply_effect(2, STUN)
 		M.apply_effect(2, WEAKEN)
@@ -189,14 +189,14 @@
 		workingProbability = 25
 		randomProbability = 7
 
-	to_chat(user, SPAN_NOTICE("You press a few buttons..."))
+	to_chat(user, SPAN_NOTICE("你按了几个按钮……"))
 	//Add a little delay so the user wouldn't be just spamming all the buttons
 	user.next_move = world.time + 3
 	if(do_after(user, 3, INTERRUPT_ALL, BUSY_ICON_FRIENDLY, numticks = 1))
 		if(prob(randomProbability))
 			return activate_random_verb(user)
 		if(!prob(workingProbability))
-			to_chat(user, SPAN_WARNING("You fiddle with the buttons but nothing happens..."))
+			to_chat(user, SPAN_WARNING("你摆弄着按钮，但什么也没发生……"))
 			return TRUE
 
 	if(always_delimb)
@@ -206,7 +206,7 @@
 
 /obj/item/clothing/gloves/yautja/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_NOTICE("They currently have <b>[charge]/[charge_max]</b> charge.")
+	. += SPAN_NOTICE("当前电量为<b>[charge]/[charge_max]</b>。")
 
 
 // Toggle the notification sound
@@ -216,7 +216,7 @@
 	set src in usr
 
 	notification_sound = !notification_sound
-	to_chat(usr, SPAN_NOTICE("The bracer's sound is now turned [notification_sound ? "on" : "off"]."))
+	to_chat(usr, SPAN_NOTICE("护腕的提示音现已[notification_sound ? "开启" : "关闭"]。"))
 
 
 /obj/item/clothing/gloves/yautja/thrall
@@ -298,12 +298,12 @@
 	if(ishuman(loc))
 		var/mob/living/carbon/human/wearer = loc
 		if(wearer.gloves == src)
-			wearer.visible_message(SPAN_DANGER("You hear a hiss and crackle!"), SPAN_DANGER("Your bracers hiss and spark!"), SPAN_DANGER("You hear a hiss and crackle!"))
+			wearer.visible_message(SPAN_DANGER("你听到嘶嘶声和噼啪声！"), SPAN_DANGER("你的护腕发出嘶嘶声，迸出火花！"), SPAN_DANGER("你听到嘶嘶声和噼啪声！"))
 			if(HAS_TRAIT(wearer, TRAIT_CLOAKED))
 				decloak(wearer, TRUE, DECLOAK_EMP)
 		else
 			var/turf/our_turf = get_turf(src)
-			our_turf.visible_message(SPAN_DANGER("You hear a hiss and crackle!"), SPAN_DANGER("You hear a hiss and crackle!"))
+			our_turf.visible_message(SPAN_DANGER("你听到嘶嘶声和噼啪声！"), SPAN_DANGER("You hear a hiss and crackle!"))
 
 /obj/item/clothing/gloves/yautja/hunter/equipped(mob/user, slot)
 	. = ..()
@@ -752,7 +752,7 @@
 		to_chat(usr, SPAN_WARNING("Why would you want to do this?"))
 		return
 
-	if(alert("Which explosion type do you want?","Explosive Bracers", "Small", "Big") == "Big")
+	if(alert("你想使用哪种爆炸模式？","爆炸护腕", "Small", "Big") == "Big")
 		explosion_type = SD_TYPE_BIG
 		log_attack("[key_name_admin(usr)] has changed their Self-Destruct to Large")
 	else
@@ -792,11 +792,11 @@
 		var/mob/living/carbon/human/victim = G.grabbed_thing
 		if(victim.stat == DEAD)
 			var/obj/item/clothing/gloves/yautja/hunter/bracer = victim.gloves
-			var/message = "Are you sure you want to detonate this [victim.species]'s bracer?"
+			var/message = "确定要引爆这个 [victim.species] 的护腕吗？"
 			if(isspeciesyautja(victim))
-				message = "Are you sure you want to send this [victim.species] into the great hunting grounds?"
+				message = "确定要送这个 [victim.species] 前往伟大的狩猎场吗？"
 			if(istype(bracer))
-				if(forced || alert(message,"Explosive Bracers", "Yes", "No") == "Yes")
+				if(forced || alert(message,"爆炸护腕", "Yes", "No") == "Yes")
 					if(M.get_active_hand() == G && victim && victim.gloves == bracer && !bracer.exploding)
 						var/area/A = get_area(M)
 						var/turf/T = get_turf(M)
@@ -815,7 +815,7 @@
 		return
 
 	if(exploding)
-		if(forced || alert("Are you sure you want to stop the countdown?","Bracers", "Yes", "No") == "Yes")
+		if(forced || alert("确定要停止倒计时吗？","护腕", "Yes", "No") == "Yes")
 			if(M.gloves != src)
 				return
 			if(M.stat == DEAD)
@@ -841,7 +841,7 @@
 		to_chat(M, SPAN_WARNING("Strange...something seems to be interfering with your bracer functions..."))
 		return
 
-	if(forced || alert("Detonate the bracers? Are you sure?\n\nNote: If you activate SD for any non-accidental reason during or after a fight, you commit to the SD. By initially activating the SD, you have accepted your impending death to preserve any lost honor.","Explosive Bracers", "Yes", "No") == "Yes")
+	if(forced || alert("确定要引爆护腕吗？\n\n注意：如果在战斗中或战斗结束后因非意外原因启动自毁，就必须完成自毁。启动自毁即表示你已接受以死亡维护失去的荣誉。","爆炸护腕", "Yes", "No") == "Yes")
 		if(M.gloves != src)
 			return
 		if(M.stat == DEAD)
@@ -1052,7 +1052,7 @@
 		return
 
 	user.create_typing_indicator()
-	var/msg = sanitize(input(user, "Your bracer beeps and waits patiently for you to input your message.", "Translator", "") as text)
+	var/msg = sanitize(input(user, "护腕发出哔声，耐心等待你输入消息。", "翻译器", "") as text)
 	user.remove_typing_indicator()
 	if(!msg || !user.client)
 		return
@@ -1178,7 +1178,7 @@
 		to_chat(user, SPAN_WARNING("<b>This [victim.species] does not have a bracer attached.</b>"))
 		return FALSE
 
-	if(alert("Are you sure you want to unlock this [victim.species]'s bracer?", "Unlock Bracers", "Yes", "No") != "Yes")
+	if(alert("确定要解锁这个 [victim.species] 的护腕吗？", "解锁护腕", "Yes", "No") != "Yes")
 		return FALSE
 
 	if(user.get_active_hand() == held_mob && victim && victim.gloves == bracer)

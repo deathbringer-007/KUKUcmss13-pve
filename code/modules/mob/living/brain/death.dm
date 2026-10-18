@@ -1,7 +1,7 @@
 /mob/living/brain/death(cause, gibbed)
 	if(!gibbed && istype(container, /obj/item/device/mmi)) //If not gibbed but in a container.
 		container.icon_state = "mmi_dead"
-	return ..(cause, gibbed, "beeps shrilly as the MMI flatlines!")
+	return ..(cause, gibbed, "在MMI生命信号归零时发出尖锐的哔声！")
 
 /mob/living/brain/gib(datum/cause_data/cause = create_cause_data("gibbing", src))
 	if(istype(container, /obj/item/device/mmi))

@@ -1,6 +1,6 @@
 /datum/tutorial/ss13/intents
 	name = "Space Station 13 - Intents"
-	desc = "Learn how the intent interaction system works."
+	desc = "学习意图交互系统的运作方式。"
 	icon_state = "intents"
 	tutorial_id = "ss13_intents_1"
 	tutorial_template = /datum/map_template/tutorial/s7x7

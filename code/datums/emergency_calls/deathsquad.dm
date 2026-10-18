@@ -6,8 +6,8 @@
 	name = "Weyland Whiteout Operators (!DEATHSQUAD!)"
 	mob_max = 8
 	mob_min = 5
-	arrival_message = "'!`2*%slau#*jer t*h$em a!l%. le&*ve n(o^ w&*nes%6es.*v$e %#d ou^'"
-	objectives = "Whiteout protocol is in effect for the target. Ensure there are no traces of the infestation or any witnesses."
+	arrival_message = "“*杂音*杀光他们……不留目击者……通话完毕……*杂音*”"
+	objectives = "目标区域已启动白幕协议。确保感染痕迹和目击者都被彻底清除。"
 	probability = 0
 	shuttle_id = MOBILE_SHUTTLE_ID_ERT2
 	home_base = /datum/lazy_template/ert/weyland_station
@@ -30,25 +30,25 @@
 
 	if(!leader && HAS_FLAG(person.client.prefs.toggles_ert, PLAY_LEADER) && check_timelock(person.client, JOB_SQUAD_LEADER, time_required_for_job))
 		leader = person
-		to_chat(person, SPAN_ROLE_HEADER("You are the Whiteout Team Leader!"))
-		to_chat(person, SPAN_ROLE_BODY("Whiteout protocol is in effect for the target, all assets onboard are to be liquidated with expediency unless otherwise instructed by Weyland Yutani personnel holding the position of Director or above."))
+		to_chat(person, SPAN_ROLE_HEADER("你是白幕小队的队长！"))
+		to_chat(person, SPAN_ROLE_BODY("目标区域已启动白幕协议。除非维兰德-汤谷董事级或以上人员另有指示，否则必须迅速清除舰上全部资产。"))
 		arm_equipment(person, /datum/equipment_preset/pmc/w_y_whiteout/leader, TRUE, TRUE)
 	else if(medics < max_medics && HAS_FLAG(person.client.prefs.toggles_ert, PLAY_MEDIC) && check_timelock(person.client, JOB_SQUAD_MEDIC, time_required_for_job))
 		medics++
-		to_chat(person, SPAN_ROLE_HEADER("You are a Whiteout Team Medic!"))
-		to_chat(person, SPAN_ROLE_BODY("Whiteout protocol is in effect for the target, all assets onboard are to be liquidated with expediency unless otherwise instructed by Weyland Yutani personnel holding the position of Director or above."))
+		to_chat(person, SPAN_ROLE_HEADER("你是白幕小队的医疗兵！"))
+		to_chat(person, SPAN_ROLE_BODY("目标区域已启动白幕协议。除非维兰德-汤谷董事级或以上人员另有指示，否则必须迅速清除舰上全部资产。"))
 		arm_equipment(person, /datum/equipment_preset/pmc/w_y_whiteout/medic, TRUE, TRUE)
 	else if(heavies < max_heavies && HAS_FLAG(person.client.prefs.toggles_ert, PLAY_SMARTGUNNER) && check_timelock(person.client, list(JOB_SQUAD_SPECIALIST, JOB_SQUAD_SMARTGUN), time_required_for_job))
 		heavies++
-		to_chat(person, SPAN_ROLE_HEADER("You are a Whiteout Team Terminator!"))
-		to_chat(person, SPAN_ROLE_BODY("Whiteout protocol is in effect for the target, all assets onboard are to be liquidated with expediency unless otherwise instructed by Weyland Yutani personnel holding the position of Director or above."))
+		to_chat(person, SPAN_ROLE_HEADER("你是白幕小队的终结者！"))
+		to_chat(person, SPAN_ROLE_BODY("目标区域已启动白幕协议。除非维兰德-汤谷董事级或以上人员另有指示，否则必须迅速清除舰上全部资产。"))
 		arm_equipment(person, /datum/equipment_preset/pmc/w_y_whiteout/terminator, TRUE, TRUE)
 	else
-		to_chat(person, SPAN_ROLE_HEADER("You are a Whiteout Team Operative!"))
-		to_chat(person, SPAN_ROLE_BODY("Whiteout protocol is in effect for the target, all assets onboard are to be liquidated with expediency unless otherwise instructed by Weyland Yutani personnel holding the position of Director or above."))
+		to_chat(person, SPAN_ROLE_HEADER("你是白幕小队的行动干员！"))
+		to_chat(person, SPAN_ROLE_BODY("目标区域已启动白幕协议。除非维兰德-汤谷董事级或以上人员另有指示，否则必须迅速清除舰上全部资产。"))
 		arm_equipment(person, /datum/equipment_preset/pmc/w_y_whiteout, TRUE, TRUE)
 
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), person, SPAN_BOLD("Objectives: [objectives]")), 1 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), person, SPAN_BOLD("目标：[objectives]")), 1 SECONDS)
 
 /datum/emergency_call/death/low_threat
 	name = "Weyland Whiteout Operators"
@@ -65,22 +65,22 @@
 
 	if(!leader && HAS_FLAG(person.client.prefs.toggles_ert, PLAY_LEADER) && check_timelock(person.client, JOB_SQUAD_LEADER, time_required_for_job))
 		leader = person
-		to_chat(person, SPAN_ROLE_HEADER("You are the Whiteout Team Leader!"))
-		to_chat(person, SPAN_ROLE_BODY("Whiteout protocol is in effect for the target, all assets onboard are to be liquidated with expediency unless otherwise instructed by Weyland Yutani personnel holding the position of Director or above."))
+		to_chat(person, SPAN_ROLE_HEADER("你是白幕小队的队长！"))
+		to_chat(person, SPAN_ROLE_BODY("目标区域已启动白幕协议。除非维兰德-汤谷董事级或以上人员另有指示，否则必须迅速清除舰上全部资产。"))
 		arm_equipment(person, /datum/equipment_preset/pmc/w_y_whiteout/low_threat/leader, TRUE, TRUE)
 	else if(medics < max_medics && HAS_FLAG(person.client.prefs.toggles_ert, PLAY_MEDIC) && check_timelock(person.client, JOB_SQUAD_MEDIC, time_required_for_job))
 		medics++
-		to_chat(person, SPAN_ROLE_HEADER("You are a Whiteout Team Medic!"))
-		to_chat(person, SPAN_ROLE_BODY("Whiteout protocol is in effect for the target, all assets onboard are to be liquidated with expediency unless otherwise instructed by Weyland Yutani personnel holding the position of Director or above."))
+		to_chat(person, SPAN_ROLE_HEADER("你是白幕小队的医疗兵！"))
+		to_chat(person, SPAN_ROLE_BODY("目标区域已启动白幕协议。除非维兰德-汤谷董事级或以上人员另有指示，否则必须迅速清除舰上全部资产。"))
 		arm_equipment(person, /datum/equipment_preset/pmc/w_y_whiteout/low_threat/medic, TRUE, TRUE)
 	else if(heavies < max_heavies && HAS_FLAG(person.client.prefs.toggles_ert, PLAY_SMARTGUNNER) && check_timelock(person.client, list(JOB_SQUAD_SPECIALIST, JOB_SQUAD_SMARTGUN), time_required_for_job))
 		heavies++
-		to_chat(person, SPAN_ROLE_HEADER("You are a Whiteout Team Terminator!"))
-		to_chat(person, SPAN_ROLE_BODY("Whiteout protocol is in effect for the target, all assets onboard are to be liquidated with expediency unless otherwise instructed by Weyland Yutani personnel holding the position of Director or above."))
+		to_chat(person, SPAN_ROLE_HEADER("你是白幕小队的终结者！"))
+		to_chat(person, SPAN_ROLE_BODY("目标区域已启动白幕协议。除非维兰德-汤谷董事级或以上人员另有指示，否则必须迅速清除舰上全部资产。"))
 		arm_equipment(person, /datum/equipment_preset/pmc/w_y_whiteout/low_threat/terminator, TRUE, TRUE)
 	else
-		to_chat(person, SPAN_ROLE_HEADER("You are a Whiteout Team Operative!"))
-		to_chat(person, SPAN_ROLE_BODY("Whiteout protocol is in effect for the target, all assets onboard are to be liquidated with expediency unless otherwise instructed by Weyland Yutani personnel holding the position of Director or above."))
+		to_chat(person, SPAN_ROLE_HEADER("你是白幕小队的行动干员！"))
+		to_chat(person, SPAN_ROLE_BODY("目标区域已启动白幕协议。除非维兰德-汤谷董事级或以上人员另有指示，否则必须迅速清除舰上全部资产。"))
 		arm_equipment(person, /datum/equipment_preset/pmc/w_y_whiteout/low_threat, TRUE, TRUE)
 
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), person, SPAN_BOLD("Objectives: [objectives]")), 1 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), person, SPAN_BOLD("目标：[objectives]")), 1 SECONDS)

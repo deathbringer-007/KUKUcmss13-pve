@@ -34,7 +34,7 @@
 	alien_plasma_display = new /atom/movable/screen()
 	alien_plasma_display.icon = ui_alien_datum.ui_style_icon
 	alien_plasma_display.icon_state = "power_display2"
-	alien_plasma_display.name = "plasma stored"
+	alien_plasma_display.name = "等离子体储量"
 	alien_plasma_display.screen_loc = ui_alien_datum.ui_alienplasmadisplay
 	infodisplay += alien_plasma_display
 
@@ -42,7 +42,7 @@
 	alien_armor_display = new /atom/movable/screen()
 	alien_armor_display.icon = ui_alien_datum.ui_style_icon
 	alien_armor_display.icon_state = "armor_100"
-	alien_armor_display.name = "armor integrity"
+	alien_armor_display.name = "护甲完整度"
 	alien_armor_display.screen_loc = ui_alien_datum.ui_alienarmordisplay
 	infodisplay += alien_armor_display
 

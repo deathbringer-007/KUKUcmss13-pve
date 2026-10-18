@@ -27,7 +27,7 @@
 /datum/ammo/bullet/shotgun/slug/knockback_effects(mob/living/living_mob, obj/projectile/fired_projectile)
 	if(iscarbonsizexeno(living_mob))
 		var/mob/living/carbon/xenomorph/target = living_mob
-		to_chat(target, SPAN_XENODANGER("You are shaken and slowed by the sudden impact!"))
+		to_chat(target, SPAN_XENODANGER("突如其来的冲击使你浑身一震、行动迟缓！"))
 		target.KnockDown(3.5)
 		target.Stun(3.5)
 		target.Slow(5)
@@ -36,7 +36,7 @@
 			living_mob.KnockDown(2)
 			living_mob.Stun(2)
 			living_mob.Superslow(5)
-			to_chat(living_mob, SPAN_HIGHDANGER("The impact knocks you off-balance!"))
+			to_chat(living_mob, SPAN_HIGHDANGER("冲击使你失去了平衡！"))
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)
 
 /datum/ammo/bullet/shotgun/beanbag
@@ -156,7 +156,7 @@
 /datum/ammo/bullet/shotgun/buckshot/knockback_effects(mob/living/living_mob, obj/projectile/fired_projectile)
 	if(iscarbonsizexeno(living_mob))
 		var/mob/living/carbon/xenomorph/target = living_mob
-		to_chat(target, SPAN_XENODANGER("You are shaken and slowed by the sudden impact!"))
+		to_chat(target, SPAN_XENODANGER("突如其来的冲击使你浑身一震、行动迟缓！"))
 		target.KnockDown(2.5)
 		target.Stun(2.5)
 		target.Slow(4)
@@ -165,7 +165,7 @@
 			living_mob.KnockDown(3)
 			living_mob.Stun(3)
 			living_mob.Slow(5)
-			to_chat(living_mob, SPAN_HIGHDANGER("The impact knocks you off-balance!"))
+			to_chat(living_mob, SPAN_HIGHDANGER("冲击使你失去了平衡！"))
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)
 
 /datum/ammo/bullet/shotgun/buckshot/incendiary
@@ -228,7 +228,7 @@
 /datum/ammo/bullet/shotgun/spread/knockback_effects(mob/living/living_mob, obj/projectile/fired_projectile)
 	if(iscarbonsizexeno(living_mob))
 		var/mob/living/carbon/xenomorph/target = living_mob
-		to_chat(target, SPAN_XENODANGER("You are shaken and slowed by the sudden impact!"))
+		to_chat(target, SPAN_XENODANGER("突如其来的冲击使你浑身一震、行动迟缓！"))
 		target.KnockDown(2.5)
 		target.Stun(2.5)
 		target.Slow(4)
@@ -237,7 +237,7 @@
 			living_mob.KnockDown(3)
 			living_mob.Stun(3)
 			living_mob.Slow(5)
-			to_chat(living_mob, SPAN_HIGHDANGER("The impact knocks you off-balance!"))
+			to_chat(living_mob, SPAN_HIGHDANGER("冲击使你失去了平衡！"))
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)
 
 /datum/ammo/bullet/shotgun/spread/special
@@ -287,7 +287,7 @@
 /datum/ammo/bullet/shotgun/heavy/buckshot/knockback_effects(mob/living/living_mob, obj/projectile/fired_projectile)
 	if(iscarbonsizexeno(living_mob))
 		var/mob/living/carbon/xenomorph/target = living_mob
-		to_chat(target, SPAN_XENODANGER("You are shaken and slowed by the sudden impact!"))
+		to_chat(target, SPAN_XENODANGER("突如其来的冲击使你浑身一震、行动迟缓！"))
 		target.KnockDown(5)
 		target.Stun(5)
 		target.Slow(8)
@@ -296,7 +296,7 @@
 			living_mob.KnockDown(2)
 			living_mob.Stun(2)
 			living_mob.Slow(6)
-			to_chat(living_mob, SPAN_HIGHDANGER("The impact knocks you off-balance!"))
+			to_chat(living_mob, SPAN_HIGHDANGER("冲击使你失去了平衡！"))
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)
 
 /datum/ammo/bullet/shotgun/heavy/buckshot/spread
@@ -308,7 +308,7 @@
 /datum/ammo/bullet/shotgun/heavy/buckshot/spread/knockback_effects(mob/living/living_mob, obj/projectile/fired_projectile)
 	if(iscarbonsizexeno(living_mob))
 		var/mob/living/carbon/xenomorph/target = living_mob
-		to_chat(target, SPAN_XENODANGER("You are shaken and slowed by the sudden impact!"))
+		to_chat(target, SPAN_XENODANGER("突如其来的冲击使你浑身一震、行动迟缓！"))
 		target.KnockDown(5)
 		target.Stun(5)
 		target.Slow(8)
@@ -317,7 +317,7 @@
 			living_mob.KnockDown(2)
 			living_mob.Stun(2)
 			living_mob.Slow(6)
-			to_chat(living_mob, SPAN_HIGHDANGER("The impact knocks you off-balance!"))
+			to_chat(living_mob, SPAN_HIGHDANGER("冲击使你失去了平衡！"))
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)
 
 /datum/ammo/bullet/shotgun/heavy/buckshot/special
@@ -379,7 +379,7 @@
 /datum/ammo/bullet/shotgun/heavy/slug/knockback_effects(mob/living/living_mob, obj/projectile/fired_projectile)
 	if(iscarbonsizexeno(living_mob))
 		var/mob/living/carbon/xenomorph/target = living_mob
-		to_chat(target, SPAN_XENODANGER("You are shaken and slowed by the sudden impact!"))
+		to_chat(target, SPAN_XENODANGER("突如其来的冲击使你浑身一震、行动迟缓！"))
 		target.KnockDown(7)
 		target.Stun(7)
 		target.Slow(10)
@@ -388,7 +388,7 @@
 			living_mob.KnockDown(8)
 			living_mob.Stun(8)
 			living_mob.Superslow(15)
-			to_chat(living_mob, SPAN_HIGHDANGER("The impact knocks you off-balance!"))
+			to_chat(living_mob, SPAN_HIGHDANGER("冲击使你失去了平衡！"))
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)
 
 /datum/ammo/bullet/shotgun/heavy/beanbag
@@ -501,16 +501,16 @@
 	M.Stun(2)
 	M.apply_effect(4, SLOW)
 	if(iscarbonsizexeno(M))
-		to_chat(M, SPAN_XENODANGER("The impact knocks you off your feet!"))
+		to_chat(M, SPAN_XENODANGER("冲击使你跌倒在地！"))
 	else //This will hammer a Yautja as hard as a human.
-		to_chat(M, SPAN_HIGHDANGER("The impact knocks you off your feet!"))
+		to_chat(M, SPAN_HIGHDANGER("冲击使你跌倒在地！"))
 
 	step(M, get_dir(P.firer, M))
 
 /datum/ammo/bullet/shotgun/twobore/knockback_effects(mob/living/living_mob, obj/projectile/fired_projectile)
 	if(iscarbonsizexeno(living_mob))
 		var/mob/living/carbon/xenomorph/target = living_mob
-		to_chat(target, SPAN_XENODANGER("You are shaken and slowed by the sudden impact!"))
+		to_chat(target, SPAN_XENODANGER("突如其来的冲击使你浑身一震、行动迟缓！"))
 		target.KnockDown(0.5) // If you ask me the KD should be left out, but players like their visual cues
 		target.Stun(0.5)
 		target.apply_effect(2, SUPERSLOW)
@@ -519,5 +519,5 @@
 		if(!isyautja(living_mob)) //Not predators.
 			living_mob.apply_effect(1, SUPERSLOW)
 			living_mob.apply_effect(2, SLOW)
-			to_chat(living_mob, SPAN_HIGHDANGER("The impact knocks you off-balance!"))
+			to_chat(living_mob, SPAN_HIGHDANGER("冲击使你失去了平衡！"))
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)

@@ -1,5 +1,5 @@
 /datum/job/marine
-	supervisors = "the acting platoon leader"
+	supervisors = "现任排长"
 	selection_class = "job_marine"
 	total_positions = 8
 	spawn_positions = 8
@@ -7,9 +7,9 @@
 
 /datum/job/marine/generate_entry_message(mob/living/carbon/human/current_human)
 	if(current_human.faction == FACTION_TWE)
-		entry_message_intro = "You are a [title]!<br>You have been assigned to <b><font size=3 color=[current_human.assigned_squad.equipment_color]>[lowertext(current_human.assigned_squad.name)]</font></b>.[Check_WO() ? "" : " Make your way to the wardroom for some post-hypersleep chow, and then get equipped in your section's prep room." ]"
+		entry_message_intro = "你的职位是[preference_label(title)]！<br>你已被编入<b><font size=3 color=[current_human.assigned_squad.equipment_color]>[preference_label(current_human.assigned_squad.name)]</font></b>。[Check_WO() ? "" : "请先前往军官餐厅，在超空间休眠后吃点东西，再到所属分队的整备室领取装备。" ]"
 	else if(current_human.assigned_squad)
-		entry_message_intro = "You are a [title]!<br>You have been assigned to the <b><font size=3 color=[current_human.assigned_squad.equipment_color]>[lowertext(current_human.assigned_squad.name)] platoon</font></b>.[Check_WO() ? "" : " Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your team's prep room." ]"
+		entry_message_intro = "你的职位是[preference_label(title)]！<br>你已被编入<b><font size=3 color=[current_human.assigned_squad.equipment_color]>[preference_label(current_human.assigned_squad.name)]</font></b>排。[Check_WO() ? "" : "请先前往自助餐厅，在低温休眠后吃点东西，再到所属小组的整备室领取装备。" ]"
 	return ..()
 
 /datum/job/marine/generate_entry_conditions(mob/living/carbon/human/current_human)

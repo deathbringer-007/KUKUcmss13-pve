@@ -12,7 +12,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_ship/so
 	gear_preset_secondary = /datum/equipment_preset/uscm_ship/so/lesser_rank
-	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>Your job is to conduct the briefing for the platoon, monitor the operation, and listen to your superior officers.</a> You are in charge of the platoon for the current operation and supported by your Company Command.<br>They will give your orders VIA the telephone in your office once they are ready.<br><b>You remember that you've stored your personal gear are located in your personal quarters.</b><br>Your job involves heavy roleplay and requires you to behave like an officer and to stay in character at all times."
+	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>你的职责是主持排级简报、监控行动，并服从上级军官。</a>你负责本次行动中的排级指挥，并得到连部支援。<br>命令准备就绪后，连部会通过你办公室的电话传达。<br><b>你记得自己的个人装备存放在私人住舱内。</b><br>这一职位需要大量角色扮演，你必须表现得像一名军官，并始终保持角色扮演。"
 
 	job_options = list(SECOND_LT_VARIANT = "2ndLt", FIRST_LT_VARIANT = "1stLt")
 
@@ -109,8 +109,8 @@ OverrideTimelock(/datum/job/command/bridge, list(
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_SQUAD
 	gear_preset = /datum/equipment_preset/uscm_ship/so/rmc
 	job_options = null
-	supervisors = "the squadron commander and RMC high command"
-	entry_message_body = "Your job is to conduct the briefing for the troop, lead the operation, and listen to your superior officers.</a> You are in charge of the troop for the current operation and are supported by your Squadron Command.<br>They will give your orders VIA the telephone in your quarters once they are ready.<br><b>You remember that you've stored your personal gear and uniform in the locker rooms, and that your equipment can be located in the Officers Quarters.</b><br>Your job involves heavy roleplay, requires you to behave like an officer and to stay in character at all times."
+	supervisors = "中队指挥官与RMC最高指挥部"
+	entry_message_body = "你的职责是主持突击排简报、指挥行动，并服从上级军官。</a>你负责本次行动中的突击排指挥，并得到中队指挥部支援。<br>命令准备就绪后，指挥部会通过你住舱内的电话传达。<br><b>你记得自己的个人装备和制服存放在更衣室内，作战装备位于军官住舱。</b><br>这一职位需要大量角色扮演，你必须表现得像一名军官，并始终保持角色扮演。"
 
 /obj/effect/landmark/start/bridge/rmc
 	name = JOB_TWE_RMC_LIEUTENANT

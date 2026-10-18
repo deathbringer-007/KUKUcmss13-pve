@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/pistol/tranquilizer
-	name = "Tranquilizer gun"
-	desc = "Contains horse tranquilizer darts. Useful at knocking people out."
+	name = "麻醉枪"
+	desc = "装有马用镇静剂镖，适合用来把人弄昏。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/event.dmi'
 	icon_state = "pk9r"
 	item_state = "pk9r"
@@ -25,7 +25,7 @@
 	update_attachable(S.slot)
 
 /obj/item/ammo_magazine/pistol/tranq
-	name = "\improper Tranquilizer magazine (Horse Tranquilizer)"
+	name = "\improper 麻醉弹匣（马用镇静剂）"
 	default_ammo = /datum/ammo/bullet/pistol/tranq
 	caliber = ".22"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/event.dmi'

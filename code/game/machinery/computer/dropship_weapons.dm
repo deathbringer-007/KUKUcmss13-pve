@@ -1,6 +1,6 @@
 /obj/structure/machinery/computer/dropship_weapons
 	name = "abstract dropship weapons controls"
-	desc = "A computer to manage equipment, weapons and simulations installed on the dropship."
+	desc = "用于管理运输艇上安装的装备、武器和模拟系统的计算机。"
 	density = TRUE
 	icon = 'icons/obj/structures/machinery/shuttle-parts.dmi'
 	icon_state = "consoleright"
@@ -70,7 +70,7 @@
 
 	if(!allowed(user))
 		// TODO: Restore cas simulator
-		to_chat(user, SPAN_WARNING("Weapons modification access denied."))
+		to_chat(user, SPAN_WARNING("武器改装权限被拒绝。"))
 		return TRUE
 		// everyone can access the simulator, requested feature.
 		/*to_chat(user, SPAN_WARNING("Weapons modification access denied, attempting to launch simulation."))
@@ -91,13 +91,13 @@
 		if(matrix.state == ASSEMBLY_LOCKED)
 			user.drop_held_item(W, src)
 			W.forceMove(src)
-			to_chat(user, SPAN_NOTICE("You swap the matrix in the dropship guidance camera system, destroying the older part in the process"))
+			to_chat(user, SPAN_NOTICE("你更换了运输机制导摄像系统中的矩阵，并在过程中销毁了旧部件。"))
 			upgraded = matrix.upgrade
 			matrixcol = matrix.matrixcol
 			power = matrix.power
 
 		else
-			to_chat(user, SPAN_WARNING("Matrix is not complete!"))
+			to_chat(user, SPAN_WARNING("矩阵尚未完成！"))
 
 /obj/structure/machinery/computer/dropship_weapons/proc/equipment_update(obj/docking_port/mobile/marine_dropship/dropship)
 	SIGNAL_HANDLER
@@ -280,22 +280,22 @@
 
 		if("execute_simulated_firemission")
 			if(!configuration)
-				to_chat(user, SPAN_WARNING("No configured firemission"))
+				to_chat(user, SPAN_WARNING("尚未配置火力任务。"))
 				return
 			simulate_firemission(user)
 			. = TRUE
 
 		if("switch_firemission")
-			configuration = tgui_input_list(user, "Select firemission to simulate", "Select firemission", firemission_envelope.missions, 30 SECONDS)
+			configuration = tgui_input_list(user, "选择要模拟的火力任务。", "选择火力任务", firemission_envelope.missions, 30 SECONDS)
 			if(!selected_firemission)
-				to_chat(user, SPAN_WARNING("No configured firemission"))
+				to_chat(user, SPAN_WARNING("尚未配置火力任务。"))
 				return
 			if(!configuration)
 				configuration = selected_firemission
 			. = TRUE
 
 		if("switchmode")
-			simulation.dummy_mode = tgui_input_list(user, "Select target type to simulate", "Target type", simulation.target_types, 30 SECONDS)
+			simulation.dummy_mode = tgui_input_list(user, "选择要模拟的目标类型。", "目标类型", simulation.target_types, 30 SECONDS)
 			if(!simulation.dummy_mode)
 				simulation.dummy_mode = CLF_MODE
 			. = TRUE
@@ -382,7 +382,7 @@
 			var/length = params["firemission_length"]
 			var/length_n = text2num(length)
 			if(!length_n)
-				to_chat(user, SPAN_WARNING("Incorrect input format."))
+				to_chat(user, SPAN_WARNING("输入格式不正确。"))
 				return FALSE
 			ui_create_firemission(user, name, length_n)
 			return TRUE
@@ -466,12 +466,12 @@
 				return TRUE
 			var/datum/cas_signal/sig = get_cas_signal(camera_target_id)
 			if(!sig)
-				to_chat(user, SPAN_WARNING("No signal chosen."))
+				to_chat(user, SPAN_WARNING("未选择信号。"))
 				return FALSE
 			var/turf/location = get_turf(sig.signal_loc)
 			var/area/location_area = get_area(location)
 			if(CEILING_IS_PROTECTED(location_area.ceiling, CEILING_PROTECTION_TIER_1))
-				to_chat(user, SPAN_WARNING("Target is obscured."))
+				to_chat(user, SPAN_WARNING("目标被遮挡。"))
 				return FALSE
 			var/equipment_tag = params["equipment_id"]
 			for(var/obj/structure/dropship_equipment/equipment as anything in shuttle.equipments)
@@ -481,10 +481,10 @@
 				if(istype(equipment, /obj/structure/dropship_equipment/paradrop_system))
 					var/obj/structure/dropship_equipment/paradrop_system/paradrop_system = equipment
 					if(paradrop_system.system_cooldown > world.time)
-						to_chat(user, SPAN_WARNING("You toggled the system too recently."))
+						to_chat(user, SPAN_WARNING("你刚切换过系统，请稍候。"))
 						return
 					paradrop_system.system_cooldown = world.time + 5 SECONDS
-					paradrop_system.visible_message(SPAN_NOTICE("[equipment] hums as it locks to a signal."))
+					paradrop_system.visible_message(SPAN_NOTICE("[equipment]锁定信号时发出嗡鸣声。"))
 					break
 			linked_shuttle.paradrop_signal = sig
 			addtimer(CALLBACK(src, PROC_REF(open_aft_for_paradrop)), 2 SECONDS)
@@ -504,7 +504,7 @@
 	if(!shuttle)
 		return
 	shuttle.door_control.control_doors("force-lock", "aft", TRUE)
-	visible_message(SPAN_WARNING("[src] displays an alert as it loses the paradrop target."))
+	visible_message(SPAN_WARNING("[src]失去空降目标，显示警报。"))
 	for(var/obj/structure/dropship_equipment/paradrop_system/parad in shuttle.equipments)
 		parad.visible_message(SPAN_WARNING("[parad] displays an alert as it loses the paradrop target."))
 	UnregisterSignal(shuttle.paradrop_signal, COMSIG_PARENT_QDELETING)

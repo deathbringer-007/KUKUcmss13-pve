@@ -27,7 +27,7 @@
 		//Document syntax cannot have tabs for proper formatting.
 		var/entrydisplay = " \
 			[SPAN_ROLE_BODY("|______________________|")] \n\
-			[SPAN_ROLE_BODY("[generate_entry_message(survivor)]<br>[account ? "Your account number is: <b>[account.account_number]</b>. Your account pin is: <b>[account.remote_access_pin]</b>." : "You do not have a bank account."]")] \n\
+			[SPAN_ROLE_BODY("[generate_entry_message(survivor)]<br>[account ? "你的账号是： <b>[account.account_number]</b>. 你的账户个人识别码是： <b>[account.remote_access_pin]</b>." : "你没有银行账户。"]")] \n\
 			[SPAN_ROLE_BODY("|______________________|")] \
 		"
 		to_chat_spaced(survivor, html = entrydisplay)
@@ -70,10 +70,10 @@
 		for(var/line in intro_text)
 			to_chat(survivor, line)
 	else
-		to_chat(survivor, "<h2>You are a survivor!</h2>")
+		to_chat(survivor, "<h2>你是一名幸存者！</h2>")
 		to_chat(survivor, SPAN_NOTICE(SSmapping.configs[GROUND_MAP].survivor_message))
-		to_chat(survivor, SPAN_NOTICE("You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit."))
-		to_chat(survivor, SPAN_NOTICE("You are NOT aware of the marines or their intentions. "))
+		to_chat(survivor, SPAN_NOTICE("你完全了解异形威胁，可以自行决定如何运用这些知识。"))
+		to_chat(survivor, SPAN_NOTICE("你不了解陆战队员或他们的意图。"))
 
 	if(story_text)
 		to_chat(survivor, story_text)
@@ -82,11 +82,11 @@
 		tell_survivor_story(survivor)
 
 	if(hostile)
-		to_chat(survivor, SPAN_HIGHDANGER("You are HOSTILE to the USCM!"))
+		to_chat(survivor, SPAN_HIGHDANGER("你与美国殖民地海军陆战队敌对！"))
 	else if(survivor.faction == FACTION_CLF)
-		to_chat(survivor, SPAN_HIGHDANGER("You are HOSTILE to the USCM, but NOT to other survivors!"))
+		to_chat(survivor, SPAN_HIGHDANGER("你与美国殖民地海军陆战队敌对，但不与其他幸存者敌对！"))
 	else
-		to_chat(survivor, SPAN_XENOHIGHDANGER("You are NON-HOSTILE to the USCM!"))
+		to_chat(survivor, SPAN_XENOHIGHDANGER("你与美国殖民地海军陆战队并不敌对！"))
 
 /datum/job/civilian/survivor/proc/tell_survivor_story(mob/living/carbon/human/H)
 	var/list/survivor_story = list(

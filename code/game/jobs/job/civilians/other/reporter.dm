@@ -6,7 +6,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	selection_class = "job_cl"
-	supervisors = "the acting commanding officer"
+	supervisors = "现任指挥官"
 	gear_preset = /datum/equipment_preset/uscm_ship/reporter
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	selection_class = "job_cl"
@@ -25,10 +25,10 @@
 
 /datum/job/civilian/reporter/generate_entry_message(mob/living/carbon/human/H)
 	if(military)
-		. = {"The USCM has assigned you to the [MAIN_SHIP_NAME] to better handle messaging on how things run in the Neroid Sector. Get out there and show the universe that the USCM is doing great things!"}
+		. = {"USCM将你派往[MAIN_SHIP_NAME]，以便更好地宣传尼洛德星区的现状。行动起来，让全宇宙看到USCM的卓越成就！"}
 	else
-		. = {"What a scoop! You've been assigned to the [MAIN_SHIP_NAME] to see what kinda mischief they'd get into and it seems trouble is here!
-This could be the story of the sector! 'Brave Marines responding to dangerous distress signal!' It'd surely get Mr. Parkerson to notice you in the office if you brought him a story like this!"}
+		. = {"大新闻！你被派往[MAIN_SHIP_NAME]，调查他们又惹上了什么麻烦，看来麻烦已经找上门了！
+这可能是轰动整个星区的报道！“英勇陆战队员回应危险求救信号！”如果带回这样的新闻，办公室里的帕克森先生一定会注意到你！"}
 
 /obj/effect/landmark/start/reporter
 	name = JOB_COMBAT_REPORTER

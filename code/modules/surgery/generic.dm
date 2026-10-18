@@ -33,16 +33,16 @@
 /datum/surgery_step/incision/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(tool_type == /obj/item/tool/surgery/scalpel/manager)
 		user.affected_message(target,
-			SPAN_NOTICE("You start to construct a prepared incision in [target]'s [surgery.affected_limb.display_name] with \the [tool]."),
-			SPAN_NOTICE("[user] starts to construct a prepared incision in your [surgery.affected_limb.display_name] with \the [tool]."),
-			SPAN_NOTICE("[user] starts to construct a prepared incision in [target]'s [surgery.affected_limb.display_name] with \the [tool]."))
+			SPAN_NOTICE("你开始用[tool]在[target]的[surgery.affected_limb.display_name]处制作预备切口。"),
+			SPAN_NOTICE("[user]开始用[tool]在你的[surgery.affected_limb.display_name]处制作预备切口。"),
+			SPAN_NOTICE("[user]开始用[tool]在[target]的[surgery.affected_limb.display_name]处制作预备切口。"))
 
-		target.custom_pain("You feel a horrible, searing pain in your [surgery.affected_limb.display_name] as it is pushed apart!", 1)
+		target.custom_pain("你的[surgery.affected_limb.display_name]被撑开，传来可怕的灼痛！", 1)
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("You start to make an incision on [target]'s [surgery.affected_limb.display_name] with \the [tool]."),
-			SPAN_NOTICE("[user] starts making an incision on your [surgery.affected_limb.display_name] with \the [tool]."),
-			SPAN_NOTICE("[user] starts making an incision on [target]'s [surgery.affected_limb.display_name] with \the [tool]."))
+			SPAN_NOTICE("你开始用[tool]在[target]的[surgery.affected_limb.display_name]处切开一道口子。"),
+			SPAN_NOTICE("[user]开始用[tool]在你的[surgery.affected_limb.display_name]处切开一道口子。"),
+			SPAN_NOTICE("[user]开始用[tool]在[target]的[surgery.affected_limb.display_name]处切开一道口子。"))
 
 		target.custom_pain("You feel a horrible sharp pain in your [surgery.affected_limb.display_name]!", 1)
 
@@ -53,14 +53,14 @@
 
 	if(tool_type == /obj/item/tool/surgery/scalpel/manager)
 		user.affected_message(target,
-			SPAN_NOTICE("You have constructed a prepared incision in [target]'s [surgery.affected_limb.display_name]."),
-			SPAN_NOTICE("[user] has constructed a prepared incision in your [surgery.affected_limb.display_name]."),
-			SPAN_NOTICE("[user] has constructed a prepared incision in [target]'s [surgery.affected_limb.display_name]."))
+			SPAN_NOTICE("你已在[target]的[surgery.affected_limb.display_name]处制作好预备切口。"),
+			SPAN_NOTICE("[user]已在你的[surgery.affected_limb.display_name]处制作好预备切口。"),
+			SPAN_NOTICE("[user]已在[target]的[surgery.affected_limb.display_name]处制作好预备切口。"))
 
 		surgery.status += 2 //IMS completes all steps.
 	else if(tool_type == /obj/item/tool/surgery/scalpel/laser && prob(las_scalpel.bloodlessprob))
 		user.affected_message(target,
-			SPAN_NOTICE("You finish making a bloodless incision on [target]'s [surgery.affected_limb.display_name] with \the [tool]."),
+			SPAN_NOTICE("你用[tool]在[target]的[surgery.affected_limb.display_name]处完成了一个无血切口。"),
 			SPAN_NOTICE("[user] finishes making a bloodless incision on your [surgery.affected_limb.display_name] with \the [tool]."),
 			SPAN_NOTICE("[user] finishes making a bloodless incision on [target]'s [surgery.affected_limb.display_name] with \the [tool]."))
 

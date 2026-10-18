@@ -4,10 +4,10 @@
 	spawn_positions = 2
 	allow_additional = TRUE
 	scaled = TRUE
-	supervisors = "the acting commanding officer"
+	supervisors = "现任指挥官"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm/tank
-	entry_message_body = "Your job is to operate and maintain the ship's armored vehicles. You are in charge of representing the armored presence amongst the marines during the operation, as well as maintaining and repairing your own vehicles."
+	entry_message_body = "你的职责是操作和维护舰上的装甲载具。你在行动中负责为陆战队提供装甲支援，同时也负责维护和修理自己的载具。"
 
 /datum/job/command/tank_crew/set_spawn_positions(count)
 	if (length(GLOB.clients) >= 200)

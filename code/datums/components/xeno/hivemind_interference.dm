@@ -12,7 +12,7 @@
 	src.interference = interference
 	src.max_buildup = max_buildup
 	src.dissipation = dissipation
-	to_chat(parent, SPAN_XENOHIGHDANGER("Our awareness dims to a small area!"))
+	to_chat(parent, SPAN_XENOHIGHDANGER("我们的感知范围缩小了！"))
 
 /datum/component/status_effect/interference/InheritComponent(datum/component/status_effect/interference/inter, i_am_original, amount, max_buildup)
 	. = ..()
@@ -47,9 +47,9 @@
 /datum/component/status_effect/interference/proc/stat_append(mob/M, list/L)
 	SIGNAL_HANDLER
 	if(has_immunity)
-		L += "Hivemind Interference immunity [grace_period]/[initial(grace_period)]"
+		L += "巢群意识干扰免疫：[grace_period]/[initial(grace_period)]"
 		return
-	L += "Hivemind Interference: [interference]/[max_buildup]"
+	L += "巢群意识干扰：[interference]/[max_buildup]"
 
 /datum/component/status_effect/interference/cleanse()
 	REMOVE_TRAIT(parent, TRAIT_HIVEMIND_INTERFERENCE, TRAIT_SOURCE_HIVEMIND_INTERFERENCE)

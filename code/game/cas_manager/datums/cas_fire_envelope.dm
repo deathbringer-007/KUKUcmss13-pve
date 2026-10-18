@@ -66,7 +66,7 @@
 /datum/cas_fire_envelope/proc/update_mission(mission_id, weapon_id, offset_step, offset, skip_checks = 0)
 	mission_error = null
 	if(stat > FIRE_MISSION_STATE_IN_TRANSIT && stat < FIRE_MISSION_STATE_COOLDOWN)
-		mission_error = "Fire Mission is under way already."
+		mission_error = "火力任务已在执行中。"
 		return FIRE_MISSION_NOT_EXECUTABLE
 	if(!missions[mission_id])
 		return FIRE_MISSION_NOT_EXECUTABLE
@@ -102,12 +102,12 @@
 
 /datum/cas_fire_envelope/proc/execute_firemission(datum/cas_signal/signal, target_turf,dir, mission_id)
 	if(stat != FIRE_MISSION_STATE_IDLE)
-		mission_error = "Fire Mission is under way already."
+		mission_error = "火力任务已在执行中。"
 		return FIRE_MISSION_NOT_EXECUTABLE
 	if(!missions[mission_id])
 		return FIRE_MISSION_NOT_EXECUTABLE
 	if(dir!=NORTH && dir!=SOUTH && dir!=WEST && dir!=EAST)
-		mission_error = "Incorrect direction."
+		mission_error = "方向不正确。"
 		return FIRE_MISSION_BAD_DIRECTION
 	mission_error = null
 	var/datum/cas_fire_mission/mission = missions[mission_id]
@@ -126,19 +126,19 @@
 /datum/cas_fire_envelope/proc/firemission_status_message()
 	switch(stat)
 		if(null)
-			return "Unknown Status"
+			return "状态未知"
 		if(FIRE_MISSION_STATE_IDLE)
-			return "Idle"
+			return "待命"
 		if(FIRE_MISSION_STATE_IN_TRANSIT)
-			return "In Transit"
+			return "前往目标中"
 		if(FIRE_MISSION_STATE_ON_TARGET)
-			return "On Target"
+			return "抵达目标"
 		if(FIRE_MISSION_STATE_FIRING)
-			return "Firing"
+			return "正在开火"
 		if(FIRE_MISSION_STATE_OFF_TARGET)
-			return "Off Target"
+			return "离开目标区域"
 		if(FIRE_MISSION_STATE_COOLDOWN)
-			return "Returning to Sub-Orbital"
+			return "正在返回亚轨道"
 
 /datum/cas_fire_envelope/proc/change_target_loc(datum/cas_signal/marker)
 	if(!marker)
@@ -146,7 +146,7 @@
 		return TRUE
 	var/turf/TU = get_turf(marker.signal_loc)
 	if(!istype(TU))
-		mission_error = "Can't find target."
+		mission_error = "找不到目标。"
 		return FALSE
 	recorded_loc = marker
 	return TRUE
@@ -249,13 +249,13 @@
 
 /// Step 2, 3, 4: Warns nearby mobs of the incoming fire mission. Warning as 1 is non-precise, whereas 2 and 3 are precise.
 /datum/cas_fire_envelope/proc/chat_warning(atom/target_turf, range = 10, warning_number = 1)
-	var/ds_identifier = "LARGE BIRD"
-	var/fm_identifier = "SPIT FIRE"
+	var/ds_identifier = "大型飞鸟"
+	var/fm_identifier = "喷火"
 	var/relative_dir
 	for(var/mob/mob in range(15, target_turf))
 		if (mob.mob_flags & KNOWS_TECHNOLOGY)
-			ds_identifier = "DROPSHIP"
-			fm_identifier = "FIRE"
+			ds_identifier = "运输艇"
+			fm_identifier = "开火"
 		if(get_turf(mob) == target_turf)
 			relative_dir = 0
 		else
@@ -263,18 +263,18 @@
 		switch(warning_number)
 			if(1)
 				mob.show_message( \
-					SPAN_HIGHDANGER("YOU HEAR THE [ds_identifier] ROAR AS IT PREPARES TO [fm_identifier] NEAR YOU!"),SHOW_MESSAGE_VISIBLE, \
-					SPAN_HIGHDANGER("YOU HEAR SOMETHING FLYING CLOSER TO YOU!") , SHOW_MESSAGE_AUDIBLE \
+					SPAN_HIGHDANGER("你听见 [ds_identifier] 发出轰鸣，正准备在你附近[fm_identifier]！"),SHOW_MESSAGE_VISIBLE, \
+					SPAN_HIGHDANGER("你听见有东西正朝这边飞来！") , SHOW_MESSAGE_AUDIBLE \
 				)
 			if(2)
 				mob.show_message( \
-					SPAN_HIGHDANGER("A [ds_identifier] FLIES [SPAN_UNDERLINE(relative_dir ? uppertext(("TO YOUR " + dir2text(relative_dir))) : uppertext("right above you"))]!"), SHOW_MESSAGE_VISIBLE, \
-					SPAN_HIGHDANGER("YOU HEAR SOMETHING GO [SPAN_UNDERLINE(relative_dir ? uppertext(("TO YOUR " + dir2text(relative_dir))) : uppertext("right above you"))]!"), SHOW_MESSAGE_AUDIBLE \
+					SPAN_HIGHDANGER("一架 [ds_identifier] 从[SPAN_UNDERLINE(relative_dir ? "你的" + list("north" = "北方", "south" = "南方", "east" = "东方", "west" = "西方", "northeast" = "东北方", "northwest" = "西北方", "southeast" = "东南方", "southwest" = "西南方")[dir2text(relative_dir)] : "你的正上方")]飞过！"), SHOW_MESSAGE_VISIBLE, \
+					SPAN_HIGHDANGER("你听见有东西从[SPAN_UNDERLINE(relative_dir ? "你的" + list("north" = "北方", "south" = "南方", "east" = "东方", "west" = "西方", "northeast" = "东北方", "northwest" = "西北方", "southeast" = "东南方", "southwest" = "西南方")[dir2text(relative_dir)] : "你的正上方")]掠过！"), SHOW_MESSAGE_AUDIBLE \
 				)
 			if(3)
 				mob.show_message( \
-					SPAN_HIGHDANGER("A [ds_identifier] FLIES [SPAN_UNDERLINE(relative_dir ? uppertext(("TO YOUR " + dir2text(relative_dir))) : uppertext("right above you"))]!"), SHOW_MESSAGE_VISIBLE, \
-					SPAN_HIGHDANGER("YOU HEAR SOMETHING GO [SPAN_UNDERLINE(relative_dir ? uppertext(("TO YOUR " + dir2text(relative_dir))) : uppertext("right above you"))]!"), SHOW_MESSAGE_AUDIBLE \
+					SPAN_HIGHDANGER("一架 [ds_identifier] 从[SPAN_UNDERLINE(relative_dir ? "你的" + list("north" = "北方", "south" = "南方", "east" = "东方", "west" = "西方", "northeast" = "东北方", "northwest" = "西北方", "southeast" = "东南方", "southwest" = "西南方")[dir2text(relative_dir)] : "你的正上方")]飞过！"), SHOW_MESSAGE_VISIBLE, \
+					SPAN_HIGHDANGER("你听见有东西从[SPAN_UNDERLINE(relative_dir ? "你的" + list("north" = "北方", "south" = "南方", "east" = "东方", "west" = "西方", "northeast" = "东北方", "northwest" = "西北方", "southeast" = "东南方", "southwest" = "西南方")[dir2text(relative_dir)] : "你的正上方")]掠过！"), SHOW_MESSAGE_AUDIBLE \
 				)
 
 /// Step 5: Actually executes the fire mission updating stat to FIRE_MISSION_STATE_FIRING and then FIRE_MISSION_STATE_OFF_TARGET
@@ -294,14 +294,14 @@
 
 /datum/cas_fire_envelope/proc/execute_firemission_unsafe(datum/cas_signal/signal, turf/target_turf, dir, datum/cas_fire_mission/mission)
 	stat = FIRE_MISSION_STATE_IN_TRANSIT
-	to_chat(usr, SPAN_ALERT("Firemission underway!"))
+	to_chat(usr, SPAN_ALERT("火力任务正在执行！"))
 	if(!target_turf)
 		stat = FIRE_MISSION_STATE_IDLE
-		mission_error = "Target Lost."
+		mission_error = "目标丢失。"
 		return
 	if(!target_turf || !check_firemission_loc(signal))
 		stat = FIRE_MISSION_STATE_IDLE
-		mission_error = "Target is off bounds or obstructed."
+		mission_error = "目标超出范围或受到遮挡。"
 		return
 
 	var/obj/effect/firemission_effect = new(target_turf)
@@ -330,33 +330,33 @@
  */
 /datum/cas_fire_envelope/proc/change_direction(new_dir)
 	if(stat > FIRE_MISSION_STATE_IN_TRANSIT)
-		mission_error = "Fire Mission is under way already."
+		mission_error = "火力任务已在执行中。"
 		return 0
 	if((new_dir != 1) && (new_dir != 2) && (new_dir != 4) && (new_dir != 8))
-		mission_error = "Direction has to be cardinal (i.e. North/South/West/East)"
+		mission_error = "方向必须为正方向（北、南、西、东）。"
 		return 0
 	if(new_dir<0 || new_dir>15)
-		mission_error = "Do not use 4D coordinate matrix vector please." //hehe
+		mission_error = "请不要使用四维坐标矩阵向量。" //hehe
 		return 0
 	recorded_dir = new_dir
 	return 1
 
 /datum/cas_fire_envelope/proc/change_offset(new_offset)
 	if(stat > FIRE_MISSION_STATE_IN_TRANSIT)
-		mission_error = "Fire Mission is under way already."
+		mission_error = "火力任务已在执行中。"
 		return 0
 	if(new_offset < 0)
-		mission_error = "Offset cannot be negative."
+		mission_error = "偏移量不能为负数。"
 		return 0
 	if(new_offset > max_offset)
-		mission_error = "Offset cannot be greater than [max_offset]."
+		mission_error = "偏移量不能大于 [max_offset]。"
 		return 0
 	recorded_offset = new_offset
 	return 1
 
 /datum/cas_fire_envelope/proc/delete_firemission(mission_id)
 	if(stat > FIRE_MISSION_STATE_IN_TRANSIT && stat < FIRE_MISSION_STATE_COOLDOWN)
-		mission_error = "Fire Mission is under way already."
+		mission_error = "火力任务已在执行中。"
 		return 0
 	if(!missions[mission_id])
 		return -1
@@ -385,7 +385,7 @@
 		return ..(marker)
 	var/turf/TU = get_turf(marker.signal_loc)
 	if(!is_ground_level(TU.z) && z_level_restriction)
-		mission_error = "USCM Dropships can only operate with planetside targets."
+		mission_error = "美国殖民地海军陆战队的运输艇只能攻击行星地表的目标。"
 		return FALSE
 	return ..(marker)
 

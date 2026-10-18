@@ -190,22 +190,22 @@
 			card.associated_account_number = generated_account.account_number
 			if(account_user.mind)
 				var/remembered_info = ""
-				remembered_info += "<b>Your account number is:</b> #[generated_account.account_number]<br>"
-				remembered_info += "<b>Your account pin is:</b> [generated_account.remote_access_pin]<br>"
-				remembered_info += "<b>Your account funds are:</b> $[generated_account.money]<br>"
+				remembered_info += "<b>你的银行账号：</b>#[generated_account.account_number]<br>"
+				remembered_info += "<b>你的账户密码：</b>[generated_account.remote_access_pin]<br>"
+				remembered_info += "<b>你的账户余额：</b>$[generated_account.money]<br>"
 
 				if(length(generated_account.transaction_log))
 					var/datum/transaction/T = generated_account.transaction_log[1]
-					remembered_info += "<b>Your account was created:</b> [T.time], [T.date] at [T.source_terminal]<br>"
+					remembered_info += "<b>你的账户开户信息：</b>[T.time]，[T.date]，开户终端：[T.source_terminal]<br>"
 				account_user.mind.store_memory(remembered_info)
 				account_user.mind.initial_account = generated_account
 	return generated_account
 
 /datum/job/proc/generate_entry_message()
 	if(!entry_message_intro)
-		entry_message_intro = "You are the [title]!"
+		entry_message_intro = "你的职位是[preference_label(title)]！"
 	if(!entry_message_end)
-		entry_message_end = "As the [title] you answer to [supervisors]. Special circumstances may change this!"
+		entry_message_end = "作为[preference_label(title)]，你听命于[supervisors]。特殊情况可能改变这一关系！"
 	return "[entry_message_intro]<br>[entry_message_body]<br>[entry_message_end]"
 
 /datum/job/proc/announce_entry_message(mob/living/carbon/human/H, datum/money_account/M, whitelist_status) //The actual message that is displayed to the mob when they enter the game as a new player.
@@ -218,9 +218,9 @@
 		//Document syntax cannot have tabs for proper formatting.
 		var/entrydisplay = " \
 			[SPAN_ROLE_BODY("|______________________|")] \n\
-			[SPAN_ROLE_HEADER("You are \a [title_given]")] \n\
-			[flags_startup_parameters & ROLE_ADMIN_NOTIFY ? SPAN_ROLE_HEADER("You are playing a job that is important for game progression. If you have to disconnect, please notify the admins via adminhelp.") : ""] \n\
-			[SPAN_ROLE_BODY("[generate_entry_message(H)]<br>[M ? "Your account number is: <b>[M.account_number]</b>. Your account pin is: <b>[M.remote_access_pin]</b>." : "You do not have a bank account."]")] \n\
+			[SPAN_ROLE_HEADER("你的职位是[title_given]")] \n\
+			[flags_startup_parameters & ROLE_ADMIN_NOTIFY ? SPAN_ROLE_HEADER("你担任的职位对游戏进程十分重要。如果必须断线，请通过管理员求助功能通知管理员。") : ""] \n\
+			[SPAN_ROLE_BODY("[generate_entry_message(H)]<br>[M ? "你的银行账号是：<b>[M.account_number]</b>。账户密码是：<b>[M.remote_access_pin]</b>。" : "你没有银行账户。"]")] \n\
 			[SPAN_ROLE_BODY("|______________________|")] \
 		"
 		to_chat_spaced(H, html = entrydisplay)

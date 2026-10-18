@@ -28,7 +28,7 @@
 	if(affected_atom)
 		var/mob/living/carbon/xenomorph/X  = affected_atom
 		X.cooldown_reduction_percentage -= current_reduction
-		to_chat(X, SPAN_XENOWARNING("You feel your frenzy wanes! Your cooldowns are back to normal."))
+		to_chat(X, SPAN_XENOWARNING("你感到狂热正在消退！技能冷却时间恢复了正常。"))
 		if(X.cooldown_reduction_percentage < 0)
 			X.cooldown_reduction_percentage = 0
 

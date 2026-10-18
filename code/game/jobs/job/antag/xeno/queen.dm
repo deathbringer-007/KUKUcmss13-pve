@@ -13,7 +13,7 @@
 	SSticker.mode.pick_queen_spawn(human_to_transform, hive_index)
 
 /datum/job/antag/xenos/queen/announce_entry_message(mob/new_queen, account, whitelist_status)
-	to_chat(new_queen, "<B>You are now the alien queen!</B>")
-	to_chat(new_queen, "<B>Your job is to spread the hive.</B>")
-	to_chat(new_queen, "<B>You should start by building a hive core.</B>")
-	to_chat(new_queen, "Talk in Hivemind using <strong>;</strong> (e.g. ';Hello my children!')")
+	to_chat(new_queen, "<B>你现在是异形女皇！</B>")
+	to_chat(new_queen, "<B>你的使命是扩张虫巢。</B>")
+	to_chat(new_queen, "<B>你应该先建造虫巢核心。</B>")
+	to_chat(new_queen, "使用<strong>;</strong>通过虫巢意识交谈（例如“;你好，我的孩子们！”）。")

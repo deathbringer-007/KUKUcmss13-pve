@@ -560,7 +560,7 @@ I hope it's easier to tell what the heck this proc is even doing, unlike previou
 		return
 
 	if(!length(squads))
-		to_chat(H, "Something went wrong with your squad randomizer! Tell a coder!")
+		to_chat(H, "小队随机分配器发生错误！请联系开发者！")
 		return //Shit, where's our squad data
 
 	if(H.assigned_squad) //Wait, we already have a squad. Get outta here!
@@ -579,7 +579,7 @@ I hope it's easier to tell what the heck this proc is even doing, unlike previou
 	if(H.job == JOB_INTEL)
 		var/datum/squad/intel_squad = get_squad_by_name(SQUAD_MARINE_INTEL)
 		if(!intel_squad || !istype(intel_squad)) //Something went horribly wrong!
-			to_chat(H, "Something went wrong with randomize_squad()! Tell a coder!")
+			to_chat(H, "randomize_squad()发生错误！请联系开发者！")
 			return
 		intel_squad.put_marine_in_squad(H) //Found one, finish up
 		return
@@ -587,7 +587,7 @@ I hope it's easier to tell what the heck this proc is even doing, unlike previou
 	if(H.faction == FACTION_TWE)
 		var/datum/squad/rmc_squad = get_squad_by_name(SQUAD_RMC)
 		if(!rmc_squad || !istype(rmc_squad)) //Something went horribly wrong!
-			to_chat(H, "Something went wrong with randomize_squad()! Tell a coder!")
+			to_chat(H, "randomize_squad()发生错误！请联系开发者！")
 			return
 		rmc_squad.put_marine_in_squad(H) //Found one, finish up
 		return
@@ -695,13 +695,13 @@ I hope it's easier to tell what the heck this proc is even doing, unlike previou
 			var/ranpick = rand(1,4)
 			lowest = mixed_squads[ranpick]
 		if(lowest) lowest.put_marine_in_squad(H)
-		else to_chat(H, "Something went badly with randomize_squad()! Tell a coder!")
+		else to_chat(H, "randomize_squad()发生严重错误！请联系开发者！")
 
 	else
 		//Deal with marines. They get distributed to the lowest populated squad.
 		var/datum/squad/given_squad = get_lowest_squad(H)
 		if(!given_squad || !istype(given_squad)) //Something went horribly wrong!
-			to_chat(H, "Something went wrong with randomize_squad()! Tell a coder!")
+			to_chat(H, "randomize_squad()发生错误！请联系开发者！")
 			return
 		given_squad.put_marine_in_squad(H) //Found one, finish up
 

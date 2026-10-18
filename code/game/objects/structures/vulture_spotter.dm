@@ -128,7 +128,7 @@
 		return FALSE
 
 	playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
-	user.visible_message("[user]旋转了[src]。","You rotate [src].")
+	user.visible_message("[user]旋转了[src]。","你转动了 [src]。")
 	setDir(turn(dir, -90))
 	update_pixels(TRUE)
 

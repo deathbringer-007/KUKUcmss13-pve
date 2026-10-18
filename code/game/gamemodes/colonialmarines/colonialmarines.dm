@@ -28,7 +28,7 @@
 	return TRUE
 
 /datum/game_mode/colonialmarines/announce()
-	to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDHEADER("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
+	to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDHEADER("当前地图——[SSmapping.configs[GROUND_MAP].map_name]！"))
 
 /datum/game_mode/colonialmarines/get_roles_list()
 	return GLOB.ROLES_DISTRESS_SIGNAL
@@ -293,8 +293,8 @@
 						for(var/i in GLOB.living_xeno_list)
 							var/mob/M = i
 							sound_to(M, sound(get_sfx("queen"), wait = 0, volume = 50))
-							to_chat(M, SPAN_XENOANNOUNCE("The Queen Mother reaches into your mind from worlds away."))
-							to_chat(M, SPAN_XENOANNOUNCE("To my children and their Queen. I sense the large doors that trap us will open in 30 seconds."))
+							to_chat(M, SPAN_XENOANNOUNCE("母皇的意志跨越遥远星际，触及你的脑海。"))
+							to_chat(M, SPAN_XENOANNOUNCE("致我的孩子们及其女皇：我感应到，困住我们的大门将在30秒后开启。"))
 						addtimer(CALLBACK(src, PROC_REF(open_podlocks), "map_lockdown"), 300)
 
 			if(GLOB.round_should_check_for_win)
@@ -306,7 +306,7 @@
 				hive = GLOB.hive_datum[hivenumber]
 				hive.evolution_without_ovipositor = FALSE
 				if(hive.living_xeno_queen && !hive.living_xeno_queen.ovipositor)
-					to_chat(hive.living_xeno_queen, SPAN_XENODANGER("It is time to settle down and let your children grow."))
+					to_chat(hive.living_xeno_queen, SPAN_XENODANGER("是时候安顿下来，让你的孩子们成长了。"))
 			evolution_ovipositor_threshold = TRUE
 			msg_admin_niche("Xenomorphs now require the queen's ovipositor for evolution progress.")
 

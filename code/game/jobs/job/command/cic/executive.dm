@@ -5,7 +5,7 @@
 	gear_preset = /datum/equipment_preset/uscm_ship/xo
 
 /datum/job/command/executive/generate_entry_message(mob/living/carbon/human/H)
-	entry_message_body = "<a href='[generate_wiki_link()]'>You are second in command aboard the [MAIN_SHIP_NAME],</a> and are in next in the chain of command after the Commanding Officer. Where applicable, you must abide by the <a href='[CONFIG_GET(string/wikiarticleurl)][URL_WIKI_CO_RULES]'>Commanding Officer Code of Conduct</a>. You may need to fill in for other duties if areas are understaffed, and you are given access to do so. Make the USCM proud!"
+	entry_message_body = "<a href='[generate_wiki_link()]'>你是[MAIN_SHIP_NAME]的副指挥官，</a>在指挥序列中仅次于指挥官。在适用情况下，你必须遵守<a href='[CONFIG_GET(string/wikiarticleurl)][URL_WIKI_CO_RULES]'>指挥官行为准则</a>。当某些岗位缺员时，你可能需要代行其职责，并已获得相应权限。为USCM争光！"
 	return ..()
 
 /datum/job/command/executive/generate_entry_conditions(mob/living/M, whitelist_status)

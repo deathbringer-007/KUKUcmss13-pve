@@ -31,7 +31,7 @@
 
 	if(!clan_id && !force_clan_id)
 		if(!clan_info)
-			to_chat(src, SPAN_WARNING("You don't have a yautja whitelist!"))
+			to_chat(src, SPAN_WARNING("你没有铁血战士白名单权限！"))
 			return
 
 		if(clan_info.permissions & CLAN_PERMISSION_ADMIN_VIEW)
@@ -156,17 +156,17 @@
 
 /client/proc/has_clan_permission(permission_flag, clan_id, warn)
 	if(!clan_info)
-		if(warn) to_chat(src, "You do not have a yautja whitelist!")
+		if(warn) to_chat(src, "你没有铁血战士白名单权限！")
 		return FALSE
 
 	if(clan_id)
 		if(clan_id != clan_info.clan_id)
-			if(warn) to_chat(src, "You do not have permission to perform actions on this clan!")
+			if(warn) to_chat(src, "你无权对这个氏族执行操作！")
 			return FALSE
 
 
 	if(!(clan_info.permissions & permission_flag))
-		if(warn) to_chat(src, "You do not have the necessary permissions to perform this action!")
+		if(warn) to_chat(src, "你没有执行此操作所需的权限！")
 		return FALSE
 
 	return TRUE
@@ -306,7 +306,7 @@
 			player_rank = 999
 
 		if((target.permissions & CLAN_PERMISSION_ADMIN_MANAGER) || player_rank <= target.clan_rank)
-			to_chat(src, SPAN_DANGER("You can't target this person!"))
+			to_chat(src, SPAN_DANGER("你不能选择这个人！"))
 			return
 
 		switch(href_list[CLAN_ACTION])
@@ -383,7 +383,7 @@
 
 			if(CLAN_ACTION_PLAYER_MODIFYRANK)
 				if(!target.clan_id)
-					to_chat(src, SPAN_WARNING("This player doesn't belong to a clan!"))
+					to_chat(src, SPAN_WARNING("这名玩家不属于任何氏族！"))
 					return
 
 				var/list/datum/yautja_rank/ranks = GLOB.clan_ranks.Copy()
@@ -417,14 +417,14 @@
 						switch(chosen_rank.limit_type)
 							if(CLAN_LIMIT_NUMBER)
 								if(players_in_rank >= chosen_rank.limit)
-									to_chat(src, SPAN_DANGER("This slot is full! (Maximum of [chosen_rank.limit] slots)"))
+									to_chat(src, SPAN_DANGER("此名额已满！（最多[chosen_rank.limit]个名额）"))
 									return
 							if(CLAN_LIMIT_SIZE)
 								var/list/datum/view_record/clan_playerbase_view/clan_players = DB_VIEW(/datum/view_record/clan_playerbase_view/, DB_COMP("clan_id", DB_EQUALS, target.clan_id))
 								var/available_slots = ceil(length(clan_players) / chosen_rank.limit)
 
 								if(players_in_rank >= available_slots)
-									to_chat(src, SPAN_DANGER("This slot is full! (Maximum of [chosen_rank.limit] per player in the clan, currently [available_slots])"))
+									to_chat(src, SPAN_DANGER("此名额已满！（按氏族人数最多提供[chosen_rank.limit]个名额，目前为[available_slots]）"))
 									return
 
 

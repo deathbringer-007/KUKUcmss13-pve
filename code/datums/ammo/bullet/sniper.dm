@@ -24,7 +24,7 @@
 	if((P.projectile_flags & PROJECTILE_BULLSEYE) && M == P.original)
 		var/mob/living/L = M
 		L.apply_armoured_damage(damage*2, ARMOR_BULLET, BRUTE, null, penetration)
-		to_chat(P.firer, SPAN_WARNING("Bullseye!"))
+		to_chat(P.firer, SPAN_WARNING("正中目标！"))
 
 /datum/ammo/bullet/sniper/crude
 	name = "crude sniper bullet"
@@ -99,24 +99,24 @@
 			if(stopping_power > 3)
 				shake_camera(living_mob, (stopping_power - 3), (stopping_power - 2))
 			if(HAS_TRAIT(living_mob, TRAIT_CHARGING) && isxeno(living_mob))
-				to_chat(living_mob, SPAN_WARNING("A sudden massive impact strikes you, but your charge will not be stopped!"))
+				to_chat(living_mob, SPAN_WARNING("突如其来的猛烈冲击击中了你，但无法阻止你的冲锋！"))
 				return stopping_power
 			if(stopping_power >= 4)
-				to_chat(living_mob, SPAN_XENOHIGHDANGER("You are knocked off-balance by the sudden massive impact!"))
+				to_chat(living_mob, SPAN_XENOHIGHDANGER("突如其来的猛烈冲击使你失去平衡！"))
 				if(living_mob.mob_size >= MOB_SIZE_IMMOBILE && !((fired_projectile.projectile_flags & PROJECTILE_BULLSEYE) && living_mob == fired_projectile.original)) // Queens and Crushers
 					return stopping_power // For Crushers and Queens, must be aimed at them.
 				living_mob.KnockDown(0.05) // Must deal more than 90 damage to mini-stun big mobs for 0.1s
 				// Can't interrupt a big mob unless it's completely alone with nothing blocking the shot.
 			else
-				to_chat(living_mob, SPAN_XENODANGER("You are shaken by the sudden heavy impact!"))
+				to_chat(living_mob, SPAN_XENODANGER("突如其来的重击使你浑身一震！"))
 		else
 			// If above 60 damage, screenshake. This maxes out at (3,4) like buckshot and heavy rounds. (1,2) (2,3) or (3,4)
 			shake_camera(living_mob, (stopping_power - 2), (stopping_power - 1))
 			if(living_mob.body_position != LYING_DOWN)
-				to_chat(living_mob, SPAN_XENOHIGHDANGER("You are thrown back by the sudden massive force!"))
+				to_chat(living_mob, SPAN_XENOHIGHDANGER("突如其来的巨大力量将你抛飞了出去！"))
 				slam_back(living_mob, fired_projectile)
 			else
-				to_chat(living_mob, SPAN_XENODANGER("You are shaken by the sudden heavy impact!"))
+				to_chat(living_mob, SPAN_XENODANGER("突如其来的重击使你浑身一震！"))
 
 			if(isxeno(living_mob))
 				living_mob.KnockDown((stopping_power - 2)*0.05) // Up to 0.3s on a solo target.
@@ -223,20 +223,20 @@
 		if((focused_fire_active || isxeno(target_mob)) && !(target_mob.is_dead()))
 			switch(amr_counter)
 				if(1)
-					to_chat(aimed_projectile.firer, SPAN_WARNING("One hit! You begin to carefully track the target's movements."))
+					to_chat(aimed_projectile.firer, SPAN_WARNING("命中一次！你开始仔细追踪目标的动作。"))
 					if(isxeno(target_mob) && isxeno(old_target?.resolve()))
 						var/mob/living/carbon/xenomorph/old_xeno = old_target.resolve()
 						var/mob/living/carbon/xenomorph/new_xeno = target_mob
 						if((old_xeno.hive == new_xeno.hive) && !(old_xeno.stat)) // Must be in same hive and conscious
-							to_chat(old_xeno,SPAN_XENOLEADER("The feeling of looming danger fades as we sense that another sister has been targeted instead."))
+							to_chat(old_xeno,SPAN_XENOLEADER("我们感知到另一位姐妹成了目标，迫近的危险感随之消退。"))
 				if(2)
-					to_chat(aimed_projectile.firer, SPAN_WARNING("Two hits! You're starting to get a good read on the target's patterns."))
+					to_chat(aimed_projectile.firer, SPAN_WARNING("命中两次！你开始摸清目标的行动规律。"))
 				if(3)
-					to_chat(aimed_projectile.firer, SPAN_WARNING("Bullseye! You're fully focused on the target. You notice they are starting to change their patterns."))
+					to_chat(aimed_projectile.firer, SPAN_WARNING("正中目标！你已完全专注于目标。你注意到对方开始改变行动规律。"))
 				else
-					to_chat(aimed_projectile.firer, SPAN_WARNING("Bullseye!"))
+					to_chat(aimed_projectile.firer, SPAN_WARNING("正中目标！"))
 		else
-			to_chat(aimed_projectile.firer, SPAN_WARNING("Bullseye!"))
+			to_chat(aimed_projectile.firer, SPAN_WARNING("正中目标！"))
 
 /datum/ammo/bullet/sniper/anti_materiel/set_bullet_traits()
 	. = ..()
@@ -275,8 +275,8 @@
 /datum/ammo/bullet/sniper/anti_materiel/vulture/holo_target/on_hit_mob(mob/hit_mob, obj/projectile/bullet)
 	hit_mob.AddComponent(/datum/component/bonus_damage_stack, holo_stacks, world.time, bonus_damage_cap_increase, stack_loss_multiplier)
 	playsound(hit_mob, 'sound/weapons/gun_vulture_mark.ogg', 40)
-	to_chat(hit_mob, isxeno(hit_mob) ? SPAN_XENOHIGHDANGER("It feels as if we were MARKED FOR DEATH!") : SPAN_HIGHDANGER("It feels as if you were MARKED FOR DEATH!"))
-	hit_mob.balloon_alert_to_viewers("marked for death!")
+	to_chat(hit_mob, isxeno(hit_mob) ? SPAN_XENOHIGHDANGER("我们仿佛被打上了死亡标记！") : SPAN_HIGHDANGER("你仿佛被打上了死亡标记！"))
+	hit_mob.balloon_alert_to_viewers("被标记为击杀目标！")
 
 // the effect should be limited to one target, with IFF to compensate how hard it will be to hit these shots
 /datum/ammo/bullet/sniper/anti_materiel/vulture/holo_target/set_bullet_traits()
@@ -314,4 +314,4 @@
 		else
 			L.apply_armoured_damage(damage, ARMOR_BULLET, BRUTE, null, penetration)
 		// 150% damage to runners (225), 300% against Big xenos (450), and 200% against all others (300). -Kaga
-		to_chat(P.firer, SPAN_WARNING("Bullseye!"))
+		to_chat(P.firer, SPAN_WARNING("正中目标！"))

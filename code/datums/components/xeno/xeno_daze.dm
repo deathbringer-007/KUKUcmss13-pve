@@ -14,7 +14,7 @@
 	src.daze = daze
 	src.max_buildup = max_buildup
 	src.dissipation = dissipation
-	to_chat(parent, SPAN_XENOHIGHDANGER("We feel weak and dazed!"))
+	to_chat(parent, SPAN_XENOHIGHDANGER("我们感到虚弱而恍惚！"))
 
 /datum/component/status_effect/daze/InheritComponent(datum/component/status_effect/daze/daze_new, i_am_original, amount, max_buildup)
 	. = ..()
@@ -49,7 +49,7 @@
 /datum/component/status_effect/daze/proc/stat_append(mob/M, list/L)
 	SIGNAL_HANDLER
 	if(has_immunity)
-		L += "Daze immunity [grace_period]/[initial(grace_period)]"
+		L += "恍惚免疫：[grace_period]/[initial(grace_period)]"
 		return
 	L += "Daze: [daze]/[max_buildup]"
 

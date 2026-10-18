@@ -119,7 +119,7 @@
 	var/mobpath = tgui_input_list(usr, "Which type of mob should [src] turn into?", "Choose a type", mobtypes)
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, SPAN_DANGER("Sorry but this mob type is currently unavailable."))
+		to_chat(usr, SPAN_DANGER("抱歉，这种生物目前不可用。"))
 		return
 
 	if(monkeyizing)
@@ -153,7 +153,7 @@
 	var/mobpath = tgui_input_list(usr, "Which type of mob should [src] turn into?", "Choose a type", mobtypes)
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, SPAN_DANGER("Sorry but this mob type is currently unavailable."))
+		to_chat(usr, SPAN_DANGER("抱歉，这种生物目前不可用。"))
 		return
 
 	var/mob/new_mob = new mobpath(src.loc)

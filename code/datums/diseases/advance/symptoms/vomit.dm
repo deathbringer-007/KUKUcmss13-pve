@@ -21,7 +21,7 @@ Bonus
 
 /datum/symptom/vomit
 
-	name = "Vomiting"
+	name = "呕吐"
 	stealth = -2
 	resistance = -1
 	stage_speed = 0
@@ -34,7 +34,7 @@ Bonus
 		var/mob/living/M = A.affected_mob
 		switch(A.stage)
 			if(1, 2, 3, 4)
-				var/message = "[pick("You feel nauseous.", "You feel like you're going to throw up!")]"
+				var/message = "[pick("你感到恶心。", "你觉得自己快吐了！")]"
 				message = SPAN_NOTICE("[message]")
 				to_chat(M, message)
 			else
@@ -68,7 +68,7 @@ Bonus
 
 /datum/symptom/vomit/blood
 
-	name = "Blood Vomiting"
+	name = "呕血"
 	stealth = -2
 	resistance = -1
 	stage_speed = -1
@@ -78,7 +78,7 @@ Bonus
 /datum/symptom/vomit/blood/Vomit(mob/living/M)
 
 	M.apply_effect(1, STUN)
-	M.visible_message("<B>[M]</B> vomits on the floor!")
+	M.visible_message("<B>[M]</B> 吐在了地板上！")
 
 	// They lose blood and health.
 	var/brute_dam = M.getBruteLoss()

@@ -3,8 +3,8 @@
 	name = "HEFA knights"
 	mob_max = 15
 	mob_min = 3
-	arrival_message = "'Prepaerth to surrender thine HEFAs unto the order!'"
-	objectives = "You are a Brother of the Order of HEFA! You and your fellow brothers must retrieve as many HEFAs as possible!"
+	arrival_message = "“准备向本教团献出汝等的 HEFA 手榴弹！”"
+	objectives = "你是 HEFA 教团的一名兄弟！你和其他兄弟必须收集尽可能多的 HEFA 手榴弹！"
 	probability = 0
 	hostility = TRUE
 
@@ -18,4 +18,4 @@
 	M.transfer_to(H, TRUE)
 
 	arm_equipment(H, /datum/equipment_preset/fun/hefa/melee, FALSE, TRUE)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), H, SPAN_BOLD("Objectives: [objectives]")), 1 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), H, SPAN_BOLD("目标：[objectives]")), 1 SECONDS)

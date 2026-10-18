@@ -1,7 +1,7 @@
 // #################### ARES Interface Console #####################
 /obj/structure/machinery/computer/ares_console
-	name = "ARES Interface"
-	desc = "A console built to interface with ARES, allowing for 1:1 communication."
+	name = "阿瑞斯交互终端"
+	desc = "用于与阿瑞斯进行一对一交流的控制台。"
 	icon = 'icons/obj/structures/machinery/ares.dmi'
 	icon_state = "console"
 	exproof = TRUE
@@ -239,7 +239,7 @@
 	switch (action)
 		if("go_back")
 			if(!last_menu)
-				return to_chat(user, SPAN_WARNING("Error, no previous page detected."))
+				return to_chat(user, SPAN_WARNING("错误：未检测到上一页面。"))
 			var/temp_holder = current_menu
 			current_menu = last_menu
 			last_menu = temp_holder
@@ -256,7 +256,7 @@
 					authentication = get_ares_access(idcard)
 					last_login = idcard.registered_name
 			else
-				to_chat(user, SPAN_WARNING("You require an ID card to access this terminal!"))
+				to_chat(user, SPAN_WARNING("你需要身份卡才能访问此终端！"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 			if(authentication)
@@ -264,14 +264,14 @@
 			current_menu = "main"
 
 		if("sudo")
-			var/new_user = tgui_input_text(user, "Enter Sudo Username", "Sudo User", encode = FALSE)
+			var/new_user = tgui_input_text(user, "输入特权用户名称", "特权用户", encode = FALSE)
 			if(new_user)
 				if(new_user == sudo_holder)
 					last_login = sudo_holder
 					sudo_holder = null
 					return FALSE
 				if(new_user == last_login)
-					to_chat(user, SPAN_WARNING("Already remote logged in as this user."))
+					to_chat(user, SPAN_WARNING("已经以此用户身份远程登录。"))
 					playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 					return FALSE
 				sudo_holder = last_login
@@ -348,7 +348,7 @@
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 			if(!length(datacore.records_asrs))
-				to_chat(user, SPAN_WARNING("There are no records to print!"))
+				to_chat(user, SPAN_WARNING("没有可打印的记录！"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 			COOLDOWN_START(src, printer_cooldown, 20 SECONDS)
@@ -405,7 +405,7 @@
 			log.name = "ASRS Audit Log"
 			log.info += contents
 			log.icon_state = "paper_uscm_words"
-			visible_message(SPAN_NOTICE("[src] prints out a paper."))
+			visible_message(SPAN_NOTICE("[src]打印出一张纸。"))
 
 		// -- Delete Button -- //
 		if("delete_record")
@@ -467,7 +467,7 @@
 			datacore.records_talking -= conversation
 
 		if("message_ares")
-			var/message = tgui_input_text(user, "What do you wish to say to ARES?", "ARES Message", encode = FALSE)
+			var/message = tgui_input_text(user, "你想对阿瑞斯说什么？", "阿瑞斯讯息", encode = FALSE)
 			if(message)
 				message_ares(message, user, params["active_convo"])
 
@@ -482,7 +482,7 @@
 		// -- Emergency Buttons -- //
 		if("general_quarters")
 			if(!COOLDOWN_FINISHED(datacore, ares_quarters_cooldown))
-				to_chat(user, SPAN_WARNING("It has not been long enough since the last General Quarters call!"))
+				to_chat(user, SPAN_WARNING("距上次全员战斗部署通知的时间太短！"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 			if(GLOB.security_level < SEC_LEVEL_RED)
@@ -496,17 +496,17 @@
 
 		if("evacuation_start")
 			if(GLOB.security_level < SEC_LEVEL_RED)
-				to_chat(user, SPAN_WARNING("The ship must be under red alert in order to enact evacuation procedures."))
+				to_chat(user, SPAN_WARNING("必须处于红色警报状态，才能启动撤离程序。"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 
 			if(SShijack.evac_admin_denied)
-				to_chat(user, SPAN_WARNING("The USCM has placed a lock on deploying the evacuation pods."))
+				to_chat(user, SPAN_WARNING("美国殖民地海军陆战队已锁定逃生舱部署功能。"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 
 			if(!SShijack.initiate_evacuation())
-				to_chat(user, SPAN_WARNING("You are unable to initiate an evacuation procedure right now!"))
+				to_chat(user, SPAN_WARNING("你现在无法启动撤离程序！"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 
@@ -519,19 +519,19 @@
 			if(!SSticker.mode)
 				return FALSE //Not a game mode?
 			if(world.time < DISTRESS_TIME_LOCK)
-				to_chat(user, SPAN_WARNING("You have been here for less than six minutes... what could you possibly have done!"))
+				to_chat(user, SPAN_WARNING("你到这里还不到六分钟……究竟能干出什么事！"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 			if(!COOLDOWN_FINISHED(datacore, ares_distress_cooldown))
-				to_chat(user, SPAN_WARNING("The distress launcher is cooling down!"))
+				to_chat(user, SPAN_WARNING("求救信标发射器正在冷却！"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 			if(GLOB.security_level == SEC_LEVEL_DELTA)
-				to_chat(user, SPAN_WARNING("The ship is already undergoing self destruct procedures!"))
+				to_chat(user, SPAN_WARNING("舰船已开始执行自毁程序！"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 			if(GLOB.security_level < SEC_LEVEL_RED)
-				to_chat(user, SPAN_WARNING("The ship must be under red alert to launch a distress beacon!"))
+				to_chat(user, SPAN_WARNING("必须处于红色警报状态，才能发射求救信标！"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 
@@ -539,7 +539,7 @@
 				if((R_ADMIN|R_MOD) & admin.admin_holder.rights)
 					playsound_client(admin,'sound/effects/sos-morse-code.ogg',10)
 			SSticker.mode.request_ert(user, TRUE)
-			to_chat(user, SPAN_NOTICE("A distress beacon request has been sent to USCM High Command."))
+			to_chat(user, SPAN_NOTICE("求救信标请求已发送至美国殖民地海军陆战队最高指挥部。"))
 			COOLDOWN_START(datacore, ares_distress_cooldown, COOLDOWN_COMM_REQUEST)
 			return TRUE
 
@@ -547,25 +547,25 @@
 			if(!SSticker.mode)
 				return FALSE //Not a game mode?
 			if(world.time < NUCLEAR_TIME_LOCK)
-				to_chat(user, SPAN_WARNING("It is too soon to request Nuclear Ordnance!"))
+				to_chat(user, SPAN_WARNING("现在申请核武器还太早！"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 			if(!COOLDOWN_FINISHED(datacore, ares_nuclear_cooldown))
-				to_chat(user, SPAN_WARNING("The ordnance request frequency is garbled, wait for reset!"))
+				to_chat(user, SPAN_WARNING("核武器申请频率受到干扰，请等待重置！"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 			if(GLOB.security_level == SEC_LEVEL_DELTA || SSticker.mode.is_in_endgame)
-				to_chat(user, SPAN_WARNING("The mission has failed catastrophically, what do you want a nuke for?!"))
+				to_chat(user, SPAN_WARNING("任务已经彻底失败了，你还想要核弹做什么？！"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
-			var/reason = tgui_input_text(user, "Please enter reason nuclear ordnance is required.", "Reason for Nuclear Ordnance")
+			var/reason = tgui_input_text(user, "请输入申请核武器的理由。", "核武器申请理由")
 			if(!reason)
 				return FALSE
 			for(var/client/admin in GLOB.admins)
 				if((R_ADMIN|R_MOD) & admin.admin_holder.rights)
 					playsound_client(admin,'sound/effects/sos-morse-code.ogg',10)
 			message_admins("[key_name(user)] has requested use of Nuclear Ordnance (via ARES)! Reason: <b>[reason]</b> [CC_MARK(user)] (<A href='byond://?_src_=admin_holder;[HrefToken(forceGlobal = TRUE)];nukeapprove=\ref[user]'>APPROVE</A>) (<A href='byond://?_src_=admin_holder;[HrefToken(forceGlobal = TRUE)];nukedeny=\ref[user]'>DENY</A>) [ADMIN_JMP_USER(user)] [CC_REPLY(user)]")
-			to_chat(user, SPAN_NOTICE("A nuclear ordnance request has been sent to USCM High Command for the following reason: [reason]"))
+			to_chat(user, SPAN_NOTICE("已向美国殖民地海军陆战队最高指挥部发送核武器申请，理由如下：[reason]"))
 			log_ares_security("Nuclear Ordnance Request", "Sent a request for nuclear ordnance for the following reason: [reason]", last_login)
 			if(ares_can_interface())
 				ai_silent_announcement("[last_login] has sent a request for nuclear ordnance to USCM High Command.", ".V")
@@ -577,14 +577,14 @@
 			playsound = FALSE
 			var/obj/structure/pipes/vents/pump/no_boom/gas/sec_vent = locate(params["vent"])
 			if(!istype(sec_vent) || sec_vent.welded)
-				to_chat(user, SPAN_WARNING("ERROR: Gas release failure."))
+				to_chat(user, SPAN_WARNING("错误：气体释放失败。"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 			if(!COOLDOWN_FINISHED(sec_vent, vent_trigger_cooldown))
-				to_chat(user, SPAN_WARNING("ERROR: Insufficient gas reserve for this vent."))
+				to_chat(user, SPAN_WARNING("错误：此排气口的气体储备不足。"))
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
-			to_chat(user, SPAN_WARNING("Initiating gas release from [sec_vent.vent_tag]."))
+			to_chat(user, SPAN_WARNING("开始从[sec_vent.vent_tag]释放气体。"))
 			playsound(src, 'sound/machines/chime.ogg', 15, 1)
 			COOLDOWN_START(sec_vent, vent_trigger_cooldown, COOLDOWN_ARES_VENT)
 			ares_apollo_talk("Nerve Gas release imminent from [sec_vent.vent_tag].")
@@ -594,7 +594,7 @@
 
 		if("security_lockdown")
 			if(!COOLDOWN_FINISHED(datacore, aicore_lockdown))
-				to_chat(user, SPAN_BOLDWARNING("AI Core Lockdown procedures are on cooldown! They will be ready in [COOLDOWN_SECONDSLEFT(datacore, aicore_lockdown)] seconds!"))
+				to_chat(user, SPAN_BOLDWARNING("人工智能核心封锁程序正在冷却！还需[COOLDOWN_SECONDSLEFT(datacore, aicore_lockdown)]秒才能使用！"))
 				return FALSE
 			aicore_lockdown(user)
 			return TRUE
@@ -603,8 +603,8 @@
 		playsound(src, "keyboard_alt", 15, 1)
 
 /obj/structure/machinery/computer/ares_console/large
-	name = "AI interface computer"
-	desc = "A large, bulky computer intended to allow the user to interface with the ship's AI."
+	name = "人工智能交互计算机"
+	desc = "一台笨重的大型计算机，供使用者与舰船人工智能交互。"
 	icon = 'icons/obj/structures/props/almayer_props64.dmi'
 	icon_state = "ai_interface"
 	layer = BELOW_MOB_LAYER

@@ -217,7 +217,7 @@
 	if(istype(C))
 		if(isyautja(C) || ispredalien(C))
 			return
-		to_chat(C, SPAN_DANGER("An electric shock ripples through your body, freezing you in place!"))
+		to_chat(C, SPAN_DANGER("一阵电击传遍你的全身，使你动弹不得！"))
 		log_attack("[key_name(C)] was stunned by a high power stun bolt from [key_name(P.firer)] at [get_area(P)]")
 
 		if(ishuman(C))
@@ -291,7 +291,7 @@
 			stun_time -= 2
 		if(ispredalien(M))
 			continue
-		to_chat(M, SPAN_DANGER("A powerful electric shock ripples through your body, freezing you in place!"))
+		to_chat(M, SPAN_DANGER("一阵强烈的电击传遍你的全身，使你动弹不得！"))
 		M.apply_effect(stun_time, STUN)
 		M.apply_effect(stun_time, WEAKEN)
 	FOR_DVIEW_END

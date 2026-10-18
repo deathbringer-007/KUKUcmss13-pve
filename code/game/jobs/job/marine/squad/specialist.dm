@@ -6,7 +6,7 @@
 	scaled = 1
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_SQUAD
 	gear_preset = /datum/equipment_preset/uscm/specialist_equipped
-	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>You are the very rare and valuable weapon expert</a>, trained to use special equipment. You can serve a variety of roles, so choose carefully."
+	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>你是稀缺而宝贵的武器专家</a>，受训使用特种装备。你能承担多种职责，请慎重选择。"
 
 /datum/job/marine/specialist/set_spawn_positions(count)
 	spawn_positions = spec_slot_formula(count)
@@ -72,8 +72,8 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_SQUAD
 	gear_preset = /datum/equipment_preset/uscm/rmc/snp
 	job_options = null
-	supervisors = "the team leader and troop commander"
-	entry_message_body = "You are a specially trained scout-sniper in the Royal Marines Commando. Your task is to provide highly accurate fire support for the Rifle Section as part of the Fire Support Team.<br><b>You remember that you've stored your personal gear and uniform in the locker rooms, and that your specialist equipment can be located in the armoury.</b>"
+	supervisors = "战斗组长与突击排指挥官"
+	entry_message_body = "你是皇家陆战突击队中受过专门训练的侦察狙击手。作为火力支援组的一员，你的任务是为步枪班提供高精度火力支援。<br><b>你记得自己的个人装备和制服存放在更衣室内，专业装备位于军械库。</b>"
 
 /obj/effect/landmark/start/marine/specialist/rmc
 	name = JOB_TWE_RMC_MARKSMAN

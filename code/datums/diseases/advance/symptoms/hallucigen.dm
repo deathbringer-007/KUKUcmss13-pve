@@ -17,7 +17,7 @@ Bonus
 
 /datum/symptom/hallucigen
 
-	name = "Hallucigen"
+	name = "致幻"
 	stealth = -2
 	resistance = -3
 	stage_speed = -3
@@ -30,7 +30,7 @@ Bonus
 		var/mob/living/carbon/M = A.affected_mob
 		switch(A.stage)
 			if(1, 2, 3, 4)
-				to_chat(M, SPAN_NOTICE("[pick("You notice someone in the corner of your eye.", "Is that footsteps?.")]"))
+				to_chat(M, SPAN_NOTICE("[pick("你用余光瞥见旁边似乎有人。", "那是脚步声吗？")]"))
 			else
 				M.hallucination += 5
 

@@ -8,7 +8,7 @@
 	classic_keys = list("Unbound")
 	name = "admin_help"
 	full_name = "Admin Help"
-	description = "Ask an admin for help."
+	description = "向管理员求助。"
 	keybind_signal = COMSIG_KB_CLIENT_GETHELP_DOWN
 
 /datum/keybinding/client/admin_help/down(client/user)
@@ -24,7 +24,7 @@
 	classic_keys = list("Unbound")
 	name = "screenshot"
 	full_name = "Screenshot"
-	description = "Take a screenshot."
+	description = "截取屏幕画面。"
 	keybind_signal = COMSIG_KB_CLIENT_SCREENSHOT_DOWN
 
 /datum/keybinding/client/screenshot/down(client/user)
@@ -39,7 +39,7 @@
 	classic_keys = list("F11")
 	name = "toggle_fullscreen"
 	full_name = "Toggle Fullscreen"
-	description = "Toggles whether the game window will be true fullscreen or normal."
+	description = "在真正的全屏和普通窗口模式之间切换。"
 	keybind_signal = COMSIG_KB_CLIENT_TOGGLEFULLSCREEN_DOWN
 
 /datum/keybinding/client/toggle_fullscreen/down(client/user)
@@ -54,7 +54,7 @@
 	classic_keys = list("F12")
 	name = "minimal_hud"
 	full_name = "Minimal HUD"
-	description = "Hide most HUD features"
+	description = "隐藏大部分HUD元素。"
 	keybind_signal = COMSIG_KB_CLIENT_MINIMALHUD_DOWN
 
 /datum/keybinding/client/minimal_hud/down(client/user)

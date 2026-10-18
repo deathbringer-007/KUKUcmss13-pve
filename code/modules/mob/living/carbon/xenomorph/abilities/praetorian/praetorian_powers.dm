@@ -52,7 +52,7 @@
 				if(!(mob_to_act in target_mobs))
 					target_mobs += mob_to_act
 
-	source_xeno.visible_message(SPAN_XENODANGER("[source_xeno] slashes its claws through the area in front of it!"), SPAN_XENODANGER("We slash our claws through the area in front of us!"))
+	source_xeno.visible_message(SPAN_XENODANGER("[source_xeno]挥爪横扫前方！"), SPAN_XENODANGER("我们挥爪横扫前方！"))
 	source_xeno.animation_attack_on(targetted_atom, 15)
 
 	source_xeno.emote("roar")
@@ -118,7 +118,7 @@
 		if (!(H in target_mobs))
 			target_mobs += H
 
-	X.visible_message(SPAN_XENODANGER("[X] slashes its claws through the area around it!"), SPAN_XENODANGER("We slash our claws through the area around us!"))
+	X.visible_message(SPAN_XENODANGER("[X]挥爪横扫四周！"), SPAN_XENODANGER("我们挥爪横扫四周！"))
 	X.spin_circle()
 
 	for (var/mob/living/carbon/H in target_mobs)
@@ -150,17 +150,17 @@
 		return
 
 	if (!isxeno_human(target_atom) || vanguard_user.can_not_harm(target_atom))
-		to_chat(vanguard_user, SPAN_XENODANGER("We must target a hostile!"))
+		to_chat(vanguard_user, SPAN_XENODANGER("我们必须选择一个敌对目标！"))
 		return
 
 	var/mob/living/carbon/target_carbon = target_atom
 
 	if (!vanguard_user.Adjacent(target_carbon))
-		to_chat(vanguard_user, SPAN_XENOWARNING("We must be adjacent to our target!"))
+		to_chat(vanguard_user, SPAN_XENOWARNING("我们必须紧邻目标！"))
 		return
 
 	if (target_carbon.stat == DEAD)
-		to_chat(vanguard_user, SPAN_XENODANGER("[target_carbon] is dead, why would we want to touch it?"))
+		to_chat(vanguard_user, SPAN_XENODANGER("[target_carbon]已经死了，我们为什么还要碰它？"))
 		return
 
 	// Flick overlay and play sound
@@ -172,7 +172,7 @@
 	if (root_toggle)
 		var/root_duration = buffed ? root_duration_buffed : root_duration_unbuffed
 
-		vanguard_user.visible_message(SPAN_XENODANGER("[vanguard_user] slams [target_atom] into the ground!"), SPAN_XENOHIGHDANGER("We slam [target_atom] into the ground!"))
+		vanguard_user.visible_message(SPAN_XENODANGER("[vanguard_user]将[target_atom]猛摔在地！"), SPAN_XENOHIGHDANGER("我们将[target_atom]猛摔在地！"))
 		ADD_TRAIT(target_carbon, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Cleave"))
 
 		if (ishuman(target_carbon))
@@ -180,7 +180,7 @@
 			Hu.update_xeno_hostile_hud()
 
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(unroot_human), target_carbon, TRAIT_SOURCE_ABILITY("Cleave")), get_xeno_stun_duration(target_carbon, root_duration))
-		to_chat(target_carbon, SPAN_XENOHIGHDANGER("[vanguard_user] has pinned you to the ground! You cannot move!"))
+		to_chat(target_carbon, SPAN_XENOHIGHDANGER("[vanguard_user]把你压在地上！你无法移动！"))
 		vanguard_user.flick_attack_overlay(target_carbon, "punch")
 
 	else
@@ -188,7 +188,7 @@
 
 		if(target_carbon.mob_size >= MOB_SIZE_BIG)
 			fling_distance *= 0.1
-		vanguard_user.visible_message(SPAN_XENODANGER("[vanguard_user] deals [target_atom] a massive blow, sending them flying!"), SPAN_XENOHIGHDANGER("We deal [target_atom] a massive blow, sending them flying!"))
+		vanguard_user.visible_message(SPAN_XENODANGER("[vanguard_user]重击[target_atom]，将其击飞！"), SPAN_XENOHIGHDANGER("We deal [target_atom] a massive blow, sending them flying!"))
 		vanguard_user.flick_attack_overlay(target_carbon, "slam")
 		vanguard_user.throw_carbon(target_atom, null, fling_distance)
 

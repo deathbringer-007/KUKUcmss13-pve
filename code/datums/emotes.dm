@@ -94,7 +94,7 @@
 
 	var/tmp_sound = get_sound(user)
 	if(TIMER_COOLDOWN_CHECK(user, type))
-		to_chat(user, SPAN_NOTICE("You just did an emote. Wait awhile."))
+		to_chat(user, SPAN_NOTICE("你刚做过表情动作，请稍等。"))
 		return
 	else if(tmp_sound && should_play_sound(user, intentional))
 		if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_MOB_AUDIO))
@@ -123,7 +123,7 @@
 		var/formatted_deaf_message = "<b>[paygrade][user]</b> [alt_message ? alt_message : key_third_person] silently."
 		user.audible_message(formatted_message, deaf_message = formatted_deaf_message)
 	else if(emote_type & EMOTE_VISIBLE)	//emote is visible
-		user.visible_message(formatted_message, blind_message = SPAN_EMOTE("You see how <b>[user]</b> [msg]"))
+		user.visible_message(formatted_message, blind_message = SPAN_EMOTE("你看到 <b>[user]</b> [msg]"))
 	if(emote_type & EMOTE_IMPORTANT)
 		for(var/mob/living/viewer in viewers())
 			if(is_blind(viewer) && isdeaf(viewer))
@@ -188,7 +188,7 @@
 	if(user.emotes_used && user.emotes_used[src] + cooldown > world.time)
 		var/datum/emote/default_emote = /datum/emote
 		if(cooldown > initial(default_emote.cooldown)) // only worry about longer-than-normal emotes
-			to_chat(user, SPAN_DANGER("You must wait another [DisplayTimeText(user.emotes_used[src] - world.time + cooldown)] before using that emote."))
+			to_chat(user, SPAN_DANGER("再次使用该表情动作前，还需等待 [DisplayTimeText(user.emotes_used[src] - world.time + cooldown)]。"))
 		return FALSE
 	if(!user.emotes_used)
 		user.emotes_used = list()
@@ -273,14 +273,14 @@
 				return FALSE
 			switch(user.stat)
 				if(UNCONSCIOUS)
-					to_chat(user, SPAN_WARNING("You cannot [key] while unconscious!"))
+					to_chat(user, SPAN_WARNING("昏迷时无法执行“[key]”动作！"))
 				if(DEAD)
-					to_chat(user, SPAN_WARNING("You cannot [key] while dead!"))
+					to_chat(user, SPAN_WARNING("死亡时无法执行“[key]”动作！"))
 			return FALSE
 		if(hands_use_check && (user.r_hand && user.l_hand))
 			if(!intentional)
 				return FALSE
-			to_chat(user, SPAN_WARNING("You cannot use your hands to [key] right now!"))
+			to_chat(user, SPAN_WARNING("你现在无法用手执行“[key]”动作！"))
 			return FALSE
 
 	return TRUE

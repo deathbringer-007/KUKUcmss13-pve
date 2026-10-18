@@ -49,7 +49,7 @@
 	switch(narration_type)
 		if(NARRATION_METHOD_SAY)
 			atom_parent.langchat_speech(message, heard, GLOB.all_languages, skip_language_check = TRUE)
-			atom_parent.visible_message("<b>[atom_parent]</b> says, \"[message]\"")
+			atom_parent.visible_message("<b>[atom_parent]</b> 说道：\"[message]\"")
 		if(NARRATION_METHOD_ME)
 			atom_parent.langchat_speech(message, heard, GLOB.all_languages, skip_language_check = TRUE, animation_style = 2, additional_styles = list("langchat_small", "emote"))
 			atom_parent.visible_message("<b>[atom_parent]</b> [message]")

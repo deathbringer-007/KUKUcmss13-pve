@@ -8,7 +8,7 @@
 #define	BOILER_GAS_CADE_BLOCK_CHANCE 35
 
 /obj/effect/particle_effect/smoke
-	name = "smoke"
+	name = "烟雾"
 	icon_state = "smoke"
 	opacity = TRUE
 	anchored = TRUE
@@ -302,8 +302,8 @@
 	creature.coughedtime = world.time + next_cough
 	if(creature.coughedtime < world.time)
 		if(issynth(creature))
-			creature.visible_message(SPAN_DANGER("[creature]'s skin is sloughing off!"),\
-			SPAN_DANGER("Your skin is sloughing off!"))
+			creature.visible_message(SPAN_DANGER("[creature]的皮肤正在脱落！"),\
+			SPAN_DANGER("你的皮肤正在脱落！"))
 	var/reagent = new /datum/reagent/napalm/blue()
 	creature.burn_skin(burn_damage)
 	creature.adjust_fire_stacks(applied_fire_stacks, reagent)
@@ -315,7 +315,7 @@
 /////////////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/cn20
-	name = "CN20 nerve gas"
+	name = "CN20神经毒气"
 	smokeranking = SMOKE_RANK_HIGH
 	color = "#80c7e4"
 	xeno_affecting = FALSE
@@ -326,7 +326,7 @@
 	var/effect_amt //I don't know what this is or what it means but the code throws errors without it and I'm tired
 
 /obj/effect/particle_effect/smoke/cn20/xeno
-	name = "CN20-X nerve gas"
+	name = "CN20-X神经毒气"
 	color = "#2da9da"
 	xeno_affecting = TRUE
 	stun_chance = 35
@@ -348,7 +348,7 @@
 	creature.apply_damage(0.75, BRAIN)
 	creature.apply_damage(1, OXY)
 	lungs.take_damage(1)
-	to_chat(creature, SPAN_DANGER("Your body is going numb, almost as if paralyzed!"))
+	to_chat(creature, SPAN_DANGER("你的身体渐渐麻木，几乎像瘫痪了一样！"))
 	if(prob(stun_chance))
 		creature.apply_effect(1, WEAKEN)
 	if(prob(60 + round(amount*15))) //Highly likely to drop items due to arms/hands seizing up
@@ -374,7 +374,7 @@
 /obj/effect/particle_effect/smoke/cn20/contact_eyes(mob/living/carbon/creature)
 	if(..())
 		return
-	to_chat(creature, SPAN_DANGER("Your eyes sting. You can't see!"))
+	to_chat(creature, SPAN_DANGER("你的眼睛刺痛，什么也看不见了！"))
 	human_creature.SetEyeBlind(round(effect_amt/3))
 	eyes.take_damage(1)
 
@@ -383,7 +383,7 @@
 /////////////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/LSD
-	name = "ALD-91 LSD Gas"
+	name = "ALD-91致幻气体"
 	smokeranking = SMOKE_RANK_HIGH
 	color = "#6e006e"
 	opacity = FALSE
@@ -410,7 +410,7 @@
 /////////////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/tear
-	name = "Tear Gas"
+	name = "催泪瓦斯"
 	smokeranking = SMOKE_RANK_HIGH
 	color = "#a82620" // rgb: 179, 16, 8
 	alpha = 75
@@ -423,9 +423,9 @@
 		return
 	if(skillcheck(creature, SKILL_POLICE, SKILL_POLICE_SKILLED))
 		creature.AdjustEyeBlur(5)
-		to_chat(creature, SPAN_WARNING("Your training protects you from the tear gas!"))
+		to_chat(creature, SPAN_WARNING("你的训练使你免受催泪瓦斯影响！"))
 	else
-		to_chat(creature, SPAN_WARNING("You feel the sting of the tear gas!"))
+		to_chat(creature, SPAN_WARNING("催泪瓦斯使你感到刺痛！"))
 		creature.AdjustEyeBlur(25)
 		creature.AdjustEyeBlind(10)
 
@@ -437,7 +437,7 @@
 ////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/flashbang
-	name = "illumination"
+	name = "照明"
 	time_to_live = 4
 	opacity = FALSE
 	icon_state = "sparks"
@@ -520,7 +520,7 @@
 /obj/effect/particle_effect/smoke/xeno_burn/contact_skin(mob/living/carbon/creature)
 	if(..())
 		return
-	to_chat(creature, SPAN_DANGER("Your skin feels like it is melting away!"))
+	to_chat(creature, SPAN_DANGER("你的皮肤仿佛正在熔化！"))
 	if(ishuman(creature))
 		human_creature.apply_armoured_damage(amount*rand(15, 20), ARMOR_BIO, BURN) //Burn damage, randomizes between various parts //Amount corresponds to upgrade level, 1 to 2.5
 	else
@@ -536,7 +536,7 @@
 	smokeranking = SMOKE_RANK_BOILER
 	/// How much neuro is dosed per tick
 	var/neuro_dose = 6
-	var/msg = "Your skin tingles as the gas consumes you!" // Message given per tick. Changes depending on which species is hit.
+	var/msg = "气体笼罩着你，你的皮肤阵阵刺痒！" // Message given per tick. Changes depending on which species is hit.
 
 //No effect when merely entering the smoke turf, for balance reasons
 /obj/effect/particle_effect/smoke/xeno_weak/Crossed(mob/living/carbon/creature as mob)
@@ -548,7 +548,7 @@
 		return
 	if(isyautja(creature))
 		neuro_dose = neuro_dose*2 // Yautja get half effects
-		msg = "You resist the tingling smoke's effects!"
+		msg = "你抵抗住了刺痒烟雾的作用！"
 		return
 	if(HAS_TRAIT(creature, TRAIT_NESTED) && creature.status_flags & XENO_HOST)
 		return
@@ -579,7 +579,7 @@
 				creature.emote("gasp")
 			addtimer(VARSET_CALLBACK(creature, coughedtime, 0), 1.5 SECONDS)
 	else
-		msg = "You are consumed by the harmless gas, it is hard to navigate in!"
+		msg = "无害的气体笼罩着你，让你难以辨清方向！"
 		creature.apply_effect(SLOW,1)
 	to_chat(creature, SPAN_DANGER(msg))
 
@@ -612,7 +612,7 @@
 	creature.apply_damage(9, OXY) // MUCH harsher
 	creature.SetEarDeafness(max(creature.ear_deaf, round(effect_amt*1.5))) //Paralysis of hearing system, aka deafness
 	if(!creature.eye_blind) //Eye exposure damage
-		to_chat(creature, SPAN_DANGER("Your eyes sting. You can't see!"))
+		to_chat(creature, SPAN_DANGER("你的眼睛刺痛，什么也看不见了！"))
 	creature.SetEyeBlind(round(effect_amt/3))
 	if(creature.coughedtime != 1 && !creature.stat) //Coughing/gasping
 		creature.coughedtime = 1
@@ -625,7 +625,7 @@
 		creature.apply_effect(1, WEAKEN)
 
 	//Topical damage (neurotoxin on exposed skin)
-	to_chat(creature, SPAN_DANGER("Your body is going numb, almost as if paralyzed!"))
+	to_chat(creature, SPAN_DANGER("你的身体渐渐麻木，几乎像瘫痪了一样！"))
 	if(prob(40 + round(amount*15))) //Highly likely to drop items due to arms/hands seizing up
 		creature.drop_held_item()
 	if(ishuman(creature))

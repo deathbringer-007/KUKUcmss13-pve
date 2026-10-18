@@ -116,11 +116,11 @@
 		if(W)
 			if(W.force && (!W || !(W.flags_item & (NOBLUDGEON|ITEM_ABSTRACT))))
 				if(world.time % 3)
-					to_chat(src, SPAN_NOTICE("You have the discipline not to hurt yourself."))
+					to_chat(src, SPAN_NOTICE("你克制住了伤害自己的冲动。"))
 				return
 		else
 			if(world.time % 3)
-				to_chat(src, SPAN_NOTICE("You have the discipline not to hurt yourself."))
+				to_chat(src, SPAN_NOTICE("你克制住了伤害自己的冲动。"))
 			return
 
 

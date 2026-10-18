@@ -17,8 +17,8 @@
 #define CARDCON_DEPARTMENT_SPECIALTY "PMC Specialists"
 
 /obj/structure/machinery/computer/card
-	name = "Identification Computer"
-	desc = "Terminal for programming USCM employee ID card access."
+	name = "身份认证计算机"
+	desc = "用于设置殖民地陆战队员工身份卡访问权限的终端。"
 	icon_state = "id"
 	req_access = list(ACCESS_MARINE_DATABASE)
 	circuit = /obj/item/circuitboard/computer/card
@@ -38,16 +38,16 @@
 
 /obj/structure/machinery/computer/card/proc/authenticate(mob/user, obj/item/card/id/id_card)
 	if(!id_card)
-		visible_message("[SPAN_BOLD("[src]")] states, \"AUTH ERROR: Authority confirmation card is missing!\"")
+		visible_message("[SPAN_BOLD("[src]")]播报：\"认证错误：缺少授权确认卡！\"")
 		return FALSE
 
 	if(check_access(id_card))
 		authenticated = TRUE
-		visible_message("[SPAN_BOLD("[src]")] states, \"AUTH LOGIN: Welcome, [id_card.registered_name]. Access granted.\"")
+		visible_message("[SPAN_BOLD("[src]")]播报：\"认证登录：欢迎，[id_card.registered_name]。访问已授权。\"")
 		update_static_data(user)
 		return TRUE
 
-	visible_message("[SPAN_BOLD("[src]")] states, \"AUTH ERROR: You have not enough authority! Access denied.\"")
+	visible_message("[SPAN_BOLD("[src]")]播报：\"认证错误：权限不足！访问被拒绝。\"")
 	return FALSE
 
 /obj/structure/machinery/computer/card/tgui_interact(mob/user, datum/tgui/ui)
@@ -85,7 +85,7 @@
 					user_id_card.forceMove(loc)
 				user_id_card = null
 		if("PRG_logout")
-			visible_message("[SPAN_BOLD("[src]")] states, \"AUTH LOGOUT: Session end confirmed.\"")
+			visible_message("[SPAN_BOLD("[src]")]播报：\"认证注销：会话结束已确认。\"")
 			authenticated = FALSE
 			if(ishuman(user))
 				user_id_card.forceMove(user.loc)
@@ -136,7 +136,7 @@
 						<br>
 						[GLOB.data_core.get_manifest(TRUE)]
 					"}
-				visible_message(SPAN_NOTICE("\The [src] prints out a paper."))
+				visible_message(SPAN_NOTICE("[src]打印出一张纸。"))
 				printing = FALSE
 				return TRUE
 			return
@@ -159,7 +159,7 @@
 				else
 					target_id_card.forceMove(loc)
 					target_id_card = null
-				visible_message("[SPAN_BOLD("[src]")] states, \"CARD EJECT: Data imprinted. Updating database... Success.\"")
+				visible_message("[SPAN_BOLD("[src]")]播报：\"退卡：数据已写入。正在更新数据库……成功。\"")
 				return TRUE
 			else
 				var/obj/item/I = user.get_active_hand()
@@ -167,7 +167,7 @@
 					if(user.drop_held_item())
 						I.forceMove(src)
 						target_id_card = I
-						visible_message("[SPAN_BOLD("[src]")] states, \"CARD FOUND: Preparing ID modification protocol.\"")
+						visible_message("[SPAN_BOLD("[src]")]播报：\"检测到卡片：正在准备身份卡修改协议。\"")
 						update_static_data(user)
 						origin_assignment = target_id_card.assignment
 						origin_name = target_id_card.registered_name
@@ -188,7 +188,7 @@
 
 			var/new_name = strip_html(params["name"])
 			if(!new_name)
-				visible_message(SPAN_NOTICE("[src] buzzes rudely."))
+				visible_message(SPAN_NOTICE("[src]不客气地嗡鸣。"))
 				return
 			target_id_card.registered_name = new_name
 			return TRUE
@@ -211,7 +211,7 @@
 					var/datum/job/job = GLOB.RoleAuthority.roles_for_mode[target]
 
 					if(!job)
-						visible_message("[SPAN_BOLD("[src]")] states, \"DATA ERROR: Can not find next entry in database: [target]\"")
+						visible_message("[SPAN_BOLD("[src]")]播报：\"数据错误：数据库中找不到下列条目：[target]\"")
 						return
 					new_access = job.get_access()
 				target_id_card.access -= get_access(ACCESS_LIST_WY_ALL) + get_access(ACCESS_LIST_MARINE_MAIN)
@@ -416,7 +416,7 @@
 /obj/structure/machinery/computer/card/attackby(obj/O, mob/user)
 	if(istype(O, /obj/item/card/id))
 		if(!operable())
-			to_chat(user, SPAN_NOTICE("You tried to inject \the [O] but \the [src] remains silent."))
+			to_chat(user, SPAN_NOTICE("你试图将[O]插入[src]，但它毫无反应。"))
 			return
 		var/obj/item/card/id/idcard = O
 		if(check_access(idcard))
@@ -430,18 +430,18 @@
 					O.forceMove(src)
 					target_id_card = O
 					update_static_data(user)
-					visible_message("[SPAN_BOLD("[src]")] states, \"CARD FOUND: Preparing ID modification protocol.\"")
+					visible_message("[SPAN_BOLD("[src]")]播报：\"检测到卡片：正在准备身份卡修改协议。\"")
 			else
-				to_chat(user, "Both slots are full already. Remove a card first.")
+				to_chat(user, "两个插槽都已占用，请先取出一张卡。")
 		else
 			if(!target_id_card)
 				if(user.drop_held_item())
 					O.forceMove(src)
 					target_id_card = O
 					update_static_data(user)
-					visible_message("[SPAN_BOLD("[src]")] states, \"CARD FOUND: Preparing ID modification protocol.\"")
+					visible_message("[SPAN_BOLD("[src]")]播报：\"检测到卡片：正在准备身份卡修改协议。\"")
 			else
-				to_chat(user, "Both slots are full already. Remove a card first.")
+				to_chat(user, "两个插槽都已占用，请先取出一张卡。")
 	else
 		..()
 
@@ -463,9 +463,9 @@
 		if(!usr.get_active_hand() && istype(usr,/mob/living/carbon/human))
 			usr.put_in_hands(user_id_card)
 		if(operable()) // Powered. Console can response.
-			visible_message("[SPAN_BOLD("[src]")] states, \"AUTH LOGOUT: Session end confirmed.\"")
+			visible_message("[SPAN_BOLD("[src]")]播报：\"认证注销：会话结束已确认。\"")
 		else
-			to_chat(usr, "You remove \the [user_id_card] from \the [src].")
+			to_chat(usr, "你从[src]中取出了[user_id_card]。")
 		authenticated = FALSE // No card - no access
 		user_id_card = null
 
@@ -476,13 +476,13 @@
 		if(operable()) // Powered. Make comp proceed ejection
 			GLOB.data_core.manifest_modify(target_id_card.registered_name, target_id_card.registered_ref, target_id_card.assignment, target_id_card.rank)
 			target_id_card.name = text("[target_id_card.registered_name]'s [target_id_card.card_name] ([target_id_card.assignment])")
-			visible_message("[SPAN_BOLD("[src]")] states, \"CARD EJECT: Data imprinted. Updating database... Success.\"")
+			visible_message("[SPAN_BOLD("[src]")]播报：\"退卡：数据已写入。正在更新数据库……成功。\"")
 		else
-			to_chat(usr, "You remove \the [target_id_card] from \the [src].")
+			to_chat(usr, "你从[src]中取出了[target_id_card]。")
 		target_id_card = null
 
 	else
-		to_chat(usr, "There is nothing to remove from the console.")
+		to_chat(usr, "控制台中没有可取出的东西。")
 	return
 
 /obj/structure/machinery/computer/card/attack_hand(mob/user as mob)
@@ -516,8 +516,8 @@
 //But in the long run it's not really a big deal.
 
 /obj/structure/machinery/computer/squad_changer
-	name = "Squad Distribution Computer"
-	desc = "You can use this to change someone's squad."
+	name = "小队分配计算机"
+	desc = "可用于改变人员所属小队。"
 	icon_state = "guest"
 	req_access = list(ACCESS_MARINE_DATABASE)
 	var/obj/item/card/id/ID_to_modify = null
@@ -532,14 +532,14 @@
 	if(!usr || usr.is_mob_incapacitated()) return
 
 	if(ishuman(usr) && ID_to_modify)
-		to_chat(usr, "You remove \the [ID_to_modify] from \the [src].")
+		to_chat(usr, "你从[src]中取出了[ID_to_modify]。")
 		ID_to_modify.forceMove(get_turf(src))
 		if(!usr.get_active_hand() && istype(usr,/mob/living/carbon/human))
 			usr.put_in_hands(ID_to_modify)
 		ID_to_modify = null
 		person_to_modify = null
 	else
-		to_chat(usr, "There is nothing to remove from \the [src].")
+		to_chat(usr, "[src]里没有可取出的东西。")
 	return
 
 /obj/structure/machinery/computer/squad_changer/tgui_interact(mob/user, datum/tgui/ui)
@@ -571,7 +571,7 @@
 				else
 					ID_to_modify.forceMove(loc)
 					ID_to_modify = null
-				visible_message("[SPAN_BOLD("[src]")] states, \"CARD EJECT: ID modification protocol disabled.\"")
+				visible_message("[SPAN_BOLD("[src]")]播报：\"退卡：身份卡修改协议已停用。\"")
 				return TRUE
 			else
 				var/obj/item/I = user.get_active_hand()
@@ -579,7 +579,7 @@
 					if(user.drop_held_item())
 						I.forceMove(src)
 						ID_to_modify = I
-						visible_message("[SPAN_BOLD("[src]")] states, \"CARD FOUND: Preparing ID modification protocol.\"")
+						visible_message("[SPAN_BOLD("[src]")]播报：\"检测到卡片：正在准备身份卡修改协议。\"")
 						return TRUE
 		if("PRG_squad")
 			if(
@@ -592,21 +592,21 @@
 				if(!selected)
 					return
 				if(GLOB.RoleAuthority.check_squad_capacity(person_to_modify, selected))
-					visible_message("[SPAN_BOLD("[src]")] states, \"CAPACITY ERROR: [selected] can't have another [person_to_modify.job].\"")
+					visible_message("[SPAN_BOLD("[src]")]播报：\"名额错误：[selected]无法再容纳一名[person_to_modify.job]。\"")
 					return TRUE
 				if(transfer_marine_to_squad(person_to_modify, selected, person_to_modify.assigned_squad, ID_to_modify))
-					visible_message("[SPAN_BOLD("[src]")] states, \"DATABASE LOG: [person_to_modify] was assigned to [selected] Squad.\"")
+					visible_message("[SPAN_BOLD("[src]")]播报：\"数据库记录：[person_to_modify]已分配至[selected]小队。\"")
 					return TRUE
 				else
-					visible_message("[SPAN_BOLD("[src]")] states, \"DATABASE ERROR: There was an error assigning [person_to_modify] to [selected] Squad.\"")
+					visible_message("[SPAN_BOLD("[src]")]播报：\"数据库错误：将[person_to_modify]分配至[selected]小队时发生错误。\"")
 			else if(!istype(ID_to_modify))
-				to_chat(usr, SPAN_WARNING("You need to insert a card to modify."))
+				to_chat(usr, SPAN_WARNING("你需要插入一张待修改的卡片。"))
 			else if(!istype(person_to_modify) || !person_to_modify.Adjacent(src))
-				visible_message("[SPAN_BOLD("[src]")] states, \"SCANNER ERROR: You need to keep the hand of the person to be assigned to Squad!\"")
+				visible_message("[SPAN_BOLD("[src]")]播报：\"扫描错误：你必须保持握住所分配人员的手！\"")
 			else if(!person_to_modify.skills.get_skill_level(SKILL_FIREARMS))
-				visible_message("[SPAN_BOLD("[src]")] states, \"QUALIFICATION ERROR: You cannot assign untrained civilians to squads!\"")
+				visible_message("[SPAN_BOLD("[src]")]播报：\"资质错误：不能将未经训练的平民编入小队！\"")
 			else
-				visible_message("[SPAN_BOLD("[src]")] states, \"ID ERROR: The ID in the machine is not owned by the person whose hand is scanned!\"")
+				visible_message("[SPAN_BOLD("[src]")]播报：\"身份错误：机器内的身份卡不属于正在扫描手掌的人！\"")
 			return TRUE
 
 /obj/structure/machinery/computer/squad_changer/ui_data(mob/user)
@@ -642,25 +642,25 @@
 		var/mob/living/carbon/human/H = user
 		if(istype(O, /obj/item/card/id))
 			if(!operable())
-				to_chat(usr, SPAN_NOTICE("You tried to insert [O] but \the [src] remains silent."))
+				to_chat(usr, SPAN_NOTICE("你试图插入[O]，但[src]毫无反应。"))
 				return
 			var/obj/item/card/id/idcard = O
 			if(!ID_to_modify)
 				H.drop_held_item()
 				idcard.forceMove(src)
 				ID_to_modify = idcard
-				visible_message("[SPAN_BOLD("[src]")] states, \"CARD FOUND: Preparing ID modification protocol.\"")
+				visible_message("[SPAN_BOLD("[src]")]播报：\"检测到卡片：正在准备身份卡修改协议。\"")
 			else
-				to_chat(H, SPAN_NOTICE("Remove the inserted card first."))
+				to_chat(H, SPAN_NOTICE("先取出已插入的卡片。"))
 		else if(istype(O, /obj/item/grab))
 			var/obj/item/grab/G = O
 			if(ismob(G.grabbed_thing))
 				if(!operable())
-					to_chat(usr, SPAN_NOTICE("You place [G.grabbed_thing]'s hand on scanner but \the [src] remains silent."))
+					to_chat(usr, SPAN_NOTICE("你将[G.grabbed_thing]的手放在扫描仪上，但[src]毫无反应。"))
 					return
 				var/isxenos = isxeno(G.grabbed_thing)
-				H.visible_message(SPAN_NOTICE("You hear a beep as [G.grabbed_thing]'s [isxenos ? "limb" : "hand"] is scanned to \the [name]."))
-				visible_message("[SPAN_BOLD("[src]")] states, \"SCAN ENTRY: [isxenos ? "Unknown lifeform detected! Forbidden operation!" : "Scanned, please stay close until operation's end."]\"")
+				H.visible_message(SPAN_NOTICE("[G.grabbed_thing]的[isxenos ? "肢体" : "手掌"]被[name]扫描时，你听见一声提示音。"))
+				visible_message("[SPAN_BOLD("[src]")]播报：\"扫描条目：[isxenos ? "检测到未知生命体！禁止操作！" : "扫描完成，请保持靠近，直至操作结束。"]\"")
 				playsound(H.loc, 'sound/machines/screen_output1.ogg', 25, 1)
 				// No Xeno Squads, please!
 				if(!isxenos)
@@ -688,8 +688,8 @@
 		tgui_interact(user)
 	else
 		var/isxenos = isxeno(user)
-		user.visible_message(SPAN_NOTICE("You hear a beep as [user]'s [isxenos ? "limb" : "hand"] is scanned to \the [name]."))
-		visible_message("[SPAN_BOLD("[src]")] states, \"SCAN ENTRY: [isxenos ? "Unknown lifeform detected! Forbidden operation!" : "Scanned, please stay close until operation's end."]\"")
+		user.visible_message(SPAN_NOTICE("[user]的[isxenos ? "肢体" : "手掌"]被[name]扫描时，你听见一声提示音。"))
+		visible_message("[SPAN_BOLD("[src]")]播报：\"扫描条目：[isxenos ? "检测到未知生命体！禁止操作！" : "扫描完成，请保持靠近，直至操作结束。"]\"")
 		playsound(user.loc, 'sound/machines/screen_output1.ogg', 25, 1)
 		// No Xeno Squads, please!
 		if(!isxenos)
@@ -701,8 +701,8 @@
 #define UNKNOWN_JOB_ID 998
 
 /obj/structure/machinery/computer/crew
-	name = "crew monitoring computer"
-	desc = "Used to monitor active health sensors built into the wearer's uniform.  You can see that the console highlights ship areas with BLUE and remote locations with RED."
+	name = "船员监控计算机"
+	desc = "用于监测制服内置的生命体征传感器。控制台以蓝色标注舰船区域，以红色标注远程地点。"
 	icon_state = "crew"
 	circuit = /obj/item/circuitboard/computer/crew
 	density = TRUE
@@ -748,8 +748,8 @@
 	density = FALSE
 
 /obj/structure/machinery/computer/crew/alt/yautja
-	name = "\improper Yautja health monitor"
-	desc = "Used to monitor active health sensors of all Yautja in the system. You can see that the console highlights the human's ship areas with BLUE and the hunting locations with RED."
+	name = "\improper 铁血战士生命监测器"
+	desc = "用于监测本星系所有铁血战士的生命体征传感器。控制台以蓝色标注人类舰船区域，以红色标注狩猎地点。"
 	faction = FACTION_YAUTJA
 	crewmonitor_type = /datum/crewmonitor/yautja
 

@@ -24,16 +24,16 @@
 			if(on_fire)
 				extinguish_mob(attacking_xeno)
 			else
-				attacking_xeno.visible_message(SPAN_NOTICE("[attacking_xeno] caresses [src] with its claws."), \
-				SPAN_NOTICE("We caress [src] with our claws."), null, 5, CHAT_TYPE_XENO_FLUFF)
+				attacking_xeno.visible_message(SPAN_NOTICE("[attacking_xeno]用爪子轻抚[src]。"), \
+				SPAN_NOTICE("我们用爪子轻抚[src]。"), null, 5, CHAT_TYPE_XENO_FLUFF)
 
 		if(INTENT_GRAB)
 			if(attacking_xeno == src || anchored || buckled)
 				return XENO_NO_DELAY_ACTION
 
 			if(check_shields(0, attacking_xeno.name)) // Blocking check
-				attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno]'s grab is blocked by [src]'s shield!"), \
-				SPAN_DANGER("Our grab was blocked by [src]'s shield!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+				attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno]的抓取被[src]的盾牌挡住了！"), \
+				SPAN_DANGER("我们的抓取被[src]的盾牌挡住了！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 				playsound(loc, 'sound/weapons/alien_claw_block.ogg', 25, 1) //Feedback
 				return XENO_ATTACK_ACTION
 
@@ -43,27 +43,27 @@
 		if(INTENT_HARM)
 			if(attacking_xeno.can_not_harm(src))
 				attacking_xeno.animation_attack_on(src)
-				attacking_xeno.visible_message(SPAN_NOTICE("[attacking_xeno] nibbles [src]"), \
-				SPAN_XENONOTICE("We nibble [src]"))
+				attacking_xeno.visible_message(SPAN_NOTICE("[attacking_xeno]轻咬[src]"), \
+				SPAN_XENONOTICE("我们轻咬[src]"))
 				return XENO_ATTACK_ACTION
 
 			if(attacking_xeno.behavior_delegate && attacking_xeno.behavior_delegate.handle_slash(src))
 				return XENO_NO_DELAY_ACTION
 
 			if(stat == DEAD)
-				to_chat(attacking_xeno, SPAN_WARNING("[src] is dead, why would we want to touch it?"))
+				to_chat(attacking_xeno, SPAN_WARNING("[src]已经死了，我们为什么还要碰它？"))
 				return XENO_NO_DELAY_ACTION
 
 			if(attacking_xeno.caste && !attacking_xeno.caste.is_intelligent)
 				if(HAS_TRAIT(src, TRAIT_NESTED) && (status_flags & XENO_HOST))
 					for(var/obj/item/alien_embryo/embryo in src)
 						if(HIVE_ALLIED_TO_HIVE(attacking_xeno.hivenumber, embryo.hivenumber))
-							to_chat(attacking_xeno, SPAN_WARNING("We should not harm this host! It has a sister inside."))
+							to_chat(attacking_xeno, SPAN_WARNING("我们不该伤害这个宿主！它体内有一位姐妹。"))
 							return XENO_NO_DELAY_ACTION
 
 			if(check_shields(0, attacking_xeno.name)) // Blocking check
-				attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno]'s slash is blocked by [src]'s shield!"), \
-				SPAN_DANGER("Our slash is blocked by [src]'s shield!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+				attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno]的爪击被[src]的盾牌挡住了！"), \
+				SPAN_DANGER("我们的爪击被[src]的盾牌挡住了！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 				playsound(loc, 'sound/weapons/alien_claw_block.ogg', 25, 1) //Feedback
 				return XENO_ATTACK_ACTION
 
@@ -86,7 +86,7 @@
 			if(!damage)
 				playsound(attacking_xeno.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 				attacking_xeno.animation_attack_on(src)
-				attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno] lunges at [src]!"), \
+				attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno]猛扑向[src]！"), \
 				SPAN_DANGER("We lunge at [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
 				return XENO_ATTACK_ACTION
 
@@ -884,7 +884,7 @@
 		to_chat(M, "It's already damaged.")
 		return XENO_NO_DELAY_ACTION
 	M.animation_attack_on(src)
-	M.visible_message("[M] slashes away at [src]!","We slash and claw at the bright light!", max_distance = 5, message_flags = CHAT_TYPE_XENO_COMBAT)
+	M.visible_message("[M] 不停地抓挠着 [src]！","我们挥动利爪，抓挠这盏刺眼的灯！", max_distance = 5, message_flags = CHAT_TYPE_XENO_COMBAT)
 	health  = max(health - rand(M.melee_damage_lower, M.melee_damage_upper), 0)
 	if(!health)
 		set_damaged()
@@ -893,7 +893,7 @@
 	return XENO_ATTACK_ACTION
 
 /obj/structure/machinery/colony_floodlight/attack_larva(mob/living/carbon/xenomorph/larva/M)
-	M.visible_message("[M] starts biting [src]!","In a rage, we start biting [src], but with no effect!", null, 5, CHAT_TYPE_XENO_COMBAT)
+	M.visible_message("[M] 开始啃咬 [src]！","我们愤怒地啃咬 [src]，却毫无作用！", null, 5, CHAT_TYPE_XENO_COMBAT)
 
 
 

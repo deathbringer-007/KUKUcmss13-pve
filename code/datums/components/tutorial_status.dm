@@ -22,4 +22,4 @@
 	SIGNAL_HANDLER
 
 	if(tutorial_status)
-		status_tab_items += "Tutorial Objective: " + tutorial_status
+		status_tab_items += "教程目标：" + tutorial_status

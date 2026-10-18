@@ -3,7 +3,7 @@
 	for(var/mob/living/carbon/human/Y in GLOB.yautja_mob_list)
 		// Send message to the bracer; appear multiple times if we have more bracers
 		for(var/obj/item/clothing/gloves/yautja/hunter/G in Y.contents)
-			to_chat(Y, SPAN_YAUTJABOLD("[icon2html(G)] \The <b>[G]</b> beeps: [msg]"))
+			to_chat(Y, SPAN_YAUTJABOLD("[icon2html(G)] <b>[G]</b>发出哔声：[msg]"))
 			if(G.notification_sound)
 				playsound(Y.loc, 'sound/items/pred_bracer.ogg', 75, 1)
 
@@ -14,7 +14,7 @@
 	var/mob/living/carbon/T = hunter_data.thrall
 
 	for(var/obj/item/clothing/gloves/yautja/hunter/G in T.contents)
-		to_chat(T, SPAN_YAUTJABOLD("[icon2html(G)] \The <b>[G]</b> beeps: [msg]"))
+		to_chat(T, SPAN_YAUTJABOLD("[icon2html(G)] <b>[G]</b>发出哔声：[msg]"))
 		if(G.notification_sound)
 			playsound(T.loc, 'sound/items/pred_bracer.ogg', 75, 1)
 
@@ -45,7 +45,7 @@
 
 /mob/living/carbon/human/proc/butcher()
 	set category = "Yautja.Misc"
-	set name = "Butcher"
+	set name = "肢解"
 	set desc = "Butcher a corpse you're standing on for its tasty meats."
 
 	if(is_mob_incapacitated() || body_position != STANDING_UP || buckled)
@@ -60,28 +60,28 @@
 					continue
 			choices += M
 
-	var/mob/living/carbon/T = tgui_input_list(src, "What do you wish to butcher?", "Butcher", choices)
+	var/mob/living/carbon/T = tgui_input_list(src, "你想肢解哪个目标？", "肢解", choices)
 
 	var/mob/living/carbon/xenomorph/xeno_victim
 	var/mob/living/carbon/human/victim
 
 	if(!T || !src || !T.stat)
-		to_chat(src, SPAN_WARNING("Nope."))
+		to_chat(src, SPAN_WARNING("不行。"))
 		return
 
 	if(!Adjacent(T))
-		to_chat(src, SPAN_WARNING("You have to be next to your target."))
+		to_chat(src, SPAN_WARNING("你必须站在目标旁边。"))
 		return
 
 	if(islarva(T) || isfacehugger(T))
-		to_chat(src, SPAN_WARNING("This tiny worm is not even worth using your tools on."))
+		to_chat(src, SPAN_WARNING("这只小虫不值得动用你的工具。"))
 		return
 
 	if(is_mob_incapacitated() || body_position != STANDING_UP || buckled)
 		return
 
 	if(issynth(T))
-		to_chat(src, SPAN_WARNING("You would break your tools if you did this!"))
+		to_chat(src, SPAN_WARNING("这样做会损坏工具！"))
 		return
 
 	if(isxeno(T))
@@ -105,30 +105,30 @@
 		victim = T
 
 	if(victim)
-		procedure = tgui_input_list(src, "Which slice would you like to take?", "Take Slice", procedure_choices)
+		procedure = tgui_input_list(src, "你想切取哪个部位？", "切取部位", procedure_choices)
 		if(!procedure)
 			return
 
 	if(isxeno(T) || procedure == "Skin")
 		if(T.butchery_progress)
 			playsound(loc, 'sound/weapons/pierce.ogg', 25)
-			visible_message(SPAN_DANGER("[src] goes back to butchering \the [T]."), SPAN_NOTICE("You get back to butchering \the [T]."))
+			visible_message(SPAN_DANGER("[src]继续肢解[T]。"), SPAN_NOTICE("你继续肢解[T]。"))
 		else
 			playsound(loc, 'sound/weapons/pierce.ogg', 25)
-			visible_message(SPAN_DANGER("[src] begins chopping and mutilating \the [T]."), SPAN_NOTICE("You take out your tools and begin your gruesome work on \the [T]. Hold still."))
+			visible_message(SPAN_DANGER("[src]开始剁砍并肢解[T]。"), SPAN_NOTICE("你拿出工具，开始处理[T]。保持不动。"))
 			T.butchery_progress = 1
 
 		if(T.butchery_progress == 1)
 			if(do_after(src, 7 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
-				visible_message(SPAN_DANGER("[src] makes careful slices and tears out the viscera in \the [T]'s abdominal cavity."), SPAN_NOTICE("You carefully vivisect \the [T], ripping out the guts and useless organs. What a stench!"))
+				visible_message(SPAN_DANGER("[src]仔细切开[T]的腹腔，扯出内脏。"), SPAN_NOTICE("你仔细剖开[T]，扯出肠子和无用的器官。真臭！"))
 				T.butchery_progress = 2
 				playsound(loc, 'sound/weapons/slash.ogg', 25)
 			else
-				to_chat(src, SPAN_NOTICE("You pause your butchering for later."))
+				to_chat(src, SPAN_NOTICE("你暂停肢解，留待稍后继续。"))
 
 		if(T.butchery_progress == 2)
 			if(do_after(src, 6.5 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
-				visible_message(SPAN_DANGER("[src] hacks away at \the [T]'s limbs and slices off strips of dripping meat."), SPAN_NOTICE("You slice off a few of \the [T]'s limbs, making sure to get the finest cuts."))
+				visible_message(SPAN_DANGER("[src]砍切[T]的四肢，割下滴血的肉条。"), SPAN_NOTICE("你切下[T]的几条肢体，确保取到最好的部位。"))
 				if(xeno_victim && isturf(xeno_victim.loc))
 					var/obj/item/reagent_container/food/snacks/meat/xenomeat = new /obj/item/reagent_container/food/snacks/meat/xenomeat(T.loc)
 					xenomeat.name = "raw [xeno_victim.age_prefix][xeno_victim.caste_type] steak"
@@ -139,11 +139,11 @@
 				T.butchery_progress = 3
 				playsound(loc, 'sound/weapons/bladeslice.ogg', 25)
 			else
-				to_chat(src, SPAN_NOTICE("You pause your butchering for later."))
+				to_chat(src, SPAN_NOTICE("你暂停肢解，留待稍后继续。"))
 
 		if(T.butchery_progress == 3)
 			if(do_after(src, 7 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
-				visible_message(SPAN_DANGER("[src] tears apart \the [T]'s ribcage and begins chopping off bit and pieces."), SPAN_NOTICE("You rip open \the [T]'s ribcage and start tearing the tastiest bits out."))
+				visible_message(SPAN_DANGER("[src]扯开[T]的胸腔，开始切下肉块。"), SPAN_NOTICE("你撕开[T]的胸腔，开始扯出最美味的部位。"))
 				if(xeno_victim && isturf(xeno_victim.loc))
 					var/obj/item/reagent_container/food/snacks/meat/xenomeat = new /obj/item/reagent_container/food/snacks/meat/xenomeat(T.loc)
 					xenomeat.name = "raw [xeno_victim.age_prefix][xeno_victim.caste_type] tenderloin"
@@ -154,19 +154,19 @@
 				T.butchery_progress = 4
 				playsound(loc, 'sound/weapons/wristblades_hit.ogg', 25)
 			else
-				to_chat(src, SPAN_NOTICE("You pause your butchering for later."))
+				to_chat(src, SPAN_NOTICE("你暂停肢解，留待稍后继续。"))
 
 		if(T.butchery_progress == 4)
 			if(do_after(src, 9 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
 				if(xeno_victim && isturf(T.loc))
-					visible_message(SPAN_DANGER("[src] flenses the last of [victim]'s exoskeleton, revealing only bones!."), SPAN_NOTICE("You flense the last of [victim]'s exoskeleton clean off!"))
+					visible_message(SPAN_DANGER("[src]剥净了[victim]最后的外骨骼，只剩骨架！"), SPAN_NOTICE("你剥净了[victim]最后的外骨骼！"))
 					new /obj/effect/decal/remains/xeno(xeno_victim.loc)
 					var/obj/item/stack/sheet/animalhide/xeno/xenohide = new /obj/item/stack/sheet/animalhide/xeno(xeno_victim.loc)
 					xenohide.name = "[xeno_victim.age_prefix][xeno_victim.caste_type]-hide"
 					xenohide.singular_name = "[xeno_victim.age_prefix][xeno_victim.caste_type]-hide"
 					xenohide.stack_id = "[xeno_victim.age_prefix][xeno_victim.caste_type]-hide"
 				else if(victim && isturf(T.loc))
-					visible_message(SPAN_DANGER("[src] reaches down and rips out \the [T]'s spinal cord and skull!."), SPAN_NOTICE("You firmly grip the revealed spinal column and rip [T]'s head off!"))
+					visible_message(SPAN_DANGER("[src]俯身扯出了[T]的脊髓和头骨！"), SPAN_NOTICE("你牢牢抓住暴露的脊柱，将[T]的头扯了下来！"))
 					if(!(victim.get_limb("head").status & LIMB_DESTROYED))
 						victim.apply_damage(150, BRUTE, "head", FALSE, TRUE)
 						var/obj/item/clothing/accessory/limb/skeleton/head/spine/new_spine = new /obj/item/clothing/accessory/limb/skeleton/head/spine(victim.loc)
@@ -185,38 +185,38 @@
 				T.butchery_progress = 5 //Won't really matter.
 				playsound(loc, 'sound/weapons/slice.ogg', 25)
 				if(hunter_data.prey == T)
-					to_chat(src, SPAN_YAUTJABOLD("You have claimed [T] as your trophy."))
+					to_chat(src, SPAN_YAUTJABOLD("你将[T]收为了战利品。"))
 					emote("roar2")
 					message_all_yautja("[src.real_name] has claimed [T] as their trophy.")
 					hunter_data.prey = null
 				else
-					to_chat(src, SPAN_NOTICE("You finish butchering!"))
+					to_chat(src, SPAN_NOTICE("你完成了肢解！"))
 				qdel(T)
 			else
-				to_chat(src, SPAN_NOTICE("You pause your butchering for later."))
+				to_chat(src, SPAN_NOTICE("你暂停肢解，留待稍后继续。"))
 	else
 		var/limb = procedure_choices[procedure]
 		var/limbName = parse_zone(limb)
 		if(victim.get_limb(limb).status & LIMB_DESTROYED)
-			to_chat(src, SPAN_WARNING("The victim lacks a [limbName]."))
+			to_chat(src, SPAN_WARNING("受害者没有[limbName]。"))
 			return
 		if(limb == "head")
-			visible_message("<b>[src] reaches down and starts beheading [T].</b>","<b>You reach down and start beheading [T].</b>")
+			visible_message("<b>[src]俯身开始斩下[T]的头。</b>","<b>你俯身开始斩下 [T] 的头。</b>")
 		else
-			visible_message("<b>[src] reaches down and starts removing [T]'s [limbName].</b>","<b>You reach down and start removing [T]'s [limbName].</b>")
+			visible_message("<b>[src]俯身开始拆下[T]的[limbName]。</b>","<b>你俯身开始拆下 [T] 的[limbName]。</b>")
 		if(do_after(src, 9 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
 			if(victim.get_limb(limb).status & LIMB_DESTROYED)
-				to_chat(src, SPAN_WARNING("The victim lacks a [limbName]."))
+				to_chat(src, SPAN_WARNING("受害者没有[limbName]。"))
 				return
 			victim.get_limb(limb).droplimb(TRUE, FALSE, "butchering")
 			playsound(loc, 'sound/weapons/slice.ogg', 25)
 			if(hunter_data.prey == T)
-				to_chat(src, SPAN_YAUTJABOLD("You have claimed [T] as your trophy."))
+				to_chat(src, SPAN_YAUTJABOLD("你将[T]收为了战利品。"))
 				emote("roar2")
 				message_all_yautja("[src.real_name] has claimed [T] as their trophy.")
 				hunter_data.prey = null
 			else
-				to_chat(src, SPAN_NOTICE("You finish butchering!"))
+				to_chat(src, SPAN_NOTICE("你完成了肢解！"))
 
 /area/yautja
 	name = "\improper Yautja Ship"
@@ -233,27 +233,27 @@
 	set desc = "When you're on the Predator ship, claim some gear. You can only do this ONCE."
 
 	if(hunter_data.claimed_equipment)
-		to_chat(src, SPAN_WARNING("You've already claimed your equipment."))
+		to_chat(src, SPAN_WARNING("你已经领取过装备了。"))
 		return
 
 	if(is_mob_incapacitated() || body_position != STANDING_UP || buckled)
-		to_chat(src, SPAN_WARNING("You're not able to do that right now."))
+		to_chat(src, SPAN_WARNING("你现在无法这样做。"))
 		return
 
 	if(!isyautja(src))
-		to_chat(src, SPAN_WARNING("How did you get this verb?"))
+		to_chat(src, SPAN_WARNING("你是怎么获得这个指令的？"))
 		return
 
 	if(!istype(get_area(src), /area/yautja))
-		to_chat(src, SPAN_WARNING("Not here. Only on the ship."))
+		to_chat(src, SPAN_WARNING("这里不行，只能在舰船上领取。"))
 		return
 
 	var/obj/item/clothing/gloves/yautja/hunter/bracers = gloves
 	if(!istype(bracers))
-		to_chat(src, SPAN_WARNING("You need to be wearing your bracers to do this."))
+		to_chat(src, SPAN_WARNING("你需要佩戴护腕才能这样做。"))
 		return
 
-	var/sure = alert("An array of powerful weapons are displayed to you. Pick your gear carefully. If you cancel at any point, you will not claim your equipment.", "Sure?", "Begin the Hunt", "No, not now")
+	var/sure = alert("一系列强力武器展现在你面前。请谨慎选择装备。若在任何一步取消，将无法领取装备。", "确定？", "Begin the Hunt", "No, not now")
 	if(sure != "Begin the Hunt")
 		return
 
@@ -265,20 +265,20 @@
 	var/total_secondaries = 2
 
 	var/use_radials = src.client.prefs?.no_radials_preference ? FALSE : TRUE
-	var/main_weapon = use_radials ? show_radial_menu(src, src, melee) : tgui_input_list(usr, "Which weapon shall you use on your hunt?:", "Melee Weapon", melee)
+	var/main_weapon = use_radials ? show_radial_menu(src, src, melee) : tgui_input_list(usr, "你想使用哪种武器狩猎？", "近战武器", melee)
 
 	if(main_weapon == YAUTJA_GEAR_SCYTHE)
 		var/list/scythe_variants = list(YAUTJA_GEAR_SCYTHE = image(icon = 'icons/obj/items/hunter/pred_gear.dmi', icon_state = "predscythe"), YAUTJA_GEAR_SCYTHE_ALT = image(icon = 'icons/obj/items/hunter/pred_gear.dmi', icon_state = "predscythe_alt"))
-		main_weapon = use_radials ? show_radial_menu(src, src, scythe_variants) : tgui_input_list(usr, "Which variant of the war scythe?:", "Melee Weapon", scythe_variants)
+		main_weapon = use_radials ? show_radial_menu(src, src, scythe_variants) : tgui_input_list(usr, "选择哪种战镰？", "近战武器", scythe_variants)
 
 	if(main_weapon == YAUTJA_GEAR_GLAIVE)
 		var/list/glaive_variants = list(YAUTJA_GEAR_GLAIVE = image(icon = 'icons/obj/items/hunter/pred_gear.dmi', icon_state = "glaive"), YAUTJA_GEAR_GLAIVE_ALT = image(icon = 'icons/obj/items/hunter/pred_gear.dmi', icon_state = "glaive_alt"))
-		main_weapon = use_radials ? show_radial_menu(src, src, glaive_variants) : tgui_input_list(usr, "Which variant of the war glaive?:", "Melee Weapon", glaive_variants)
+		main_weapon = use_radials ? show_radial_menu(src, src, glaive_variants) : tgui_input_list(usr, "选择哪种战刃？", "近战武器", glaive_variants)
 
 	if(!main_weapon)
 		return
 	for(var/i = 1 to total_secondaries)
-		var/secondary = use_radials ? show_radial_menu(src, src, other) : tgui_input_list(usr, "Which secondary gear shall you take?", "Item [i] (of [total_secondaries])", other)
+		var/secondary = use_radials ? show_radial_menu(src, src, other) : tgui_input_list(usr, "你想携带哪种辅助装备？", "物品[i]（共[total_secondaries]件）", other)
 		if(!secondary)
 			return
 		secondaries += secondary
@@ -287,11 +287,11 @@
 
 	bracers = gloves
 	if(!istype(bracers))
-		to_chat(src, SPAN_WARNING("You need to be wearing your bracers to do this."))
+		to_chat(src, SPAN_WARNING("你需要佩戴护腕才能这样做。"))
 		return
 
 	if(hunter_data.claimed_equipment)
-		to_chat(src, SPAN_WARNING("You've already claimed your equipment."))
+		to_chat(src, SPAN_WARNING("你已经领取过装备了。"))
 		return
 
 	hunter_data.claimed_equipment = TRUE

@@ -71,12 +71,12 @@
 /datum/component/status_effect/speed_modifier/proc/stat_append(mob/M, list/L)
 	SIGNAL_HANDLER
 	if(has_immunity)
-		L += "Slow immunity: [grace_period]/[initial(grace_period)]"
+		L += "减速免疫：[grace_period]/[initial(grace_period)]"
 		return
 	if(!increase_speed)
 		L += "Slow: [speed_modifier]/[max_buildup]"
 	else
-		L += "Speed Boost: [speed_modifier]/[max_buildup]"
+		L += "速度增益：[speed_modifier]/[max_buildup]"
 
 /datum/component/status_effect/speed_modifier/proc/apply_speed_modifier(mob/living/carbon/xenomorph/X, list/speeds)
 	SIGNAL_HANDLER

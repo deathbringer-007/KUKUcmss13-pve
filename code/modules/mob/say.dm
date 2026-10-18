@@ -210,7 +210,7 @@ for it but just ignore it.
 	if(client.typing_indicators)
 		create_typing_indicator(TRUE)
 		hud_typing = -1
-	var/message = input("","say (text)") as text
+	var/message = input("","说话（文字）") as text
 	if(client.typing_indicators)
 		hud_typing = NONE
 		remove_typing_indicator()
@@ -224,7 +224,7 @@ for it but just ignore it.
 	if(client.typing_indicators)
 		create_typing_indicator(TRUE)
 		hud_typing = -1
-	var/message = input("","me (text)") as text
+	var/message = input("","动作（文字）") as text
 	if(client.typing_indicators)
 		hud_typing = NONE
 		remove_typing_indicator()

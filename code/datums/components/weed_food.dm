@@ -3,7 +3,7 @@
 
 /atom/movable/vis_obj/weed_food
 	name = "weeds"
-	desc = "Weird black weeds in the shape of a body..."
+	desc = "形状像尸体的怪异黑色菌毯……"
 	gender = PLURAL
 	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

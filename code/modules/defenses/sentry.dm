@@ -5,9 +5,9 @@
 #define SENTRY_LOW_AMMO_ALERT_PERCENTAGE 0.25
 
 /obj/structure/machinery/defenses/sentry
-	name = "\improper UA 571-C sentry gun"
+	name = "\improper UA 571-C哨戒炮"
 	icon = 'icons/obj/structures/machinery/defenses/sentry.dmi'
-	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
+	desc = "可部署的半自动炮塔，具备人工智能瞄准能力。装备M30自动炮和500发弹鼓。"
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	var/list/targets = list() // Lists of current potential targets
 	var/list/other_targets = list() //List of special target types to shoot at, if needed.
@@ -158,7 +158,7 @@
 
 /obj/structure/machinery/defenses/sentry/attack_hand_checks(mob/user)
 	if(immobile)
-		to_chat(user, SPAN_WARNING("[src]'s panel is completely locked, you can't do anything."))
+		to_chat(user, SPAN_WARNING("[src]的面板被完全锁死，无法操作。"))
 		return FALSE
 
 	return TRUE
@@ -197,28 +197,28 @@
 /obj/structure/machinery/defenses/sentry/get_examine_text(mob/user)
 	. = ..()
 	if(ammo)
-		. += SPAN_NOTICE("\The [src] has [ammo.current_rounds]/[ammo.max_rounds] round\s loaded.")
+		. += SPAN_NOTICE("[src]装有[ammo.current_rounds]/[ammo.max_rounds]发弹药。")
 		if(additional_rounds_stored)
-			. += SPAN_NOTICE("\The [src] has [ammo.max_inherent_rounds] round\s left in storage.")
+			. += SPAN_NOTICE("[src]的储备弹药还剩[ammo.max_inherent_rounds]发。")
 		if(upgraded)
-			. += SPAN_NOTICE("\The [src] has been reinforced with metal sheets.")
+			. += SPAN_NOTICE("[src]已用金属板加固。")
 	else
-		. += SPAN_NOTICE("\The [src] is empty and needs to be refilled with ammo.")
+		. += SPAN_NOTICE("[src]弹药耗尽，需要补充。")
 		if(additional_rounds_stored)
-			. += SPAN_HELPFUL("Click \The [src] while it's turned off to reload.")
+			. += SPAN_HELPFUL("在[src]关闭时点击它即可装填。")
 
 /obj/structure/machinery/defenses/sentry/power_on_action()
 	target = null
 	set_light(luminosity_strength)
 
-	visible_message("[icon2html(src, viewers(src))] [SPAN_NOTICE("The [name] hums to life and emits several beeps.")]")
-	visible_message("[icon2html(src, viewers(src))] [SPAN_NOTICE("The [name] buzzes in a monotone voice: '[start_up_message]'")]")
+	visible_message("[icon2html(src, viewers(src))] [SPAN_NOTICE("[name]开始嗡鸣，发出几声提示音。")]")
+	visible_message("[icon2html(src, viewers(src))] [SPAN_NOTICE("[name]用单调的声音播报：“[start_up_message]”")]")
 	start_processing()
 	set_range()
 
 /obj/structure/machinery/defenses/sentry/power_off_action()
 	set_light(0)
-	visible_message("[icon2html(src, viewers(src))] [SPAN_NOTICE("The [name] powers down and goes silent.")]")
+	visible_message("[icon2html(src, viewers(src))] [SPAN_NOTICE("[name]关闭电源，安静下来。")]")
 	stop_processing()
 	unset_range()
 
@@ -229,7 +229,7 @@
 	//Securing/Unsecuring
 	if(HAS_TRAIT(O, TRAIT_TOOL_WRENCH))
 		if(immobile)
-			to_chat(user, SPAN_WARNING("[src] is completely welded in place. You can't move it without damaging it."))
+			to_chat(user, SPAN_WARNING("[src]已被完全焊死，强行移动会造成损坏。"))
 			return
 
 	if(!..())
@@ -238,15 +238,15 @@
 	// Rotation
 	if(HAS_TRAIT(O, TRAIT_TOOL_SCREWDRIVER))
 		if(immobile)
-			to_chat(user, SPAN_WARNING("[src] is completely welded in place. You can't move it without damaging it."))
+			to_chat(user, SPAN_WARNING("[src]已被完全焊死，强行移动会造成损坏。"))
 			return
 
 		if(turned_on)
-			to_chat(user, SPAN_WARNING("[src] is currently active. The motors will prevent you from rotating it safely."))
+			to_chat(user, SPAN_WARNING("[src]正在运行，电机会妨碍你安全旋转它。"))
 			return
 
 		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-		user.visible_message(SPAN_NOTICE("[user] rotates [src]."), SPAN_NOTICE("You rotate [src]."))
+		user.visible_message(SPAN_NOTICE("[user]旋转了[src]。"), SPAN_NOTICE("你旋转了[src]。"))
 		setDir(turn(dir, -90))
 		return
 
@@ -254,14 +254,14 @@
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED) || user.action_busy)
 			return
 
-		user.visible_message(SPAN_NOTICE("[user] begins swapping a new [O.name] into [src]."),
-		SPAN_NOTICE("You begin swapping a new [O.name] into [src]."))
+		user.visible_message(SPAN_NOTICE("[user]开始为[src]换装新的[O.name]。"),
+		SPAN_NOTICE("你开始为[src]换装新的[O.name]。"))
 		if(!do_after(user, 70 * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL, BUSY_ICON_FRIENDLY, src))
 			return
 
 		playsound(loc, 'sound/weapons/unload.ogg', 25, 1)
-		user.visible_message(SPAN_NOTICE("[user] swaps a new [O.name] into [src]."),
-		SPAN_NOTICE("You swap a new [O.name] into [src]."))
+		user.visible_message(SPAN_NOTICE("[user]为[src]换装了新的[O.name]。"),
+		SPAN_NOTICE("你为[src]换装了新的[O.name]。"))
 
 		ammo.forceMove(loc)
 
@@ -278,7 +278,7 @@
 	return ..()
 
 /obj/structure/machinery/defenses/sentry/destroyed_action()
-	visible_message("[icon2html(src, viewers(src))] [SPAN_WARNING("The [name] starts spitting out sparks and smoke!")]")
+	visible_message("[icon2html(src, viewers(src))] [SPAN_WARNING("[name]开始冒出火花和浓烟！")]")
 	playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
 	for(var/i = 1 to 6)
 		setDir(pick(NORTH, EAST, SOUTH, WEST))
@@ -303,7 +303,7 @@
 
 	if(ammo && ammo.current_rounds <= 0)
 		if(COOLDOWN_FINISHED(src, no_ammo_message_cooldown))
-			visible_message(SPAN_WARNING("[src] beeps steadily and its ammo light blinks red."))
+			visible_message(SPAN_WARNING("[src]持续鸣响，弹药指示灯闪烁红光。"))
 			COOLDOWN_START(src, no_ammo_message_cooldown, (3 SECONDS))
 
 		return
@@ -364,7 +364,7 @@
 		addtimer(CALLBACK(src, PROC_REF(actual_fire), firing_target, (projectiles_to_fire - 1), TRUE), burst_fire_delay)
 
 /obj/structure/machinery/defenses/sentry/proc/handle_empty()
-	visible_message("[icon2html(src, viewers(src))] [SPAN_WARNING("The [name] beeps steadily and its ammo light blinks red.")]")
+	visible_message("[icon2html(src, viewers(src))] [SPAN_WARNING("[name]持续鸣响，弹药指示灯闪烁红光。")]")
 	playsound(loc, 'sound/weapons/smg_empty_alarm.ogg', 25, 1)
 	update_icon()
 	sent_empty_ammo = TRUE
@@ -593,8 +593,8 @@
 	fire(target)
 
 /obj/structure/machinery/defenses/sentry/platoon_pmc
-	name = "\improper UA 571-C-WY sentry gun"
-	desc = "An old static, semi-automated turret with AI targeting capabilities from Weyland-Yutani."
+	name = "\improper UA 571-C-WY哨戒炮"
+	desc = "维兰德-汤谷制造的旧式固定半自动炮塔，具备人工智能瞄准能力。"
 	icon = 'icons/obj/structures/machinery/defenses/wy_defenses.dmi'
 	faction_group = list(FACTION_WY, FACTION_PMC)
 	handheld_type = /obj/item/defenses/handheld/sentry/pmc_platoon
@@ -604,7 +604,7 @@
 	)
 
 /obj/structure/machinery/defenses/sentry/premade
-	name = "\improper UA-577 Gauss Turret"
+	name = "\improper UA-577高斯炮塔"
 	immobile = TRUE
 	turned_on = TRUE
 	icon_state = "premade" //for the map editor only
@@ -620,7 +620,7 @@
 
 /obj/structure/machinery/defenses/sentry/premade/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_NOTICE("It seems this one's bolts have been securely welded into the floor, and the access panel locked. You can't interact with it.")
+	. += SPAN_NOTICE("它的螺栓已被牢牢焊在地板上，维护面板也被锁住，无法操作。")
 
 /obj/structure/machinery/defenses/sentry/premade/attackby(obj/item/O, mob/user)
 	return
@@ -635,15 +635,15 @@
 	return
 
 /obj/structure/machinery/defenses/sentry/premade/dumb
-	name = "modified UA-577 Gauss Turret"
-	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a high-capacity drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
+	name = "改装UA-577高斯炮塔"
+	desc = "可部署的半自动炮塔，具备人工智能瞄准能力。装备M30自动炮和大容量弹鼓。敌我识别系统已被禁用，会向射程内所有目标开火。"
 	faction_group = null
 	ammo = new /obj/item/ammo_magazine/sentry
 
 //the turret inside a static sentry deployment system
 /obj/structure/machinery/defenses/sentry/premade/deployable
-	name = "\improper UA-633 Static Gauss Turret"
-	desc = "A fully-automated defence turret with mid-range targeting capabilities. Armed with a modified M32-S Autocannon and an internal belt feed."
+	name = "\improper UA-633固定高斯炮塔"
+	desc = "具备中距离瞄准能力的全自动防御炮塔，装备改装M32-S自动炮和内部供弹链。"
 	density = TRUE
 	faction_group = FACTION_LIST_UA
 	fire_delay = 1
@@ -665,8 +665,8 @@
 	selected_categories[SENTRY_CATEGORY_IFF] = SENTRY_FACTION_COLONY
 
 /obj/structure/machinery/defenses/sentry/premade/deployable/wy
-	name = "WY 5-GSE3 Static Turret"
-	desc = "An old static, semi-automated turret with AI targeting capabilities from Weyland-Yutani."
+	name = "WY 5-GSE3固定炮塔"
+	desc = "维兰德-汤谷制造的旧式固定半自动炮塔，具备人工智能瞄准能力。"
 	icon = 'icons/obj/structures/machinery/defenses/wy_static.dmi'
 	defense_type = "Static"
 	sentry_type = "wy_sentry"
@@ -682,14 +682,14 @@
 	selected_categories[SENTRY_CATEGORY_IFF] = SENTRY_FACTION_COLONY
 
 /obj/structure/machinery/defenses/sentry/premade/deployable/almayer
-	name = "\improper UA-635C Static Gauss Turret"
-	desc = "A fully-automated defence turret with mid-range targeting capabilities. Armed with a modified M32-S Autocannon and an internal belt feed and modified for UA warship use."
+	name = "\improper UA-635C固定高斯炮塔"
+	desc = "具备中距离瞄准能力的全自动防御炮塔，装备改装M32-S自动炮和内部供弹链，专供美洲联盟军舰使用。"
 	fire_delay = 0.4 SECONDS
 	omni_directional = TRUE
 
 /obj/structure/machinery/defenses/sentry/premade/deployable/almayer/mini
-	name = "\improper UA 512-S mini sentry"
-	desc = "A fully-automated defence turret with mid-range targeting capabilities. Armed with a modified M30 Autocannon and an internal belt feed and modified for UA warship use."
+	name = "\improper UA 512-S迷你哨戒炮"
+	desc = "具备中距离瞄准能力的全自动防御炮塔，装备改装M30自动炮和内部供弹链，专供美洲联盟军舰使用。"
 	defense_type = "Mini"
 	fire_delay = 0.25 SECONDS
 	health = 150
@@ -702,7 +702,7 @@
 	composite_icon = FALSE
 
 /obj/structure/machinery/defenses/sentry/premade/deployable/colony/landing_zone
-	name = "\improper UA-577 Spaceborne Gauss Turret"
+	name = "\improper UA-577舰载高斯炮塔"
 	fire_delay = 2
 	sentry_range = 10
 	omni_directional = TRUE
@@ -724,23 +724,23 @@
 	. = ..()
 	switch(battery_state)
 		if(TURRET_BATTERY_STATE_OK)
-			. += SPAN_INFO("Its battery indictor is green, fully charged.")
+			. += SPAN_INFO("电池指示灯亮绿光，电量已满。")
 		if(TURRET_BATTERY_STATE_LOW)
-			. += SPAN_INFO("Its battery indictor is flashing yellow.")
+			. += SPAN_INFO("电池指示灯闪烁黄光。")
 		if(TURRET_BATTERY_STATE_CRITICAL)
-			. += SPAN_INFO("Its battery indictor is flashing red.")
+			. += SPAN_INFO("电池指示灯闪烁红光。")
 		if(TURRET_BATTERY_STATE_DEAD)
-			. += SPAN_INFO("It appears to be offline.")
+			. += SPAN_INFO("它似乎已停机。")
 
 /obj/structure/machinery/defenses/sentry/premade/deployable/colony/landing_zone/proc/set_battery_state(state)
 	battery_state = state
 	switch(state)
 		if(TURRET_BATTERY_STATE_LOW)
 			playsound(loc, 'sound/weapons/smg_empty_alarm.ogg', 15, 1)
-			visible_message(SPAN_WARNING("[name] beeps steadily as its battery is getting low."))
+			visible_message(SPAN_WARNING("[name]电量偏低，持续发出提示音。"))
 		if(TURRET_BATTERY_STATE_CRITICAL)
 			playsound(loc, 'sound/weapons/smg_empty_alarm.ogg', 20, 1)
-			visible_message(SPAN_WARNING("[name] beeps steadily as its battery gets critically low."))
+			visible_message(SPAN_WARNING("[name]电量严重不足，持续发出提示音。"))
 		if(TURRET_BATTERY_STATE_DEAD)
 			playsound(loc, 'sound/machines/terminal_shutdown.ogg', 35, 1)
 			turned_on = FALSE
@@ -782,7 +782,7 @@
 	. = ..()
 
 /obj/structure/machinery/defenses/sentry/shotgun
-	name = "\improper UA 12-G Shotgun Sentry"
+	name = "\improper UA 12-G霰弹哨戒炮"
 	defense_type = "Shotgun"
 	health = 250
 	health_max = 250
@@ -799,8 +799,8 @@
 /obj/structure/machinery/defenses/sentry/shotgun/attack_alien(mob/living/carbon/xenomorph/M)
 	. = ..()
 	if(. == XENO_ATTACK_ACTION && turned_on)
-		M.visible_message(SPAN_DANGER("The sentry's steel tusks cut into [M]!"),
-		SPAN_DANGER("The sentry's steel tusks cut into you!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("哨戒炮的钢制尖牙划伤了[M]！"),
+		SPAN_DANGER("哨戒炮的钢制尖牙划伤了你！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		M.apply_damage(20)
 
 /obj/structure/machinery/defenses/sentry/shotgun/hitby(atom/movable/AM)
@@ -809,13 +809,13 @@
 			var/mob/living/L = AM
 			L.apply_damage(20)
 			playsound(L, "bonk", 75, FALSE)
-			L.visible_message(SPAN_DANGER("The sentry's steel tusks impale [L]!"),
-			SPAN_DANGER("The sentry's steel tusks impale you!"))
+			L.visible_message(SPAN_DANGER("哨戒炮的钢制尖牙刺穿了[L]！"),
+			SPAN_DANGER("哨戒炮的钢制尖牙刺穿了你！"))
 			if(L.mob_size <= MOB_SIZE_XENO_SMALL)
 				L.apply_effect(1, WEAKEN)
 
 /obj/structure/machinery/defenses/sentry/mini
-	name = "\improper UA 512-M mini sentry"
+	name = "\improper UA 512-M迷你哨戒炮"
 	defense_type = "Mini"
 	fire_delay = 0.15 SECONDS
 	health = 150
@@ -829,8 +829,8 @@
 	firing_sound = null
 
 /obj/structure/machinery/defenses/sentry/launchable
-	name = "\improper UA 571-O sentry post"
-	desc = "A deployable, omni-directional automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 100-round drum magazine with 500 rounds stored internally.  Due to the deployment method it is incapable of being moved."
+	name = "\improper UA 571-O固定哨戒炮"
+	desc = "可部署的全向自动炮塔，具备人工智能瞄准能力。装备M30自动炮和100发弹鼓，内部另有500发储备弹药。部署后无法移动。"
 	ammo = new /obj/item/ammo_magazine/sentry/dropped
 	faction_group = FACTION_LIST_UA
 	omni_directional = TRUE
@@ -868,37 +868,37 @@
 	. = ..()
 
 	if(!istype(sheets, /obj/item/stack/sheet/metal))
-		to_chat(user, SPAN_WARNING("Use [upgrade_cost] metal sheets to give the sentry some plating."))
+		to_chat(user, SPAN_WARNING("使用[upgrade_cost]片金属板为哨戒炮加装装甲。"))
 		return
 
 	if(upgraded)
-		to_chat(user, SPAN_WARNING("\The [src] has already been upgraded."))
+		to_chat(user, SPAN_WARNING("[src]已经升级过了。"))
 		return
 
 	if(sheets.amount >= upgrade_cost)
 		if(!do_after(user, 4 SECONDS * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION) , INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
-			to_chat(user, SPAN_WARNING("You were interrupted! Try to stay still while you bolster the sentry with metal sheets..."))
+			to_chat(user, SPAN_WARNING("动作被打断！加装金属板时请保持不动……"))
 			return
 
 		if(sheets.use(upgrade_cost))
 			src.health_max += health_upgrade
 			src.update_health(-health_upgrade)
 			upgraded = TRUE
-			to_chat(user, SPAN_WARNING("You added some metal plating to the sentry, increasing its durability!"))
+			to_chat(user, SPAN_WARNING("你为哨戒炮加装了金属板，提高了耐久度！"))
 		else
-			to_chat(user, SPAN_WARNING("You need at least [upgrade_cost] sheets of metal to upgrade this."))
+			to_chat(user, SPAN_WARNING("至少需要[upgrade_cost]片金属才能升级。"))
 	else
-		to_chat(user, SPAN_WARNING("You need at least [upgrade_cost] sheets of metal to upgrade this."))
+		to_chat(user, SPAN_WARNING("至少需要[upgrade_cost]片金属才能升级。"))
 
 /obj/structure/machinery/defenses/sentry/launchable/attack_hand_checks(mob/user)
 	// Reloads the sentry using inherent rounds
 	if(!turned_on && additional_rounds_stored && (ammo.current_rounds < ammo.max_rounds))
 		if(!do_after(user, 2 SECONDS * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
-			to_chat(user, SPAN_WARNING("You were interrupted! Try to stay still while you reload the sentry..."))
+			to_chat(user, SPAN_WARNING("动作被打断！为哨戒炮装填时请保持不动……"))
 			return
 
 		var/rounds_used = ammo.inherent_reload(user)
-		to_chat(user, SPAN_WARNING("[src]'s internal magazine was reloaded with [rounds_used] rounds, [ammo.max_inherent_rounds] rounds left in storage"))
+		to_chat(user, SPAN_WARNING("[src]的内部弹匣已装入[rounds_used]发弹药，储备还剩[ammo.max_inherent_rounds]发。"))
 		playsound(loc, 'sound/weapons/handling/m40sd_reload.ogg', 25, 1)
 		update_icon()
 		return FALSE
@@ -909,11 +909,11 @@
 /obj/structure/machinery/defenses/sentry/launchable/handle_empty()
 	// Checks if its completely dry or just needs reload, deconstruct if completely empty
 	if(ammo.max_inherent_rounds > 0)
-		visible_message(SPAN_WARNING("\The [name] beeps steadily and its ammo light blinks red. It still has rounds, requires manual reload!"))
+		visible_message(SPAN_WARNING("[name]持续鸣响，弹药指示灯闪烁红光。它仍有储备弹药，需要手动装填！"))
 		playsound(loc, 'sound/weapons/smg_empty_alarm.ogg', 25, 1)
 		update_icon()
 	else
-		visible_message(SPAN_WARNING("\The [name] beeps steadily and its ammo light blinks red. It rapidly deconstructs itself!"))
+		visible_message(SPAN_WARNING("[name]持续鸣响，弹药指示灯闪烁红光，随后迅速自行拆解！"))
 		playsound(loc, 'sound/weapons/smg_empty_alarm.ogg', 25, 1)
 		deconstruct()
 
@@ -924,7 +924,7 @@
 	return ..()
 
 /obj/structure/machinery/defenses/sentry/launchable/upp
-	name = "\improper UPPA 32-O rapid deploy sentry"
+	name = "\improper UPPA 32-O快速部署哨戒炮"
 	icon_state = "upp_defense_base"
 	icon_on = "upp_defense_base"
 	icon_off = "upp_defense_base_off"
@@ -943,8 +943,8 @@
 	ammo = new /obj/item/ammo_magazine/sentry/upp/dropped
 
 /obj/structure/machinery/defenses/sentry/wy
-	name = "WY 202-GMA1 Smart Sentry"
-	desc = "A deployable, fully-automated turret with AI targeting capabilities used by the PMC."
+	name = "WY 202-GMA1智能哨戒炮"
+	desc = "私人军事承包商使用的可部署全自动炮塔，具备人工智能瞄准能力。"
 	icon = 'icons/obj/structures/machinery/defenses/wy_defenses.dmi'
 	sentry_type = "wy_sentry"
 	fire_delay = 2 SECONDS
@@ -962,8 +962,8 @@
 	)
 
 /obj/structure/machinery/defenses/sentry/mini/wy
-	name = "WY 14-GRA2 Mini Sentry"
-	desc = "A deployable, semi-automated turret with AI targeting capabilities used by the PMC."
+	name = "WY 14-GRA2迷你哨戒炮"
+	desc = "私人军事承包商使用的可部署半自动炮塔，具备人工智能瞄准能力。"
 	icon = 'icons/obj/structures/machinery/defenses/wy_defenses.dmi'
 	sentry_type = "wy_sentry"
 	fire_delay = 0.08 SECONDS
@@ -979,8 +979,8 @@
 	)
 
 /obj/structure/machinery/defenses/sentry/dmr/wy
-	name = "WY 2-ADT-A3 Heavy Sentry"
-	desc = "A deployable, semi-automated turret with AI targeting capabilities used by the PMC."
+	name = "WY 2-ADT-A3重型哨戒炮"
+	desc = "私人军事承包商使用的可部署半自动炮塔，具备人工智能瞄准能力。"
 	defense_type = "Heavy"
 	icon = 'icons/obj/structures/machinery/defenses/wy_heavy.dmi'
 	sentry_type = "wy_sentry"
@@ -998,8 +998,8 @@
 	)
 
 /obj/structure/machinery/defenses/sentry/upp
-	name = "\improper UPPA 32-H sentry gun"
-	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an AK-500 Autocannon and a 350-round drum magazine."
+	name = "\improper UPPA 32-H哨戒炮"
+	desc = "可部署的半自动炮塔，具备人工智能瞄准能力。装备AK-500自动炮和350发弹鼓。"
 	icon_state = "upp_defense_base"
 	icon_on = "upp_defense_base"
 	icon_off = "upp_defense_base_off"
@@ -1018,7 +1018,7 @@
 	ammo = new /obj/item/ammo_magazine/sentry/upp
 
 /obj/structure/machinery/defenses/sentry/upp/light
-	name = "UPP SDS-R8 Light Sentry"
+	name = "UPP SDS-R8轻型哨戒炮"
 	defense_type = "Light"
 	fire_delay = 0.1 SECONDS
 	damage_mult = 0.3

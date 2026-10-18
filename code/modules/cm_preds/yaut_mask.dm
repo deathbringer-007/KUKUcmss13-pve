@@ -3,8 +3,8 @@
 
 ///parent type
 /obj/item/clothing/mask/gas/yautja
-	name = "alien mask"
-	desc = "A beautifully designed metallic face mask, both ornate and functional."
+	name = "外星面具"
+	desc = "设计精美的金属面具，兼具装饰性和实用性。"
 
 	icon = 'icons/obj/items/hunter/pred_gear.dmi'
 	item_icons = list(
@@ -92,7 +92,7 @@
 	var/mob/living/carbon/human/human_holder = loc
 
 	if(current_goggles && !drain_power(human_holder, 3))
-		to_chat(human_holder, SPAN_WARNING("Your bracers lack sufficient power to operate the visor."))
+		to_chat(human_holder, SPAN_WARNING("护腕电量不足，无法驱动目镜。"))
 		current_goggles = VISION_MODE_OFF
 		var/obj/item/visor = human_holder.glasses
 		if(istype(visor, /obj/item/clothing/glasses/night/yautja))//To change if any new vision modes are made
@@ -140,19 +140,19 @@
 	if(!istype(user))
 		return
 	if(!HAS_TRAIT(user, TRAIT_YAUTJA_TECH) && !user.hunter_data.thralled)
-		to_chat(user, SPAN_WARNING("You have no idea how to work this thing!"))
+		to_chat(user, SPAN_WARNING("你完全不知道如何操作它！"))
 		return
 	if(src != user.wear_mask) //sanity
-		to_chat(user, SPAN_WARNING("You must wear \the [src]!"))
+		to_chat(user, SPAN_WARNING("你必须戴上[src]！"))
 		return
 	var/obj/item/clothing/gloves/yautja/bracer = user.gloves
 	if(!bracer || !istype(bracer))
-		to_chat(user, SPAN_WARNING("You must be wearing your bracers, as they have the power source."))
+		to_chat(user, SPAN_WARNING("你必须戴上护腕，目镜由护腕供电。"))
 		return
 	var/obj/item/visor = user.glasses
 	if(visor)
 		if(!istype(visor, /obj/item/clothing/glasses/night/yautja))
-			to_chat(user, SPAN_WARNING("You need to remove your glasses first. Why are you even wearing these?"))
+			to_chat(user, SPAN_WARNING("你需要先摘下眼镜。你为什么还戴着这东西？"))
 			return
 		user.temp_drop_inv_item(visor) //Get rid of ye existing maicerinho goggles
 		qdel(visor)
@@ -172,9 +172,9 @@
 	switch(current_goggles)
 		if(VISION_MODE_NVG)
 			user.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/yautja(user), WEAR_EYES)
-			to_chat(user, SPAN_NOTICE("Low-light vision module: activated."))
+			to_chat(user, SPAN_NOTICE("微光视觉模块：已启用。"))
 		if(VISION_MODE_OFF)
-			to_chat(user, SPAN_NOTICE("You deactivate your visor."))
+			to_chat(user, SPAN_NOTICE("你关闭了目镜。"))
 
 	playsound(src, 'sound/effects/pred_vision.ogg', 15, 1)
 	user.update_inv_glasses()
@@ -223,8 +223,8 @@
 	..()
 
 /obj/item/clothing/mask/gas/yautja/thrall
-	name = "alien mask"
-	desc = "A simplistic metallic face mask with advanced capabilities."
+	name = "外星面具"
+	desc = "造型简洁的金属面具，具备先进功能。"
 	icon_state = "thrall_mask"
 	item_state = "thrall_mask"
 	icon = 'icons/obj/items/hunter/thrall_gear.dmi'
@@ -242,8 +242,8 @@
 	..()
 
 /obj/item/clothing/mask/gas/yautja/hunter
-	name = "clan mask"
-	desc = "A beautifully designed metallic face mask, both ornate and functional."
+	name = "氏族面具"
+	desc = "设计精美的金属面具，兼具装饰性和实用性。"
 	armor_melee = CLOTHING_ARMOR_MEDIUM
 	armor_bullet = CLOTHING_ARMOR_HIGH
 	armor_laser = CLOTHING_ARMOR_MEDIUMHIGH
@@ -261,18 +261,18 @@
 /obj/item/clothing/mask/gas/yautja/hunter/togglesight()
 	set category = "Yautja.Utility"
 	if(!isyautja(usr))
-		to_chat(usr, SPAN_WARNING("You have no idea how to work this thing!"))
+		to_chat(usr, SPAN_WARNING("你完全不知道如何操作它！"))
 		return
 	..()
 
 /obj/item/clothing/mask/gas/yautja/damaged
-	name = "ancient alien mask"
-	desc = "A beautifully designed metallic face mask, both ornate and functional. This one seems to be old and degraded."
+	name = "远古外星面具"
+	desc = "设计精美的金属面具，兼具装饰性和实用性。这一个似乎已经陈旧磨损。"
 
 //flavor, not a subtype
 /obj/item/clothing/mask/yautja_flavor
-	name = "alien stone mask"
-	desc = "A beautifully designed face mask, ornate but non-functional and made entirely of stone."
+	name = "外星石制面具"
+	desc = "设计精美的石制面具，装饰华丽，但不具备实用功能。"
 
 	icon = 'icons/obj/items/hunter/pred_gear.dmi'
 	item_icons = list(

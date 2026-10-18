@@ -9,7 +9,7 @@
 	taskbar_icon = 'icons/taskbar/gml_colonyrp.png'
 
 /datum/game_mode/extended/announce()
-	to_world("<B>The current game mode is - Extended!</B>")
+	to_world("<B>当前游戏模式：自由模式！</B>")
 
 /datum/game_mode/extended/get_roles_list()
 	return GLOB.ROLES_USCM

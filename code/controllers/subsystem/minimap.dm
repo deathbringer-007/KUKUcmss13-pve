@@ -1011,7 +1011,7 @@ SUBSYSTEM_DEF(minimaps)
 				for(var/datum/squad/current_squad in GLOB.RoleAuthority.squads)
 					current_squad.send_maptext("Tactical map update in progress...", "Tactical Map:")
 				var/mob/living/carbon/human/human_leader = user
-				human_leader.visible_message(SPAN_BOLDNOTICE("Tactical map update in progress..."))
+				human_leader.visible_message(SPAN_BOLDNOTICE("正在更新战术地图……"))
 				playsound_client(human_leader.client, "sound/effects/data-transmission.ogg")
 				notify_ghosts(header = "Tactical Map", message = "The [faction] tactical map has been updated.", ghost_sound = "sound/effects/data-transmission.ogg", notify_volume = 80, action = NOTIFY_USCM_TACMAP, enter_link = "uscm_tacmap=1", enter_text = "View", source = owner)
 			else if(faction == XENO_HIVE_NORMAL)

@@ -270,7 +270,9 @@ export const ModeChange = (props) => {
               property.code === selectedTargetProperty && (
                 <Stack vertical>
                   <Stack.Item>
-                    <Section title={property.name}>{property.desc}</Section>
+                    <Section title={property.display_name || property.name}>
+                      {property.desc}
+                    </Section>
                   </Stack.Item>
                   <Stack.Item bold backgroundColor={'#191b22'} p={1}>
                     操作费用： {property.cost}
@@ -398,7 +400,9 @@ export const ModeRelate = (props) => {
               property.code === selectedTargetProperty && (
                 <Stack vertical>
                   <Stack.Item>
-                    <Section title={property.name}>{property.desc}</Section>
+                    <Section title={property.display_name || property.name}>
+                      {property.desc}
+                    </Section>
                   </Stack.Item>
                   <Stack.Item bold backgroundColor={'#191b22'} p={1}>
                     操作费用： {property.cost}
@@ -475,7 +479,10 @@ export const ModeCreate = (props) => {
           known_properties,
           (property) =>
             property.code === selectedProperty && (
-              <Section title={property.name} textAlign={'center'}>
+              <Section
+                title={property.display_name || property.name}
+                textAlign={'center'}
+              >
                 <h4>{property.desc}</h4>
               </Section>
             ),

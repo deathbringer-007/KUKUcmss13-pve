@@ -3,34 +3,34 @@
 		return list(desc)
 
 	if(user.sdisabilities & DISABILITY_BLIND || user.blinded || user.stat==UNCONSCIOUS)
-		return list(SPAN_NOTICE("Something is there but you can't see it."))
+		return list(SPAN_NOTICE("那里有什么东西，但你看不清。"))
 
 	var/mob/dead/observer/observer
 	if(isobserver(user))
 		observer = user
 
 	if(isxeno(user))
-		var/msg = "<span class='info'>This is "
+		var/msg = "<span class='info'>这是"
 
 		if(icon)
 			msg += "[icon2html(icon, user)] "
 		msg += "<EM>[src]</EM>!\n"
 
 		if(species && species.flags & IS_SYNTHETIC)
-			msg += "<span style='font-weight: bold; color: purple;'>You sense this creature is not organic.\n</span>"
+			msg += "<span style='font-weight: bold; color: purple;'>你感觉到这个生物并非有机体。\n</span>"
 
 		if(status_flags & XENO_HOST)
-			msg += "This creature is impregnated.\n"
+			msg += "这个生物已被寄生。\n"
 		else if(chestburst == 2)
-			msg += "A larva escaped from this creature.\n"
+			msg += "有幼体从这个生物体内破胸而出。\n"
 		if(istype(wear_mask, /obj/item/clothing/mask/facehugger))
-			msg += "It has a little one on its face.\n"
+			msg += "它脸上有一只小家伙。\n"
 		if(on_fire)
-			msg += "It is on fire!\n"
+			msg += "它着火了！\n"
 		if(stat == DEAD)
-			msg += "<span style='font-weight: bold; color: purple;'>You sense this creature is dead.\n</span>"
+			msg += "<span style='font-weight: bold; color: purple;'>你感觉到这个生物已经死亡。\n</span>"
 		else if(stat || !client)
-			msg += SPAN_XENOWARNING("It doesn't seem responsive.\n")
+			msg += SPAN_XENOWARNING("看起来毫无反应。\n")
 		msg += "</span>"
 		return list(msg)
 
@@ -129,7 +129,7 @@
 	if(gloves && !skipgloves)
 		msg += "[t_He] [t_has] [gloves.get_examine_line(user)] [gloves.get_examine_location(src, user, WEAR_HANDS, t_He, t_his, t_him, t_has, t_is)].\n"
 	else if(hands_blood_color)
-		msg += SPAN_WARNING("[t_He] [t_has] [(hands_blood_color != COLOR_OIL) ? "blood" : "oil"]-stained hands!\n")
+		msg += SPAN_WARNING("[src]的双手沾满了[(hands_blood_color != COLOR_OIL) ? "鲜血" : "机油"]！\n")
 
 	//belt
 	if(belt)
@@ -139,7 +139,7 @@
 	if(shoes && !skipshoes)
 		msg += "[t_He] [t_is] wearing [shoes.get_examine_line(user)] [shoes.get_examine_location(src, user, WEAR_FEET, t_He, t_his, t_him, t_has, t_is)].\n"
 	else if(feet_blood_color)
-		msg += SPAN_WARNING("[t_He] [t_has] [(feet_blood_color != COLOR_OIL) ? "blood" : "oil"]-stained feet!\n")
+		msg += SPAN_WARNING("[src]的双脚沾满了[(feet_blood_color != COLOR_OIL) ? "鲜血" : "机油"]！\n")
 
 	//mask
 	if(wear_mask && !skipmask)
@@ -182,9 +182,9 @@
 					found_iff = TRUE
 			if(found_iff)
 				if(get_target_lock(human_with_gun.get_id_faction_group()) > 0)
-					msg += SPAN_HELPFUL("[capitalize(t_He)] is compatible with your weapon's IFF.\n")
+					msg += SPAN_HELPFUL("[src]与你武器的敌我识别系统兼容。\n")
 				else
-					msg += SPAN_DANGER("[capitalize(t_He)] is not compatible with your weapon's IFF. They will be shot by your weapon!\n")
+					msg += SPAN_DANGER("[src]与你武器的敌我识别系统不兼容，会遭到你的武器射击！\n")
 
 	//Restraints
 	if(handcuffed)
@@ -238,7 +238,7 @@
 		if(paralyzed > 1 && distance <= 3)
 			msg += SPAN_WARNING("[t_He] seems to be completely still.\n")
 		if(ishuman(user) && !user.stat && Adjacent(user))
-			user.visible_message("[SPAN_BOLD("[user]")] checks [src]'s pulse.", "You check [src]'s pulse.", null, 4)
+			user.visible_message("[SPAN_BOLD("[user]")] 检查着 [src] 的脉搏。", "你检查着 [src] 的脉搏。", null, 4)
 		spawn(15)
 			if(user && src && distance <= 1)
 				if(pulse == PULSE_NONE || status_flags & FAKEDEATH)

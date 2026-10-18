@@ -74,7 +74,7 @@
 //Landmark for van's windshield
 /obj/effect/landmark/interior/spawn/interior_viewport/simple/uppvanfront
 	name = "viewport"
-	desc = "Hey, I can see my base from here!"
+	desc = "嘿，从这里能看到我的基地！"
 	icon = 'icons/obj/vehicles/interiors/uppvan.dmi'
 	icon_state = "viewport_simple_front"
 	layer = INTERIOR_DOOR_LAYER

@@ -272,9 +272,9 @@
 
 	if(hud_used && client)
 		hud_used.show_hud()
-		to_chat(usr, SPAN_INFO("Switched HUD mode. Press F12 to toggle."))
+		to_chat(usr, SPAN_INFO("已切换 HUD 模式。按 F12 可再次切换。"))
 	else
-		to_chat(usr, SPAN_WARNING("This mob type does not use a HUD."))
+		to_chat(usr, SPAN_WARNING("这种生物不使用 HUD。"))
 
 
 /datum/hud/proc/draw_act_intent(datum/custom_hud/ui_datum, ui_alpha)

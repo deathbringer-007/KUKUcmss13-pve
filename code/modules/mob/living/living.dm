@@ -146,11 +146,11 @@
 
 	if(CONFIG_GET(flag/allow_Metadata))
 		if(client)
-			to_chat(usr, "[src]'s Metainfo:<br>[client.prefs.metadata]")
+			to_chat(usr, "[src]的角色外资料：<br>[client.prefs.metadata]")
 		else
-			to_chat(usr, "[src] does not have any stored infomation!")
+			to_chat(usr, "[src]没有保存任何资料！")
 	else
-		to_chat(usr, "OOC Metadata is not supported by this server!")
+		to_chat(usr, "本服务器不支持角色外资料！")
 
 	return
 
@@ -228,11 +228,11 @@
 			/// Probably could use some refactoring for the CQC skill, traits, and the like.
 			if(prob(50))
 				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-				visible_message(SPAN_DANGER("[src] has broken free of [pulledby]'s grip!"), null, null, 5)
+				visible_message(SPAN_DANGER("[src]挣脱了[pulledby]的抓握！"), null, null, 5)
 				pulledby.stop_pulling()
 				return TRUE
 			if(moving_resist && client) //we resisted by trying to move
-				visible_message(SPAN_DANGER("[src] struggles to break free of [pulledby]'s grip!"), null, null, 5)
+				visible_message(SPAN_DANGER("[src]挣扎着试图摆脱[pulledby]的抓握！"), null, null, 5)
 				client.next_movement = world.time + (10*pulledby.grab_level) + client.move_delay
 		if(GRAB_XENO) /// Specific to some xenomorphs.
 			if(HAS_TRAIT(src, TRAIT_SUPER_STRONG)) /// Superstrength means you get out of jail for free.
@@ -245,15 +245,15 @@
 					. = TRUE
 				else
 					if(prob((100 - SKILL_CQC_MAX * 7) + skill_bonus)) /// Maximum 100% to loosen the grip.
-						visible_message(SPAN_DANGER("[src] loosens [pulledby]'s grip!"), null, null, 5)
+						visible_message(SPAN_DANGER("[src]使[pulledby]的抓握松动了！"), null, null, 5)
 						pulledby.grab_level = GRAB_PASSIVE /// Loosens the grab into a passive grab, being able to escape on the next go.
 					else
-						visible_message(SPAN_DANGER("[src] struggles to break free of [pulledby]'s grip!"), null, null, 5)
+						visible_message(SPAN_DANGER("[src]挣扎着试图摆脱[pulledby]的抓握！"), null, null, 5)
 					client.next_movement = world.time + (10 * GRAB_XENO) + client.move_delay /// Grab level may get reset, so we want to keep it at a good delay.
 
 			if(.) /// Our living mob successfully broke away.
 				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-				visible_message(SPAN_DANGER("[src] has broken free of [pulledby]'s grip!"), null, null, 5)
+				visible_message(SPAN_DANGER("[src]挣脱了[pulledby]的抓握！"), null, null, 5)
 				pulledby.stop_pulling()
 		else
 			pulledby.stop_pulling()
@@ -357,7 +357,7 @@
 
 	if(L.pulledby && L.pulledby != src && L.is_mob_restrained())
 		if(!(world.time % 5))
-			to_chat(src, SPAN_WARNING("[L] is restrained, you cannot push past."))
+			to_chat(src, SPAN_WARNING("[L]被束缚着，你无法挤过去。"))
 		now_pushing = FALSE
 		return
 
@@ -372,7 +372,7 @@
 			var/mob/P = L.pulling
 			if(P.is_mob_restrained())
 				if(!(world.time % 5))
-					to_chat(src, SPAN_WARNING("[L] is restraining [P], you cannot push past."))
+					to_chat(src, SPAN_WARNING("[L]正在控制[P]，你无法挤过去。"))
 				now_pushing = FALSE
 				return
 

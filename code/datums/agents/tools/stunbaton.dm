@@ -1,5 +1,5 @@
 /obj/item/weapon/baton/antag
-	name = "altered stunbaton"
+	name = "改装电击棍"
 
 	req_one_access = null
 	hitcost = 500

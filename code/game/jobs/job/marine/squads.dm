@@ -572,7 +572,7 @@
 		sfx.file = 'sound/effects/radiostatic.ogg'
 		sfx.channel = get_free_channel()
 		sfx.y = 3
-	message = "[SPAN_BLUE("<B>[leader_only ? "SL " : ""]Overwatch:</b> [message]")]"
+	message = "[SPAN_BLUE("<B>[leader_only ? "小队长" : ""]战场监控：</b>[message]")]"
 
 	var/list/client/targets = list()
 	if(leader_only)
@@ -615,14 +615,14 @@
 			if(!SL.stat && SL.client)
 				if(plus_name)
 					SL << sound('sound/effects/tech_notification.ogg')
-				to_chat(SL, "[SPAN_BLUE("<B>SL Overwatch:</b> [nametext][text]")]", type = MESSAGE_TYPE_RADIO)
+				to_chat(SL, "[SPAN_BLUE("<B>小队长战场监控：</b>[nametext][text]")]", type = MESSAGE_TYPE_RADIO)
 				return
 	else
 		for(var/mob/living/carbon/human/M in marines_list)
 			if(!M.stat && M.client) //Only living and connected people in our squad
 				if(plus_name)
 					M << sound('sound/effects/tech_notification.ogg')
-				to_chat(M, "[SPAN_BLUE("<B>Overwatch:</b> [nametext][text]")]", type = MESSAGE_TYPE_RADIO)
+				to_chat(M, "[SPAN_BLUE("<B>战场监控：</b>[nametext][text]")]", type = MESSAGE_TYPE_RADIO)
 
 
 
@@ -898,7 +898,7 @@
 	old_lead.hud_set_squad()
 	old_lead.update_inv_head() //updating marine helmet leader overlays
 	old_lead.update_inv_wear_suit()
-	to_chat(old_lead, FONT_SIZE_BIG(SPAN_BLUE("You're no longer the [squad_type] Leader for [src]!")))
+	to_chat(old_lead, FONT_SIZE_BIG(SPAN_BLUE("你不再担任[src]的[squad_type == "Section" ? "班长" : squad_type == "Platoon" ? "排长" : squad_type == "Squad" ? "小队长" : squad_type == "Team" ? "战斗组长" : squad_type == "Taskforce" ? "特遣队长" : squad_type == "Cell" ? "小组长" : "指挥官"]！")))
 
 //Not a safe proc. Returns null if squads or jobs aren't set up.
 //Mostly used in the marine squad console in marine_consoles.dm.
@@ -933,7 +933,7 @@
 			else
 				SStracking.stop_tracking(H.assigned_fireteam, H) //remove from previous FT group
 				if(H.stat == CONSCIOUS)
-					to_chat(fireteam_leaders[fireteam], FONT_SIZE_BIG(SPAN_BLUE("[H.mind ? H.comm_title : ""] [H] was unassigned from your fireteam.")))
+					to_chat(fireteam_leaders[fireteam], FONT_SIZE_BIG(SPAN_BLUE("[H.mind ? H.comm_title : ""] [H]已被调离你的战斗组。")))
 		fireteams[H.assigned_fireteam].Remove(H)
 		var/ft = H.assigned_fireteam
 		H.assigned_fireteam = fireteam
@@ -943,7 +943,7 @@
 		if(fireteam_leaders[fireteam]) //if TL exists -> FT group, otherwise -> SL group
 			SStracking.start_tracking(fireteam, H)
 			if(H.stat == CONSCIOUS)
-				to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("You were assigned to [fireteam]. Report to your Fireteam Leader ASAP.")))
+				to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("你已被编入[fireteam]。请尽快向战斗组长报到。")))
 			to_chat(fireteam_leaders[fireteam], FONT_SIZE_BIG(SPAN_BLUE("[H.mind ? H.comm_title : ""] [H] was assigned to your fireteam.")))
 		else
 			SStracking.start_tracking(tracking_id, H)

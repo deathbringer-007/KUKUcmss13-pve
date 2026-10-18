@@ -188,7 +188,7 @@
 		castes_available += initial(current_caste.caste_type)
 
 	var/castes = castes_available.Join(", ")
-	xeno_message(SPAN_XENOANNOUNCE("The Hive is now strong enough to support: [castes]"))
+	xeno_message(SPAN_XENOANNOUNCE("巢群现在已足够强大，可以容纳：[castes]"))
 	xeno_maptext("The Hive can now support: [castes]", "Hive Strengthening")
 
 
@@ -523,7 +523,7 @@
 	if(!C || C == hive_location)
 		return
 	var/area/A = get_area(C)
-	xeno_message(SPAN_XENOANNOUNCE("The Queen has set the hive location as \the [A]."), 3, hivenumber)
+	xeno_message(SPAN_XENOANNOUNCE("女王已将巢群位置设在[A]。"), 3, hivenumber)
 	hive_location = C
 	hive_ui.update_hive_location()
 
@@ -685,17 +685,17 @@
 	for(var/mob/living/carbon/xenomorph/xeno as anything in totalXenos)
 		if(get_area(xeno) != hijacked_dropship && xeno.loc && is_ground_level(xeno.loc.z))
 			if(isfacehugger(xeno) || islesserdrone(xeno))
-				to_chat(xeno, SPAN_XENOANNOUNCE("The Queen has left without you, you quickly find a hiding place to enter hibernation as you lose touch with the hive mind."))
+				to_chat(xeno, SPAN_XENOANNOUNCE("女王抛下了你。随着你与巢群意识失去联系，你赶紧找个地方躲藏起来，进入休眠。"))
 				if(length(xeno.stomach_contents))
 					xeno.devour_timer = 0
 					xeno.handle_stomach_contents()
 				qdel(xeno)
 				continue
 			if(xeno.hunter_data.hunted && !isqueen(xeno))
-				to_chat(xeno, SPAN_XENOANNOUNCE("The Queen has left without you, seperating you from her hive! You must defend yourself from the headhunter before you can enter hibernation..."))
+				to_chat(xeno, SPAN_XENOANNOUNCE("女王抛下了你，让你与她的巢群失去了联系！你必须先躲过猎头者的追杀，才能进入休眠……"))
 				xeno.set_hive_and_update(XENO_HIVE_FORSAKEN)
 			else
-				to_chat(xeno, SPAN_XENOANNOUNCE("The Queen has left without you, you quickly find a hiding place to enter hibernation as you lose touch with the hive mind."))
+				to_chat(xeno, SPAN_XENOANNOUNCE("女王抛下了你。随着你与巢群意识失去联系，你赶紧找个地方躲藏起来，进入休眠。"))
 				if(length(xeno.stomach_contents))
 					xeno.devour_timer = 0
 					xeno.handle_stomach_contents()
@@ -728,7 +728,7 @@
 	hijack_burrowed_surge = TRUE
 	hijack_burrowed_left = max(ceil(shipside_humans_weighted_count * 0.5) - xenos_count, 5)
 	hivecore_cooldown = FALSE
-	xeno_message(SPAN_XENOBOLDNOTICE("The weeds have recovered! A new hive core can be built!"),3,hivenumber)
+	xeno_message(SPAN_XENOBOLDNOTICE("菌毯已经恢复！可以建造新的巢群核心了！"),3,hivenumber)
 
 /datum/hive_status/proc/free_respawn(client/C)
 	stored_larva++
@@ -869,7 +869,7 @@
 		to_chat(user, SPAN_WARNING("\The [GLOB.hive_datum[hivenumber]] cannot support more facehuggers! Limit: <b>[current_hugger_count]/[playable_hugger_limit]</b>"))
 		return FALSE
 
-	if(tgui_alert(user, "Are you sure you want to become a facehugger?", "Confirmation", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, "确定要变成抱脸虫吗？", "确认", list("Yes", "No")) != "Yes")
 		return FALSE
 
 	if(!user.client)
@@ -1306,7 +1306,7 @@
 	addtimer(CALLBACK(src, PROC_REF(handle_defectors), faction), 11 SECONDS)
 
 /datum/hive_status/corrupted/proc/give_defection_choice(mob/living/carbon/xenomorph/xeno, faction)
-	if(tgui_alert(xeno, "Our Queen has broken the alliance with the [faction]. The device inside our carapace begins to suppress our connection with the Hive. Do we remove it and stay loyal to her?", "Alliance broken!", list("Stay loyal", "Obey the talls"), 10 SECONDS) == "Obey the talls")
+	if(tgui_alert(xeno, "女皇已与 [faction] 解除同盟。甲壳内的装置开始压制我们与巢群的联系。要移除它、继续效忠女皇吗？", "同盟已解除！", list("Stay loyal", "Obey the talls"), 10 SECONDS) == "Obey the talls")
 		if(!xeno.iff_tag)
 			to_chat(xeno, SPAN_XENOWARNING("It's too late now. The device is gone and our service to the Queen continues."))
 			return

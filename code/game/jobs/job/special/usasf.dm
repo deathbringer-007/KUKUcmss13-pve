@@ -4,7 +4,7 @@
 	gear_preset_secondary = /datum/equipment_preset/usasf/crew/snipe
 
 /datum/job/seaman/standard/on_config_load()
-	entry_message_body = "You are a rank-and-file sailor of your aerospace force, and that is your strength. You're a part of a great machine, helping operate vessels that sail between the stars and deliver extreme firepower to enemies of your nation. Hoo-yah!"
+	entry_message_body = "你是航空航天部队中一名普通舰员，而这正是你的力量所在。你是庞大体系的一环，协助操作穿行星际的舰船，以猛烈火力打击祖国的敌人。呼呀！"
 	return ..()
 
 /datum/job/seaman/skittle
@@ -12,7 +12,7 @@
 	gear_preset = /datum/equipment_preset/usasf/crew/flight
 
 /datum/job/seaman/skittle/on_config_load()
-	entry_message_body = "You are a part of the flight-deck operations crew aboard a USASF vessel, working to prepare and keep aerospace craft in fighting condition. Hoo-yah!"
+	entry_message_body = "你是USASF舰船飞行甲板作业组的一员，负责整备航空航天器，并维持其战备状态。呼呀！"
 	return ..()
 
 /datum/job/seaman/medic
@@ -20,7 +20,7 @@
 	gear_preset = /datum/equipment_preset/usasf/corpsman
 
 /datum/job/seaman/medic/on_config_load()
-	entry_message_body = "You are tasked with keeping the crewmen aboard healthy and strong. You are also an expert when it comes to medication and treatment, and can do minor surgical procedures. Anything beyond your skillset can typically be handled by the autodocs. Hoo-yah!"
+	entry_message_body = "你的职责是让舰员保持健康与战斗力。你也精通用药与治疗，并能施行小型手术。超出你能力范围的伤情，通常可以交给自动手术舱处理。呼呀！"
 	return ..()
 
 /datum/job/seaman/engi
@@ -28,7 +28,7 @@
 	gear_preset = /datum/equipment_preset/usasf/engi
 
 /datum/job/seaman/engi/on_config_load()
-	entry_message_body = "Your job is to keep the vessel you're aboard in peak condition, fixing any faults or damages sustained throughout it's tasking. Hoo-yah!"
+	entry_message_body = "你的职责是让所在舰船保持最佳状态，修复其执行任务期间产生的各类故障或损伤。呼呀！"
 	return ..()
 
 /datum/job/seaman/helljumper
@@ -36,7 +36,7 @@
 	gear_preset = /datum/equipment_preset/usasf/helljumper
 
 /datum/job/seaman/helljumper/on_config_load()
-	entry_message_body = "You're part of the elite 7th Para-Rescue Battalion, equipped with high-end kit and the skills to drop feet first into hell from the back of dropships and help allied units in great need of assistance. Hoo-yah!"
+	entry_message_body = "你是精锐的第7伞降救援营成员，配备先进装备，拥有从运输机后舱纵身跃入险境的技能，支援急需援助的友军单位。呼呀！"
 	return ..()
 
 //USASF Officers
@@ -52,8 +52,8 @@
 	gear_preset_secondary = /datum/equipment_preset/usasf/jtac/lesser_rank
 
 /datum/job/seaman/jtac/on_config_load()
-	entry_message_body = "Often deployed alongside ground forces such as the Colonial Marines or Army, your job is to coordinate fire support from up on high onto concentrations of enemy forces. Hoo-yah!"
-	entry_message_end = "This role will likely require coordination with the gamemaster(s) to represent called-in fire-support, ahelp should you have further questions for them."
+	entry_message_body = "你经常随殖民地陆战队或陆军等地面部队部署，负责协调来自高空的火力支援，打击敌军集结位置。呼呀！"
+	entry_message_end = "这一职位的呼叫火力支援通常需要与游戏主持人协调实现。如有疑问，请通过管理员求助功能与其联络。"
 	return ..()
 
 /datum/job/seaman/officer

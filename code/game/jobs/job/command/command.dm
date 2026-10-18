@@ -1,6 +1,6 @@
 /datum/job/command
 	selection_class = "job_command"
-	supervisors = "the acting commanding officer"
+	supervisors = "现任指挥官"
 	total_positions = 1
 	spawn_positions = 1
 

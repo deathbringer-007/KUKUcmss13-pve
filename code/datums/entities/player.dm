@@ -191,8 +191,8 @@ BSQL_PROTECT_DATUM(/datum/entity/player)
 
 	// then we drop the player if they are in
 	if(owning_client)
-		to_chat_forced(owning_client, SPAN_WARNING("<BIG><B>You have been banned by [admin.ckey].\nReason: [sanitize(ban_text)].</B></BIG>"))
-		to_chat_forced(owning_client, SPAN_WARNING("This is a temporary ban, it will be removed in [duration] minutes."))
+		to_chat_forced(owning_client, SPAN_WARNING("<BIG><B>你已被[admin.ckey]封禁。\n原因：[sanitize(ban_text)]。</B></BIG>"))
+		to_chat_forced(owning_client, SPAN_WARNING("这是临时封禁，将在[duration]分钟后解除。"))
 		QDEL_NULL(owning_client)
 
 	return TRUE
@@ -257,10 +257,10 @@ BSQL_PROTECT_DATUM(/datum/entity/player)
 	ban_unban_log_save("[key_name_admin(admin)] [duration_text] [ckey] from [total_rank]. reason: [ban_text]")
 	log_admin("[key_name(admin)] [duration_text] [ckey] from [total_rank]")
 
-	to_chat(owning_client, SPAN_WARNING("<BIG><B>You have been jobbanned by [admin.ckey] from: [total_rank].</B></BIG>"))
-	to_chat(owning_client, SPAN_WARNING("<B>The reason is: [ban_text]</B>"))
+	to_chat(owning_client, SPAN_WARNING("<BIG><B>你已被[admin.ckey]禁止担任以下职位：[total_rank]。</B></BIG>"))
+	to_chat(owning_client, SPAN_WARNING("<B>原因：[ban_text]</B>"))
 	if(!duration)
-		to_chat(owning_client, SPAN_WARNING("Jobban can be lifted only upon request."))
+		to_chat(owning_client, SPAN_WARNING("职位封禁仅可通过申请解除。"))
 	else
 		to_chat(owning_client, SPAN_WARNING("This jobban is timed and will expire in [duration] minutes."))
 

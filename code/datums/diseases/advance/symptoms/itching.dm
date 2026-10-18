@@ -18,7 +18,7 @@ BONUS
 
 /datum/symptom/itching
 
-	name = "Itching"
+	name = "瘙痒"
 	stealth = 0
 	resistance = 3
 	stage_speed = 3
@@ -29,5 +29,5 @@ BONUS
 	..()
 	if(prob(SYMPTOM_ACTIVATION_PROB))
 		var/mob/living/M = A.affected_mob
-		to_chat(M, SPAN_NOTICE("Your [pick("back", "arm", "leg", "elbow", "head")] itches."))
+		to_chat(M, SPAN_NOTICE("你的[pick("背", "手臂", "腿", "手肘", "头")]很痒。"))
 	return

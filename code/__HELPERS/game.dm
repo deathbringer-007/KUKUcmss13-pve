@@ -277,7 +277,7 @@
 
 		if(abomination)
 			if(!(/datum/tutorial/xenomorph/abomination::tutorial_id in cur_obs.client.prefs.completed_tutorials))
-				to_chat(cur_obs, SPAN_BOLDNOTICE("You were passed over for playing as an Abomination because you have not completed its tutorial."))
+				to_chat(cur_obs, SPAN_BOLDNOTICE("你尚未完成教学，因此未被选中扮演憎恶异形。"))
 				continue
 
 		candidates += cur_obs
@@ -303,7 +303,7 @@
 		var/mob/dead/observer/cur_obs = candidates[i]
 
 		// Generate the messages
-		var/cached_message = "You are currently [i-dequeued]\th in the larva queue."
+		var/cached_message = "你目前排在幼体队列的第[i-dequeued]位。"
 		cur_obs.larva_queue_cached_message = cached_message
 		if(!cache_only)
 			var/chat_message = dequeued ? replacetext(cached_message, "currently", "now") : cached_message

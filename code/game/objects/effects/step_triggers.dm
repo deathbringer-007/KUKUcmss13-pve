@@ -192,7 +192,7 @@
 /obj/effect/step_trigger/teleporter/yautja_ship/Trigger(atom/movable/A)
 	var/turf/destination
 	if(length(GLOB.yautja_teleports)) //We have some possible locations.
-		var/pick = tgui_input_list(usr, "Where do you want to go today?", "Locations", GLOB.yautja_teleport_descs) //Pick one of them in the list.)
+		var/pick = tgui_input_list(usr, "今天想去哪里？", "地点", GLOB.yautja_teleport_descs) //Pick one of them in the list.)
 		destination = GLOB.yautja_teleport_descs[pick]
 	if(!destination || (A.loc != loc))
 		return
@@ -213,7 +213,7 @@
 		if(istype(A, /obj/effect)) return
 		qdel(A)
 	else if(isliving(A)) //Hacked it up so it just deletes it
-		to_chat(A, SPAN_DANGER("You get lost into the depths of space, never to be seen again."))
+		to_chat(A, SPAN_DANGER("你迷失在深空中，再也无人见过你。"))
 		qdel(A)
 
 /obj/effect/step_trigger/teleporter_vector/damage //you take damage and are stunned when you step on it, think falling down elevatorshaft or second story of a building

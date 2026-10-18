@@ -4,7 +4,7 @@
 	var/i_attached //Added for possible image attachments to objects. For hallucinations and the like.
 
 /obj/effect/overlay/palmtree_r
-	name = "Palm tree"
+	name = "棕榈树"
 	icon = 'icons/turf/beach2.dmi'
 	icon_state = "palm1"
 	density = TRUE
@@ -12,7 +12,7 @@
 	anchored = TRUE
 
 /obj/effect/overlay/palmtree_l
-	name = "Palm tree"
+	name = "棕榈树"
 	icon = 'icons/turf/beach2.dmi'
 	icon_state = "palm2"
 	density = TRUE
@@ -20,12 +20,12 @@
 	anchored = TRUE
 
 /obj/effect/overlay/coconut
-	name = "Coconuts"
+	name = "椰子"
 	icon = 'icons/turf/floors/beach.dmi'
 	icon_state = "coconuts"
 
 /obj/effect/overlay/danger
-	name = "Danger"
+	name = "危险"
 	icon = 'icons/obj/items/weapons/grenade.dmi'
 	icon_state = "danger"
 	layer = ABOVE_FLY_LAYER
@@ -47,8 +47,8 @@
 		QDEL_IN(src, effect_duration)
 
 /obj/effect/overlay/temp/point
-	name = "arrow"
-	desc = "It's an arrow hanging in mid-air. There may be a wizard about."
+	name = "箭头"
+	desc = "一个悬在半空的箭头。附近也许有巫师。"
 	icon = 'icons/mob/hud/screen1.dmi'
 	icon_state = "arrow"
 	anchored = TRUE
@@ -142,7 +142,7 @@
 
 //Special laser for coordinates, not for CAS
 /obj/effect/overlay/temp/laser_coordinate
-	name = "laser"
+	name = "激光"
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_ICON
 	light_range = 2
@@ -159,7 +159,7 @@
 	. = ..()
 
 /obj/effect/overlay/temp/laser_target
-	name = "laser"
+	name = "激光"
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_ICON
 	light_range = 2
@@ -175,7 +175,7 @@
 	..()
 	user = _user
 	if(squad_name)
-		name = "[squad_name] laser"
+		name = "[squad_name]激光"
 	if(user && user.faction && GLOB.cas_groups[user.faction])
 		signal = new(src)
 		signal.name = name
@@ -205,12 +205,12 @@
 /obj/effect/overlay/temp/laser_target/get_examine_text(mob/user)
 	. = ..()
 	if(ishuman(user))
-		. += SPAN_DANGER("It's a laser to designate artillery targets, get away from it!")
+		. += SPAN_DANGER("这是用于标定炮击目标的激光，快离开那里！")
 
 
 //used to show where dropship ordnance will impact.
 /obj/effect/overlay/temp/blinking_laser
-	name = "blinking laser"
+	name = "闪烁的激光"
 	anchored = TRUE
 	light_range = 2
 	effect_duration = 10
@@ -219,7 +219,7 @@
 	icon_state = "laser_target3"
 
 /obj/effect/overlay/temp/plasma_impact
-	name = "plasma impact"
+	name = "等离子体冲击"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "impact_laser_purple"
 	light_range = 2
@@ -230,7 +230,7 @@
 /obj/effect/overlay/temp/emp_sparks
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "empdisable"
-	name = "emp sparks"
+	name = "电磁脉冲火花"
 	effect_duration = 10
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
@@ -239,7 +239,7 @@
 	..()
 
 /obj/effect/overlay/temp/emp_pulse
-	name = "emp pulse"
+	name = "电磁脉冲"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "emppulse"
 	effect_duration = 20
@@ -247,7 +247,7 @@
 /obj/effect/overlay/temp/elec_arc
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "electricity"
-	name = "electric arc"
+	name = "电弧"
 	effect_duration = 3 SECONDS
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
@@ -302,7 +302,7 @@
 //acid pool splash animation
 
 /obj/effect/overlay/temp/acid_pool_splash
-	name = "acid splash"
+	name = "酸液溅射"
 	icon = 'icons/mob/xenos/effects.dmi'
 	icon_state = "pool_splash"
 	effect_duration = 10 SECONDS

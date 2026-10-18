@@ -91,7 +91,7 @@
 		if(admin_holder.rights & R_PERMISSIONS)
 			manager = TRUE
 	else if(!isCouncil(src))
-		to_chat(usr, SPAN_WARNING("Error: you are not authorised to view the records of another player!"))
+		to_chat(usr, SPAN_WARNING("错误：你无权查看其他玩家的记录！"))
 		return
 
 	var/target = input(usr, "What CKey do you wish to check?", "Target")

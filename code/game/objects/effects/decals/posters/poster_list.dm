@@ -11,17 +11,17 @@ Template
 /datum/poster/poster_1
 	icon_state="poster1"
 	name = "'The Future'"
-	desc = "This poster depicts a sunrise over a vectored mountain range in front of a stylized grid. You can appreciate its A E S T H E T I C."
+	desc = "海报上，日出照耀着网格背景前以矢量风格绘制的群山。你能欣赏到那股复古美学气息。"
 
 /datum/poster/poster_2
 	icon_state="poster2"
 	name = "Unicorn"
-	desc = "This blacklight felt poster is depicts a unicorn under a rainbow with the word 'DRUG' boldly written under it. You had this same one when you were younger, but you'd never tell anyone."
+	desc = "这张荧光绒面海报画着彩虹下的一只独角兽，下方醒目地写着“毒品”。你年轻时也有一张一模一样的，但你绝不会告诉任何人。"
 
 /datum/poster/poster_3
 	icon_state="poster3"
 	name = "Lita"
-	desc = "This poster depicts a long-gone 20th century rocker. Rock may be dead, but it had a good run."
+	desc = "海报上是一位早已逝去的20世纪摇滚歌手。摇滚或许已死，但也曾辉煌一时。"
 
 /datum/poster/poster_4
 	icon_state="poster4"

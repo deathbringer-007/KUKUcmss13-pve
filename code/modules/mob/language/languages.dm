@@ -1,9 +1,9 @@
 /datum/language/common
 	name = LANGUAGE_ENGLISH
 	desc = "地球通用英语。美洲联盟的标准语言。"
-	speech_verb = "says"
-	ask_verb = "asks"
-	exclaim_verb = list("exclaims","shouts","yells")
+	speech_verb = "说道"
+	ask_verb = "问道"
+	exclaim_verb = list("惊呼道","大喊道","喊道")
 	key = "1"
 	flags = RESTRICTED
 
@@ -15,9 +15,9 @@
 /datum/language/scandinavian
 	name = LANGUAGE_SCANDINAVIAN
 	desc = "斯堪的纳维亚诸语言严格说来并非同一种语言，但如今已十分相近，不熟悉的人几乎无法区分。"
-	speech_verb = "utters"
-	ask_verb = "queries"
-	exclaim_verb = "yelps"
+	speech_verb = "低声说道"
+	ask_verb = "询问道"
+	exclaim_verb = "尖叫道"
 	color = "scandinavian"
 	key = "0"
 
@@ -26,14 +26,14 @@
 /datum/language/generated/japanese
 	name = LANGUAGE_JAPANESE
 	desc = "一种以复杂著称的语言，有着庞大的语法体系、三套文字系统和新近引入的英语借词。它因三世界帝国内部频繁的文化交流而广受使用，并随移民传播到境外。"
-	speech_verb = "vocalizes"
+	speech_verb = "发声道"
 	color = "japanese"
 	key = "2"
 
 /datum/language/russian
 	name = LANGUAGE_RUSSIAN
 	desc = "源自地球的东斯拉夫语言。它是进步人民联盟的主要语言，也常被美洲联盟境内的斯拉夫少数族群使用。"
-	speech_verb = "enunciates"
+	speech_verb = "清晰地说道"
 	color = "soghun"
 	key = "3"
 
@@ -42,9 +42,9 @@
 /datum/language/german
 	name = LANGUAGE_GERMAN
 	desc = "标准高地德语，主要通行于中欧，也被其他地区的德裔移民使用。"
-	speech_verb = "proclaims"
-	ask_verb = "inquires"
-	exclaim_verb = "bellows"
+	speech_verb = "宣告道"
+	ask_verb = "询问道"
+	exclaim_verb = "吼道"
 	color = "german"
 	key = "4"
 
@@ -53,9 +53,9 @@
 /datum/language/spanish
 	name = LANGUAGE_SPANISH
 	desc = "美洲联盟第二常用的语言，由拉丁美洲领土和原美国南部的陆战队员传播开来。"
-	speech_verb = "states"
-	ask_verb = "quizes"
-	exclaim_verb = "yells"
+	speech_verb = "说道"
+	ask_verb = "提问道"
+	exclaim_verb = "喊道"
 	color = "spanish"
 	key = "5"
 
@@ -64,9 +64,9 @@
 /datum/language/portuguese
 	name = LANGUAGE_PORTUGUESE
 	desc = "美洲联盟第三常用的语言。"
-	speech_verb = "states"
-	ask_verb = "quizes"
-	exclaim_verb = "yells"
+	speech_verb = "说道"
+	ask_verb = "提问道"
+	exclaim_verb = "喊道"
 	color = "portuguese"
 	key = "6"
 
@@ -75,9 +75,9 @@
 /datum/language/french
 	name = LANGUAGE_FRENCH
 	desc = "地球上使用最广的语言。法兰西万岁。"
-	speech_verb = "proclaims"
-	ask_verb = "inquires"
-	exclaim_verb = "bellows"
+	speech_verb = "宣告道"
+	ask_verb = "询问道"
+	exclaim_verb = "吼道"
 	color = "french"
 	key = "7"
 
@@ -86,16 +86,16 @@
 /datum/language/generated/chinese
 	name = LANGUAGE_CHINESE
 	desc = "进步人民联盟的第二语言，在亚洲广泛使用，世界其他地区也有规模可观的移民使用者。它是已知星域中使用最广的语言。"
-	speech_verb = "voices"
-	ask_verb = "questions"
-	exclaim_verb = "shouts"
+	speech_verb = "发声道"
+	ask_verb = "问道"
+	exclaim_verb = "大喊道"
 	color = "chinese"
 	key = "8"
 
 /datum/language/ruspatois
 	name = LANGUAGE_RUSPATOIS
 	desc = "在美洲联盟和三世界帝国境内居住数十年的东欧人所使用的俄语混合方言。它与当代俄语基本无法互通。"
-	speech_verb = "says"
+	speech_verb = "说道"
 	color = "ruspatois"
 	key = "9"
 
@@ -104,9 +104,9 @@
 /datum/language/filipino
 	name = LANGUAGE_FILIPINO
 	desc = "美洲联盟第四常用的语言。"
-	speech_verb = "states"
-	ask_verb = "quizes"
-	exclaim_verb = "yells"
+	speech_verb = "说道"
+	ask_verb = "提问道"
+	exclaim_verb = "喊道"
 	color = "filipino"
 	key = "f"
 
@@ -115,9 +115,9 @@
 /datum/language/polish
 	name = LANGUAGE_POLISH
 	desc = "波兰人使用的一种西斯拉夫语言。目前是进步人民联盟第五常用的语言。"
-	speech_verb = "says"
-	ask_verb = "inquires"
-	exclaim_verb = "shouts"
+	speech_verb = "说道"
+	ask_verb = "询问道"
+	exclaim_verb = "大喊道"
 	color = "polish"
 	key = "p"
 
@@ -126,9 +126,9 @@
 /datum/language/hellhound
 	name = LANGUAGE_HELLHOUND
 	desc = "一种低沉的喉音交流方式，似乎只有地狱猎犬能发出这些声音。"
-	speech_verb = "growls"
-	ask_verb = "grumbles"
-	exclaim_verb = "snarls"
+	speech_verb = "低吼道"
+	ask_verb = "嘟囔道"
+	exclaim_verb = "咆哮道"
 	color = "monkey"
 	key = "h"
 
@@ -138,9 +138,9 @@
 /datum/language/commando
 	name = LANGUAGE_TSL
 	desc = "战术手语是一种现代交流技术，结合了改良的美国手语、战术手势，以及只有精锐突击队才知晓的隐秘无线电代号。"
-	speech_verb = "discreetly communicates"
-	ask_verb = "interrogates"
-	exclaim_verb = "orders"
+	speech_verb = "隐秘地交流"
+	ask_verb = "盘问道"
+	exclaim_verb = "命令道"
 	color = "commando"
 	key = "l"
 
@@ -151,9 +151,9 @@
 /datum/language/sainja //Yautja tongue
 	name = LANGUAGE_YAUTJA
 	desc = "铁血战士发出的低沉、隆隆作响的喉音。没有面部颚肢的种族很难说出这种语言。"
-	speech_verb = "rumbles"
-	ask_verb = "rumbles"
-	exclaim_verb = "roars"
+	speech_verb = "低沉地说道"
+	ask_verb = "低沉地说道"
+	exclaim_verb = "咆哮道"
 	color = "tajaran"
 	key = "s"
 	flags = WHITELISTED
@@ -164,9 +164,9 @@
 /datum/language/primitive
 	name = LANGUAGE_MONKEY
 	desc = "噢噢噢。"
-	speech_verb = "chimpers"
-	ask_verb = "chimpers"
-	exclaim_verb = "screeches"
+	speech_verb = "吱吱叫道"
+	ask_verb = "吱吱叫道"
+	exclaim_verb = "尖啸道"
 	color = "monkey"
 	key = "m"
 
@@ -174,9 +174,9 @@
 	name = LANGUAGE_XENOMORPH
 	color = "xenotalk"
 	desc = "异形的通用语言。"
-	speech_verb = "hisses"
-	ask_verb = "hisses"
-	exclaim_verb = "hisses"
+	speech_verb = "嘶声道"
+	ask_verb = "嘶声道"
+	exclaim_verb = "嘶声道"
 	key = "x"
 	syllables = list("sss", "sSs", "SSS")
 	flags = RESTRICTED
@@ -184,9 +184,9 @@
 /datum/language/xenos
 	name = LANGUAGE_HIVEMIND
 	desc = "异形能够通过精神性的虫巢意识交流，十分奇特。"
-	speech_verb = "hiveminds"
-	ask_verb = "hiveminds"
-	exclaim_verb = "hiveminds"
+	speech_verb = "通过巢群意识传达"
+	ask_verb = "通过巢群意识传达"
+	exclaim_verb = "通过巢群意识传达"
 	color = "xeno"
 	key = "q"
 	flags = RESTRICTED|HIVEMIND
@@ -205,9 +205,9 @@
 	name = LANGUAGE_APOLLO
 	desc = "阿波罗链路是西格森设计的人工智能子处理器，用于协调维护无人机和工作乔。维兰德-汤谷否认了其窃取该处理器用于阿瑞斯的指控。"
 	color = "skrell"
-	speech_verb = "states"
-	ask_verb = "queries"
-	exclaim_verb = "declares"
+	speech_verb = "说道"
+	ask_verb = "询问道"
+	exclaim_verb = "宣布道"
 	key = "a"
 	flags = RESTRICTED|HIVEMIND
 
@@ -255,9 +255,9 @@
 /datum/language/event_hivemind
 	name = LANGUAGE_TELEPATH
 	desc = "仅供活动使用的语言，为使用者提供共享意识。"
-	speech_verb = "resonates"
-	ask_verb = "resonates"
-	exclaim_verb = "resonates"
+	speech_verb = "共鸣道"
+	ask_verb = "共鸣道"
+	exclaim_verb = "共鸣道"
 	color = "tajaran"
 	key = "t"
 	flags = RESTRICTED|HIVEMIND

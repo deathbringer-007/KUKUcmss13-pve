@@ -1,8 +1,8 @@
 
 //Alium nests. Essentially beds with an unbuckle delay that only aliums can buckle mobs to.
 /obj/structure/bed/nest
-	name = "alien nest"
-	desc = "It's a gruesome pile of thick, sticky resin shaped like a nest."
+	name = "异形巢穴"
+	desc = "一堆粗厚黏稠的树脂，形状如同巢穴，令人毛骨悚然。"
 	icon = 'icons/mob/xenos/effects.dmi'
 	icon_state = "nest"
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
@@ -88,7 +88,7 @@
 		var/obj/item/grab/G = W
 		if(ismob(G.grabbed_thing))
 			var/mob/M = G.grabbed_thing
-			to_chat(user, SPAN_NOTICE("You place \the [M] on \the [src]."))
+			to_chat(user, SPAN_NOTICE("你将[M]放到[src]上。"))
 			M.forceMove(loc)
 		return TRUE
 	if(W.flags_item & NOBLUDGEON)
@@ -96,21 +96,21 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/carbon = user
 		if(HIVE_ALLIED_TO_HIVE(carbon.hivenumber, hivenumber))
-			to_chat(user, SPAN_XENOWARNING("We shouldn't interfere with the nest, leave that to the drones."))
+			to_chat(user, SPAN_XENOWARNING("我们不该动这个巢穴，留给工蜂处理。"))
 			return
 	if(buckled_mob)
 		if(iswelder(W))
 			var/obj/item/tool/weldingtool/WT = W
 			if(!WT.isOn())
-				to_chat(user, SPAN_WARNING("You need to turn \the [W] on before you can unnest someone!"))
+				to_chat(user, SPAN_WARNING("必须先开启[W]，才能把人从巢穴里救出！"))
 				return
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-			user.visible_message(SPAN_NOTICE("\The [user] starts burning through the resin binding \the [buckled_mob] in place..."), SPAN_NOTICE("You start burning through the resin binding \the [buckled_mob] in place..."))
+			user.visible_message(SPAN_NOTICE("[user]开始烧穿将[buckled_mob]固定住的树脂……"), SPAN_NOTICE("你开始烧穿将[buckled_mob]固定住的树脂……"))
 			if(!do_after(user, 1 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_HOSTILE) || !WT.isOn())
 				return
 			if(!buckled_mob)
 				return
-			buckled_mob.visible_message(SPAN_NOTICE("\The [user] pulls \the [buckled_mob] free from \the [src]!"), SPAN_NOTICE("\The [user] pulls you free from \the [src]."), SPAN_NOTICE("You hear squelching."))
+			buckled_mob.visible_message(SPAN_NOTICE("[user]将[buckled_mob]从[src]中拉了出来！"), SPAN_NOTICE("[user]将你从[src]中拉了出来。"), SPAN_NOTICE("你听见黏稠物被撕扯的声音。"))
 			playsound(loc, "alien_resin_move", 50)
 			if(ishuman(buckled_mob))
 				var/mob/living/carbon/human/H = buckled_mob
@@ -118,12 +118,12 @@
 			unbuckle()
 			return
 		if(is_sharp(W))
-			user.visible_message(SPAN_NOTICE("\The [user] starts cutting through the resin binding \the [buckled_mob] in place..."), SPAN_NOTICE("You start cutting through the resin binding \the [buckled_mob] in place..."))
+			user.visible_message(SPAN_NOTICE("[user]开始切开将[buckled_mob]固定住的树脂……"), SPAN_NOTICE("你开始切开将[buckled_mob]固定住的树脂……"))
 			if(!do_after(user, 3 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_HOSTILE))
 				return
 			if(!buckled_mob)
 				return
-			buckled_mob.visible_message(SPAN_NOTICE("\The [user] pulls \the [buckled_mob] free from \the [src]!"), SPAN_NOTICE("\The [user] pulls you free from \the [src]."), SPAN_NOTICE("You hear squelching."))
+			buckled_mob.visible_message(SPAN_NOTICE("[user]将[buckled_mob]从[src]中拉了出来！"), SPAN_NOTICE("[user]将你从[src]中拉了出来。"), SPAN_NOTICE("你听见黏稠物被撕扯的声音。"))
 			playsound(loc, "alien_resin_move", 50)
 			if(ishuman(buckled_mob))
 				var/mob/living/carbon/human/H = buckled_mob
@@ -133,8 +133,8 @@
 	health = max(0, health - W.force)
 	playsound(loc, "alien_resin_break", 25)
 	user.animation_attack_on(src)
-	user.visible_message(SPAN_WARNING("\The [user] hits \the [src] with \the [W]!"), \
-	SPAN_WARNING("You hit \the [src] with \the [W]!"))
+	user.visible_message(SPAN_WARNING("[user]用[W]击打[src]！"), \
+	SPAN_WARNING("你用[W]击打[src]！"))
 	healthcheck()
 
 /obj/structure/bed/nest/manual_unbuckle(mob/living/user)
@@ -147,32 +147,32 @@
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/X = user
 		if(!X.hive.unnesting_allowed && !isxeno_builder(X) && HIVE_ALLIED_TO_HIVE(X.hivenumber, hivenumber))
-			to_chat(X, SPAN_XENOWARNING("We shouldn't interfere with the nest, leave that to the drones."))
+			to_chat(X, SPAN_XENOWARNING("我们不该动这个巢穴，留给工蜂处理。"))
 			return
 	else if(iscarbon(user))
 		var/mob/living/carbon/H = user
 		if(HIVE_ALLIED_TO_HIVE(H.hivenumber, hivenumber))
-			to_chat(H, SPAN_XENOWARNING("We shouldn't interfere with the nest, leave that to the drones."))
+			to_chat(H, SPAN_XENOWARNING("我们不该动这个巢穴，留给工蜂处理。"))
 			return
 
 	if(ishuman(buckled_mob) && isxeno(user))
 		var/mob/living/carbon/human/H = buckled_mob
 		if(H.recently_nested)
-			to_chat(user, SPAN_WARNING("[H] was nested recently. Wait a bit."))
+			to_chat(user, SPAN_WARNING("[H]刚被固定进巢穴，请稍等。"))
 			return
 		if(H.stat != DEAD)
-			if(alert(user, "[H] is still alive and kicking! Are we sure we want to remove them from the nest?", "Confirmation", "Yes", "No") != "Yes")
+			if(alert(user, "[H] 还活蹦乱跳的！确定要将其移出巢穴吗？", "确认", "Yes", "No") != "Yes")
 				return
 			if(!buckled_mob || !user.Adjacent(H) || user.is_mob_incapacitated(FALSE))
 				return
 
 	if(ishuman(user))
-		user.visible_message(SPAN_NOTICE("\The [user] starts pulling \the [buckled_mob] free from the resin binding them in place..."), SPAN_NOTICE("You start pulling \the [buckled_mob] free from the resin binding them in place..."))
+		user.visible_message(SPAN_NOTICE("[user]开始将[buckled_mob]从固定住其身体的树脂中拉出……"), SPAN_NOTICE("你开始将[buckled_mob]从固定住其身体的树脂中拉出……"))
 		if(!do_after(user, 8 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_HOSTILE))
 			return
-	buckled_mob.visible_message(SPAN_NOTICE("\The [user] pulls \the [buckled_mob] free from \the [src]!"),\
-	SPAN_NOTICE("\The [user] pulls you free from \the [src]."),\
-	SPAN_NOTICE("You hear squelching."))
+	buckled_mob.visible_message(SPAN_NOTICE("[user]将[buckled_mob]从[src]中拉了出来！"),\
+	SPAN_NOTICE("[user]将你从[src]中拉了出来。"),\
+	SPAN_NOTICE("你听见黏稠物被撕扯的声音。"))
 	playsound(loc, "alien_resin_move", 50)
 	if(ishuman(buckled_mob))
 		var/mob/living/carbon/human/H = buckled_mob
@@ -192,23 +192,23 @@
 		return
 
 	if(isxeno(mob))
-		to_chat(user, SPAN_WARNING("We can't buckle our sisters."))
+		to_chat(user, SPAN_WARNING("我们不能固定自己的姐妹。"))
 		return
 
 	if(buckled_mob)
-		to_chat(user, SPAN_WARNING("There's already someone in [src]."))
+		to_chat(user, SPAN_WARNING("[src]里已经有人了。"))
 		return
 
 	if(mob.mob_size > MOB_SIZE_HUMAN)
-		to_chat(user, SPAN_WARNING("\The [mob] is too big to fit in [src]."))
+		to_chat(user, SPAN_WARNING("[mob]太大，无法塞进[src]。"))
 		return
 
 	if(!isxeno(user) || issynth(mob))
-		to_chat(user, SPAN_WARNING("Gross! We're not touching that stuff."))
+		to_chat(user, SPAN_WARNING("真恶心！我们才不碰那东西。"))
 		return
 
 	if(isyautja(mob) && !force_nest)
-		to_chat(user, SPAN_WARNING("\The [mob] seems to be wearing some kind of resin-resistant armor!"))
+		to_chat(user, SPAN_WARNING("[mob]似乎穿着某种防树脂护甲！"))
 		return
 
 	if(mob == user)
@@ -218,7 +218,7 @@
 	if(ishuman(mob))
 		human = mob
 		if(human.body_position != LYING_DOWN) //Don't ask me why is has to be
-			to_chat(user, SPAN_WARNING("[mob] is resisting, ground them."))
+			to_chat(user, SPAN_WARNING("[mob]正在挣扎，先将其击倒。"))
 			return
 
 	var/securing_time = 15
@@ -226,8 +226,8 @@
 	if(ishuman_strict(mob))
 		securing_time = 75
 
-	user.visible_message(SPAN_WARNING("[user] pins [mob] into [src], preparing the securing resin."),
-	SPAN_WARNING("[user] pins [mob] into [src], preparing the securing resin."))
+	user.visible_message(SPAN_WARNING("[user]将[mob]按进[src]，准备分泌固定用的树脂。"),
+	SPAN_WARNING("[user]将[mob]按进[src]，准备分泌固定用的树脂。"))
 	var/M_loc = mob.loc
 	if(!do_after(user, securing_time, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
 		return
@@ -235,12 +235,12 @@
 		return
 
 	if(buckled_mob) //Just in case
-		to_chat(user, SPAN_WARNING("There's already someone in [src]."))
+		to_chat(user, SPAN_WARNING("[src]里已经有人了。"))
 		return
 
 	if(human) //Improperly stunned Marines won't be nested
 		if(human.body_position != LYING_DOWN) //Don't ask me why is has to be
-			to_chat(user, SPAN_WARNING("[mob] is resisting, ground them."))
+			to_chat(user, SPAN_WARNING("[mob]正在挣扎，先将其击倒。"))
 			return
 
 	do_buckle(mob, user)
@@ -263,9 +263,9 @@
 	return TRUE
 
 /obj/structure/bed/nest/send_buckling_message(mob/M, mob/user)
-	M.visible_message(SPAN_XENONOTICE("[user] secretes a thick, vile resin, securing [M] into [src]!"), \
-	SPAN_XENONOTICE("[user] drenches you in a foul-smelling resin, trapping you in [src]!"), \
-	SPAN_NOTICE("You hear squelching."))
+	M.visible_message(SPAN_XENONOTICE("[user]分泌出浓厚恶臭的树脂，将[M]固定在[src]中！"), \
+	SPAN_XENONOTICE("[user]用恶臭的树脂淋遍你的全身，将你困在[src]里！"), \
+	SPAN_NOTICE("你听见黏稠物被撕扯的声音。"))
 	playsound(loc, "alien_resin_move", 50)
 
 /obj/structure/bed/nest/unbuckle(mob/user)
@@ -287,7 +287,7 @@
 
 	if(!istype(buckled_human) || !istype(G) || !istype(M) || buckled_human.undefibbable || buckled_human.mind || M.original != buckled_human || buckled_human.chestburst)
 		return // Zealous checking as most is handled by ghost code
-	to_chat(G, FONT_SIZE_HUGE(SPAN_DANGER("You have been freed from your nest and may go back to your body! (Look for 'Re-enter Corpse' in Ghost verbs, or <a href='byond://?src=\ref[G];reentercorpse=1'>click here</a>!)")))
+	to_chat(G, FONT_SIZE_HUGE(SPAN_DANGER("你已获救脱离巢穴，可以返回身体了！（在幽灵指令中寻找“重新进入尸体”，或<a href='byond://?src=\ref[G];reentercorpse=1'>点击这里</a>！）")))
 	sound_to(G, 'sound/effects/attackblob.ogg')
 	if(buckled_human.client?.prefs.toggles_flashing & FLASH_UNNEST)
 		window_flash(buckled_human.client)
@@ -320,8 +320,8 @@
 		return
 	if(M.a_intent == INTENT_HARM && !buckled_mob) //can't slash nest with an occupant.
 		M.animation_attack_on(src)
-		M.visible_message(SPAN_DANGER("\The [M] claws at \the [src]!"), \
-		SPAN_DANGER("We claw at \the [src]."))
+		M.visible_message(SPAN_DANGER("[M]用爪子抓挠[src]！"), \
+		SPAN_DANGER("我们用爪子抓挠[src]。"))
 		playsound(loc, "alien_resin_break", 25)
 		health -= (M.melee_damage_upper + 25) //Beef up the damage a bit
 		healthcheck()
@@ -331,8 +331,8 @@
 	return XENO_NONCOMBAT_ACTION
 
 /obj/structure/bed/nest/attack_animal(mob/living/M as mob)
-	M.visible_message(SPAN_DANGER("\The [M] tears at \the [src]!"), \
-		SPAN_DANGER("You tear at \the [src]."))
+	M.visible_message(SPAN_DANGER("[M]撕扯[src]！"), \
+		SPAN_DANGER("你撕扯[src]。"))
 	playsound(loc, "alien_resin_break", 25)
 	health -= 40
 	healthcheck()
@@ -346,8 +346,8 @@
 	return ..()
 
 /obj/structure/bed/nest/structure
-	name = "thick alien nest"
-	desc = "A very thick nest, oozing with a thick sticky substance."
+	name = "厚重异形巢穴"
+	desc = "一个极厚的巢穴，不断渗出浓稠黏液。"
 	layer = ABOVE_SPECIAL_RESIN_STRUCTURE_LAYER
 	icon_state = "pred_nest"
 	force_nest = TRUE
@@ -370,7 +370,7 @@
 
 /obj/structure/bed/nest/structure/attack_hand(mob/user)
 	if(!isxeno(user))
-		to_chat(user, SPAN_NOTICE("The sticky resin is too strong for you to do anything to this nest"))
+		to_chat(user, SPAN_NOTICE("树脂太黏牢了，你无法对这个巢穴做什么。"))
 		return FALSE
 	. = ..()
 

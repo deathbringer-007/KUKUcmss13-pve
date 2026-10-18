@@ -1,6 +1,6 @@
 /obj/item/device/portable_vendor/antag
-	name = "Suspicious Automated Storage Briefcase"
-	desc = "A suitcase-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense small items."
+	name = "可疑的自动储物公文包"
+	desc = "手提箱大小的自动存取系统，可高效存放小型物品，并按需取出。"
 
 	w_class = SIZE_MEDIUM
 
@@ -64,16 +64,16 @@
 		var/type_to_set = types_to_convert[target.type]
 
 		if(target_mag.current_rounds < target_mag.max_rounds)
-			to_chat(H, SPAN_WARNING("[target_mag] needs to be full to convert these into rubber rounds!"))
+			to_chat(H, SPAN_WARNING("[target_mag]必须装满，才能将其中的弹药改为橡胶弹！"))
 			return .
 
-		to_chat(H, SPAN_NOTICE("You start converting [target_mag] into a rubber magazine."))
+		to_chat(H, SPAN_NOTICE("你开始将[target_mag]改装为橡胶弹弹匣。"))
 		playsound(user.loc, "sound/machines/fax.ogg", 5)
 
 		if(!do_after(H, 3 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE, target_mag, INTERRUPT_ALL))
 			return .
 
-		to_chat(H, SPAN_NOTICE("You convert [target] into a rubber magazine."))
+		to_chat(H, SPAN_NOTICE("你将[target]改装为橡胶弹弹匣。"))
 		var/obj/item/ammo_magazine/mag = new type_to_set(get_turf(user.loc))
 		qdel(target)
 
@@ -92,7 +92,7 @@
 
 		var/amount_to_add = min(P.amount, max_points - points)
 
-		to_chat(user, SPAN_NOTICE("You insert [P] into [src]."))
+		to_chat(user, SPAN_NOTICE("你将[P]插入[src]。"))
 
 		if(P.use(amount_to_add))
 			points += amount_to_add
@@ -100,8 +100,8 @@
 		. = ..()
 
 /obj/item/stack/points
-	name = "credits"
-	singular_name = "credit"
+	name = "积分"
+	singular_name = "积分"
 	gender = PLURAL
 	icon_state = "point"
 
@@ -138,8 +138,8 @@
 	amount = 20
 
 /obj/item/device/portable_vendor/antag/cia
-	name = "Automated Storage Briefcase"
-	desc = "A briefcase able to dispense items at the user's discretion. This one appears to be tightly locked, and impenetrable."
+	name = "自动储物公文包"
+	desc = "可按使用者意愿提供物品的公文包。这一个锁得严严实实，似乎无法打开。"
 	points = 200
 	max_points = 300
 	delay = 0.5
@@ -192,7 +192,7 @@
 	)
 
 /obj/item/device/portable_vendor/antag/cia/covert
-	name = "briefcase"
+	name = "公文包"
 	icon_state = "briefcase"
-	desc = "It's made of AUTHENTIC faux-leather and has a price-tag still attached. Its owner must be a real professional."
+	desc = "采用货真价实的人造皮革制成，价格标签还没摘。它的主人一定是个真正的专业人士。"
 	covert = TRUE

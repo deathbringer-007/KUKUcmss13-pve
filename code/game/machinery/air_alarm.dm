@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(aalarm_mode_descriptions, flatten_numeric_alist(alist(
 	var/list/air_scrub_info = list()
 
 /obj/structure/machinery/alarm
-	name = "alarm"
+	name = "警报器"
 	icon = 'icons/obj/structures/machinery/monitors.dmi' // I made these really quickly because idk where they have their new air alarm ~Art
 	icon_state = "alarm0"
 	anchored = TRUE
@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(aalarm_mode_descriptions, flatten_numeric_alist(alist(
 	alarm_area = get_area(src)
 	area_uid = alarm_area.uid
 	if (name == "alarm")
-		name = "[alarm_area.name] Air Alarm"
+		name = "[alarm_area.name]空气警报器"
 
 	// breathable air according to human/Life(delta_time)
 	TLV["oxygen"] = list(16, 19, 135, 140) // Partial pressure, kpa
@@ -524,7 +524,7 @@ GLOBAL_LIST_INIT(aalarm_mode_descriptions, flatten_numeric_alist(alist(
 
 
 		else if (isRemoteControlling(user) && aidisabled)
-			to_chat(user, "AI control for this Air Alarm interface has been disabled.")
+			to_chat(user, "此空气警报界面的人工智能控制已禁用。")
 			close_browser(user, "air_alarm")
 			return
 
@@ -613,7 +613,7 @@ Pressure: <span class='dl[pressure_dangerlevel]'>[environment_pressure]</span>kP
 	return output
 
 /obj/structure/machinery/alarm/proc/rcon_text()
-	var/dat = "<table width=\"100%\"><td align=\"center\"><b>Remote Control:</b><br>"
+	var/dat = "<table width=\"100%\"><td align=\"center\"><b>远程控制：</b><br>"
 	if(rcon_setting == RCON_NO)
 		dat += "<b>Off</b>"
 	else
@@ -697,8 +697,8 @@ siphoning
 "}
 					sensor_data += {"<HR>"}
 			else
-				sensor_data = "No vents connected.<BR>"
-			output = {"<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br>[sensor_data]"}
+				sensor_data = "没有连接的通风口。<BR>"
+			output = {"<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>主菜单</a><br>[sensor_data]"}
 		if (AALARM_SCREEN_SCRUB)
 			var/sensor_data = ""
 			if(length(alarm_area.air_scrub_names))
@@ -734,8 +734,8 @@ Nitrous Oxide
 <HR>
 "}
 			else
-				sensor_data = "No scrubbers connected.<BR>"
-			output = {"<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br>[sensor_data]"}
+				sensor_data = "没有连接的空气洗涤器。<BR>"
+			output = {"<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>主菜单</a><br>[sensor_data]"}
 
 		if (AALARM_SCREEN_MODE)
 			output += "<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br><b>Air machinery mode for the area:</b><ul>"
@@ -819,9 +819,9 @@ table tr:first-child th:first-child { border: none;}
 		var/list/selected = TLV["temperature"]
 		var/max_temperature = min(selected[3] - T0C, MAX_TEMPERATURE)
 		var/min_temperature = max(selected[2] - T0C, MIN_TEMPERATURE)
-		var/input_temperature = tgui_input_number(usr, "What temperature would you like the system to mantain? (Capped between [min_temperature]C and [max_temperature]C)", "Thermostat Controls", min_temperature, max_temperature, min_temperature)
+		var/input_temperature = tgui_input_number(usr, "你希望系统维持多少摄氏度？（范围为 [min_temperature]°C 至 [max_temperature]°C）", "恒温器控制", min_temperature, max_temperature, min_temperature)
 		if(!input_temperature || input_temperature > max_temperature || input_temperature < min_temperature)
-			to_chat(usr, "Temperature must be between [min_temperature]C and [max_temperature]C")
+			to_chat(usr, "温度必须在[min_temperature]℃至[max_temperature]℃之间。")
 		else
 			target_temperature = input_temperature + T0C
 
@@ -924,14 +924,14 @@ table tr:first-child th:first-child { border: none;}
 			var/t1 = text2num(href_list["AAlarmwires"])
 			var/obj/item/held_item = usr.get_held_item()
 			if (!held_item || !HAS_TRAIT(held_item, TRAIT_TOOL_WIRECUTTERS))
-				to_chat(usr, SPAN_WARNING("You need wirecutters!"))
+				to_chat(usr, SPAN_WARNING("你需要剪线钳！"))
 				return
 			if (isWireColorCut(t1))
 				mend(t1)
 			else
 				cut(t1)
 				if (AAlarmwires == 0)
-					to_chat(usr, SPAN_NOTICE("You cut last of wires inside [src]"))
+					to_chat(usr, SPAN_NOTICE("你剪断了[src]内部最后几根电线。"))
 					update_icon()
 					buildstage = 1
 				return
@@ -940,10 +940,10 @@ table tr:first-child th:first-child { border: none;}
 			var/t1 = text2num(href_list["pulse"])
 			var/obj/item/held_item = usr.get_held_item()
 			if (held_item && !HAS_TRAIT(held_item, TRAIT_TOOL_MULTITOOL))
-				to_chat(usr, SPAN_WARNING("You need a multitool!"))
+				to_chat(usr, SPAN_WARNING("你需要多用工具！"))
 				return
 			if (isWireColorCut(t1))
-				to_chat(usr, SPAN_WARNING("You can't pulse a cut wire."))
+				to_chat(usr, SPAN_WARNING("你无法向已剪断的电线发送脉冲。"))
 				return
 			else
 				pulse(t1)
@@ -959,7 +959,7 @@ table tr:first-child th:first-child { border: none;}
 			if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))  // Opening that Air Alarm up.
 				//to_chat(user, "You pop the Air Alarm's maintence panel open.")
 				wiresexposed = !wiresexposed
-				to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"]")
+				to_chat(user, "线路已被[wiresexposed ? "暴露出来" : "遮住"]。")
 				update_icon()
 				return
 
@@ -968,37 +968,37 @@ table tr:first-child th:first-child { border: none;}
 
 			if(istype(W, /obj/item/card/id))// trying to unlock the interface with an ID card
 				if(inoperable())
-					to_chat(user, "It does nothing")
+					to_chat(user, "没有任何效果。")
 					return
 				else
 					if(allowed(usr) && !isWireCut(AALARM_WIRE_IDSCAN))
 						locked = !locked
-						to_chat(user, SPAN_NOTICE(" You [locked ? "lock" : "unlock"] the Air Alarm interface."))
+						to_chat(user, SPAN_NOTICE(" 你[locked ? "锁定" : "解锁"]了空气警报界面。"))
 						updateUsrDialog()
 					else
-						to_chat(user, SPAN_DANGER("Access denied."))
+						to_chat(user, SPAN_DANGER("访问被拒绝。"))
 			return
 
 		if(1)
 			if(iscoil(W))
 				var/obj/item/stack/cable_coil/C = W
 				if(C.use(5))
-					to_chat(user, SPAN_NOTICE("You wire \the [src]."))
+					to_chat(user, SPAN_NOTICE("你为[src]接好了线。"))
 					buildstage = 2
 					update_icon()
 					first_run()
 					return
 				else
-					to_chat(user, SPAN_WARNING("You need 5 pieces of cable to do wire \the [src]."))
+					to_chat(user, SPAN_WARNING("为[src]接线需要5段电缆。"))
 					return
 
 			else if(HAS_TRAIT(W, TRAIT_TOOL_CROWBAR))
-				user.visible_message(SPAN_NOTICE("[user] starts prying out [src]'s circuits."),
-				SPAN_NOTICE("You start prying out [src]'s circuits."))
+				user.visible_message(SPAN_NOTICE("[user]开始从[src]中撬出电路板。"),
+				SPAN_NOTICE("你开始从[src]中撬出电路板。"))
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 				if(do_after(user,20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-					user.visible_message(SPAN_NOTICE("[user] pries out [src]'s circuits."),
-					SPAN_NOTICE("You pry out [src]'s circuits."))
+					user.visible_message(SPAN_NOTICE("[user]从[src]中撬出了电路板。"),
+					SPAN_NOTICE("你从[src]中撬出了电路板。"))
 					var/obj/item/circuitboard/airalarm/circuit = new()
 					circuit.forceMove(user.loc)
 					buildstage = 0
@@ -1006,14 +1006,14 @@ table tr:first-child th:first-child { border: none;}
 				return
 		if(0)
 			if(istype(W, /obj/item/circuitboard/airalarm))
-				to_chat(user, "You insert the circuit!")
+				to_chat(user, "你装入了电路板！")
 				qdel(W)
 				buildstage = 1
 				update_icon()
 				return
 
 			else if(HAS_TRAIT(W, TRAIT_TOOL_WRENCH))
-				to_chat(user, "You remove the fire alarm assembly from the wall!")
+				to_chat(user, "你从墙上拆下了火灾警报器框架！")
 				var/obj/item/frame/air_alarm/frame = new /obj/item/frame/air_alarm()
 				frame.forceMove(user.loc)
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -1024,9 +1024,9 @@ table tr:first-child th:first-child { border: none;}
 /obj/structure/machinery/alarm/get_examine_text(mob/user)
 	. = ..()
 	if (buildstage < 2)
-		. += "It is not wired."
+		. += "尚未接线。"
 	if (buildstage < 1)
-		. += "The circuit is missing."
+		. += "缺少电路板。"
 
 
 

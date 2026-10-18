@@ -202,7 +202,7 @@
 							cur_obs.ManualFollow(affected_mob)
 							if(cur_obs.client.prefs?.toggles_flashing & FLASH_POOLSPAWN)
 								window_flash(cur_obs.client)
-						if(is_nested || tgui_alert(cur_obs, "An unnested host you hugged is about to burst! Do you want to control the new larva?", "Larva maturation", list("Yes", "No"), 10 SECONDS) == "Yes")
+						if(is_nested || tgui_alert(cur_obs, "你寄生过的一个未入巢宿主即将破胸！要控制新幼体吗？", "幼体成熟", list("Yes", "No"), 10 SECONDS) == "Yes")
 							picked = cur_obs
 							candidates -= cur_obs
 							message_alien_candidates(candidates, dequeued = 0)
@@ -232,7 +232,7 @@
 						cur_candidate.ManualFollow(affected_mob)
 						if(cur_candidate.client.prefs?.toggles_flashing & FLASH_POOLSPAWN)
 							window_flash(cur_candidate.client)
-						if(tgui_alert(cur_candidate, "An unnested host is about to burst! Do you want to control the new larva?", "Larva maturation", list("Yes", "No"), 10 SECONDS) == "Yes")
+						if(tgui_alert(cur_candidate, "一个未入巢的宿主即将破胸！要控制新幼体吗？", "幼体成熟", list("Yes", "No"), 10 SECONDS) == "Yes")
 							picked = cur_candidate
 							candidates -= cur_candidate
 							message_alien_candidates(candidates, dequeued = 0)

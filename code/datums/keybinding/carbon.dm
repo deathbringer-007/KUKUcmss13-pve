@@ -10,7 +10,7 @@
 	classic_keys =list("R", "Southwest")
 	name = "toggle_throw_mode"
 	full_name = "Toggle throw mode"
-	description = "Toggle throwing the current item or not."
+	description = "切换当前物品的投掷模式。"
 	category = CATEGORY_CARBON
 	keybind_signal = COMSIG_KB_CARBON_TOGGLETHROWMODE_DOWN
 	var/throw_mode = THROW_MODE_NORMAL
@@ -28,7 +28,7 @@
 	classic_keys = list("Ctrl+R", "Ctrl+Southwest")
 	name = "toggle_high_throw_mode"
 	full_name = "Toggle high throw mode"
-	description = "Toggle throwing the current item or not. This one does a high throw."
+	description = "切换当前物品的投掷模式。此项使用高抛。"
 	category = CATEGORY_CARBON
 	keybind_signal = COMSIG_KB_CARBON_TOGGLETHROWMODE_HIGH_DOWN
 	throw_mode = THROW_MODE_HIGH
@@ -38,7 +38,7 @@
 	classic_keys = list("Insert")
 	name = "cycle_intent"
 	full_name = "Cycle Intent"
-	description = "Cycle currently selected intent"
+	description = "循环切换当前选定的意图。"
 	category = CATEGORY_CARBON
 	keybind_signal = COMSIG_KB_CARBON_CYCLEINTENT_DOWN
 
@@ -121,7 +121,7 @@
 	classic_keys = list("Unbound")
 	name = "Give_Item"
 	full_name = "Give item"
-	description = "Give the item you're currently holding"
+	description = "递出你当前手持的物品。"
 	keybind_signal = COMSIG_KB_CARBON_GIVEITEM_DOWN
 
 /datum/keybinding/carbon/give/down(client/user)

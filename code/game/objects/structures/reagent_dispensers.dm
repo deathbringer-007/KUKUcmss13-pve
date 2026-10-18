@@ -1,5 +1,5 @@
 /obj/structure/reagent_dispensers
-	name = "dispenser"
+	name = "分配器"
 	desc = "..."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
@@ -33,27 +33,27 @@
 /obj/structure/reagent_dispensers/get_examine_text(mob/user)
 	. = ..()
 	if(get_dist(user, src) > 2 && user != loc) return
-	. += SPAN_NOTICE("It contains:")
+	. += SPAN_NOTICE("其中装有：")
 	if(reagents && length(reagents.reagent_list))
 		for(var/datum/reagent/R in reagents.reagent_list)
-			. += SPAN_NOTICE(" [R.volume] units of [R.name]")
+			. += SPAN_NOTICE(" [R.name]，共[R.volume]单位")
 	else
-		. += SPAN_NOTICE(" Nothing.")
+		. += SPAN_NOTICE(" 空无一物。")
 	if(reagents)
-		. += SPAN_NOTICE("Total volume: [reagents.total_volume] / [reagents.maximum_volume].")
+		. += SPAN_NOTICE("总容量：[reagents.total_volume]/[reagents.maximum_volume]。")
 	if(dispensing)
-		. += SPAN_NOTICE("\nTransfer mode: Dispensing")
+		. += SPAN_NOTICE("\n输送模式：输出")
 	else
-		. += SPAN_NOTICE("\nTransfer mode: Filling")
-	. += SPAN_NOTICE("Transfer rate: [amount_per_transfer_from_this] units")
+		. += SPAN_NOTICE("\n输送模式：注入")
+	. += SPAN_NOTICE("输送量：[amount_per_transfer_from_this]单位")
 
 /obj/structure/reagent_dispensers/Destroy()
 	playsound(src.loc, 'sound/effects/slosh.ogg', 50, 1, 3)
-	visible_message(SPAN_NOTICE("\The [src] falls apart as its contents spill everywhere!"))
+	visible_message(SPAN_NOTICE("[src]散架了，里面的液体洒得到处都是！"))
 	. = ..()
 
 /obj/structure/reagent_dispensers/verb/set_APTFT() //set amount_per_transfer_from_this
-	set name = "Set transfer amount"
+	set name = "设置输送量"
 	set category = "Object"
 	set src in view(1)
 
@@ -63,7 +63,7 @@
 	if(!reagents || reagents.locked)
 		return
 
-	var/N = tgui_input_list(usr, "Amount per transfer from this:","[src]", possible_transfer_amounts)
+	var/N = tgui_input_list(usr, "每次转移的数量：","[src]", possible_transfer_amounts)
 	if(N)
 		amount_per_transfer_from_this = N
 
@@ -81,7 +81,7 @@
 	return TRUE
 
 /obj/structure/reagent_dispensers/verb/set_transfer_direction() //set amount_per_transfer_from_this
-	set name = "Set transfer direction"
+	set name = "设置输送方向"
 	set category = "Object"
 	set src in view(1)
 
@@ -93,9 +93,9 @@
 
 	dispensing = !dispensing
 	if(dispensing)
-		to_chat(usr, SPAN_NOTICE("[src] is now dispensing"))
+		to_chat(usr, SPAN_NOTICE("[src]现已设为输出模式。"))
 	else
-		to_chat(usr, SPAN_NOTICE("[src] is now filling"))
+		to_chat(usr, SPAN_NOTICE("[src]现已设为注入模式。"))
 
 /obj/structure/reagent_dispensers/ex_act(severity)
 	switch(severity)
@@ -115,7 +115,7 @@
 	if(!reagents || reagents.locked)
 		return
 
-	var/N = tgui_input_list(usr, "Amount per transfer from this:","[src]", possible_transfer_amounts)
+	var/N = tgui_input_list(usr, "每次转移的数量：","[src]", possible_transfer_amounts)
 	if(N)
 		amount_per_transfer_from_this = N
 
@@ -132,9 +132,9 @@
 	if(mods[ALT_CLICK])
 		dispensing = !dispensing
 		if(dispensing)
-			to_chat(user, SPAN_NOTICE("[src] is now dispensing"))
+			to_chat(user, SPAN_NOTICE("[src]现已设为输出模式。"))
 		else
-			to_chat(user, SPAN_NOTICE("[src] is now filling"))
+			to_chat(user, SPAN_NOTICE("[src]现已设为注入模式。"))
 		return TRUE
 	return ..()
 
@@ -145,43 +145,43 @@
 
 //Dispensers
 /obj/structure/reagent_dispensers/watertank
-	name = "watertank"
-	desc = "A water tank"
+	name = "水箱"
+	desc = "一个储水箱。"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
 	chemical = "water"
 
 /obj/structure/reagent_dispensers/ammoniatank
-	name = "ammoniatank"
-	desc = "An ammonia tank"
+	name = "氨罐"
+	desc = "一个储氨罐。"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "ammoniatank"
 	chemical = "ammonia"
 
 /obj/structure/reagent_dispensers/acidtank
-	name = "sulfuric acid tank"
-	desc = "A sulfuric acid tank"
+	name = "硫酸罐"
+	desc = "一个硫酸储罐。"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "sacidtank"
 	chemical = "sulphuric acid"
 
 /obj/structure/reagent_dispensers/pacidtank
-	name = "polytrinic acid tank"
-	desc = "A polytrinic acid tank"
+	name = "多元酸罐"
+	desc = "一个多元酸储罐。"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "pacidtank"
 	chemical = "pacid"
 
 /obj/structure/reagent_dispensers/ethanoltank
-	name = "ethanol tank"
-	desc = "An ethanol tank."
+	name = "乙醇罐"
+	desc = "一个乙醇储罐。"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "ethanoltank"
 	chemical = "ethanol"
 
 /obj/structure/reagent_dispensers/fueltank
-	name = "fueltank"
-	desc = "A fuel tank"
+	name = "燃油罐"
+	desc = "一个燃油储罐。"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
 	amount_per_transfer_from_this = 10
@@ -198,17 +198,17 @@
 	if(user != loc)
 		return
 	if(modded)
-		. += SPAN_DANGER("The fuel faucet is wrenched open, leaking the fuel!")
+		. += SPAN_DANGER("燃油阀已被拧开，正在泄漏燃油！")
 	if(rig)
-		. += SPAN_NOTICE("There is some kind of device rigged to the tank.")
+		. += SPAN_NOTICE("罐上似乎安装了某种装置。")
 	if(reinforced)
-		. += SPAN_NOTICE("It seems to be reinforced with metal shielding.")
+		. += SPAN_NOTICE("它似乎装有金属防护层。")
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
 	if(rig)
-		usr.visible_message("[usr] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src]")
+		usr.visible_message("[usr]开始从[src]上拆下[rig]。", "你开始从 \the [src] 上拆下 [rig]。")
 		if(do_after(usr, 20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-			usr.visible_message(SPAN_NOTICE("[usr] detaches [rig] from \the [src]."), SPAN_NOTICE(" You detach [rig] from \the [src]"))
+			usr.visible_message(SPAN_NOTICE("[usr]从[src]上拆下了[rig]。"), SPAN_NOTICE(" 你从[src]上拆下了[rig]。"))
 			rig.forceMove(get_turf(usr))
 			rig = null
 			update_icon()
@@ -219,7 +219,7 @@
 	src.add_fingerprint(user)
 
 	if(user.action_busy)
-		to_chat(user, SPAN_WARNING("You're already peforming an action!"))
+		to_chat(user, SPAN_WARNING("你正在执行其他动作！"))
 		return
 
 	/*if (HAS_TRAIT(W, TRAIT_TOOL_WRENCH))
@@ -233,19 +233,19 @@
 	if(istype(W,/obj/item/device/assembly_holder))
 
 		if(rig)
-			to_chat(user, SPAN_DANGER("There is another device in the way."))
+			to_chat(user, SPAN_DANGER("有另一个装置挡住了位置。"))
 			return ..()
 
-		user.visible_message("[user] begins rigging [W] to \the [src].", "You begin rigging [W] to \the [src]")
+		user.visible_message("[user]开始将[W]安装到[src]上。", "你开始将 [W] 装到 \the [src] 上。")
 
 		if(!do_after(user, 20, INTERRUPT_ALL, BUSY_ICON_HOSTILE, src, INTERRUPT_ALL))
 			return
 
 		if(rig)
-			to_chat(user, SPAN_DANGER("There is another device in the way."))
+			to_chat(user, SPAN_DANGER("有另一个装置挡住了位置。"))
 			return ..()
 
-		user.visible_message(SPAN_NOTICE("[user] rigs [W] to \the [src]."), SPAN_NOTICE(" You rig [W] to \the [src]"))
+		user.visible_message(SPAN_NOTICE("[user]将[W]安装到了[src]上。"), SPAN_NOTICE(" 你将[W]安装到了[src]上。"))
 
 		var/obj/item/device/assembly_holder/H = W
 		if (istype(H.a_left,/obj/item/device/assembly/igniter) || istype(H.a_right,/obj/item/device/assembly/igniter))
@@ -260,35 +260,35 @@
 	else if(istype(W,/obj/item/stack/sheet/plasteel))
 		var/obj/item/stack/sheet/plasteel/M = W
 		if(M.get_amount() < STACK_10)
-			to_chat(user, SPAN_WARNING("You don't have enough of [M] to reinforce [src]."))
+			to_chat(user, SPAN_WARNING("你的[M]不足以加固[src]。"))
 			return
 
-		user.visible_message(SPAN_NOTICE("[user] begins reinforcing the exterior of [src] with [M]."),\
-		SPAN_NOTICE("You begin reinforcing [src] with [M]."))
+		user.visible_message(SPAN_NOTICE("[user]开始用[M]加固[src]的外壳。"),\
+		SPAN_NOTICE("你开始用[M]加固[src]。"))
 
 		if(!do_after(user, 3 SECONDS, INTERRUPT_ALL, BUSY_ICON_BUILD, src, INTERRUPT_ALL) || reinforced)
 			return
 
 		if(!M.use(STACK_10))
-			to_chat(user, SPAN_WARNING("You don't have enough of [M] to reinforce [src]."))
+			to_chat(user, SPAN_WARNING("你的[M]不足以加固[src]。"))
 			return
 
-		user.visible_message(SPAN_NOTICE("[user] reinforces the exterior of [src] with [M]."),\
-		SPAN_NOTICE("You reinforce [src] with [M]."))
+		user.visible_message(SPAN_NOTICE("[user]用[M]加固了[src]的外壳。"),\
+		SPAN_NOTICE("你用[M]加固了[src]。"))
 
 		reinforced = TRUE
 		update_icon()
 
 	else if(HAS_TRAIT(W, TRAIT_TOOL_CROWBAR))
 
-		user.visible_message(SPAN_DANGER("[user] begins to remove the shielding from [src]."),\
-		SPAN_NOTICE("You begin to remove the shielding from [src]."))
+		user.visible_message(SPAN_DANGER("[user]开始拆除[src]的防护层。"),\
+		SPAN_NOTICE("你开始拆除[src]的防护层。"))
 
 		if(!do_after(user, 3 SECONDS, INTERRUPT_ALL, BUSY_ICON_BUILD, src, INTERRUPT_ALL) || !reinforced)
 			return
 
-		user.visible_message(SPAN_DANGER("[user] removes the shielding from [src]."),\
-		SPAN_NOTICE("You remove the shielding from [src]."))
+		user.visible_message(SPAN_DANGER("[user]拆除了[src]的防护层。"),\
+		SPAN_NOTICE("你拆除了[src]的防护层。"))
 		new /obj/item/stack/sheet/plasteel(loc, STACK_10)
 
 		reinforced = FALSE
@@ -375,8 +375,8 @@
 		explode()
 
 /obj/structure/reagent_dispensers/fueltank/gas
-	name = "gastank"
-	desc = "A gas tank"
+	name = "气罐"
+	desc = "一个储气罐。"
 
 /obj/structure/reagent_dispensers/fueltank/gas/leak_fuel(amount)
 	if(reagents.total_volume == 0)
@@ -386,27 +386,27 @@
 	reagents.remove_reagent(chemical,amount)
 
 /obj/structure/reagent_dispensers/fueltank/gas/methane
-	name = "methanetank"
-	desc = "A methane tank"
+	name = "甲烷罐"
+	desc = "一个甲烷储罐。"
 	icon_state = "methanetank"
 	chemical = "methane"
 
 /obj/structure/reagent_dispensers/fueltank/gas/hydrogen
-	name = "hydrogentank"
-	desc = "A hydrogen tank"
+	name = "氢气罐"
+	desc = "一个氢气储罐。"
 	icon_state = "hydrogentank"
 	chemical = "hydrogen"
 
 /obj/structure/reagent_dispensers/fueltank/oxygentank
-	name = "oxygentank"
-	desc = "An oxygen tank"
+	name = "氧气罐"
+	desc = "一个氧气储罐。"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "oxygentank"
 	chemical = "oxygen"
 
 /obj/structure/reagent_dispensers/fueltank/custom
-	name = "reagent tank"
-	desc = "A reagent tank, typically used to store large quantities of chemicals."
+	name = "试剂罐"
+	desc = "一个试剂罐，通常用于储存大量化学品。"
 
 	chemical = null
 	dispensing = FALSE //Empty fuel tanks start by accepting chemicals by default. Can't dispense nothing!
@@ -437,8 +437,8 @@
 
 
 /obj/structure/reagent_dispensers/peppertank
-	name = "pepper spray refiller"
-	desc = "Refill pepper spray canisters."
+	name = "胡椒喷雾补充罐"
+	desc = "用于补充胡椒喷雾罐。"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "peppertank"
 	anchored = TRUE
@@ -449,8 +449,8 @@
 	chemical = "condensedcapsaicin"
 
 /obj/structure/reagent_dispensers/water_cooler
-	name = "water cooler"
-	desc = "A machine that dispenses water to drink. It has levers for hot and cold, but it only dispenses room-temperature water."
+	name = "饮水机"
+	desc = "提供饮用水的机器。虽然有冷热水开关，但只能放出常温水。"
 	amount_per_transfer_from_this = 5
 	icon = 'icons/obj/structures/machinery/vending.dmi'
 	icon_state = "water_cooler"
@@ -466,8 +466,8 @@
 	icon_state = "water_cooler_2"
 
 /obj/structure/reagent_dispensers/beerkeg
-	name = "beer keg"
-	desc = "A beer keg"
+	name = "啤酒桶"
+	desc = "一个啤酒桶。"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "beertankTEMP"
 	amount_per_transfer_from_this = 10
@@ -481,8 +481,8 @@
 	icon_state = "beertank_alt2"
 
 /obj/structure/reagent_dispensers/virusfood
-	name = "virus food dispenser"
-	desc = "A dispenser of virus food."
+	name = "病毒营养液分配器"
+	desc = "用于分配病毒营养液。"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "virusfoodtank"
 	amount_per_transfer_from_this = 10

@@ -52,9 +52,9 @@
 
 
 /datum/job/antag/predator/announce_entry_message(mob/new_predator, account, whitelist_status)
-	to_chat(new_predator, SPAN_NOTICE("You are <B>Yautja</b>, a great and noble predator!"))
-	to_chat(new_predator, SPAN_NOTICE("Your job is to first study your opponents. A hunt cannot commence unless intelligence is gathered."))
-	to_chat(new_predator, SPAN_NOTICE("Hunt at your discretion, yet be observant rather than violent."))
+	to_chat(new_predator, SPAN_NOTICE("你是<B>铁血战士</b>，伟大而高贵的猎手！"))
+	to_chat(new_predator, SPAN_NOTICE("你的职责是先研究对手。在收集足够情报之前，不能开始狩猎。"))
+	to_chat(new_predator, SPAN_NOTICE("自行判断何时狩猎，但应多加观察，少些鲁莽暴力。"))
 
 /datum/job/antag/predator/generate_entry_conditions(mob/living/M, whitelist_status)
 	. = ..()

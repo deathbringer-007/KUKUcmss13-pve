@@ -4,11 +4,11 @@
 	set desc = "Visit the wiki."
 	set hidden = TRUE
 	if( CONFIG_GET(string/wikiurl_home_page) || CONFIG_GET(string/wikiurl) )
-		if(tgui_alert(src, "This will open the wiki in your browser. Are you sure?", "Confirm", list("Yes", "No")) != "Yes")
+		if(tgui_alert(src, "这将在浏览器中打开维基。确定继续吗？", "确认", list("Yes", "No")) != "Yes")
 			return
 		src << link(CONFIG_GET(string/wikiurl_home_page) || CONFIG_GET(string/wikiurl))
 	else
-		to_chat(src, SPAN_DANGER("The wiki URL is not set in the server configuration."))
+		to_chat(src, SPAN_DANGER("服务器配置中尚未设置维基网址。"))
 	return
 
 /client/verb/worksheet()
@@ -16,11 +16,11 @@
 	set desc = "Visit the worksheet."
 	set hidden = TRUE
 	if( CONFIG_GET(string/forumurl) )
-		if(tgui_alert(src, "This will open the worksheet in your browser. Are you sure?", "Confirm", list("Yes", "No")) != "Yes")
+		if(tgui_alert(src, "这将在浏览器中打开工作表。确定继续吗？", "确认", list("Yes", "No")) != "Yes")
 			return
 		src << link(CONFIG_GET(string/forumurl))
 	else
-		to_chat(src, SPAN_DANGER("The forum URL is not set in the server configuration."))
+		to_chat(src, SPAN_DANGER("服务器配置中尚未设置论坛网址。"))
 	return
 
 /client/verb/changelog()
@@ -40,7 +40,7 @@
 	set desc = "Join our Discord! Meet and talk with other players in the server."
 	set hidden = TRUE
 
-	if(tgui_alert(src, "This will open the discord in your browser. Are you sure?", "Confirm", list("Yes", "No")) != "Yes")
+	if(tgui_alert(src, "这将在浏览器中打开 Discord。确定继续吗？", "确认", list("Yes", "No")) != "Yes")
 		return
 
 	src << link("[CONFIG_GET(string/discordurl)]")
@@ -51,7 +51,7 @@
 	set desc = "View our github!."
 	set hidden = TRUE
 
-	if(tgui_alert(src, "This will open the GitHub in your browser. Are you sure?", "Confirm", list("Yes", "No")) != "Yes")
+	if(tgui_alert(src, "这将在浏览器中打开 GitHub。确定继续吗？", "确认", list("Yes", "No")) != "Yes")
 		return
 
 	src << link(CONFIG_GET(string/githuburl))
@@ -61,7 +61,7 @@
 	set name = "Set FPS"
 	set desc = "Set client FPS. 20 is the default"
 	set category = "Preferences"
-	var/fps = tgui_input_number(usr,"New FPS Value. 0 is server-sync. Higher values cause more desync.","Set FPS", 0, MAX_FPS, MIN_FPS)
+	var/fps = tgui_input_number(usr,"新的帧率值。0表示与服务器同步，数值越高越容易出现不同步。","设置帧率", 0, MAX_FPS, MIN_FPS)
 	if(world.byond_version >= 511 && byond_version >= 511 && fps >= MIN_FPS && fps <= MAX_FPS)
 		vars["fps"] = fps
 		prefs.fps = fps

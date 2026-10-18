@@ -43,7 +43,7 @@
 	var/remains_type = /obj/effect/decal/remains/xeno
 	var/bloodsplatter_type = /obj/effect/temp_visual/dir_setting/bloodsplatter/human
 	var/death_sound
-	var/death_message = "seizes up and falls limp, their eyes dead and lifeless..."
+	var/death_message = "身体一僵，软倒下去，双眼黯淡，毫无生气……"
 
 	var/breath_type = "oxygen"   // Non-oxygen gas breathed, if any.
 	var/poison_type = "phoron"   // Poisonous air.

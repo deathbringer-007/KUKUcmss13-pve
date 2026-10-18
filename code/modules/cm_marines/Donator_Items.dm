@@ -24,10 +24,10 @@
 	if(!ishuman(usr)) return
 
 	if(usr.is_mob_incapacitated() || !isturf(usr.loc))
-		to_chat(usr, SPAN_WARNING("Not right now!"))
+		to_chat(usr, SPAN_WARNING("现在不行！"))
 		return
 
-	to_chat(usr, SPAN_NOTICE("You [flags_marine_helmet & HELMET_SQUAD_OVERLAY? "hide" : "show"] the squad markings."))
+	to_chat(usr, SPAN_NOTICE("你[flags_marine_helmet & HELMET_SQUAD_OVERLAY? "隐藏" : "显示"]了小队标识。"))
 	flags_marine_helmet ^= HELMET_SQUAD_OVERLAY
 	usr.update_inv_head()
 
@@ -36,10 +36,10 @@
 	if(!ishuman(usr)) return
 
 	if(usr.is_mob_incapacitated() || !isturf(usr.loc))
-		to_chat(usr, SPAN_WARNING("Not right now!"))
+		to_chat(usr, SPAN_WARNING("现在不行！"))
 		return
 
-	to_chat(usr, SPAN_NOTICE("You [flags_marine_helmet & HELMET_GARB_OVERLAY? "hide" : "show"] the helmet garb."))
+	to_chat(usr, SPAN_NOTICE("你[flags_marine_helmet & HELMET_GARB_OVERLAY? "隐藏" : "显示"]了头盔装饰。"))
 	flags_marine_helmet ^= HELMET_GARB_OVERLAY
 	update_icon()
 
@@ -92,10 +92,10 @@
 	if(!ishuman(usr)) return
 
 	if(usr.is_mob_incapacitated() || !isturf(usr.loc))
-		to_chat(usr, SPAN_WARNING("Not right now!"))
+		to_chat(usr, SPAN_WARNING("现在不行！"))
 		return
 
-	to_chat(usr, SPAN_NOTICE("You [flags_marine_armor & ARMOR_SQUAD_OVERLAY? "hide" : "show"] the squad markings."))
+	to_chat(usr, SPAN_NOTICE("你[flags_marine_armor & ARMOR_SQUAD_OVERLAY? "隐藏" : "显示"]了小队标识。"))
 	flags_marine_armor ^= ARMOR_SQUAD_OVERLAY
 	usr.update_inv_wear_suit()
 

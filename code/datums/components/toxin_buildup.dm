@@ -65,13 +65,13 @@
 /datum/component/status_effect/toxic_buildup/proc/stat_append(mob/M, list/L)
 	SIGNAL_HANDLER
 	if(has_immunity)
-		L += "Toxin Buildup immunity [grace_period]/[initial(grace_period)]"
+		L += "毒素累积免疫：[grace_period]/[initial(grace_period)]"
 		return
-	L += "Toxin Buildup: [toxic_buildup]/[max_buildup]"
+	L += "毒素累积：[toxic_buildup]/[max_buildup]"
 
 /datum/component/status_effect/toxic_buildup/proc/apply_toxic_buildup(mob/living/carbon/xenomorph/X, list/damagedata)
 	SIGNAL_HANDLER
 	if(has_immunity)
 		return
 	damagedata["armor"] = max(damagedata["armor"] - toxic_buildup, 0)
-	to_chat(parent, SPAN_XENOHIGHDANGER("The toxic substance damages our armor!"))
+	to_chat(parent, SPAN_XENOHIGHDANGER("有毒物质正在损伤我们的护甲！"))

@@ -9,7 +9,7 @@
 /datum/chem_property/negative/hypoxemic
 	name = PROPERTY_HYPOXEMIC
 	code = "HPX"
-	description = "Reacts with hemoglobin in red blood cells preventing oxygen from being absorbed, resulting in hypoxemia."
+	description = "与红细胞中的血红蛋白反应，阻碍氧气吸收，导致低氧血症。"
 	rarity = PROPERTY_COMMON
 	value = -1
 
@@ -29,7 +29,7 @@
 /datum/chem_property/negative/toxic
 	name = PROPERTY_TOXIC
 	code = "TXC"
-	description = "Poisonous substance which causes harm on contact with or through absorption by organic tissues, resulting in bad health or severe illness."
+	description = "有机组织接触或吸收这种有毒物质后会受到损害，导致健康恶化或严重疾病。"
 	rarity = PROPERTY_COMMON
 	starter = TRUE
 	value = -1
@@ -80,7 +80,7 @@
 /datum/chem_property/negative/corrosive
 	name = PROPERTY_CORROSIVE
 	code = "CRS"
-	description = "Damages or destroys other substances on contact through a chemical reaction. Causes chemical burns on contact with living tissue."
+	description = "接触其他物质时通过化学反应将其损坏或破坏。接触活体组织会造成化学灼伤。"
 	rarity = PROPERTY_COMMON
 	starter = TRUE
 	value = 1 //has a combat use
@@ -105,27 +105,27 @@
 			var/mob/living/carbon/human/H = M
 			if(H.head)
 				if(prob(meltprob) && !H.head.unacidable)
-					to_chat(H, SPAN_DANGER("Your headgear melts away but protects you from the acid!"))
+					to_chat(H, SPAN_DANGER("你的头部装备被熔毁，但挡住了酸液！"))
 					qdel(H.head)
 					H.update_inv_head(0)
 					H.update_hair(0)
 				else
-					to_chat(H, SPAN_WARNING("Your headgear protects you from the acid."))
+					to_chat(H, SPAN_WARNING("你的头部装备挡住了酸液。"))
 				return
 
 			if(H.wear_mask)
 				if(prob(meltprob) && !H.wear_mask.unacidable)
-					to_chat(H, SPAN_DANGER("Your mask melts away but protects you from the acid!"))
+					to_chat(H, SPAN_DANGER("你的面罩被熔毁，但挡住了酸液！"))
 					qdel(H.wear_mask)
 					H.update_inv_wear_mask(0)
 					H.update_hair(0)
 				else
-					to_chat(H, SPAN_WARNING("Your mask protects you from the acid."))
+					to_chat(H, SPAN_WARNING("你的面罩挡住了酸液。"))
 				return
 
 			if(H.glasses)
 				if(prob(meltprob) && !H.glasses.unacidable)
-					to_chat(H, SPAN_DANGER("Your glasses melts away!"))
+					to_chat(H, SPAN_DANGER("你的眼镜被熔毁了！"))
 					qdel(H.glasses)
 					H.update_inv_glasses(0)
 				return
@@ -156,15 +156,15 @@
 		if(O.unacidable)
 			return
 		var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
-		I.desc = "Looks like this was \an [O] some time ago."
+		I.desc = "看起来不久前还是[O]。"
 		for(var/mob/M as anything in viewers(5, O))
-			to_chat(M, SPAN_WARNING("\The [O] melts."))
+			to_chat(M, SPAN_WARNING("[O]熔化了。"))
 		qdel(O)
 
 /datum/chem_property/negative/biocidic
 	name = PROPERTY_BIOCIDIC
 	code = "BCD"
-	description = "Ruptures cell membranes on contact, destroying most types of organic tissue."
+	description = "接触时使细胞膜破裂，破坏大多数有机组织。"
 	rarity = PROPERTY_COMMON
 	starter = TRUE
 	value = -1
@@ -182,7 +182,7 @@
 /datum/chem_property/negative/paining
 	name = PROPERTY_PAINING
 	code = "PNG"
-	description = "Activates the somatosensory system causing neuropathic pain all over the body. Unlike nociceptive pain, this is not caused to any tissue damage and is solely perceptive."
+	description = "激活躯体感觉系统，造成全身性神经病理性疼痛。与组织损伤引起的疼痛不同，这种疼痛并不伴随组织损伤，仅存在于感知中。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_STIMULANT
 	value = -1
@@ -211,7 +211,7 @@
 /datum/chem_property/negative/hemolytic
 	name = PROPERTY_HEMOLYTIC
 	code = "HML"
-	description = "Causes intravascular hemolysis, resulting in the destruction of erythrocytes (red blood cells) in the bloodstream. This can result in Hemoglobinemia, where a high concentration of hemoglobin is released into the blood plasma."
+	description = "引发血管内溶血，破坏血液中的红细胞。这可能导致血红蛋白血症，即大量血红蛋白被释放到血浆中。"
 	rarity = PROPERTY_UNCOMMON
 
 /datum/chem_property/negative/hemolytic/process(mob/living/M, potency = 1, delta_time)
@@ -238,7 +238,7 @@
 /datum/chem_property/negative/hemorrhaging
 	name = PROPERTY_HEMORRAGING
 	code = "HMR"
-	description = "Ruptures endothelial cells making up bloodvessels, causing blood to escape from the circulatory system."
+	description = "使构成血管的内皮细胞破裂，导致血液从循环系统中流失。"
 	rarity = PROPERTY_UNCOMMON
 	value = 2
 	cost_penalty = FALSE
@@ -282,7 +282,7 @@
 /datum/chem_property/negative/carcinogenic
 	name = PROPERTY_CARCINOGENIC
 	code = "CRG"
-	description = "Penetrates the cell nucleus causing direct damage to the deoxyribonucleic acid in cells resulting in cancer and abnormal cell proliferation. In extreme cases causing hyperactive apoptosis and potentially atrophy."
+	description = "侵入细胞核，直接损伤细胞内的脱氧核糖核酸，导致癌症和异常细胞增殖。极端情况下会引发过度细胞凋亡，甚至组织萎缩。"
 	rarity = PROPERTY_COMMON
 
 /datum/chem_property/negative/carcinogenic/process(mob/living/M, potency = 1, delta_time)
@@ -298,7 +298,7 @@
 /datum/chem_property/negative/hepatotoxic
 	name = PROPERTY_HEPATOTOXIC
 	code = "HPT"
-	description = "Damages hepatocytes in the liver, resulting in liver deterioration and eventually liver failure."
+	description = "损伤肝脏中的肝细胞，导致肝脏退化，最终造成肝衰竭。"
 	rarity = PROPERTY_UNCOMMON
 
 /datum/chem_property/negative/hepatotoxic/process(mob/living/M, potency = 1, delta_time)
@@ -316,7 +316,7 @@
 /datum/chem_property/negative/intravenous
 	name = PROPERTY_INTRAVENOUS
 	code = "INV"
-	description = "Due to chemical composition, this chemical can only be administered intravenously."
+	description = "由于其化学组成，这种化学品只能通过静脉给药。"
 	rarity = PROPERTY_COMMON
 	category = PROPERTY_TYPE_METABOLITE
 	max_level = 1
@@ -332,7 +332,7 @@
 /datum/chem_property/negative/nephrotoxic
 	name = PROPERTY_NEPHROTOXIC
 	code = "NPT"
-	description = "Causes deterioration and damage to podocytes in the kidney resulting in potential kidney failure."
+	description = "使肾脏中的足细胞退化并受损，可能导致肾衰竭。"
 	rarity = PROPERTY_UNCOMMON
 
 /datum/chem_property/negative/nephrotoxic/process(mob/living/M, potency = 1, delta_time)
@@ -350,7 +350,7 @@
 /datum/chem_property/negative/pneumotoxic
 	name = PROPERTY_PNEUMOTOXIC
 	code = "PNT"
-	description = "Toxic substance which causes damage to connective tissue that forms the support structure (the interstitium) of the alveoli in the lungs."
+	description = "这种有毒物质会损伤肺泡支撑结构中的结缔组织，即肺间质。"
 	rarity = PROPERTY_UNCOMMON
 
 /datum/chem_property/negative/pneumotoxic/process(mob/living/M, potency = 1, delta_time)
@@ -368,7 +368,7 @@
 /datum/chem_property/negative/oculotoxic
 	name = PROPERTY_OCULOTOXIC
 	code = "OCT"
-	description = "Damages the photoreceptive cells in the eyes impairing neural transmissions to the brain, resulting in loss of sight or blindness."
+	description = "损伤眼部感光细胞，干扰传往大脑的神经信号，导致视力下降或失明。"
 	rarity = PROPERTY_UNCOMMON
 
 /datum/chem_property/negative/oculotoxic/process(mob/living/M, potency = 1, delta_time)
@@ -389,7 +389,7 @@
 /datum/chem_property/negative/cardiotoxic
 	name = PROPERTY_CARDIOTOXIC
 	code = "CDT"
-	description = "Attacks cardiomyocytes when passing through the heart in the bloodstream. This disrupts the cardiac cycle and can lead to cardiac arrest."
+	description = "随血液流经心脏时攻击心肌细胞，扰乱心动周期，可能导致心脏骤停。"
 	rarity = PROPERTY_COMMON
 
 /datum/chem_property/negative/cardiotoxic/process(mob/living/M, potency = 1, delta_time)
@@ -407,7 +407,7 @@
 /datum/chem_property/negative/neurotoxic
 	name = PROPERTY_NEUROTOXIC
 	code = "NRT"
-	description = "Breaks down neurons causing widespread damage to the central nervous system and brain functions. Exposure may cause disorientation or unconsciousness to affected persons."
+	description = "分解神经元，广泛损害中枢神经系统和脑功能。接触者可能出现定向障碍或失去意识。"
 	rarity = PROPERTY_COMMON
 	category = PROPERTY_TYPE_TOXICANT|PROPERTY_TYPE_STIMULANT
 	cost_penalty = FALSE
@@ -431,7 +431,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/human = M
 		human.Daze(potency * volume * POTENCY_MULTIPLIER_VLOW)
-		to_chat(human, SPAN_WARNING("You start to go numb."))
+		to_chat(human, SPAN_WARNING("你的身体开始发麻。"))
 	if(isxeno(M))
 		var/mob/living/carbon/xenomorph/xeno = M
 		xeno.AddComponent(/datum/component/status_effect/daze, volume * potency * POTENCY_MULTIPLIER_LOW, 30)
@@ -439,7 +439,7 @@
 /datum/chem_property/negative/hypermetabolic
 	name = PROPERTY_HYPERMETABOLIC
 	code = "EMB"
-	description = "Takes less time for this chemical to metabolize, resulting in it being in the bloodstream for less time per unit."
+	description = "缩短这种化学品的代谢时间，使每单位药剂在血液中停留的时间减少。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_METABOLITE
 
@@ -454,7 +454,7 @@
 /datum/chem_property/negative/addictive
 	name = PROPERTY_ADDICTIVE
 	code = "ADT"
-	description = "Causes addiction. Higher potency results in a higher chance of causing an addiction when metabolized."
+	description = "导致成瘾。效力越强，代谢时引发成瘾的概率越高。"
 	rarity = PROPERTY_RARE
 	category = PROPERTY_TYPE_STIMULANT
 
@@ -479,7 +479,7 @@
 /datum/chem_property/negative/hemositic
 	name = PROPERTY_HEMOSITIC
 	code = "HST"
-	description = "The chemical shows parasitic behavior towards live erythrocytes (red blood cells) in order to produce more of itself."
+	description = "这种化学品会寄生于活红细胞，并利用它们复制自身。"
 	rarity = PROPERTY_DISABLED
 	category = PROPERTY_TYPE_REACTANT|PROPERTY_TYPE_ANOMALOUS
 	value = 1

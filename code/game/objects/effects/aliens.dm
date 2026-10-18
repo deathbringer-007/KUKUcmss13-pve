@@ -11,8 +11,8 @@
 	layer = FLY_LAYER
 
 /obj/effect/xenomorph/splatter
-	name = "splatter"
-	desc = "It burns! It burns like hygiene!"
+	name = "酸液飞溅"
+	desc = "好烫！像是被清洁剂灼烧一样！"
 	icon_state = "splatter"
 	density = FALSE
 	opacity = FALSE
@@ -24,8 +24,8 @@
 
 
 /obj/effect/xenomorph/splatterblob
-	name = "splatter"
-	desc = "It burns! It burns like hygiene!"
+	name = "酸液飞溅"
+	desc = "好烫！像是被清洁剂灼烧一样！"
 	icon_state = "acidblob"
 	density = FALSE
 	opacity = FALSE
@@ -37,8 +37,8 @@
 
 
 /obj/effect/xenomorph/spray
-	name = "splatter"
-	desc = "It burns! It burns like hygiene!"
+	name = "酸液飞溅"
+	desc = "好烫！像是被清洁剂灼烧一样！"
 	icon_state = "acid2"
 	density = FALSE
 	opacity = FALSE
@@ -167,7 +167,7 @@
 /obj/effect/xenomorph/spray/proc/apply_spray(mob/living/carbon/H, should_stun = TRUE)
 
 	if(H.body_position == STANDING_UP)
-		to_chat(H, SPAN_DANGER("Your feet scald and burn! Argh!"))
+		to_chat(H, SPAN_DANGER("你的双脚被烫伤了！啊！"))
 		if(ishuman(H))
 			H.emote("pain")
 			if(should_stun)
@@ -187,11 +187,11 @@
 		H.updatehealth()
 	else
 		H.apply_armoured_damage(damage_amount*0.33, ARMOR_BIO, BURN) //This is ticking damage!
-		to_chat(H, SPAN_DANGER("You are scalded by the burning acid!"))
+		to_chat(H, SPAN_DANGER("灼热的酸液烫伤了你！"))
 
 /obj/effect/xenomorph/spray/weak
-	name = "weak splatter"
-	desc = "It burns! It burns, but not as much!"
+	name = "弱酸飞溅"
+	desc = "好烫！不过没那么严重！"
 	icon_state = "acid2-weak"
 
 	stun_duration = 1
@@ -221,11 +221,11 @@
 		spray_stack.hit_count++
 		damage /= spray_stack.hit_count //less damage every hit
 
-		to_chat(hooman, SPAN_DANGER("Your legs scald and burn! Argh!"))
+		to_chat(hooman, SPAN_DANGER("你的双腿被烫伤了！啊！"))
 		hooman.emote(pick("scream", "pain"))
 		if (buffed_splash)
 			hooman.KnockDown(stun_duration)
-			to_chat(hooman, SPAN_HIGHDANGER("The acid coating on you starts bubbling and sizzling wildly!"))
+			to_chat(hooman, SPAN_HIGHDANGER("覆盖你身体的酸液开始疯狂冒泡，嘶嘶作响！"))
 		hooman.last_damage_data = cause_data
 		hooman.apply_armoured_damage(damage * 0.25, ARMOR_BIO, BURN, "l_foot", 20)
 		hooman.apply_armoured_damage(damage * 0.25, ARMOR_BIO, BURN, "r_foot", 20)
@@ -237,8 +237,8 @@
 		..(carbone, FALSE)
 
 /obj/effect/xenomorph/spray/strong
-	name = "strong splatter"
-	desc = "It burns a lot!"
+	name = "强酸飞溅"
+	desc = "灼烧得厉害！"
 	icon_state = "acid2-strong"
 
 	stun_duration = 2
@@ -252,8 +252,8 @@
 
 
 /obj/effect/xenomorph/spray/praetorian
-	name = "splatter"
-	desc = "It burns! It burns like hygiene!"
+	name = "酸液飞溅"
+	desc = "好烫！像是被清洁剂灼烧一样！"
 	icon_state = "acid2"
 	damage_amount = 12
 	stun_duration = 0
@@ -271,7 +271,7 @@
 			PAS.increment_stack_count(2)
 
 		if(H.body_position == STANDING_UP)
-			to_chat(H, SPAN_DANGER("Your feet scald and burn! Argh!"))
+			to_chat(H, SPAN_DANGER("你的双脚被烫伤了！啊！"))
 			H.emote("pain")
 			H.last_damage_data = cause_data
 			H.apply_armoured_damage(damage_amount * 0.5, ARMOR_BIO, BURN, "l_foot", 50)
@@ -280,14 +280,14 @@
 			H.updatehealth()
 		else
 			H.apply_armoured_damage(damage_amount*0.33, ARMOR_BIO, BURN) //This is ticking damage!
-			to_chat(H, SPAN_DANGER("You are scalded by the burning acid!"))
+			to_chat(H, SPAN_DANGER("灼热的酸液烫伤了你！"))
 	else if (isxeno(M))
 		..(M)
 
 //Medium-strength acid
 /obj/effect/xenomorph/acid
-	name = "acid"
-	desc = "Burbling corrosive stuff. I wouldn't want to touch it."
+	name = "酸液"
+	desc = "冒着气泡的腐蚀性物质。最好别碰。"
 	icon_state = "acid_normal"
 	density = FALSE
 	opacity = FALSE
@@ -308,7 +308,7 @@
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
-	name = "weak acid"
+	name = "弱酸"
 	acid_delay = 2.5 //250% delay (40% speed)
 	barricade_damage = 20
 	flare_damage = 180
@@ -316,7 +316,7 @@
 
 //Superacid
 /obj/effect/xenomorph/acid/strong
-	name = "strong acid"
+	name = "强酸"
 	acid_delay = 0.4 //40% delay (250% speed)
 	barricade_damage = 100
 	flare_damage = 2250
@@ -350,7 +350,7 @@
 				if(istype(O, /obj/vehicle/multitile))
 					var/obj/vehicle/multitile/acid_vehicle = O
 					acid_vehicle.take_damage_type(100 / src.acid_delay, "acid", src)
-					visible_message(SPAN_XENOWARNING("\the [acid_vehicle] is burnt by the strong acid blood!"))
+					visible_message(SPAN_XENOWARNING("[acid_vehicle]被强酸血液灼伤了！"))
 					continue //We just damaged it, to not break proc would completely melt the vehicle.
 				if(O.unacidable || istype(O, /obj/effect)) continue //Not unacidable things or effects. Don't want to melt xenogibs.
 				acid_t = O
@@ -390,7 +390,7 @@
 
 /obj/effect/xenomorph/acid/proc/handle_barricade()
 	if(prob(in_weather))
-		visible_message(SPAN_XENOWARNING("Acid on \The [acid_t] subsides!"))
+		visible_message(SPAN_XENOWARNING("[acid_t]上的酸液消退了！"))
 		return NONE
 	var/obj/structure/barricade/cade = acid_t
 	cade.take_acid_damage(barricade_damage)
@@ -428,13 +428,13 @@
 	remaining = return_delay
 
 	switch(ticks_left)
-		if(6) visible_message(SPAN_XENOWARNING("\The [acid_t] is barely holding up against the acid!"))
-		if(4) visible_message(SPAN_XENOWARNING("\The [acid_t]\s structure is being melted by the acid!"))
-		if(2) visible_message(SPAN_XENOWARNING("\The [acid_t] is struggling to withstand the acid!"))
-		if(0 to 1) visible_message(SPAN_XENOWARNING("\The [acid_t] begins to crumble under the acid!"))
+		if(6) visible_message(SPAN_XENOWARNING("[acid_t]在酸液腐蚀下勉强支撑！"))
+		if(4) visible_message(SPAN_XENOWARNING("[acid_t]的结构正被酸液熔化！"))
+		if(2) visible_message(SPAN_XENOWARNING("[acid_t]正在勉力抵抗酸液腐蚀！"))
+		if(0 to 1) visible_message(SPAN_XENOWARNING("[acid_t]开始在酸液腐蚀下崩解！"))
 
 /obj/effect/xenomorph/acid/proc/finish_melting()
-	visible_message(SPAN_XENODANGER("[acid_t] collapses under its own weight into a puddle of goop and undigested debris!"))
+	visible_message(SPAN_XENODANGER("[acid_t]被自身重量压垮，化为一滩黏液和未消化的碎屑！"))
 	playsound(src, "acid_hit", 25, TRUE)
 
 	if(istype(acid_t, /turf))
@@ -515,7 +515,7 @@
 				continue
 			H.apply_armoured_damage(damage, ARMOR_BIO, BURN)
 			animation_flash_color(H)
-			to_chat(H, SPAN_XENODANGER("You are scalded by acid as a massive glob explodes nearby!"))
+			to_chat(H, SPAN_XENODANGER("一大团酸液在附近爆开，将你灼伤了！"))
 
 	icon_state = "boiler_bombard_heavy"
 

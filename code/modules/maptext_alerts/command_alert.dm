@@ -34,7 +34,7 @@
 	if(!can_use_action())
 		return
 	var/mob/living/carbon/human/human_owner = owner
-	var/text = tgui_input_text(human_owner, "Maximum message length [MAX_COMMAND_MESSAGE_LEN]", "Send message to squad",  max_length = MAX_COMMAND_MESSAGE_LEN, multiline = TRUE)
+	var/text = tgui_input_text(human_owner, "消息最长 [MAX_COMMAND_MESSAGE_LEN] 个字符。", "向小队发送消息",  max_length = MAX_COMMAND_MESSAGE_LEN, multiline = TRUE)
 	if(!text)
 		return
 	if(!can_use_action())

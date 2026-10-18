@@ -7,7 +7,7 @@
 	/// Multiplier for effects. Inputted in directly.
 	var/strength = 0
 	/// Default per proc message
-	var/msg = "Your whole body is feeling numb as you quickly tire out!"
+	var/msg = "你的全身逐渐麻木，很快就感到疲惫不堪！"
 	/// Should we stumble on next tick? Changed automatically
 	var/stumble = TRUE
 	/// Probability of stumbling per proc. Changed by code.
@@ -55,21 +55,21 @@
 			stumble_prob = initial(stumble_prob)
 
 		if(10 to 14) // 2 ticks in smoke
-			msg = SPAN_DANGER("You body starts feeling numb, you can't feel your fingers!")
+			msg = SPAN_DANGER("你的身体开始发麻，连手指都感觉不到了！")
 			bloodcough_prob = 10
 
 		if(15 to 19) // 3 ticks in smoke
-			msg = pick(SPAN_BOLDNOTICE("Why am I here?"),SPAN_HIGHDANGER("Your entire body feels numb!"), SPAN_HIGHDANGER("You notice your movement is erratic!"), SPAN_HIGHDANGER("You panic as numbness takes over your body!"))
+			msg = pick(SPAN_BOLDNOTICE("我为什么会在这里？"),SPAN_HIGHDANGER("你感到全身发麻！"), SPAN_HIGHDANGER("你发现自己的动作变得不受控制！"), SPAN_HIGHDANGER("麻木感蔓延全身，你惊慌失措！"))
 			bloodcough_prob = 20
 			stumble_prob = 5
 
 		if(20 to 24) // 4 ticks in smoke
-			msg = SPAN_DANGER("Your eyes sting, you can't see!")
+			msg = SPAN_DANGER("你的眼睛刺痛，什么都看不见了！")
 			bloodcough_prob = 25
 			stumble_prob = 25
 
 		if(25 to INFINITY) // 5+ ticks in smoke
-			msg = pick(SPAN_BOLDNOTICE("What am I doing?"),SPAN_DANGER("Your hearing fades away, you can't hear anything!"),SPAN_HIGHDANGER("A sharp pain eminates from your abdomin!"),SPAN_HIGHDANGER("EVERYTHING IS HURTING!! AGH!!!"),SPAN_HIGHDANGER("Your entire body is numb, you can't feel anything!"),SPAN_HIGHDANGER("You can't feel your limbs at all!"),SPAN_HIGHDANGER("Your mind goes blank, you can't think of anything!"))
+			msg = pick(SPAN_BOLDNOTICE("我在做什么？"),SPAN_DANGER("你的听觉逐渐消失，什么都听不见了！"),SPAN_HIGHDANGER("腹部传来一阵剧痛！"),SPAN_HIGHDANGER("全身都在痛！！啊——！！！"),SPAN_HIGHDANGER("你的全身都麻木了，什么都感觉不到了！"),SPAN_HIGHDANGER("你完全感觉不到自己的四肢了！"),SPAN_HIGHDANGER("你的脑海一片空白，什么都想不起来！"))
 
 // Stacking effects below
 
@@ -101,8 +101,8 @@
 	if(prob(stumble_prob) && stumble)
 		if(affected_mob.is_mob_incapacitated())
 			return
-		affected_mob.visible_message(SPAN_DANGER("[affected_mob] misteps in their confusion!")
-						,SPAN_HIGHDANGER("You stumble!"))
+		affected_mob.visible_message(SPAN_DANGER("[affected_mob] 迷迷糊糊地踏错了步子！")
+						,SPAN_HIGHDANGER("你踉跄了一下！"))
 		step(affected_mob, pick(CARDINAL_ALL_DIRS))
 		affected_mob.apply_effect(5, DAZE) // Unable to talk and weldervision
 		affected_mob.make_jittery(25)
@@ -116,7 +116,7 @@
 		affected_mob.emote("cough")
 		affected_mob.Slow(1)
 		affected_mob.apply_damage(5,BRUTE, "chest")
-		to_chat(affected_mob, SPAN_DANGER("You cough up blood!"))
+		to_chat(affected_mob, SPAN_DANGER("你咳出了鲜血！"))
 
 	if(chat_cd <= 0)
 		to_chat(affected_mob,msg)
@@ -147,7 +147,7 @@
 		if(17 to 24)
 			hallucination_fakecas_sequence(victim) //Not gonna spam a billion timers for this one so outsourcing to a proc with sleeps is a better async solution
 		if(25 to 42)
-			to_chat(victim,SPAN_HIGHDANGER("A SHELL IS ABOUT TO IMPACT [pick(SPAN_UNDERLINE("TOWARDS THE [pick("WEST","EAST","SOUTH","NORTH")]"),SPAN_UNDERLINE("RIGHT ONTOP OF YOU!"))]!"))
+			to_chat(victim,SPAN_HIGHDANGER("炮弹即将落在[pick(SPAN_UNDERLINE("[pick("你的西侧","你的东侧","你的南侧","你的北侧")]"),SPAN_UNDERLINE("你的正上方"))]！"))
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound_client), victim.client,'sound/weapons/gun_mortar_travel.ogg'), 1 SECONDS)
 		if(43 to 69)
 			victim.emote(pick("twitch","drool","moan","giggle"))
@@ -161,7 +161,7 @@
 /datum/effects/neurotoxin/proc/hallucination_fakecas_sequence(mob/living/carbon/human/victim)
 
 	playsound_client(victim.client,'sound/weapons/dropship_sonic_boom.ogg')
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), victim,"A DROPSHIP FIRES [pick(SPAN_UNDERLINE("TOWARDS THE [pick("WEST","EAST","SOUTH","NORTH")]"),SPAN_UNDERLINE("RIGHT ONTOP OF YOU!"))]!"), 3.5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), victim,"运输艇正在向[pick(SPAN_UNDERLINE("[pick("你的西侧","你的东侧","你的南侧","你的北侧")]"),SPAN_UNDERLINE("你的正上方"))]开火！"), 3.5 SECONDS)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound_client), victim.client,'sound/effects/rocketpod_fire.ogg'), 4 SECONDS)
 
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound_client), victim.client,'sound/effects/gau.ogg'), 5 SECONDS)

@@ -54,17 +54,17 @@ GLOBAL_LIST_INIT(human_medals, list(MARINE_CONDUCT_MEDAL))
 		recipient_ranks[recipient_name] = record.fields["rank"]
 		possible_recipients += recipient_name
 
-	var/chosen_recipient = tgui_input_list(usr, "Who do you want to award a medal to?", "Medal Recipient", possible_recipients)
+	var/chosen_recipient = tgui_input_list(usr, "你想为谁颁发勋章？", "授勋对象", possible_recipients)
 	if(!chosen_recipient)
 		return FALSE
 
 	// Pick a medal
-	var/medal_type = tgui_input_list(usr, "What type of medal do you want to award?", "Medal Type", GLOB.human_medals)
+	var/medal_type = tgui_input_list(usr, "你想颁发哪种勋章？", "勋章类型", GLOB.human_medals)
 	if(!medal_type)
 		return FALSE
 
 	// Write a citation
-	var/citation = strip_html(input("What should the medal citation read?", "Medal Citation", null, null) as message|null, MAX_PAPER_MESSAGE_LEN)
+	var/citation = strip_html(input("勋章嘉奖词应写些什么？", "勋章嘉奖词", null, null) as message|null, MAX_PAPER_MESSAGE_LEN)
 	if(!citation)
 		return FALSE
 
@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(human_medals, list(MARINE_CONDUCT_MEDAL))
 		if(medal_override == "On Recipient")
 			medal_location = get_turf(recipient_mob)
 			playsound(recipient_mob, 'sound/items/trayhit1.ogg', 15, FALSE)
-			recipient_mob.visible_message(SPAN_DANGER("[recipient_mob] has been hit in the head by the [medal_type]."), null, null, 5)
+			recipient_mob.visible_message(SPAN_DANGER("[recipient_mob]的头被[medal_type]砸中了。"), null, null, 5)
 		else if(medal_override == "On Me")
 			medal_location = get_turf(usr)
 
@@ -263,27 +263,27 @@ GLOBAL_LIST_INIT(human_medals, list(MARINE_CONDUCT_MEDAL))
 /proc/open_medal_panel(mob/living/carbon/human/user, obj/printer)
 	var/obj/item/card/id/card = user?.get_idcard()
 	if(!card)
-		to_chat(user, SPAN_WARNING("You must have an authenticated ID Card to award medals."))
+		to_chat(user, SPAN_WARNING("你必须持有经过认证的身份卡，才能授予勋章。"))
 		return
 
 	if(!((card.paygrade in GLOB.co_paygrades) || (card.paygrade in GLOB.platco_paygrades) || (card.paygrade in GLOB.uscm_highcom_paygrades)))
-		to_chat(user, SPAN_WARNING("Only an Officer can award medals!"))
+		to_chat(user, SPAN_WARNING("只有军官才能授予勋章！"))
 		return
 
 	if(!card.registered_ref)
-		user.visible_message("ERROR: ID card not registered in USCM registry. Potential medal fraud detected.")
+		user.visible_message("错误：身份卡未在美国殖民地海军陆战队名册中登记。检测到涉嫌冒领奖章的情况。")
 		return
 
 	if(!card.check_biometrics(user))
-		user.visible_message("ERROR: ID card not registered for [user.real_name] in USCM registry. Potential medal fraud detected.")
+		user.visible_message("错误：身份卡未以 [user.real_name] 的姓名在美国殖民地海军陆战队名册中登记。检测到涉嫌冒领奖章的情况。")
 		return
 
 	if(!(FACTION_MARINE in user.faction_group))
-		to_chat(user, SPAN_WARNING("Medals only available for USCM personnel."))
+		to_chat(user, SPAN_WARNING("勋章仅授予USCM人员。"))
 		return
 
 	if(length(GLOB.medal_awards))
-		to_chat(user, SPAN_WARNING("Only one medal may be awarded per operation."))
+		to_chat(user, SPAN_WARNING("每次行动只能授予一枚勋章。"))
 		return
 
 	GLOB.ic_medals_panel.user_locs[WEAKREF(user)] = WEAKREF(printer)
@@ -412,7 +412,7 @@ GLOBAL_LIST_INIT(xeno_medals, list(XENO_SLAUGHTER_MEDAL, XENO_RESILIENCE_MEDAL, 
 	else
 		recipient_award = GLOB.jelly_awards[recipient_name]
 	if(!recipient_award)
-		to_chat(usr, "Error: Could not find the [is_marine_medal ? "marine" : "xeno"] awards for '[recipient_name]'!")
+		to_chat(usr, "错误：找不到“[recipient_name]”的[is_marine_medal ? "陆战队" : "异形"]授勋记录！")
 		return FALSE
 
 	if(index < 1 || index > length(recipient_award.medal_names))
@@ -604,13 +604,13 @@ GLOBAL_DATUM_INIT(ic_medals_panel, /datum/ic_medal_panel, new)
 		return
 
 	if(!card.registered_ref)
-		user.visible_message("ERROR: ID card not registered in USCM registry. Potential medal fraud detected.")
+		user.visible_message("错误：身份卡未在美国殖民地海军陆战队名册中登记。检测到涉嫌冒领奖章的情况。")
 		return
 
 	var/real_owner_ref = card.registered_ref
 
 	if(real_owner_ref != WEAKREF(user))
-		user.visible_message("ERROR: ID card not registered for [user.real_name] in USCM registry. Potential medal fraud detected.")
+		user.visible_message("错误：身份卡未以 [user.real_name] 的姓名在美国殖民地海军陆战队名册中登记。检测到涉嫌冒领奖章的情况。")
 		return
 
 	var/datum/weakref/user_ref = WEAKREF(user)

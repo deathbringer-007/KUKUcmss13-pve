@@ -35,7 +35,7 @@
 	return TRUE
 
 /datum/game_mode/xenovs/announce()
-	to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDHEADER("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
+	to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDHEADER("当前地图：[SSmapping.configs[GROUND_MAP].map_name]！"))
 
 /datum/game_mode/xenovs/get_roles_list()
 	return GLOB.ROLES_XENO
@@ -280,8 +280,8 @@
 	if(GLOB.round_statistics)
 		GLOB.round_statistics.track_round_end()
 	log_game("Round end result: [round_finished]")
-	to_chat_spaced(world, margin_top = 2, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDHEADER("|Round Complete|"))
-	to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDBODY("Thus ends the story of the battling hives on [SSmapping.configs[GROUND_MAP].map_name]. [round_finished]\nThe game-mode was: [GLOB.master_mode]!\n[CONFIG_GET(string/endofroundblurb)]"))
+	to_chat_spaced(world, margin_top = 2, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDHEADER("|本局结束|"))
+	to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDBODY("争斗的异形巢群在 [SSmapping.configs[GROUND_MAP].map_name] 的故事就此结束。[round_finished]\n游戏模式：[GLOB.master_mode]！\n[CONFIG_GET(string/endofroundblurb)]"))
 
 // for the toolbox
 /datum/game_mode/xenovs/end_round_message()

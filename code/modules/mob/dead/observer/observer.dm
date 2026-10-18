@@ -21,7 +21,7 @@
 
 /mob/dead/observer
 	name = "ghost"
-	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
+	desc = "是幽、幽、幽、幽灵啊！" //jinkies!
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "ghost"
 	density = FALSE
@@ -76,7 +76,7 @@
 		see_invisible = INVISIBILITY_OBSERVER
 	else
 		see_invisible = HIDE_INVISIBLE_OBSERVER
-	to_chat(usr, SPAN_NOTICE("You [(ghostvision?"now":"no longer")] have ghost vision."))
+	to_chat(usr, SPAN_NOTICE("你[(ghostvision?"现在拥有":"不再拥有")]幽灵视觉。"))
 
 /mob/dead/observer/Initialize(mapload, mob/body)
 	. = ..()
@@ -538,7 +538,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(is_nested)
 			text_prompt += "\nSince you're nested, you will get a chance to reenter your body if freed."
 			nest = buckled
-		var/response = tgui_alert(src, text_prompt, "Are you sure you want to ghost?", options)
+		var/response = tgui_alert(src, text_prompt, "确定要转为观察者吗？", options)
 		if(response == "Aghost")
 			client.admin_ghost()
 			return
@@ -615,11 +615,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(!mind || !mind.original || QDELETED(mind.original) || !can_reenter_corpse)
-		to_chat(src, "<span style='color: red;'>You have no body.</span>")
+		to_chat(src, "<span style='color: red;'>你没有身体。</span>")
 		return
 
 	if(mind.original.key && copytext(mind.original.key,1,2)!="@") //makes sure we don't accidentally kick any clients
-		to_chat(src, "<span style='color: red;'>Another consciousness is in your body...It is resisting you.</span>")
+		to_chat(src, "<span style='color: red;'>另一股意识占据了你的身体……它在抗拒你。</span>")
 		return
 
 	mind.transfer_to(mind.original, TRUE)
@@ -638,7 +638,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/value = SStechtree.trees[1]
 
 	if(length(trees) > 1)
-		value = tgui_input_list(src, "Choose which tree to enter", "Enter Tree", trees)
+		value = tgui_input_list(src, "选择要进入的科技树。", "进入科技树", trees)
 
 	if(!value)
 		return
@@ -654,10 +654,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc= "Teleport to a location"
 
 	if(!istype(usr, /mob/dead/observer))
-		to_chat(src, "<span style='color: red;'>Not when you're not dead!</span>")
+		to_chat(src, "<span style='color: red;'>你还没死，不能这样做！</span>")
 		return
 
-	var/area/thearea = tgui_input_list(usr, "Area to jump to", "BOOYEA", return_sorted_areas())
+	var/area/thearea = tgui_input_list(usr, "选择跳转区域", "好耶", return_sorted_areas())
 	if(!thearea) return
 
 	var/list/L = list()
@@ -665,7 +665,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		L+=T
 
 	if(!LAZYLEN(L))
-		to_chat(src, "<span style='color: red;'>No area available.</span>")
+		to_chat(src, "<span style='color: red;'>没有可用的区域。</span>")
 		return
 
 	usr.forceMove(pick(L))
@@ -695,7 +695,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		view_health_scan(target)
 		return
 
-	to_chat(src, SPAN_NOTICE("You must be permanently unrevivable or unable to reenter your body to use the scan health verb."))
+	to_chat(src, SPAN_NOTICE("只有永久无法复苏或无法返回身体时，才能使用健康扫描指令。"))
 
 /mob/dead/observer/proc/view_health_scan(mob/living/target)
 	if (!last_health_display)
@@ -774,7 +774,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/target = null    //Chosen target.
 
 		dest += getmobs() //Fill list, prompt user with list
-		target = tgui_input_list(usr, "Please, select a player!", "Jump to Mob", dest)
+		target = tgui_input_list(usr, "请选择一名玩家！", "跳转到角色", dest)
 
 		if (!target)//Make sure we actually have a target
 			return
@@ -898,7 +898,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else if(length(hives) == 1) // Only one hive, don't need an input menu for that
 		last_hive_checked.hive_ui.open_hive_status(src)
 	else
-		faction = tgui_input_list(src, "Select which hive status menu to open up", "Hive Choice", hives, theme="hive_status")
+		faction = tgui_input_list(src, "选择要打开的巢群状态菜单。", "选择巢群", hives, theme="hive_status")
 		if(!faction)
 			to_chat(src, SPAN_ALERT("Hive choice error. Aborting."))
 			return
@@ -990,7 +990,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, SPAN_DANGER("There are no available zombies."))
 		return
 
-	var/choice = tgui_input_list(usr, "Pick a Zombie:", "Join as Zombie", zombie_list)
+	var/choice = tgui_input_list(usr, "选择一只僵尸：", "以僵尸身份加入", zombie_list)
 	if(!choice)
 		return
 
@@ -1052,7 +1052,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		for(var/freed_mob in mobs_by_role[role])
 			freed_mob_choices["[freed_mob] ([role])"] = freed_mob
 
-	var/choice = tgui_input_list(usr, "Pick a Freed Mob:", "Join as Freed Mob", freed_mob_choices)
+	var/choice = tgui_input_list(usr, "选择一个可接管角色：", "以可接管角色身份加入", freed_mob_choices)
 	if(!choice)
 		return
 
@@ -1095,7 +1095,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			continue
 		hellhound_mob_list[Hellhound.name] = Hellhound
 
-	var/choice = tgui_input_list(usr, "Pick a Hellhound:", "Join as Hellhound", hellhound_mob_list)
+	var/choice = tgui_input_list(usr, "选择一只地狱猎犬：", "以地狱猎犬身份加入", hellhound_mob_list)
 	if(!choice)
 		return
 
@@ -1175,7 +1175,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(!istype(M,/mob/living/carbon/human) || M.stat || isyautja(M)) mobs -= M
 
 
-	target = tgui_input_list(usr, "Please, select a contestant!", "Cake Time", mobs)
+	target = tgui_input_list(usr, "请选择一名参赛者！", "蛋糕时间", mobs)
 
 	if (!target)//Make sure we actually have a target
 		return
@@ -1190,7 +1190,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Go DNR"
 	set desc = "Prevent your character from being revived."
 
-	if(alert("Do you want to go DNR?", "Choose to go DNR", "Yes", "No") == "Yes")
+	if(alert("要设置为拒绝复苏吗？", "选择拒绝复苏", "Yes", "No") == "Yes")
 		can_reenter_corpse = FALSE
 		var/ref
 		var/mob/living/carbon/human/H = mind.original

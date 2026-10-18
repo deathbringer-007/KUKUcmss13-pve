@@ -17,7 +17,7 @@ Bonus
 
 /datum/symptom/fever
 
-	name = "Fever"
+	name = "发热"
 	stealth = 0
 	resistance = 3
 	stage_speed = 3
@@ -28,7 +28,7 @@ Bonus
 	..()
 	if(prob(SYMPTOM_ACTIVATION_PROB))
 		var/mob/living/carbon/M = A.affected_mob
-		var/message = "[pick("You feel hot.", "You feel like you're burning.")]"
+		var/message = "[pick("你感到很热。", "你感觉像烧起来了一样。")]"
 		to_chat(M, SPAN_NOTICE(message))
 		if(M.bodytemperature < BODYTEMP_HEAT_DAMAGE_LIMIT)
 			M.bodytemperature = min(M.bodytemperature + (20 * A.stage), BODYTEMP_HEAT_DAMAGE_LIMIT - 1)

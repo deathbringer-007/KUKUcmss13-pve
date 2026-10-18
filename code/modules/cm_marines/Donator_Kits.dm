@@ -1,6 +1,6 @@
 /obj/item/storage/box/donator_kit
-	name = "donated box"
-	desc = "A cardboard box stamped with a dollar sign and filled with trinkets. Appears to have been donated by a wealthy sponsor."
+	name = "捐赠礼盒"
+	desc = "印有美元符号的纸箱，装满小玩意，似乎由一位富有的赞助者捐赠。"
 	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "donator_kit"
 	item_state = "giftbag"
@@ -20,7 +20,7 @@
 
 /obj/item/storage/box/donator_kit/open(mob/user)
 	if((donor_key != "GENERIC") && (donor_key != user.ckey))
-		to_chat(user, SPAN_BOLDWARNING("You cannot open a donator kit you do not own!"))
+		to_chat(user, SPAN_BOLDWARNING("你不能打开不属于自己的捐赠者套装！"))
 		return FALSE
 	..()
 
@@ -32,7 +32,7 @@
 	var/mob/user = usr
 
 	if((donor_key != "GENERIC") && (donor_key != user.ckey))
-		to_chat(user, SPAN_BOLDWARNING("You cannot destroy a donator kit you do not own!"))
+		to_chat(user, SPAN_BOLDWARNING("你不能摧毁不属于自己的捐赠者套装！"))
 		return FALSE
 
 	log_admin("[key_name(user)] deleted a donator kit.")

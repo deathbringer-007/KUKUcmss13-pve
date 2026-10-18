@@ -65,7 +65,7 @@
 			return
 
 		if(!LAZYLEN(usr.client.stored_matrices))
-			to_chat(usr, "You don't have any matrices stored!")
+			to_chat(usr, "你没有保存任何矩阵！")
 			return
 
 		var/matrix_name = tgui_input_list(usr, "Choose a matrix", "Matrix", (usr.client.stored_matrices + "Revert to Default" + "Cancel"))
@@ -104,7 +104,7 @@
 
 /obj/item/proc/get_examine_line(mob/user)
 	if(blood_color)
-		. = SPAN_WARNING("[icon2html(src, user)] [gender==PLURAL?"some":"a"] <font color='[blood_color]'>stained</font> [src.name]")
+		. = SPAN_WARNING("[icon2html(src, user)] [gender==PLURAL?"一些":"一个"]沾有<font color='[blood_color]'>污迹</font>的[src.name]")
 	else
 		. = "[icon2html(src, user)] \a [src]"
 
@@ -260,14 +260,14 @@
 		if(buckled_mob.buckled == src)
 			if(buckled_mob != user)
 				buckled_mob.visible_message(\
-					SPAN_NOTICE("[buckled_mob.name] was unbuckled by [user.name]!"),\
-					SPAN_NOTICE("You were unbuckled from [src] by [user.name]."),\
-					SPAN_NOTICE("You hear metal clanking."))
+					SPAN_NOTICE("[user.name]解开了[buckled_mob.name]的束缚！"),\
+					SPAN_NOTICE("[user.name]将你从[src]上解了下来。"),\
+					SPAN_NOTICE("你听见金属碰撞声。"))
 			else
 				buckled_mob.visible_message(\
-					SPAN_NOTICE("[buckled_mob.name] unbuckled \himself!"),\
-					SPAN_NOTICE("You unbuckle yourself from [src]."),\
-					SPAN_NOTICE("You hear metal clanking"))
+					SPAN_NOTICE("[buckled_mob.name]自行解开了束缚！"),\
+					SPAN_NOTICE("你将自己从[src]上解了下来。"),\
+					SPAN_NOTICE("你听见金属碰撞声。"))
 			unbuckle(buckled_mob)
 			add_fingerprint(user)
 			return 1
@@ -281,11 +281,11 @@
 		return
 
 	if (user.is_mob_incapacitated() || HAS_TRAIT(user, TRAIT_IMMOBILIZED) || HAS_TRAIT(user, TRAIT_FLOORED))
-		to_chat(user, SPAN_WARNING("You can't do this right now."))
+		to_chat(user, SPAN_WARNING("你现在无法这样做。"))
 		return
 
 	if (isxeno(user) && !HAS_TRAIT(user, TRAIT_OPPOSABLE_THUMBS))
-		to_chat(user, SPAN_WARNING("You don't have the dexterity to do that, try a nest."))
+		to_chat(user, SPAN_WARNING("你的手不够灵巧，无法这样做，试试巢穴吧。"))
 		return
 	if (iszombie(user))
 		return
@@ -307,7 +307,7 @@
 			do_buckle(M, user)
 			return
 	if ((M.mob_size > MOB_SIZE_HUMAN))
-		to_chat(user, SPAN_WARNING("[M] is too big to buckle in."))
+		to_chat(user, SPAN_WARNING("[M]太大，无法固定进去。"))
 		return
 	do_buckle(M, user)
 
@@ -328,14 +328,14 @@
 /obj/proc/send_buckling_message(mob/M, mob/user)
 	if (M == user)
 		M.visible_message(\
-			SPAN_NOTICE("[M] buckles in!"),\
-			SPAN_NOTICE("You buckle yourself to [src]."),\
-			SPAN_NOTICE("You hear metal clanking."))
+			SPAN_NOTICE("[M]系好了安全带！"),\
+			SPAN_NOTICE("你将自己固定在[src]上。"),\
+			SPAN_NOTICE("你听见金属碰撞声。"))
 	else
 		M.visible_message(\
-			SPAN_NOTICE("[M] is buckled in to [src] by [user]!"),\
-			SPAN_NOTICE("You are buckled in to [src] by [user]."),\
-			SPAN_NOTICE("You hear metal clanking"))
+			SPAN_NOTICE("[user]将[M]固定在了[src]上！"),\
+			SPAN_NOTICE("[user]将你固定在了[src]上。"),\
+			SPAN_NOTICE("你听见金属碰撞声。"))
 
 /obj/Move(NewLoc, direct)
 	. = ..()
@@ -431,10 +431,10 @@
 
 	// Checks for valid labelling/name length
 	if(!label || !length(label))
-		to_chat(user, SPAN_NOTICE("Invalid text."))
+		to_chat(user, SPAN_NOTICE("文本无效。"))
 		return
 	if((length(O.name) + length(label)) > MAX_NAME_LEN * 1.5)
-		to_chat(user, SPAN_NOTICE("You cannot fit any more labels on this item."))
+		to_chat(user, SPAN_NOTICE("这个物品已经贴不下更多标签了。"))
 		return
 
 	O.name += " ([label])"

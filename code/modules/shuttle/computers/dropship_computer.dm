@@ -1,6 +1,6 @@
 /obj/structure/machinery/computer/shuttle/dropship/flight
-	name = "dropship navigation computer"
-	desc = "A flight computer that can be used for autopilot or long-range flights."
+	name = "运输艇导航计算机"
+	desc = "可用于自动驾驶或远距离飞行的飞行计算机。"
 	icon = 'icons/obj/structures/machinery/shuttle-parts.dmi'
 	icon_state = "console"
 	unacidable = TRUE
@@ -91,8 +91,8 @@
 		var/obj/docking_port/mobile/shuttle = SSshuttle.getShuttle(shuttleId)
 		var/name = shuttle?.name
 		if(can_change_shuttle)
-			name = "Remote"
-		ui = new(user, src, "DropshipFlightControl", "[name] Flight Computer")
+			name = "远程控制"
+		ui = new(user, src, "DropshipFlightControl", "[name]飞行计算机")
 		ui.open()
 
 /obj/structure/machinery/computer/shuttle/dropship/flight/ui_status(mob/user, datum/ui_state/state)
@@ -103,11 +103,11 @@
 		return UI_UPDATE
 	if(dropship_control_lost)
 		var/remaining_time = timeleft(door_control_cooldown) / 10
-		var/units = "seconds"
+		var/units = "秒"
 		if(remaining_time > 60)
 			remaining_time = remaining_time / 60
-			units = "minutes"
-		to_chat(user, SPAN_WARNING("The shuttle is not responding, try again in [remaining_time] [units]."))
+			units = "分钟"
+		to_chat(user, SPAN_WARNING("穿梭机没有响应，请在[remaining_time][units]后重试。"))
 		return UI_CLOSE
 
 /obj/structure/machinery/computer/shuttle/dropship/flight/ui_state(mob/user)
@@ -146,7 +146,7 @@
 		return TRUE
 
 	if(!allowed(user))
-		to_chat(user, SPAN_WARNING("Access denied."))
+		to_chat(user, SPAN_WARNING("访问被拒绝。"))
 		return TRUE
 
 	// if the dropship has crashed don't allow more interactions
@@ -156,37 +156,37 @@
 		return
 
 	if(shuttle.mode == SHUTTLE_CRASHED)
-		to_chat(user, SPAN_NOTICE("[src] is unresponsive."))
+		to_chat(user, SPAN_NOTICE("[src]没有响应。"))
 		return
 
 	if(dropship_control_lost)
 		if(shuttle.is_hijacked)
-			to_chat(user, SPAN_WARNING("The shuttle is not responding due to an unauthorized access attempt."))
+			to_chat(user, SPAN_WARNING("因检测到未授权访问尝试，穿梭机没有响应。"))
 			return
 		var/remaining_time = timeleft(door_control_cooldown) / 10
-		to_chat(user, SPAN_WARNING("The shuttle is not responding due to an unauthorized access attempt. In large text it says the lockout will be automatically removed in [remaining_time] seconds."))
+		to_chat(user, SPAN_WARNING("因检测到未授权访问尝试，穿梭机没有响应。屏幕上用大字提示，锁定将在[remaining_time]秒后自动解除。"))
 		if(!skillcheck(user, SKILL_PILOT, SKILL_PILOT_EXPERT))
 			return
 		if(user.action_busy || override_being_removed)
 			return
-		to_chat(user, SPAN_NOTICE("You start to remove the lockout."))
+		to_chat(user, SPAN_NOTICE("你开始解除锁定。"))
 		override_being_removed = TRUE
 		while(remaining_time > 20)
 			if(!do_after(user, 20 SECONDS, INTERRUPT_ALL|INTERRUPT_CHANGED_LYING, BUSY_ICON_HOSTILE, numticks = 20))
-				to_chat(user, SPAN_WARNING("You fail to remove the lockout!"))
+				to_chat(user, SPAN_WARNING("你未能解除锁定！"))
 				override_being_removed = FALSE
 				return
 			if(!dropship_control_lost)
-				to_chat(user, SPAN_NOTICE("The lockout is already removed."))
+				to_chat(user, SPAN_NOTICE("锁定已经解除。"))
 				break
 			remaining_time = timeleft(door_control_cooldown) / 10 - 20
 			if(remaining_time > 0)
-				to_chat(user, SPAN_NOTICE("You partially bypass the lockout, only [remaining_time] seconds left."))
+				to_chat(user, SPAN_NOTICE("你绕过了部分锁定，只剩[remaining_time]秒。"))
 				door_control_cooldown = addtimer(CALLBACK(src, PROC_REF(remove_door_lock)), remaining_time SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT)
 	override_being_removed = FALSE
 	if(dropship_control_lost)
 		remove_door_lock()
-		to_chat(user, SPAN_NOTICE("You successfully removed the lockout!"))
+		to_chat(user, SPAN_NOTICE("你成功解除了锁定！"))
 		playsound(loc, 'sound/machines/terminal_success.ogg', KEYBOARD_SOUND_VOLUME, 1)
 
 	if(!shuttle.is_hijacked)
@@ -194,7 +194,7 @@
 
 /obj/structure/machinery/computer/shuttle/dropship/flight/proc/groundside_alien_action(mob/living/carbon/xenomorph/xeno)
 	if(SSticker.mode.active_lz != src)
-		to_chat(xeno, SPAN_NOTICE("This terminal is inactive."))
+		to_chat(xeno, SPAN_NOTICE("此终端尚未启用。"))
 		return
 
 	var/obj/docking_port/mobile/shuttle = SSshuttle.getShuttle(shuttleId)
@@ -203,7 +203,7 @@
 		var/obj/docking_port/mobile/maybe_dropship = landing_zone.get_docked()
 
 		if(maybe_dropship)
-			to_chat(xeno, SPAN_NOTICE("A metal bird already is here."))
+			to_chat(xeno, SPAN_NOTICE("这里已经有一只金属飞鸟。"))
 			return
 
 		var/conflicting_transit = FALSE
@@ -213,31 +213,31 @@
 				break
 
 		if(conflicting_transit)
-			to_chat(xeno, SPAN_NOTICE("A metal bird is already coming."))
+			to_chat(xeno, SPAN_NOTICE("已经有一只金属飞鸟正在赶来。"))
 			return
 
 		playsound(loc, 'sound/machines/terminal_success.ogg', KEYBOARD_SOUND_VOLUME, 1)
 		if(shuttle.mode == SHUTTLE_IDLE && !is_ground_level(shuttle.z))
 			var/result = SSshuttle.moveShuttle(shuttleId, linked_lz, TRUE)
 			if(result != DOCKING_SUCCESS)
-				to_chat(xeno, SPAN_WARNING("The metal bird can not land here. It might be currently occupied!"))
+				to_chat(xeno, SPAN_WARNING("金属飞鸟无法在这里降落，位置可能已被占用！"))
 				return
-			to_chat(xeno, SPAN_NOTICE("You command the metal bird to come down. Clever girl."))
-			xeno_announcement(SPAN_XENOANNOUNCE("Our Queen has commanded the metal bird to the hive at [linked_lz]."), xeno.hivenumber, XENO_GENERAL_ANNOUNCE)
+			to_chat(xeno, SPAN_NOTICE("你命令金属飞鸟降下来。聪明的姑娘。"))
+			xeno_announcement(SPAN_XENOANNOUNCE("女皇已命令金属飞鸟飞往[linked_lz]的虫巢。"), xeno.hivenumber, XENO_GENERAL_ANNOUNCE)
 			log_ares_flight("Unknown", "Remote launch signal for [shuttle.name] received. Authentication garbled.")
 			log_ares_security("Security Alert", "Remote launch signal for [shuttle.name] received. Authentication garbled.")
 			return
 		if(shuttle.destination && shuttle.destination.id != linked_lz)
-			to_chat(xeno, "The shuttle not ready. The screen reads T-[shuttle.timeLeft(10)]. Have patience.")
+			to_chat(xeno, "穿梭机尚未就绪，屏幕显示T-[shuttle.timeLeft(10)]。耐心等待。")
 			return
 		if(shuttle.mode == SHUTTLE_CALL)
-			to_chat(xeno, "The shuttle is in flight. The screen reads T-[shuttle.timeLeft(10)]. Have patience.")
+			to_chat(xeno, "穿梭机正在飞行，屏幕显示T-[shuttle.timeLeft(10)]。耐心等待。")
 			return
 		if(shuttle.mode == SHUTTLE_PREARRIVAL)
-			to_chat(xeno, "The shuttle is landing. Be ready.")
+			to_chat(xeno, "穿梭机正在降落，做好准备。")
 			return
 		if(shuttle.mode == SHUTTLE_IGNITING)
-			to_chat(xeno, "The shuttle is launching.")
+			to_chat(xeno, "穿梭机正在起飞。")
 			return
 
 
@@ -255,16 +255,16 @@
 		if(dropship.playing_launch_announcement_alarm)
 			stop_playing_launch_announcement_alarm()
 			xeno.animation_attack_on(src)
-			to_chat(xeno, SPAN_XENONOTICE("We slash at [src], silencing its squawking!"))
+			to_chat(xeno, SPAN_XENONOTICE("我们抓挠[src]，使它的聒噪声停了下来！"))
 			playsound(loc, 'sound/machines/terminal_shutdown.ogg', 20)
 		else
-			to_chat(xeno, SPAN_NOTICE("Lights flash from the terminal but we can't comprehend their meaning."))
+			to_chat(xeno, SPAN_NOTICE("终端闪烁灯光，但我们无法理解其含义。"))
 			playsound(loc, 'sound/machines/terminal_error.ogg', KEYBOARD_SOUND_VOLUME, TRUE)
 		return XENO_NONCOMBAT_ACTION
 
 	if(!is_ground_level(z))
 		// "you" rather than "we" for this one since non-queen castes will have returned above.
-		to_chat(xeno, SPAN_NOTICE("Lights flash from the terminal but you can't comprehend their meaning."))
+		to_chat(xeno, SPAN_NOTICE("终端闪烁灯光，但你无法理解其含义。"))
 		playsound(loc, 'sound/machines/terminal_error.ogg', KEYBOARD_SOUND_VOLUME, TRUE)
 		return XENO_NONCOMBAT_ACTION
 
@@ -287,8 +287,8 @@
 			set_lz_resin_allowed(TRUE)
 		stop_playing_launch_announcement_alarm()
 
-		to_chat(xeno, SPAN_XENONOTICE("You override the doors."))
-		xeno_message(SPAN_XENOANNOUNCE("The doors of the metal bird have been overridden! Rejoice!"), 3, xeno.hivenumber)
+		to_chat(xeno, SPAN_XENONOTICE("你覆盖了舱门控制。"))
+		xeno_message(SPAN_XENOANNOUNCE("金属飞鸟的舱门控制已被覆盖！欢呼吧！"), 3, xeno.hivenumber)
 		message_admins("[key_name(xeno)] has locked the dropship '[dropship]'", xeno.x, xeno.y, xeno.z)
 		notify_ghosts(header = "Dropship Locked", message = "[xeno] has locked [dropship]!", source = xeno, action = NOTIFY_ORBIT)
 		return
@@ -305,7 +305,7 @@
 				playsound(loc, 'sound/machines/terminal_error.ogg', KEYBOARD_SOUND_VOLUME, 1)
 		playsound(loc, 'sound/machines/terminal_success.ogg', KEYBOARD_SOUND_VOLUME, 1)
 		if(world.time < SHUTTLE_LOCK_TIME_LOCK)
-			to_chat(xeno, SPAN_XENODANGER("You can't mobilize the strength to hijack the shuttle yet. Please wait another [time_left_until(SHUTTLE_LOCK_TIME_LOCK, world.time, 1 MINUTES)] minutes before trying again."))
+			to_chat(xeno, SPAN_XENODANGER("我们还无法调动力量劫持穿梭机。请再等[time_left_until(SHUTTLE_LOCK_TIME_LOCK, world.time, 1 MINUTES)]分钟。"))
 			return
 		hijack(xeno)
 		return
@@ -314,7 +314,7 @@
 	// select crash location
 	var/turf/source_turf = get_turf(src)
 	var/obj/docking_port/mobile/marine_dropship/dropship = SSshuttle.getShuttle(shuttleId)
-	var/result = tgui_input_list(user, "Where to 'land'?", "Dropship Hijack", GLOB.almayer_ship_sections , timeout = 10 SECONDS)
+	var/result = tgui_input_list(user, "要在哪里“着陆”？", "劫持运输艇", GLOB.almayer_ship_sections , timeout = 10 SECONDS)
 	if(!result)
 		return
 	if(!user.Adjacent(source_turf) && !force)
@@ -340,8 +340,8 @@
 	var/hivenumber = XENO_HIVE_NORMAL
 	if(istype(xeno))
 		hivenumber = xeno.hivenumber
-	xeno_message(SPAN_XENOANNOUNCE("The Queen has commanded the metal bird to depart for the metal hive in the sky! Rejoice!"), 3, hivenumber)
-	xeno_message(SPAN_XENOANNOUNCE("The hive swells with power! You will now steadily gain pooled larva over time."), 2, hivenumber)
+	xeno_message(SPAN_XENOANNOUNCE("女皇已命令金属飞鸟飞往天空中的金属虫巢！欢呼吧！"), 3, hivenumber)
+	xeno_message(SPAN_XENOANNOUNCE("虫巢的力量澎湃！你现在会随时间持续获得储备幼体。"), 2, hivenumber)
 	var/datum/hive_status/hive = GLOB.hive_datum[hivenumber]
 	hive.abandon_on_hijack()
 	var/original_evilution = hive.evolution_bonus
@@ -439,7 +439,7 @@
 	if (shuttle)
 		var/obj/structure/machinery/computer/shuttle/dropship/flight/comp = shuttle.getControlConsole()
 		if(comp.dropship_control_lost)
-			to_chat(user, SPAN_WARNING("The dropship isn't responding to controls."))
+			to_chat(user, SPAN_WARNING("运输艇没有响应控制。"))
 			return
 
 	switch(action)
@@ -447,7 +447,7 @@
 			if(!shuttle)
 				return FALSE
 			if(shuttle.mode != SHUTTLE_IDLE && (shuttle.mode != SHUTTLE_CALL && !shuttle.destination))
-				to_chat(usr, SPAN_WARNING("You can't move to a new destination right now."))
+				to_chat(usr, SPAN_WARNING("你现在无法改换目的地。"))
 				return TRUE
 
 			var/is_optimised = FALSE
@@ -458,10 +458,10 @@
 			var/dock_id = params["target"]
 			if(dock_id == DROPSHIP_FLYBY_ID)
 				if(!skillcheck(user, SKILL_PILOT, SKILL_PILOT_TRAINED))
-					to_chat(user, SPAN_WARNING("You don't have the skill to perform a flyby."))
+					to_chat(user, SPAN_WARNING("你没有执行掠过飞行所需的技能。"))
 					return FALSE
 				update_equipment(is_optimised, TRUE)
-				to_chat(user, SPAN_NOTICE("You begin the launch sequence for a flyby."))
+				to_chat(user, SPAN_NOTICE("你启动了掠过飞行的起飞程序。"))
 				log_ares_flight(user.name, "Launched Dropship [shuttle.name] on a flyby.")
 				var/log = "[key_name(user)] launched the dropship [src.shuttleId] on flyby."
 				msg_admin_niche(log)
@@ -480,7 +480,7 @@
 					break
 			if(!found)
 				log_admin("[key_name(user)] may be attempting a href dock exploit on [src] with target location \"[dock_id]\"")
-				to_chat(user, SPAN_WARNING("The [dock_id] dock is not available at this time."))
+				to_chat(user, SPAN_WARNING("[dock_id]停靠点目前不可用。"))
 				return
 			var/obj/docking_port/stationary/dock = SSshuttle.getDock(dock_id)
 			var/dock_reserved = FALSE
@@ -489,10 +489,10 @@
 					dock_reserved = TRUE
 					break
 			if(dock_reserved)
-				to_chat(user, SPAN_WARNING("\The [dock] is currently in use."))
+				to_chat(user, SPAN_WARNING("[dock]目前正在使用中。"))
 				return TRUE
 			SSshuttle.moveShuttle(shuttle.id, dock.id, TRUE)
-			to_chat(user, SPAN_NOTICE("You begin the launch sequence to [dock]."))
+			to_chat(user, SPAN_NOTICE("你启动了前往[dock]的发射程序。"))
 			log_ares_flight(user.name, "Launched Dropship [shuttle.name] on a flight to [dock].")
 			var/log = "[key_name(user)] launched the dropship [src.shuttleId] on transport."
 			msg_admin_niche(log)
@@ -513,7 +513,7 @@
 				shuttle.control_doors(interaction, location)
 			else
 				playsound(loc, 'sound/machines/terminal_error.ogg', KEYBOARD_SOUND_VOLUME, 1)
-				to_chat(user, SPAN_WARNING("Door controls have been overridden. Please call technical support."))
+				to_chat(user, SPAN_WARNING("舱门控制已被覆盖，请联系技术支援。"))
 		if("set-automate")
 			if(!shuttle)
 				return FALSE
@@ -527,7 +527,7 @@
 				return
 			var/obj/structure/machinery/computer/shuttle/dropship/flight/root_console = shuttle.getControlConsole()
 			if(root_console.dropship_control_lost)
-				to_chat(user, SPAN_WARNING("The dropships main controls are not accepting the order."))
+				to_chat(user, SPAN_WARNING("运输艇的主控制系统拒绝执行指令。"))
 				playsound(loc, 'sound/machines/terminal_error.ogg', KEYBOARD_SOUND_VOLUME, 1)
 				return
 
@@ -562,7 +562,7 @@
 			if(!shuttle)
 				return FALSE
 			if (shuttle.mode != SHUTTLE_IDLE && shuttle.mode != SHUTTLE_RECHARGING)
-				to_chat(usr, SPAN_WARNING("The launch warning alarm is only for alerting people to a takeoff."))
+				to_chat(usr, SPAN_WARNING("起飞警报只用于提醒人员即将起飞。"))
 				return TRUE
 			shuttle.alarm_sound_loop.start()
 			shuttle.playing_launch_announcement_alarm = TRUE
@@ -621,16 +621,16 @@
 	can_change_shuttle = TRUE
 
 /obj/structure/machinery/computer/shuttle/dropship/flight/toc
-	name = "dropship control screen"
-	desc = "A screen on the TOC computer for controlling the dropship linked to it. Has an abbreviated version of the flight controls and data."
+	name = "运输艇控制屏"
+	desc = "战术行动中心计算机的屏幕，可控制关联的运输艇，提供简化的飞行控制与数据。"
 	icon = 'icons/obj/structures/machinery/computer.dmi'
 	icon_state = "toc_shuttle"
 	shuttleId = DROPSHIP_MIDWAY
 	is_remote = TRUE
 
 /obj/structure/machinery/computer/shuttle/dropship/flight/toc/upp
-	name = "dropship control screen"
-	desc = "A screen on the TOC computer for controlling the dropship linked to it. Has an abbreviated version of the flight controls and data."
+	name = "运输艇控制屏"
+	desc = "战术行动中心计算机的屏幕，可控制关联的运输艇，提供简化的飞行控制与数据。"
 	icon = 'icons/obj/structures/machinery/computer.dmi'
 	icon_state = "toc_shuttle"
 	shuttleId = DROPSHIP_UPP
@@ -641,8 +641,8 @@
 	icon_state = "cameras_old"
 
 /obj/structure/machinery/computer/shuttle/dropship/flight/laptop
-	name = "\improper Dropship Remote-Flight Laptop"
-	desc = "A laptop loaded with flight control software that has a customized keyboard."
+	name = "\improper 运输艇远程飞行笔记本电脑"
+	desc = "装有飞行控制软件并采用定制键盘的笔记本电脑。"
 	icon = 'icons/obj/structures/machinery/computer.dmi'
 	icon_state = "remoteflightcomp"
 	density = FALSE
@@ -655,11 +655,11 @@
 /obj/structure/machinery/computer/shuttle/dropship/flight/laptop/MouseDrop(over_object)
 	if(over_object == usr && Adjacent(usr))
 		if(!skillcheck(usr, SKILL_PILOT, SKILL_PILOT_UNTRAINED))
-			to_chat(usr, SPAN_WARNING("You do not know how to safely shut down the [src]..."))
+			to_chat(usr, SPAN_WARNING("你不知道如何安全关闭[src]……"))
 			return
 		else
-			usr.visible_message(SPAN_NOTICE("[usr] starts shutting down and packing up [src]."), \
-			SPAN_NOTICE("You begin to shut down and pack up [src]..."))
+			usr.visible_message(SPAN_NOTICE("[usr]开始关闭并收起[src]。"), \
+			SPAN_NOTICE("你开始关闭并收起[src]……"))
 			do_after(usr, 3 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY, src)
 			playsound(usr, 'sound/machines/terminal_off.ogg', 25, FALSE)
 			collapse()
@@ -667,15 +667,15 @@
 /obj/structure/machinery/computer/shuttle/dropship/flight/laptop/proc/collapse(mob/living/carbon/human/user)
 	var/obj/item/device/flight_laptop = new source_type(loc)
 	if(istype(user))
-		user.visible_message(SPAN_NOTICE("[user] shuts down and packs up [src]."),
-			SPAN_NOTICE("You quickly shut down and pack up [src]."))
+		user.visible_message(SPAN_NOTICE("[user]关闭并收起了[src]。"),
+			SPAN_NOTICE("你迅速关闭并收起了[src]。"))
 		user.put_in_active_hand(flight_laptop)
 	qdel(src)
 
 // Flight laptop in hands
 /obj/item/device/flight_laptop
-	name = "\improper Dropship Remote-Flight Laptop"
-	desc = "A laptop loaded with flight control software that has a customized keyboard, all packed into an ultra-tough carry case."
+	name = "\improper 运输艇远程飞行笔记本电脑"
+	desc = "装有飞行控制软件并采用定制键盘的笔记本电脑，收纳于超坚固便携箱中。"
 	icon = 'icons/obj/structures/machinery/computer.dmi'
 	icon_state = "remoteflightcomp_cl"
 	w_class = SIZE_SMALL
@@ -685,11 +685,11 @@
 /obj/item/device/flight_laptop/set_to_table(obj/structure/surface/target)
 	if (do_after(usr, 1 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_GENERIC))
 		var/obj/structure/machinery/computer/shuttle/dropship/flight/laptop/deployed = new(target.loc)
-		usr.visible_message(SPAN_NOTICE("[usr] sets up [deployed]."), \
-			SPAN_NOTICE("You quickly set up [deployed] on the table."))
+		usr.visible_message(SPAN_NOTICE("[usr]架设了[deployed]。"), \
+			SPAN_NOTICE("你迅速将[deployed]架设在桌上。"))
 		qdel(src)
 	else
-		to_chat(usr, SPAN_WARNING("You fail to setup the [src]"))
+		to_chat(usr, SPAN_WARNING("你未能架设[src]。"))
 
 /obj/item/device/flight_laptop/ex_act()
 	return

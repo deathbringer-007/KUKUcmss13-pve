@@ -1,8 +1,8 @@
 #define KEYBOARD_SOUND_VOLUME 5
 
 /obj/structure/machinery/computer/shuttle
-	name = "shuttle console"
-	desc = "A shuttle control computer."
+	name = "穿梭机控制台"
+	desc = "一台穿梭机控制计算机。"
 	icon_state = "syndishuttle"
 	req_access = list( )
 // interaction_flags = INTERACT_MACHINE_TGUI
@@ -23,7 +23,7 @@
 	. = ..()
 	var/list/options = valid_destinations()
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
+	var/dat = "状态：[M ? M.getStatusText() : "*未找到*"]<br><br>"
 	if(M)
 		var/destination_found
 		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
@@ -32,12 +32,12 @@
 			if(!M.check_dock(S, silent=TRUE))
 				continue
 			destination_found = TRUE
-			dat += "<A href='byond://?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
+			dat += "<A href='byond://?src=[REF(src)];move=[S.id]'>派往 [S.name]</A><br>"
 		if(!destination_found)
-			dat += "<B>Shuttle Locked</B><br>"
+			dat += "<B>穿梭机已锁定</B><br>"
 			if(admin_controlled)
-				dat += "Authorized personnel only<br>"
-				dat += "<A href='byond://?src=[REF(src)];request=1]'>Request Authorization</A><br>"
+				dat += "仅限授权人员<br>"
+				dat += "<A href='byond://?src=[REF(src)];request=1]'>申请授权</A><br>"
 
 	var/datum/browser/popup = new(user, "computer", "<div align='center'>[M ? M.name : "shuttle"]</div>", 300, 200)
 	popup.set_content("<center>[dat]</center>")
@@ -52,7 +52,7 @@
 		return
 
 	if(!isqueen(usr) && !allowed(usr))
-		to_chat(usr, SPAN_DANGER("Access denied."))
+		to_chat(usr, SPAN_DANGER("访问被拒绝。"))
 		return TRUE
 
 	if(href_list["move"])
@@ -71,14 +71,14 @@
 		switch(SSshuttle.moveShuttle(shuttleId, href_list["move"], 1))
 			if(DOCKING_SUCCESS)
 				if(previous_status != SHUTTLE_IDLE)
-					visible_message(SPAN_NOTICE("Destination updated, recalculating route."))
+					visible_message(SPAN_NOTICE("目的地已更新，正在重新计算航线。"))
 				else
-					visible_message(SPAN_NOTICE("Shuttle departing. Please stand away from the doors."))
+					visible_message(SPAN_NOTICE("穿梭机即将出发，请远离舱门。"))
 			if(DOCKING_NULL_SOURCE)
-				to_chat(usr, SPAN_WARNING("Invalid shuttle requested."))
+				to_chat(usr, SPAN_WARNING("请求的穿梭机无效。"))
 				return TRUE
 			else
-				to_chat(usr, SPAN_NOTICE("Unable to comply."))
+				to_chat(usr, SPAN_NOTICE("无法执行。"))
 				return TRUE
 
 /obj/structure/machinery/computer/shuttle/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
@@ -86,8 +86,8 @@
 		shuttleId = port.id
 
 /obj/structure/machinery/computer/shuttle/ert
-	name = "transport shuttle"
-	desc = "A transport shuttle flight computer."
+	name = "运输穿梭机"
+	desc = "一台运输穿梭机飞行计算机。"
 	icon_state = "syndishuttle"
 	req_access = list()
 	breakable = FALSE
@@ -106,9 +106,9 @@
 	var/mission_accomplished = FALSE
 
 /obj/structure/machinery/computer/shuttle/ert/broken
-	name = "nonfunctional shuttle control console"
+	name = "损坏的穿梭机控制台"
 	disabled = TRUE
-	desc = "A transport shuttle flight computer. This one seems broken."
+	desc = "一台运输穿梭机飞行计算机，似乎已经坏了。"
 
 /obj/structure/machinery/computer/shuttle/ert/Initialize(mapload, ...)
 	. = ..()
@@ -183,8 +183,8 @@
 			id = human_user.get_idcard()
 
 		if(!id || !HAS_TRAIT_FROM_ONLY(id, TRAIT_ERT_ID, ert.distress_beacon))
-			to_chat(user, SPAN_WARNING("Your ID is not authorized to interact with this terminal."))
-			balloon_alert(user, "unauthorized!")
+			to_chat(user, SPAN_WARNING("你的身份卡无权操作此终端。"))
+			balloon_alert(user, "未获授权！")
 			return
 
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -282,7 +282,7 @@
 			ert.control_doors("unlock", external_only = TRUE)
 		if("move")
 			if(ert.mode != SHUTTLE_IDLE)
-				to_chat(usr, SPAN_WARNING("You can't move to a new destination whilst in transit."))
+				to_chat(usr, SPAN_WARNING("航行途中无法改换目的地。"))
 				return TRUE
 			var/dockId = params["target"]
 			var/list/local_data = ui_data(usr)
@@ -294,7 +294,7 @@
 					break
 			if(!found)
 				log_admin("[key_name(usr)] may be attempting a href dock exploit on [src] with target location \"[dockId]\"")
-				to_chat(usr, SPAN_WARNING("The [dockId] dock is not available at this time."))
+				to_chat(usr, SPAN_WARNING("[dockId]停靠点目前不可用。"))
 				return
 			var/obj/docking_port/stationary/dock = SSshuttle.getDock(dockId)
 			var/dock_reserved = FALSE
@@ -303,18 +303,18 @@
 					dock_reserved = TRUE
 					break
 			if(dock_reserved)
-				to_chat(usr, SPAN_WARNING("\The [dock] is currently in use."))
+				to_chat(usr, SPAN_WARNING("[dock]目前正在使用中。"))
 				return TRUE
 			SSshuttle.moveShuttle(ert.id, dock.id, TRUE)
-			to_chat(usr, SPAN_NOTICE("You begin the launch sequence to [dock]."))
+			to_chat(usr, SPAN_NOTICE("你启动了前往[dock]的发射程序。"))
 			return TRUE
 		if("launch_home")
 			if(!must_launch_home)
 				return
 
 			if(ert.mode != SHUTTLE_IDLE)
-				to_chat(ui.user, SPAN_WARNING("Unable to return home."))
-				balloon_alert(ui.user, "can't go home!")
+				to_chat(ui.user, SPAN_WARNING("无法返回母港。"))
+				balloon_alert(ui.user, "无法返回母港！")
 				return
 
 			launch_home()
@@ -327,8 +327,8 @@
 	tgui_interact(user)
 
 /obj/structure/machinery/computer/shuttle/ert/small
-	name = "transport shuttle"
-	desc = "A transport shuttle flight computer."
+	name = "运输穿梭机"
+	desc = "一台运输穿梭机飞行计算机。"
 	icon_state = "comm_alt"
 	req_access = list()
 	breakable = FALSE
@@ -345,8 +345,8 @@
 		. += list(dock)
 
 /obj/structure/machinery/computer/shuttle/ert/big
-	name = "transport shuttle"
-	desc = "A transport shuttle flight computer."
+	name = "运输穿梭机"
+	desc = "一台运输穿梭机飞行计算机。"
 	icon_state = "comm_alt"
 	req_access = list()
 	breakable = FALSE
@@ -359,8 +359,8 @@
 		. += list(dock)
 
 /obj/structure/machinery/computer/shuttle/lifeboat
-	name = "lifeboat console"
-	desc = "A lifeboat control computer."
+	name = "救生艇控制台"
+	desc = "一台救生艇控制计算机。"
 	icon_state = "terminal"
 	req_access = list()
 	breakable = FALSE
@@ -381,66 +381,66 @@
 	var/obj/docking_port/mobile/crashable/lifeboat/lifeboat = SSshuttle.getShuttle(shuttleId)
 	if(lifeboat.status == LIFEBOAT_LOCKED)
 		if(!skillcheck(user, SKILL_PILOT, SKILL_PILOT_TRAINED))
-			to_chat(user, SPAN_WARNING("[src] displays an error message and asks you to contact your pilot to resolve the problem."))
+			to_chat(user, SPAN_WARNING("[src]显示错误信息，要求你联系驾驶员解决问题。"))
 			return
 		if(user.action_busy || override_being_removed)
 			return
-		to_chat(user, SPAN_NOTICE("You start to remove the lockout."))
+		to_chat(user, SPAN_NOTICE("你开始解除锁定。"))
 		override_being_removed = TRUE
-		user.visible_message(SPAN_NOTICE("[user] starts to type on [src]."),
-			SPAN_NOTICE("You try to take back control over the lifeboat. It will take around [remaining_time / 10] seconds."))
+		user.visible_message(SPAN_NOTICE("[user]开始在[src]上输入。"),
+			SPAN_NOTICE("你尝试夺回救生艇的控制权，大约需要[remaining_time / 10]秒。"))
 		while(remaining_time > 20 SECONDS)
 			if(!do_after(user, 20 SECONDS, INTERRUPT_ALL|INTERRUPT_CHANGED_LYING, BUSY_ICON_HOSTILE, numticks = 20))
-				to_chat(user, SPAN_WARNING("You fail to remove the lockout!"))
+				to_chat(user, SPAN_WARNING("你未能解除锁定！"))
 				override_being_removed = FALSE
 				return
 			remaining_time = remaining_time - 20 SECONDS
 			if(remaining_time > 0)
-				to_chat(user, SPAN_NOTICE("You partially bypass the lockout, only [remaining_time / 10] seconds left."))
-		to_chat(user, SPAN_NOTICE("You successfully removed the lockout!"))
+				to_chat(user, SPAN_NOTICE("你绕过了部分锁定，只剩[remaining_time / 10]秒。"))
+		to_chat(user, SPAN_NOTICE("你成功解除了锁定！"))
 		playsound(loc, 'sound/machines/terminal_success.ogg', KEYBOARD_SOUND_VOLUME, 1)
 		lifeboat.status = LIFEBOAT_ACTIVE
 		lifeboat.available = TRUE
-		user.visible_message(SPAN_NOTICE("[src] blinks with blue lights."),
-			SPAN_NOTICE("You have successfully taken back control over the lifeboat."))
+		user.visible_message(SPAN_NOTICE("[src]闪烁蓝色灯光。"),
+			SPAN_NOTICE("你成功夺回了救生艇的控制权。"))
 		override_being_removed = FALSE
 		return
 	else if(lifeboat.status == LIFEBOAT_INACTIVE)
-		to_chat(user, SPAN_NOTICE("[src]'s screen says \"Awaiting evacuation order\"."))
+		to_chat(user, SPAN_NOTICE("[src]屏幕显示：\"等待撤离命令\"。"))
 	else if(lifeboat.status == LIFEBOAT_ACTIVE)
 		switch(lifeboat.mode)
 			if(SHUTTLE_IDLE)
 				if(!istype(user, /mob/living/carbon/human))
-					to_chat(user, SPAN_NOTICE("[src]'s screen says \"Unauthorized access. Please inform your supervisor\"."))
+					to_chat(user, SPAN_NOTICE("[src]屏幕显示：\"未授权访问，请通知主管\"。"))
 					return
 
 				var/mob/living/carbon/human/human_user = user
 				var/obj/item/card/id/card = human_user.get_idcard()
 
 				if(!card)
-					to_chat(user, SPAN_NOTICE("[src]'s screen says \"Unauthorized access. Please inform your supervisor\"."))
+					to_chat(user, SPAN_NOTICE("[src]屏幕显示：\"未授权访问，请通知主管\"。"))
 					return
 
 				if(!(ACCESS_MARINE_SENIOR in card.access) && !(ACCESS_MARINE_DROPSHIP in card.access))
-					to_chat(user, SPAN_NOTICE("[src]'s screen says \"Unauthorized access. Please inform your supervisor\"."))
+					to_chat(user, SPAN_NOTICE("[src]屏幕显示：\"未授权访问，请通知主管\"。"))
 					return
 
 				if(SShijack.current_progress < SShijack.early_launch_required_progress)
-					to_chat(user, SPAN_NOTICE("[src]'s screen says \"Unable to launch, fuel insufficient\"."))
+					to_chat(user, SPAN_NOTICE("[src]屏幕显示：\"燃料不足，无法发射\"。"))
 					return
 
 				if(launch_initiated)
-					to_chat(user, SPAN_NOTICE("[src]'s screen blinks and says \"Launch sequence already initiated\"."))
+					to_chat(user, SPAN_NOTICE("[src]屏幕闪烁，显示：\"发射程序已经启动\"。"))
 					return
 
-				var/response = tgui_alert(user, "Launch the lifeboat?", "Confirm", list("Yes", "No", "Emergency Launch"), 10 SECONDS)
+				var/response = tgui_alert(user, "要发射救生艇吗？", "确认", list("Yes", "No", "Emergency Launch"), 10 SECONDS)
 				if(launch_initiated)
-					to_chat(user, SPAN_NOTICE("[src]'s screen blinks and says \"Launch sequence already initiated\"."))
+					to_chat(user, SPAN_NOTICE("[src]屏幕闪烁，显示：\"发射程序已经启动\"。"))
 					return
 				switch(response)
 					if ("Yes")
 						launch_initiated = TRUE
-						to_chat(user, "[src]'s screen blinks and says \"Launch command accepted\".")
+						to_chat(user, "[src]屏幕闪烁，显示：\"发射指令已接受\"。")
 						shipwide_ai_announcement("Launch command received. [lifeboat.id == MOBILE_SHUTTLE_LIFEBOAT_PORT ? "Port" : "Starboard"] Lifeboat doors will close in 10 seconds.")
 						addtimer(CALLBACK(lifeboat, TYPE_PROC_REF(/obj/docking_port/mobile/crashable/lifeboat, evac_launch)), 10 SECONDS)
 						lifeboat.alarm_sound_loop.start()
@@ -449,24 +449,24 @@
 
 					if ("Emergency Launch")
 						launch_initiated = TRUE
-						to_chat(user, "[src]'s screen blinks and says \"Emergency Launch command accepted\".")
+						to_chat(user, "[src]屏幕闪烁，显示：\"紧急发射指令已接受\"。")
 						lifeboat.evac_launch()
 						shipwide_ai_announcement("Emergency Launch command received. Launching [lifeboat.id == MOBILE_SHUTTLE_LIFEBOAT_PORT ? "Port" : "Starboard"] Lifeboat.")
 						return
 
 			if(SHUTTLE_IGNITING)
-				to_chat(user, SPAN_NOTICE("[src]'s screen says \"Engines firing\"."))
+				to_chat(user, SPAN_NOTICE("[src]屏幕显示：\"引擎点火中\"。"))
 			if(SHUTTLE_CALL)
-				to_chat(user, SPAN_NOTICE("[src] has flight information scrolling across the screen. The autopilot is working correctly."))
+				to_chat(user, SPAN_NOTICE("[src]屏幕滚动显示飞行信息。自动驾驶工作正常。"))
 
 /obj/structure/machinery/computer/shuttle/lifeboat/attack_alien(mob/living/carbon/xenomorph/xeno)
 	if(xeno.caste && xeno.caste.is_intelligent)
 		var/obj/docking_port/mobile/crashable/lifeboat/lifeboat = SSshuttle.getShuttle(shuttleId)
 		if(lifeboat.status == LIFEBOAT_LOCKED)
-			to_chat(xeno, SPAN_WARNING("We already wrested away control of this metal bird."))
+			to_chat(xeno, SPAN_WARNING("我们已经夺走了这只金属飞鸟的控制权。"))
 			return XENO_NO_DELAY_ACTION
 		if(lifeboat.mode == SHUTTLE_CALL)
-			to_chat(xeno, SPAN_WARNING("Too late, you cannot stop the metal bird mid-flight."))
+			to_chat(xeno, SPAN_WARNING("太迟了，你无法让金属飞鸟在半空停下。"))
 			return XENO_NO_DELAY_ACTION
 
 		xeno_attack_delay(xeno)
@@ -474,7 +474,7 @@
 			if(lifeboat.status == LIFEBOAT_LOCKED)
 				return XENO_NO_DELAY_ACTION
 			if(lifeboat.mode == SHUTTLE_CALL)
-				to_chat(xeno, SPAN_WARNING("Too late, you cannot stop the metal bird mid-flight."))
+				to_chat(xeno, SPAN_WARNING("太迟了，你无法让金属飞鸟在半空停下。"))
 				return XENO_NO_DELAY_ACTION
 			lifeboat.status = LIFEBOAT_LOCKED
 			lifeboat.available = FALSE
@@ -483,7 +483,7 @@
 			lifeboat.playing_launch_announcement_alarm = FALSE
 			var/obj/docking_port/stationary/lifeboat_dock/lifeboat_dock = lifeboat.get_docked()
 			lifeboat_dock.open_dock()
-			xeno_message(SPAN_XENOANNOUNCE("We have wrested away control of one of the metal birds! They shall not escape!"), 3, xeno.hivenumber)
+			xeno_message(SPAN_XENOANNOUNCE("我们夺走了一只金属飞鸟的控制权！它们休想逃跑！"), 3, xeno.hivenumber)
 			launch_initiated = FALSE
 			remaining_time = initial(remaining_time)
 		return XENO_NO_DELAY_ACTION

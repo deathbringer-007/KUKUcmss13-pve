@@ -1,6 +1,6 @@
 /datum/tutorial/ss13/basic
 	name = "Space Station 13 - Basic"
-	desc = "Learn the very basics of Space Station 13. Recommended if you haven't played before."
+	desc = "学习《空间站13》的基础玩法。推荐首次游玩的玩家学习。"
 	tutorial_id = "ss13_basic_1"
 	tutorial_template = /datum/map_template/tutorial/s7x7
 

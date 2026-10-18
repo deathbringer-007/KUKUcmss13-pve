@@ -13,8 +13,8 @@
 	new_human.mob_flags |= MUTINEER
 	new_human.hud_set_squad()
 
-	to_chat(new_human, SPAN_HIGHDANGER("<hr>You are now a Mutineer!"))
-	to_chat(new_human, SPAN_DANGER("Please check the rules to see what you can and can't do as a mutineer.<hr>"))
+	to_chat(new_human, SPAN_HIGHDANGER("<hr>你现在是叛变者！"))
+	to_chat(new_human, SPAN_DANGER("请查阅规则，了解叛变者可以和不可以做什么。<hr>"))
 
 /datum/equipment_preset/other/mutineer/leader
 	name = "Mutineer Leader"

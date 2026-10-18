@@ -4,7 +4,7 @@
 	name = "USCM Riot Control"
 	mob_max = 10
 	mob_min = 5
-	objectives = "Ensure order is restored and Marine Law is maintained."
+	objectives = "确保恢复秩序并维护《陆战队军法》。"
 	probability = 0
 
 
@@ -20,16 +20,16 @@
 	if(!leader && HAS_FLAG(H.client.prefs.toggles_ert, PLAY_LEADER) && check_timelock(H.client, list(JOB_WARDEN, JOB_CHIEF_POLICE), time_required_for_job))
 		leader = H
 		arm_equipment(H, /datum/equipment_preset/uscm_ship/uscm_police/riot_mp/riot_cmp, TRUE, TRUE)
-		to_chat(H, SPAN_ROLE_HEADER("You are the leader of the High Command Riot Control!"))
-		to_chat(H, SPAN_ROLE_BODY("Follow any orders directly from High Command!"))
-		to_chat(H, SPAN_ROLE_BODY("You only answer to the Marine Law and the High Command!"))
+		to_chat(H, SPAN_ROLE_HEADER("你是最高指挥部防暴部队的指挥官！"))
+		to_chat(H, SPAN_ROLE_BODY("直接服从最高指挥部下达的所有命令！"))
+		to_chat(H, SPAN_ROLE_BODY("你只对《陆战队军法》和最高指挥部负责！"))
 	else
 		arm_equipment(H, /datum/equipment_preset/uscm_ship/uscm_police/riot_mp, TRUE, TRUE)
-		to_chat(H, SPAN_ROLE_HEADER("You are a member of the High Command Riot Control!"))
-		to_chat(H, SPAN_ROLE_BODY("Follow any orders directly from High Command or your superior!"))
-		to_chat(H, SPAN_ROLE_BODY("You only answer to your superior, the Marine Law and the High Command!"))
+		to_chat(H, SPAN_ROLE_HEADER("你是最高指挥部防暴部队的一员！"))
+		to_chat(H, SPAN_ROLE_BODY("服从最高指挥部或你的上级下达的所有命令！"))
+		to_chat(H, SPAN_ROLE_BODY("你只对你的上级、《陆战队军法》和最高指挥部负责！"))
 
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), H, SPAN_BOLD("Objectives: [objectives]")), 1 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), H, SPAN_BOLD("目标：[objectives]")), 1 SECONDS)
 
 
 /datum/emergency_call/riot/spawn_items()

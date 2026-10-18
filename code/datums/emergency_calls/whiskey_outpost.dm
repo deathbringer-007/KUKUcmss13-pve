@@ -6,7 +6,7 @@
 	mob_max = 15
 	mob_min = 1
 	probability = 0
-	objectives = "Assist the USCM forces"
+	objectives = "协助美国殖民地海军陆战队。"
 
 	max_smartgunners = 1
 	max_heavies = 1
@@ -28,29 +28,29 @@
 	if(!leader && HAS_FLAG(mob.client.prefs.toggles_ert, PLAY_LEADER) && check_timelock(mob.client, JOB_SQUAD_LEADER, time_required_for_job))
 		leader = mob
 		arm_equipment(mob, /datum/equipment_preset/uscm/leader_equipped, TRUE, TRUE)
-		to_chat(mob, SPAN_BOLDNOTICE("You are a Squad Leader in the USCM, your squad is here to assist in the defence of [SSmapping.configs[GROUND_MAP].map_name]."))
+		to_chat(mob, SPAN_BOLDNOTICE("你是美国殖民地海军陆战队的一名小队长，你的小队前来协助保卫 [SSmapping.configs[GROUND_MAP].map_name]。"))
 	else if (heavies < max_heavies && HAS_FLAG(mob.client.prefs.toggles_ert, PLAY_HEAVY) && check_timelock(mob.client, JOB_SQUAD_SPECIALIST, time_required_for_job))
 		heavies++
 		arm_equipment(mob, /datum/equipment_preset/uscm/specialist_equipped, TRUE, TRUE)
-		to_chat(mob, SPAN_BOLDNOTICE("You are a Specialist in the USCM, your squad is here to assist in the defence of [SSmapping.configs[GROUND_MAP].map_name]."))
+		to_chat(mob, SPAN_BOLDNOTICE("你是美国殖民地海军陆战队的一名武器专家，你的小队前来协助保卫 [SSmapping.configs[GROUND_MAP].map_name]。"))
 	else if(smartgunners < max_smartgunners && HAS_FLAG(mob.client.prefs.toggles_ert, PLAY_SMARTGUNNER) && check_timelock(mob.client, JOB_SQUAD_SMARTGUN, time_required_for_job))
 		smartgunners++
 		arm_equipment(mob, /datum/equipment_preset/uscm/smartgunner_equipped, TRUE, TRUE)
-		to_chat(mob, SPAN_BOLDNOTICE("You are a Smartgunner in the USCM, your squad is here to assist in the defence of [SSmapping.configs[GROUND_MAP].map_name]."))
+		to_chat(mob, SPAN_BOLDNOTICE("你是美国殖民地海军陆战队的一名智能机枪手，你的小队前来协助保卫 [SSmapping.configs[GROUND_MAP].map_name]。"))
 	else if(engineers < max_engineers && HAS_FLAG(mob.client.prefs.toggles_ert, PLAY_ENGINEER) && check_timelock(mob.client, JOB_SQUAD_ENGI, time_required_for_job))
 		engineers++
 		arm_equipment(mob, /datum/equipment_preset/uscm/engineer_equipped, TRUE, TRUE)
-		to_chat(mob, SPAN_BOLDNOTICE("You are an Engineer in the USCM, your squad is here to assist in the defence of [SSmapping.configs[GROUND_MAP].map_name]."))
+		to_chat(mob, SPAN_BOLDNOTICE("你是美国殖民地海军陆战队的一名工程兵，你的小队前来协助保卫 [SSmapping.configs[GROUND_MAP].map_name]。"))
 	else if (medics < max_medics && HAS_FLAG(mob.client.prefs.toggles_ert, PLAY_MEDIC) && check_timelock(mob.client, JOB_SQUAD_MEDIC, time_required_for_job))
 		medics++
 		arm_equipment(mob, /datum/equipment_preset/uscm/engineer_equipped, TRUE, TRUE)
-		to_chat(mob, SPAN_BOLDNOTICE("You are a Hospital Corpsman in the USCM, your squad is here to assist in the defence of [SSmapping.configs[GROUND_MAP].map_name]."))
+		to_chat(mob, SPAN_BOLDNOTICE("你是美国殖民地海军陆战队的一名医疗兵，你的小队前来协助保卫 [SSmapping.configs[GROUND_MAP].map_name]。"))
 	else
 		arm_equipment(mob, /datum/equipment_preset/uscm/private_equipped, TRUE, TRUE)
-		to_chat(mob, SPAN_BOLDNOTICE("You are a Rifleman in the USCM, your squad is here to assist in the defence of [SSmapping.configs[GROUND_MAP].map_name]."))
+		to_chat(mob, SPAN_BOLDNOTICE("你是美国殖民地海军陆战队的一名步枪兵，你的小队前来协助保卫 [SSmapping.configs[GROUND_MAP].map_name]。"))
 
 	sleep(10)
-	to_chat(mob, "<B>Objectives:</b> [objectives]")
+	to_chat(mob, "<B>目标：</b>[objectives]")
 	GLOB.RoleAuthority.randomize_squad(mob)
 	mob.sec_hud_set_ID()
 	mob.hud_set_squad()

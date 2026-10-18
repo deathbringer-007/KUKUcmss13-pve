@@ -9,7 +9,7 @@
 #define FOAM_METAL_TYPE_IRON 2
 
 /obj/effect/particle_effect/foam
-	name = "foam"
+	name = "泡沫"
 	icon_state = "foam"
 	opacity = FALSE
 	anchored = TRUE
@@ -101,7 +101,7 @@
 
 
 /obj/effect/particle_effect/foam/metal
-	name = "metal foam"
+	name = "金属泡沫"
 	metal = 1
 
 //datum effect system
@@ -168,21 +168,21 @@
 	density = TRUE
 	opacity = TRUE // changed in New()
 	anchored = TRUE
-	name = "foamed metal"
-	desc = "A lightweight foamed metal wall."
+	name = "泡沫金属"
+	desc = "一面轻质泡沫金属墙。"
 	health = 45
 
 /obj/structure/foamed_metal/iron
 	icon_state = "ironfoam"
 	health = 70
-	name = "foamed iron"
-	desc = "A slightly stronger lightweight foamed iron wall."
+	name = "泡沫铁"
+	desc = "一面稍坚固些的轻质泡沫铁墙。"
 
 /obj/structure/foamed_metal/proc/take_damage(damage)
 	health -= damage
 	playsound(src,'sound/weapons/Genhit.ogg', 25, 1)
 	if(health <= 0)
-		visible_message(SPAN_WARNING("[src] crumbles into pieces!"))
+		visible_message(SPAN_WARNING("[src]碎成了许多块！"))
 		playsound(src, 'sound/effects/meteorimpact.ogg', 25, 1)
 		qdel(src)
 
@@ -202,7 +202,7 @@
 
 /obj/structure/foamed_metal/attackby(obj/item/I, mob/user)
 	if(I.force)
-		to_chat(user, SPAN_NOTICE("You [I.sharp ? "hack" : "smash" ] off a chunk of the foamed metal with \the [I]."))
+		to_chat(user, SPAN_NOTICE("你用[I][I.sharp ? "砍" : "砸" ]下了一块泡沫金属。"))
 		if(I.sharp)
 			take_damage(I.force * I.sharp * FOAMED_METAL_ITEM_MELEE) //human advantage, sharper items do more damage
 		else
@@ -220,8 +220,8 @@
 
 	X.animation_attack_on(src)
 
-	X.visible_message(SPAN_DANGER("\The [X] slashes [src]!"), \
-	SPAN_DANGER("You slash [src]!"))
+	X.visible_message(SPAN_DANGER("[X]抓挠[src]！"), \
+	SPAN_DANGER("你抓挠[src]！"))
 
 	take_damage(damage * FOAMED_METAL_XENO_SLASH)
 

@@ -1,10 +1,10 @@
 /mob/living/carbon/human/proc/mark_panel()
-	set name = "Mark Panel"
+	set name = "标记面板"
 	set category = "Yautja.Marks"
 	set desc = "Allows you to mark your prey."
 
 	if(is_mob_incapacitated())
-		to_chat(src, SPAN_DANGER("You're not able to do that right now."))
+		to_chat(src, SPAN_DANGER("你现在无法这样做。"))
 		return
 
 	var/mob/living/carbon/human/T = src
@@ -14,9 +14,9 @@
 	var/list/options = list()
 	var/list/optionsp = list(
 		"Un-Mark as Thralled",
-		"Mark as Honored",
+		"标记为荣誉猎物",
 		"Un-Mark as Honored",
-		"Mark as Dishonorable",
+		"标记为不名誉猎物",
 		"Un-Mark as Dishonorable",
 		"Mark as Gear Carrier",
 		"Un-Mark as Gear Carrier"
@@ -28,11 +28,11 @@
 		options += "Un-Mark as Prey"
 
 	if(!T.hunter_data.thrall)
-		options += "Mark as Thralled"
+		options += "标记为仆从"
 
 	options += optionsp
 
-	var/input = tgui_input_list(usr, "Select which mark to apply", "Mark Panel", options)
+	var/input = tgui_input_list(usr, "选择要施加的标记", "标记面板", options)
 
 	if(!input)
 		return
@@ -43,11 +43,11 @@
 				T.mark_for_hunt()
 			if("Un-Mark as Prey")
 				T.remove_from_hunt()
-			if("Mark as Honored")
+			if("标记为荣誉猎物")
 				T.mark_honored()
 			if("Un-Mark as Honored")
 				T.unmark_honored()
-			if("Mark as Dishonorable")
+			if("标记为不名誉猎物")
 				T.mark_dishonored()
 			if("Un-Mark as Dishonorable")
 				T.unmark_dishonored()
@@ -55,7 +55,7 @@
 				T.mark_gear()
 			if("Un-Mark as Gear Carrier")
 				T.unmark_gear()
-			if("Mark as Thralled")
+			if("标记为仆从")
 				T.mark_thralled()
 			if("Un-Mark as Thralled")
 				T.unmark_thralled()
@@ -70,16 +70,16 @@
 	set desc = "Mark a target for the hunt."
 
 	if(is_mob_incapacitated())
-		to_chat(src, SPAN_DANGER("You're not able to do that right now."))
+		to_chat(src, SPAN_DANGER("你现在无法这样做。"))
 		return
 
 	// Only one prey per pred
 	if(hunter_data.prey)
-		to_chat(src, SPAN_DANGER("You're already hunting something."))
+		to_chat(src, SPAN_DANGER("你已经在追猎其他目标了。"))
 		return
 
 	if(!isyautja(src))
-		to_chat(src, SPAN_WARNING("How did you get this verb?"))
+		to_chat(src, SPAN_WARNING("你是怎么获得这个指令的？"))
 		return
 
 	// List all possible preys
@@ -89,11 +89,11 @@
 		if((ishuman_strict(prey) || isxeno(prey)) && prey.stat != DEAD)
 			target_list += prey
 
-	var/mob/living/carbon/M = tgui_input_list(usr, "Target", "Choose a prey.", target_list)
+	var/mob/living/carbon/M = tgui_input_list(usr, "目标", "选择猎物。", target_list)
 	if(!M)
 		return
 	if(M.hunter_data.hunter)
-		to_chat(src, SPAN_YAUTJABOLD("[M] is already being hunted by [M.hunter_data.hunter.real_name]!"))
+		to_chat(src, SPAN_YAUTJABOLD("[M]已被[M.hunter_data.hunter.real_name]选为猎物！"))
 		return
 	hunter_data.prey = M
 	M.hunter_data.hunter = src
@@ -101,7 +101,7 @@
 	M.hud_set_hunter()
 
 	// Notify the pred
-	to_chat(src, SPAN_YAUTJABOLD("You have chosen [hunter_data.prey] as your next prey."))
+	to_chat(src, SPAN_YAUTJABOLD("你选择[hunter_data.prey]作为下一个猎物。"))
 
 	// Notify other preds
 	message_all_yautja("[real_name] has chosen [hunter_data.prey] ([max(hunter_data.prey.life_kills_total, hunter_data.prey.default_honor_value)] honor) as their next target at \the [get_area_name(hunter_data.prey)].")
@@ -116,21 +116,21 @@
 	set desc = "Unmark your hunt target."
 
 	if(is_mob_incapacitated())
-		to_chat(src, SPAN_DANGER("You're not able to do that right now."))
+		to_chat(src, SPAN_DANGER("你现在无法这样做。"))
 		return
 
 	if(!hunter_data.prey)
-		to_chat(src, SPAN_DANGER("You're not hunting anything right now."))
+		to_chat(src, SPAN_DANGER("你目前没有追猎任何目标。"))
 		return
 
 	if(!isyautja(src))
-		to_chat(src, SPAN_WARNING("How did you get this verb?"))
+		to_chat(src, SPAN_WARNING("你是怎么获得这个指令的？"))
 		return
 
-	if (alert(usr, "Are you sure you want to abandon this prey?", "Remove from Hunt:", "Yes", "No") != "Yes")
+	if (alert(usr, "确定要放弃这个猎物吗？", "移出狩猎名单：", "Yes", "No") != "Yes")
 		return
 	var/mob/living/carbon/prey = hunter_data.prey
-	to_chat(src, SPAN_YAUTJABOLD("You have removed [prey] from your hunt."))
+	to_chat(src, SPAN_YAUTJABOLD("你将[prey]从狩猎名单中移除了。"))
 	prey.hunter_data.hunter = null
 	prey.hunter_data.hunted = FALSE
 	log_interact(src, hunter_data.prey, "[key_name(src)] has un-marked [key_name(hunter_data.prey)] for the Hunt")
@@ -141,11 +141,11 @@
 
 /mob/living/carbon/human/proc/mark_honored()
 	if(is_mob_incapacitated())
-		to_chat(src, SPAN_DANGER("You're not able to do that right now."))
+		to_chat(src, SPAN_DANGER("你现在无法这样做。"))
 		return
 
 	if(!isyautja(src))
-		to_chat(src, SPAN_WARNING("How did you get this verb?"))
+		to_chat(src, SPAN_WARNING("你是怎么获得这个指令的？"))
 		return
 
 	var/list/target_list = list()
@@ -153,14 +153,14 @@
 		if(ishuman_strict(target) && (target.stat != DEAD))
 			target_list += target
 
-	var/mob/living/carbon/T = tgui_input_list(usr, "Target", "Choose a target.", target_list)
+	var/mob/living/carbon/T = tgui_input_list(usr, "目标", "选择目标。", target_list)
 	if(!T)
 		return
 	if(T.hunter_data.honored)
-		to_chat(src, SPAN_YAUTJABOLD("[T] has already been honored by [T.hunter_data.honored_set.real_name] for '[T.hunter_data.honored_reason]'!"))
+		to_chat(src, SPAN_YAUTJABOLD("[T]已因“[T.hunter_data.honored_reason]”被[T.hunter_data.honored_set.real_name]授予荣誉！"))
 		return
 
-	var/reason = stripped_input(usr, "Enter the reason for marking your target as honored.", "Mark as Honored", "", 120)
+	var/reason = stripped_input(usr, "请输入授予目标荣誉的理由。", "标记为荣誉猎物", "", 120)
 
 	if(!reason)
 		return
@@ -178,11 +178,11 @@
 
 /mob/living/carbon/human/proc/unmark_honored()
 	if(is_mob_incapacitated())
-		to_chat(src, SPAN_DANGER("You're not able to do that right now."))
+		to_chat(src, SPAN_DANGER("你现在无法这样做。"))
 		return
 
 	if(!isyautja(src))
-		to_chat(src, SPAN_WARNING("How did you get this verb?"))
+		to_chat(src, SPAN_WARNING("你是怎么获得这个指令的？"))
 		return
 
 	var/list/target_list = list()
@@ -191,11 +191,11 @@
 			if(target.hunter_data.honored)
 				target_list += target
 
-	var/mob/living/carbon/T = tgui_input_list(usr, "Target", "Choose a target.", target_list)
+	var/mob/living/carbon/T = tgui_input_list(usr, "目标", "选择目标。", target_list)
 	if(!T)
 		return
 	if(!T.hunter_data.honored)
-		to_chat(src, SPAN_YAUTJABOLD("[T] is not marked as honored!"))
+		to_chat(src, SPAN_YAUTJABOLD("[T]没有被标记为荣誉猎物！"))
 		return
 
 	if(!T.hunter_data.honored_set || src == T.hunter_data.honored_set)
@@ -209,17 +209,17 @@
 		T.hunter_data.honored_reason = null
 		T.hud_set_hunter()
 	else
-		to_chat(src, SPAN_YAUTJABOLD("You cannot undo the actions of a living brother or sister!"))
+		to_chat(src, SPAN_YAUTJABOLD("你不能撤销仍然在世的同胞所做的标记！"))
 
 
 
 /mob/living/carbon/human/proc/mark_dishonored()
 	if(is_mob_incapacitated())
-		to_chat(src, SPAN_DANGER("You're not able to do that right now."))
+		to_chat(src, SPAN_DANGER("你现在无法这样做。"))
 		return
 
 	if(!isyautja(src))
-		to_chat(src, SPAN_WARNING("How did you get this verb?"))
+		to_chat(src, SPAN_WARNING("你是怎么获得这个指令的？"))
 		return
 
 	var/list/target_list = list()
@@ -230,14 +230,14 @@
 	if(isyautja(src) && src.hunter_data.thrall)
 		target_list += src.hunter_data.thrall
 
-	var/mob/living/carbon/T = tgui_input_list(usr, "Target", "Choose a target.", target_list)
+	var/mob/living/carbon/T = tgui_input_list(usr, "目标", "选择目标。", target_list)
 	if(!T)
 		return
 	if(T.hunter_data.dishonored)
-		to_chat(src, SPAN_YAUTJABOLD("[T] has already been marked as dishonorable by [T.hunter_data.dishonored_set.real_name] for '[T.hunter_data.dishonored_reason]'!"))
+		to_chat(src, SPAN_YAUTJABOLD("[T]已因“[T.hunter_data.dishonored_reason]”被[T.hunter_data.dishonored_set.real_name]标记为不名誉猎物！"))
 		return
 
-	var/reason = stripped_input(usr, "Enter the reason for marking your target as dishonorable.", "Mark as Dishonorable", "", 120)
+	var/reason = stripped_input(usr, "请输入将目标标记为不名誉猎物的理由。", "标记为不名誉猎物", "", 120)
 
 	if(!reason)
 		return
@@ -255,11 +255,11 @@
 
 /mob/living/carbon/human/proc/unmark_dishonored()
 	if(is_mob_incapacitated())
-		to_chat(src, SPAN_DANGER("You're not able to do that right now."))
+		to_chat(src, SPAN_DANGER("你现在无法这样做。"))
 		return
 
 	if(!isyautja(src))
-		to_chat(src, SPAN_WARNING("How did you get this verb?"))
+		to_chat(src, SPAN_WARNING("你是怎么获得这个指令的？"))
 		return
 
 	var/list/target_list = list()
@@ -272,11 +272,11 @@
 	if(isyautja(src) && src.hunter_data.thrall)
 		target_list += src.hunter_data.thrall
 
-	var/mob/living/carbon/T = tgui_input_list(usr, "Target", "Choose a target.", target_list)
+	var/mob/living/carbon/T = tgui_input_list(usr, "目标", "选择目标。", target_list)
 	if(!T)
 		return
 	if(!T.hunter_data.dishonored)
-		to_chat(src, SPAN_YAUTJABOLD("[T] is not marked as dishonorable!"))
+		to_chat(src, SPAN_YAUTJABOLD("[T]没有被标记为不名誉猎物！"))
 		return
 
 	if(!T.hunter_data.dishonored_set || src == T.hunter_data.dishonored_set)
@@ -290,17 +290,17 @@
 		T.hunter_data.dishonored_reason = null
 		T.hud_set_hunter()
 	else
-		to_chat(src, SPAN_YAUTJABOLD("You cannot undo the actions of a living brother or sister!"))
+		to_chat(src, SPAN_YAUTJABOLD("你不能撤销仍然在世的同胞所做的标记！"))
 
 
 
 /mob/living/carbon/human/proc/mark_gear()
 	if(is_mob_incapacitated())
-		to_chat(src, SPAN_DANGER("You're not able to do that right now."))
+		to_chat(src, SPAN_DANGER("你现在无法这样做。"))
 		return
 
 	if(!isyautja(src))
-		to_chat(src, SPAN_WARNING("How did you get this verb?"))
+		to_chat(src, SPAN_WARNING("你是怎么获得这个指令的？"))
 		return
 
 	var/list/target_list = list()
@@ -308,11 +308,11 @@
 		if((ishuman_strict(target) && target.stat != DEAD))
 			target_list += target
 
-	var/mob/living/carbon/T = tgui_input_list(usr, "Target", "Choose a target.", target_list)
+	var/mob/living/carbon/T = tgui_input_list(usr, "目标", "选择目标。", target_list)
 	if(!T)
 		return
 	if(T.hunter_data.gear)
-		to_chat(src, SPAN_YAUTJABOLD("[T] has already been marked as a gear carrier by [T.hunter_data.gear_set]!"))
+		to_chat(src, SPAN_YAUTJABOLD("[T]已被[T.hunter_data.gear_set]标记为铁血装备携带者！"))
 		return
 
 	log_interact(src, T, "[key_name(src)] has marked [key_name(T)] as a Gear Carrier!")
@@ -327,11 +327,11 @@
 
 /mob/living/carbon/human/proc/unmark_gear()
 	if(is_mob_incapacitated())
-		to_chat(src, SPAN_DANGER("You're not able to do that right now."))
+		to_chat(src, SPAN_DANGER("你现在无法这样做。"))
 		return
 
 	if(!isyautja(src))
-		to_chat(src, SPAN_WARNING("How did you get this verb?"))
+		to_chat(src, SPAN_WARNING("你是怎么获得这个指令的？"))
 		return
 
 	var/list/target_list = list()
@@ -340,11 +340,11 @@
 			if(target.hunter_data.gear)
 				target_list += target
 
-	var/mob/living/carbon/T = tgui_input_list(usr, "Target", "Choose a target.", target_list)
+	var/mob/living/carbon/T = tgui_input_list(usr, "目标", "选择目标。", target_list)
 	if(!T)
 		return
 	if(!T.hunter_data.gear)
-		to_chat(src, SPAN_YAUTJABOLD("[T] is not marked as a gear carrier!"))
+		to_chat(src, SPAN_YAUTJABOLD("[T]没有被标记为铁血装备携带者！"))
 		return
 
 	if(!T.hunter_data.gear_set || src == T.hunter_data.gear_set)
@@ -357,20 +357,20 @@
 		T.hunter_data.gear = FALSE
 		T.hud_set_hunter()
 	else
-		to_chat(src, SPAN_YAUTJABOLD("You cannot undo the actions of a living brother or sister!"))
+		to_chat(src, SPAN_YAUTJABOLD("你不能撤销仍然在世的同胞所做的标记！"))
 
 
 /mob/living/carbon/human/proc/mark_thralled()
 	if(is_mob_incapacitated())
-		to_chat(src, SPAN_DANGER("You're not able to do that right now."))
+		to_chat(src, SPAN_DANGER("你现在无法这样做。"))
 		return
 
 	if(!isyautja(src))
-		to_chat(src, SPAN_WARNING("How did you get this verb?"))
+		to_chat(src, SPAN_WARNING("你是怎么获得这个指令的？"))
 		return
 
 	if(hunter_data.thrall)
-		to_chat(src, SPAN_WARNING("You already have a thrall."))
+		to_chat(src, SPAN_WARNING("你已经有一名仆从了。"))
 		return
 
 	// List all possible targets
@@ -380,14 +380,14 @@
 		if(ishuman_strict(target) && target.stat != DEAD)
 			target_list += target
 
-	var/mob/living/carbon/T = tgui_input_list(usr, "Target", "Choose a target.", target_list)
+	var/mob/living/carbon/T = tgui_input_list(usr, "目标", "选择目标。", target_list)
 	if(!T)
 		return
 	if(T.hunter_data.thralled)
-		to_chat(src, SPAN_YAUTJABOLD("[T] has already been thralled by [T.hunter_data.thralled_set.real_name] for '[T.hunter_data.thralled_reason]'!"))
+		to_chat(src, SPAN_YAUTJABOLD("[T]已因“[T.hunter_data.thralled_reason]”被[T.hunter_data.thralled_set.real_name]收为仆从！"))
 		return
 
-	var/reason = stripped_input(usr, "Enter the reason for marking your target as thralled.", "Mark as Thralled", "", 120)
+	var/reason = stripped_input(usr, "请输入将目标收为仆从的理由。", "标记为仆从", "", 120)
 
 	if(!reason)
 		return
@@ -405,11 +405,11 @@
 
 /mob/living/carbon/human/proc/unmark_thralled()
 	if(is_mob_incapacitated())
-		to_chat(src, SPAN_DANGER("You're not able to do that right now."))
+		to_chat(src, SPAN_DANGER("你现在无法这样做。"))
 		return
 
 	if(!isyautja(src))
-		to_chat(src, SPAN_WARNING("How did you get this verb?"))
+		to_chat(src, SPAN_WARNING("你是怎么获得这个指令的？"))
 		return
 
 	// List all possible targets
@@ -423,11 +423,11 @@
 	if(isyautja(src) && src.hunter_data.thrall)
 		target_list += src.hunter_data.thrall
 
-	var/mob/living/carbon/T = tgui_input_list(usr, "Target", "Choose a target.", target_list)
+	var/mob/living/carbon/T = tgui_input_list(usr, "目标", "选择目标。", target_list)
 	if(!T)
 		return
 	if(!T.hunter_data.thralled)
-		to_chat(src, SPAN_YAUTJABOLD("[T] is not marked as thralled!"))
+		to_chat(src, SPAN_YAUTJABOLD("[T]没有被标记为仆从！"))
 		return
 
 	if(!T.hunter_data.thralled_set || src == T.hunter_data.thralled_set)
@@ -441,7 +441,7 @@
 		hunter_data.thrall = null
 		T.hud_set_hunter()
 	else
-		to_chat(src, SPAN_YAUTJABOLD("You cannot undo the actions of a living brother or sister!"))
+		to_chat(src, SPAN_YAUTJABOLD("你不能撤销仍然在世的同胞所做的标记！"))
 
 /mob/living/carbon/human/proc/call_combi()
 	set name = "Yank combi-stick"

@@ -17,7 +17,7 @@ Bonus
 
 /datum/symptom/confusion
 
-	name = "Confusion"
+	name = "意识混乱"
 	stealth = 1
 	resistance = -1
 	stage_speed = -3
@@ -31,9 +31,9 @@ Bonus
 		var/mob/living/carbon/M = A.affected_mob
 		switch(A.stage)
 			if(1, 2, 3, 4)
-				to_chat(M, SPAN_NOTICE("[pick("You feel confused.", "You forgot what you were thinking about.")]"))
+				to_chat(M, SPAN_NOTICE("[pick("你感到困惑。", "你忘了自己刚才在想什么。")]"))
 			else
-				to_chat(M, SPAN_NOTICE("You are unable to think straight!"))
+				to_chat(M, SPAN_NOTICE("你无法清晰地思考！"))
 				M.confused = min(100, M.confused + 2)
 
 	return

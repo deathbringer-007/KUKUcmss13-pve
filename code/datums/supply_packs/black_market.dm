@@ -643,7 +643,7 @@ USCM spare items, miscellaneous gear that's too niche and distant (or restricted
 	. = ..()
 	var/obj/item/paper/nope = new(src)
 	nope.name = "automated ASRS note"
-	nope.info = "Sorry! Your requested order of <b>USCM PONCHO (X2)</b> was not successfully delivered because: 'No items of that type found in storage.'"
+	nope.info = "抱歉！你订购的<b>USCM雨披（2件）</b>未能成功送达，原因是：“仓库中没有找到该类物品。”"
 	nope.color = "green"
 	nope.update_icon()
 
@@ -657,7 +657,7 @@ USCM spare items, miscellaneous gear that's too niche and distant (or restricted
 	. = ..()
 	var/obj/item/paper/nope = new(src)
 	nope.name = "automated ASRS note"
-	nope.info = "Sorry! Your requested order of <b> HIGH-EXPLOSIVE ARMOR-PIERCING M41A MAGAZINE (X3)</b> was not successfully delivered because: 'ERROR: UNABLE TO ENTER COMPARTMENT EXIT CODE 2342: EXPLOSION HAZARD'"
+	nope.info = "抱歉！你订购的<b>M41A高爆穿甲弹匣（3个）</b>未能成功送达，原因是：“错误：无法进入舱室，退出代码2342：爆炸危险。”"
 	nope.color = "green"
 	nope.update_icon()
 
@@ -1107,7 +1107,7 @@ Things that don't fit anywhere else. If they're meant for shipside use, they pro
 	containertype = /obj/structure/largecrate/black_market/secured_wildlife
 
 /obj/structure/largecrate/black_market/secured_wildlife
-	name = "secured wildlife container"
+	name = "加固野生动物集装箱"
 	icon_state = "lisacrate"
 
 /obj/structure/largecrate/black_market/secured_wildlife/unpack()
@@ -1140,8 +1140,8 @@ Things that don't fit anywhere else. If they're meant for shipside use, they pro
 	containertype = /obj/structure/largecrate/black_market/clf_supplies
 
 /obj/structure/largecrate/black_market/clf_supplies
-	name = "unmarked CLF supply crate"
-	desc = "What's in the box? Only one way to find out!"
+	name = "无标识的CLF补给箱"
+	desc = "箱子里装着什么？只有打开才知道！"
 	icon_state = "chest"
 	/// If you want to use this in mapping, you can force-set the contents via this.
 	var/forced_rng

@@ -257,11 +257,11 @@ directive is properly returned.
 
 /atom/proc/get_examine_text(mob/user)
 	. = list()
-	. += "[icon2html(src, user)] That's \a [src]." //changed to "That's" from "This is" because "This is some metal sheets" sounds dumb compared to "That's some metal sheets" ~Carn
+	. += "[icon2html(src, user)] 这是[src]。" //changed to "That's" from "This is" because "This is some metal sheets" sounds dumb compared to "That's some metal sheets" ~Carn
 	if(desc)
 		. += desc
 	if(desc_lore)
-		. += SPAN_NOTICE("This has an <a href='byond://?src=\ref[src];desc_lore=1'>extended lore description</a>.")
+		. += SPAN_NOTICE("它有一段<a href='byond://?src=\ref[src];desc_lore=1'>扩展背景说明</a>。")
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.

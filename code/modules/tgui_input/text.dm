@@ -153,7 +153,7 @@
 				if(length(params["entry"]) > max_length)
 					CRASH("[usr] typed a text string longer than the max length")
 				if(encode && (length(html_encode(params["entry"])) > max_length))
-					to_chat(usr, SPAN_NOTICE("Your message was clipped due to special character usage."))
+					to_chat(usr, SPAN_NOTICE("你的讯息因使用特殊字符而被截断。"))
 			set_entry(params["entry"], trim)
 			closed = TRUE
 			SStgui.close_uis(src)

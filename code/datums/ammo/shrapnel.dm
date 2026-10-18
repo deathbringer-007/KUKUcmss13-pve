@@ -55,7 +55,7 @@
 /datum/ammo/bullet/shrapnel/canister/knockback_effects(mob/living/living_mob, obj/projectile/fired_projectile)
 	if(iscarbonsizexeno(living_mob))
 		var/mob/living/carbon/xenomorph/target = living_mob
-		to_chat(target, SPAN_XENODANGER("You are shaken and slowed by the sudden impact!"))
+		to_chat(target, SPAN_XENODANGER("突如其来的冲击使你浑身一震、行动迟缓！"))
 		target.KnockDown(2.5)
 		target.Stun(2.5)
 		target.Slow(4)
@@ -64,7 +64,7 @@
 			living_mob.KnockDown(3)
 			living_mob.Stun(3)
 			living_mob.Slow(5)
-			to_chat(living_mob, SPAN_HIGHDANGER("The impact knocks you off-balance!"))
+			to_chat(living_mob, SPAN_HIGHDANGER("冲击使你失去了平衡！"))
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)
 
 
@@ -117,7 +117,7 @@
 /datum/ammo/bullet/shrapnel/claymore/strong/knockback_effects(mob/living/living_mob, obj/projectile/fired_projectile)
 	if(iscarbonsizexeno(living_mob))
 		var/mob/living/carbon/xenomorph/target = living_mob
-		to_chat(target, SPAN_XENODANGER("You are shaken and slowed by the sudden impact!"))
+		to_chat(target, SPAN_XENODANGER("突如其来的冲击使你浑身一震、行动迟缓！"))
 		target.KnockDown(1.5)
 		target.Stun(1.5)
 		target.Slow(3)
@@ -125,7 +125,7 @@
 		living_mob.KnockDown(1.5)
 		living_mob.Stun(1.5)
 		living_mob.Slow(3)
-		to_chat(living_mob, SPAN_HIGHDANGER("The impact knocks you off-balance!"))
+		to_chat(living_mob, SPAN_HIGHDANGER("冲击使你失去了平衡！"))
 
 /datum/ammo/bullet/shrapnel/hornet_rounds
 	name = ".22 hornet round"

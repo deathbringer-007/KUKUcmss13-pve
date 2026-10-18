@@ -18,8 +18,8 @@
 
 /datum/emergency_call/pmc/New()
 	..()
-	arrival_message = "[MAIN_SHIP_NAME], this is USCSS Royce responding to your distress call. We are boarding. Any hostile actions will be met with lethal force."
-	objectives = "Secure the Corporate Liaison and the [MAIN_SHIP_NAME]'s Commanding Officer, and eliminate any hostile threats. Do not damage Wey-Yu property."
+	arrival_message = "[MAIN_SHIP_NAME]，这里是响应求救的USCSS罗伊斯号。我们即将登舰。任何敌对行动都将遭到致命武力反击。"
+	objectives = "保护企业联络员和 [MAIN_SHIP_NAME] 的舰长，消灭所有敌对威胁。不得损坏维兰德-汤谷的财产。"
 
 
 /datum/emergency_call/pmc/create_member(datum/mind/M, turf/override_spawn_loc)
@@ -33,50 +33,50 @@
 
 	if(!leader && HAS_FLAG(mob.client.prefs.toggles_ert, PLAY_LEADER) && check_timelock(mob.client, JOB_SQUAD_LEADER, time_required_for_job))
 		leader = mob
-		to_chat(mob, SPAN_ROLE_HEADER("You are a Weyland-Yutani PMC Squad Leader!"))
+		to_chat(mob, SPAN_ROLE_HEADER("你是维兰德-汤谷私人军事承包商小队的小队长！"))
 		arm_equipment(mob, /datum/equipment_preset/pmc/leader, TRUE, TRUE)
 	else if(synths < max_synths && HAS_FLAG(mob.client.prefs.toggles_ert, PLAY_SYNTH) && mob.client.check_whitelist_status(WHITELIST_SYNTHETIC))
 		synths++
-		to_chat(mob, SPAN_ROLE_HEADER("You are a Weyland-Yutani PMC Support Synthetic!"))
+		to_chat(mob, SPAN_ROLE_HEADER("你是维兰德-汤谷私人军事承包商小队的支援合成人！"))
 		arm_equipment(mob, /datum/equipment_preset/pmc/synth, TRUE, TRUE)
 	else if(medics < max_medics && HAS_FLAG(mob.client.prefs.toggles_ert, PLAY_MEDIC) && check_timelock(mob.client, JOB_SQUAD_MEDIC, time_required_for_job))
 		medics++
-		to_chat(mob, SPAN_ROLE_HEADER("You are a Weyland-Yutani PMC Medic!"))
+		to_chat(mob, SPAN_ROLE_HEADER("你是维兰德-汤谷私人军事承包商小队的医疗兵！"))
 		arm_equipment(mob, /datum/equipment_preset/pmc/medic, TRUE, TRUE)
 	else if(smartgunners < max_smartgunners && HAS_FLAG(mob.client.prefs.toggles_ert, PLAY_SMARTGUNNER) && check_timelock(mob.client, JOB_SQUAD_SMARTGUN))
 		smartgunners++
-		to_chat(mob, SPAN_ROLE_HEADER("You are a Weyland-Yutani PMC Heavy Gunner!"))
+		to_chat(mob, SPAN_ROLE_HEADER("你是维兰德-汤谷私人军事承包商小队的重机枪手！"))
 		arm_equipment(mob, /datum/equipment_preset/pmc/gunner, TRUE, TRUE)
 	else if(heavies < max_heavies && HAS_FLAG(mob.client.prefs.toggles_ert, PLAY_HEAVY) && check_timelock(mob.client, JOB_SQUAD_SPECIALIST))
 		heavies++
-		to_chat(mob, SPAN_ROLE_HEADER("You are a Weyland-Yutani PMC Sniper!"))
+		to_chat(mob, SPAN_ROLE_HEADER("你是维兰德-汤谷私人军事承包商小队的狙击手！"))
 		arm_equipment(mob, /datum/equipment_preset/pmc/sniper, TRUE, TRUE)
 	else
-		to_chat(mob, SPAN_ROLE_HEADER("You are a Weyland-Yutani PMC Operator!"))
+		to_chat(mob, SPAN_ROLE_HEADER("你是维兰德-汤谷私人军事承包商小队的行动干员！"))
 		arm_equipment(mob, /datum/equipment_preset/pmc/standard, TRUE, TRUE)
 
 	print_backstory(mob)
 
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), mob, SPAN_BOLD("Objectives:</b> [objectives]")), 1 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), mob, SPAN_BOLD("目标：</b>[objectives]")), 1 SECONDS)
 
 
 /datum/emergency_call/pmc/print_backstory(mob/living/carbon/human/M)
 	if(ishuman_strict(M))
-		to_chat(M, SPAN_BOLD("You were born [pick(75;"in Europe", 15;"in Asia", 10;"on Mars")] to a [pick(75;"well-off", 15;"well-established", 10;"average")] family."))
-		to_chat(M, SPAN_BOLD("Joining the ranks of Weyland-Yutani has proven to be very profitable for you."))
-		to_chat(M, SPAN_BOLD("While you are officially an employee, much of your work is off the books. You work as a skilled mercenary."))
-		to_chat(M, SPAN_BOLD("You are [pick(50;"unaware of the xenomorph threat", 15;"acutely aware of the xenomorph threat", 10;"well-informed of the xenomorph threat")]"))
+		to_chat(M, SPAN_BOLD("你出生于[pick(75;"欧洲", 15;"亚洲", 10;"火星")]的一个[pick(75;"富裕", 15;"家境殷实", 10;"普通")]家庭。"))
+		to_chat(M, SPAN_BOLD("加入维兰德-汤谷让你赚得盆满钵满。"))
+		to_chat(M, SPAN_BOLD("你名义上是公司雇员，但大量工作都不在账面上。你是一名熟练的佣兵。"))
+		to_chat(M, SPAN_BOLD("你[pick(50;"对异形威胁毫不知情", 15;"十分清楚异形威胁", 10;"对异形威胁了解颇深")]。"))
 	else
-		to_chat(M, SPAN_BOLD("You were brought online in a Weyland-Yutani synthetic production facility, knowing only your engineers for the first few weeks for your pseudo-life."))
-		to_chat(M, SPAN_BOLD("You were programmed with standard synthetic skills as per facility and geneva protocol."))
-		to_chat(M, SPAN_BOLD("Throughout your service, you gained recognition as a capable unit and your model was given equipment upgrades which USCM models lack."))
-		to_chat(M, SPAN_BOLD("You were given all available information about the xenomorph threat apart from classified data reserved for special employees."))
-	to_chat(M, SPAN_BOLD("You are part of  Weyland-Yutani Task Force Oberon that arrived in 2182 following the UA withdrawl of the Neroid Sector."))
-	to_chat(M, SPAN_BOLD("Task-force Oberon is stationed aboard the USCSS Royce, a powerful Weyland-Yutani cruiser that patrols the outer edges of the Neroid Sector. "))
-	to_chat(M, SPAN_BOLD("Under the directive of Weyland-Yutani board member Johan Almric, you act as private security for Weyland-Yutani science teams."))
-	to_chat(M, SPAN_BOLD("The USCSS Royce contains a crew of roughly two hundred PMCs, and one hundred scientists and support personnel."))
-	to_chat(M, SPAN_BOLD("Ensure no damage is incurred against Weyland-Yutani. Make sure the CL is safe."))
-	to_chat(M, SPAN_BOLD("Deny Weyland-Yutani's involvement and do not trust the UA/USCM forces."))
+		to_chat(M, SPAN_BOLD("你在维兰德-汤谷的合成人生产设施中启动，仿生生命最初的几周只认识制造你的工程师。"))
+		to_chat(M, SPAN_BOLD("根据设施规定和日内瓦协议，你被赋予了标准合成人技能。"))
+		to_chat(M, SPAN_BOLD("服役期间，你因能力出众而受到认可，你的型号获得了美国殖民地海军陆战队型号所没有的装备升级。"))
+		to_chat(M, SPAN_BOLD("除了专门保留给特殊雇员的机密资料，你已获得所有可用的异形威胁情报。"))
+	to_chat(M, SPAN_BOLD("你隶属于维兰德-汤谷奥伯龙特遣队。该部队于2182年、美洲联盟撤出尼洛德星区后抵达。"))
+	to_chat(M, SPAN_BOLD("奥伯龙特遣队驻扎在USCSS罗伊斯号上。这艘强大的维兰德-汤谷巡洋舰负责巡逻尼洛德星区外围。"))
+	to_chat(M, SPAN_BOLD("根据维兰德-汤谷董事约翰·阿尔姆里克的指示，你为公司的科研团队提供私人安保。"))
+	to_chat(M, SPAN_BOLD("USCSS罗伊斯号载有约两百名私人军事承包商人员，以及一百名科学家和支援人员。"))
+	to_chat(M, SPAN_BOLD("确保维兰德-汤谷的利益不受损害，并保护好企业联络员。"))
+	to_chat(M, SPAN_BOLD("否认维兰德-汤谷参与其中，不要信任美洲联盟或美国殖民地海军陆战队部队。"))
 
 
 /datum/emergency_call/pmc/platoon
@@ -100,13 +100,13 @@
 
 /datum/emergency_call/pmc/chem_retrieval/New()
 	..()
-	dispatch_message = "[MAIN_SHIP_NAME], this is USCSS Royce. We are sending a second squad aboard to retrieve all samples of a chemical recently scanned from your research department. If you do not cooperate, the team is authorized to use lethal force and terminate the research department."
-	objectives = "Secure all documents, samples and chemicals containing the property DNA_Disintegrating from [MAIN_SHIP_NAME] research department."
+	dispatch_message = "[MAIN_SHIP_NAME]，这里是USCSS罗伊斯号。我们将派第二支小队登舰，收取近期从你们科研部门扫描到的某种化学品的全部样本。如果你们拒不配合，小队有权使用致命武力，清除科研部门。"
+	objectives = "从 [MAIN_SHIP_NAME] 研究部门获取所有含有DNA瓦解特性的文件、样本和化学品。"
 
 /datum/emergency_call/pmc/chem_retrieval/proc/check_objective_info()
 	if(objective_info)
-		objectives = "Secure all documents, samples and chemicals related to [objective_info] from [MAIN_SHIP_NAME] research department."
-	objectives += "Assume at least 30 units are located within the department. If they can not make more that should be all. Cooperate with the onboard Wey-Yu researcher to ensure all who know the complete recipe are kept silenced with a contract of confidentiality. All humans who have ingested the chemical must be brought back dead or alive. Viral scan is required for any humans who is suspected of ingestion. Full termination of the department is authorized if they do not cooperate, but this should be avoided UNLESS ABSOLUTELY NECESSARY."
+		objectives = "从 [MAIN_SHIP_NAME] 研究部门获取所有与 [objective_info] 有关的文件、样本和化学品。"
+	objectives += "预计科研部门至少存有30单位该化学品。如果他们无法继续生产，那应是全部存量。与舰上的维兰德-汤谷研究员合作，让所有掌握完整配方的人签署保密合同，不得泄密。所有摄入过该化学品的人类都必须带回，无论死活。对疑似摄入者必须进行病毒扫描。如果科研部门拒不配合，允许将其全部清除，但除非绝对必要，否则应避免这样做。"
 	checked_objective = TRUE
 
 /datum/emergency_call/pmc/chem_retrieval/create_member(datum/mind/M, turf/override_spawn_loc)
@@ -125,23 +125,23 @@
 
 	if(!leader && HAS_FLAG(H.client.prefs.toggles_ert, PLAY_LEADER) && check_timelock(H.client, JOB_SQUAD_LEADER, time_required_for_job))    //First one spawned is always the leader.
 		leader = H
-		to_chat(H, SPAN_ROLE_HEADER("You are a Weyland-Yutani PMC Squad Leader!"))
+		to_chat(H, SPAN_ROLE_HEADER("你是维兰德-汤谷私人军事承包商小队的小队长！"))
 		arm_equipment(H, /datum/equipment_preset/pmc/leader, TRUE, TRUE)
 	else if(medics < max_medics && HAS_FLAG(H.client.prefs.toggles_ert, PLAY_MEDIC) && check_timelock(H.client, JOB_SQUAD_MEDIC, time_required_for_job))
 		medics++
-		to_chat(H, SPAN_ROLE_HEADER("You are a Weyland-Yutani PMC Medical Investigator!"))
+		to_chat(H, SPAN_ROLE_HEADER("你是维兰德-汤谷私人军事承包商小队的医疗调查员！"))
 		arm_equipment(H, /datum/equipment_preset/pmc/medic, TRUE, TRUE)
 	else if(heavies < max_heavies && HAS_FLAG(H.client.prefs.toggles_ert, PLAY_SMARTGUNNER) && check_timelock(H.client, JOB_SQUAD_SMARTGUN, time_required_for_job))
 		heavies++
-		to_chat(H, SPAN_ROLE_HEADER("You are a Weyland-Yutani PMC Heavy Gunner!"))
+		to_chat(H, SPAN_ROLE_HEADER("你是维兰德-汤谷私人军事承包商小队的重机枪手！"))
 		arm_equipment(H, /datum/equipment_preset/pmc/gunner, TRUE, TRUE)
 	else
-		to_chat(H, SPAN_ROLE_HEADER("You are a Weyland-Yutani PMC Detainer!"))
+		to_chat(H, SPAN_ROLE_HEADER("你是维兰德-汤谷私人军事承包商小队的拘押员！"))
 		arm_equipment(H, /datum/equipment_preset/pmc/standard, TRUE, TRUE)
 
 	print_backstory(H)
 
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), H, SPAN_BOLD("Objectives:</b> [objectives]")), 1 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), H, SPAN_BOLD("目标：</b>[objectives]")), 1 SECONDS)
 /obj/effect/landmark/ert_spawns/distress_pmc
 	name = "Distress_PMC"
 

@@ -168,8 +168,8 @@
 	if(!step(living_mob, direction))
 		living_mob.animation_attack_on(get_step(living_mob, direction))
 		playsound(living_mob.loc, "punch", 25, 1)
-		living_mob.visible_message(SPAN_DANGER("[living_mob] slams into an obstacle!"),
-			isxeno(living_mob) ? SPAN_XENODANGER("You slam into an obstacle!") : SPAN_HIGHDANGER("You slam into an obstacle!"), null, 4, CHAT_TYPE_TAKING_HIT)
+		living_mob.visible_message(SPAN_DANGER("[living_mob] 猛地撞上了障碍物！"),
+			isxeno(living_mob) ? SPAN_XENODANGER("你猛地撞上了障碍物！") : SPAN_HIGHDANGER("你猛地撞上了障碍物！"), null, 4, CHAT_TYPE_TAKING_HIT)
 		living_mob.apply_damage(MELEE_FORCE_TIER_2)
 
 ///The applied effects for knockback(), overwrite to change slow/stun amounts for different ammo datums
@@ -180,7 +180,7 @@
 		target.KnockDown(0.7)
 		target.apply_effect(1, SUPERSLOW)
 		target.apply_effect(2, SLOW)
-		to_chat(target, SPAN_XENODANGER("You are shaken by the sudden impact!"))
+		to_chat(target, SPAN_XENODANGER("突如其来的冲击使你浑身一震！"))
 	else
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)
 
@@ -192,7 +192,7 @@
 	if(iscarbonsizexeno(living_mob))
 		var/mob/living/carbon/xenomorph/target = living_mob
 		target.apply_effect(4, SUPERSLOW)
-		to_chat(target, SPAN_XENODANGER("You are slowed by the sudden impact!"))
+		to_chat(target, SPAN_XENODANGER("突如其来的冲击使你行动迟缓！"))
 	else
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)
 
@@ -203,7 +203,7 @@
 	if(target_mob.mob_size >= MOB_SIZE_BIG)
 		return //too big to push
 
-	to_chat(target_mob, isxeno(target_mob) ? SPAN_XENODANGER("You are pushed back by the sudden impact!") : SPAN_HIGHDANGER("You are pushed back by the sudden impact!"))
+	to_chat(target_mob, isxeno(target_mob) ? SPAN_XENODANGER("突如其来的冲击将你推了回去！") : SPAN_HIGHDANGER("突如其来的冲击将你推了回去！"))
 	slam_back(target_mob, fired_projectile, max_range)
 
 /datum/ammo/proc/burst(atom/target, obj/projectile/P, damage_type = BRUTE, range = 1, damage_div = 2, show_message = SHOW_MESSAGE_VISIBLE) //damage_div says how much we divide damage
@@ -212,8 +212,8 @@
 		if(P.firer == M)
 			continue
 		if(show_message)
-			var/msg = "You are hit by backlash from \a </b>[P.name]</b>!"
-			M.visible_message(SPAN_DANGER("[M] is hit by backlash from \a [P.name]!"),isxeno(M) ? SPAN_XENODANGER("[msg]"):SPAN_HIGHDANGER("[msg]"))
+			var/msg = "你被</b>[P.name]</b>的反冲击中了！"
+			M.visible_message(SPAN_DANGER("[M] 被 \a [P.name] 的反冲击中了！"),isxeno(M) ? SPAN_XENODANGER("[msg]"):SPAN_HIGHDANGER("[msg]"))
 		var/damage = P.damage/damage_div
 
 		var/mob/living/carbon/xenomorph/XNO = null

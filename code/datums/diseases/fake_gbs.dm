@@ -7,7 +7,7 @@
 	cure_id = list("sulfur")
 	agent = "Gravitokinetic Bipotential SADS-"
 	affected_species = list("Human", "Monkey")
-	desc = "If left untreated death will occur."
+	desc = "若不治疗，患者将会死亡。"
 	severity = "Major"
 
 /datum/disease/fake_gbs/stage_act()
@@ -22,7 +22,7 @@
 			else if(prob(5))
 				affected_mob.emote("gasp")
 			if(prob(10))
-				to_chat(affected_mob, SPAN_DANGER("You're starting to feel very weak..."))
+				to_chat(affected_mob, SPAN_DANGER("你开始感到十分虚弱……"))
 		if(4)
 			if(prob(10))
 				affected_mob.emote("cough")

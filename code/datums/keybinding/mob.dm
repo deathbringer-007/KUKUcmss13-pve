@@ -16,7 +16,7 @@
 		return
 	var/mob/M = user.mob
 	if(!M.pulling)
-		to_chat(user, SPAN_NOTICE("You are not pulling anything."))
+		to_chat(user, SPAN_NOTICE("你没有在拖拽任何东西。"))
 	else
 		M.stop_pulling()
 	return TRUE
@@ -42,7 +42,7 @@
 	classic_keys = list("Y", "Z", "Ctrl+Y", "Ctrl+Z")
 	name = "activate_inhand"
 	full_name = "Activate in-hand"
-	description = "Uses whatever item you have inhand"
+	description = "使用当前手中持有的物品。"
 	keybind_signal = COMSIG_KB_MOB_ACTIVATEINHAND_DOWN
 
 /datum/keybinding/mob/activate_inhand/down(client/user)
@@ -68,7 +68,7 @@
 	var/mob/M = user.mob
 	var/obj/item/I = M.get_held_item()
 	if(!I)
-		to_chat(user, SPAN_WARNING("You have nothing to drop in your hand!"))
+		to_chat(user, SPAN_WARNING("你手里没有可以丢下的东西！"))
 	else
 		user.mob.drop_held_item(I)
 	return TRUE
@@ -93,7 +93,7 @@
 	classic_keys = list("Numpad8")
 	name = "target_head_cycle"
 	full_name = "Target: Cycle Head"
-	description = "Pressing this key targets the head, and continued presses will cycle to the eyes and mouth. This will impact where you hit people, and can be used for surgery."
+	description = "按此键瞄准头部，继续按可依次切换至眼睛和嘴部。这会影响你击中的部位，也可用于手术。"
 	keybind_signal = COMSIG_KB_MOB_TARGETCYCLEHEAD_DOWN
 
 /datum/keybinding/mob/target/head_cycle/get_target_zone(client/user)
@@ -110,7 +110,7 @@
 	classic_keys = list("Numpad4")
 	name = "target_r_arm"
 	full_name = "Target: right arm"
-	description = "Pressing this key targets the right arm. This will impact where you hit people, and can be used for surgery."
+	description = "按此键瞄准右臂。这会影响你击中的部位，也可用于手术。"
 	keybind_signal = COMSIG_KB_MOB_TARGETRIGHTARM_DOWN
 
 /datum/keybinding/mob/target/r_arm/get_target_zone(client/user)

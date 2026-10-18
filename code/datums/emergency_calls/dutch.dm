@@ -9,8 +9,8 @@
 	max_heavies = 1
 	max_medics = 1
 
-	arrival_message = "'We're here to kick ass and kill Yautja. Mainly kill Yautja."
-	objectives = "Hunt down and kill all Yautja without mercy. Retrieve the gear and leave."
+	arrival_message = "“我们来这里就是为了大显身手、猎杀铁血战士。主要是猎杀铁血战士。”"
+	objectives = "毫不留情地追猎并杀死所有铁血战士。取回装备后撤离。"
 	probability = 0
 
 /datum/emergency_call/dutch/create_member(datum/mind/M, turf/override_spawn_loc)
@@ -36,7 +36,7 @@
 		arm_equipment(H, /datum/equipment_preset/dutch/medic, TRUE, TRUE)
 	else
 		arm_equipment(H, /datum/equipment_preset/dutch, TRUE, TRUE)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), H, SPAN_BOLD("Objectives: [objectives]")), 1 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), H, SPAN_BOLD("目标：[objectives]")), 1 SECONDS)
 
 /datum/emergency_call/dutch/full_dozen //AWWW YEAH DA FULL DOZEN FO TODAY
 	name = "Dutch's Dozen - Full Strength"
@@ -44,6 +44,6 @@
 	mob_min = 8
 	max_heavies = 2
 	max_medics = 2
-	arrival_message = "'We're here to kick ass and kill Yautja. Mainly kill Yautja."
-	objectives = "Hunt down and kill all Yautja without mercy. Retrieve the gear and leave."
+	arrival_message = "“我们来这里就是为了大显身手、猎杀铁血战士。主要是猎杀铁血战士。”"
+	objectives = "毫不留情地追猎并杀死所有铁血战士。取回装备后撤离。"
 	probability = 0

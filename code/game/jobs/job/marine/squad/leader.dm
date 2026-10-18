@@ -8,11 +8,11 @@
 	title = JOB_SQUAD_LEADER
 	total_positions = 4
 	spawn_positions = 4
-	supervisors = "the acting commanding officer"
+	supervisors = "现任指挥官"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_SQUAD
 	gear_preset = /datum/equipment_preset/uscm/leader
 	gear_preset_secondary = /datum/equipment_preset/uscm/leader/staff_sergeant
-	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>You are responsible for the men and women of your entire section.</a> Make sure they are on task, working together, and communicating. You are also in charge of communicating with command and letting them know about the situation first hand. Keep out of harm's way.<br><b>You remember that you've stored your personal gear and uniform are located in the dorm or locker rooms.</b>"
+	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>你对整个分队的所有人员负责。</a>确保大家专注任务、协同作战并保持沟通。你也负责与指挥部联络，及时汇报一线情况。注意保护自己。<br><b>你记得自己的个人装备和制服存放在宿舍或更衣室内。</b>"
 
 	job_options = list(SSGT_VARIANT = "SSGT", GYSGT_VARIANT = "GYSGT")
 
@@ -117,8 +117,8 @@ OverrideTimelock(/datum/job/marine/leader, list(
 	title = JOB_TWE_RMC_TROOPLEADER
 	gear_preset = /datum/equipment_preset/uscm/rmc/cs
 	job_options = null
-	supervisors = "the troop commander"
-	entry_message_body = "You are the second in command of the whole Troop, ensuring the orders of the Troop Commander are followed through. Make sure they are on task, working together, and adequately supplied. You are also in charge of communicating with the Bombardment Specialist and coordinating the fire support they provide. Keep out of harm's way. You report to the Troop Commander under normal circumstances, but may be required to take command should they die.<br><b>You remember that you've stored your personal gear and uniform in the locker rooms, and that your equipment can be located in the armoury.</b>"
+	supervisors = "突击排指挥官"
+	entry_message_body = "你是整个突击排的第二指挥，负责确保突击排指挥官的命令得到执行。确保大家专注任务、协同作战，并有充足补给。你也负责与轰炸专家联络，协调其提供的火力支援。注意保护自己。通常情况下，你向突击排指挥官汇报，但若其阵亡，你可能需要接替指挥。<br><b>你记得自己的个人装备和制服存放在更衣室内，作战装备位于军械库。</b>"
 
 /obj/effect/landmark/start/marine/leader/rmc
 	name = JOB_TWE_RMC_TROOPLEADER

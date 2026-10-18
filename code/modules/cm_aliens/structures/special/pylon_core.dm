@@ -125,7 +125,7 @@
 	if(!linked_hive.can_spawn_as_lesser_drone(xeno_candidate, src))
 		return FALSE
 
-	if(tgui_alert(xeno_candidate, "Are you sure you want to become a lesser drone?", "Confirmation", list("Yes", "No")) != "Yes")
+	if(tgui_alert(xeno_candidate, "确定要变成次级工蜂吗？", "确认", list("Yes", "No")) != "Yes")
 		return FALSE
 
 	if(!linked_hive.can_spawn_as_lesser_drone(xeno_candidate, src))
@@ -368,14 +368,14 @@
 			return XENO_NO_DELAY_ACTION
 
 		else if(warn && world.time > XENOMORPH_PRE_SETUP_CUTOFF)
-			if((alert(M, "Are we sure that you want to destroy the hive core? (There will be a 5 minute cooldown before you can build another one.)", , "Yes", "No") != "Yes"))
+			if((alert(M, "确定要摧毁虫巢核心吗？（再次建造前需要等待5分钟。）", , "Yes", "No") != "Yes"))
 				return XENO_NO_DELAY_ACTION
 
 			INVOKE_ASYNC(src, PROC_REF(startDestroying),M)
 			return XENO_NO_DELAY_ACTION
 
 		else if(world.time < XENOMORPH_PRE_SETUP_CUTOFF)
-			if((alert(M, "Are we sure that we want to remove the hive core? No cooldown will be applied.", , "Yes", "No") != "Yes"))
+			if((alert(M, "确定要移除虫巢核心吗？此操作不会触发冷却。", , "Yes", "No") != "Yes"))
 				return XENO_NO_DELAY_ACTION
 
 			INVOKE_ASYNC(src, PROC_REF(startDestroying),M)

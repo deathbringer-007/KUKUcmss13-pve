@@ -4,7 +4,7 @@
 
 	if(!mob) return
 	if(IsGuestKey(key))
-		to_chat(src, "Guests may not use OOC.")
+		to_chat(src, "游客不能使用OOC频道。")
 		return
 
 	if(!filter_message(src, msg))
@@ -14,7 +14,7 @@
 	if(!msg) return
 
 	if(!(prefs.toggles_chat & CHAT_OOC))
-		to_chat(src, SPAN_DANGER("You have OOC muted."))
+		to_chat(src, SPAN_DANGER("你已屏蔽OOC频道。"))
 		return
 
 	if(!admin_holder || !(admin_holder.rights & R_MOD))
@@ -22,15 +22,15 @@
 			looc(msg)
 			return
 		if(!GLOB.dooc_allowed && (mob.stat == DEAD || isobserver(mob)))
-			to_chat(usr, SPAN_DANGER("OOC for dead mobs has been turned off."))
+			to_chat(usr, SPAN_DANGER("死亡角色的OOC频道已关闭。"))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, SPAN_DANGER("You cannot use OOC (muted)."))
+			to_chat(src, SPAN_DANGER("你已被禁言，无法使用OOC频道。"))
 			return
 		if(handle_spam_prevention(msg,MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
-			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
+			to_chat(src, "<B>禁止为其他服务器做广告。</B>")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
 
@@ -92,7 +92,7 @@
 
 	if(!mob) return
 	if(IsGuestKey(key))
-		to_chat(src, "Guests may not use LOOC.")
+		to_chat(src, "游客不能使用LOOC频道。")
 		return
 
 	if(!filter_message(src, msg))
@@ -102,27 +102,27 @@
 	if(!msg) return
 
 	if(!(prefs.toggles_chat & CHAT_LOOC))
-		to_chat(src, SPAN_DANGER("You have LOOC muted."))
+		to_chat(src, SPAN_DANGER("你已屏蔽LOOC频道。"))
 		return
 
 	if(!admin_holder || !(admin_holder.rights & R_MOD))
 		if(!GLOB.looc_allowed)
-			to_chat(src, SPAN_DANGER("LOOC is globally muted"))
+			to_chat(src, SPAN_DANGER("LOOC频道已被全局禁言。"))
 			return
 		if(!GLOB.dlooc_allowed && (mob.stat != CONSCIOUS || isobserver(mob)))
-			to_chat(usr, SPAN_DANGER("Sorry, you cannot utilize LOOC while dead or incapacitated."))
+			to_chat(usr, SPAN_DANGER("死亡或失去行动能力时无法使用LOOC频道。"))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, SPAN_DANGER("You cannot use LOOC (muted)."))
+			to_chat(src, SPAN_DANGER("你已被禁言，无法使用LOOC频道。"))
 			return
 		if(handle_spam_prevention(msg,MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
-			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
+			to_chat(src, "<B>禁止为其他服务器做广告。</B>")
 			message_admins("[key_name_admin(src)] has attempted to advertise in LOOC: [msg]")
 			return
 		if(!COOLDOWN_FINISHED(src, looc_cooldown))
-			to_chat(usr, SPAN_DANGER("You can't send messages in LOOC for [COOLDOWN_SECONDSLEFT(src, looc_cooldown)] more seconds."))
+			to_chat(usr, SPAN_DANGER("你还需等待[COOLDOWN_SECONDSLEFT(src, looc_cooldown)]秒才能再次发送LOOC讯息。"))
 			return
 	if(!attempt_talking(msg))
 		return
@@ -175,7 +175,7 @@
 	set name = "Current Map" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
 	set desc = "Information about the current round"
 	set category = "OOC"
-	to_chat_spaced(usr, html = FONT_SIZE_LARGE(SPAN_NOTICE("The current map is [SSmapping.configs[GROUND_MAP].map_name]")))
+	to_chat_spaced(usr, html = FONT_SIZE_LARGE(SPAN_NOTICE("当前地图：[SSmapping.configs[GROUND_MAP].map_name]")))
 
 // Sometimes the game fails to close NanoUIs, seemingly at random. This makes it impossible to open new ones
 // If this happens, let the player manually close them all
@@ -195,7 +195,7 @@
 	log_tgui(src, "Closing all tgui windows.", context = "verb/fixnanoui")
 	var/closed_windows = SStgui.close_user_uis(usr)
 
-	to_chat(mob, SPAN_NOTICE("<b>All interfaces have been forcefully closed. Please try re-opening them. (Closed [closed_windows] windows)</b>"))
+	to_chat(mob, SPAN_NOTICE("<b>所有界面已被强制关闭，请尝试重新打开。（已关闭[closed_windows]个窗口）</b>"))
 
 /client/verb/fit_viewport()
 	set name = "Fit Viewport"

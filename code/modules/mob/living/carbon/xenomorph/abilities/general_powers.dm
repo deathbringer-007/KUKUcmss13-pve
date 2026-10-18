@@ -15,47 +15,47 @@
 	var/turf/turf = xeno.loc
 
 	if(!istype(turf))
-		to_chat(xeno, SPAN_WARNING("We can't do that here."))
+		to_chat(xeno, SPAN_WARNING("我们无法在这里这样做。"))
 		return
 
 	if(turf.density)
-		to_chat(xeno, SPAN_WARNING("We can't do that here."))
+		to_chat(xeno, SPAN_WARNING("我们无法在这里这样做。"))
 		return
 
 	var/is_weedable = turf.is_weedable()
 	if(!is_weedable)
-		to_chat(xeno, SPAN_WARNING("Bad place for a garden!"))
+		to_chat(xeno, SPAN_WARNING("这里不适合种植！"))
 		return
 	if(!plant_on_semiweedable && is_weedable < FULLY_WEEDABLE)
-		to_chat(xeno, SPAN_WARNING("Bad place for a garden!"))
+		to_chat(xeno, SPAN_WARNING("这里不适合种植！"))
 		return
 
 	var/obj/effect/alien/weeds/node/node = locate() in turf
 	if(node && node.weed_strength >= xeno.weed_level)
-		to_chat(xeno, SPAN_WARNING("There's a pod here already!"))
+		to_chat(xeno, SPAN_WARNING("这里已经有一个荚囊了！"))
 		return
 
 	var/obj/effect/alien/resin/trap/resin_trap = locate() in turf
 	if(resin_trap)
-		to_chat(xeno, SPAN_WARNING("We can't weed on top of a trap!"))
+		to_chat(xeno, SPAN_WARNING("我们无法在陷阱上铺设菌毯！"))
 		return
 
 	var/obj/effect/alien/weeds/weed = node || locate() in turf
 	if(weed && weed.weed_strength >= WEED_LEVEL_HIVE)
-		to_chat(xeno, SPAN_WARNING("These weeds are too strong to plant a node on!"))
+		to_chat(xeno, SPAN_WARNING("这些菌毯太强韧，无法在上面种植节点！"))
 		return
 
 	for(var/obj/structure/struct in turf)
 		if(struct.density && !(struct.flags_atom & ON_BORDER)) // Not sure exactly if we need to test against ON_BORDER though
-			to_chat(xeno, SPAN_WARNING("We can't do that here."))
+			to_chat(xeno, SPAN_WARNING("我们无法在这里这样做。"))
 			return
 
 	var/area/area = get_area(turf)
 	if(isnull(area) || !(area.is_resin_allowed))
 		if(area.flags_area & AREA_UNWEEDABLE)
-			to_chat(xeno, SPAN_XENOWARNING("This area is unsuited to host the hive!"))
+			to_chat(xeno, SPAN_XENOWARNING("这片区域不适合建立巢群！"))
 			return
-		to_chat(xeno, SPAN_XENOWARNING("It's too early to spread the hive this far."))
+		to_chat(xeno, SPAN_XENOWARNING("现在还太早，无法将巢群扩展到这么远。"))
 		return
 
 	if(!check_and_use_plasma_owner())
@@ -65,7 +65,7 @@
 	if(node)
 		to_convert = node.children.Copy()
 
-	xeno.visible_message(SPAN_XENONOTICE("\The [xeno] regurgitates a pulsating node and plants it on the ground!"), \
+	xeno.visible_message(SPAN_XENONOTICE("[xeno]吐出一个搏动的节点，将其种在地上！"), \
 	SPAN_XENONOTICE("We regurgitate a pulsating node and plant it on the ground!"), null, 5)
 	var/obj/effect/alien/weeds/node/new_node = new node_type(xeno.loc, xeno.hivenumber, xeno)
 
@@ -292,7 +292,7 @@
 		for(var/i=1, i<=length(X.hive.resin_marks))
 			Goober = X.hive.resin_marks[i]
 			if(Goober.createdby == X.nicknumber)
-				promptuser = tgui_input_list(X, "Remove oldest placed mark: '[Goober.mark_meaning.name]!'?", "Mark limit reached.", promptlist, theme="hive_status")
+				promptuser = tgui_input_list(X, "移除最早放置的标记“[Goober.mark_meaning.name]”吗？", "已达标记数量上限。", promptlist, theme="hive_status")
 				break
 			i++
 		if(promptuser == "No")
@@ -339,7 +339,7 @@
 				to_chat(src, SPAN_XENOWARNING("We do not have enough plasma!"))
 				return
 			if(client.prefs && client.prefs.no_radials_preference)
-				pheromone = tgui_input_list(src, "Choose a pheromone", "Pheromone Menu", caste.aura_allowed + "help" + "cancel", theme="hive_status")
+				pheromone = tgui_input_list(src, "选择信息素", "信息素菜单", caste.aura_allowed + "help" + "cancel", theme="hive_status")
 				if(pheromone == "help")
 					to_chat(src, SPAN_NOTICE("<br>Pheromones provide a buff to all Xenos in range at the cost of some stored plasma every second, as follows:<br><B>Frenzy</B> - Increased run speed, damage and chance to knock off headhunter masks.<br><B>Warding</B> - While in critical state, increased maximum negative health and slower off weed bleedout.<br><B>Recovery</B> - Increased plasma and health regeneration.<br>"))
 					return
@@ -637,7 +637,7 @@
 		to_chat(X, SPAN_WARNING("The weeds are still recovering from the death of the hive core, wait until the weeds have recovered!"))
 		return FALSE
 	if(X.hive.has_structure(XENO_STRUCTURE_CORE) || !X.hive.can_build_structure(XENO_STRUCTURE_CORE))
-		choice = tgui_input_list(X, "Choose a structure to build", "Build structure", X.hive.hive_structure_types + "help", theme = "hive_status")
+		choice = tgui_input_list(X, "选择要建造的建筑。", "建造建筑", X.hive.hive_structure_types + "help", theme = "hive_status")
 		if(!choice)
 			return
 		if(choice == "help")
@@ -665,7 +665,7 @@
 		if(X.hive.hive_location.hardcore || world.time > XENOMORPH_PRE_SETUP_CUTOFF)
 			to_chat(X, SPAN_WARNING("We can't rebuild this structure!"))
 			return FALSE
-		if(alert(X, "Are we sure that we want to move the hive and destroy the old hive core?", , "Yes", "No") != "Yes")
+		if(alert(X, "确定要迁移虫巢并摧毁旧的虫巢核心吗？", , "Yes", "No") != "Yes")
 			return FALSE
 		qdel(X.hive.hive_location)
 	else if(!X.hive.can_build_structure(choice))

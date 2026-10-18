@@ -4,10 +4,10 @@
 	spawn_positions = 2
 	allow_additional = TRUE
 	scaled = TRUE
-	supervisors = "the pilot officers"
+	supervisors = "飞行军官"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_ship/dcc
-	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>Your job is to assist</a> the pilot officer maintain the ship's dropship. You have authority only on the dropship, but you are expected to maintain order, as not to disrupt the pilot."
+	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>你的职责是协助</a>飞行军官维护舰上的运输机。你的权限仅限于运输机内，但你应维持秩序，避免打扰飞行员。"
 
 /obj/effect/landmark/start/crew_chief
 	name = JOB_DROPSHIP_CREW_CHIEF

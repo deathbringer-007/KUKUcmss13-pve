@@ -2,7 +2,7 @@
 // SPACE VINES (Note that this code is very similar to Biomass code)
 /obj/effect/plantsegment
 	name = "space vines"
-	desc = "An extremely expansionistic species of vine."
+	desc = "一种扩散能力极强的藤蔓。"
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "light_1"
 	anchored = TRUE
@@ -77,22 +77,22 @@
 			if(buckled_mob.buckled == src)
 				if(buckled_mob != user)
 					buckled_mob.visible_message(\
-						SPAN_NOTICE("[user.name] frees [buckled_mob.name] from [src]."),\
-						SPAN_NOTICE("[user.name] frees you from [src]."),\
-						SPAN_WARNING("You hear shredding and ripping."))
+						SPAN_NOTICE("[user.name]将[buckled_mob.name]从[src]中解救出来。"),\
+						SPAN_NOTICE("[user.name]将你从[src]中解救出来。"),\
+						SPAN_WARNING("你听见撕裂的声音。"))
 				else
 					buckled_mob.visible_message(\
-						SPAN_NOTICE("[buckled_mob.name] struggles free of [src]."),\
-						SPAN_NOTICE("You untangle [src] from around yourself."),\
-						SPAN_WARNING("You hear shredding and ripping."))
+						SPAN_NOTICE("[buckled_mob.name]挣扎着摆脱了[src]。"),\
+						SPAN_NOTICE("你解开了缠在身上的[src]。"),\
+						SPAN_WARNING("你听见撕裂的声音。"))
 			unbuckle()
 			return 1
 		else
 			var/text = pick("rips","tears","pulls")
 			user.visible_message(\
-				SPAN_NOTICE("[user.name] [text] at [src]."),\
-				SPAN_NOTICE("You [text] at [src]."),\
-				SPAN_WARNING("You hear shredding and ripping."))
+				SPAN_NOTICE("[user.name]对[src]进行[text]。"),\
+				SPAN_NOTICE("你对[src]进行[text]。"),\
+				SPAN_WARNING("你听见撕裂的声音。"))
 	return 0
 
 /obj/effect/plantsegment/proc/grow()
@@ -125,7 +125,7 @@
 				V.buckled = src
 				V.forceMove(src.loc)
 				src.buckled_mob = V
-				to_chat(V, SPAN_DANGER("The vines [pick("wind", "tangle", "tighten")] around you!"))
+				to_chat(V, SPAN_DANGER("藤蔓在你身边[pick("缠绕", "纠结", "收紧")]！"))
 
 		// FEED ME, SEYMOUR.
 		if(buckled_mob && seed && (buckled_mob.stat != DEAD)) //Don't bother with a dead mob.
@@ -136,7 +136,7 @@
 
 			// Drink some blood/cause some brute.
 			if(seed.carnivorous == 2)
-				to_chat(buckled_mob, SPAN_DANGER("\The [src] pierces your flesh greedily!"))
+				to_chat(buckled_mob, SPAN_DANGER("[src]贪婪地刺穿你的血肉！"))
 
 				var/damage = rand(floor(seed.potency/2),seed.potency)
 				if(!istype(H))
@@ -157,7 +157,7 @@
 
 			// Inject some chems.
 			if(LAZYLEN(seed.chems) && istype(H))
-				to_chat(H, SPAN_DANGER("You feel something seeping into your skin!"))
+				to_chat(H, SPAN_DANGER("你感到有什么东西正渗入皮肤！"))
 				for(var/rid in seed.chems)
 					var/injecting = min(5,max(1,seed.potency/5))
 					H.reagents.add_reagent(rid,injecting)

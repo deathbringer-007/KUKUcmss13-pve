@@ -74,8 +74,8 @@ SUBSYSTEM_DEF(ticker)
 				return
 			if(isnull(start_at))
 				start_at = time_left || world.time + (CONFIG_GET(number/lobby_countdown) * 10)
-			to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, margin_top = 2, margin_bottom = 0, html = SPAN_ROUNDHEADER("Welcome to the pre-game lobby of [CONFIG_GET(string/servername)]!"))
-			to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, margin_top = 0, html = SPAN_ROUNDBODY("Please, setup your character and select ready. Game will start in [floor(time_left / 10) || CONFIG_GET(number/lobby_countdown)] seconds."))
+			to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, margin_top = 2, margin_bottom = 0, html = SPAN_ROUNDHEADER("欢迎来到 [CONFIG_GET(string/servername)] 的开局大厅！"))
+			to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, margin_top = 0, html = SPAN_ROUNDBODY("请设置好角色并选择准备。游戏将在 [floor(time_left / 10) || CONFIG_GET(number/lobby_countdown)] 秒后开始。"))
 			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MODE_PREGAME_LOBBY)
 			current_state = GAME_STATE_PREGAME
 			fire()
@@ -162,22 +162,22 @@ SUBSYSTEM_DEF(ticker)
 	return TRUE
 
 /datum/controller/subsystem/ticker/proc/setup()
-	to_chat(world, SPAN_BOLDNOTICE("Enjoy the game!"))
+	to_chat(world, SPAN_BOLDNOTICE("祝你游戏愉快！"))
 	var/init_start = world.timeofday
 	//Create and announce mode
 	mode = config.pick_mode(GLOB.master_mode)
 
 	CHECK_TICK
 	if(!mode.can_start(bypass_checks))
-		to_chat(world, "Requirements to start [GLOB.master_mode] not met. Reverting to pre-game lobby.")
+		to_chat(world, "未满足启动 [GLOB.master_mode] 的条件，正在返回开局大厅。")
 		// Make only one more attempt
 		if(world.time - 2 * wait > CONFIG_GET(number/lobby_countdown) SECONDS)
 			flash_clients()
 			delay_start = TRUE
-			to_chat(world, SPAN_CENTERBOLD("The game start has been delayed."))
+			to_chat(world, SPAN_CENTERBOLD("游戏开始时间已推迟。"))
 			message_admins(SPAN_ADMINNOTICE("Alert: Insufficent players ready to start [GLOB.master_mode].\nEither change mode and map or start round and bypass checks."))
 		else
-			to_chat(world, "Attempting again...")
+			to_chat(world, "正在重试……")
 		QDEL_NULL(mode)
 		GLOB.RoleAuthority.reset_roles()
 		return FALSE
@@ -185,7 +185,7 @@ SUBSYSTEM_DEF(ticker)
 	CHECK_TICK
 	if(!mode.pre_setup() && !bypass_checks)
 		QDEL_NULL(mode)
-		to_chat(world, "<b>Error in pre-setup for [GLOB.master_mode].</b> Reverting to pre-game lobby.")
+		to_chat(world, "<b>[GLOB.master_mode] 的预设置阶段出错。</b>正在返回开局大厅。")
 		GLOB.RoleAuthority.reset_roles()
 		return FALSE
 
@@ -258,7 +258,7 @@ SUBSYSTEM_DEF(ticker)
 	save_mode(CONFIG_GET(string/gamemode_default))
 
 	if(GLOB.round_statistics)
-		to_chat_spaced(world, html = FONT_SIZE_BIG(SPAN_ROLE_BODY("<B>Welcome to [GLOB.round_statistics.round_name]</B>")))
+		to_chat_spaced(world, html = FONT_SIZE_BIG(SPAN_ROLE_BODY("<B>欢迎来到 [GLOB.round_statistics.round_name]</B>")))
 
 	GLOB.supply_controller.start_processing()
 
@@ -405,7 +405,7 @@ SUBSYSTEM_DEF(ticker)
 	if(captainless)
 		for(var/mob/M in GLOB.player_list)
 			if(!istype(M,/mob/new_player))
-				to_chat(M, "Marine commanding officer position not forced on anyone.")
+				to_chat(M, "未强制任何人担任陆战队指挥官。")
 
 /datum/controller/subsystem/ticker/proc/send_tip_of_the_round()
 	var/message
@@ -417,7 +417,7 @@ SUBSYSTEM_DEF(ticker)
 		CRASH("send_tip_of_the_round() failed somewhere")
 
 	if(message)
-		to_chat(world, SPAN_PURPLE("<b>Tidbit of the round: </b>[html_encode(message)]"))
+		to_chat(world, SPAN_PURPLE("<b>本局小知识：</b>[html_encode(message)]"))
 		return TRUE
 	else
 		return FALSE

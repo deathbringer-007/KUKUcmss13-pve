@@ -330,7 +330,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
 		if(GLOB.displayed_lobby_art != -1)
 			var/author = lobby_authors[GLOB.displayed_lobby_art]
 			if(author != "Unknown")
-				to_chat_forced(player, SPAN_ROUNDBODY("<hr>This round's lobby art is brought to you by [author]<hr>"))
+				to_chat_forced(player, SPAN_ROUNDBODY("<hr>本回合的大厅插画由[author]提供<hr>"))
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
@@ -399,7 +399,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
 	baseturfs = /turf/open/floor/sandstone/runed
 
 /turf/closed/wall/mineral/sandstone/runed/attack_alien(mob/living/carbon/xenomorph/user)
-	visible_message("[user] scrapes uselessly against [src] with their claws.")
+	visible_message("[user] 用爪子徒劳地刮擦着 [src]。")
 	return
 
 /turf/closed/wall/mineral/sandstone/runed/decor
@@ -1047,8 +1047,8 @@ INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
 		return XENO_NO_DELAY_ACTION
 
 	M.animation_attack_on(src)
-	M.visible_message(SPAN_XENONOTICE("\The [M] claws \the [src]!"), \
-	SPAN_XENONOTICE("You claw \the [src]."))
+	M.visible_message(SPAN_XENONOTICE("[M]用爪子猛抓[src]！"), \
+	SPAN_XENONOTICE("你用爪子抓挠[src]。"))
 	playsound(src, "alien_resin_break", 25)
 	if (M.hivenumber == hivenumber)
 		take_damage(ceil(HEALTH_WALL_XENO * 0.25)) //Four hits for a regular wall
@@ -1241,8 +1241,8 @@ INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
 	..()
 	if(isxeno(AM))
 		return
-	visible_message(SPAN_DANGER("\The [src] was hit by \the [AM]."), \
-	SPAN_DANGER("You hit \the [src]."))
+	visible_message(SPAN_DANGER("[src]被[AM]击中了。"), \
+	SPAN_DANGER("你击中了[src]。"))
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 10
@@ -1263,7 +1263,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
 		return XENO_NO_DELAY_ACTION
 
 	M.animation_attack_on(src)
-	M.visible_message(SPAN_XENONOTICE("\The [M] claws \the [src]!"), \
+	M.visible_message(SPAN_XENONOTICE("[M]用爪子猛抓[src]！"), \
 	SPAN_XENONOTICE("We claw \the [src]."))
 	playsound(src, "alien_resin_break", 25)
 	if (M.hivenumber == hivenumber)

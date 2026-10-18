@@ -23,7 +23,7 @@
 	SIGNAL_HANDLER
 
 	if(thrower)
-		to_chat(thrower, SPAN_WARNING("\The [source] clanks on the ground."))
+		to_chat(thrower, SPAN_WARNING("\The [source] 哐当一声落在地上。"))
 	return COMPONENT_CANCEL_THROW
 
 /datum/element/drop_retrieval/proc/dropped(obj/item/I, mob/user)
@@ -68,5 +68,5 @@
 	if(!istype(WT))
 		return ..()
 	WT.remove_noz()
-	to_chat(user, SPAN_WARNING("\The [I]'s magnetic harness snaps it back onto \the [WT]!"))
+	to_chat(user, SPAN_WARNING("\The [I] 的磁力挂具将其吸回了 \the [WT] 上！"))
 	WT.update_icon()

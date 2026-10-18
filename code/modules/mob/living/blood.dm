@@ -343,9 +343,9 @@
 	newdir = angle2dir(angle)
 
 	visible_message(\
-			SPAN_WARNING("You see a gush of blood spray from [src]'s [O.display_name]!"),
-			SPAN_HIGHDANGER("Blood sprays from your [O.display_name]!"),
-			SPAN_HIGHDANGER("You hear something fleshy gush!"))
+			SPAN_WARNING("你看见鲜血从[src]的[O.display_name]喷涌而出！"),
+			SPAN_HIGHDANGER("鲜血从你的[O.display_name]喷涌而出！"),
+			SPAN_HIGHDANGER("你听见血肉中液体喷涌的声音！"))
 	for(var/i = 1 to (floor(src.blood_volume / 160)))
 		var/reverse_odd_numbered_decals
 		if(i % 2 != 0)
@@ -380,12 +380,12 @@
 								if(glasses && (glasses.flags_armor_protection & BODY_FLAG_EYES) || sprayed_with_blood.get_eye_protection())
 									total_eye_protection++
 							if(total_eye_protection)
-								to_chat(sprayed_with_blood, SPAN_HIGHDANGER("Blood sprays against your eyewear!"))
+								to_chat(sprayed_with_blood, SPAN_HIGHDANGER("鲜血溅上了你的眼部护具！"))
 								sprayed_with_blood.EyeBlur(2)
 							else
-								to_chat(sprayed_with_blood, SPAN_HIGHDANGER("You are sprayed in the eyes with blood!"))
+								to_chat(sprayed_with_blood, SPAN_HIGHDANGER("鲜血喷进了你的眼睛！"))
 								sprayed_with_blood.EyeBlur(14)
-						sprayed_with_blood.visible_message(SPAN_WARNING("[sprayed_with_blood] is hit by the spray of blood!")	)
+						sprayed_with_blood.visible_message(SPAN_WARNING("[sprayed_with_blood]被喷出的鲜血溅中了！")	)
 						break
 
 		// remainder within the tile.

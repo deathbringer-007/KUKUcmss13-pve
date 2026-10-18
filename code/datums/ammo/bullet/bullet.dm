@@ -28,13 +28,13 @@
 		return
 
 	if(!skillcheck(user, SKILL_EXECUTION, SKILL_EXECUTION_TRAINED))
-		to_chat(user, SPAN_DANGER("You don't know how to execute someone correctly."))
+		to_chat(user, SPAN_DANGER("你不知道如何正确地处决别人。"))
 		return
 
 	var/mob/living/carbon/human/execution_target = hit_mob
 
 	if(execution_target.status_flags & PERMANENTLY_DEAD)
-		to_chat(user, SPAN_DANGER("[execution_target] has already been executed!"))
+		to_chat(user, SPAN_DANGER("[execution_target] 已经被处决了！"))
 		return
 
 	INVOKE_ASYNC(src, PROC_REF(attempt_battlefield_execution), src, execution_target, firing_projectile, user, fired_from)
@@ -43,9 +43,9 @@
 
 /datum/ammo/bullet/proc/attempt_battlefield_execution(datum/ammo/firing_ammo, mob/living/carbon/human/execution_target, obj/projectile/firing_projectile, mob/living/user, obj/item/weapon/gun/fired_from)
 	user.affected_message(execution_target,
-		SPAN_HIGHDANGER("You aim \the [fired_from] at [execution_target]'s head!"),
-		SPAN_HIGHDANGER("[user] aims \the [fired_from] directly at your head!"),
-		SPAN_DANGER("[user] aims \the [fired_from] at [execution_target]'s head!"))
+		SPAN_HIGHDANGER("你将 \the [fired_from] 瞄准了 [execution_target] 的头！"),
+		SPAN_HIGHDANGER("[user] 将 \the [fired_from] 直接瞄准了你的头！"),
+		SPAN_DANGER("[user] 将 \the [fired_from] 瞄准了 [execution_target] 的头！"))
 
 	user.next_move += 1.1 SECONDS //PB has no click delay; readding it here to prevent people accidentally queuing up multiple executions.
 
@@ -67,7 +67,7 @@
 	execution_target.update_headshot_overlay(headshot_state) //...and add a gory headshot overlay.
 
 	execution_target.visible_message(SPAN_HIGHDANGER(uppertext("[execution_target] WAS EXECUTED!")), \
-		SPAN_HIGHDANGER("You WERE EXECUTED!"))
+		SPAN_HIGHDANGER("你被处决了！"))
 
 	user.count_niche_stat(STATISTICS_NICHE_EXECUTION, 1, firing_projectile.weapon_cause_data?.cause_name)
 

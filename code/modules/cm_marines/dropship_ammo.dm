@@ -44,8 +44,8 @@
 		return XENO_NO_DELAY_ACTION
 	current_xenomorph.animation_attack_on(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
-	current_xenomorph.visible_message(SPAN_DANGER("[current_xenomorph] slashes at [src]!"),
-	SPAN_DANGER("You slash at [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+	current_xenomorph.visible_message(SPAN_DANGER("[current_xenomorph]用爪子猛抓[src]！"),
+	SPAN_DANGER("你用爪子猛抓[src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	update_health(rand(current_xenomorph.melee_damage_lower, current_xenomorph.melee_damage_upper))
 	return XENO_ATTACK_ACTION
 
@@ -62,7 +62,7 @@
 				return FALSE
 		else
 			if(ammo_count < 1)
-				to_chat(user, SPAN_WARNING("\The [src] has ran out of ammo, so you discard it!"))
+				to_chat(user, SPAN_WARNING("[src]的弹药用尽了，你将它丢弃！"))
 				qdel(src)
 				return FALSE
 
@@ -78,7 +78,7 @@
 
 /obj/structure/ship_ammo/get_examine_text(mob/user)
 	. = ..()
-	. += "Moving this will require some sort of lifter."
+	. += "移动它需要某种起重设备。"
 
 //what to show to the user that examines the weapon we're loaded on.
 /obj/structure/ship_ammo/proc/show_loaded_desc(mob/user)
@@ -92,10 +92,10 @@
 
 /obj/structure/ship_ammo/proc/transfer_ammo(obj/structure/ship_ammo/target, mob/user)
 	if(type != target.type)
-		to_chat(user, SPAN_NOTICE("\The [src] and \the [target] use incompatible types of ammunition!"))
+		to_chat(user, SPAN_NOTICE("[src]与[target]使用的弹药类型不兼容！"))
 		return
 	if(!transferable_ammo)
-		to_chat(user, SPAN_NOTICE("\The [src] doesn't support [ammo_name] transfer!"))
+		to_chat(user, SPAN_NOTICE("[src]不支持转移[ammo_name]！"))
 		return
 	var/obj/item/powerloader_clamp/PC
 	if(istype(loc, /obj/item/powerloader_clamp))
@@ -104,23 +104,23 @@
 		if(PC)
 			PC.loaded = null
 			PC.update_icon()
-		to_chat(user, SPAN_WARNING("\The [src] has ran out of ammo, so you discard it!"))
+		to_chat(user, SPAN_WARNING("[src]的弹药用尽了，你将它丢弃！"))
 		forceMove(get_turf(loc))
 		qdel(src)
 	if(target.ammo_count >= target.max_ammo_count)
-		to_chat(user, SPAN_WARNING("\The [target] is fully loaded!"))
+		to_chat(user, SPAN_WARNING("[target]已装满！"))
 		return
 
 	var/transf_amt = min(target.max_ammo_count - target.ammo_count, ammo_count)
 	target.ammo_count += transf_amt
 	ammo_count -= transf_amt
 	playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-	to_chat(user, SPAN_NOTICE("You transfer [transf_amt] [ammo_name] to \the [target]."))
+	to_chat(user, SPAN_NOTICE("你将[transf_amt]份[ammo_name]转移至[target]。"))
 	if(ammo_count < 1)
 		if(PC)
 			PC.loaded = null
 			PC.update_icon()
-		to_chat(user, SPAN_WARNING("\The [src] has ran out of ammo, so you discard it!"))
+		to_chat(user, SPAN_WARNING("[src]的弹药用尽了，你将它丢弃！"))
 		forceMove(get_turf(loc))
 		qdel(src)
 	else
@@ -134,9 +134,9 @@
 //30mm gun
 
 /obj/structure/ship_ammo/heavygun
-	name = "\improper 25mm multipurpose ammunition crate"
+	name = "\improper 25毫米多用途弹药箱"
 	icon_state = "30mm_crate"
-	desc = "A 400rnd reinforced crate of Armor Piercing High Explosive and Incendiary 25mm ammunition for use with the GAU-113 rotary autocannon. Best used against light structures, personnel in the open, or thinskin vehicles. Entirely ineffective against heavier armor."
+	desc = "加固弹药箱，内装400发供GAU-113转管机炮使用的25毫米穿甲高爆燃烧弹。适合攻击轻型建筑、暴露人员和薄皮车辆，对重型装甲完全无效。"
 	travelling_time = 50
 	equipment_type = /obj/structure/dropship_equipment/weapon/heavygun
 	ammo_count = 400
@@ -193,9 +193,9 @@
 
 
 /obj/structure/ship_ammo/heavygun/antitank
-	name = "\improper 25mm armor piercing ammunition crate"
+	name = "\improper 25毫米穿甲弹药箱"
 	icon_state = "30mm_crate_hv"
-	desc = "A 400rnd reinforced crate of 25mm subcaliber armor piercing discarding sabot ammunition. Reduced effect on structures or personnel in the open, but excellent against armor, entrenched personnel, and other hard targets."
+	desc = "加固弹药箱，内装400发25毫米次口径脱壳穿甲弹。对建筑和暴露人员的效果较差，但擅长打击装甲、掩体内人员和其他坚固目标。"
 	travelling_time = 60
 	ammo_count = 400
 	max_ammo_count = 400
@@ -210,9 +210,9 @@
 //laser battery
 
 /obj/structure/ship_ammo/laser_battery
-	name = "\improper BTU-17/LW Hi-Cap Laser Battery"
+	name = "\improper BTU-17/LW大容量激光电池"
 	icon_state = "laser_battery"
-	desc = "A high-capacity laser battery used to power laser beam weapons.  Can be loaded into the AN/AEQ-22 laser system."
+	desc = "为激光束武器供能的大容量电池，可装入AN/AEQ-22激光系统。"
 	travelling_time = 10
 	ammo_count = 100
 	max_ammo_count = 100
@@ -276,8 +276,8 @@
 
 //this one is air-to-air only
 /obj/structure/ship_ammo/rocket/widowmaker
-	name = "\improper AIM-90E 'Headlock' air to air missile"
-	desc = "The AIM-90E is an all-aspect multimodal homing missile. An intelligently fuzed 34 explosive dart payload makes it excellent against airborne targets, however the optical/RADAR seeker can also engage softer ground targets. The E variant improves countermeasure rejection and improves high altitude intercept performance."
+	name = "\improper AIM-90E“锁喉”空对空导弹"
+	desc = "AIM-90E是一种全向、多模制导导弹，智能引信控制的34枚爆炸镖载荷使其特别适合打击空中目标；光学／雷达导引头也能攻击防护较弱的地面目标。E型改进了对抗干扰的能力与高空拦截性能。"
 	icon_state = "single"
 	travelling_time = 30 //not powerful, but reaches target fast
 	ammo_id = ""
@@ -290,8 +290,8 @@
 	QDEL_IN(src, 0.5 SECONDS)
 
 /obj/structure/ship_ammo/rocket/banshee
-	name = "\improper AGM-220C 'Hellhound II' tactical missile"
-	desc = "The AGM-220C is a multipurpose air to ground missile intended for point targets. Terminal homing is provided by an infrared/active RADAR seeker complex, with intelligent fusing determining optimum impact geometry. The C variant improves the RADAR and countermeasure rejection logic."
+	name = "\improper AGM-220C“地狱猎犬Ⅱ”战术导弹"
+	desc = "AGM-220C是一种用于点目标的多用途空对地导弹，采用红外／主动雷达复合导引头进行末段制导，智能引信决定最佳起爆方式。C型改进了雷达和抗干扰逻辑。"
 	icon_state = "banshee"
 	ammo_id = "b"
 	point_cost = 300
@@ -304,8 +304,8 @@
 	QDEL_IN(src, 0.5 SECONDS)
 
 /obj/structure/ship_ammo/rocket/banshee/nerve
-	name = "\improper AGM-220H air to ground missile"
-	desc = "The AGM-220 is a platform for a multitude of warheads. The H variant is specially modified to safely contain a saturation payload of CN-20 nerve agent."
+	name = "\improper AGM-220H空对地导弹"
+	desc = "AGM-220系列可搭载多种战斗部。H型经过专门改装，能安全容纳用于饱和攻击的CN-20神经毒剂载荷。"
 	icon_state = "banshee"
 	ammo_id = "b"
 	point_cost = 500 //changed from regular banshee even if in 99.99999% of cases PvE will never need this but I was too scared to remove it for fear of something exploding
@@ -323,8 +323,8 @@
 
 
 /obj/structure/ship_ammo/rocket/keeper
-	name = "\improper Mk.89 SGW smart bomb"
-	desc = "The Mk.89 SGW is a lowcost alternative to the AGM-220C, iterating on the Mk.88 before it. Infrared seeker, 120mm shaped charge, foldout fins, and a rocket motor. The '89 improves motor burn time and incorporates a basic chaff decoy package."
+	name = "\improper Mk.89 SGW智能炸弹"
+	desc = "Mk.89 SGW是在Mk.88基础上改进的低成本武器，可替代AGM-220C，配有红外导引头、120毫米聚能装药、折叠尾翼和火箭发动机。89型延长了发动机燃烧时间，并增加基本的箔条诱饵装置。"
 	icon_state = "paveway"
 	travelling_time = 20 //A fast payload due to its very tight blast zone
 	ammo_id = "k"
@@ -337,8 +337,8 @@
 	QDEL_IN(src, 0.5 SECONDS)
 
 /obj/structure/ship_ammo/rocket/harpoon
-	name = "\improper AGM-220M 'Hellhound II' fragmentation tactical missile"
-	desc = "The AGM-220M incorporates a blast-fragmentation warhead with intelligent fuzing set by the dropship at launch. Destonation is set for variable airburst against soft targets or impact against hardened ones. Ineffective against reinforced structures or medium to heavy armor"
+	name = "\improper AGM-220M“地狱猎犬Ⅱ”破片战术导弹"
+	desc = "AGM-220M搭载爆破破片战斗部，运输艇发射时会设定智能引信；对软目标采用可调空爆，对坚固目标采用碰炸。对加固建筑和中重型装甲无效。"
 	icon_state = "harpoon"
 	ammo_id = "s"
 	travelling_time = 50
@@ -351,8 +351,8 @@
 	QDEL_IN(src, 0.5 SECONDS)
 
 /obj/structure/ship_ammo/rocket/napalm
-	name = "\improper AGM-220M 'Hellhound II' incendiary tactical missile"
-	desc = "An AGM-220 series weapon with an incendiary payload. Best in defoliant and antipersonnel roles, but worthless against armor."
+	name = "\improper AGM-220M“地狱猎犬Ⅱ”燃烧战术导弹"
+	desc = "配有燃烧载荷的AGM-220系列导弹，适合清除植被和杀伤人员，但对装甲毫无作用。"
 	icon_state = "napalm" //maybe i should just change the goddamn thing to be the same sprite and recolor them or something.
 	ammo_id = "n"
 	point_cost = 500
@@ -365,8 +365,8 @@
 	QDEL_IN(src, 0.5 SECONDS)
 
 /obj/structure/ship_ammo/rocket/thermobaric
-	name = "\improper AGM-220N 'Hellhound II' thermobaric tactical missile"
-	desc = "The AGM-220N is the real monster of the series. It carries a metal augmented charge, generating a thermobaric explosion proven to decisively defeat personnel, light vehicles, and structures, regardless of their entrenchement status. Against armor, the effects are less impressive."
+	name = "\improper AGM-220N“地狱猎犬Ⅱ”温压战术导弹"
+	desc = "AGM-220N是该系列中真正的怪物。金属增强装药产生温压爆炸，无论目标是否躲在掩体中，都能有效摧毁人员、轻型车辆和建筑；对装甲的效果则不那么出色。"
 	icon_state = "napalm" //screw it, this one i AM changing.
 	ammo_id = "f"
 	travelling_time = 50
@@ -384,8 +384,8 @@
 //minirockets
 
 /obj/structure/ship_ammo/minirocket
-	name = "\improper M362 70mm blast-frag rocket"
-	desc = "The M362 blast fragmentation warhead for the Mk.10 'Zeus' unguided rocket system is a good choice for antipersonnel or light structure defeat work. A larger salvo size also enables some class of air defense saturation."
+	name = "\improper M362 70毫米爆破破片火箭弹"
+	desc = "Mk.10“宙斯”无制导火箭系统使用的M362爆破破片战斗部，适合杀伤人员和摧毁轻型建筑。较大规模的齐射也能在一定程度上压制防空系统。"
 	icon_state = "minirocket"
 	icon = 'icons/obj/structures/props/almayer_props.dmi'
 	equipment_type = /obj/structure/dropship_equipment/weapon/minirocket_pod
@@ -421,8 +421,8 @@
 
 
 /obj/structure/ship_ammo/minirocket/incendiary
-	name = "\improper M322 70mm incendiary rocket"
-	desc = "Strinctly speaking, the M322 incendiary warhead for the Mk.10 Zeus is no longer supposed to be in service. However, some stocks still exist. Great for antistructure and defoliant work, but poor hard target defeat."
+	name = "\improper M322 70毫米燃烧火箭弹"
+	desc = "严格来说，Mk.10“宙斯”使用的M322燃烧战斗部本应退役，但仍有部分库存。适合破坏建筑和清除植被，对坚固目标的效果较差。"
 	icon_state = "minirocket_inc"
 	point_cost = 500
 	fire_mission_delay = 3 //high cooldown
@@ -433,8 +433,8 @@
 		fire_spread(impact, create_cause_data(initial(name), source_mob), 3, 25, 20, "#EE6515")
 
 /obj/structure/ship_ammo/sentry
-	name = "\improper UA/571-P paradrop sentry weapons system"
-	desc = "The UA/571-P is a variant of the standard UA/571-C, intended for airborne deployment. In this manner it can be used for area denial, early warning, and limited reconnaissance."
+	name = "\improper UA/571-P空投哨戒武器系统"
+	desc = "UA/571-P是标准UA/571-C的空投改型，可用于区域封锁、预警和有限的侦察。"
 	icon_state = "launchable_sentry"
 	equipment_type = /obj/structure/dropship_equipment/weapon/launch_bay
 	ammo_count = 1
@@ -457,6 +457,6 @@
 
 /obj/structure/ship_ammo/sentry/can_fire_at(turf/impact, mob/user)
 	if(istype(impact, /turf/closed))// keeping this as a safety. However, being avble to paradrop the suckers wherever you want is much in line, no? :)
-		to_chat(user, SPAN_WARNING("The selected drop site is a sheer wall!"))
+		to_chat(user, SPAN_WARNING("选定的投放地点是一面陡壁！"))
 		return FALSE
 	return TRUE

@@ -86,7 +86,7 @@
 	orbiter.abstract_move(get_turf(parent))
 	var/atom/movable/movable_parent = parent
 	orbiter.glide_size = movable_parent.glide_size
-	to_chat(orbiter, SPAN_NOTICE("Now orbiting [parent]."))
+	to_chat(orbiter, SPAN_NOTICE("现在开始环绕 [parent]。"))
 
 /datum/component/orbiter/proc/end_orbit(atom/movable/orbiter, refreshing=FALSE)
 	if(!orbiters[orbiter])

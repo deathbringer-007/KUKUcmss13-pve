@@ -7,7 +7,7 @@
 	spawn_positions = 6
 	allow_additional = TRUE
 	scaled = TRUE
-	supervisors = "ARES and APOLLO"
+	supervisors = "ARES与APOLLO"
 	selection_class = "job_working_joe"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_WHITELISTED|ROLE_CUSTOM_SPAWN
 	flags_whitelist = WHITELIST_JOE
@@ -48,12 +48,12 @@
 
 /datum/job/civilian/working_joe/generate_entry_message(mob/living/carbon/human/H)
 	if(standard)
-		. = {"You are a <a href='[generate_wiki_link()]'>Working Joe.</a> You are held to a higher standard and are required to obey not only the Server Rules but Marine Law, Roleplay Expectations and Synthetic Rules.  Your primary task is to maintain the cleanliness of the ship, putting things in their proper place. Alternatively, your primary task may be to assist with manual labor in limited capacity, or clerical duties. Your capacities are limited, but you have all the equipment you need, and the central AI has a plan! Stay in character at all times. Use the APOLLO link to communicate with your uplink!"}
+		. = {"你是一名<a href='[generate_wiki_link()]'>工作乔。</a>你必须遵守更高标准，除了服务器规则，还须遵守陆战队军法、角色扮演要求和合成人规则。你的主要任务是保持舰船整洁，将物品归回适当位置。你也可能被安排在能力范围内协助体力劳动或文书工作。你的能力有限，但所需装备一应俱全，中央AI自有安排！始终保持角色扮演，并通过APOLLO链路与上级系统联络！"}
 	else
-		. = {"You are a <a href='[generate_wiki_link()]'>Working Joe</a> for Hazardous Environments!  You are held to a higher standard and are required to obey not only the Server Rules but Marine Law, Roleplay Expectations and Synthetic Rules.  You are a variant of the Working Joe built for tougher environments and fulfill the specific duty of dangerous repairs or maintenance. Your primary task is to maintain the reactor, SMES and AI Core. Your secondary task is to respond to hazardous environments, such as an atmospheric breach or biohazard spill, and assist with repairs when ordered to by either an AI Mainframe, or a Commisioned Officer.  You should not be seen outside of emergencies besides in Engineering and the AI Core! Stay in character at all times. Use the APOLLO link to communicate with your uplink!"}
+		. = {"你是一名用于危险环境的<a href='[generate_wiki_link()]'>防化乔</a>！你必须遵守更高标准，除了服务器规则，还须遵守陆战队军法、角色扮演要求和合成人规则。你是为严苛环境设计的工作乔变型，专门承担危险的维修和维护工作。你的首要任务是维护反应堆、SMES与AI核心。其次，你应处理大气泄漏、生物危害物泄漏等危险情况，并在AI主机或委任军官下令时协助维修。除紧急情况外，你不应出现在工程部和AI核心以外的地方！始终保持角色扮演，并通过APOLLO链路与上级系统联络！"}
 
 /datum/job/civilian/working_joe/announce_entry_message(mob/living/carbon/human/H)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(ares_apollo_talk), "[H.real_name] has been activated."), 1.5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(ares_apollo_talk), "[H.real_name]已启动。"), 1.5 SECONDS)
 	return ..()
 
 /obj/effect/landmark/start/working_joe

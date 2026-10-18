@@ -54,7 +54,7 @@
 		if(!CAN_PICKUP(user, src))
 			return ..()
 		if(!has_blast_wave_dampener)
-			to_chat(user, SPAN_WARNING("\The [src] doesn't have blast wave dampening."))
+			to_chat(user, SPAN_WARNING("[src]没有冲击波抑制功能。"))
 			return
 		toggle_blast_dampener(user)
 		return
@@ -106,23 +106,23 @@
 	if(!customizable || active)
 		return
 	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_MASTER))
-		to_chat(user, SPAN_WARNING("You do not know how to tinker with [name]."))
+		to_chat(user, SPAN_WARNING("你不知道如何改装[name]。"))
 		return
 	if(istype(W,/obj/item/device/assembly_holder) && (!assembly_stage || assembly_stage == ASSEMBLY_UNLOCKED))
 		var/obj/item/device/assembly_holder/det = W
 		if(detonator)
-			to_chat(user, SPAN_DANGER("This casing already has a detonator."))
+			to_chat(user, SPAN_DANGER("这个外壳已经装有引爆器。"))
 			return
 		if((!isigniter(det.a_left) && !isigniter(det.a_right)))
-			to_chat(user, SPAN_DANGER("Assembly must contain one igniter."))
+			to_chat(user, SPAN_DANGER("组件必须包含一个点火器。"))
 			return
 		if((!(det.a_left.type in allowed_sensors) && !isigniter(det.a_left)) || (!(det.a_right.type in allowed_sensors) && !isigniter(det.a_right)))
-			to_chat(user, SPAN_DANGER("Assembly contains a sensor that is incompatible with this type of casing."))
+			to_chat(user, SPAN_DANGER("组件中的传感器与这种外壳不兼容。"))
 			return
 		if(!det.secured)
-			to_chat(user, SPAN_DANGER("Assembly must be secured with screwdriver."))
+			to_chat(user, SPAN_DANGER("必须用螺丝刀固定组件。"))
 			return
-		to_chat(user, SPAN_NOTICE("You add [W] to the [name]."))
+		to_chat(user, SPAN_NOTICE("你将[W]装入[name]。"))
 		playsound(loc, 'sound/items/Screwdriver2.ogg', 25, 0, 6)
 		user.temp_drop_inv_item(det)
 		det.forceMove(src)
@@ -133,37 +133,37 @@
 	else if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
 		if(assembly_stage == ASSEMBLY_UNLOCKED)
 			if(length(containers))
-				to_chat(user, SPAN_NOTICE("You lock the assembly."))
+				to_chat(user, SPAN_NOTICE("你锁定了组件。"))
 			else
-				to_chat(user, SPAN_NOTICE("You lock the empty assembly."))
+				to_chat(user, SPAN_NOTICE("你锁定了空组件。"))
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 0, 6)
 			creator = user
 			cause_data = create_cause_data(initial(name), user)
 			assembly_stage = ASSEMBLY_LOCKED
 		else if(assembly_stage == ASSEMBLY_LOCKED)
-			to_chat(user, SPAN_NOTICE("You unlock the assembly."))
+			to_chat(user, SPAN_NOTICE("你解锁了组件。"))
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 0, 6)
 			desc = initial(desc) + "\n Contains [length(containers)] containers[detonator?" and detonator":""]"
 			assembly_stage = ASSEMBLY_UNLOCKED
 		update_icon()
 	else if(is_type_in_list(W, allowed_containers) && (!assembly_stage || assembly_stage == ASSEMBLY_UNLOCKED))
 		if(current_container_volume >= max_container_volume)
-			to_chat(user, SPAN_DANGER("The [name] can not hold more containers."))
+			to_chat(user, SPAN_DANGER("[name]无法容纳更多容器。"))
 			return
 		else
 			if(W.reagents.total_volume)
 				if(W.reagents.maximum_volume + current_container_volume > max_container_volume)
-					to_chat(user, SPAN_DANGER("\the [W] is too large for [name]."))
+					to_chat(user, SPAN_DANGER("[W]太大，无法装入[name]。"))
 					return
 				if(user.temp_drop_inv_item(W))
-					to_chat(user, SPAN_NOTICE("You add \the [W] to the assembly."))
+					to_chat(user, SPAN_NOTICE("你将[W]装入组件。"))
 					W.forceMove(src)
 					containers += W
 					current_container_volume += W.reagents.maximum_volume
 					assembly_stage = ASSEMBLY_UNLOCKED
 					desc = initial(desc) + "\n Contains [length(containers)] containers[detonator?" and detonator":""]"
 			else
-				to_chat(user, SPAN_DANGER("\the [W] is empty."))
+				to_chat(user, SPAN_DANGER("[W]是空的。"))
 
 /obj/item/explosive/proc/activate_sensors()
 	if(!detonator || active || assembly_stage < ASSEMBLY_LOCKED)
@@ -248,25 +248,25 @@
 
 /obj/item/explosive/proc/toggle_blast_dampener_verb()
 	set category = "Weapons"
-	set name = "Toggle Blast Wave Dampener"
-	set desc = "Enable/Disable the Explosive Blast Wave Dampener"
+	set name = "切换冲击波抑制器"
+	set desc = "启用或禁用爆炸冲击波抑制器。"
 	set src in usr
 
 	toggle_blast_dampener(usr)
 
 /obj/item/explosive/proc/toggle_blast_dampener(mob/living/carbon/human/H)
 	if(!istype(H))
-		to_chat(usr, SPAN_DANGER("This is beyond your understanding..."))
+		to_chat(usr, SPAN_DANGER("这超出了你的理解能力……"))
 		return
 
 	if(!skillcheck(H, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-		to_chat(usr, SPAN_DANGER("You have no idea how to use this..."))
+		to_chat(usr, SPAN_DANGER("你完全不知道如何使用它……"))
 		return
 
 	if(falloff_mode == EXPLOSION_FALLOFF_SHAPE_LINEAR)
 		falloff_mode = EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL
-		to_chat(usr, SPAN_NOTICE("You enable [src]'s blast wave dampener, limiting the blast radius."))
+		to_chat(usr, SPAN_NOTICE("你启用了[src]的冲击波抑制器，限制爆炸半径。"))
 	else
 		falloff_mode = EXPLOSION_FALLOFF_SHAPE_LINEAR
-		to_chat(usr, SPAN_NOTICE("You disable [src]'s blast wave dampener, restoring the blast radius to full."))
+		to_chat(usr, SPAN_NOTICE("你关闭了[src]的冲击波抑制器，恢复完整爆炸半径。"))
 	playsound(loc, 'sound/items/Screwdriver2.ogg', 25, 0, 6)

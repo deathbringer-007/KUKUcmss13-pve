@@ -581,8 +581,8 @@
 			animatation_displace_reset(L)
 			if(ammo.sound_miss) playsound_client(L.client, ammo.sound_miss, get_turf(L), 75, TRUE)
 			if(COOLDOWN_FINISHED(L, shot_cooldown))
-				L.visible_message(SPAN_AVOIDHARM("[src] misses [L]!"),
-					SPAN_AVOIDHARM("[src] narrowly misses you!"), null, 4, CHAT_TYPE_TAKING_HIT)
+				L.visible_message(SPAN_AVOIDHARM("[src]没有击中[L]！"),
+					SPAN_AVOIDHARM("[src]险些击中你！"), null, 4, CHAT_TYPE_TAKING_HIT)
 				COOLDOWN_START(L, shot_cooldown, 1 SECONDS)
 			var/log_message = "[src] narrowly missed [key_name(L)]"
 
@@ -1010,11 +1010,11 @@
 		damage_result = armor_damage_reduction(GLOB.marine_ranged, damage, armor, P.ammo.penetration)
 
 		if(damage_result <= 5)
-			to_chat(src,SPAN_XENONOTICE("Your armor absorbs the force of [P]!"))
+			to_chat(src,SPAN_XENONOTICE("你的护甲吸收了[P]的冲击！"))
 		if(damage_result <= 3)
 			damage_result = 0
 			bullet_ping(P)
-			visible_message(SPAN_AVOIDHARM("[src]'s armor deflects [P]!"))
+			visible_message(SPAN_AVOIDHARM("[src]的护甲弹开了[P]！"))
 			if(P.ammo.sound_armor) playsound(src, P.ammo.sound_armor, 50, 1)
 
 	if(P.ammo.debilitate && stat != DEAD && ( damage || ( ammo_flags & AMMO_IGNORE_RESIST) ) )  //They can't be dead and damage must be inflicted (or it's a xeno toxin).
@@ -1058,7 +1058,7 @@
 
 				if(!stat && pain.feels_pain)
 					emote("scream")
-					to_chat(src, SPAN_HIGHDANGER("You scream in pain as the impact sends <B>shrapnel</b> into the wound!"))
+					to_chat(src, SPAN_HIGHDANGER("冲击将<B>弹片</B>送入伤口，你痛得尖叫！"))
 	SEND_SIGNAL(P, COMSIG_POST_BULLET_ACT_HUMAN, src, damage, damage_result)
 
 //Deal with xeno bullets.
@@ -1072,7 +1072,7 @@
 	var/ammo_flags = P.ammo.flags_ammo_behavior | P.projectile_override_flags
 
 	if((ammo_flags & AMMO_FLAME) && (caste.fire_immunity & (FIRE_IMMUNITY_NO_IGNITE|FIRE_IMMUNITY_NO_DAMAGE)))
-		to_chat(src, SPAN_AVOIDHARM("You shrug off the glob of flame."))
+		to_chat(src, SPAN_AVOIDHARM("你甩掉了那团火焰。"))
 		bullet_message(P, damaging = FALSE)
 		return
 
@@ -1215,7 +1215,7 @@
 	bullet_ping(P)
 	health -= floor(P.damage/2)
 	if(health < 0)
-		visible_message(SPAN_WARNING("[src] breaks down!"))
+		visible_message(SPAN_WARNING("[src]损坏了！"))
 		deconstruct()
 	return TRUE
 
@@ -1253,8 +1253,8 @@
 	if(!P)
 		return
 	if(damaging && COOLDOWN_FINISHED(src, shot_cooldown))
-		visible_message(SPAN_DANGER("[src] is hit by the [P.name] in the [parse_zone(P.def_zone)]!"), \
-			SPAN_HIGHDANGER("[isxeno(src) ? "We" : "You"] are hit by the [P.name] in the [parse_zone(P.def_zone)]!"), null, 4, CHAT_TYPE_TAKING_HIT)
+		visible_message(SPAN_DANGER("[P.name]击中了[src]的[parse_zone(P.def_zone)]！"), \
+			SPAN_HIGHDANGER("[P.name]击中了[isxeno(src) ? "我们" : "你"]的[parse_zone(P.def_zone)]！"), null, 4, CHAT_TYPE_TAKING_HIT)
 		COOLDOWN_START(src, shot_cooldown, 1 SECONDS)
 
 	var/shot_from = P.shot_from ? " from \a [P.shot_from]" : ""

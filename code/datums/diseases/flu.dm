@@ -8,7 +8,7 @@
 	agent = "H13N1 flu virion"
 	affected_species = list("Human", "Monkey")
 	permeability_mod = 0.75
-	desc = "If left untreated the subject will feel quite unwell."
+	desc = "若不治疗，患者会感到十分不适。"
 	severity = "Medium"
 
 /datum/disease/flu/stage_act()
@@ -22,7 +22,7 @@
 				return
 */
 			if(affected_mob.body_position == LYING_DOWN && prob(20))  //added until sleeping is fixed --Blaank
-				to_chat(affected_mob, SPAN_NOTICE(" You feel better."))
+				to_chat(affected_mob, SPAN_NOTICE("你感觉好多了。"))
 				stage--
 				return
 			if(prob(1))
@@ -30,11 +30,11 @@
 			if(prob(1))
 				affected_mob.emote("cough")
 			if(prob(1))
-				to_chat(affected_mob, SPAN_DANGER("Your muscles ache."))
+				to_chat(affected_mob, SPAN_DANGER("你感到肌肉酸痛。"))
 				if(prob(20))
 					affected_mob.take_limb_damage(1)
 			if(prob(1))
-				to_chat(affected_mob, SPAN_DANGER("Your stomach hurts."))
+				to_chat(affected_mob, SPAN_DANGER("你感到胃疼。"))
 				if(prob(20))
 					affected_mob.apply_damage(1, TOX)
 					affected_mob.updatehealth()
@@ -47,7 +47,7 @@
 				return
 */
 			if(affected_mob.body_position == LYING_DOWN && prob(15))  //added until sleeping is fixed
-				to_chat(affected_mob, SPAN_NOTICE(" You feel better."))
+				to_chat(affected_mob, SPAN_NOTICE("你感觉好多了。"))
 				stage--
 				return
 			if(prob(1))
@@ -55,11 +55,11 @@
 			if(prob(1))
 				affected_mob.emote("cough")
 			if(prob(1))
-				to_chat(affected_mob, SPAN_DANGER("Your muscles ache."))
+				to_chat(affected_mob, SPAN_DANGER("你感到肌肉酸痛。"))
 				if(prob(20))
 					affected_mob.take_limb_damage(1)
 			if(prob(1))
-				to_chat(affected_mob, SPAN_DANGER("Your stomach hurts."))
+				to_chat(affected_mob, SPAN_DANGER("你感到胃疼。"))
 				if(prob(20))
 					affected_mob.apply_damage(1, TOX)
 					affected_mob.updatehealth()

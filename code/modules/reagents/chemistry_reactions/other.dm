@@ -377,12 +377,12 @@
 /datum/chemical_reaction/foam/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/mob/M as anything in viewers(5, location))
-		to_chat(M, SPAN_WARNING("The solution violently bubbles!"))
+		to_chat(M, SPAN_WARNING("溶液剧烈地冒泡！"))
 
 	location = get_turf(holder.my_atom)
 
 	for(var/mob/M as anything in viewers(5, location))
-		to_chat(M, SPAN_WARNING("The solution spews out foam!"))
+		to_chat(M, SPAN_WARNING("溶液喷出了泡沫！"))
 	//for(var/datum/reagent/R in holder.reagent_list)
 
 	var/datum/effect_system/foam_spread/s = new()
@@ -402,7 +402,7 @@
 	var/location = get_turf(holder.my_atom)
 
 	for(var/mob/M as anything in viewers(5, location))
-		to_chat(M, SPAN_WARNING("The solution spews out a metallic shiny foam!"))
+		to_chat(M, SPAN_WARNING("溶液喷出了闪着金属光泽的泡沫！"))
 
 	var/datum/effect_system/foam_spread/s = new()
 	if (created_volume > 300)

@@ -172,7 +172,7 @@
 	if((P.projectile_flags & PROJECTILE_BULLSEYE) && M == P.original)
 		var/mob/living/L = M
 		L.apply_armoured_damage(damage*2, ARMOR_BULLET, BRUTE, null, penetration)
-		to_chat(P.firer, SPAN_WARNING("Bullseye!"))
+		to_chat(P.firer, SPAN_WARNING("正中目标！"))
 
 /datum/ammo/bullet/rifle/heavy/rmcdmr
 	name = "8.88x51 squash-head bullet"
@@ -364,7 +364,7 @@
 				blind_duration = 2
 		L.AdjustEyeBlur(blind_duration)
 		L.adjust_fire_stacks(10)
-		to_chat(P.firer, SPAN_WARNING("Bullseye!"))
+		to_chat(P.firer, SPAN_WARNING("正中目标！"))
 
 /datum/ammo/bullet/rifle/heavy/flak
 	name = "flak sniper bullet"
@@ -393,7 +393,7 @@
 				slow_duration = 4
 		M.adjust_effect(slow_duration, SUPERSLOW)
 		L.apply_armoured_damage(damage, ARMOR_BULLET, BRUTE, null, penetration)
-		to_chat(P.firer, SPAN_WARNING("Bullseye!"))
+		to_chat(P.firer, SPAN_WARNING("正中目标！"))
 	else
 		burst(get_turf(M),P,damage_type, 2 , 2)
 		burst(get_turf(M),P,damage_type, 1 , 2 , 0)

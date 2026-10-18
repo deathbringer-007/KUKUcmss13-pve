@@ -1,7 +1,7 @@
 //Commander
 /datum/job/command/commander
 	title = JOB_CO
-	supervisors = "USCM high command"
+	supervisors = "USCM最高指挥部"
 	selection_class = "job_co"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED
 	flags_whitelist = WHITELIST_COMMANDER
@@ -14,7 +14,7 @@
 	)
 
 /datum/job/command/commander/generate_entry_message()
-	entry_message_body = "<a href='[generate_wiki_link()]'>You are the Commanding Officer of the [MAIN_SHIP_NAME] as well as the operation.</a> Your goal is to lead the Marines on their mission as well as protect and command the ship and her crew. Your job involves heavy roleplay and requires you to behave like a high-ranking officer and to stay in character at all times. As the Commanding Officer your only superior is High Command itself. You must abide by the <a href='[CONFIG_GET(string/wikiarticleurl)]/[URL_WIKI_CO_RULES]'>Commanding Officer Code of Conduct</a>. Failure to do so may result in punitive action against you. Godspeed."
+	entry_message_body = "<a href='[generate_wiki_link()]'>你是[MAIN_SHIP_NAME]及本次行动的指挥官。</a>你的目标是率领陆战队执行任务，同时保护和指挥舰船及其人员。这一职位需要大量角色扮演，你必须表现得像一名高级军官，并始终保持角色扮演。作为指挥官，你唯一的上级是最高指挥部。你必须遵守<a href='[CONFIG_GET(string/wikiarticleurl)]/[URL_WIKI_CO_RULES]'>指挥官行为准则</a>，否则可能受到处分。祝你顺利。"
 	return ..()
 
 /datum/job/command/commander/get_whitelist_status(client/player)
@@ -43,7 +43,7 @@
 	GLOB.marine_leaders -= JOB_CO
 
 /datum/job/command/commander/proc/do_announce_entry_message(mob/living/carbon/human/H)
-		all_hands_on_deck("Attention all hands, [H.get_paygrade(0)] [H.real_name] on deck!")
+		all_hands_on_deck("全体注意，[H.get_paygrade(0)] [H.real_name]登舰！")
 	//for(var/i in GLOB.co_secure_boxes)
 		//var/obj/structure/closet/secure_closet/securecom/S = i
 		//var/loc_to_spawn = S.opened ? get_turf(S) : S

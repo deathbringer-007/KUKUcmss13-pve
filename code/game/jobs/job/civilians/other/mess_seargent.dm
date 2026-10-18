@@ -6,9 +6,9 @@
 	scaled = TRUE
 	selection_class = "job_ot"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
-	supervisors = "the auxiliary support officer"
+	supervisors = "辅助支援军官"
 	gear_preset = /datum/equipment_preset/uscm_ship/chef
-	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>Your job is to service the marines with excellent food</a>, drinks and entertaining the shipside crew when needed. You have a lot of freedom and it is up to you, to decide what to do with it. Good luck!"
+	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>你的职责是为陆战队员提供美味佳肴</a>和饮品，并在需要时为舰上人员提供娱乐。你有很大的自由，可以自行决定如何发挥。祝你好运！"
 
 /datum/job/civilian/chef/set_spawn_positions(count)
 	spawn_positions = mess_sergeant_slot_formula(count)

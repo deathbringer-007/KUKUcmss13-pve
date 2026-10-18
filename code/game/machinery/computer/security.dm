@@ -1,8 +1,8 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 /obj/structure/machinery/computer/secure_data//TODO:SANITY
-	name = "Security Records"
-	desc = "Used to view and edit personnel's security records"
+	name = "安保档案"
+	desc = "用于查看和编辑人员的安保档案。"
 	icon_state = "security"
 	req_access = list(ACCESS_MARINE_BRIG)
 	circuit = /obj/item/circuitboard/computer/secure_data
@@ -27,13 +27,13 @@
 	if(istype(O, /obj/item/device/clue_scanner) && !scanner)
 		var/obj/item/device/clue_scanner/S = O
 		if(!S.print_list)
-			to_chat(user, SPAN_WARNING("There are no prints stored in \the [S]!"))
+			to_chat(user, SPAN_WARNING("[S]中没有保存任何指纹！"))
 			return
 
 		if(usr.drop_held_item())
 			O.forceMove(src)
 			scanner = O
-			to_chat(user, "You insert [O].")
+			to_chat(user, "你插入了[O]。")
 
 	..()
 
@@ -43,29 +43,29 @@
 //Someone needs to break down the dat += into chunks instead of long ass lines.
 /obj/structure/machinery/computer/secure_data/attack_hand(mob/user as mob)
 	if(..() || inoperable())
-		to_chat(user, SPAN_INFO("It does not appear to be working."))
+		to_chat(user, SPAN_INFO("它似乎没有在运转。"))
 		return
 
 	if(!allowed(usr))
-		to_chat(user, SPAN_WARNING("Access denied."))
+		to_chat(user, SPAN_WARNING("访问被拒绝。"))
 		return
 
 	if(!is_mainship_level(z))
-		to_chat(user, SPAN_DANGER("<b>Unable to establish a connection</b>: \black You're too far away from the station!"))
+		to_chat(user, SPAN_DANGER("<b>无法建立连接</b>：\black 你离空间站太远了！"))
 		return
 	var/dat
 
 	if (temp)
-		dat = text("<TT>[]</TT><BR><BR><A href='byond://?src=\ref[];choice=Clear Screen'>Clear Screen</A>", temp, src)
+		dat = text("<TT>[]</TT><BR><BR><A href='byond://?src=\ref[];choice=Clear Screen'>清屏</A>", temp, src)
 	else
 		switch(screen)
 			if(1.0)
 				dat += {"
 <p style='text-align:center;'>"}
-				dat += text("<A href='byond://?src=\ref[];choice=Search Records'>Search Records</A><BR>", src)
-				dat += text("<A href='byond://?src=\ref[];choice=New Record (General)'>New Record</A><BR>", src)
+				dat += text("<A href='byond://?src=\ref[];choice=Search Records'>搜索记录</A><BR>", src)
+				dat += text("<A href='byond://?src=\ref[];choice=New Record (General)'>新建记录</A><BR>", src)
 				if(scanner)
-					dat += text("<A href='byond://?src=\ref[];choice=read_fingerprint'>Read Fingerprint</A><BR>", src)
+					dat += text("<A href='byond://?src=\ref[];choice=read_fingerprint'>读取指纹</A><BR>", src)
 				dat += {"
 </p>
 <table style="text-align:center;" cellspacing="0" width="100%">
@@ -102,16 +102,16 @@
 								background = "'background-color:#008743;'"
 							if("")
 								background = "'background-color:#FFFFFF;'"
-								crimstat = "No Record."
+								crimstat = "没有记录。"
 						dat += text("<tr style=[]><td><A href='byond://?src=\ref[];choice=Browse Record;d_rec=\ref[]'>[]</a></td>", background, src, R, R.fields["name"])
 						dat += text("<td>[]</td>", R.fields["id"])
 						dat += text("<td>[]</td>", R.fields["rank"])
 						dat += text("<td>[]</td></tr>", crimstat)
 					dat += "</table><hr width='75%' />"
-				dat += text("<A href='byond://?src=\ref[];choice=Record Maintenance'>Record Maintenance</A><br><br>", src)
+				dat += text("<A href='byond://?src=\ref[];choice=Record Maintenance'>记录维护</A><br><br>", src)
 			if(2.0)
-				dat += "<B>Records Maintenance</B><HR>"
-				dat += "<BR><A href='byond://?src=\ref[src];choice=Delete All Records'>Delete All Records</A><BR><BR><A href='byond://?src=\ref[src];choice=Return'>Back</A>"
+				dat += "<B>记录维护</B><HR>"
+				dat += "<BR><A href='byond://?src=\ref[src];choice=Delete All Records'>删除全部记录</A><BR><BR><A href='byond://?src=\ref[src];choice=Return'>返回</A>"
 			if(3.0)
 				dat += "<CENTER><B>Security Record</B></CENTER><BR>"
 				if ((istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1)))
@@ -265,7 +265,7 @@ What a mess.*/
 
 //RECORD FUNCTIONS
 			if("Search Records")
-				var/t1 = input("Search String: (Partial Name or ID or Rank)", "Secure. records", null, null)  as text
+				var/t1 = input("搜索内容（部分姓名、编号或军衔）：", "安保档案", null, null)  as text
 				if ((!t1 || usr.stat || usr.is_mob_restrained() || !in_range(src, usr)))
 					return
 				Perp = new/list()
@@ -361,7 +361,7 @@ What a mess.*/
 				if (!(istype(active2, /datum/data/record)))
 					return
 				var/a2 = active2
-				var/new_value = copytext(trim(strip_html(input("Your name and time will be added to this new comment.", "Add a comment", null, null)  as message)),1,MAX_RECORDS_MESSAGE_LEN)
+				var/new_value = copytext(trim(strip_html(input("你的姓名和时间将记录在这条新备注中。", "添加备注", null, null)  as message)),1,MAX_RECORDS_MESSAGE_LEN)
 				if((!new_value || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isSilicon(usr))) || active2 != a2))
 					return
 				var/created_at = text("[]&nbsp;&nbsp;[]&nbsp;&nbsp;[]", time2text(world.realtime, "MMM DD"), time2text(world.time, "[worldtime2text()]:ss"), GLOB.game_year)
@@ -408,7 +408,7 @@ What a mess.*/
 				switch(href_list["field"])
 					if("name")
 						if (istype(active1, /datum/data/record))
-							var/new_value = reject_bad_name(input(usr, "Please input name:", "Secure. records", active1.fields["name"]) as text|null)
+							var/new_value = reject_bad_name(input(usr, "请输入姓名：", "安保档案", active1.fields["name"]) as text|null)
 							if (!new_value || active1 != a1)
 								return
 							message_admins("[key_name(usr)] changed the security record name of [active1.fields["name"]] to [new_value]")
@@ -424,7 +424,7 @@ What a mess.*/
 
 					if("age")
 						if (istype(active1, /datum/data/record))
-							var/new_value = input("Please input age:", "Secure. records", active1.fields["age"], null)  as num
+							var/new_value = input("请输入年龄：", "安保档案", active1.fields["age"], null)  as num
 							if (!new_value || active1 != a1)
 								return
 							active1.fields["age"] = new_value
@@ -451,11 +451,11 @@ What a mess.*/
 								temp += "<li><a href='byond://?src=\ref[src];choice=Change Rank;rank=[rank]'>[rank]</a></li>"
 							temp += "</ul>"
 						else
-							alert(usr, "You do not have the required rank to do this!")
+							alert(usr, "你的军衔不满足此操作要求！")
 
 					if("species")
 						if (istype(active1, /datum/data/record))
-							var/new_value = copytext(trim(strip_html(input("Please enter race:", "General records", active1.fields["species"], null)  as message)),1,MAX_MESSAGE_LEN)
+							var/new_value = copytext(trim(strip_html(input("请输入种族：", "一般档案", active1.fields["species"], null)  as message)),1,MAX_MESSAGE_LEN)
 							if (!new_value || active1 != a1)
 								return
 							active1.fields["species"] = new_value

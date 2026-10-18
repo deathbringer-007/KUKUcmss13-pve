@@ -195,11 +195,11 @@
 	CONFIG_SET(flag/remove_gun_restrictions, TRUE) //This will allow anyone to use cool guns.
 
 	spawn(10)
-		to_world("<B>The current game mode is - HUNTER GAMES!</B>")
-		to_world("You have been dropped off on a Weyland-Yutani colony overrun with alien Predators who have turned it into a game preserve.")
-		to_world("And you are both the hunter and the hunted!")
-		to_world("Be the <B>last survivor</b> and <B>win glory</B>! Fight in any way you can! Team up or be a loner, it's up to you.")
-		to_world("Be warned though - if someone hasn't died in 3 minutes, the watching Predators get irritated!")
+		to_world("<B>当前游戏模式：狩猎游戏！</B>")
+		to_world("你被投放到一处维兰德-汤谷殖民地。铁血战士占领了这里，将其改造成狩猎场。")
+		to_world("而你既是猎人，也是猎物！")
+		to_world("成为<B>最后的幸存者</b>，<B>赢得荣耀</B>！尽你所能战斗！组队或独行，全由你决定。")
+		to_world("但要小心：如果3分钟都无人死亡，观战的铁血战士会变得不耐烦！")
 		world << sound('sound/effects/siren.ogg')
 
 	spawn(1000)
@@ -300,37 +300,37 @@
 
 	//Give them some information
 	spawn(4)
-		to_chat(H, "<h2>There can be only one!!</h2>")
-		to_chat(H, "Use the flare in your pocket to light the way!")
+		to_chat(H, "<h2>胜者只能有一个！！</h2>")
+		to_chat(H, "用口袋里的照明棒照亮道路！")
 	return 1
 
 /datum/game_mode/huntergames/proc/loop_package()
 	while(finished == 0)
 		if(!drops_disabled)
-			to_world(SPAN_ROUNDBODY("Your Predator capturers have decided it is time to bestow a gift upon the scurrying humans."))
-			to_world(SPAN_ROUNDBODY("One lucky contestant should prepare for a supply drop in 60 seconds."))
+			to_world(SPAN_ROUNDBODY("俘虏你们的铁血战士决定，是时候给四处逃窜的人类一点礼物了。"))
+			to_world(SPAN_ROUNDBODY("一位幸运的参赛者将在60秒后收到空投补给。"))
 			for(var/mob/dead/D in GLOB.dead_mob_list)
-				to_chat(D, SPAN_ROUNDBODY("Now is your chance to vote for a supply drop beneficiary! Go to Ghost tab, Spectator Vote!"))
+				to_chat(D, SPAN_ROUNDBODY("现在可以投票选出空投补给的获得者了！前往幽灵选项卡，选择观众投票！"))
 			world << sound('sound/effects/alert.ogg')
 			last_drop = world.time
 			waiting_for_drop_votes = 1
 			sleep(600)
 			if(!length(supply_votes))
-				to_world(SPAN_ROUNDBODY("Nobody got anything! .. weird."))
+				to_world(SPAN_ROUNDBODY("没人获得任何东西！……真奇怪。"))
 				waiting_for_drop_votes = 0
 				supply_votes = list()
 			else
 				var/mob/living/carbon/human/winner = pick(supply_votes) //Way it works is, more votes = more odds of winning. But not guaranteed.
 				if(istype(winner) && !winner.stat)
-					to_world(SPAN_ROUNDBODY("The spectator and Predator votes have been tallied, and the supply drop recipient is <B>[winner.real_name]</B>! Congrats!"))
+					to_world(SPAN_ROUNDBODY("观众与铁血战士的投票已统计完毕，空投补给将交给<B>[winner.real_name]</B>！恭喜！"))
 					world << sound('sound/effects/alert.ogg')
-					to_world(SPAN_ROUNDBODY("The package will shortly be dropped off at: [get_area(winner.loc)]."))
+					to_world(SPAN_ROUNDBODY("补给包即将投放至[get_area(winner.loc)]。"))
 					var/turf/drop_zone = locate(winner.x + rand(-2,2),winner.y + rand(-2,2),winner.z)
 					if(istype(drop_zone))
 						playsound(drop_zone,'sound/effects/bamf.ogg', 50, 1)
 						place_drop(drop_zone,"god", 1)
 				else
-					to_world(SPAN_ROUNDBODY("The spectator and Predator votes have been talled, and the supply drop recipient is dead or dying<B>. Bummer.</b>"))
+					to_world(SPAN_ROUNDBODY("观众与铁血战士的投票已统计完毕，但补给获得者已死亡或濒死<B>。真遗憾。</b>"))
 					world << sound('sound/misc/sadtrombone.ogg')
 				supply_votes = list()
 				waiting_for_drop_votes = 0
@@ -355,11 +355,11 @@
 	var/C = count_humans()
 	if(C < last_tally)
 		if(last_tally - C == 1)
-			to_world(SPAN_ROUNDBODY("A contestant has died! There are now [C] contestants remaining!"))
+			to_world(SPAN_ROUNDBODY("一名参赛者死亡！目前还剩[C]名参赛者！"))
 			world << sound('sound/effects/explosionfar.ogg')
 		else
 			var/diff = last_tally - C
-			to_world(SPAN_ROUNDBODY("Multiple contestants have died! [diff] in fact. [C] are left!"))
+			to_world(SPAN_ROUNDBODY("多名参赛者死亡！准确说是[diff]名。还剩[C]名！"))
 			spawn(7) world << sound('sound/effects/explosionfar.ogg')
 
 	last_tally = C
@@ -404,16 +404,16 @@
 			break
 
 	if(finished == 1 && !QDELETED(winner) && istype(winner))
-		to_world(SPAN_DANGER("<FONT size = 4><B>We have a winner! >> [winner.real_name] ([winner.key]) << defeated all enemies!</B></FONT>"))
-		to_world("<FONT size = 3><B>Well done, your tale of survival will live on in legend!</B></FONT>")
+		to_world(SPAN_DANGER("<FONT size = 4><B>胜者诞生！>> [winner.real_name]（[winner.key]）<< 击败了所有敌人！</B></FONT>"))
+		to_world("<FONT size = 3><B>干得好，你的生存故事将成为传说！</B></FONT>")
 
 	else if(finished == 2)
-		to_world(SPAN_DANGER("<FONT size = 4><B>NOBODY WON!?</B></FONT>"))
-		to_world("<FONT size = 3><B>'Somehow you stupid humans managed to even fuck up killing yourselves. Well done.'</B></FONT>")
+		to_world(SPAN_DANGER("<FONT size = 4><B>竟然无人获胜！？</B></FONT>"))
+		to_world("<FONT size = 3><B>“你们这些蠢人类居然连互相残杀都能搞砸，真有你们的。”</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'
 	else
-		to_world(SPAN_DANGER("<FONT size = 4><B>NOBODY WON!</B></FONT>"))
-		to_world("<FONT size = 3><B>There was a winner, but they died before they could receive the prize!! Bummer.</B></FONT>")
+		to_world(SPAN_DANGER("<FONT size = 4><B>无人获胜！</B></FONT>"))
+		to_world("<FONT size = 3><B>原本有位胜者，可惜还没领到奖品就死了！真遗憾。</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'
 
 	if(GLOB.round_statistics)

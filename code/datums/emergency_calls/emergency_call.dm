@@ -31,7 +31,7 @@
 	var/name = "name"
 	var/mob_max = 3
 	var/mob_min = 3
-	var/dispatch_message = "An encrypted signal has been received from a nearby vessel. Stand by." //Msg to display when starting
+	var/dispatch_message = "已收到附近舰船发来的加密信号。请待命。" //Msg to display when starting
 	var/arrival_message = "" //Msg to display about when the shuttle arrives
 	/// Probability that the message will be replaced with static. - prob(chance_hidden)
 	var/chance_hidden = 20
@@ -174,7 +174,7 @@
 
 		beacons += list("[name]" = em_call) // I hate byond
 
-	var/choice = tgui_input_list(src, "Choose a distress beacon to join", "", beacons)
+	var/choice = tgui_input_list(src, "选择要响应的求救信标。", "", beacons)
 
 	if(!choice)
 		return

@@ -27,7 +27,7 @@ and organ transplant code which may come in handy in future but haven't been edi
 
 /datum/surgery_step/repair_organs
 	name = "Repair Damaged Organs"
-	desc = "repair the organ damage"
+	desc = "修复器官损伤。"
 	//Tools used to fix damaged organs. Predator herbs may be herbal and organic, but are not as good for surgery.
 	tools = list(
 		/obj/item/stack/medical/advanced/bruise_pack = SURGERY_TOOL_MULT_IDEAL,
@@ -60,14 +60,14 @@ and organ transplant code which may come in handy in future but haven't been edi
 
 	if(length(damaged_organs) > 1)
 		user.affected_message(target,
-			SPAN_NOTICE("You begin treating the damaged organs in [target]'s [surgery.affected_limb.display_name] with [toolname]."),
-			SPAN_NOTICE("[user] begins to treat the damaged organs in your [surgery.affected_limb.display_name] with [toolname]."),
-			SPAN_NOTICE("[user] begins to treat the damaged organs in [target]'s [surgery.affected_limb.display_name] with [toolname]."))
+			SPAN_NOTICE("你开始用[toolname]治疗[target]的[surgery.affected_limb.display_name]内受损的器官。"),
+			SPAN_NOTICE("[user]开始用[toolname]治疗你[surgery.affected_limb.display_name]内受损的器官。"),
+			SPAN_NOTICE("[user]开始用[toolname]治疗[target]的[surgery.affected_limb.display_name]内受损的器官。"))
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("You begin treating [target]'s damaged [damaged_organs[1]] with [toolname]."),
-			SPAN_NOTICE("[user] begins to treat your damaged [damaged_organs[1]] with [toolname]."),
-			SPAN_NOTICE("[user] begins to treat [target]'s damaged [damaged_organs[1]] with [toolname]."))
+			SPAN_NOTICE("你开始用[toolname]治疗[target]受损的[damaged_organs[1]]。"),
+			SPAN_NOTICE("[user]开始用[toolname]治疗你受损的[damaged_organs[1]]。"),
+			SPAN_NOTICE("[user]开始用[toolname]治疗[target]受损的[damaged_organs[1]]。"))
 
 	target.custom_pain("The pain in your [surgery.affected_limb.display_name] is living hell!", 1)
 	playsound(target.loc, 'sound/handling/bandage.ogg', 25, TRUE)
@@ -78,9 +78,9 @@ and organ transplant code which may come in handy in future but haven't been edi
 	for(var/datum/internal_organ/I as anything in surgery.affected_limb.internal_organs)
 		if(I && I.damage > 0 && I.robotic != ORGAN_ROBOT)
 			user.affected_message(target,
-				SPAN_NOTICE("You finish treating [target]'s damaged [I.name]."),
-				SPAN_NOTICE("[user] finishes treating your damaged [I.name]."),
-				SPAN_NOTICE("[user] finishes treating [target]'s damaged [I.name]."))
+				SPAN_NOTICE("你完成了对[target]受损[I.name == "heart" ? "心脏" : I.name == "lungs" ? "肺" : I.name == "liver" ? "肝脏" : I.name == "kidneys" ? "肾脏" : I.name == "brain" ? "大脑" : I.name == "eyes" ? "眼睛" : I.name]的治疗。"),
+				SPAN_NOTICE("[user]完成了对你受损[I.name == "heart" ? "心脏" : I.name == "lungs" ? "肺" : I.name == "liver" ? "肝脏" : I.name == "kidneys" ? "肾脏" : I.name == "brain" ? "大脑" : I.name == "eyes" ? "眼睛" : I.name]的治疗。"),
+				SPAN_NOTICE("[user]完成了对[target]受损[I.name == "heart" ? "心脏" : I.name == "lungs" ? "肺" : I.name == "liver" ? "肝脏" : I.name == "kidneys" ? "肾脏" : I.name == "brain" ? "大脑" : I.name == "eyes" ? "眼睛" : I.name]的治疗。"))
 
 			user.count_niche_stat(STATISTICS_NICHE_SURGERY_ORGAN_REPAIR)
 			I.rejuvenate()
@@ -89,8 +89,8 @@ and organ transplant code which may come in handy in future but haven't been edi
 
 /datum/surgery_step/repair_organs/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_WARNING("Your hand slips, bruising [target]'s organs and contaminating \his [surgery.affected_limb.cavity]!"),
-		SPAN_WARNING("[user]'s hand slips, bruising your organs and contaminating your [surgery.affected_limb.cavity]!"),
+		SPAN_WARNING("你的手一滑，挫伤了[target]的器官，并污染了[surgery.affected_limb.cavity == "thoracic cavity" ? "胸腔" : surgery.affected_limb.cavity == "abdominal cavity" ? "腹腔" : surgery.affected_limb.cavity == "cranial cavity" ? "颅腔" : surgery.affected_limb.cavity]！"),
+		SPAN_WARNING("[user]的手一滑，挫伤了你的器官，并污染了你的[surgery.affected_limb.cavity == "thoracic cavity" ? "胸腔" : surgery.affected_limb.cavity == "abdominal cavity" ? "腹腔" : surgery.affected_limb.cavity == "cranial cavity" ? "颅腔" : surgery.affected_limb.cavity]！"),
 		SPAN_WARNING("[user]'s hand slips, bruising [target]'s organs and contaminating \his [surgery.affected_limb.cavity]!"))
 
 	var/dam_amt = 2

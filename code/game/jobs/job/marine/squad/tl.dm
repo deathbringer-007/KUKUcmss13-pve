@@ -11,7 +11,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_SQUAD
 	gear_preset = /datum/equipment_preset/uscm/tl
 	gear_preset_secondary = /datum/equipment_preset/uscm/tl/corporal
-	entry_message_body = "You are the <a href='"+WIKI_PLACEHOLDER+"'>Squad Leader.</a> Your task is leading the designated squad and utilize available ordnance. If the section sergeant dies, you are expected to lead in their place.<br><b>You remember that you've stored your personal gear and uniform are located in the dorm or locker rooms.</b>"
+	entry_message_body = "你是<a href='"+WIKI_PLACEHOLDER+"'>小队长。</a>你的任务是率领指定的小队，并运用可用军械。如果分队士官阵亡，你应接替其指挥。<br><b>你记得自己的个人装备和制服存放在宿舍或更衣室内。</b>"
 
 	job_options = list(CPL_VARIANT = "CPL", SGT_VARIANT = "SGT")
 
@@ -116,8 +116,8 @@
 	title = JOB_TWE_RMC_SECTIONLEADER
 	gear_preset = /datum/equipment_preset/uscm/rmc/sl
 	job_options = null
-	supervisors = "the troop commander and troop sergeant"
-	entry_message_body = "You are the Section Leader for a Rifle Section of Royal Marines Commando. Your task is leading the Rifle Section, utilize available ordnance and detach the Fire-Support Team of your Section as needed.<br><b>You remember that you've stored your personal gear and uniform in the locker rooms, and that your equipment can be located in the armoury.</b>"
+	supervisors = "突击排指挥官与突击排士官"
+	entry_message_body = "你是皇家陆战突击队步枪班的班长。你的任务是率领步枪班、运用可用军械，并按需派出班内的火力支援组。<br><b>你记得自己的个人装备和制服存放在更衣室内，作战装备位于军械库。</b>"
 
 /obj/effect/landmark/start/marine/tl/rmc
 	name = JOB_TWE_RMC_SECTIONLEADER
@@ -130,8 +130,8 @@
 	title = JOB_TWE_RMC_TEAMLEADER
 	gear_preset = /datum/equipment_preset/uscm/rmc/tl
 	job_options = null
-	supervisors = "the section leader and troop commander"
-	entry_message_body = "You are the Team Leader for a Fire Support Team of Royal Marines Commando weapons specialists. Your task is coordinating the available ordnance your team is able to bring to bear. You may be expected to lead the Rifle Section should the Section Leader die.<br><b>You remember that you've stored your personal gear and uniform in the locker rooms.</b>"
+	supervisors = "班长与突击排指挥官"
+	entry_message_body = "你是皇家陆战突击队武器专家组成的火力支援组的组长。你的任务是协调小组可用的各类军械火力。如果班长阵亡，你可能需要接替步枪班的指挥。<br><b>你记得自己的个人装备和制服存放在更衣室内。</b>"
 
 /obj/effect/landmark/start/marine/tl/rmc2ic
 	name = JOB_TWE_RMC_TEAMLEADER

@@ -85,7 +85,7 @@
 	classic_keys = list("Unbound")
 	name = "emit_pheromones"
 	full_name = "Emit Pheromones"
-	description = "Select a pheromone to emit or cease emitting pheromones."
+	description = "选择要释放的信息素，或停止释放信息素。"
 	keybind_signal = COMSIG_KB_XENO_EMIT_PHEROMONES
 	var/pheromone
 
@@ -100,21 +100,21 @@
 /datum/keybinding/xenomorph/emit_pheromones/frenzy
 	name = "emit_pheromones_fernzy"
 	full_name = "Emit Frenzy pheromone"
-	description = "Increased run speed, damage and chance to knock off headhunter masks."
+	description = "提高奔跑速度、伤害和打掉铁血战士面具的概率。"
 	keybind_signal = COMSIG_KB_XENO_EMIT_PHEROMONES_FRENZY
 	pheromone = "frenzy"
 
 /datum/keybinding/xenomorph/emit_pheromones/warding
 	name = "emit_pheromones_warding"
 	full_name = "Emit Warding pheromone"
-	description = "Increased maximum negative health, and while in critical state, slower off weed bleedout."
+	description = "提高负生命值上限，并使重伤状态下离开菌毯时的生命流失减缓。"
 	keybind_signal = COMSIG_KB_XENO_EMIT_PHEROMONES_WARDING
 	pheromone = "warding"
 
 /datum/keybinding/xenomorph/emit_pheromones/recovery
 	name = "emit_pheromones_recovery"
 	full_name = "Emit Recovery pheromone"
-	description = "Increased plasma and health regeneration."
+	description = "提高等离子体和生命值恢复速度。"
 	keybind_signal = COMSIG_KB_XENO_EMIT_PHEROMONES_RECOVERY
 	pheromone = "recovery"
 

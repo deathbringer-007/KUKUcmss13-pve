@@ -3,7 +3,7 @@
 	mob_max = 1
 	mob_min = 1
 	probability = 0
-	objectives = "Assist the USCM forces"
+	objectives = "协助美国殖民地海军陆战队。"
 	name_of_spawn = /obj/effect/landmark/ert_spawns/distress_cryo
 	shuttle_id = ""
 	spawn_max_amount = TRUE
@@ -15,7 +15,7 @@
 			candidates_clean.Add(single_candidate)
 			continue
 		if(single_candidate.current)
-			to_chat(single_candidate.current, SPAN_WARNING("You didn't qualify for the ERT beacon because you don't have the specialist job unlocked!"))
+			to_chat(single_candidate.current, SPAN_WARNING("你尚未解锁武器专家岗位，因此无法响应应急响应队信标！"))
 	return candidates_clean
 
 /datum/emergency_call/cryo_spec/create_member(datum/mind/mind, turf/override_spawn_loc)
@@ -44,11 +44,11 @@
 	sleep(5)
 	human.client?.prefs.copy_all_to(human, JOB_SQUAD_SPECIALIST, TRUE, TRUE)
 	arm_equipment(human, /datum/equipment_preset/uscm/specialist_equipped,  mind == null, TRUE)
-	to_chat(human, SPAN_ROLE_HEADER("You are a Weapons Specialist in the USCM"))
-	to_chat(human, SPAN_ROLE_BODY("Your squad is here to assist in the defence of [SSmapping.configs[GROUND_MAP].map_name]. Listen to the chain of command."))
-	to_chat(human, SPAN_BOLDWARNING("If you wish to cryo or ghost upon spawning in, you must ahelp and inform staff so you can be replaced."))
+	to_chat(human, SPAN_ROLE_HEADER("你是美国殖民地海军陆战队的一名武器专家。"))
+	to_chat(human, SPAN_ROLE_BODY("你的小队前来协助保卫 [SSmapping.configs[GROUND_MAP].map_name]。请服从指挥链的命令。"))
+	to_chat(human, SPAN_BOLDWARNING("如果你刚加入就想进入冷冻休眠或转为观察者，必须通过管理员求助告知工作人员，以便安排人员接替。"))
 
 	sleep(10)
 	if(!mind)
 		human.free_for_ghosts()
-	to_chat(human, SPAN_BOLD("Objectives: [objectives]"))
+	to_chat(human, SPAN_BOLD("目标：[objectives]"))

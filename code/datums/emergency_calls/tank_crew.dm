@@ -6,7 +6,7 @@
 	mob_max = 2
 	mob_min = 2
 	probability = 0
-	objectives = "Assist the USCM forces"
+	objectives = "协助美国殖民地海军陆战队。"
 	name_of_spawn = /obj/effect/landmark/ert_spawns/distress_cryo
 	shuttle_id = ""
 
@@ -23,11 +23,11 @@
 
 	sleep(5)
 	arm_equipment(H, /datum/equipment_preset/uscm/tank, TRUE, TRUE)
-	to_chat(H, SPAN_ROLE_HEADER("You are a Vehicle Crewman in the USCM"))
-	to_chat(H, SPAN_ROLE_BODY("You are here to assist in the defence of [SSmapping.configs[GROUND_MAP].map_name]. Listen to the chain of command."))
-	to_chat(H, SPAN_BOLDWARNING("If you wish to cryo or ghost upon spawning in, you must ahelp and inform staff so you can be replaced."))
+	to_chat(H, SPAN_ROLE_HEADER("你是美国殖民地海军陆战队的一名车组成员。"))
+	to_chat(H, SPAN_ROLE_BODY("你前来协助保卫 [SSmapping.configs[GROUND_MAP].map_name]。请服从指挥链的命令。"))
+	to_chat(H, SPAN_BOLDWARNING("如果你刚加入就想进入冷冻休眠或转为观察者，必须通过管理员求助告知工作人员，以便安排人员接替。"))
 
 	sleep(10)
-	to_chat(H, SPAN_BOLD("Objectives: [objectives]"))
+	to_chat(H, SPAN_BOLD("目标：[objectives]"))
 
 	GLOB.data_core.manifest_inject(H) //Put people in crew manifest

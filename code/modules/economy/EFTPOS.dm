@@ -1,6 +1,6 @@
 /obj/item/device/eftpos
-	name = "EFTPOS scanner"
-	desc = "Swipe your ID card to make purchases electronically."
+	name = "电子转账扫描器"
+	desc = "刷身份卡即可进行电子支付。"
 	icon_state = "eftpos"
 	var/machine_id = ""
 	var/eftpos_name = "Default EFTPOS scanner"
@@ -20,7 +20,7 @@
 
 		//create a short manual as well
 		var/obj/item/paper/R = new(src.loc)
-		R.name = "Steps to success: Correct EFTPOS Usage"
+		R.name = "操作指南：正确使用电子转账终端"
 		/*
 		R.info += "<b>When first setting up your EFTPOS device:</b>"
 		R.info += "1. Memorise your EFTPOS command code (provided with all EFTPOS devices).<br>"
@@ -35,14 +35,14 @@
 		R.info += "6. If done correctly, the transaction will be logged to both accounts with the reference you have entered, the terminal ID of your EFTPOS device and the money transferred across accounts.<br>"
 		*/
 		//Temptative new manual:
-		R.info += "<b>First EFTPOS setup:</b><br>"
-		R.info += "1. Memorise your EFTPOS command code (provided with all EFTPOS devices).<br>"
-		R.info += "2. Connect the EFTPOS to the account in which you want to receive the funds.<br><br>"
-		R.info += "<b>When starting a new transaction:</b><br>"
-		R.info += "1. Enter the amount of money you want to charge and a purpose message for the new transaction.<br>"
-		R.info += "2. Lock the new transaction. If you want to modify or cancel the transaction, you simply have to reset your EFTPOS device.<br>"
-		R.info += "3. Give the EFTPOS device to your customer, he/she must finish the transaction by swiping their ID card or a charge card with enough funds.<br>"
-		R.info += "4. If everything is done correctly, the money will be transferred. To unlock the device you will have to reset the EFTPOS device.<br>"
+		R.info += "<b>电子转账终端首次设置：</b><br>"
+		R.info += "1. 记住电子转账终端的操作密码（随设备提供）。<br>"
+		R.info += "2. 将电子转账终端关联到你希望接收款项的账户。<br><br>"
+		R.info += "<b>发起新交易：</b><br>"
+		R.info += "1. 输入应收金额以及新交易的事由。<br>"
+		R.info += "2. 锁定新交易。若要修改或取消交易，只需重置电子转账终端。<br>"
+		R.info += "3. 将电子转账终端交给顾客；顾客必须刷身份卡或余额充足的储值卡以完成交易。<br>"
+		R.info += "4. 操作正确后，款项将完成转账。若要解锁设备，需重置电子转账终端。<br>"
 
 
 		//stamp the paper
@@ -55,7 +55,7 @@
 		R.ico += "paper_stamp-rd"
 		R.stamped += /obj/item/tool/stamp
 		R.overlays += stampoverlay
-		R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
+		R.stamps += "<HR><i>本纸张已由电子转账终端盖章。</i>"
 
 	//by default, connect to the station account
 	//the user of the EFTPOS device can change the target account though, and no-one will be the wiser (except whoever's being charged)
@@ -63,10 +63,10 @@
 
 /obj/item/device/eftpos/proc/print_reference()
 	var/obj/item/paper/R = new(src.loc)
-	R.name = "Reference: [eftpos_name]"
-	R.info = "<b>[eftpos_name] reference</b><br><br>"
-	R.info += "Access code: [access_code]<br><br>"
-	R.info += "<b>Do not lose or misplace this code.</b><br>"
+	R.name = "设备资料：[eftpos_name]"
+	R.info = "<b>[eftpos_name] 设备资料</b><br><br>"
+	R.info += "访问密码：[access_code]<br><br>"
+	R.info += "<b>请勿遗失此密码。</b><br>"
 
 	//stamp the paper
 	var/image/stampoverlay = image('icons/obj/items/paper.dmi')
@@ -75,36 +75,36 @@
 		R.stamped = new
 	R.stamped += /obj/item/tool/stamp
 	R.overlays += stampoverlay
-	R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
+	R.stamps += "<HR><i>本纸张已由电子转账终端盖章。</i>"
 	var/obj/item/smallDelivery/D = new(R.loc)
 	R.forceMove(D)
 	D.wrapped = R
-	D.name = "small parcel - 'EFTPOS access code'"
+	D.name = "小包裹——“电子转账终端访问密码”"
 
 /obj/item/device/eftpos/attack_self(mob/user)
 	..()
 	if(get_dist(src,user) <= 1)
-		var/dat = "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting Weyland-Yutani IT Support</i><br>"
+		var/dat = "<i>本终端标识：</i>[machine_id]。<i>联系维兰德-汤谷技术支持时，请提供此编号。</i><br>"
 		if(transaction_locked)
-			dat += "<a href='byond://?src=\ref[src];choice=toggle_lock'>Back[transaction_paid ? "" : " (authentication required)"]</a><br><br>"
+			dat += "<a href='byond://?src=\ref[src];choice=toggle_lock'>返回[transaction_paid ? "" : "（需要认证）"]</a><br><br>"
 
-			dat += "Transaction purpose: <b>[transaction_purpose]</b><br>"
-			dat += "Value: <b>$[transaction_amount]</b><br>"
-			dat += "Linked account: <b>[linked_account ? linked_account.owner_name : "None"]</b><hr>"
+			dat += "交易事由：<b>[transaction_purpose]</b><br>"
+			dat += "金额：<b>$[transaction_amount]</b><br>"
+			dat += "关联账户：<b>[linked_account ? linked_account.owner_name : "无"]</b><hr>"
 			if(transaction_paid)
-				dat += "<i>This transaction has been processed successfully.</i><hr>"
+				dat += "<i>此交易已成功处理。</i><hr>"
 			else
-				dat += "<i>Swipe your card below the line to finish this transaction.</i><hr>"
+				dat += "<i>在下方刷卡即可完成交易。</i><hr>"
 				dat += "<a href='byond://?src=\ref[src];choice=scan_card'>\[------\]</a>"
 		else
-			dat += "<a href='byond://?src=\ref[src];choice=toggle_lock'>Lock in new transaction</a><br><br>"
+			dat += "<a href='byond://?src=\ref[src];choice=toggle_lock'>锁定新交易</a><br><br>"
 
-			dat += "Transaction purpose: <a href='byond://?src=\ref[src];choice=trans_purpose'>[transaction_purpose]</a><br>"
-			dat += "Value: <a href='byond://?src=\ref[src];choice=trans_value'>$[transaction_amount]</a><br>"
-			dat += "Linked account: <a href='byond://?src=\ref[src];choice=link_account'>[linked_account ? linked_account.owner_name : "None"]</a><hr>"
-			dat += "<a href='byond://?src=\ref[src];choice=change_code'>Change access code</a><br>"
-			dat += "<a href='byond://?src=\ref[src];choice=change_id'>Change EFTPOS ID</a><br>"
-			dat += "Scan card to reset access code <a href='byond://?src=\ref[src];choice=reset'>\[------\]</a>"
+			dat += "交易事由：<a href='byond://?src=\ref[src];choice=trans_purpose'>[transaction_purpose]</a><br>"
+			dat += "金额：<a href='byond://?src=\ref[src];choice=trans_value'>$[transaction_amount]</a><br>"
+			dat += "关联账户：<a href='byond://?src=\ref[src];choice=link_account'>[linked_account ? linked_account.owner_name : "无"]</a><hr>"
+			dat += "<a href='byond://?src=\ref[src];choice=change_code'>更改访问密码</a><br>"
+			dat += "<a href='byond://?src=\ref[src];choice=change_id'>更改电子转账终端标识</a><br>"
+			dat += "刷卡以重置访问密码 <a href='byond://?src=\ref[src];choice=reset'>\[------\]</a>"
 		show_browser(user, dat, eftpos_name, "eftpos")
 	else
 		close_browser(user,"eftpos")
@@ -115,7 +115,7 @@
 			var/obj/item/card/I = O
 			scan_card(I)
 		else
-			to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Unable to connect to linked account.")]")
+			to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("无法连接关联账户。")]")
 	else if (istype(O, /obj/item/spacecash/ewallet))
 		var/obj/item/spacecash/ewallet/E = O
 		if (linked_account)
@@ -123,7 +123,7 @@
 				if(transaction_locked && !transaction_paid)
 					if(transaction_amount <= E.worth)
 						playsound(src, 'sound/machines/chime.ogg', 25, 1)
-						src.visible_message("[icon2html(src, viewers(src))] The [src] chimes.")
+						src.visible_message("[icon2html(src, viewers(src))] [src]发出提示音。")
 						transaction_paid = 1
 
 						//transfer the money
@@ -140,11 +140,11 @@
 						T.time = worldtime2text()
 						linked_account.transaction_log.Add(T)
 					else
-						to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("The charge card doesn't have that much money!")]")
+						to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("储值卡余额不足！")]")
 			else
-				to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Connected account has been suspended.")]")
+				to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("关联账户已被冻结。")]")
 		else
-			to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("EFTPOS is not connected to an account.")]")
+			to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("电子转账终端尚未关联账户。")]")
 
 	else
 		..()
@@ -156,40 +156,40 @@
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("change_code")
-				var/attempt_code = tgui_input_number(usr, "Re-enter the current EFTPOS access code", "Confirm old EFTPOS code", 1000, 999999, 1000)
+				var/attempt_code = tgui_input_number(usr, "再次输入当前电子转账终端访问密码", "确认旧访问密码", 1000, 999999, 1000)
 				if(attempt_code == access_code)
-					var/trycode = tgui_input_number(usr, "Enter a new access code for this device (4-6 digits, numbers only)", "Enter new EFTPOS code", 1000, 999999, 1000)
+					var/trycode = tgui_input_number(usr, "输入新的设备访问密码（4至6位，仅数字）", "输入新访问密码", 1000, 999999, 1000)
 					if(trycode >= 1000 && trycode <= 999999)
 						access_code = trycode
 					else
-						alert("That is not a valid code!")
+						alert("密码无效！")
 					print_reference()
 				else
-					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Incorrect code entered.")]")
+					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("输入的密码错误。")]")
 			if("change_id")
-				var/attempt_code = tgui_input_number(usr, "Re-enter the current EFTPOS access code", "Confirm EFTPOS code", 1000, 999999, 1000)
+				var/attempt_code = tgui_input_number(usr, "再次输入当前电子转账终端访问密码", "确认访问密码", 1000, 999999, 1000)
 				if(attempt_code == access_code)
-					eftpos_name = input("Enter a new terminal ID for this device", "Enter new EFTPOS ID") + " EFTPOS scanner"
+					eftpos_name = input("为此设备输入新的终端标识", "输入新终端标识") + " EFTPOS scanner"
 					print_reference()
 				else
-					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Incorrect code entered.")]")
+					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("输入的密码错误。")]")
 			if("link_account")
-				var/attempt_account_num = tgui_input_number(usr, "Enter account number to pay EFTPOS charges into", "New account number", 111111, 999999, 111111)
-				var/attempt_pin = tgui_input_number(usr, "Enter pin code", "Account pin", 1111, 111111, 1111)
+				var/attempt_account_num = tgui_input_number(usr, "输入接收电子转账款项的账号", "新账号", 111111, 999999, 111111)
+				var/attempt_pin = tgui_input_number(usr, "输入个人识别码", "账户个人识别码", 1111, 111111, 1111)
 				linked_account = attempt_account_access(attempt_account_num, attempt_pin, 1)
 				if(linked_account)
 					if(linked_account.suspended)
 						linked_account = null
-						to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Account has been suspended.")]")
+						to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("账户已被冻结。")]")
 				else
-					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Account not found.")]")
+					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("未找到账户。")]")
 			if("trans_purpose")
-				var/choice = input("Enter reason for EFTPOS transaction", "Transaction purpose")
+				var/choice = input("输入电子转账交易事由", "交易事由")
 				if(choice) transaction_purpose = choice
 			if("trans_value")
-				var/try_num = tgui_input_number(usr, "Enter amount for EFTPOS transaction", "Transaction amount")
+				var/try_num = tgui_input_number(usr, "输入电子转账金额", "交易金额")
 				if(try_num < 0)
-					alert("That is not a valid amount!")
+					alert("金额无效！")
 				else
 					transaction_amount = try_num
 			if("toggle_lock")
@@ -198,21 +198,21 @@
 						transaction_locked = 0
 						transaction_paid = 0
 					else
-						var/attempt_code = tgui_input_number(usr, "Enter EFTPOS access code", "Reset Transaction", 1000, 999999, 1000)
+						var/attempt_code = tgui_input_number(usr, "输入电子转账终端访问密码", "重置交易", 1000, 999999, 1000)
 						if(attempt_code == access_code)
 							transaction_locked = 0
 							transaction_paid = 0
 				else if(linked_account)
 					transaction_locked = 1
 				else
-					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("No account connected to send transactions to.")]")
+					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("未关联用于接收交易的账户。")]")
 			if("scan_card")
 				if(linked_account)
 					var/obj/item/I = usr.get_active_hand()
 					if (istype(I, /obj/item/card))
 						scan_card(I)
 				else
-					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Unable to link accounts.")]")
+					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("无法关联账户。")]")
 			if("reset")
 				//reset the access code - requires HoP/captain access
 				var/obj/item/I = usr.get_active_hand()
@@ -220,28 +220,28 @@
 					var/obj/item/card/id/C = I
 					if(ACCESS_MARINE_DATABASE in C.access)
 						access_code = 0
-						to_chat(usr, "[icon2html(src, usr)]<span class='info'>Access code reset to 0.</span>")
+						to_chat(usr, "[icon2html(src, usr)]<span class='info'>访问密码已重置为0。</span>")
 
 	src.attack_self(usr)
 
 /obj/item/device/eftpos/proc/scan_card(obj/item/card/I)
 	if (istype(I, /obj/item/card/id))
 		var/obj/item/card/id/C = I
-		visible_message(SPAN_INFO("[usr] swipes a card through [src]."))
+		visible_message(SPAN_INFO("[usr]在[src]上刷了一张卡。"))
 		if(transaction_locked && !transaction_paid)
 			if(linked_account)
 				if(!linked_account.suspended)
 					var/attempt_pin = ""
 					var/datum/money_account/D = get_account(C.associated_account_number)
 					if(D.security_level)
-						attempt_pin = tgui_input_number(usr, "Enter pin code", "EFTPOS transaction", 1111, 111111, 1111)
+						attempt_pin = tgui_input_number(usr, "输入个人识别码", "电子转账交易", 1111, 111111, 1111)
 						D = null
 					D = attempt_account_access(C.associated_account_number, attempt_pin, 2)
 					if(D)
 						if(!D.suspended)
 							if(transaction_amount <= D.money)
 								playsound(src, 'sound/machines/chime.ogg', 25, 1)
-								src.visible_message("[icon2html(src, viewers(src))] The [src] chimes.")
+								src.visible_message("[icon2html(src, viewers(src))] [src]发出提示音。")
 								transaction_paid = 1
 
 								//transfer the money
@@ -270,12 +270,12 @@
 								T.time = worldtime2text()
 								linked_account.transaction_log.Add(T)
 							else
-								to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("You don't have that much money!")]")
+								to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("你的余额不足！")]")
 						else
-							to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Your account has been suspended.")]")
+							to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("你的账户已被冻结。")]")
 					else
-						to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Unable to access account. Check security settings and try again.")]")
+						to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("无法访问账户，请检查安全设置后重试。")]")
 				else
-					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Connected account has been suspended.")]")
+					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("关联账户已被冻结。")]")
 			else
-				to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("EFTPOS is not connected to an account.")]")
+				to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("电子转账终端尚未关联账户。")]")

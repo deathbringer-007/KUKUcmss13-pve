@@ -1,4 +1,49 @@
 
+/obj/item/proc/attack_verb_display(verb)
+	var/static/list/display_verbs = list(
+		"HONKED" = "鸣笛轰击",
+		"attacked" = "攻击",
+		"bapped" = "拍打",
+		"bashed" = "猛砸",
+		"battered" = "痛殴",
+		"beaten" = "殴打",
+		"bludgeoned" = "钝击",
+		"carved" = "刻伤",
+		"chaired" = "砸击",
+		"challenged" = "发起挑战",
+		"colored" = "涂色",
+		"cracked" = "敲裂",
+		"cut" = "割伤",
+		"diced" = "切碎",
+		"disciplined" = "教训",
+		"educated" = "教育",
+		"gashed" = "划伤",
+		"gored" = "顶穿",
+		"hit" = "击中",
+		"impaled" = "刺穿",
+		"jabbed" = "戳刺",
+		"lashed" = "鞭打",
+		"pierced" = "刺穿",
+		"punctured" = "戳穿",
+		"ripped" = "撕裂",
+		"scraped" = "刮伤",
+		"shredded" = "撕碎",
+		"skewered" = "贯穿",
+		"slapped" = "掌掴",
+		"slashed" = "劈砍",
+		"sliced" = "切伤",
+		"smacked" = "拍击",
+		"smashed" = "砸伤",
+		"speared" = "矛刺",
+		"stabbed" = "刺伤",
+		"struck" = "打击",
+		"thwacked" = "敲打",
+		"torn" = "扯伤",
+		"whacked" = "重击",
+		"whipped" = "鞭打",
+	)
+	return display_verbs[verb] || verb
+
 // Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
 /obj/item/proc/attack_self(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
@@ -19,7 +64,7 @@
 	. = ..()
 	if(W && !.)
 		if(!(W.flags_item & NOBLUDGEON))
-			visible_message(SPAN_DANGER("[src] has been hit by [user] with [W]."), null, null, 5, CHAT_TYPE_MELEE_HIT)
+			visible_message(SPAN_DANGER("[user] 用 [W] 击中了 [src]。"), null, null, 5, CHAT_TYPE_MELEE_HIT)
 			user.animation_attack_on(src)
 			user.flick_attack_overlay(src, "punch")
 
@@ -57,22 +102,22 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(!H.melee_allowed)
-			to_chat(H, SPAN_DANGER("You are currently unable to attack."))
+			to_chat(H, SPAN_DANGER("你现在无法攻击。"))
 			return FALSE
 
-	var/showname = "."
+	var/showname = ""
 	if(user)
 		if(target == user)
-			showname = " by themselves."
+			showname = "（自行操作）"
 		else
-			showname = " by [user]."
+			showname = "（操作者：[user]）"
 	if(!(user in viewers(target, null)))
-		showname = "."
+		showname = ""
 
 	if(user.a_intent == INTENT_HELP && ((user.client?.prefs && user.client?.prefs?.toggle_prefs & TOGGLE_HELP_INTENT_SAFETY) || (user.mob_flags & SURGERY_MODE_ON)))
 		playsound(loc, 'sound/effects/pop.ogg', 25, 1)
-		user.visible_message(SPAN_NOTICE("[target] has been poked with [src][showname]"),\
-			SPAN_NOTICE("You poke [target == user ? "yourself":target] with [src]."), null, 4)
+		user.visible_message(SPAN_NOTICE("[target] 被 [src][showname] 戳了一下。"),\
+			SPAN_NOTICE("你用 [src] 戳了[target == user ? "自己":target]一下。"), null, 4)
 
 		return FALSE
 
@@ -84,10 +129,10 @@
 				if(human_target.pulledby == human_user)
 					if(target.dir == user.dir && target.loc == get_step(user, user.dir) || target.body_position == LYING_DOWN || human_target.handcuffed)
 						if(target.stat == DEAD)
-							to_chat(target, SPAN_WARNING("They're already dead. What's the point?"))
+							to_chat(target, SPAN_WARNING("对方已经死了。这还有什么意义？"))
 							return FALSE
-						user.visible_message(SPAN_DANGER("[user] grabs [target] and is about to slit their throat with [src]."), SPAN_HIGHDANGER("You grab [target]'s head and prepare to slice open their throat with [src]."))
-						to_chat(target, SPAN_HIGHDANGER("[user] grabs you and pins you and pulls your head back exposing your throat."))
+						user.visible_message(SPAN_DANGER("[user] 抓住 [target]，准备用 [src] 割开对方的喉咙。"), SPAN_HIGHDANGER("你抓住 [target] 的头，准备用 [src] 割开对方的喉咙。"))
+						to_chat(target, SPAN_HIGHDANGER("[user] 抓住并制住你，将你的头向后扳，露出了喉咙。"))
 
 						throat_slit_stun(target, user)
 						switch(get_dir(user, target))
@@ -118,8 +163,8 @@
 							human_target.pixel_x = 0
 							return FALSE
 
-						target.visible_message(SPAN_DANGER("[user] slit open [target]'s throat! They made quite a bloody mess!"), SPAN_HIGHDANGER("[user] slits your throat! Oh god!"))
-						to_chat(user, SPAN_DANGER("You slit open their throat. No getting up from that."))
+						target.visible_message(SPAN_DANGER("[user] 割开了 [target] 的喉咙！鲜血四处喷溅！"), SPAN_HIGHDANGER("[user] 割开了你的喉咙！天哪！"))
+						to_chat(user, SPAN_DANGER("你割开了对方的喉咙。对方再也爬不起来了。"))
 						playsound(target, 'sound/weapons/slice.ogg', 25, 1)
 						target.apply_damage(100, BRUTE, "head")
 						target.apply_damage(300, OXYLOSS)
@@ -139,16 +184,16 @@
 						return TRUE
 
 					else
-						to_chat(user, SPAN_WARNING("You must be directly behind your target! Or they must be on the ground or restrained!"))
+						to_chat(user, SPAN_WARNING("你必须站在目标正后方，或者目标必须倒地或被束缚住！"))
 						return FALSE
 				else
-					to_chat(user, SPAN_WARNING("You need a grab a hold of them to do this!"))
+					to_chat(user, SPAN_WARNING("你需要先抓住对方才能这么做！"))
 					return FALSE
 			else
-				to_chat(user, SPAN_WARNING("Why would you think to do this? What is wrong with you? They're on your side!"))
+				to_chat(user, SPAN_WARNING("你怎么会想做这种事？你有什么毛病？对方可是自己人！"))
 				return FALSE
 		else
-			to_chat(user, SPAN_HELPFUL("You'd need a more suitable weapon for this!"))
+			to_chat(user, SPAN_HELPFUL("你需要更合适的武器才能这么做！"))
 			return FALSE
 
 	/////////////////////////
@@ -167,8 +212,8 @@
 		var/used_verb = "attacked"
 		if(LAZYLEN(attack_verb))
 			used_verb = pick(attack_verb)
-		user.visible_message(SPAN_DANGER("[target] has been [used_verb] with [src][showname]."), \
-			SPAN_DANGER("You [used_verb] [target == user ? "yourself":target] with [src]."), null, 5, CHAT_TYPE_MELEE_HIT)
+		user.visible_message(SPAN_DANGER("[target] 被 [src][showname] [attack_verb_display(used_verb)]了。"), \
+			SPAN_DANGER("你用 [src] [attack_verb_display(used_verb)]了[target == user ? "自己":target]。"), null, 5, CHAT_TYPE_MELEE_HIT)
 
 		user.animation_attack_on(target)
 		user.flick_attack_overlay(target, "punch")
@@ -184,7 +229,7 @@
 				target.apply_damage(power,BRUTE)
 			if("fire")
 				target.apply_damage(power,BURN)
-				to_chat(target, SPAN_WARNING("It burns!"))
+				to_chat(target, SPAN_WARNING("好烫！"))
 		if(power > 5)
 			target.last_damage_data = create_cause_data(initial(name), user)
 			user.track_hit(initial(name))

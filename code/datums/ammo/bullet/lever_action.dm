@@ -27,7 +27,7 @@
 
 /datum/ammo/bullet/lever_action/tracker/on_hit_mob(mob/M, obj/projectile/P, mob/user)
 	//SEND_SIGNAL(user, COMSIG_BULLET_TRACKING, user, M)
-	M.visible_message(SPAN_DANGER("You hear a faint beep under [M]'s [M.mob_size > MOB_SIZE_HUMAN ? "chitin" : "skin"]."))
+	M.visible_message(SPAN_DANGER("你听到 [M] 的[M.mob_size > MOB_SIZE_HUMAN ? "几丁质外壳" : "皮肤"]下传来微弱的哔声。"))
 
 /datum/ammo/bullet/lever_action/training
 	name = "lever-action blank"

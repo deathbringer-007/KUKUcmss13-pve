@@ -2,7 +2,7 @@
 
 /datum/tutorial/xenomorph/basic
 	name = "Xenomorph - Basic"
-	desc = "A tutorial to get you acquainted with the very basics of how to play a xenomorph."
+	desc = "帮助你熟悉异形最基础玩法的教学。"
 	icon_state = "xeno"
 	tutorial_id = "xeno_basic_1"
 	tutorial_template = /datum/map_template/tutorial/s12x12

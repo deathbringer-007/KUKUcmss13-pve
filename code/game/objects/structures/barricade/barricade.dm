@@ -65,18 +65,18 @@
 
 /obj/structure/barricade/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_INFO("It is recommended to stand flush to a barricade or more than four tiles away for maximum efficiency.")
+	. += SPAN_INFO("建议紧贴路障或站在四格以外，以获得最佳效果。")
 	if(is_wired)
-		. += SPAN_INFO("There is a length of wire strewn across the top of this barricade.")
+		. += SPAN_INFO("路障顶部架着一段铁丝网。")
 	switch(damage_state)
 		if(BARRICADE_DMG_NONE)
-			. += SPAN_INFO("It appears to be in good shape.")
+			. += SPAN_INFO("它看起来状况良好。")
 		if(BARRICADE_DMG_SLIGHT)
-			. += SPAN_WARNING("It's slightly damaged, but still very functional.")
+			. += SPAN_WARNING("它略有损伤，但仍能正常使用。")
 		if(BARRICADE_DMG_MODERATE)
-			. += SPAN_WARNING("It's quite beat up, but it's holding together.")
+			. += SPAN_WARNING("它破损严重，但还撑得住。")
 		if(BARRICADE_DMG_HEAVY)
-			. += SPAN_WARNING("It's crumbling apart, just a few more blows will tear it apart.")
+			. += SPAN_WARNING("它已经摇摇欲坠，再挨几下就会散架。")
 
 /obj/structure/barricade/update_icon()
 	overlays.Cut()
@@ -123,8 +123,8 @@
 		if(iscarbon(atom_movable))
 			var/mob/living/carbon/living_carbon = atom_movable
 			if(living_carbon.mob_size <= MOB_SIZE_XENO)
-				living_carbon.visible_message(SPAN_DANGER("The barbed wire slices into [living_carbon]!"),
-				SPAN_DANGER("The barbed wire slices into you!"))
+				living_carbon.visible_message(SPAN_DANGER("铁丝网划伤了[living_carbon]！"),
+				SPAN_DANGER("铁丝网划伤了你！"))
 				living_carbon.apply_damage(10)
 				living_carbon.apply_effect(2, WEAKEN) //Leaping into barbed wire is VERY bad
 				playsound(living_carbon, "bonk", 75, FALSE)
@@ -140,12 +140,12 @@
 			return
 
 		if(crusher_resistant)
-			visible_message(SPAN_DANGER("[living_carbon] smashes into [src]!"))
+			visible_message(SPAN_DANGER("[living_carbon]撞上了[src]！"))
 			take_damage(150)
 			playsound(src, barricade_hitsound, 25, TRUE)
 
 		else if(!living_carbon.stat)
-			visible_message(SPAN_DANGER("[living_carbon] smashes through [src]!"))
+			visible_message(SPAN_DANGER("[living_carbon]撞穿了[src]！"))
 			deconstruct(FALSE)
 			playsound(src, barricade_hitsound, 25, TRUE)
 
@@ -191,8 +191,8 @@
 
 /obj/structure/barricade/attackby(obj/item/item, mob/user)
 	if(istype(item, /obj/item/weapon/zombie_claws))
-		user.visible_message(SPAN_DANGER("The zombie smashed at the [src.barricade_type] barricade!"),
-		SPAN_DANGER("You smack the [src.barricade_type] barricade!"))
+		user.visible_message(SPAN_DANGER("丧尸猛砸[src]！"),
+		SPAN_DANGER("你猛砸[src]！"))
 		if(barricade_hitsound)
 			playsound(src, barricade_hitsound, 35, 1)
 		hit_barricade(item)
@@ -200,22 +200,22 @@
 
 	for(var/obj/effect/xenomorph/acid/acid in src.loc)
 		if(acid.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
+			to_chat(user, "它正在熔化，你无法靠近！")
 			return
 
 	if(istype(item, /obj/item/stack/barbed_wire))
 		var/obj/item/stack/barbed_wire/barbed_wire = item
 		if(can_wire)
-			user.visible_message(SPAN_NOTICE("[user] starts setting up [item.name] on [src]."),
-			SPAN_NOTICE("You start setting up [item.name] on [src]."))
+			user.visible_message(SPAN_NOTICE("[user]开始将[item.name]安装在[src]上。"),
+			SPAN_NOTICE("你开始将[item.name]安装在[src]上。"))
 			if(do_after(user, 20, INTERRUPT_NO_NEEDHAND|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, src) && can_wire)
 				// Make sure there's still enough wire in the stack
 				if(!barbed_wire.use(1))
 					return
 
 				playsound(src.loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-				user.visible_message(SPAN_NOTICE("[user] sets up [item.name] on [src]."),
-				SPAN_NOTICE("You set up [item.name] on [src]."))
+				user.visible_message(SPAN_NOTICE("[user]将[item.name]安装在[src]上。"),
+				SPAN_NOTICE("你将[item.name]安装在[src]上。"))
 
 				maxhealth += 50
 				update_health(-50)
@@ -229,15 +229,15 @@
 
 	if(HAS_TRAIT(item, TRAIT_TOOL_WIRECUTTERS))
 		if(is_wired)
-			user.visible_message(SPAN_NOTICE("[user] begin removing the barbed wire on [src]."),
-			SPAN_NOTICE("You begin removing the barbed wire on [src]."))
+			user.visible_message(SPAN_NOTICE("[user]开始拆除[src]上的铁丝网。"),
+			SPAN_NOTICE("你开始拆除[src]上的铁丝网。"))
 			if(do_after(user, 20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, src))
 				if(!is_wired)
 					return
 
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
-				user.visible_message(SPAN_NOTICE("[user] removes the barbed wire on [src]."),
-				SPAN_NOTICE("You remove the barbed wire on [src]."))
+				user.visible_message(SPAN_NOTICE("[user]拆除了[src]上的铁丝网。"),
+				SPAN_NOTICE("你拆除了[src]上的铁丝网。"))
 				maxhealth -= 50
 				update_health(50)
 				can_wire = TRUE
@@ -300,7 +300,7 @@
 		var/location = get_turf(src)
 		handle_debris(severity, direction)
 		if(prob(50)) // no message spam pls
-			visible_message(SPAN_WARNING("[src] blows apart in the explosion, sending shards flying!"))
+			visible_message(SPAN_WARNING("[src]在爆炸中四分五裂，碎片四散飞溅！"))
 		deconstruct(FALSE)
 		create_shrapnel(location, rand(2,5), direction, , /datum/ammo/bullet/shrapnel/light, cause_data)
 	else
@@ -326,7 +326,7 @@
 
 /obj/structure/barricade/acid_spray_act()
 	take_damage(25 * burn_multiplier)
-	visible_message(SPAN_WARNING("[src] is hit by the acid spray!"))
+	visible_message(SPAN_WARNING("酸液喷雾击中了[src]！"))
 	new /datum/effects/acid(src, null, null)
 
 /obj/structure/barricade/flamer_fire_act(dam = BURN_LEVEL_TIER_1)
@@ -351,7 +351,7 @@
 
 	if(!health)
 		if(!nomessage)
-			visible_message(SPAN_DANGER("[src] falls apart!"))
+			visible_message(SPAN_DANGER("[src]散架了！"))
 		deconstruct(FALSE)
 		return
 
@@ -373,16 +373,16 @@
 	if(!(welder.remove_fuel(2, user)))
 		return FALSE
 
-	user.visible_message(SPAN_NOTICE("[user] begins repairing damage to [src]."),
-	SPAN_NOTICE("You begin repairing the damage to [src]."))
+	user.visible_message(SPAN_NOTICE("[user]开始修复[src]的损伤。"),
+	SPAN_NOTICE("你开始修复[src]的损伤。"))
 	playsound(src.loc, 'sound/items/Welder2.ogg', 25, TRUE)
 
 	var/welding_time = skillcheck(user, SKILL_CONSTRUCTION, 2) ? 5 SECONDS : 10 SECONDS
 	if(!do_after(user, welding_time, INTERRUPT_NO_NEEDHAND|BEHAVIOR_IMMOBILE, BUSY_ICON_FRIENDLY, src))
 		return FALSE
 
-	user.visible_message(SPAN_NOTICE("[user] repairs some damage on [src]."),
-	SPAN_NOTICE("You repair [src]."))
+	user.visible_message(SPAN_NOTICE("[user]修复了[src]的部分损伤。"),
+	SPAN_NOTICE("你修复了[src]。"))
 	user.count_niche_stat(STATISTICS_NICHE_REPAIR_CADES)
 	update_health(-200)
 	playsound(src.loc, 'sound/items/Welder2.ogg', 25, TRUE)
@@ -399,14 +399,14 @@
 	return TRUE
 
 /obj/structure/barricade/verb/count_rotate()
-	set name = "Rotate Barricade Counter-Clockwise"
+	set name = "逆时针旋转路障"
 	set category = "Object"
 	set src in oview(1)
 
 	rotate(usr,1)
 
 /obj/structure/barricade/verb/clock_rotate()
-	set name = "Rotate Barricade Clockwise"
+	set name = "顺时针旋转路障"
 	set category = "Object"
 	set src in oview(1)
 
@@ -417,7 +417,7 @@
 		return
 
 	if(anchored)
-		to_chat(usr, SPAN_WARNING("It is fastened to the floor, you can't rotate it!"))
+		to_chat(usr, SPAN_WARNING("它已固定在地面上，无法旋转！"))
 		return
 
 	user.next_move = world.time + 3 //slight spam prevention? you don't want every metal cade to turn into a doorway
@@ -438,7 +438,7 @@
 	var/obj/item/weapon/gun/smg/nailgun/nailgun = item
 
 	if(!nailgun.in_chamber || !nailgun.current_mag || nailgun.current_mag.current_rounds < 3)
-		to_chat(user, SPAN_WARNING("You require at least 4 nails to complete this task!"))
+		to_chat(user, SPAN_WARNING("你至少需要4枚钉子才能完成这项工作！"))
 		return FALSE
 
 	// Check if either hand has a metal stack by checking the weapon offhand
@@ -450,11 +450,11 @@
 		material = user.l_hand
 
 	if(!istype(material, /obj/item/stack/sheet/))
-		to_chat(user, SPAN_WARNING("You'll need some adequate repair material in your other hand to patch up [src]!"))
+		to_chat(user, SPAN_WARNING("你需要用另一只手拿着合适的修复材料，才能修补[src]！"))
 		return FALSE
 
 	if(material.amount < nailgun.material_per_repair)
-		to_chat(user, SPAN_WARNING("You'll need more adequate repair material in your other hand to patch up [src]!"))
+		to_chat(user, SPAN_WARNING("你另一只手里的材料不足以修补[src]，需要更多合适材料！"))
 		return FALSE
 
 	var/repair_value = 0
@@ -464,7 +464,7 @@
 			break
 
 	if(repair_value == 0)
-		to_chat(user, SPAN_WARNING("You'll need some adequate repair material in your other hand to patch up [src]!"))
+		to_chat(user, SPAN_WARNING("你需要用另一只手拿着合适的修复材料，才能修补[src]！"))
 		return FALSE
 
 	var/soundchannel = playsound(src, nailgun.repair_sound, 25, 1)
@@ -473,15 +473,15 @@
 		return FALSE
 
 	if(!material || (material != user.l_hand && material != user.r_hand) || material.amount <= 0)
-		to_chat(user, SPAN_WARNING("You seem to have misplaced the repair material!"))
+		to_chat(user, SPAN_WARNING("你的修复材料似乎不见了！"))
 		return FALSE
 
 	if(!nailgun.in_chamber || !nailgun.current_mag || nailgun.current_mag.current_rounds < 3)
-		to_chat(user, SPAN_WARNING("You require at least 4 nails to complete this task!"))
+		to_chat(user, SPAN_WARNING("你至少需要4枚钉子才能完成这项工作！"))
 		return FALSE
 
 	update_health(-repair_value*maxhealth)
-	to_chat(user, SPAN_WARNING("You nail [material] to [src], restoring some of its integrity!"))
+	to_chat(user, SPAN_WARNING("你将[material]钉在[src]上，恢复了部分结构完整度！"))
 	update_damage_state()
 	material.use(nailgun.material_per_repair)
 	nailgun.current_mag.current_rounds -= 3
@@ -495,22 +495,22 @@
 
 	if(!metallic)
 		if(!silent)
-			user.visible_message(SPAN_WARNING("You can't weld \the [src]!"))
+			user.visible_message(SPAN_WARNING("你无法焊接[src]！"))
 		return FALSE
 
 	if(!HAS_TRAIT(item, TRAIT_TOOL_BLOWTORCH))
 		if(!silent)
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要更强力的焊炬！"))
 		return FALSE
 
 	if(health == maxhealth)
 		if(!silent)
-			to_chat(user, SPAN_WARNING("[src] doesn't need repairs."))
+			to_chat(user, SPAN_WARNING("[src]无需修复。"))
 		return FALSE
 
 	if(!(isnull(damage_state)) && !(isnull(welder_lower_damage_limit)) && damage_state >= welder_lower_damage_limit)
 		if(!silent)
-			to_chat(user, SPAN_WARNING("[src] has sustained too much structural damage to be repaired."))
+			to_chat(user, SPAN_WARNING("[src]的结构损伤过于严重，无法修复。"))
 		return FALSE
 
 	return TRUE

@@ -180,7 +180,7 @@ DEFINES in setup.dm, referenced here.
 	if(user.faction in FACTION_LIST_WY)
 		return TRUE
 
-	to_chat(user, SPAN_WARNING("[src] flashes a warning sign indicating unauthorized use!"))
+	to_chat(user, SPAN_WARNING("[src]闪烁警告标志，提示未授权使用！"))
 
 // Checks whether there is anything to put your harness
 /obj/item/weapon/gun/proc/retrieval_check(mob/living/carbon/human/user, retrieval_slot)
@@ -202,11 +202,11 @@ DEFINES in setup.dm, referenced here.
 	var/message
 	switch(retrieval_slot)
 		if(WEAR_BACK)
-			message = "[src] snaps into place on your back."
+			message = "[src]扣在了你的背上。"
 		if(WEAR_IN_BACK)
-			message = "[src] snaps back into [user.back]."
+			message = "[src]重新扣回了[user.back]。"
 		if(WEAR_IN_SCABBARD)
-			message = "[src] snaps into place on [user.back]."
+			message = "[src]扣在了[user.back]上。"
 		if(WEAR_WAIST)
 			message = "[src] snaps into place on your waist."
 		if(WEAR_J_STORE)
@@ -248,7 +248,7 @@ DEFINES in setup.dm, referenced here.
 		return
 
 	if(user.equip_to_slot_if_possible(src, WEAR_BACK))
-		to_chat(user, SPAN_WARNING("[src]'s magnetic sling automatically yanks it into your back."))
+		to_chat(user, SPAN_WARNING("[src]的磁力枪带自动将它拉回你的背后。"))
 
 //Clicking stuff onto the gun.
 //Attachables & Reloading
@@ -257,9 +257,9 @@ DEFINES in setup.dm, referenced here.
 		return
 
 	if(istype(attack_item, /obj/item/prop/helmetgarb/gunoil))
-		var/oil_verb = pick("lubes", "oils", "cleans", "tends to", "gently strokes")
+		var/oil_verb = pick("润滑", "上油", "清洁", "保养", "轻抚")
 		if(do_after(user, 30, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY, user, INTERRUPT_MOVED, BUSY_ICON_GENERIC))
-			user.visible_message("[user] [oil_verb] [src]. It shines like new.", "You oil up and immaculately clean [src]. It shines like new.")
+			user.visible_message("[user]对[src]进行了[oil_verb]，它焕然一新。", "你为[src]上油并彻底清洁，使它焕然一新。")
 			src.clean_blood()
 		else
 			return
@@ -274,7 +274,7 @@ DEFINES in setup.dm, referenced here.
 			if(istype(attack_item,/obj/item/ammo_magazine))
 				var/obj/item/ammo_magazine/attachment_magazine = attack_item
 				if(istype(src, attachment_magazine.gun_type))
-					to_chat(user, SPAN_NOTICE("You disable [active_attachable]."))
+					to_chat(user, SPAN_NOTICE("你关闭了[active_attachable]。"))
 					playsound(user, active_attachable.activation_sound, 15, 1)
 					active_attachable.activate_attachment(src, null, TRUE)
 					reload(user,attachment_magazine)
@@ -294,14 +294,14 @@ DEFINES in setup.dm, referenced here.
 		if(!istype(user) || user.is_mob_incapacitated(TRUE))
 			return
 		if(src != user.r_hand && src != user.l_hand)
-			to_chat(user, SPAN_WARNING("[src] must be in your hand to do that."))
+			to_chat(user, SPAN_WARNING("你必须把[src]拿在手里才能这样做。"))
 			return
 		if(flags_gun_features & GUN_INTERNAL_MAG)
-			to_chat(user, SPAN_WARNING("Can't do tactical reloads with [src]."))
+			to_chat(user, SPAN_WARNING("[src]无法进行战术换弹。"))
 			return
 		//no tactical reload for the untrained.
 		if(user.skills.get_skill_level(SKILL_FIREARMS) == 0)
-			to_chat(user, SPAN_WARNING("You don't know how to do tactical reloads."))
+			to_chat(user, SPAN_WARNING("你不知道如何进行战术换弹。"))
 			return
 		if(istype(src, magazine.gun_type) || (magazine.type in src.accepted_ammo))
 			if(current_mag)
@@ -309,7 +309,7 @@ DEFINES in setup.dm, referenced here.
 					unload(user)
 				else
 					unload(user, FALSE, TRUE)
-			to_chat(user, SPAN_NOTICE("You start a tactical reload."))
+			to_chat(user, SPAN_NOTICE("你开始进行战术换弹。"))
 			var/old_mag_loc = magazine.loc
 			var/tac_reload_time = 15
 			if(user.skills)
@@ -338,7 +338,7 @@ DEFINES in setup.dm, referenced here.
 	if(user)
 		var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
 		if( in_hand != src ) //It has to be held.
-			to_chat(user, SPAN_WARNING("You have to hold [src] to do that!"))
+			to_chat(user, SPAN_WARNING("你必须拿着[src]才能这样做！"))
 			return
 	return 1
 
@@ -347,7 +347,7 @@ DEFINES in setup.dm, referenced here.
 		var/obj/item/weapon/gun/in_handL = user.l_hand
 		var/obj/item/weapon/gun/in_handR = user.r_hand
 		if( in_handL != src && in_handR != src ) //It has to be held.
-			to_chat(user, SPAN_WARNING("You have to hold [src] to do that!"))
+			to_chat(user, SPAN_WARNING("你必须拿着[src]才能这样做！"))
 			return
 	return 1
 
@@ -368,7 +368,7 @@ DEFINES in setup.dm, referenced here.
 	if(attachments[attachment.slot])
 		var/obj/item/attachable/attached_attachment = attachments[attachment.slot]
 		if(attached_attachment && !(attached_attachment.flags_attach_features & ATTACH_REMOVABLE))
-			to_chat(user, SPAN_WARNING("The attachment on [src]'s [attachment.slot] cannot be removed!"))
+			to_chat(user, SPAN_WARNING("[src]的[attachment.slot]上的配件无法拆除！"))
 			return 0
 	//to prevent headaches with lighting stuff
 	if(attachment.light_mod)
@@ -377,7 +377,7 @@ DEFINES in setup.dm, referenced here.
 			if(!attached_attachment)
 				continue
 			if(attached_attachment.light_mod)
-				to_chat(user, SPAN_WARNING("You already have a light source attachment on [src]."))
+				to_chat(user, SPAN_WARNING("[src]上已经有照明配件了。"))
 				return 0
 	return 1
 
@@ -385,12 +385,12 @@ DEFINES in setup.dm, referenced here.
 	if(!can_attach_to_gun(user, attachment))
 		return FALSE
 
-	user.visible_message(SPAN_NOTICE("[user] begins attaching [attachment] to [src]."),
-	SPAN_NOTICE("You begin attaching [attachment] to [src]."), null, 4)
+	user.visible_message(SPAN_NOTICE("[user]开始将[attachment]安装在[src]上。"),
+	SPAN_NOTICE("你开始将[attachment]安装在[src]上。"), null, 4)
 	if(do_after(user, 1.5 SECONDS, INTERRUPT_ALL, BUSY_ICON_FRIENDLY, numticks = 2))
 		if(attachment && attachment.loc)
-			user.visible_message(SPAN_NOTICE("[user] attaches [attachment] to [src]."),
-			SPAN_NOTICE("You attach [attachment] to [src]."), null, 4)
+			user.visible_message(SPAN_NOTICE("[user]将[attachment]安装在[src]上。"),
+			SPAN_NOTICE("你将[attachment]安装在[src]上。"), null, 4)
 			user.temp_drop_inv_item(attachment)
 			attachment.Attach(src, user)
 			update_attachable(attachment.slot)
@@ -465,19 +465,19 @@ DEFINES in setup.dm, referenced here.
 	if(user.is_mob_incapacitated() || !isturf(usr.loc))
 		return
 	if(!ishuman(user) && !HAS_TRAIT(user, TRAIT_OPPOSABLE_THUMBS))
-		to_chat(user, SPAN_WARNING("Not right now."))
+		to_chat(user, SPAN_WARNING("现在不行。"))
 		return
 
 	var/obj/item/weapon/gun/held_item = user.get_held_item()
 
 	if(!istype(held_item)) // if active hand is not a gun
 		if(restrictive) // if restrictive we return right here
-			to_chat(user, SPAN_WARNING("You need a gun in your active hand to do that!"))
+			to_chat(user, SPAN_WARNING("你需要在当前使用的手里拿着枪！"))
 			return
 		else // else check inactive hand
 			held_item = user.get_inactive_hand()
 			if(!istype(held_item)) // if inactive hand is ALSO not a gun we return
-				to_chat(user, SPAN_WARNING("You need a gun in one of your hands to do that!"))
+				to_chat(user, SPAN_WARNING("你需要至少有一只手拿着枪！"))
 				return
 
 	if(held_item?.flags_gun_features & GUN_BURST_FIRING)
@@ -533,7 +533,7 @@ DEFINES in setup.dm, referenced here.
 	set name = "holster"
 	set hidden = TRUE
 	if(usr.is_mob_incapacitated(TRUE) || usr.is_mob_restrained() || IsKnockDown() || HAS_TRAIT_FROM(src, TRAIT_UNDENSE, LYING_DOWN_TRAIT))
-		to_chat(src, SPAN_WARNING("You can't draw a weapon in your current state."))
+		to_chat(src, SPAN_WARNING("你现在无法拔出武器。"))
 		return
 
 	var/obj/item/active_hand = get_active_hand()
@@ -617,7 +617,7 @@ DEFINES in setup.dm, referenced here.
 		return
 
 	if(zoom)
-		to_chat(usr, SPAN_WARNING("You cannot conceivably do that while looking down \the [src]'s scope!"))
+		to_chat(usr, SPAN_WARNING("你正在透过[src]的瞄准镜观察，根本没法这样做！"))
 		return
 
 	var/list/choices = list()
@@ -630,7 +630,7 @@ DEFINES in setup.dm, referenced here.
 			choice_to_attachment[capitalized_name] = attached_attachment
 
 	if(!length(choices))
-		to_chat(usr, SPAN_WARNING("[src] has no removable attachments."))
+		to_chat(usr, SPAN_WARNING("[src]没有可拆除的配件。"))
 		return
 
 	var/obj/item/attachable/attachment
@@ -638,14 +638,14 @@ DEFINES in setup.dm, referenced here.
 		attachment = choice_to_attachment[choices[1]]
 	else
 		var/use_radials = usr.client.prefs?.no_radials_preference ? FALSE : TRUE
-		var/choice = use_radials ? show_radial_menu(usr, usr, choices, require_near = TRUE) : tgui_input_list(usr, "Which attachment to remove?", "Remove Attachment", choices)
+		var/choice = use_radials ? show_radial_menu(usr, usr, choices, require_near = TRUE) : tgui_input_list(usr, "要拆卸哪个配件？", "拆卸配件", choices)
 		attachment = choice_to_attachment[choice]
 
 	if(!attachment || get_active_firearm(usr) != src || usr.action_busy || zoom || (!(attachment == attachments[attachment.slot])) || !(attachment.flags_attach_features & ATTACH_REMOVABLE))
 		return
 
-	usr.visible_message(SPAN_NOTICE("[usr] begins stripping [attachment] from [src]."),
-	SPAN_NOTICE("You begin stripping [attachment] from [src]."), null, 4)
+	usr.visible_message(SPAN_NOTICE("[usr]开始从[src]上拆下[attachment]。"),
+	SPAN_NOTICE("你开始从[src]上拆下[attachment]。"), null, 4)
 
 	if(!do_after(usr, 1.5 SECONDS, INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
 		return
@@ -658,8 +658,8 @@ DEFINES in setup.dm, referenced here.
 	if(zoom)
 		return
 
-	usr.visible_message(SPAN_NOTICE("[usr] strips [attachment] from [src]."),
-	SPAN_NOTICE("You strip [attachment] from [src]."), null, 4)
+	usr.visible_message(SPAN_NOTICE("[usr]从[src]上拆下了[attachment]。"),
+	SPAN_NOTICE("你从[src]上拆下了[attachment]。"), null, 4)
 	attachment.Detach(usr, src)
 
 	playsound(src, 'sound/handling/attachment_remove.ogg', 15, 1, 4)
@@ -674,7 +674,7 @@ DEFINES in setup.dm, referenced here.
 		CRASH("[src] called do_toggle_firemode() with an empty gun_firemode_list")
 
 	if(length(gun_firemode_list) == 1)
-		to_chat(source, SPAN_NOTICE("[icon2html(src, source)] This gun only has one firemode."))
+		to_chat(source, SPAN_NOTICE("[icon2html(src, source)] 这把枪只有一种射击模式。"))
 		return
 
 	if(new_firemode)
@@ -691,7 +691,7 @@ DEFINES in setup.dm, referenced here.
 	playsound(source, 'sound/weapons/handling/gun_burst_toggle.ogg', 15, 1)
 
 	if(ishuman(source))
-		to_chat(source, SPAN_NOTICE("[icon2html(src, source)] You switch to <b>[gun_firemode]</b>."))
+		to_chat(source, SPAN_NOTICE("[icon2html(src, source)] 你切换到了<b>[gun_firemode == GUN_FIREMODE_SEMIAUTO ? "半自动射击模式" : (gun_firemode == GUN_FIREMODE_BURSTFIRE ? "点射模式" : "全自动射击模式")]</b>。"))
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, gun_firemode)
 
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)
@@ -814,7 +814,7 @@ DEFINES in setup.dm, referenced here.
 		return
 
 	if(usr.is_mob_incapacitated() || !usr.loc || !isturf(usr.loc))
-		to_chat(usr, "Not right now.")
+		to_chat(usr, "现在不行。")
 		return
 
 	flags_gun_features ^= GUN_TRIGGER_SAFETY
@@ -822,7 +822,7 @@ DEFINES in setup.dm, referenced here.
 
 
 /obj/item/weapon/gun/proc/gun_safety_handle(mob/user)
-	to_chat(user, SPAN_NOTICE("You toggle the safety [SPAN_BOLD(flags_gun_features & GUN_TRIGGER_SAFETY ? "on" : "off")]."))
+	to_chat(user, SPAN_NOTICE("你[SPAN_BOLD(flags_gun_features & GUN_TRIGGER_SAFETY ? "打开" : "关闭")]了保险。"))
 	playsound(user, 'sound/weapons/handling/safety_toggle.ogg', 25, 1)
 
 /obj/item/weapon/gun/verb/activate_attachment_verb()
@@ -845,13 +845,13 @@ DEFINES in setup.dm, referenced here.
 			usable_attachments += attachment
 
 	if(!length(usable_attachments)) //No usable attachments.
-		to_chat(usr, SPAN_WARNING("[src] does not have any usable attachments!"))
+		to_chat(usr, SPAN_WARNING("[src]没有可用的配件！"))
 		return
 
 	if(length(usable_attachments) == 1) //Activates the only attachment if there is only one.
 		chosen_attachment = usable_attachments[1]
 	else
-		chosen_attachment = tgui_input_list(usr, "Which attachment to activate?", "Activate attachment", usable_attachments)
+		chosen_attachment = tgui_input_list(usr, "要激活哪个配件？", "激活配件", usable_attachments)
 		if(!chosen_attachment || chosen_attachment.loc != src)
 			return
 	if(chosen_attachment)
@@ -872,7 +872,7 @@ DEFINES in setup.dm, referenced here.
 	if(attachment)
 		attachment.activate_attachment(src, usr)
 	else
-		to_chat(usr, SPAN_WARNING("[src] does not have any usable rail attachments!"))
+		to_chat(usr, SPAN_WARNING("[src]没有可用的导轨配件！"))
 		return
 
 /obj/item/weapon/gun/verb/toggle_auto_eject_verb()
@@ -887,11 +887,11 @@ DEFINES in setup.dm, referenced here.
 	src = active_firearm
 
 	if(src.flags_gun_features & GUN_ANTIQUE || src.flags_gun_features & GUN_INTERNAL_MAG  || src.flags_gun_features & GUN_UNUSUAL_DESIGN)
-		to_chat(usr, SPAN_WARNING("[src] has no auto ejection system!"))
+		to_chat(usr, SPAN_WARNING("[src]没有自动退弹系统！"))
 		return
 	else
 		src.flags_gun_features ^= GUN_AUTO_EJECTOR
-		to_chat(usr, SPAN_INFO("You toggle the auto ejector [src.flags_gun_features & GUN_AUTO_EJECTOR ? "on" : "off"]"))
+		to_chat(usr, SPAN_INFO("你[src.flags_gun_features & GUN_AUTO_EJECTOR ? "开启" : "关闭"]了自动退弹器。"))
 
 
 /obj/item/weapon/gun/verb/toggle_underbarrel_attachment_verb()
@@ -909,7 +909,7 @@ DEFINES in setup.dm, referenced here.
 	if(attachment)
 		attachment.activate_attachment(src, usr)
 	else
-		to_chat(usr, SPAN_WARNING("[src] does not have any usable underbarrel attachments!"))
+		to_chat(usr, SPAN_WARNING("[src]没有可用的下挂配件！"))
 		return
 
 /obj/item/weapon/gun/verb/toggle_stock_attachment_verb()
@@ -927,7 +927,7 @@ DEFINES in setup.dm, referenced here.
 	if(attachment)
 		attachment.activate_attachment(src, usr)
 	else
-		to_chat(usr, SPAN_WARNING("[src] does not have any usable stock attachments!"))
+		to_chat(usr, SPAN_WARNING("[src]没有可用的枪托配件！"))
 		return
 
 

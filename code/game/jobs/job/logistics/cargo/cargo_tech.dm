@@ -4,11 +4,11 @@
 	spawn_positions = 2
 	allow_additional = 1
 	scaled = 1
-	supervisors = "the requisitions officer"
+	supervisors = "补给军官"
 	selection_class = "job_ct"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_ship/cargo
-	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>Your job</a> is to dispense supplies to the marines, including weapon attachments. Stay in your department when possible to ensure the marines have full access to the supplies they may require. Listen to the radio in case someone requests a supply drop via the overwatch system."
+	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>你的职责</a>是向陆战队员发放补给，包括武器配件。请尽量留在自己的部门，确保陆战队员能随时领取所需物资。注意监听无线电，可能有人通过战场监控系统请求补给空投。"
 
 /datum/job/logistics/cargo/set_spawn_positions(count)
 	spawn_positions = ct_slot_formula(count)

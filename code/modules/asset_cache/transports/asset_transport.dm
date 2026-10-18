@@ -115,7 +115,7 @@
 
 	if (length(unreceived))
 		if (length(unreceived) >= ASSET_CACHE_TELL_CLIENT_AMOUNT)
-			to_chat(client, "Sending Resources...")
+			to_chat(client, "正在发送资源……")
 
 		for (var/asset_name in unreceived)
 			var/new_asset_name = asset_name

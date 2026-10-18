@@ -148,6 +148,7 @@
 				"code" = target_property_data.code,
 				"level" = target_property_data.level,
 				"name" = target_property_data.name,
+				"display_name" = target_property_data.get_display_name(),
 				"desc" = target_property_data.description,
 				"cost" = property_costs[target_property_data.name],
 				"is_locked" = is_locked,
@@ -168,6 +169,7 @@
 				"code" = reference_property_data.code,
 				"level" = reference_property_data.level,
 				"name" = capitalize_first_letters(reference_property_data.name),
+				"display_name" = reference_property_data.get_display_name(),
 				"desc" = reference_property_data.description,
 				"cost" = property_costs[reference_property_data.name],
 				"is_locked" = is_locked,
@@ -203,6 +205,7 @@
 				"code" = known_properties.code,
 				"level" = (isnull(template_property) ? 0 : template_property.level) ,
 				"name" = capitalize_first_letters(known_properties.name),
+				"display_name" = known_properties.get_display_name(),
 				"desc" = known_properties.description,
 				"is_enabled" = LAZYISIN(creation_template, known_properties),
 				"is_locked" = is_locked,
@@ -340,11 +343,11 @@
 		if("change_create_target_level")
 			var/level_to_set = 1
 			if(GLOB.chemical_data.clearance_level <= 2)
-				level_to_set = tgui_input_list(usr, "设置[target_property.name]的目标等级：","[src]", list(1,2,3,4))
+				level_to_set = tgui_input_list(usr, "设置[target_property.get_display_name()]的目标等级：","[src]", list(1,2,3,4))
 			else if(GLOB.chemical_data.clearance_level <= 4)
-				level_to_set = tgui_input_list(usr, "设置[target_property.name]的目标等级：","[src]", list(1,2,3,4,5,6,7,8))
+				level_to_set = tgui_input_list(usr, "设置[target_property.get_display_name()]的目标等级：","[src]", list(1,2,3,4,5,6,7,8))
 			else
-				level_to_set = tgui_input_list(usr, "设置[target_property.name]的目标等级：","[src]", list(1,2,3,4,5,6,7,8,9,10))
+				level_to_set = tgui_input_list(usr, "设置[target_property.get_display_name()]的目标等级：","[src]", list(1,2,3,4,5,6,7,8,9,10))
 			if(!level_to_set)
 				return
 			if(!LAZYISIN(creation_template, target_property))
@@ -352,7 +355,7 @@
 			target_property.level = level_to_set
 			if(target_property.max_level && target_property.level > target_property.max_level)
 				target_property.level = target_property.max_level
-				to_chat(usr, "[target_property.name]的最高等级为[target_property.max_level]。")
+				to_chat(usr, "[target_property.get_display_name()]的最高等级为[target_property.max_level]。")
 			calculate_creation_cost()
 		if("change_complexity")
 			var/slot = params["complexity_slot"]
@@ -610,9 +613,9 @@
 	var/datum/reagent/D = GLOB.chemical_reagents_list[id]
 	var/datum/asset/asset = get_asset_datum(/datum/asset/simple/paper)
 	report.name = "[D.id]的模拟结果"
-	report.info += "<center><img src = [asset.get_url_mappings()["wylogo.png"]]><HR><I><B>Official Company Document</B><BR>Simulated Synthesis Report</I><HR><H2>Result for [D.id]</H2></center>"
+	report.info += "<center><img src = [asset.get_url_mappings()["wylogo.png"]]><HR><I><B>公司正式文件</B><BR>合成模拟报告</I><HR><H2>[D.id]的结果</H2></center>"
 	report.generate(D)
-	report.info += "<BR><HR><font size = \"1\"><I>This report was automatically printed by the Synthesis Simulator.<BR>The [MAIN_SHIP_NAME], [time2text(world.timeofday, "MM/DD")]/[GLOB.game_year], [worldtime2text()]</I></font><BR>\n<span class=\"paper_field\"></span>"
+	report.info += "<BR><HR><font size = \"1\"><I>本报告由合成模拟器自动打印。<BR>[MAIN_SHIP_NAME]，[time2text(world.timeofday, "MM/DD")]/[GLOB.game_year]，[worldtime2text()]</I></font><BR>\n<span class=\"paper_field\"></span>"
 	playsound(loc, 'sound/machines/twobeep.ogg', 15, 1)
 	if(is_new)
 		GLOB.chemical_data.save_document(report, "Synthesis Simulations", report.name)

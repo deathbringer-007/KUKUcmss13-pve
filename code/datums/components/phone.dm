@@ -155,7 +155,7 @@ GLOBAL_LIST_EMPTY_TYPED(phones, /datum/component/phone)
 
 /// Handles what we want to do when we pick up a phone
 /datum/component/phone/proc/picked_up_call(mob/living/carbon/human/user)
-	to_chat(user, SPAN_PURPLE("[icon2html(holder, user)] Picked up a call from [calling_phone.phone_id]."))
+	to_chat(user, SPAN_PURPLE("[icon2html(holder, user)] 已接听来自 [calling_phone.phone_id] 的来电。"))
 	playsound(get_turf(user), "rtb_handset")
 
 	user.put_in_active_hand(phone_handset)
@@ -178,7 +178,7 @@ GLOBAL_LIST_EMPTY_TYPED(phones, /datum/component/phone)
 		return
 
 	var/mob/phone_user = phone_handset.loc
-	to_chat(phone_user, SPAN_PURPLE("[icon2html(calling_phone.holder, phone_user)] [calling_phone.phone_id] has picked up."))
+	to_chat(phone_user, SPAN_PURPLE("[icon2html(calling_phone.holder, phone_user)] [calling_phone.phone_id] 已接听。"))
 
 /// Handles setting a specific phone ID and enabling the phone when the holder is picked up
 /datum/component/phone/proc/holder_picked_up(obj/item/picked_up_holder, mob/user)
@@ -283,7 +283,7 @@ GLOBAL_LIST_EMPTY_TYPED(phones, /datum/component/phone)
 	phones -= phone_id
 
 	if(!length(phones) || !(calling_phone_id in phones))
-		to_chat(user, SPAN_PURPLE("[icon2html(holder, user)] No phones could be located to call!"))
+		to_chat(user, SPAN_PURPLE("[icon2html(holder, user)] 找不到可拨打的电话！"))
 		return
 
 	calling_phone = phones[calling_phone_id]
@@ -310,7 +310,7 @@ GLOBAL_LIST_EMPTY_TYPED(phones, /datum/component/phone)
 
 /// What we do after our call is set up from call_phone()
 /datum/component/phone/proc/post_call_phone(mob/user, calling_phone_id)
-	to_chat(user, SPAN_PURPLE("[icon2html(holder, user)] Dialing [calling_phone_id].."))
+	to_chat(user, SPAN_PURPLE("[icon2html(holder, user)] 正在拨打 [calling_phone_id]……"))
 	timeout_timer_id = addtimer(CALLBACK(src, PROC_REF(reset_call), TRUE), timeout_duration, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 	playsound(get_turf(user), "rtb_handset")
 
@@ -348,11 +348,11 @@ GLOBAL_LIST_EMPTY_TYPED(phones, /datum/component/phone)
 
 	var/mob/handset_user = phone_handset.loc
 	if(recursed)
-		to_chat(handset_user, SPAN_PURPLE("[icon2html(holder, handset_user)] [calling_phone.phone_id] has hung up on you."))
+		to_chat(handset_user, SPAN_PURPLE("[icon2html(holder, handset_user)] [calling_phone.phone_id] 挂断了你的电话。"))
 	else if(timeout)
-		to_chat(handset_user, SPAN_PURPLE("[icon2html(holder, handset_user)] Your call to [calling_phone.phone_id] has reached voicemail, you immediately disconnect the line."))
+		to_chat(handset_user, SPAN_PURPLE("[icon2html(holder, handset_user)] 你拨给 [calling_phone.phone_id] 的电话转入了语音信箱，你立即断开了线路。"))
 	else
-		to_chat(handset_user, SPAN_PURPLE("[icon2html(holder, handset_user)] You have hung up on [calling_phone.phone_id]."))
+		to_chat(handset_user, SPAN_PURPLE("[icon2html(holder, handset_user)] 你挂断了与 [calling_phone.phone_id] 的通话。"))
 
 /// Recalls our handset back to holder and calls reset_call()
 /datum/component/phone/proc/recall_handset()
@@ -419,10 +419,10 @@ GLOBAL_LIST_EMPTY_TYPED(phones, /datum/component/phone)
 	switch(do_not_disturb)
 		if(PHONE_DND_ON)
 			do_not_disturb = PHONE_DND_OFF
-			to_chat(user, SPAN_NOTICE("Do Not Disturb has been disabled. You can now receive calls."))
+			to_chat(user, SPAN_NOTICE("免打扰模式已关闭。现在可以接听来电。"))
 		if(PHONE_DND_OFF)
 			do_not_disturb = PHONE_DND_ON
-			to_chat(user, SPAN_WARNING("Do Not Disturb has been enabled. No calls will be received."))
+			to_chat(user, SPAN_WARNING("免打扰模式已开启。将不再接收来电。"))
 		else
 			return FALSE
 	return TRUE
@@ -536,7 +536,7 @@ GLOBAL_LIST_EMPTY_TYPED(phones, /datum/component/phone)
 	INVOKE_ASYNC(src, PROC_REF(tgui_interact), user)
 
 /datum/component/phone/virtual/picked_up_call(mob/living/carbon/human/user)
-	to_chat(user, SPAN_PURPLE("[icon2html(holder, user)] Picked up a call from [calling_phone.phone_id]."))
+	to_chat(user, SPAN_PURPLE("[icon2html(holder, user)] 已接听来自 [calling_phone.phone_id] 的来电。"))
 
 	RegisterSignal(virtual_user.mob, COMSIG_DEAD_SPEAK, PROC_REF(handle_virtual_speak))
 
@@ -549,7 +549,7 @@ GLOBAL_LIST_EMPTY_TYPED(phones, /datum/component/phone)
 		timeout_timer_id = null
 
 	RegisterSignal(virtual_user.mob, COMSIG_DEAD_SPEAK, PROC_REF(handle_virtual_speak))
-	to_chat(virtual_user, SPAN_PURPLE("[icon2html(calling_phone.holder, virtual_user)] [calling_phone.phone_id] has picked up."))
+	to_chat(virtual_user, SPAN_PURPLE("[icon2html(calling_phone.holder, virtual_user)] [calling_phone.phone_id] 已接听。"))
 
 /datum/component/phone/virtual/phone_available()
 	if(calling_phone)
@@ -572,11 +572,11 @@ GLOBAL_LIST_EMPTY_TYPED(phones, /datum/component/phone)
 
 /datum/component/phone/virtual/handle_reset_call_message(timeout = FALSE, recursed = FALSE)
 	if(recursed)
-		to_chat(virtual_user, SPAN_PURPLE("[icon2html(holder, virtual_user)] [calling_phone.phone_id] has hung up on you."))
+		to_chat(virtual_user, SPAN_PURPLE("[icon2html(holder, virtual_user)] [calling_phone.phone_id] 挂断了你的电话。"))
 	else if(timeout)
-		to_chat(virtual_user, SPAN_PURPLE("[icon2html(holder, virtual_user)] Your call to [calling_phone.phone_id] has reached voicemail, you immediately disconnect the line."))
+		to_chat(virtual_user, SPAN_PURPLE("[icon2html(holder, virtual_user)] 你拨给 [calling_phone.phone_id] 的电话转入了语音信箱，你立即断开了线路。"))
 	else
-		to_chat(virtual_user, SPAN_PURPLE("[icon2html(holder, virtual_user)] You have hung up on [calling_phone.phone_id]."))
+		to_chat(virtual_user, SPAN_PURPLE("[icon2html(holder, virtual_user)] 你挂断了与 [calling_phone.phone_id] 的通话。"))
 
 /datum/component/phone/virtual/getting_call(datum/component/phone/incoming_call)
 	calling_phone = incoming_call
@@ -591,7 +591,7 @@ GLOBAL_LIST_EMPTY_TYPED(phones, /datum/component/phone)
 	playsound_client(virtual_user, 'sound/machines/telephone/telephone_ring.ogg', vol = 50)
 
 /datum/component/phone/virtual/post_call_phone(mob/user, calling_phone_id)
-	to_chat(user, SPAN_PURPLE("[icon2html(holder, user)] Dialing [calling_phone_id].."))
+	to_chat(user, SPAN_PURPLE("[icon2html(holder, user)] 正在拨打 [calling_phone_id]……"))
 	timeout_timer_id = addtimer(CALLBACK(src, PROC_REF(reset_call), TRUE), timeout_duration, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 
 	playsound_client(user.client, "rtb_handset")
@@ -630,7 +630,7 @@ GLOBAL_LIST_EMPTY_TYPED(phones, /datum/component/phone)
 			continue
 
 		if((cycled_observer.client) && (cycled_observer.client.prefs) && (cycled_observer.client.prefs.toggles_chat & CHAT_GHOSTRADIO))
-			var/ghost_message = "<span class='purple'><span class='name'>Game Master</span> on '[phone_id]' to '[calling_phone.phone_id]': <span class='body'>\"[message]\"</span></span>"
+			var/ghost_message = "<span class='purple'><span class='name'>游戏主持人</span>使用电话“[phone_id]”向“[calling_phone.phone_id]”说：<span class='body'>\"[message]\"</span></span>"
 			cycled_observer.show_message(ghost_message, SHOW_MESSAGE_AUDIBLE)
 
 	calling_phone.handle_hear(message, null, speaker, TRUE)

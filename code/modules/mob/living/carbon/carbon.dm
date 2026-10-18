@@ -45,7 +45,7 @@
 		if(prob(30))
 			for(var/mob/M in hearers(4, src))
 				if(M.client)
-					M.show_message(SPAN_DANGER("You hear something rumbling inside [src]'s stomach..."), SHOW_MESSAGE_AUDIBLE)
+					M.show_message(SPAN_DANGER("你听见[src]的肚子里传来一阵响动……"), SHOW_MESSAGE_AUDIBLE)
 		var/obj/item/I = user.get_active_hand()
 		if(I && I.force)
 			var/d = rand(floor(I.force / 4), I.force)
@@ -61,7 +61,7 @@
 				src.take_limb_damage(d)
 			for(var/mob/M as anything in viewers(user, null))
 				if(M.client)
-					M.show_message(text(SPAN_DANGER("<B>[user] attacks [src]'s stomach wall with the [I.name]!")), SHOW_MESSAGE_AUDIBLE)
+					M.show_message(text(SPAN_DANGER("<B>[user]用[I.name]攻击[src]的胃壁！</B>")), SHOW_MESSAGE_AUDIBLE)
 			user.track_hit(initial(I.name))
 			playsound(user.loc, 'sound/effects/attackblob.ogg', 25, 1)
 
@@ -103,7 +103,7 @@
 		A.forceMove(get_turf(loc))
 		A.acid_damage = 0 //Reset the acid damage
 		if(ismob(A))
-			visible_message(SPAN_DANGER("[A] bursts out of [src]!"))
+			visible_message(SPAN_DANGER("[A]从[src]体内破体而出！"))
 
 	for(var/atom/movable/A in contents_recursive())
 		if(isobj(A))
@@ -192,9 +192,9 @@
 	playsound(loc, "sparks", 25, 1)
 	if(shock_damage > 10)
 		src.visible_message(
-			SPAN_DANGER("[src] was shocked by [source]!"), \
-			SPAN_DANGER("<B>You feel a powerful shock course through your body!</B>"), \
-			SPAN_DANGER("You hear a heavy electrical crack.") \
+			SPAN_DANGER("[source]电击了[src]！"), \
+			SPAN_DANGER("<B>你感到一股强烈电流贯穿全身！</B>"), \
+			SPAN_DANGER("你听见沉重的电击爆响。") \
 		)
 		if(isxeno(src) && mob_size >= MOB_SIZE_BIG)
 			apply_effect(1, STUN)//Sadly, something has to stop them from bumping them 10 times in a second
@@ -207,9 +207,9 @@
 
 	else
 		src.visible_message(
-			SPAN_DANGER("[src] was mildly shocked by [source]."), \
-			SPAN_DANGER("You feel a mild shock course through your body."), \
-			SPAN_DANGER("You hear a light zapping.") \
+			SPAN_DANGER("[source]轻微电击了[src]。"), \
+			SPAN_DANGER("你感到一股微弱电流贯穿全身。"), \
+			SPAN_DANGER("你听见轻微的电击声。") \
 		)
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -224,7 +224,7 @@
 	if(wielded_item && (wielded_item.flags_item & WIELDED)) //this segment checks if the item in your hand is twohanded.
 		var/obj/item/weapon/twohanded/offhand/offhand = get_inactive_hand()
 		if(offhand && (offhand.flags_item & WIELDED))
-			to_chat(src, SPAN_WARNING("Your other hand is too busy holding \the [offhand.name]")) //So it's an offhand.
+			to_chat(src, SPAN_WARNING("你的另一只手正忙于握着[offhand.name]。")) //So it's an offhand.
 			return
 		else
 			wielded_item.unwield(src) //Get rid of it.
@@ -260,31 +260,31 @@
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
 	if(src == M)
 		return
-	var/t_him = p_them()
+	var/t_him = gender == MALE ? "他" : (gender == FEMALE ? "她" : "其")
 
 	var/shake_action
 	if(stat == DEAD || HAS_TRAIT(src, TRAIT_INCAPACITATED) || sleeping) // incap implies also unconscious or knockedout
-		shake_action = "wake [t_him] up!"
+		shake_action = "将[t_him]唤醒！"
 	else if(HAS_TRAIT(src, TRAIT_FLOORED))
-		shake_action = "get [t_him] up!"
+		shake_action = "扶[t_him]起来！"
 
 	if(shake_action) // We are incapacitated in some fashion
 		if(client)
 			sleeping = max(0,sleeping-5)
-		M.visible_message(SPAN_NOTICE("[M] shakes [src] trying to [shake_action]"), \
-			SPAN_NOTICE("You shake [src] trying to [shake_action]"), null, 4)
+		M.visible_message(SPAN_NOTICE("[M]摇晃[src]，试图[shake_action]"), \
+			SPAN_NOTICE("你摇晃[src]，试图[shake_action]"), null, 4)
 
 	else if(body_position == LYING_DOWN) // We're just chilling on the ground, let us be
-		M.visible_message(SPAN_NOTICE("[M] stares and waves impatiently at [src] lying on the ground."), \
-			SPAN_NOTICE("You stare and wave at [src] just lying on the ground."), null, 4)
+		M.visible_message(SPAN_NOTICE("[M]盯着躺在地上的[src]，不耐烦地挥手。"), \
+			SPAN_NOTICE("你盯着就这么躺在地上的[src]，挥了挥手。"), null, 4)
 
 	else
 		var/mob/living/carbon/human/H = M
 		if(istype(H))
 			H.species.hug(H, src, H.zone_selected)
 		else
-			M.visible_message(SPAN_NOTICE("[M] pats [src] on the back to make [t_him] feel better!"), \
-				SPAN_NOTICE("You pat [src] on the back to make [t_him] feel better!"), null, 4)
+			M.visible_message(SPAN_NOTICE("[M]拍了拍[src]的背，试图让[t_him]好受一些！"), \
+				SPAN_NOTICE("你拍了拍[src]的背，试图让[t_him]好受一些！"), null, 4)
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 5)
 		return
 
@@ -333,7 +333,7 @@
 	if(stat || !target)
 		return
 	if(!istype(loc, /turf)) // In some mob/object (i.e. devoured or tank)
-		to_chat(src, SPAN_WARNING("You cannot throw anything while inside of \the [loc.name]."))
+		to_chat(src, SPAN_WARNING("你在[loc.name]里面，无法投掷任何东西。"))
 		return
 	if(target.type == /atom/movable/screen)
 		return
@@ -363,7 +363,7 @@
 					usr.attack_log += "\[[time_stamp()]\] <font color='red'>Has thrown [key_name(M)] from [start_T_descriptor] with the target [end_T_descriptor]</font>"
 					msg_admin_attack("[key_name(usr)] has thrown [key_name(M)] from [start_T_descriptor] with the target [end_T_descriptor] in [get_area(src)] ([src.loc.x],[src.loc.y],[src.loc.z]).", src.loc.x, src.loc.y, src.loc.z)
 			else
-				to_chat(src, SPAN_WARNING("You need a better grip!"))
+				to_chat(src, SPAN_WARNING("你需要抓得更牢！"))
 
 	else //real item in hand, not a grab
 		thrown_thing = I
@@ -375,7 +375,7 @@
 
 		if(!(thrown_thing.try_to_throw(src)))
 			return
-		visible_message(SPAN_WARNING("[src] has thrown [thrown_thing]."), null, null, 5)
+		visible_message(SPAN_WARNING("[src]扔出了[thrown_thing]。"), null, null, 5)
 
 		if(!lastarea)
 			lastarea = get_area(src.loc)
@@ -384,9 +384,9 @@
 			step(src, inertia_dir)
 
 		if(throw_type == THROW_MODE_HIGH)
-			to_chat(src, SPAN_NOTICE("You prepare to perform a high toss."))
+			to_chat(src, SPAN_NOTICE("你准备进行高抛。"))
 			if(!do_after(src, 1 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
-				to_chat(src, SPAN_WARNING("You need to set up the high toss!"))
+				to_chat(src, SPAN_WARNING("你需要先准备高抛动作！"))
 				return
 			drop_inv_item_on_ground(I, TRUE)
 			thrown_thing.throw_atom(target, thrown_thing.throw_range, SPEED_SLOW, src, spin_throw, HIGH_LAUNCH)
@@ -449,9 +449,9 @@
 	set category = "IC"
 
 	if(sleeping)
-		to_chat(usr, SPAN_DANGER("You are already sleeping"))
+		to_chat(usr, SPAN_DANGER("你已经在睡觉了。"))
 		return
-	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
+	if(alert(src,"确定要睡一会儿吗？","睡觉","Yes","No") == "Yes")
 		sleeping = 20 //Short nap
 
 
@@ -465,7 +465,7 @@
 	if(buckled) return FALSE //can't slip while buckled
 	if(body_position != STANDING_UP) return FALSE //can't slip if already lying down.
 	stop_pulling()
-	to_chat(src, SPAN_WARNING("You slipped on \the [slip_source_name? slip_source_name : "floor"]!"))
+	to_chat(src, SPAN_WARNING("你在[slip_source_name? slip_source_name : "地板"]上滑倒了！"))
 	playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
 	apply_effect(stun_level, STUN)
 	apply_effect(weaken_level, WEAKEN)
@@ -491,24 +491,24 @@
 /mob/living/carbon/proc/extinguish_mob(mob/living/carbon/C)
 	adjust_fire_stacks(-5, min_stacks = 0)
 	playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-	C.visible_message(SPAN_DANGER("[C] tries to put out the fire on [src]!"), \
-	SPAN_WARNING("You try to put out the fire on [src]!"), null, 5)
+	C.visible_message(SPAN_DANGER("[C]试图扑灭[src]身上的火！"), \
+	SPAN_WARNING("你试图扑灭[src]身上的火！"), null, 5)
 	if(fire_stacks <= 0)
-		C.visible_message(SPAN_DANGER("[C] has successfully extinguished the fire on [src]!"), \
-		SPAN_NOTICE("You extinguished the fire on [src]."), null, 5)
+		C.visible_message(SPAN_DANGER("[C]成功扑灭了[src]身上的火！"), \
+		SPAN_NOTICE("你扑灭了[src]身上的火。"), null, 5)
 
 /mob/living/carbon/resist_buckle()
 
 	if(handcuffed)
 		next_move = world.time + 100
 		last_special = world.time + 100
-		visible_message(SPAN_DANGER("<B>[src] attempts to unbuckle themself!</B>"),\
-		SPAN_DANGER("You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)"))
+		visible_message(SPAN_DANGER("<B>[src]试图解开自身束缚！</B>"),\
+		SPAN_DANGER("你试图解开自身束缚。（大约需要2分钟，期间必须保持不动）"))
 		if(do_after(src, 1200, INTERRUPT_NO_FLOORED^INTERRUPT_RESIST, BUSY_ICON_HOSTILE))
 			if(!buckled)
 				return
-			visible_message(SPAN_DANGER("<B>[src] manages to unbuckle themself!</B>"),\
-						SPAN_NOTICE("You successfully unbuckle yourself."))
+			visible_message(SPAN_DANGER("<B>[src]成功解开了自身束缚！</B>"),\
+						SPAN_NOTICE("你成功解开了自身束缚。"))
 			buckled.manual_unbuckle(src)
 	else
 		buckled.manual_unbuckle(src)
@@ -516,19 +516,19 @@
 /mob/living/carbon/get_examine_text(mob/user)
 	. = ..()
 	if(isyautja(user))
-		. += SPAN_BLUE("[src] is worth [max(life_kills_total, default_honor_value)] honor.")
+		. += SPAN_BLUE("[src]价值[max(life_kills_total, default_honor_value)]点荣誉。")
 		if(src.hunter_data.hunted)
-			. += SPAN_ORANGE("[src] is being hunted by [src.hunter_data.hunter.real_name].")
+			. += SPAN_ORANGE("[src]正在被[src.hunter_data.hunter.real_name]猎杀。")
 
 		if(src.hunter_data.dishonored)
-			. += SPAN_RED("[src] was marked as dishonorable for '[src.hunter_data.dishonored_reason]'.")
+			. += SPAN_RED("[src]因“[src.hunter_data.dishonored_reason]”被标记为不名誉猎物。")
 		else if(src.hunter_data.honored)
-			. += SPAN_GREEN("[src] was honored for '[src.hunter_data.honored_reason]'.")
+			. += SPAN_GREEN("[src]因“[src.hunter_data.honored_reason]”获得了荣誉认可。")
 
 		if(src.hunter_data.thralled)
-			. += SPAN_GREEN("[src] was thralled by [src.hunter_data.thralled_set.real_name] for '[src.hunter_data.thralled_reason]'.")
+			. += SPAN_GREEN("[src]被[src.hunter_data.thralled_set.real_name]收为仆从，理由是“[src.hunter_data.thralled_reason]”。")
 		else if(src.hunter_data.gear)
-			. += SPAN_RED("[src] was marked as carrying gear by [src.hunter_data.gear_set].")
+			. += SPAN_RED("[src]被[src.hunter_data.gear_set]标记为携带铁血装备。")
 
 
 /mob/living/carbon/on_lying_down(new_lying_angle)

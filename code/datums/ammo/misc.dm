@@ -169,7 +169,7 @@
 	var/matrix/rotation = matrix()
 	rotation.Turn(fired_projectile.angle - 90)
 	G.apply_transform(rotation)
-	G.visible_message(SPAN_WARNING("\A [G] bursts into brilliant light nearby!"))
+	G.visible_message(SPAN_WARNING("\A [G] 在附近迸发出耀眼的光芒！"))
 	return G
 
 /datum/ammo/flare/signal
@@ -226,7 +226,7 @@
 				for(var/obj/item/reagent_container/food/drinks/cans/souto/S in P.contents)
 					M.put_in_active_hand(S)
 					for(var/mob/O in viewers(GLOB.world_view_size, P)) //find all people in view.
-						O.show_message(SPAN_DANGER("[M] catches [S]!"), SHOW_MESSAGE_VISIBLE) //Tell them the can was caught.
+						O.show_message(SPAN_DANGER("[M] 接住了 [S]！"), SHOW_MESSAGE_VISIBLE) //Tell them the can was caught.
 					return //Can was caught.
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -287,7 +287,7 @@
 /datum/ammo/grenade_container/proc/drop_nade(obj/projectile/P)
 	var/turf/T = get_turf(P)
 	var/obj/item/explosive/grenade/G = new nade_type(T)
-	G.visible_message(SPAN_WARNING("\A [G] lands on [T]!"))
+	G.visible_message(SPAN_WARNING("\A [G] 落在了 [T] 上！"))
 	G.det_time = 0.5 SECONDS
 	G.cause_data = P.weapon_cause_data
 	G.activate()

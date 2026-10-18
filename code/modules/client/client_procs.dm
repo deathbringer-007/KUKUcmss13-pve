@@ -86,10 +86,10 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 			topiclimiter[MINUTE_COUNT] = 0
 		topiclimiter[MINUTE_COUNT] += 1
 		if (topiclimiter[MINUTE_COUNT] > mtl)
-			var/msg = "Your previous action was ignored because you've done too many in a minute."
+			var/msg = "你在一分钟内操作过于频繁，上一次操作已被忽略。"
 			if (minute != topiclimiter[ADMINSWARNED_AT]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
 				topiclimiter[ADMINSWARNED_AT] = minute
-				msg += " Administrators have been informed."
+				msg += " 已通知管理员。"
 				log_game("[key_name(src)] Has hit the per-minute topic limit of [mtl] topic calls in a given game minute")
 				message_admins("[key_name(usr)] Has hit the per-minute topic limit of [mtl] topic calls in a given game minute")
 			to_chat(src, SPAN_DANGER("[msg]"))
@@ -105,7 +105,7 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 			topiclimiter[SECOND_COUNT] = 0
 		topiclimiter[SECOND_COUNT] += 1
 		if (topiclimiter[SECOND_COUNT] > stl)
-			to_chat(src, SPAN_DANGER("Your previous action was ignored because you've done too many in a second"))
+			to_chat(src, SPAN_DANGER("你在一秒内执行了过多操作，上一个操作已被忽略。"))
 			return
 
 	// Tgui Topic middleware
@@ -123,12 +123,12 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 
 	// TGUIless adminhelp
 	if(href_list["tguiless_adminhelp"])
-		no_tgui_adminhelp(input(src, "Enter your ahelp", "Ahelp") as null|message)
+		no_tgui_adminhelp(input(src, "请输入管理员求助内容。", "管理员求助") as null|message)
 		return
 
 	//byond bug ID:2256651
 	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
-		to_chat(src, SPAN_DANGER("An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)"))
+		to_chat(src, SPAN_DANGER("检测到客户端接收资源时出现错误，正在尝试修正……（若此提示反复出现，请关闭BYOND后重新连接。）"))
 		src << browse("...", "window=asset_cache_browser")
 		return
 
@@ -150,7 +150,7 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 				receiver_client = C
 				break
 		if(!receiver_client)
-			to_chat(src, SPAN_WARNING("The person you were attempting to PM has gone offline!"))
+			to_chat(src, SPAN_WARNING("你想私信的玩家已经离线！"))
 			return
 		cmd_admin_pm(receiver_client, null)
 		return
@@ -246,11 +246,11 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 	if(CONFIG_GET(flag/automute_on) && !admin_holder && src.last_message == message)
 		src.last_message_count++
 		if(src.last_message_count >= SPAM_TRIGGER_AUTOMUTE)
-			to_chat(src, SPAN_DANGER("You have exceeded the spam filter limit for identical messages. An auto-mute was applied."))
+			to_chat(src, SPAN_DANGER("重复讯息次数已超过反刷屏限制，已自动禁言。"))
 			cmd_admin_mute(src.mob, mute_type, 1)
 			return 1
 		if(src.last_message_count >= SPAM_TRIGGER_WARNING)
-			to_chat(src, SPAN_DANGER("You are nearing the spam filter limit for identical messages."))
+			to_chat(src, SPAN_DANGER("重复讯息次数即将达到反刷屏限制。"))
 			return 0
 	else
 		last_message = message
@@ -260,7 +260,7 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 //This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
 /client/AllowUpload(filename, filelength)
 	if(filelength > UPLOAD_LIMIT)
-		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB.</font>")
+		to_chat(src, "<font color='red'>错误：AllowUpload()：上传文件过大。上传上限为[UPLOAD_LIMIT/1024]KiB。</font>")
 		return 0
 /* //Don't need this at the moment. But it's here if it's needed later.
 	//Helps prevent multiple files being uploaded at once. Or right after eachother.
@@ -354,7 +354,7 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 	var/warn_build = CONFIG_GET(number/client_warn_build)
 
 	if (byond_version < breaking_version || (byond_version == breaking_version && byond_build < breaking_build)) //Out of date client.
-		to_chat_immediate(src, SPAN_DANGER("<b>Your version of BYOND is too old:</b>"))
+		to_chat_immediate(src, SPAN_DANGER("<b>你的BYOND版本过旧：</b>"))
 		to_chat_immediate(src, CONFIG_GET(string/client_error_message))
 		to_chat_immediate(src, "Your version: [byond_version].[byond_build]")
 		to_chat_immediate(src, "Required version: [breaking_version].[breaking_build] or later")
@@ -364,18 +364,18 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 
 	if (byond_version < warn_version || (byond_version == warn_version && byond_build < warn_build)) //We have words for this client.
 		if(CONFIG_GET(flag/client_warn_popup))
-			var/msg = "<b>Your version of BYOND may be getting out of date:</b><br>"
+			var/msg = "<b>你的BYOND版本可能已经过时：</b><br>"
 			msg += CONFIG_GET(string/client_warn_message) + "<br><br>"
 			msg += "Your version: [byond_version].[byond_build]<br>"
 			msg += "Required version to remove this message: [warn_version].[warn_build] or later<br>"
 			msg += "Visit <a href=\"https://www.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.<br>"
 			src << browse(msg, "window=warning_popup")
 		else
-			to_chat(src, SPAN_DANGER("<b>Your version of BYOND may be getting out of date:</b>"))
+			to_chat(src, SPAN_DANGER("<b>你的BYOND版本可能已经过时：</b>"))
 			to_chat(src, CONFIG_GET(string/client_warn_message))
-			to_chat(src, "Your version: [byond_version].[byond_build]")
-			to_chat(src, "Required version to remove this message: [warn_version].[warn_build] or later")
-			to_chat(src, "Visit <a href=\"https://www.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.")
+			to_chat(src, "你的版本：[byond_version].[byond_build]")
+			to_chat(src, "需要[warn_version].[warn_build]或更高版本才能消除此提示。")
+			to_chat(src, "请访问<a href=\"https://www.byond.com/download\">BYOND官网</a>下载最新版本。")
 
 	if (num2text(byond_build) in GLOB.blacklisted_builds)
 		log_access("Failed login: [key] - blacklisted byond build ([byond_version].[byond_build])")
@@ -564,7 +564,7 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 		return
 	talked = 0
 	if(message)
-		to_chat(src, SPAN_NOTICE("You may now speak again."))
+		to_chat(src, SPAN_NOTICE("你现在可以再次发言了。"))
 	if(increase_warn)
 		chatWarn++
 
@@ -647,7 +647,7 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 /client/proc/check_panel_loaded()
 	if(stat_panel.is_ready())
 		return
-	to_chat(src, SPAN_USERDANGER("Statpanel failed to load, click <a href='byond://?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
+	to_chat(src, SPAN_USERDANGER("状态面板加载失败，点击<a href='byond://?src=[REF(src)];reload_statbrowser=1'>这里</a>重新加载。"))
 
 /**
  * Handles incoming messages from the stat-panel TGUI.
@@ -874,12 +874,12 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 		actions_list[action_name] += action
 
 	if(!LAZYLEN(actions_list))
-		to_chat(user, SPAN_WARNING("You have no actions available."))
+		to_chat(user, SPAN_WARNING("你没有可用的动作。"))
 		return
 
 	var/selected_action_name = tgui_input_list(user, "Show or hide selected action", "Show/Hide Actions", actions_list, 30 SECONDS)
 	if(!selected_action_name)
-		to_chat(user, SPAN_WARNING("You did not select an action."))
+		to_chat(user, SPAN_WARNING("你没有选择动作。"))
 		return
 
 	var/datum/action/selected_action = actions_list[selected_action_name]
@@ -887,7 +887,7 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 	user.update_action_buttons()
 
 	if(!selected_action.player_hidden && selected_action.hidden) //Inform the player that even if they are unhiding it, itll still not be visible
-		to_chat(user, SPAN_NOTICE("[selected_action] is forcefully hidden, bypassing player unhiding."))
+		to_chat(user, SPAN_NOTICE("[selected_action]被强制隐藏，无法由玩家自行显示。"))
 
 
 /client/proc/check_whitelist_status(flag_to_check)

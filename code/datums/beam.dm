@@ -162,7 +162,7 @@
 
 /obj/effect/ebeam/laser
 	name = "laser beam"
-	desc = "A laser beam!"
+	desc = "一道激光束！"
 	alpha = 200
 	var/strength = EYE_PROTECTION_FLAVOR
 	var/probability = 20
@@ -180,14 +180,14 @@
 			INVOKE_ASYNC(moving_human, /mob/proc/emote, "pain")
 			moving_human.AdjustEyeBlur(12,20)
 			E.take_damage(rand(15, 25), TRUE)
-			visible_message(SPAN_DANGER("[moving_human] screams out in pain as \the [src] sears their eyes!"), SPAN_NOTICE("Aurgh!!! \The [src] flashes across your unprotected eyes for a split-second, blinding you!"))
+			visible_message(SPAN_DANGER("[src]灼伤了[moving_human]的眼睛，令其痛苦地尖叫！"), SPAN_NOTICE("啊啊啊！！！[src]瞬间扫过你毫无遮挡的双眼，令你失明！"))
 			return
 		//ouch!
 		INVOKE_ASYNC(moving_human, /mob/proc/emote, "pain")
-		visible_message(SPAN_DANGER("[moving_human] screams out in pain as \the [src] moves across their eyes!"), SPAN_NOTICE("Aurgh!!! \The [src] moves across your unprotected eyes for a split-second!"))
+		visible_message(SPAN_DANGER("[src]扫过[moving_human]的双眼，令其痛苦地尖叫！"), SPAN_NOTICE("啊啊啊！！！[src]瞬间扫过你毫无遮挡的双眼！"))
 	else
 		if(HAS_TRAIT(moving_human, TRAIT_BIMEX))
-			visible_message(SPAN_NOTICE("[moving_human]'s BiMex© personal shades shine as \the [src] passes over them."), SPAN_NOTICE("Your BiMex© personal shades as \the [src] passes over them."))
+			visible_message(SPAN_NOTICE("[src]扫过时，[moving_human]的比迈克斯©个人墨镜闪闪发亮。"), SPAN_NOTICE("[src]扫过时，你的比迈克斯©个人墨镜闪闪发亮。"))
 			//drip = bonus balloonchat
 			moving_human.balloon_alert_to_viewers("the laser bounces off [moving_human.gender == MALE ? "his" : "her"] BiMex© personal shades!", "the laser bounces off your BiMex© personal shades!")
 		else

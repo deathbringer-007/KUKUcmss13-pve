@@ -3,7 +3,7 @@
 	selection_class = "job_qm"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_ship/qm
-	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>Your job</a> is to dispense supplies to the marines, including weapon attachments. Your cargo techs can help you out, but you have final say in your department. Make sure they're not goofing off. While you may request paperwork for supplies, do not go out of your way to screw with marines, unless you want to get deposed. A happy ship is a well-functioning ship."
+	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>你的职责</a>是向陆战队员发放补给，包括武器配件。货运技师可以协助你，但你在本部门拥有最终决定权。确保他们没有偷懒。你可以要求领取物资时办理文书手续，但不要故意刁难陆战队员，除非你想被赶下台。士气高昂的舰船才能顺畅运转。"
 
 /obj/effect/landmark/start/requisition
 	name = JOB_CHIEF_REQUISITION

@@ -11,7 +11,7 @@
 	classic_keys = list("E")
 	name = "quick_equip"
 	full_name = "Unholster"
-	description = "Take out an available weapon"
+	description = "取出可用的武器。"
 	keybind_signal = COMSIG_KB_HUMAN_INTERACT_QUICKEQUIP_DOWN
 
 /datum/keybinding/human/inventory/quick_equip/down(client/user)
@@ -27,7 +27,7 @@
 	classic_keys = list("Shift+E")
 	name = "quick_equip_secondary"
 	full_name = "Unholster secondary"
-	description = "Take out your secondary weapon"
+	description = "取出副武器。"
 	keybind_signal = COMSIG_KB_HUMAN_INTERACT_SECONDARY_DOWN
 
 /datum/keybinding/human/inventory/quick_equip_secondary/down(client/user)
@@ -43,7 +43,7 @@
 	classic_keys = list("Ctrl+E", "Alt+E")
 	name = "quick_equip_tertiary"
 	full_name = "Unholster tertiary"
-	description = "Take out your tertiary item."
+	description = "取出第三顺位物品。"
 	keybind_signal = COMSIG_KB_HUMAN_INTERACT_TERTIARY_DOWN
 
 /datum/keybinding/human/inventory/quick_equip_tertiary/down(client/user)
@@ -59,7 +59,7 @@
 	classic_keys = list("Unbound")
 	name = "quick_equip_quaternary"
 	full_name = "Unholster quaternary"
-	description = "Take out your quaternary item."
+	description = "取出第四顺位物品。"
 	keybind_signal = COMSIG_KB_HUMAN_INTERACT_QUATERNARY_DOWN
 
 /datum/keybinding/human/inventory/quick_equip_quaternary/down(client/user)
@@ -80,7 +80,7 @@
 	classic_keys = list("Unbound")
 	name = "quick_equip_inventory"
 	full_name = "Quick equip inventory"
-	description = "Quickly puts an item in the best slot available"
+	description = "将物品快速放入最合适的可用栏位。"
 	keybind_signal = COMSIG_KB_HUMAN_INTERACT_QUICK_EQUIP_DOWN
 
 /datum/keybinding/human/inventory/quick_equip_inventory/down(client/user)

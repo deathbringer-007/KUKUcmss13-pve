@@ -8,7 +8,7 @@
 	affected_species = list("Human")
 	curable = 0
 	permeability_mod = 0.75
-	desc = "This disease disrupts the magnetic field of your body, making it act as if a powerful magnet. Injections of iron help stabilize the field."
+	desc = "这种疾病会扰乱身体的磁场，使身体像强力磁铁一样吸引物体。注射铁有助于稳定磁场。"
 	severity = "Medium"
 
 /datum/disease/magnitis/stage_act()
@@ -16,7 +16,7 @@
 	switch(stage)
 		if(2)
 			if(prob(2))
-				to_chat(affected_mob, SPAN_DANGER("You feel a slight shock course through your body."))
+				to_chat(affected_mob, SPAN_DANGER("你感到一阵轻微的电流穿过身体。"))
 			if(prob(2))
 				for(var/obj/M in orange(2,affected_mob))
 					if(!M.anchored && (M.flags_atom & CONDUCT))
@@ -35,9 +35,9 @@
 						*/
 		if(3)
 			if(prob(2))
-				to_chat(affected_mob, SPAN_DANGER("You feel a strong shock course through your body."))
+				to_chat(affected_mob, SPAN_DANGER("你感到一阵强烈的电流穿过身体。"))
 			if(prob(2))
-				to_chat(affected_mob, SPAN_DANGER("You feel like clowning around."))
+				to_chat(affected_mob, SPAN_DANGER("你突然想搞点小丑式的恶作剧。"))
 			if(prob(4))
 				for(var/obj/M in orange(4,affected_mob))
 					if(!M.anchored && (M.flags_atom & CONDUCT))
@@ -62,9 +62,9 @@
 						*/
 		if(4)
 			if(prob(2))
-				to_chat(affected_mob, SPAN_DANGER("You feel a powerful shock course through your body."))
+				to_chat(affected_mob, SPAN_DANGER("你感到一阵猛烈的电流穿过身体。"))
 			if(prob(2))
-				to_chat(affected_mob, SPAN_DANGER("You query upon the nature of miracles."))
+				to_chat(affected_mob, SPAN_DANGER("你开始思索奇迹的本质。"))
 			if(prob(8))
 				for(var/obj/M in orange(6,affected_mob))
 					if(!M.anchored && (M.flags_atom & CONDUCT))

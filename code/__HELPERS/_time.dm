@@ -88,26 +88,26 @@ GLOBAL_VAR_INIT(rollovercheck_last_timeofday, 0)
 /proc/DisplayTimeText(time_value, round_seconds_to = 0.1)
 	var/second = FLOOR(time_value * 0.1, round_seconds_to)
 	if(!second)
-		return "right now"
+		return "0秒"
 	if(second < 60)
-		return "[second] second[(second != 1)? "s":""]"
+		return "[second]秒"
 	var/minute = floor(second / 60)
 	second = FLOOR(second %% 60, round_seconds_to)
 	var/secondT
 	if(second)
-		secondT = " and [second] second[(second != 1)? "s":""]"
+		secondT = "[second]秒"
 	if(minute < 60)
-		return "[minute] minute[(minute != 1)? "s":""][secondT]"
+		return "[minute]分钟[secondT]"
 	var/hour = floor(minute / 60)
 	minute %%= 60
 	var/minuteT
 	if(minute)
-		minuteT = " and [minute] minute[(minute != 1)? "s":""]"
+		minuteT = "[minute]分钟"
 	if(hour < 24)
-		return "[hour] hour[(hour != 1)? "s":""][minuteT][secondT]"
+		return "[hour]小时[minuteT][secondT]"
 	var/day = floor(hour / 24)
 	hour %%= 24
 	var/hourT
 	if(hour)
-		hourT = " and [hour] hour[(hour != 1)? "s":""]"
-	return "[day] day[(day != 1)? "s":""][hourT][minuteT][secondT]"
+		hourT = "[hour]小时"
+	return "[day]天[hourT][minuteT][secondT]"

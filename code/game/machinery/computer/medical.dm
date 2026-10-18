@@ -1,8 +1,8 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 /obj/structure/machinery/computer/med_data//TODO:SANITY
-	name = "Medical Records"
-	desc = "This can be used to check medical records."
+	name = "医疗档案"
+	desc = "用于查看医疗档案。"
 	icon_state = "medcomp"
 	density = TRUE
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_WY_MEDICAL)
@@ -21,19 +21,19 @@
 
 /obj/structure/machinery/computer/med_data/verb/eject_id()
 	set category = "Object"
-	set name = "Eject ID Card"
+	set name = "取出身份卡"
 	set src in oview(1)
 
 	if(!usr || usr.is_mob_incapacitated()) return
 
 	if(scan)
-		to_chat(usr, "You remove \the [scan] from \the [src].")
+		to_chat(usr, "你从[src]中取出了[scan]。")
 		scan.forceMove(get_turf(src))
 		if(!usr.get_active_hand() && istype(usr,/mob/living/carbon/human))
 			usr.put_in_hands(scan)
 		scan = null
 	else
-		to_chat(usr, "There is nothing to remove from the console.")
+		to_chat(usr, "控制台中没有可取出的东西。")
 	return
 
 /obj/structure/machinery/computer/med_data/attackby(obj/item/O as obj, user as mob)
@@ -43,7 +43,7 @@
 			scan = O
 			last_user_name = scan.registered_name
 			last_user_rank = scan.rank
-			to_chat(user, "You insert [O].")
+			to_chat(user, "你插入了[O]。")
 	..()
 
 /obj/structure/machinery/computer/med_data/attack_remote(user as mob)
@@ -54,82 +54,82 @@
 		return
 	var/dat
 	if (src.temp)
-		dat = text("<TT>[src.temp]</TT><BR><BR><A href='byond://?src=\ref[src];temp=1'>Clear Screen</A>")
+		dat = text("<TT>[src.temp]</TT><BR><BR><A href='byond://?src=\ref[src];temp=1'>清空屏幕</A>")
 	else
-		dat = text("Confirm Identity: <A href='byond://?src=\ref[];scan=1'>[]</A><HR>", src, (src.scan ? text("[]", src.scan.name) : "----------"))
+		dat = text("确认身份： <A href='byond://?src=\ref[];scan=1'>[]</A><HR>", src, (src.scan ? text("[]", src.scan.name) : "----------"))
 		if (src.authenticated)
 			switch(src.screen)
 				if(1.0)
 					dat += {"
-<A href='byond://?src=\ref[src];search=1'>Search Records</A>
-<BR><A href='byond://?src=\ref[src];screen=2'>List Records</A>
+<A href='byond://?src=\ref[src];search=1'>搜索档案</A>
+<BR><A href='byond://?src=\ref[src];screen=2'>档案列表</A>
 <BR>
-<BR><A href='byond://?src=\ref[src];screen=5'>Medbot Tracking</A>
+<BR><A href='byond://?src=\ref[src];screen=5'>医疗机器人追踪</A>
 <BR>
-<BR><A href='byond://?src=\ref[src];screen=3'>Record Maintenance</A>
-<BR><A href='byond://?src=\ref[src];logout=1'>{Log Out}</A><BR>
+<BR><A href='byond://?src=\ref[src];screen=3'>档案维护</A>
+<BR><A href='byond://?src=\ref[src];logout=1'>{退出账户}</A><BR>
 "}
 				if(2.0)
-					dat += "<B>Record List</B>:<HR>"
+					dat += "<B>档案列表</B>:<HR>"
 					if(!isnull(GLOB.data_core.general))
 						for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
 							dat += text("<A href='byond://?src=\ref[];d_rec=\ref[]'>[]: []<BR>", src, R, R.fields["id"], R.fields["name"])
 							//Foreach goto(132)
-					dat += text("<HR><A href='byond://?src=\ref[];screen=1'>Back</A>", src)
+					dat += text("<HR><A href='byond://?src=\ref[];screen=1'>返回</A>", src)
 				if(3.0)
-					dat += text("<B>Records Maintenance</B><HR>\n<A href='byond://?src=\ref[];back=1'>Backup To Disk</A><BR>\n<A href='byond://?src=\ref[];u_load=1'>Upload From disk</A><BR>\n<A href='byond://?src=\ref[];del_all=1'>Delete All Records</A><BR>\n<BR>\n<A href='byond://?src=\ref[];screen=1'>Back</A>", src, src, src, src)
+					dat += text("<B>档案维护</B><HR>\n<A href='byond://?src=\ref[];back=1'>备份到磁盘</A><BR>\n<A href='byond://?src=\ref[];u_load=1'>从磁盘载入</A><BR>\n<A href='byond://?src=\ref[];del_all=1'>删除全部档案</A><BR>\n<BR>\n<A href='byond://?src=\ref[];screen=1'>返回</A>", src, src, src, src)
 				if(4.0)
 					if ((istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1)))
-						dat += "<CENTER><B>Medical Record</B></CENTER><BR>"
-						dat += "<table><tr><td>Name: [active1.fields["name"]] \
-								ID: [active1.fields["id"]]<BR>\n \
-								Sex: <A href='byond://?src=\ref[src];field=sex'>[active1.fields["sex"]]</A><BR>\n \
-								Age: <A href='byond://?src=\ref[src];field=age'>[active1.fields["age"]]</A><BR>\n \
-								Physical Status: <A href='byond://?src=\ref[src];field=p_stat'>[active1.fields["p_stat"]]</A><BR>\n \
-								Mental Status: <A href='byond://?src=\ref[src];field=m_stat'>[active1.fields["m_stat"]]</A><BR></td><td align = center valign = top> \
-								Photo:<br><img src=front.png height=64 width=64 border=5><img src=side.png height=64 width=64 border=5></td></tr></table>"
+						dat += "<CENTER><B>医疗档案</B></CENTER><BR>"
+						dat += "<table><tr><td>姓名： [active1.fields["name"]] \
+								编号： [active1.fields["id"]]<BR>\n \
+								性别： <A href='byond://?src=\ref[src];field=sex'>[record_display_text(active1.fields["sex"])]</A><BR>\n \
+								年龄： <A href='byond://?src=\ref[src];field=age'>[active1.fields["age"]]</A><BR>\n \
+								身体状况： <A href='byond://?src=\ref[src];field=p_stat'>[record_display_text(active1.fields["p_stat"])]</A><BR>\n \
+								精神状况： <A href='byond://?src=\ref[src];field=m_stat'>[record_display_text(active1.fields["m_stat"])]</A><BR></td><td align = center valign = top> \
+								照片：<br><img src=front.png height=64 width=64 border=5><img src=side.png height=64 width=64 border=5></td></tr></table>"
 					else
-						dat += "<B>General Record Lost!</B><BR>"
+						dat += "<B>一般档案丢失！</B><BR>"
 					if ((istype(src.active2, /datum/data/record) && GLOB.data_core.medical.Find(src.active2)))
-						dat += "<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: <A href='byond://?src=\ref[src];field=b_type'>[active2.fields["b_type"]]</A><BR>\n<BR>\nMinor Disabilities: <A href='byond://?src=\ref[src];field=mi_dis'>[active2.fields["mi_dis"]]</A><BR>\nDetails: <A href='byond://?src=\ref[src];field=mi_dis_d'>[active2.fields["mi_dis_d"]]</A><BR>\n<BR>\nMajor Disabilities: <A href='byond://?src=\ref[src];field=ma_dis'>[active2.fields["ma_dis"]]</A><BR>\nDetails: <A href='byond://?src=\ref[src];field=ma_dis_d'>[active2.fields["ma_dis_d"]]</A><BR>\n<BR>\nAllergies: <A href='byond://?src=\ref[src];field=alg'>[active2.fields["alg"]]</A><BR>\nDetails: <A href='byond://?src=\ref[src];field=alg_d'>[active2.fields["alg_d"]]</A><BR>\n<BR>\nCurrent Diseases: <A href='byond://?src=\ref[src];field=cdi'>[active2.fields["cdi"]]</A> (per disease info placed in log/comment section)<BR>\nDetails: <A href='byond://?src=\ref[src];field=cdi_d'>[active2.fields["cdi_d"]]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='byond://?src=\ref[src];field=notes'>[decode(src.active2.fields["notes"])]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
+						dat += "<BR>\n<CENTER><B>医疗数据</B></CENTER><BR>\n血型： <A href='byond://?src=\ref[src];field=b_type'>[active2.fields["b_type"]]</A><BR>\n<BR>\n轻度残疾： <A href='byond://?src=\ref[src];field=mi_dis'>[record_display_text(active2.fields["mi_dis"])]</A><BR>\n详情： <A href='byond://?src=\ref[src];field=mi_dis_d'>[record_display_text(active2.fields["mi_dis_d"])]</A><BR>\n<BR>\n重度残疾： <A href='byond://?src=\ref[src];field=ma_dis'>[record_display_text(active2.fields["ma_dis"])]</A><BR>\n详情： <A href='byond://?src=\ref[src];field=ma_dis_d'>[record_display_text(active2.fields["ma_dis_d"])]</A><BR>\n<BR>\n过敏情况： <A href='byond://?src=\ref[src];field=alg'>[record_display_text(active2.fields["alg"])]</A><BR>\n详情： <A href='byond://?src=\ref[src];field=alg_d'>[record_display_text(active2.fields["alg_d"])]</A><BR>\n<BR>\n当前疾病： <A href='byond://?src=\ref[src];field=cdi'>[record_display_text(active2.fields["cdi"])]</A> （各项疾病详情见日志／备注栏）<BR>\n详情： <A href='byond://?src=\ref[src];field=cdi_d'>[record_display_text(active2.fields["cdi_d"])]</A><BR>\n<BR>\n重要备注：<BR>\n\t<A href='byond://?src=\ref[src];field=notes'>[record_display_text(decode(src.active2.fields["notes"]))]</A><BR>\n<BR>\n<CENTER><B>备注／日志</B></CENTER><BR>"
 						var/counter = 1
 						while(active2.fields[text("com_[]", counter)])
 							var/current_index = text("com_[]", counter)
 							if(findtext(active2.fields[current_index], "<BR>"))
-								dat += text("[]<BR><A href='byond://?src=\ref[];del_c=[]'>Delete Entry</A><BR><BR>", active2.fields[current_index], src, counter)
+								dat += text("[]<BR><A href='byond://?src=\ref[];del_c=[]'>删除条目</A><BR><BR>", active2.fields[current_index], src, counter)
 							else
 								dat += text("[]<BR><BR>", active2.fields[current_index])
 							counter++
-						dat += text("<A href='byond://?src=\ref[];add_c=1'>Add Entry</A><BR><BR>", src)
-						dat += text("<A href='byond://?src=\ref[];del_r=1'>Delete Record (Medical Only)</A><BR><BR>", src)
+						dat += text("<A href='byond://?src=\ref[];add_c=1'>添加条目</A><BR><BR>", src)
+						dat += text("<A href='byond://?src=\ref[];del_r=1'>删除档案（仅医疗部分）</A><BR><BR>", src)
 					else
-						dat += "<B>Medical Record Lost!</B><BR>"
-						dat += text("<A href='byond://?src=\ref[src];new=1'>New Record</A><BR><BR>")
-					dat += text("\n<A href='byond://?src=\ref[];print_p=1'>Print Record</A><BR>\n", src)
-					dat += text("\n<A href='byond://?src=\ref[];print_bs=1'>Print Latest Bodyscan</A><BR><BR>\n<A href='byond://?src=\ref[];screen=2'>Back</A><BR>", src, src)
+						dat += "<B>医疗档案丢失！</B><BR>"
+						dat += text("<A href='byond://?src=\ref[src];new=1'>新建档案</A><BR><BR>")
+					dat += text("\n<A href='byond://?src=\ref[];print_p=1'>打印档案</A><BR>\n", src)
+					dat += text("\n<A href='byond://?src=\ref[];print_bs=1'>打印最新全身扫描</A><BR><BR>\n<A href='byond://?src=\ref[];screen=2'>返回</A><BR>", src, src)
 				if(5)
-					dat += "<center><b>Medical Robot Monitor</b></center>"
-					dat += "<a href='byond://?src=\ref[src];screen=1'>Back</a>"
-					dat += "<br><b>Medical Robots:</b>"
+					dat += "<center><b>医疗机器人监控</b></center>"
+					dat += "<a href='byond://?src=\ref[src];screen=1'>返回</a>"
+					dat += "<br><b>医疗机器人：</b>"
 					var/bdat = null
 					for(var/obj/structure/machinery/bot/medbot/M in GLOB.machines)
 
 						if(M.z != src.z) continue //only find medibots on the same z-level as the computer
 						var/turf/bl = get_turf(M)
 						if(bl) //if it can't find a turf for the medibot, then it probably shouldn't be showing up
-							bdat += "[M.name] - <b>\[[bl.x],[bl.y]\]</b> - [M.on ? "Online" : "Offline"]<br>"
+							bdat += "[M.name] - <b>\[[bl.x],[bl.y]\]</b> - [M.on ? "在线" : "离线"]<br>"
 							if((!isnull(M.reagent_glass)) && M.use_beaker)
-								bdat += "Reservoir: \[[M.reagent_glass.reagents.total_volume]/[M.reagent_glass.reagents.maximum_volume]\]<br>"
+								bdat += "储液器： \[[M.reagent_glass.reagents.total_volume]/[M.reagent_glass.reagents.maximum_volume]\]<br>"
 							else
-								bdat += "Using Internal Synthesizer.<br>"
+								bdat += "正在使用内置合成器。<br>"
 					if(!bdat)
-						dat += "<br><center>None detected</center>"
+						dat += "<br><center>未检测到</center>"
 					else
 						dat += "<br>[bdat]"
 
 		else
-			dat += text("<A href='byond://?src=\ref[];login=1'>{Log In}</A>", src)
-	show_browser(user, dat, "Medical Records", "med_rec")
+			dat += text("<A href='byond://?src=\ref[];login=1'>{登录}</A>", src)
+	show_browser(user, dat, "医疗档案", "med_rec")
 	onclose(user, "med_rec")
 	return
 
@@ -206,14 +206,14 @@
 				src.active2 = null
 
 			if (href_list["del_all"])
-				src.temp = text("Are you sure you wish to delete all records?<br>\n\t<A href='byond://?src=\ref[];temp=1;del_all2=1'>Yes</A><br>\n\t<A href='byond://?src=\ref[];temp=1'>No</A><br>", src, src)
+				src.temp = text("确定要删除全部档案吗？<br>\n\t<A href='byond://?src=\ref[];temp=1;del_all2=1'>是</A><br>\n\t<A href='byond://?src=\ref[];temp=1'>否</A><br>", src, src)
 
 			if (href_list["del_all2"])
 				for(var/datum/data/record/R as anything in GLOB.data_core.medical)
 					GLOB.data_core.medical -= R
 					qdel(R)
 					//Foreach goto(494)
-				temp = "All records deleted."
+				temp = "已删除全部档案。"
 				msg_admin_niche("[key_name_admin(usr)] deleted all medical records.")
 
 			if (href_list["field"])
@@ -229,83 +229,83 @@
 							msg_admin_niche("[key_name_admin(usr)] set the medical record sex for [active1.fields["name"]] ([active1.fields["id"]]) to [new_value].")
 					if("age")
 						if (istype(active1, /datum/data/record))
-							var/new_value = input("Please input age:", "Med. records", active1.fields["age"], null)  as num
+							var/new_value = input("请输入年龄：", "医疗档案", active1.fields["age"], null)  as num
 							if ((!( new_value ) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr))) || active1 != a1))
 								return
 							active1.fields["age"] = new_value
 							msg_admin_niche("[key_name_admin(usr)] set the medical record age for [active1.fields["name"]] ([active1.fields["id"]]) to [new_value].")
 					if("mi_dis")
 						if (istype(active2, /datum/data/record))
-							var/new_value = copytext(trim(strip_html(input("Please input minor disabilities list:", "Med. records", active2.fields["mi_dis"], null)  as text)),1,MAX_RECORDS_MESSAGE_LEN)
+							var/new_value = copytext(trim(strip_html(input("请输入轻度残疾列表：", "医疗档案", active2.fields["mi_dis"], null)  as text)),1,MAX_RECORDS_MESSAGE_LEN)
 							if ((!( new_value ) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr))) || active2 != a2))
 								return
 							active2.fields["mi_dis"] = new_value
 							msg_admin_niche("[key_name_admin(usr)] set the medical record minor disabilities list for [active1.fields["name"]] ([active1.fields["id"]]) to [new_value].")
 					if("mi_dis_d")
 						if (istype(active2, /datum/data/record))
-							var/new_value = copytext(trim(strip_html(input("Please summarize minor dis.:", "Med. records", active2.fields["mi_dis_d"], null)  as message)),1,MAX_RECORDS_MESSAGE_LEN)
+							var/new_value = copytext(trim(strip_html(input("请简述轻度残疾情况：", "医疗档案", active2.fields["mi_dis_d"], null)  as message)),1,MAX_RECORDS_MESSAGE_LEN)
 							if ((!( new_value ) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr))) || active2 != a2))
 								return
 							active2.fields["mi_dis_d"] = new_value
 							msg_admin_niche("[key_name_admin(usr)] set the medical record minor disabilities desc for [active1.fields["name"]] ([active1.fields["id"]]) to [new_value].")
 					if("ma_dis")
 						if (istype(active2, /datum/data/record))
-							var/new_value = copytext(trim(strip_html(input("Please input major diabilities list:", "Med. records", active2.fields["ma_dis"], null)  as text)),1,MAX_RECORDS_MESSAGE_LEN)
+							var/new_value = copytext(trim(strip_html(input("请输入重度残疾列表：", "医疗档案", active2.fields["ma_dis"], null)  as text)),1,MAX_RECORDS_MESSAGE_LEN)
 							if ((!( new_value ) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr))) || active2 != a2))
 								return
 							active2.fields["ma_dis"] = new_value
 							msg_admin_niche("[key_name_admin(usr)] set the medical record major disabilities list for [active1.fields["name"]] ([active1.fields["id"]]) to [new_value].")
 					if("ma_dis_d")
 						if (istype(active2, /datum/data/record))
-							var/new_value = copytext(trim(strip_html(input("Please summarize major dis.:", "Med. records", active2.fields["ma_dis_d"], null)  as message)),1,MAX_RECORDS_MESSAGE_LEN)
+							var/new_value = copytext(trim(strip_html(input("请简述重度残疾情况：", "医疗档案", active2.fields["ma_dis_d"], null)  as message)),1,MAX_RECORDS_MESSAGE_LEN)
 							if ((!( new_value ) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr))) || active2 != a2))
 								return
 							active2.fields["ma_dis_d"] = new_value
 							msg_admin_niche("[key_name_admin(usr)] set the medical record major disabilities desc for [active1.fields["name"]] ([active1.fields["id"]]) to [new_value].")
 					if("alg")
 						if (istype(active2, /datum/data/record))
-							var/new_value = copytext(trim(strip_html(input("Please state allergies:", "Med. records", active2.fields["alg"], null)  as text)),1,MAX_RECORDS_MESSAGE_LEN)
+							var/new_value = copytext(trim(strip_html(input("请输入过敏情况：", "医疗档案", active2.fields["alg"], null)  as text)),1,MAX_RECORDS_MESSAGE_LEN)
 							if ((!( new_value ) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr))) || active2 != a2))
 								return
 							active2.fields["alg"] = new_value
 							msg_admin_niche("[key_name_admin(usr)] set the medical record allergies list for [active1.fields["name"]] ([active1.fields["id"]]) to [new_value].")
 					if("alg_d")
 						if (istype(active2, /datum/data/record))
-							var/new_value = copytext(trim(strip_html(input("Please summarize allergies:", "Med. records", active2.fields["alg_d"], null)  as message)),1,MAX_RECORDS_MESSAGE_LEN)
+							var/new_value = copytext(trim(strip_html(input("请简述过敏情况：", "医疗档案", active2.fields["alg_d"], null)  as message)),1,MAX_RECORDS_MESSAGE_LEN)
 							if ((!( new_value ) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr))) || active2 != a2))
 								return
 							active2.fields["alg_d"] = new_value
 							msg_admin_niche("[key_name_admin(usr)] set the medical record allergies desc for [active1.fields["name"]] ([active1.fields["id"]]) to [new_value].")
 					if("cdi")
 						if (istype(active2, /datum/data/record))
-							var/new_value = copytext(trim(strip_html(input("Please state diseases:", "Med. records", active2.fields["cdi"], null)  as text)),1,MAX_RECORDS_MESSAGE_LEN)
+							var/new_value = copytext(trim(strip_html(input("请输入疾病：", "医疗档案", active2.fields["cdi"], null)  as text)),1,MAX_RECORDS_MESSAGE_LEN)
 							if ((!( new_value ) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr))) || active2 != a2))
 								return
 							active2.fields["cdi"] = new_value
 							msg_admin_niche("[key_name_admin(usr)] set the medical record disabilities list for [active1.fields["name"]] ([active1.fields["id"]]) to [new_value].")
 					if("cdi_d")
 						if (istype(active2, /datum/data/record))
-							var/new_value = copytext(trim(strip_html(input("Please summarize diseases:", "Med. records", active2.fields["cdi_d"], null)  as message)),1,MAX_RECORDS_MESSAGE_LEN)
+							var/new_value = copytext(trim(strip_html(input("请简述疾病情况：", "医疗档案", active2.fields["cdi_d"], null)  as message)),1,MAX_RECORDS_MESSAGE_LEN)
 							if ((!( new_value ) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr))) || active2 != a2))
 								return
 							active2.fields["cdi_d"] = new_value
 							msg_admin_niche("[key_name_admin(usr)] set the medical record disabilities desc for [active1.fields["name"]] ([active1.fields["id"]]) to [new_value].")
 					if("notes")
 						if (istype(active2, /datum/data/record))
-							var/new_value = copytext(html_encode(trim(input("Please summarize notes:", "Med. records", html_decode(active2.fields["notes"]), null)  as message)),1,MAX_RECORDS_MESSAGE_LEN)
+							var/new_value = copytext(html_encode(trim(input("请输入备注摘要：", "医疗档案", html_decode(active2.fields["notes"]), null)  as message)),1,MAX_RECORDS_MESSAGE_LEN)
 							if ((!( new_value ) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr))) || active2 != a2))
 								return
 							active2.fields["notes"] = new_value
 							msg_admin_niche("[key_name_admin(usr)] set the medical record notes for [active1.fields["name"]] ([active1.fields["id"]]) to [new_value].")
 					if("p_stat")
 						if (istype(active1, /datum/data/record))
-							temp = text("<B>Physical Condition:</B><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=deceased'>*Deceased*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=ssd'>*SSD*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=active'>Active</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=unfit'>Physically Unfit</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=disabled'>Disabled</A><BR>", src, src, src, src, src)
+							temp = text("<B>身体状况：</B><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=deceased'>*已死亡*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=ssd'>*离线*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=active'>健康</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=unfit'>身体不适</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=disabled'>残疾</A><BR>", src, src, src, src, src)
 					if("m_stat")
 						if (istype(active1, /datum/data/record))
-							temp = text("<B>Mental Condition:</B><BR>\n\t<A href='byond://?src=\ref[];temp=1;m_stat=insane'>*Insane*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;m_stat=unstable'>*Unstable*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;m_stat=watch'>*Watch*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;m_stat=stable'>Stable</A><BR>", src, src, src, src)
+							temp = text("<B>精神状况：</B><BR>\n\t<A href='byond://?src=\ref[];temp=1;m_stat=insane'>*精神失常*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;m_stat=unstable'>*不稳定*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;m_stat=watch'>*需观察*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;m_stat=stable'>稳定</A><BR>", src, src, src, src)
 					if("b_type")
 						if (istype(active2, /datum/data/record))
-							temp = text("<B>Blood Type:</B><BR>\n\t<A href='byond://?src=\ref[];temp=1;b_type=an'>A-</A> <A href='byond://?src=\ref[];temp=1;b_type=ap'>A+</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;b_type=bn'>B-</A> <A href='byond://?src=\ref[];temp=1;b_type=bp'>B+</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;b_type=abn'>AB-</A> <A href='byond://?src=\ref[];temp=1;b_type=abp'>AB+</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;b_type=on'>O-</A> <A href='byond://?src=\ref[];temp=1;b_type=op'>O+</A><BR>", src, src, src, src, src, src, src, src)
+							temp = text("<B>血型：</B><BR>\n\t<A href='byond://?src=\ref[];temp=1;b_type=an'>A-</A> <A href='byond://?src=\ref[];temp=1;b_type=ap'>A+</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;b_type=bn'>B-</A> <A href='byond://?src=\ref[];temp=1;b_type=bp'>B+</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;b_type=abn'>AB-</A> <A href='byond://?src=\ref[];temp=1;b_type=abp'>AB+</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;b_type=on'>O-</A> <A href='byond://?src=\ref[];temp=1;b_type=op'>O+</A><BR>", src, src, src, src, src, src, src, src)
 
 
 			if (href_list["p_stat"])
@@ -359,7 +359,7 @@
 
 			if (href_list["del_r"])
 				if(istype(active2, /datum/data/record))
-					temp = text("Are you sure you wish to delete the record (Medical Portion Only)?<br>\n\t<A href='byond://?src=\ref[];temp=1;del_r2=1'>Yes</A><br>\n\t<A href='byond://?src=\ref[];temp=1'>No</A><br>", src, src)
+					temp = text("确定要删除此档案的医疗部分吗？<br>\n\t<A href='byond://?src=\ref[];temp=1;del_r2=1'>是</A><br>\n\t<A href='byond://?src=\ref[];temp=1'>否</A><br>", src, src)
 
 			if (href_list["del_r2"])
 				msg_admin_niche("[key_name_admin(usr)] deleted the medical record for [active1.fields["name"]] ([active1.fields["id"]]).")
@@ -369,7 +369,7 @@
 				var/datum/data/record/R = locate(href_list["d_rec"])
 				var/datum/data/record/M = locate(href_list["d_rec"])
 				if (!( GLOB.data_core.general.Find(R) ))
-					src.temp = "Record Not Found!"
+					src.temp = "未找到档案！"
 					return
 				for(var/datum/data/record/E in GLOB.data_core.medical)
 					if ((E.fields["ref"] == R.fields["ref"] || E.fields["id"] == R.fields["id"]))
@@ -402,7 +402,7 @@
 				if (!( istype(active2, /datum/data/record) ))
 					return
 				var/a2 = active2
-				var/new_value = copytext(trim(strip_html(input("Add Comment:", "Med. records", null, null)  as message)),1,MAX_RECORDS_MESSAGE_LEN)
+				var/new_value = copytext(trim(strip_html(input("添加备注：", "医疗档案", null, null)  as message)),1,MAX_RECORDS_MESSAGE_LEN)
 				if ((!( new_value ) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr))) || active2 != a2))
 					return
 				var/counter = 1
@@ -417,7 +417,7 @@
 					active2.fields[text("com_[]", href_list["del_c"])] = text("Deleted entry by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOB.game_year]")
 
 			if (href_list["search"])
-				var/t1 = stripped_input(usr, "Search String: (Name, DNA, or ID)", "Med. records")
+				var/t1 = stripped_input(usr, "搜索内容（姓名、DNA或编号）：", "医疗档案")
 				if ((!( t1 ) || usr.stat || !( src.authenticated ) || usr.is_mob_restrained() || ((!in_range(src, usr)) && (!isRemoteControlling(usr)))))
 					return
 				src.active1 = null
@@ -427,7 +427,7 @@
 					if ((lowertext(R.fields["name"]) == t1 || t1 == lowertext(R.fields["id"])))
 						src.active2 = R
 				if (!active2)
-					temp = "Could not locate record [t1]."
+					temp = "找不到档案 [t1]。"
 				else
 					for(var/datum/data/record/E in GLOB.data_core.general)
 						if ((E.fields["name"] == src.active2.fields["name"] || E.fields["id"] == src.active2.fields["id"]))
@@ -446,23 +446,23 @@
 					playsound(src.loc, 'sound/machines/fax.ogg', 15, 1)
 					sleep(40)
 					var/obj/item/paper/P = new /obj/item/paper( src.loc )
-					P.info = "<CENTER><B>Medical Record</B></CENTER><BR>"
+					P.info = "<CENTER><B>医疗档案</B></CENTER><BR>"
 					if (record1)
-						P.info += text("Name: [] <BR>\nID: []<BR>\nSex: []<BR>\nAge: []<BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", record1.fields["name"], record1.fields["id"], record1.fields["sex"], record1.fields["age"], record1.fields["p_stat"], record1.fields["m_stat"])
-						P.name = text("Medical Record ([])", record1.fields["name"])
+						P.info += text("姓名： [] <BR>\n编号： []<BR>\n性别： []<BR>\n年龄： []<BR>\n身体状况： []<BR>\n精神状况： []<BR>", record1.fields["name"], record1.fields["id"], record_display_text(record1.fields["sex"]), record1.fields["age"], record_display_text(record1.fields["p_stat"]), record_display_text(record1.fields["m_stat"]))
+						P.name = text("医疗档案 ([])", record1.fields["name"])
 					else
-						P.info += "<B>General Record Lost!</B><BR>"
-						P.name = "Medical Record"
+						P.info += "<B>一般档案丢失！</B><BR>"
+						P.name = "医疗档案"
 					if (record2)
-						P.info += "<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: [record2.fields["b_type"]]<BR>\n<BR>\nMinor Disabilities: [record2.fields["mi_dis"]]<BR>\nDetails: [record2.fields["mi_dis_d"]]<BR>\n<BR>\nMajor Disabilities: [record2.fields["ma_dis"]]<BR>\nDetails: [record2.fields["ma_dis_d"]]<BR>\n<BR>\nAllergies: [record2.fields["alg"]]<BR>\nDetails: [record2.fields["alg_d"]]<BR>\n<BR>\nCurrent Diseases: [record2.fields["cdi"]] (per disease info placed in log/comment section)<BR>\nDetails: [record2.fields["cdi_d"]]<BR>\n<BR>\nImportant Notes:<BR>\n\t[decode(record2.fields["notes"])]<BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
+						P.info += "<BR>\n<CENTER><B>医疗数据</B></CENTER><BR>\n血型： [record2.fields["b_type"]]<BR>\n<BR>\n轻度残疾： [record_display_text(record2.fields["mi_dis"])]<BR>\n详情： [record_display_text(record2.fields["mi_dis_d"])]<BR>\n<BR>\n重度残疾： [record_display_text(record2.fields["ma_dis"])]<BR>\n详情： [record_display_text(record2.fields["ma_dis_d"])]<BR>\n<BR>\n过敏情况： [record_display_text(record2.fields["alg"])]<BR>\n详情： [record_display_text(record2.fields["alg_d"])]<BR>\n<BR>\n当前疾病： [record_display_text(record2.fields["cdi"])] （各项疾病详情见日志／备注栏）<BR>\n详情： [record_display_text(record2.fields["cdi_d"])]<BR>\n<BR>\n重要备注：<BR>\n\t[record_display_text(decode(record2.fields["notes"]))]<BR>\n<BR>\n<CENTER><B>备注／日志</B></CENTER><BR>"
 						var/counter = 1
 						while(record2.fields[text("com_[]", counter)])
 							P.info += text("[]<BR>", record2.fields[text("com_[]", counter)])
 							counter++
 					else
-						P.info += "<B>Medical Record Lost!</B><BR>"
+						P.info += "<B>医疗档案丢失！</B><BR>"
 					P.info += "</TT>"
-					P.info += text("<BR><HR><font size = \"1\"><I>This report was printed by [] [].<BR>The [MAIN_SHIP_NAME],[]/[], []</I></font><BR>\n<span class=\"paper_field\"></span>",rank,authenticated,time2text(world.timeofday, "MM/DD"),GLOB.game_year,worldtime2text())
+					P.info += text("<BR><HR><font size = \"1\"><I>本报告由 [] [] 打印。<BR>[MAIN_SHIP_NAME]，[]/[], []</I></font><BR>\n<span class=\"paper_field\"></span>",rank,authenticated,time2text(world.timeofday, "MM/DD"),GLOB.game_year,worldtime2text())
 					src.printing = null
 
 			if(href_list["print_bs"])//Prints latest body scan
@@ -476,16 +476,16 @@
 					sleep(40)
 					var/datum/asset/asset = get_asset_datum(/datum/asset/simple/paper)
 					var/obj/item/paper/P = new /obj/item/paper( src.loc )
-					P.name = text("Scan: [], []",record.fields["name"],worldtime2text())
-					P.info += text("<center><img src = [asset.get_url_mappings()["wylogo.png"]]><HR><I><B>Official Weyland-Yutani Document</B><BR>Scan Record</I><HR><H2>[]</H2>\n</center>",record.fields["name"])
+					P.name = text("扫描：[]，[]",record.fields["name"],worldtime2text())
+					P.info += text("<center><img src = [asset.get_url_mappings()["wylogo.png"]]><HR><I><B>维兰德-汤谷正式文件</B><BR>扫描记录</I><HR><H2>[]</H2>\n</center>",record.fields["name"])
 					for(var/datum/data/record/R as anything in GLOB.data_core.medical)
 						if (R.fields["name"] ==  record.fields["name"])
 							if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
 								P.info += R.fields["last_scan_result"]
 								break
 							else
-								P.info += "No scan on record."
-					P.info += text("<BR><HR><font size = \"1\"><I>This report was printed by [] [].<BR>The [MAIN_SHIP_NAME],  []/[], []</I></font><BR>\n<span class=\"paper_field\"></span>",rank,authenticated,time2text(world.timeofday, "MM/DD"),GLOB.game_year,worldtime2text())
+								P.info += "档案中没有扫描记录。"
+					P.info += text("<BR><HR><font size = \"1\"><I>本报告由 [] [] 打印。<BR>[MAIN_SHIP_NAME]，  []/[], []</I></font><BR>\n<span class=\"paper_field\"></span>",rank,authenticated,time2text(world.timeofday, "MM/DD"),GLOB.game_year,worldtime2text())
 					src.printing = null
 
 
@@ -529,8 +529,33 @@
 			continue
 
 
+/obj/structure/machinery/computer/med_data/proc/record_display_text(value)
+	if(!istext(value))
+		return value
+	var/static/list/display_values = list(
+		"Male" = "男性",
+		"Female" = "女性",
+		"*Deceased*" = "*已死亡*",
+		"*SSD*" = "*离线*",
+		"Active" = "健康",
+		"Physically Unfit" = "身体不适",
+		"Disabled" = "残疾",
+		"*Insane*" = "*精神失常*",
+		"*Unstable*" = "*不稳定*",
+		"*Watch*" = "*需观察*",
+		"Stable" = "稳定",
+		"Unknown" = "未知",
+		"None" = "无",
+		"No minor disabilities have been declared." = "未申报轻度残疾。",
+		"No major disabilities have been diagnosed." = "未诊断出重度残疾。",
+		"No allergies have been detected in this patient." = "未发现患者有过敏情况。",
+		"No diseases have been diagnosed at the moment." = "目前未诊断出疾病。",
+		"No notes." = "无备注。",
+	)
+	return display_values[value] || value
+
 /obj/structure/machinery/computer/med_data/laptop
-	name = "Medical Laptop"
-	desc = "Cheap Weyland-Yutani Laptop."
+	name = "医疗笔记本电脑"
+	desc = "廉价的维兰德-汤谷笔记本电脑。"
 	icon_state = "medlaptop"
 	density = FALSE

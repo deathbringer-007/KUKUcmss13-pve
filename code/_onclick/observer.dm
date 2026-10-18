@@ -6,9 +6,9 @@
 	if(!client) return
 	client.inquisitive_ghost = !client.inquisitive_ghost
 	if(client.inquisitive_ghost)
-		to_chat(src, SPAN_NOTICE(" You will now examine everything you click on."))
+		to_chat(src, SPAN_NOTICE(" 你现在会查看每个点击的对象。"))
 	else
-		to_chat(src, SPAN_NOTICE(" You will no longer examine things you click on."))
+		to_chat(src, SPAN_NOTICE(" 你不再自动查看点击的对象。"))
 
 /mob/dead/observer/click(atom/target, list/mods)
 	if(..())
@@ -22,7 +22,7 @@
 		if(target == src)
 			if(!can_reenter_corpse || !mind || !mind.current)
 				return
-			if(alert(src, "Are you sure you want to re-enter your corpse?", "Confirm", "Yes", "No") == "Yes")
+			if(alert(src, "确定要重新进入自己的尸体吗？", "确认", "Yes", "No") == "Yes")
 				reenter_corpse()
 				return TRUE
 
@@ -30,7 +30,7 @@
 			if(isxeno(target) && SSticker.mode.check_xeno_late_join(src)) //if it's a xeno and all checks are alright, we are gonna try to take their body
 				var/mob/living/carbon/xenomorph/xeno = target
 				if(xeno.stat == DEAD || should_block_game_interaction(xeno) || xeno.aghosted)
-					to_chat(src, SPAN_WARNING("You cannot join as [xeno]."))
+					to_chat(src, SPAN_WARNING("你无法以[xeno]的身份加入。"))
 					do_observe(xeno)
 					return FALSE
 
@@ -40,7 +40,7 @@
 						if(islarva(xeno))
 							to_wait = XENO_LEAVE_TIMER_LARVA - xeno.away_timer
 						if(to_wait > 60 SECONDS) // don't spam for clearly non-AFK xenos
-							to_chat(src, SPAN_WARNING("That player hasn't been away long enough. Please wait [to_wait] second\s longer."))
+							to_chat(src, SPAN_WARNING("那位玩家离开的时间还不够长。请再等待[to_wait]秒。"))
 						do_observe(target)
 						return FALSE
 
@@ -49,18 +49,18 @@
 						var/message = "You have been dead for [DisplayTimeText(deathtime)]."
 						message = SPAN_WARNING("[message]")
 						to_chat(src, message)
-						to_chat(src, SPAN_WARNING("You must wait at least 2.5 minutes before rejoining the game!"))
+						to_chat(src, SPAN_WARNING("重新加入游戏前，你必须等待至少2.5分钟！"))
 						do_observe(target)
 						return FALSE
 
 				if(xeno.hive)
 					for(var/mob_name in xeno.hive.banished_ckeys)
 						if(xeno.hive.banished_ckeys[mob_name] == ckey)
-							to_chat(src, SPAN_WARNING("You are banished from the [xeno.hive], you may not rejoin unless the Queen re-admits you or dies."))
+							to_chat(src, SPAN_WARNING("你已被[xeno.hive]放逐，除非女王重新接纳你或死亡，否则你无法重新加入。"))
 							do_observe(target)
 							return FALSE
 
-				if(alert(src, "Are you sure you want to transfer yourself into [xeno]?", "Confirm Transfer", "Yes", "No") != "Yes")
+				if(alert(src, "确定要转入 [xeno] 的身体吗？", "确认转移", "Yes", "No") != "Yes")
 					return FALSE
 				if(((!islarva(xeno) && xeno.away_timer < XENO_LEAVE_TIMER) || (islarva(xeno) && xeno.away_timer < XENO_LEAVE_TIMER_LARVA)) || xeno.stat == DEAD) // Do it again, just in case
 					to_chat(src, SPAN_WARNING("That xenomorph can no longer be controlled. Please try another."))
@@ -106,7 +106,7 @@
 
 /obj/structure/ladder/attack_ghost(mob/user as mob)
 	if(up && down)
-		switch( alert("Go up or down the ladder?", "Ladder", "Up", "Down", "Cancel") )
+		switch( alert("要沿梯子向上爬，还是向下爬？", "梯子", "Up", "Down", "Cancel") )
 			if("Up")
 				user.forceMove(get_turf(up))
 			if("Down")

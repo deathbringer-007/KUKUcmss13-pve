@@ -6,7 +6,7 @@
 /datum/chem_property/positive/antitoxic
 	name = PROPERTY_ANTITOXIC
 	code = "ATX"
-	description = "Absorbs and neutralizes toxic chemicals in the bloodstream and allowing them to be excreted safely."
+	description = "吸收并中和血液中的有毒化学物质，使其能够安全排出体外。"
 	rarity = PROPERTY_COMMON
 	starter = TRUE
 	value = 1
@@ -24,7 +24,7 @@
 /datum/chem_property/positive/anticorrosive
 	name = PROPERTY_ANTICORROSIVE
 	code = "ACR"
-	description = "Accelerates cell division around corroded areas in order to replace the lost tissue. Excessive use can trigger apoptosis."
+	description = "加快腐蚀部位周围的细胞分裂，以补充失去的组织。过量使用可能引发细胞凋亡。"
 	rarity = PROPERTY_COMMON
 	starter = TRUE
 	value = 1
@@ -44,7 +44,7 @@
 /datum/chem_property/positive/neogenetic
 	name = PROPERTY_NEOGENETIC
 	code = "NGN"
-	description = "Regenerates ruptured membranes resulting in the repair of damaged organic tissue. High concentrations can corrode the cell membranes."
+	description = "再生破裂的细胞膜，修复受损的有机组织。浓度过高会腐蚀细胞膜。"
 	rarity = PROPERTY_COMMON
 	starter = TRUE
 	value = 1
@@ -71,7 +71,7 @@
 /datum/chem_property/positive/repairing
 	name = PROPERTY_REPAIRING
 	code = "REP"
-	description = "Repairs cybernetic organs by the use of REDACTED property of REDACTED element."
+	description = "利用【已删节】元素的【已删节】特性修复机械器官。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_MEDICINE
 	value = 2
@@ -102,7 +102,7 @@
 /datum/chem_property/positive/hemogenic
 	name = PROPERTY_HEMOGENIC
 	code = "HMG"
-	description = "Increases the production of erythrocytes (red blood cells) in the bonemarrow, leading to polycythemia, an elevated volume of erythrocytes in the blood."
+	description = "促进骨髓生成红细胞，使血液中的红细胞数量增多。"
 	rarity = PROPERTY_COMMON
 
 /datum/chem_property/positive/hemogenic/process(mob/living/M, potency = 1, delta_time)
@@ -137,7 +137,7 @@
 /datum/chem_property/positive/hemostatic
 	name = PROPERTY_HEMOSTATIC
 	code = "HSC"
-	description = "Vastly improves the blood's natural ability to coagulate and stop bleeding by heightening platelet production and effectiveness. Overdosing will cause extreme blood clotting, resulting in severe tissue damage."
+	description = "增加血小板的生成量并增强其作用，大幅提高血液自然凝固和止血的能力。过量会引发严重血栓，造成重度组织损伤。"
 	rarity = PROPERTY_UNCOMMON
 	max_level = 1
 	value = 2
@@ -161,7 +161,7 @@
 /datum/chem_property/positive/nervestimulating
 	name = PROPERTY_NERVESTIMULATING
 	code = "NST"
-	description = "Increases neuron communication speed across synapses resulting in improved reaction time, awareness and muscular control."
+	description = "加快神经元跨突触的信息传递，改善反应速度、感知力和肌肉控制能力。"
 	rarity = PROPERTY_RARE
 	category = PROPERTY_TYPE_STIMULANT
 	value = 3
@@ -194,7 +194,7 @@
 /datum/chem_property/positive/musclestimulating
 	name = PROPERTY_MUSCLESTIMULATING
 	code = "MST"
-	description = "Stimulates neuromuscular junctions increasing the force of muscle contractions, resulting in increased strength. High doses might exhaust the cardiac muscles."
+	description = "刺激神经肌肉接头，增强肌肉收缩力，从而提高力量。剂量过高可能导致心肌衰竭。"
 	rarity = PROPERTY_RARE
 	category = PROPERTY_TYPE_STIMULANT
 
@@ -221,7 +221,7 @@
 /datum/chem_property/positive/painkilling
 	name = PROPERTY_PAINKILLING
 	code = "PNK"
-	description = "Binds to opioid receptors in the brain and spinal cord reducing the amount of pain signals being sent to the brain."
+	description = "与大脑和脊髓中的阿片受体结合，减少传往大脑的疼痛信号。"
 	rarity = PROPERTY_COMMON
 	category = PROPERTY_TYPE_STIMULANT
 	value = 1
@@ -254,7 +254,7 @@
 /datum/chem_property/positive/hepatopeutic
 	name = PROPERTY_HEPATOPEUTIC
 	code = "HPP"
-	description = "Treats deteriorated hepatocytes and damaged tissues in the liver, restoring organ functions."
+	description = "修复肝脏中退化的肝细胞和受损组织，恢复器官功能。"
 	rarity = PROPERTY_UNCOMMON
 	value = 1
 
@@ -274,7 +274,7 @@
 /datum/chem_property/positive/nephropeutic
 	name = PROPERTY_NEPHROPEUTIC
 	code = "NPP"
-	description = "Heals damaged and deteriorated podocytes in the kidney, restoring organ functions."
+	description = "修复肾脏中受损或退化的足细胞，恢复器官功能。"
 	rarity = PROPERTY_UNCOMMON
 	value = 1
 
@@ -294,7 +294,7 @@
 /datum/chem_property/positive/pneumopeutic
 	name = PROPERTY_PNEUMOPEUTIC
 	code = "PNP"
-	description = "Mends the interstitium tissue of the alveoli restoring respiratory functions in the lungs."
+	description = "修复肺泡的间质组织，恢复肺部呼吸功能。"
 	rarity = PROPERTY_UNCOMMON
 	value = 1
 
@@ -314,7 +314,7 @@
 /datum/chem_property/positive/oculopeutic
 	name = PROPERTY_OCULOPEUTIC
 	code = "OCP"
-	description = "Restores sensory capabilities of photoreceptive cells in the eyes returning lost vision."
+	description = "恢复眼部感光细胞的感知能力，使失去的视力恢复。"
 	rarity = PROPERTY_COMMON
 	value = 1
 
@@ -335,7 +335,7 @@
 /datum/chem_property/positive/cardiopeutic
 	name = PROPERTY_CARDIOPEUTIC
 	code = "CDP"
-	description = "Regenerates damaged cardiomyocytes and recovers a correct cardiac cycle and heart functionality."
+	description = "再生受损的心肌细胞，恢复正常的心动周期与心脏功能。"
 	rarity = PROPERTY_UNCOMMON
 	value = 1
 
@@ -361,7 +361,7 @@
 /datum/chem_property/positive/neuropeutic
 	name = PROPERTY_NEUROPEUTIC
 	code = "NRP"
-	description = "Rebuilds damaged and broken neurons in the central nervous system re-establishing brain functionality."
+	description = "重建中枢神经系统中受损或断裂的神经元，恢复大脑功能。"
 	rarity = PROPERTY_COMMON
 
 /datum/chem_property/positive/neuropeutic/process(mob/living/M, potency = 1)
@@ -377,7 +377,7 @@
 /datum/chem_property/positive/bonemending
 	name = PROPERTY_BONEMENDING
 	code = "BNM"
-	description = "Rapidly increases the production of osteoblasts and chondroblasts while also accelerating the process of endochondral ossification. This allows broken bone tissue to be re-wowen and restored quickly if the bone is correctly positioned. Overdosing may result in the bone structure growing abnormally and can have adverse effects on the skeletal structure."
+	description = "迅速增加成骨细胞和成软骨细胞的生成量，同时加快软骨内成骨。骨骼正确复位后，可使断裂的骨组织迅速重新连接并修复。过量可能导致骨骼异常生长，对骨架造成不良影响。"
 	rarity = PROPERTY_UNCOMMON
 
 /datum/chem_property/positive/bonemending/process(mob/living/M, potency = 1, delta_time)
@@ -404,7 +404,7 @@
 				var/total_knitting_time = world.time + L.time_to_knit - min(150*potency, L.time_to_knit - 50)
 				L.knitting_time = total_knitting_time
 				L.start_processing()
-				to_chat(M, SPAN_NOTICE("You feel the bones in your [L.display_name] starting to knit together."))
+				to_chat(M, SPAN_NOTICE("你感觉[L.display_name]中的骨骼开始重新接合。"))
 
 /datum/chem_property/positive/bonemending/process_overdose(mob/living/M, potency = 1)
 	M.take_limb_damage(POTENCY_MULTIPLIER_MEDIUM*potency)
@@ -420,7 +420,7 @@
 /datum/chem_property/positive/fluxing
 	name = PROPERTY_FLUXING
 	code = "FLX"
-	description = "Liquifies large crystalline and metallic structures under bodytemperature in the body and allows it to migrate to and be excreted through the skin."
+	description = "在体温条件下液化体内较大的晶体和金属结构，使其转移到皮肤并排出体外。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_REACTANT
 
@@ -447,14 +447,14 @@
 /datum/chem_property/positive/neurocryogenic
 	name = PROPERTY_NEUROCRYOGENIC
 	code = "NRC"
-	description = "Causes a temporal freeze of all neurological processes and cellular respirations in the brain. This allows the brain to be preserved for long periods of time."
+	description = "暂时冻结大脑的全部神经活动与细胞呼吸，使大脑能够长期保存。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_REACTANT
 	cost_penalty = FALSE
 
 /datum/chem_property/positive/neurocryogenic/process(mob/living/M, potency = 1, delta_time)
 	if(prob(10 * delta_time))
-		to_chat(M, SPAN_WARNING("You feel like you have the worst brain freeze ever!"))
+		to_chat(M, SPAN_WARNING("你的头脑像遭受了前所未有的冰冻刺痛！"))
 	M.apply_effect(20, PARALYZE)
 	M.apply_effect(20, STUN)
 
@@ -479,7 +479,7 @@
 /datum/chem_property/positive/antiparasitic
 	name = PROPERTY_ANTIPARASITIC
 	code = "APS"
-	description = "Antimicrobial property specifically targeting parasitic pathogens in the body disrupting their growth and potentially killing them."
+	description = "专门针对体内寄生病原体的抗微生物特性，可抑制其生长，甚至将其杀死。"
 	rarity = PROPERTY_UNCOMMON
 
 /datum/chem_property/positive/antiparasitic/process(mob/living/current_mob, potency = 1, delta_time)
@@ -510,7 +510,7 @@
 /datum/chem_property/positive/organstabilize
 	name = PROPERTY_ORGANSTABILIZE
 	code = "OGS"
-	description = "Stabilizes internal organ damage, stopping internal damage symptoms."
+	description = "稳定内脏损伤，阻止内伤症状继续出现。"
 	rarity = PROPERTY_DISABLED
 	value = 2
 
@@ -529,7 +529,7 @@
 /datum/chem_property/positive/electrogenetic
 	name = PROPERTY_ELECTROGENETIC
 	code = "EGN"
-	description = "Stimulates cardiac muscles when exposed to electric shock and provides general healing. Useful in restarting the heart in combination with a defibrillator. Can not be ingested."
+	description = "受电击时刺激心肌，并提供一般性治疗。配合除颤器使用有助于使心脏重新起搏。不可口服。"
 	rarity = PROPERTY_COMMON
 	category = PROPERTY_TYPE_REACTANT
 	value = 1
@@ -545,7 +545,7 @@
 /datum/chem_property/positive/defibrillating
 	name = PROPERTY_DEFIBRILLATING
 	code = "DFB"
-	description = "Causes an electrochemical reaction in the cardiac muscles, forcing the heart to continue pumping. May cause irregular heart rhythms."
+	description = "在心肌中引发电化学反应，强制心脏继续泵血。可能引发心律失常。"
 	rarity = PROPERTY_RARE
 	category = PROPERTY_TYPE_REACTANT
 	value = 3
@@ -580,10 +580,10 @@
 	var/revivable = dead.check_tod() && dead.is_revivable()
 	if(revivable && (dead.health > HEALTH_THRESHOLD_DEAD))
 		addtimer(CALLBACK(dead, TYPE_PROC_REF(/mob/living/carbon/human, handle_revive)), 5 SECONDS)
-		to_chat(dead, SPAN_NOTICE("You feel your heart struggling as you suddenly feel a spark, making it desperately try to continue pumping."))
+		to_chat(dead, SPAN_NOTICE("你的心脏艰难跳动，突然传来一阵电流般的刺痛，迫使它拼命继续泵血。"))
 		playsound_client(dead.client, 'sound/effects/heart_beat_short.ogg', 35)
 	else if ((potency >= 1) && revivable && dead.health <= HEALTH_THRESHOLD_DEAD) //heals on all level above 1. This is however, minimal.
-		to_chat(dead, SPAN_NOTICE("You feel a faint spark in your chest."))
+		to_chat(dead, SPAN_NOTICE("你的胸口传来微弱的电流感。"))
 		dead.apply_damage(-potency * POTENCY_MULTIPLIER_VLOW, BRUTE)
 		dead.apply_damage(-potency * POTENCY_MULTIPLIER_VLOW, BURN)
 		dead.apply_damage(-potency * POTENCY_MULTIPLIER_VLOW, TOX)
@@ -602,13 +602,13 @@
 		if(ghost?.client)
 			COOLDOWN_START(src, ghost_notif, 30 SECONDS)
 			playsound_client(ghost.client, 'sound/effects/revive_notify.ogg')
-			to_chat(ghost, SPAN_BOLDNOTICE("Your heart is struggling to pump! There is a chance you might get up!(Verbs -> Ghost -> Re-enter corpse, or <a href='byond://?src=\ref[ghost];reentercorpse=1'>click here!</a>)"))
+			to_chat(ghost, SPAN_BOLDNOTICE("你的心脏正在艰难泵血！你可能还有机会醒来！（指令→幽灵→重新进入尸体，或<a href='byond://?src=\ref[ghost];reentercorpse=1'>点击这里！</a>）"))
 	return TRUE
 
 /datum/chem_property/positive/hyperdensificating
 	name = PROPERTY_HYPERDENSIFICATING
 	code = "HDN"
-	description = "Causes the muscles and bones to become super dense, providing superior resistance towards the bones fracturing."
+	description = "使肌肉和骨骼变得极为致密，大幅增强骨骼抵抗骨折的能力。"
 	rarity = PROPERTY_RARE
 	category = PROPERTY_TYPE_STIMULANT
 	value = 3
@@ -622,12 +622,12 @@
 		return
 	H.chem_effect_flags |= CHEM_EFFECT_RESIST_FRACTURE
 	if(prob(5 * delta_time))
-		to_chat(M, SPAN_NOTICE("Your body feels incredibly tense."))
+		to_chat(M, SPAN_NOTICE("你的身体异常紧绷。"))
 
 /datum/chem_property/positive/hyperdensificating/process_overdose(mob/living/M, potency = 1)
 	M.reagent_move_delay_modifier += POTENCY_MULTIPLIER_MEDIUM*potency
 	if(prob(10))
-		to_chat(M, SPAN_NOTICE("It is really hard to move your body."))
+		to_chat(M, SPAN_NOTICE("你很难移动身体。"))
 
 /datum/chem_property/positive/hyperdensificating/process_critical(mob/living/M, potency = 1, delta_time)
 	M.take_limb_damage(1.5 * potency * delta_time)
@@ -635,7 +635,7 @@
 /datum/chem_property/positive/neuroshielding
 	name = PROPERTY_NEUROSHIELDING
 	code = "NRS"
-	description = "Protects the brain from neurological damage caused by toxins."
+	description = "保护大脑，抵御毒素造成的神经损伤。"
 	rarity = PROPERTY_RARE
 	category = PROPERTY_TYPE_STIMULANT
 	value = 3
@@ -648,7 +648,7 @@
 	if(H.chem_effect_flags & CHEM_EFFECT_RESIST_NEURO)
 		return
 	H.chem_effect_flags |= CHEM_EFFECT_RESIST_NEURO
-	to_chat(M, SPAN_NOTICE("Your skull feels incredibly thick."))
+	to_chat(M, SPAN_NOTICE("你的头骨感觉变得异常厚重。"))
 	M.SetDaze(0)
 
 /datum/chem_property/positive/neuroshielding/process_overdose(mob/living/M, potency = 1, delta_time)
@@ -662,7 +662,7 @@
 /datum/chem_property/positive/antiaddictive
 	name = PROPERTY_ANTIADDICTIVE
 	code = "AAD"
-	description = "Stops all bodily cravings towards addictive chemical substances."
+	description = "消除身体对成瘾性化学物质的渴求。"
 	rarity = PROPERTY_RARE
 	category = PROPERTY_TYPE_STIMULANT
 
@@ -734,7 +734,7 @@
 /datum/chem_property/positive/fire/fueling
 	name = PROPERTY_FUELING
 	code = "FUL"
-	description = "The chemical can be burned as a fuel, expanding the burn time of a chemical fire. However, this also slightly lowers heat intensity."
+	description = "这种化学品可作为燃料燃烧，延长化学火焰的燃烧时间，但也会略微降低火焰热强度。"
 	rarity = PROPERTY_COMMON
 	value = 1
 	intensity_per_level = -2
@@ -761,7 +761,7 @@
 /datum/chem_property/positive/fire/oxidizing
 	name = PROPERTY_OXIDIZING
 	code = "OXI"
-	description = "The chemical is oxidizing, increasing the intensity of chemical fires. However, the fuel is also burned slightly faster because of it."
+	description = "这种化学品具有氧化性，能够提高化学火焰的强度，但也会使燃料消耗得稍快一些。"
 	rarity = PROPERTY_COMMON
 	value = 1
 	intensity_per_level = 6
@@ -781,7 +781,7 @@
 /datum/chem_property/positive/fire/flowing
 	name = PROPERTY_FLOWING
 	code = "FLW"
-	description = "The chemical is the opposite of viscous, and it tends to spill everywhere. This could probably be used to expand the radius of a chemical fire."
+	description = "这种化学品黏度极低，容易四处流散，或许可以用于扩大化学火焰的范围。"
 	rarity = PROPERTY_COMMON
 	value = 1
 	range_per_level = 1
@@ -793,7 +793,7 @@
 /datum/chem_property/positive/explosive
 	name = PROPERTY_EXPLOSIVE
 	code = "EXP"
-	description = "The chemical is highly explosive. Do not ignite. Careful when handling, sensitivity is based off the OD threshold, which can lead to spontanous detonation."
+	description = "这种化学品极易爆炸。请勿点燃。搬运时务必小心，其敏感度取决于过量阈值，可能发生自爆。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_REACTANT|PROPERTY_TYPE_COMBUSTIBLE
 	volatile = TRUE
@@ -814,23 +814,23 @@
 /datum/chem_property/positive/photosensitive
 	name = PROPERTY_PHOTOSENSITIVE
 	code = "PTS"
-	description = "Reacts with any amount of light. Can be useful to create light-sensitive objects. Not safe to administer."
+	description = "任何程度的光照都会使其发生反应，可用于制造感光物品。不适合向生物给药。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_TOXICANT
 
 /datum/chem_property/positive/photosensetive/process(mob/living/M, potency = 1)
-	to_chat(M, SPAN_WARNING("Your feel a horrible migraine!"))
+	to_chat(M, SPAN_WARNING("你感到可怕的偏头痛！"))
 	M.apply_internal_damage(potency, "brain")
 
 /datum/chem_property/positive/crystallization
 	name = PROPERTY_CRYSTALLIZATION
 	code = "CRL"
-	description = "The chemical structure of the chemical forms itself in a lens. passing light wider, while also keeping focus. Not safe to administer"
+	description = "这种化学品的结构会自行形成透镜，在保持聚焦的同时扩大透光范围。不适合向生物给药。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_TOXICANT
 
 /datum/chem_property/positive/crystallization/process(mob/living/M, potency = 1)
-	to_chat(M, SPAN_WARNING("You feel like many razor sharp blades cut through your insides!"))
+	to_chat(M, SPAN_WARNING("你感觉无数锋利刀刃正在切割内脏！"))
 	M.take_limb_damage(brute = 0.5 * potency)
 	M.apply_internal_damage(potency, "liver")
 
@@ -838,13 +838,13 @@
 /datum/chem_property/positive/disrupting
 	name = PROPERTY_DISRUPTING
 	code = "DSR"
-	description = "Disrupts certain neurological processes related to communication in animals."
+	description = "干扰动物体内与交流有关的某些神经活动。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_TOXICANT
 	cost_penalty = FALSE
 
 /datum/chem_property/positive/disrupting/process(mob/living/M, potency = 1)
-	to_chat(M, SPAN_NOTICE("Your mind feels oddly... quiet."))
+	to_chat(M, SPAN_NOTICE("你的意识变得异常……安静。"))
 
 /datum/chem_property/positive/disrupting/process_overdose(mob/living/M, potency = 1)
 	M.apply_internal_damage(potency, "brain")
@@ -861,7 +861,7 @@
 /datum/chem_property/positive/neutralizing
 	name = PROPERTY_NEUTRALIZING
 	code = "NEU"
-	description = "Neutralizes certain reactive chemicals and plasmas on contact. Unsafe to administer intravenously."
+	description = "接触某些活性化学物质和等离子体时会将其中和。不适合静脉给药。"
 	rarity = PROPERTY_UNCOMMON
 	category = PROPERTY_TYPE_IRRITANT
 	cost_penalty = FALSE
@@ -883,7 +883,7 @@
 	if(isxeno(L))
 		var/mob/living/carbon/xenomorph/xeno = M
 		xeno.plasma_stored = max(xeno.plasma_stored - POTENCY_MULTIPLIER_HIGH * volume * potency, 0)
-		to_chat(xeno, SPAN_WARNING("You feel your plasma reserves being drained!"))
+		to_chat(xeno, SPAN_WARNING("你感到储存的等离子体正在流失！"))
 
 /datum/chem_property/positive/neutralizing/reaction_turf(turf/T, volume, potency)
 	if(!istype(T))
@@ -897,7 +897,7 @@
 /datum/chem_property/positive/cardiostabilizing
 	name = PROPERTY_CARDIOSTABILIZING
 	code = "CSL"
-	description = "Stabilizes the cardiac cycle when under shock."
+	description = "在休克状态下稳定心动周期。"
 	rarity = PROPERTY_DISABLED
 	category = PROPERTY_TYPE_STIMULANT
 	value = 1
@@ -938,7 +938,7 @@
 /datum/chem_property/positive/aiding
 	name = PROPERTY_AIDING
 	code = "AID"
-	description = "Fixes genetic defects, disfigurments and disabilities."
+	description = "修复遗传缺陷、毁容和残疾。"
 	rarity = PROPERTY_DISABLED
 	category = PROPERTY_TYPE_MEDICINE
 	value = 1
@@ -960,7 +960,7 @@
 /datum/chem_property/positive/oxygenating
 	name = PROPERTY_OXYGENATING
 	code = "OXG"
-	description = "Treats oxygen deprivation by improving the ability of erythrocytes to absorb oxygen and increases oxygen intake."
+	description = "提高红细胞吸收氧气的能力并增加摄氧量，从而治疗缺氧。"
 	rarity = PROPERTY_DISABLED
 	category = PROPERTY_TYPE_MEDICINE
 	value = 1
@@ -984,7 +984,7 @@
 /datum/chem_property/positive/anticarcinogenic
 	name = PROPERTY_ANTICARCINOGENIC
 	code = "ACG"
-	description = "Fixes genetic damage in cells that have been exposed carcinogens."
+	description = "修复接触致癌物后细胞内产生的遗传损伤。"
 	rarity = PROPERTY_DISABLED
 	category = PROPERTY_TYPE_MEDICINE
 	value = 1
@@ -1001,7 +1001,7 @@
 /datum/chem_property/positive/regulating
 	name = PROPERTY_REGULATING
 	code = "REG"
-	description = "The chemical regulates its own metabolization, any amount overdosed is turned into sugar."
+	description = "这种化学品会自行调节代谢，将超过过量阈值的部分转化为糖。"
 	rarity = PROPERTY_COMMON
 	category = PROPERTY_TYPE_METABOLITE
 	max_level = 1
@@ -1018,7 +1018,7 @@
 /datum/chem_property/positive/firepenetrating
 	name = PROPERTY_FIRE_PENETRATING
 	code = "PTR"
-	description = "Gives the chemical a unique, anomalous combustion chemistry, causing the flame to react with flame-resistant material and obliterate through it."
+	description = "赋予化学品独特的异常燃烧反应，使火焰能与耐火材料反应并将其烧穿。"
 	rarity = PROPERTY_RARE
 	category = PROPERTY_TYPE_REACTANT
 	value = 8

@@ -62,7 +62,7 @@
 
 	remove_label()
 	playsound(parent, 'sound/items/poster_ripped.ogg', 20, TRUE)
-	to_chat(user, SPAN_WARNING("You remove the label from [parent]."))
+	to_chat(user, SPAN_WARNING("你撕下了 [parent] 上的标签。"))
 	qdel(src) // Remove the component from the object.
 
 /**
@@ -77,7 +77,7 @@
 /datum/component/label/proc/Examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += SPAN_NOTICE("It has a label with some words written on it. Use a hand labeler to remove it.")
+	examine_list += SPAN_NOTICE("上面贴着一张写有文字的标签。使用手持标签机即可将其移除。")
 
 /// Applies a label to the name of the parent in the format of: "parent_name (label)"
 /datum/component/label/proc/apply_label()

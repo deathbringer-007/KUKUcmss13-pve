@@ -137,7 +137,7 @@
 	var/mob/user = usr
 	if(href_list[VV_HK_GAS] && check_rights(R_EVENT))
 		if(welded)
-			to_chat(usr, SPAN_WARNING("You cannot release gas from a welded vent."))
+			to_chat(usr, SPAN_WARNING("你无法从焊死的通风口释放气体。"))
 			return FALSE
 		var/list/options = list(VENT_GAS_SMOKE, VENT_GAS_SLEEP, VENT_GAS_CN20, VENT_GAS_CN20_XENO, VENT_GAS_LSD)
 		var/gas_choice = tgui_input_list(user, "What gas do you wish to use?", "Gas Choice", options, 20 SECONDS)
@@ -156,7 +156,7 @@
 
 /obj/structure/pipes/vents/proc/create_gas(gas_type = VENT_GAS_SMOKE, radius = 4, warning_time = 5 SECONDS)
 	if(welded)
-		to_chat(usr, SPAN_WARNING("You cannot release gas from a welded vent."))
+		to_chat(usr, SPAN_WARNING("你无法从焊死的通风口释放气体。"))
 		return FALSE
 	var/datum/effect_system/smoke_spread/spreader
 	switch(gas_type)

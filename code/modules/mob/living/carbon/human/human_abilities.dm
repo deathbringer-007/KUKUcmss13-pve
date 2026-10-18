@@ -139,7 +139,7 @@
 	var/mob/living/carbon/human/human_owner = owner
 
 	if(human_owner.client.prefs.muted & MUTE_IC)
-		to_chat(human_owner, SPAN_DANGER("You cannot whisper (muted)."))
+		to_chat(human_owner, SPAN_DANGER("你已被禁言，无法发送低语。"))
 		return
 
 	var/list/target_list = list()
@@ -148,7 +148,7 @@
 			continue
 		target_list += possible_target
 
-	var/mob/living/carbon/target_mob = tgui_input_list(human_owner, "Target", "Send a Psychic Whisper to whom?", target_list, theme = "hive_status")
+	var/mob/living/carbon/target_mob = tgui_input_list(human_owner, "目标", "你想向谁发送心灵低语？", target_list, theme = "hive_status")
 	if(!target_mob) 
 		return
 
@@ -172,11 +172,11 @@ CULT
 		return
 	var/mob/living/carbon/human/H = owner
 	if(H.selected_ability == src)
-		to_chat(H, "You will no longer use [name] with [H.get_ability_mouse_name()].")
+		to_chat(H, "你将不再通过[H.get_ability_mouse_name()]使用[name]。")
 		button.icon_state = "template"
 		H.set_selected_ability(null)
 	else
-		to_chat(H, "You will now use [name] with [H.get_ability_mouse_name()].")
+		to_chat(H, "你现在会通过[H.get_ability_mouse_name()]使用[name]。")
 		if(H.selected_ability)
 			H.selected_ability.button.icon_state = "template"
 			H.set_selected_ability(null)
@@ -221,19 +221,19 @@ CULT
 		return
 
 	if(!(T in view(H)))
-		to_chat(H, SPAN_WARNING("This target can't be seen!"))
+		to_chat(H, SPAN_WARNING("你看不到这个目标！"))
 		return
 
 	if(get_dist(T, H) > 5)
-		to_chat(H, SPAN_WARNING("This target is too far away!"))
+		to_chat(H, SPAN_WARNING("目标太远了！"))
 		return
 
 	if(!(is_ground_level(T.z)))
-		to_chat(H, SPAN_WARNING("The droppod cannot land here!"))
+		to_chat(H, SPAN_WARNING("空降舱无法在这里着陆！"))
 		return
 
 	if(protected_by_pylon(TURF_PROTECTION_CAS, T))
-		to_chat(H, SPAN_WARNING("The droppod cannot punch through an organic ceiling!"))
+		to_chat(H, SPAN_WARNING("空降舱无法击穿有机顶棚！"))
 		return
 
 	return TRUE
@@ -252,7 +252,7 @@ CULT
 		return
 
 	if(assigned_droppod)
-		if(tgui_alert(H, "Do you want to recall the current pod?",\
+		if(tgui_alert(H, "要召回当前的空投舱吗？",\
 			"Recall Droppod", list("No", "Yes")) == "Yes")
 			if(!assigned_droppod)
 				return
@@ -261,13 +261,13 @@ CULT
 				message_admins("[key_name_admin(H)] recalled a tech droppod at [get_area(assigned_droppod)].")
 				assigned_droppod.recall()
 			else
-				to_chat(H, SPAN_WARNING("It's too late to recall the droppod now!"))
+				to_chat(H, SPAN_WARNING("现在已经来不及召回空降舱了！"))
 		return
 
 	if(!can_deploy_droppod(T))
 		return
 
-	to_chat(H, SPAN_WARNING("No droppods currently available."))
+	to_chat(H, SPAN_WARNING("目前没有可用的空降舱。"))
 	return
 
 /* // FULL IMPLEM OF DROPPODS FOR REUSE
@@ -330,7 +330,7 @@ CULT
 	var/mob/living/carbon/human/H = owner
 
 
-	var/message = input(H, "Say in Hivemind", "Hivemind Chat") as null|text
+	var/message = input(H, "通过蜂巢意识发言", "蜂巢意识聊天") as null|text
 	if(!message)
 		return
 
@@ -360,17 +360,17 @@ CULT
 
 	var/mob/living/carbon/human/H = owner
 
-	var/input = tgui_alert(H, "Once obtained, you'll be unable to take it off. Confirm selection.", "Obtain Equipment", list("Yes","No"))
+	var/input = tgui_alert(H, "一旦领取就无法脱下，请确认选择。", "领取装备", list("Yes","No"))
 
 	if(input != "Yes")
-		to_chat(H, SPAN_WARNING("You have decided not to obtain your equipment."))
+		to_chat(H, SPAN_WARNING("你决定不领取装备。"))
 		return
 
-	H.visible_message(SPAN_DANGER("[H] gets onto their knees and begins praying."), \
-	SPAN_WARNING("You get onto your knees to pray."))
+	H.visible_message(SPAN_DANGER("[H]跪下，开始祈祷。"), \
+	SPAN_WARNING("你跪下祈祷。"))
 
 	if(!do_after(H, 3 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
-		to_chat(H, SPAN_WARNING("You decide not to retrieve your equipment."))
+		to_chat(H, SPAN_WARNING("你决定不取回装备。"))
 		return
 
 	H.drop_inv_item_on_ground(H.get_item_by_slot(WEAR_JACKET), FALSE, TRUE)
@@ -388,7 +388,7 @@ CULT
 
 	playsound(H.loc, 'sound/voice/scream_horror1.ogg', 25)
 
-	H.visible_message(SPAN_HIGHDANGER("[H] puts on their robes."), SPAN_WARNING("You put on your robes."))
+	H.visible_message(SPAN_HIGHDANGER("[H]穿上了长袍。"), SPAN_WARNING("你穿上了长袍。"))
 	for(var/datum/action/human_action/activable/cult/obtain_equipment/O in H.actions)
 		O.remove_from(H)
 
@@ -401,11 +401,11 @@ CULT
 	var/mob/living/carbon/human/Hu = owner
 
 	if(H.skills && (skillcheck(H, SKILL_LEADERSHIP, SKILL_LEAD_EXPERT) || skillcheck(H, SKILL_POLICE, SKILL_POLICE_SKILLED)))
-		to_chat(Hu, SPAN_WARNING("This mind is too strong to target with your abilities."))
+		to_chat(Hu, SPAN_WARNING("这个意识太强大，你的能力无法影响它。"))
 		return
 
 	if(get_dist_sqrd(get_turf(H), get_turf(owner)) > 2)
-		to_chat(Hu, SPAN_WARNING("This target is too far away!"))
+		to_chat(Hu, SPAN_WARNING("目标太远了！"))
 		return
 
 	return H.stat != DEAD && istype(H) && ishuman_strict(H) && H.hivenumber != Hu.hivenumber && !isnull(get_hive())
@@ -431,7 +431,7 @@ CULT
 	var/datum/hive_status/hive = get_hive()
 
 	if(!istype(hive))
-		to_chat(owner, SPAN_DANGER("There is no Queen. You are alone."))
+		to_chat(owner, SPAN_DANGER("没有女皇。你孤身一人。"))
 		return
 
 	if(!can_use_action())
@@ -445,19 +445,19 @@ CULT
 		return
 
 	if(chosen.stat != CONSCIOUS)
-		to_chat(H, SPAN_XENOMINORWARNING("[chosen] must be conscious for the conversion to work!"))
+		to_chat(H, SPAN_XENOMINORWARNING("[chosen]必须保持清醒，才能被转化！"))
 		return
 
 	if(!do_after(H, 10 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE, chosen, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
-		to_chat(H, SPAN_XENOMINORWARNING("You decide not to convert [chosen]."))
+		to_chat(H, SPAN_XENOMINORWARNING("你决定不转化[chosen]。"))
 		return
 
 	var/datum/equipment_preset/preset = GLOB.gear_path_presets_list[/datum/equipment_preset/other/xeno_cultist]
 	preset.load_race(chosen)
 	preset.load_status(chosen, H.hivenumber)
 
-	to_chat(chosen, SPAN_ROLE_HEADER("You are now a Xeno Cultist!"))
-	to_chat(chosen, SPAN_ROLE_BODY("Worship the Xenomorphs and listen to the Cult Leader for orders. The Cult Leader is typically the person who transformed you. Do not kill anyone unless you are wearing your black robes, you may defend yourself."))
+	to_chat(chosen, SPAN_ROLE_HEADER("你现在是异形教徒！"))
+	to_chat(chosen, SPAN_ROLE_BODY("崇拜异形，听从教派领袖的命令。领袖通常就是转化你的人。除非穿着黑袍，否则不要杀人；你可以进行自卫。"))
 
 	xeno_message("[chosen] has been converted into a cultist!", 2, hive.hivenumber)
 
@@ -480,7 +480,7 @@ CULT
 	var/datum/hive_status/hive = get_hive()
 
 	if(!istype(hive))
-		to_chat(owner, SPAN_DANGER("There is no Queen. You are alone."))
+		to_chat(owner, SPAN_DANGER("没有女皇。你孤身一人。"))
 		return
 
 	if(!can_use_action())
@@ -493,13 +493,13 @@ CULT
 	if(!can_target(chosen))
 		return
 
-	to_chat(chosen, SPAN_HIGHDANGER("You feel a dangerous presence in the back of your head. You find yourself unable to move!"))
+	to_chat(chosen, SPAN_HIGHDANGER("你的脑海深处传来危险的压迫感。你发现自己无法动弹！"))
 	ADD_TRAIT(chosen, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Cultist Stun"))
 
 	chosen.update_xeno_hostile_hud()
 
 	if(!do_after(H, 2 SECONDS, INTERRUPT_ALL | BEHAVIOR_IMMOBILE, BUSY_ICON_HOSTILE, chosen, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
-		to_chat(H, SPAN_XENOMINORWARNING("You decide not to stun [chosen]."))
+		to_chat(H, SPAN_XENOMINORWARNING("你决定不击晕[chosen]。"))
 		unroot_human(chosen, TRAIT_SOURCE_ABILITY("Cultist Stun"))
 
 		enter_cooldown(5 SECONDS)
@@ -512,7 +512,7 @@ CULT
 	chosen.apply_effect(10, PARALYZE)
 	chosen.make_jittery(105)
 
-	to_chat(chosen, SPAN_HIGHDANGER("An immense psychic wave passes through you, causing you to pass out!"))
+	to_chat(chosen, SPAN_HIGHDANGER("一股强大的心灵冲击穿过你的身体，使你昏了过去！"))
 
 	playsound(get_turf(chosen), 'sound/scp/scare1.ogg', 25)
 
@@ -536,16 +536,16 @@ CULT
 		return
 
 	if(skillcheck(chosen, SKILL_POLICE, SKILL_POLICE_MAX) || (chosen in converted))
-		to_chat(H, SPAN_WARNING("You can't convert [chosen]!"))
+		to_chat(H, SPAN_WARNING("你无法转化[chosen]！"))
 		return
 
-	to_chat(H, SPAN_NOTICE("Mutiny join request sent to [chosen]!"))
+	to_chat(H, SPAN_NOTICE("已向[chosen]发送叛变加入请求！"))
 
-	if(tgui_alert(chosen, "Do you want to be a mutineer?", "Become Mutineer", list("Yes", "No")) != "Yes")
+	if(tgui_alert(chosen, "你想成为叛乱者吗？", "成为叛乱者", list("Yes", "No")) != "Yes")
 		return
 
 	converted += chosen
-	to_chat(chosen, SPAN_WARNING("You'll become a mutineer when the mutiny begins. Prepare yourself and do not cause any harm until you've been made into a mutineer."))
+	to_chat(chosen, SPAN_WARNING("叛变开始后，你将成为叛变者。做好准备，但在正式成为叛变者前不要伤害任何人。"))
 
 	message_admins("[key_name_admin(chosen)] has been converted into a mutineer by [key_name_admin(H)].")
 
@@ -560,7 +560,7 @@ CULT
 
 	var/mob/living/carbon/human/H = owner
 
-	if(tgui_alert(H, "Are you sure you want to begin the mutiny?", "Begin Mutiny?", list("Yes", "No")) != "Yes")
+	if(tgui_alert(H, "确定要发动叛乱吗？", "发动叛乱？", list("Yes", "No")) != "Yes")
 		return
 
 	shipwide_ai_announcement("DANGER: Communications received; a mutiny is in progress. Code: Detain, Arrest, Defend.")

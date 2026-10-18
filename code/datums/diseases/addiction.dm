@@ -9,7 +9,7 @@
 	permeability_mod = 1
 	can_carry = 0
 	spread_type = NON_CONTAGIOUS
-	desc = "Use of addictive stimulants results in physiological and psychological dependency."
+	desc = "使用成瘾性兴奋剂会导致生理和心理依赖。"
 	severity = "Medium"
 	longevity = 1000
 	hidden = list(1, 1) //hidden from med-huds and pandemic scanners

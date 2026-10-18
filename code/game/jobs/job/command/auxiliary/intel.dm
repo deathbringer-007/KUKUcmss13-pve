@@ -5,10 +5,10 @@
 	spawn_positions = 3
 	allow_additional = 1
 	scaled = 1
-	supervisors = "the auxiliary support officer"
+	supervisors = "辅助支援军官"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_SQUAD
 	gear_preset = "USCM Intelligence Officer (IO) (Cryo)"
-	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>Your job is to assist the marines in collecting intelligence related</a> to the current operation to better inform command of their opposition. You are in charge of gathering any data disks, folders, and notes you may find on the operational grounds and decrypt them to grant the USCM additional resources."
+	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>你的职责是协助陆战队员收集与当前行动有关的情报</a>，让指挥部更了解对手。你负责收集行动区域内找到的数据磁盘、文件夹和笔记，并将其解密，为USCM争取额外资源。"
 
 /datum/job/command/intel/set_spawn_positions(count)
 	spawn_positions = int_slot_formula(count)

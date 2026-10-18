@@ -9,10 +9,10 @@
 	taskbar_icon = 'icons/taskbar/gml_infection.png'
 
 /datum/game_mode/infection/announce()
-	to_world("<B>The current game mode is - ZOMBIES!</B>")
-	to_world("<B>Just have fun and role-play!</B>")
-	to_world("<B>If you die as a zombie, you come back.  NO MATTER HOW MUCH DAMAGE.</B>")
-	to_world("<B>Don't ahelp asking for specific details, you won't get them.</B>")
+	to_world("<B>当前游戏模式——丧尸！</B>")
+	to_world("<B>尽情游玩，享受角色扮演！</B>")
+	to_world("<B>作为丧尸死去后，你还会再次复活。无论受到多少伤害。</B>")
+	to_world("<B>不要通过管理员求助询问具体细节，你不会得到答案。</B>")
 
 /datum/game_mode/infection/get_roles_list()
 	return GLOB.ROLES_USCM

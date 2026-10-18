@@ -77,9 +77,9 @@ Humans will take continuous damage instead.
 /datum/component/status_effect/healing_reduction/proc/stat_append(mob/target_mob, list/stat_list)
 	SIGNAL_HANDLER
 	if(has_immunity)
-		stat_list += "Healing Reduction Immunity: [grace_period]/[initial(grace_period)]"
+		stat_list += "治疗削弱免疫：[grace_period]/[initial(grace_period)]"
 		return
-	stat_list += "Healing Reduction: [healing_reduction]/[max_buildup]"
+	stat_list += "治疗削弱：[healing_reduction]/[max_buildup]"
 
 /datum/component/status_effect/healing_reduction/proc/apply_healing_reduction(mob/living/carbon/xenomorph/xeno, list/healing)
 	SIGNAL_HANDLER

@@ -27,7 +27,7 @@
 		return
 	else if (ishuman(user) && HAS_TRAIT(W, TRAIT_TOOL_WRENCH))
 		on = !on
-		visible_message("You wrench the controls of \the [src]. The drill jumps to life." , "[user] wrenches the controls of \the [src]. The drill jumps to life.")
+		visible_message("你用扳手转动 \the [src] 的控制装置，钻机随即启动。" , "[user] 用扳手转动 \the [src] 的控制装置，钻机随即启动。")
 
 		update()
 
@@ -124,8 +124,8 @@
 	..()
 	if(lit)
 		lit = !lit
-		visible_message("[user] extinguishes the lanterns on [src].",
-			"You extinguish the fires on [src].")
+		visible_message("[user] 熄灭了 [src] 上的灯笼。",
+			"你熄灭了 [src] 上的火焰。")
 		Update()
 	return
 
@@ -166,7 +166,7 @@
 		if(!(F.flags_gun_features & GUN_TRIGGER_SAFETY))
 			L = 1
 		else
-			to_chat(user, SPAN_WARNING("Turn on the pilot light first!"))
+			to_chat(user, SPAN_WARNING("请先点燃引火火苗！"))
 
 	else if(isgun(W))
 		var/obj/item/weapon/gun/G = W
@@ -184,7 +184,7 @@
 		if(W.heat_source > 200)
 			L = 1
 	if(L)
-		visible_message("[user] quietly goes from lantern to lantern on the torii, lighting the wicks in each one.")
+		visible_message("[user] 默默地走到鸟居上的每盏灯笼前，逐一点燃灯芯。")
 		lit = TRUE
 		Update()
 
@@ -299,7 +299,7 @@
 		return
 	else if (ishuman(user) && HAS_TRAIT(W, TRAIT_TOOL_CROWBAR))
 		on = !on
-		visible_message("You pry at the control valve on [src]. The machine shudders." , "[user] pries at the control valve on [src]. The entire machine shudders.")
+		visible_message("你撬动 [src] 的控制阀，机器颤动起来。" , "[user] 撬动 [src] 的控制阀，整台机器都颤动起来。")
 
 		Update()
 
@@ -469,9 +469,9 @@
 	. = ..()
 	switch(state)
 		if(STATE_FUEL)
-			. += "[src] requires wood to be fueled."
+			. += "[src]需要添加木材作为燃料。"
 		if(STATE_IGNITE)
-			. += "[src] needs to be lit."
+			. += "[src]需要点火。"
 
 /obj/structure/prop/brazier/attackby(obj/item/hit_item, mob/user)
 	switch(state)
@@ -482,15 +482,15 @@
 				return ..()
 			var/obj/item/stack/sheet/wood/wooden_boards = hit_item
 			if(!wooden_boards.use(5))
-				to_chat(user, SPAN_WARNING("Not enough wood!"))
+				to_chat(user, SPAN_WARNING("木材不足！"))
 				return
-			user.visible_message(SPAN_NOTICE("[user] fills [src] with [hit_item]."))
+			user.visible_message(SPAN_NOTICE("[user]将[hit_item]装入[src]。"))
 		if(STATE_IGNITE)
 			if(!hit_item.heat_source)
 				return ..()
 			if(!do_after(user, 3 SECONDS, INTERRUPT_MOVED, BUSY_ICON_BUILD))
 				return
-			user.visible_message(SPAN_NOTICE("[user] ignites [src] with [hit_item]."))
+			user.visible_message(SPAN_NOTICE("[user]用[hit_item]点燃了[src]。"))
 
 	new frame_type(loc)
 	qdel(src)
@@ -1055,7 +1055,7 @@
 			action_msg = "write something on"
 			time_multiplier = 2
 
-		var/message = sanitize(input(user, "What do you write on [src]?", "Inscription"))
+		var/message = sanitize(input(user, "你想在 [src] 上写些什么？", "题字"))
 		if(!message)
 			return
 		user.visible_message(SPAN_NOTICE("[user] begins to [action_msg] [src]."),\
@@ -1190,7 +1190,7 @@
 		return FALSE
 
 	for(var/mob/mob in hearers(src, null))
-		mob.show_message("<span class='game say'><span class='name'>[src]</span> says, \"[initial(emote.say_message)]\"</span>", SHOW_MESSAGE_AUDIBLE)
+		mob.show_message("<span class='game say'><span class='name'>[src]</span> 说道：\"[initial(emote.say_message)]\"</span>", SHOW_MESSAGE_AUDIBLE)
 
 	var/list/viewers = get_mobs_in_view(7, src)
 	for(var/mob/current_mob in viewers)

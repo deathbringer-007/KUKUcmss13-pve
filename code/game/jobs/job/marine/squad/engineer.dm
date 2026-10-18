@@ -8,7 +8,7 @@
 	allow_additional = 1
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_SQUAD
 	gear_preset = /datum/equipment_preset/uscm/engineer
-	entry_message_body = "You have the <a href='"+WIKI_PLACEHOLDER+"'>equipment and skill</a> to build fortifications, reroute power lines, and bunker down. Your squaddies will look to you when it comes to construction in the field of battle."
+	entry_message_body = "你拥有<a href='"+WIKI_PLACEHOLDER+"'>建造工事、改接电线和构筑防御所需的装备与技能</a>。在战场建设方面，队友会依靠你。"
 
 /datum/job/marine/engineer/set_spawn_positions(count)
 	for(var/datum/squad/sq in GLOB.RoleAuthority.squads)
@@ -80,8 +80,8 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_SQUAD
 	gear_preset = /datum/equipment_preset/uscm/rmc/eng
 	job_options = null
-	supervisors = "the section leader and troop commander"
-	entry_message_body = "You are a commando-trained member of the Royal Engineers serving with the Royal Marines Commando forces. You're given the equipment and responsibility amongst the Rifle Section to build fortifications, reroute power lines, and handle all things engineering related in the field of battle. <br><b>You remember that you've stored your personal gear and uniform in the locker rooms, and that your specialist equipment can be located in the armoury.</b>"
+	supervisors = "班长与突击排指挥官"
+	entry_message_body = "你是经过突击队训练的皇家工兵团成员，随皇家陆战突击队服役。你在步枪班中配备相应装备，并负责建造工事、改接电线，以及处理战场上的各类工程事务。<br><b>你记得自己的个人装备和制服存放在更衣室内，专业装备位于军械库。</b>"
 
 /obj/effect/landmark/start/marine/engineer/rmc
 	name = JOB_TWE_RMC_ENGI
@@ -95,8 +95,8 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_SQUAD
 	gear_preset = /datum/equipment_preset/uscm/rmc/mor
 	job_options = null
-	supervisors = "the troop commander and troop sergeant"
-	entry_message_body = "You are a commando-trained member of the Royal Artillery serving with the Royal Marines Commando forces. You're responsible for offering light fire support to the Troop via either a mortar or multiple-grenade-launcher weapon system. You will be working closely with the Troop Sergeant, who should be carrying your spare support-weapon ammo, and the Troop Commander as part of the Headquarters Section.<br><b>You remember that you've stored your personal gear and uniform in the locker rooms, and that your specialist equipment can be located in the armoury.</b>"
+	supervisors = "突击排指挥官与突击排士官"
+	entry_message_body = "你是经过突击队训练的皇家炮兵团成员，随皇家陆战突击队服役。你负责通过迫击炮或多发榴弹发射器系统，为突击排提供轻型火力支援。作为指挥班的一员，你将与突击排指挥官及突击排士官密切协作；后者应携带你的备用支援武器弹药。<br><b>你记得自己的个人装备和制服存放在更衣室内，专业装备位于军械库。</b>"
 
 /obj/effect/landmark/start/marine/engineer/rmcmortar
 	name = JOB_TWE_RMC_BREACHER

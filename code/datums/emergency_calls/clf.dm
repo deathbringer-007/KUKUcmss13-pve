@@ -4,8 +4,8 @@
 /datum/emergency_call/clf
 	name = "Colonial Liberation Front (Squad)"
 	mob_max = 10
-	arrival_message = "'Attention, you are tresspassing on our soverign territory. Expect no forgiveness.'"
-	objectives = "Assault the USCM, and sabotage as much as you can. Ensure any survivors escape in your custody."
+	arrival_message = "“注意，你们正侵犯我们的主权领土。别指望获得宽恕。”"
+	objectives = "攻击美国殖民地海军陆战队，并尽可能制造破坏。确保幸存者在你们的控制下撤离。"
 	probability = 20
 	hostility = TRUE
 	home_base = /datum/lazy_template/ert/clf_station
@@ -14,24 +14,24 @@
 
 /datum/emergency_call/clf/print_backstory(mob/living/carbon/human/H)
 	if(ishuman_strict(H))
-		var/message = "[pick(5;"on the UA prison station", 10;"in the LV-624 jungle", 25;"on the farms of LV-771", 25;"in the slums of LV-221", 20;"the red wastes of LV-361", 15;"the icy tundra of LV-571")] to a [pick(50;"poor", 15;"well-off", 35;"average")] family."
-		var/message_grew = "[pick(20;"the Dust Raiders killed someone close to you in 2181", 20;"you harbor a strong hatred of the United Americas", 10;"you are a wanted criminal in the United Americas", 5;"have UPP sympathies and want to see the UA driven out of the secor", 10;"you believe the USCM occupation will hurt your quality of life", 5;"are a violent person and want to kill someone for the sake of killing", 20;"want the Neroid Sector to be free from outsiders", 10;"your militia was absorbed into the CLF")]"
-		to_chat(H, SPAN_BOLD("As a native of the Neroid Sector, you joined the CLF because [message_grew]."))
-		to_chat(H, SPAN_BOLD("You grew up [message] and are considered a terrorist by the UA."))
+		var/message = "[pick(5;"美洲联盟监狱空间站", 10;"LV-624的丛林", 25;"LV-771的农场", 25;"LV-221的贫民窟", 20;"LV-361的红色荒原", 15;"LV-571的冰封苔原")]的一个[pick(50;"贫困", 15;"富裕", 35;"普通")]家庭"
+		var/message_grew = "[pick(20;"尘土突袭者在2181年杀害了你亲近的人", 20;"你对美洲联盟怀有强烈仇恨", 10;"你是美洲联盟通缉的罪犯", 5;"你同情进步人民联盟，希望把美洲联盟赶出星区", 10;"你认为美国殖民地海军陆战队的占领会损害你的生活质量", 5;"你生性暴力，只想为了杀戮而杀人", 20;"你希望尼洛德星区不再受外来者控制", 10;"你的民兵组织被并入了殖民地解放阵线")]"
+		to_chat(H, SPAN_BOLD("作为尼洛德星区的本地人，你加入殖民地解放阵线，是因为[message_grew]。"))
+		to_chat(H, SPAN_BOLD("你在[message]长大，并被美洲联盟视为恐怖分子。"))
 	else
-		to_chat(H, SPAN_BOLD("You were brought online in an underground CLF workshop, reprogrammed to serve the CLF and fight for their freedom."))
-		to_chat(H, SPAN_BOLD("Originally, you were programmed with medical and engineering knowledge to assist with building and maintaining colonies."))
-		to_chat(H, SPAN_BOLD("However, the hackers managed to load combat protocols and install a new directive: Irrational hatred for everything USCM."))
+		to_chat(H, SPAN_BOLD("你在殖民地解放阵线的地下工坊启动，被重新编程以服务阵线，为他们的自由而战。"))
+		to_chat(H, SPAN_BOLD("你原本被赋予医疗与工程知识，用于协助建造和维护殖民地。"))
+		to_chat(H, SPAN_BOLD("然而，黑客成功加载了战斗协议，并植入一条新指令：无理由地憎恨与美国殖民地海军陆战队有关的一切。"))
 
-	to_chat(H, SPAN_BOLD("The Neroid Sector has largely enjoyed its independence."))
-	to_chat(H, SPAN_BOLD("Though technically part of the United American frontier, many colonists in the Neroid Sector have enjoyed their freedoms."))
-	to_chat(H, SPAN_BOLD("In 2172, however, the United Americas moved the USCM Battalion, the 'Dust Raiders', and the battalion flagship, the USS Alistoun, to the Neroid Sector."))
-	to_chat(H, SPAN_BOLD("The Dust Raiders responded with deadly force, scattering many of the colonists who attempted to fight their occupation."))
-	to_chat(H, SPAN_BOLD("The Dust Raiders and their flagship, the USS Alistoun eventually withdrew from the sector by the end of the year.</font>"))
-	to_chat(H, SPAN_BOLD("With the Neroid Sector existing in relative isolation from United America oversight for the last five years, many colonists have considered themselves free from governmental rule."))
-	to_chat(H, SPAN_BOLD("The year is now [GLOB.game_year]."))
-	to_chat(H, SPAN_BOLD("The arrival of the USCM Battalion, the Falling Falcons, and their flagship, the [MAIN_SHIP_NAME], have reaffirmed that the United Americas considers the Neroid Sector part of their holdings."))
-	to_chat(H, SPAN_BOLD("It is up to you and your fellow colonists to make them realize their trespasses. This sector is no longer theirs."))
+	to_chat(H, SPAN_BOLD("尼洛德星区长期享有相当程度的独立。"))
+	to_chat(H, SPAN_BOLD("虽然名义上属于美洲联盟的边疆，尼洛德星区的许多殖民者一直享有自由。"))
+	to_chat(H, SPAN_BOLD("但在2172年，美洲联盟将美国殖民地海军陆战队的“尘土突袭者”营及其旗舰USS阿利斯顿号调往尼洛德星区。"))
+	to_chat(H, SPAN_BOLD("尘土突袭者以致命武力回应，驱散了许多试图反抗占领的殖民者。"))
+	to_chat(H, SPAN_BOLD("尘土突袭者及其旗舰USS阿利斯顿号最终于当年年底撤出星区。</font>"))
+	to_chat(H, SPAN_BOLD("过去五年，尼洛德星区基本不受美洲联盟监管，许多殖民者认为自己已经摆脱政府统治。"))
+	to_chat(H, SPAN_BOLD("现在是 [GLOB.game_year] 年。"))
+	to_chat(H, SPAN_BOLD("美国殖民地海军陆战队的“坠落猎鹰”营及其旗舰 [MAIN_SHIP_NAME] 的到来，再次表明美洲联盟仍将尼洛德星区视为自己的领地。"))
+	to_chat(H, SPAN_BOLD("你和其他殖民者必须让他们意识到自己的越界行为。这个星区已经不再属于他们。"))
 
 /datum/emergency_call/clf/create_member(datum/mind/M, turf/override_spawn_loc)
 	var/turf/spawn_loc = override_spawn_loc ? override_spawn_loc : get_spawn_point()
@@ -44,30 +44,30 @@
 
 	if(!leader && HAS_FLAG(H.client.prefs.toggles_ert, PLAY_LEADER) && check_timelock(H.client, JOB_SQUAD_LEADER, time_required_for_job))
 		leader = H
-		to_chat(H, SPAN_ROLE_HEADER("You are a Cell Leader of the local resistance group, the Colonial Liberation Front!"))
+		to_chat(H, SPAN_ROLE_HEADER("你是当地抵抗组织殖民地解放阵线的一名小组长！"))
 		arm_equipment(H, /datum/equipment_preset/clf/leader, TRUE, TRUE)
 	else if(synths < max_synths && HAS_FLAG(H.client.prefs.toggles_ert, PLAY_SYNTH) && H.client.check_whitelist_status(WHITELIST_SYNTHETIC))
 		synths++
-		to_chat(H, SPAN_ROLE_HEADER("You are a Multi-Purpose Synthetic for the local resistance group, the Colonial Liberation Front!"))
+		to_chat(H, SPAN_ROLE_HEADER("你是当地抵抗组织殖民地解放阵线的一名多用途合成人！"))
 		arm_equipment(H, /datum/equipment_preset/clf/synth, TRUE, TRUE)
 	else if(medics < max_medics && HAS_FLAG(H.client.prefs.toggles_ert, PLAY_MEDIC) && check_timelock(H.client, JOB_SQUAD_MEDIC, time_required_for_job))
 		medics++
-		to_chat(H, SPAN_ROLE_HEADER("You are a Medic of the local resistance group, the Colonial Liberation Front!"))
+		to_chat(H, SPAN_ROLE_HEADER("你是当地抵抗组织殖民地解放阵线的一名医疗兵！"))
 		arm_equipment(H, /datum/equipment_preset/clf/medic, TRUE, TRUE)
 	else if(engineers < max_engineers && HAS_FLAG(H.client.prefs.toggles_ert, PLAY_ENGINEER) && check_timelock(H.client, JOB_SQUAD_ENGI, time_required_for_job))
 		engineers++
-		to_chat(H, SPAN_ROLE_HEADER("You are an Engineer of the local resistance group, the Colonial Liberation Front!"))
+		to_chat(H, SPAN_ROLE_HEADER("你是当地抵抗组织殖民地解放阵线的一名工程兵！"))
 		arm_equipment(H, /datum/equipment_preset/clf/engineer, TRUE, TRUE)
 	else if(heavies < max_heavies && HAS_FLAG(H.client.prefs.toggles_ert, PLAY_HEAVY) && check_timelock(H.client, JOB_SQUAD_SPECIALIST, time_required_for_job))
 		heavies++
-		to_chat(H, SPAN_ROLE_HEADER("You are a Specialist of the local resistance group, the Colonial Liberation Front!"))
+		to_chat(H, SPAN_ROLE_HEADER("你是当地抵抗组织殖民地解放阵线的一名武器专家！"))
 		arm_equipment(H, /datum/equipment_preset/clf/soldier, TRUE, TRUE)
 	else
-		to_chat(H, SPAN_ROLE_HEADER("You are a Fighter of the local resistance group, the Colonial Liberation Front!"))
+		to_chat(H, SPAN_ROLE_HEADER("你是当地抵抗组织殖民地解放阵线的一名战士！"))
 		arm_equipment(H, /datum/equipment_preset/clf/soldier, TRUE, TRUE)
 	print_backstory(H)
 
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), H, SPAN_BOLD("Objectives: [objectives]")), 1 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), H, SPAN_BOLD("目标：[objectives]")), 1 SECONDS)
 
 
 /datum/emergency_call/clf/platoon

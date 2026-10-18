@@ -10,7 +10,7 @@
 #define AIRLOCK_CANTGLASS 2
 
 /obj/structure/airlock_assembly
-	name = "airlock assembly"
+	name = "气闸门框架"
 	icon = 'icons/obj/structures/doors/airlock_assembly.dmi'
 	icon_state = "door_as_0"
 	anchored = TRUE
@@ -37,7 +37,7 @@
 	if(damage >= damage_cap)
 		if(M && istype(M))
 			SEND_SIGNAL(M, COMSIG_MOB_DESTROY_AIRLOCK, src)
-		to_chat(loc, SPAN_DANGER("[src] blows apart!"))
+		to_chat(loc, SPAN_DANGER("[src]炸得四分五裂！"))
 		deconstruct(FALSE)
 		playsound(src, 'sound/effects/metal_crash.ogg', 25, 1)
 		return TRUE
@@ -73,7 +73,7 @@
 /obj/structure/airlock_assembly/handle_tail_stab(mob/living/carbon/xenomorph/xeno)
 
 	playsound(src, 'sound/effects/metalhit.ogg', 50, TRUE)
-	xeno.visible_message(SPAN_XENOWARNING("\The [xeno] strikes \the [src] with its tail!"), SPAN_XENOWARNING("You strike \the [src] with your tail!"))
+	xeno.visible_message(SPAN_XENOWARNING("[xeno]用尾巴猛击[src]！"), SPAN_XENOWARNING("你用尾巴猛击[src]！"))
 	xeno.emote("tail")
 	var/damage = xeno.melee_damage_upper * TAILSTAB_AIRLOCK_DAMAGE_MULTIPLIER
 	take_damage(damage, xeno)
@@ -87,27 +87,27 @@
 	. = ..()
 
 	var/helpmessage
-	. += SPAN_NOTICE("A [SPAN_HELPFUL("crowbar")] will dismantle it.")
+	. += SPAN_NOTICE("可用[SPAN_HELPFUL("撬棍")]拆解它。")
 	switch(state)
 		if(STATE_STANDARD)
 			if(anchored)
 				var/temp = ""
 				if(width == 1)
-					temp += "It looks like a [SPAN_HELPFUL("wrench")] will unsecure it. "
-				helpmessage += "[temp]You can insert an [SPAN_HELPFUL("airlock circuit")]. "
+					temp += "It looks like a [SPAN_HELPFUL("扳手")] will unsecure it. "
+				helpmessage += "[temp]You can insert an [SPAN_HELPFUL("气闸门电路板")]. "
 				if(!glass)
-					helpmessage += "Insert some [SPAN_HELPFUL("glass sheets")] to add windows to it. "
+					helpmessage += "Insert some [SPAN_HELPFUL("玻璃板")] to add windows to it. "
 				else if(glass == AIRLOCK_GLASSIN)
-					helpmessage += "You can take out the windows with a [SPAN_HELPFUL("screwdriver")]. "
+					helpmessage += "You can take out the windows with a [SPAN_HELPFUL("螺丝刀")]. "
 			else
-				helpmessage += "It looks like a [SPAN_HELPFUL("wrench")] will secure it. "
+				helpmessage += "It looks like a [SPAN_HELPFUL("扳手")] will secure it. "
 		if(STATE_CIRCUIT)
-			helpmessage += "Add [SPAN_HELPFUL("cable coil")] to the circuit. "
+			helpmessage += "Add [SPAN_HELPFUL("电缆卷")] to the circuit. "
 		if(STATE_WIRES)
-			helpmessage += "Secure the circuit with a [SPAN_HELPFUL("screwdriver")]. "
+			helpmessage += "Secure the circuit with a [SPAN_HELPFUL("螺丝刀")]. "
 		if(STATE_SCREWDRIVER)
-			helpmessage += "[SPAN_HELPFUL("Weld")] it all in place. "
-	helpmessage += "You can name it with a [SPAN_HELPFUL("pen")]."
+			helpmessage += "[SPAN_HELPFUL("焊接")] it all in place. "
+	helpmessage += "You can name it with a [SPAN_HELPFUL("笔")]."
 	. += SPAN_NOTICE(helpmessage)
 
 /obj/structure/airlock_assembly/attackby(obj/item/attacking_item as obj, mob/user as mob)
@@ -115,11 +115,11 @@
 		return TRUE //no afterattack
 
 	if(!skillcheck(user, SKILL_CONSTRUCTION, SKILL_CONSTRUCTION_TRAINED))
-		to_chat(user, SPAN_WARNING("You are not trained to configure \the [src]..."))
+		to_chat(user, SPAN_WARNING("你没有接受过配置[src]的训练……"))
 		return
 
 	if(HAS_TRAIT(attacking_item, TRAIT_TOOL_PEN))
-		var/input_text = copytext(stripped_input(user, "Enter the name for the airlock.", name, created_name), 1, MAX_NAME_LEN)
+		var/input_text = copytext(stripped_input(user, "输入气闸门的名称。", name, created_name), 1, MAX_NAME_LEN)
 		if(!input_text || !in_range(src, usr) && loc != usr)
 			return
 		created_name = input_text
@@ -129,35 +129,35 @@
 	if(istype(attacking_item, /obj/item/stack/sheet/glass))
 		var/obj/item/stack/sheet/glass/glass_sheet = attacking_item
 		if(!anchored)
-			to_chat(user, SPAN_NOTICE("The airlock is not secured!"))
+			to_chat(user, SPAN_NOTICE("气闸门尚未固定！"))
 			return
 		if(state != STATE_STANDARD)
-			to_chat(user, SPAN_NOTICE("You can't add in the glass with the circuit already in!"))
+			to_chat(user, SPAN_NOTICE("电路板已经装好了，无法再加入玻璃！"))
 			return
 		if(glass == AIRLOCK_GLASSIN)
-			to_chat(user, SPAN_NOTICE("You can't add more glass to \the [src]!"))
+			to_chat(user, SPAN_NOTICE("无法再向[src]加入玻璃！"))
 			return
 		if(glass == AIRLOCK_CANTGLASS)
-			to_chat(user, SPAN_NOTICE("\The [src] has no slots to install glass!"))
+			to_chat(user, SPAN_NOTICE("[src]没有安装玻璃的槽位！"))
 			return
 		if(!do_after(user, 20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			return
 		if(glass_sheet.use(5))
 			playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 			glass = AIRLOCK_GLASSIN
-			to_chat(user, SPAN_NOTICE("You insert some glass into \the [src], adding windows to it."))
+			to_chat(user, SPAN_NOTICE("你将玻璃装入[src]，为其加上了窗户。"))
 			update_icon()
 			return
 		else
-			to_chat(user, SPAN_WARNING("You need five sheets of glass to add windows to \the [src]!"))
+			to_chat(user, SPAN_WARNING("你需要五片玻璃才能给[src]加上窗户！"))
 			return
 
 	if(HAS_TRAIT(attacking_item, TRAIT_TOOL_CROWBAR))
-		to_chat(user, SPAN_NOTICE("You start pulling \the [src] apart."))
+		to_chat(user, SPAN_NOTICE("你开始拆解[src]。"))
 		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 		if(!do_after(user, 20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			return
-		to_chat(user, SPAN_NOTICE("You pulled \the [src] apart."))
+		to_chat(user, SPAN_NOTICE("你拆解了[src]。"))
 		playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		new /obj/item/stack/sheet/metal(loc, 5)
 		if(glass == AIRLOCK_GLASSIN)
@@ -167,7 +167,7 @@
 
 	for(var/obj/object in loc)
 		if(object.density && object != src)
-			to_chat(user, SPAN_WARNING("[object] is blocking you from interacting with [src]!"))
+			to_chat(user, SPAN_WARNING("[object]挡住了位置，你无法操作[src]！"))
 			return
 
 	switch(state)
@@ -175,39 +175,39 @@
 			if(HAS_TRAIT(attacking_item, TRAIT_TOOL_WRENCH))
 				//Moving wide doors is wonky and doesn't work properly, if it's fixed we could make it unwrenchable again
 				if(width > 1 && anchored)
-					to_chat(user, SPAN_WARNING("[src] cannot be unwrenched."))
+					to_chat(user, SPAN_WARNING("[src]无法用扳手松开。"))
 					return
 				if(!anchored)
 					var/turf/open/checked_turf = loc
 					if(!(istype(checked_turf) && checked_turf.allow_construction))
-						to_chat(user, SPAN_WARNING("\The [src] cannot be secured here!"))
+						to_chat(user, SPAN_WARNING("无法将[src]固定在这里！"))
 						return
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				to_chat(user, SPAN_NOTICE(" You start [anchored? "un" : ""]securing the airlock assembly!"))
+				to_chat(user, SPAN_NOTICE(" 你开始[anchored? "松开" : "固定"]气闸门框架！"))
 				if(!do_after(user, 40 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					return
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				to_chat(user, SPAN_NOTICE(" You [anchored? "un" : ""]secured the airlock assembly!"))
+				to_chat(user, SPAN_NOTICE(" 你[anchored? "松开了" : "固定了"]气闸门框架！"))
 				anchored = !anchored
 				return
 
 			if(!anchored)
-				to_chat(user, SPAN_NOTICE("The airlock is not secured!"))
+				to_chat(user, SPAN_NOTICE("气闸门尚未固定！"))
 				return ..()
 
 			if(istype(attacking_item, /obj/item/circuitboard/airlock))
 				var/obj/item/circuitboard/airlock/airlock_circuit = attacking_item
 				if(airlock_circuit.fried) // guess what this used to check? ICON STATE!!
-					to_chat(user, SPAN_WARNING("\The [airlock_circuit] are totally broken!"))
+					to_chat(user, SPAN_WARNING("[airlock_circuit]完全损坏了！"))
 					return
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				to_chat(user, SPAN_NOTICE("You start installing the airlock electronics."))
+				to_chat(user, SPAN_NOTICE("你开始安装气闸门电子元件。"))
 				if(!do_after(user, 40 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					return
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				user.drop_held_item()
 				attacking_item.forceMove(src)
-				to_chat(user, SPAN_NOTICE("You installed the airlock electronics!"))
+				to_chat(user, SPAN_NOTICE("你装好了气闸门电子元件！"))
 				state = STATE_CIRCUIT
 				electronics = attacking_item
 				update_icon()
@@ -215,17 +215,17 @@
 
 			if(HAS_TRAIT(attacking_item, TRAIT_TOOL_SCREWDRIVER))
 				if(!anchored)
-					to_chat(user, SPAN_NOTICE("The airlock is not secured!"))
+					to_chat(user, SPAN_NOTICE("气闸门尚未固定！"))
 					return
 				if(glass != AIRLOCK_GLASSIN)
-					to_chat(user, SPAN_NOTICE("\The [src] has no glass to take out!"))
+					to_chat(user, SPAN_NOTICE("[src]没有可拆除的玻璃！"))
 					return
 				if(!do_after(user, 20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					return
 				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 				glass = AIRLOCK_NOGLASS
 				new /obj/item/stack/sheet/glass(loc, 5)
-				to_chat(user, SPAN_NOTICE("You pry the glass panes out of \the [src]."))
+				to_chat(user, SPAN_NOTICE("你从[src]上撬下了玻璃板。"))
 				update_icon()
 				return
 
@@ -234,25 +234,25 @@
 			if(istype(attacking_item, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/airlock_circuit = attacking_item
 				if (airlock_circuit.get_amount() < 1)
-					to_chat(user, SPAN_WARNING("You need one length of coil to wire the airlock assembly."))
+					to_chat(user, SPAN_WARNING("你需要一段电缆才能为气闸门框架接线。"))
 					return
-				to_chat(user, SPAN_NOTICE("You start to wire the circuit."))
+				to_chat(user, SPAN_NOTICE("你开始为电路板接线。"))
 				if(!do_after(user, 40 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					return
 				if(airlock_circuit.use(1))
 					state = STATE_WIRES
-					to_chat(user, SPAN_NOTICE("You wire the circuit."))
+					to_chat(user, SPAN_NOTICE("你为电路板接好了线。"))
 					update_icon()
 				return
 
 		if(STATE_WIRES)
 			if(HAS_TRAIT(attacking_item, TRAIT_TOOL_SCREWDRIVER))
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				to_chat(user, SPAN_NOTICE("You start securing the circuit"))
+				to_chat(user, SPAN_NOTICE("你开始固定电路板。"))
 				if(!do_after(user, 40 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					return
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				to_chat(user, SPAN_NOTICE("You secured the circuit!"))
+				to_chat(user, SPAN_NOTICE("你固定好了电路板！"))
 				state = STATE_SCREWDRIVER
 				update_icon()
 				return
@@ -260,20 +260,20 @@
 		if(STATE_SCREWDRIVER)
 			if(iswelder(attacking_item))
 				if(!HAS_TRAIT(attacking_item, TRAIT_TOOL_BLOWTORCH))
-					to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+					to_chat(user, SPAN_WARNING("你需要更强力的焊炬！"))
 					return
 				var/obj/item/tool/weldingtool/welder = attacking_item
 				if(!welder.remove_fuel(5, user))
 					return
 				playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-				to_chat(user, SPAN_NOTICE("Now finishing the airlock."))
+				to_chat(user, SPAN_NOTICE("开始完成气闸门施工。"))
 
 				if(!do_after(user, 40 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					welder.remove_fuel(-5)
 					return
 
 				playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-				to_chat(user, SPAN_NOTICE("You finish the airlock!"))
+				to_chat(user, SPAN_NOTICE("你完成了气闸门施工！"))
 				var/path = get_airlock_path()
 				var/obj/structure/machinery/door/airlock/door = new path(loc)
 				door.assembly_type = type

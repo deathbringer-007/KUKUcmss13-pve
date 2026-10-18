@@ -386,11 +386,11 @@
 /datum/reagent/proc/generate_description()
 	var/info
 	for(var/datum/chem_property/P in properties)
-		info += "<BR><B>[capitalize(P.name)] Level [P.level]</B> - [P.description]<BR>"
+		info += "<BR><B>[P.get_display_name()] 等级 [P.level]</B> - [P.description]<BR>"
 		if(P == PROPERTY_HYPERTHERMIC)
-			info += "<I>WARNING: Mixing too much at a time can cause spontanous ignition! Beware mixing more than the OD threshold!</I>"
+			info += "<I>警告：一次混合过多可能导致自燃！请勿超过过量阈值！</I>"
 		else if(P == PROPERTY_EXPLOSIVE)
-			info += "<I>WARNING: Mixing too much at a time can cause spontanous explosion! Do not mix more than the OD threshold!</I>"
+			info += "<I>警告：一次混合过多可能导致自爆！请勿超过过量阈值！</I>"
 	description = info
 
 /datum/reagent/proc/generate_assoc_recipe(list/complexity)

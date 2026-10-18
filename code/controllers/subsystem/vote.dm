@@ -160,7 +160,7 @@ SUBSYSTEM_DEF(vote)
 			if("gamemode")
 				SSticker.save_mode(.)
 				GLOB.master_mode = .
-				to_chat(world, SPAN_BOLDNOTICE("Notice: The Gamemode for next round has been set to [.]"))
+				to_chat(world, SPAN_BOLDNOTICE("提示：下一回合的游戏模式已设为[.]"))
 			if("restart")
 				if(. == "Restart Round")
 					restart = TRUE
@@ -185,7 +185,7 @@ SUBSYSTEM_DEF(vote)
 		if(!active_admins)
 			world.Reboot("Restart vote successful.")
 		else
-			to_chat(world, "<span style='boltnotice'>Notice:Restart vote will not restart the server automatically because there are active admins on.</span>")
+			to_chat(world, "<span style='boltnotice'>提示：由于有管理员在线，重启投票不会自动重启服务器。</span>")
 			message_admins("A restart vote has passed, but there are active admins on with +SERVER, so it has been canceled. If you wish, you may restart the server.")
 
 	return .
@@ -251,17 +251,17 @@ SUBSYSTEM_DEF(vote)
 		if(!admin && vote_type == "restart")
 			for(var/client/C as anything in GLOB.admins)
 				if(!C.is_afk() && check_client_rights(C, R_SERVER, FALSE))
-					to_chat(usr, SPAN_WARNING("You cannot make a restart vote while there are active admins online."))
+					to_chat(usr, SPAN_WARNING("有管理员在线时，无法发起重启投票。"))
 					return FALSE
 
 		if(started_time)
 			var/next_allowed_time = (started_time + CONFIG_GET(number/vote_delay))
 			if(mode)
-				to_chat(usr, SPAN_WARNING("There is already a vote in progress! Please wait for it to finish."))
+				to_chat(usr, SPAN_WARNING("已有投票正在进行！请等待投票结束。"))
 				return FALSE
 
 			if(next_allowed_time > world.time && !admin)
-				to_chat(usr, SPAN_WARNING("A vote was initiated recently, you must wait [DisplayTimeText(next_allowed_time-world.time)] before a new vote can be started!"))
+				to_chat(usr, SPAN_WARNING("最近刚发起过投票，你还需等待[DisplayTimeText(next_allowed_time-world.time)]才能发起新的投票！"))
 				return FALSE
 
 		reset()

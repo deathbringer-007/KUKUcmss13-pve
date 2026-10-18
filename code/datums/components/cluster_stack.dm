@@ -73,7 +73,7 @@
 
 /datum/component/cluster_stack/proc/stat_append(mob/M, list/L)
 	SIGNAL_HANDLER
-	L += "Cluster Stack: [cluster_stacks]/[MAX_CLUSTER_STACKS]"
+	L += "集束层数：[cluster_stacks]/[MAX_CLUSTER_STACKS]"
 
 /datum/component/cluster_stack/proc/apply_cluster_stacks(mob/living/L, damage_result, ammo_flags, obj/projectile/P)
 	SIGNAL_HANDLER
@@ -82,8 +82,8 @@
 		//playsound("whoom")
 		cluster_stacks = 0
 		damage_counter = 0
-		to_chat(L, SPAN_DANGER("You feel a cluster of explosions inside your body!"))
-		L.visible_message(SPAN_DANGER("You hear an explosion from the insides of [L]!"))
+		to_chat(L, SPAN_DANGER("你感到体内发生了接连的爆炸！"))
+		L.visible_message(SPAN_DANGER("你听到 [L] 体内传出爆炸声！"))
 		L.apply_armoured_damage(old_dmg_cont * 0.3, ARMOR_BOMB, BRUTE)
 		var/datum/cause_data/cause_data = create_cause_data("cluster explosion", P.firer)
 		INVOKE_ASYNC(GLOBAL_PROC, TYPE_PROC_REF(/atom, cell_explosion), get_turf(L), 50, 50, EXPLOSION_FALLOFF_SHAPE_LINEAR, P.dir, cause_data)

@@ -37,7 +37,7 @@
 
 /datum/research_upgrades/machinery/autodoc/internal_bleed
 	name = "AutoDoc Internal Bleeding Repair"
-	desc = "A data and instruction set for the AutoDoc, making it capable of rapidly fixing internal bleeding."
+	desc = "一套供自动手术舱使用的数据与指令，可使其快速修复内出血。"
 	behavior = RESEARCH_UPGRADE_ITEM
 	value_upgrade = 200
 	clearance_req = 1
@@ -47,7 +47,7 @@
 
 /datum/research_upgrades/machinery/autodoc/broken_bone
 	name = "AutoDoc Bone Fracture Repair"
-	desc = "A data instruction set for the AutoDoc, making it capable of setting fractures and applying bonegel."
+	desc = "一套供自动手术舱使用的数据与指令，可使其复位骨折并涂抹接骨胶。"
 	behavior = RESEARCH_UPGRADE_ITEM
 	value_upgrade = 2000
 	clearance_req = 3
@@ -57,7 +57,7 @@
 
 /datum/research_upgrades/machinery/autodoc/organ_damage
 	name = "AutoDoc Broken Organ Repair"
-	desc = "A data and instruction set for the AutoDoc, making it capable of fixing organ damage."
+	desc = "一套供自动手术舱使用的数据与指令，可使其修复器官损伤。"
 	behavior = RESEARCH_UPGRADE_ITEM
 	value_upgrade = 1500
 	clearance_req = 2

@@ -26,7 +26,7 @@
 
 /datum/construction_template/xenomorph/core
 	name = XENO_STRUCTURE_CORE
-	description = "Heart of the hive, grows hive weeds (which are necessary for other structures), stores larva, spawns lesser drones, and protects the hive from skyfire."
+	description = "巢群的核心，能生长其他建筑所需的菌毯、储存幼体、生成次级工蜂，并保护巢群免遭天火打击。"
 	build_type = /obj/effect/alien/resin/special/pylon/core
 	build_icon_state = "core"
 	plasma_required = 100 * XENO_STRUCTURE_PLASMA_MULTIPLIER
@@ -34,7 +34,7 @@
 
 /datum/construction_template/xenomorph/cluster
 	name = XENO_STRUCTURE_CLUSTER
-	description = "Remote section of the hive, grows hive weeds, and morphs into a hive pylon when placed near a communications tower."
+	description = "巢群的外围节点，可生长菌毯；若建在通信塔附近，会转变为巢群尖塔。"
 	build_type = /obj/effect/alien/resin/special/cluster
 	build_icon_state = "hive_cluster"
 	pixel_y = -8
@@ -47,7 +47,7 @@
 
 /datum/construction_template/xenomorph/pylon
 	name = XENO_STRUCTURE_PYLON
-	description = "Remote section of the hive, grows hive weeds, spawns lesser drones, and protects sisters from air strikes."
+	description = "巢群的外围节点，可生长菌毯、生成次级工蜂，并保护姐妹免遭空袭。"
 	build_type = /obj/effect/alien/resin/special/pylon
 	build_icon_state = "pylon"
 	plasma_required = 100 * XENO_STRUCTURE_PLASMA_MULTIPLIER
@@ -55,19 +55,19 @@
 
 /datum/construction_template/xenomorph/eggmorph
 	name = XENO_STRUCTURE_EGGMORPH
-	description = "Processes hatched hosts into new facehuggers."
+	description = "将已孵化的宿主加工成新的抱脸虫。"
 	build_type = /obj/effect/alien/resin/special/eggmorph
 	build_icon_state = "eggmorph_preview"
 
 /datum/construction_template/xenomorph/recovery
 	name = XENO_STRUCTURE_RECOVERY
-	description = "Hastily recovers the strength of sisters resting around it."
+	description = "迅速恢复在其周围休息的姐妹的体力。"
 	build_type = /obj/effect/alien/resin/special/recovery
 	build_icon_state = "recovery"
 
 /datum/construction_template/xenomorph/nest
 	name = XENO_STRUCTURE_NEST
-	description = "Strong enough to secure a headhunter for indeterminate durations."
+	description = "足够牢固，能长时间困住铁血战士。"
 	build_type = /obj/effect/alien/resin/special/nest
 	build_icon_state = "reinforced_nest"
 
@@ -106,7 +106,7 @@
 			if(stepped_turf.density)
 				direction_to_put_nest = get_dir(stepped_turf, owner)
 				return
-	xeno_message(SPAN_XENOWARNING("This structure needs to be built directly next to an vertical surface."), 7, XENO_HIVE_NORMAL)
+	xeno_message(SPAN_XENOWARNING("此结构必须紧邻竖直表面建造。"), 7, XENO_HIVE_NORMAL)
 	qdel(owner)
 	qdel(src)
 

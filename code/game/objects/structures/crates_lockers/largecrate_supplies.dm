@@ -442,7 +442,7 @@
 /obj/structure/largecrate/machine/get_examine_text(mob/user)
 	. = ..()
 	if(unmovable)
-		. += SPAN_DANGER("!!WARNING!! CONTENTS OF CRATE UNABLE TO BE MOVED ONCE UNPACKAGED!")
+		. += SPAN_DANGER("！！警告！！箱内物品拆封后将无法移动！")
 
 /obj/structure/largecrate/machine/unpack(forced)
 	if(parts_type)
@@ -453,12 +453,12 @@
 /obj/structure/largecrate/machine/attackby(obj/item/W as obj, mob/user as mob)
 	if(HAS_TRAIT(W, TRAIT_TOOL_CROWBAR))
 		if(turf_blocked_check())
-			to_chat(user, SPAN_WARNING("You need a clear space[dir_needed ? " to the [dir2text(dir_needed)] of the crate" : ""] in order to unpack \the [src]."))
+			to_chat(user, SPAN_WARNING("拆开[src]需要留出一片空地[dir_needed ? "，位置在箱子的[dir2text(dir_needed)]侧" : ""]。"))
 			return
-		if(alert(user, "Are you sure you want to unpack \the [src] here?", "Confirmation", "Yes", "No") != "Yes")
+		if(alert(user, "确定要在这里拆开 \the [src] 吗？", "确认", "Yes", "No") != "Yes")
 			return
 
-		user.visible_message(SPAN_NOTICE("[user] pries \the [src] open."), SPAN_NOTICE("You pry open \the [src]."))
+		user.visible_message(SPAN_NOTICE("[user]撬开了[src]。"), SPAN_NOTICE("你撬开了[src]。"))
 		unpack()
 	else
 		return attack_hand(user)

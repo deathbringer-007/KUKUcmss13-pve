@@ -5,7 +5,7 @@
 //Floors
 
 /turf/open/floor/plating
-	name = "plating"
+	name = "底板"
 	icon_state = "plating"
 	intact_tile = FALSE
 	tool_flags = NO_FLAGS
@@ -33,9 +33,9 @@
 	if(istypestrict(C, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = C
 		if(R.get_amount() < 2)
-			to_chat(user, SPAN_WARNING("You need more rods."))
+			to_chat(user, SPAN_WARNING("你需要更多金属杆。"))
 			return
-		to_chat(user, SPAN_NOTICE("You start reinforcing the floor."))
+		to_chat(user, SPAN_NOTICE("你开始加固地板。"))
 		var/current_type = type
 		if(do_after(user, 30 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD) && current_type == type)
 			if(!R)
@@ -50,22 +50,22 @@
 		return
 	if(iswelder(C))
 		if(!HAS_TRAIT(C, TRAIT_TOOL_BLOWTORCH))
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要功率更大的焊枪！"))
 			return
 		var/obj/item/tool/weldingtool/welder = C
 		if(welder.isOn() && (broken || burnt))
 			if(welder.remove_fuel(0, user))
-				to_chat(user, SPAN_WARNING("You fix some dents on the broken plating."))
+				to_chat(user, SPAN_WARNING("你修复了破损底板上的一些凹痕。"))
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 				icon_state = "plating"
 				burnt = FALSE
 				broken = FALSE
 			else
-				to_chat(user, SPAN_WARNING("You need more welding fuel to complete this task."))
+				to_chat(user, SPAN_WARNING("你的焊枪燃料不足，无法完成这项工作。"))
 		return
 	if(istype(C, /obj/item/stack/tile))
 		if(broken || burnt)
-			to_chat(user, SPAN_NOTICE("This section is too damaged to support a tile. Use a welder to fix the damage."))
+			to_chat(user, SPAN_NOTICE("此处损坏太严重，无法铺设地砖。请先用焊枪修复。"))
 			return
 		var/obj/item/stack/tile/T = C
 		if(T.get_amount() < 1)
@@ -76,7 +76,7 @@
 		return
 	if(istype(C, /obj/item/stack/catwalk))
 		if(broken || burnt)
-			to_chat(user, SPAN_NOTICE("This section is too damaged to support a catwalk. Use a welder to fix the damage."))
+			to_chat(user, SPAN_NOTICE("此处损坏太严重，无法安装栈道。请先用焊枪修复。"))
 			return
 		var/obj/item/stack/catwalk/T = C
 		if(T.get_amount() < 1)
@@ -210,7 +210,7 @@
 
 /turf/open/floor/plating/airless
 	icon_state = "plating"
-	name = "airless plating"
+	name = "无空气区底板"
 
 /turf/open/floor/plating/airless/Initialize(mapload, ...)
 	. = ..()
@@ -218,7 +218,7 @@
 
 /turf/open/floor/plating/icefloor
 	icon_state = "plating"
-	name = "ice colony plating"
+	name = "冰雪殖民地底板"
 
 /turf/open/floor/plating/icefloor/Initialize(mapload, ...)
 	. = ..()
@@ -253,14 +253,14 @@
 
 /// Visually like plating+catwalks but without overlaying or interactions - mainly for Reqs Elevator
 /turf/open/floor/plating/bare_catwalk
-	name = "catwalk"
-	desc = "Cats really don't like these things."
+	name = "栈道"
+	desc = "猫可不喜欢这种东西。"
 	icon = 'icons/turf/almayer.dmi'
 	icon_state = "plating_catwalk"
 
 /turf/open/floor/plating/plating_catwalk
-	name = "catwalk"
-	desc = "Cats really don't like these things."
+	name = "栈道"
+	desc = "猫可不喜欢这种东西。"
 	icon = 'icons/turf/almayer.dmi'
 	icon_state = "plating_catwalk"
 	var/base_state = "plating" //Post mapping
@@ -283,7 +283,7 @@
 			var/obj/item/stack/catwalk/R = new(src, 1, type)
 			R.add_to_stacks(usr)
 			covered = FALSE
-			to_chat(user, SPAN_WARNING("You remove the top of the catwalk."))
+			to_chat(user, SPAN_WARNING("你拆下了栈道的顶板。"))
 			playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 			update_icon()
 			return
@@ -292,7 +292,7 @@
 			var/obj/item/stack/catwalk/E = W
 			E.use(1)
 			covered = TRUE
-			to_chat(user, SPAN_WARNING("You replace the top of the catwalk."))
+			to_chat(user, SPAN_WARNING("你更换了栈道的顶板。"))
 			playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 			update_icon()
 			return
@@ -337,7 +337,7 @@
 		overlays += image(icon, src, "w_ai_catwalk", CATWALK_LAYER)
 
 /turf/open/floor/plating/ironsand
-	name = "Iron Sand"
+	name = "铁砂"
 
 /turf/open/floor/plating/ironsand/Initialize(mapload, ...)
 	. = ..()
@@ -348,8 +348,8 @@
 /turf/open/floor/plating/catwalk
 	icon = 'icons/turf/floors/catwalks.dmi'
 	icon_state = "catwalk0"
-	name = "catwalk"
-	desc = "Cats really don't like these things."
+	name = "栈道"
+	desc = "猫可不喜欢这种东西。"
 
 
 /turf/open/floor/almayer
@@ -358,9 +358,9 @@
 	plating_type = /turf/open/floor/plating/almayer
 
 /turf/open/floor/almayer/pod_landing_floor
-	desc = "There's a hatch above it, presumably to allow pods to drop in."
+	desc = "上方有一道舱门，大概是供空投舱降落的。"
 	icon_state = "test_floor4"
-	name = "pod landing floor"
+	name = "空投舱着陆地板"
 
 /turf/open/floor/almayer/blue
 	icon_state = "blue"
@@ -869,8 +869,8 @@
 
 /// Base type of the requisitions and vehicle bay elevator pits.
 /turf/open/floor/almayer/empty
-	name = "\proper empty space"
-	desc = "There seems to be an awful lot of machinery down below..."
+	name = "\proper 空洞"
+	desc = "下面似乎堆着一大堆机械设备……"
 	icon = 'icons/turf/floors/floors.dmi'
 	icon_state = "black"
 
@@ -898,7 +898,7 @@
 
 /turf/open/floor/almayer/empty/proc/enter_depths(atom/movable/AM)
 	if(AM.throwing == 0 && istype(get_turf(AM), /turf/open/floor/almayer/empty))
-		AM.visible_message(SPAN_WARNING("[AM] falls into the depths!"), SPAN_WARNING("You fall into the depths!"))
+		AM.visible_message(SPAN_WARNING("[AM] 坠入了深处！"), SPAN_WARNING("你坠入了深处！"))
 		if(!ishuman(AM))
 			qdel(AM)
 			return
@@ -949,14 +949,14 @@
 	return SSshuttle.vehicle_elevator.return_turfs()
 
 /turf/open/floor/almayer/empty/golden_arrow
-	desc = "You can see the elevator down there. It's a pretty long fall though..."
+	desc = "能看见下面的电梯，但掉下去可不近……"
 	var/area_type = /area/golden_arrow/cargo_shuttle/elevator
 
 /turf/open/floor/almayer/empty/golden_arrow/enter_depths(atom/movable/AM)
 	if(AM.anchored)
 		return
 	if(AM.throwing == 0 && istype(get_turf(AM), type))
-		AM.visible_message(SPAN_WARNING("[AM] falls into the depths!"), SPAN_WARNING("You fall into the depths!"))
+		AM.visible_message(SPAN_WARNING("[AM] 坠入了深处！"), SPAN_WARNING("你坠入了深处！"))
 
 	var/list/area_turfs = get_area_turfs(area_type)
 	for(var/turf/turf in area_turfs)
@@ -979,7 +979,7 @@
 //Others
 /turf/open/floor/almayer/uscm
 	icon_state = "logo_c"
-	name = "\improper USCM Logo"
+	name = "\improper USCM标志"
 
 /turf/open/floor/almayer/uscm/north
 	dir = NORTH
@@ -1181,7 +1181,7 @@
 /turf/open/floor/almayer_hull
 	icon = 'icons/turf/almayer.dmi'
 	icon_state = "outerhull"
-	name = "hull"
+	name = "船壳"
 	hull_floor = TRUE
 
 /turf/open/floor/almayer_hull/outerhull_dir
@@ -1224,7 +1224,7 @@
 
 /turf/open/floor/airless
 	icon_state = "floor"
-	name = "airless floor"
+	name = "无空气区地板"
 
 /turf/open/floor/airless/Initialize(mapload, ...)
 	. = ..()
@@ -1238,7 +1238,7 @@
 
 /turf/open/floor/icefloor
 	icon_state = "floor"
-	name = "ice colony floor"
+	name = "冰雪殖民地地板"
 	plating_type = /turf/open/floor/plating/icefloor
 
 /turf/open/floor/icefloor/is_plasteel_floor()
@@ -1263,7 +1263,7 @@
 	icon_state = "rockvault"
 
 /turf/open/floor/wood
-	name = "wooden floor"
+	name = "木地板"
 	icon_state = "wood"
 	tile_type = /obj/item/stack/tile/wood
 	tool_flags = BREAK_CROWBAR|REMOVE_SCREWDRIVER
@@ -1272,8 +1272,8 @@
 	return TRUE
 
 /turf/open/floor/wood/ship
-	name = "fake wooden floor"
-	desc = "This metal floor has been painted to look like one made of wood. Unfortunately, wood and high-pressure internal atmosphere don't mix well. Wood is a major fire hazard don't'cha know."
+	name = "仿木地板"
+	desc = "金属地板涂成了木地板的样子。可惜木材与高压舱内环境不太相容。木材可是严重的火灾隐患，你不知道吗？"
 	tile_type = /obj/item/stack/tile/wood/fake
 
 /turf/open/floor/wood/wood_broken
@@ -1307,7 +1307,7 @@
 
 
 /turf/open/floor/engine
-	name = "reinforced floor"
+	name = "加固地板"
 	icon_state = "engine"
 	intact_tile = 0
 	breakable_tile = FALSE
@@ -1326,8 +1326,8 @@
 	if(!user)
 		return
 	if(HAS_TRAIT(C, TRAIT_TOOL_WRENCH))
-		user.visible_message(SPAN_NOTICE("[user] starts removing [src]'s protective cover."),
-		SPAN_NOTICE("You start removing [src]'s protective cover."))
+		user.visible_message(SPAN_NOTICE("[user] 开始拆下 [src] 的保护盖。"),
+		SPAN_NOTICE("你开始拆下 [src] 的保护盖。"))
 		playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
 		if(do_after(user, 30 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			new /obj/item/stack/rods(src, 2)
@@ -1348,17 +1348,17 @@
 /turf/open/floor/engine/nitrogen
 
 /turf/open/floor/engine/cult
-	name = "engraved floor"
+	name = "雕纹地板"
 	icon_state = "cult"
 
 
 /turf/open/floor/engine/vacuum
-	name = "vacuum floor"
+	name = "真空地板"
 	icon_state = "engine"
 
 
 /turf/open/floor/engine/mars/exterior
-	name = "floor"
+	name = "地板"
 	icon_state = "ironsand1"
 
 
@@ -1387,7 +1387,7 @@
 
 
 /turf/open/floor/grass
-	name = "grass patch"
+	name = "草坪"
 	icon_state = "grass1"
 	tile_type = /obj/item/stack/tile/grass
 	tool_flags = null
@@ -1418,8 +1418,8 @@
 	return
 
 /turf/open/floor/carpet
-	name = "carpet"
-	desc = "Plush, waterproof carpet. Apparently it's fire resistant while remaining quite soft."
+	name = "地毯"
+	desc = "柔软的防水地毯，据说既耐火又能保持松软。"
 	icon_state = "carpet"
 	tile_type = /obj/item/stack/tile/carpet
 	tool_flags = REMOVE_SCREWDRIVER
@@ -2256,7 +2256,7 @@
 
 // Mechbay
 /turf/open/floor/mech_bay_recharge_floor
-	name = "Mech Bay Recharge Station"
+	name = "机甲区充电站"
 	icon = 'icons/obj/structures/props/mech.dmi'
 	icon_state = "recharge_floor"
 
@@ -2267,13 +2267,13 @@
 	broken = TRUE
 
 /turf/open/floor/mech_bay_recharge_floor/shuttle_landing_lights
-	name = "shuttle landing lights"
+	name = "穿梭机着陆灯"
 
 /turf/open/floor/interior
 	icon = 'icons/turf/floors/interior.dmi'
 
 /turf/open/floor/interior/wood
-	name = "wooden floor"
+	name = "木地板"
 	icon_state = "oldwood1"
 	tile_type = /obj/item/stack/tile/wood
 
@@ -2284,12 +2284,12 @@
 	icon_state = "oldwood2"
 
 /turf/open/floor/interior/tatami
-	name = "tatami flooring"
-	desc = "A type of flooring often used in traditional Japanese-style housing."
+	name = "榻榻米地板"
+	desc = "传统日式住宅中常用的一种地板。"
 	icon_state = "tatami"
 
 /turf/open/floor/interior/plastic
-	name = "plastic floor"
+	name = "塑料地板"
 	icon_state = "plasticfloor1"
 
 /turf/open/floor/interior/plastic/alt
@@ -2864,9 +2864,9 @@
 	icon_state = "dark2"
 
 /turf/open/floor/solarpanel
-	desc = "A sophisticated device that captures and converts light from the system's star into energy for the station."
+	desc = "精密的装置，可收集恒星光并将其转化为设施所需的能源。"
 	icon_state = "solarpanel"
-	name = "solarpanel"
+	name = "太阳能板"
 
 /turf/open/floor/asteroidwarning
 	icon_state = "asteroidwarning"

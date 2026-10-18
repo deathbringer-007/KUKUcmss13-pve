@@ -39,12 +39,12 @@
 
 /proc/apply_neuro(mob/living/M, power, insta_neuro)
 	if(skillcheck(M, SKILL_ENDURANCE, SKILL_ENDURANCE_MAX) && !insta_neuro)
-		M.visible_message(SPAN_DANGER("[M] withstands the neurotoxin!"))
+		M.visible_message(SPAN_DANGER("[M] 扛住了神经毒素！"))
 		return //endurance 5 makes you immune to weak neurotoxin
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.chem_effect_flags & CHEM_EFFECT_RESIST_NEURO || H.species.flags & NO_NEURO)
-			H.visible_message(SPAN_DANGER("[M] shrugs off the neurotoxin!"))
+			H.visible_message(SPAN_DANGER("[M] 抵御了神经毒素的影响！"))
 			return //species like zombies or synths are immune to neurotoxin
 
 	if(!isxeno(M))
@@ -56,7 +56,7 @@
 
 		if(ishuman(M))
 			M.apply_effect(2.5, SUPERSLOW)
-			M.visible_message(SPAN_DANGER("[M]'s movements are slowed."))
+			M.visible_message(SPAN_DANGER("[M] 的动作变得迟缓。"))
 
 		var/no_clothes_neuro = FALSE
 
@@ -69,21 +69,21 @@
 			if(M.GetKnockDownDuration() < 5) // Nobody actually knows what this means. Supposedly it means less than 10 seconds. Frankly if you get locked into 10s of knockdown to begin with there are bigger issues.
 				M.KnockDown(power)
 				M.Stun(power)
-				M.visible_message(SPAN_DANGER("[M] falls prone."))
+				M.visible_message(SPAN_DANGER("[M] 倒在了地上。"))
 
 /proc/apply_scatter_neuro(mob/living/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(skillcheck(M, SKILL_ENDURANCE, SKILL_ENDURANCE_MAX))
-			M.visible_message(SPAN_DANGER("[M] withstands the neurotoxin!"))
+			M.visible_message(SPAN_DANGER("[M] 扛住了神经毒素！"))
 			return //endurance 5 makes you immune to weak neuro
 		if(H.chem_effect_flags & CHEM_EFFECT_RESIST_NEURO || H.species.flags & NO_NEURO)
-			H.visible_message(SPAN_DANGER("[M] shrugs off the neurotoxin!"))
+			H.visible_message(SPAN_DANGER("[M] 抵御了神经毒素的影响！"))
 			return
 
 		M.KnockDown(0.7) // Completely arbitrary values from another time where stun timers incorrectly stacked. Kill as needed.
 		M.Stun(0.7)
-		M.visible_message(SPAN_DANGER("[M] falls prone."))
+		M.visible_message(SPAN_DANGER("[M] 倒在了地上。"))
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/M,obj/projectile/P)
 	if(ishuman(M))
@@ -251,7 +251,7 @@
 		neuro_effect = new /datum/effects/neurotoxin(moob, proj.firer)
 	neuro_effect.duration += 5
 	moob.apply_effect(3, DAZE)
-	to_chat(moob, SPAN_HIGHDANGER("Neurotoxic liquid spreads all over you and immediately soaks into your pores and orifices! Oh fuck!")) // Fucked up but have a chance to escape rather than being game-ended
+	to_chat(moob, SPAN_HIGHDANGER("神经毒液溅满你全身，立刻渗入毛孔和身体的各种开口！该死！")) // Fucked up but have a chance to escape rather than being game-ended
 	drop_nade(get_turf(proj), proj,TRUE)
 
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/outbacksteakhouse, obj/projectile/proj)
@@ -277,7 +277,7 @@
 	smoke_system.set_up(smokerange, 0, turf, new_cause_data = cause_data)
 	smoke_system.lifetime = 12 * lifetime_mult
 	smoke_system.start()
-	turf.visible_message(SPAN_DANGER("A glob of acid lands with a splat and explodes into noxious fumes!"))
+	turf.visible_message(SPAN_DANGER("一团酸液啪地落下，爆散成有毒烟雾！"))
 
 
 /datum/ammo/xeno/boiler_gas/acid
@@ -296,7 +296,7 @@
 		var/mob/living/carbon/carbon = moob
 		if(carbon.status_flags & XENO_HOST && HAS_TRAIT(carbon, TRAIT_NESTED) || carbon.stat == DEAD)
 			return
-	to_chat(moob,SPAN_HIGHDANGER("Acid covers your body! Oh fuck!"))
+	to_chat(moob,SPAN_HIGHDANGER("酸液覆盖了你的身体！该死！"))
 	playsound(moob,"acid_strike",75,1)
 	INVOKE_ASYNC(moob, TYPE_PROC_REF(/mob, emote), "pain") // why do I need this bullshit
 	new /datum/effects/acid(moob, proj.firer)

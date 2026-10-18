@@ -28,7 +28,7 @@
 		return
 	var/castepick
 	if((client.prefs && client.prefs.no_radials_preference) || !hive.evolution_menu_images)
-		castepick = tgui_input_list(usr, "我们正在成长为强大的异形！是时候选择阶级了。", "Evolve", castes_available, theme="hive_status")
+		castepick = tgui_input_list(usr, "我们正在成长为强大的异形！是时候选择阶级了。", "进化", castes_available, theme="hive_status")
 	else
 		var/list/fancy_caste_list = list()
 		for(var/caste in castes_available)
@@ -295,7 +295,7 @@
 	if(!newcaste)
 		return
 
-	var/confirm = tgui_alert(src, "Are you sure you want to de-evolve from [caste.caste_type] to [newcaste]?", "Deevolution", list("Yes", "No"))
+	var/confirm = tgui_alert(src, "确定要从 [caste.caste_type] 退化为 [newcaste] 吗？", "退化", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 

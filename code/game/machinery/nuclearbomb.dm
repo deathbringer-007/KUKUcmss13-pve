@@ -1,7 +1,7 @@
 GLOBAL_VAR_INIT(bomb_set, FALSE)
 /obj/structure/machinery/nuclearbomb
-	name = "\improper Nuclear Fission Explosive"
-	desc = "Nuke the entire site from orbit, it's the only way to be sure. Too bad we don't have any orbital nukes."
+	name = "\improper 核裂变爆炸装置"
+	desc = "从轨道核平整个区域，只有这样才能确保万无一失。可惜我们没有轨道核弹。"
 	icon = 'icons/obj/structures/machinery/nuclearbomb.dmi'
 	icon_state = "nuke"
 	density = TRUE
@@ -90,7 +90,7 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 
 /obj/structure/machinery/nuclearbomb/attackby(obj/item/O as obj, mob/user as mob)
 	if(anchored && timing && GLOB.bomb_set && HAS_TRAIT(O, TRAIT_TOOL_WIRECUTTERS))
-		user.visible_message(SPAN_INFO("[user] begins to defuse \the [src]."), SPAN_INFO("You begin to defuse \the [src]. This will take some time..."))
+		user.visible_message(SPAN_INFO("[user]开始拆除[src]。"), SPAN_INFO("你开始拆除[src]。这需要一些时间……"))
 		if(do_after(user, 150 * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
 			disable()
 			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
@@ -102,16 +102,16 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 		return
 
 	if(isyautja(user))
-		to_chat(usr, SPAN_YAUTJABOLD("A human Purification Device. Primitive and bulky, but effective. You don't have time to try figure out their counterintuitive controls. Better leave the hunting grounds before it detonates."))
+		to_chat(usr, SPAN_YAUTJABOLD("人类的净化装置。原始而笨重，却十分有效。你没时间研究这些违背直觉的控制按钮，最好在它引爆前离开猎场。"))
 
 	if(deployable)
 		if(!ishuman(user) && !isqueen(user))
-			to_chat(usr, SPAN_INFO("You don't have the dexterity to do this!"))
+			to_chat(usr, SPAN_INFO("你的手不够灵巧，无法这样做！"))
 			return
 
 		if(isqueen(user))
 			if(timing && GLOB.bomb_set)
-				user.visible_message(SPAN_INFO("[user] begins engulfing \the [src] with resin."), SPAN_INFO("You start regurgitating and engulfing the \the [src] with resin... stopping the electronics from working, this will take some time..."))
+				user.visible_message(SPAN_INFO("[user]开始用树脂包裹[src]。"), SPAN_INFO("你开始反刍树脂，将[src]包裹起来以阻止电子设备运转……这需要一些时间……"))
 				if(do_after(user, 5 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
 					disable()
 			return
@@ -170,25 +170,25 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 				return
 
 			if(!allowed(ui.user))
-				to_chat(ui.user, SPAN_INFO("Access denied!"))
+				to_chat(ui.user, SPAN_INFO("访问被拒绝！"))
 				return
 
 			if(!anchored)
-				to_chat(ui.user, SPAN_INFO("Engage anchors first!"))
+				to_chat(ui.user, SPAN_INFO("先展开锚固装置！"))
 				return
 
 			if(safety)
-				to_chat(ui.user, SPAN_INFO("The safety is still on."))
+				to_chat(ui.user, SPAN_INFO("保险仍未关闭。"))
 				return
 
 			if(!A.can_build_special)
-				to_chat(ui.user, SPAN_INFO("You cannot deploy [src] here!"))
+				to_chat(ui.user, SPAN_INFO("你不能在这里部署[src]！"))
 				return
 
 			if(ui.user.action_busy)
 				return
 
-			ui.user.visible_message(SPAN_WARNING("[ui.user] begins to [timing ? "disengage" : "engage"] [src]!"), SPAN_WARNING("You begin to [timing ? "disengage" : "engage"] [src]."))
+			ui.user.visible_message(SPAN_WARNING("[ui.user]开始[timing ? "解除" : "启动"][src]！"), SPAN_WARNING("你开始[timing ? "解除" : "启动"][src]。"))
 			being_used = TRUE
 			ui = SStgui.try_update_ui(ui.user, src, ui)
 			if(do_after(ui.user, 50, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
@@ -212,17 +212,17 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 
 		if("toggleSafety")
 			if(!allowed(ui.user))
-				to_chat(ui.user, SPAN_INFO("Access denied!"))
+				to_chat(ui.user, SPAN_INFO("访问被拒绝！"))
 				return
 			if(timing)
-				to_chat(ui.user, SPAN_INFO("Disengage first!"))
+				to_chat(ui.user, SPAN_INFO("请先解除启动状态！"))
 				return
 			if(!A.can_build_special)
-				to_chat(ui.user, SPAN_INFO("You cannot deploy [src] here!"))
+				to_chat(ui.user, SPAN_INFO("你不能在这里部署[src]！"))
 				return
 			if(ui.user.action_busy)
 				return
-			ui.user.visible_message(SPAN_WARNING("[ui.user] begins to [safety ? "disable" : "enable"] the safety on [src]!"), SPAN_WARNING("You begin to [safety ? "disable" : "enable"] the safety on [src]."))
+			ui.user.visible_message(SPAN_WARNING("[ui.user]开始[safety ? "关闭" : "开启"][src]的保险！"), SPAN_WARNING("你开始[safety ? "关闭" : "开启"][src]的保险。"))
 			being_used = TRUE
 			ui = SStgui.try_update_ui(ui.user, src, ui)
 			if(do_after(ui.user, 50, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
@@ -238,12 +238,12 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 			if(!ishuman(ui.user))
 				return
 			if(!allowed(ui.user))
-				to_chat(ui.user, SPAN_INFO("Access denied!"))
+				to_chat(ui.user, SPAN_INFO("访问被拒绝！"))
 				return
 			if(command_lockout)
 				command_lockout = FALSE
 				req_one_access = list()
-				to_chat(ui.user, SPAN_INFO("Command lockout disengaged."))
+				to_chat(ui.user, SPAN_INFO("指挥锁定已解除。"))
 			else
 				//Check if they have command access
 				var/list/acc = list()
@@ -253,20 +253,20 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 				if(H.get_active_hand())
 					acc += H.get_active_hand().GetAccess()
 				if(!(ACCESS_MARINE_COMMAND in acc))
-					to_chat(ui.user, SPAN_INFO("Access denied!"))
+					to_chat(ui.user, SPAN_INFO("访问被拒绝！"))
 					return
 
 				command_lockout = TRUE
 				req_one_access = list(ACCESS_MARINE_COMMAND)
-				to_chat(ui.user, SPAN_INFO("Command lockout engaged."))
+				to_chat(ui.user, SPAN_INFO("指挥锁定已启用。"))
 			. = TRUE
 
 		if("toggleAnchor")
 			if(timing)
-				to_chat(ui.user, SPAN_INFO("Disengage first!"))
+				to_chat(ui.user, SPAN_INFO("请先解除启动状态！"))
 				return
 			if(!A.can_build_special)
-				to_chat(ui.user, SPAN_INFO("You cannot deploy [src] here!"))
+				to_chat(ui.user, SPAN_INFO("你不能在这里部署[src]！"))
 				return
 			if(ui.user.action_busy)
 				return
@@ -274,9 +274,9 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 			ui = SStgui.try_update_ui(ui.user, src, ui)
 			if(do_after(ui.user, 50, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
 				if(!anchored)
-					visible_message(SPAN_INFO("With a steely snap, bolts slide out of [src] and anchor it to the flooring."))
+					visible_message(SPAN_INFO("随着金属撞击声，螺栓从[src]中滑出，将其固定在地板上。"))
 				else
-					visible_message(SPAN_INFO("The anchoring bolts slide back into the depths of [src]."))
+					visible_message(SPAN_INFO("锚固螺栓缩回[src]内部。"))
 				playsound(loc, 'sound/items/Deconstruct.ogg', 100, 1)
 				anchored = !anchored
 			being_used = FALSE
@@ -287,22 +287,22 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 
 /obj/structure/machinery/nuclearbomb/verb/make_deployable()
 	set category = "Object"
-	set name = "Make Deployable"
+	set name = "调整部署状态"
 	set src in oview(1)
 
 	if(usr.is_mob_incapacitated() || being_used || timing)
 		return
 
 	if(!ishuman(usr))
-		to_chat(usr, SPAN_INFO("You don't have the dexterity to do this!"))
+		to_chat(usr, SPAN_INFO("你的手不够灵巧，无法这样做！"))
 		return
 
 	var/area/A = get_area(src)
 	if(!A.can_build_special)
-		to_chat(usr, SPAN_INFO("You don't want to deploy this here!"))
+		to_chat(usr, SPAN_INFO("你不想在这里部署它！"))
 		return
 
-	usr.visible_message(SPAN_WARNING("[usr] begins to [deployable ? "close" : "adjust"] several panels to make [src] [deployable ? "undeployable" : "deployable"]."), SPAN_WARNING("You begin to [deployable ? "close" : "adjust"] several panels to make [src] [deployable ? "undeployable" : "deployable"]."))
+	usr.visible_message(SPAN_WARNING("[usr]开始[deployable ? "合上" : "调整"]几块面板，使[src][deployable ? "无法部署" : "可以部署"]。"), SPAN_WARNING("你开始[deployable ? "合上" : "调整"]几块面板，使[src][deployable ? "无法部署" : "可以部署"]。"))
 	being_used = TRUE
 	if(do_after(usr, 50, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
 		if(deployable)
@@ -333,15 +333,15 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 		announcement_helper("WARNING.\n\nDETONATION IN [floor(timeleft/10)] SECONDS.", "HQ Intel Division", humans_other, 'sound/misc/notice1.ogg')
 		//preds part
 		var/t_left = duration2text_sec(floor(rand(timeleft - timeleft / 10, timeleft + timeleft / 10)))
-		yautja_announcement(SPAN_YAUTJABOLDBIG("WARNING!\n\nYou have approximately [t_left] seconds to abandon the hunting grounds before activation of the human purification device."))
+		yautja_announcement(SPAN_YAUTJABOLDBIG("警告！\n\n距离人类净化装置启动还剩约[t_left]秒，请立即撤离猎场。"))
 		//xenos part
 		var/warning
 		if(timer_warning & NUKE_SHOW_TIMER_HALF)
-			warning = "A shiver goes down our carapace as we feel the approaching end... the hive killer is halfway through its preparation cycle!"
+			warning = "感受到末日逼近，我们的甲壳不禁颤抖……巢群毁灭者的准备进程已经过半！"
 		else if(timer_warning & NUKE_SHOW_TIMER_MINUTE)
-			warning = "Every sense in our form is screaming... the hive killer is almost ready to trigger!"
+			warning = "我们所有的感官都在尖叫……巢群毁灭者即将引爆！"
 		else
-			warning = "DISABLE IT! NOW!"
+			warning = "阻止它！立刻！"
 		var/datum/hive_status/hive
 		for(var/hivenumber in GLOB.hive_datum)
 			hive = GLOB.hive_datum[hivenumber]
@@ -355,21 +355,21 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 		announcement_helper("ALERT.\n\nNUCLEAR EXPLOSIVE ORDNANCE ACTIVATED.\n\nDETONATION IN [floor(timeleft/10)] SECONDS.", "[MAIN_AI_SYSTEM] Nuclear Tracker", humans_uscm, 'sound/misc/notice1.ogg')
 		announcement_helper("ALERT.\n\nNUCLEAR EXPLOSIVE ORDNANCE ACTIVATED.\n\nDETONATION IN [floor(timeleft/10)] SECONDS.", "HQ Nuclear Tracker", humans_other, 'sound/misc/notice1.ogg')
 		var/t_left = duration2text_sec(floor(rand(timeleft - timeleft / 10, timeleft + timeleft / 10)))
-		yautja_announcement(SPAN_YAUTJABOLDBIG("WARNING!<br>A human purification device has been detected. You have approximately [t_left] to abandon the hunting grounds before it activates."))
+		yautja_announcement(SPAN_YAUTJABOLDBIG("警告！<br>检测到人类净化装置。距离启动还剩约[t_left]，请撤离猎场。"))
 		for(var/hivenumber in GLOB.hive_datum)
 			hive = GLOB.hive_datum[hivenumber]
 			if(!length(hive.totalXenos))
 				continue
-			xeno_announcement(SPAN_XENOANNOUNCE("The tallhosts have deployed a hive killer at [get_area_name(loc)]! Stop it at all costs!"), hive.hivenumber, XENO_GENERAL_ANNOUNCE)
+			xeno_announcement(SPAN_XENOANNOUNCE("高个子宿主在[get_area_name(loc)]部署了灭巢装置！不惜一切代价阻止它！"), hive.hivenumber, XENO_GENERAL_ANNOUNCE)
 	else
 		announcement_helper("ALERT.\n\nNUCLEAR EXPLOSIVE ORDNANCE DEACTIVATED.", "[MAIN_AI_SYSTEM] Nuclear Tracker", humans_uscm, 'sound/misc/notice1.ogg')
 		announcement_helper("ALERT.\n\nNUCLEAR EXPLOSIVE ORDNANCE DEACTIVATED.", "HQ Intel Division", humans_other, 'sound/misc/notice1.ogg')
-		yautja_announcement(SPAN_YAUTJABOLDBIG("WARNING!<br>The human purification device's signature has disappeared."))
+		yautja_announcement(SPAN_YAUTJABOLDBIG("警告！<br>人类净化装置的信号消失了。"))
 		for(var/hivenumber in GLOB.hive_datum)
 			hive = GLOB.hive_datum[hivenumber]
 			if(!length(hive.totalXenos))
 				continue
-			xeno_announcement(SPAN_XENOANNOUNCE("The hive killer has been disabled! Rejoice!"), hive.hivenumber, XENO_GENERAL_ANNOUNCE)
+			xeno_announcement(SPAN_XENOANNOUNCE("灭巢装置已停用！欢呼吧！"), hive.hivenumber, XENO_GENERAL_ANNOUNCE)
 	return
 
 /obj/structure/machinery/nuclearbomb/ex_act(severity)
@@ -497,22 +497,22 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 				return
 
 			if(!allowed(ui.user))
-				to_chat(ui.user, SPAN_INFO("Access denied!"))
+				to_chat(ui.user, SPAN_INFO("访问被拒绝！"))
 				return
 
 			if(!anchored)
-				to_chat(ui.user, SPAN_INFO("Engage anchors first!"))
+				to_chat(ui.user, SPAN_INFO("先展开锚固装置！"))
 				return
 
 			var/area/current_area = get_area(src)
 			if(!current_area.can_build_special)
-				to_chat(ui.user, SPAN_INFO("You cannot deploy [src] here!"))
+				to_chat(ui.user, SPAN_INFO("你不能在这里部署[src]！"))
 				return
 
 			if(is_ground_level(z))
 				for(var/obj/structure/machinery/telecomms/relay/preset/tower/mapcomms/telecomm_unit in linked_decryption_towers)
 					if(!telecomm_unit.on)
-						to_chat(ui.user, SPAN_INFO("The groundside telecommunication relays must be activated!"))
+						to_chat(ui.user, SPAN_INFO("必须先启动地面通信中继站！"))
 						return
 
 			if(ui.user.action_busy)
@@ -521,7 +521,7 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 			if(being_used)
 				return
 
-			ui.user.visible_message(SPAN_WARNING("[ui.user] begins to [decrypting ? "stop the decryption process." : "start decrypting."]!"), SPAN_WARNING("You begin to [decrypting ? "stop the decryption process." : "start decrypting."]."))
+			ui.user.visible_message(SPAN_WARNING("[ui.user]开始[decrypting ? "停止解密过程" : "进行解密"]！"), SPAN_WARNING("你开始[decrypting ? "停止解密过程" : "进行解密"]。"))
 			being_used = TRUE
 			ui = SStgui.try_update_ui(ui.user, src, ui)
 			if(do_after(ui.user, 50, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
@@ -589,14 +589,14 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 			announcement_helper("DECRYPTION COMPLETE", "[MAIN_AI_SYSTEM] Nuclear Tracker", humans_uscm, 'sound/misc/notice1.ogg')
 			announcement_helper("DECRYPTION COMPLETE", "HQ Intel Division", humans_other, 'sound/misc/notice1.ogg')
 
-			yautja_announcement(SPAN_YAUTJABOLDBIG("WARNING!\n\nThe human purification device is able to be activated."))
+			yautja_announcement(SPAN_YAUTJABOLDBIG("警告！\n\n人类净化装置现在可以启动了。"))
 
 			var/datum/hive_status/hive
 			for(var/hivenumber in GLOB.hive_datum)
 				hive = GLOB.hive_datum[hivenumber]
 				if(!length(hive.totalXenos))
 					return
-				xeno_announcement(SPAN_XENOANNOUNCE("We get a sense of impending doom... the hive killer is ready to be activated."), hive.hivenumber, XENO_GENERAL_ANNOUNCE)
+				xeno_announcement(SPAN_XENOANNOUNCE("我们感到末日将至……灭巢装置已准备好启动。"), hive.hivenumber, XENO_GENERAL_ANNOUNCE)
 			return
 
 		announcement_helper("DECRYPTION IN [floor(decryption_time/10)] SECONDS.", "[MAIN_AI_SYSTEM] Nuclear Tracker", humans_uscm, 'sound/misc/notice1.ogg')
@@ -604,7 +604,7 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 
 		//preds part
 		var/time_left = duration2text_sec(floor(rand(decryption_time - decryption_time / 10, decryption_time + decryption_time / 10)))
-		yautja_announcement(SPAN_YAUTJABOLDBIG("WARNING!\n\nYou have approximately [time_left] seconds to abandon the hunting grounds before the human purification device is able to be activated."))
+		yautja_announcement(SPAN_YAUTJABOLDBIG("警告！\n\n距离人类净化装置可以启动还剩约[time_left]秒，请撤离猎场。"))
 
 		//xenos part
 		var/warning = "We are almost out of time, STOP THEM."
@@ -624,22 +624,22 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 		announcement_helper("ALERT.\n\nNUCLEAR EXPLOSIVE ORDNANCE DECRYPTION STARTED.\n\nDECRYPTION IN [floor(decryption_time/10)] SECONDS.", "[MAIN_AI_SYSTEM] Nuclear Tracker", humans_uscm, 'sound/misc/notice1.ogg')
 		announcement_helper("ALERT.\n\nNUCLEAR EXPLOSIVE ORDNANCE DECRYPTION STARTED.\n\nDECRYPTION IN [floor(decryption_time/10)] SECONDS.", "HQ Nuclear Tracker", humans_other, 'sound/misc/notice1.ogg')
 		var/time_left = duration2text_sec(floor(rand(decryption_time - decryption_time / 10, decryption_time + decryption_time / 10)))
-		yautja_announcement(SPAN_YAUTJABOLDBIG("WARNING!<br>A human purification device has been detected. You have approximately [time_left] before it finishes its initial phase."))
+		yautja_announcement(SPAN_YAUTJABOLDBIG("警告！<br>检测到人类净化装置。其初始阶段还将在约[time_left]后完成。"))
 		for(var/hivenumber in GLOB.hive_datum)
 			hive = GLOB.hive_datum[hivenumber]
 			if(!length(hive.totalXenos))
 				continue
-			xeno_announcement(SPAN_XENOANNOUNCE("The tallhosts have started the initial phase of a hive killer at [get_area_name(loc)]! Destroy their communications relays!"), hive.hivenumber, XENO_GENERAL_ANNOUNCE)
+			xeno_announcement(SPAN_XENOANNOUNCE("高个子宿主在[get_area_name(loc)]启动了灭巢装置的初始阶段！摧毁它们的通信中继站！"), hive.hivenumber, XENO_GENERAL_ANNOUNCE)
 		return
 
 	announcement_helper("ALERT.\n\nNUCLEAR EXPLOSIVE DECRYPTION HALTED.", "[MAIN_AI_SYSTEM] Nuclear Tracker", humans_uscm, 'sound/misc/notice1.ogg')
 	announcement_helper("ALERT.\n\nNUCLEAR EXPLOSIVE DECRYPTION HALTED.", "HQ Intel Division", humans_other, 'sound/misc/notice1.ogg')
-	yautja_announcement(SPAN_YAUTJABOLDBIG("WARNING!<br>The human purification device's signature has disappeared."))
+	yautja_announcement(SPAN_YAUTJABOLDBIG("警告！<br>人类净化装置的信号消失了。"))
 	for(var/hivenumber in GLOB.hive_datum)
 		hive = GLOB.hive_datum[hivenumber]
 		if(!length(hive.totalXenos))
 			continue
-		xeno_announcement(SPAN_XENOANNOUNCE("The hive killer's initial phase has been halted! Rejoice!"), hive.hivenumber, XENO_GENERAL_ANNOUNCE)
+		xeno_announcement(SPAN_XENOANNOUNCE("灭巢装置的初始阶段已被中止！欢呼吧！"), hive.hivenumber, XENO_GENERAL_ANNOUNCE)
 
 /obj/structure/machinery/nuclearbomb/tech/proc/connected_comm_shutdown(obj/structure/machinery/telecomms/relay/preset/tower/telecomm_unit)
 	SIGNAL_HANDLER
@@ -651,8 +651,8 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 	announce_to_players()
 
 /obj/structure/machinery/nuclearbomb/ADM
-	name = "\improper Tactical Atomic Demolition Munition"
-	desc = "Commonly referred to as a 'nuclear landmine' and colloquially as 'Heinz' for its cylindrical shape. The Mk-214 TADM is designed for discrete deployment in an area of operations to completely clear a several-mile radius around the blast point."
+	name = "\improper 战术原子爆破弹"
+	desc = "通常称作“核地雷”，也因圆柱外形被俗称为“亨氏”。Mk-214战术原子爆破弹用于在行动区隐蔽部署，彻底清除爆心周围数英里范围内的一切。"
 	icon = 'icons/obj/items/marine-items.dmi'
 	icon_state = "adm"
 	pixel_x = 0
@@ -663,29 +663,29 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 		if(user.action_busy)
 			return
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_NOVICE))
-			to_chat(user, SPAN_WARNING("You do not know how to pack up [src] using a security tuner..."))
+			to_chat(user, SPAN_WARNING("你不知道如何用安全访问调谐器收起[src]……"))
 			return
-		user.visible_message(SPAN_NOTICE("[user] starts packing up [src]."), \
-			SPAN_NOTICE("You begin packing up [src]..."))
+		user.visible_message(SPAN_NOTICE("[user]开始收起[src]。"), \
+			SPAN_NOTICE("你开始收起[src]……"))
 		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 		if(do_after(user, 5 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY, src))
 			collapse(usr)
 		else
-			to_chat(user, SPAN_WARNING("You stop packing up [src]."))
+			to_chat(user, SPAN_WARNING("你停止收起[src]。"))
 	return ..()
 
 /obj/structure/machinery/nuclearbomb/ADM/proc/collapse(mob/living/carbon/human/user)
 	var/obj/item/ADM = new source_type(loc)
 	if(istype(user))
-		user.visible_message(SPAN_NOTICE("[user] packs up [src]."),
-			SPAN_NOTICE("You pack up [src]."))
+		user.visible_message(SPAN_NOTICE("[user]收起了[src]。"),
+			SPAN_NOTICE("你收起了[src]。"))
 		user.put_in_active_hand(ADM)
 	qdel(src)
 
 // ADM in hands
 /obj/item/ADM
-	name = "Mk-214 Tactical Atomic Demolition Munition"
-	desc = "A packed-up TADM awaiting deployment to bring some serious pain. Includes the console and arming keys for the warhead."
+	name = "Mk-214战术原子爆破弹"
+	desc = "一枚收拢后等待部署的战术原子爆破弹，威力惊人。内含控制台及弹头启动钥匙。"
 	w_class = SIZE_LARGE
 	unacidable = TRUE
 	flags_equip_slot = SLOT_BACK
@@ -698,7 +698,7 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 	. = ..()
 
 	if(SSinterior.in_interior(user))
-		to_chat(usr, SPAN_WARNING("It's too cramped in here to deploy \a [src]."))
+		to_chat(usr, SPAN_WARNING("这里太狭窄，无法部署[src]。"))
 		return
 	var/turf/Tile = get_step(user, user.dir)
 	var/blocked = FALSE
@@ -712,24 +712,24 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 	if(istype(Tile, /turf/open))
 		var/turf/open/floor = Tile
 		if(!floor.allow_construction)
-			to_chat(user, SPAN_WARNING("You cannot deploy \a [src] here, find a more secure surface!"))
+			to_chat(user, SPAN_WARNING("你不能在这里部署[src]，请寻找更稳固的表面！"))
 			return FALSE
 	else
 		blocked = TRUE
 	if(blocked)
-		to_chat(usr, SPAN_WARNING("You need a clear, open area to deploy \a [src], something is blocking the way in front of you!"))
+		to_chat(usr, SPAN_WARNING("你需要一片开阔区域才能部署[src]，前方有东西挡住了！"))
 		return
 
 	if(usr.action_busy)
 		return
-	user.visible_message(SPAN_NOTICE("[user] begins deploying [src]."),
-			SPAN_NOTICE("You begin deploying [src]."))
+	user.visible_message(SPAN_NOTICE("[user]开始部署[src]。"),
+			SPAN_NOTICE("你开始部署[src]。"))
 	playsound(loc, list('sound/handling/armorequip_1.ogg', 'sound/handling/armorequip_2.ogg'), 25, 1)
 	if(!do_after(user, 5 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-		to_chat(user, SPAN_WARNING("You were interrupted."))
+		to_chat(user, SPAN_WARNING("你的动作被打断了。"))
 		return
-	user.visible_message(SPAN_NOTICE("[user] has finished deploying [src]."),
-			SPAN_NOTICE("You finish deploying [src]."))
+	user.visible_message(SPAN_NOTICE("[user]完成了[src]的部署。"),
+			SPAN_NOTICE("你完成了[src]的部署。"))
 
 	var/obj/structure/machinery/nuclearbomb/ADM/planted = new(Tile)
 	planted.update_icon()

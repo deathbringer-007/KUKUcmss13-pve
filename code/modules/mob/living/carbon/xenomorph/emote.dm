@@ -16,21 +16,21 @@
 
 /datum/emote/living/carbon/xeno/growl
 	key = "growl"
-	message = "growls."
+	message = "低吼起来。"
 	sound = "alien_growl"
 	predalien_sound = 'sound/voice/predalien_growl.ogg'
 	emote_type = EMOTE_AUDIBLE|EMOTE_VISIBLE
 
 /datum/emote/living/carbon/xeno/hiss
 	key = "hiss"
-	message = "hisses."
+	message = "发出嘶嘶声。"
 	sound = "alien_hiss"
 	predalien_sound = 'sound/voice/predalien_hiss.ogg'
 	emote_type = EMOTE_AUDIBLE|EMOTE_VISIBLE
 
 /datum/emote/living/carbon/xeno/needshelp
 	key = "needshelp"
-	message = "needs help!"
+	message = "需要帮助！"
 	sound = "alien_help"
 	emote_type = EMOTE_AUDIBLE|EMOTE_VISIBLE
 
@@ -38,7 +38,7 @@
 	mob_type_blacklist_typecache = list()
 
 	key = "roar"
-	message = "roars!"
+	message = "咆哮起来！"
 	sound = "alien_roar"
 	predalien_sound = 'sound/voice/predalien_roar.ogg'
 	larva_sound = "alien_roar_larva"
@@ -46,7 +46,7 @@
 
 /datum/emote/living/carbon/xeno/tail
 	key = "tail"
-	message = "swipes its tail."
+	message = "甩动尾巴。"
 	sound = "alien_tail_swipe"
 
 /datum/emote/living/carbon/xeno/hellhound
@@ -56,58 +56,58 @@
 /datum/emote/living/carbon/xeno/hellhound/roar
 	key = "roar"
 	key_third_person = "roars"
-	message = "roars!"
+	message = "咆哮起来！"
 	sound = 'sound/voice/ed209_20sec.ogg'
 	emote_type = EMOTE_AUDIBLE|EMOTE_VISIBLE
 
 /datum/emote/living/carbon/xeno/hellhound/scratch
 	key = "scratch"
 	key_third_person = "scratches"
-	message = "scratches."
+	message = "挠了挠。"
 	hands_use_check = TRUE
 
 /datum/emote/living/carbon/xeno/hellhound/paw
 	key = "paw"
 	key_third_person = "paws"
-	message = "flails its paw."
+	message = "挥舞着爪子。"
 	hands_use_check = TRUE
 
 /datum/emote/living/carbon/xeno/hellhound/sway
 	key = "sway"
 	key_third_person = "sways"
-	message = "sways around dizzily."
+	message = "晕乎乎地摇晃着。"
 
 /datum/emote/living/carbon/xeno/hellhound/snore
 	key = "snore"
 	key_third_person = "snores"
-	message = "snores."
+	message = "打起鼾来。"
 
 /datum/emote/living/carbon/xeno/hellhound/grunt
 	key = "grunt"
 	key_third_person = "grunts"
-	message = "grunts."
+	message = "发出哼声。"
 
 /datum/emote/living/carbon/xeno/hellhound/rumble
 	key = "rumble"
 	key_third_person = "rumbles"
-	message = "rumbles deeply."
+	message = "发出低沉的轰鸣。"
 
 /datum/emote/living/carbon/xeno/hellhound/howl
 	key = "howl"
 	key_third_person = "howls"
-	message = "howls!"
+	message = "嚎叫起来！"
 
 /datum/emote/living/carbon/xeno/hellhound/growl
 	key = "growl"
 	key_third_person = "growls"
-	message = "emits a strange, menacing growl."
+	message = "发出奇怪而充满威胁的低吼。"
 
 /datum/emote/living/carbon/xeno/hellhound/stare
 	key = "stare"
 	key_third_person = "stares"
-	message = "stares."
+	message = "凝视着。"
 
 /datum/emote/living/carbon/xeno/hellhound/sniff
 	key = "sniff"
 	key_third_person = "sniffs"
-	message = "sniffs about."
+	message = "四下嗅闻。"

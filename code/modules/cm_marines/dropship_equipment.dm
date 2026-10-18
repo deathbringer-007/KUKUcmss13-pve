@@ -42,8 +42,8 @@
 		return XENO_NO_DELAY_ACTION
 	current_xenomorph.animation_attack_on(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
-	current_xenomorph.visible_message(SPAN_DANGER("[current_xenomorph] slashes at [src]!"),
-	SPAN_DANGER("You slash at [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+	current_xenomorph.visible_message(SPAN_DANGER("[current_xenomorph]用爪子猛抓[src]！"),
+	SPAN_DANGER("你用爪子猛抓[src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	update_health(rand(current_xenomorph.melee_damage_lower, current_xenomorph.melee_damage_upper))
 	return XENO_ATTACK_ACTION
 
@@ -52,7 +52,7 @@
 		var/obj/item/powerloader_clamp/PC = I
 		if(PC.loaded)
 			if(ammo_equipped)
-				to_chat(user, SPAN_WARNING("You need to unload \the [ammo_equipped] from \the [src] first!"))
+				to_chat(user, SPAN_WARNING("你需要先从[src]中卸下[ammo_equipped]！"))
 				return TRUE
 			if(uses_ammo)
 				load_ammo(PC, user) //it handles on it's own whether the ammo fits
@@ -70,7 +70,7 @@
 		return
 	var/obj/structure/ship_ammo/SA = PC.loaded
 	if(SA.equipment_type != type)
-		to_chat(user, SPAN_WARNING("[SA] doesn't fit in [src]."))
+		to_chat(user, SPAN_WARNING("[SA]无法装入[src]。"))
 		return
 	playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 	var/point_loc = ship_base.loc
@@ -83,7 +83,7 @@
 		PC.loaded = null
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		PC.update_icon()
-		to_chat(user, SPAN_NOTICE("You load [SA] into [src]."))
+		to_chat(user, SPAN_NOTICE("你将[SA]装入[src]。"))
 		ammo_equipped = SA
 		update_equipment()
 
@@ -98,7 +98,7 @@
 		return
 	if(!ammo_equipped.ammo_count)
 		ammo_equipped.moveToNullspace()
-		to_chat(user, SPAN_NOTICE("You discard the empty [ammo_equipped.name] in \the [src]."))
+		to_chat(user, SPAN_NOTICE("你丢弃了[src]中空的[ammo_equipped.name]。"))
 		qdel(ammo_equipped)
 	else
 		if(ammo_equipped.ammo_name == "rocket")
@@ -150,7 +150,7 @@
 	if(is_interactable)
 		if(linked_console.selected_equipment) return
 		linked_console.selected_equipment = src
-		to_chat(user, SPAN_NOTICE("You select [src]."))
+		to_chat(user, SPAN_NOTICE("你选择了[src]。"))
 
 
 
@@ -210,16 +210,16 @@
 /obj/structure/dropship_equipment/sentry_holder/equipment_interact(mob/user)
 	if(deployed_turret)
 		if(deployment_cooldown > world.time)
-			to_chat(user, SPAN_WARNING("[src] is busy."))
+			to_chat(user, SPAN_WARNING("[src]正忙。"))
 			return //prevents spamming deployment/undeployment
 		if(deployed_turret.loc == src) //not deployed
 			if(is_reserved_level(z) && ship_base.base_category == DROPSHIP_WEAPON)
-				to_chat(user, SPAN_WARNING("[src] can't deploy mid-flight."))
+				to_chat(user, SPAN_WARNING("[src]无法在飞行中部署。"))
 			else
-				to_chat(user, SPAN_NOTICE("You deploy [src]."))
+				to_chat(user, SPAN_NOTICE("你部署了[src]。"))
 				deploy_sentry()
 		else
-			to_chat(user, SPAN_NOTICE("You retract [src]."))
+			to_chat(user, SPAN_NOTICE("你收回了[src]。"))
 			undeploy_sentry()
 	else
 		to_chat(user, SPAN_WARNING("[src] is unresponsive."))
@@ -980,7 +980,7 @@
 
 	var/list/possible_stretchers = get_targets()
 
-	var/stretcher_choice = tgui_input_list(usr, "Which emitting stretcher would you like to link with?", "Available stretchers", possible_stretchers)
+	var/stretcher_choice = tgui_input_list(usr, "你想连接哪副正在发射信号的担架？", "可用担架", possible_stretchers)
 	if(!stretcher_choice)
 		return
 
@@ -1220,7 +1220,7 @@
 		to_chat(user, SPAN_WARNING("No active balloons detected."))
 		return
 
-	var/fulton_choice = tgui_input_list(usr, "Which balloon would you like to link with?", "Available balloons", possible_fultons)
+	var/fulton_choice = tgui_input_list(usr, "你想连接哪个气球？", "可用气球", possible_fultons)
 	if(!fulton_choice)
 		return
 
@@ -1326,7 +1326,7 @@
 	if(!can_use(user))
 		return
 
-	var/user_input = tgui_input_list(user, "Choose a target to jump to.", name, targets)
+	var/user_input = tgui_input_list(user, "选择要跃迁前往的目标。", name, targets)
 	if(!user_input)
 		return
 

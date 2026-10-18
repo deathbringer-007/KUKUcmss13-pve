@@ -37,12 +37,12 @@
 		else if(istype(yautja.get_held_item(), /obj/item/clothing/gloves/yautja/hunter))
 			bracers = yautja.get_held_item()
 		if(!bracers)
-			to_chat(yautja, SPAN_WARNING("You don't have bracers."))
+			to_chat(yautja, SPAN_WARNING("你没有护腕。"))
 			return FALSE
 
 	if(require_mask)
 		if(!istype(yautja.wear_mask, /obj/item/clothing/mask/gas/yautja))
-			to_chat(yautja, SPAN_WARNING("You don't have a clan mask."))
+			to_chat(yautja, SPAN_WARNING("你没有氏族面具。"))
 			return FALSE
 		mask = yautja.wear_mask
 

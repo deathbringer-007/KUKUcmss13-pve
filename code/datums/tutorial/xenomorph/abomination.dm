@@ -1,6 +1,6 @@
 /datum/tutorial/xenomorph/abomination
 	name = "Xenomorph - Predalien"
-	desc = "A tutorial to teach you how to play the \"Predalien\", also known as Abomination, xenomorph caste. Completing this is required to be able to play an Abomination."
+	desc = "学习扮演“铁血异形”（也称“憎恶异形”）品级。完成本教学后才能扮演憎恶异形。"
 	icon_state = "predalien"
 	tutorial_id = "xeno_abom_1"
 	tutorial_template = /datum/map_template/tutorial/s7x7

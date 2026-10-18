@@ -4,12 +4,12 @@
 	spawn_positions = 1
 	allow_additional = 1
 	scaled = 1
-	supervisors = "the acting commanding officer"
+	supervisors = "现任指挥官"
 	selection_class = "job_synth"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED|ROLE_CUSTOM_SPAWN
 	flags_whitelist = WHITELIST_SYNTHETIC
 	gear_preset = /datum/equipment_preset/synth/uscm
-	entry_message_body = "You are a <a href='"+WIKI_PLACEHOLDER+"'>Synthetic!</a> You are held to a higher standard and are required to obey not only the Server Rules but Marine Law and Synthetic Rules. Failure to do so may result in your White-list Removal. Your primary job is to support and assist all USCM Departments and Personnel on-board. In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship. As a Synthetic you answer to the acting commanding officer. Special circumstances may change this!"
+	entry_message_body = "你是一名<a href='"+WIKI_PLACEHOLDER+"'>合成人！</a>你必须遵守更高标准，除了服务器规则，还须遵守陆战队军法与合成人规则，否则可能被取消白名单资格。你的主要职责是支援和协助舰上所有USCM部门及人员。作为合成人，你掌握舰上各个领域和专业的知识。通常情况下，你听命于现任指挥官；特殊情况可能改变这一关系！"
 
 /datum/job/civilian/synthetic/New()
 	. = ..()

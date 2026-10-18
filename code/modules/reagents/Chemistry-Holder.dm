@@ -151,7 +151,7 @@
 	trans_to_datum(V, amount, reaction = FALSE)
 	if(issynth(target))
 		return
-	to_chat(target, SPAN_NOTICE("You taste [pick(V.reagent_list)]."))
+	to_chat(target, SPAN_NOTICE("你尝到了[pick(V.reagent_list)]的味道。"))
 
 	for(var/datum/reagent/RG in V.reagent_list) // If it can't be ingested, remove it.
 		if(RG.flags & REAGENT_NOT_INGESTIBLE)
@@ -309,7 +309,7 @@
 
 					var/list/seen = viewers(4, get_turf(my_atom))
 					for(var/mob/M in seen)
-						to_chat(M, SPAN_NOTICE("[icon2html(my_atom, M)] The solution begins to bubble."))
+						to_chat(M, SPAN_NOTICE("[icon2html(my_atom, M)] 溶液开始冒泡。"))
 
 					playsound(get_turf(my_atom), 'sound/effects/bubbles.ogg', 15, 1)
 

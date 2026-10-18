@@ -336,7 +336,7 @@
 
 	var/obj/effect/overlay/O = new/obj/effect/overlay(src)
 	O.name = "thermite"
-	O.desc = "Looks hot."
+	O.desc = "看起来很烫。"
 	O.icon = 'icons/effects/fire.dmi'
 	O.icon_state = "red_3"
 	O.anchored = TRUE

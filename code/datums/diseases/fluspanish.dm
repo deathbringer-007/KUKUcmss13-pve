@@ -8,7 +8,7 @@
 	agent = "1nqu1s1t10n flu virion"
 	affected_species = list("Human")
 	permeability_mod = 0.75
-	desc = "If left untreated the subject will burn to death for being a heretic."
+	desc = "若不治疗，患者会因异端之名被活活烧死。"
 	severity = "Serious"
 
 /datum/disease/inquisition/stage_act()
@@ -22,7 +22,7 @@
 			if(prob(5))
 				affected_mob.emote("cough")
 			if(prob(1))
-				to_chat(affected_mob, SPAN_DANGER("You're burning in your own skin!"))
+				to_chat(affected_mob, SPAN_DANGER("你感到皮肤下像着了火一样！"))
 				affected_mob.take_limb_damage(0,5)
 
 		if(3)
@@ -33,6 +33,6 @@
 			if(prob(5))
 				affected_mob.emote("cough")
 			if(prob(5))
-				to_chat(affected_mob, SPAN_DANGER("You're burning in your own skin!"))
+				to_chat(affected_mob, SPAN_DANGER("你感到皮肤下像着了火一样！"))
 				affected_mob.take_limb_damage(0,5)
 	return

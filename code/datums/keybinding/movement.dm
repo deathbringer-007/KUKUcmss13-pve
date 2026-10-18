@@ -7,7 +7,7 @@
 	classic_keys = list("W", "North")
 	name = "North"
 	full_name = "Move North"
-	description = "Moves your character north"
+	description = "使角色向北移动。"
 	keybind_signal = COMSIG_KB_MOVEMENT_NORTH_DOWN
 
 /datum/keybinding/movement/northface
@@ -15,7 +15,7 @@
 	classic_keys = list("Alt+North", "Alt+W")
 	name = "face_north"
 	full_name = "Lock Face North"
-	description = "Face north"
+	description = "朝北转身。"
 	keybind_signal = COMSIG_KB_MOVEMENT_FACE_NORTH_DOWN
 
 /datum/keybinding/movement/northface/down(client/user)
@@ -30,7 +30,7 @@
 	classic_keys = list("S", "South")
 	name = "South"
 	full_name = "Move South"
-	description = "Moves your character south"
+	description = "使角色向南移动。"
 	keybind_signal = COMSIG_KB_MOVEMENT_SOUTH_DOWN
 
 /datum/keybinding/movement/southface
@@ -38,7 +38,7 @@
 	classic_keys = list("Alt+South", "Alt+S")
 	name = "face_south"
 	full_name = "Lock Face South"
-	description = "Face south"
+	description = "朝南转身。"
 	keybind_signal = COMSIG_KB_MOVEMENT_FACE_SOUTH_DOWN
 
 /datum/keybinding/movement/southface/down(client/user)
@@ -52,7 +52,7 @@
 	classic_keys = list("A", "West")
 	name = "West"
 	full_name = "Move West"
-	description = "Moves your character left"
+	description = "使角色向左移动。"
 	keybind_signal = COMSIG_KB_MOVEMENT_WEST_DOWN
 
 /datum/keybinding/movement/westface
@@ -60,7 +60,7 @@
 	classic_keys = list("Alt+West", "Alt+A")
 	name = "face_west"
 	full_name = "Lock Face West"
-	description = "Face west"
+	description = "朝西转身。"
 	keybind_signal = COMSIG_KB_MOVEMENT_FACE_WEST_DOWN
 
 /datum/keybinding/movement/westface/down(client/user)
@@ -75,7 +75,7 @@
 	classic_keys = list("D", "East")
 	name = "East"
 	full_name = "Move East"
-	description = "Moves your character east"
+	description = "使角色向东移动。"
 	keybind_signal = COMSIG_KB_MOVEMENT_EAST_DOWN
 
 /datum/keybinding/movement/eastface
@@ -83,7 +83,7 @@
 	classic_keys = list("Alt+East", "Alt+D")
 	name = "face_east"
 	full_name = "Lock Face East"
-	description = "Face east"
+	description = "朝东转身。"
 	keybind_signal = COMSIG_KB_MOVEMENT_FACE_EAST_DOWN
 
 /datum/keybinding/movement/eastface/down(client/user)

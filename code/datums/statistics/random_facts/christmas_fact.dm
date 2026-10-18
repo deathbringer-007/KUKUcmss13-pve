@@ -27,6 +27,6 @@
 		else
 			additional_message = "<b>[name] is the VERY SPIRIT of CHRISTMAS!!!</b>"
 
-	message = "<b>[name]</b> festivized a grand total of <b>[festivizer_hits_total_max] objects!</b> [additional_message]"
+	message = "<b>[name]</b>总共为<b>[festivizer_hits_total_max]件物品</b>增添了节日装饰！[additional_message]"
 
 	return ..()

@@ -232,7 +232,7 @@
 
 /obj/structure/machinery/cm_vending/clothing/super_snowflake/proc/add_items_to_vendor()
 	if(!check_rights(R_MOD))
-		to_chat(usr, SPAN_WARNING("This option isn't for you."))
+		to_chat(usr, SPAN_WARNING("这个选项不适用于你。"))
 		return
 
 	var/obj/item/chosen = get_item_category_from_user()

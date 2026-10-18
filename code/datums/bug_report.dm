@@ -24,13 +24,13 @@
 	initial_key = user.client.key
 
 /datum/tgui_bug_report_form/proc/external_link_prompt(client/user)
-	tgui_alert(user, "Unable to create a bug report at this time, please create the issue directly through our GitHub repository instead")
+	tgui_alert(user, "目前无法创建错误报告，请直接前往我们的 GitHub 仓库提交问题。")
 	var/url = CONFIG_GET(string/githuburl)
 	if(!url)
-		to_chat(user, SPAN_WARNING("The configuration is not properly set, unable to open external link"))
+		to_chat(user, SPAN_WARNING("配置有误，无法打开外部链接。"))
 		return
 
-	if(tgui_alert(user, "This will open the GitHub in your browser. Are you sure?", "Confirm", list("Yes", "No")) == "Yes")
+	if(tgui_alert(user, "这将在浏览器中打开 GitHub。确定继续吗？", "确认", list("Yes", "No")) == "Yes")
 		user << link(url)
 
 /datum/tgui_bug_report_form/ui_state()
@@ -122,7 +122,7 @@
 	var/token = CONFIG_GET(string/github_app_api)
 
 	if(!token || !org || !repo_name)
-		tgui_alert(user, "The configuration is not set for the external API.", "Issue not reported!")
+		tgui_alert(user, "尚未配置外部API。", "问题尚未上报！")
 		external_link_prompt(user)
 		qdel(src)
 		return
@@ -150,7 +150,7 @@
 		external_link_prompt(user)
 	else
 		message_admins("[user.ckey] has approved a bug report from [initial_key] titled [bug_report_data["title"]] at [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")].")
-		to_chat(initial_user, SPAN_WARNING("An admin has successfully submitted your report and it should now be visible on GitHub. Thanks again!"))
+		to_chat(initial_user, SPAN_WARNING("管理员已成功提交你的报告，现在应该可以在GitHub上查看了。再次感谢！"))
 	qdel(src)// approved and submitted, we no longer need the datum.
 
 // proc that creates a ticket for an admin to approve or deny a bug report request

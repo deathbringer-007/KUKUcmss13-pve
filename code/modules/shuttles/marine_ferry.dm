@@ -412,8 +412,8 @@
 					shuttle_area = get_area(T)
 
 				for(var/mob/M in T)
-					to_chat(M, SPAN_DANGER("The ship jostles violently as explosions rock the ship!"))
-					to_chat(M, SPAN_DANGER("You feel the ship turning sharply as it adjusts its course!"))
+					to_chat(M, SPAN_DANGER("爆炸震撼舰船，船体剧烈颠簸！"))
+					to_chat(M, SPAN_DANGER("你感觉到舰船为调整航线而急剧转向！"))
 					shake_camera(M, 60, 2)
 
 			playsound_area(shuttle_area, 'sound/effects/antiair_explosions.ogg')
@@ -473,10 +473,10 @@
 		if(affected_mob.z != T_trg.z)
 			continue
 		if(affected_mob.buckled)
-			to_chat(affected_mob, SPAN_WARNING("You are jolted against [affected_mob.buckled]!"))
+			to_chat(affected_mob, SPAN_WARNING("你被撞向[affected_mob.buckled]！"))
 			shake_camera(affected_mob, 3, 1)
 		else
-			to_chat(affected_mob, SPAN_WARNING("The floor jolts under your feet!"))
+			to_chat(affected_mob, SPAN_WARNING("你脚下的地板猛地震动！"))
 			shake_camera(affected_mob, 10, 1)
 			affected_mob.apply_effect(3, WEAKEN)
 
@@ -593,7 +593,7 @@
 /datum/shuttle/ferry/marine/force_close_launch(obj/structure/machinery/door/AL)
 	if(!iselevator)
 		for(var/mob/living/M in AL.loc) // Bump all mobs outta the way for outside airlocks of shuttles
-			to_chat(M, SPAN_HIGHDANGER("You get thrown back as the dropship doors slam shut!"))
+			to_chat(M, SPAN_HIGHDANGER("运输艇舱门猛地关闭，把你撞退了！"))
 			M.KnockDown(4)
 			for(var/turf/T in orange(1, AL)) // Forcemove to a non shuttle turf
 				if(!istype(T, /turf/open/shuttle) && !istype(T, /turf/closed/shuttle))

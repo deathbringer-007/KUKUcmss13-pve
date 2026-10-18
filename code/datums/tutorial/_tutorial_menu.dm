@@ -75,7 +75,7 @@
 				return
 
 			if(HAS_TRAIT(usr, TRAIT_IN_TUTORIAL) || istype(get_area(usr), /area/misc/tutorial))
-				to_chat(usr, SPAN_NOTICE("You are currently in a tutorial, or one is loading. Please be patient."))
+				to_chat(usr, SPAN_NOTICE("你正在进行教学，或教学正在加载中。请耐心等待。"))
 				return
 
 			path = new path

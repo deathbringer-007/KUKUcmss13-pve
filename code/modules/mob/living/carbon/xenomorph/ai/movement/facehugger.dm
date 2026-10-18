@@ -65,7 +65,7 @@
 		var/mob/living/carbon/xenomorph/carrier/horsey = shelter
 		if(horsey.huggers_cur >= horsey.huggers_max)
 			return
-		visible_message(SPAN_XENOWARNING("[src] crawls onto [horsey]!"))
+		visible_message(SPAN_XENOWARNING("[src]爬到了[horsey]身上！"))
 		horsey.huggers_cur = min(horsey.huggers_max, horsey.huggers_cur + 1)
 		horsey.update_hugger_overlays()
 
@@ -73,7 +73,7 @@
 		var/obj/effect/alien/egg/eggy = shelter
 		if(eggy.status != EGG_BURST)
 			return
-		visible_message(SPAN_XENOWARNING("[src] crawls back into [eggy]!"))
+		visible_message(SPAN_XENOWARNING("[src]爬回了[eggy]！"))
 		eggy.status = EGG_GROWN
 		eggy.icon_state = "Egg"
 		eggy.deploy_egg_triggers()

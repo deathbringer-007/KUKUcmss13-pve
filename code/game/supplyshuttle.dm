@@ -73,8 +73,8 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 		return
 
 	collide_message_busy = world.time + 3 SECONDS
-	C.visible_message(SPAN_NOTICE("[C] tries to go through \the [src]."), \
-	SPAN_NOTICE("You try to go through \the [src]."))
+	C.visible_message(SPAN_NOTICE("[C]试图穿过[src]。"), \
+	SPAN_NOTICE("你试图穿过[src]。"))
 
 	if(do_after(C, 2 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC))
 		C.forceMove(get_turf(src))
@@ -123,13 +123,13 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 		if(can_order_contraband)
 			var/obj/item/spacecash/slotted_cash = hit_item
 			if(slotted_cash.counterfeit == TRUE)
-				to_chat(user, SPAN_NOTICE("You find a small horizontal slot at the bottom of the console. You try to feed \the [slotted_cash] into it, but it rejects it! Maybe it's counterfeit?"))
+				to_chat(user, SPAN_NOTICE("你在控制台底部找到一个小小的水平插槽。你试着把[slotted_cash]塞进去，却被退了回来！难道是假钞？"))
 				return
-			to_chat(user, SPAN_NOTICE("You find a small horizontal slot at the bottom of the console. You feed \the [slotted_cash] into it.."))
+			to_chat(user, SPAN_NOTICE("你在控制台底部找到一个小小的水平插槽。你将[slotted_cash]塞了进去……"))
 			GLOB.supply_controller.black_market_points += slotted_cash.worth
 			qdel(slotted_cash)
 		else
-			to_chat(user, SPAN_NOTICE("You find a small horizontal slot at the bottom of the console. You try to feed \the [hit_item] into it, but it's seemingly blocked off from the inside."))
+			to_chat(user, SPAN_NOTICE("你在控制台底部找到一个小小的水平插槽。你试着把[hit_item]塞进去，但插槽似乎从内部堵住了。"))
 			return
 	..()
 
@@ -251,7 +251,7 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 					attack_hand(usr)
 					. = TRUE
 				else
-					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("Invalid input. Aborting.")]")
+					to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("输入无效。操作中止。")]")
 					. = TRUE
 
 		if("send_beacon")
@@ -792,7 +792,7 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 	else if (href_list["doorder"])
 		if(world.time < reqtime)
 			for(var/mob/V in hearers(src))
-				V.show_message("<b>[src]</b>'s monitor flashes, \"[world.time - reqtime] seconds remaining until another requisition form may be printed.\"", SHOW_MESSAGE_VISIBLE)
+				V.show_message("<b>[src]</b> 的屏幕闪烁着：\"还需 [world.time - reqtime] 秒才能再次打印军需申请单。\"", SHOW_MESSAGE_VISIBLE)
 			return
 
 		//Find the correct supply_pack datum
@@ -805,7 +805,7 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 			return
 
 		var/timeout = world.time + 600
-		var/reason = strip_html(input(usr,"Reason:","Why do you require this item?","") as null|text)
+		var/reason = strip_html(input(usr,"事由：","你为什么需要这件物品？","") as null|text)
 		if(world.time > timeout) return
 		if(!reason) return
 
@@ -991,7 +991,7 @@ GLOBAL_DATUM_INIT(supply_controller, /datum/controller/supply, new())
 	else if (href_list["doorder"])
 		if(world.time < reqtime)
 			for(var/mob/V in hearers(src))
-				V.show_message("<b>[src]</b>'s monitor flashes, \"[world.time - reqtime] seconds remaining until another requisition form may be printed.\"", SHOW_MESSAGE_VISIBLE)
+				V.show_message("<b>[src]</b> 的屏幕闪烁着：\"还需 [world.time - reqtime] 秒才能再次打印军需申请单。\"", SHOW_MESSAGE_VISIBLE)
 			return
 
 		//Find the correct supply_pack datum
