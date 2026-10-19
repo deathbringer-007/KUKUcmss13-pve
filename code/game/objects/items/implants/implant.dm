@@ -38,7 +38,7 @@
 	return 1
 
 /obj/item/implant/proc/get_data()
-	return "No information available"
+	return "暂无信息"
 
 /obj/item/implant/proc/hear(message, mob/source)
 	return
@@ -47,14 +47,14 @@
 	return 0
 
 /obj/item/implant/proc/meltdown() //breaks it down, making implant unrecongizible
-	to_chat(imp_in, SPAN_WARNING("You feel something melting inside [part ? "your [part.display_name]" : "you"]!"))
+	to_chat(imp_in, SPAN_WARNING("你感觉到[part ? "你的[localized_player_label(part.display_name)]" : "体内"]有什么东西正在熔化！"))
 	if (part)
 		part.take_damage(burn = 15, used_weapon = "Electronics meltdown")
 	else
 		var/mob/living/M = imp_in
 		M.apply_damage(15,BURN)
-	name = "melted implant"
-	desc = "Charred circuit in melted plastic case. Wonder what that used to be..."
+	name = "熔毁的植入物"
+	desc = "烧焦的电路裹在熔化的塑料壳中。不知道原来是什么……"
 	icon_state = "implant_melted"
 	malfunction = MALFUNCTION_PERMANENT
 
@@ -64,8 +64,8 @@
 	return ..()
 
 /obj/item/implant/tracking
-	name = "tracking implant"
-	desc = "Track with this."
+	name = "追踪植入物"
+	desc = "用于追踪。"
 	var/id = 1
 
 /obj/item/implant/tracking/Initialize(mapload, ...)
@@ -77,20 +77,20 @@
 	return ..()
 
 /obj/item/implant/tracking/get_data()
-		var/dat = {"<b>Implant Specifications:</b><BR>
-<b>Name:</b> Tracking Beacon<BR>
-<b>Life:</b> 10 minutes after death of host<BR>
-<b>Important Notes:</b> None<BR>
+		var/dat = {"<b>植入物规格：</b><BR>
+<b>名称：</b> 追踪信标<BR>
+<b>使用期限：</b> 宿主死亡后仍可运行 10 分钟<BR>
+<b>重要事项：</b> 无<BR>
 <HR>
-<b>Implant Details:</b> <BR>
-<b>Function:</b> Continuously transmits low power signal. Useful for tracking.<BR>
-<b>Special Features:</b><BR>
-<i>Neuro-Safe</i>- Specialized shell absorbs excess voltages self-destructing the chip if
-a malfunction occurs thereby securing safety of subject. The implant will melt and
-disintegrate into bio-safe elements.<BR>
-<b>Integrity:</b> Gradient creates slight risk of being overcharged and frying the
-circuitry. As a result neurotoxins can cause massive damage.<HR>
-Implant Specifics:<BR>"}
+<b>植入物详情：</b> <BR>
+<b>功能：</b> 持续发射低功率信号，可用于追踪。<BR>
+<b>特殊功能：</b><BR>
+<i>神经安全保护</i>——特殊外壳可吸收过高电压；一旦发生故障，芯片便会自毁，
+从而确保受植者安全。植入物会熔化并分解为
+对生物体安全的成分。<BR>
+<b>稳定性：</b> 电势差可能导致过度充电并烧毁电路，虽然风险很小。
+因此，神经毒素可能造成严重损伤。<HR>
+详细参数：<BR>"}
 		return dat
 
 /obj/item/implant/tracking/emp_act(severity)
@@ -112,21 +112,21 @@ Implant Specifics:<BR>"}
 
 
 /obj/item/implant/dexplosive
-	name = "explosive"
-	desc = "And boom goes the weasel."
+	name = "爆炸物"
+	desc = "砰的一声，灰飞烟灭。"
 	icon_state = "implant_evil"
 
 /obj/item/implant/dexplosive/get_data()
 	var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> Robust Corp RX-78 Employee Management Implant<BR>
-<b>Life:</b> Activates upon death.<BR>
-<b>Important Notes:</b> Explodes<BR>
+<b>植入物规格：</b><BR>
+<b>名称：</b> 强健公司 RX-78 员工管理植入物<BR>
+<b>使用期限：</b> 死亡时启动。<BR>
+<b>重要事项：</b> 会爆炸<BR>
 <HR>
-<b>Implant Details:</b><BR>
-<b>Function:</b> Contains a compact, electrically detonated explosive that detonates upon receiving a specially encoded signal or upon host death.<BR>
-<b>Special Features:</b> Explodes<BR>
-<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
+<b>植入物详情：</b><BR>
+<b>功能：</b> 内置小型电引爆炸药，在收到特定编码信号或宿主死亡时引爆。<BR>
+<b>特殊功能：</b> 会爆炸<BR>
+<b>稳定性：</b> 植入物偶尔会受到人体免疫系统侵蚀，从而发生故障。"}
 	return dat
 
 
@@ -147,8 +147,8 @@ Implant Specifics:<BR>"}
 
 //BS12 Explosive
 /obj/item/implant/explosive
-	name = "explosive implant"
-	desc = "A military grade micro bio-explosive. Highly dangerous."
+	name = "爆炸植入物"
+	desc = "军用微型生物炸药，极其危险。"
 	var/elevel = "Localized Limb"
 	var/phrase = "supercalifragilisticexpialidocious"
 	icon_state = "implant_evil"
@@ -156,15 +156,15 @@ Implant Specifics:<BR>"}
 
 /obj/item/implant/explosive/get_data()
 	var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> Robust Corp RX-78 Intimidation Class Implant<BR>
-<b>Life:</b> Activates upon codephrase.<BR>
-<b>Important Notes:</b> Explodes<BR>
+<b>植入物规格：</b><BR>
+<b>名称：</b> 强健公司 RX-78 威慑型植入物<BR>
+<b>使用期限：</b> 收到口令时启动。<BR>
+<b>重要事项：</b> 会爆炸<BR>
 <HR>
-<b>Implant Details:</b><BR>
-<b>Function:</b> Contains a compact, electrically detonated explosive that detonates upon receiving a specially encoded signal or upon host death.<BR>
-<b>Special Features:</b> Explodes<BR>
-<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
+<b>植入物详情：</b><BR>
+<b>功能：</b> 内置小型电引爆炸药，在收到特定编码信号或宿主死亡时引爆。<BR>
+<b>特殊功能：</b> 会爆炸<BR>
+<b>稳定性：</b> 植入物偶尔会受到人体免疫系统侵蚀，从而发生故障。"}
 	return dat
 
 /obj/item/implant/explosive/hear_talk(mob/M as mob, msg)
@@ -192,7 +192,7 @@ Implant Specifics:<BR>"}
 		if(ishuman(imp_in))
 			if (elevel == "Localized Limb")
 				if(part) //For some reason, small_boom() didn't work. So have this bit of working copypaste.
-					var/malf_msg = "Something beeps inside [imp_in][part ? "'s [part.display_name]" : ""]!"
+					var/malf_msg = "你听到[imp_in][part ? "的[localized_player_label(part.display_name)]" : "体内"]传来哔声！"
 					imp_in.visible_message(SPAN_DANGER(malf_msg))
 					playsound(loc, 'sound/items/countdown.ogg', 25, 1, 6)
 					sleep(25)
@@ -221,12 +221,12 @@ Implant Specifics:<BR>"}
 
 
 /obj/item/implant/explosive/implanted(mob/source as mob)
-	elevel = alert("What sort of explosion would you prefer?", "Implant Intent", "Localized Limb", "Destroy Body", "Full Explosion")
-	phrase = input("Choose activation phrase:") as text
+	elevel = localized_native_alert(usr, "你想选择哪种爆炸方式？", "植入物爆炸方式", "Localized Limb", "Destroy Body", "Full Explosion")
+	phrase = input("请选择启动口令：") as text
 	var/list/replacechars = list("'" = "","\"" = "",">" = "","<" = "","(" = "",")" = "")
 	phrase = sanitize_simple(phrase, replacechars)
-	usr.mind.store_memory("Explosive implant in [source] can be activated by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.", 0, 0)
-	to_chat(usr, "The implanted explosive implant in [source] can be activated by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.")
+	usr.mind.store_memory("[source]体内的爆炸植入物可通过说出包含“[src.phrase]”的内容激活。输入 <B>say [src.phrase]</B> 尝试引爆。", 0, 0)
+	to_chat(usr, "[source]体内的爆炸植入物可通过说出包含“[src.phrase]”的内容激活。输入 <B>say [src.phrase]</B> 尝试引爆。")
 	return 1
 
 /obj/item/implant/explosive/emp_act(severity)
@@ -255,7 +255,7 @@ Implant Specifics:<BR>"}
 
 /obj/item/implant/explosive/proc/small_boom()
 	if (ishuman(imp_in) && part)
-		var/malf_msg = "Something beeps inside [imp_in][part ? "'s [part.display_name]" : ""]!"
+		var/malf_msg = "你听到[imp_in][part ? "的[localized_player_label(part.display_name)]" : "体内"]传来哔声！"
 		imp_in.visible_message(SPAN_DANGER(malf_msg))
 		playsound(loc, 'sound/items/countdown.ogg', 25, 1, 6)
 		spawn(25)
@@ -272,8 +272,8 @@ Implant Specifics:<BR>"}
 			qdel(src)
 
 /obj/item/implant/chem
-	name = "chemical implant"
-	desc = "Injects things."
+	name = "化学植入物"
+	desc = "用于注射药剂。"
 	allow_reagents = 1
 
 /obj/item/implant/chem/Initialize()
@@ -287,20 +287,20 @@ Implant Specifics:<BR>"}
 
 /obj/item/implant/chem/get_data()
 	var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> Robust Corp MJ-420 Prisoner Management Implant<BR>
-<b>Life:</b> Deactivates upon death but remains within the body.<BR>
-<b>Important Notes: Due to the system functioning off of nutrients in the implanted subject's body, the subject<BR>
-will suffer from an increased appetite.</B><BR>
+<b>植入物规格：</b><BR>
+<b>名称：</b> 强健公司 MJ-420 囚犯管理植入物<BR>
+<b>使用期限：</b> 死亡时停止运行，但仍留在体内。<BR>
+<b>重要事项： 系统消耗受植者体内的营养，因此受植者<BR>
+会出现食欲增加的现象。</B><BR>
 <HR>
-<b>Implant Details:</b><BR>
-<b>Function:</b> Contains a small capsule that can contain various chemicals. Upon receiving a specially encoded signal<BR>
-the implant releases the chemicals directly into the blood stream.<BR>
-<b>Special Features:</b>
-<i>Micro-Capsule</i>- Can be loaded with any sort of chemical agent via the common syringe and can hold 50 units.<BR>
-Can only be loaded while still in its original case.<BR>
-<b>Integrity:</b> Implant will last so long as the subject is alive. However, if the subject suffers from malnutrition,<BR>
-the implant may become unstable and either pre-maturely inject the subject or simply break."}
+<b>植入物详情：</b><BR>
+<b>功能：</b> 内置可容纳多种化学物质的小胶囊。收到特定编码信号后，<BR>
+植入物会将其中的化学物质直接释放到血液中。<BR>
+<b>特殊功能：</b>
+<i>微型胶囊</i>——可使用普通注射器注入任意化学物质，容量为 50 单位。<BR>
+仅在尚未从原装外壳中取出时才能填充。<BR>
+<b>稳定性：</b> 只要受植者存活，植入物就能持续运行。但若受植者营养不良，<BR>
+植入物可能变得不稳定，提前注射或直接损坏。"}
 	return dat
 
 
@@ -315,9 +315,9 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	if((!cause) || (!src.imp_in)) return 0
 	var/mob/living/carbon/R = src.imp_in
 	src.reagents.trans_to(R, cause)
-	to_chat(R, "You hear a faint *beep*.")
+	to_chat(R, "你听到一声微弱的哔声。")
 	if(!src.reagents.total_volume)
-		to_chat(R, "You hear a faint click from your chest.")
+		to_chat(R, "你听到胸口传来轻微的咔嗒声。")
 		spawn(0)
 			qdel(src)
 	return
@@ -340,45 +340,45 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		malfunction--
 
 /obj/item/implant/loyalty
-	name = "loyalty implant"
-	desc = "Makes you loyal or such."
+	name = "忠诚植入物"
+	desc = "让人变得忠诚之类的东西。"
 
 /obj/item/implant/loyalty/get_data()
 	var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> Weyland-Yutani Employee Management Implant<BR>
-<b>Life:</b> Ten years.<BR>
-<b>Important Notes:</b> Personnel injected are marked as WY property and are subject to WY overwatch.<BR>
+<b>植入物规格：</b><BR>
+<b>名称：</b> 维兰德-汤谷员工管理植入物<BR>
+<b>使用期限：</b> 十年。<BR>
+<b>重要事项：</b> 受植人员被标记为维兰德-汤谷的财产，并接受公司的监控。<BR>
 <HR>
-<b>Implant Details:</b><BR>
-<b>Function:</b> Marks the host as WY property and allow special monitoring functions.<BR>
-<b>Special Features:</b> Will make the host more resistent to brainwashing techniques.<BR>
-<b>Integrity:</b> Implant will last approximately ten years."}
+<b>植入物详情：</b><BR>
+<b>功能：</b> 将宿主标记为维兰德-汤谷的财产，并启用特殊监控功能。<BR>
+<b>特殊功能：</b> 提高宿主抵抗洗脑技术的能力。<BR>
+<b>稳定性：</b> 植入物可使用约十年。"}
 	return dat
 
 /obj/item/implant/loyalty/implanted(mob/M)
 	if(!ishuman(M)) return
 	if(isyautja(M)) return
 	var/mob/living/carbon/human/H = M
-	to_chat(H, SPAN_NOTICE("You are now tagged as a WY loyalist and will be monitored by their central headquarters. You retain your free will and mental faculties."))
+	to_chat(H, SPAN_NOTICE("你已被标记为维兰德-汤谷的效忠者，总部将会监控你。你仍然保有自由意志和正常心智。"))
 	return 1
 
 /obj/item/implant/adrenalin
-	name = "adrenalin"
-	desc = "Removes all stuns and knockdowns."
+	name = "肾上腺素"
+	desc = "消除所有眩晕和击倒效果。"
 	var/uses
 
 /obj/item/implant/adrenalin/get_data()
 	var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> Cybersun Industries Adrenalin Implant<BR>
-<b>Life:</b> Five days.<BR>
-<b>Important Notes:</b> <font color='red'>Illegal</font><BR>
+<b>植入物规格：</b><BR>
+<b>名称：</b> 赛博太阳工业肾上腺素植入物<BR>
+<b>使用期限：</b> 五天。<BR>
+<b>重要事项：</b> <font color='red'>非法</font><BR>
 <HR>
-<b>Implant Details:</b> Subjects injected with implant can activate a massive injection of adrenalin.<BR>
-<b>Function:</b> Contains nanobots to stimulate body to mass-produce Adrenalin.<BR>
-<b>Special Features:</b> Will prevent and cure most forms of brainwashing.<BR>
-<b>Integrity:</b> Implant can only be used three times before the nanobots are depleted."}
+<b>植入物详情：</b> 受植者可主动注射大量肾上腺素。<BR>
+<b>功能：</b> 内含可刺激人体大量分泌肾上腺素的纳米机器人。<BR>
+<b>特殊功能：</b> 可预防和解除大多数洗脑效果。<BR>
+<b>稳定性：</b> 纳米机器人耗尽前仅可使用三次。"}
 	return dat
 
 
@@ -386,7 +386,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	if (src.uses < 1) return 0
 	if (emote == "pale")
 		src.uses--
-		to_chat(source, SPAN_NOTICE(" You feel a sudden surge of energy!"))
+		to_chat(source, SPAN_NOTICE("你突然感觉精力充沛！"))
 		source.set_effect(0, STUN)
 		source.set_effect(0, WEAKEN)
 		source.set_effect(0, PARALYZE)
@@ -395,27 +395,27 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 
 /obj/item/implant/adrenalin/implanted(mob/source)
-	source.mind.store_memory("A implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate.", 0, 0)
-	to_chat(source, "The implanted freedom implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate.")
+	source.mind.store_memory("植入物可通过 pale 表情指令激活。输入 <B>say *pale</B> 尝试启动。", 0, 0)
+	to_chat(source, "肾上腺素植入物可通过 pale 表情指令激活。输入 <B>say *pale</B> 尝试启动。")
 	return 1
 
 
 /obj/item/implant/death_alarm
-	name = "death alarm implant"
-	desc = "An alarm which monitors host vital signs and transmits a radio message upon death."
+	name = "死亡警报植入物"
+	desc = "监测宿主生命体征，并在其死亡时发送无线电警报。"
 	var/mobname = "Will Robinson"
 
 /obj/item/implant/death_alarm/get_data()
 	var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> Weyland-Yutani \"Profit Margin\" Class Employee Lifesign Sensor<BR>
-<b>Life:</b> Activates upon death.<BR>
-<b>Important Notes:</b> Alerts crew to crewmember death.<BR>
+<b>植入物规格：</b><BR>
+<b>名称：</b> 维兰德-汤谷“利润率”型员工生命体征传感器<BR>
+<b>使用期限：</b> 死亡时启动。<BR>
+<b>重要事项：</b> 向船员报告人员死亡。<BR>
 <HR>
-<b>Implant Details:</b><BR>
-<b>Function:</b> Contains a compact radio signaller that triggers when the host's lifesigns cease.<BR>
-<b>Special Features:</b> Alerts crew to crewmember death.<BR>
-<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
+<b>植入物详情：</b><BR>
+<b>功能：</b> 内置小型无线电发信器，在宿主生命体征消失时触发。<BR>
+<b>特殊功能：</b> 向船员报告人员死亡。<BR>
+<b>稳定性：</b> 植入物偶尔会受到人体免疫系统侵蚀，从而发生故障。"}
 	return dat
 
 /obj/item/implant/death_alarm/process()
@@ -436,11 +436,11 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		if ("emp")
 			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
 			var/name = t.name
-			ai_silent_announcement("[mobname] has died in [name]!", "[mobname]'s Death Alarm")
+			ai_silent_announcement("[mobname]已在[name]死亡！", "[mobname]的死亡警报")
 			qdel(a)
 		else
 			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
-			ai_silent_announcement("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm")
+			ai_silent_announcement("[mobname]已死亡——滋滋——在、在、在……", "[mobname]的死亡警报")
 			qdel(a)
 			STOP_PROCESSING(SSobj, src)
 
@@ -467,23 +467,23 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	return 1
 
 /obj/item/implant/compressed
-	name = "compressed matter implant"
-	desc = "Based on compressed matter technology, can store a single item."
+	name = "压缩物质植入物"
+	desc = "采用压缩物质技术，可储存一件物品。"
 	icon_state = "implant_evil"
 	var/activation_emote = "sigh"
 	var/obj/item/scanned = null
 
 /obj/item/implant/compressed/get_data()
 	var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> Weyland-Yutani \"Profit Margin\" Class Employee Lifesign Sensor<BR>
-<b>Life:</b> Activates upon death.<BR>
-<b>Important Notes:</b> Alerts crew to crewmember death.<BR>
+<b>植入物规格：</b><BR>
+<b>名称：</b> 维兰德-汤谷“利润率”型员工生命体征传感器<BR>
+<b>使用期限：</b> 死亡时启动。<BR>
+<b>重要事项：</b> 向船员报告人员死亡。<BR>
 <HR>
-<b>Implant Details:</b><BR>
-<b>Function:</b> Contains a compact radio signaller that triggers when the host's lifesigns cease.<BR>
-<b>Special Features:</b> Alerts crew to crewmember death.<BR>
-<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
+<b>植入物详情：</b><BR>
+<b>功能：</b> 内置小型无线电发信器，在宿主生命体征消失时触发。<BR>
+<b>特殊功能：</b> 向船员报告人员死亡。<BR>
+<b>稳定性：</b> 植入物偶尔会受到人体免疫系统侵蚀，从而发生故障。"}
 	return dat
 
 /obj/item/implant/compressed/trigger(emote, mob/source as mob)
@@ -491,7 +491,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		return 0
 
 	if (emote == src.activation_emote)
-		to_chat(source, "The air glows as \the [src.scanned.name] uncompresses.")
+		to_chat(source, "[src.scanned.name]解除压缩时，周围的空气泛起光芒。")
 		activate()
 
 /obj/item/implant/compressed/activate()
@@ -503,18 +503,18 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	qdel(src)
 
 /obj/item/implant/compressed/implanted(mob/source as mob)
-	src.activation_emote = tgui_input_list(usr, "Choose activation emote:", "Emote", list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink"))
+	src.activation_emote = localized_input_list(usr, "请选择启动表情指令：", "表情指令", list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink"))
 	if (source.mind)
-		source.mind.store_memory("Compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
-	to_chat(source, "The implanted compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.")
+		source.mind.store_memory("压缩物质植入物可通过 [src.activation_emote] 表情指令激活。输入 <B>say *[src.activation_emote]</B> 尝试启动。", 0, 0)
+	to_chat(source, "压缩物质植入物可通过 [src.activation_emote] 表情指令激活。输入 <B>say *[src.activation_emote]</B> 尝试启动。")
 	return 1
 
 /obj/item/implant/compressed/islegal()
 	return 0
 
 /obj/item/implant/poison_tooth
-	name = "tooth"
-	desc = "This one seems particularly clean."
+	name = "牙齿"
+	desc = "这颗看起来格外干净。"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "tooth"
 	w_class = SIZE_TINY
@@ -534,16 +534,16 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		var/mob/living/carbon/mob = imp_in
 		if(!mob.reagents)
 			return
-		to_chat(mob, SPAN_WARNING("You feel your poison tooth shatter, sprinkling some liquid into your mouth..."))
+		to_chat(mob, SPAN_WARNING("你感觉毒牙碎裂，将少许液体洒入口中……"))
 		mob.reagents.add_reagent(poison_reagent, poison_amount)
 		playsound(imp_in, 'sound/items/poison_tooth.ogg', 15, TRUE)
 	qdel(src)
 
 /obj/item/implant/poison_tooth/implanted(mob/source)
-	activation_emote = tgui_input_list(usr, "Choose activation emote:", "Emote", list("grin", "smile"))
+	activation_emote = localized_input_list(usr, "请选择启动表情指令：", "表情指令", list("grin", "smile"))
 	if (source.mind)
-		source.mind.store_memory("Poison tooth will shatter by using the [activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate it.", 0, 0)
-	to_chat(source, SPAN_NOTICE("Poison tooth will shatter by using the [activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate it"))
+		source.mind.store_memory("毒牙可通过 [activation_emote] 表情指令咬碎。输入 <B>say *[src.activation_emote]</B> 尝试启动。", 0, 0)
+	to_chat(source, SPAN_NOTICE("毒牙可通过 [activation_emote] 表情指令咬碎。输入 <B>say *[src.activation_emote]</B> 尝试启动。"))
 	return TRUE
 
 /obj/item/implant/poison_tooth/islegal()
@@ -552,8 +552,8 @@ the implant may become unstable and either pre-maturely inject the subject or si
 /obj/item/implant/poison_tooth/preset/implanted(mob/source)
 	activation_emote = pick("grin", "smile")
 	if (source.mind)
-		source.mind.store_memory("Poison tooth will shatter by using the [activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate it.", 0, 0)
-	to_chat(source, SPAN_NOTICE("Poison tooth will shatter by using the [activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate it"))
+		source.mind.store_memory("毒牙可通过 [activation_emote] 表情指令咬碎。输入 <B>say *[src.activation_emote]</B> 尝试启动。", 0, 0)
+	to_chat(source, SPAN_NOTICE("毒牙可通过 [activation_emote] 表情指令咬碎。输入 <B>say *[src.activation_emote]</B> 尝试启动。"))
 	return TRUE
 
 /obj/item/implant/poison_tooth/cia
@@ -583,5 +583,5 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	new /obj/item/tool/surgery/hemostat/miniature(src)
 	new /obj/item/reagent_container/syringe/oxycodone(src)
 	var/obj/item/paper/paper = new(src)
-	paper.info = "1. Inject a dose of oxycodone.\n2. Remove one of your molars from your <b>mouth</b> using a <b>hemostat</b>\n3. Carefully insert the tooth."
+	paper.info = "1. 注射一剂羟考酮。\n2. 使用<b>止血钳</b>从<b>口腔</b>拔出一颗臼齿。\n3. 小心地装入这颗牙齿。"
 	paper.update_icon()

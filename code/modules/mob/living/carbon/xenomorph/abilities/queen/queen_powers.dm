@@ -182,7 +182,7 @@
 		return
 
 	if(alien_weeds.linked_hive.hivenumber != xeno.hivenumber)
-		to_chat(xeno, SPAN_XENOWARNING("These weeds don't belong to your hive! You can't grow an ovipositor here."))
+		to_chat(xeno, SPAN_XENOWARNING("这些菌毯不属于你的虫巢！你不能在这里生长产卵器。"))
 		return
 
 	if(!xeno.check_alien_construction(current_turf))
@@ -194,16 +194,16 @@
 	if(!xeno.check_plasma(plasma_cost))
 		return
 
-	xeno.visible_message(SPAN_XENOWARNING("\The [xeno] starts to grow an ovipositor."), \
-	SPAN_XENOWARNING("You start to grow an ovipositor...(takes 20 seconds, hold still)"))
+	xeno.visible_message(SPAN_XENOWARNING("[xeno]开始生长产卵器。"), \
+	SPAN_XENOWARNING("你开始生长产卵器……需要二十秒，请保持不动。"))
 	if(!do_after(xeno, 200, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY, numticks = 20) && xeno.check_plasma(plasma_cost))
 		return
 	if(!xeno.check_state()) return
 	if(!locate(/obj/effect/alien/weeds) in current_turf)
 		return
 	xeno.use_plasma(plasma_cost)
-	xeno.visible_message(SPAN_XENOWARNING("\The [xeno] has grown an ovipositor!"), \
-	SPAN_XENOWARNING("You have grown an ovipositor!"))
+	xeno.visible_message(SPAN_XENOWARNING("[xeno]长出了产卵器！"), \
+	SPAN_XENOWARNING("你长出了产卵器！"))
 	xeno.mount_ovipositor()
 	return ..()
 
@@ -217,23 +217,23 @@
 	var/datum/hive_status/hive = X.hive
 	if(X.observed_xeno)
 		if(!length(hive.open_xeno_leader_positions) && X.observed_xeno.hive_pos == NORMAL_XENO)
-			to_chat(X, SPAN_XENOWARNING("You currently have [length(hive.xeno_leader_list)] promoted leaders. You may not maintain additional leaders until your power grows."))
+			to_chat(X, SPAN_XENOWARNING("你当前已任命[length(hive.xeno_leader_list)]位领袖。力量增强前，无法维持更多领袖。"))
 			return
 		var/mob/living/carbon/xenomorph/T = X.observed_xeno
 		if(T == X)
-			to_chat(X, SPAN_XENOWARNING("You cannot add yourself as a leader!"))
+			to_chat(X, SPAN_XENOWARNING("你不能将自己任命为领袖！"))
 			return
 		apply_cooldown()
 		if(T.hive_pos == NORMAL_XENO)
 			if(!hive.add_hive_leader(T))
-				to_chat(X, SPAN_XENOWARNING("Unable to add the leader."))
+				to_chat(X, SPAN_XENOWARNING("无法任命领袖。"))
 				return
-			to_chat(X, SPAN_XENONOTICE("You've selected [T] as a Hive Leader."))
-			to_chat(T, SPAN_XENOANNOUNCE("[X] has selected you as a Hive Leader. The other Xenomorphs must listen to you. You will also act as a beacon for the Queen's pheromones."))
+			to_chat(X, SPAN_XENONOTICE("你选定[T]为虫巢领袖。"))
+			to_chat(T, SPAN_XENOANNOUNCE("[X]任命你为虫巢领袖，其他异形必须听从你。你也将成为女王信息素的信标。"))
 		else
 			hive.remove_hive_leader(T)
-			to_chat(X, SPAN_XENONOTICE("You've demoted [T] from Hive Leader."))
-			to_chat(T, SPAN_XENOANNOUNCE("[X] has demoted you from Hive Leader. Your leadership rights and abilities have waned."))
+			to_chat(X, SPAN_XENONOTICE("你撤去了[T]的虫巢领袖职务。"))
+			to_chat(T, SPAN_XENOANNOUNCE("[X]撤去了你的虫巢领袖职务，你的领导权限和能力随之消退。"))
 	else
 		var/list/possible_xenos = list()
 		for(var/mob/living/carbon/xenomorph/T in hive.xeno_leader_list)
@@ -247,7 +247,7 @@
 		else if(length(possible_xenos))
 			X.overwatch(possible_xenos[1])
 		else
-			to_chat(X, SPAN_XENOWARNING("There are no Xenomorph leaders. Overwatch a Xenomorph to make it a leader."))
+			to_chat(X, SPAN_XENOWARNING("没有异形领袖。监视一只异形即可任命其为领袖。"))
 	return ..()
 
 /datum/action/xeno_action/activable/queen_heal/use_ability(atom/A, verbose)
@@ -260,11 +260,11 @@
 
 	var/turf/T = get_turf(A)
 	if(!T)
-		to_chat(X, SPAN_WARNING("You must select a valid turf to heal around."))
+		to_chat(X, SPAN_WARNING("你必须选择有效地格，才能治疗周围目标。"))
 		return
 
 	if(X.loc.z != T.loc.z)
-		to_chat(X, SPAN_XENOWARNING("You are too far away to do this here."))
+		to_chat(X, SPAN_XENOWARNING("距离太远，无法在这里这样做。"))
 		return
 
 	if(!check_and_use_plasma_owner())
@@ -276,7 +276,7 @@
 
 		if(SEND_SIGNAL(Xa, COMSIG_XENO_PRE_HEAL) & COMPONENT_CANCEL_XENO_HEAL)
 			if(verbose)
-				to_chat(X, SPAN_XENOMINORWARNING("You cannot heal [Xa]!"))
+				to_chat(X, SPAN_XENOMINORWARNING("你无法治疗[Xa]！"))
 			continue
 
 		if(Xa == X)
@@ -292,7 +292,7 @@
 		Xa.flick_heal_overlay(3 SECONDS, "#D9F500") //it's already hard enough to gauge health without hp overlays!
 
 	apply_cooldown()
-	to_chat(X, SPAN_XENONOTICE("You channel your plasma to heal your sisters' wounds around this area."))
+	to_chat(X, SPAN_XENONOTICE("你引导等离子体，治疗此区域周围姐妹的伤口。"))
 	return ..()
 
 /datum/action/xeno_action/onclick/manage_hive/proc/give_evo_points()
@@ -307,7 +307,7 @@
 		return
 
 	if(world.time < SSticker.mode.round_time_lobby + SHUTTLE_TIME_LOCK)
-		to_chat(usr, SPAN_XENOWARNING("You must give some time for larva to spawn before sacrificing them. Please wait another [floor((SSticker.mode.round_time_lobby + SHUTTLE_TIME_LOCK - world.time) / 600)] minutes."))
+		to_chat(usr, SPAN_XENOWARNING("必须先给幼虫一些生成时间，才能献祭。请再等[floor((SSticker.mode.round_time_lobby + SHUTTLE_TIME_LOCK - world.time) / 600)]分钟。"))
 		return
 
 	var/choice = tgui_input_list(user_xeno, "选择要以地底幼体为代价、给予进化点数的异形：", "给予进化点数", user_xeno.hive.totalXenos, theme="hive_status")
@@ -324,23 +324,23 @@
 			break
 
 	if(target_xeno == user_xeno)
-		to_chat(user_xeno, SPAN_XENOWARNING("You cannot give evolution points to yourself."))
+		to_chat(user_xeno, SPAN_XENOWARNING("你不能给自己进化点数。"))
 		return
 
 	if(target_xeno.evolution_stored == target_xeno.evolution_threshold)
-		to_chat(user_xeno, SPAN_XENOWARNING("This xenomorph is already ready to evolve!"))
+		to_chat(user_xeno, SPAN_XENOWARNING("这只异形已经可以进化了！"))
 		return
 
 	if(target_xeno.hivenumber != user_xeno.hivenumber)
-		to_chat(user_xeno, SPAN_XENOWARNING("This xenomorph doesn't belong to your hive!"))
+		to_chat(user_xeno, SPAN_XENOWARNING("这只异形不属于你的虫巢！"))
 		return
 
 	if(target_xeno.health < 0)
-		to_chat(user_xeno, SPAN_XENOWARNING("What's the point? They're about to die."))
+		to_chat(user_xeno, SPAN_XENOWARNING("有什么意义？它马上就要死了。"))
 		return
 
 	if(user_xeno.hive.stored_larva < required_larva)
-		to_chat(user_xeno, SPAN_XENOWARNING("You need at least [required_larva] burrowed larva to sacrifice one for evolution points."))
+		to_chat(user_xeno, SPAN_XENOWARNING("至少需要[required_larva]只潜伏幼虫，才能献祭一只换取进化点数。"))
 		return
 
 	if(tgui_alert(user_xeno, "确定要牺牲一只幼体，为 [target_xeno] 提供 [evo_points_per_larva] 点进化点数吗？", "给予进化点数", list("Yes", "No")) != "Yes")
@@ -349,8 +349,8 @@
 	if(!user_xeno.check_state() || !check_and_use_plasma_owner(plasma_cost) || target_xeno.health < 0 || user_xeno.hive.stored_larva < required_larva)
 		return
 
-	to_chat(target_xeno, SPAN_XENOWARNING("\The [user_xeno] has given you evolution points! Use them well."))
-	to_chat(user_xeno, SPAN_XENOWARNING("\The [target_xeno] was given [evo_points_per_larva] evolution points."))
+	to_chat(target_xeno, SPAN_XENOWARNING("[user_xeno]给予了你进化点数！好好利用。"))
+	to_chat(user_xeno, SPAN_XENOWARNING("[target_xeno]获得了[evo_points_per_larva]进化点数。"))
 
 	if(target_xeno.evolution_stored + evo_points_per_larva > target_xeno.evolution_threshold)
 		target_xeno.evolution_stored = target_xeno.evolution_threshold
@@ -383,7 +383,7 @@
 			options += "Remove Personal Ally"
 			options += "Clear Personal Allies"
 
-	var/choice = tgui_input_list(queen_manager, "管理巢群", "巢群管理",  options, theme="hive_status")
+	var/choice = localized_input_list(queen_manager, "管理巢群", "巢群管理",  options, theme="hive_status")
 	switch(choice)
 		if("Banish (500)")
 			banish()
@@ -425,7 +425,7 @@
 		target_list += possible_target
 
 	if(!length(target_list))
-		to_chat(user_xeno, SPAN_WARNING("No talls in view."))
+		to_chat(user_xeno, SPAN_WARNING("视野内没有高个子。"))
 		return
 	var/mob/living/target_mob = tgui_input_list(usr, "目标", "与以下对象建立个人同盟……", target_list, theme="hive_status")
 
@@ -436,7 +436,7 @@
 		return
 
 	if(target_mob.hivenumber)
-		to_chat(user_xeno, SPAN_WARNING("We cannot set up a personal alliance with a hive cultist."))
+		to_chat(user_xeno, SPAN_WARNING("我们不能与虫巢信徒建立私人联盟。"))
 		return
 
 	hive.add_personal_ally(target_mob)
@@ -452,7 +452,7 @@
 	var/datum/hive_status/corrupted/hive = user_xeno.hive
 
 	if(!length(hive.personal_allies))
-		to_chat(user_xeno, SPAN_WARNING("We don't have personal allies."))
+		to_chat(user_xeno, SPAN_WARNING("我们没有私人盟友。"))
 		return
 
 	var/list/mob/living/allies = list()
@@ -467,7 +467,7 @@
 	hive.personal_allies -= dead_refs
 
 	if(!length(allies))
-		to_chat(user_xeno, SPAN_WARNING("We don't have personal allies."))
+		to_chat(user_xeno, SPAN_WARNING("我们没有私人盟友。"))
 		return
 
 	var/mob/living/target_mob = tgui_input_list(usr, "目标", "与以下对象解除个人同盟……", allies, theme="hive_status")
@@ -495,7 +495,7 @@
 
 	var/datum/hive_status/corrupted/hive = user_xeno.hive
 	if(!length(hive.personal_allies))
-		to_chat(user_xeno, SPAN_WARNING("We don't have personal allies."))
+		to_chat(user_xeno, SPAN_WARNING("我们没有私人盟友。"))
 		return
 
 	if(tgui_alert(user_xeno, "确定要清除个人盟友吗？", "清除个人盟友", list("No", "Yes"), 10 SECONDS) != "Yes")
@@ -529,20 +529,20 @@
 			break
 
 	if(target_xeno == user_xeno)
-		to_chat(user_xeno, SPAN_XENOWARNING("You cannot banish yourself."))
+		to_chat(user_xeno, SPAN_XENOWARNING("你不能放逐自己。"))
 		return
 
 	if(target_xeno.banished)
-		to_chat(user_xeno, SPAN_XENOWARNING("This xenomorph is already banished!"))
+		to_chat(user_xeno, SPAN_XENOWARNING("这只异形已经被放逐了！"))
 		return
 
 	if(target_xeno.hivenumber != user_xeno.hivenumber)
-		to_chat(user_xeno, SPAN_XENOWARNING("This xenomorph doesn't belong to your hive!"))
+		to_chat(user_xeno, SPAN_XENOWARNING("这只异形不属于你的虫巢！"))
 		return
 
 	// No banishing critted xenos
 	if(target_xeno.health < 0)
-		to_chat(user_xeno, SPAN_XENOWARNING("What's the point? They're already about to die."))
+		to_chat(user_xeno, SPAN_XENOWARNING("有什么意义？它已经快死了。"))
 		return
 
 	var/confirm = tgui_alert(user_xeno, "确定要将 [target_xeno] 放逐出巢群吗？必须有充分理由才能这么做。（除非重新接纳，否则其死亡后30分钟内也无法重新加入巢群。）", "放逐", list("Yes", "No"))
@@ -551,15 +551,15 @@
 
 	var/reason = stripped_input(user_xeno, "请说明放逐 [target_xeno] 的理由。这将向整个巢群公告！")
 	if(!reason)
-		to_chat(user_xeno, SPAN_XENOWARNING("You must provide a reason for banishing [target_xeno]."))
+		to_chat(user_xeno, SPAN_XENOWARNING("你必须说明放逐[target_xeno]的理由。"))
 		return
 
 	if(!user_xeno.check_state() || !check_and_use_plasma_owner(plasma_cost_banish) || target_xeno.health < 0)
 		return
 
 	// Let everyone know they were banished
-	xeno_announcement("By [user_xeno]'s will, [target_xeno] has been banished from the hive!\n\n[reason]", user_xeno.hivenumber, title=SPAN_ANNOUNCEMENT_HEADER_BLUE("Banishment"))
-	to_chat(target_xeno, FONT_SIZE_LARGE(SPAN_XENOWARNING("The [user_xeno] has banished you from the hive! Other xenomorphs may now attack you freely, but your link to the hivemind remains, preventing you from harming other sisters.")))
+	xeno_announcement("遵照[user_xeno]的意志，[target_xeno]已被放逐出虫巢！\n\n[reason]", user_xeno.hivenumber, title=SPAN_ANNOUNCEMENT_HEADER_BLUE("放逐"))
+	to_chat(target_xeno, FONT_SIZE_LARGE(SPAN_XENOWARNING("[user_xeno]将你放逐出了虫巢！其他异形现在可以自由攻击你，但你与虫巢意志的联系仍在，无法伤害其他姐妹。")))
 
 	target_xeno.banished = TRUE
 	target_xeno.hud_update_banished()
@@ -610,7 +610,7 @@
 
 	if(banished_living)
 		if(!target_xeno.banished)
-			to_chat(user_xeno, SPAN_XENOWARNING("This xenomorph isn't banished!"))
+			to_chat(user_xeno, SPAN_XENOWARNING("这只异形没有被放逐！"))
 			return
 
 		var/confirm = tgui_alert(user_xeno, "确定要重新接纳 [target_xeno] 加入巢群吗？", "重新接纳", list("Yes", "No"))
@@ -620,7 +620,7 @@
 		if(!user_xeno.check_state() || !check_and_use_plasma_owner(plasma_cost))
 			return
 
-		to_chat(target_xeno, FONT_SIZE_LARGE(SPAN_XENOWARNING("The [user_xeno] has readmitted you into the hive.")))
+		to_chat(target_xeno, FONT_SIZE_LARGE(SPAN_XENOWARNING("[user_xeno]重新接纳你加入虫巢。")))
 		target_xeno.banished = FALSE
 		target_xeno.hud_update_banished()
 		target_xeno.lock_evolve = FALSE
@@ -663,15 +663,15 @@
 	var/turf/T = get_turf(A)
 
 	if(!T || T.is_weedable() < FULLY_WEEDABLE || T.density || (T.z != X.z))
-		to_chat(X, SPAN_XENOWARNING("You can't do that here."))
+		to_chat(X, SPAN_XENOWARNING("你不能在这里这样做。"))
 		return
 
 	var/area/AR = get_area(T)
 	if(!AR.is_resin_allowed)
 		if(AR.flags_area & AREA_UNWEEDABLE)
-			to_chat(X, SPAN_XENOWARNING("This area is unsuited to host the hive!"))
+			to_chat(X, SPAN_XENOWARNING("这片区域不适合建立巢群！"))
 			return
-		to_chat(X, SPAN_XENOWARNING("It's too early to spread the hive this far."))
+		to_chat(X, SPAN_XENOWARNING("现在还太早，无法将巢群扩展到这么远。"))
 		return
 
 	var/obj/effect/alien/weeds/located_weeds = locate() in T
@@ -680,13 +680,13 @@
 			return
 
 		if(located_weeds.weed_strength > X.weed_level)
-			to_chat(X, SPAN_XENOWARNING("There's stronger weeds here already!"))
+			to_chat(X, SPAN_XENOWARNING("这里已经有更强的菌毯节点！"))
 			return
 
 		if (!check_and_use_plasma_owner(node_plant_plasma_cost))
 			return
 
-		to_chat(X, SPAN_XENONOTICE("You plant a node at [T]."))
+		to_chat(X, SPAN_XENONOTICE("你在[T]种下了节点。"))
 		new /obj/effect/alien/weeds/node(T, null, X)
 		playsound(T, "alien_resin_build", 35)
 		apply_cooldown_override(node_plant_cooldown)
@@ -701,11 +701,11 @@
 			break
 
 	if(!node)
-		to_chat(X, SPAN_XENOWARNING("You can only plant weeds near weeds with a connected node!"))
+		to_chat(X, SPAN_XENOWARNING("只能在已连接节点的菌毯附近铺设菌毯！"))
 		return
 
 	if(T in recently_built_turfs)
-		to_chat(X, SPAN_XENOWARNING("You've recently built here already!"))
+		to_chat(X, SPAN_XENOWARNING("你最近刚在这里建造过！"))
 		return
 
 	if (!check_and_use_plasma_owner())
@@ -717,7 +717,7 @@
 	recently_built_turfs += T
 	addtimer(CALLBACK(src, PROC_REF(reset_turf_cooldown), T), turf_build_cooldown)
 
-	to_chat(X, SPAN_XENONOTICE("You plant weeds at [T]."))
+	to_chat(X, SPAN_XENONOTICE("你在[T]铺下了菌毯。"))
 	apply_cooldown()
 	return ..()
 
@@ -743,7 +743,7 @@
 	for(var/i in transported_xenos)
 		UnregisterSignal(i, COMSIG_MOVABLE_PRE_MOVE)
 
-	to_chat(Q, SPAN_XENONOTICE("You rally the hive to the queen beacon!"))
+	to_chat(Q, SPAN_XENONOTICE("你召集虫巢前往女王信标！"))
 	LAZYCLEARLIST(transported_xenos)
 	RegisterSignal(SSdcs, COMSIG_GLOB_XENO_SPAWN, PROC_REF(tunnel_xeno))
 	for(var/xeno in hive.totalXenos)
@@ -757,7 +757,7 @@
 /datum/action/xeno_action/activable/place_queen_beacon/proc/tunnel_xeno(datum/source, mob/living/carbon/xenomorph/X)
 	SIGNAL_HANDLER
 	if(X.z == owner.z)
-		to_chat(X, SPAN_XENONOTICE("You begin tunneling towards the queen beacon!"))
+		to_chat(X, SPAN_XENONOTICE("你开始掘地前往女王信标！"))
 		RegisterSignal(X, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(cancel_movement))
 		LAZYADD(transported_xenos, X)
 
@@ -765,7 +765,7 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_XENO_SPAWN)
 	for(var/xeno in transported_xenos)
 		var/mob/living/carbon/xenomorph/X = xeno
-		to_chat(X, SPAN_XENONOTICE("You tunnel to the queen beacon!"))
+		to_chat(X, SPAN_XENONOTICE("你掘地抵达了女王信标！"))
 		UnregisterSignal(X, COMSIG_MOVABLE_PRE_MOVE)
 		if(target)
 			X.forceMove(target)
@@ -776,16 +776,16 @@
 
 /datum/action/xeno_action/activable/place_queen_beacon/proc/check_turf(mob/living/carbon/xenomorph/queen/Q, turf/T)
 	if(!T || T.density)
-		to_chat(Q, SPAN_XENOWARNING("You can't place a queen beacon here."))
+		to_chat(Q, SPAN_XENOWARNING("这里无法放置女王信标。"))
 		return FALSE
 
 	if(T.z != Q.z)
-		to_chat(Q, SPAN_XENOWARNING("That's too far away!"))
+		to_chat(Q, SPAN_XENOWARNING("太远了！"))
 		return FALSE
 
 	var/obj/effect/alien/weeds/located_weeds = locate() in T
 	if(!located_weeds)
-		to_chat(Q, SPAN_XENOWARNING("You need to place the queen beacon on weeds."))
+		to_chat(Q, SPAN_XENOWARNING("女王信标必须放在菌毯上。"))
 		return FALSE
 
 	return TRUE
@@ -807,15 +807,15 @@
 
 	var/turf/T = get_turf(A)
 	if(T.density)
-		to_chat(Q, SPAN_XENOWARNING("You can only construct this blockade in open areas!"))
+		to_chat(Q, SPAN_XENOWARNING("这种路障只能建在开阔地带！"))
 		return FALSE
 
 	if(T.z != owner.z)
-		to_chat(Q, SPAN_XENOWARNING("That's too far away!"))
+		to_chat(Q, SPAN_XENOWARNING("太远了！"))
 		return FALSE
 
 	if(!T.weeds)
-		to_chat(Q, SPAN_XENOWARNING("You can only construct this blockade on weeds!"))
+		to_chat(Q, SPAN_XENOWARNING("这种路障只能建在菌毯上！"))
 		return FALSE
 
 	if(!Q.check_plasma(plasma_cost))
@@ -837,7 +837,7 @@
 		return
 
 	var/turf/new_turf = locate(max(T.x - floor(width/2), 1), max(T.y - floor(height/2), 1), T.z)
-	to_chat(Q, SPAN_XENONOTICE("You raise a blockade!"))
+	to_chat(Q, SPAN_XENONOTICE("你升起了一道路障！"))
 	var/obj/effect/alien/resin/resin_pillar/RP = new pillar_type(new_turf)
 	RP.start_decay(brittle_time, decay_time)
 
@@ -845,14 +845,14 @@
 
 /datum/action/xeno_action/activable/blockade/proc/check_turf(mob/living/carbon/xenomorph/queen/Q, turf/T)
 	if(T.density)
-		to_chat(Q, SPAN_XENOWARNING("You can't place a blockade here."))
+		to_chat(Q, SPAN_XENOWARNING("这里无法放置路障。"))
 		return FALSE
 
 	return TRUE
 
 /mob/living/carbon/xenomorph/proc/xeno_tacmap()
-	set name = "View Xeno Tacmap"
-	set desc = "This opens a tactical map, where you can see where every xenomorph is."
+	set name = "查看异形战术地图"
+	set desc = "打开战术地图，查看所有异形的位置。"
 	set category = "Alien"
 	hive.tacmap.tgui_interact(src)
 

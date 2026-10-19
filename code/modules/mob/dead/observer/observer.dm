@@ -20,7 +20,7 @@
 	return ..()
 
 /mob/dead/observer
-	name = "ghost"
+	name = "幽灵"
 	desc = "是幽、幽、幽、幽灵啊！" //jinkies!
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "ghost"
@@ -142,7 +142,7 @@
 		new_action.give_to(src)
 
 	if(SSticker.mode && SSticker.mode.flags_round_type & MODE_PREDATOR)
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), src, "<span style='color: red;'>This is a <B>PREDATOR ROUND</B>! If you are whitelisted, you may Join the Hunt!</span>"), 2 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), src, "<span style='color: red;'>本回合包含铁血战士！拥有白名单资格的玩家可以加入狩猎！</span>"), 2 SECONDS)
 
 	verbs -= /mob/verb/pickup_item
 	verbs -= /mob/verb/pull_item
@@ -518,7 +518,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 */
 /mob/living/verb/ghost()
 	set category = "OOC"
-	set name = "Ghost"
+	set name = "成为幽灵"
 	set desc = "放弃生命，进入亡者的世界。"
 
 	do_ghost()
@@ -532,13 +532,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/list/options = list("Ghost", "Stay in body")
 		if(check_other_rights(client, R_MOD, FALSE))
 			options = list("Aghost") + options
-		var/text_prompt = "Are you -sure- you want to ghost?\n(You are alive. If you ghost, you won't be able to return to your body. You can't change your mind so choose wisely!)"
+		var/text_prompt = "确定要成为幽灵吗？\n（你还活着。成为幽灵后将无法返回身体，也无法反悔，请慎重选择！）"
 		var/is_nested = (buckled && istype(buckled, /obj/structure/bed/nest)) ? TRUE : FALSE
 		var/obj/structure/bed/nest/nest = FALSE
 		if(is_nested)
-			text_prompt += "\nSince you're nested, you will get a chance to reenter your body if freed."
+			text_prompt += "\n你被束缚在巢上，若身体获救，仍有机会返回。"
 			nest = buckled
-		var/response = tgui_alert(src, text_prompt, "确定要转为观察者吗？", options)
+		var/response = localized_tgui_alert(src, text_prompt, "确定要转为观察者吗？", options)
 		if(response == "Aghost")
 			client.admin_ghost()
 			return
@@ -713,7 +713,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/verb/follow()
 	set category = "Ghost.Follow"
-	set name = "Follow"
+	set name = "跟随"
 
 	if(!orbit_menu)
 		orbit_menu = new(src)
@@ -787,15 +787,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				A.forceMove(T)
 				following = null
 			else
-				to_chat(A, "<span style='color: red;'>This mob is not located in the game world.</span>")
+				to_chat(A, "<span style='color: red;'>该生物不在游戏世界中。</span>")
 
 /mob/dead/observer/memory()
 	set hidden = TRUE
-	to_chat(src, "<span style='color: red;'>You are dead! You have no mind to store memory!</span>")
+	to_chat(src, "<span style='color: red;'>你已经死了，没有心智可以储存记忆！</span>")
 
 /mob/dead/observer/add_memory()
 	set hidden = TRUE
-	to_chat(src, "<span style='color: red;'>You are dead! You have no mind to store memory!</span>")
+	to_chat(src, "<span style='color: red;'>你已经死了，没有心智可以储存记忆！</span>")
 
 /mob/dead/observer/verb/analyze_air()
 	set name = "Analyze Air"
@@ -813,14 +813,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/env_temperature = T.return_temperature()
 	var/env_gas = T.return_gas()
 
-	to_chat(src, SPAN_INFO("<B>Results:</B>"))
+	to_chat(src, SPAN_INFO("<B>结果：</B>"))
 	if(abs(pressure - ONE_ATMOSPHERE) < 10)
-		to_chat(src, "<span style='color: blue;'>Pressure: [round(pressure,0.1)] kPa</span>")
+		to_chat(src, "<span style='color: blue;'>气压：[round(pressure,0.1)] 千帕</span>")
 	else
-		to_chat(src, "<span style='color: red;'>Pressure: [round(pressure,0.1)] kPa</span>")
+		to_chat(src, "<span style='color: red;'>气压：[round(pressure,0.1)] 千帕</span>")
 
-	to_chat(src, "<span style='color: blue;'>Gas type: [env_gas]</span>")
-	to_chat(src, "<span style='color: blue;'>Temperature: [round(env_temperature-T0C,0.1)]&deg;C</span>")
+	to_chat(src, "<span style='color: blue;'>气体类型：[localized_player_label(env_gas)]</span>")
+	to_chat(src, "<span style='color: blue;'>温度：[round(env_temperature-T0C,0.1)]&deg;C</span>")
 
 
 /mob/dead/observer/verb/toggle_zoom()
@@ -838,7 +838,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 
 /mob/dead/observer/verb/toggle_darkness()
-	set name = "Toggle Darkness"
+	set name = "切换黑暗视野"
 	set category = "Ghost.Settings"
 
 	var/level_message
@@ -856,7 +856,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			level_message = "no night vision"
 			src?.client?.prefs?.ghost_vision_pref = GHOST_VISION_LEVEL_NO_NVG
 	src.client.prefs.save_preferences()
-	to_chat(src, SPAN_BOLDNOTICE("Night Vision mode switched and saved to [level_message]."))
+	to_chat(src, SPAN_BOLDNOTICE("夜视模式已切换并保存为[localized_player_label(level_message)]。"))
 	sync_lighting_plane_alpha()
 
 /mob/dead/observer/verb/toggle_self_visibility()
@@ -867,7 +867,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		alpha = initial(alpha)
 	else
 		alpha = 0
-	to_chat(usr, SPAN_NOTICE("You are now [(self_visibility?"visible":"invisible")]."))
+	to_chat(usr, SPAN_NOTICE("你现在对自己[(self_visibility?"可见":"不可见")]。"))
 
 /mob/dead/observer/verb/view_manifest()
 	set name = "View Crew Manifest"
@@ -875,7 +875,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/dat = GLOB.data_core.get_manifest()
 
-	show_browser(src, dat, "Crew Manifest", "manifest", width = 450, height = 750)
+	show_browser(src, dat, "船员名册", "manifest", width = 450, height = 750)
 
 /mob/dead/verb/hive_status()
 	set name = "Hive Status"
@@ -893,14 +893,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			last_hive_checked = hive
 
 	if(!length(hives))
-		to_chat(src, SPAN_ALERT("There seem to be no living hives at the moment"))
+		to_chat(src, SPAN_ALERT("目前似乎没有存活的虫巢。"))
 		return
 	else if(length(hives) == 1) // Only one hive, don't need an input menu for that
 		last_hive_checked.hive_ui.open_hive_status(src)
 	else
-		faction = tgui_input_list(src, "选择要打开的巢群状态菜单。", "选择巢群", hives, theme="hive_status")
+		faction = localized_input_list(src, "选择要打开的巢群状态菜单。", "选择巢群", hives, theme="hive_status")
 		if(!faction)
-			to_chat(src, SPAN_ALERT("Hive choice error. Aborting."))
+			to_chat(src, SPAN_ALERT("虫巢选择出错，操作中止。"))
 			return
 
 		GLOB.hive_datum[hives[faction]].hive_ui.open_hive_status(src)
@@ -912,12 +912,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	GLOB.uscm_tacmap_status.tgui_interact(src)
 
 /mob/dead/observer/verb/view_xeno_tacmap()
-	set name = "View Xeno Tacmap"
+	set name = "查看异形战术地图"
 	set category = "Ghost.View"
 
 	var/datum/hive_status/hive = GLOB.hive_datum[XENO_HIVE_NORMAL]
 	if(!hive || !length(hive.totalXenos))
-		to_chat(src, SPAN_ALERT("There seems to be no living normal hive at the moment"))
+		to_chat(src, SPAN_ALERT("目前似乎没有存活的普通虫巢。"))
 		return
 
 	GLOB.xeno_tacmap_status.tgui_interact(src)
@@ -931,7 +931,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(SSticker.current_state < GAME_STATE_PLAYING || !SSticker.mode)
-		to_chat(src, SPAN_WARNING("The game hasn't started yet!"))
+		to_chat(src, SPAN_WARNING("游戏尚未开始！"))
 		return
 
 	if(SSticker.mode.check_xeno_late_join(src))
@@ -946,7 +946,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(SSticker.current_state < GAME_STATE_PLAYING || !SSticker.mode)
-		to_chat(src, SPAN_WARNING("The game hasn't started yet!"))
+		to_chat(src, SPAN_WARNING("游戏尚未开始！"))
 		return
 
 	if(SSticker.mode.check_xeno_late_join(src))
@@ -961,7 +961,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(SSticker.current_state < GAME_STATE_PLAYING || !SSticker.mode)
-		to_chat(src, SPAN_WARNING("The game hasn't started yet!"))
+		to_chat(src, SPAN_WARNING("游戏尚未开始！"))
 		return
 
 	if(SSticker.mode.check_xeno_late_join(src))
@@ -969,14 +969,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/verb/join_as_zombie() //Adapted from join as hellhoud
 	set category = "Ghost.Join"
-	set name = "Join as Zombie"
+	set name = "以僵尸身份加入"
 	set desc = "选择一只存活但已断线的丧尸，重新加入游戏。"
 
 	if (!client)
 		return
 
 	if(SSticker.current_state < GAME_STATE_PLAYING || !SSticker.mode)
-		to_chat(src, SPAN_WARNING("The game hasn't started yet!"))
+		to_chat(src, SPAN_WARNING("游戏尚未开始！"))
 		return
 
 	var/list/zombie_list = list()
@@ -987,10 +987,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			zombie_list += list(A.real_name = A)
 
 	if(!length(zombie_list))
-		to_chat(src, SPAN_DANGER("There are no available zombies."))
+		to_chat(src, SPAN_DANGER("没有可用的丧尸。"))
 		return
 
-	var/choice = tgui_input_list(usr, "选择一只僵尸：", "以僵尸身份加入", zombie_list)
+	var/choice = localized_input_list(usr, "选择一只僵尸：", "以僵尸身份加入", zombie_list)
 	if(!choice)
 		return
 
@@ -999,7 +999,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(choice == "Underground Zombie")
 		if(!length(GLOB.zombie_landmarks))
-			to_chat(src, SPAN_WARNING("Sorry, the last underground zombie just got taken."))
+			to_chat(src, SPAN_WARNING("抱歉，最后一只地下丧尸刚被占用了。"))
 			return
 		var/obj/effect/landmark/zombie/spawn_point = pick(GLOB.zombie_landmarks)
 		spawn_point.spawn_zombie(src)
@@ -1011,11 +1011,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(Z.stat == DEAD)
-		to_chat(src, SPAN_WARNING("This zombie is dead!"))
+		to_chat(src, SPAN_WARNING("这只丧尸已死！"))
 		return
 
 	if(Z.client)
-		to_chat(src, SPAN_WARNING("That player is still connected."))
+		to_chat(src, SPAN_WARNING("那位玩家仍然在线。"))
 		return
 
 	mind.transfer_to(Z, TRUE)
@@ -1024,7 +1024,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/verb/join_as_freed_mob()
 	set category = "Ghost.Join"
-	set name = "Join as Freed Mob"
+	set name = "以自由角色身份加入"
 	set desc = "选择工作人员开放的可接管角色。"
 
 	var/mob/M = src
@@ -1032,18 +1032,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(SSticker.current_state < GAME_STATE_PLAYING || !SSticker.mode)
-		to_chat(src, SPAN_WARNING("The game hasn't started yet!"))
+		to_chat(src, SPAN_WARNING("游戏尚未开始！"))
 		return
 
 	if(jobban_isbanned(src, "Freed Mob"))
-		to_chat(src, SPAN_WARNING("You are banned from being able to join as a freed mob."))
+		to_chat(src, SPAN_WARNING("你已被禁止加入成为获释生物。"))
 		return
 
 	var/list/mobs_by_role = list() // the list the mobs are assigned to first, for sorting purposes
 	for(var/mob/freed_mob as anything in GLOB.freed_mob_list)
 		var/role_name = freed_mob.get_role_name()
 		if(!role_name)
-			role_name = "No Role"
+			role_name = "无角色"
 		LAZYINITLIST(mobs_by_role[role_name])
 		mobs_by_role[role_name] += freed_mob
 
@@ -1065,12 +1065,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(jobban_isbanned(src, "Freed Mob"))
-		to_chat(src, SPAN_WARNING("You are banned from being able to join as a freed mob."))
+		to_chat(src, SPAN_WARNING("你已被禁止加入成为获释生物。"))
 		return
 
 	if(QDELETED(freed_mob) || freed_mob.client)
 		GLOB.freed_mob_list -= freed_mob
-		to_chat(src, SPAN_WARNING("Something went wrong."))
+		to_chat(src, SPAN_WARNING("发生了错误。"))
 		return
 
 	GLOB.freed_mob_list -= freed_mob
@@ -1078,7 +1078,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/verb/join_as_hellhound()
 	set category = "Ghost.Join"
-	set name = "Join as Hellhound"
+	set name = "以地狱猎犬身份加入"
 	set desc = "选择一只存活且可接管的地狱猎犬。此角色受严格规则约束，请认真阅读，否则可能被封禁。"
 
 	var/mob/dead/current_mob = src
@@ -1086,7 +1086,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(SSticker.current_state < GAME_STATE_PLAYING || !SSticker.mode)
-		to_chat(src, SPAN_WARNING("The game hasn't started yet!"))
+		to_chat(src, SPAN_WARNING("游戏尚未开始！"))
 		return
 
 	var/list/hellhound_mob_list = list() // the list we'll be choosing from
@@ -1104,11 +1104,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(QDELETED(Hellhound) || Hellhound.client)
-		to_chat(src, SPAN_WARNING("Something went wrong."))
+		to_chat(src, SPAN_WARNING("发生了错误。"))
 		return
 
 	if(Hellhound.stat == DEAD)
-		to_chat(src, SPAN_WARNING("That Hellhound has died."))
+		to_chat(src, SPAN_WARNING("那只地狱猎犬已死。"))
 		return
 
 	current_mob.mind.transfer_to(Hellhound, TRUE)
@@ -1123,7 +1123,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(SSticker.current_state < GAME_STATE_PLAYING || !SSticker.mode)
-		to_chat(src, SPAN_WARNING("The game hasn't started yet!"))
+		to_chat(src, SPAN_WARNING("游戏尚未开始！"))
 		return
 
 	if(SSticker.mode.check_predator_late_join(src))
@@ -1138,7 +1138,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(SSticker.current_state < GAME_STATE_PLAYING || !SSticker.mode)
-		to_chat(src, SPAN_WARNING("The game hasn't started yet!"))
+		to_chat(src, SPAN_WARNING("游戏尚未开始！"))
 		return
 
 	if(SSticker.mode.check_joe_late_join(src))
@@ -1151,21 +1151,21 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "在猎人游戏模式中，投票决定谁能获得补给空投！"
 
 	if(SSticker.current_state < GAME_STATE_PLAYING || !SSticker.mode)
-		to_chat(src, SPAN_WARNING("The game hasn't started yet!"))
+		to_chat(src, SPAN_WARNING("游戏尚未开始！"))
 		return
 
 	if(!istype(SSticker.mode,/datum/game_mode/huntergames))
-		to_chat(src, SPAN_INFO("Wrong game mode. You have to be observing a Hunter Games round."))
+		to_chat(src, SPAN_INFO("游戏模式不符，你必须正在旁观猎手游戏回合。"))
 		return
 
 	var/datum/game_mode/huntergames/mode = SSticker.mode
 
 	if(!mode.waiting_for_drop_votes)
-		to_chat(src, SPAN_INFO("There's no drop vote currently in progress. Wait for a supply drop to be announced!"))
+		to_chat(src, SPAN_INFO("目前没有空投投票，请等待补给空投公告！"))
 		return
 
 	if(voted_this_drop)
-		to_chat(src, SPAN_INFO("You voted for this one already. Only one please!"))
+		to_chat(src, SPAN_INFO("你已经投过这个了，只能投一次！"))
 		return
 
 	var/list/mobs = GLOB.alive_mob_list
@@ -1180,7 +1180,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if (!target)//Make sure we actually have a target
 		return
 	else
-		to_chat(src, SPAN_INFO("Your vote for [target] has been counted!"))
+		to_chat(src, SPAN_INFO("你投给[target]的票已计入！"))
 		SSticker.mode:supply_votes += target
 		voted_this_drop = 1
 		addtimer(VARSET_CALLBACK(src, voted_this_drop, FALSE), 20 SECONDS)
@@ -1196,7 +1196,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/mob/living/carbon/human/H = mind.original
 		if(istype(H))
 			ref = WEAKREF(H)
-		GLOB.data_core.manifest_modify(name, ref, null, null, "*Deceased*")
+		GLOB.data_core.manifest_modify(name, ref, null, null, "*已故*")
 
 
 /mob/dead/observer/verb/view_kill_feed()
@@ -1210,37 +1210,37 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/get_status_tab_items()
 	. = ..()
 	. += ""
-	. += "Game Mode: [GLOB.master_mode]"
+	. += "游戏模式：[localized_player_label(GLOB.master_mode)]"
 
 	if(!SSticker.HasRoundStarted())
 		var/time_remaining = SSticker.GetTimeLeft()
 		if(time_remaining > 0)
-			. += "Time To Start: [floor(time_remaining)]s[SSticker.delay_start ? " (DELAYED)" : ""]"
+			. += "开始倒计时：[floor(time_remaining)]秒[SSticker.delay_start ? "（已延迟）" : ""]"
 		else if(time_remaining == -10)
-			. += "Time To Start: DELAYED"
+			. += "开始倒计时：已延迟"
 		else
-			. += "Time To Start: SOON"
+			. += "开始倒计时：即将开始"
 
-		. += "Players: [SSticker.totalPlayers]"
+		. += "玩家数：[SSticker.totalPlayers]"
 		if(client.admin_holder)
-			. += "Players Ready: [SSticker.totalPlayersReady]"
+			. += "已准备玩家数：[SSticker.totalPlayersReady]"
 
 	. += ""
 
 	if(SSticker.mode?.force_end_at)
 		var/time_left = SSticker.mode.force_end_at - world.time
 		if(time_left >= 0)
-			. += "Hijack Time Left: [DisplayTimeText(time_left, 1)]"
+			. += "劫舰剩余时间：[DisplayTimeText(time_left, 1)]"
 		else
-			. += "Hijack Over"
+			. += "劫舰结束"
 
 	if(SShijack)
 		var/eta_status = SShijack.get_evac_eta()
 		if(eta_status)
-			. += "Evacuation Goal: [eta_status]"
+			. += "疏散目标：[localized_player_label(eta_status)]"
 
 		if(SShijack.sd_unlocked)
-			. += "Self Destruct Goal: [SShijack.get_sd_eta()]"
+			. += "自毁目标：[SShijack.get_sd_eta()]"
 
 	if(client.prefs?.be_special & BE_ALIEN_AFTER_DEATH)
 		if(larva_queue_cached_message)
@@ -1251,7 +1251,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/time_since_death = world.time - timeofdeath
 		var/format = (time_since_death >= 1 HOURS ? "hh:mm:ss" : "mm:ss")
 
-		. += "Time Since Death: [time2text(time_since_death, format)]"
+		. += "死亡后经过时间：[time2text(time_since_death, format)]"
 
 
 /proc/message_ghosts(message)
@@ -1288,7 +1288,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		// We check observer view range specifically to also show the message to zoomed out ghosts. Double check Z as get_dist goes thru levels.
 		if((observer_client?.prefs?.toggles_chat & CHAT_DEAD) \
 			&& src.z == nearby_observer.z && get_dist(src, nearby_observer) <= observer_client.view)
-			to_chat(observer_client, SPAN_DEADSAY("<b>[src]</b> points to [A] [nearby_observer.format_jump(A)]"))
+			to_chat(observer_client, SPAN_DEADSAY("<b>[src]</b>指向[A] [nearby_observer.format_jump(A)]"))
 	return TRUE
 
 /// This proc is called when a predator round is toggled by the admin verb, as well as when a ghost logs in

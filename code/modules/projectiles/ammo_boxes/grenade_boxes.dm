@@ -40,7 +40,7 @@
 
 /obj/item/ammo_box/magazine/nade_box/deploy_ammo_box(mob/living/user, turf/T)
 	if(burning)
-		to_chat(user, SPAN_DANGER("It's on fire and the grenades inside might explode at any time!"))
+		to_chat(user, SPAN_DANGER("它着火了，里面的手榴弹随时可能爆炸！"))
 		return
 
 	var/obj/structure/magazine_box/nade_box/M = new /obj/structure/magazine_box/nade_box(T)
@@ -54,7 +54,7 @@
 
 /obj/item/ammo_box/magazine/nade_box/afterattack(atom/target, mob/living/user, proximity)
 	if(burning)
-		to_chat(user, SPAN_DANGER("It's on fire and the grenades inside might explode at any time!"))
+		to_chat(user, SPAN_DANGER("它着火了，里面的手榴弹随时可能爆炸！"))
 		return
 	if(!proximity)
 		return
@@ -80,8 +80,8 @@
 //--------------------GRENADE BOXES
 
 /obj/item/ammo_box/magazine/nade_box/bfab
-	name = "\improper M51A BFAB grenade box"
-	desc = "A secure box holding 25 M51A Bounding Fragmentation, Air-Burst grenades. Highly explosive, don't store near the flamer fuel."
+	name = "\improper M51A BFAB 跳跃空爆破片手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚M51A BFAB 跳跃空爆破片手榴弹。极易爆炸，请勿靠近喷火器燃料存放。"
 	magazine_type = /obj/item/explosive/grenade/high_explosive/impact/tmfrag
 	allowed_magazines = list(/obj/item/explosive/grenade/high_explosive/impact/tmfrag)
 	overlay_model_type = "model_m51a"
@@ -89,8 +89,8 @@
 	overlay_grenade_type = "bfab"
 
 /obj/item/ammo_box/magazine/nade_box/heap
-	name = "\improper M38 HEAP grenade box"
-	desc = "A secure box holding 25 M38 High-Explosive, Armour-Piercing grenades. Highly explosive, don't store near the flamer fuel."
+	name = "\improper M38 HEAP 高爆穿甲手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚M38 HEAP 高爆穿甲手榴弹。极易爆炸，请勿靠近喷火器燃料存放。"
 	magazine_type = /obj/item/explosive/grenade/high_explosive/impact/heap
 	allowed_magazines = list(/obj/item/explosive/grenade/high_explosive/impact/heap)
 	overlay_model_type = "model_m38"
@@ -98,8 +98,8 @@
 	overlay_grenade_type = "heap"
 
 /obj/item/ammo_box/magazine/nade_box/smoke
-	name = "\improper M47 HSDP grenade box"
-	desc = "A secure box holding 25 M47 High-density Smoke, Dual-Purpose grenades. Flammable, don't store near the flamer fuel."
+	name = "\improper M47 HSDP 高密度双用途烟雾手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚M47 HSDP 高密度双用途烟雾手榴弹。易燃，请勿靠近喷火器燃料存放。"
 	magazine_type = /obj/item/explosive/grenade/smokebomb
 	allowed_magazines = list(/obj/item/explosive/grenade/smokebomb)
 	overlay_model_type = "model_m47"
@@ -107,24 +107,24 @@
 	overlay_grenade_type = "smoke"
 
 /obj/item/ammo_box/magazine/nade_box/smoke/green
-	name = "\improper M47-G HSDP grenade box"
-	desc = "A secure box holding 25 M47-G HSDP green smoke grenades. Flammable, don't store near the flamer fuel."
+	name = "\improper M47-G HSDP 绿色烟雾手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚M47-G HSDP 绿色烟雾手榴弹。易燃，请勿靠近喷火器燃料存放。"
 	magazine_type = /obj/item/explosive/grenade/smokebomb/green
 	allowed_magazines = list(/obj/item/explosive/grenade/smokebomb/green)
 	overlay_icon_type = "gsmoke"
 	overlay_grenade_type = "gsmoke"
 
 /obj/item/ammo_box/magazine/nade_box/smoke/red
-	name = "\improper M47-R HSDP grenade box"
-	desc = "A secure box holding 25 M47-R HSDP red smoke grenades. Flammable, don't store near the flamer fuel."
+	name = "\improper M47-R HSDP 红色烟雾手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚M47-R HSDP 红色烟雾手榴弹。易燃，请勿靠近喷火器燃料存放。"
 	magazine_type = /obj/item/explosive/grenade/smokebomb/red
 	allowed_magazines = list(/obj/item/explosive/grenade/smokebomb/red)
 	overlay_icon_type = "rsmoke"
 	overlay_grenade_type = "rsmoke"
 
 /obj/item/ammo_box/magazine/nade_box/flare
-	name = "\improper M72A2 HIPF starshell grenade box"
-	desc = "A secure box holding 25 M72A2 High-Intensity Parachute-Flare starshell grenades. Flammable, don't store near the flamer fuel."
+	name = "\improper M72A2 HIPF 高强度降落伞照明手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚M72A2 HIPF 高强度降落伞照明手榴弹。易燃，请勿靠近喷火器燃料存放。"
 	magazine_type = /obj/item/explosive/grenade/high_explosive/impact/flare
 	allowed_magazines = list(/obj/item/explosive/grenade/high_explosive/impact/flare)
 	overlay_model_type = "model_m72"
@@ -150,8 +150,8 @@
 	overlay_grenade_type = "hiam"
 
 /obj/item/ammo_box/magazine/nade_box/canister
-	name = "\improper M108 canister grenade box"
-	desc = "A secure box holding 25 M108 canister grenades. Flammable, don't store near the flamer fuel."
+	name = "\improper M108 霰弹手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚M108 霰弹手榴弹。易燃，请勿靠近喷火器燃料存放。"
 	magazine_type = /obj/item/explosive/grenade/high_explosive/airburst/canister
 	allowed_magazines = list(/obj/item/explosive/grenade/high_explosive/airburst/canister)
 	overlay_model_type = "model_m108"
@@ -159,8 +159,8 @@
 	overlay_grenade_type = "buck"
 
 /obj/item/ammo_box/magazine/nade_box/foam
-	name = "\improper M42 MFHS grenade box"
-	desc = "A secure box holding 25 M42 Metal-Foam Hull-Sealant grenades. Flammable, don't store near the flamer fuel."
+	name = "\improper M42 MFHS 金属泡沫舱体密封手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚M42 MFHS 金属泡沫舱体密封手榴弹。易燃，请勿靠近喷火器燃料存放。"
 	magazine_type = /obj/item/explosive/grenade/metal_foam
 	allowed_magazines = list(/obj/item/explosive/grenade/metal_foam)
 	overlay_model_type = "model_m42"
@@ -168,8 +168,8 @@
 	overlay_grenade_type = "foam"
 
 /obj/item/ammo_box/magazine/nade_box/m15
-	name = "\improper M15 frag grenade box"
-	desc = "A secure box holding 25 older M15-model fragmentation grenades. Highly explosive, don't store near the flamer fuel."
+	name = "\improper M15 老式破片手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚M15 老式破片手榴弹。极易爆炸，请勿靠近喷火器燃料存放。"
 	magazine_type = /obj/item/explosive/grenade/high_explosive/m15
 	allowed_magazines = list(/obj/item/explosive/grenade/high_explosive/m15)
 	overlay_model_type = "model_m15"
@@ -177,8 +177,8 @@
 	overlay_grenade_type = "m15"
 
 /obj/item/ammo_box/magazine/nade_box/super
-	name = "\improper M40-2 \"super\" HEDP grenade box"
-	desc = "A secure box holding 25 modified M40-2 High-Explosive Dual-Purpose grenades. Highly explosive, don't store near the flamer fuel."
+	name = "\improper M40-2“超级”高爆两用手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚M40-2“超级”高爆两用手榴弹。极易爆炸，请勿靠近喷火器燃料存放。"
 	magazine_type = /obj/item/explosive/grenade/high_explosive/super
 	allowed_magazines = list(/obj/item/explosive/grenade/high_explosive/super)
 	icon_state = "base_training_nade"
@@ -189,8 +189,8 @@
 //--------------------LTL GRENADE BOXES
 
 /obj/item/ammo_box/magazine/nade_box/training
-	name = "\improper M07 training grenade box"
-	desc = "A secure box holding 25 M07 training grenades. Harmless and reusable."
+	name = "\improper M07 训练手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚M07 训练手榴弹。无害且可重复使用。"
 	magazine_type = /obj/item/explosive/grenade/high_explosive/training
 	allowed_magazines = list(/obj/item/explosive/grenade/high_explosive/training)
 	icon_state = "base_training_nade"
@@ -199,8 +199,8 @@
 	overlay_grenade_type = "training"
 
 /obj/item/ammo_box/magazine/nade_box/ltl
-	name = "\improper M230 LLRB baton grenade box"
-	desc = "A secure box holding 25 M230 Less-than-Lethal Rubber Baton grenades. Used for riot control."
+	name = "\improper M230 LLRB 低致命性橡胶弹手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚M230 LLRB 低致命性橡胶弹手榴弹。用于防暴。"
 	magazine_type = /obj/item/explosive/grenade/slug/baton
 	allowed_magazines = list(/obj/item/explosive/grenade/slug/baton)
 	icon_state = "base_uscm_ltl"
@@ -209,8 +209,8 @@
 	overlay_grenade_type = "ltl"
 
 /obj/item/ammo_box/magazine/nade_box/ltl/tear_gas
-	name = "\improper M66 tear gas grenade box"
-	desc = "A secure box holding 25 M66 tear gas grenades. Used for riot control."
+	name = "\improper M66 催泪手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚M66 催泪手榴弹。用于防暴。"
 	magazine_type = /obj/item/explosive/grenade/tear/marine
 	allowed_magazines = list(/obj/item/explosive/grenade/tear/marine)
 	overlay_model_type = "model_m66"
@@ -219,8 +219,8 @@
 
 //Ostensibly a less-than-lethal grenade
 /obj/item/ammo_box/magazine/nade_box/ltl/sebb
-	name = "\improper G-2 Electroshock grenade box"
-	desc = "A secure box holding 25 G-2 SEBB eletroshock grenades. Don't store near sensitive electronics or under your CO's bed."
+	name = "\improper G-2 电击手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚G-2 电击手榴弹。请勿靠近精密电子设备存放，也不要放在舰长床底下。"
 	magazine_type = /obj/item/explosive/grenade/sebb
 	allowed_magazines = list(/obj/item/explosive/grenade/sebb)
 	overlay_model_type = "model_sebb"
@@ -240,32 +240,32 @@
 	overlay_grenade_type = "40mm_hedp"
 
 /obj/item/ammo_box/magazine/nade_box/fourtymil/frag
-	name = "\improper 40mm HEFA grenade box"
-	desc = "A secure box holding 25 old-style 40mm High-Explosive, Fragmenting-Antipersonnel grenades."
+	name = "\improper 40 毫米 HEFA 老式高爆反步兵破片手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚40 毫米 HEFA 老式高爆反步兵破片手榴弹。"
 	magazine_type = /obj/item/explosive/grenade/high_explosive/impact/frag
 	allowed_magazines = list(/obj/item/explosive/grenade/high_explosive/impact/frag)
 	overlay_icon_type = "hefa"
 	overlay_grenade_type = "40mm_hefa"
 
 /obj/item/ammo_box/magazine/nade_box/fourtymil/incen
-	name = "\improper 40mm incendiary grenade box"
-	desc = "A secure box holding 25 old-style 40mm incendiary grenades."
+	name = "\improper 40 毫米老式燃烧手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚40 毫米老式燃烧手榴弹。"
 	magazine_type = /obj/item/explosive/grenade/incendiary/impact
 	allowed_magazines = list(/obj/item/explosive/grenade/incendiary/impact)
 	overlay_icon_type = "hiam"
 	overlay_grenade_type = "40mm_hiam"
 
 /obj/item/ammo_box/magazine/nade_box/fourtymil/canister
-	name = "\improper 40mm canister grenade box"
-	desc = "A secure box holding 25 old-style 40mm canister grenades."
+	name = "\improper 40 毫米老式霰弹手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚40 毫米老式霰弹手榴弹。"
 	magazine_type = /obj/item/explosive/grenade/high_explosive/airburst/buckshot
 	allowed_magazines = list(/obj/item/explosive/grenade/high_explosive/airburst/buckshot)
 	overlay_icon_type = "buck"
 	overlay_grenade_type = "40mm_buck"
 
 /obj/item/ammo_box/magazine/nade_box/fourtymil/baton
-	name = "\improper 40mm rubber-baton grenade box"
-	desc = "A secure box holding 25 40mm rubber-baton grenades."
+	name = "\improper 40 毫米橡胶弹手榴弹箱"
+	desc = "一个安全储存箱，内装 25 枚40 毫米橡胶弹手榴弹。"
 	magazine_type = /obj/item/explosive/grenade/slug/baton/m79
 	allowed_magazines = list(/obj/item/explosive/grenade/slug/baton/m79)
 	icon_state = "base_uscm_ltl"
@@ -302,8 +302,8 @@
 //--------------------UPP GRENADE BOXES
 
 /obj/item/ammo_box/magazine/nade_box/upp
-	name = "\improper Type 6 grenade box"
-	desc = "A secure box holding 12 type 6 fragmentation grenades. Ensure pins are in place before removing from the box."
+	name = "\improper 6 式破片手榴弹箱"
+	desc = "一个安全储存箱，内装 12 枚6 式破片手榴弹。从箱中取出前，请确认保险销完好。"
 	num_of_magazines = 12
 	magazine_type = /obj/item/explosive/grenade/high_explosive/upp
 	allowed_magazines = list(/obj/item/explosive/grenade/high_explosive/upp)
@@ -313,8 +313,8 @@
 	overlay_grenade_type = "type6"
 
 /obj/item/ammo_box/magazine/nade_box/upp/smoke
-	name = "\improper RDG-17 smoke grenade box"
-	desc = "A secure box holding 12 RDG-17 smoke grenades. Ensure pins are in place before removing from the box."
+	name = "\improper RDG-17 烟雾手榴弹箱"
+	desc = "一个安全储存箱，内装 12 枚RDG-17 烟雾手榴弹。从箱中取出前，请确认保险销完好。"
 	magazine_type = /obj/item/explosive/grenade/smokebomb/upp
 	allowed_magazines = list(/obj/item/explosive/grenade/smokebomb/upp)
 	overlay_model_type = "model_typesmoke"
@@ -322,8 +322,8 @@
 	overlay_grenade_type = "typesmoke"
 
 /obj/item/ammo_box/magazine/nade_box/upp/wp
-	name = "\improper Type 8 WP grenade box"
-	desc = "A secure box holding 12 type 8 WP grenades. Ensure pins are in place before removing from the box."
+	name = "\improper 8 式白磷手榴弹箱"
+	desc = "一个安全储存箱，内装 12 枚8 式白磷手榴弹。从箱中取出前，请确认保险销完好。"
 	magazine_type = /obj/item/explosive/grenade/phosphorus/upp
 	allowed_magazines = list(/obj/item/explosive/grenade/phosphorus/upp)
 	overlay_model_type = "model_typewp"
@@ -331,8 +331,8 @@
 	overlay_grenade_type = "typewp"
 
 /obj/item/ammo_box/magazine/nade_box/upp/ugl
-	name = "\improper VOG-73 HE grenade box"
-	desc = "A secure box holding 15 VOG-73 HE grenades. Don't store near open flames."
+	name = "\improper VOG-73 高爆手榴弹箱"
+	desc = "一个安全储存箱，内装 15 枚VOG-73 高爆手榴弹。请勿靠近明火存放。"
 	num_of_magazines = 15
 	magazine_type = /obj/item/explosive/grenade/high_explosive/impact/upp
 	allowed_magazines = list(/obj/item/explosive/grenade/high_explosive/impact/upp)
@@ -341,8 +341,8 @@
 	overlay_grenade_type = "upp_40mm_he"
 
 /obj/item/ammo_box/magazine/nade_box/upp/ugl/ap
-	name = "\improper VPG-77 AP grenade box"
-	desc = "A secure box holding 15 VPG-77 AP grenades. Don't store near open flames."
+	name = "\improper VPG-77 穿甲手榴弹箱"
+	desc = "一个安全储存箱，内装 15 枚VPG-77 穿甲手榴弹。请勿靠近明火存放。"
 	magazine_type = /obj/item/explosive/grenade/high_explosive/impact/upp/ap
 	allowed_magazines = list(/obj/item/explosive/grenade/high_explosive/impact/upp/ap)
 	overlay_model_type = "model_vpg"
@@ -350,8 +350,8 @@
 	overlay_grenade_type = "upp_40mm_ap"
 
 /obj/item/ammo_box/magazine/nade_box/upp/ugl/canister
-	name = "\improper VShG-80 Assault-Grenade grenade box"
-	desc = "A secure box holding 15 VShG-80 grenades. Don't store near open flames."
+	name = "\improper VShG-80 突击手榴弹箱"
+	desc = "一个安全储存箱，内装 15 枚VShG-80 突击手榴弹。请勿靠近明火存放。"
 	magazine_type = /obj/item/explosive/grenade/high_explosive/airburst/upp
 	allowed_magazines = list(/obj/item/explosive/grenade/high_explosive/airburst/upp)
 	overlay_model_type = "model_vsgh"
@@ -359,8 +359,8 @@
 	overlay_grenade_type = "upp_40mm_buck"
 
 /obj/item/ammo_box/magazine/nade_box/upp/ugl/incen
-	name = "\improper VTBG-44 Thermobaric grenade box"
-	desc = "A secure box holding 15 VTBG-44 grenades. Don't store near open flames."
+	name = "\improper VTBG-44 温压手榴弹箱"
+	desc = "一个安全储存箱，内装 15 枚VTBG-44 温压手榴弹。请勿靠近明火存放。"
 	magazine_type = /obj/item/explosive/grenade/incendiary/impact/upp
 	allowed_magazines = list( /obj/item/explosive/grenade/incendiary/impact/upp)
 	overlay_model_type = "model_vtbg"
@@ -370,8 +370,8 @@
 //--------------------RMC GRENADE BOXES
 
 /obj/item/ammo_box/magazine/nade_box/rmc
-	name = "\improper R2175/A HEDP grenade box"
-	desc = "A secure box holding 18 R2175/A HEDP grenades. Highly explosive, don't store near open flames."
+	name = "\improper R2175/A HEDP 高爆两用手榴弹箱"
+	desc = "一个安全储存箱，内装 18 枚R2175/A HEDP 高爆两用手榴弹。极易爆炸，请勿靠近明火存放。"
 	num_of_magazines = 18
 	magazine_type = /obj/item/explosive/grenade/high_explosive/rmc
 	allowed_magazines = list(/obj/item/explosive/grenade/high_explosive/rmc)
@@ -381,16 +381,16 @@
 	overlay_grenade_type = "rmc_hedp"
 
 /obj/item/ammo_box/magazine/nade_box/rmc/incen
-	name = "\improper R2175/B HIDP grenade box"
-	desc = "A secure box holding 18 R2175/B HIDP grenades. Highly flammable, don't store near open flames."
+	name = "\improper R2175/B HIDP 燃烧两用手榴弹箱"
+	desc = "一个安全储存箱，内装 18 枚R2175/B HIDP 燃烧两用手榴弹。极易燃烧，请勿靠近明火存放。"
 	magazine_type = /obj/item/explosive/grenade/incendiary/rmc
 	allowed_magazines = list(/obj/item/explosive/grenade/incendiary/rmc)
 	overlay_icon_type = "rmchidp"
 	overlay_grenade_type = "rmc_hidp"
 
 /obj/item/ammo_box/magazine/nade_box/rmc/cn20
-	name = "\improper R2175/CN20 gas grenade box"
-	desc = "A secure box holding 18 R2175/CN20 nerve-gas grenades. Highly lethal, ensure caps are fitted securely before storage."
+	name = "\improper R2175/CN20 神经毒气手榴弹箱"
+	desc = "一个安全储存箱，内装 18 枚R2175/CN20 神经毒气手榴弹。极其致命，存放前请确认密封盖已牢固装好。"
 	magazine_type = /obj/item/explosive/grenade/nerve_gas/xeno/rmc
 	allowed_magazines = list(/obj/item/explosive/grenade/nerve_gas/xeno/rmc)
 	overlay_icon_type = "rmcgas"

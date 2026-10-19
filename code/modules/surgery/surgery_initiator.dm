@@ -99,7 +99,7 @@
 				return FALSE
 			if(!length(valid_steps))
 				if(ishuman(target))
-					var/limbname = affecting?.status & LIMB_DESTROYED ? "[target]的[affecting.display_name]残肢" : "[target]的[parse_zone(target_zone)]"
+					var/limbname = affecting?.status & LIMB_DESTROYED ? "[target]的[localized_player_label(affecting.display_name)]残肢" : "[target]的[localized_player_label(parse_zone(target_zone))]"
 					if(target.incision_depths[target_zone] != SURGERY_DEPTH_SURFACE)
 						to_chat(user, SPAN_WARNING("你不知道能在[limbname]上深度为[target.incision_depths[target_zone]]的切口中进行什么手术。"))
 					else
@@ -117,7 +117,7 @@
 				else
 					hint_msg = "你无法用[tool]来[current_step.desc]"
 			if(!isnull(hint_msg))
-				to_chat(user, SPAN_WARNING("[hint_msg]."))
+				to_chat(user, SPAN_WARNING("[hint_msg]。"))
 		return FALSE
 
 	var/datum/surgery/surgeryinstance

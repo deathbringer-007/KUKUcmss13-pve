@@ -20,6 +20,10 @@
 	name = "Send Order"
 	action_icon_state = "screen_order_marine"
 
+/datum/action/innate/message_squad/New(Target, override_icon_state)
+	..()
+	button.name = localized_player_label(name)
+
 /datum/action/innate/message_squad/can_use_action()
 	. = ..()
 	if(!.)
@@ -55,10 +59,10 @@
 			for(var/mob/living/carbon/human/alerted in current_squad)
 				if(alerted.assigned_fireteam == human_owner.assigned_fireteam)
 					alert_receivers += alerted
-			announcement_title = "[human_owner.assigned_fireteam] Announcement"
+			announcement_title = "[localized_player_label(human_owner.assigned_fireteam)]通告"
 		else
 			alert_receivers = human_owner.assigned_squad.marines_list
-			announcement_title = "Platoon [human_owner.assigned_squad.name] Announcement"
+			announcement_title = "[localized_player_label(human_owner.assigned_squad.name)]排通告"
 		switch(human_owner.assigned_squad.name)
 			if(SQUAD_MARINE_1)
 				override_color = "blue"
@@ -76,7 +80,7 @@
 		for(var/mob/living/carbon/human/alerted in GLOB.alive_human_list)
 			if(alerted.faction == human_owner.faction)
 				alert_receivers += alerted
-		announcement_title = "[human_owner.job]'s Announcement"
+		announcement_title = "[localized_player_label(human_owner.job)]通告"
 	alert_receivers += GLOB.observer_list
 	if(GLOB.radio_communication_clarity < 100)
 		text = stars(text, GLOB.radio_communication_clarity)

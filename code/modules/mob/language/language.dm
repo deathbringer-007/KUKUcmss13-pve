@@ -37,7 +37,7 @@
 		if(understood)
 			if(!speaker_mask)
 				speaker_mask = speaker.name
-			var/msg = "<i><span class='game say'>[name], <span class='name'>[speaker_mask]</span> <span class='message'>[speech_verb], \"<span class='[color]'>[message]</span><span class='message'>\"</span></span></span></i>"
+			var/msg = "<i><span class='game say'>[localized_player_label(name)]，<span class='name'>[speaker_mask]</span> <span class='message'>[speech_verb], \"<span class='[color]'>[message]</span><span class='message'>\"</span></span></span></i>"
 			to_chat(player, "[msg]")
 
 /datum/language/proc/check_special_condition(mob/other)

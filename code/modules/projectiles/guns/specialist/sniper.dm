@@ -35,7 +35,7 @@
 	. = ..()
 	if(!has_aimed_shot)
 		return
-	. += SPAN_NOTICE("This weapon has a special ability, Aimed Shot, allowing it to deal increased damage and inflict additional crippling effects after a windup, depending on the ammunition used.<br><b> Additionally, the aimed shot can be sped up with a spotter or by using the tracking laser, which is enabled by default but may be disabled.</b>")
+	. += SPAN_NOTICE("此武器拥有“瞄准射击”特殊能力，经过准备后可造成更高伤害，并依据弹药附加不同的致残效果。<br><b>观测手或追踪激光能加快瞄准射击。追踪激光默认开启，也可关闭。</b>")
 
 /obj/item/weapon/gun/rifle/sniper/Initialize(mapload, spawn_empty)
 	if(has_aimed_shot)
@@ -46,7 +46,7 @@
 	. = ..()
 	if(. && istype(user) && skill_locked) //Let's check all that other stuff first.
 		if(!skillcheck(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_ALL) && user.skills.get_skill_level(SKILL_SPEC_WEAPONS) != SKILL_SPEC_SNIPER)
-			to_chat(user, SPAN_WARNING("You don't seem to know how to use \the [src]..."))
+			to_chat(user, SPAN_WARNING("你似乎不知道如何使用[src]……"))
 			return 0
 
 /obj/item/weapon/gun/rifle/sniper/Fire(atom/target, mob/living/user, params, reflex, dual_wield)
@@ -59,9 +59,9 @@
 		var/relative_dir = Get_Compass_Dir(current_mob, user)
 		var/final_dir = dir2text(relative_dir)
 		if(current_mob.faction != user.faction)
-			to_chat(current_mob, SPAN_HIGHDANGER("You hear a loud gunshot coming from [final_dir ? "the [final_dir]" : "nearby"]!"))
+			to_chat(current_mob, SPAN_HIGHDANGER("你听到[final_dir ? "[localized_player_label(final_dir)]方向" : "附近"]传来响亮的枪声！"))
 		else
-			to_chat(current_mob, SPAN_WARNING("You hear a loud gunshot coming from [final_dir ? "the [final_dir]" : "nearby"]!"))
+			to_chat(current_mob, SPAN_WARNING("你听到[final_dir ? "[localized_player_label(final_dir)]方向" : "附近"]传来响亮的枪声！"))
 		if(current_mob.client)
 			playsound_client(current_mob.client, 'sound/weapons/gun_vulture_report.ogg', src, 30)
 
@@ -75,7 +75,7 @@
 /datum/action/item_action/specialist/aimed_shot/New(mob/living/user, obj/item/holder)
 	..()
 	name = "Aimed Shot"
-	button.name = name
+	button.name = "瞄准射击"
 	button.overlays.Cut()
 	var/image/IMG = image('icons/mob/hud/actions.dmi', button, "sniper_aim")
 	button.overlays += IMG
@@ -91,11 +91,11 @@
 		return
 	var/mob/living/carbon/human/H = owner
 	if(H.selected_ability == src)
-		to_chat(H, "You will no longer use [name] with [H.get_ability_mouse_name()].")
+		to_chat(H, "你将不再通过[H.get_ability_mouse_name()]使用[name]。")
 		button.icon_state = "template"
 		H.set_selected_ability(null)
 	else
-		to_chat(H, "You will now use [name] with [H.get_ability_mouse_name()].")
+		to_chat(H, "你现在会通过[H.get_ability_mouse_name()]使用[name]。")
 		if(H.selected_ability)
 			H.selected_ability.button.icon_state = "template"
 			H.set_selected_ability(null)
@@ -221,27 +221,27 @@
 		return FALSE
 
 	if(sniper_rifle != H.r_hand && sniper_rifle != H.l_hand)
-		to_chat(H, SPAN_WARNING("How do you expect to do this without your sniper rifle?"))
+		to_chat(H, SPAN_WARNING("没有狙击步枪，你打算怎么做？"))
 		return FALSE
 
 	if(!(sniper_rifle.flags_item & WIELDED))
-		to_chat(H, SPAN_WARNING("Your aim is not stable enough with one hand. Use both hands!"))
+		to_chat(H, SPAN_WARNING("单手瞄准不够稳定，请双手持枪！"))
 		return FALSE
 
 	if(!sniper_rifle.in_chamber)
-		to_chat(H, SPAN_WARNING("\The [sniper_rifle] is unloaded!"))
+		to_chat(H, SPAN_WARNING("[sniper_rifle]没有装填！"))
 		return FALSE
 
 	if(get_dist(H, M) < minimum_aim_distance)
-		to_chat(H, SPAN_WARNING("\The [M] is too close to get a proper shot!"))
+		to_chat(H, SPAN_WARNING("[M]太近，无法好好瞄准！"))
 		return FALSE
 
 	var/obj/projectile/P = sniper_rifle.in_chamber
 	// TODO: Make the below logic only occur in certain circumstances. Check goggles, maybe? -Kaga
 	if(check_shot_is_blocked(H, M, P))
-		to_chat(H, SPAN_WARNING("Something is in the way, or you're out of range!"))
+		to_chat(H, SPAN_WARNING("有东西挡着，或者目标已超出射程！"))
 		if(cover_lose_focus)
-			to_chat(H, SPAN_WARNING("You lose focus."))
+			to_chat(H, SPAN_WARNING("你失去了专注。"))
 			COOLDOWN_START(sniper_rifle, aimed_shot_cooldown, sniper_rifle.aimed_shot_cooldown_delay * 0.5)
 		return FALSE
 
@@ -276,7 +276,7 @@
 /datum/action/item_action/specialist/toggle_laser/New(mob/living/user, obj/item/holder)
 	..()
 	name = "Toggle Tracker Laser"
-	button.name = name
+	button.name = "切换追踪激光"
 	button.overlays.Cut()
 	var/image/IMG = image('icons/mob/hud/actions.dmi', button, "sniper_toggle_laser_on")
 	button.overlays += IMG
@@ -299,7 +299,7 @@
 		return FALSE
 
 	if(owner.get_held_item() != sniper_rifle)
-		to_chat(owner, SPAN_WARNING("How do you expect to do this without the sniper rifle in your hand?"))
+		to_chat(owner, SPAN_WARNING("手里没有狙击步枪，你打算怎么做？"))
 		return FALSE
 	return TRUE
 
@@ -308,13 +308,13 @@
 	var/obj/item/weapon/gun/rifle/sniper/sniper_rifle = holder_item
 
 	if(owner.get_held_item() != sniper_rifle)
-		to_chat(owner, SPAN_WARNING("How do you expect to do this without the sniper rifle in your hand?"))
+		to_chat(owner, SPAN_WARNING("手里没有狙击步枪，你打算怎么做？"))
 		return FALSE
 	sniper_rifle.toggle_laser(owner, src)
 
 /obj/item/weapon/gun/rifle/sniper/proc/toggle_laser(mob/user, datum/action/toggling_action)
 	enable_aimed_shot_laser = !enable_aimed_shot_laser
-	to_chat(user, SPAN_NOTICE("You flip a switch on \the [src] and [enable_aimed_shot_laser ? "enable" : "disable"] its targeting laser."))
+	to_chat(user, SPAN_NOTICE("你拨动[src]上的开关，[enable_aimed_shot_laser ? "启用" : "停用"]了瞄准激光。"))
 	playsound(user, 'sound/machines/click.ogg', 15, TRUE)
 	if(!toggling_action)
 		toggling_action = locate(/datum/action/item_action/specialist/toggle_laser) in actions
@@ -472,8 +472,8 @@
 */
 
 /obj/item/weapon/gun/rifle/sniper/elite
-	name = "\improper M42C scoped rifle"
-	desc = "A high-end, compact, marksman rifle from Weyland-Armat chambered in 10x28mm Caseless. Near exclusively seen in use by corporate PMCs, this weapon is the bougie reflection of its cousin, the M42A. The desired aim of this weapon's development was to bridge the gap between sniper rifle and marksman rifle, via an increased fire rate combined with the utilization of a smaller frame."
+	name = "\improper M42C 瞄准步枪"
+	desc = "维兰德－阿玛特的高端紧凑型精确射手步枪，使用 10×28 毫米无壳弹。几乎只见于公司私人军事部队，是 M42A 的阔气表亲。开发目标是通过更高射速与更小枪身，填补狙击步枪和精确射手步枪之间的空白。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/wy.dmi'
 	icon_state = "m42c"
 	item_state = "m42c" //NEEDS A TWOHANDED STATE
@@ -570,8 +570,8 @@
 	damage_falloff_mult = 0
 
 /obj/item/weapon/gun/rifle/sniper/svd/iff
-	name = "\improper Type 88-I designated marksman rifle"
-	desc = /obj/item/weapon/gun/rifle/sniper/svd::desc + " This one is outfitted with an IFF system, and has been refitted to allow an increased rate of fire."
+	name = "\improper 88-I 式精确射手步枪"
+	desc = /obj/item/weapon/gun/rifle/sniper/svd::desc + " 这把配备敌我识别系统，并经过改装以提高射速。"
 	actions_types = list(/datum/action/item_action/toggle_iff_svd)
 	var/iff_enabled = TRUE
 
@@ -596,7 +596,7 @@
 	. = ..()
 	name = "Toggle IFF"
 	action_icon_state = "iff_toggle_on"
-	button.name = name
+	button.name = "切换敌我识别"
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/hud/actions.dmi', button, action_icon_state)
 
@@ -619,7 +619,7 @@
 	button.overlays += image('icons/mob/hud/actions.dmi', button, action_icon_state)
 
 /obj/item/weapon/gun/rifle/sniper/svd/iff/proc/toggle_lethal_mode(mob/user)
-	to_chat(user, "[icon2html(src, usr)] You [iff_enabled? "<B>disable</b>" : "<B>enable</b>"] \the [src]'s fire restriction. You will [iff_enabled ? "harm anyone in your way" : "target through IFF"].")
+	to_chat(user, "[icon2html(src, usr)]你[iff_enabled? "<B>停用</b>" : "<B>启用</b>"]了[src]的射击限制。现在会[iff_enabled ? "伤害挡在面前的任何人" : "通过敌我识别系统筛选目标"]。")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	iff_enabled = !iff_enabled
 	if(iff_enabled)

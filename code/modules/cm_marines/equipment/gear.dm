@@ -40,8 +40,8 @@
 	unfolded_path = /obj/structure/closet/bodybag/tarp/reactive/scout
 
 /obj/structure/closet/bodybag/tarp
-	name = "\improper V1 thermal-dampening tarp"
-	bag_name = "\improper V1 thermal-dampening tarp"
+	name = "\improper V1 隔热伪装布"
+	bag_name = "\improper V1 隔热伪装布"
 	desc = "USCM 狙击手携带的伪装布。正确使用并伏卧其下时，狙击手几乎与地貌融为一体。采用抑热织层、光学伪装和气味抑制技术，隐藏使用者的热信号与踪迹。"
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_closed"
@@ -68,8 +68,8 @@
 	item_path = /obj/item/bodybag/tarp/snow
 
 /obj/structure/closet/bodybag/tarp/reactive
-	name = "\improper V2 reactive thermal tarp"
-	bag_name = "\improper V2 reactive thermal tarp"
+	name = "\improper V2 自适应热学伪装布"
+	bag_name = "\improper V2 自适应热学伪装布"
 	desc = "部分 USCM 步兵携带的伪装布。升级型号部署后若能充分收集环境数据，就能近乎完美地融入周围，也能隐藏使用者的热信号。"
 	icon_state = "reactivetarp_closed"
 	icon_closed = "reactivetarp_closed"
@@ -82,8 +82,8 @@
 
 /obj/structure/closet/bodybag/tarp/reactive/scout
 	name = "V3 自适应热学伪装布（已折叠）"
-	bag_name = "\improper V3 reactive thermal tarp"
-	desc = "A more compact and improved version of the V2 thermal tarp, intended primarily for the transportation of deceased or wounded marines. It has improved cloaking technology than earlier models, allowing it to cloak to a greater degree and faster.\nUse this item in-hand or click somewhere on the floor adjacent to you to deploy it, then click it again to close it, which automatically cloaks the bag. Click again to open and uncloak it. If you lose it, right click to check tile contents around you to find it."
+	bag_name = "\improper V3 自适应热学伪装布"
+	desc = "更小巧的改进型 V2 热隐蔽篷布，主要用于运送阵亡或受伤的陆战队员。其隐形技术优于早期型号，隐蔽程度更高，启动也更快。\n在手中使用，或点击相邻地面即可展开；再次点击关闭，会自动使袋子隐形。再点一次即可打开并解除隐形。如果找不到它，可右键检查周围地格的内容物。"
 	icon_state = "scouttarp_closed"
 	icon_closed = "scouttarp_closed"
 	icon_opened = "scouttarp_open"
@@ -139,14 +139,14 @@
 
 /obj/structure/closet/bodybag/tarp/close(mob/user)
 	if(!COOLDOWN_FINISHED(src, toggle_delay))
-		to_chat(user, SPAN_WARNING("It is too soon to close [src]!"))
+		to_chat(user, SPAN_WARNING("现在还不能关闭[src]！"))
 		return FALSE
 	. = ..()
 	handle_cloaking()
 
 /obj/structure/broken_apc
-	name = "\improper M577 armored personnel carrier"
-	desc = "A large, armored behemoth capable of ferrying marines around. \nThis one is sitting nonfunctional."
+	name = "\improper M577 装甲运兵车"
+	desc = "能运送陆战队员的巨大装甲载具。\n这辆目前无法运行。"
 	anchored = TRUE
 	opacity = TRUE
 	density = TRUE
@@ -276,8 +276,8 @@
 	bitesize = 3
 
 /obj/item/reagent_container/food/snacks/mre_pack/xmas1
-	name = "\improper mechanically prepared meal (sugar cookies)"
-	desc = "An autochef prepared meal of overbaked sugar cookies, a packet of what claims to be cherry cobbler, and a spiced dipping sauce that's divisive as to whether or not it goes with the cookies. On the side is a moist fruit-swirl bread roll."
+	name = "\improper 自动配餐（糖霜饼干）"
+	desc = "自动厨师制作的餐点：烤得过火的糖霜饼干、一包号称樱桃酥饼的东西，以及一种是否适合蘸饼干颇有争议的香料蘸酱。配菜是湿润的果酱旋纹面包卷。"
 	icon_state = "mar_tray_menuSC"
 	black_market_value = 10
 
@@ -288,8 +288,8 @@
 	bitesize = 8
 
 /obj/item/reagent_container/food/snacks/mre_pack/xmas2
-	name = "\improper mechanically prepared meal (gingerbread and vanilla cake)"
-	desc = "An autochef prepared meal of some oddly soft gingerbread cookies and a fairly undersweetened vanilla cake. There's a protein bar on the side and a tube of cherry flavored vitamin filled jelly."
+	name = "\improper 自动配餐（姜饼和香草蛋糕）"
+	desc = "自动厨师制作的餐点：软得奇怪的姜饼和甜味明显不足的香草蛋糕。附有一根蛋白棒和一管富含维生素的樱桃味果冻。"
 	icon_state = "mar_tray_menuGV"
 	black_market_value = 10
 
@@ -300,8 +300,8 @@
 	bitesize = 8
 
 /obj/item/reagent_container/food/snacks/mre_pack/xmas3
-	name = "\improper mechanically prepared meal (fruitcake)"
-	desc = "An autochef prepared meal of a fruitcake and applesauce. The fruitcake tastes of vitamins but is shockingly palatable even still, while the applesauce is... there?"
+	name = "\improper 自动配餐（水果蛋糕）"
+	desc = "自动厨师制作的水果蛋糕和苹果酱。蛋糕吃起来一股维生素味，却出乎意料地还算可口。至于苹果酱……至少它在那儿？"
 	icon_state = "mar_tray_menuFC"
 	black_market_value = 10
 
@@ -312,8 +312,8 @@
 	bitesize = 8
 
 /obj/item/reagent_container/food/snacks/mre_pack/thanksgiving
-	name = "\improper mechanically prepared meal (turkey and potato)"
-	desc = "An autochef prepared meal of roast turkey slices and reconstituted potato wedges made from real potato powder. Cherry cobbler in a tube on the side and some bland applesauce in a sealed cup."
+	name = "\improper 自动配餐（火鸡配土豆）"
+	desc = "自动厨师制作的烤火鸡片，配上用真正土豆粉复水制成的土豆角。另有一管樱桃酥饼和一杯密封包装的寡淡苹果酱。"
 	icon_state = "mar_tray_menuTP"
 
 /obj/item/reagent_container/food/snacks/mre_pack/thanksgiving/Initialize()
@@ -322,8 +322,8 @@
 	bitesize = 3
 
 /obj/item/reagent_container/food/snacks/mre_pack/thanksgiving2
-	name = "\improper mechanically prepared meal (steak and potato)"
-	desc = "An autochef prepared meal of rare steak slices and reconstituted potato wedges made from real potato powder. Cherry cobbler in a tube on the side and some bland applesauce in a sealed cup."
+	name = "\improper 自动配餐（牛排配土豆）"
+	desc = "自动厨师制作的半生牛排片，配上用真正土豆粉复水制成的土豆角。另有一管樱桃酥饼和一杯密封包装的寡淡苹果酱。"
 	icon_state = "mar_tray_menuSP"
 
 /obj/item/reagent_container/food/snacks/mre_pack/thanksgiving2/Initialize()
@@ -332,8 +332,8 @@
 	bitesize = 3
 
 /obj/item/reagent_container/food/snacks/mre_pack/thanksgiving3
-	name = "\improper mechanically prepared meal (shrimp and rice)"
-	desc = "An autochef prepared meal of stir fried imitation shrimp and overcooked brown rice. Some mixed nuts trail mix and an unidentified sauce are on the side."
+	name = "\improper 自动配餐（虾仁配米饭）"
+	desc = "自动厨师制作的炒仿虾仁和煮过头的糙米饭。配有混合坚果和不明酱料。"
 	icon_state = "mar_tray_menuSR"
 
 /obj/item/reagent_container/food/snacks/mre_pack/thanksgiving3/Initialize()
@@ -356,28 +356,28 @@
 	reagents.add_reagent("nutriment", 15)
 
 /obj/item/reagent_container/food/snacks/mre_pack/upp/meal1
-	name = "\improper UPP Prepared Meal (Chow mein)"
-	desc = "Chow mein with imitation shrimp, two slightly overcooked spring rolls, some type of porridge and a small tofu cube."
+	name = "\improper 进步人民联盟预制餐（炒面）"
+	desc = "仿虾仁炒面、两个略微炸过头的春卷、某种粥，以及一小块豆腐。"
 	icon_state = "upp_chowmein"
 
 /obj/item/reagent_container/food/snacks/mre_pack/upp/meal2
-	name = "\improper UPP Prepared Meal (Banush)"
-	desc = "Ukrainian style Banush cornmeal stew, dried apricots, and a couple vienna sausages."
+	name = "\improper 进步人民联盟预制餐（巴努什玉米粥）"
+	desc = "乌克兰风味巴努什玉米炖粥、杏干和两根维也纳香肠。"
 	icon_state = "upp_banush"
 
 /obj/item/reagent_container/food/snacks/mre_pack/upp/meal3
-	name = "\improper UPP Prepared Meal (Frankfurter)"
-	desc = "A large, juicy frankfurter with mashed potato, crispy potato pancakes and saurkraut."
+	name = "\improper 进步人民联盟预制餐（法兰克福香肠）"
+	desc = "一根硕大多汁的法兰克福香肠，配土豆泥、酥脆土豆饼和酸菜。"
 	icon_state = "upp_frankfurter"
 
 /obj/item/reagent_container/food/snacks/mre_pack/upp/meal4
-	name = "\improper UPP Prepared Meal (Jiaozi)"
-	desc = "Four boiled dumplings, soy-vinegar dipping sauce, pickled red cucumbers and two rye biscuits."
+	name = "\improper 进步人民联盟预制餐（饺子）"
+	desc = "四个水饺、酱油醋蘸料、腌红黄瓜和两块黑麦饼干。"
 	icon_state = "upp_jiaozi"
 
 /obj/item/reagent_container/food/snacks/mre_pack/upp/meal5
-	name = "\improper UPP Prepared Meal (Wursts)"
-	desc = "Two scoops of rice, two Weiner wursts, a tortilla with tomato sauce and a small bowl of Mungbean soup fill this tray."
+	name = "\improper 进步人民联盟预制餐（香肠拼盘）"
+	desc = "餐盘里装着两勺米饭、两根维也纳香肠、一张淋有番茄酱的玉米饼，以及一小碗绿豆汤。"
 	icon_state = "upp_wursts"
 
 /obj/item/reagent_container/food/snacks/mre_pack/upp/meal6
@@ -446,8 +446,8 @@
 	icon_state = "rmc_fish"
 
 /obj/item/storage/box/pizza
-	name = "food delivery box"
-	desc = "A space-age food storage device, capable of keeping food extra fresh. Actually, it's just a box."
+	name = "外卖盒"
+	desc = "一种太空时代的食物储存装置，能让食物格外新鲜。其实就是个盒子。"
 
 /obj/item/storage/box/pizza/Initialize()
 	. = ..()
@@ -471,9 +471,9 @@
 				new /obj/item/reagent_container/food/snacks/hotdog(src)
 
 /obj/item/paper/janitor
-	name = "crumbled paper"
+	name = "揉皱的纸"
 	icon_state = "pamphlet"
-	info = "In loving memory of Cub Johnson."
+	info = "深切缅怀卡布·约翰逊。"
 
 
 /obj/item/device/overwatch_camera
@@ -517,8 +517,8 @@
 	..()
 
 /obj/item/device/overwatch_camera/twe
-	name = "OOCUHM Cam-Gear"
-	desc = "Operational Oversight Camera Unit, Head-Mounted. Usually nicknamed \"Ooks\" or \"Big Brother\" by the marine commandos that wear them, the TWE-manufactured camera unit & eyepiece allows both command oversight of operations and display of an augmented reality 'Heads-Up-Display' to the wearer."
+	name = "OOCUHM 摄像装备"
+	desc = "头戴式作战监督摄像单元。佩戴它的陆战突击队员通常昵称它为“小眼睛”或“老大哥”。这套由三世界帝国制造的摄像单元与目镜，既能让指挥部监督行动，也能向佩戴者显示增强现实抬头界面。"
 	hud_type = list(MOB_HUD_FACTION_TWE, MOB_HUD_FACTION_WY)
 	icon_state = "rmc_overwatch_gear"
 	item_state = "rmc_overwatch_gear"

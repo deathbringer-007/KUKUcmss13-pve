@@ -7,7 +7,12 @@
 	if(get_ability_mouse_key() == XENO_ABILITY_CLICK_RIGHT)
 		client?.set_right_click_menu_mode(shift_only = TRUE)
 
+/datum/action/human_action/New(Target, override_icon_state)
+	..()
+	button.name = localized_player_label(name)
+
 /datum/action/human_action/update_button_icon()
+	button.name = localized_player_label(name)
 	if(action_cooldown_check())
 		button.color = rgb(120,120,120,200)
 	else
@@ -563,7 +568,7 @@ CULT
 	if(tgui_alert(H, "确定要发动叛乱吗？", "发动叛乱？", list("Yes", "No")) != "Yes")
 		return
 
-	shipwide_ai_announcement("DANGER: Communications received; a mutiny is in progress. Code: Detain, Arrest, Defend.")
+	shipwide_ai_announcement("危险警报：收到通信报告，叛乱正在发生。行动指令：拘留、逮捕、保卫。")
 	var/datum/equipment_preset/other/mutineer/XC = new()
 
 	XC.load_status(H)

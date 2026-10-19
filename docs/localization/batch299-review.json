@@ -1,0 +1,1062 @@
+{
+  "batchId": "batch299",
+  "startProcessedCount": 1616,
+  "endProcessedCount": 1676,
+  "actualModifiedSourceFiles": 101,
+  "fullyTranslatedPlayerTextFileCount": 100,
+  "localizationSupportFileCount": 1,
+  "newSourceFiles": 60,
+  "revisitedSourceFiles": 41,
+  "files": [
+    "code/_onclick/hud/screen_objects.dm",
+    "code/game/machinery/computer/dropship_weapons.dm",
+    "code/game/machinery/fax_machine.dm",
+    "code/game/objects/effects/decals/posters/poster_list.dm",
+    "code/game/objects/items.dm",
+    "code/game/objects/items/cards_ids.dm",
+    "code/game/objects/items/circuitboards/computer.dm",
+    "code/game/objects/items/circuitboards/machine.dm",
+    "code/game/objects/items/devices/radio/headset.dm",
+    "code/game/objects/items/explosives/grenades/flashbang.dm",
+    "code/game/objects/items/explosives/grenades/marines.dm",
+    "code/game/objects/items/explosives/mine.dm",
+    "code/game/objects/items/explosives/plastic.dm",
+    "code/game/objects/items/implants/implant.dm",
+    "code/game/objects/items/pamphlets.dm",
+    "code/game/objects/items/reagent_containers/autoinjectors.dm",
+    "code/game/objects/items/reagent_containers/food/cans.dm",
+    "code/game/objects/items/reagent_containers/food/condiment.dm",
+    "code/game/objects/items/reagent_containers/food/drinks.dm",
+    "code/game/objects/items/reagent_containers/food/drinks/bottle.dm",
+    "code/game/objects/items/reagent_containers/food/drinks/drinkingglass.dm",
+    "code/game/objects/items/reagent_containers/glass.dm",
+    "code/game/objects/items/reagent_containers/glass/bottle.dm",
+    "code/game/objects/items/reagent_containers/hypospray.dm",
+    "code/game/objects/items/reagent_containers/pill.dm",
+    "code/game/objects/items/reagent_containers/syringes.dm",
+    "code/game/objects/items/stacks/nanopaste.dm",
+    "code/game/objects/items/storage/backpack.dm",
+    "code/game/objects/items/storage/belt.dm",
+    "code/game/objects/items/storage/boxes.dm",
+    "code/game/objects/items/storage/fancy.dm",
+    "code/game/objects/items/storage/firstaid.dm",
+    "code/game/objects/items/storage/large_holster.dm",
+    "code/game/objects/items/storage/misc.dm",
+    "code/game/objects/items/storage/pouch.dm",
+    "code/game/objects/items/storage/storage.dm",
+    "code/game/objects/items/toys/cards.dm",
+    "code/game/objects/structures/props.dm",
+    "code/game/objects/structures/signs.dm",
+    "code/game/objects/structures/stool_bed_chair_nest/bed.dm",
+    "code/game/turfs/open.dm",
+    "code/modules/clothing/clothing.dm",
+    "code/modules/clothing/suits/marine_armor/ert.dm",
+    "code/modules/clothing/suits/marine_coat.dm",
+    "code/modules/clothing/suits/miscellaneous.dm",
+    "code/modules/clothing/under/rank_pins.dm",
+    "code/modules/cm_marines/Donator_Kits.dm",
+    "code/modules/cm_marines/dropship_equipment.dm",
+    "code/modules/cm_marines/equipment/gear.dm",
+    "code/modules/cm_marines/equipment/guncases.dm",
+    "code/modules/cm_marines/equipment/kit_boxes.dm",
+    "code/modules/cm_marines/equipment/maps.dm",
+    "code/modules/cm_marines/equipment/mortar/mortar_shells.dm",
+    "code/modules/cm_marines/m2c.dm",
+    "code/modules/cm_preds/yaut_bracers.dm",
+    "code/modules/cm_preds/yaut_items.dm",
+    "code/modules/cm_preds/yaut_weapons.dm",
+    "code/modules/defenses/handheld.dm",
+    "code/modules/defenses/sentry_computer.dm",
+    "code/modules/desert_dam/filtration/filtration.dm",
+    "code/modules/hydroponics/seeds.dm",
+    "code/modules/maptext_alerts/command_alert.dm",
+    "code/modules/mentor/mentorhelp.dm",
+    "code/modules/mob/dead/observer/observer.dm",
+    "code/modules/mob/language/language.dm",
+    "code/modules/mob/language/language_handling.dm",
+    "code/modules/mob/living/carbon/human/human_abilities.dm",
+    "code/modules/mob/living/carbon/human/human_attackhand.dm",
+    "code/modules/mob/living/carbon/xenomorph/abilities/general_powers.dm",
+    "code/modules/mob/living/carbon/xenomorph/abilities/praetorian/praetorian_powers.dm",
+    "code/modules/mob/living/carbon/xenomorph/abilities/queen/queen_powers.dm",
+    "code/modules/mob/living/carbon/xenomorph/attack_alien.dm",
+    "code/modules/mob/living/carbon/xenomorph/hive_status.dm",
+    "code/modules/mob/living/silicon/silicon.dm",
+    "code/modules/mob/mob_helpers.dm",
+    "code/modules/mob/new_player/new_player.dm",
+    "code/modules/paperwork/paper.dm",
+    "code/modules/projectiles/ammo_boxes/ammo_boxes.dm",
+    "code/modules/projectiles/ammo_boxes/grenade_boxes.dm",
+    "code/modules/projectiles/ammo_boxes/magazine_boxes.dm",
+    "code/modules/projectiles/gun.dm",
+    "code/modules/projectiles/guns/boltaction.dm",
+    "code/modules/projectiles/guns/energy.dm",
+    "code/modules/projectiles/guns/flamer/flamer.dm",
+    "code/modules/projectiles/guns/lever_action.dm",
+    "code/modules/projectiles/guns/misc.dm",
+    "code/modules/projectiles/guns/pistols.dm",
+    "code/modules/projectiles/guns/revolvers.dm",
+    "code/modules/projectiles/guns/rifles.dm",
+    "code/modules/projectiles/guns/shotguns.dm",
+    "code/modules/projectiles/guns/smartgun.dm",
+    "code/modules/projectiles/guns/smgs.dm",
+    "code/modules/projectiles/guns/specialist/launcher/grenade_launcher.dm",
+    "code/modules/projectiles/guns/specialist/launcher/rocket_launcher.dm",
+    "code/modules/projectiles/guns/specialist/sniper.dm",
+    "code/modules/surgery/chestburster.dm",
+    "code/modules/surgery/generic.dm",
+    "code/modules/surgery/organs_internal.dm",
+    "code/modules/surgery/surgery_initiator.dm",
+    "code/modules/surgery/surgery_procedure.dm",
+    "code/modules/tgui/tgui_alert.dm"
+  ],
+  "wholeFileReview": [
+    {
+      "file": "code/_onclick/hud/screen_objects.dm",
+      "sha256": "16e1c354e5bcfc1b9580f970b658332a2abf7d53dd1c2a4e6287ec887c3bb8d7",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/machinery/computer/dropship_weapons.dm",
+      "sha256": "31efd4ba77ab74852afcf4d1c53b1b09ac03e822faf4313684698217ab6fd28e",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/machinery/fax_machine.dm",
+      "sha256": "d0fdb1232234b0ee61ce93e19dcd4943d6d54f8c31792b4c4bb39f970768f572",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/effects/decals/posters/poster_list.dm",
+      "sha256": "5caaa0b8573a9cc5b43dde09720e057fb9a1c7b9ea0923ca9a6be5bdf150f5ea",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items.dm",
+      "sha256": "d86162c1d7f620467d0fc57dab7d6c139a185ffe348d66373520d21abd17b8b4",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/cards_ids.dm",
+      "sha256": "c1b697ad55b317e9e93fef13cf1e4cf3665287b4c08c82ebf34327abcf2edc4c",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/circuitboards/computer.dm",
+      "sha256": "669e46c2b4f3f891872dc93e424119c516a03062748f09e783cbd2fbf2b3fd68",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/circuitboards/machine.dm",
+      "sha256": "1ee3334db710ea1d2f055720409ee71c12cb257d6fb6109e6c77b77b3d8e792c",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/devices/radio/headset.dm",
+      "sha256": "a65ac7332a9bd70ed3d63f37e8b4c719e3bcf2e84e5c1f972a4a61ddf0edfae0",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/explosives/grenades/flashbang.dm",
+      "sha256": "96c94ee5ce8fbd1c5e5bc8dc82846a413a52afb94e9327b436629b44433d61dc",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/explosives/grenades/marines.dm",
+      "sha256": "dafa3518edf5d3081ef79f6de5330d042e8cdebd432bcc3f485398d9ebc7c515",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/explosives/mine.dm",
+      "sha256": "6f561141df3d800cc9cb93ddb7a0ee795b9e8c24c36992d7e938ac581bf0eb77",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/explosives/plastic.dm",
+      "sha256": "b0e6093988c590c6a3809a548a79f6d37f6cf6e7aa2e0d4eb87f1e709dcbc42e",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/implants/implant.dm",
+      "sha256": "3981df0a8c1fcf871c01467179b33aa7ced5de9b0f5121acf593cffb08fc5950",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/pamphlets.dm",
+      "sha256": "856ab415916b9a46a28b9afcf74891338b9de61019b481380dc978139e46c813",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/reagent_containers/autoinjectors.dm",
+      "sha256": "a8359086c31809a5cbe6732ba874eeaf766512874d13ca23ef89eff0365c0c4d",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/reagent_containers/food/cans.dm",
+      "sha256": "6efcf7406941c6609327b2a3dd7b214943d1bec276d6f4d3ea2766f3ec08e663",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/reagent_containers/food/condiment.dm",
+      "sha256": "ed5a7f58c15e0b8f8c0f90b0cfaf4cbec38ca43ef9a7ed3701577ded1019939e",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/reagent_containers/food/drinks.dm",
+      "sha256": "48aa21993bb1c2119c5a84f4b3875749d89f2f18a60f7685348e33c4734b328a",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/reagent_containers/food/drinks/bottle.dm",
+      "sha256": "8fe406bc67c308d21e88a1736cbc0cbedaacb70ed1e0971f315ad3093e787c25",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/reagent_containers/food/drinks/drinkingglass.dm",
+      "sha256": "f4c71ed8229249e1a9696cf92bb1129bbe34b75fceccdf250f78022c93795eed",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/reagent_containers/glass.dm",
+      "sha256": "18a7b268a2e049c25a29f0ffc3b9f19ffd0417e16dadbca68d89896396f2527a",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/reagent_containers/glass/bottle.dm",
+      "sha256": "f6c5994cb04b09775d116cd87920f57b697c4a7b648c4a3d86b6b651f0e86ffb",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/reagent_containers/hypospray.dm",
+      "sha256": "65b9144472890c11a380f82e820469cd01fe4624bfff0340c7496045c583ee2e",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/reagent_containers/pill.dm",
+      "sha256": "77fb67b55bb9616990975b563a2e1df7adca7205db615d9fa0a60f6ba6808976",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/reagent_containers/syringes.dm",
+      "sha256": "5526844420499f9e07c2a5159c4f3b2365c8076ab23ff91af1695df4dab39ef1",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/stacks/nanopaste.dm",
+      "sha256": "87fb066654bdfd67b18a6a093c9047676e5ff959c47e4d3a2b6a381cd56ac964",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/storage/backpack.dm",
+      "sha256": "6ec39502e26f340b4fbdc860c988fb7f45eeb19b76177493e7cac67204b0ccb7",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/storage/belt.dm",
+      "sha256": "4f8a5355749306a2c38ad1dc38010f5b45eb1a3df6fba17d2bacbcbafaf43e75",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/storage/boxes.dm",
+      "sha256": "90c02f2fd1998855f082260202e3e76df40a35ecf84b1cf731f29777079b0464",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/storage/fancy.dm",
+      "sha256": "6773635e7f73b014a6949d3e8eb3ab588470db91962ba25201bc381e4a524304",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/storage/firstaid.dm",
+      "sha256": "a4ec7231211548b674818972eca570170de037c70a9f3f7eafbd7bf71158e7fb",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/storage/large_holster.dm",
+      "sha256": "c4d918a1392cb8f65db38cf034100f147e92ee75ddb5f0afe41d868dd2db2865",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/storage/misc.dm",
+      "sha256": "2a68e60eda0373a2bb14c0144f8c77ee894f624dd574b0ab344eb55004f38362",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/storage/pouch.dm",
+      "sha256": "914e0eb83a345a2447ec268e0d1ddb42fb380ac3e1f47aa48ae400f15386d470",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/storage/storage.dm",
+      "sha256": "da9e238b8dbeac2bf7106fb290934aff15484ccff6a490b9a07ebc7a4744f607",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/items/toys/cards.dm",
+      "sha256": "f8ddd5a5e28b2198e090e414d80b9e61a1dc9cc879619cf6c41843fdbb5eda31",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/structures/props.dm",
+      "sha256": "979f9890c7ef5f5963121713ddb917bdd13fc5c8c599a70fbf2071746bec1682",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/structures/signs.dm",
+      "sha256": "20ab0e4275c77d3718b00fa61f7fcfe1085cb4c83418352ce13e1053e0907af9",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/objects/structures/stool_bed_chair_nest/bed.dm",
+      "sha256": "525245ebbc63335089fcdb4ace6038b8d2891e06375eb35cf4978639ae352865",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/game/turfs/open.dm",
+      "sha256": "a5952e6e8b21ac59d9c8f9918d835193524d5e6c4adc09f92aca5baa1b3a253e",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/clothing/clothing.dm",
+      "sha256": "f25078f50d4a04fe62abe4494339f67738791af6114e22e9963e70f7615a5067",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/clothing/suits/marine_armor/ert.dm",
+      "sha256": "a9ec52e90bcbfa76c3b05f9c87e78925901e90968f05e0dfd4f5808fefe62c33",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/clothing/suits/marine_coat.dm",
+      "sha256": "c6f31b4519c290818fc1a63b012f41ea782699b796ec9ae6b1539c840dda15ed",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/clothing/suits/miscellaneous.dm",
+      "sha256": "ba8e4db92203549f39a11220b94a2a465bd23b6ae27354937f8dcbd57ead838b",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/clothing/under/rank_pins.dm",
+      "sha256": "6acef7c7ab279084d7c8f6c0c08b0361b6e92ff8c76c4bf6a9da96a38dd2926c",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/cm_marines/Donator_Kits.dm",
+      "sha256": "7eb328d7ab43a27307bcc89e358d904b83cccc954d28127119931f1c965b8f05",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/cm_marines/dropship_equipment.dm",
+      "sha256": "9c81eab3f172ec4f9b560c37bdac5ceff8c7be9ced754320b47a2f825657c457",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/cm_marines/equipment/gear.dm",
+      "sha256": "ceb7c8707525636dcf684bc94ab1b8c9eddbaf06f3ebbb457da84f2013e1f13b",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/cm_marines/equipment/guncases.dm",
+      "sha256": "4bb04ac97ccf7553deb6cc468f886eb2dcde18fdb91b4548709b23e5999743d6",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/cm_marines/equipment/kit_boxes.dm",
+      "sha256": "8fca2d68698aeae49c178d401db9938a2609337a8f30d0b31ca2e533911381fa",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/cm_marines/equipment/maps.dm",
+      "sha256": "0da58be2453f696edf8f4fbd9596a8bb7cc02e498f21d60ac1d00c51201b4980",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/cm_marines/equipment/mortar/mortar_shells.dm",
+      "sha256": "d6e55f71940588552a6fb52782766df144a40799ce56aefe2baf083fae9ba3f3",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/cm_marines/m2c.dm",
+      "sha256": "9990cfe46dd279f7f01b572a4e204650aa8b47e05afc5c2772a229ad69f12796",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/cm_preds/yaut_bracers.dm",
+      "sha256": "3f51e82315f6a6b22760e5fe6f4e757daaf4813e6933488ebd22635ee6d1dd94",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/cm_preds/yaut_items.dm",
+      "sha256": "b002a34aea43666ba00115d5bb8302f5a22df86483cc4badb489ded02426cb3e",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/cm_preds/yaut_weapons.dm",
+      "sha256": "ab32af7a95d57d61623a2a014687f196236aa85110692111f675083fc2d56425",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/defenses/handheld.dm",
+      "sha256": "49272e40b9795b6b0f51e93fb7089b6d6652556f3176f5c0aa0721d1e41eb38b",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/defenses/sentry_computer.dm",
+      "sha256": "d20daaf52a5bcb11adc83a4a5edad1c3c87aee60db5b749ef637eff862e83aef",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/desert_dam/filtration/filtration.dm",
+      "sha256": "c8f5da41b4d135302d980d3f88600415f0b8adda2cb1dc7bae2288ee7ea80b7d",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/hydroponics/seeds.dm",
+      "sha256": "32f84d59622ad5901aa21b78c510a3c629536ab23b91072c49f95965bce9cfa8",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/maptext_alerts/command_alert.dm",
+      "sha256": "aa7ec8f70ab265d559743cff5339235de72c300226d4a801a25dff4bbd9c463f",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/mentor/mentorhelp.dm",
+      "sha256": "0b0cf17dd7dd3a2901135800af62607097d6ad813fb22aacdc6d572afdde1ede",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/mob/dead/observer/observer.dm",
+      "sha256": "05bc8573053df78f8bf858ccc061b12b9fbd39f5b58446ca3ef2a08e6c5304f6",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/mob/language/language.dm",
+      "sha256": "0c5b9e43debbd576c576d5a635c245a6aaab0060651255bcc83be884ba37c700",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/mob/language/language_handling.dm",
+      "sha256": "b87a09efba6a39a0bb69e1c82cefba92ad852742ef7e949ef60f6abcc1ef08a6",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/human/human_abilities.dm",
+      "sha256": "f90aa2416d282a2d57efe5b95e7e16cf5f83812fc74e350871eef92bb62cfb7d",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/human/human_attackhand.dm",
+      "sha256": "b928c56ea55decd2b8e316d437cd0c525c2b2935a86d440cf93d4cc2c0c06451",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/xenomorph/abilities/general_powers.dm",
+      "sha256": "0c5a0306a039f59d601e34e3020972cd3a44e199cd0cdf12e775f7aa6f9452fe",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/xenomorph/abilities/praetorian/praetorian_powers.dm",
+      "sha256": "460052295a72581ce6f57d382daa75b0fee56b131cca539608781e42bc502a03",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/xenomorph/abilities/queen/queen_powers.dm",
+      "sha256": "a6205686d90d144814efbaea85b4e27df03cf6c5e449c1a77a31db6c5fe3c617",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/xenomorph/attack_alien.dm",
+      "sha256": "1a2d9eb11e2e7860219083b1506d8be92681d57ef90ea784d10fe6e52043bd4c",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/xenomorph/hive_status.dm",
+      "sha256": "45011ad8c4d1b9d182a13ff50e27208bcc5128a239834f10bbcea1ff9d9b5c6a",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/mob/living/silicon/silicon.dm",
+      "sha256": "2f7ae499d3262a08a600ad1b7fd3d7b96d96172dffb6c2e7062ea50cf5335391",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/mob/mob_helpers.dm",
+      "sha256": "17ac41d0b8f998543f553ee9752e8648a766be14c066a966453d2bc437b2f8f5",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/mob/new_player/new_player.dm",
+      "sha256": "aee9496bf2dcce8c4d8ea97125066c087d9f888619a1f6755d14f5683984b9a4",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/paperwork/paper.dm",
+      "sha256": "4c1d214a4f79851ab47033c7d07c8633b6330787881dc76ba58ce73ee73bbb11",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/ammo_boxes/ammo_boxes.dm",
+      "sha256": "88fdfce5f304c64ef8809da86e4c911a0b68f52e572d739661b2041109d2fed2",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/ammo_boxes/grenade_boxes.dm",
+      "sha256": "c1805d8f8206269ae955415ad6605268066ab339b434bc091321578e0b90c541",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/ammo_boxes/magazine_boxes.dm",
+      "sha256": "b7858150b6104d370620fd5d52dd4cc1d1077bb0d9bc91a7f6b0a1726cd6368c",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/gun.dm",
+      "sha256": "6f309415bc0adab1af61151ff7e0ab7ea5baf1ec3d199b8c86984a86810eaa5e",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/guns/boltaction.dm",
+      "sha256": "5ec8c8301d21425af96559dac4e9a0a740c9c33c8eabd6774fe136bbb6384ca0",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/guns/energy.dm",
+      "sha256": "5bb19edb85cc360b39f75d7380b452b908966cd4613b21f91a2116e8945c51db",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/guns/flamer/flamer.dm",
+      "sha256": "a9b19336c25942a805bcc707dc16a5ee89e7ccc6a21beb1b24cbbc17ffd2bfbb",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/guns/lever_action.dm",
+      "sha256": "90e8b0fa4092aa1b91c70ac49e5e69dc9b8b960381c4a1415a62f091f9a5a312",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/guns/misc.dm",
+      "sha256": "b14a438fd596105e8a7609274c486c3de3c2975e8c40dff818c05ec571b1e482",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/guns/pistols.dm",
+      "sha256": "e305f42940980cd5cf227d616c4a532ef1c9ad0440cf411d12791e2cc0bfcd8f",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/guns/revolvers.dm",
+      "sha256": "9a37a3a56de7e528d7ae06859705c2ffedd472e8d7712563369beb9db3fcee54",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/guns/rifles.dm",
+      "sha256": "6f5ded28f75bd963790bb6c34994d4a254ab8d526100f89cef181b99b3a76a9d",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/guns/shotguns.dm",
+      "sha256": "b713a728e213b16af1e50e835efaa1bb1731ce16467d5f37c944655a35ee36ab",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/guns/smartgun.dm",
+      "sha256": "f022f2ea3021c0da869d2a344a046d5788f9f67cbda5a6b7d8f39a2ad8a102fd",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/guns/smgs.dm",
+      "sha256": "00fed086a66071ab926acc3518f227d300d11b3990f51b8c83fcc9cf9cb41055",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/guns/specialist/launcher/grenade_launcher.dm",
+      "sha256": "ed89232646074b9ad21fcbe6b53d19f653b8ca59f34328c30969a050eaf74804",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/guns/specialist/launcher/rocket_launcher.dm",
+      "sha256": "ec10645b3805d73179806359fb8a6afa6af4c7ab568f53820069ca3d133b56fe",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/projectiles/guns/specialist/sniper.dm",
+      "sha256": "90106b2ea37d537cc56a25f8ad4e6f582fc5f086dd467cc1e3ac783774173b7f",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/surgery/chestburster.dm",
+      "sha256": "01fb2ebfa9ceb9b94083f5a982a01fc87673f8709d324e70c16614d570fa857e",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/surgery/generic.dm",
+      "sha256": "a197019b4a6c9772093a913027b29a779072fe4247efbe9530bb8991520fce98",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/surgery/organs_internal.dm",
+      "sha256": "14b7920c17a6e898cc7e494ccf09250c5004e8916927d751827530aa284c6f3b",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/surgery/surgery_initiator.dm",
+      "sha256": "4a7f5b176ba198c6e8db1d1cb1796432c6f4e43025e8476c191e6ffaba9bae16",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/surgery/surgery_procedure.dm",
+      "sha256": "7c217b196010d5699b673344baa8b9e0a7bb5aca30080d762af1da9758acad83",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    },
+    {
+      "file": "code/modules/tgui/tgui_alert.dm",
+      "sha256": "47858f9a2db068699a2943f68d4e4cc35082fa64a349796168504a2a34ee5fbb",
+      "scope": "localization_support",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch299"
+    }
+  ],
+  "glossaryTermsAdded": 1278,
+  "closureRule": "核对本地玩家文案全文、动态标签及其来源；保留命令与逻辑键、资源、日志和管理员文本。",
+  "retainedEnglishClassification": [
+    "命令和宏查找键",
+    "资源路径、图标状态和配方键",
+    "身体部位、植物、原始选项和注册名称等内部键，仅显示时映射中文",
+    "日志、管理员界面、注释及旧版注释块",
+    "型号、品牌缩写、单位、链接及玩家自定义名称"
+  ],
+  "compileSuccess": true,
+  "compilerErrors": 0,
+  "compilerWarnings": 3,
+  "compileOutput": "compile299-canonical.json",
+  "compileSummary": "DM compiler version 516.1682\r\nloading colonialmarines.dme\r\ncode\\_compile_options.dm:34:warning: #warn Building with Dream Maker is no longer supported and will result in errors.\r\ncode\\_compile_options.dm:35:warning: #warn In order to build, run BUILD.bat in the bin directory.\r\ncode\\_compile_options.dm:36:warning: #warn Consider switching to VSCode editor instead, where you can press Ctrl+Shift+B to build.\r\nloading interface/skin.dmf\r\nloading maps/map_files/generic/Admin_level.dmm\r\nsaving colonialmarines.dmb (DEBUG mode)\r\ncolonialmarines.dmb - 0 errors, 3 warnings (10/19/26 2:02 pm)\r\nTotal time: 0:11\r\n",
+  "staticAuditSuccess": true,
+  "staticAuditOutput": "audit-batch299-final.json",
+  "independentInvariants": {
+    "batch": "batch299",
+    "sourceFiles": 101,
+    "commentsChecked": 3689,
+    "resourcesChecked": 1250,
+    "protectedLinesChecked": 2990,
+    "rawPaygradeDefinitionsPreserved": 16,
+    "canonicalDiseaseNamesPreserved": 2,
+    "externalSourceFilesPreserved": 64,
+    "curingPropertyUnchanged": true,
+    "problems": [],
+    "testsRun": false,
+    "gameLaunched": false
+  },
+  "gitDiffCheckSuccess": true,
+  "testsRun": false,
+  "gameLaunched": false,
+  "fullProjectComplete": false,
+  "goalStatus": "active",
+  "pauseRequestedByUser": false,
+  "terminologyCorrection": "统一ICC为星际商业委员会、United Americas为美洲联盟、UT-Napthal燃料保留型号；修改14份本批文件24行，已重新审查和编译。",
+  "validationNote": "仅调用dm-mcp编译及静态审查；未运行测试，未启动服务器。"
+}

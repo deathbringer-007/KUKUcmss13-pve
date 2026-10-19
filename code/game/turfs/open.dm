@@ -151,7 +151,7 @@
 
 // Black & invisible to the mouse. used by vehicle interiors
 /turf/open/void
-	name = "void"
+	name = "虚空"
 	icon = 'icons/turf/floors/space.dmi'
 	icon_state = "black"
 	mouse_opacity = FALSE
@@ -175,18 +175,18 @@
 
 // Prison grass
 /turf/open/organic/grass
-	name = "grass"
+	name = "草地"
 	icon = 'icons/turf/floors/floors.dmi'
 	icon_state = "grass1"
 
 /turf/open/organic/grass/astroturf
-	desc = "It'll get in your shoes no matter what you do."
-	name = "astroturf"
+	desc = "无论你怎么小心，它都会钻进鞋子里。"
+	name = "人造草坪"
 
 // Mars grounds
 
 /turf/open/mars
-	name = "sand"
+	name = "沙地"
 	icon = 'icons/turf/floors/bigred.dmi'
 	icon_state = "mars_sand_1"
 	is_groundmap_turf = TRUE
@@ -194,7 +194,7 @@
 
 
 /turf/open/mars_cave
-	name = "cave"
+	name = "洞穴"
 	icon = 'icons/turf/floors/bigred.dmi'
 	icon_state = "mars_cave_1"
 	is_groundmap_turf = TRUE
@@ -283,7 +283,7 @@
 	icon_state = "mars_dirt_7"
 
 /turf/open/mars_dirt
-	name = "dirt"
+	name = "泥土"
 	icon = 'icons/turf/floors/bigred.dmi'
 	icon_state = "mars_dirt_1"
 	minimap_color = MINIMAP_DIRT
@@ -361,7 +361,7 @@
 // Beach
 
 /turf/open/beach
-	name = "Beach"
+	name = "海滩"
 	icon = 'icons/turf/floors/beach.dmi'
 	supports_surgery = FALSE
 
@@ -377,17 +377,17 @@
 
 
 /turf/open/beach/sand
-	name = "Sand"
+	name = "沙地"
 	icon_state = "sand"
 	supports_surgery = TRUE
 
 /turf/open/beach/coastline
-	name = "Coastline"
+	name = "海岸线"
 	icon = 'icons/turf/beach2.dmi'
 	icon_state = "sandwater"
 
 /turf/open/beach/water
-	name = "Water"
+	name = "水"
 	icon_state = "water"
 	can_bloody = FALSE
 
@@ -396,7 +396,7 @@
 	overlays += image("icon"='icons/turf/floors/beach.dmi',"icon_state"="water2","layer"=MOB_LAYER+0.1)
 
 /turf/open/beach/water2
-	name = "Water"
+	name = "水"
 	icon_state = "water"
 	can_bloody = FALSE
 
@@ -412,7 +412,7 @@
 
 
 /turf/open/gm //Basic groundmap turf parent
-	name = "ground dirt"
+	name = "地表泥土"
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "desert"
 	is_groundmap_turf = TRUE
@@ -448,7 +448,7 @@
 	return
 
 /turf/open/gm/dirt
-	name = "dirt"
+	name = "泥土"
 	icon_state = "desert"
 	baseturfs = /turf/open/gm/dirt
 	minimap_color = MINIMAP_DIRT
@@ -474,7 +474,7 @@
 	icon_state = "desert_dug"
 
 /turf/open/gm/grass
-	name = "grass"
+	name = "草地"
 	icon_state = "grass1"
 	baseturfs = /turf/open/gm/grass
 	scorchable = "grass1"
@@ -528,13 +528,13 @@
 				GLOB.turf_edgeinfo_cache["gbcorner"] = GLOB.edgeinfo_corner
 
 /turf/open/gm/dirt2
-	name = "dirt"
+	name = "泥土"
 	icon_state = "dirt"
 	baseturfs = /turf/open/gm/dirt2
 	minimap_color = MINIMAP_DIRT
 
 /turf/open/gm/dirtgrassborder
-	name = "grass"
+	name = "草地"
 	icon_state = "grassdirt_edge"
 	baseturfs = /turf/open/gm/dirtgrassborder
 	scorchable = "grass1"
@@ -609,7 +609,7 @@
 				GLOB.turf_edgeinfo_cache["grassdirt_corner2"] = GLOB.edgeinfo_corner2
 
 /turf/open/gm/dirtgrassborder2
-	name = "grass"
+	name = "草地"
 	icon_state = "grassdirt2_edge"
 	baseturfs = /turf/open/gm/dirtgrassborder2
 
@@ -629,7 +629,7 @@
 	icon_state = "wall3"
 
 /turf/open/gm/river
-	name = "river"
+	name = "河流"
 	icon_state = "seashallow"
 	can_bloody = FALSE
 	fishing_allowed = TRUE
@@ -638,7 +638,7 @@
 	var/covered_name = "grate"
 	var/cover_icon = 'icons/turf/floors/filtration.dmi'
 	var/cover_icon_state = "grate"
-	var/default_name = "river"
+	var/default_name = "河流"
 	var/no_overlay = FALSE
 	var/base_river_slowdown = 1.75
 	baseturfs = /turf/open/gm/river
@@ -753,18 +753,18 @@
 
 /turf/open/gm/river/darkred_pool
 	color = "#990000"
-	name = "pool"
+	name = "水池"
 
 /turf/open/gm/river/darkred
 	color = "#990000"
 
 /turf/open/gm/river/red_pool
 	color = "#995555"
-	name = "pool"
+	name = "水池"
 
 /turf/open/gm/river/dark_water
 	color = "#4d4d4d"
-	name = "fuel"
+	name = "燃料"
 
 /turf/open/gm/river/dark_water/no_overlay
 	no_overlay = TRUE
@@ -773,13 +773,13 @@
 	color = "#995555"
 
 /turf/open/gm/river/pool
-	name = "pool"
+	name = "水池"
 
 /turf/open/gm/river/shallow_ocean_shallow_ocean
-	name = "shallow ocean"
-	default_name = "shallow ocean"
+	name = "浅海"
+	default_name = "浅海"
 /turf/open/gm/river/beach_water
-	name = "shallow water"
+	name = "浅水"
 	supports_fishing = TRUE
 	no_overlay = TRUE
 
@@ -788,14 +788,14 @@
 	base_river_slowdown = 4 // VERY. SLOW.
 
 /turf/open/gm/river/ocean/deep_water
-	name = "deep water"
+	name = "深水"
 
 /turf/open/gm/river/ocean/no_overlay
 	no_overlay = TRUE
 
 /turf/open/gm/river/ocean/deep_ocean
-	name = "deep ocean"
-	default_name = "deep ocean"
+	name = "深海"
+	default_name = "深海"
 
 /turf/open/gm/river/ocean/deep_ocean/no_overlay
 	no_overlay = TRUE
@@ -814,17 +814,17 @@
 		LM.thrower = unlucky_mob
 		LM.spin = TRUE
 		LM.pass_flags = NO_FLAGS
-		to_chat(unlucky_mob, SPAN_WARNING("The ocean currents sweep you off your feet and throw you away!"))
+		to_chat(unlucky_mob, SPAN_WARNING("洋流将你冲倒，卷向远处！"))
 		unlucky_mob.launch_towards(LM)
 		return
 
 	if(world.time % 5)
 		if(ismob(AM))
 			var/mob/rivermob = AM
-			to_chat(rivermob, SPAN_WARNING("Moving through the incredibly deep ocean slows you down a lot!"))
+			to_chat(rivermob, SPAN_WARNING("在深海中移动让你的速度大幅降低！"))
 
 /turf/open/gm/coast
-	name = "coastline"
+	name = "海岸线"
 	icon_state = "beach"
 	baseturfs = /turf/open/gm/coast
 	supports_surgery = FALSE
@@ -872,7 +872,7 @@
 	dir = 8
 
 /turf/open/gm/riverdeep
-	name = "river"
+	name = "河流"
 	icon_state = "seadeep"
 	can_bloody = FALSE
 	baseturfs = /turf/open/gm/riverdeep
@@ -898,7 +898,7 @@
 
 //ELEVATOR SHAFT-----------------------------------//
 /turf/open/gm/empty
-	name = "empty space"
+	name = "空无一物的空间"
 	icon = 'icons/turf/floors/floors.dmi'
 	icon_state = "black"
 	density = TRUE
@@ -912,8 +912,8 @@
 //Nostromo turfs
 
 /turf/open/nostromowater
-	name = "ocean"
-	desc = "It's a long way down to the ocean from here."
+	name = "海洋"
+	desc = "这里离下方的海面很远。"
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "seadeep"
 	can_bloody = FALSE
@@ -923,7 +923,7 @@
 
 //Ice Floor
 /turf/open/ice
-	name = "ice floor"
+	name = "冰面"
 	icon = 'icons/turf/ice.dmi'
 	icon_state = "ice_floor"
 	baseturfs = /turf/open/ice
@@ -941,7 +941,7 @@
 
 // Colony tiles
 /turf/open/asphalt
-	name = "asphalt"
+	name = "沥青路面"
 	icon = 'icons/turf/floors/asphalt.dmi'
 	icon_state = "sunbleached_asphalt"
 	baseturfs = /turf/open/asphalt
@@ -951,7 +951,7 @@
 	icon_state = "tile"
 
 /turf/open/asphalt/cement
-	name = "concrete"
+	name = "混凝土"
 	icon_state = "cement5"
 
 /turf/open/asphalt/cement/cement1
@@ -988,16 +988,16 @@
 	icon_state = "cement9"
 
 /turf/open/asphalt/cement_sunbleached
-	name = "concrete"
+	name = "混凝土"
 	icon_state = "cement_sunbleached5"
 
 /turf/open/asphalt/cement_sunbleached_darkened
-	name = "floor"
+	name = "地面"
 	icon_state = "cement_sunbleached5"
 	color = "#a39e99"
 
 /turf/open/asphalt/cement_darkened
-	name = "floor"
+	name = "地面"
 	icon_state = "cement5"
 	color = "#b5b3b3"
 
@@ -1055,8 +1055,8 @@
 	var/bushes_spawn = 1
 	var/plants_spawn = 1
 	is_groundmap_turf = TRUE
-	name = "wet grass"
-	desc = "Thick, long, wet grass."
+	name = "湿草地"
+	desc = "茂密、修长而湿润的草。"
 	icon = 'icons/turf/floors/jungle.dmi'
 	icon_state = "grass1"
 	var/icon_spawn_state = "grass1"
@@ -1114,10 +1114,10 @@
 	if(istype(I, /obj/item/lightstick))
 		var/obj/item/lightstick/L = I
 		if(locate(/obj/item/lightstick) in get_turf(src))
-			to_chat(user, "There's already \a [L] at this position!")
+			to_chat(user, "这里已经有[L]了！")
 			return
 
-		to_chat(user, "Now planting \the [L].")
+		to_chat(user, "你开始插好[L]。")
 		if(!do_after(user,20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			return
 
@@ -1140,8 +1140,8 @@
 
 /turf/open/jungle/path
 	bushes_spawn = 0
-	name = "dirt"
-	desc = "it is very dirty."
+	name = "泥土"
+	desc = "非常脏。"
 	icon = 'icons/turf/floors/jungle.dmi'
 	icon_state = "grass_path"
 	icon_spawn_state = "dirt"
@@ -1167,8 +1167,8 @@
 
 /turf/open/jungle/water
 	bushes_spawn = 0
-	name = "murky water"
-	desc = "thick, murky water"
+	name = "浑水"
+	desc = "浓浊的水。"
 	icon = 'icons/turf/floors//beach.dmi'
 	icon_state = "water"
 	icon_spawn_state = "water"
@@ -1187,36 +1187,36 @@
 		var/mob/living/M = O
 		//slip in the murky water if we try to run through it
 		if(prob(50))
-			to_chat(M, pick(SPAN_NOTICE("You slip on something slimy."),SPAN_NOTICE("You fall over into the murk.")))
+			to_chat(M, pick(SPAN_NOTICE("你踩到黏滑的东西，滑倒了。"),SPAN_NOTICE("你跌倒在浑水中。")))
 			M.apply_effect(2, STUN)
 			M.apply_effect(1, WEAKEN)
 
 		//piranhas - 25% chance to be an omnipresent risk, although they do practically no damage
 		if(prob(25))
-			to_chat(M, SPAN_NOTICE(" You feel something slithering around your legs."))
+			to_chat(M, SPAN_NOTICE("你感到有什么东西在腿边游动。"))
 			if(prob(50))
 				spawn(rand(25,50))
 					var/turf/T = get_turf(M)
 					if(istype(T, /turf/open/jungle/water))
-						to_chat(M, pick(SPAN_DANGER("Something sharp bites you!"),SPAN_DANGER("Sharp teeth grab hold of you!"),SPAN_DANGER("You feel something take a chunk out of your leg!")))
+						to_chat(M, pick(SPAN_DANGER("什么东西狠狠咬了你一口！"),SPAN_DANGER("锋利的牙齿咬住了你！"),SPAN_DANGER("你感到腿上被咬下了一块肉！")))
 						M.apply_damage(rand(0,1), BRUTE, sharp=1)
 			if(prob(50))
 				spawn(rand(25,50))
 					var/turf/T = get_turf(M)
 					if(istype(T, /turf/open/jungle/water))
-						to_chat(M, pick(SPAN_DANGER("Something sharp bites you!"),SPAN_DANGER("Sharp teeth grab hold of you!"),SPAN_DANGER("You feel something take a chunk out of your leg!")))
+						to_chat(M, pick(SPAN_DANGER("什么东西狠狠咬了你一口！"),SPAN_DANGER("锋利的牙齿咬住了你！"),SPAN_DANGER("你感到腿上被咬下了一块肉！")))
 						M.apply_damage(rand(0,1), BRUTE, sharp=1)
 			if(prob(50))
 				spawn(rand(25,50))
 					var/turf/T = get_turf(M)
 					if(istype(T, /turf/open/jungle/water))
-						to_chat(M, pick(SPAN_DANGER("Something sharp bites you!"),SPAN_DANGER("Sharp teeth grab hold of you!"),SPAN_DANGER("You feel something take a chunk out of your leg!")))
+						to_chat(M, pick(SPAN_DANGER("什么东西狠狠咬了你一口！"),SPAN_DANGER("锋利的牙齿咬住了你！"),SPAN_DANGER("你感到腿上被咬下了一块肉！")))
 						M.apply_damage(rand(0,1), BRUTE, sharp=1)
 			if(prob(50))
 				spawn(rand(25,50))
 					var/turf/T = get_turf(M)
 					if(istype(T, /turf/open/jungle/water))
-						to_chat(M, pick(SPAN_DANGER("Something sharp bites you!"),SPAN_DANGER("Sharp teeth grab hold of you!"),SPAN_DANGER("You feel something take a chunk out of your leg!")))
+						to_chat(M, pick(SPAN_DANGER("什么东西狠狠咬了你一口！"),SPAN_DANGER("锋利的牙齿咬住了你！"),SPAN_DANGER("你感到腿上被咬下了一块肉！")))
 						M.apply_damage(rand(0,1), BRUTE, sharp=1)
 
 /turf/open/jungle/water/deep
@@ -1233,7 +1233,7 @@
 //not a child of turf/open/floor because shuttle floors are magic and don't behave like real floors.
 
 /turf/open/shuttle
-	name = "floor"
+	name = "地面"
 	icon_state = "floor"
 	icon = 'icons/turf/shuttle.dmi'
 	unacidable = TRUE
@@ -1243,7 +1243,7 @@
 	supports_surgery = TRUE
 
 /turf/open/shuttle/can_surgery/blue
-	name = "floor"
+	name = "地面"
 	icon_state = "floor"
 	icon = 'icons/turf/shuttle.dmi'
 
@@ -1263,7 +1263,7 @@
 	icon_state = "floor7"
 
 /turf/open/shuttle/dropship
-	name = "floor"
+	name = "地面"
 	icon_state = "rasputin1"
 
 /turf/open/shuttle/dropship/light_grey_single_wide_left_to_right
@@ -1344,19 +1344,19 @@
 
 
 /turf/open/shuttle/predship
-	name = "ship floor"
+	name = "舰船地板"
 	icon_state = "floor6"
 	supports_surgery = TRUE
 	allow_construction = TRUE
 
 //not really plating, just the look
 /turf/open/shuttle/plating
-	name = "plating"
+	name = "底板"
 	icon = 'icons/turf/floors/floors.dmi'
 	icon_state = "plating"
 
 /turf/open/shuttle/brig // Added this floor tile so that I have a separate turf to check in the shuttle -- Polymorph
-	name = "Brig floor" // Also added it into the 2x3 brig area of the shuttle.
+	name = "禁闭室地板" // Also added it into the 2x3 brig area of the shuttle.
 	icon_state = "floor4"
 
 /turf/open/shuttle/escapepod
@@ -1440,13 +1440,13 @@
 
 //vehicle interior floors
 /turf/open/shuttle/vehicle
-	name = "floor"
+	name = "地面"
 	icon = 'icons/turf/vehicle_interior.dmi'
 	icon_state = "floor_0"
 
 //vehicle interior floors
 /turf/open/shuttle/vehicle/med
-	name = "floor"
+	name = "地面"
 	icon_state = "dark_sterile"
 	supports_surgery = TRUE
 

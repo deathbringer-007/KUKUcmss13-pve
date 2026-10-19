@@ -94,8 +94,8 @@
 	fa_max_scatter = SCATTER_AMOUNT_TIER_10 + 0.5
 
 /obj/item/weapon/gun/smg/m39/forecon
-	name = "\improper M39 submachinegun"
-	desc = "Fielded in limited numbers by elements of United States Colonial Marine Force-Reconnaissance units, the M39 is often used as a high-capacity sidearm or backup weapon rather than an offensive weapon. This one is painted in a fresh coat of the newer Humbrol 76 camouflage and comes chambered in 9x19mm."
+	name = "\improper M39 冲锋枪"
+	desc = "少量配发给美国殖民地陆战队武装侦察单位的冲锋枪。M39 常被用作大容量副武器或备用枪械，而非进攻武器。这把采用了新款 Humbrol 76 迷彩涂装，使用 9×19 毫米弹药。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_map/jungle/guns_obj.dmi'
 	current_mag = /obj/item/ammo_magazine/smg/m39/extended
 	item_icons = list(
@@ -161,8 +161,8 @@
 	damage_mult =  BASE_BULLET_DAMAGE_MULT + BULLET_DAMAGE_MULT_TIER_7
 
 /obj/item/weapon/gun/smg/m39/elite/rmc
-	name = "\improper L6A2 submachinegun"
-	desc = "RMC adopted variant of the M-39 SMG, re-engineered for better weight, handling and accuracy. Typically used in CQB engagements such as building-clearance, where the L23A1 proved a tad too unwieldy. Sometimes referred to as the \"Little Armat\" by Royal Marines."
+	name = "\improper L6A2 冲锋枪"
+	desc = "皇家陆战队采用的 M39 冲锋枪改型，经重新设计以改善重量、操控性和精度。通常用于清理建筑等近距离战斗，在这些场合 L23A1 显得有些笨重。皇家陆战队员有时称它为“小阿玛特”。"
 	icon_state = "m39"
 	item_state = "m39"
 	fire_sound = 'sound/weapons/gun_m39.ogg'
@@ -186,9 +186,9 @@
 	damage_mult =  BASE_BULLET_DAMAGE_MULT + BULLET_DAMAGE_MULT_TIER_7
 
 /obj/item/weapon/gun/smg/m39/elite/pve //duplex round
-	name = "\improper M39B/3 submachinegun"
-	desc = "An experimental M-39 capable of firing squash-head duplex rounds. A bit bulkier and more unwieldy than the average M39, with a thicker reciever and slower projectile. Still produced in small quantities."
-	desc_lore = "The Company recieved a rather unexpected windfall of revenue from the L165A1. Squash-head small-arms rounds were rather popular among their clientelle. Initial testing with rifle-caliber HESH rounds presented a few problems. The least of which was that the required additional powder drove the chamber pressure up to dangerous levels, causing premature detonations and inaccurate fire. <BR> <BR> Thanks to Armat's overengineering, the M39 was rated for pressures well beyond that of even +P ammunition. It was simple for Weyland Yutani to iterate upon the problem by taking a step back. How do you fix rifle rounds being too pressurized? Make it a pistol round. How do you remedy its firepower? Make it a duplex."
+	name = "\improper M39B/3 冲锋枪"
+	desc = "能够发射碎甲双头弹的实验型 M39。它比普通 M39 更重、更难操控，机匣更厚，弹速也更低。仍在少量生产。"
+	desc_lore = "L165A1 给公司带来了一笔意外之财：小口径碎甲弹很受客户欢迎。但最初试制步枪口径的碎甲弹时出现了不少问题，其中增加装药导致膛压达到危险水平，引发提前爆炸和射击不准，还只是小问题。<BR><BR>得益于阿玛特的过度设计，M39 可承受的膛压远超高压弹药的水平。维兰德-汤谷退一步就轻松找到了办法：步枪弹压力过高怎么办？改成手枪弹。火力不足怎么办？改成双头弹。"
 	current_mag = /obj/item/ammo_magazine/smg/m39/pve
 	random_spawn_chance = 0
 	fire_sound = 'sound/weapons/gun_m39.ogg'
@@ -313,8 +313,8 @@
 #define PPSH_UNJAM_CHANCE 25
 
 /obj/item/weapon/gun/smg/ppsh
-	name = "\improper PPSh-17b submachinegun"
-	desc = "An unauthorized copy of a replica of a prototype submachinegun developed in a third world shit hole somewhere."
+	name = "\improper PPSh-17b 冲锋枪"
+	desc = "某个第三世界破地方研制的原型冲锋枪，经过仿制再被未经授权地翻制而成。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/upp.dmi'
 	icon_state = "ppsh17b"
 	item_state = "ppsh17b"
@@ -353,14 +353,14 @@
 	if(jammed)
 		if(world.time % 3)
 			playsound(src, 'sound/weapons/handling/gun_jam_click.ogg', 35, TRUE)
-			to_chat(user, SPAN_WARNING("Your gun is jammed! Mash Unique-Action to unjam it!"))
-			balloon_alert(user, "*jammed*")
+			to_chat(user, SPAN_WARNING("你的枪卡壳了！反复使用“武器特殊操作”来排除故障！"))
+			balloon_alert(user, "*卡壳*")
 		return NONE
 	else if(prob(ppsh_mag?.jam_chance))
 		jammed = TRUE
 		playsound(src, 'sound/weapons/handling/gun_jam_initial_click.ogg', 50, FALSE)
-		user.visible_message(SPAN_DANGER("[src] makes a noticeable clicking noise!"), SPAN_HIGHDANGER("\The [src] suddenly jams and refuses to fire! Mash Unique-Action to unjam it."))
-		balloon_alert(user, "*jammed*")
+		user.visible_message(SPAN_DANGER("[src]发出明显的咔嗒声！"), SPAN_HIGHDANGER("[src]突然卡壳，无法开火！反复使用“武器特殊操作”来排除故障。"))
+		balloon_alert(user, "*卡壳*")
 		return NONE
 	else
 		return ..()
@@ -368,15 +368,15 @@
 /obj/item/weapon/gun/smg/ppsh/unique_action(mob/user)
 	if(jammed)
 		if(prob(PPSH_UNJAM_CHANCE))
-			to_chat(user, SPAN_GREEN("You successfully unjam \the [src]!"))
+			to_chat(user, SPAN_GREEN("你成功排除了[src]的卡壳故障！"))
 			playsound(src, 'sound/weapons/handling/gun_jam_rack_success.ogg', 50, FALSE)
 			jammed = FALSE
 			cock_cooldown += 1 SECONDS //so they dont accidentally cock a bullet away
-			balloon_alert(user, "*unjammed!*")
+			balloon_alert(user, "*故障排除！*")
 		else
-			to_chat(user, SPAN_NOTICE("You start wildly racking the bolt back and forth attempting to unjam \the [src]!"))
+			to_chat(user, SPAN_NOTICE("你开始猛拉[src]的枪机，试图排除卡壳故障！"))
 			playsound(src, "gun_jam_rack", 50, FALSE)
-			balloon_alert(user, "*rack*")
+			balloon_alert(user, "*拉动枪机*")
 		return
 	. = ..()
 
@@ -389,7 +389,7 @@
 	var/obj/item/ammo_magazine/smg/ppsh/ppsh_mag = magazine
 
 	if( (ppsh_mag.bonus_mag_aim_slowdown || ppsh_mag.bonus_mag_wield_delay) && user)
-		to_chat(user, SPAN_WARNING("\The [src] feels noticeably bulkier with \the [magazine]. It's probably going to have a lot worse handling than usual."))
+		to_chat(user, SPAN_WARNING("装上[magazine]后，[src]明显笨重了许多。操控性大概会比平常差很多。"))
 
 	aim_slowdown = SLOWDOWN_ADS_QUICK + ppsh_mag.bonus_mag_aim_slowdown
 	wield_delay = WIELD_DELAY_VERY_FAST + ppsh_mag.bonus_mag_wield_delay
@@ -409,8 +409,8 @@
 //Type-19,
 
 /obj/item/weapon/gun/smg/pps43
-	name = "\improper Type-19 Submachinegun" //placeholder
-	desc = "An outdated, but reliable and powerful, submachinegun originating in the Union of Progressive Peoples, it is still in limited service in the UPP but is most often used by paramilitary groups or corporate security forces. It is usually used with a 35 round stick magazine, or a 71 round drum."
+	name = "\improper 19 式冲锋枪" //placeholder
+	desc = "产自进步人民联盟的老式冲锋枪，虽然过时，却可靠且威力强大。联盟仍在少量使用，但它更常见于准军事组织或公司安保部队，通常搭配 35 发直弹匣或 71 发弹鼓。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/upp.dmi'
 	icon_state = "insasu"
 	item_state = "insasu"
@@ -497,8 +497,8 @@
 
 /obj/item/weapon/gun/smg/bizon/upp
 	name = "64 式冲锋枪"
-	desc = "The standard submachinegun of the UPP, sporting an unusual 64 round helical magazine, it has a high fire-rate, but is unusually accurate. This one has a black polymer grip, denoting it as in-use by the UPP military."
-	desc_lore = "The Type 64 finds its way into the hands of more than just UPP soldiers, it has an active life with rebel groups, corporate security forces, mercenaries, less well-armed militaries, and just about everything or everyone in between."
+	desc = "进步人民联盟的制式冲锋枪，采用少见的 64 发螺旋弹筒，射速高，却有着出奇的精度。这把配有黑色聚合物握把，表明它属于联盟军队。"
+	desc_lore = "64 式并非只有进步人民联盟士兵在用；叛军、公司安保、雇佣兵、装备较差的军队，以及形形色色的人都在使用它。"
 	icon_state = "type64_u"
 	item_state = "type64"
 
@@ -559,8 +559,8 @@
 #define UZI_UNJAM_CHANCE 25
 
 /obj/item/weapon/gun/smg/uzi
-	name = "\improper UZI"
-	desc = "Antique firearm, now almost two centuries old. 9mm, fully automatic. Pull the trigger and hold on tight."
+	name = "\improper 乌兹冲锋枪"
+	desc = "已有近两个世纪历史的古董枪械。9 毫米，全自动。扣下扳机，握紧就行。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "uzi"
 	item_state = "uzi"
@@ -608,14 +608,14 @@
 	if(jammed)
 		if(world.time % 3)
 			playsound(src, 'sound/weapons/handling/gun_jam_click.ogg', 35, TRUE)
-			to_chat(user, SPAN_WARNING("Your gun is jammed! Mash Unique-Action to unjam it!"))
-			balloon_alert(user, "*jammed*")
+			to_chat(user, SPAN_WARNING("你的枪卡壳了！反复使用“武器特殊操作”来排除故障！"))
+			balloon_alert(user, "*卡壳*")
 		return NONE
 	else if(prob(uzi_mag.jam_chance))
 		jammed = TRUE
 		playsound(src, 'sound/weapons/handling/gun_jam_initial_click.ogg', 35, TRUE)
-		user.visible_message(SPAN_DANGER("[src] makes a noticeable clicking noise!"), SPAN_HIGHDANGER("\The [src] suddenly jams and refuses to fire! Mash Unique-Action to unjam it."))
-		balloon_alert(user, "*jammed*")
+		user.visible_message(SPAN_DANGER("[src]发出明显的咔嗒声！"), SPAN_HIGHDANGER("[src]突然卡壳，无法开火！反复使用“武器特殊操作”来排除故障。"))
+		balloon_alert(user, "*卡壳*")
 		return NONE
 	else
 		return ..()
@@ -623,15 +623,15 @@
 /obj/item/weapon/gun/smg/uzi/unique_action(mob/user)
 	if(jammed)
 		if(prob(UZI_UNJAM_CHANCE))
-			to_chat(user, SPAN_GREEN("You successfully unjam \the [src]!"))
+			to_chat(user, SPAN_GREEN("你成功排除了[src]的卡壳故障！"))
 			playsound(src, 'sound/weapons/handling/gun_jam_rack_success.ogg', 35, TRUE)
 			jammed = FALSE
 			cock_cooldown += 1 SECONDS //so they dont accidentally cock a bullet away
-			balloon_alert(user, "*unjammed!*")
+			balloon_alert(user, "*故障排除！*")
 		else
-			to_chat(user, SPAN_NOTICE("You start wildly racking the bolt back and forth attempting to unjam \the [src]!"))
+			to_chat(user, SPAN_NOTICE("你开始猛拉[src]的枪机，试图排除卡壳故障！"))
 			playsound(src, "gun_jam_rack", 50, FALSE)
-			balloon_alert(user, "*rack*")
+			balloon_alert(user, "*拉动枪机*")
 		return
 	. = ..()
 
@@ -641,8 +641,8 @@
 //FP9000 //Based on the FN P90
 
 /obj/item/weapon/gun/smg/fp9000
-	name = "\improper FN FP9000 Submachinegun"
-	desc = "An old design, but one that's stood the test of time. A leaked and unencrypted 3D-printing pattern alongside an extremely robust and reasonably cheap to manufacture frame have ensured this weapon be a mainstay of rim colonies and private security firms for over a century."
+	name = "\improper FN FP9000 冲锋枪"
+	desc = "设计虽老，却经得起时间考验。一份泄露且未加密的 3D 打印图纸，加上极为坚固且制造成本适中的枪身，使它在一个多世纪里始终是边疆殖民地和私人安保公司的主力武器。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "fp9000"
 	item_state = "fp9000"
@@ -693,8 +693,8 @@
 	recoil_unwielded = RECOIL_AMOUNT_TIER_5
 
 /obj/item/weapon/gun/smg/fp9000/pmc
-	name = "\improper FN FP9000/2 Submachinegun"
-	desc = "Despite the rather ancient design, the FN FP9K sees frequent use in PMC teams due to its extreme reliability and versatility, allowing it to excel in any situation, especially due to the fact that they use the patented, official version of the gun, which has received several upgrades and tuning to its design over time."
+	name = "\improper FN FP9000/2 冲锋枪"
+	desc = "设计虽已古老，FN FP9K 凭借极高的可靠性和适应性，仍常见于私人军事公司小队，在各种场合都表现出色。他们使用的还是经过专利授权的官方版本，多年来不断获得改进和调校。"
 	icon_state = "fp9000_pmc"
 	item_state = "fp9000_pmc"
 	random_spawn_chance = 100
@@ -715,8 +715,8 @@
 	accuracy_mult = BASE_ACCURACY_MULT + HIT_ACCURACY_MULT_TIER_7
 
 /obj/item/weapon/gun/smg/fp9000/tactical
-	name = "\improper FN FP9000-X TAC Submachinegun"
-	desc = "A variation on the standard FP9000 design, with it's internal mechanisms improved and given a new color scheme to sell at extortionate prices by Highfire Manufacturing. Whilst not as good as the official FP9000/2, it's still able to hold it's own and has a much more managable spread."
+	name = "\improper FN FP9000-X TAC 冲锋枪"
+	desc = "高焰制造公司改进了标准 FP9000 的内部机构，再换上新配色，以高价出售。虽然不及官方 FP9000/2，它仍能独当一面，而且弹着散布更容易控制。"
 	icon_state = "fp9000_tactical"
 	item_state = "fp9000_tactical"
 	random_spawn_rail = list(

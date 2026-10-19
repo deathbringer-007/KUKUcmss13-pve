@@ -59,8 +59,8 @@
 	playsound(T, 'sound/weapons/gun_flamethrower2.ogg', 35, 1, 4)
 
 /obj/item/mortar_shell/nerve
-	name = "\improper 80mm nerve gas mortar shell"
-	desc = "An 80mm mortar shell, loaded with a CN-20 nerve agent canister. Perfect for regional pacification."
+	name = "\improper 80 毫米神经毒气迫击炮弹"
+	desc = "装有 CN-20 神经毒剂罐的 80 毫米迫击炮弹。区域镇压的理想选择。"
 	icon_state = "mortar_ammo_inc"
 
 /obj/item/mortar_shell/nerve/detonate(turf/T)
@@ -116,8 +116,8 @@
 	deploy_camera(T)
 
 /obj/item/mortar_shell/custom
-	name = "\improper 80mm custom mortar shell"
-	desc = "An 80mm mortar shell."
+	name = "\improper 80 毫米自制迫击炮弹"
+	desc = "一枚 80 毫米迫击炮弹。"
 	icon_state = "mortar_ammo_custom"
 	matter = list("metal" = 18750) //5 sheets
 	var/obj/item/explosive/warhead/mortar/warhead
@@ -129,9 +129,9 @@
 /obj/item/mortar_shell/custom/get_examine_text(mob/user)
 	. = ..()
 	if(fuel)
-		. += SPAN_NOTICE("Contains fuel.")
+		. += SPAN_NOTICE("内含燃料。")
 	if(warhead)
-		. += SPAN_NOTICE("Contains a warhead[warhead.has_camera ? " with integrated camera drone." : ""].")
+		. += SPAN_NOTICE("内含弹头[warhead.has_camera ? "，配有一体式摄像无人机。" : "。"]")
 
 /obj/item/mortar_shell/custom/detonate(turf/T)
 	if(fuel)
@@ -160,17 +160,17 @@
 
 /obj/item/mortar_shell/custom/attackby(obj/item/W as obj, mob/user)
 	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-		to_chat(user, SPAN_WARNING("You do not know how to tinker with [name]."))
+		to_chat(user, SPAN_WARNING("你不知道如何改装[name]。"))
 		return
 	if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
 		if(!warhead)
-			to_chat(user, SPAN_NOTICE("[name] must contain a warhead to do that!"))
+			to_chat(user, SPAN_NOTICE("[name]必须装有弹头才能这样做！"))
 			return
 		if(locked)
-			to_chat(user, SPAN_NOTICE("You unlock [name]."))
+			to_chat(user, SPAN_NOTICE("你解锁了[name]。"))
 			icon_state = initial(icon_state) +"_unlocked"
 		else
-			to_chat(user, SPAN_NOTICE("You lock [name]."))
+			to_chat(user, SPAN_NOTICE("你锁上了[name]。"))
 			if(fuel && fuel.reagents.get_reagent_amount(fuel_type) >= fuel_requirement)
 				icon_state = initial(icon_state) +"_locked"
 			else
@@ -180,32 +180,32 @@
 		return
 	else if(istype(W,/obj/item/reagent_container/glass) && !locked)
 		if(fuel)
-			to_chat(user, SPAN_DANGER("The [name] already has a fuel container!"))
+			to_chat(user, SPAN_DANGER("[name]已经装有燃料容器！"))
 			return
 		else
 			user.temp_drop_inv_item(W)
 			W.forceMove(src)
 			fuel = W
-			to_chat(user, SPAN_DANGER("You add [W] to [name]."))
+			to_chat(user, SPAN_DANGER("你将[W]装入[name]。"))
 			playsound(loc, 'sound/items/Screwdriver2.ogg', 25, 0, 6)
 	else if(istype(W,/obj/item/explosive/warhead/mortar) && !locked)
 		if(warhead)
-			to_chat(user, SPAN_DANGER("The [name] already has a warhead!"))
+			to_chat(user, SPAN_DANGER("[name]已经装有弹头！"))
 			return
 		var/obj/item/explosive/warhead/mortar/det = W
 		if(det.assembly_stage < ASSEMBLY_LOCKED)
-			to_chat(user, SPAN_DANGER("The [W] is not secured!"))
+			to_chat(user, SPAN_DANGER("[W]尚未固定好！"))
 			return
 		user.temp_drop_inv_item(W)
 		W.forceMove(src)
 		warhead = W
-		to_chat(user, SPAN_DANGER("You add [W] to [name]."))
+		to_chat(user, SPAN_DANGER("你将[W]装入[name]。"))
 		icon_state = initial(icon_state) +"_unlocked"
 		playsound(loc, 'sound/items/Screwdriver2.ogg', 25, 0, 6)
 
 /obj/item/mortar_shell/himat
-	name = "\improper HIMAT missile"
-	desc = "This is a small, two-stage missile used by HIMAT launcher. This one has a standard anti-tank package."
+	name = "\improper HIMAT 导弹"
+	desc = "HIMAT 发射器使用的小型两级导弹。这枚配有标准反坦克弹头。"
 	icon_state = "missile"
 	allowed_mortar = /obj/structure/mortar/himat
 
@@ -213,16 +213,16 @@
 	cell_explosion(T, 2400, 2400, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, cause_data)
 
 /obj/item/mortar_shell/himat/explosive
-	name = "\improper HIMAT HE missile"
-	desc = "This is a small, two-stage missile used by HIMAT launcher. This one has a high-explosive package, primarily used for demolition."
+	name = "\improper HIMAT 高爆导弹"
+	desc = "HIMAT 发射器使用的小型两级导弹。这枚配有高爆弹头，主要用于爆破。"
 	icon_state = "missile_he"
 
 /obj/item/mortar_shell/himat/explosive/detonate(turf/T)
 	explosion(T, 1, 4, 6, 8, explosion_cause_data = cause_data)
 
 /obj/item/mortar_shell/himat/antipersonnel
-	name = "\improper HIMAT AP missile"
-	desc = "This is a small, two-stage missile used by HIMAT launcher. This one has an anti-personnel package, air-bursting for maximum soft-target damage."
+	name = "\improper HIMAT 反步兵导弹"
+	desc = "HIMAT 发射器使用的小型两级导弹。这枚配有反步兵弹头，以空爆方式最大限度杀伤软目标。"
 	icon_state = "missile_ap"
 	var/number_of_airburst = 10
 
@@ -235,8 +235,8 @@
 		cell_explosion(impact_tile, 20, 10, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, cause_data)
 
 /obj/item/mortar_shell/incendiary/himat
-	name = "\improper HIMAT IN missile"
-	desc = "This is a small, two-stage missile used by HIMAT launcher. This one has an incendiary package, covering area of impact with burning flames."
+	name = "\improper HIMAT 燃烧导弹"
+	desc = "HIMAT 发射器使用的小型两级导弹。这枚配有燃烧弹头，可使着弹区域陷入火海。"
 	icon_state = "missile_inc"
 	radius = 5
 	flame_level = BURN_TIME_TIER_5 + 5
@@ -246,8 +246,8 @@
 	allowed_mortar = /obj/structure/mortar/himat
 
 /obj/item/mortar_shell/himat/training
-	name = "\improper HIMAT training missile"
-	desc = "This is a small, two-stage missile used by HIMAT launcher. This one dispenses short-living burning ash and is used during training exercises."
+	name = "\improper HIMAT 训练导弹"
+	desc = "HIMAT 发射器使用的小型两级导弹。这枚会撒出短暂燃烧的灰烬，用于训练演习。"
 	icon_state = "missile_training"
 
 /obj/item/mortar_shell/himat/training/detonate(turf/T)
@@ -259,7 +259,7 @@
 
 /obj/item/mortar_shell/attack_hand(mob/user)
 	if(burning)
-		to_chat(user, SPAN_DANGER("[src] is on fire and might explode!"))
+		to_chat(user, SPAN_DANGER("[src]正在燃烧，可能会爆炸！"))
 		return
 	return ..()
 
@@ -288,7 +288,7 @@
 
 /obj/item/mortar_shell/proc/handle_fire(cause_data)
 	if(can_explode())
-		visible_message(SPAN_WARNING("[src] catches on fire and starts cooking off! It's gonna blow!"))
+		visible_message(SPAN_WARNING("[src]着火并开始殉爆！马上要炸了！"))
 		anchored = TRUE // don't want other explosions launching it elsewhere
 		var/datum/effect_system/spark_spread/sparks = new()
 		sparks.set_up(n = 10, loca = loc)
@@ -303,8 +303,8 @@
 	cell_explosion(src, 100, 25, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, flame_cause_data)
 
 /obj/structure/closet/crate/secure/mortar_ammo
-	name = "\improper M402 mortar ammo crate"
-	desc = "A crate containing live mortar shells with various payloads. DO NOT DROP. KEEP AWAY FROM FIRE SOURCES."
+	name = "\improper M402 迫击炮弹箱"
+	desc = "内装各种战斗部的实弹迫击炮弹。切勿摔落。远离火源。"
 	icon = 'icons/obj/structures/mortar.dmi'
 	icon_state = "secure_locked_mortar"
 	icon_opened = "secure_open_mortar"
@@ -332,8 +332,8 @@
 	new /obj/item/mortar_shell/flare(src)
 
 /obj/structure/closet/crate/secure/mortar_ammo/mortar_kit
-	name = "\improper M402 mortar kit"
-	desc = "A crate containing a basic set of a mortar and some shells, to get an engineer started."
+	name = "\improper M402 迫击炮套件"
+	desc = "内装一套基础迫击炮及若干炮弹，供工程兵开始作业。"
 	var/jtac_key_type = /obj/item/device/encryptionkey/jtac
 
 /obj/structure/closet/crate/secure/mortar_ammo/mortar_kit/Initialize()
@@ -368,8 +368,8 @@
 	jtac_key_type = /obj/item/device/encryptionkey/clf/engi
 
 /obj/structure/closet/crate/secure/mortar_ammo/himat
-	name = "\improper M112 HIMAT crate"
-	desc = "A crate containing a basic set of a HIMAT launcher and some additional tools."
+	name = "\improper M112 HIMAT 装备箱"
+	desc = "内装一套基础 HIMAT 发射器及辅助工具。"
 	req_one_access = list()
 
 /obj/structure/closet/crate/secure/mortar_ammo/himat/Initialize()

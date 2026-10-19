@@ -12,7 +12,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 #define HIGHCOM_DEPARTMENTS list(DEPARTMENT_WY, DEPARTMENT_HC, DEPARTMENT_CMB, DEPARTMENT_PROVOST, DEPARTMENT_PRESS, DEPARTMENT_TWE, DEPARTMENT_UPP, DEPARTMENT_CLF)
 
 /obj/structure/machinery/faxmachine // why not fax_machine?
-	name = "\improper General Purpose Fax Machine"
+	name = "\improper 通用传真机"
 	icon = 'icons/obj/structures/machinery/library.dmi'
 	icon_state = "fax"
 	anchored = TRUE
@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 
 	if(istype(O, /obj/item/paper) || istype(O, /obj/item/paper_bundle) || istype(O, /obj/item/photo))
 		if(original_fax)
-			to_chat(user, SPAN_NOTICE("There is already something in \the [src]."))
+			to_chat(user, SPAN_NOTICE("[src]里面已经有东西了。"))
 			return
 
 		var/jammed = FALSE
@@ -83,9 +83,9 @@ GLOBAL_LIST_EMPTY(alldepartments)
 		user.drop_inv_item_to_loc(O, src)
 		original_fax = O
 		if(!jammed)
-			to_chat(user, SPAN_NOTICE("You insert the [O.name] into \the [src]."))
+			to_chat(user, SPAN_NOTICE("你将[O.name]放入[src]。"))
 		else
-			to_chat(user, SPAN_NOTICE("\The [src] jammed! It can only accept up to five papers at once."))
+			to_chat(user, SPAN_NOTICE("[src]卡纸了！一次最多只能放入五张纸。"))
 			playsound(src, "sound/machines/terminal_insert_disc.ogg", 50, TRUE)
 		flick("[initial(icon_state)]send", src)
 		updateUsrDialog()
@@ -95,19 +95,19 @@ GLOBAL_LIST_EMPTY(alldepartments)
 
 		var/obj/item/card/id/idcard = O
 		if(scan)
-			to_chat(user, SPAN_NOTICE("There is already an id in \the [src]."))
+			to_chat(user, SPAN_NOTICE("[src]里面已经有一张身份卡。"))
 			return
 
 		user.drop_inv_item_to_loc(idcard, src)
 		scan = idcard
-		to_chat(usr, SPAN_NOTICE("You put \the [scan] into \the [src]."))
+		to_chat(usr, SPAN_NOTICE("你将[scan]插入[src]。"))
 		playsound(src, 'sound/machines/pda_button1.ogg', 15, TRUE)
 		return
 
 	if(HAS_TRAIT(O, TRAIT_TOOL_WRENCH))
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 		anchored = !anchored
-		to_chat(user, SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] \the [src]."))
+		to_chat(user, SPAN_NOTICE("你用扳手[anchored ? "固定了" : "松开了"][src]。"))
 
 /obj/structure/machinery/faxmachine/verb/eject_id()
 	set category = "Object"
@@ -117,7 +117,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 		return
 
 	if(ishuman(usr) && scan)
-		to_chat(usr, "You remove \the [scan] from \the [src].")
+		to_chat(usr, "你从[src]中取出了[scan]。")
 		playsound(src, 'sound/machines/terminal_eject.ogg', 15, TRUE)
 		scan.forceMove(get_turf(src))
 		if(!usr.get_active_hand() && istype(usr,/mob/living/carbon/human))
@@ -125,7 +125,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 		scan = null
 		authenticated = FALSE
 	else
-		to_chat(usr, "There is nothing to remove from \the [src].")
+		to_chat(usr, "[src]里没有可取出的东西。")
 	return
 
 /obj/structure/machinery/faxmachine/proc/update_departments()
@@ -167,8 +167,8 @@ GLOBAL_LIST_EMPTY(alldepartments)
 /obj/structure/machinery/faxmachine/ui_static_data(mob/user)
 	var/list/data = list()
 
-	data["department"] = department
-	data["network"] = network
+	data["department"] = localized_player_label(department)
+	data["network"] = localized_player_label(network)
 
 	return data
 
@@ -181,7 +181,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 		data["paper_name"] = original_fax.name
 
 	data["authenticated"] = authenticated
-	data["target_department"] = target_department
+	data["target_department"] = localized_player_label(target_department)
 
 	data["worldtime"] = world.time
 	data["nextfaxtime"] = send_cooldown
@@ -197,13 +197,13 @@ GLOBAL_LIST_EMPTY(alldepartments)
 	switch(action)
 		if("send")
 			if(!original_fax)
-				to_chat(ui.user, SPAN_NOTICE("No paper loaded."))
+				to_chat(ui.user, SPAN_NOTICE("没有放入纸张。"))
 				return
 
 			if(istype(original_fax, /obj/item/paper_bundle))
 				var/obj/item/paper_bundle/bundle = original_fax
 				if(bundle.amount > 5)
-					to_chat(ui.user, SPAN_NOTICE("\The [src] is jammed!"))
+					to_chat(ui.user, SPAN_NOTICE("[src]卡纸了！"))
 					return
 
 			copy_fax_paper()
@@ -211,19 +211,19 @@ GLOBAL_LIST_EMPTY(alldepartments)
 			outgoing_fax_message(ui.user)
 
 			COOLDOWN_START(src, send_cooldown, fax_cooldown)
-			to_chat(ui.user, "Message transmitted successfully.")
+			to_chat(ui.user, "消息已成功传送。")
 			. = TRUE
 
 		if("ejectpaper")
 			if(!original_fax)
-				to_chat(ui.user, SPAN_NOTICE("No paper loaded."))
+				to_chat(ui.user, SPAN_NOTICE("没有放入纸张。"))
 			if(!ishuman(ui.user))
-				to_chat(ui.user, SPAN_NOTICE("You can't do that."))
+				to_chat(ui.user, SPAN_NOTICE("你无法这样做。"))
 				return
 
 			original_fax.forceMove(ui.user.loc)
 			ui.user.put_in_hands(original_fax)
-			to_chat(ui.user, SPAN_NOTICE("You take \the [original_fax.name] out of \the [src]."))
+			to_chat(ui.user, SPAN_NOTICE("你从[src]中取出[original_fax.name]。"))
 			original_fax = null
 			fax_paper_copy = null
 			photo_list = null
@@ -241,18 +241,18 @@ GLOBAL_LIST_EMPTY(alldepartments)
 				ui.user.drop_inv_item_to_loc(I, src)
 				original_fax = I
 				if(!jammed)
-					to_chat(ui.user, SPAN_NOTICE("You put \the [original_fax.name] into \the [src]."))
+					to_chat(ui.user, SPAN_NOTICE("你将[original_fax.name]放入[src]。"))
 				else
-					to_chat(ui.user, SPAN_NOTICE("\The [src] jammed! It can only accept up to five papers at once."))
+					to_chat(ui.user, SPAN_NOTICE("[src]卡纸了！一次最多只能放入五张纸。"))
 					playsound(src, "sound/machines/terminal_insert_disc.ogg", 50, TRUE)
 				flick("[initial(icon_state)]send", src)
 			. = TRUE
 
 		if("ejectid")
 			if(!scan || !ishuman(ui.user))
-				to_chat(ui.user, SPAN_WARNING("You can't do that."))
+				to_chat(ui.user, SPAN_WARNING("你无法这样做。"))
 				return
-			to_chat(ui.user, SPAN_NOTICE("You take \the [scan] out of \the [src]."))
+			to_chat(ui.user, SPAN_NOTICE("你从[src]中取出[scan]。"))
 			scan.forceMove(ui.user.loc)
 			if(!ui.user.get_active_hand())
 				ui.user.put_in_hands(scan)
@@ -266,7 +266,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 
 		if("select")
 			var/last_target_department = target_department
-			target_department = tgui_input_list(ui.user, "Which department?", "Choose a department", GLOB.alldepartments)
+			target_department = localized_input_list(ui.user, "选择哪个部门？", "选择部门", GLOB.alldepartments)
 			if(!target_department) target_department = last_target_department
 			. = TRUE
 
@@ -316,7 +316,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 	// type bundle
 	var/obj/item/paper_bundle/papers = original_fax
 	for(var/content in 1 to papers.amount)
-		fax_paper_copy.info += "<h1>Page #[content]</h1>"
+		fax_paper_copy.info += "<h1>第 [content] 页</h1>"
 		fax_paper_copy.info += "<hr>"
 		if(istype(papers[content], /obj/item/paper))
 			var/obj/item/paper/faxed_paper = papers[content]
@@ -372,8 +372,8 @@ GLOBAL_LIST_EMPTY(alldepartments)
 
 	msg_admin += SPAN_STAFF_IC("Receiving fax via secure connection ... <a href='byond://?FaxView=\ref[faxcontents]'>view message</a>")
 
-	var/msg_ghost = SPAN_NOTICE("<b><font color='#006100'>[target_department]: </font></b>")
-	msg_ghost += "Receiving fax via secure connection ... <a href='byond://?FaxView=\ref[faxcontents]'>view message</a>"
+	var/msg_ghost = SPAN_NOTICE("<b><font color='#006100'>[localized_player_label(target_department)]: </font></b>")
+	msg_ghost += "正在通过安全连接接收传真…… <a href='byond://?FaxView=\ref[faxcontents]'>查看消息</a>"
 
 	send_fax(faxcontents)
 
@@ -415,7 +415,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 				// give the sprite some time to flick
 				spawn(30)
 					var/obj/item/paper/P = new(F.loc,faxcontents.photo_list)
-					P.name = "faxed message"
+					P.name = "传真消息"
 					P.info = "[faxcontents.data]"
 					P.update_icon()
 
@@ -423,7 +423,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 						if("USCM High Command Quantum Relay")
 							var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 							stampoverlay.icon_state = "paper_stamp-uscm"
-							P.stamps += "<HR><i>This paper has been stamped by the USCM High Command Quantum Relay.</i>"
+							P.stamps += "<HR><i>本文件已由美国殖民地陆战队最高指挥部量子中继加盖印章。</i>"
 						if("NC4 UA Federal Secure Network - CMB Relay")
 							var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 							stampoverlay.icon_state = "paper_stamp-cmb"
@@ -431,7 +431,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 								P.stamped = new
 							P.stamped += /obj/item/tool/stamp
 							P.overlays += stampoverlay
-							P.stamps += "<HR><i>This paper has been stamped by The Office of Colonial Marshals.</i>"
+							P.stamps += "<HR><i>本文件已由殖民地法警署加盖印章。</i>"
 						if("Weyland-Yutani Quantum Relay")
 							var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 							stampoverlay.icon_state = "paper_stamp-weyyu"
@@ -439,7 +439,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 								P.stamped = new
 							P.stamped += /obj/item/tool/stamp
 							P.overlays += stampoverlay
-							P.stamps += "<HR><i>This paper has been stamped and encrypted by the Weyland-Yutani Quantum Relay (tm).</i>"
+							P.stamps += "<HR><i>本文件已由维兰德-汤谷量子中继（注册商标）加盖印章并加密。</i>"
 						if("TWE Royal Marines Commando Quantum Relay")
 							var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 							stampoverlay.icon_state = "paper_stamp-twe"
@@ -447,7 +447,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 								P.stamped = new
 							P.stamped += /obj/item/tool/stamp
 							P.overlays += stampoverlay
-							P.stamps += "<HR><i>This paper has been stamped by the TWE Royal Marines Commando Quantum Relay.</i>"
+							P.stamps += "<HR><i>本文件已由三世界帝国皇家陆战突击队量子中继加盖印章。</i>"
 						if("UPP High Kommand Quantum Relay")
 							var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 							stampoverlay.icon_state = "paper_stamp-upp"
@@ -455,7 +455,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 								P.stamped = new
 							P.stamped += /obj/item/tool/stamp
 							P.overlays += stampoverlay
-							P.stamps += "<HR><i>This paper has been stamped by the UPP High Kommand Quantum Relay.</i>"
+							P.stamps += "<HR><i>本文件已由进步人民联盟最高指挥部量子中继加盖印章。</i>"
 						if("CLF Gureilla Command Quantum Relay")
 							var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 							stampoverlay.icon_state = "paper_stamp-clf"
@@ -463,19 +463,19 @@ GLOBAL_LIST_EMPTY(alldepartments)
 								P.stamped = new
 							P.stamped += /obj/item/tool/stamp
 							P.overlays += stampoverlay
-							P.stamps += "<HR><i>This paper has been stamped and encrypted by the CLF Gureilla Command Quantum Relay.</i>"
+							P.stamps += "<HR><i>本文件已由殖民地解放阵线游击指挥部量子中继加盖印章并加密。</i>"
 
 					playsound(F.loc, "sound/items/polaroid1.ogg", 15, 1)
 		qdel(faxcontents)
 
 /obj/structure/machinery/faxmachine/cmb
-	name = "\improper CMB Incident Command Center Fax Machine"
+	name = "\improper 殖民地执法局事件指挥中心传真机"
 	department = "Colonial Marshal Bureau, Anchorpoint Station"
 	network = "NC4 UA Federal Secure Network - CMB Relay"
 	department = DEPARTMENT_CMB
 
 /obj/structure/machinery/faxmachine/corporate
-	name = "\improper W-Y Corporate Fax Machine"
+	name = "\improper 维兰德-汤谷公司传真机"
 	department = "W-Y Local Office"
 	network = "Weyland-Yutani Secure Network"
 
@@ -488,7 +488,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 	network = "Weyland-Yutani Quantum Relay"
 
 /obj/structure/machinery/faxmachine/uscm
-	name = "\improper USCM Military Fax Machine"
+	name = "\improper 美国殖民地陆战队军用传真机"
 	department = "USCM Local Operations"
 	network = "USCM Encrypted Network"
 	target_department = DEPARTMENT_HC
@@ -505,7 +505,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 	network = "USCM High Command Quantum Relay"
 
 /obj/structure/machinery/faxmachine/uscm/brig
-	name = "\improper USCM Provost Fax Machine"
+	name = "\improper 美国殖民地陆战队军法监察传真机"
 	department = "Brig"
 	target_department = DEPARTMENT_PROVOST
 
@@ -520,8 +520,8 @@ GLOBAL_LIST_EMPTY(alldepartments)
 
 ///The deployed fax machine backpack
 /obj/structure/machinery/faxmachine/backpack
-	name = "\improper Portable Press Fax Machine"
-	desc = "A standard issue portable fax machine for civilian reporters. Functions off of an internal battery. Cannot receive faxes while being worn. It is currently deployed. Click-drag the device towards you to pick it up."
+	name = "\improper 便携式新闻传真机"
+	desc = "供平民记者使用的制式便携传真机，依靠内置电池运行。携带时无法接收传真。目前已展开，点击并拖向自己即可拾起。"
 	icon_state = "fax_backpack"
 	needs_power = FALSE
 	use_power = USE_POWER_NONE
@@ -545,7 +545,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 	if(istype(deployturf, /turf/open))
 		var/turf/open/floor = deployturf
 		if(!floor.allow_construction)
-			to_chat(user, SPAN_WARNING("You cannot deploy [src] here, find a more secure surface!"))
+			to_chat(user, SPAN_WARNING("这里无法部署[src]，请找更稳固的地面！"))
 			return FALSE
 	var/fail = FALSE
 	if(deployturf.density)
@@ -565,11 +565,11 @@ GLOBAL_LIST_EMPTY(alldepartments)
 				fail = TRUE
 				break
 	if(fail)
-		to_chat(user, SPAN_WARNING("You can't deploy [src] here, something is in the way."))
+		to_chat(user, SPAN_WARNING("这里有东西挡住了，无法部署[src]。"))
 		return
-	to_chat(user,  SPAN_NOTICE("You begin to deploy [src]..."))
+	to_chat(user,  SPAN_NOTICE("你开始部署[src]……"))
 	if(do_after(user, 4.5 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-		to_chat(user, SPAN_NOTICE("You deploy [src]."))
+		to_chat(user, SPAN_NOTICE("你部署了[src]。"))
 		var/obj/structure/machinery/faxmachine/backpack/deployedfax = new(deployturf)
 		transfer_label_component(deployedfax)
 		playsound(src.loc, 'sound/machines/print.ogg', 40, 1)
@@ -583,12 +583,12 @@ GLOBAL_LIST_EMPTY(alldepartments)
 	var/mob/living/carbon/human/user = usr
 	if(over_object == user && in_range(src, user))
 		if(original_fax || scan)
-			to_chat(user, SPAN_NOTICE("There is still something in [src]. Remove it before you pick it up."))
+			to_chat(user, SPAN_NOTICE("[src]里还有东西，拾起前请先取出。"))
 			return
-		to_chat(user, SPAN_NOTICE("You begin to pick up [src]..."))
+		to_chat(user, SPAN_NOTICE("你开始拾起[src]……"))
 		if(do_after(user, 4.5 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			to_chat(user, SPAN_NOTICE("You pick up [src]."))
+			to_chat(user, SPAN_NOTICE("你拾起了[src]。"))
 			var/obj/item/device/fax_backpack/faxbag = new(loc)
 			transfer_label_component(faxbag)
 			user.put_in_hands(faxbag)

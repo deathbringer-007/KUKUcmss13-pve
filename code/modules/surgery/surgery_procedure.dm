@@ -71,7 +71,7 @@
 /datum/surgery/proc/attempt_next_step(mob/user, obj/item/tool, repeating)
 	if(step_in_progress)
 		if(!user.action_busy) //Otherwise, assume it's the same person.
-			to_chat(user, SPAN_WARNING("已经有人在给[target]的[affected_limb.display_name]做手术了！"))
+			to_chat(user, SPAN_WARNING("已经有人在给[target]的[localized_player_label(affected_limb.display_name)]做手术了！"))
 			return FALSE
 
 		return TRUE //So that you don't poke them with a tool you're already using.

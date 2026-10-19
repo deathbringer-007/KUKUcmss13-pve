@@ -36,7 +36,7 @@
 	RegisterSignal(src, COMSIG_ATOM_DROPPED_ON, PROC_REF(handle_dropped_on))
 
 /atom/movable/screen/close
-	name = "close"
+	name = "关闭"
 	icon_state = "x"
 
 
@@ -94,7 +94,7 @@
 	overlays += maptext_overlay
 
 /atom/movable/screen/action_button/hide_toggle
-	name = "Hide Buttons"
+	name = "隐藏按钮"
 	icon = 'icons/mob/hud/actions.dmi'
 	icon_state = "hide"
 	var/hidden = 0
@@ -103,10 +103,10 @@
 	user.hud_used.action_buttons_hidden = !user.hud_used.action_buttons_hidden
 	hidden = user.hud_used.action_buttons_hidden
 	if(hidden)
-		name = "Show Buttons"
+		name = "显示按钮"
 		icon_state = "show"
 	else
-		name = "Hide Buttons"
+		name = "隐藏按钮"
 		icon_state = "hide"
 	user.update_action_buttons()
 	return TRUE
@@ -115,7 +115,7 @@
 	return "SOUTH:6,CENTER+1:24"
 
 /atom/movable/screen/storage
-	name = "storage"
+	name = "收纳"
 	layer = HUD_LAYER
 
 /atom/movable/screen/storage/proc/update_fullness(obj/item/storage/master_storage)
@@ -141,7 +141,7 @@
 				color = null
 
 /atom/movable/screen/zone_sel
-	name = "damage zone"
+	name = "伤害部位"
 	icon_state = "zone_sel"
 	var/selecting = "chest"
 
@@ -227,27 +227,27 @@
 		INVOKE_ASYNC(held_item, gun_proc_ref)
 
 /atom/movable/screen/gun/attachment
-	name = "Activate weapon attachment"
+	name = "启用武器配件"
 	icon_state = "gun_attach"
 	gun_proc_ref = TYPE_VERB_REF(/obj/item/weapon/gun, activate_attachment_verb)
 
 /atom/movable/screen/gun/rail_light
-	name = "Toggle rail flashlight"
+	name = "切换导轨手电筒"
 	icon_state = "gun_raillight"
 	gun_proc_ref = TYPE_VERB_REF(/obj/item/weapon/gun, activate_rail_attachment_verb)
 
 /atom/movable/screen/gun/eject_magazine
-	name = "Eject magazine"
+	name = "退出弹匣"
 	icon_state = "gun_loaded"
 	gun_proc_ref = TYPE_VERB_REF(/obj/item/weapon/gun, empty_mag)
 
 /atom/movable/screen/gun/toggle_firemode
-	name = "Toggle firemode"
+	name = "切换射击模式"
 	icon_state = "gun_burst"
 	gun_proc_ref = TYPE_VERB_REF(/obj/item/weapon/gun, use_toggle_burst)
 
 /atom/movable/screen/gun/unique_action
-	name = "Use unique action"
+	name = "使用武器特殊操作"
 	icon_state = "gun_unique"
 	gun_proc_ref = TYPE_VERB_REF(/obj/item/weapon/gun, use_unique_action)
 
@@ -308,7 +308,7 @@
 	user.mob.put_in_active_hand(dropping)
 
 /atom/movable/screen/throw_catch
-	name = "throw/catch"
+	name = "投掷／接取"
 	icon = 'icons/mob/hud/human_midnight.dmi'
 	icon_state = "act_throw_off"
 
@@ -328,7 +328,7 @@
 	return TRUE
 
 /atom/movable/screen/drop
-	name = "drop"
+	name = "丢下"
 	icon = 'icons/mob/hud/human_midnight.dmi'
 	icon_state = "act_drop"
 	layer = HUD_LAYER
@@ -339,7 +339,7 @@
 
 
 /atom/movable/screen/resist
-	name = "resist"
+	name = "挣脱"
 	icon = 'icons/mob/hud/human_midnight.dmi'
 	icon_state = "act_resist"
 	layer = HUD_LAYER
@@ -351,7 +351,7 @@
 		return 1
 
 /atom/movable/screen/mov_intent
-	name = "run/walk toggle"
+	name = "切换奔跑／行走"
 	icon = 'icons/mob/hud/human_midnight.dmi'
 	icon_state = "running"
 
@@ -393,7 +393,7 @@
 		return TRUE
 
 /atom/movable/screen/act_intent
-	name = "intent"
+	name = "意图"
 	icon_state = "intent_help"
 
 /atom/movable/screen/act_intent/clicked(mob/user)
@@ -420,13 +420,13 @@
 
 
 /atom/movable/screen/healths
-	name = "health"
+	name = "生命值"
 	icon_state = "health0"
 	icon = 'icons/mob/hud/human_midnight.dmi'
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /atom/movable/screen/pull
-	name = "stop pulling"
+	name = "停止拖拽"
 	icon = 'icons/mob/hud/human_midnight.dmi'
 	icon_state = "pull0"
 
@@ -447,7 +447,7 @@
 
 
 /atom/movable/screen/squad_leader_locator
-	name = "beacon tracker"
+	name = "信标追踪器"
 	icon = 'icons/mob/hud/human_midnight.dmi'
 	icon_state = "trackoff"
 	alpha = 0 //invisible
@@ -460,12 +460,12 @@
 	var/obj/item/device/radio/headset/earpiece = user.get_type_in_ears(/obj/item/device/radio/headset)
 	var/has_access = earpiece.misc_tracking || (user.assigned_squad && user.assigned_squad.radio_freq == earpiece.frequency)
 	if(!istype(earpiece) || !earpiece.has_hud || !has_access)
-		to_chat(user, SPAN_WARNING("Unauthorized access detected."))
+		to_chat(user, SPAN_WARNING("检测到未授权访问。"))
 		return
 
 	if(mods[SHIFT_CLICK])
 		var/area/current_area = get_area(user)
-		to_chat(user, SPAN_NOTICE("You are currently at: <b>[current_area.name]</b>."))
+		to_chat(user, SPAN_NOTICE("你当前位于：<b>[localized_player_label(current_area.name)]</b>。"))
 		return
 	else if(mods[ALT_CLICK])
 		earpiece.switch_tracker_target()
@@ -476,7 +476,7 @@
 		user.assigned_squad.tgui_interact(user)
 
 /atom/movable/screen/mark_locator
-	name = "mark locator"
+	name = "标记定位器"
 	icon = 'icons/mob/hud/alien_standard.dmi'
 	icon_state = "marker"
 
@@ -487,17 +487,17 @@
 		if(user.observed_xeno == user.tracked_marker)
 			user.overwatch(user.tracked_marker, TRUE) //passing in an obj/effect into a proc that expects mob/xenomorph B)
 		else
-			to_chat(user, SPAN_XENONOTICE("We psychically observe the [user.tracked_marker.mark_meaning.name] resin mark in [get_area_name(user.tracked_marker)]."))
+			to_chat(user, SPAN_XENONOTICE("我们通过灵能观察位于[get_area_name(user.tracked_marker)]的[user.tracked_marker.mark_meaning.name]树脂标记。"))
 			user.overwatch(user.tracked_marker) //this is so scuffed, sorry if this causes errors
 		return
 	if(mods[ALT_CLICK] && user.tracked_marker)
 		user.stop_tracking_resin_mark()
 		return
 	if(!user.hive)
-		to_chat(user, SPAN_WARNING("We don't belong to a hive!"))
+		to_chat(user, SPAN_WARNING("我们不属于任何虫巢！"))
 		return FALSE
 	if(!user.hive.living_xeno_queen)
-		to_chat(user, SPAN_WARNING("Without a queen our psychic link is broken!"))
+		to_chat(user, SPAN_WARNING("没有女王，我们的精神链接已经断开！"))
 		return FALSE
 	if(HAS_TRAIT(user, TRAIT_ABILITY_BURROWED) || user.is_mob_incapacitated() || user.buckled)
 		return FALSE
@@ -505,7 +505,7 @@
 	user.hive.mark_ui.open_mark_menu(user)
 
 /atom/movable/screen/queen_locator
-	name = "queen locator"
+	name = "女王定位器"
 	icon = 'icons/mob/hud/alien_standard.dmi'
 	icon_state = "trackoff"
 	/// A weak reference to the atom currently being tracked.
@@ -519,10 +519,10 @@
 		return FALSE
 	if(mods[SHIFT_CLICK])
 		var/area/current_area = get_area(user)
-		to_chat(user, SPAN_NOTICE("We are currently at: <b>[current_area.name]</b>."))
+		to_chat(user, SPAN_NOTICE("我们当前位于：<b>[localized_player_label(current_area.name)]</b>。"))
 		return
 	if(!user.hive)
-		to_chat(user, SPAN_WARNING("We don't belong to a hive!"))
+		to_chat(user, SPAN_WARNING("我们不属于任何虫巢！"))
 		return FALSE
 	if(mods[ALT_CLICK])
 		var/list/options = list()
@@ -548,7 +548,7 @@
 		return
 
 	if(!user.hive.living_xeno_queen)
-		to_chat(user, SPAN_WARNING("Our hive doesn't have a living queen!"))
+		to_chat(user, SPAN_WARNING("虫巢没有活着的女王！"))
 		return FALSE
 	if(HAS_TRAIT(user, TRAIT_ABILITY_BURROWED) || user.is_mob_incapacitated() || user.buckled)
 		return FALSE
@@ -562,7 +562,7 @@
 
 /atom/movable/screen/xenonightvision
 	icon = 'icons/mob/hud/alien_standard.dmi'
-	name = "toggle night vision"
+	name = "切换夜视"
 	icon_state = "nightvision_full"
 
 /atom/movable/screen/xenonightvision/clicked(mob/user)
@@ -586,10 +586,10 @@
 		if(LIGHTING_PLANE_ALPHA_VISIBLE)
 			icon_state = "nightvision_off"
 			vision_define = XENO_VISION_LEVEL_NO_NVG
-	to_chat(owner, SPAN_NOTICE("Night vision mode switched to <b>[vision_define]</b>."))
+	to_chat(owner, SPAN_NOTICE("夜视模式已切换为<b>[localized_player_label(vision_define)]</b>。"))
 
 /atom/movable/screen/equip
-	name = "equip"
+	name = "装备"
 	icon_state = "act_equip"
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
@@ -602,15 +602,15 @@
 	human_user.quick_equip()
 
 /atom/movable/screen/bodytemp
-	name = "body temperature"
+	name = "体温"
 	icon_state = "temp0"
 
 /atom/movable/screen/oxygen
-	name = "oxygen"
+	name = "氧气"
 	icon_state = "oxy0"
 
 /atom/movable/screen/toggle_inv
-	name = "toggle"
+	name = "切换"
 	icon_state = "other"
 
 /atom/movable/screen/toggle_inv/clicked(mob/user)

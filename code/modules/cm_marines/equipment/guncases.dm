@@ -105,8 +105,8 @@
 	new /obj/item/weapon/gun/launcher/grenade/m81/m79(src)
 
 /obj/item/storage/box/guncase/heavy/m92_upp
-	name = "\improper OG-60 grenade launcher case"
-	desc = "A case for storing an OG-60 grenade launcher."
+	name = "\improper OG-60 榴弹发射器箱"
+	desc = "用于存放 OG-60 榴弹发射器的箱子。"
 	icon_state = "m92uppcase"
 	storage_slots = 2
 	can_hold = list(/obj/item/weapon/gun/launcher/grenade/m92/upp, /obj/item/storage/pouch/explosive, /obj/item/storage/box/packet/high_explosive/upp)
@@ -144,8 +144,8 @@
 //------------
 //R4T lever action rifle
 /obj/item/storage/box/guncase/r4t_scout
-	name = "\improper R4T lever action rifle case"
-	desc = "A gun case containing a R4T lever action rifle, intended for scouting. Comes with an ammunition belt, the optional revolver attachment for it, two boxes of ammunition, a sling, and a stock for the rifle."
+	name = "\improper R4T 杠杆式步枪箱"
+	desc = "内装用于侦察的 R4T 杠杆式步枪。附有弹药带、可选左轮配件、两盒弹药、枪带和枪托。"
 	storage_slots = 7
 	can_hold = list(/obj/item/weapon/gun/lever_action/r4t, /obj/item/attachable/stock/r4t, /obj/item/attachable/magnetic_harness/lever_sling, /obj/item/ammo_magazine/lever_action, /obj/item/ammo_magazine/lever_action/training, /obj/item/storage/belt/shotgun/lever_action, /obj/item/storage/belt/gun/m44/lever_action/attach_holster, /obj/item/device/motiondetector/m717)
 
@@ -194,7 +194,7 @@
 	new /obj/item/attachable/attached_gun/extinguisher/pyro(src)
 
 /obj/item/storage/box/guncase/flamer/weak
-	desc = "A gun case containing a M240A1 incinerator unit alongside impure napalm, cheap but should still get the job done."
+	desc = "内装 M240A1 焚烧器与不纯凝固汽油的枪箱，虽然便宜，但应该仍能完成任务。"
 	storage_slots = 4
 
 /obj/item/storage/box/guncase/flamer/weak/fill_preset_inventory()
@@ -203,8 +203,8 @@
 	new /obj/item/ammo_magazine/flamer_tank/weak(src)
 
 /obj/item/storage/box/guncase/m42c
-	name = "\improper M42C scoped rifle case"
-	desc = "A gun case containing an M42C Scoped Rifle and several magazines."
+	name = "\improper M42C 瞄准步枪箱"
+	desc = "内装一把 M42C 瞄准步枪及若干弹匣。"
 	storage_slots = 7
 
 /obj/item/storage/box/guncase/m42c/fill_preset_inventory()
@@ -230,8 +230,8 @@
 //------------ heavy cases
 
 /obj/item/storage/box/guncase/heavy
-	name = "heavy gun case"
-	desc = "You shouldn't be seeing this."
+	name = "重型枪箱"
+	desc = "你不该看到这个。"
 	icon_state = null
 	use_sound = "toolbox"
 	var/move_delay_mult = 2
@@ -250,8 +250,8 @@
 	UnregisterSignal(user, COMSIG_HUMAN_POST_MOVE_DELAY)
 
 /obj/item/storage/box/guncase/heavy/sentry
-	name = "\improper UA 571-C sentry gun case"
-	desc = "A gun case containing the UA 571-C sentry unit, a spare drum, and a sentry laptop."
+	name = "\improper UA 571-C 哨戒炮箱"
+	desc = "内装 UA 571-C 哨戒炮、备用弹鼓和哨戒控制笔记本。"
 	icon_state = "sentrycase"
 	storage_slots = 3
 	can_hold = list(/obj/item/defenses/handheld/sentry, /obj/item/ammo_magazine/sentry, /obj/item/device/sentry_computer)
@@ -276,8 +276,8 @@
 		overlays += image(icon, "+sentrycomp")
 
 /obj/item/storage/box/guncase/heavy/sentry/pmc_platoon
-	name = "\improper UA 571-C-WY sentry guncase"
-	desc = "A gun case containing the UA 571-C-WY sentry gun, a spare drum, and a sentry laptop."
+	name = "\improper UA 571-C-WY 哨戒炮箱"
+	desc = "内装 UA 571-C-WY 哨戒炮、备用弹鼓和哨戒控制笔记本。"
 	icon_state = "sentrycase"
 	storage_slots = 3
 	can_hold = list(/obj/item/defenses/handheld/sentry/pmc_platoon, /obj/item/ammo_magazine/sentry, /obj/item/device/sentry_computer)
@@ -289,8 +289,8 @@
 
 
 /obj/item/storage/box/guncase/heavy/sentryupp
-	name = "\improper UPPAC 32-H sentry gun case"
-	desc = "A gun case containing the UPPAC 32-H sentry unit, a spare drum, and a sentry laptop."
+	name = "\improper UPPAC 32-H 哨戒炮箱"
+	desc = "内装 UPPAC 32-H 哨戒炮、备用弹鼓和哨戒控制笔记本。"
 	icon_state = "uppsentrycase"
 	storage_slots = 3
 	can_hold = list(/obj/item/defenses/handheld/sentry/upp, /obj/item/ammo_magazine/sentry/upp, /obj/item/device/sentry_computer)
@@ -316,8 +316,8 @@
 
 
 /obj/item/storage/box/guncase/heavy/shotgun
-	name = "\improper Ithaca 37 shotgun case"
-	desc = "A heavy case for storing an Ithaca 37 pump-action shotgun, an antique from a bygone era of human history."
+	name = "\improper 伊萨卡 37 霰弹枪箱"
+	desc = "用于存放伊萨卡 37 泵动霰弹枪的重型箱子，这把枪来自人类历史上早已逝去的年代。"
 	icon_state = "shotguncase"
 	storage_slots = 6
 	can_hold = list(/obj/item/weapon/gun/shotgun/pump, /obj/item/storage/large_holster/m37, /obj/item/attachable/stock/shotgun, /obj/item/ammo_magazine/shotgun/buckshot, /obj/item/ammo_magazine/shotgun/slugs)
@@ -349,8 +349,8 @@
 		overlays += image(icon, "+stock")
 
 /obj/item/storage/box/guncase/heavy/shotgun/type23
-	name = "\improper KS29 shotgun case"
-	desc = "A case for storing a KS29 combat shotgun."
+	name = "\improper KS29 霰弹枪箱"
+	desc = "用于存放 KS29 战斗霰弹枪的箱子。"
 	icon_state = "ks29case"
 	storage_slots = 2
 	can_hold = list(/obj/item/weapon/gun/shotgun/type23, /obj/item/attachable/stock/type23)
@@ -370,8 +370,8 @@
 		overlays += image(icon, "+ks29")
 
 /obj/item/storage/box/guncase/heavy/smg
-	name = "\improper M39 submachinegun case"
-	desc = "A case for storing an M39 submachinegun and accompanying magazines."
+	name = "\improper M39 冲锋枪箱"
+	desc = "用于存放 M39 冲锋枪及配套弹匣的箱子。"
 	icon_state = "guncase"
 	storage_slots = 8
 	can_hold = list(/obj/item/weapon/gun/smg/m39, /obj/item/ammo_magazine/smg/m39)
@@ -387,8 +387,8 @@
 	new /obj/item/ammo_magazine/smg/m39/extended(src)
 
 /obj/item/storage/box/guncase/heavy/smg/type64
-	name = "\improper Type 64 submachinegun case"
-	desc = "A case for storing a Type 64 submachinegun."
+	name = "\improper 64 式冲锋枪箱"
+	desc = "用于存放 64 式冲锋枪的箱子。"
 	icon_state = "t64case"
 	storage_slots = 8
 	can_hold = list(/obj/item/weapon/gun/smg/bizon, /obj/item/ammo_magazine/smg/bizon)
@@ -446,8 +446,8 @@
 	new /obj/item/ammo_magazine/smg/bizon/heap(src)
 
 /obj/item/storage/box/guncase/heavy/m49a_pve
-	name = "\improper M49A6 battle rifle case"
-	desc = "A large case for storing an M49A6, a modified USCM battle rifle capable of firing the brutal A19 depleted uranium bullets."
+	name = "\improper M49A6 战斗步枪箱"
+	desc = "用于存放 M49A6 的大箱子。这种改装美国殖民地陆战队战斗步枪可发射凶狠的 A19 贫铀弹。"
 	icon_state = "r2case"
 	storage_slots = 8
 	can_hold = list(/obj/item/weapon/gun/rifle/m49a/pve, /obj/item/ammo_magazine/rifle/m49a/custom, /obj/item/ammo_magazine/rifle/m49a/custom/explosive, /obj/item/ammo_magazine/rifle/m49a/custom/incendiary, /obj/item/ammo_magazine/rifle/m49a/custom/pve)
@@ -473,8 +473,8 @@
 		overlays += image(src.icon, "+r2")
 
 /obj/item/storage/box/guncase/heavy/sniper
-	name = "\improper M42A sniper case"
-	desc = "A case for storing an M42A sniper rifle."
+	name = "\improper M42A 狙击步枪箱"
+	desc = "用于存放 M42A 狙击步枪的箱子。"
 	icon_state = "guncase"
 	storage_slots = 6
 	can_hold = list(/obj/item/weapon/gun/rifle/sniper/M42A, /obj/item/ammo_magazine/sniper, /obj/item/device/binoculars)
@@ -489,8 +489,8 @@
 	new /obj/item/device/binoculars/range/designator/spotter(src)
 
 /obj/item/storage/box/guncase/heavy/sniper/svd_iff
-	name = "\improper Type 88-I sniper case"
-	desc = "A case for storing a Type 88-I sniper rifle."
+	name = "\improper 88-I 式狙击步枪箱"
+	desc = "用于存放 88-I 式狙击步枪的箱子。"
 	icon_state = "t88case"
 	storage_slots = 10
 	can_hold = list(/obj/item/weapon/gun/rifle/sniper/svd, /obj/item/ammo_magazine/sniper/svd, /obj/item/device/binoculars)
@@ -538,8 +538,8 @@
 	new /obj/item/device/binoculars/range/designator/spotter(src)
 
 /obj/item/storage/box/guncase/heavy/XM99
-	name = "\improper XM99A plasma rifle case"
-	desc = "A heavy case for storing an XM99A phased plasma pulse rifle, an experimental and deadly energy weapon system."
+	name = "\improper XM99A 等离子步枪箱"
+	desc = "用于存放 XM99A 相位等离子脉冲步枪的重型箱子，这是一种实验性致命能量武器。"
 	icon_state = "xm99case"
 	storage_slots = 7
 	can_hold = list(/obj/item/weapon/gun/XM99, /obj/item/attachable/scope/pve, /obj/item/ammo_magazine/plasma)
@@ -564,8 +564,8 @@
 		overlays += image(icon, "+xm99")
 
 /obj/item/storage/box/guncase/heavy/hpr
-	name = "\improper M41AE2 heavy pulse rifle case"
-	desc = "A case storing an M41AE2 heavy pulse rifle, a heavier variant of the M41A designed for sustained automatic fire."
+	name = "\improper M41AE2 重型脉冲步枪箱"
+	desc = "内装 M41AE2 重型脉冲步枪，即为持续自动射击设计的 M41A 重型改款。"
 	icon_state = "hprcase"
 	storage_slots = 3
 	can_hold = list(/obj/item/weapon/gun/rifle/lmg, /obj/item/ammo_magazine/hpr_box)
@@ -592,8 +592,8 @@
 	new /obj/item/ammo_magazine/hpr_box/recon(src)
 
 /obj/item/storage/box/guncase/heavy/rmcsmg
-	name = "\improper L6A2 SMG CQWS case"
-	desc = "A heavy case for storing an L6A2 Close-Quarters-Weapon-System, along with several magazines of squad-head ammunition for it."
+	name = "\improper L6A2 冲锋枪近战武器系统箱"
+	desc = "用于存放 L6A2 近战武器系统及若干碎甲弹匣的重型箱子。"
 	icon_state = "rmcsmgcase"
 	storage_slots = 6
 	can_hold = list(/obj/item/weapon/gun/smg/m39/elite/rmc, /obj/item/ammo_magazine/smg/m39/squash)
@@ -619,8 +619,8 @@
 		overlays += image(icon, "+mags")
 
 /obj/item/storage/box/guncase/heavy/motiondetectors
-	name = "\improper motion detectors case"
-	desc = "A case containing four individual handheld motion detectors."
+	name = "\improper 动态探测器箱"
+	desc = "内装四台独立手持动态探测器。"
 	icon_state = "mdcase"
 	storage_slots = 4
 	can_hold = list(/obj/item/device/motiondetector)
@@ -657,8 +657,8 @@
 		overlays += source_image
 
 /obj/item/storage/box/guncase/heavy/motiondetectors/pmc
-	name = "\improper motion detectors case"
-	desc = "A case containing four individual handheld motion detectors."
+	name = "\improper 动态探测器箱"
+	desc = "内装四台独立手持动态探测器。"
 	icon_state = "mdcase"
 	storage_slots = 4
 	can_hold = list(/obj/item/device/motiondetector/hacked/pmc)
@@ -671,8 +671,8 @@
 
 
 /obj/item/storage/box/guncase/heavy/motiondetectors/upp
-	name = "\improper motion detectors case"
-	desc = "A case containing four individual handheld motion detectors."
+	name = "\improper 动态探测器箱"
+	desc = "内装四台独立手持动态探测器。"
 	icon_state = "uppmdcase"
 	storage_slots = 4
 	can_hold = list(/obj/item/device/motiondetector/upp)
@@ -710,8 +710,8 @@
 
 
 /obj/item/storage/box/guncase/heavy/motiondetectors/rmc
-	name = "\improper motion detectors case"
-	desc = "A case containing four L107 handheld motion detectors."
+	name = "\improper 动态探测器箱"
+	desc = "内装四台 L107 手持动态探测器。"
 	icon_state = "rmcmdcase"
 	storage_slots = 4
 	can_hold = list(/obj/item/device/motiondetector/hacked/twe)
@@ -748,8 +748,8 @@
 		overlays += source_image
 
 /obj/item/storage/box/guncase/heavy/fuel
-	name = "\improper M240A1 fuel canister case"
-	desc = "A heavy case containing six fuel canisters for the M240A1 incinerator unit."
+	name = "\improper M240A1 燃料罐箱"
+	desc = "内装六罐 M240A1 焚烧器燃料的重型箱子。"
 	icon_state = "fuelcase"
 	storage_slots = 6
 	can_hold = list(/obj/item/ammo_magazine/flamer_tank)
@@ -805,8 +805,8 @@
 						overlays += source_image
 
 /obj/item/storage/box/guncase/heavy/fuel/pmc
-	name = "\improper M240A1 fuel canister case"
-	desc = "A heavy case containing six EX-fuel canisters for the M240A1 incinerator unit."
+	name = "\improper M240A1 燃料罐箱"
+	desc = "内装六罐 M240A1 焚烧器 EX 燃料的重型箱子。"
 	icon_state = "fuelcase"
 	storage_slots = 6
 	can_hold = list(/obj/item/ammo_magazine/flamer_tank/EX)
@@ -820,8 +820,8 @@
 	new /obj/item/ammo_magazine/flamer_tank/EX(src)
 
 /obj/item/storage/box/guncase/heavy/uppfuel
-	name = "\improper LPO80 fuel canister case"
-	desc = "A heavy case containing six fuel canisters for the LPO80 incinerator unit."
+	name = "\improper LPO80 燃料罐箱"
+	desc = "内装六罐 LPO80 焚烧器燃料的重型箱子。"
 	icon_state = "uppfuelcase"
 	storage_slots = 6
 	can_hold = list(/obj/item/ammo_magazine/flamer_tank)
@@ -877,8 +877,8 @@
 	new /obj/item/ammo_magazine/flamer_tank/upp(src)
 
 /obj/item/storage/box/guncase/heavy/uppfuel/gellied
-	name = "\improper LPO80 B-Gel fuel canister case"
-	desc = "A heavy case containing six fuel B-Gel canisters for the LPO80 incinerator unit."
+	name = "\improper LPO80 B-Gel 燃料罐箱"
+	desc = "内装六罐 LPO80 焚烧器 B-Gel 燃料的重型箱子。"
 	icon_state = "uppfuelcase"
 	storage_slots = 6
 	can_hold = list(/obj/item/ammo_magazine/flamer_tank)
@@ -951,8 +951,8 @@
 	new /obj/item/ammo_magazine/shotgun/slugs(src)
 
 /obj/item/storage/box/guncase/shotgunpump
-	name = "\improper Ithaca 37 pump-action shotgun case"
-	desc = "A gun case containing an unloaded Ithaca 37 pump-action shotgun, a box of 12 gauge buckshot, and a box of 12 gauge slugs."
+	name = "\improper 伊萨卡 37 泵动霰弹枪箱"
+	desc = "内装一把未装填的伊萨卡 37 泵动霰弹枪、一盒 12 号鹿弹和一盒 12 号独头弹。"
 	icon_state = "matebacase"
 	storage_slots = 6
 	can_hold = list(/obj/item/weapon/gun/shotgun/pump, /obj/item/storage/large_holster/m37, /obj/item/attachable/stock/shotgun, /obj/item/ammo_magazine/shotgun/buckshot, /obj/item/ammo_magazine/shotgun/slugs)
@@ -967,8 +967,8 @@
 
 
 /obj/item/storage/box/guncase/shotgunpump/special
-	name = "\improper Ithaca 37 pump-action shotgun case"
-	desc = "A gun case containing an unloaded Ithaca 37 pump-action shotgun and one box of 12 gauge USCM Special buckshot."
+	name = "\improper 伊萨卡 37 泵动霰弹枪箱"
+	desc = "内装一把未装填的伊萨卡 37 泵动霰弹枪及一盒 12 号美国殖民地陆战队特制鹿弹。"
 	icon_state = "matebacase"
 	storage_slots = 2
 
@@ -979,8 +979,8 @@
 	new /obj/item/storage/large_holster/m37(src)
 
 /obj/item/storage/box/guncase/random_old_upp_gun
-	name = "old weapon case"
-	desc = "A scratched up wooden crate. What is inside?"
+	name = "旧武器箱"
+	desc = "满是刮痕的木箱。里面是什么？"
 	icon_state = "kit_case"
 	storage_slots = 2
 	can_hold = list(/obj/item/weapon/gun/shotgun/double/upp, /obj/item/storage/pouch/shotgun, /obj/item/weapon/gun/pistol/skorpion, /obj/item/storage/pouch/magazine/pistol,/obj/item/ammo_magazine/handful/shotgun/buckshot)
@@ -1011,8 +1011,8 @@
 	safety.flags_gun_features ^= GUN_TRIGGER_SAFETY
 
 /obj/item/storage/box/guncase/hg45
-	name = "\improper HG 45 pistol case"
-	desc = "A gun case containing a HG 45 pistol."
+	name = "\improper HG 45 手枪箱"
+	desc = "内装一把 HG 45 手枪。"
 	storage_slots = 6
 	can_hold = list(/obj/item/weapon/gun/pistol/highpower, /obj/item/ammo_magazine/pistol/highpower)
 
@@ -1028,8 +1028,8 @@
 
 
 /obj/item/storage/box/guncase/nsg23_marine
-	name = "\improper NSG-23 assault rifle case"
-	desc = "A gun case containing a NSG L23A1 assault rifle. While usually seen in the hands of PMCs, this weapon is sometimes issued to USCM personnel."
+	name = "\improper NSG-23 突击步枪箱"
+	desc = "内装一把 NSG L23A1 突击步枪。虽然通常由私人军事公司使用，偶尔也会配发给美国殖民地陆战队。"
 	storage_slots = 6
 	can_hold = /obj/item/ammo_magazine/rifle/nsg23
 
@@ -1063,8 +1063,8 @@
 
 
 /obj/item/storage/box/guncase/m3717
-	name = "\improper M37-17 pump shotgun case"
-	desc = "A gun case containing a M37-17 pump shotgun. Rarely seen issued to USCM vessels on the edges of inhabited space who need the extra bang for their buck (literally) the M37-17 has. Like this one! Well, if it had the budget for it."
+	name = "\improper M37-17 泵动霰弹枪箱"
+	desc = "内装一把 M37-17 泵动霰弹枪。它偶尔配发给人类居住空间边缘的陆战队舰船，因为这些舰船需要每一分钱都换来更强火力——字面意义上也是如此。比如这艘！好吧，前提是预算够。"
 	storage_slots = 4
 	can_hold = list(/obj/item/weapon/gun/shotgun/pump/dual_tube/cmb/m3717, /obj/item/ammo_magazine/shotgun/buckshot)
 
@@ -1075,8 +1075,8 @@
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
 
 /obj/item/storage/box/guncase/m1911
-	name = "\improper M1911 service pistol case"
-	desc = "A gun case containing a M1911 service pistol. It might be three centuries old but it's still a damn good pistol. Back-issue only, though."
+	name = "\improper M1911 制式手枪箱"
+	desc = "内装一把 M1911 制式手枪。虽然可能已有三百年历史，仍是一把好枪，但只供旧装备配发。"
 	storage_slots = 7
 	can_hold = list(/obj/item/weapon/gun/pistol/m1911, /obj/item/ammo_magazine/pistol/m1911)
 
@@ -1091,7 +1091,7 @@
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 
 /obj/item/storage/box/guncase/m1911/socom
-	name = "\improper SOCOM M1911 service pistol case"
+	name = "\improper 特种作战司令部 M1911 制式手枪箱"
 	storage_slots = 7
 	can_hold = list(/obj/item/weapon/gun/pistol/m1911/socom, /obj/item/ammo_magazine/pistol/m1911)
 
@@ -1106,8 +1106,8 @@
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 
 /obj/item/storage/box/guncase/cane_gun_kit
-	name = "spy-agent cane case"
-	desc = "A gun case containing a top-secret Gun Cane chambered in .44, alongside two spare handfuls of said caliber. Make sure to fold this after you use it!"
+	name = "间谍手杖箱"
+	desc = "内装一根使用 .44 弹药的绝密手杖枪，以及两小把备用同口径弹药。使用后记得将箱子折起！"
 	can_hold = list(/obj/item/weapon/gun/shotgun/double/cane, /obj/item/ammo_magazine/handful/revolver)
 	storage_slots = 3
 
@@ -1117,8 +1117,8 @@
 	new /obj/item/ammo_magazine/handful/revolver/marksman/six_rounds(src)
 
 /obj/item/storage/box/guncase/vulture
-	name = "\improper M707 anti-materiel rifle case"
-	desc = "A gun case containing a M707 \"Vulture\" anti-materiel rifle and its requisite spotting tools."
+	name = "\improper M707 反器材步枪箱"
+	desc = "内装一把 M707“秃鹫”反器材步枪及所需观测工具。"
 	icon_state = "guncase_blue"
 	storage_slots = 7
 	can_hold = list(
@@ -1150,8 +1150,8 @@
 	new /obj/item/tool/screwdriver(src) // Spotter scope needs a screwdriver to disassemble
 
 /obj/item/storage/box/guncase/vulture/holo_target
-	name = "\improper M707 holo-targetting anti-materiel rifle case"
-	desc = "A gun case containing the M707 \"Vulture\" anti-materiel rifle and its requisite spotting tools. This variant is pre-loaded with <b>IFF-CAPABLE</b> holo-targeting rounds."
+	name = "\improper M707 全息制导反器材步枪箱"
+	desc = "内装 M707“秃鹫”反器材步枪及所需观测工具。这一型预装了<b>具备敌我识别能力</b>的全息制导弹药。"
 
 /obj/item/storage/box/guncase/vulture/holo_target/fill_preset_inventory()
 	var/obj/item/weapon/gun/boltaction/vulture/holo_target/rifle = new(src)

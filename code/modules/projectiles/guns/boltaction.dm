@@ -77,18 +77,18 @@
 
 /obj/item/weapon/gun/boltaction/unique_action(mob/M)
 	if(world.time < (recent_cycle + bolt_delay) )  //Don't spam it.
-		to_chat(M, SPAN_DANGER("You can't cycle the bolt again right now."))
+		to_chat(M, SPAN_DANGER("你暂时还不能再次拉动枪栓。"))
 		return
 
 	bolted = !bolted
 
 	if(bolted)
-		to_chat(M, SPAN_DANGER("You close the bolt of [src]!"))
+		to_chat(M, SPAN_DANGER("你推上了[src]的枪栓！"))
 		playsound(get_turf(src), open_bolt_sound, 15, TRUE, 1)
 		ready_in_chamber()
 		recent_cycle = world.time
 	else
-		to_chat(M, SPAN_DANGER("You open the bolt of [src]!"))
+		to_chat(M, SPAN_DANGER("你拉开了[src]的枪栓！"))
 		playsound(get_turf(src), close_bolt_sound, 65, TRUE, 1)
 		eject_casing()
 		unload_chamber(M)
@@ -99,7 +99,7 @@
 	. = ..()
 
 	if(. && !bolted)
-		to_chat(user, SPAN_WARNING("The bolt is still open, you can't fire [src]."))
+		to_chat(user, SPAN_WARNING("枪栓尚未闭合，无法发射[src]。"))
 		return FALSE
 
 /obj/item/weapon/gun/boltaction/load_into_chamber(mob/user)
@@ -116,23 +116,23 @@
 	user.drop_inv_item_to_loc(magazine, src) //Click!
 	current_mag = magazine
 	replace_ammo(user,magazine)
-	user.visible_message(SPAN_NOTICE("[user] loads [magazine] into [src]!"),
-		SPAN_NOTICE("You load [magazine] into [src]!"), null, 3, CHAT_TYPE_COMBAT_ACTION)
+	user.visible_message(SPAN_NOTICE("[user]将[magazine]装入[src]！"),
+		SPAN_NOTICE("你将[magazine]装入[src]！"), null, 3, CHAT_TYPE_COMBAT_ACTION)
 	if(reload_sound)
 		playsound(user, reload_sound, 25, 1, 5)
 
 
 /obj/item/weapon/gun/boltaction/vulture
-	name = "\improper M707 \"Vulture\" anti-materiel rifle"
-	desc = "The M707 is a crude but highly powerful rifle, designed for disabling lightly armored vehicles and hitting targets inside buildings. Its unwieldy scope and caliber necessitates a spotter to be fully effective, suffering severe scope drift without one."
+	name = "\improper M707“秃鹫”反器材步枪"
+	desc = "M707是一支结构粗糙却威力强大的步枪，专为瘫痪轻型装甲车辆和打击建筑内的目标而设计。笨重的瞄准镜与大口径使它需要观测手配合才能充分发挥效能；没有观测手时，瞄准镜会出现严重漂移。"
 	desc_lore = {"
-		Put into production in 2175 as an economical answer to rising militancy in the Outer Rim, the M707 was derived from jury-rigged anti-materiel rifles that were captured during the Linna 349 campaign.
+		M707 于2175年投产，以较低成本应对外环日益猖獗的武装活动。其设计源自林纳349战役中缴获的临时拼装反器材步枪。
 
-		The rebels (colloquially known among the USCMC as bug-boys and beebops) had achieved extensive success at Neusheune using the aforementioned rifles to pick off incinerator-wielding marines by detonating their napthal fuel tank in the midst of squad formations, subsequently leading to the USCMC designating users of those rifles as high-priority targets, as well as changes in USCMC patrol tactics.
+		叛军被美国殖民地海军陆战队俗称为“虫崽子”和“比波普”。在诺伊绍讷，他们用这种步枪射击携带焚烧器的陆战队员，引爆队列中的凝固汽油燃料罐，取得了显著战果。此后，陆战队将这类步枪的使用者列为优先打击目标，并相应调整了巡逻战术。
 
-		Some of the failings and quirks of the beebops' jury-rigged rifle were quickly noticed by vehicle crews early on in the campaign, as in multiple memoirs the crews mention that: "Once the rain starts, that's when you know you've got an ambush."
+		战役初期，载具乘员很快就发现了这些“比波普”拼装步枪的缺陷与怪癖。多部回忆录都记载过类似的说法：“一听到雨声，就知道中埋伏了。”
 
-		The 'pitter-patter' of 'rain' that the crews heard was in fact multiple rifles failing to penetrate through the vehicle's external armor. Once a number of the anti-materiel rifles were examined, it was deemed a high priority to produce a Corps version. In the process, the rifles were designed for a higher calibre then that of the rebel versions, so the M707 would be capable of penetrating the light vehicle armor of their UPP peers in the event of another Dog War or Tientsin."}
+		乘员听到的“雨点”声，其实是多支步枪击中载具外部装甲却无法击穿的声音。研究了缴获的反器材步枪后，陆战队将研制自用型号列为优先任务。最终设计采用了比叛军版本更大的口径，使 M707 能在犬之战争或天津事件再次发生时，击穿进步人民联盟轻型载具的装甲。"}
 
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi' // overridden with camos
 	icon_state = "vulture"
@@ -204,7 +204,7 @@
 
 /obj/item/weapon/gun/boltaction/vulture/able_to_fire(mob/user)
 	if(!bypass_trait && !HAS_TRAIT(user, TRAIT_VULTURE_USER))
-		to_chat(user, SPAN_WARNING("You don't know how to use this!"))
+		to_chat(user, SPAN_WARNING("你不知道如何使用它！"))
 		return FALSE
 
 	return ..()
@@ -225,7 +225,7 @@
 	for(var/mob/current_mob as anything in get_mobs_in_z_level_range(get_turf(user), fire_message_range) - user)
 		var/relative_dir = Get_Compass_Dir(current_mob, user)
 		var/final_dir = dir2text(relative_dir)
-		to_chat(current_mob, SPAN_HIGHDANGER("You hear a massive boom coming from [final_dir ? "the [final_dir]" : "nearby"]!"))
+		to_chat(current_mob, SPAN_HIGHDANGER("你听到[final_dir ? "[localized_player_label(final_dir)]方" : "附近"]传来一声巨响！"))
 		if(current_mob.client)
 			playsound_client(current_mob.client, 'sound/weapons/gun_vulture_report.ogg', src, 25)
 
@@ -239,7 +239,7 @@
 /// Someone tried to fire this without using a bipod, so we break their arm along with sending them flying backwards
 /obj/item/weapon/gun/boltaction/vulture/proc/fired_without_bipod(mob/living/user)
 	SEND_SIGNAL(src, COMSIG_GUN_VULTURE_FIRED_ONEHAND)
-	to_chat(user, SPAN_HIGHDANGER("You get flung backwards as you fire [src], breaking your firing arm in the process!"))
+	to_chat(user, SPAN_HIGHDANGER("发射[src]时，你被猛烈的后坐力抛向后方，开枪的手臂也被折断了！"))
 	user.apply_effect(0.7, WEAKEN)
 	user.apply_effect(1, SUPERSLOW)
 	user.apply_effect(2, SLOW)
@@ -254,7 +254,7 @@
 	var/direction = REVERSE_DIR(user.dir)
 	if(direction && !step(user, direction))
 		user.animation_attack_on(get_step(user, direction))
-		user.visible_message(SPAN_DANGER("[user] slams into an obstacle!"), SPAN_HIGHDANGER("You slam into an obstacle!"), null, 4, CHAT_TYPE_TAKING_HIT)
+		user.visible_message(SPAN_DANGER("[user]撞上了障碍物！"), SPAN_HIGHDANGER("你撞上了障碍物！"), null, 4, CHAT_TYPE_TAKING_HIT)
 		user.apply_damage(MELEE_FORCE_TIER_2)
 
 	shake_camera(user, 7, 6) // Around 2x worse than getting hit with a heavy round
@@ -281,7 +281,7 @@
 		if(!(limb.status & LIMB_SPLINTED_INDESTRUCTIBLE) && (limb.status & LIMB_SPLINTED)) //If they have it splinted, the splint won't hold.
 			limb.status &= ~LIMB_SPLINTED
 			playsound(user, 'sound/items/splintbreaks.ogg', 20)
-			to_chat(user, SPAN_DANGER("The splint on your [limb.display_name] comes apart under the recoil!"))
+			to_chat(user, SPAN_DANGER("你[localized_player_label(limb.display_name)]上的夹板被后坐力震散了！"))
 			user.pain.apply_pain(PAIN_BONE_BREAK_SPLINTED)
 			user.update_med_icon()
 

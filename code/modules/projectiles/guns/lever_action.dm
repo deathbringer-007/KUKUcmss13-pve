@@ -33,8 +33,8 @@ their unique feature is that a direct hit will buff your damage and firerate
 	var/cur_onehand_chance = 85
 	var/reset_onehand_chance = 85
 	var/hit_buff_reset_cooldown = 1 SECONDS //how much time after a direct hit until streaks reset
-	var/lever_message = "<i>You work the lever.<i>"
-	var/lever_name = "lever" //the thing we use to chamber the next round. Lever, button, etc. for to_chats
+	var/lever_message = "<i>你扳动杠杆。<i>"
+	var/lever_name = "杠杆" //the thing we use to chamber the next round. Lever, button, etc. for to_chats
 	var/buff_fire_reduc = 2
 	var/streak
 
@@ -84,7 +84,7 @@ their unique feature is that a direct hit will buff your damage and firerate
 			cur_onehand_chance = cur_onehand_chance - 20 //gets steadily worse if you spam it
 			return
 		else
-			to_chat(user, SPAN_DANGER("Augh! Your hand catches on the [lever_name]!!"))
+			to_chat(user, SPAN_DANGER("啊！你的手被[lever_name]夹住了！！"))
 			var/obj/limb/O = human_user.get_limb(human_user.hand ? "l_hand" : "r_hand")
 			if(O.status & LIMB_BROKEN)
 				O = human_user.get_limb(user.hand ? "l_arm" : "r_arm")
@@ -102,9 +102,9 @@ their unique feature is that a direct hit will buff your damage and firerate
 
 	else
 		if(streak)
-			to_chat(user, SPAN_BOLDNOTICE("Bullseye! [streak + 1] hits in a row!"))
+			to_chat(user, SPAN_BOLDNOTICE("正中靶心！已连续命中[streak + 1]次！"))
 		else
-			to_chat(user, SPAN_BOLDNOTICE("Bullseye!"))
+			to_chat(user, SPAN_BOLDNOTICE("正中靶心！"))
 		streak++
 		playsound(user, lever_hitsound, 25, FALSE)
 	if(!(flags_gun_lever_action & USES_STREAKS))
@@ -114,7 +114,7 @@ their unique feature is that a direct hit will buff your damage and firerate
 
 /obj/item/weapon/gun/lever_action/proc/apply_hit_buff(mob/user, mob/target, one_hand_lever = FALSE)
 	lever_sound = lever_super_sound
-	lever_message = "<b><i>You quickly work the [lever_name]!<i><b>"
+	lever_message = "<b><i>你迅速扳动[lever_name]！<i><b>"
 	last_fired = world.time - buff_fire_reduc //to shoot the next round faster
 	lever_delay = FIRE_DELAY_TIER_12
 	damage_mult = initial(damage_mult) + BULLET_DAMAGE_MULT_TIER_10
@@ -162,7 +162,7 @@ their unique feature is that a direct hit will buff your damage and firerate
 			playsound(user, reload_sound, 25, TRUE)
 			new_handful.forceMove(get_turf(src))
 		else
-			if(user) to_chat(user, SPAN_WARNING("\The [src] is already empty."))
+			if(user) to_chat(user, SPAN_WARNING("[src]已经空了。"))
 		return
 
 	unload_bullet(user)
@@ -191,7 +191,7 @@ their unique feature is that a direct hit will buff your damage and firerate
 /obj/item/weapon/gun/lever_action/reload(mob/user, obj/item/ammo_magazine/magazine)
 
 	if(!magazine || !istype(magazine,/obj/item/ammo_magazine/handful)) //Can only reload with handfuls.
-		to_chat(user, SPAN_WARNING("You can't use that to reload!"))
+		to_chat(user, SPAN_WARNING("不能用它来装填！"))
 		return
 
 	var/mag_caliber = magazine.default_ammo //Handfuls can get deleted, so we need to keep this on hand for later.
@@ -229,7 +229,7 @@ their unique feature is that a direct hit will buff your damage and firerate
 		return
 	if(levered)
 		if (world.time > (message_cooldown + lever_delay))
-			to_chat(user, SPAN_WARNING("<i>\The [src] already has a bullet in the chamber!<i>"))
+			to_chat(user, SPAN_WARNING("<i>[src]的弹膛里已经有一发子弹了！<i>"))
 			message_cooldown = world.time
 		return
 	if(in_chamber) //eject the chambered round
@@ -262,7 +262,7 @@ their unique feature is that a direct hit will buff your damage and firerate
 		twohand_lever(user)
 		return
 	if(flags_gun_lever_action & MOVES_WHEN_LEVERING)
-		to_chat(user, SPAN_WARNING("<i>You spin \the [src] one-handed! Fuck yeah!<i>"))
+		to_chat(user, SPAN_WARNING("<i>你单手转动[src]！太他妈帅了！<i>"))
 		animation_wrist_flick(src)
 	direct_hit_buff(user, ,TRUE)
 
@@ -279,7 +279,7 @@ their unique feature is that a direct hit will buff your damage and firerate
 
 /obj/item/weapon/gun/lever_action/unload(mob/user)
 	if(levered)
-		to_chat(user, SPAN_WARNING("You open the lever on \the [src]."))
+		to_chat(user, SPAN_WARNING("你打开了[src]的杠杆。"))
 		levered = FALSE
 	return empty_chamber(user)
 
@@ -287,8 +287,8 @@ their unique feature is that a direct hit will buff your damage and firerate
 //===================THE R4T===================\\
 
 /obj/item/weapon/gun/lever_action/r4t
-	name = "R4T lever-action rifle"
-	desc = "This lever-action was designed for small scout operations in harsh environments such as the jungle or particularly windy deserts, as such its internal mechanisms are simple yet robust."
+	name = "R4T杠杆式步枪"
+	desc = "这支杠杆式步枪专为在丛林、强风沙漠等恶劣环境中执行小规模侦察任务而设计，内部机构简洁而坚固。"
 	icon_state = "r4t"
 	item_state = "r4t"
 	flags_equip_slot = SLOT_BACK
@@ -342,8 +342,8 @@ their unique feature is that a direct hit will buff your damage and firerate
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	levering_sprite = null
 	flags_gun_lever_action = USES_STREAKS
-	lever_name = "cartridge"
-	lever_message = "<i>You load another cartridge.<i>"
+	lever_name = "弹药"
+	lever_message = "<i>你又装入一发弹药。<i>"
 	current_mag = /obj/item/ammo_magazine/internal/lever_action/xm88
 	default_caliber = ".458"
 	hit_buff_reset_cooldown = 2 SECONDS //how much time after a direct hit until streaks reset
@@ -443,7 +443,7 @@ their unique feature is that a direct hit will buff your damage and firerate
 
 /obj/item/weapon/gun/lever_action/xm88/apply_hit_buff()
 	lever_sound = lever_super_sound
-	lever_message = "<b><i>You quickly load another [lever_name]!<i><b>"
+	lever_message = "<b><i>你迅速装入另一发[lever_name]！<i><b>"
 	last_fired = world.time - buff_fire_reduc //to shoot the next round faster
 	set_fire_delay(FIRE_DELAY_TIER_3)
 	damage_mult = BASE_BULLET_DAMAGE_MULT + BULLET_DAMAGE_MULT_TIER_4
@@ -480,7 +480,7 @@ their unique feature is that a direct hit will buff your damage and firerate
 
 /obj/item/weapon/gun/lever_action/xm88/unload(mob/user)
 	if(levered)
-		to_chat(user, SPAN_WARNING("You open \the [src]'s breech and take out a round."))
+		to_chat(user, SPAN_WARNING("你打开[src]的枪膛，取出一发子弹。"))
 		levered = FALSE
 	return empty_chamber(user)
 
@@ -489,7 +489,7 @@ their unique feature is that a direct hit will buff your damage and firerate
 	if(!(flags_gun_lever_action & USES_STREAKS))
 		return
 	if(streak > 0)
-		to_chat(user, SPAN_WARNING("[src] beeps as it loses its targeting data, and returns to normal firing procedures."))
+		to_chat(user, SPAN_WARNING("[src]发出哔声，丢失了瞄准数据，并恢复普通射击模式。"))
 	streak = 0
 	lever_sound = initial(lever_sound)
 	lever_message = initial(lever_message)

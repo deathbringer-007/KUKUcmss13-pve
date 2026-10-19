@@ -96,7 +96,7 @@
 
 			playsound(loc, attack.attack_sound, 25, 1)
 
-			visible_message(SPAN_DANGER("[attacking_mob]对[src]使出了[pick(attack.attack_verb)]！"), null, null, 5)
+			visible_message(SPAN_DANGER("[attacking_mob]对[src]使出了[localized_player_label(pick(attack.attack_verb))]！"), null, null, 5)
 
 			raw_damage = attack.damage + extra_cqc_dmg
 			var/final_damage = armor_damage_reduction(GLOB.marine_melee, raw_damage, armor, FALSE) // no penetration from punches
@@ -300,7 +300,7 @@
 				postscript += " <b>（已填塞止血）</b> "
 
 		if(postscript)
-			limb_message += "\t 我的[org.display_name]：[SPAN_WARNING("[english_list(status, final_comma_text = ",")]。[postscript]")]"
+			limb_message += "\t 我的[localized_player_label(org.display_name)]：[SPAN_WARNING("[jointext(status, "、")]。[postscript]")]"
 		else
-			limb_message += "\t 我的[org.display_name]：[status[1] == "正常" ? SPAN_NOTICE("状况良好。") : SPAN_WARNING("[english_list(status, final_comma_text = ",")]。")]"
+			limb_message += "\t 我的[localized_player_label(org.display_name)]：[status[1] == "正常" ? SPAN_NOTICE("状况良好。") : SPAN_WARNING("[jointext(status, "、")]。")]"
 	to_chat(src, examine_block(limb_message.Join("\n")))

@@ -11,7 +11,7 @@
 
 /obj/item/storage/box/donator_kit/New()
 	if(kit_variant)
-		name = "[name] ([kit_variant])"
+		name = "[name]（[localized_player_label(kit_variant)]）"
 	..()
 
 /obj/item/storage/box/donator_kit/fill_preset_inventory()

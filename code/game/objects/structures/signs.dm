@@ -23,7 +23,7 @@
 	else ..()
 
 /obj/item/sign
-	name = "sign"
+	name = "标牌"
 	desc = ""
 	icon = 'icons/obj/structures/props/decals.dmi'
 	w_class = SIZE_MEDIUM //big
@@ -57,32 +57,32 @@
 //=====================//
 
 /obj/structure/sign/nosmoking_1
-	name = "\improper NO SMOKING"
+	name = "\improper 禁止吸烟"
 	desc = "一块写着“禁止吸烟”的警示牌。"
 	icon_state = "nosmoking"
 
 /obj/structure/sign/nosmoking_2
-	name = "\improper NO SMOKING"
+	name = "\improper 禁止吸烟"
 	desc = "一块写着“禁止吸烟”的警示牌。"
 	icon_state = "nosmoking2"
 
 /obj/structure/sign/goldenplaque
-	name = "The Most Robust Men Award for Robustness"
+	name = "强者之最强健奖"
 	desc = "强大并非某个动作或一种生活方式，而是一种精神状态。唯有意志足够坚定，能在危机中挺身而出、从敌人手中救下同伴的人，才称得上真正强大。朋友们，保持强大。"
 	icon_state = "goldenplaque"
 
 /obj/structure/sign/kiddieplaque
-	name = "AI developers plaque"
+	name = "人工智能开发者铭牌"
 	desc = "长长的姓名与职务名单旁画着一个小孩。有人在画像下刻下了\"PACKETS\"。"
 	icon_state = "kiddieplaque"
 
 /obj/structure/sign/arcturianstopsign
-	name = "\improper Arcturian stop sign"
+	name = "\improper 大角星人停车标志"
 	desc = "这是第一排的几个布拉沃队员在上次上岸休假时，从大角星偷回来的停车标志。"
 	icon_state = "arcturian_stop_sign"
 
 /obj/structure/sign/double/maltesefalcon //The sign is 64x32, so it needs two tiles. ;3
-	name = "The Maltese Falcon"
+	name = "马耳他之鹰"
 	desc = "马耳他之鹰太空酒吧餐厅。"
 
 /obj/structure/sign/double/maltesefalcon/left
@@ -99,21 +99,21 @@
 	icon = 'icons/obj/structures/props/banners.dmi'
 
 /obj/structure/sign/banners/happybirthdaysteve
-	name = "\improper Happy Birthday Steve banner"
+	name = "\improper “史蒂夫生日快乐”横幅"
 	desc = "一条看起来很寒酸的纸横幅，祝某个叫史蒂夫的人“生 快乐”，连“日”字都漏了。"
 	icon_state = "birthdaysteve"
 
 /obj/structure/sign/banners/maximumeffort
-	name = "\improper Maximum Effort banner"
+	name = "\improper “全力以赴”横幅"
 	desc = "这条横幅上写着德尔塔小队的格言。前些日子的小队电影之夜放了一部老轰炸机电影，此后陆战队员们便采用了这句格言。"
 	icon_state = "maximumeffort"
 
 /obj/structure/sign/banners/united_americas_flag
-	name = "\improper United Americas flag"
+	name = "\improper 美洲联盟旗帜"
 	desc = "一面美洲联盟旗帜。根据观看者的政治立场，可能激起爱国热情、恐惧或厌恶。"
 	icon_state = "uaflag"
 /obj/structure/sign/banners/united_americas_worn
-	name = "\improper United Americas flag"
+	name = "\improper 美洲联盟旗帜"
 	desc = "一面严重磨损的美洲联盟旗帜。根据观看者的政治立场，可能激起爱国热情、恐惧或厌恶。"
 	icon_state = "uaflag_worn"
 //============//
@@ -124,505 +124,505 @@
 	icon = 'icons/obj/structures/props/flags.dmi'
 
 /obj/structure/sign/flag/upp
-	name = "\improper Union of Progressive Peoples Flag"
-	desc = "Unity through Strength, Freedom through Unity"
+	name = "\improper 进步人民联盟旗帜"
+	desc = "以力量求团结，以团结求自由"
 	icon_state = "upp_flag"
 
 /obj/structure/sign/banners/colonial_marines_flag
-	name = "\improper United States Colonial Marine Corps flag"
-	desc = "A flag of the United States Colonial Marine Corps. Inspires patriotism, fear, or revulsion depending on the viewer's political leanings."
+	name = "\improper 美国殖民地陆战队旗帜"
+	desc = "美国殖民地陆战队旗帜。根据观者的政治倾向，可能激起爱国心、恐惧或厌恶。"
 	icon_state = "cmflag"
 /obj/structure/sign/banners/colonial_marines_flag_worn
-	name = "\improper Worn United States Colonial Marine Corps flag"
-	desc = "A very worn flag of the United States Colonial Marine Corps. Inspires patriotism, fear, or revulsion depending on the viewer's political leanings."
+	name = "\improper 破旧的美国殖民地陆战队旗帜"
+	desc = "非常破旧的美国殖民地陆战队旗帜。根据观者的政治倾向，可能激起爱国心、恐惧或厌恶。"
 	icon_state = "cmflag_worn"
 /obj/structure/sign/banners/twe_flag
-	name = "\improper Three World Empire flag"
-	desc = "A flag of the Three World Empire. Inspires patriotism, fear, or revulsion depending on the viewer's political leanings."
+	name = "\improper 三世界帝国旗帜"
+	desc = "三世界帝国旗帜。根据观者的政治倾向，可能激起爱国心、恐惧或厌恶。"
 	icon_state = "tweflag"
 /obj/structure/sign/banners/twe_worn
-	name = "\improper Worn Three World Empire flag"
-	desc = "A very worn flag of the Three World Empire. Inspires patriotism, fear, or revulsion depending on the viewer's political leanings."
+	name = "\improper 破旧的三世界帝国旗帜"
+	desc = "非常破旧的三世界帝国旗帜。根据观者的政治倾向，可能激起爱国心、恐惧或厌恶。"
 	icon_state = "tweflag_worn"
 /obj/structure/sign/banners/upp_flag
-	name = "\improper Union of Progressive Peoples flag"
-	desc = "A flag of the Union of Progressive Peoples. Inspires patriotism, fear, or revulsion depending on the viewer's political leanings."
+	name = "\improper 进步人民联盟旗帜"
+	desc = "进步人民联盟旗帜。根据观者的政治倾向，可能激起爱国心、恐惧或厌恶。"
 	icon_state = "uppflag"
 /obj/structure/sign/banners/upp_worn
-	name = "\improper Worn Union of Progressive Peoples flag"
-	desc = "A very worn flag of the Union of Progressive Peoples. Inspires patriotism, fear, or revulsion depending on the viewer's political leanings."
+	name = "\improper 破旧的进步人民联盟旗帜"
+	desc = "非常破旧的进步人民联盟旗帜。根据观者的政治倾向，可能激起爱国心、恐惧或厌恶。"
 	icon_state = "uppflag_worn"
 /obj/structure/sign/banners/usa_flag
-	name = "\improper Worn United States of America flag"
-	desc = "A flag of the United States of America. Inspires patriotism, fear, or revulsion depending on the viewer's political leanings."
+	name = "\improper 破旧的美国旗帜"
+	desc = "美国旗帜。根据观者的政治倾向，可能激起爱国心、恐惧或厌恶。"
 	icon_state = "usaflag"
 /obj/structure/sign/banners/usa_worn
-	name = "\improper Worn United States of America flag"
-	desc = "A very worn flag of the United States of America. Inspires patriotism, fear, or revulsion depending on the viewer's political leanings."
+	name = "\improper 破旧的美国旗帜"
+	desc = "非常破旧的美国旗帜。根据观者的政治倾向，可能激起爱国心、恐惧或厌恶。"
 	icon_state = "usaflag_worn"
 /obj/structure/sign/banners/brazil_flag
-	name = "\improper Brazil flag"
-	desc = "A flag of Brazil. Inspires patriotism, fear, but not revulsion, everybody likes Brazil."
+	name = "\improper 巴西旗帜"
+	desc = "巴西旗帜。可能激起爱国心或恐惧，但不会让人厌恶，人人都喜欢巴西。"
 	icon_state = "brazilflag"
 /obj/structure/sign/banners/brazil_worn
-	name = "\improper Worn Brazil flag"
-	desc = "A flag of Brazil. Inspires patriotism, fear, but not revulsion, everybody likes Brazil."
+	name = "\improper 破旧的巴西旗帜"
+	desc = "巴西旗帜。可能激起爱国心或恐惧，但不会让人厌恶，人人都喜欢巴西。"
 	icon_state = "brazilflag_worn"
 //=====================//
 // SEMIOTIC STANDARD  //
 //===================//
 
 /obj/structure/sign/safety
-	name = "sign"
+	name = "标牌"
 	icon = 'icons/obj/structures/props/semiotic_standard.dmi'
-	desc = "A sign denoting Semiotic Standard. The Interstellar Commerce Commission requires that these symbols be placed pretty much everywhere for your safety."
+	desc = "标示标准符号的标牌。星际商业委员会要求几乎所有地方都张贴这些标志，以保障你的安全。"
 	anchored = TRUE
 	opacity = FALSE
 	density = FALSE
 
 /obj/structure/sign/safety/airlock
-	name = "airlock semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of an airlock."
+	name = "气闸标志"
+	desc = "标准符号，表示附近有气闸。"
 	icon_state = "airlock"
 
 /obj/structure/sign/safety/ammunition
-	name = "ammunition storage semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of an ammunition storage."
+	name = "弹药库标志"
+	desc = "标准符号，表示附近有弹药库。"
 	icon_state = "ammo"
 
 /obj/structure/sign/safety/analysis_lab
-	name = "analysis laboratory semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of an analysis laboratory."
+	name = "分析实验室标志"
+	desc = "标准符号，表示附近有分析实验室。"
 	icon_state = "analysislab"
 
 /obj/structure/sign/safety/autodoc
-	name = "autodoc semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of an autodoc."
+	name = "自动医疗舱标志"
+	desc = "标准符号，表示附近有自动医疗舱。"
 	icon_state = "autodoc"
 
 /obj/structure/sign/safety/autoopenclose
-	name = "automatic opener/closer semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of an automatic shutoff valve."
+	name = "自动启闭阀标志"
+	desc = "标准符号，表示附近有自动切断阀。"
 	icon_state = "autoopenclose"
 
 /obj/structure/sign/safety/bathmens
-	name = "men's bathroom semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a men's bathroom."
+	name = "男卫生间标志"
+	desc = "标准符号，表示附近有男卫生间。"
 	icon_state = "bathmens"
 
 /obj/structure/sign/safety/bathunisex
-	name = "unisex bathroom semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a unisex bathroom."
+	name = "通用卫生间标志"
+	desc = "标准符号，表示附近有通用卫生间。"
 	icon_state = "bathunisex"
 
 /obj/structure/sign/safety/bathwomens
-	name = "women's bathroom semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a women's bathroom."
+	name = "女卫生间标志"
+	desc = "标准符号，表示附近有女卫生间。"
 	icon_state = "bathwomens"
 
 /obj/structure/sign/safety/biohazard
-	name = "biohazard semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a biohazard."
+	name = "生物危害标志"
+	desc = "标准符号，表示附近有生物危害。"
 	icon_state = "biohazard"
 
 /obj/structure/sign/safety/biolab
-	name = "biological laboratory semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a biological laboratory."
+	name = "生物实验室标志"
+	desc = "标准符号，表示附近有生物实验室。"
 	icon_state = "biolab"
 
 /obj/structure/sign/safety/bridge
-	name = "bridge semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a starship's bridge."
+	name = "舰桥标志"
+	desc = "标准符号，表示附近有舰桥。"
 	icon_state = "bridge"
 
 /obj/structure/sign/safety/bulkhead_door
-	name = "bulkhead door semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a bulkhead door."
+	name = "舱壁门标志"
+	desc = "标准符号，表示附近有舱壁门。"
 	icon_state = "bulkheaddoor"
 
 /obj/structure/sign/safety/chem_lab
-	name = "chemical laboratory semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a chemical laboratory."
+	name = "化学实验室标志"
+	desc = "标准符号，表示附近有化学实验室。"
 	icon_state = "chemlab"
 
 /obj/structure/sign/safety/coffee
-	name = "coffee semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of coffee: the lifeblood of any starship crew."
+	name = "咖啡标志"
+	desc = "标准符号，表示附近有咖啡——任何星舰船员的命脉。"
 	icon_state = "coffee"
 
 /obj/structure/sign/safety/commline_connection
-	name = "point of connection for a communication line semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a comm line connection."
+	name = "通信线路连接点标志"
+	desc = "标准符号，表示附近有通信线路连接点。"
 	icon_state = "commlineconnection"
 
 /obj/structure/sign/safety/conference_room
-	name = "conference room semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a conference room."
+	name = "会议室标志"
+	desc = "标准符号，表示附近有会议室。"
 	icon_state = "confroom"
 
 /obj/structure/sign/safety/cryo
-	name = "cryogenic vault semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a cryogenics vault."
+	name = "冷冻休眠库标志"
+	desc = "标准符号，表示附近有冷冻休眠库。"
 	icon_state = "cryo"
 
 /obj/structure/sign/safety/debark_lounge
-	name = "debarkation lounge semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a debarkation lounge."
+	name = "离舰休息厅标志"
+	desc = "标准符号，表示附近有离舰休息厅。"
 	icon_state = "debarkationlounge"
 
 /obj/structure/sign/safety/distribution_pipes
-	name = "distribution pipes semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a distribution pipeline."
+	name = "分配管线标志"
+	desc = "标准符号，表示附近有分配管线。"
 	icon_state = "distpipe"
 
 /obj/structure/sign/safety/east
-	name = "\improper East semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of something to the East."
+	name = "\improper 东向标志"
+	desc = "标准符号，表示目标位于东侧。"
 	icon_state = "east"
 
 /obj/structure/sign/safety/electronics
-	name = "astronic systems semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of astronic systems. That's a fancy way of saying electrical systems."
+	name = "星舰电气系统标志"
+	desc = "标准符号，表示附近有星舰电气系统，只是把电气系统说得高级了些。"
 	icon_state = "astronics"
 
 /obj/structure/sign/safety/elevator
-	name = "elevator semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of an elevator."
+	name = "电梯标志"
+	desc = "标准符号，表示附近有电梯。"
 	icon_state = "elevator"
 
 /obj/structure/sign/safety/escapepod
-	name = "escape pod semiotic"
-	desc = "Semiotic Standard denoting an escape pod."
+	name = "逃生舱标志"
+	desc = "标准符号，表示附近有逃生舱。"
 	icon_state = "escapepod"
 
 /obj/structure/sign/safety/exhaust
-	name = "exhaust semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of an engine or generator exhaust."
+	name = "排气口标志"
+	desc = "标准符号，表示附近有引擎或发电机排气口。"
 	icon_state = "exhaust"
 
 /obj/structure/sign/safety/fire_haz
-	name = "fire hazard semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a fire hazard."
+	name = "火灾危险标志"
+	desc = "标准符号，表示附近有火灾危险。"
 	icon_state = "firehaz"
 
 /obj/structure/sign/safety/firingrange
-	name = "firing range semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a live ammunition firing range."
+	name = "实弹射击场标志"
+	desc = "标准符号，表示附近有实弹射击场。"
 	icon_state = "firingrange"
 
 /obj/structure/sign/safety/food_storage
-	name = "organic storage (foodstuffs) semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of unrefrigerated food storage."
+	name = "常温食品库标志"
+	desc = "标准符号，表示附近有未冷藏食品储存区。"
 	icon_state = "foodstorage"
 
 /obj/structure/sign/safety/galley
-	name = "galley semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a galley."
+	name = "厨房标志"
+	desc = "标准符号，表示附近有厨房。"
 	icon_state = "galley"
 
 /obj/structure/sign/safety/hazard
-	name = "hazard semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a hazard. Watch out!"
+	name = "危险标志"
+	desc = "标准符号，表示附近有危险。小心！"
 	icon_state = "hazard"
 
 /obj/structure/sign/safety/high_rad
-	name = "high radioactivity semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a highly radioactive area."
+	name = "高放射性区域标志"
+	desc = "标准符号，表示附近有高放射性区域。"
 	icon_state = "highrad"
 
 /obj/structure/sign/safety/high_voltage
-	name = "high voltage semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a high voltage electrical current."
+	name = "高压电标志"
+	desc = "标准符号，表示附近有高压电流。"
 	icon_state = "highvoltage"
 
 /obj/structure/sign/safety/hvac
-	name = "\improper HVAC semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of...an HVAC system. This sign must have been updated to the new standard."
+	name = "\improper 暖通空调标志"
+	desc = "标准符号，表示附近有……暖通空调系统。这块牌子一定已更新为新标准。"
 	icon_state = "hvac"
 
 /obj/structure/sign/safety/hvac_old
-	name = "\improper HVAC semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of an HVAC system. This sign is still using the old standard."
+	name = "\improper 暖通空调标志"
+	desc = "标准符号，表示附近有暖通空调系统。这块牌子仍采用旧标准。"
 	icon_state = "hvacold"
 
 /obj/structure/sign/safety/intercom
-	name = "intercom semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of an intercom."
+	name = "对讲机标志"
+	desc = "标准符号，表示附近有对讲机。"
 	icon_state = "comm"
 
 /obj/structure/sign/safety/ladder
-	name = "ladder semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a ladder."
+	name = "梯子标志"
+	desc = "标准符号，表示附近有梯子。"
 	icon_state = "ladder"
 
 /obj/structure/sign/safety/laser
-	name = "laser semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of lasers. It's usually not as cool as it sounds."
+	name = "激光标志"
+	desc = "标准符号，表示附近有激光。通常没听起来那么酷。"
 	icon_state = "laser"
 
 /obj/structure/sign/safety/life_support
-	name = "life support system semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a life support system."
+	name = "生命维持系统标志"
+	desc = "标准符号，表示附近有生命维持系统。"
 	icon_state = "lifesupport"
 
 /obj/structure/sign/safety/maint
-	name = "maintenance semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of maintenance access."
+	name = "维护通道标志"
+	desc = "标准符号，表示附近有维护通道。"
 	icon_state = "maint"
 
 /obj/structure/sign/safety/manualopenclose
-	name = "manual opener/closer semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a manual shutoff valve."
+	name = "手动启闭阀标志"
+	desc = "标准符号，表示附近有手动启闭阀。"
 	icon_state = "manualopenclose"
 
 /obj/structure/sign/safety/med_cryo
-	name = "medical cryostasis vault semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a medical cryostasis vault."
+	name = "医用低温静滞舱标志"
+	desc = "标准符号，表示附近有医用低温静滞舱。"
 	icon_state = "medcryo"
 
 /obj/structure/sign/safety/med_life_support
-	name = "medical life support semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a life support system for a medbay."
+	name = "医疗生命维持系统标志"
+	desc = "标准符号，表示附近有医疗区生命维持系统。"
 	icon_state = "medlifesupport"
 
 /obj/structure/sign/safety/medical
-	name = "medical semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a medbay."
+	name = "医疗区标志"
+	desc = "标准符号，表示附近有医疗区。"
 	icon_state = "medical"
 
 /obj/structure/sign/safety/nonpress
-	name = "non-pressurized area beyond semiotic"
-	desc = "Semiotic Standard denoting that the area beyond isn't pressurized."
+	name = "前方无压区域标志"
+	desc = "标准符号，表示前方区域未加压。"
 	icon_state = "nonpressarea"
 
 /obj/structure/sign/safety/nonpress_ag
-	name = "artificial gravity area, non-pressurized, suit required semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of an area with artificial gravity lacking in pressurization."
+	name = "有人工重力的无压区域，需穿压力服标志"
+	desc = "标准符号，表示附近区域有人工重力，但未加压。"
 	icon_state = "nonpressag"
 
 /obj/structure/sign/safety/nonpress_0g
-	name = "non-pressurized area, no gravity, suit required semiotic"
-	desc = "Semiotic Standard denoting that the area beyond isn't pressurized and has no artificial gravity."
+	name = "无重力无压区域，需穿压力服标志"
+	desc = "标准符号，表示前方区域未加压，且无人工重力。"
 	icon_state = "nonpresszerog"
 
 /obj/structure/sign/safety/north
-	name = "\improper North semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of something to the North."
+	name = "\improper 北向标志"
+	desc = "标准符号，表示目标位于北侧。"
 	icon_state = "north"
 
 /obj/structure/sign/safety/opens_up
-	name = "opens upwards semiotic"
-	desc = "Semiotic Standard denoting the nearby door opens upwards."
+	name = "向上开启标志"
+	desc = "标准符号，表示附近的门向上开启。"
 	icon_state = "opensup"
 
 /obj/structure/sign/safety/outpatient
-	name = "outpatient clinic semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of an outpatient clinic."
+	name = "门诊标志"
+	desc = "标准符号，表示附近有门诊。"
 	icon_state = "outpatient"
 
 /obj/structure/sign/safety/fibre_optics
-	name = "photonics systems (fibre optics) semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of fibre optics lines."
+	name = "光子系统（光纤）标志"
+	desc = "标准符号，表示附近有光纤线路。"
 	icon_state = "fibreoptic"
 
 /obj/structure/sign/safety/press_area_ag
-	name = "pressurized with artificial gravity semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a pressurized area without artificial gravity."
+	name = "有人工重力的加压区域标志"
+	desc = "标准符号，表示附近有加压但无人工重力的区域。"
 	icon_state = "pressareaag"
 
 /obj/structure/sign/safety/press_area
-	name = "pressurized area semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a pressurized area."
+	name = "加压区域标志"
+	desc = "标准符号，表示附近有加压区域。"
 	icon_state = "pressarea"
 
 /obj/structure/sign/safety/rad_haz
-	name = "radiation hazard semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a radiation hazard."
+	name = "辐射危险标志"
+	desc = "标准符号，表示附近有辐射危险。"
 	icon_state = "radhaz"
 
 /obj/structure/sign/safety/rad_shield
-	name = "area shielded from radiation semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of an area shielded from radiation."
+	name = "辐射屏蔽区域标志"
+	desc = "标准符号，表示附近有辐射屏蔽区域。"
 	icon_state = "radshield"
 
 /obj/structure/sign/safety/radio_rad
-	name = "radiation of radio waves semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of radiation from a radio tower."
+	name = "无线电辐射标志"
+	desc = "标准符号，表示附近有无线电塔产生的辐射。"
 	icon_state = "radiorad"
 
 /obj/structure/sign/safety/reception
-	name = "reception semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a reception area."
+	name = "接待区标志"
+	desc = "标准符号，表示附近有接待区。"
 	icon_state = "reception"
 
 /obj/structure/sign/safety/reduction
-	name = "reduction dilation of area semiotic"
-	desc = "Semiotic Standard denoting that the area gets smaller ahead."
+	name = "区域收窄标志"
+	desc = "标准符号，表示前方空间收窄。"
 	icon_state = "reduction"
 
 /obj/structure/sign/safety/ref_bio_storage
-	name = "refrigerated biological storage semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of refrigerated biological storage."
+	name = "冷藏生物材料库标志"
+	desc = "标准符号，表示附近有冷藏生物材料库。"
 	icon_state = "refbiostorage"
 
 /obj/structure/sign/safety/ref_chem_storage
-	name = "refrigerated chemical storage semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of refrigerated chemical storage."
+	name = "冷藏化学品库标志"
+	desc = "标准符号，表示附近有冷藏化学品库。"
 	icon_state = "refchemstorage"
 
 /obj/structure/sign/safety/restrictedarea
-	name = "restricted area semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a restricted area."
+	name = "限制区域标志"
+	desc = "标准符号，表示附近有限制区域。"
 	icon_state = "restrictedarea"
 
 /obj/structure/sign/safety/fridge
-	name = "refrigerated storage (organic foodstuffs) semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a fridge."
+	name = "冷藏食品库标志"
+	desc = "标准符号，表示附近有冰箱。"
 	icon_state = "fridge"
 
 /obj/structure/sign/safety/refridgeration
-	name = "refrigeration semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of non-food refrigeration."
+	name = "制冷标志"
+	desc = "标准符号，表示附近有非食品制冷设施。"
 	icon_state = "refridgeration"
 
 /obj/structure/sign/safety/rewire
-	name = "rewire system semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a rewire system."
+	name = "重接线系统标志"
+	desc = "标准符号，表示附近有重接线系统。"
 	icon_state = "rewire"
 
 /obj/structure/sign/safety/security
-	name = "security semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of law enforcement or a security force."
+	name = "安保标志"
+	desc = "标准符号，表示附近有执法或安保部队。"
 	icon_state = "security"
 
 /obj/structure/sign/safety/south
-	name = "\improper South semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of something to the South."
+	name = "\improper 南向标志"
+	desc = "标准符号，表示目标位于南侧。"
 	icon_state = "south"
 
 /obj/structure/sign/safety/stairs
-	name = "stairs semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a staircase."
+	name = "楼梯标志"
+	desc = "标准符号，表示附近有楼梯。"
 	icon_state = "stairs"
 
 /obj/structure/sign/safety/storage
-	name = "storage semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a general dry storage room."
+	name = "储物间标志"
+	desc = "标准符号，表示附近有普通干货储藏室。"
 	icon_state = "storage"
 
 /obj/structure/sign/safety/suit_storage
-	name = "pressure suit locker semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a pressure suit storage locker."
+	name = "压力服柜标志"
+	desc = "标准符号，表示附近有压力服柜。"
 	icon_state = "suitstorage"
 
 /obj/structure/sign/safety/synth_storage
-	name = "synthetic storage semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a synthetic unit storage room."
+	name = "合成人储藏室标志"
+	desc = "标准符号，表示附近有合成人储藏室。"
 	icon_state = "synthstorage"
 
 /obj/structure/sign/safety/terminal
-	name = "computer terminal semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a computer terminal."
+	name = "计算机终端标志"
+	desc = "标准符号，表示附近有计算机终端。"
 	icon_state = "terminal"
 
 /obj/structure/sign/safety/tram
-	name = "tram line semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a tram line."
+	name = "有轨电车线路标志"
+	desc = "标准符号，表示附近有有轨电车线路。"
 	icon_state = "tramline"
 
 /obj/structure/sign/safety/twilight_zone_terminator
-	name = "twilight zone terminator semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of a twilight zone terminator. It's way less cool than it sounds."
+	name = "晨昏分界线标志"
+	desc = "标准符号，表示附近有晨昏分界线，远没听起来那么酷。"
 	icon_state = "twilightzoneterminator"
 
 /obj/structure/sign/safety/water
-	name = "water semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of water."
+	name = "水标志"
+	desc = "标准符号，表示附近有水。"
 	icon_state = "water"
 
 /obj/structure/sign/safety/waterhazard
-	name = "water hazard semiotic"
-	desc = "Semiotic Standard denoting a water hazard. Keep electronics away."
+	name = "涉水危险标志"
+	desc = "标准符号，表示有涉水危险，请让电子设备远离。"
 	icon_state = "waterhaz"
 
 /obj/structure/sign/safety/west
-	name = "\improper West semiotic"
-	desc = "Semiotic Standard denoting the nearby presence of something to the West."
+	name = "\improper 西向标志"
+	desc = "标准符号，表示目标位于西侧。"
 	icon_state = "west"
 
 /obj/structure/sign/safety/zero_g
-	name = "artificial gravity absent semiotic"
-	desc = "Semiotic Standard denoting the nearby lack of artificial gravity."
+	name = "无人工重力标志"
+	desc = "标准符号，表示附近缺乏人工重力。"
 	icon_state = "zerog"
 
 /obj/structure/sign/safety/flightcontrol
-	name = "\improper flight control semiotic"
-	desc = "Semiotic Standard denoting an area used by or for flight control systems."
+	name = "\improper 飞行控制标志"
+	desc = "标准符号，表示用于飞行控制系统的区域。"
 	icon_state = "flightcontrol"
 
 /obj/structure/sign/safety/airtraffictower
-	name = "\improper air traffic tower semiotic"
-	desc = "Semiotic Standard denoting an air traffic tower nearby."
+	name = "\improper 空管塔台标志"
+	desc = "标准符号，表示附近有空管塔台。"
 	icon_state = "airtraffictower"
 
 /obj/structure/sign/safety/luggageclaim
-	name = "\improper luggage claim semiotic"
-	desc = "Semiotic Standard denoting the presecense of a luggage claim area nearby."
+	name = "\improper 行李提取区标志"
+	desc = "标准符号，表示附近有行李提取区。"
 	icon_state = "luggageclaim"
 
 /obj/structure/sign/safety/landingzone
-	name = "\improper landing zone semiotic"
-	desc = "Semiotic Standard denoting the presecense of a landing zone nearby."
+	name = "\improper 着陆区标志"
+	desc = "标准符号，表示附近有着陆区。"
 	icon_state = "landingzone"
 
 /obj/structure/sign/safety/zero
-	name = "zero semiotic"
-	desc = "Semiotic Standard denoting the number zero."
+	name = "数字 0 标志"
+	desc = "表示数字 0 的标准符号。"
 	icon_state = "0"
 
 /obj/structure/sign/safety/one
-	name = "one semiotic"
-	desc = "Semiotic Standard denoting the number one."
+	name = "数字 1 标志"
+	desc = "表示数字 1 的标准符号。"
 	icon_state = "1"
 
 /obj/structure/sign/safety/two
-	name = "two semiotic"
-	desc = "Semiotic Standard denoting the number two."
+	name = "数字 2 标志"
+	desc = "表示数字 2 的标准符号。"
 	icon_state = "2"
 
 /obj/structure/sign/safety/three
-	name = "three semiotic"
-	desc = "Semiotic Standard denoting the number three."
+	name = "数字 3 标志"
+	desc = "表示数字 3 的标准符号。"
 	icon_state = "3"
 
 /obj/structure/sign/safety/four
-	name = "four semiotic"
-	desc = "Semiotic Standard denoting the number four."
+	name = "数字 4 标志"
+	desc = "表示数字 4 的标准符号。"
 	icon_state = "4"
 
 /obj/structure/sign/safety/five
-	name = "five semiotic"
-	desc = "Semiotic Standard denoting the number five."
+	name = "数字 5 标志"
+	desc = "表示数字 5 的标准符号。"
 	icon_state = "5"
 
 /obj/structure/sign/safety/six
-	name = "six semiotic"
-	desc = "Semiotic Standard denoting the number six."
+	name = "数字 6 标志"
+	desc = "表示数字 6 的标准符号。"
 	icon_state = "6"
 
 /obj/structure/sign/safety/seven
-	name = "seven semiotic"
-	desc = "Semiotic Standard denoting the number seven."
+	name = "数字 7 标志"
+	desc = "表示数字 7 的标准符号。"
 	icon_state = "7"
 
 /obj/structure/sign/safety/eight
-	name = "eight semiotic"
-	desc = "Semiotic Standard denoting the number eight."
+	name = "数字 8 标志"
+	desc = "表示数字 8 的标准符号。"
 	icon_state = "8"
 
 /obj/structure/sign/safety/nine
-	name = "nine semiotic"
-	desc = "Semiotic Standard denoting the number nine."
+	name = "数字 9 标志"
+	desc = "表示数字 9 的标准符号。"
 	icon_state = "9"
 
 //===================//
@@ -630,80 +630,80 @@
 //=================//
 
 /obj/structure/sign/ROsign
-	name = "\improper USCM Requisitions Office Guidelines"
-	desc = " 1. You are not entitled to service or equipment. Attachments are a privilege, not a right.\n 2. You must be fully dressed to obtain service. Cryosleep underwear is non-permissible.\n 3. The Quartermaster has the final say and the right to decline service. Only the Acting Commanding Officer may override their decisions.\n 4. Please treat your Requsitions staff with respect. They work hard."
+	name = "\improper 美国殖民地陆战队军需处守则"
+	desc = "1. 服务与装备并非你理所当然享有的权利，配件是待遇，不是权利。\n2. 必须穿戴整齐才可接受服务，不得只穿冷冻休眠内衣。\n3. 军需官拥有最终决定权，可拒绝服务。只有代理舰长能推翻其决定。\n4. 请尊重军需人员，他们工作很辛苦。"
 	icon_state = "roplaque"
 
 /obj/structure/sign/ROcreed
-	name = "\improper QMC Creed Plaque"
-	desc = "The short version of the Quartermaster Creed made by the US Quartermaster Corps, this on is purely decorative and ceremonial version which is much shorter and doesn't include more modern edits."
-	desc_lore = {"I am Quartermaster
-		My story is enfolded in the history of this nation.
-		Sustainer of Armies...
+	name = "\improper 军需兵团信条铭牌"
+	desc = "美国军需兵团制定的军需信条简版。这是纯装饰与礼仪用途的缩略版本，篇幅更短，也不含较新的修订内容。"
+	desc_lore = {"我是军需官
+		我的故事，深藏于这个国家的历史。
+		军队的供养者……
 
-		My forges burned at Valley Forge.
-		Down frozen, rutted roads my oxen hauled
-		the meager foods a bankrupt Congress sent me...
-		Scant rations for the cold and starving troops,
-		Gunpowder, salt, and lead.
+		我的熔炉曾在福吉谷燃烧。
+		我的牛车沿冰封而车辙纵横的道路，
+		运送破产国会拨给我的微薄粮食……
+		为饥寒交迫的士兵送去稀少口粮，
+		还有火药、盐与铅。
 
-		In 1812 we sailed to war in ships my boatwrights built.
-		I fought beside you in the deserts of our great Southwest.
-		My pack mules perished seeking water holes,
-		And I went on with camels.
-		I gave flags to serve.
-		The medals and crest you wear are my design.
+		1812 年，我们乘着我的船匠造出的船赴战。
+		在广袤西南的沙漠里，我与你并肩作战。
+		我的骡队在寻找水源时倒下，
+		我便牵着骆驼继续前行。
+		我授予旗帜，供人效忠。
+		你佩戴的勋章与徽记，出自我的设计。
 
-		Since 1862, I have sought our fallen brothers
-		from Private to President.
-		In war or peace I bring them home
-		And lay them gently down in fields of honor.
+		自 1862 年起，我一直寻回阵亡的兄弟，
+		从列兵到总统。
+		无论战争还是和平，我都带他们回家，
+		将他们轻轻安放在荣誉之地。
 
-		Provisioner, transporter.
-		In 1898 I took you to Havana Harbor and the Philippines.
-		I brought you tents, your khaki cloth for uniforms.
-		When yellow fever struck, I brought the mattresses you lay upon.
+		我是补给者，也是运输者。
+		1898 年，我带你们前往哈瓦那港与菲律宾。
+		我送来帐篷，送来缝制制服的卡其布。
+		黄热病来袭时，我送来了你躺着的床垫。
 
-		In 1917, we crossed the ocean to fight in the trenches and fields of France,
-		New weapons, training, technologies, and tactics for the Great War.
-		But always the need for food, water, ammunition, and now fuel.
+		1917 年，我们横渡海洋，在法国的战壕与田野奋战，
+		以新的武器、训练、技术与战术投入大战。
+		但粮食、水与弹药始终不可或缺，如今又多了燃料。
 
-		We shed first blood together at Pearl Harbor and Corregidor.
-		Then begin the long march to Victory - Guadalcanal and North Africa, Sicily and the Solomons.
-		I was there with you at Omaha Beach on D-Day and even the night before from Glider and Parachute.
-		Across Europe and the Pacific, I drove and dug and fought till the job was done.
+		我们一同在珍珠港和科雷希多初次流血。
+		随后踏上漫长的胜利征程——瓜达尔卡纳尔与北非，西西里与所罗门群岛。
+		登陆日，我与你同在奥马哈海滩；前一夜，我就已乘滑翔机与降落伞抵达。
+		遍历欧洲与太平洋，我驾驶、挖掘、战斗，直到任务完成。
 
-		When war came to the Peninsula in 1950, it was my 'chutes that filled the grey Korean skies.
-		From the perimeter at Pusan to the cold roads of the Chosin, I was there.
-		In 1965, I established the fire bases and depots across South Vietnam,
-		The Hueys and Chinooks carried my supplies forward.
+		1950 年，战争降临半岛，我的降落伞铺满朝鲜灰色天空。
+		从釜山防线到长津湖冰冷道路，我始终在那里。
+		1965 年，我在南越各处建立火力基地与补给站，
+		休伊与奇努克将我的补给送往前线。
 
-		I AM QUARTERMASTER.
-		I can shape the course of combat,
-		Change the outcome of battle.
-		Look to me: Sustainer of Armies...Since 1775.
+		我是军需官。
+		我能塑造战斗的进程，
+		改变战役的结局。
+		Look to me: 军队的供养者……Since 1775.
 
-		I AM QUARTERMASTER. I AM PROUD."}
+		我是军需官。我为此自豪。"}
 	icon_state = "rocreed"
 
 /obj/structure/sign/prop1
-	name = "\improper USCM Poster"
-	desc = "The symbol of the United States Colonial Marines corps."
+	name = "\improper 美国殖民地陆战队海报"
+	desc = "美国殖民地陆战队的标志。"
 	icon_state = "prop1"
 
 /obj/structure/sign/prop2
-	name = "\improper USCM Poster"
-	desc = "A deeply faded poster of a group of glamorous Colonial Marines in uniform. Probably taken pre-Alpha."
+	name = "\improper 美国殖民地陆战队海报"
+	desc = "一群穿着制服、英姿飒爽的殖民地陆战队员的褪色海报，大概拍摄于 Alpha 测试之前。"
 	icon_state = "prop2"
 
 /obj/structure/sign/prop3
-	name = "\improper USCM Poster"
-	desc = "An old recruitment poster for the USCM. Looking at it floods you with a mixture of pride and sincere regret."
+	name = "\improper 美国殖民地陆战队海报"
+	desc = "美国殖民地陆战队的旧招募海报。看着它，自豪与真切的懊悔一同涌上心头。"
 	icon_state = "prop3"
 
 
 /obj/structure/sign/catclock
-	name = "cat clock"
-	desc = "An unbelievably creepy cat clock that surveys the room with every tick and every tock."
+	name = "猫咪时钟"
+	desc = "诡异得难以置信的猫咪时钟，随着每一声滴答打量整个房间。"
 	icon = 'icons/obj/structures/props/catclock.dmi'
 	icon_state = "cat_clock_motion"

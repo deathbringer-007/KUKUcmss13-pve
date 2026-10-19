@@ -45,7 +45,7 @@
 			return ..()
 		amount_per_transfer_from_this = next_in_list(amount_per_transfer_from_this, possible_transfer_amounts)
 		playsound(loc, 'sound/items/Screwdriver2.ogg', 20, 1, 3)
-		to_chat(user, SPAN_NOTICE("You set [src]'s dose to [amount_per_transfer_from_this] units."))
+		to_chat(user, SPAN_NOTICE("你将[src]每次的注射量设为[amount_per_transfer_from_this]单位。"))
 		return TRUE
 	return ..()
 
@@ -72,7 +72,7 @@
 	if(H.action_busy)
 		return
 	if(!skillcheck(H, SKILL_MEDICAL, SKILL_MEDICAL_TRAINED))
-		to_chat(H, SPAN_WARNING("You aren't experienced enough to load this any faster."))
+		to_chat(H, SPAN_WARNING("你的经验不足，无法更快地装填。"))
 		return
 	if(mag)
 		if(src == H.get_active_hand() && !H.get_inactive_hand())
@@ -80,9 +80,9 @@
 		H.put_in_hands(mag)
 		playsound(loc, 'sound/items/Screwdriver2.ogg', 25, 1, 6)
 		hypounload()
-		to_chat(H, SPAN_NOTICE("You begin swapping vials."))
+		to_chat(H, SPAN_NOTICE("你开始更换小药瓶。"))
 	else
-		to_chat(H, SPAN_NOTICE("You begin loading a vial into [src]."))
+		to_chat(H, SPAN_NOTICE("你开始向[src]中装入小药瓶。"))
 	if(do_after(H, 1.25 SECONDS, INTERRUPT_ALL, BUSY_ICON_FRIENDLY) && H.Adjacent(V))
 		if(isstorage(V.loc))
 			var/obj/item/storage/S = V.loc
@@ -94,11 +94,11 @@
 /obj/item/reagent_container/hypospray/attackby(obj/item/B, mob/living/user)
 	if(magfed && !mag) //Is there a vial?
 		if(istype(B,/obj/item/reagent_container/glass/beaker/vial) && src == user.get_inactive_hand()) //Is this a new vial being inserted into a hypospray held in the other hand?
-			to_chat(user, SPAN_NOTICE("You add \the [B] to [src]."))
+			to_chat(user, SPAN_NOTICE("你将[B]装入[src]。"))
 			user.drop_inv_item_to_loc(B, src)
 			hypoload(B)
 		else
-			to_chat(user, SPAN_DANGER("[src] has no vial.")) //Can't fill a hypo with no storage.
+			to_chat(user, SPAN_DANGER("[src]没有装小药瓶。")) //Can't fill a hypo with no storage.
 		return TRUE
 	return ..()
 
@@ -131,18 +131,18 @@
 		return
 	if(istype(target,/obj/structure/reagent_dispensers)) //Stolen from beaker code, receive only - highly doubt anyone would intentionally use a hypo to fill a reagent tank.
 		if(!mag)
-			to_chat(user, SPAN_DANGER("[src] has no vial."))
+			to_chat(user, SPAN_DANGER("[src]没有装小药瓶。"))
 		else
 			var/obj/structure/reagent_dispensers/B = target
 			if(B.dispensing)
 				if(!B.reagents || !B.reagents.total_volume)
-					to_chat(user, SPAN_WARNING("[B] is empty."))
+					to_chat(user, SPAN_WARNING("[B]是空的。"))
 					return
 				var/amount_transferred = B.reagents.trans_to(src, B.amount_per_transfer_from_this)
 				if(!amount_transferred)
-					to_chat(user, SPAN_WARNING("[src] is already full."))
+					to_chat(user, SPAN_WARNING("[src]已经装满。"))
 				else
-					to_chat(user, SPAN_NOTICE("You fill [src] with [amount_transferred] units from [B]."))
+					to_chat(user, SPAN_NOTICE("你从[B]中向[src]补充了[amount_transferred]单位。"))
 		return
 	//Tac reload, hypo initiating
 	if(istype(target, /obj/item/reagent_container/glass/beaker/vial))
@@ -155,24 +155,24 @@
 			hypotacreload(dropping,user)
 			return
 		else
-			to_chat(user, SPAN_WARNING("[src] must be in your hand to do that."))
+			to_chat(user, SPAN_WARNING("你必须将[src]拿在手中才能这样做。"))
 	. = ..()
 
 /obj/item/reagent_container/hypospray/get_examine_text(mob/user)
 	. = ..()
 	if(magfed)
 		if(mag)
-			. += SPAN_INFO("It is loaded with \a [mag], containing [reagents.total_volume] units.")
+			. += SPAN_INFO("其中装有[mag]，内含[reagents.total_volume]单位药剂。")
 		else
-			. += SPAN_INFO("It is unloaded.")
-		. += SPAN_INFO("It is set to administer [amount_per_transfer_from_this] units per dose.")
+			. += SPAN_INFO("其中没有装小药瓶。")
+		. += SPAN_INFO("当前每次注射[amount_per_transfer_from_this]单位。")
 
 /obj/item/reagent_container/hypospray/attack(mob/living/M, mob/living/user)
 	if(magfed && !mag)
-		to_chat(user, SPAN_DANGER("[src] has no vial!"))
+		to_chat(user, SPAN_DANGER("[src]没有装小药瓶！"))
 		return
 	if(!reagents || !reagents.total_volume)
-		to_chat(user, SPAN_DANGER("[src] is empty."))
+		to_chat(user, SPAN_DANGER("[src]是空的。"))
 		return
 
 	if(!istype(M))
@@ -182,11 +182,11 @@
 		return
 
 	if(skilllock == SKILL_MEDICAL_TRAINED && !skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_TRAINED))
-		user.visible_message(SPAN_WARNING("[user] fumbles with [src]..."), SPAN_WARNING("You fumble with [src]..."))
+		user.visible_message(SPAN_WARNING("[user]笨拙地摆弄着[src]……"), SPAN_WARNING("你笨拙地摆弄着[src]……"))
 		if(!do_after(user, 30, INTERRUPT_ALL, BUSY_ICON_FRIENDLY, M, INTERRUPT_MOVED, BUSY_ICON_MEDICAL))
 			return
 	else if(!skillcheck(user, SKILL_MEDICAL, skilllock))
-		to_chat(user, SPAN_WARNING("[src] beeps and refuses to inject: Insufficient training or clearance!"))
+		to_chat(user, SPAN_WARNING("[src]发出哔声并拒绝注射：训练或权限不足！"))
 		return
 	var/toxin = 0
 	for(var/datum/reagent/R in reagents.reagent_list)
@@ -203,13 +203,13 @@
 		M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Used CQC skill to stop [key_name(user)] injecting them.</font>")
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Was stopped from injecting [key_name(M)] by their cqc skill.</font>")
 		msg_admin_attack("[key_name(user)] got robusted by the CQC of [key_name(M)] in [get_area(user)] ([user.loc.x],[user.loc.y],[user.loc.z]).", user.loc.x, user.loc.y, user.loc.z)
-		M.visible_message(SPAN_DANGER("[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!"), \
-			SPAN_WARNING("You knock [user] to the ground before they inject you!"), null, 5)
+		M.visible_message(SPAN_DANGER("[M]本能地出手，在[user]使用[src]之前将其击倒！"), \
+			SPAN_WARNING("你在[user]给你注射前将其击倒！"), null, 5)
 		playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 		return 0
 
-	to_chat(user, SPAN_NOTICE(" You inject [M] with [src]."))
-	to_chat(M, SPAN_WARNING("You feel a tiny prick!"))
+	to_chat(user, SPAN_NOTICE("你用[src]给[M]注射。"))
+	to_chat(M, SPAN_WARNING("你感到轻微的刺痛！"))
 	playsound(loc, injectSFX, injectVOL, 1)
 	SEND_SIGNAL(M, COMSIG_LIVING_HYPOSPRAY_INJECTED, src)
 
@@ -226,9 +226,9 @@
 
 		var/trans = reagents.trans_to(M, amount_per_transfer_from_this)
 		if(mag)
-			to_chat(user, SPAN_NOTICE("[trans] units injected. [reagents.total_volume] units remaining in [src]'s [mag.name]."))
+			to_chat(user, SPAN_NOTICE("已注射[trans]单位。[src]的[mag.name]中还剩[reagents.total_volume]单位。"))
 		else
-			to_chat(user, SPAN_NOTICE("[trans] units injected. [reagents.total_volume] units remaining in [src]."))
+			to_chat(user, SPAN_NOTICE("已注射[trans]单位。[src]中还剩[reagents.total_volume]单位。"))
 	return TRUE
 
 /obj/item/reagent_container/hypospray/Initialize()
@@ -246,10 +246,10 @@
 	starting_vial = /obj/item/reagent_container/glass/beaker/vial/epinephrine
 
 /obj/item/reagent_container/hypospray/sedative
-	name = "Sedative Hypospray"
+	name = "镇静剂无针注射器"
 	starting_vial = /obj/item/reagent_container/glass/beaker/vial/sedative
 
 /obj/item/reagent_container/hypospray/kilodermlipo
-	name = "Hypospray (temperature stablization)"
-	desc = "Contains leporazine - used to stabilize body temperature, kelotane and dermaline - used to rapidly heal burns. Filled in a 1:3:2 ratio."
+	name = "无针注射器（体温稳定）"
+	desc = "内含用于稳定体温的利波拉嗪，以及用于快速治疗烧伤的克洛坦和德玛林，三者比例为 1:3:2。"
 	starting_vial = /obj/item/reagent_container/glass/beaker/vial/kilodermlipo

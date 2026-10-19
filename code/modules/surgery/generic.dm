@@ -5,7 +5,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery/open_incision
-	name = "Open Incision"
+	name = "打开切口"
 	priority = SURGERY_PRIORITY_MAXIMUM
 	possible_locs = ALL_LIMBS
 	invasiveness = list(SURGERY_DEPTH_SURFACE)
@@ -22,8 +22,8 @@
 //------------------------------------
 
 /datum/surgery_step/incision
-	name = "Make Incision"
-	desc = "make an incision"
+	name = "切开皮肤"
+	desc = "切开皮肤"
 	tools = SURGERY_TOOLS_INCISION
 	time = 2 SECONDS
 	preop_sound = 'sound/surgery/scalpel1.ogg'
@@ -87,24 +87,24 @@
 		if(/obj/item/tool/surgery/scalpel/manager)
 			user.affected_message(target,
 				SPAN_WARNING("系统迸出火花，你的手猛地一抖，[tool]在[target]的[surgery.affected_limb.display_name]上撕开了一个可怕的洞！"),
-				SPAN_WARNING("[user]'s hand jolts as the system sparks, ripping a gruesome hole in your [surgery.affected_limb.display_name] with \the [tool]!"),
-				SPAN_WARNING("[user]'s hand jolts as the system sparks, ripping a gruesome hole in [target]'s [surgery.affected_limb.display_name] with \the [tool]!"))
+				SPAN_WARNING("系统迸出火花，[user]的手猛地一抖，[tool]在你的[localized_player_label(surgery.affected_limb.display_name)]上撕开了骇人的大洞！"),
+				SPAN_WARNING("系统迸出火花，[user]的手猛地一抖，[tool]在[target]的[localized_player_label(surgery.affected_limb.display_name)]上撕开了骇人的大洞！"))
 
 			target.apply_damage(15, BRUTE, target_zone)
 			target.apply_damage(15, BURN, target_zone)
 		if(/obj/item/tool/surgery/scalpel/laser)
 			user.affected_message(target,
-				SPAN_WARNING("Your hand slips as \the [tool]'s blade sputters, searing a long gash in [target]'s [surgery.affected_limb.display_name]!"),
-				SPAN_WARNING("[user]'s hand slips as \the [tool]'s blade sputters, searing a long gash in your [surgery.affected_limb.display_name]!"),
-				SPAN_WARNING("[user]'s hand slips as \the [tool]'s blade sputters, searing a long gash in [target]'s [surgery.affected_limb.display_name]!"))
+				SPAN_WARNING("你的手一滑，[tool]的刀刃断续喷动，在[target]的[localized_player_label(surgery.affected_limb.display_name)]上烧出一道长伤口！"),
+				SPAN_WARNING("[user]的手一滑，[tool]的刀刃断续喷动，在你的[localized_player_label(surgery.affected_limb.display_name)]上烧出一道长伤口！"),
+				SPAN_WARNING("[user]的手一滑，[tool]的刀刃断续喷动，在[target]的[localized_player_label(surgery.affected_limb.display_name)]上烧出一道长伤口！"))
 
 			target.apply_damage(7.5, BRUTE, target_zone)
 			target.apply_damage(12.5, BURN, target_zone)
 		else
 			user.affected_message(target,
-				SPAN_WARNING("Your hand slips, slicing [target]'s [surgery.affected_limb.display_name] in the wrong place!"),
-				SPAN_WARNING("[user]'s hand slips, slicing your [surgery.affected_limb.display_name] in the wrong place!"),
-				SPAN_WARNING("[user]'s hand slips, slicing [target]'s [surgery.affected_limb.display_name] in the wrong place!"))
+				SPAN_WARNING("你的手一滑，切伤了[target]的[surgery.affected_limb.display_name]的错误部位！"),
+				SPAN_WARNING("[user]的手一滑，切伤了你的[surgery.affected_limb.display_name]的错误部位！"),
+				SPAN_WARNING("[user]的手一滑，切伤了[target]的[surgery.affected_limb.display_name]的错误部位！"))
 
 			target.apply_damage(10, BRUTE, target_zone)
 	log_interact(user, target, "[key_name(user)] failed to make an incision in [key_name(target)]'s [surgery.affected_limb.display_name], aborting [surgery].")
@@ -113,7 +113,7 @@
 //------------------------------------
 
 /datum/surgery/clamp_bleeders
-	name = "Clamp Bleeders"
+	name = "夹闭出血点"
 	priority = SURGERY_PRIORITY_HIGH
 	possible_locs = ALL_LIMBS
 	invasiveness = list(SURGERY_DEPTH_SHALLOW, SURGERY_DEPTH_DEEP)
@@ -131,8 +131,8 @@
 //------------------------------------
 
 /datum/surgery_step/clamp_bleeders_step
-	name = "Clamp Bleeders"
-	desc = "clamp the bleeders"
+	name = "夹闭出血点"
+	desc = "夹闭出血点"
 	//Tools used to clamp bleeders by either clamping them shut or tying them shut. Fixovein is a substitute but also a real surgery tool.
 	tools = list(
 		/obj/item/tool/surgery/hemostat = SURGERY_TOOL_MULT_IDEAL,
@@ -152,29 +152,29 @@
 /datum/surgery_step/clamp_bleeders_step/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(tool_type in ligation_tools)
 		user.affected_message(target,
-			SPAN_NOTICE("You begin ligating bleeders in [target]'s [surgery.affected_limb.display_name] with \the [tool]."),
-			SPAN_NOTICE("[user] begins to tie off bleeders in your [surgery.affected_limb.display_name] with \the [tool]."),
-			SPAN_NOTICE("[user] begins to tie off bleeders in [target]'s [surgery.affected_limb.display_name] with \the [tool]."))
+			SPAN_NOTICE("你开始用[tool]结扎[target]的[localized_player_label(surgery.affected_limb.display_name)]的出血点。"),
+			SPAN_NOTICE("[user]开始用[tool]结扎你的[localized_player_label(surgery.affected_limb.display_name)]的出血点。"),
+			SPAN_NOTICE("[user]开始用[tool]结扎[target]的[localized_player_label(surgery.affected_limb.display_name)]的出血点。"))
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("You begin clamping bleeders in [target]'s [surgery.affected_limb.display_name] with \the [tool]."),
-			SPAN_NOTICE("[user] begins to clamp bleeders in your [surgery.affected_limb.display_name] with \the [tool]."),
-			SPAN_NOTICE("[user] begins to clamp bleeders in [target]'s [surgery.affected_limb.display_name] with \the [tool]."))
+			SPAN_NOTICE("你开始用[tool]夹闭[target]的[localized_player_label(surgery.affected_limb.display_name)]的出血点。"),
+			SPAN_NOTICE("[user]开始用[tool]夹闭你的[localized_player_label(surgery.affected_limb.display_name)]的出血点。"),
+			SPAN_NOTICE("[user]开始用[tool]夹闭[target]的[localized_player_label(surgery.affected_limb.display_name)]的出血点。"))
 
-	target.custom_pain("The pain in your [surgery.affected_limb.display_name] is maddening!", 1)
+	target.custom_pain("你的[localized_player_label(surgery.affected_limb.display_name)]疼得让人发狂！", 1)
 	log_interact(user, target, "[key_name(user)] began clamping bleeders in [key_name(target)]'s [surgery.affected_limb.display_name], possibly beginning [surgery].")
 
 /datum/surgery_step/clamp_bleeders_step/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(tool_type in ligation_tools)
 		user.affected_message(target,
-			SPAN_NOTICE("You ligate bleeders in [target]'s [surgery.affected_limb.display_name]."),
-			SPAN_NOTICE("[user] finishes tying off bleeders in your [parse_zone(target_zone)]."),
-			SPAN_NOTICE("[user] finishes tying off bleeders in [target]'s [parse_zone(target_zone)]."))
+			SPAN_NOTICE("你结扎[target]的[localized_player_label(surgery.affected_limb.display_name)]的出血点。"),
+			SPAN_NOTICE("[user]完成了结扎你的[localized_player_label(parse_zone(target_zone))]的出血点。"),
+			SPAN_NOTICE("[user]完成了结扎[target]的[localized_player_label(parse_zone(target_zone))]的出血点。"))
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("You clamp bleeders in [target]'s [surgery.affected_limb.display_name]."),
-			SPAN_NOTICE("[user] clamps bleeders in your [parse_zone(target_zone)]."),
-			SPAN_NOTICE("[user] clamps bleeders in [target]'s [parse_zone(target_zone)]."))
+			SPAN_NOTICE("你夹闭了[target]的[localized_player_label(surgery.affected_limb.display_name)]的出血点。"),
+			SPAN_NOTICE("[user]夹闭了你的[localized_player_label(parse_zone(target_zone))]的出血点。"),
+			SPAN_NOTICE("[user]夹闭了[target]的[localized_player_label(parse_zone(target_zone))]的出血点。"))
 
 	log_interact(user, target, "[key_name(user)] clamped bleeders in [key_name(target)]'s [surgery.affected_limb.display_name], possibly ending [surgery].")
 
@@ -192,14 +192,14 @@
 	var/bleeding_multiplier_bad_surface = surface_modifier - 1
 	for(var/datum/effects/bleeding/external/external_bleed in surgery.affected_limb.bleeding_effects_list)
 		external_bleed.blood_loss *= bleeding_multiplier_bad_surface
-		to_chat(user, SPAN_WARNING("Stopping blood loss is less effective in these conditions."))
+		to_chat(user, SPAN_WARNING("在这种条件下，止血效果较差。"))
 
 
 /datum/surgery_step/clamp_bleeders_step/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_WARNING("Your hand slips, tearing blood vessels in [target]'s [surgery.affected_limb.display_name] and causing massive bleeding!"),
-		SPAN_WARNING("[user]'s hand slips, tearing blood vessels in your [surgery.affected_limb.display_name] and causing massive bleeding!"),
-		SPAN_WARNING("[user]'s hand slips, tearing blood vessels in [target]'s [surgery.affected_limb.display_name] and causing massive bleeding!"))
+		SPAN_WARNING("你的手一滑，撕裂了[target]的[localized_player_label(surgery.affected_limb.display_name)]的血管，造成大出血！"),
+		SPAN_WARNING("[user]的手一滑，撕裂了你的[localized_player_label(surgery.affected_limb.display_name)]的血管，造成大出血！"),
+		SPAN_WARNING("[user]的手一滑，撕裂了[target]的[localized_player_label(surgery.affected_limb.display_name)]的血管，造成大出血！"))
 
 	target.apply_damage(4, BRUTE, target_zone)
 	surgery.affected_limb.add_bleeding(null, FALSE, 15)
@@ -209,8 +209,8 @@
 //------------------------------------
 
 /datum/surgery_step/retract_skin
-	name = "Widen Incision"
-	desc = "widen the incision"
+	name = "扩大切口"
+	desc = "扩大切口"
 	time = 2 SECONDS
 	//Tools used to pry open specifically incisions. Contains INCISION tools at lengthy delays, mainly so surgeons can dramatically slash open incisions with them.
 	tools = list(\
@@ -233,69 +233,69 @@
 /datum/surgery_step/retract_skin/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(target_zone == "groin")
 		user.affected_message(target,
-			SPAN_NOTICE("You begin prying open the incision and rearranging the organs in [target]'s lower abdomen with \the [tool]."),
-			SPAN_NOTICE("[user] begins to pry open the incision and rearrange the organs in your lower abdomen with \the [tool]."),
-			SPAN_NOTICE("[user] begins to pry open the incision and rearrange the organs in [target]'s lower abdomen with \the [tool]."))
+			SPAN_NOTICE("你开始用[tool]撬开[target]的下腹部切口，并重新摆放脏器。"),
+			SPAN_NOTICE("[user]开始用[tool]撬开你的下腹部切口，并重新摆放脏器。"),
+			SPAN_NOTICE("[user]开始用[tool]撬开[target]的下腹部切口，并重新摆放脏器。"))
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("You begin drawing back the skin and tissue around the incision on [target]'s [surgery.affected_limb.display_name] with \the [tool]."),
-			SPAN_NOTICE("[user] begins drawing back the skin and tissue around the incision on your [surgery.affected_limb.display_name] with \the [tool]."),
-			SPAN_NOTICE("[user] begins drawing back the skin and tissue around the incision on [target]'s [surgery.affected_limb.display_name] with \the [tool]."))
+			SPAN_NOTICE("你开始用[tool]牵开[target]的[localized_player_label(surgery.affected_limb.display_name)]切口周围的皮肤和组织。"),
+			SPAN_NOTICE("[user]开始用[tool]牵开你的[localized_player_label(surgery.affected_limb.display_name)]切口周围的皮肤和组织。"),
+			SPAN_NOTICE("[user]开始用[tool]牵开[target]的[localized_player_label(surgery.affected_limb.display_name)]切口周围的皮肤和组织。"))
 
-	target.custom_pain("It feels like the skin on your [surgery.affected_limb.display_name] is on fire!", 1)
+	target.custom_pain("你的[localized_player_label(surgery.affected_limb.display_name)]皮肤仿佛烧了起来！", 1)
 	log_interact(user, target, "[key_name(user)] began retracting skin in [key_name(target)]'s [surgery.affected_limb.display_name].")
 
 /datum/surgery_step/retract_skin/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
-	var/h_his = "their" //[tool] doesn't have a gender.
+	var/h_his = "其" //[tool] doesn't have a gender.
 	switch(target.gender)
 		if(MALE)
-			h_his = "his"
+			h_his = "他"
 		if(FEMALE)
-			h_his = "her"
+			h_his = "她"
 
 	switch(target_zone)
 		if("head")
 			user.affected_message(target,
-				SPAN_NOTICE("You hold the incision on [target]'s head open with \the [tool], exposing [h_his] skull."),
-				SPAN_NOTICE("[user] holds the incision on your head open with \the [tool], exposing your skull."),
-				SPAN_NOTICE("[user] holds the incision on [target]'s head open with \the [tool], exposing [h_his] skull."))
+				SPAN_NOTICE("你用[tool]撑开[target]的头部切口，露出[h_his]的颅骨。"),
+				SPAN_NOTICE("[user]用[tool]撑开你的头部切口，露出颅骨。"),
+				SPAN_NOTICE("[user]用[tool]撑开[target]的头部切口，露出[h_his]的颅骨。"))
 		if("groin")
 			user.affected_message(target,
-				SPAN_NOTICE("You hold the incision on [target]'s lower abdomen open with \the [tool], exposing [h_his] viscera."),
-				SPAN_NOTICE("[user] holds the incision on your lower abdomen open with \the [tool], exposing your viscera."),
-				SPAN_NOTICE("[user] holds the incision on [target]'s lower abdomen open with \the [tool], exposing [h_his] viscera."))
+				SPAN_NOTICE("你用[tool]撑开[target]的下腹部切口，露出内脏。"),
+				SPAN_NOTICE("[user]用[tool]撑开你的下腹部切口，露出内脏。"),
+				SPAN_NOTICE("[user]用[tool]撑开[target]的下腹部切口，露出内脏。"))
 		else
 			user.affected_message(target,
-				SPAN_NOTICE("You hold the incision on [target]'s [surgery.affected_limb.display_name] open with \the [tool]."),
-				SPAN_NOTICE("[user] holds the incision on your [surgery.affected_limb.display_name] open with \the [tool]."),
-				SPAN_NOTICE("[user] holds the incision on [target]'s [surgery.affected_limb.display_name] open with \the [tool]."))
+				SPAN_NOTICE("你用[tool]撑开[target]的[localized_player_label(surgery.affected_limb.display_name)]上的切口。"),
+				SPAN_NOTICE("[user]用[tool]撑开你的[localized_player_label(surgery.affected_limb.display_name)]上的切口。"),
+				SPAN_NOTICE("[user]用[tool]撑开[target]的[localized_player_label(surgery.affected_limb.display_name)]上的切口。"))
 
 	log_interact(user, target, "[key_name(user)] retracted skin in [key_name(target)]'s [surgery.affected_limb.display_name], ending [surgery].")
 
 /datum/surgery_step/retract_skin/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
-	var/h_his = "their" //[tool] doesn't have a gender.
+	var/h_his = "其" //[tool] doesn't have a gender.
 	switch(target.gender)
 		if(MALE)
-			h_his = "his"
+			h_his = "他"
 		if(FEMALE)
-			h_his = "her"
+			h_his = "她"
 
 	switch(target_zone)
 		if("head")
 			user.affected_message(target,
-				SPAN_WARNING("You tear open the incision on [target]'s head with \the [tool], exposing [h_his] skull!"),
-				SPAN_WARNING("[user] holds the incision on your head open with \the [tool], exposing your skull!"),
-				SPAN_WARNING("[user] holds the incision on [target]'s head open with \the [tool], exposing [h_his] skull!"))
+				SPAN_WARNING("你用[tool]撕开[target]的头部切口，露出[h_his]的颅骨！"),
+				SPAN_WARNING("[user]用[tool]撑开你的头部切口，露出颅骨！"),
+				SPAN_WARNING("[user]用[tool]撑开[target]的头部切口，露出[h_his]的颅骨！"))
 		if("groin")
 			user.affected_message(target,
-				SPAN_WARNING("You tear open the incision on [target]'s lower abdomen with \the [tool], exposing [h_his] viscera!"),
-				SPAN_WARNING("[user] tears the incision on your lower abdomen open with \the [tool], exposing your viscera!"),
-				SPAN_WARNING("[user] tears the incision on [target]'s lower abdomen open with \the [tool], exposing [h_his] viscera!"))
+				SPAN_WARNING("你用[tool]撕开[target]的下腹部切口，露出内脏！"),
+				SPAN_WARNING("[user]用[tool]撕开你的下腹部切口，露出内脏！"),
+				SPAN_WARNING("[user]用[tool]撕开[target]的下腹部切口，露出内脏！"))
 		else
 			user.affected_message(target,
-				SPAN_WARNING("You tear open the incision on [target]'s [surgery.affected_limb.display_name] with \the [tool]!"),
-				SPAN_WARNING("[user] tears the incision on your [surgery.affected_limb.display_name] open with \the [tool]!"),
-				SPAN_WARNING("[user] tears the incision on [target]'s [surgery.affected_limb.display_name] open with \the [tool]!"))
+				SPAN_WARNING("你用[tool]撕开[target]的[localized_player_label(surgery.affected_limb.display_name)]上的切口！"),
+				SPAN_WARNING("[user]用[tool]撕开你的[localized_player_label(surgery.affected_limb.display_name)]上的切口！"),
+				SPAN_WARNING("[user]用[tool]撕开[target]的[localized_player_label(surgery.affected_limb.display_name)]上的切口！"))
 
 	target.apply_damage(15, BRUTE, target_zone)
 	log_interact(user, target, "[key_name(user)] violently retracted skin in [key_name(target)]'s [surgery.affected_limb.display_name], ending [surgery].")
@@ -304,7 +304,7 @@
 //------------------------------------
 
 /datum/surgery/close_incision
-	name = "Close Incision"
+	name = "闭合切口"
 	priority = SURGERY_PRIORITY_MINIMUM
 	possible_locs = ALL_LIMBS
 	required_surgery_skill = SKILL_SURGERY_NOVICE
@@ -316,8 +316,8 @@
 //------------------------------------
 
 /datum/surgery_step/cauterize
-	name = "Close Incision"
-	desc = "cauterize the incision"
+	name = "闭合切口"
+	desc = "烧灼切口"
 	tools = SURGERY_TOOLS_CAUTERIZE
 	time = 2.5 SECONDS
 	var/tools_lit = list(
@@ -336,18 +336,18 @@
 
 /datum/surgery_step/cauterize/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("You start cauterizing the incision on [target]'s [surgery.affected_limb.display_name] with \the [tool]."),
-		SPAN_NOTICE("[user] starts to cauterize the incision on your [surgery.affected_limb.display_name] with \the [tool]."),
-		SPAN_NOTICE("[user] starts to cauterize the incision on [target]'s [surgery.affected_limb.display_name] with \the [tool]."))
+		SPAN_NOTICE("你开始用[tool]烧灼[target]的[localized_player_label(surgery.affected_limb.display_name)]上的切口。"),
+		SPAN_NOTICE("[user]开始用[tool]烧灼你的[localized_player_label(surgery.affected_limb.display_name)]上的切口。"),
+		SPAN_NOTICE("[user]开始用[tool]烧灼[target]的[localized_player_label(surgery.affected_limb.display_name)]上的切口。"))
 
-	target.custom_pain("Your [surgery.affected_limb.display_name] is being burned!", 1)
+	target.custom_pain("你的[localized_player_label(surgery.affected_limb.display_name)]正被烧灼！", 1)
 	log_interact(user, target, "[key_name(user)] began cauterizing an incision in [key_name(target)]'s [surgery.affected_limb.display_name], beginning [surgery].")
 
 /datum/surgery_step/cauterize/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("You cauterize the incision on [target]'s [surgery.affected_limb.display_name]."),
-		SPAN_NOTICE("[user] cauterizes the incision on your [surgery.affected_limb.display_name]."),
-		SPAN_NOTICE("[user] cauterizes the incision on [target]'s [surgery.affected_limb.display_name]."))
+		SPAN_NOTICE("你烧灼了[target]的[localized_player_label(surgery.affected_limb.display_name)]上的切口。"),
+		SPAN_NOTICE("[user]烧灼了你的[localized_player_label(surgery.affected_limb.display_name)]上的切口。"),
+		SPAN_NOTICE("[user]烧灼了[target]的[localized_player_label(surgery.affected_limb.display_name)]上的切口。"))
 
 	target.incision_depths[target_zone] = SURGERY_DEPTH_SURFACE
 	surgery.affected_limb.remove_all_bleeding(TRUE, FALSE)
@@ -356,9 +356,9 @@
 
 /datum/surgery_step/cauterize/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_WARNING("Your hand slips, leaving a small burn on [target]'s [surgery.affected_limb.display_name]!"),
-		SPAN_WARNING("[user]'s hand slips, leaving a small burn on your [surgery.affected_limb.display_name]!"),
-		SPAN_WARNING("[user]'s hand slips, leaving a small burn on [target]'s [surgery.affected_limb.display_name]!"))
+		SPAN_WARNING("你的手一滑，在[target]的[localized_player_label(surgery.affected_limb.display_name)]上留下小块烧伤！"),
+		SPAN_WARNING("[user]的手一滑，在你的[localized_player_label(surgery.affected_limb.display_name)]上留下小块烧伤！"),
+		SPAN_WARNING("[user]的手一滑，在[target]的[localized_player_label(surgery.affected_limb.display_name)]上留下小块烧伤！"))
 
 	target.apply_damage(3, BURN, target_zone)
 	log_interact(user, target, "[key_name(user)] failed to cauterize an incision in [key_name(target)]'s [surgery.affected_limb.display_name], aborting [surgery].")
@@ -369,7 +369,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery/open_encased
-	name = "Open Bone"
+	name = "打开骨骼"
 	priority = SURGERY_PRIORITY_LOW
 	possible_locs = list("chest","head")
 	required_surgery_skill = SKILL_SURGERY_TRAINED
@@ -383,8 +383,8 @@
 //------------------------------------
 
 /datum/surgery_step/saw_encased
-	name = "Saw Bone"
-	desc = "cut through the bone"
+	name = "锯开骨骼"
+	desc = "切断骨骼"
 	/*Tools used to cut ribs/skull. Same tools as SEVER_BONE, but with sawing tools being better than chopping ones.
 	You're trying to cut through, but keep it and what's behind it intact.*/
 	tools = list(
@@ -407,21 +407,21 @@
 
 /datum/surgery_step/saw_encased/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("You begin to cut through [target]'s [surgery.affected_limb.encased] with \the [tool]."),
-		SPAN_NOTICE("[user] begins to cut through your [surgery.affected_limb.encased] with \the [tool]."),
-		SPAN_NOTICE("[user] begins to cut through [target]'s [surgery.affected_limb.encased] with \the [tool]."))
+		SPAN_NOTICE("你开始用[tool]切开[target]的[localized_player_label(surgery.affected_limb.encased)]。"),
+		SPAN_NOTICE("[user]开始用[tool]切开你的[localized_player_label(surgery.affected_limb.encased)]。"),
+		SPAN_NOTICE("[user]开始用[tool]切开[target]的[localized_player_label(surgery.affected_limb.encased)]。"))
 
-	target.custom_pain("Your [surgery.affected_limb.display_name] hurts horribly!", 1)
+	target.custom_pain("你的[localized_player_label(surgery.affected_limb.display_name)]剧痛无比！", 1)
 
 	if(surgery.affected_limb.status & LIMB_BROKEN)
-		to_chat(user, SPAN_NOTICE("It's already broken, though, so you could just pry it open."))
+		to_chat(user, SPAN_NOTICE("不过它已经断了，直接撬开就行。"))
 	log_interact(user, target, "[key_name(user)] began cutting through [key_name(target)]'s [surgery.affected_limb.encased], attempting [surgery].")
 
 /datum/surgery_step/saw_encased/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("You finish cutting through [target]'s [surgery.affected_limb.encased]."),
-		SPAN_NOTICE("[user] finishes cutting through your [surgery.affected_limb.encased]."),
-		SPAN_NOTICE("[user] finishes cutting through [target]'s [surgery.affected_limb.encased]."))
+		SPAN_NOTICE("你完成了对[target]的[localized_player_label(surgery.affected_limb.encased)]的切割。"),
+		SPAN_NOTICE("[user]完成了对你的[localized_player_label(surgery.affected_limb.encased)]的切割。"),
+		SPAN_NOTICE("[user]完成了对[target]的[localized_player_label(surgery.affected_limb.encased)]的切割。"))
 
 	log_interact(user, target, "[key_name(user)] cut through [key_name(target)]'s [surgery.affected_limb.encased], beginning [surgery].")
 
@@ -429,15 +429,15 @@
 	if(surgery.affected_limb.status & LIMB_BROKEN) //Can't shatter what is already broken.
 		var/affected_bone = surgery.affected_limb.name == "chest" ? "ribs" : "skull"
 		user.affected_message(target,
-			SPAN_WARNING("You hack through [target]'s broken [affected_bone]!"),
-			SPAN_WARNING("[user] hacks through your broken [affected_bone]!"),
-			SPAN_WARNING("[user] hacks through [target]'s broken [affected_bone]!"))
+			SPAN_WARNING("你劈开了[target]的断裂的[localized_player_label(affected_bone)]！"),
+			SPAN_WARNING("[user]劈开了你的断裂的[localized_player_label(affected_bone)]！"),
+			SPAN_WARNING("[user]劈开了[target]的断裂的[localized_player_label(affected_bone)]！"))
 
 	else
 		user.affected_message(target,
-			SPAN_WARNING("You shatter [target]'s [surgery.affected_limb.encased]!"),
-			SPAN_WARNING("[user] shatters your [surgery.affected_limb.encased]!"),
-			SPAN_WARNING("[user] shatters [target]'s [surgery.affected_limb.encased]!"))
+			SPAN_WARNING("你打碎了[target]的[localized_player_label(surgery.affected_limb.encased)]！"),
+			SPAN_WARNING("[user]打碎了你的[localized_player_label(surgery.affected_limb.encased)]！"),
+			SPAN_WARNING("[user]打碎了[target]的[localized_player_label(surgery.affected_limb.encased)]！"))
 
 		surgery.affected_limb.fracture(100)
 
@@ -453,8 +453,8 @@
 //This step can be skipped, and ends the surgery when completed. In rib-opening surgery, it can be skipped to abort the operation.
 //In rib-closing surgery, it can be skipped to finish closing the ribcage, or completed to abort the operation.
 /datum/surgery_step/open_encased_step
-	name = "Open Bone"
-	desc = "prise the bones open"
+	name = "打开骨骼"
+	desc = "撬开骨骼"
 	tools = SURGERY_TOOLS_PRY_ENCASED
 	time = 2 SECONDS
 	preop_sound = 'sound/surgery/retractor1.ogg'
@@ -466,19 +466,19 @@
 
 /datum/surgery_step/open_encased_step/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("You start forcing [target]'s [surgery.affected_limb.encased] open with \the [tool]."),
-		SPAN_NOTICE("[user] begins to force your [surgery.affected_limb.encased] open with \the [tool]."),
-		SPAN_NOTICE("[user] begins to force [target]'s [surgery.affected_limb.encased] open with \the [tool]."))
+		SPAN_NOTICE("你开始用[tool]强行撬开[target]的[localized_player_label(surgery.affected_limb.encased)]。"),
+		SPAN_NOTICE("[user]开始用[tool]强行撬开你的[localized_player_label(surgery.affected_limb.encased)]。"),
+		SPAN_NOTICE("[user]开始用[tool]强行撬开[target]的[localized_player_label(surgery.affected_limb.encased)]。"))
 
-	target.custom_pain("Something hurts horribly in your [surgery.affected_limb.display_name]!", 1)
+	target.custom_pain("你的[localized_player_label(surgery.affected_limb.display_name)]内部剧痛无比！", 1)
 	log_interact(user, target, "[key_name(user)] began opening [key_name(target)]'s [surgery.affected_limb.encased], possibly beginning [surgery].")
 
 /datum/surgery_step/open_encased_step/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	var/brain = surgery.affected_limb.body_part == BODY_FLAG_HEAD ? TRUE : FALSE
 	user.affected_message(target,
-		SPAN_NOTICE("You use \the [tool] to hold [target]'s [surgery.affected_limb.encased] open, exposing \his [brain ? "brain" : "vital organs"]."),
-		SPAN_NOTICE("[user] uses \the [tool] to hold your [surgery.affected_limb.encased] open, exposing your [brain ? "brain" : "vital organs"]."),
-		SPAN_NOTICE("[user] uses \the [tool] to hold [target]'s [surgery.affected_limb.encased] open, exposing \his [brain ? "brain" : "vital organs"]."))
+		SPAN_NOTICE("你用[tool]撑开[target]的[localized_player_label(surgery.affected_limb.encased)]，露出[brain ? "大脑" : "重要脏器"]。"),
+		SPAN_NOTICE("[user]用[tool]撑开你的[localized_player_label(surgery.affected_limb.encased)]，露出[brain ? "大脑" : "重要脏器"]。"),
+		SPAN_NOTICE("[user]用[tool]撑开[target]的[localized_player_label(surgery.affected_limb.encased)]，露出[brain ? "大脑" : "重要脏器"]。"))
 
 	target.incision_depths[target_zone] = SURGERY_DEPTH_DEEP
 	complete(target, surgery) //This finishes the surgery.
@@ -490,14 +490,14 @@
 /datum/surgery_step/open_encased_step/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(surgery.affected_limb.status & LIMB_BROKEN)
 		user.affected_message(target,
-			SPAN_WARNING("Your hand slips, damaging [target]'s [surgery.affected_limb.encased] even more!"),
-			SPAN_WARNING("[user]'s hand slips, damaging your [surgery.affected_limb.encased] even more!"),
-			SPAN_WARNING("[user]'s hand slips, damaging [target]'s [surgery.affected_limb.encased] even more!"))
+			SPAN_WARNING("你的手一滑，进一步损伤了[target]的[localized_player_label(surgery.affected_limb.encased)]！"),
+			SPAN_WARNING("[user]的手一滑，进一步损伤了你的[localized_player_label(surgery.affected_limb.encased)]！"),
+			SPAN_WARNING("[user]的手一滑，进一步损伤了[target]的[localized_player_label(surgery.affected_limb.encased)]！"))
 	else
 		user.affected_message(target,
-			SPAN_WARNING("Your hand slips, cracking [target]'s [surgery.affected_limb.encased]!"),
-			SPAN_WARNING("[user]'s hand slips, cracking your [surgery.affected_limb.encased]!"),
-			SPAN_WARNING("[user]'s hand slips, cracking [target]'s [surgery.affected_limb.encased]!"))
+			SPAN_WARNING("你的手一滑，弄裂了[target]的[localized_player_label(surgery.affected_limb.encased)]！"),
+			SPAN_WARNING("[user]的手一滑，弄裂了你的[localized_player_label(surgery.affected_limb.encased)]！"),
+			SPAN_WARNING("[user]的手一滑，弄裂了[target]的[localized_player_label(surgery.affected_limb.encased)]！"))
 
 	surgery.affected_limb.fracture(100)
 	target.apply_damage(15, BRUTE, target_zone)
@@ -506,7 +506,7 @@
 //------------------------------------
 
 /datum/surgery/close_encased
-	name = "Close Bone"
+	name = "闭合骨骼"
 	priority = SURGERY_PRIORITY_MINIMUM
 	possible_locs = list("chest","head")
 	invasiveness = list(SURGERY_DEPTH_DEEP)
@@ -521,8 +521,8 @@
 //------------------------------------
 
 /datum/surgery_step/close_encased_step
-	name = "Close Bone"
-	desc = "bend the bones back into place"
+	name = "闭合骨骼"
+	desc = "将骨骼复位"
 	tools = SURGERY_TOOLS_PRY_ENCASED
 	time = 2 SECONDS
 	preop_sound = 'sound/surgery/retractor1.ogg'
@@ -531,18 +531,18 @@
 
 /datum/surgery_step/close_encased_step/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("You start bending [target]'s [surgery.affected_limb.encased] back into place with \the [tool]."),
-		SPAN_NOTICE("[user] starts bending your [surgery.affected_limb.encased] back into place with \the [tool]."),
-		SPAN_NOTICE("[user] starts bending [target]'s [surgery.affected_limb.encased] back into place with \the [tool]."))
+		SPAN_NOTICE("你开始用[tool]将[target]的[localized_player_label(surgery.affected_limb.encased)]复位。"),
+		SPAN_NOTICE("[user]开始用[tool]将你的[localized_player_label(surgery.affected_limb.encased)]复位。"),
+		SPAN_NOTICE("[user]开始用[tool]将[target]的[localized_player_label(surgery.affected_limb.encased)]复位。"))
 
-	target.custom_pain("Something hurts horribly in your [surgery.affected_limb.display_name]!", 1)
+	target.custom_pain("你的[localized_player_label(surgery.affected_limb.display_name)]内部剧痛无比！", 1)
 	log_interact(user, target, "[key_name(user)] began closing [key_name(target)]'s [surgery.affected_limb.encased], attempting to begin [surgery].")
 
 /datum/surgery_step/close_encased_step/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("You close [target]'s [surgery.affected_limb.encased]."),
-		SPAN_NOTICE("[user] closes your [surgery.affected_limb.encased]."),
-		SPAN_NOTICE("[user] closes [target]'s [surgery.affected_limb.encased]."))
+		SPAN_NOTICE("你闭合了[target]的[localized_player_label(surgery.affected_limb.encased)]。"),
+		SPAN_NOTICE("[user]闭合了你的[localized_player_label(surgery.affected_limb.encased)]。"),
+		SPAN_NOTICE("[user]闭合了[target]的[localized_player_label(surgery.affected_limb.encased)]。"))
 
 	target.incision_depths[target_zone] = SURGERY_DEPTH_SHALLOW
 	log_interact(user, target, "[key_name(user)] closed [key_name(target)]'s [surgery.affected_limb.encased], beginning [surgery].")
@@ -550,14 +550,14 @@
 /datum/surgery_step/close_encased_step/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(surgery.affected_limb.status & LIMB_BROKEN)
 		user.affected_message(target,
-			SPAN_WARNING("Your hand slips, damaging [target]'s [surgery.affected_limb.encased] even more!"),
-			SPAN_WARNING("[user]'s hand slips, damaging your [surgery.affected_limb.encased] even more!"),
-			SPAN_WARNING("[user]'s hand slips, damaging [target]'s [surgery.affected_limb.encased] even more!"))
+			SPAN_WARNING("你的手一滑，进一步损伤了[target]的[localized_player_label(surgery.affected_limb.encased)]！"),
+			SPAN_WARNING("[user]的手一滑，进一步损伤了你的[localized_player_label(surgery.affected_limb.encased)]！"),
+			SPAN_WARNING("[user]的手一滑，进一步损伤了[target]的[localized_player_label(surgery.affected_limb.encased)]！"))
 	else
 		user.affected_message(target,
-			SPAN_WARNING("Your hand slips, cracking [target]'s [surgery.affected_limb.encased]!"),
-			SPAN_WARNING("[user]'s hand slips, cracking your [surgery.affected_limb.encased]!"),
-			SPAN_WARNING("[user]'s hand slips, cracking [target]'s [surgery.affected_limb.encased]!"))
+			SPAN_WARNING("你的手一滑，弄裂了[target]的[localized_player_label(surgery.affected_limb.encased)]！"),
+			SPAN_WARNING("[user]的手一滑，弄裂了你的[localized_player_label(surgery.affected_limb.encased)]！"),
+			SPAN_WARNING("[user]的手一滑，弄裂了[target]的[localized_player_label(surgery.affected_limb.encased)]！"))
 
 	surgery.affected_limb.fracture(100)
 	target.apply_damage(15, BRUTE, target_zone)
@@ -566,8 +566,8 @@
 //------------------------------------
 
 /datum/surgery_step/mend_encased
-	name = "Mend Bone"
-	desc = "repair the damaged bones"
+	name = "修补骨骼"
+	desc = "修复受损骨骼"
 	tools = SURGERY_TOOLS_BONE_MEND
 	time = 3 SECONDS
 	preop_sound = 'sound/handling/clothingrustle1.ogg'
@@ -580,33 +580,33 @@
 	if(istype(tool, /obj/item/tool/surgery/bonegel)) //If bone gel, use some of the gel
 		var/obj/item/tool/surgery/bonegel/gel = tool
 		if(!gel.use_gel(gel.mend_bones_fix_cost))
-			to_chat(user, SPAN_BOLDWARNING("[gel] is empty!"))
+			to_chat(user, SPAN_BOLDWARNING("[gel]是空的！"))
 			return FALSE
 
 	else //Otherwise, use metal rods
 		var/obj/item/stack/rods/rods = user.get_inactive_hand()
 		if(!istype(rods))
-			to_chat(user, SPAN_BOLDWARNING("You need metal rods in your offhand to mend [target]'s [surgery.affected_limb.display_name] with [tool]."))
+			to_chat(user, SPAN_BOLDWARNING("用[tool]修复[target]的[localized_player_label(surgery.affected_limb.display_name)]需要副手拿着金属杆。"))
 			return FALSE
 		if(!rods.use(2)) //Refunded on failure
-			to_chat(user, SPAN_BOLDWARNING("You need more metal rods to mend [target]'s [surgery.affected_limb.display_name] with [tool]."))
+			to_chat(user, SPAN_BOLDWARNING("用[tool]修复[target]的[localized_player_label(surgery.affected_limb.display_name)]需要更多金属杆。"))
 			return FALSE
 
 /datum/surgery_step/mend_encased/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(tool_type == /obj/item/tool/surgery/bonegel)
 		user.affected_message(target,
-			SPAN_NOTICE("You start applying \the [tool] to [target]'s [surgery.affected_limb.encased]."),
-			SPAN_NOTICE("[user] starts to apply \the [tool] to your [surgery.affected_limb.encased]."),
-			SPAN_NOTICE("[user] starts to apply \the [tool] to [target]'s [surgery.affected_limb.encased]."))
+			SPAN_NOTICE("你开始将[tool]涂在[target]的[localized_player_label(surgery.affected_limb.encased)]上。"),
+			SPAN_NOTICE("[user]开始将[tool]涂在你的[localized_player_label(surgery.affected_limb.encased)]上。"),
+			SPAN_NOTICE("[user]开始将[tool]涂在[target]的[localized_player_label(surgery.affected_limb.encased)]上。"))
 
-		target.custom_pain("Something stings inside your [surgery.affected_limb.display_name]!", 1)
+		target.custom_pain("你的[localized_player_label(surgery.affected_limb.display_name)]内部一阵刺痛！", 1)
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("You begin screwing a reinforcing plate to [target]'s [surgery.affected_limb.encased] with \the [tool]."),
-			SPAN_NOTICE("[user] begins to screw a reinforcing plate to your [surgery.affected_limb.encased] with \the [tool]."),
-			SPAN_NOTICE("[user] begins to screw a reinforcing plate to [target]'s [surgery.affected_limb.encased] with \the [tool]."))
+			SPAN_NOTICE("你开始用[tool]将加固板拧在[target]的[localized_player_label(surgery.affected_limb.encased)]上。"),
+			SPAN_NOTICE("[user]开始用[tool]将加固板拧在你的[localized_player_label(surgery.affected_limb.encased)]上。"),
+			SPAN_NOTICE("[user]开始用[tool]将加固板拧在[target]的[localized_player_label(surgery.affected_limb.encased)]上。"))
 
-		target.custom_pain("You can feel something grinding in your [surgery.affected_limb.encased]!", 1)
+		target.custom_pain("你感觉[localized_player_label(surgery.affected_limb.encased)]里面有什么在磨动！", 1)
 		playsound(target.loc, 'sound/items/Screwdriver.ogg', 25, TRUE)
 
 	log_interact(user, target, "[key_name(user)] began mending [key_name(target)]'s [surgery.affected_limb.encased].")
@@ -614,31 +614,31 @@
 /datum/surgery_step/mend_encased/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(tool_type == /obj/item/tool/surgery/bonegel)
 		user.affected_message(target,
-			SPAN_NOTICE("You mend [target]'s [surgery.affected_limb.encased]."),
-			SPAN_NOTICE("[user] mends your [surgery.affected_limb.encased]."),
-			SPAN_NOTICE("[user] mends [target]'s [surgery.affected_limb.encased]."))
+			SPAN_NOTICE("你修补了[target]的[localized_player_label(surgery.affected_limb.encased)]。"),
+			SPAN_NOTICE("[user]修补了你的[localized_player_label(surgery.affected_limb.encased)]。"),
+			SPAN_NOTICE("[user]修补了[target]的[localized_player_label(surgery.affected_limb.encased)]。"))
 	else
-		var/improvised_desc = pick("paleolithic surgeon", "UPP torturer", "mad carpenter")
+		var/improvised_desc = pick("旧石器时代外科医生", "进步人民联盟拷问者", "疯狂木匠")
 		user.affected_message(target,
-			SPAN_NOTICE("You haphazardly repair [target]'s [surgery.affected_limb.encased] like some kind of [improvised_desc]."),
-			SPAN_NOTICE("[user] haphazardly repairs your [surgery.affected_limb.encased] like some kind of [improvised_desc]."),
-			SPAN_NOTICE("[user] haphazardly repairs [target]'s [surgery.affected_limb.encased] like some kind of [improvised_desc]."))
+			SPAN_NOTICE("你像个[localized_player_label(improvised_desc)]一样，草草修好了[target]的[localized_player_label(surgery.affected_limb.encased)]。"),
+			SPAN_NOTICE("[user]像个[localized_player_label(improvised_desc)]一样，草草修好了你的[localized_player_label(surgery.affected_limb.encased)]。"),
+			SPAN_NOTICE("[user]像个[localized_player_label(improvised_desc)]一样，草草修好了[target]的[localized_player_label(surgery.affected_limb.encased)]。"))
 
 	if(surgery.affected_limb.status & LIMB_BROKEN)
-		to_chat(user, SPAN_NOTICE("You've repaired the damage done by prying it open, but it's still fractured."))
+		to_chat(user, SPAN_NOTICE("你修复了撬开造成的损伤，但骨折仍然存在。"))
 	log_interact(user, target, "[key_name(user)] mended [key_name(target)]'s [surgery.affected_limb.encased], ending [surgery].")
 
 /datum/surgery_step/mend_encased/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(surgery.affected_limb.status & LIMB_BROKEN)
 		user.affected_message(target,
-			SPAN_WARNING("Your hand slips, damaging [target]'s [surgery.affected_limb.encased] even more!"),
-			SPAN_WARNING("[user]'s hand slips, damaging your [surgery.affected_limb.encased] even more!"),
-			SPAN_WARNING("[user]'s hand slips, damaging [target]'s [surgery.affected_limb.encased] even more!"))
+			SPAN_WARNING("你的手一滑，进一步损伤了[target]的[localized_player_label(surgery.affected_limb.encased)]！"),
+			SPAN_WARNING("[user]的手一滑，进一步损伤了你的[localized_player_label(surgery.affected_limb.encased)]！"),
+			SPAN_WARNING("[user]的手一滑，进一步损伤了[target]的[localized_player_label(surgery.affected_limb.encased)]！"))
 	else
 		user.affected_message(target,
-			SPAN_WARNING("Your hand slips, cracking [target]'s [surgery.affected_limb.encased]!"),
-			SPAN_WARNING("[user]'s hand slips, cracking your [surgery.affected_limb.encased]!"),
-			SPAN_WARNING("[user]'s hand slips, cracking [target]'s [surgery.affected_limb.encased]!"))
+			SPAN_WARNING("你的手一滑，弄裂了[target]的[localized_player_label(surgery.affected_limb.encased)]！"),
+			SPAN_WARNING("[user]的手一滑，弄裂了你的[localized_player_label(surgery.affected_limb.encased)]！"),
+			SPAN_WARNING("[user]的手一滑，弄裂了[target]的[localized_player_label(surgery.affected_limb.encased)]！"))
 
 		surgery.affected_limb.fracture(100)
 
@@ -646,7 +646,7 @@
 	log_interact(user, target, "[key_name(user)] failed to mend [key_name(target)]'s [surgery.affected_limb.encased].")
 
 	if(tool_type != /obj/item/tool/surgery/bonegel)
-		to_chat(user, SPAN_NOTICE("The metal rods used on [target]'s [surgery.affected_limb.display_name] fall loose from their [surgery.affected_limb]."))
+		to_chat(user, SPAN_NOTICE("用于修复[target]的[localized_player_label(surgery.affected_limb.display_name)]的金属杆从[surgery.affected_limb]上松脱掉落。"))
 		var/obj/item/stack/rods/rods = new /obj/item/stack/rods(get_turf(target))
 		rods.amount = 2 //Refund 2 rods on failure
 		rods.update_icon()

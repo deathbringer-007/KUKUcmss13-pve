@@ -150,8 +150,8 @@
 	new /obj/item/clothing/head/helmet/marine/grenadier(src)
 
 /obj/item/storage/box/spec/sharp_operator
-	name = "\improper SHARP Operator equipment case"
-	desc = "A large case containing a P9 SHARP rifle, a set of blast-resistant armor and helmet, and various pieces of additional equipment.\nDrag this sprite onto yourself to open it up!"
+	name = "\improper SHARP操作员装备箱"
+	desc = "一个大箱子，内装P9 SHARP步枪、一套抗爆护甲与头盔，以及各种辅助装备。\n将箱子拖到自己身上即可打开！"
 	kit_overlay = "sharp"
 
 /obj/item/storage/box/spec/sharp_operator/fill_preset_inventory()
@@ -169,8 +169,8 @@
 
 //maybe put in req for later use?
 /obj/item/storage/box/spec/B18
-	name = "\improper B18 heavy armor case"
-	desc = "A large case containing the experimental B18 armor platform. Handle with care, it's more expensive than all of Delta combined.\nDrag this sprite onto yourself to open it up! NOTE: You cannot put items back inside this case."
+	name = "\improper B18重型护甲箱"
+	desc = "一个大箱子，内装实验性B18护甲平台。请小心搬运，它比整个德尔塔小队的装备还贵。\n将箱子拖到自己身上即可打开！注意：物品取出后无法放回箱内。"
 	kit_overlay = "b18"
 
 /obj/item/storage/box/spec/B18/fill_preset_inventory()
@@ -213,7 +213,7 @@
 		for(var/role in allowed_roles_list)
 			if(length(allowed_roles))
 				allowed_roles += ", "
-			allowed_roles += SPAN_HELPFUL("[role]")
+			allowed_roles += SPAN_HELPFUL("[localized_player_label(role)]")
 	else
 		allowed_roles = SPAN_HELPFUL("任何人")
 	. += SPAN_INFO("尚未使用过此类套件的[allowed_roles]可以使用这个[name]。")
@@ -291,7 +291,7 @@
 	if(!length(contents))
 		qdel(src)
 /obj/item/storage/box/kit/mou53_sapper
-	name = "\improper M-OU53 Field Test Kit"
+	name = "\improper M-OU53野外试验套件"
 	pro_case_overlay = "mou53"
 
 /obj/item/storage/box/kit/mou53_sapper/fill_preset_inventory()
@@ -302,7 +302,7 @@
 	new /obj/item/storage/belt/shotgun(src)
 
 /obj/item/storage/box/kit/r4t_scout
-	name = "\improper R4T Environment Scouting Kit"
+	name = "\improper R4T环境侦察套件"
 
 /obj/item/storage/box/kit/r4t_scout/New()
 	..()
@@ -319,7 +319,7 @@
 	new /obj/item/ammo_magazine/lever_action/training(src)
 
 /obj/item/storage/box/kit/machinegunner
-	name = "\improper M2C Heavy Gunner Kit"
+	name = "\improper M2C重机枪手套件"
 	pro_case_overlay = "hmg"
 
 /obj/item/storage/box/kit/machinegunner/fill_preset_inventory()
@@ -332,7 +332,7 @@
 	new /obj/item/pamphlet/skill/machinegunner(src)
 
 /obj/item/storage/box/kit/defensegunner
-	name = "\improper M56D Defense Gunner Kit"
+	name = "\improper M56D防御机枪手套件"
 	icon_state = "pro_case_large"
 	pro_case_overlay = "m56d"
 
@@ -383,7 +383,7 @@
 	new /obj/item/ammo_magazine/rifle/ap(src)
 
 /obj/item/storage/box/kit/heavy_support
-	name = "\improper Forward HPR Shield Kit"
+	name = "\improper 前线重型脉冲步枪护盾套件"
 	pro_case_overlay = "shield"
 
 /obj/item/storage/box/kit/heavy_support/fill_preset_inventory()
@@ -397,7 +397,7 @@
 
 
 /obj/item/storage/box/kit/pursuit
-	name = "\improper M39 Point Man Kit"
+	name = "\improper M39尖兵套件"
 	pro_case_overlay = "pursuit"
 
 /obj/item/storage/box/kit/pursuit/fill_preset_inventory()
@@ -409,7 +409,7 @@
 
 
 /obj/item/storage/box/kit/mini_engineer
-	name = "\improper Combat Technician Support Kit"
+	name = "\improper 战斗技术员支援套件"
 	pro_case_overlay = "engi"
 
 /obj/item/storage/box/kit/mini_engineer/fill_preset_inventory()
@@ -426,7 +426,7 @@
 
 
 /obj/item/storage/box/kit/mini_medic
-	name = "\improper First Responder Medical Support Kit"
+	name = "\improper 现场急救支援套件"
 	pro_case_overlay = "medic"
 
 /obj/item/storage/box/kit/mini_medic/fill_preset_inventory()
@@ -438,7 +438,7 @@
 
 
 /obj/item/storage/box/kit/mini_jtac
-	name = "\improper JTAC Radio Kit"
+	name = "\improper JTAC无线电套件"
 	pro_case_overlay = "jtac"
 
 /obj/item/storage/box/kit/mini_jtac/fill_preset_inventory()
@@ -451,7 +451,7 @@
 	new /obj/item/storage/backpack/marine/satchel/rto(src)
 
 /obj/item/storage/box/kit/mini_intel
-	name = "\improper Field Intelligence Support Kit"
+	name = "\improper 战地情报支援套件"
 	pro_case_overlay = "intel"
 
 /obj/item/storage/box/kit/mini_intel/fill_preset_inventory()
@@ -461,7 +461,7 @@
 	new /obj/item/device/motiondetector/intel(src)
 
 /obj/item/storage/box/kit/mini_grenadier
-	name = "\improper Frontline M40 Grenadier Kit"
+	name = "\improper 前线M40榴弹兵套件"
 	pro_case_overlay = "grenadier"
 
 /obj/item/storage/box/kit/mini_grenadier/fill_preset_inventory()
@@ -469,7 +469,7 @@
 	new /obj/item/storage/pouch/explosive(src)
 
 /obj/item/storage/box/kit/self_defense
-	name = "\improper Personal Self Defense Kit"
+	name = "\improper 个人自卫套件"
 	pro_case_overlay = "defense"
 
 /obj/item/storage/box/kit/self_defense/fill_preset_inventory()
@@ -484,8 +484,8 @@
 	new /obj/item/storage/belt/gun/m4a3(src)
 
 /obj/item/storage/box/kit/cryo_self_defense
-	name = "\improper Cryo Self Defense Kit"
-	desc = "A basic self-defense kit reserved for emergencies. As you might expect, not much care was put into keeping the stock fresh, who would be insane enough to attack a USCM ship directly?"
+	name = "\improper 冷冻休眠自卫套件"
+	desc = "一套供紧急情况使用的基础自卫装备。如你所料，库存维护得并不怎么认真——谁会疯到直接袭击殖民地陆战队的舰船？"
 	icon_state = "cryo_defense_kit"
 	storage_slots = 4
 
@@ -502,7 +502,7 @@
 	new /obj/item/mre_food_packet/entree/uscm(src)
 
 /obj/item/storage/box/kit/exp_trooper
-	name = "\improper Experimental Trooper Kit"
+	name = "\improper 实验型突击步兵套件"
 	pro_case_overlay = "smart"
 
 /obj/item/storage/box/kit/exp_trooper/fill_preset_inventory()
@@ -517,7 +517,7 @@
 	new /obj/item/storage/belt/gun/smartpistol(src)
 
 /obj/item/storage/box/kit/honorguard
-	name = "\improper Honor Guard Kit"
+	name = "\improper 仪仗卫队套件"
 	pro_case_overlay = "honor_guard"
 
 /obj/item/storage/box/kit/honorguard/fill_preset_inventory()

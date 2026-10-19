@@ -122,10 +122,10 @@
 		rounds = current_mag.current_rounds
 	var/message = "[rounds ? "Ammo counter shows [rounds] round\s remaining." : "It's dry."]"
 	. += message
-	. += "The restriction system is [iff_enabled ? "<B>on</b>" : "<B>off</b>"]."
+	. += "射击限制系统已[iff_enabled ? "<B>启用</b>" : "<B>停用</b>"]。"
 
 	if(battery && get_dist(user, src) <= 1)
-		. += "A small gauge on [battery] reads: Power: [battery.power_cell.charge] / [battery.power_cell.maxcharge]."
+		. += "[battery]上的小表盘显示：电量 [battery.power_cell.charge] / [battery.power_cell.maxcharge]。"
 
 /obj/item/weapon/gun/smartgun/clicked(mob/user, list/mods)
 	if(mods[ALT_CLICK])
@@ -134,15 +134,15 @@
 		if(!locate(src) in list(user.get_active_hand(), user.get_inactive_hand()))
 			return TRUE
 		if(user.get_active_hand() && user.get_inactive_hand())
-			to_chat(user, SPAN_WARNING("You can't do that with your hands full!"))
+			to_chat(user, SPAN_WARNING("你的双手都拿着东西，无法这样做！"))
 			return TRUE
 		if(!cover_open)
 			playsound(src.loc, 'sound/handling/smartgun_open.ogg', 50, TRUE, 3)
-			to_chat(user, SPAN_NOTICE("You open \the [src]'s feed cover, allowing the drum to be removed."))
+			to_chat(user, SPAN_NOTICE("你打开了[src]的供弹机盖，现在可以取出弹鼓。"))
 			cover_open = TRUE
 		else
 			playsound(src.loc, 'sound/handling/smartgun_close.ogg', 50, TRUE, 3)
-			to_chat(user, SPAN_NOTICE("You close \the [src]'s feed cover."))
+			to_chat(user, SPAN_NOTICE("你关上了[src]的供弹机盖。"))
 			cover_open = FALSE
 		update_icon()
 		return TRUE
@@ -152,9 +152,9 @@
 /obj/item/weapon/gun/smartgun/attackby(obj/item/attacking_object, mob/user)
 	if(istypestrict(attacking_object, battery_type))
 		var/obj/item/smartgun_battery/new_cell = attacking_object
-		visible_message(SPAN_NOTICE("[user] swaps out the power cell in [src]."),
-			SPAN_NOTICE("You swap out the power cell in [src] and drop the old one."))
-		to_chat(user, SPAN_NOTICE("The new cell contains: [new_cell.power_cell.charge] power."))
+		visible_message(SPAN_NOTICE("[user]更换了[src]中的电池。"),
+			SPAN_NOTICE("你更换了[src]中的电池，并丢下旧电池。"))
+		to_chat(user, SPAN_NOTICE("新电池含有[new_cell.power_cell.charge]电量。"))
 		battery.update_icon()
 		battery.forceMove(get_turf(user))
 		battery = new_cell
@@ -166,13 +166,13 @@
 
 /obj/item/weapon/gun/smartgun/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
 	if(!cover_open)
-		to_chat(user, SPAN_WARNING("\The [src]'s feed cover is closed! You can't put a new drum in! (alt-click to open it)"))
+		to_chat(user, SPAN_WARNING("[src]的供弹机盖关着，无法装入新弹鼓！（按住 Alt 点击可打开）"))
 		return
 	. = ..()
 
 /obj/item/weapon/gun/smartgun/unload(mob/user, reload_override, drop_override, loc_override)
 	if(!cover_open)
-		to_chat(user, SPAN_WARNING("\The [src]'s feed cover is closed! You can't take out the drum! (alt-click to open it)"))
+		to_chat(user, SPAN_WARNING("[src]的供弹机盖关着，无法取出弹鼓！（按住 Alt 点击可打开）"))
 		return
 	. = ..()
 
@@ -201,7 +201,7 @@
 	. = ..()
 	name = "Toggle Accuracy Improvement"
 	action_icon_state = "accuracy_improvement"
-	button.name = name
+	button.name = "切换精度增强"
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/hud/actions.dmi', button, action_icon_state)
 
@@ -218,7 +218,7 @@
 	. = ..()
 	name = "Toggle Recoil Compensation"
 	action_icon_state = "recoil_compensation"
-	button.name = name
+	button.name = "切换后坐力补偿"
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/hud/actions.dmi', button, action_icon_state)
 
@@ -235,7 +235,7 @@
 	. = ..()
 	name = "Toggle IFF"
 	action_icon_state = "iff_toggle_on"
-	button.name = name
+	button.name = "切换敌我识别"
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/hud/actions.dmi', button, action_icon_state)
 
@@ -254,7 +254,7 @@
 	. = ..()
 	name = "Toggle Ammo Type"
 	action_icon_state = "ammo_swap_normal"
-	button.name = name
+	button.name = "切换弹药类型"
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/hud/actions.dmi', button, action_icon_state)
 
@@ -285,19 +285,19 @@
 			return FALSE
 		var/mob/living/carbon/human/H = user
 		if(!skillcheckexplicit(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_SMARTGUN) && !skillcheckexplicit(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_ALL))
-			balloon_alert(user, "insufficient skills")
+			balloon_alert(user, "技能不足")
 			return FALSE
 		if(requires_harness)
 			if(!H.wear_suit || !(H.wear_suit.flags_inventory & SMARTGUN_HARNESS))
-				balloon_alert(user, "harness required")
+				balloon_alert(user, "需要背负装备")
 				return FALSE
 		if(cover_open)
-			to_chat(H, SPAN_WARNING("You can't fire \the [src] with the feed cover open! (alt-click to close)"))
-			balloon_alert(user, "cannot fire; feed cover open")
+			to_chat(H, SPAN_WARNING("[src]的供弹机盖开着，无法开火！（按住 Alt 点击可关闭）"))
+			balloon_alert(user, "供弹机盖开启，无法开火")
 			return FALSE
 		if(iff_enabled)
 			if(!H.glasses || !(H.glasses.flags_inventory & SMARTGUN_OPTIC))
-				balloon_alert(user, "m56 headset required for iff tracking")
+				balloon_alert(user, "敌我识别追踪需要 M56 耳机")
 				return FALSE
 
 /obj/item/weapon/gun/smartgun/unique_action(mob/user)
@@ -307,22 +307,22 @@
 
 /obj/item/weapon/gun/smartgun/proc/toggle_ammo_type(mob/user)
 	if(!iff_enabled)
-		to_chat(user, "[icon2html(src, usr)] Can't switch ammunition type when \the [src]'s fire restriction is disabled.")
+		to_chat(user, "[icon2html(src, usr)][src]的射击限制已停用，无法切换弹药类型。")
 		return
 	if(ammo == ammo_primary)
 		ammo = ammo_secondary
-		to_chat(user, "[icon2html(src, usr)] You changed \the [src]'s ammo preparation procedures. You now fire armor-piercing rounds, offering greater penetration against armored targets compared to other rounds.")
-		balloon_alert(user, "firing armor-piercing")
+		to_chat(user, "[icon2html(src, usr)]你调整了[src]的弹药处理程序。现在发射穿甲弹，比其他弹药更容易击穿装甲目标。")
+		balloon_alert(user, "发射穿甲弹")
 		drain += 50
 	else if(ammo == ammo_secondary)
 		ammo = ammo_tertiary
-		to_chat(user, "[icon2html(src, usr)] You changed \the [src]'s ammo preparation procedures. You now fire impact-detonating rounds, which stagger most human-sized hostiles on hit and slow them down.")
-		balloon_alert(user, "firing impact-detonating")
+		to_chat(user, "[icon2html(src, usr)]你调整了[src]的弹药处理程序。现在发射触爆弹，命中后可使大多数人类大小的敌人踉跄并减速。")
+		balloon_alert(user, "发射触爆弹")
 		drain += 10
 	else
 		ammo = ammo_primary
-		to_chat(user, "[icon2html(src, usr)] You changed \the [src]'s ammo preparation procedures. You now fire highly precise rounds. These rounds are accurate and cost less power to operate.")
-		balloon_alert(user, "firing highly precise")
+		to_chat(user, "[icon2html(src, usr)]你调整了[src]的弹药处理程序。现在发射高精度弹药，精度高，耗电也更少。")
+		balloon_alert(user, "发射高精度弹")
 		drain -= 60
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	var/datum/action/item_action/smartgun/toggle_ammo_type/TAT = locate(/datum/action/item_action/smartgun/toggle_ammo_type) in actions
@@ -335,7 +335,7 @@
 		ammo = old_ammo
 
 /obj/item/weapon/gun/smartgun/proc/toggle_lethal_mode(mob/user)
-	to_chat(user, "[icon2html(src, usr)] You [iff_enabled? "<B>disable</b>" : "<B>enable</b>"] \the [src]'s fire restriction. You will [iff_enabled ? "harm anyone in your way" : "target through IFF"].")
+	to_chat(user, "[icon2html(src, usr)]你[iff_enabled? "<B>停用</b>" : "<B>启用</b>"]了[src]的射击限制。现在会[iff_enabled ? "伤害挡在面前的任何人" : "通过敌我识别系统筛选目标"]。")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	iff_enabled = !iff_enabled
 	ammo = ammo_primary
@@ -373,16 +373,16 @@
 			battery.power_cell.charge -= actual_drain
 		else
 			battery.power_cell.charge = 0
-			to_chat(usr, SPAN_WARNING("[src] emits a low power warning and immediately shuts down!"))
+			to_chat(usr, SPAN_WARNING("[src]发出低电量警报，随即关闭！"))
 			return FALSE
 		return TRUE
 	if(!battery || battery.power_cell.charge == 0)
-		balloon_alert(usr, "low power")
+		balloon_alert(usr, "电量不足")
 		return FALSE
 	return FALSE
 
 /obj/item/weapon/gun/smartgun/proc/toggle_recoil_compensation(mob/user)
-	to_chat(user, "[icon2html(src, usr)] You [recoil_compensation? "<B>disable</b>" : "<B>enable</b>"] \the [src]'s recoil compensation.")
+	to_chat(user, "[icon2html(src, usr)]你[recoil_compensation? "<B>停用</b>" : "<B>启用</b>"]了[src]的后坐力补偿。")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	recoil_compensation = !recoil_compensation
 	if(recoil_compensation)
@@ -392,7 +392,7 @@
 	recalculate_attachment_bonuses() //Includes set_gun_config_values() as well as attachments.
 
 /obj/item/weapon/gun/smartgun/proc/toggle_accuracy_improvement(mob/user)
-	to_chat(user, "[icon2html(src, usr)] You [accuracy_improvement? "<B>disable</b>" : "<B>enable</b>"] \the [src]'s accuracy improvement.")
+	to_chat(user, "[icon2html(src, usr)]你[accuracy_improvement? "<B>停用</b>" : "<B>启用</b>"]了[src]的精度增强功能。")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	accuracy_improvement = !accuracy_improvement
 	if(accuracy_improvement)
@@ -421,7 +421,7 @@
 	. = ..()
 	if(is_locked && linked_human && linked_human != user)
 		if(linked_human.is_revivable() || linked_human.stat != DEAD)
-			to_chat(user, SPAN_WARNING("[icon2html(src, usr)] Trigger locked by [src]. Unauthorized user."))
+			to_chat(user, SPAN_WARNING("[icon2html(src, usr)][src]锁定了扳机。未授权用户。"))
 			playsound(loc,'sound/weapons/gun_empty.ogg', 25, 1)
 			return FALSE
 
@@ -447,7 +447,7 @@
 	. = ..()
 	name = "Toggle ID lock"
 	action_icon_state = "id_lock_locked"
-	button.name = name
+	button.name = "切换身份锁"
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/hud/actions.dmi', button, action_icon_state)
 
@@ -464,13 +464,13 @@
 
 /obj/item/weapon/gun/smartgun/co/proc/toggle_lock(mob/user)
 	if(linked_human && usr != linked_human)
-		to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] Action denied by \the [src]. Unauthorized user."))
+		to_chat(usr, SPAN_WARNING("[icon2html(src, usr)][src]拒绝操作。未授权用户。"))
 		return
 	else if(!linked_human)
 		name_after_co(usr)
 
 	is_locked = !is_locked
-	to_chat(usr, SPAN_NOTICE("[icon2html(src, usr)] You [is_locked? "lock": "unlock"] \the [src]."))
+	to_chat(usr, SPAN_NOTICE("[icon2html(src, usr)]你[is_locked? "锁定": "解锁"]了[src]。"))
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 
 // action end \\
@@ -478,7 +478,7 @@
 /obj/item/weapon/gun/smartgun/co/pickup(user)
 	if(!linked_human)
 		src.name_after_co(user, src)
-		to_chat(usr, SPAN_NOTICE("[icon2html(src, usr)] You pick up \the [src], registering yourself as its owner."))
+		to_chat(usr, SPAN_NOTICE("[icon2html(src, usr)]你拾起[src]，将自己登记为持有者。"))
 	..()
 
 
@@ -490,21 +490,21 @@
 	. = ..()
 	if(linked_human)
 		if(is_locked)
-			. += SPAN_NOTICE("It is registered to [linked_human].")
+			. += SPAN_NOTICE("已登记给[linked_human]。")
 		else
-			. += SPAN_NOTICE("It is registered to [linked_human] but has its fire restrictions unlocked.")
+			. += SPAN_NOTICE("已登记给[linked_human]，但射击限制未锁定。")
 	else
-		. += SPAN_NOTICE("It's unregistered. Pick it up to register yourself as its owner.")
+		. += SPAN_NOTICE("尚未登记。拾起即可将自己登记为持有者。")
 	if(!iff_enabled)
-		. += SPAN_WARNING("Its IFF restrictions are disabled.")
+		. += SPAN_WARNING("敌我识别限制已停用。")
 
 /obj/item/weapon/gun/smartgun/co/proc/remove_idlock()
 	SIGNAL_HANDLER
 	linked_human = null
 
 /obj/item/weapon/gun/smartgun/dirty
-	name = "\improper M56A3 'Dirty' smartgun"
-	desc = "The actual firearm in the 4-piece M56A3 Smartgun System. Ruggedized electronics and a slightly lighter frame are the only differences between this and the standard UA-issue A2 model.\nYou may toggle firing restrictions by using a special action.\nAlt-click it to open the feed cover and allow for reloading."
+	name = "\improper M56A3“脏家伙”智能机枪"
+	desc = "四件式 M56A3 智能机枪系统中的枪械。与美洲联盟制式 A2 型相比，区别仅在于更加坚固的电子设备和略轻的枪身。\n使用特殊操作可切换射击限制。\n按住 Alt 点击可打开供弹机盖以装填弹药。"
 	flags_gun_features = GUN_WY_RESTRICTED|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 	drain = 30	//Slightly more power effictient than the basic model
 
@@ -515,13 +515,13 @@
 
 //TERMINATOR SMARTGUN
 /obj/item/weapon/gun/smartgun/dirty/elite
-	name = "\improper M56A3-T 'Terminator' smartgun"
+	name = "\improper M56A3-T“终结者”智能机枪"
 	current_mag = /obj/item/ammo_magazine/smartgun/dirty
 	ammo = /obj/item/ammo_magazine/smartgun/dirty
 	ammo_primary = /datum/ammo/bullet/rifle/heavy/dirty //Toggled ammo type
 	ammo_secondary = /datum/ammo/bullet/rifle/heavy/ap/dirty ///Toggled ammo type
 	ammo_tertiary = /datum/ammo/bullet/rifle/heavy/impdet/dirty
-	desc = "The actual firearm in the 4-piece M56A3-T Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way.\nYou may toggle firing restrictions by using a special action.\nAlt-click it to open the feed cover and allow for reloading."
+	desc = "四件式 M56A3-T 智能机枪系统中的枪械。有了它，挡路的人就要吃足苦头。\n使用特殊操作可切换射击限制。\n按住 Alt 点击可打开供弹机盖以装填弹药。"
 
 /obj/item/weapon/gun/smartgun/dirty/elite/Initialize(mapload, ...)
 	. = ..()
@@ -542,8 +542,8 @@
 // CLF SMARTGUN
 
 /obj/item/weapon/gun/smartgun/clf
-	name = "\improper M56A2 'Freedom' smartgun"
-	desc = "The actual firearm in the 4-piece M56A2 Smartgun System. Essentially a heavy, mobile machinegun. This one has the CLF logo carved over the manufacturing stamp.\nYou may toggle firing restrictions by using a special action.\nAlt-click it to open the feed cover and allow for reloading."
+	name = "\improper M56A2“自由”智能机枪"
+	desc = "四件式 M56A2 智能机枪系统中的枪械，本质上是一挺重型机动机枪。制造标记被刻上了殖民地解放阵线徽记。\n使用特殊操作可切换射击限制。\n按住 Alt 点击可打开供弹机盖以装填弹药。"
 
 /obj/item/weapon/gun/smartgun/clf/Initialize(mapload, ...)
 	. = ..()
@@ -577,19 +577,19 @@
 /obj/item/smartgun_battery/get_examine_text(mob/user)
 	. = ..()
 
-	. += SPAN_NOTICE("The power indicator reads [power_cell.charge] charge out of [power_cell.maxcharge] total.")
+	. += SPAN_NOTICE("电量指示器显示剩余 [power_cell.charge] / [power_cell.maxcharge] 电量。")
 
 /obj/item/smartgun_battery/upp
-	name = "\improper GB-12-U3 battery"
-	desc = "UPP standard-issue 12-volt lead-acid battery, used by the UPPAC to power just about anything short of armored vehicles. This one seems to be a variant made to power automated machineguns. Also could be used as a blunt weapon."
+	name = "\improper GB-12-U3 电池"
+	desc = "进步人民联盟制式 12 伏铅酸电池，联盟武装集体用它给装甲载具以下几乎所有设备供电。这一型似乎专为自动机枪供电设计，也可当作钝器使用。"
 	icon_state = "smartguncell_upp"
 	force = 15
 	throwforce = 25 //pretty aerodynamic
 	throw_range = 7
 
 /obj/item/weapon/gun/smartgun/rmc
-	name = "\improper L58A3 smartgun"
-	desc = "The actual firearm in the L58A3 'Smart' General Purpose Machine Gun System. A heavily modified variant of the UA's M56 system, it is used by the Three World Empires Royal Marines Commando units to offer supporting fire for their sections.\nYou may toggle firing restrictions by using a special action.\nAlt-click it to open the feed cover and allow for reloading."
+	name = "\improper L58A3 智能机枪"
+	desc = "L58A3“智能”通用机枪系统中的枪械，由美洲联盟 M56 系统大幅改造而来，为三世界帝国皇家陆战突击队分队提供火力支援。\n使用特殊操作可切换射击限制。\n按住 Alt 点击可打开供弹机盖以装填弹药。"
 	current_mag = /obj/item/ammo_magazine/smartgun/holo_targeting
 	ammo = /obj/item/ammo_magazine/smartgun/holo_targeting
 	ammo_primary = /datum/ammo/bullet/rifle/heavy/holo_target //Toggled ammo type
@@ -636,13 +636,13 @@
 	current_mag = null
 
 /obj/item/weapon/gun/smartgun/silenced
-	name = "XM56A4 smartgun"
-	desc = "An experimental smartgun variant currently undergoing field testing. This model is outfitted with integrated suppressor and modified internal mechanism."
+	name = "XM56A4 智能机枪"
+	desc = "正在进行战地试用的实验型智能机枪，配有一体式消声器和改进内部机构。"
 	starting_attachment_types = list(/obj/item/attachable/smartbarrel/suppressed)
 
 /obj/item/weapon/gun/smartgun/upp
-	name = "\improper RVS-37 automated machinegun"
-	desc = "A Russian-led project with input from the ground forces of Vietnam and Spain, the RVS-37 \"Canyon\" is the near peer response to the venerable M56 Smartgun."
+	name = "\improper RVS-37 自动机枪"
+	desc = "由俄罗斯主导、越南和西班牙地面部队参与的项目。RVS-37“峡谷”旨在与久经考验的 M56 智能机枪一较高下。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/upp.dmi'
 	icon_state = "rfvs37"
 	item_state = "rfvs37"
@@ -676,22 +676,22 @@
 
 /obj/item/weapon/gun/smartgun/upp/toggle_ammo_type(mob/user)
 	if(!iff_enabled)
-		to_chat(user, "[icon2html(src, usr)] Can't switch ammunition type when \the [src]'s fire restriction is disabled.")
+		to_chat(user, "[icon2html(src, usr)][src]的射击限制已停用，无法切换弹药类型。")
 		return
 	if(ammo == ammo_primary)
 		ammo = ammo_secondary
-		to_chat(user, "[icon2html(src, usr)] You changed \the [src]'s ammo preparation procedures. You now fire armor-piercing rounds, offering greater penetration against armored targets compared to other rounds.")
-		balloon_alert(user, "firing armor-piercing")
+		to_chat(user, "[icon2html(src, usr)]你调整了[src]的弹药处理程序。现在发射穿甲弹，比其他弹药更容易击穿装甲目标。")
+		balloon_alert(user, "发射穿甲弹")
 		drain += 50
 	else if(ammo == ammo_secondary)
 		ammo = ammo_tertiary
-		to_chat(user, "[icon2html(src, usr)] You changed \the [src]'s ammo preparation procedures. You now fire flak rounds, which release a rain of heavy shrapnel.")
-		balloon_alert(user, "firing flak")
+		to_chat(user, "[icon2html(src, usr)]你调整了[src]的弹药处理程序。现在发射破片弹，能够释放密集的重型破片。")
+		balloon_alert(user, "发射破片弹")
 		drain += 100
 	else
 		ammo = ammo_primary
-		to_chat(user, "[icon2html(src, usr)] You changed \the [src]'s ammo preparation procedures. You now fire highly precise rounds. These rounds are accurate and cost less power to operate.")
-		balloon_alert(user, "firing highly precise")
+		to_chat(user, "[icon2html(src, usr)]你调整了[src]的弹药处理程序。现在发射高精度弹药，精度高，耗电也更少。")
+		balloon_alert(user, "发射高精度弹")
 		drain -= 150
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	var/datum/action/item_action/smartgun/toggle_ammo_type/TAT = locate(/datum/action/item_action/smartgun/toggle_ammo_type) in actions
@@ -720,7 +720,7 @@
 	. = ..()
 	name = "Toggle Retrieval"
 	action_icon_state = "retrieve_1"
-	button.name = name
+	button.name = "切换自动回收"
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/hud/actions.dmi', button, action_icon_state)
 

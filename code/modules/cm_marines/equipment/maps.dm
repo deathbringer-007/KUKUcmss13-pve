@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(mapless_maps, list(MAP_RUNTIME, MAP_CHINOOK, MAIN_SHIP_DEFAULT_
 
 /obj/item/map/attack_self(mob/user) //Open the map
 	..()
-	user.visible_message(SPAN_NOTICE("[user] opens the [src.name]."))
+	user.visible_message(SPAN_NOTICE("[user]打开了[src.name]。"))
 	initialize_map()
 
 /obj/item/map/attack()
@@ -49,7 +49,7 @@ GLOBAL_LIST_INIT(mapless_maps, list(MAP_RUNTIME, MAP_CHINOOK, MAIN_SHIP_DEFAULT_
 						obj.style.display = "inline";
 					}
 				</script>
-				<p id='loading'>You start unfolding the map...</p>
+				<p id='loading'>你开始展开地图……</p>
 					<img onload="pageloaded(this)" src="[wikiurl]/[html_link]?printable=yes&remove_links=1" id="main_frame" alt=""></img>
 				</body>
 
@@ -58,111 +58,111 @@ GLOBAL_LIST_INIT(mapless_maps, list(MAP_RUNTIME, MAP_CHINOOK, MAIN_SHIP_DEFAULT_
 	show_browser(usr, dat, name, "papermap", width = 1280, height = 720)
 
 /obj/item/map/lazarus_landing_map
-	name = "\improper Lazarus Landing Map"
-	desc = "A satellite printout of the Lazarus Landing colony on LV-624."
+	name = "\improper 拉撒路着陆区地图"
+	desc = "LV-624 拉撒路着陆区殖民地的卫星图打印件。"
 	html_link = "images/6/6f/LV624.png"
 
 /obj/item/map/ice_colony_map
-	name = "\improper Ice Colony map"
-	desc = "A satellite printout of the Ice Colony."
+	name = "\improper 冰原殖民地地图"
+	desc = "冰原殖民地的卫星图打印件。"
 	html_link = "images/1/18/Map_icecolony.png"
 	color = "cyan"
 
 /obj/item/map/ice_colony_map/v1
-	name = "\improper Blank Map"
+	name = "\improper 空白地图"
 	html_link = ""
 
 /obj/item/map/ice_colony_map/v2
-	name = "\improper Blank Map"
+	name = "\improper 空白地图"
 	html_link = ""
 
 /obj/item/map/ice_colony_map_v3
-	name = "\improper Shivas Snowball map"
-	desc = "A labelled print out of the anterior scan of the UA colony Shivas Snowball."
+	name = "\improper 希瓦雪球地图"
+	desc = "美洲联盟殖民地希瓦雪球的正面扫描打印图，带有标注。"
 	html_link = "images/1/18/Map_icecolony.png"
 	color = "cyan"
 
 /obj/item/map/whiskey_outpost_map
-	name = "\improper Whiskey Outpost map"
-	desc = "A tactical printout of the Whiskey Outpost defensive positions and locations."
+	name = "\improper 威士忌哨站地图"
+	desc = "标有威士忌哨站防御阵地和位置的战术打印图。"
 	html_link = "images/7/78/Whiskey_outpost.png"
 	color = "grey"
 
 /obj/item/map/big_red_map
-	name = "\improper Solaris Ridge Map"
-	desc = "A censored blueprint of the Solaris Ridge facility."
+	name = "\improper 索拉里斯山脊地图"
+	desc = "经审查删改的索拉里斯山脊设施蓝图。"
 	html_link = "images/9/9e/Solaris_Ridge.png"
 	color = "#e88a10"
 
 /obj/item/map/FOP_map
-	name = "\improper Fiorina Orbital Penitentiary Map"
-	desc = "A labelled interior scan of Fiorina Orbital Penitentiary."
+	name = "\improper 菲奥里纳轨道监狱地图"
+	desc = "标有注释的菲奥里纳轨道监狱内部扫描图。"
 	html_link = "images/4/4c/Map_Prison.png"
 	color = "#e88a10"
 
 /obj/item/map/FOP_map_v3
-	name = "\improper Fiorina Orbital Civilian Annex Map"
-	desc = "A scan produced by the Almayer's sensor array of the Fiorina Orbital Penitentiary Civilian Annex. It appears to have broken off from the rest of the station and is now in free geo-sync orbit around the planet."
+	name = "\improper 菲奥里纳轨道平民附属区地图"
+	desc = "由阿尔迈耶号传感器阵列生成的菲奥里纳轨道监狱平民附属区扫描图。它似乎已经与空间站其余部分分离，目前正独自在行星同步轨道上运行。"
 	html_link = "images/e/e0/Prison_Station_Science_Annex.png"
 	color = "#e88a10"
 
 /obj/item/map/desert_dam
-	name = "\improper Trijent Dam map"
-	desc = "An orbital scan printout of the Trijent Dam colony."
+	name = "\improper 特里金特大坝地图"
+	desc = "特里金特大坝殖民地的轨道扫描打印图。"
 	html_link = "images/9/92/Trijent_Dam.png"
 	color = "#ad8d0e"
 
 /obj/item/map/sorokyne_map
-	name = "\improper Sorokyne Strata map"
-	desc = "A map of the Weyland-Yutani colony Sorokyne Outpost, commonly known as Sorokyne Strata."
+	name = "\improper 索罗基内地层地图"
+	desc = "维兰德-汤谷索罗基内哨站殖民地的地图，当地通常被称为索罗基内地层。"
 	html_link = "images/2/21/Sorokyne_Wiki_Map.jpg" //The fact that this is just a wiki-link makes me sad and amused.
 	color = "cyan"
 
 /obj/item/map/corsat
-	name = "\improper CORSAT map"
-	desc = "A blueprint of CORSAT station."
+	name = "\improper CORSAT 地图"
+	desc = "CORSAT 空间站的蓝图。"
 	html_link = "images/8/8e/CORSAT_Satellite.png"
 	color = "red"
 
 /obj/item/map/kutjevo_map
-	name = "\improper Kutjevo Refinery map"
-	desc = "An orbital scan of Kutjevo Refinery."
+	name = "\improper 库特耶沃精炼厂地图"
+	desc = "库特耶沃精炼厂的轨道扫描图。"
 	html_link = "images/0/0d/Kutjevo_a1.jpg"
 	color = "red"
 
 /obj/item/map/lv522_map
-	name = "\improper LV-522 Map"
-	desc = "An overview of LV-522 schematics."
+	name = "\improper LV-522 地图"
+	desc = "LV-522 设施布局总览。"
 	html_link = "images/b/bb/C_claim.png"
 	color = "cyan"
 
 /obj/item/map/new_varadero
-	name = "\improper New Varadero map"
-	desc = "A labeled blueprint of the UA outpost New Varadero."
+	name = "\improper 新巴拉德罗地图"
+	desc = "美洲联盟新巴拉德罗哨站的标注蓝图。"
 	html_link = "images/9/94/New_Varadero.png"
 	color = "red"
 
 /obj/item/map/almayer
-	name = "\improper USS Almayer map"
-	desc = "A labeled blueprint of the USS Almayer"
+	name = "\improper 阿尔迈耶号地图"
+	desc = "阿尔迈耶号的标注蓝图。"
 	html_link = "images/5/54/USS_Almayer.png"
 	color = "cyan"
 
 /obj/item/map/canyon_32b
-	name = "\improper Blank Map"
-	desc = "A blank map, or at least you THINK there should be a map on this piece of laminated paper."
+	name = "\improper 空白地图"
+	desc = "一张空白地图，至少你觉得这张覆膜纸上本该有地图。"
 	html_link = ""
 	color = "white"
 
 /obj/item/map/taipei
-	name = "\improper Taipei Way-Station map"
-	desc = "A labelled print out of the interior scan of Taipei Station, an unassuming waystation."
+	name = "\improper 台北中转站地图"
+	desc = "台北站的内部扫描打印图，带有标注。这是一个不起眼的中转站。"
 	html_link = "images/f/f2/Taipei.png"
 	color = "cyan"
 
 /obj/item/map/oread_map
-	name = "\improper Blank Map" // name = "\improper Oread Garrison map"
-	desc = "A distorted orbital scan of the Oread Garrison"
+	name = "\improper 空白地图" // name = "\improper Oread Garrison map"
+	desc = "一张失真的奥瑞亚德驻军基地轨道扫描图。"
 	html_link = ""
 	color = "cyan"
 
@@ -221,7 +221,7 @@ GLOBAL_LIST_INIT_TYPED(map_type_list, /obj/item/map, setup_all_maps())
 
 // Landmark - Used for mapping. Will spawn the appropriate map for each gamemode (LV map items will spawn when LV is the gamemode, etc)
 /obj/effect/landmark/map_item
-	name = "map item"
+	name = "地图物品"
 	icon_state = "ipool"
 
 /obj/effect/landmark/map_item/Initialize(mapload, ...)
@@ -234,8 +234,8 @@ GLOBAL_LIST_INIT_TYPED(map_type_list, /obj/item/map, setup_all_maps())
 
 // Tac-map showing map, for those groundmaps which haven't got a proper map(item) made
 /obj/item/tacmap_map
-	name = "\improper sat-scan tablet"
-	desc = "A handheld electronic device which displays an orbital scan of the local area of operations."
+	name = "\improper 卫星扫描平板"
+	desc = "显示当地作战区域轨道扫描图的手持电子设备。"
 	icon = 'icons/obj/items/devices.dmi'
 	icon_state = "maptablet"
 	item_state = "Cotablet"
@@ -254,7 +254,7 @@ GLOBAL_LIST_INIT_TYPED(map_type_list, /obj/item/map, setup_all_maps())
 
 /obj/item/tacmap_map/attack_self(mob/user) //Open the map
 	..()
-	user.visible_message(SPAN_NOTICE("[user] looks closely at [src]."))
+	user.visible_message(SPAN_NOTICE("[user]仔细查看了[src]。"))
 	map.tgui_interact(user)
 
 /obj/item/tacmap_map/attack(mob/attacked_mob, mob/user)
@@ -264,8 +264,8 @@ GLOBAL_LIST_INIT_TYPED(map_type_list, /obj/item/map, setup_all_maps())
 		return
 
 	if(ishuman(attacked_mob))
-		user.visible_message(SPAN_NOTICE("[user] shows [attacked_mob] [src]."),SPAN_NOTICE("You show [attacked_mob] the screen of [src]"))
-		to_chat(attacked_mob, SPAN_NOTICE("[user] shows you the screen of [src]."))
+		user.visible_message(SPAN_NOTICE("[user]向[attacked_mob]展示了[src]。"),SPAN_NOTICE("你向[attacked_mob]展示了[src]的屏幕。"))
+		to_chat(attacked_mob, SPAN_NOTICE("[user]向你展示了[src]的屏幕。"))
 		map.tgui_interact(attacked_mob)
 		return
 

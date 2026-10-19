@@ -56,10 +56,10 @@
 	if(!. || !istype(user)) //Let's check all that other stuff first.
 		return 0
 	if(!skillcheck(user, SKILL_FIREARMS, SKILL_FIREARMS_TRAINED))
-		to_chat(user, SPAN_WARNING("You don't seem to know how to use [src]..."))
+		to_chat(user, SPAN_WARNING("你似乎不知道如何使用[src]……"))
 		return 0
 	if(!skillcheck(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_ALL) && user.skills.get_skill_level(SKILL_SPEC_WEAPONS) != SKILL_SPEC_UPP)
-		to_chat(user, SPAN_WARNING("You don't seem to know how to use [src]..."))
+		to_chat(user, SPAN_WARNING("你似乎不知道如何使用[src]……"))
 		return 0
 
 
@@ -123,28 +123,28 @@
 		if(!locate(src) in list(user.get_active_hand(), user.get_inactive_hand()))
 			return TRUE
 		if(user.get_active_hand() && user.get_inactive_hand())
-			to_chat(user, SPAN_WARNING("You can't do that with your hands full!"))
+			to_chat(user, SPAN_WARNING("你的双手都拿着东西，无法这样做！"))
 			return TRUE
 		if(!cover_open)
 			playsound(src.loc, 'sound/handling/smartgun_open.ogg', 50, TRUE, 3)
-			to_chat(user, SPAN_NOTICE("You open [src]'s feed cover, allowing the belt to be removed."))
+			to_chat(user, SPAN_NOTICE("你打开了[src]的供弹机盖，现在可以取出弹链。"))
 			cover_open = TRUE
 		else
 			playsound(src.loc, 'sound/handling/smartgun_close.ogg', 50, TRUE, 3)
-			to_chat(user, SPAN_NOTICE("You close [src]'s feed cover."))
+			to_chat(user, SPAN_NOTICE("你关上了[src]的供弹机盖。"))
 			cover_open = FALSE
 		update_icon()
 		return TRUE
 
 /obj/item/weapon/gun/m60/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
 	if(!cover_open)
-		to_chat(user, SPAN_WARNING("[src]'s feed cover is closed! You can't put a new belt in! <b>(alt-click to open it)</b>"))
+		to_chat(user, SPAN_WARNING("[src]的供弹机盖关着，无法装入新弹链！<b>（按住 Alt 点击可打开）</b>"))
 		return
 	return ..()
 
 /obj/item/weapon/gun/m60/unload(mob/user, reload_override, drop_override, loc_override)
 	if(!cover_open)
-		to_chat(user, SPAN_WARNING("[src]'s feed cover is closed! You can't take out the belt! <b>(alt-click to open it)</b>"))
+		to_chat(user, SPAN_WARNING("[src]的供弹机盖关着，无法取出弹链！<b>（按住 Alt 点击可打开）</b>"))
 		return
 	return ..()
 
@@ -159,7 +159,7 @@
 	. = ..()
 	if(.)
 		if(cover_open)
-			to_chat(user, SPAN_WARNING("You can't fire [src] with the feed cover open! <b>(alt-click to close)</b>"))
+			to_chat(user, SPAN_WARNING("[src]的供弹机盖开着，无法开火！<b>（按住 Alt 点击可关闭）</b>"))
 			return FALSE
 
 
@@ -237,28 +237,28 @@
 		if(!locate(src) in list(user.get_active_hand(), user.get_inactive_hand()))
 			return TRUE
 		if(user.get_active_hand() && user.get_inactive_hand())
-			to_chat(user, SPAN_WARNING("You can't do that with your hands full!"))
+			to_chat(user, SPAN_WARNING("你的双手都拿着东西，无法这样做！"))
 			return TRUE
 		if(!cover_open)
 			playsound(src.loc, 'sound/handling/smartgun_open.ogg', 50, TRUE, 3)
-			to_chat(user, SPAN_NOTICE("You open [src]'s feed cover, allowing the belt to be removed."))
+			to_chat(user, SPAN_NOTICE("你打开了[src]的供弹机盖，现在可以取出弹链。"))
 			cover_open = TRUE
 		else
 			playsound(src.loc, 'sound/handling/smartgun_close.ogg', 50, TRUE, 3)
-			to_chat(user, SPAN_NOTICE("You close [src]'s feed cover."))
+			to_chat(user, SPAN_NOTICE("你关上了[src]的供弹机盖。"))
 			cover_open = FALSE
 		update_icon()
 		return TRUE
 
 /obj/item/weapon/gun/pkp/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
 	if(!cover_open)
-		to_chat(user, SPAN_WARNING("[src]'s feed cover is closed! You can't put a new belt in! <b>(alt-click to open it)</b>"))
+		to_chat(user, SPAN_WARNING("[src]的供弹机盖关着，无法装入新弹链！<b>（按住 Alt 点击可打开）</b>"))
 		return
 	return ..()
 
 /obj/item/weapon/gun/pkp/unload(mob/user, reload_override, drop_override, loc_override)
 	if(!cover_open)
-		to_chat(user, SPAN_WARNING("[src]'s feed cover is closed! You can't take out the belt! <b>(alt-click to open it)</b>"))
+		to_chat(user, SPAN_WARNING("[src]的供弹机盖关着，无法取出弹链！<b>（按住 Alt 点击可打开）</b>"))
 		return
 	return ..()
 
@@ -273,15 +273,15 @@
 	. = ..()
 	if(.)
 		if(cover_open)
-			to_chat(user, SPAN_WARNING("You can't fire [src] with the feed cover open! <b>(alt-click to close)</b>"))
+			to_chat(user, SPAN_WARNING("[src]的供弹机盖开着，无法开火！<b>（按住 Alt 点击可关闭）</b>"))
 			return FALSE
 	if(!skillcheck(user, SKILL_FIREARMS, SKILL_FIREARMS_TRAINED))
-		to_chat(user, SPAN_WARNING("You don't seem to know how to use [src]..."))
+		to_chat(user, SPAN_WARNING("你似乎不知道如何使用[src]……"))
 		return FALSE
 
 /obj/item/weapon/gun/pkp/iff
-	name = "\improper QYJ-72-I General Purpose Machine Gun"
-	desc = "The QYJ-72-I is an experimental variant of common UPP GPMG featuring IFF capabilities which were developed by reverse-engineering USCM smartweapons. Aside from that, not much has been done to this machinegun: it's still heavy, overheats rather quickly and is able to lay down range unprecedented amounts of lead. \n<b>Alt-click it to open the feed cover and allow for reloading.</b>"
+	name = "\improper QYJ-72-I 通用机枪"
+	desc = "QYJ-72-I 是进步人民联盟常见通用机枪的实验改型。它通过逆向研究美国殖民地陆战队智能武器，获得了敌我识别能力。除此之外改动不多：依旧沉重，很快就会过热，却能向远处倾泻空前密集的弹雨。\n<b>按住 Alt 点击即可打开供弹机盖以重新装填。</b>"
 	actions_types = list(/datum/action/item_action/toggle_iff_pkp)
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	var/iff_enabled = TRUE
@@ -295,7 +295,7 @@
 		var/mob/living/carbon/human/H = user
 		if(requires_harness)
 			if(!H.wear_suit || !(H.wear_suit.flags_inventory & SMARTGUN_HARNESS))
-				balloon_alert(user, "harness required")
+				balloon_alert(user, "需要背负装备")
 				return FALSE
 
 /obj/item/weapon/gun/pkp/iff/set_bullet_traits()
@@ -308,7 +308,7 @@
 	. = ..()
 	name = "Toggle IFF"
 	action_icon_state = "iff_toggle_on"
-	button.name = name
+	button.name = "切换敌我识别"
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/hud/actions.dmi', button, action_icon_state)
 
@@ -331,7 +331,7 @@
 	button.overlays += image('icons/mob/hud/actions.dmi', button, action_icon_state)
 
 /obj/item/weapon/gun/pkp/iff/proc/toggle_lethal_mode(mob/user)
-	to_chat(user, "[icon2html(src, usr)] You [iff_enabled? "<B>disable</b>" : "<B>enable</b>"] \the [src]'s fire restriction. You will [iff_enabled ? "harm anyone in your way" : "target through IFF"].")
+	to_chat(user, "[icon2html(src, usr)]你[iff_enabled? "<B>停用</b>" : "<B>启用</b>"]了[src]的射击限制。现在会[iff_enabled ? "伤害挡在面前的任何人" : "通过敌我识别系统筛选目标"]。")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	iff_enabled = !iff_enabled
 	if(iff_enabled)
@@ -359,8 +359,8 @@
 // XM99A, The quintesential phased plasma rifle in the 40 watt range
 
 /obj/item/weapon/gun/XM99
-	name = "\improper XM99A phased plasma pulse rifle"
-	desc = "An experimental directed energy weapon system designed by Armat, the XM99A is a long-range prototype rifle that fires super-heated blasts of plasma."
+	name = "\improper XM99A 相位等离子脉冲步枪"
+	desc = "阿玛特设计的实验型定向能武器系统。XM99A 是发射过热等离子体的远程原型步枪。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "xm99a"
 	item_state = "xm99a"
@@ -428,46 +428,46 @@
 
 /obj/item/weapon/gun/XM99/reload(mob/user, obj/item/ammo_magazine/plasma)
 	if(!plasma || !istype(plasma) || !istype(src, plasma.gun_type))
-		to_chat(user, SPAN_WARNING("That's not going to fit!"))
+		to_chat(user, SPAN_WARNING("那东西装不进去！"))
 		return
 
 	if(current_mag)
-		to_chat(user, SPAN_WARNING("[src] is already loaded!"))
+		to_chat(user, SPAN_WARNING("[src]已经装填！"))
 		return
 
 	if(plasma.current_rounds <= 0)
-		to_chat(user, SPAN_WARNING("That battery drum is empty!"))
+		to_chat(user, SPAN_WARNING("那个电池鼓已经没电了！"))
 		return
 
 	else
-		to_chat(user, SPAN_NOTICE("You begin reloading [src]. Hold still..."))
+		to_chat(user, SPAN_NOTICE("你开始为[src]装填弹药。请保持不动……"))
 		if(do_after(user, 20, INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
 			user.drop_inv_item_on_ground(plasma)
 			current_mag = plasma
 			plasma.forceMove(src)
 			replace_ammo(,plasma)
-			to_chat(user, SPAN_NOTICE("You load the new battery drum into [src]."))
+			to_chat(user, SPAN_NOTICE("你将新的电池鼓装入[src]。"))
 			playsound(user, reload_sound, 25, 1)
 		else
-			to_chat(user, SPAN_WARNING("Your reload was interrupted!"))
+			to_chat(user, SPAN_WARNING("你的装填被打断了！"))
 			return
 	update_icon()
 	return TRUE
 
 /obj/item/weapon/gun/XM99/unload(mob/user, reload_override = 0)
 	if(user && !current_mag)
-		to_chat(user, SPAN_WARNING("[src] is already empty!"))
+		to_chat(user, SPAN_WARNING("[src]已经是空的！"))
 		return
 	if(user && (current_mag != null))
-		to_chat(user, SPAN_NOTICE("You unload [src]."))
+		to_chat(user, SPAN_NOTICE("你卸下了[src]的弹药。"))
 		playsound(user, unload_sound, 25, 1)
 		if(current_mag.current_rounds > 0)
-			user.visible_message(SPAN_NOTICE("[user] unloads [current_mag] from [src]."),
-			SPAN_NOTICE("You unload [current_mag] from [src]."))
+			user.visible_message(SPAN_NOTICE("[user]从[src]中卸下[current_mag]。"),
+			SPAN_NOTICE("你从[src]中卸下[current_mag]。"))
 			make_battery_drum(user, current_mag.current_rounds)
 		if(current_mag.current_rounds <= 0)
-			user.visible_message(SPAN_NOTICE("[user] unloads [current_mag] from [src]."),
-			SPAN_NOTICE("You unload [current_mag] from [src]."))
+			user.visible_message(SPAN_NOTICE("[user]从[src]中卸下[current_mag]。"),
+			SPAN_NOTICE("你从[src]中卸下[current_mag]。"))
 			make_battery_drum(user, current_mag.current_rounds)
 		current_mag = null
 		update_icon()
@@ -507,8 +507,8 @@
 //P9 Sonic Harpoon Artillery Remote Projectile(SHARP) Rifle
 
 /obj/item/weapon/gun/rifle/sharp
-	name = "\improper P9 SHARP rifle"
-	desc = "An experimental harpoon launcher rifle manufactured by Armat Systems. It's specialized for specific ammo types out of a 10-round magazine, best used for area denial and disruption.\n<b>Change firemode</b> in order to set fuse for delayed explosion darts. <b>Unique action</b> in order to track targets hit by tracker darts."
+	name = "\improper P9 SHARP 步枪"
+	desc = "阿玛特系统公司制造的实验型鱼叉发射步枪。使用 10 发弹匣供弹，专用弹药适合区域封锁和干扰。\n<b>切换射击模式</b>可设置延时爆炸飞镖的引信；使用<b>武器特殊操作</b>可追踪被追踪飞镖击中的目标。"
 	icon_state = "sharprifle"
 	item_state = "sharp"
 	fire_sound = 'sound/weapons/gun_sharp.ogg'
@@ -571,9 +571,9 @@
 			if(target < 900)
 				output = TRUE
 				var/areaName = get_area_name(areaLoc)
-				to_chat(M, SPAN_NOTICE("\The [mob_tracked] is [target > 10 ? "approximately <b>[round(target, 10)]</b>" : "<b>[target]</b>"] paces <b>[dir2text(direction)]</b> in <b>[areaName]</b>."))
+				to_chat(M, SPAN_NOTICE("[mob_tracked]位于<b>[areaName]</b>的<b>[localized_player_label(dir2text(direction))]</b>方向，距离[target > 10 ? "约 <b>[round(target, 10)]</b>" : "<b>[target]</b>"]步。"))
 	if(!output)
-		to_chat(M, SPAN_NOTICE("There is nothing currently tracked."))
+		to_chat(M, SPAN_NOTICE("当前没有正在追踪的目标。"))
 
 	return
 
@@ -583,4 +583,4 @@
 /obj/item/weapon/gun/rifle/sharp/do_toggle_firemode(datum/source, datum/keybinding, new_firemode)
 	explosion_delay_sharp = !explosion_delay_sharp
 	playsound(source, 'sound/weapons/handling/gun_burst_toggle.ogg', 15, 1)
-	to_chat(source, SPAN_NOTICE("You [explosion_delay_sharp ? SPAN_BOLD("enable") : SPAN_BOLD("disable")] [src]'s delayed fire mode. Explosive ammo will blow up in [explosion_delay_sharp ? SPAN_BOLD("five seconds") : SPAN_BOLD("one second")]."))
+	to_chat(source, SPAN_NOTICE("你[explosion_delay_sharp ? SPAN_BOLD("启用") : SPAN_BOLD("停用")]了[src]的延时射击模式。爆炸弹药会在[explosion_delay_sharp ? SPAN_BOLD("五秒") : SPAN_BOLD("一秒")]后爆炸。"))

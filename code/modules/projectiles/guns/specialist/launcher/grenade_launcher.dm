@@ -54,11 +54,11 @@
 		return
 	if(length(cylinder.contents))
 		if(internal_slots == 1)
-			. += SPAN_NOTICE("It is loaded with a grenade.")
+			. += SPAN_NOTICE("已装填一枚手榴弹。")
 		else
-			. += SPAN_NOTICE("It is loaded with <b>[length(cylinder.contents)] / [internal_slots]</b> grenades.")
+			. += SPAN_NOTICE("已装填 <b>[length(cylinder.contents)] / [internal_slots]</b> 枚手榴弹。")
 	else
-		. += SPAN_NOTICE("It is empty.")
+		. += SPAN_NOTICE("它是空的。")
 
 
 /obj/item/weapon/gun/launcher/grenade/update_icon()
@@ -82,10 +82,10 @@
 
 /obj/item/weapon/gun/launcher/grenade/unload(mob/user, reload_override = FALSE, drop_override = FALSE, loc_override = FALSE)
 	if(!open_chamber)
-		to_chat(user, SPAN_WARNING("[src] is closed!"))
+		to_chat(user, SPAN_WARNING("[src]关着！"))
 		return
 	if(!length(cylinder.contents))
-		to_chat(user, SPAN_WARNING("It's empty!"))
+		to_chat(user, SPAN_WARNING("里面是空的！"))
 		return
 
 	var/obj/item/explosive/grenade/nade = cylinder.contents[length(cylinder.contents)] //Grab the last-inserted one. Or the only one, as the case may be.
@@ -96,8 +96,8 @@
 	else
 		user.put_in_hands(nade)
 
-	user.visible_message(SPAN_NOTICE("[user] unloads [nade] from [src]."),
-	SPAN_NOTICE("You unload [nade] from [src]."), null, 4, CHAT_TYPE_COMBAT_ACTION)
+	user.visible_message(SPAN_NOTICE("[user]从[src]中取出[nade]。"),
+	SPAN_NOTICE("你从[src]中取出[nade]。"), null, 4, CHAT_TYPE_COMBAT_ACTION)
 	playsound(user, unload_sound, 30, 1)
 
 
@@ -124,25 +124,25 @@
 
 /obj/item/weapon/gun/launcher/grenade/on_pocket_attackby(obj/item/explosive/grenade/I, mob/user) //the attack in question is on the internal container. Complete override - normal storage attackby cannot be silenced, and will always say "you put the x into y".
 	if(!open_chamber)
-		to_chat(user, SPAN_WARNING("[src] is closed!"))
+		to_chat(user, SPAN_WARNING("[src]关着！"))
 		return
 	if(!istype(I))
-		to_chat(user, SPAN_WARNING("You can't load [I] into [src]!"))
+		to_chat(user, SPAN_WARNING("你无法将[I]装入[src]！"))
 		return
 	if(!allowed_ammo_type(I))
-		to_chat(user, SPAN_WARNING("[src] can't fire this type of grenade!"))
+		to_chat(user, SPAN_WARNING("[src]无法发射这种手榴弹！"))
 		return
 	if(length(cylinder.contents) >= internal_slots)
-		to_chat(user, SPAN_WARNING("[src] cannot hold more grenades!"))
+		to_chat(user, SPAN_WARNING("[src]装不下更多手榴弹！"))
 		return
 	if(!cylinder.can_be_inserted(I, user)) //Technically includes whether there's room for it, but the above gives a tailored message.
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] loads [I] into [src]."),
-	SPAN_NOTICE("You load [I] into the grenade launcher."), null, 4, CHAT_TYPE_COMBAT_ACTION)
+	user.visible_message(SPAN_NOTICE("[user]将[I]装入[src]。"),
+	SPAN_NOTICE("你将[I]装入榴弹发射器。"), null, 4, CHAT_TYPE_COMBAT_ACTION)
 	playsound(usr, reload_sound, 75, 1)
 	if(internal_slots > 1)
-		to_chat(user, SPAN_INFO("Now storing: [length(cylinder.contents) + 1] / [internal_slots] grenades."))
+		to_chat(user, SPAN_INFO("当前装填：[length(cylinder.contents) + 1] / [internal_slots] 枚手榴弹。"))
 
 	cylinder.handle_item_insertion(I, TRUE, user)
 
@@ -151,12 +151,12 @@
 	. = ..()
 	if(.)
 		if(!length(cylinder.contents))
-			to_chat(user, SPAN_WARNING("The [name] is empty."))
+			to_chat(user, SPAN_WARNING("[name]是空的。"))
 			click_empty(user)
 			return FALSE
 		var/obj/item/explosive/grenade/G = cylinder.contents[1]
 		if(G.antigrief_protection && user.faction == FACTION_MARINE && explosive_antigrief_check(G, user))
-			to_chat(user, SPAN_WARNING("\The [name]'s safe-area accident inhibitor prevents you from firing!"))
+			to_chat(user, SPAN_WARNING("[name]的安全区防误射装置阻止了你开火！"))
 			msg_admin_niche("[key_name(user)] attempted to prime \a [G.name] in [get_area(src)] [ADMIN_JMP(src.loc)]")
 			return FALSE
 
@@ -166,7 +166,7 @@
 		if(get_dist(target,user) <= 2)
 			var/obj/item/explosive/grenade/nade = cylinder.contents[1]
 			if(nade.dangerous)
-				to_chat(user, SPAN_WARNING("The grenade launcher beeps a warning noise. You are too close!"))
+				to_chat(user, SPAN_WARNING("榴弹发射器发出警告哔声。距离太近！"))
 				return
 		fire_grenade(target,user)
 
@@ -179,10 +179,10 @@
 	if(target.z == 0)
 		return
 
-	var/to_firer = "You fire the [name]!"
+	var/to_firer = "你用[name]开火！"
 	if(internal_slots > 1)
-		to_firer += " [length(cylinder.contents)-1]/[internal_slots] grenades remaining."
-	user.visible_message(SPAN_DANGER("[user] fired a grenade!"),
+		to_firer += " 剩余 [length(cylinder.contents)-1]/[internal_slots] 枚手榴弹。"
+	user.visible_message(SPAN_DANGER("[user]发射了一枚手榴弹！"),
 	SPAN_WARNING("[to_firer]"), message_flags = CHAT_TYPE_WEAPON_USE)
 	playsound(user.loc, fire_sound, 50, 1)
 
@@ -238,7 +238,7 @@
 /datum/action/item_action/toggle_firing_level/New(Target, obj/item/holder)
 	. = ..()
 	name = "Toggle Firing Level"
-	button.name = name
+	button.name = "切换射击方式"
 	update_icon()
 
 /datum/action/item_action/toggle_firing_level/action_activate()
@@ -262,7 +262,7 @@
 
 /obj/item/weapon/gun/launcher/grenade/proc/toggle_firing_level(mob/user)
 	is_lobbing = !is_lobbing
-	to_chat(user, "[icon2html(src, usr)] You changed \the [src]'s firing level. You will now fire [is_lobbing ? "in an arcing path over obstacles" : "directly at your target"].")
+	to_chat(user, "[icon2html(src, usr)]你调整了[src]的射击方式。现在会[is_lobbing ? "以弧线越过障碍物" : "直接瞄准目标"]射击。")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	var/datum/action/item_action/toggle_firing_level/TFL = locate(/datum/action/item_action/toggle_firing_level) in actions
 	TFL.update_icon()
@@ -299,8 +299,8 @@
 //UPP DEDICATED GL
 
 /obj/item/weapon/gun/launcher/grenade/m92/upp
-	name = "\improper OG-60 grenade launcher"
-	desc = "A heavy, 6-shot grenade launcher used by the UPP armed collective."
+	name = "\improper OG-60 榴弹发射器"
+	desc = "进步人民联盟武装集体使用的重型六发榴弹发射器。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/upp.dmi'
 	icon_state = "m92_upp"
 	item_state = "m92_upp"
@@ -405,13 +405,13 @@
 	. = ..()
 	if (. && istype(user))
 		if(!skillcheck(user, SKILL_POLICE, SKILL_POLICE_SKILLED))
-			to_chat(user, SPAN_WARNING("You don't seem to know how to use \the [src]..."))
+			to_chat(user, SPAN_WARNING("你似乎不知道如何使用[src]……"))
 			return FALSE
 
 
 /obj/item/weapon/gun/launcher/grenade/m81/riot
-	name = "\improper M81 riot grenade launcher"
-	desc = "A lightweight, single-shot low-angle grenade launcher to launch tear gas grenades. Used by the Colonial Marines Military Police during riots."
+	name = "\improper M81 防暴榴弹发射器"
+	desc = "轻型单发低仰角榴弹发射器，可发射催泪弹。殖民地陆战队宪兵在镇压骚乱时使用。"
 	valid_munitions = list(/obj/item/explosive/grenade/tear/marine, /obj/item/explosive/grenade/slug/baton)
 	preload = /obj/item/explosive/grenade/tear/marine
 
@@ -419,8 +419,8 @@
 //M79 Grenade Launcher subtype of the M81
 
 /obj/item/weapon/gun/launcher/grenade/m81/m79//m79 variant for marines
-	name = "\improper M79 grenade launcher"
-	desc = "A heavy, low-angle 40mm grenade launcher. It's been in use since the Vietnam War, though this version has been modernized with an IFF enabled micro-computer. The wooden furniture is, in fact, made of painted hardened polykevlon."
+	name = "\improper M79 榴弹发射器"
+	desc = "重型低仰角 40 毫米榴弹发射器，从越南战争起便已服役。这一型加装了带有敌我识别功能的微型计算机。木质外观的枪托和护木实际上由涂漆的硬化聚合凯夫纶制成。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "m79"
 	item_state = "m79"
@@ -459,8 +459,8 @@
 	))
 
 /obj/item/weapon/gun/launcher/grenade/m81/m79/modified
-	name = "\improper modified M79 grenade launcher"
-	desc = "A heavy, low-angle grenade launcher. It's been in use since the Vietnam War, though this version has been modified to fire standard USCM 30mm grenades. The wooden furniture is, in fact, an attempt at modernization and is made of painted hardened polykevlon."
+	name = "\improper 改装 M79 榴弹发射器"
+	desc = "从越南战争起便已服役的重型低仰角榴弹发射器。这一型改为发射美国殖民地陆战队制式 30 毫米手榴弹。木质外观的枪托和护木实际是现代化改造的产物，由涂漆的硬化聚合凯夫纶制成。"
 	valid_munitions = list(/obj/item/explosive/grenade/high_explosive, /obj/item/explosive/grenade/high_explosive/impact/tmfrag, /obj/item/explosive/grenade/high_explosive/impact/heap, /obj/item/explosive/grenade/high_explosive/impact/flare, /obj/item/explosive/grenade/incendiary, /obj/item/explosive/grenade/smokebomb, /obj/item/explosive/grenade/high_explosive/airburst/buckshot)
 	flags_item = TWOHANDED|SMARTGUNNER_BACKPACK_OVERRIDE
 
@@ -474,8 +474,8 @@
 	update_attachable(scope.slot)
 
 /obj/item/weapon/gun/launcher/grenade/m81/m79/modified/sawnoff
-	name = "\improper sawn-off M79 grenade launcher"
-	desc = "A heavy, low-angle grenade launcher, though this one had its stock and half the barrel sawn-off. It's been in use since the Vietnam War, and this version has been modified to fire standard USCM 30mm grenades. The wooden furniture is, in fact, an attempt at modernization and is made of painted hardened polykevlon."
+	name = "\improper 短管 M79 榴弹发射器"
+	desc = "重型低仰角榴弹发射器，枪托与一半枪管已被锯掉。它从越南战争起便已服役，这一型改为发射美国殖民地陆战队制式 30 毫米手榴弹。木质外观的枪托和护木实际是现代化改造的产物，由涂漆的硬化聚合凯夫纶制成。"
 	icon_state = "m79_short"
 	item_state = "m79_short"
 	w_class = SIZE_MEDIUM

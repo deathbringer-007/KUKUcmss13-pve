@@ -238,8 +238,8 @@
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/lasersight, /obj/item/attachable/reflex)
 
 /obj/item/weapon/gun/pistol/m1911/socom/officer
-	name = "\improper M48A5 pistol"
-	desc = "A timeless classic since the first World War, the M1911A1 has limited use with the USCM, and is often used as a sidearm by non-governmental bodies due to its reliability. An adaptation of the M48A4, with a reinforced chamber, barrel and slide to handle higher pressure loads, designated the M48A5. Chambered in .45 Super, but can load normal .45 ACP also."
+	name = "\improper M48A5 手枪"
+	desc = "自第一次世界大战以来的永恒经典。M1911A1 在美国殖民地陆战队中少量服役，其可靠性也使它常被非政府组织选作副武器。M48A5 由 M48A4 改进而来，强化了弹膛、枪管与套筒，以承受更高膛压。使用 .45 Super 弹药，也可装填普通 .45 ACP 弹药。"
 	starting_attachment_types = list(/obj/item/attachable/lasersight)
 	current_mag = /obj/item/ammo_magazine/pistol/m1911/super
 
@@ -248,8 +248,8 @@
 // redesigned - now rejected USCM sidearm model, utilized by Colonial Marshals and other stray groups.
 
 /obj/item/weapon/gun/pistol/highpower
-	name = "\improper HG 45 'Aguila' pistol"
-	desc = "A semi-automatic Henjin-Garcia design chambered in .45 ACP that is slowly replacing the Office of the Colonial Marshals's Spearhead revolver."
+	name = "\improper HG 45“雄鹰”手枪"
+	desc = "亨金-加西亚设计的半自动手枪，使用 .45 ACP 弹药，正逐步取代殖民地法警署的“矛头”左轮手枪。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "highpower"
 	item_state = "highpower"
@@ -289,15 +289,15 @@
 	recoil_unwielded = RECOIL_AMOUNT_TIER_4
 
 /obj/item/weapon/gun/pistol/highpower/black
-	name = "\improper HG 45 'Marina' pistol"
+	name = "\improper HG 45“海军”手枪"
 	current_mag = /obj/item/ammo_magazine/pistol/highpower/black
 	icon_state = "highpower_b"
 	item_state = "highpower_b"
-	desc = "A semi-automatic Henjin-Garcia design chambered in .45 ACP that is slowly replacing the Office of the Colonial Marshals's Spearhead revolver. Unlike its more common siblings, this variant was marketed and successfully sold in small quantities to the USCM."
+	desc = "亨金-加西亚设计的半自动手枪，使用 .45 ACP 弹药，正逐步取代殖民地法警署的“矛头”左轮手枪。与更常见的同系型号不同，此型以美国殖民地陆战队为销售对象，成功售出了少量产品。"
 
 /obj/item/weapon/gun/pistol/highpower/automag
-	name = "\improper HG 44 'Automag' pistol"
-	desc = "A semi-automatic Henjin-Garcia design chambered in .44 Magnum that was largely discontinued in favour of the HG 45 configuration chambered in .45 ACP."
+	name = "\improper HG 44“自动马格南”手枪"
+	desc = "亨金-加西亚设计的半自动手枪，使用 .44 Magnum 弹药。它大多已停产，转而生产使用 .45 ACP 的 HG 45 型。"
 	current_mag = /obj/item/ammo_magazine/pistol/highpower/automag
 	icon_state = "highpower_tac"
 	item_state = "highpower_tac"
@@ -312,8 +312,8 @@
 	damage_mult = BASE_BULLET_DAMAGE_MULT - BULLET_DAMAGE_MULT_TIER_3
 
 /obj/item/weapon/gun/pistol/highpower/automag/tactical
-	name = "\improper HG 44 'Automag' pistol"
-	desc = "A semi-automatic Henjin-Garcia design chambered in .44 Magnum that was largely discontinued in favour of the HG 45 configuration chambered in .45 ACP."
+	name = "\improper HG 44“自动马格南”手枪"
+	desc = "亨金-加西亚设计的半自动手枪，使用 .44 Magnum 弹药。它大多已停产，转而生产使用 .45 ACP 的 HG 45 型。"
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/lasersight, /obj/item/attachable/reflex)
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AUTO_EJECT_CASINGS
 
@@ -351,8 +351,8 @@
 	damage_mult = BASE_BULLET_DAMAGE_MULT + BULLET_DAMAGE_MULT_TIER_3
 
 /obj/item/weapon/gun/pistol/np92/suppressed
-	name = "\improper NPZ92 pistol"
-	desc = "The NPZ92 is a version of the NP92 that includes an integrated suppressor, issued sparingly to Kommando units."
+	name = "\improper NPZ92 手枪"
+	desc = "NP92 的改型，配有一体式消声器，少量配发给突击队。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/upp.dmi'
 	icon_state = "npz92"
 	item_state = "npz92"
@@ -411,8 +411,8 @@
 	current_mag = null
 
 /obj/item/weapon/gun/pistol/t73/leader
-	name = "\improper Type 74 pistol"
-	desc = "The Type 74 is the designation for a specially modified Type 73 with an integrated laser sight system, multiple lightning cuts to reduce weight in order to allow a higher pressure round to be used with the same recoil sping, and a more comfortable grip. Due to the adoption of the NP92, the Type 74 was produced in limited numbers, because of this it is typically only issued on request to high-ranking officers."
+	name = "\improper 74 式手枪"
+	desc = "73 式的特殊改型，配有一体式激光瞄准系统、更舒适的握把，以及多处减重切槽，使它能够使用原来的复进簧发射更高压的弹药。由于随后采用了 NP92，74 式的产量有限，通常只应高级军官的要求配发。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/upp.dmi'
 	icon_state = "ttb"
 	item_state = "ttb"
@@ -519,8 +519,8 @@
 //-------------------------------------------------------
 //CLF HOLDOUT PISTOL
 /obj/item/weapon/gun/pistol/clfpistol
-	name = "Hummingbird pistol"
-	desc = "Chambering .50 AE catridges this gun is as compact as it could possibly be. Rumored to be designed and produced by the UPP before being distributed into UA space for arming sleeper cells with throwaway weapons capable of penetrating standard M3 pattern armor."
+	name = "蜂鸟手枪"
+	desc = "这把使用 .50 AE 弹药的手枪已被压缩到尽可能小的尺寸。据说它由进步人民联盟设计生产，再流入美洲联盟的疆域，为潜伏组织提供能击穿标准 M3 护甲的一次性武器。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "m43"
 	item_state = "m43"
@@ -655,8 +655,8 @@ It is a modified Beretta 93R, and can fire three-round burst or single fire. Whe
 */
 
 /obj/item/weapon/gun/pistol/auto9
-	name = "\improper Auto-9 pistol"
-	desc = "An advanced, select-fire machine pistol capable of three-round burst. Last seen cleaning up the mean streets of Detroit."
+	name = "\improper Auto-9 手枪"
+	desc = "先进的可选射击模式自动手枪，能够三发点射。上次有人见到它时，它还在底特律的罪恶街头清扫犯罪。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/event.dmi'
 	icon_state = "auto9"
 	item_state = "auto9"
@@ -724,8 +724,8 @@ It is a modified Beretta 93R, and can fire three-round burst or single fire. Whe
 //DEAGLE //This one is obvious.
 
 /obj/item/weapon/gun/pistol/heavy
-	name = "vintage Desert Eagle"
-	desc = "A bulky 50 caliber pistol with a serious kick, probably taken from some museum somewhere. This one is engraved, 'Peace through superior firepower.'"
+	name = "古董沙漠之鹰"
+	desc = "一把后坐力惊人的笨重 .50 口径手枪，大概从某家博物馆里拿来的。上面刻着：“以优势火力铸就和平。”"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "deagle"
 	item_state = "deagle"
@@ -763,8 +763,8 @@ It is a modified Beretta 93R, and can fire three-round burst or single fire. Whe
 	recoil_unwielded = RECOIL_AMOUNT_TIER_3
 
 /obj/item/weapon/gun/pistol/heavy/co
-	name = "polished vintage Desert Eagle"
-	desc = "The handcannon that needs no introduction, the .50-caliber Desert Eagle is expensive, unwieldy, and extremely heavy for a pistol. However, it makes up for it with its powerful shots capable of stopping a bear dead in its tracks. Iconic, glamorous, and above all, extremely deadly."
+	name = "抛光古董沙漠之鹰"
+	desc = "无需介绍的手炮。.50 口径沙漠之鹰昂贵、笨重，作为手枪而言重得惊人，但能让熊当场倒下的威力弥补了这一切。经典、华丽，最重要的是，极其致命。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "c_deagle"
 	item_state = "c_deagle"
@@ -785,8 +785,8 @@ It is a modified Beretta 93R, and can fire three-round burst or single fire. Whe
 	recoil_unwielded = RECOIL_AMOUNT_TIER_2
 
 /obj/item/weapon/gun/pistol/heavy/co/gold
-	name = "golden vintage Desert Eagle"
-	desc = "A Desert Eagle anodized in gold and adorned with rosewood grips. The living definition of ostentatious, it's flashy, unwieldy, tremendously heavy, and kicks like a mule. But as a symbol of power, there's nothing like it."
+	name = "镀金古董沙漠之鹰"
+	desc = "一把经金色阳极氧化处理、配有红木握把的沙漠之鹰。它就是奢华的代名词：耀眼、难用、沉得要命，后坐力像骡子踢人。但若论权力的象征，没有什么能与之相比。"
 	icon_state = "g_deagle"
 	item_state = "g_deagle"
 	base_gun_icon = "g_deagle"
@@ -795,8 +795,8 @@ It is a modified Beretta 93R, and can fire three-round burst or single fire. Whe
 //The first rule of monkey pistol is we don't talk about monkey pistol.
 
 /obj/item/weapon/gun/pistol/chimp
-	name = "\improper CHIMP70 pistol"
-	desc = "A powerful sidearm issued mainly to highly trained elite assassin necro-cyber-agents."
+	name = "\improper CHIMP70 手枪"
+	desc = "一种威力强大的副武器，主要配发给训练有素的精英亡灵机械刺客特工。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/event.dmi'
 	icon_state = "c70"
 	item_state = "c70"

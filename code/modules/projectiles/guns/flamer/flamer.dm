@@ -67,16 +67,16 @@
 	toggle_gun_safety()
 
 /obj/item/weapon/gun/flamer/gun_safety_handle(mob/user)
-	to_chat(user, SPAN_NOTICE("You [SPAN_BOLD(flags_gun_features & GUN_TRIGGER_SAFETY ? "extinguish" : "ignite")] the pilot light."))
+	to_chat(user, SPAN_NOTICE("你[SPAN_BOLD(flags_gun_features & GUN_TRIGGER_SAFETY ? "熄灭" : "点燃")]了引火焰。"))
 	playsound(user,'sound/weapons/handling/flamer_ignition.ogg', 25, 1)
 	update_icon()
 
 /obj/item/weapon/gun/flamer/get_examine_text(mob/user)
 	. = ..()
 	if(current_mag)
-		. += "The fuel gauge shows the current tank is [floor(current_mag.get_ammo_percent())]% full!"
+		. += "燃料表显示，当前燃料罐还剩[floor(current_mag.get_ammo_percent())]%！"
 	else
-		. += "There's no tank in [src]!"
+		. += "[src]没有装燃料罐！"
 
 /obj/item/weapon/gun/flamer/update_icon()
 	..()
@@ -127,8 +127,8 @@
 			return
 		if((active_attachable.current_rounds <= 0) && !(active_attachable.flags_attach_features & ATTACH_IGNORE_EMPTY))
 			click_empty(user) //If it's empty, let them know.
-			to_chat(user, SPAN_WARNING("[active_attachable] is empty!"))
-			to_chat(user, SPAN_NOTICE("You disable [active_attachable]."))
+			to_chat(user, SPAN_WARNING("[active_attachable]是空的！"))
+			to_chat(user, SPAN_NOTICE("你停用了[active_attachable]。"))
 			active_attachable.activate_attachment(src, null, TRUE)
 		else
 			active_attachable.fire_attachment(target, src, user) //Fire it.
@@ -136,7 +136,7 @@
 		return NONE
 
 	if(flags_gun_features & GUN_TRIGGER_SAFETY)
-		to_chat(user, SPAN_WARNING("\The [src] isn't lit!"))
+		to_chat(user, SPAN_WARNING("[src]尚未点燃！"))
 		return NONE
 
 	if(!current_mag)
@@ -160,28 +160,28 @@
 
 /obj/item/weapon/gun/flamer/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
-		to_chat(user, SPAN_WARNING("That's not a magazine!"))
+		to_chat(user, SPAN_WARNING("那不是弹匣！"))
 		return
 
 	if(magazine.current_rounds <= 0)
-		to_chat(user, SPAN_WARNING("That [magazine.name] is empty!"))
+		to_chat(user, SPAN_WARNING("[magazine.name]是空的！"))
 		return
 
 	if(!istype(src, magazine.gun_type))
-		to_chat(user, SPAN_WARNING("That magazine doesn't fit in there!"))
+		to_chat(user, SPAN_WARNING("那个弹匣装不进去！"))
 		return
 
 	if(!QDELETED(current_mag) && current_mag.loc == src)
-		to_chat(user, SPAN_WARNING("It's still got something loaded!"))
+		to_chat(user, SPAN_WARNING("里面还装着东西！"))
 		return
 
 	else
 		if(user)
 			if(magazine.reload_delay > 1)
-				to_chat(user, SPAN_NOTICE("You begin reloading [src]. Hold still..."))
+				to_chat(user, SPAN_NOTICE("你开始为[src]装填燃料。请保持不动……"))
 				if(do_after(user,magazine.reload_delay, INTERRUPT_ALL, BUSY_ICON_FRIENDLY)) replace_magazine(user)
 				else
-					to_chat(user, SPAN_WARNING("Your reload was interrupted!"))
+					to_chat(user, SPAN_WARNING("你的装填被打断了！"))
 					return
 			else replace_magazine(user, magazine)
 		else
@@ -203,8 +203,8 @@
 
 	if (user)
 		playsound(user, unload_sound, 25, 1)
-		user.visible_message(SPAN_NOTICE("[user] unloads [current_mag] from [src]."),
-		SPAN_NOTICE("You unload [current_mag] from [src]."))
+		user.visible_message(SPAN_NOTICE("[user]从[src]中卸下[current_mag]。"),
+		SPAN_NOTICE("你从[src]中卸下[current_mag]。"))
 
 	current_mag.update_icon()
 	current_mag = null
@@ -359,14 +359,14 @@
 
 /obj/item/weapon/gun/flamer/proc/show_percentage(mob/living/user)
 	if(current_mag)
-		to_chat(user, SPAN_WARNING("The gauge reads: <b>[floor(current_mag.get_ammo_percent())]</b>% fuel remains!"))
+		to_chat(user, SPAN_WARNING("燃料表显示：剩余 <b>[floor(current_mag.get_ammo_percent())]</b>% 燃料！"))
 
 /obj/item/weapon/gun/flamer/underextinguisher
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/extinguisher)
 
 /obj/item/weapon/gun/flamer/deathsquad //w-y deathsquad waist flamer
-	name = "\improper M240A3 incinerator unit"
-	desc = "A next-generation incinerator unit, the M240A3 is much lighter and dextrous than its predecessors thanks to the ceramic alloy construction. It can be slinged over a belt and usually comes equipped with EX-type fuel."
+	name = "\improper M240A3 焚烧器"
+	desc = "新一代焚烧器。得益于陶瓷合金结构，M240A3 比前代更轻、更灵活。可挂在腰带上，通常配用 EX 型燃料。"
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
@@ -379,8 +379,8 @@
 	flags_gun_features = GUN_WY_RESTRICTED|GUN_WIELDED_FIRING_ONLY
 
 /obj/item/weapon/gun/flamer/deathsquad/pve
-	name = "\improper M240-R2 incinerator unit"
-	desc = "A next-generation incinerator unit, the M240-R2 is much lighter and dextrous than its predecessors thanks to the ceramic alloy construction. It can be slinged over a belt and usually comes equipped with EX-type fuel. This one is configured to fire globs of fire to preserve fuel."
+	name = "\improper M240-R2 焚烧器"
+	desc = "新一代焚烧器。得益于陶瓷合金结构，M240-R2 比前代更轻、更灵活。可挂在腰带上，通常配用 EX 型燃料。这一型通过发射火团来节省燃料。"
 	start_automatic = FALSE
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/extinguisher/pyro)
 	var/fuel_usage = 10
@@ -391,12 +391,12 @@
 
 /obj/item/weapon/gun/flamer/deathsquad/pve/unleash_flame(atom/target, mob/living/user)
 	if(!length(current_mag.reagents.reagent_list))
-		to_chat(user, SPAN_WARNING("\The [src] doesn't have enough fuel to launch a projectile!"))
+		to_chat(user, SPAN_WARNING("[src]没有足够燃料发射！"))
 		return
 
 	var/datum/reagent/flamer_reagent = current_mag.reagents.reagent_list[1]
 	if(flamer_reagent.volume < FLAME_REAGENT_USE_AMOUNT * fuel_usage)
-		to_chat(user, SPAN_WARNING("\The [src] doesn't have enough fuel to launch a projectile!"))
+		to_chat(user, SPAN_WARNING("[src]没有足够燃料发射！"))
 		return
 
 	last_fired = world.time
@@ -490,7 +490,7 @@
 
 /obj/item/weapon/gun/flamer/M240T/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if (!link_fuelpack(user) && !current_mag)
-		to_chat(user, SPAN_WARNING("You must equip the specialized Broiler-T back harness or load in a fuel tank to use this incinerator unit!"))
+		to_chat(user, SPAN_WARNING("你必须装备专用的 炙炉-T 背负供油架，或装入燃料罐，才能使用这把焚烧器！"))
 		click_empty(user)
 		return
 	if (fuelpack)
@@ -498,7 +498,7 @@
 		if (current_mag != fuelpack.active_fuel)
 			// This was a manually loaded fuel tank
 			if (current_mag && !(current_mag in list(fuelpack.fuel, fuelpack.fuelB, fuelpack.fuelX)))
-				to_chat(user, SPAN_WARNING("\The [current_mag] is ejected by the Broiler-T back harness and replaced with \the [fuelpack.active_fuel]!"))
+				to_chat(user, SPAN_WARNING("炙炉-T 背负供油架弹出了[current_mag]，并换上[fuelpack.active_fuel]！"))
 				unload(user, drop_override = TRUE)
 			current_mag = fuelpack.active_fuel
 			update_icon()
@@ -507,13 +507,13 @@
 
 /obj/item/weapon/gun/flamer/M240T/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if (fuelpack)
-		to_chat(user, SPAN_WARNING("The Broiler-T feed system cannot be reloaded manually."))
+		to_chat(user, SPAN_WARNING("炙炉-T 供油系统不能手动装填。"))
 		return
 	..()
 
 /obj/item/weapon/gun/flamer/M240T/unload(mob/user, reload_override = 0, drop_override = 0, loc_override = 0)
 	if (fuelpack && (current_mag in list(fuelpack.fuel, fuelpack.fuelB, fuelpack.fuelX)))
-		to_chat(user, SPAN_WARNING("The incinerator tank is locked in place. It cannot be removed."))
+		to_chat(user, SPAN_WARNING("焚烧器燃料罐已锁定，无法取下。"))
 		return
 	..()
 
@@ -538,8 +538,8 @@
 	return FALSE
 
 /obj/item/weapon/gun/flamer/M240T/auto // With NEW advances in science, we've learned how to drain a pyro's tank in 6 seconds, or your money back!
-	name = "\improper M240-T2 incinerator unit"
-	desc = "A prototyped model of the M240-T incinerator unit, it was discontinued after its automatic mode was deemed too expensive to deploy in the field."
+	name = "\improper M240-T2 焚烧器"
+	desc = "M240-T 焚烧器的原型改款。其自动模式被认为部署成本过高，因此停止生产。"
 	start_semiauto = FALSE
 	start_automatic = TRUE
 
@@ -548,8 +548,8 @@
 	set_fire_delay(FIRE_DELAY_TIER_7)
 
 /obj/item/weapon/gun/flamer/upp
-	name = "\improper LPO80 incinerator unit"
-	desc = "An aged but effective lightweight combat incinerator officially in service as a anti-fortification tool but, in practice, utilized in close quarters combat for flushing out enemy combatants."
+	name = "\improper LPO80 焚烧器"
+	desc = "老旧但有效的轻型战斗焚烧器。名义上用于摧毁工事，实际常用于近战中将敌人逼出掩体。"
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/upp.dmi'
 	icon_state = "LPO80"
 	item_state = "LPO80"
@@ -562,7 +562,7 @@
 
 /obj/flamer_fire
 	name = "fire"
-	desc = "Ouch!"
+	desc = "哎哟！"
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon = 'icons/effects/fire.dmi'
@@ -724,7 +724,7 @@
 		ignited_morb.apply_damage(firedamage, BURN)
 		animation_flash_color(ignited_morb, tied_reagent.burncolor) //pain hit flicker
 
-		var/msg = "Augh! You are roasted by the flames!"
+		var/msg = "啊！火焰灼烧着你！"
 		if (isxeno(ignited_morb))
 			to_chat(ignited_morb, SPAN_XENODANGER(msg))
 		else
@@ -783,7 +783,7 @@
 	if(sig_result & COMPONENT_XENO_FRENZY)
 		var/mob/living/carbon/xenomorph/X = M
 		if(X.plasma_stored != X.plasma_max) //limit num of noise
-			to_chat(X, SPAN_DANGER("The heat of the fire roars in your veins! KILL! CHARGE! DESTROY!"))
+			to_chat(X, SPAN_DANGER("烈焰的热量在你的血管中奔涌！杀戮！冲锋！毁灭！"))
 			X.emote("roar")
 		X.plasma_stored = X.plasma_max
 
@@ -798,7 +798,7 @@
 		burn_damage = 0
 
 	if(!burn_damage)
-		to_chat(M, SPAN_DANGER("[isxeno(M) ? "We" : "You"] step over the flames."))
+		to_chat(M, SPAN_DANGER("[isxeno(M) ? "我们" : "你"]跨过火焰。"))
 		return
 
 	M.last_damage_data = weapon_cause_data
@@ -809,8 +809,8 @@
 		if(FIRE_VARIANT_TYPE_B)
 			if(isxeno(M))
 				var/mob/living/carbon/xenomorph/X = M
-				X.armor_deflection?(variant_burn_msg=" We feel the flames weakening our exoskeleton!"):(variant_burn_msg=" You feel the flaming chemicals eating into your body!")
-	to_chat(M, SPAN_DANGER("You are burned![variant_burn_msg?"[variant_burn_msg]":""]"))
+				X.armor_deflection?(variant_burn_msg=" 我们感到火焰正在削弱外骨骼！"):(variant_burn_msg=" 你感到燃烧的化学物质正在侵蚀身体！")
+	to_chat(M, SPAN_DANGER("你被烧伤了！[variant_burn_msg?"[variant_burn_msg]":""]"))
 	M.updatehealth()
 
 /obj/flamer_fire/proc/update_flame()

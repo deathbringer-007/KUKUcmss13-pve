@@ -66,7 +66,7 @@
 
 	for(var/datum/language/L as anything in target_mob.languages)
 		languagedata += list(list(
-			"name" = L.name,
+			"name" = localized_player_label(L.name),
 			"desc" = L.desc,
 			"key" = L.key
 		))

@@ -565,13 +565,13 @@ GLOBAL_LIST_INIT(limb_types_by_name, list(
 		return
 	var/track_link
 	if (source && action == NOTIFY_ORBIT)
-		track_link = " <a href='byond://?src=[REF(src)];track=[REF(source)]'>(Follow)</a>"
+		track_link = " <a href='byond://?src=[REF(src)];track=[REF(source)]'>（跟随）</a>"
 	if (source && action == NOTIFY_JUMP)
 		var/turf/T = get_turf(source)
-		track_link = " <a href='byond://?src=[REF(src)];jumptocoord=1;X=[T.x];Y=[T.y];Z=[T.z]'>(Jump)</a>"
+		track_link = " <a href='byond://?src=[REF(src)];jumptocoord=1;X=[T.x];Y=[T.y];Z=[T.z]'>（跳转）</a>"
 	var/full_enter_link
 	if (enter_link)
-		full_enter_link = "<a href='byond://?src=[REF(src)];[enter_link]'>[(enter_text) ? "[enter_text]" : "(Claim)"]</a>"
+		full_enter_link = "<a href='byond://?src=[REF(src)];[enter_link]'>[(enter_text) ? "[enter_text]" : "（接管）"]</a>"
 	to_chat(src, "[(extra_large) ? "<br><hr>" : ""][SPAN_DEADSAY("[message][(enter_link) ? " [full_enter_link]" : ""][track_link]")][(extra_large) ? "<hr><br>" : ""]")
 	if(ghost_sound)
 		SEND_SOUND(src, sound(ghost_sound, volume = notify_volume, channel = SOUND_CHANNEL_NOTIFY))
@@ -635,4 +635,4 @@ GLOBAL_LIST_INIT(limb_types_by_name, list(
 /mob/proc/get_ability_mouse_name()
 	var/ability = get_ability_mouse_key()
 
-	return xeno_ability_mouse_pref_to_string(ability)
+	return localized_player_label(xeno_ability_mouse_pref_to_string(ability))

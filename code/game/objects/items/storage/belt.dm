@@ -9,7 +9,7 @@
 	)
 	item_state = "utility"
 	flags_equip_slot = SLOT_WAIST
-	attack_verb = list("whipped", "lashed", "disciplined")
+	attack_verb = list("鞭打", "抽打", "惩戒")
 	w_class = SIZE_LARGE
 	storage_flags = STORAGE_FLAGS_POUCH
 	cant_hold = list(/obj/item/weapon/throwing_knife)
@@ -20,7 +20,7 @@
 
 	if(length(holstered_guns) < 1 && length(contents) >= (storage_slots-1))
 
-		to_chat(user, SPAN_WARNING("[src] is full."))
+		to_chat(user, SPAN_WARNING("[src]已经装满。"))
 		return FALSE
 	return ..()
 
@@ -67,8 +67,8 @@
 
 
 /obj/item/storage/belt/champion
-	name = "championship belt"
-	desc = "Proves to the world that you are the strongest!"
+	name = "冠军腰带"
+	desc = "向全世界证明你是最强的！"
 	icon_state = "championbelt"
 	item_state = "champion"
 	storage_slots = 1
@@ -191,8 +191,8 @@
 	new /obj/item/device/sentry_computer(src)
 
 /obj/item/storage/belt/utility/full/pred
-	name = "\improper Yautja toolbelt"
-	desc = "A modular belt with various clips. This version lacks any hunting functionality, and is commonly used by engineers to transport important tools."
+	name = "\improper 铁血战士工具腰带"
+	desc = "带有各种挂扣的模块化腰带。这一型不具备狩猎功能，通常由工程师用来携带重要工具。"
 	icon = 'icons/obj/items/hunter/pred_gear.dmi'
 	icon_state = "utilitybelt_pred"
 	item_state = "utility"
@@ -258,7 +258,7 @@
 	set src in usr
 	if(src && ishuman(usr))
 		mode = !mode
-		to_chat(usr, SPAN_NOTICE("You will now [mode ? "take pills directly from bottles": "no longer take pills directly from bottles"]."))
+		to_chat(usr, SPAN_NOTICE("现在你会[mode ? "直接从药瓶中取药片": "停止直接从药瓶中取药片"]。"))
 
 /obj/item/storage/belt/medical/full/with_defib_and_analyzer/fill_preset_inventory()
 	. = ..()
@@ -272,7 +272,7 @@
 
 /obj/item/storage/belt/medical/get_examine_text()
 	. = ..()
-	. += SPAN_NOTICE("The belt is currently set to [mode ? "take pills directly from bottles": "NOT take pills directly from bottles"].")
+	. += SPAN_NOTICE("腰带当前设置为[mode ? "直接从药瓶中取药片": "不直接从药瓶中取药片"]。")
 
 /obj/item/storage/belt/medical/upp
 	name = "41 式医疗携行挂具"
@@ -586,8 +586,8 @@
 	new /obj/item/notepad/blue(src)
 
 /obj/item/storage/belt/security/MP/colonist
-	name = "security duty belt"
-	desc = "A black duty belt utilized by private security organizations."
+	name = "安保执勤腰带"
+	desc = "私人安保组织使用的黑色执勤腰带。"
 	storage_slots = 5
 	max_storage_space = 30
 
@@ -655,8 +655,8 @@
 		return ..()
 
 /obj/item/storage/belt/marine/dutch
-	name = "ammo load rig"
-	desc = "Good for carrying around extra ammo in the heat of the jungle. Made of special rot-resistant fabric."
+	name = "弹药携行具"
+	desc = "适合在炎热丛林中携带额外弹药，由特殊防腐面料制成。"
 
 /obj/item/storage/belt/marine/dutch/m16/fill_preset_inventory()
 	for(var/i = 1 to storage_slots)
@@ -765,8 +765,8 @@
 	has_gamemode_skin = FALSE
 
 /obj/item/storage/belt/marine/smartgunner/upp
-	name = "\improper Type 90 pattern machinegunner belt"
-	desc = "Recently adopted by UPP military, this belt allows machinegunners to carry more ammo boxes into battle. It also found use with SOF breachers using Type 23 shotguns."
+	name = "\improper 90 式机枪手腰带"
+	desc = "进步人民联盟军队近期采用的腰带，让机枪手能携带更多弹药箱。使用 23 式霰弹枪的特战破门手也会使用。"
 	icon_state = "upp_machinegun"
 	item_state = "upp_machinegun"
 	storage_slots = 7
@@ -797,8 +797,8 @@
 	return
 
 /obj/item/storage/belt/marine/quackers
-	name = "Mr. Quackers"
-	desc = "What are we going to do today, Mr. Quackers?"
+	name = "嘎嘎先生"
+	desc = "嘎嘎先生，我们今天要干什么？"
 	icon_state = "inflatable"
 	item_state = "inflatable"
 	item_state_slots = list(
@@ -891,8 +891,8 @@
 		return ..()
 
 /obj/item/storage/belt/shotgun/upp
-	name = "\improper Type 42 pattern shotgun shell loading rig"
-	desc = "An ammunition belt designed to hold shotgun shells, primarily for the Type 23 shotgun."
+	name = "\improper 42 式霰弹装填携行具"
+	desc = "用于携带霰弹枪弹药的弹药带，主要适配 23 式霰弹枪。"
 	icon_state = "shotgunbelt" //placeholder
 	item_state = "marinebelt"
 	storage_slots = 10
@@ -906,8 +906,8 @@
 		new /obj/item/ammo_magazine/handful/shotgun/heavy/slug(src)
 
 /obj/item/storage/belt/shotgun/van_bandolier
-	name = "two bore bandolier"
-	desc = "A leather bandolier designed to hold extremely heavy shells. Can be attached to armor, worn over the back, or attached to belt loops."
+	name = "2 号口径弹带"
+	desc = "用于携带极重炮弹的皮革弹带，可固定在护甲上、背在背后，或扣在腰带环上。"
 	icon_state = "van_bandolier_5"
 	flags_equip_slot = SLOT_WAIST|SLOT_BACK
 	storage_slots = null
@@ -942,8 +942,8 @@
 
 
 /obj/item/storage/belt/shotgun/lever_action
-	name = "\improper M276 pattern 45-70 loading rig"
-	desc = "An ammunition belt designed to hold the large 45-70 Govt. caliber bullets for the R4T lever-action rifle."
+	name = "\improper M276 式 .45-70 装填携行具"
+	desc = "用于携带 R4T 杠杆式步枪所需大型 .45-70 Govt. 弹药的弹药带。"
 	icon_state = "r4t-ammobelt"
 	item_state = "marinebelt"
 	w_class = SIZE_LARGE
@@ -959,9 +959,9 @@
 
 	if(istype(W, /obj/item/storage/belt/gun/m44/lever_action/attach_holster))
 		if(length(contents) || length(W.contents))
-			to_chat(user, SPAN_WARNING("Both holster and belt need to be empty to attach the holster!"))
+			to_chat(user, SPAN_WARNING("安装枪套前，枪套和腰带都必须清空！"))
 			return
-		to_chat(user, SPAN_NOTICE("You attach the holster to the belt, reducing total storage capacity but allowing it to fit the M44 revolver and its speedloaders."))
+		to_chat(user, SPAN_NOTICE("你将枪套装上腰带，牺牲部分储物空间，换取携带 M44 左轮及快速装弹器的能力。"))
 		var/obj/item/storage/belt/gun/m44/lever_action/new_belt = new /obj/item/storage/belt/gun/m44/lever_action
 		qdel(W)
 		qdel(src)
@@ -994,8 +994,8 @@
 	item_state_slots = list(
 		WEAR_L_HAND = "marinebelt",
 		WEAR_R_HAND = "marinebelt")
-	name = "Mrs. Quackers"
-	desc = "She always did have a meaner temper."
+	name = "嘎嘎夫人"
+	desc = "她的脾气总是更坏。"
 	has_gamemode_skin = FALSE
 
 /obj/item/storage/belt/knifepouch
@@ -1035,7 +1035,7 @@
 		COOLDOWN_START(src, draw_cooldown, BAYONET_DRAW_DELAY)
 		playsound(src, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, TRUE)
 	else
-		to_chat(user, SPAN_WARNING("You need to wait before drawing another knife!"))
+		to_chat(user, SPAN_WARNING("你需要稍等才能再拔一把刀！"))
 		return FALSE
 
 /obj/item/storage/belt/grenade
@@ -1099,8 +1099,8 @@
 	new /obj/item/explosive/grenade/high_explosive/impact/tmfrag(src)
 
 /obj/item/storage/belt/grenade/large/dutch
-	name = "\improper Dutch's Grenadier Rigging"
-	desc = "A high capacity rig filled to the brim with all the explosives you could ask for, what else is there to want?"
+	name = "\improper 达奇的掷弹兵携行具"
+	desc = "大容量携行具，塞满你能想到的各种炸药。还能奢求什么呢？"
 
 /obj/item/storage/belt/grenade/large/dutch/full/fill_preset_inventory()
 	for(var/i in 1 to 6)
@@ -1246,14 +1246,14 @@
 
 		if(!stop_messages) //No open holsters.
 			if(length(holster_slots) == 1)
-				to_chat(usr, SPAN_WARNING("[src] already holds a gun."))
+				to_chat(usr, SPAN_WARNING("[src]已经装有一把枪。"))
 			else
-				to_chat(usr, SPAN_WARNING("[src] doesn't have any empty holsters."))
+				to_chat(usr, SPAN_WARNING("[src]没有空枪套。"))
 		return FALSE
 
 	else if(length(contents) - length(holstered_guns) >= storage_slots - length(holster_slots)) //Compare amount of nongun items in storage with usable ammo pockets.
 		if(!stop_messages)
-			to_chat(usr, SPAN_WARNING("[src] can't hold any more ammo."))
+			to_chat(usr, SPAN_WARNING("[src]装不下更多弹药。"))
 		return FALSE
 
 /obj/item/storage/belt/gun/_item_insertion(obj/item/W, prevent_warning = FALSE)
@@ -1283,14 +1283,14 @@
 		return
 
 	if(ammo_dumping.flags_magazine & AMMUNITION_CANNOT_REMOVE_BULLETS)
-		to_chat(user, SPAN_WARNING("You can't remove ammo from \the [ammo_dumping]!"))
+		to_chat(user, SPAN_WARNING("你无法从[ammo_dumping]中取出弹药！"))
 		return
 
 	if(ammo_dumping.flags_magazine & AMMUNITION_HANDFUL_BOX)
 		var/handfuls = round(ammo_dumping.current_rounds / amount_to_dump, 1) //The number of handfuls, we round up because we still want the last one that isn't full
 		if(ammo_dumping.current_rounds != 0)
 			if(length(contents) < storage_slots - 1) //this is because it's a gunbelt and the final slot is reserved for the gun
-				to_chat(user, SPAN_NOTICE("You start refilling [src] with [ammo_dumping]."))
+				to_chat(user, SPAN_NOTICE("你开始用[ammo_dumping]给[src]补充弹药。"))
 				if(!do_after(user, 1.5 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC)) return
 				for(var/i = 1 to handfuls)
 					if(length(contents) < storage_slots - 1)
@@ -1305,7 +1305,7 @@
 				playsound(user.loc, "rustle", 15, TRUE, 6)
 				ammo_dumping.update_icon()
 			else
-				to_chat(user, SPAN_WARNING("[src] is full."))
+				to_chat(user, SPAN_WARNING("[src]已经装满。"))
 
 
 /obj/item/storage/belt/gun/m4a3
@@ -1507,7 +1507,7 @@
 	. = ..()
 	if(magazines >= MAXIMUM_MAGAZINE_COUNT && istype(item, /obj/item/ammo_magazine/rifle/xm51))
 		if(!stop_messages)
-			to_chat(usr, SPAN_WARNING("[src] can't hold any more magazines."))
+			to_chat(usr, SPAN_WARNING("[src]装不下更多弹匣。"))
 		return FALSE
 
 /obj/item/storage/belt/gun/xm51/handle_item_insertion(obj/item/item, prevent_warning = FALSE, mob/user)
@@ -1528,8 +1528,8 @@
 #undef MAXIMUM_MAGAZINE_COUNT
 
 /obj/item/storage/belt/gun/shotgunholster
-	name = "\improper M276 pattern shotgun holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is a jury rigged shotgun holster using a cannibalized l44 shotgun scabbard and a shell pouch"
+	name = "\improper M276 式霰弹枪套携行具"
+	desc = "M276 是美国殖民地陆战队制式携行装备，由模块化腰带和各种挂扣组成。这一型用拆下的 L44 霰弹枪鞘和弹药袋拼成了临时霰弹枪套。"
 	icon_state = "shotgunholster"
 	has_gamemode_skin = FALSE
 	gun_has_gamemode_skin = FALSE
@@ -1579,8 +1579,8 @@
 		new /obj/item/ammo_magazine/revolver/marksman(src)
 
 /obj/item/storage/belt/gun/m44/gunslinger
-	name = "custom-tooled gunslinger's belt"
-	desc = "It's always high noon <i>somewhere</i>."
+	name = "定制雕花枪手腰带"
+	desc = "总有<i>某个地方</i>正值正午决斗时刻。"
 	icon_state = "gunslinger_holster"
 	storage_slots = 6
 	can_hold = list(
@@ -1605,8 +1605,8 @@
 		new /obj/item/ammo_magazine/revolver/marksman(src)
 
 /obj/item/storage/belt/gun/m44/lever_action
-	name = "\improper M276 pattern 45-70 revolver rig"
-	desc = "An ammunition belt designed to hold the large 45-70 Govt. caliber bullets for the R4T lever-action rifle. This version has reduced capacity in exchange for a whole revolver holster."
+	name = "\improper M276 式 .45-70 左轮携行具"
+	desc = "用于携带 R4T 杠杆式步枪所需大型 .45-70 Govt. 弹药的弹药带。这一型牺牲容量，换装了完整的左轮枪套。"
 	icon_state = "r4t-cowboybelt"
 	item_state = "r4t-cowboybelt"
 	w_class = SIZE_LARGE
@@ -1637,9 +1637,9 @@
 	set src in usr
 	if(ishuman(usr))
 		if(length(contents))
-			to_chat(usr, SPAN_WARNING("The belt needs to be fully empty to remove the holster!"))
+			to_chat(usr, SPAN_WARNING("拆下枪套前必须完全清空腰带！"))
 			return
-		to_chat(usr, SPAN_NOTICE("You detach the holster from the belt."))
+		to_chat(usr, SPAN_NOTICE("你从腰带上拆下了枪套。"))
 		var/obj/item/storage/belt/shotgun/lever_action/new_belt = new /obj/item/storage/belt/shotgun/lever_action
 		var/obj/item/storage/belt/gun/m44/lever_action/attach_holster/new_holster = new /obj/item/storage/belt/gun/m44/lever_action/attach_holster
 		qdel(src)
@@ -1650,8 +1650,8 @@
 		return
 
 /obj/item/storage/belt/gun/m44/lever_action/attach_holster
-	name = "\improper M276 revolver holster attachment"
-	desc = "This holster can be instantly attached to an empty M276 45-70 rig, giving up some storage space in exchange for holding a sidearm. You could also clip it to your belt standalone if you really wanted to."
+	name = "\improper M276 左轮枪套配件"
+	desc = "可立即装到空 M276 .45-70 携行具上的枪套，牺牲部分储物空间以携带副武器。你愿意的话，也可单独扣在腰带上。"
 	icon_state = "r4t-attach-holster"
 	item_state = "r4t-attach-holster"
 	w_class = SIZE_LARGE
@@ -1688,7 +1688,7 @@
 
 /obj/item/storage/belt/gun/mateba/cmateba
 	name = "M276 式马特巴枪套挂具"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with five small pouches for speedloaders. It was included with the mail-order USCM edition of the Mateba autorevolver in the early 2170s."
+	desc = "M276 是美国殖民地陆战队制式携行装备，由模块化腰带和各种挂扣组成。这一型专为强大的马特巴马格南左轮设计，并有五个小袋存放快速装弹器。二十二世纪七十年代初，它随邮购陆战队版马特巴自动左轮一同附送。"
 	icon_state = "cmateba_holster"
 	item_state = "marinebelt"
 	has_gamemode_skin = FALSE
@@ -1713,10 +1713,10 @@
 	new /obj/item/ammo_magazine/revolver/mateba/highimpact/ap(src)
 
 /obj/item/storage/belt/gun/mateba/council
-	name = "colonel's M276 pattern Mateba holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. \
-	It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, \
-	along with five small pouches for speedloaders. This specific one is tinted black and engraved with gold, heavily customized for a high-ranking official."
+	name = "上校 M276 式马特巴枪套携行具"
+	desc = "M276 是美国殖民地陆战队制式携行装备。 \
+	它由模块化腰带和各种挂扣组成。这一型用于携带强大的马特巴马格南左轮， \
+	附带五个快速装弹器小袋。这件为高级官员深度定制，采用黑色配金色雕纹。"
 
 	icon_state = "amateba_holster"
 	item_state = "s_marinebelt"
@@ -1730,10 +1730,10 @@
 	new /obj/item/ammo_magazine/revolver/mateba/highimpact/ap(src)
 
 /obj/item/storage/belt/gun/mateba/general
-	name = "general's M276 pattern Mateba holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. \
-	It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, \
-	along with five small pouches for speedloaders. This specific one is tinted black and engraved with gold, heavily customized for a high-ranking official."
+	name = "将军 M276 式马特巴枪套携行具"
+	desc = "M276 是美国殖民地陆战队制式携行装备。 \
+	它由模块化腰带和各种挂扣组成。这一型用于携带强大的马特巴马格南左轮， \
+	附带五个快速装弹器小袋。这件为高级官员深度定制，采用黑色配金色雕纹。"
 
 	icon_state = "amateba_holster"
 	item_state = "s_marinebelt"
@@ -1763,10 +1763,10 @@
 	new /obj/item/ammo_magazine/revolver/mateba/highimpact/explosive(src)
 
 /obj/item/storage/belt/gun/mateba/pmc
-	name = "PMC M276 pattern Mateba holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. \
-	It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, \
-	along with five small pouches for speedloaders. This specific one is tinted black and engraved with gold, heavily customized for a high-ranking official."
+	name = "私人军事公司 M276 式马特巴枪套携行具"
+	desc = "M276 是美国殖民地陆战队制式携行装备。 \
+	它由模块化腰带和各种挂扣组成。这一型用于携带强大的马特巴马格南左轮， \
+	附带五个快速装弹器小袋。这件为高级官员深度定制，采用黑色配金色雕纹。"
 
 	icon_state = "amateba_holster"
 	item_state = "s_marinebelt"
@@ -1830,8 +1830,8 @@
 
 //Crazy Ivan's belt reskin
 /obj/item/storage/belt/gun/type47/ivan
-	name = "The Rack"
-	desc = "From the formless void, there springs an entity more primordial than the elements themselves. In its wake, there will follow a storm."
+	name = "刑架"
+	desc = "无形虚空中，诞生出比元素本身更古老的存在。它所过之处，风暴随行。"
 	icon_state = "ivan_belt"
 	storage_slots = 56
 	max_storage_space = 56
@@ -1920,8 +1920,8 @@
 		return ..()
 
 /obj/item/storage/belt/gun/webley
-	name = "\improper Webley Mk VI gunbelt"
-	desc = "Finely-tooled British leather, a Webley, and six speedloaders of .455. More than enough to kill anything with legs."
+	name = "\improper 韦伯利 Mk VI 枪带"
+	desc = "精工英国皮革、一把韦伯利和六个 .455 快速装弹器。足以杀死任何长腿的东西。"
 	icon_state = "m44r_holster"
 	storage_slots = 7
 	can_hold = list(
@@ -1969,8 +1969,8 @@
 	new /obj/item/ammo_magazine/smartgun(src)
 
 /obj/item/storage/belt/gun/smartgunner/army
-	name = "\improper M802 pattern smartgunner sidearm rig"
-	desc = "The M802 is a limited-issue mark of load-bearing equipment only seen worn by operators of the M56A2 weapon system, designed to carry smartgun ammunition and a sidearm."
+	name = "\improper M802 式智能机枪手副武器携行具"
+	desc = "M802 是限量配发的携行装备，仅见于 M56A2 武器系统操作员，设计用于携带智能机枪弹药与副武器。"
 	has_gamemode_skin = FALSE
 
 /obj/item/storage/belt/gun/smartgunner/army/full/fill_preset_inventory()
@@ -1983,8 +1983,8 @@
 #define MAXIMUM_MAGAZINE_COUNT 2
 
 /obj/item/storage/belt/gun/smartgunner/garrow
-	name = "\improper M802 pattern smartgunner sidearm rig"
-	desc = "The M802 is a limited-issue mark of USCM load-bearing equipment, designed to carry a limited quantity of smartgun and pistol ammunition, along with a sidearm."
+	name = "\improper M802 式智能机枪手副武器携行具"
+	desc = "M802 是限量配发的美国殖民地陆战队携行装备，可携带少量智能机枪及手枪弹药，以及一把副武器。"
 	icon_state = "sgbelt"
 
 	//Keep a track of how many magazines are inside the belt.
@@ -1994,7 +1994,7 @@
 	. = ..()
 	if(magazines >= MAXIMUM_MAGAZINE_COUNT && istype(item, /obj/item/ammo_magazine/smartgun))
 		if(!stop_messages)
-			to_chat(usr, SPAN_WARNING("[src] can't hold any more drums."))
+			to_chat(usr, SPAN_WARNING("[src]装不下更多弹鼓。"))
 		return FALSE
 
 /obj/item/storage/belt/gun/smartgunner/garrow/handle_item_insertion(obj/item/item, prevent_warning = FALSE, mob/user)
@@ -2015,8 +2015,8 @@
 #undef MAXIMUM_MAGAZINE_COUNT
 
 /obj/item/storage/belt/gun/smartgunner/pmc
-	name = "\improper M802 pattern 'Dirty' smartgunner sidearm rig"
-	desc = "A modification of the standard M802 load-bearing equipment, designed to carry smartgun ammunition and a sidearm."
+	name = "\improper M802 式“脏家伙”智能机枪手副武器携行具"
+	desc = "标准 M802 携行装备的改型，用于携带智能机枪弹药与副武器。"
 	can_hold = list(
 		/obj/item/device/flashlight/flare,
 		/obj/item/weapon/gun/flare,
@@ -2044,8 +2044,8 @@
 	new /obj/item/ammo_magazine/smartgun/dirty(src)
 
 /obj/item/storage/belt/gun/smartgunner/whiteout
-	name = "\improper M802 pattern 'Terminator' smartgunner sidearm rig"
-	desc = "A modification of the standard M802 load-bearing equipment, designed to carry smartgun ammunition and a Mateba revolver."
+	name = "\improper M802 式“终结者”智能机枪手副武器携行具"
+	desc = "标准 M802 携行装备的改型，用于携带智能机枪弹药与马特巴左轮。"
 	can_hold = list(
 		/obj/item/device/flashlight/flare,
 		/obj/item/weapon/gun/flare,
@@ -2066,8 +2066,8 @@
 	new /obj/item/ammo_magazine/smartgun/dirty(src)
 
 /obj/item/storage/belt/gun/smartgunner/clf
-	name = "\improper M802 pattern 'Freedom' smartgunner sidearm rig"
-	desc = "A modification of the standard M802 load-bearing equipment, designed to carry smartgun ammunition and a Mateba revolver. This one has the CLF logo carved over the manufacturing stamp."
+	name = "\improper M802 式“自由”智能机枪手副武器携行具"
+	desc = "标准 M802 携行装备的改型，用于携带智能机枪弹药与马特巴左轮。这件的制造标记被刻上了殖民地解放阵线徽记。"
 	can_hold = list(
 		/obj/item/device/flashlight/flare,
 		/obj/item/weapon/gun/flare,
@@ -2090,8 +2090,8 @@
 #define MAXIMUM_MAGAZINE_COUNT 4
 
 /obj/item/storage/belt/gun/smartgunner/upp
-	name = "\improper Type 92 pattern machinegunner sidearm rig"
-	desc = "Type 92 is an experimental ammo-carrying rig issued to UPP machinegunners which combines a sidearm holster with box-shaped pouches for limited storage."
+	name = "\improper 92 式机枪手副武器携行具"
+	desc = "92 式是配发给进步人民联盟机枪手的实验弹药携行具，将副武器枪套与容量有限的方形弹药袋结合在一起。"
 	icon_state = "upp_machinegun_pistol"
 	storage_slots = 6
 	can_hold = list(
@@ -2114,7 +2114,7 @@
 	. = ..()
 	if(magazines >= MAXIMUM_MAGAZINE_COUNT && istype(item, /obj/item/ammo_magazine/pkp))
 		if(!stop_messages)
-			to_chat(usr, SPAN_WARNING("[src] can't hold any more ammo boxes."))
+			to_chat(usr, SPAN_WARNING("[src]装不下更多弹药箱。"))
 		return FALSE
 
 
@@ -2230,8 +2230,8 @@
 	)
 
 /obj/item/storage/belt/souto
-	name = "\improper Souto belt"
-	desc = "Souto Man's trusty utility belt with breakaway Souto cans. They cannot be put back."
+	name = "\improper 索托腰带"
+	desc = "索托侠可靠的多用途腰带，带有可摘取的索托饮料罐，取下后不能放回。"
 	icon_state = "souto_man"
 	item_state = "souto_man"
 	item_state_slots = list(
@@ -2345,11 +2345,11 @@
 	. = ..()
 	if(shells >= MAXIMUM_MORTARSHELL_COUNT && istype(item, /obj/item/mortar_shell))
 		if(!stop_messages)
-			to_chat(usr, SPAN_WARNING("[src] can't hold any more mortar shells."))
+			to_chat(usr, SPAN_WARNING("[src]装不下更多迫击炮弹。"))
 		return FALSE
 	else if(shells >= MAXIMUM_MORTARSHELL_COUNT && istype(item, /obj/item/storage/box/packet/rmc/mini))
 		if(!stop_messages)
-			to_chat(usr, SPAN_WARNING("[src] can't hold any more grenade packets."))
+			to_chat(usr, SPAN_WARNING("[src]装不下更多手榴弹包。"))
 		return FALSE
 
 /obj/item/storage/belt/gun/mortarbelt/rmc/handle_item_insertion(obj/item/item, prevent_warning = FALSE, mob/user)

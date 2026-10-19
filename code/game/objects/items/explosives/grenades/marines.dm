@@ -34,7 +34,7 @@
 /obj/item/explosive/grenade/high_explosive/prime(mob/living/user)
 	set waitfor = 0
 	if(fuse_type == IMPACT_FUSE)
-		to_chat(user, SPAN_WARNING("This grenade is set for impact-fusing!"))
+		to_chat(user, SPAN_WARNING("这枚手榴弹已设为触发引信！"))
 		return
 	if(shrapnel_count)
 		create_shrapnel(loc, shrapnel_count, , ,shrapnel_type, cause_data)
@@ -93,8 +93,8 @@
 	falloff_mode = EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL_HALF
 
 /obj/item/explosive/grenade/high_explosive/stick
-	name = "\improper Webley Mk15 stick grenade"
-	desc = "A blast grenade produced in the colonies, most commonly using old designs and schematics. It explodes 3 seconds after the pin has been pulled."
+	name = "\improper 韦伯利 Mk15 柄式手榴弹"
+	desc = "殖民地生产的爆破手榴弹，大多采用旧式设计和图纸。拔出保险销三秒后爆炸。"
 	icon_state = "grenade_stick"
 	item_state = "grenade_stick"
 	caliber = "non-standard"
@@ -111,8 +111,8 @@
 	falloff_mode = EXPLOSION_FALLOFF_SHAPE_LINEAR
 
 /obj/item/explosive/grenade/high_explosive/upp
-	name = "\improper Type 6 grenade"
-	desc = "The standard issue fragmentation grenade of the UPP military. It explodes 3 seconds after the pin has been pulled."
+	name = "\improper 6 式手榴弹"
+	desc = "进步人民联盟军队制式破片手榴弹，拔出保险销三秒后爆炸。"
 	icon_state = "grenade_upp"
 	item_state = "grenade_upp"
 	caliber = "non-standard"
@@ -142,8 +142,8 @@
 /obj/item/explosive/grenade/high_explosive/frag/toy
 	AUTOWIKI_SKIP(TRUE)
 
-	name = "toy HEFA grenade"
-	desc = "High-Explosive Fragmenting-Antipersonnel. A small, but deceptively strong fragmentation grenade that has been phasing out the M15 fragmentation grenades alongside the M40 HEDP. Capable of being loaded in the M92 Launcher, or thrown by hand. Wait, the labeling on the side indicates this is a toy, what the hell?"
+	name = "玩具 HEFA 手榴弹"
+	desc = "高爆反步兵破片手榴弹。体积小巧，威力却出奇地强，正与 M40 HEDP 一同逐步取代 M15 破片手榴弹。可装入 M92 发射器，也可手投。等等，侧面标签说这是玩具，搞什么鬼？"
 	explosion_power = 0
 	shrapnel_type = /datum/ammo/bullet/shrapnel/rubber
 	antigrief_protection = FALSE
@@ -273,8 +273,8 @@
 */
 
 /obj/item/explosive/grenade/incendiary/impact
-	name = "\improper 40mm incendiary grenade"
-	desc = "This is a 40mm grenade, designed to be launched by a grenade launcher and detonate on impact. This one is marked as a incendiary grenade, watch your fire."
+	name = "\improper 40 毫米燃烧榴弹"
+	desc = "由榴弹发射器发射、触碰目标后爆炸的 40 毫米榴弹。这枚标记为燃烧弹，注意射界。"
 	icon_state = "grenade_40mm_inc"
 	det_time = 0
 	item_state = "grenade_fire"
@@ -313,8 +313,8 @@
 		qdel(src)
 
 /obj/item/explosive/grenade/high_explosive/impact //omega hell killer grenade of doom from hell
-	name = "\improper 40mm HE grenade"
-	desc = "This is a 40mm grenade, designed to be launched by a grenade launcher and detonate on impact. This one is marked as a High-Explosive Dual-Purpose grenade, watch your fire."
+	name = "\improper 40 毫米高爆榴弹"
+	desc = "由榴弹发射器发射、触碰目标后爆炸的 40 毫米榴弹。这枚标记为高爆两用弹，注意射界。"
 	icon_state = "grenade_40mm_hedp"
 	item_state = "grenade_hedp"
 	caliber = "40x53mm"
@@ -344,8 +344,8 @@
 		qdel(src)
 
 /obj/item/explosive/grenade/high_explosive/impact/frag
-	name = "\improper 40mm frag grenade"
-	desc = "This is a 40mm grenade, designed to be launched by a grenade launcher and detonate on impact. This one is marked as a High-Explosive Fragmenting-Antipersonnel grenade, watch your fire."
+	name = "\improper 40 毫米破片榴弹"
+	desc = "由榴弹发射器发射、触碰目标后爆炸的 40 毫米榴弹。这枚标记为高爆反步兵破片弹，注意射界。"
 	icon_state = "grenade_40mm_he"
 	item_state = "grenade_hefa"
 	explosion_power = 75
@@ -354,8 +354,8 @@
 	falloff_mode = EXPLOSION_FALLOFF_SHAPE_LINEAR
 
 /obj/item/explosive/grenade/high_explosive/impact/upp
-	name = "\improper VOG-73 HE grenade"
-	desc = "This is a caseless 40mm grenade, designed to be launched by a grenade launcher and detonate on impact with an injury radius of 3 metres. This one bears markings of the UPP."
+	name = "\improper VOG-73 高爆榴弹"
+	desc = "由榴弹发射器发射、触碰目标后爆炸的 40 毫米无壳榴弹，杀伤半径三米。这枚带有进步人民联盟标记。"
 	icon_state = "grenade_40mm_upp"
 	item_state = "grenade_hedp"
 	caliber = "40x103mm"
@@ -366,8 +366,8 @@
 	falloff_mode = EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL_HALF
 
 /obj/item/explosive/grenade/high_explosive/impact/upp/ap
-	name = "\improper VPG-77 AP grenade"
-	desc = "This is a caseless armor-piercing 40mm grenade, designed to be launched by a grenade launcher and used against armored targets. This one bears markings of the UPP. Beware of what's in front of you when firing."
+	name = "\improper VPG-77 穿甲榴弹"
+	desc = "由榴弹发射器发射的 40 毫米无壳穿甲榴弹，用于攻击装甲目标。这枚带有进步人民联盟标记。开火前注意前方有什么。"
 	icon_state = "grenade_40mm_upp_ap"
 	item_state = "grenade_hedp"
 	explosion_power = 300 //Stronger than a HEAP grenade, to make up for one shot in the tube
@@ -376,8 +376,8 @@
 	falloff_mode = EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL
 
 /obj/item/explosive/grenade/high_explosive/airburst/upp
-	name = "\improper VShG-80 Assault-Grenade"
-	desc = "This is a caseless 40mm airbursting cannister round, designed for use in urban environments and close quarters combat, favoured by assault troops and sappers. Fires low velocity buckshot on impact in a wide cone."
+	name = "\improper VShG-80 突击榴弹"
+	desc = "用于城镇环境及近距离作战的 40 毫米无壳空爆霰弹，深受突击部队和工兵喜爱。碰撞后向宽阔锥形区域发射低速鹿弹。"
 	icon_state = "grenade_40mm_buckshot"
 	item_state = "grenade_hornet_active"
 	caliber = "40x103mm"
@@ -389,8 +389,8 @@
 	dispersion_angle = 25//a little big and forgiving
 
 /obj/item/explosive/grenade/incendiary/impact/upp
-	name = "\improper VTBG-44 Thermobaric Grenade"
-	desc = "This is a caseless incendiary 40mm grenade, developed for use in dense foliage or against hardened positions. Has an explosive punch."
+	name = "\improper VTBG-44 温压榴弹"
+	desc = "用于茂密植被或坚固阵地的 40 毫米无壳燃烧榴弹，爆炸威力十足。"
 	caliber = "40x103mm"
 	flame_level = BURN_TIME_TIER_5
 	burn_level = BURN_LEVEL_TIER_4
@@ -400,8 +400,8 @@
 	cell_explosion(get_turf(hit_atom), 80, 40, EXPLOSION_FALLOFF_SHAPE_LINEAR, cause_data)
 
 /obj/item/explosive/grenade/high_explosive/airburst/buckshot
-	name = "\improper 40mm Buckshot Shell"
-	desc = "A classic of grenade launchers everywhere, this is a 40mm shell loaded with buckshot; very dangerous, watch your fire."
+	name = "\improper 40 毫米鹿弹"
+	desc = "各地榴弹发射器的经典弹药，这枚 40 毫米炮弹装满鹿弹，非常危险，注意射界。"
 	icon_state = "grenade_40mm_buckshot"
 	item_state = "grenade_hornet_active"
 	shrapnel_count = 10
@@ -455,7 +455,7 @@
 		sleep(2)
 		qdel(src)
 		for(var/mob/mob in range(5, hit_atom))
-			mob.show_message(SPAN_USERDANGER("The grenade flies up into the air before exploding!"), SHOW_MESSAGE_VISIBLE)
+			mob.show_message(SPAN_USERDANGER("手榴弹飞上空中，随后爆炸！"), SHOW_MESSAGE_VISIBLE)
 		sleep(5)	//simulating it bounding up into the air before detonating
 		if(shrapnel_count)
 			create_shrapnel(hit_atom, shrapnel_count, , ,shrapnel_type, cause_data)
@@ -492,7 +492,7 @@
 		qdel(src)
 		sleep(5)	//simulating it arcing up out of view before igniting
 		for(var/mob/mob in range(10, hit_atom))
-			mob.show_message(SPAN_HIGHDANGER("A flare bursts into bright light overhead!"), SHOW_MESSAGE_VISIBLE)
+			mob.show_message(SPAN_HIGHDANGER("一枚照明弹在头顶绽放出耀眼光芒！"), SHOW_MESSAGE_VISIBLE)
 		new /obj/item/device/flashlight/flare/on/illumination(hit_atom)
 		playsound(hit_atom, 'sound/weapons/gun_flare.ogg', 50, 1, 4)
 
@@ -522,7 +522,7 @@
 /obj/item/explosive/grenade/incendiary/prime(mob/living/user)
 	set waitfor = 0
 	if(fuse_type == IMPACT_FUSE)
-		to_chat(user, SPAN_WARNING("This grenade is set for impact-fusing!"))
+		to_chat(user, SPAN_WARNING("这枚手榴弹已设为触发引信！"))
 		return
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flame_radius), cause_data, radius, get_turf(src), flame_level, burn_level, flameshape, null, fire_type)
 	playsound(src.loc, 'sound/weapons/gun_flamethrower2.ogg', 35, 1, 4)
@@ -661,7 +661,7 @@
 /obj/item/explosive/grenade/smokebomb/prime(mob/living/user)
 	set waitfor = 0
 	if(fuse_type == IMPACT_FUSE)
-		to_chat(user, SPAN_WARNING("This grenade is set for impact-fusing!"))
+		to_chat(user, SPAN_WARNING("这枚手榴弹已设为触发引信！"))
 		return
 	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(smoke_radius, 0, get_turf(src), null, smoke_duration)
@@ -700,8 +700,8 @@
 	smoke_radius = 2
 
 /obj/item/explosive/grenade/smokebomb/upp
-	name = "RDG-17 smoke grenade"
-	desc = "Handgrenade, smoke, model 17. Simple, old and efficient design, these grenades are produced basically everywhere for use in the UPP Armed Collective."
+	name = "RDG-17 烟雾手榴弹"
+	desc = "17 型烟雾手榴弹。设计简单、古老又高效，几乎各地都在为进步人民联盟武装集体生产它。"
 	icon_state = "grenade_upp_smoke"
 	caliber = "non-standard"
 	arm_sound = 'sound/weapons/pinpull.ogg'
@@ -735,7 +735,7 @@
 /obj/item/explosive/grenade/phosphorus/prime(mob/living/user)
 	set waitfor = 0
 	if(fuse_type == IMPACT_FUSE)
-		to_chat(user, SPAN_WARNING("This grenade is set for impact-fusing!"))
+		to_chat(user, SPAN_WARNING("这枚手榴弹已设为触发引信！"))
 		return
 	playsound(src.loc, 'sound/effects/wp_smoke.ogg', 25, 1, 5)
 	smoke.set_up(smoke_radius, 0, get_turf(src), null, 25)
@@ -759,8 +759,8 @@
 		qdel(src)
 
 /obj/item/explosive/grenade/phosphorus/upp
-	name = "\improper Type 8 WP grenade"
-	desc = "A deadly gas grenade found within the ranks of the UPP. Designed to spill white phosphorus on the target. It explodes 2 seconds after the pin has been pulled."
+	name = "\improper 8 式白磷手榴弹"
+	desc = "进步人民联盟部队使用的致命气体手榴弹，用于向目标泼洒白磷。拔出保险销两秒后爆炸。"
 	underslug_launchable = FALSE
 	dual_purpose = FALSE
 	arm_sound = 'sound/weapons/pinpull.ogg'
@@ -805,7 +805,7 @@
 
 /obj/item/explosive/grenade/sebb/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_NOTICE("To put into mine mode, plant at feet.")
+	. += SPAN_NOTICE("在脚边安放即可切换为地雷模式。")
 
 /obj/item/explosive/grenade/sebb/afterattack(atom/target, mob/user, proximity)
 	var/turf/user_turf = get_turf(user)
@@ -822,37 +822,37 @@
 		return
 
 	if(locate(/obj/item/explosive/mine) in get_turf(src))
-		to_chat(user, SPAN_WARNING("There already is a mine at this position!"))
+		to_chat(user, SPAN_WARNING("这里已经有一枚地雷！"))
 		return
 
 	if(antigrief_protection && user.faction == FACTION_MARINE && explosive_antigrief_check(src, user))
-		to_chat(user, SPAN_WARNING("\The [name]'s safe-area accident inhibitor prevents you from planting!"))
+		to_chat(user, SPAN_WARNING("[name]的安全区防误用装置阻止了你安放它！"))
 		msg_admin_niche("[key_name(user)] attempted to plant \a [name] in [get_area(src)] [ADMIN_JMP(src.loc)]")
 		return
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/human = user
 		if(!human.allow_gun_usage)
-			to_chat(user, SPAN_WARNING("Your programming prevents you from using this!"))
+			to_chat(user, SPAN_WARNING("你的程序禁止使用它！"))
 			return
 
 	if(user_turf && (user_turf.density || locate(/obj/structure/fence) in user_turf))
-		to_chat(user, SPAN_WARNING("You can't plant a mine here."))
+		to_chat(user, SPAN_WARNING("你无法在这里布雷。"))
 		return
 
 	if(Adjacent(/obj/item/explosive/mine)) // bit more strict on this than normal mines
-		to_chat(user, SPAN_WARNING("Too close to another mine! Plant it somewhere less obvious."))
+		to_chat(user, SPAN_WARNING("离另一枚地雷太近了！换个不那么显眼的位置。"))
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] starts deploying [src]."),
-		SPAN_NOTICE("You switch [src] into landmine mode and start placing it..."))
+	user.visible_message(SPAN_NOTICE("[user]开始部署[src]。"),
+		SPAN_NOTICE("你将[src]切换为地雷模式，开始安放……"))
 	playsound(user.loc, 'sound/effects/thud.ogg', 40)
 	if(!do_after(user, 5 SECONDS * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-		to_chat(user, SPAN_NOTICE("You stop planting."))
+		to_chat(user, SPAN_NOTICE("你停止安放。"))
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] finishes deploying [src]."),
-		SPAN_NOTICE("You finish deploying [src]."))
+	user.visible_message(SPAN_NOTICE("[user]完成了[src]的部署。"),
+		SPAN_NOTICE("你完成了[src]的部署。"))
 	var/obj/item/explosive/mine/sebb/planted = new /obj/item/explosive/mine/sebb(get_turf(user))
 	planted.activate_sensors()
 	planted.iff_signal = user.faction // assuring IFF is set
@@ -881,8 +881,8 @@
 		sentry_stun.sentry_range = 0 // Temporarily "disable" the sentry by killing its range then setting it back.
 		new /obj/effect/overlay/temp/elec_arc(get_turf(sentry_stun))  // sprites are meh but we need visual indication that the sentry was messed up
 		addtimer(VARSET_CALLBACK(sentry_stun, sentry_range, initial(sentry_stun.sentry_range)), 5 SECONDS) // assure to set it back
-		sentry_stun.visible_message(SPAN_DANGER("[src]'s screen flickes violently as it's shocked!"))
-		sentry_stun.visible_message(SPAN_DANGER("[src] says \"ERROR: Fire control system resetting due to critical voltage flucuation!\""))
+		sentry_stun.visible_message(SPAN_DANGER("[src]遭到电击，屏幕剧烈闪烁！"))
+		sentry_stun.visible_message(SPAN_DANGER("[src]说道：“错误：电压严重波动，火控系统正在重置！”"))
 		sparka.set_up(1, 1, sentry_stun)
 		sparka.start()
 
@@ -915,8 +915,8 @@
 				shocked_human.Stun(1 + (damage_applied/40))
 				damage_applied *= 1.5
 				new /obj/effect/overlay/temp/elec_arc(get_turf(shocked_human))
-				to_chat(mob, SPAN_HIGHDANGER("All of your systems jam up as your main bus is overvolted by [damage_applied*2] volts."))
-				mob.visible_message(SPAN_WARNING("[mob] seizes up from the elctric shock"))
+				to_chat(mob, SPAN_HIGHDANGER("主总线过压[damage_applied*2]伏，你的所有系统都陷入瘫痪。"))
+				mob.visible_message(SPAN_WARNING("[mob]被电击得浑身僵直。"))
 			shocked_human.take_overall_armored_damage(damage_applied, ARMOR_ENERGY, BURN, 90) // 90% chance to be on additional limbs
 			shocked_human.make_dizzy(damage_applied)
 			mob.apply_stamina_damage(damage_applied*human_stam_dam_factor) // Stamina damage
@@ -936,7 +936,7 @@
 			mob.eye_blurry = damage_applied/8
 
 		else
-			to_chat(mob, SPAN_HIGHDANGER("Your entire body seizes up as a powerful shock courses through it!"))
+			to_chat(mob, SPAN_HIGHDANGER("强烈电流贯穿全身，让你彻底僵住！"))
 
 
 		new /obj/effect/overlay/temp/emp_sparks(mob)
@@ -946,12 +946,12 @@
 
 
 /obj/item/explosive/grenade/sebb/primed
-	desc = "A G2 Electroshock Grenade, looks like it's quite angry! Oh shit!"
+	desc = "一枚 G2 电击手榴弹，看起来正怒火中烧！糟了！"
 	det_time = 7 // 0.7 seconds to blow up. We want them to get caught if they go through.
 
 /obj/item/explosive/grenade/sebb/primed/Initialize()
 	. = ..()
-	src.visible_message(SPAN_HIGHDANGER("[src] pops out of the ground!"))
+	src.visible_message(SPAN_HIGHDANGER("[src]从地里弹了出来！"))
 	activate()
 
 /obj/effect/overlay/temp/sebb
@@ -968,8 +968,8 @@
 //================================================
 */
 /obj/item/explosive/grenade/nerve_gas
-	name = "\improper CN20 canister grenade"
-	desc = "A canister grenade of deadly nerve gas. It is set to detonate in 4 seconds."
+	name = "\improper CN20 罐装手榴弹"
+	desc = "装有致命神经毒气的罐装手榴弹，四秒后引爆。"
 	icon_state = "flashbang2"//temp icon
 	det_time = 40
 	item_state = "grenade_phos_clf"//temp icon
@@ -1003,7 +1003,7 @@
 	qdel(src)
 
 /obj/item/explosive/grenade/nerve_gas/xeno
-	name = "\improper CN20-X canister grenade"
+	name = "\improper CN20-X 罐装手榴弹"
 	nerve_gas_type = /datum/effect_system/smoke_spread/cn20/xeno
 
 /*
@@ -1012,8 +1012,8 @@
 //================================================
 */
 /obj/item/explosive/grenade/LSD
-	name = "\improper ALD-91 canister grenade"
-	desc = "A canister grenade of nonlethal LSD gas. It is set to detonate in 4 seconds."
+	name = "\improper ALD-91 罐装手榴弹"
+	desc = "装有非致命 LSD 气体的罐装手榴弹，四秒后引爆。"
 	icon_state = "flashbang2"//temp icon
 	det_time = 40
 	item_state = "grenade_phos_clf"//temp icon
@@ -1183,8 +1183,8 @@
 	smacked.throw_atom(target_turf, fling, SPEED_AVERAGE, smacked, TRUE)
 	smacked.apply_effect(slowdown_time, SLOW)
 	smacked.apply_effect(dazed_time, DAZE)
-	smacked.visible_message(SPAN_NOTICE("[smacked] is hit by the [src], which shatters apart after impact."),
-		SPAN_NOTICE("The [src] shatters against you after imparting it's force!"))
+	smacked.visible_message(SPAN_NOTICE("[smacked]被[src]击中，它随即撞碎。"),
+		SPAN_NOTICE("[src]击中你后碎裂！"))
 	qdel(src)
 
 /obj/item/explosive/grenade/slug/baton
@@ -1253,8 +1253,8 @@
 
 /// Baton slugs
 /obj/item/explosive/grenade/baton
-	name = "\improper HIRR baton slug"
-	desc = "Cousin to the M15 Rubber pellet, the HIRR baton slug was recalled from military and civilian police forces due to over-packed propellant in the sabot casing. Now it is utilized as a less-than-lethal option in engagements with human, and sometimes non-human, forces. Historically, the HIRR was incredibly popular during the Arcturus conflict, as the impact force was found to reliably incapacitate Arcturian resistance forces by breaking their ribs into their lungs."
+	name = "\improper HIRR 橡胶独头弹"
+	desc = "与 M15 橡胶弹丸同源的 HIRR 橡胶独头弹，曾因脱壳弹壳内推进剂装填过量，被军方及民警召回。如今仍用于对付人类，有时也对付非人类部队的低致命性交战。它在大角星冲突期间极受欢迎，因为冲击力能可靠地将抵抗军的肋骨打进肺部，使其失去战斗力。"
 	icon_state = "grenade_ltl"
 	item_state = "rubber_grenade"
 	hand_throwable = FALSE
@@ -1265,16 +1265,16 @@
 	return
 
 /obj/item/explosive/grenade/slug/baton/m79
-	name = "\improper LTL 40mm grenade"
-	desc = "It's a Less Than Lethal 40mm rubber projectile."
+	name = "\improper LTL 40 毫米榴弹"
+	desc = "一枚低致命性 40 毫米橡胶弹。"
 	icon_state = "grenade_40mm_ltl"
 	item_state = "rubber_grenade"
 
 /obj/item/explosive/grenade/high_explosive/holy_hand_grenade
 	AUTOWIKI_SKIP(TRUE)
 
-	name = "\improper Holy Hand Grenade of Antioch"
-	desc = "And Saint Attila raised the hand grenade up on high, saying, \"O LORD, bless this Thy hand grenade that with it Thou mayest blow Thine enemies to tiny bits, in Thy mercy.\" And the LORD did grin and the people did feast upon the lambs and sloths and carp and anchovies... And the LORD spake, saying, \"First shalt thou take out the Holy Pin, then shalt thou count to three, no more, no less. Three shall be the number thou shalt count, and the number of the counting shall be three. Four shalt thou not count, neither count thou two, excepting that thou then proceed to three. Five is right out. Once the number three, being the third number, be reached, then lobbest thou thy Holy Hand Grenade of Antioch towards thy foe, who, being naughty in My sight, shall snuff it.\""
+	name = "\improper 安提阿圣手雷"
+	desc = "圣阿提拉高举手雷，说：“主啊，求你赐福这枚圣手雷，以你的仁慈，让它将敌人炸成碎片。”主露出笑容，众人便享用羊羔、树懒、鲤鱼和凤尾鱼……主又说：“先拔出神圣保险销，再数到三，不多不少。你当数的数字是三，数数的终点也当是三。不可数四，也不可只数二，除非随后数到三。五绝对不行。到第三个数字，也就是三时，就把你的安提阿圣手雷投向敌人；他们在我眼中作恶，必将一命呜呼。”"
 	icon_state = "grenade_antioch"
 	item_state = "grenade_antioch"
 	caliber = "non-standard"
@@ -1308,12 +1308,12 @@
 // abstract grenades used for hijack explosions
 
 /obj/item/explosive/grenade/high_explosive/bursting_pipe
-	name = "bursting pipe"
+	name = "爆裂管"
 	alpha = 0
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/item/explosive/grenade/incendiary/bursting_pipe
-	name = "bursting pipe"
+	name = "爆裂管"
 	alpha = 0
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
@@ -1345,8 +1345,8 @@
 	fire_type = FIRE_VARIANT_DEFAULT
 
 /obj/item/explosive/grenade/nerve_gas/xeno/rmc
-	name = "\improper R2175/CN20 grenade"
-	desc = "A small grenade containing a vial of deadly nerve gas. Usually knocks out the targets for long enough to allow RMCs to take them out. You can almost hear your Instructor's screaming in the back of your head, mentioning something about a gas mask. It is set to detonate in 3.5 seconds."
+	name = "\improper R2175/CN20 手榴弹"
+	desc = "内含一小瓶致命神经毒气的小型手榴弹，通常能让目标失能足够久，供皇家陆战突击队解决他们。你几乎能在脑海里听见教官大吼，似乎提到了防毒面具。引爆时间为 3.5 秒。"
 	icon_state = "rmc_grenade_gas"
 	item_state = "grenade_smoke"
 	caliber = "30mm"

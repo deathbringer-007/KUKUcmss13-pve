@@ -18,7 +18,7 @@
 	throw_speed = SPEED_FAST
 	flags_equip_slot = SLOT_HEAD
 	flags_armor_protection = BODY_FLAG_HEAD
-	attack_verb = list("bapped")
+	attack_verb = list("轻敲")
 	ground_offset_x = 9
 	ground_offset_y = 8
 
@@ -82,7 +82,7 @@
 		else
 			read_paper(user)
 	else
-		. += SPAN_NOTICE("It is too far away.")
+		. += SPAN_NOTICE("距离太远。")
 
 /obj/item/paper/proc/read_paper(mob/user, scramble = FALSE)
 	var/datum/asset/asset_datum = get_asset_datum(/datum/asset/simple/paper)
@@ -101,10 +101,10 @@
 	set category = "Object"
 	set src in usr
 
-	var/n_name = strip_html(input(usr, "What would you like to label the paper?", "Paper Labelling", null)  as text)
+	var/n_name = strip_html(input(usr, "要给这张纸取什么标题？", "纸张标签", null)  as text)
 	close_browser(usr, name)
 	if((loc == usr && usr.stat == 0))
-		name = "[(n_name ? text("[n_name]") : "paper")]"
+		name = "[(n_name ? text("[n_name]") : "纸张")]"
 	add_fingerprint(usr)
 	return
 
@@ -125,23 +125,23 @@
 
 /obj/item/paper/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(user.zone_selected == "eyes")
-		user.visible_message(SPAN_NOTICE("You show the paper to [M]. "), \
-			SPAN_NOTICE(" [user] holds up a paper and shows it to [M]. "))
+		user.visible_message(SPAN_NOTICE("你将纸张展示给[M]。"), \
+			SPAN_NOTICE("[user]举起一张纸，展示给[M]。"))
 		examine(M)
 
 	else if(user.zone_selected == "mouth") // lipstick wiping
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H == user)
-				to_chat(user, SPAN_NOTICE("You wipe off the face paint with [src]."))
+				to_chat(user, SPAN_NOTICE("你用[src]擦掉了脸上的涂装。"))
 				H.lip_style = null
 				H.update_body()
 			else
-				user.visible_message(SPAN_WARNING("[user] begins to wipe [H]'s face paint off with \the [src]."), \
-									SPAN_NOTICE("You begin to wipe off [H]'s face paint."))
+				user.visible_message(SPAN_WARNING("[user]开始用[src]擦除[H]脸上的涂装。"), \
+									SPAN_NOTICE("你开始擦除[H]脸上的涂装。"))
 				if(do_after(user, 10, INTERRUPT_ALL, BUSY_ICON_FRIENDLY) && do_after(H, 10, INTERRUPT_ALL, BUSY_ICON_GENERIC)) //user needs to keep their active hand, H does not.
-					user.visible_message(SPAN_NOTICE("[user] wipes [H]'s face paint off with \the [src]."), \
-										SPAN_NOTICE("You wipe off [H]'s face paint."))
+					user.visible_message(SPAN_NOTICE("[user]用[src]擦掉了[H]脸上的涂装。"), \
+										SPAN_NOTICE("你擦掉了[H]脸上的涂装。"))
 					H.lip_style = null
 					H.update_body()
 
@@ -288,27 +288,27 @@
 /obj/item/paper/proc/openhelp(mob/user as mob)
 	var/dat = {"<HTML>
 	<BODY>
-		<b><center>Crayon&Pen commands</center></b><br>
+		<b><center>蜡笔与钢笔格式指令</center></b><br>
 		<br>
-		\[br\] : Creates a linebreak.<br>
-		\[center\] - \[/center\] : Centers the text.<br>
-		\[h1\] - \[/h1\] : Makes the text a first level heading<br>
-		\[h2\] - \[/h2\] : Makes the text a second level heading<br>
-		\[h3\] - \[/h3\] : Makes the text a third level heading<br>
-		\[b\] - \[/b\] : Makes the text <b>bold</b>.<br>
-		\[i\] - \[/i\] : Makes the text <i>italic</i>.<br>
-		\[u\] - \[/u\] : Makes the text <u>underlined</u>.<br>
-		\[large\] - \[/large\] : Increases the <font size = \"4\">size</font> of the text.<br>
-		\[sign\] : Inserts a signature of your name in a foolproof way.<br>
-		\[field\] : Inserts an invisible field which lets you start type from there. Useful for forms.<br>
+		\[br\] : 插入换行。<br>
+		\[center\] - \[/center\] : 将文字居中。<br>
+		\[h1\] - \[/h1\] : 将文字设为一级标题。<br>
+		\[h2\] - \[/h2\] : 将文字设为二级标题。<br>
+		\[h3\] - \[/h3\] : 将文字设为三级标题。<br>
+		\[b\] - \[/b\] : 将文字<b>加粗</b>。<br>
+		\[i\] - \[/i\] : 将文字设为<i>斜体</i>。<br>
+		\[u\] - \[/u\] : 给文字加<u>下划线</u>。<br>
+		\[large\] - \[/large\] : <font size = \"4\">放大</font>文字。<br>
+		\[sign\] : 插入无法冒名的本人签名。<br>
+		\[field\] : 插入可继续填写的隐藏字段，适用于表格。<br>
 		<br>
-		<b><center>Pen exclusive commands</center></b><br>
-		\[small\] - \[/small\] : Decreases the <font size = \"1\">size</font> of the text.<br>
-		\[list\] - \[/list\] : A list.<br>
-		\[*\] : A dot used for lists.<br>
-		\[hr\] : Adds a horizontal rule.
+		<b><center>钢笔专用格式指令</center></b><br>
+		\[small\] - \[/small\] : <font size = \"1\">缩小</font>文字。<br>
+		\[list\] - \[/list\] : 建立列表。<br>
+		\[*\] : 插入列表项目符号。<br>
+		\[hr\] : 插入水平分隔线。
 	</BODY></HTML>"}
-	show_browser(user, dat, "Pen Help", "paper_help")
+	show_browser(user, dat, "钢笔书写帮助", "paper_help")
 
 /obj/item/paper/proc/burnpaper(obj/item/P, mob/user)
 	var/class = "<span class='warning'>"
@@ -317,13 +317,13 @@
 		if(istype(P, /obj/item/tool/lighter/zippo))
 			class = "<span class='rose'>"
 
-		user.visible_message("[class][user] holds \the [P] up to \the [src], it looks like \he's trying to burn it!", \
-		"[class]You hold \the [P] up to \the [src], burning it slowly.")
+		user.visible_message("[class][user]将[P]靠向[src]，看起来正试图将其点燃！", \
+		"[class]你将[P]靠向[src]，慢慢将它点燃。")
 
 		spawn(20)
 			if(get_dist(src, user) < 2 && user.get_active_hand() == P && P.heat_source)
-				user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.", \
-				"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.")
+				user.visible_message("[class][user]烧穿了[src]，将它化为灰烬。灰烬在空中飘动，最终落在地上。", \
+				"[class]你烧穿了[src]，将它化为灰烬。灰烬在空中飘动，最终落在地上。")
 
 				if(user.get_inactive_hand() == src)
 					user.drop_inv_item_on_ground(src)
@@ -332,7 +332,7 @@
 				qdel(src)
 
 			else
-				to_chat(user, SPAN_DANGER("You must hold \the [P] steady to burn \the [src]."))
+				to_chat(user, SPAN_DANGER("你必须稳稳拿住[P]才能烧掉[src]。"))
 
 
 /obj/item/paper/Topic(href, href_list)
@@ -341,12 +341,12 @@
 		return
 
 	if(usr.client.prefs.muted & MUTE_IC)
-		to_chat(usr, SPAN_DANGER("You cannot write on paper (muted)."))
+		to_chat(usr, SPAN_DANGER("你已被禁言，无法在纸上书写。"))
 		return
 
 	if(href_list["write"])
 		var/id = href_list["write"]
-		var/t =  stripped_multiline_input(usr, "Enter what you want to write:", "Write", "", MAX_MESSAGE_LEN)
+		var/t =  stripped_multiline_input(usr, "请输入要写的内容：", "Write", "", MAX_MESSAGE_LEN)
 		var/shortened_t = copytext(t,1,100)
 		msg_admin_niche("PAPER: [key_name(usr)] tried to write something. First 100 characters: [shortened_t]")
 
@@ -383,7 +383,7 @@
 		if (istype(P, /obj/item/paper/carbon))
 			var/obj/item/paper/carbon/C = P
 			if (!C.iscopy && !C.copied)
-				to_chat(user, SPAN_NOTICE("Take off the carbon copy first."))
+				to_chat(user, SPAN_NOTICE("先取下复写纸。"))
 				add_fingerprint(user)
 				return
 		if(loc != user) return
@@ -394,7 +394,7 @@
 			B.name = P.name
 		user.drop_inv_item_on_ground(P)
 		user.drop_inv_item_on_ground(src)
-		to_chat(user, SPAN_NOTICE("You clip the [P.name] to [(src.name == "paper") ? "the paper" : src.name]."))
+		to_chat(user, SPAN_NOTICE("你将[P.name]夹到了[(src.name == "paper") ? "纸张" : src.name]上。"))
 		B.attach_doc(src, user, TRUE)
 		B.attach_doc(P, user, TRUE)
 		user.put_in_hands(B)
@@ -403,7 +403,7 @@
 		if(HAS_TRAIT(P, TRAIT_TOOL_PEN))
 			var/obj/item/tool/pen/p = P
 			if(!p.on)
-				to_chat(user, SPAN_NOTICE("Your pen is not on!"))
+				to_chat(user, SPAN_NOTICE("你的笔还没打开！"))
 				return
 		show_browser(user, "<BODY class='paper'>[info_links][stamps]</BODY>", name, name) // Update the window
 		//openhelp(user)
@@ -413,7 +413,7 @@
 		if((!in_range(src, usr) && loc != user && !( istype(loc, /obj/item/clipboard) ) && loc.loc != user && user.get_active_hand() != P))
 			return
 
-		stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the [P.name].</i>"
+		stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>本文件已盖上[P.name]。</i>"
 		playsound(src, 'sound/effects/alien_footstep_medium3.ogg', 20, TRUE, 6)
 
 		var/image/stampoverlay = image('icons/obj/items/paper.dmi')
@@ -440,7 +440,7 @@
 		stamped += P.type
 		overlays += stampoverlay
 
-		to_chat(user, SPAN_NOTICE("You stamp the paper with your rubber stamp."))
+		to_chat(user, SPAN_NOTICE("你用橡皮印章在纸上盖了章。"))
 
 	else if(P.heat_source >= 400)
 		burnpaper(P, user)
@@ -471,148 +471,148 @@
  * Premade paper
  */
 /obj/item/paper/Court
-	name = "Judgement"
-	info = "For crimes against the station, the offender is sentenced to:<BR>\n<BR>\n"
+	name = "裁决"
+	info = "因危害空间站的罪行，判处该犯人：<BR>\n<BR>\n"
 
 /obj/item/paper/almayer_storage
-	name = "Almayer Emergency Storage Note"
-	info = "<i>Hey Garry, I got the boys to move most of the emergency supplies down into the ASRS hold just like ya' asked. <BR>Next time you're around Chinook I'll buy you a beer ok?</i>"
+	name = "阿尔迈耶号应急储藏室便条"
+	info = "<i>嘿，加里，我已经按你说的，让伙计们把大部分应急物资搬到自动储存与检索系统货舱了。<BR>下次你来奇努克，我请你喝啤酒，怎么样？</i>"
 /obj/item/paper/Toxin
-	name = "Chemical Information"
-	info = "Known Onboard Toxins:<BR>\n\tGrade A Semi-Liquid Phoron:<BR>\n\t\tHighly poisonous. You cannot sustain concentrations above 15 units.<BR>\n\t\tA gas mask fails to filter phoron after 50 units.<BR>\n\t\tWill attempt to diffuse like a gas.<BR>\n\t\tFiltered by scrubbers.<BR>\n\t\tThere is a bottled version which is very different<BR>\n\t\t\tfrom the version found in canisters!<BR>\n<BR>\n\t\tWARNING: Highly Flammable. Keep away from heat sources<BR>\n\t\texcept in a enclosed fire area!<BR>\n\t\tWARNING: It is a crime to use this without authorization.<BR>\nKnown Onboard Anti-Toxin:<BR>\n\tAnti-Toxin Type 01P: Works against Grade A Phoron.<BR>\n\t\tBest if injected directly into bloodstream.<BR>\n\t\tA full injection is in every regular Med-Kit.<BR>\n\t\tSpecial toxin Kits hold around 7.<BR>\n<BR>\nKnown Onboard Chemicals (other):<BR>\n\tRejuvenation T#001:<BR>\n\t\tEven 1 unit injected directly into the bloodstream<BR>\n\t\t\twill cure paralysis and sleep phoron.<BR>\n\t\tIf administered to a dying patient it will prevent<BR>\n\t\t\tfurther damage for about units*3 seconds.<BR>\n\t\t\tit will not cure them or allow them to be cured.<BR>\n\t\tIt can be administeredd to a non-dying patient<BR>\n\t\t\tbut the chemicals disappear just as fast.<BR>\n\tSoporific T#054:<BR>\n\t\t5 units wilkl induce precisely 1 minute of sleep.<BR>\n\t\t\tThe effect are cumulative.<BR>\n\t\tWARNING: It is a crime to use this without authorization"
+	name = "化学资料"
+	info = "已知舰载毒物：<BR>\n\tA级半液态弗燃素：<BR>\n\t\t剧毒。人体无法承受超过 15 单位的浓度。<BR>\n\t\t防毒面具过滤 50 单位后将失效。<BR>\n\t\t会像气体一样扩散。<BR>\n\t\t可由洗气机过滤。<BR>\n\t\t瓶装版本与气罐中的版本有很大区别！<BR>\n<BR>\n\t\t警告：极易燃烧。除封闭燃烧区外，请远离热源！<BR>\n\t\t警告：未经授权使用属于犯罪。<BR>\n已知舰载抗毒剂：<BR>\n\t01P 型抗毒剂：可对抗 A 级弗燃素。<BR>\n\t\t直接注入血液效果最佳。<BR>\n\t\t每套普通医疗包都含有一支满装注射器。<BR>\n\t\t专用中毒急救箱约有七支。<BR>\n<BR>\n已知舰载化学品（其他）：<BR>\n\t复苏剂 T#001：<BR>\n\t\t即使仅将 1 单位直接注入血液，也可解除弗燃素造成的麻痹和昏睡。<BR>\n\t\t用于濒死患者时，可阻止后续损伤约“剂量×3”秒。<BR>\n\t\t它不会治愈患者，也不会使其能够被治愈。<BR>\n\t\t也可用于非濒死患者，但药物消失得同样快。<BR>\n\t催眠剂 T#054：<BR>\n\t\t5 单位会精确引起一分钟睡眠，效果可以累积。<BR>\n\t\t警告：未经授权使用属于犯罪。"
 
 /obj/item/paper/courtroom
-	name = "A Crash Course in Legal SOP on SS13"
-	info = "<B>Roles:</B><BR>\nThe Detective is basically the investigator and prosecutor.<BR>\nThe Staff Assistant can perform these functions with written authority from the Detective.<BR>\nThe Captain/HoP/Warden is ct as the judicial authority.<BR>\nThe Security Officers are responsible for executing warrants, security during trial, and prisoner transport.<BR>\n<BR>\n<B>Investigative Phase:</B><BR>\nAfter the crime has been committed the Detective's job is to gather evidence and try to ascertain not only who did it but what happened. He must take special care to catalogue everything and don't leave anything out. Write out all the evidence on paper. Make sure you take an appropriate number of fingerprints. IF he must ask someone questions he has permission to confront them. If the person refuses he can ask a judicial authority to write a subpoena for questioning. If again he fails to respond then that person is to be jailed as insubordinate and obstructing justice. Said person will be released after he cooperates.<BR>\n<BR>\nONCE the FT has a clear idea as to who the criminal is he is to write an arrest warrant on the piece of paper. IT MUST LIST THE CHARGES. The FT is to then go to the judicial authority and explain a small version of his case. If the case is moderately acceptable the authority should sign it. Security must then execute said warrant.<BR>\n<BR>\n<B>Pre-Pre-Trial Phase:</B><BR>\nNow a legal representative must be presented to the defendant if said defendant requests one. That person and the defendant are then to be given time to meet (in the jail IS ACCEPTABLE). The defendant and his lawyer are then to be given a copy of all the evidence that will be presented at trial (rewriting it all on paper is fine). THIS IS CALLED THE DISCOVERY PACK. With a few exceptions, THIS IS THE ONLY EVIDENCE BOTH SIDES MAY USE AT TRIAL. IF the prosecution will be seeking the death penalty it MUST be stated at this time. ALSO if the defense will be seeking not guilty by mental defect it must state this at this time to allow ample time for examination.<BR>\nNow at this time each side is to compile a list of witnesses. By default, the defendant is on both lists regardless of anything else. Also the defense and prosecution can compile more evidence beforehand BUT in order for it to be used the evidence MUST also be given to the other side.\nThe defense has time to compile motions against some evidence here.<BR>\n<B>Possible Motions:</B><BR>\n1. <U>Invalidate Evidence-</U> Something with the evidence is wrong and the evidence is to be thrown out. This includes irrelevance or corrupt security.<BR>\n2. <U>Free Movement-</U> Basically the defendant is to be kept uncuffed before and during the trial.<BR>\n3. <U>Subpoena Witness-</U> If the defense presents god reasons for needing a witness but said person fails to cooperate then a subpoena is issued.<BR>\n4. <U>Drop the Charges-</U> Not enough evidence is there for a trial so the charges are to be dropped. The FT CAN RETRY but the judicial authority must carefully reexamine the new evidence.<BR>\n5. <U>Declare Incompetent-</U> Basically the defendant is insane. Once this is granted a medical official is to examine the patient. If he is indeed insane he is to be placed under care of the medical staff until he is deemed competent to stand trial.<BR>\n<BR>\nALL SIDES MOVE TO A COURTROOM<BR>\n<B>Pre-Trial Hearings:</B><BR>\nA judicial authority and the 2 sides are to meet in the trial room. NO ONE ELSE BESIDES A SECURITY DETAIL IS TO BE PRESENT. The defense submits a plea. If the plea is guilty then proceed directly to sentencing phase. Now the sides each present their motions to the judicial authority. He rules on them. Each side can debate each motion. Then the judicial authority gets a list of crew members. He first gets a chance to look at them all and pick out acceptable and available jurors. Those jurors are then called over. Each side can ask a few questions and dismiss jurors they find too biased. HOWEVER before dismissal the judicial authority MUST agree to the reasoning.<BR>\n<BR>\n<B>The Trial:</B><BR>\nThe trial has three phases.<BR>\n1. <B>Opening Arguments</B>- Each side can give a short speech. They may not present ANY evidence.<BR>\n2. <B>Witness Calling/Evidence Presentation</B>- The prosecution goes first and is able to call the witnesses on his approved list in any order. He can recall them if necessary. During the questioning the lawyer may use the evidence in the questions to help prove a point. After every witness the other side has a chance to cross-examine. After both sides are done questioning a witness the prosecution can present another or recall one (even the EXACT same one again!). After prosecution is done the defense can call witnesses. After the initial cases are presented both sides are free to call witnesses on either list.<BR>\nFINALLY once both sides are done calling witnesses we move onto the next phase.<BR>\n3. <B>Closing Arguments</B>- Same as opening.<BR>\nThe jury then deliberates IN PRIVATE. THEY MUST ALL AGREE on a verdict. REMEMBER: They mix between some charges being guilty and others not guilty (IE if you supposedly killed someone with a gun and you unfortunately picked up a gun without authorization then you CAN be found not guilty of murder BUT guilty of possession of illegal weaponry.). Once they have agreed they present their verdict. If unable to reach a verdict and feel they will never they call a deadlocked jury and we restart at Pre-Trial phase with an entirely new set of jurors.<BR>\n<BR>\n<B>Sentencing Phase:</B><BR>\nIf the death penalty was sought (you MUST have gone through a trial for death penalty) then skip to the second part. <BR>\nI. Each side can present more evidence/witnesses in any order. There is NO ban on emotional aspects or anything. The prosecution is to submit a suggested penalty. After all the sides are done then the judicial authority is to give a sentence.<BR>\nII. The jury stays and does the same thing as I. Their sole job is to determine if the death penalty is applicable. If NOT then the judge selects a sentence.<BR>\n<BR>\nTADA you're done. Security then executes the sentence and adds the applicable convictions to the person's record.<BR>\n"
+	name = "SS13 法律标准作业程序速成指南"
+	info = "<B>职责分工：</B><BR>\n侦探主要担任调查员和检察官。<BR>\n勤务助理获得侦探书面授权后，也可履行这些职责。<BR>\n舰长、人事主管或监狱官担任审判机关。<BR>\n安保员负责执行令状、维持庭审安全及押送囚犯。<BR>\n<BR>\n<B>调查阶段：</B><BR>\n犯罪发生后，侦探应收集证据，查明作案者及事件经过。务必逐项登记，不得遗漏，将所有证据记在纸上，并采集足够数量的指纹。需要询问他人时，可以当面提问；若对方拒绝，可请审判机关签发传票。若仍不回应，应以不服从命令及妨碍司法为由拘押，待其合作后释放。<BR>\n<BR>\n法证人员明确嫌疑人后，应在纸上写出逮捕令，<B>必须列明指控</B>。随后向审判机关简述案情；若案情基本成立，应予签署，再由安保执行。<BR>\n<BR>\n<B>审前准备阶段：</B><BR>\n被告若要求法律代理人，应为其提供，并给予双方会面时间，在牢房会面也可以。应向被告及律师提供所有拟用于庭审的证据副本，重新抄写在纸上也行。这称为证据披露材料。除少数例外，<B>双方庭审只能使用这些证据</B>。控方若寻求死刑，必须此时说明；辩方若拟以精神障碍主张无罪，也必须此时提出，留出充分检查时间。<BR>\n双方分别编制证人名单。默认情况下，被告同时列入双方名单。双方可继续收集证据，但拟用于庭审的新证据也必须提供给对方。\n辩方可在此时准备针对证据的动议。<BR>\n<B>可提出的动议：</B><BR>\n1. <U>排除证据：</U>证据存在问题，应予剔除，例如与案件无关或安保人员存在舞弊。<BR>\n2. <U>自由行动：</U>要求被告在庭审前及庭审中不戴手铐。<BR>\n3. <U>传唤证人：</U>辩方能合理说明该证人的必要性，而对方拒不合作时，可签发传票。<BR>\n4. <U>撤销指控：</U>证据不足以开庭，应撤销指控。法证人员可以重新起诉，但审判机关必须仔细审查新证据。<BR>\n5. <U>认定无受审能力：</U>被告可能精神失常。动议获准后，由医务人员检查；若确认，应由医疗人员照护，直至具备受审能力。<BR>\n<BR>\n所有人员转移到法庭。<BR>\n<B>审前听证：</B><BR>\n审判机关与双方在法庭会面，除警卫外不得有其他人在场。辩方提交答辩；若认罪，直接进入量刑。随后双方提出动议，由审判机关裁决，双方均可辩论。审判机关取得船员名单，先筛选合适且有空的陪审员，再将其召来。双方可提问，并申请排除明显偏颇者，但排除理由必须得到审判机关认可。<BR>\n<BR>\n<B>庭审：</B><BR>\n分为三个阶段。<BR>\n1. <B>开庭陈词：</B>双方可作简短陈述，不得出示任何证据。<BR>\n2. <B>传唤证人与出示证据：</B>控方先按任意顺序传唤获准名单上的证人，必要时可再次传唤。律师可结合证据提问，以证明观点。每位证人作证后，对方都有交叉询问机会。双方问完后，控方可传唤其他证人，也可重新传唤同一证人。控方结束后，辩方传唤证人。初步举证结束后，双方可自由传唤任一名单上的证人。<BR>\n双方结束证人询问后，进入下一阶段。<BR>\n3. <B>结案陈词：</B>规则同开庭陈词。<BR>\n陪审团随后<B>秘密评议，并必须一致同意裁决</B>。注意，可以对部分罪名判有罪，对其他罪名判无罪。例如，被告被指控持枪杀人，但只是未经许可拾起枪械，则可能杀人罪不成立，却成立非法持有武器罪。达成一致后宣布裁决；若无法达成且认为不可能达成，则宣布陪审团僵局，换一批全新陪审员，从审前阶段重新开始。<BR>\n<BR>\n<B>量刑阶段：</B><BR>\n若寻求死刑，必须经过庭审，并直接进入第二部分。<BR>\nI. 双方可按任意顺序提出更多证据和证人，情感因素等不受限制。控方提出量刑建议，双方结束后由审判机关宣判。<BR>\nII. 陪审团留下，按第一部分进行，唯一任务是判断死刑是否适用；若不适用，由法官选择刑罚。<BR>\n<BR>\n大功告成。安保随后执行判决，并将成立的罪名记入该人的档案。<BR>\n"
 
 /obj/item/paper/hydroponics
-	name = "Greetings from Billy Bob"
-	info = "<B>Hey fellow botanist!</B><BR>\n<BR>\nI didn't trust the station folk so I left<BR>\na couple of weeks ago. But here's some<BR>\ninstructions on how to operate things here.<BR>\nYou can grow plants and each iteration they become<BR>\nstronger, more potent and have better yield, if you<BR>\nknow which ones to pick. Use your botanist's analyzer<BR>\nfor that. You can turn harvested plants into seeds<BR>\nat the seed extractor, and replant them for better stuff!<BR>\nSometimes if the weed level gets high in the tray<BR>\nmutations into different mushroom or weed species have<BR>\nbeen witnessed. On the rare occassion even weeds mutate!<BR>\n<BR>\nEither way, have fun!<BR>\n<BR>\nBest regards,<BR>\nBilly Bob Johnson.<BR>\n<BR>\nPS.<BR>\nHere's a few tips:<BR>\nIn nettles, potency = damage<BR>\nIn amanitas, potency = deadliness + side effect<BR>\nIn Liberty caps, potency = drug power + effect<BR>\nIn chilis, potency = heat<BR>\n<B>Nutrients keep mushrooms alive!</B><BR>\n<B>Water keeps weeds such as nettles alive!</B><BR>\n<B>All other plants need both.</B>"
+	name = "来自比利·鲍勃的问候"
+	info = "<B>嘿，园艺同行！</B><BR>\n<BR>\n我信不过空间站上的人，所以几周前就离开了。不过，还是给你留下一些操作说明。<BR>\n种植植物时，只要知道该选哪些，每一代就能变得更强壮、效力更高、产量更好。用你的植物分析仪来挑选。将收获物放进种子提取器，就能获得种子，重新种植出更好的作物！<BR>\n有时种植盘杂草太多，会出现变异的蘑菇或杂草品种。极少数情况下，连杂草本身也会变异！<BR>\n<BR>\n总之，祝你玩得开心！<BR>\n<BR>\n此致，<BR>\n比利·鲍勃·约翰逊。<BR>\n<BR>\n附言，几点提示：<BR>\n荨麻：效力＝伤害<BR>\n毒蝇伞：效力＝致命程度＋副作用<BR>\n裸盖菇：效力＝致幻强度＋效果<BR>\n辣椒：效力＝辣度<BR>\n<B>蘑菇需要营养液才能存活！</B><BR>\n<B>荨麻等杂草需要水才能存活！</B><BR>\n<B>其他植物两者都需要。</B>"
 
 /obj/item/paper/djstation
-	name = "DJ Listening Outpost"
-	info = "<B>Welcome new owner!</B><BR><BR>You have purchased the latest in listening equipment. The telecommunication setup we created is the best in listening to common and private radio fequencies. Here is a step by step guide to start listening in on those saucy radio channels:<br><ol><li>Equip yourself with a multi-tool</li><li>Use the multitool on each machine, that is the broadcaster, receiver and the relay.</li><li>Turn all the machines on, it has already been configured for you to listen on.</li></ol> Simple as that. Now to listen to the private channels, you'll have to configure the intercoms, located on the front desk. Here is a list of frequencies for you to listen on.<br><ul><li>145.7 - Common Channel</li><li>144.7 - Private AI Channel</li><li>135.9 - Security Channel</li><li>135.7 - Engineering Channel</li><li>135.5 - Medical Channel</li><li>135.3 - Command Channel</li><li>135.1 - Science Channel</li><li>134.9 - Mining Channel</li><li>134.7 - Cargo Channel</li>"
+	name = "DJ 监听哨站"
+	info = "<B>欢迎，新主人！</B><BR><BR>你买到了最新监听设备。我们的电信系统最擅长接收公共和私人无线电频率。按以下步骤，就能收听那些有趣的频道：<br><ol><li>准备一把多功能工具。</li><li>用它操作每台机器，也就是广播器、接收器和中继器。</li><li>打开所有机器，监听配置已为你预设完成。</li></ol>就这么简单。若要监听私人频道，还需配置前台的对讲机。可用频率如下：<br><ul><li>145.7——公共频道</li><li>144.7——人工智能私人频道</li><li>135.9——安保频道</li><li>135.7——工程频道</li><li>135.5——医疗频道</li><li>135.3——指挥频道</li><li>135.1——科研频道</li><li>134.9——采矿频道</li><li>134.7——货运频道</li>"
 
 /obj/item/paper/warhead_recycle
-	name = "USCM Recycling Efforts"
-	info = "<B>Hello USCM Orbital Cannon System Owner!</B><BR><BR>We regret to inform you that a communications mishap has resulted in your orbital bombardment warheads being recycled for spare metal! Worry not, the metal has been put to good use in High Command's chest freezer."
+	name = "美国殖民地陆战队回收计划"
+	info = "<B>美国殖民地陆战队轨道炮系统用户，您好！</B><BR><BR>很遗憾地通知您，一次通信失误导致您的轨道轰炸弹头被当作废金属回收了！别担心，这些金属已经在最高指挥部的卧式冷柜上发挥了良好作用。"
 
 /obj/item/paper/flag
-	name = "paper flag"
-	desc = "Somebody crudely glued a piece of paper to a stick. You feel like waving it around like an idiot."
+	name = "纸旗"
+	desc = "有人粗糙地把一张纸粘在了棍子上。你很想像个傻瓜一样挥舞它。"
 	icon_state = "paper_flag"
 	item_state = "paper_flag"
 
 	anchored = TRUE
 
 /obj/item/paper/jobs
-	name = "Job Information"
-	info = "Information on all formal jobs that can be assigned on Space Station 13 can be found on this document.<BR>\nThe data will be in the following form.<BR>\nGenerally lower ranking positions come first in this list.<BR>\n<BR>\n<B>Job Name</B>   general access>lab access-engine access-systems access (atmosphere control)<BR>\n\tJob Description<BR>\nJob Duties (in no particular order)<BR>\nTips (where applicable)<BR>\n<BR>\n<B>Research Assistant</B> 1>1-0-0<BR>\n\tThis is probably the lowest level position. Anyone who enters the space station after the initial job\nassignment will automatically receive this position. Access with this is restricted. Head of Personnel should\nappropriate the correct level of assistance.<BR>\n1. Assist the researchers.<BR>\n2. Clean up the labs.<BR>\n3. Prepare materials.<BR>\n<BR>\n<B>Staff Assistant</B> 2>0-0-0<BR>\n\tThis position assists the security officer in his duties. The staff assisstants should primarily br\npatrolling the ship waiting until they are needed to maintain ship safety.\n(Addendum: Updated/Elevated Security Protocols admit issuing of low level weapons to security personnel)<BR>\n1. Patrol ship/Guard key areas<BR>\n2. Assist security officer<BR>\n3. Perform other security duties.<BR>\n<BR>\n<B>Technical Assistant</B> 1>0-0-1<BR>\n\tThis is yet another low level position. The technical assistant helps the engineer and the statian\ntechnician with the upkeep and maintenance of the station. This job is very important because it usually\ngets to be a heavy workload on station technician and these helpers will alleviate that.<BR>\n1. Assist Station technician and Engineers.<BR>\n2. Perform general maintenance of station.<BR>\n3. Prepare materials.<BR>\n<BR>\n<B>Medical Assistant</B> 1>1-0-0<BR>\n\tThis is the fourth position yet it is slightly less common. This position doesn't have much power\noutside of the med bay. Consider this position like a nurse who helps to upkeep medical records and the\nmaterials (filling syringes and checking vitals)<BR>\n1. Assist the medical personnel.<BR>\n2. Update medical files.<BR>\n3. Prepare materials for medical operations.<BR>\n<BR>\n<B>Research Technician</B> 2>3-0-0<BR>\n\tThis job is primarily a step up from research assistant. These people generally do not get their own lab\nbut are more hands on in the experimentation process. At this level they are permitted to work as consultants to\nthe others formally.<BR>\n1. Inform superiors of research.<BR>\n2. Perform research alongside of official researchers.<BR>\n<BR>\n<B>Detective</B> 3>2-0-0<BR>\n\tThis job is in most cases slightly boring at best. Their sole duty is to\nperform investigations of crine scenes and analysis of the crime scene. This\nalleviates SOME of the burden from the security officer. This person's duty\nis to draw conclusions as to what happened and testify in court. Said person\nalso should stroe the evidence ly.<BR>\n1. Perform crime-scene investigations/draw conclusions.<BR>\n2. Store and catalogue evidence properly.<BR>\n3. Testify to superiors/inquieries on findings.<BR>\n<BR>\n<B>Station Technician</B> 2>0-2-3<BR>\n\tPeople assigned to this position must work to make sure all the systems aboard Space Station 13 are operable.\nThey should primarily work in the computer lab and repairing faulty equipment. They should work with the\natmospheric technician.<BR>\n1. Maintain SS13 systems.<BR>\n2. Repair equipment.<BR>\n<BR>\n<B>Atmospheric Technician</B> 3>0-0-4<BR>\n\tThese people should primarily work in the atmospheric control center and lab. They have the very important\njob of maintaining the delicate atmosphere on SS13.<BR>\n1. Maintain atmosphere on SS13<BR>\n2. Research atmospheres on the space station. (safely please!)<BR>\n<BR>\n<B>Engineer</B> 2>1-3-0<BR>\n\tPeople working as this should generally have detailed knowledge as to how the propulsion systems on SS13\nwork. They are one of the few classes that have unrestricted access to the engine area.<BR>\n1. Upkeep the engine.<BR>\n2. Prevent fires in the engine.<BR>\n3. Maintain a safe orbit.<BR>\n<BR>\n<B>Medical Researcher</B> 2>5-0-0<BR>\n\tThis position may need a little clarification. Their duty is to make sure that all experiments are safe and\nto conduct experiments that may help to improve the station. They will be generally idle until a new laboratory\nis constructed.<BR>\n1. Make sure the station is kept safe.<BR>\n2. Research medical properties of materials studied of Space Station 13.<BR>\n<BR>\n<B>Scientist</B> 2>5-0-0<BR>\n\tThese people study the properties, particularly the toxic properties, of materials handled on SS13.\nTechnically they can also be called Phoron Technicians as phoron is the material they routinly handle.<BR>\n1. Research phoron<BR>\n2. Make sure all phoron is properly handled.<BR>\n<BR>\n<B>Medical Doctor (Officer)</B> 2>0-0-0<BR>\n\tPeople working this job should primarily stay in the medical area. They should make sure everyone goes to\nthe medical bay for treatment and examination. Also they should make sure that medical supplies are kept in\norder.<BR>\n1. Heal wounded people.<BR>\n2. Perform examinations of all personnel.<BR>\n3. Moniter usage of medical equipment.<BR>\n<BR>\n<B>Security Officer</B> 3>0-0-0<BR>\n\tThese people should attempt to keep the peace inside the station and make sure the station is kept safe. One\nside duty is to assist in repairing the station. They also work like general maintenance personnel. They are not\ngiven a weapon and must use their own resources.<BR>\n(Addendum: Updated/Elevated Security Protocols admit issuing of weapons to security personnel)<BR>\n1. Maintain order.<BR>\n2. Assist others.<BR>\n3. Repair structural problems.<BR>\n<BR>\n<B>Head of Security</B> 4>5-2-2<BR>\n\tPeople assigned as Head of Security should issue orders to the security staff. They should\nalso carefully moderate the usage of all security equipment. All security matters should be reported to this person.<BR>\n1. Oversee security.<BR>\n2. Assign patrol duties.<BR>\n3. Protect the station and staff.<BR>\n<BR>\n<B>Head of Personnel</B> 4>4-2-2<BR>\n\tPeople assigned as head of personnel will find themselves moderating all actions done by personnel. \nAlso they have the ability to assign jobs and access levels.<BR>\n1. Assign duties.<BR>\n2. Moderate personnel.<BR>\n3. Moderate research. <BR>\n<BR>\n<B>Captain</B> 5>5-5-5 (unrestricted station wide access)<BR>\n\tThis is the highest position youi can aquire on Space Station 13. They are allowed anywhere inside the\nspace station and therefore should protect their ID card. They also have the ability to assign positions\nand access levels. They should not abuse their power.<BR>\n1. Assign all positions on SS13<BR>\n2. Inspect the station for any problems.<BR>\n3. Perform administrative duties.<BR>\n"
+	name = "岗位资料"
+	info = "本文介绍 13 号空间站可分配的全部正式岗位。<BR>\n资料采用以下格式，通常按职级由低到高排列。<BR>\n<BR>\n<B>岗位名称</B>　普通权限＞实验室权限－引擎权限－系统权限（大气控制）<BR>\n\t岗位说明<BR>\n岗位职责（不分先后）<BR>\n适用时附带提示<BR>\n<BR>\n<B>研究助理</B> 1>1-0-0<BR>\n\t这可能是最低级的岗位。初次分配岗位后才进入空间站的人会自动获得此职，权限有限。人事主管应根据需要作出适当安排。<BR>\n1. 协助研究人员。<BR>\n2. 清洁实验室。<BR>\n3. 准备材料。<BR>\n<BR>\n<B>勤务助理</B> 2>0-0-0<BR>\n\t协助安保员，主要在舰内巡逻，随时准备维护舰船安全。（补充：更新或升级后的安保规程允许为安保人员配发低级武器。）<BR>\n1. 巡逻舰船、守卫重点区域。<BR>\n2. 协助安保员。<BR>\n3. 执行其他安保任务。<BR>\n<BR>\n<B>技术助理</B> 1>0-0-1<BR>\n\t另一个初级岗位，协助工程师与空间站技师维护空间站。这项工作很重要，可减轻空间站技师通常繁重的工作量。<BR>\n1. 协助空间站技师与工程师。<BR>\n2. 执行日常维护。<BR>\n3. 准备材料。<BR>\n<BR>\n<B>医疗助理</B> 1>1-0-0<BR>\n\t第四种初级岗位，相对少见，在医疗区之外权限不大。类似护士，协助整理医疗记录、准备物资、填充注射器和检查生命体征。<BR>\n1. 协助医务人员。<BR>\n2. 更新医疗档案。<BR>\n3. 准备医疗操作所需材料。<BR>\n<BR>\n<B>研究技师</B> 2>3-0-0<BR>\n\t比研究助理高一级。通常没有独立实验室，但会更直接参与实验。可正式担任其他人的顾问。<BR>\n1. 向上级汇报研究。<BR>\n2. 与正式研究员共同开展研究。<BR>\n<BR>\n<B>侦探</B> 3>2-0-0<BR>\n\t这份工作大多有些乏味。唯一职责是调查并分析犯罪现场，减轻安保员的部分负担。应判断事件经过、出庭作证，并妥善保存证据。<BR>\n1. 调查犯罪现场并得出结论。<BR>\n2. 妥善储存、分类登记证据。<BR>\n3. 向上级或调查机构陈述发现。<BR>\n<BR>\n<B>空间站技师</B> 2>0-2-3<BR>\n\t确保 13 号空间站的全部系统可用。主要在计算机实验室工作，修复故障设备，并与大气技师协作。<BR>\n1. 维护空间站系统。<BR>\n2. 修理设备。<BR>\n<BR>\n<B>大气技师</B> 3>0-0-4<BR>\n\t主要在大气控制中心与实验室工作，维护空间站脆弱的大气环境，职责十分重要。<BR>\n1. 维护空间站大气。<BR>\n2. 安全地研究空间站内的大气。<BR>\n<BR>\n<B>工程师</B> 2>1-3-0<BR>\n\t应详细了解空间站推进系统的原理，是少数可不受限制进入引擎区的岗位之一。<BR>\n1. 维护引擎。<BR>\n2. 防止引擎起火。<BR>\n3. 保持安全轨道。<BR>\n<BR>\n<B>医学研究员</B> 2>5-0-0<BR>\n\t确保所有实验安全，并进行有助于改善空间站的实验。新实验室建成前，通常没有太多工作。<BR>\n1. 确保空间站安全。<BR>\n2. 研究空间站所研究材料的医学性质。<BR>\n<BR>\n<B>科学家</B> 2>5-0-0<BR>\n\t研究空间站处理材料的性质，尤其是毒性。由于经常处理弗燃素，也可称为弗燃素技师。<BR>\n1. 研究弗燃素。<BR>\n2. 确保所有弗燃素得到妥善处理。<BR>\n<BR>\n<B>医生（军官）</B> 2>0-0-0<BR>\n\t主要留在医疗区，确保所有人来接受治疗与检查，并维持医疗物资秩序。<BR>\n1. 治疗伤员。<BR>\n2. 为所有人员体检。<BR>\n3. 监督医疗设备使用。<BR>\n<BR>\n<B>安保员</B> 3>0-0-0<BR>\n\t维护空间站秩序与安全，也应协助修理，承担一般维护工作。原本不配武器，需自行利用资源。（补充：更新或升级后的安保规程允许为安保人员配发武器。）<BR>\n1. 维持秩序。<BR>\n2. 协助他人。<BR>\n3. 修复结构问题。<BR>\n<BR>\n<B>安保主管</B> 4>5-2-2<BR>\n\t指挥安保人员，审慎管理安保设备的使用。所有安保事项都应向其汇报。<BR>\n1. 监督安保。<BR>\n2. 分配巡逻任务。<BR>\n3. 保护空间站和人员。<BR>\n<BR>\n<B>人事主管</B> 4>4-2-2<BR>\n\t管理人员的一切行动，并有权分配岗位与权限。<BR>\n1. 分配职责。<BR>\n2. 管理人员。<BR>\n3. 管理研究工作。<BR>\n<BR>\n<B>舰长</B> 5>5-5-5（全站无限制权限）<BR>\n\t空间站上能获得的最高职位，可进入任何区域，必须保护好身份卡。也有权分配岗位与权限，不得滥用权力。<BR>\n1. 分配全部岗位。<BR>\n2. 检查空间站问题。<BR>\n3. 履行管理职责。<BR>\n"
 
 /obj/item/paper/photograph
-	name = "photo"
+	name = "照片"
 	icon_state = "photo"
 	var/photo_id = 0
 	item_state = "paper"
 
 /obj/item/paper/sop
-	name = "paper- 'Standard Operating Procedure'"
-	info = "Alert Levels:<BR>\nBlue- Emergency<BR>\n\t1. Caused by fire<BR>\n\t2. Caused by manual interaction<BR>\n\tAction:<BR>\n\t\tClose all fire doors. These can only be opened by reseting the alarm<BR>\nRed- Ejection/Self-Destruct<BR>\n\t1. Caused by module operating computer.<BR>\n\tAction:<BR>\n\t\tAfter the specified time the module will eject completely.<BR>\n<BR>\nEngine Maintenance Instructions:<BR>\n\tShut off ignition systems:<BR>\n\tActivate internal power<BR>\n\tActivate orbital balance matrix<BR>\n\tRemove volatile liquids from area<BR>\n\tWear a fire suit<BR>\n<BR>\n\tAfter<BR>\n\t\tDecontaminate<BR>\n\t\tVisit medical examiner<BR>\n<BR>\nToxin Laboratory Procedure:<BR>\n\tWear a gas mask regardless<BR>\n\tGet an oxygen tank.<BR>\n\tActivate internal atmosphere<BR>\n<BR>\n\tAfter<BR>\n\t\tDecontaminate<BR>\n\t\tVisit medical examiner<BR>\n<BR>\nDisaster Procedure:<BR>\n\tFire:<BR>\n\t\tActivate sector fire alarm.<BR>\n\t\tMove to a safe area.<BR>\n\t\tGet a fire suit<BR>\n\t\tAfter:<BR>\n\t\t\tAssess Damage<BR>\n\t\t\tRepair damages<BR>\n\t\t\tIf needed, Evacuate<BR>\n\tMeteor Shower:<BR>\n\t\tActivate fire alarm<BR>\n\t\tMove to the back of ship<BR>\n\t\tAfter<BR>\n\t\t\tRepair damage<BR>\n\t\t\tIf needed, Evacuate<BR>\n\tAccidental Reentry:<BR>\n\t\tActivate fire alarms in front of ship.<BR>\n\t\tMove volatile matter to a fire proof area!<BR>\n\t\tGet a fire suit.<BR>\n\t\tStay secure until an emergency ship arrives.<BR>\n<BR>\n\t\tIf ship does not arrive-<BR>\n\t\t\tEvacuate to a nearby safe area!"
+	name = "文件——《标准作业程序》"
+	info = "警报等级：<BR>\n蓝色——紧急情况<BR>\n\t1. 由火灾触发。<BR>\n\t2. 由人工触发。<BR>\n\t应对：关闭所有防火门，只有重置警报后才能开启。<BR>\n红色——弹射／自毁<BR>\n\t1. 由舱段操作计算机触发。<BR>\n\t应对：指定时间后，舱段将完全弹离。<BR>\n<BR>\n引擎维护说明：<BR>\n\t关闭点火系统。<BR>\n\t启动内部电源。<BR>\n\t启动轨道平衡矩阵。<BR>\n\t移走区域内的挥发性液体。<BR>\n\t穿上消防服。<BR>\n\t作业后：进行去污，并接受医疗检查。<BR>\n<BR>\n毒理实验室规程：<BR>\n\t无论何时都要戴防毒面具。<BR>\n\t准备氧气瓶。<BR>\n\t启动内部供气。<BR>\n\t作业后：进行去污，并接受医疗检查。<BR>\n<BR>\n灾害应对：<BR>\n\t火灾：<BR>\n\t\t启动区域火警，移至安全区，取得消防服。<BR>\n\t\t事后评估并修复损伤，必要时撤离。<BR>\n\t流星雨：<BR>\n\t\t启动火警，移至舰船后部。<BR>\n\t\t事后修复损伤，必要时撤离。<BR>\n\t意外再入大气层：<BR>\n\t\t启动舰船前部火警，将挥发性物质移至防火区！<BR>\n\t\t取得消防服，留在安全处等待救援船。<BR>\n\t\t若救援船未到，撤离到附近安全区！<BR>\n"
 
 /obj/item/paper/prison_station/test_log
-	name = "paper- 'Test Log'"
-	info = "<p style=\"text-align: center;\"><sub>TEST LOG</sub></p><p>SPECIMEN: Bioweapon candidate Kappa. Individual 3</p><BR>\n<p>-</p><p>PROCEDURE: Observation</p><p>RESULTS: Specimen paces around cell. Appears agitated. Vocalisations.</p><p>-</p><p>PROCEDURE: Simian test subject</p><p>RESULTS: Devoured by specimen. No significant difference from last simian test.</p><p><em>Note: Time to amp it up</em></p><p>-</p><p>PROCEDURE: Human test subject (D-1). Instructed to \"pet it like a dog\"</p><p>RESULTS: Specimen and D-1 stare at each other for approximately two seconds. D-1 screams and begins pounding on observation window, begging to be released. Specimen pounces on D-1. Specimen kills D-1 with multiple slashes from its foreclaws.</p><p><em>Note: Promising!</em></p><p>-</p><p>PROCEDURE: Two human test subjects (D-2, D-3). Instructed to subdue specimen</p><p>RESULTS: D-2 and D-3 slowly approach specimen. D-3 punches specimen on forehead to no noticeable effect. Specimen pounces on D-3, then kills him with multiple slashes from its foreclaws. D-2 screams and begins pounding on observation window. Specimen pounces on D-2, then kills him with multiple slashes from its foreclaws.</p><p>Specimen begins slashing at observation access doors. Exhibiting an unexpected amount of strength, it is able to d~</p>"
+	name = "文件——《实验记录》"
+	info = "<p style=\"text-align: center;\"><sub>实验记录</sub></p><p>标本：候选生物武器卡帕，3 号个体</p><BR>\n<p>-</p><p>步骤：观察</p><p>结果：标本在牢房内踱步，似乎焦躁不安，发出叫声。</p><p>-</p><p>步骤：灵长类实验对象</p><p>结果：被标本吞食。与上次灵长类实验无显著差异。</p><p><em>备注：该加大力度了。</em></p><p>-</p><p>步骤：人类实验对象（D-1）。指示其“像摸狗一样抚摸它”。</p><p>结果：标本与 D-1 对视约两秒。D-1 尖叫并敲打观察窗，恳求放其离开。标本扑向 D-1，以前爪反复劈砍将其杀死。</p><p><em>备注：很有前景！</em></p><p>-</p><p>步骤：两名人类实验对象（D-2、D-3）。指示其制服标本。</p><p>结果：D-2 与 D-3 缓慢靠近标本。D-3 拳击标本前额，无明显效果。标本扑向 D-3，以前爪反复劈砍将其杀死。D-2 尖叫并敲打观察窗。标本扑向 D-2，以前爪反复劈砍将其杀死。</p><p>标本开始抓挠观察室通道门。它表现出意料之外的力量，竟能将门撕——</p>"
 
 /obj/item/paper/prison_station/interrogation_log
-	name = "paper- 'Test Log'"
-	desc = "This paper seems to have been crumpled up in dried blood, turning it nearly unreadable.";
-	info = "<p style=\"text-align: center;\"><sub>INTERROGATION  LOG</sub></p><p>Person: (Withheld) 'Verdan' (Withheld)</p><BR>\n<p</p><p>PROCEDURE: Wringer Technique</p><p>RESULTS: Verdan bashes head around. Appears agitated and cries, perhaps angry. Heavy Vocalisations.</p><p>-</p><p>PROCEDURE: Shocking.</p><p>RESULTS: Cries and screams in anger. No significant difference from last procedure.</p><p><em>Note: Pain Tolerant, must increase pain.</em></p><p>-</p><p>PROCEDURE: Handy Man. Instructed to \"look.\" while saw performs its work.</p><p>RESULTS: Verdan stares for approximately three seconds. Verdan screams and begins trying to break the restraints while begging to be released. The saw finally completes its work. Verdan seems to be a blabbering mess.</p><p><em>Note: Promising!</em></p><p>-</p><p>PROCEDURE: Information Gathering.</p><p>RESULTS: Verdan starts giving out information about the other cells. </p><p>Verdan starts whispering from fatigue, have to sit closer. Verdan leans in closer to me, he~</p><em>(The remaining paper is splattered in blood and unreadable.)</em>";
+	name = "文件——《实验记录》"
+	desc = "这张纸似乎曾裹在干血里揉成一团，几乎无法辨认。";
+	info = "<p style=\"text-align: center;\"><sub>审讯记录</sub></p><p>人员：（隐去）“维尔丹”（隐去）</p><BR>\n<p</p><p>步骤：绞压手法</p><p>结果：维尔丹四处撞头，显得焦躁并哭泣，可能十分愤怒。大声叫喊。</p><p>-</p><p>步骤：电击。</p><p>结果：愤怒地哭喊。与上一步无显著差异。</p><p><em>备注：耐痛，必须加大疼痛。</em></p><p>-</p><p>步骤：巧手工匠。在锯子工作时命其“看着”。</p><p>结果：维尔丹盯着看了约三秒，随后尖叫，试图挣脱束缚，并恳求释放。锯子终于完成工作。维尔丹似乎已语无伦次。</p><p><em>备注：很有前景！</em></p><p>-</p><p>步骤：收集情报。</p><p>结果：维尔丹开始透露其他小组的信息。</p><p>维尔丹因疲倦而低声说话，我得坐近些。维尔丹向我凑近，他——</p><em>（纸张其余部分溅满鲜血，无法辨认。）</em>";
 
 /obj/item/paper/prison_station/monkey_note
-	name = "paper- 'Note on simian test subjects'"
-	info = "Keep an eye on the monkeys, and keep track of the numbers. We just found out that they can crawl through air vents and into the atmospheric system.<BR>\n<BR>\nI'd rather not have to explain to the Warden how the prisoners managed to acquire a new \"pet\". Again."
+	name = "文件——《灵长类实验对象说明》"
+	info = "看紧那些猴子，记清数量。我们刚发现它们能钻过通风管，进入大气系统。<BR>\n<BR>\n我可不想再向监狱官解释，囚犯怎么又弄到了新“宠物”。"
 
 /obj/item/paper/prison_station/warden_note
-	name = "paper- 'Final note'"
-	info = "<p>Not much time left. Note to whoever may respond to the distress signal</p><p>Initially, there was a collision into the south high-security cellblock. We thought it was a pirate attack</p><p>It was, but something happened in the civilian residences. We were too tied up with the pirates to respond</p><p>Half the guards are dead. Most of the remainder not accounted for</p><p>Many likely trapped in yard when central lockdown activated.</p><p>Central lockdown will automatically lift at 12:50</p><p>Yard lockdown will not autom</p><p>something comes</p>"
+	name = "文件——《最后的记录》"
+	info = "<p>时间不多了。留给任何响应求救信号的人。</p><p>最初，南部高戒备牢区遭到撞击。我们以为是海盗袭击。</p><p>确实是，但平民居住区也发生了什么。我们忙着应付海盗，无法响应。</p><p>一半守卫已死，其余大多数下落不明。</p><p>许多人可能在中央封锁启动时被困在院子里。</p><p>中央封锁会在 12:50 自动解除。</p><p>院区封锁不会自动——</p><p>有什么来了</p>"
 
 /obj/item/paper/prison_station/chapel_program
-	name = "paper= 'Chapel service program'"
-	info = "\"And when he had opened the fourth seal, I heard the voice of the fourth beast say, Come and see.<BR>\n<BR>\nAnd I looked, and behold a pale horse: and his name that sat on him was Death, and Hell followed with him. And power was given unto them over the fourth part of the earth, to kill with sword, and with hunger, and with death, and with the beasts of the earth.\"<BR>\n<BR>\n<BR>\n<BR>\n\"Chaplain:  Lord, have mercy.   All:  Lord, have mercy.<BR>\nChaplain:  Christ, have mercy.  All:  Christ, have mercy.<BR>\nChaplain:  Lord, have mercy.   All:  Lord, have mercy.\"<BR>\n<BR>\n<BR>\n<BR>\n<em>These are the only two readable sections. The rest is covered in smears of blood.</em>"
+	name = "文件——《礼拜仪式流程》"
+	info = "“揭开第四印时，我听见第四个活物说：你来看。<BR>\n<BR>\n我就观看，见有一匹灰马；骑在马上的，名字叫作死，阴府也随着他。有权柄赐给他们，可以用刀剑、饥荒、瘟疫、野兽，杀害地上四分之一的人。”<BR>\n<BR>\n<BR>\n<BR>\n“牧师：主啊，求你怜悯。众人：主啊，求你怜悯。<BR>\n牧师：基督啊，求你怜悯。众人：基督啊，求你怜悯。<BR>\n牧师：主啊，求你怜悯。众人：主啊，求你怜悯。”<BR>\n<BR>\n<BR>\n<BR>\n<em>只有这两段仍可辨认，其余部分都被血迹覆盖。</em>"
 
 /obj/item/paper/prison_station/inmate_handbook
-	name = "paper= 'Inmate Rights, Privileges and Responsibilities'"
-	info = "<p style=\"text-align: center;\"><sub>FIORINA ORBITAL PENITENTIARY</sub></p><p style=\"text-align: center;\"><sub>INMATE RIGHTS, PRIVILEGES AND RESPONSIBILITIES</sub></p><p>RIGHTS</p><p>As per the Corrections Act 2087, you have the right to the following:</p><p>1. You have the right to be treated impartially and fairly by all personnel.<BR>\n2. You have the right to be informed of the rules, procedures, and schedules.<BR>\n3. You have the right to freedom of religious affiliation and voluntary religious worship.<BR>\n4. You have the right to health care which includes meals, proper bedding and clothing and a laundry schedule for cleanliness of the same, an opportunity to shower regularly, proper ventilation for warmth and fresh air, a regular exercise period, toilet articles, medical, and dental treatment.</p><p>PRIVILEGES</p><p>You do NOT have the right to the following; these are privileges granted by the institution, and may be revoked at ANY time for ANY reason:</p><p>1. You may be granted the privilege to visitation and correspondence with family members and friends.<BR>\n2. You may be granted the privilege to reading materials for educational purposes and for your own enjoyment.<BR>\n3. You may be granted the privilege to limited personal money to purchase items from the prison store.</p><p>RESPONSIBILITIES</p><p>Inmates must fufill the following responsibilities:</p><p>1. You have the responsibility to know and abide by all rules, procedures, and schedules.<BR>\n2. You have the responsibility to obey any and all commands from personnel.<BR>\n3. You have the responsibility to recognize and respect the rights of other inmates.<BR>\n4. You have the responsibility to not waste food, to follow the laundry and shower schedule, maintain neat and clean living quarters, keep your area free of contraband, and seek medical and dental care as you may need it.<BR>\n5. You have the responsibility to conduct yourself properly during visits, not accept or pass contraband, and not violate the law or institution rules or institution guidelines through your correspondence.<BR>\n6. You have the responsibility to meet your financial obligations including, but not limited to, court imposed assessments, fines, and restitution.<BR>\n<B>7. You have the responsibility to coorporate with the Fiorina Orbital Penitentiary's Medical Research Department in any and all research studies.</B></p>"
+	name = "文件——《囚犯权利、待遇与责任》"
+	info = "<p style=\"text-align: center;\"><sub>菲奥里纳轨道监狱</sub></p><p style=\"text-align: center;\"><sub>囚犯权利、待遇与责任</sub></p><p>权利</p><p>根据《2087 年惩教法》，你享有以下权利：</p><p>1. 获得全体工作人员公正、公平对待。<BR>\n2. 知悉规章、程序和日程。<BR>\n3. 自由选择宗教信仰，自愿参加宗教仪式。<BR>\n4. 获得健康照护，包括餐食、适当寝具与衣物及其清洗安排、定期淋浴、保暖和新鲜空气所需的通风、定期锻炼、洗漱用品、医疗及牙科治疗。</p><p>待遇</p><p>以下并非你的固有权利，而是机构授予的待遇，可在任何时间、因任何原因撤销：</p><p>1. 可获准接受亲友探视并通信。<BR>\n2. 可获准取得教育或娱乐读物。<BR>\n3. 可获准保有少量个人资金，在监狱商店购物。</p><p>责任</p><p>囚犯必须履行以下责任：</p><p>1. 了解并遵守所有规章、程序和日程。<BR>\n2. 服从工作人员的一切命令。<BR>\n3. 承认并尊重其他囚犯的权利。<BR>\n4. 不浪费食物，遵守洗衣和淋浴安排，保持住所整洁，不藏违禁品，并在需要时寻求医疗及牙科照护。<BR>\n5. 探视时举止得体，不接收或传递违禁品，不通过通信违反法律、机构规章或指引。<BR>\n6. 履行财务义务，包括但不限于法院裁定的费用、罚金和赔偿。<BR>\n<B>7. 配合菲奥里纳轨道监狱医学研究部开展的任何及全部研究。</B></p>"
 
 /obj/item/paper/prison_station/pirate_note
-	name = "paper= 'Captain's log'"
-	info = "<p>We found him.</p><p>His location, anyway. Figures that he'd end up in the Fop, given our reputation.</p><p>As good an escape artist he is, he ain't getting out by himself. Too many security measures, and no way off without a ship. They're prepared for anything coming from inside.</p><p>They AREN'T prepared for a \"tramp freighter\" ramming straight through their hull.</p><p>Hang tight, Jack. We're coming for you."
+	name = "文件——《舰长日志》"
+	info = "<p>找到他了。</p><p>至少找到了他的位置。以我们的名声，他会被关进菲奥里纳倒也不奇怪。</p><p>他再会逃，也不可能独自脱身。安保措施太多，没有船也走不了。他们防备好了来自内部的一切威胁。</p><p>但他们可没准备好应付一艘直接撞穿舰体的“流浪货船”。</p><p>撑住，杰克。我们来接你了。"
 
 /obj/item/paper/prison_station/pirate_note/clfship
-	info = "<p>We're hit!</p><p>MAYDAY! MAYDAY! We have been hit by the -... .</p><p>We're on a planet somewhere, seems there is a colony to our south. Might head on over there and see if there is any USCM presence. Our ship is fucking busted beyond normal means of repair, still waiting for a damage assessment tho.</p><p>Coby and Ryan died today from their wounds... \"Fucking USCM.\" I'll have my revenge someday...</p><p>And the colonies will be freed one day from the oppressive regime of Wey-Yu and USCM henchmen."
+	info = "<p>我们中弹了！</p><p>求救！求救！我们遭到了——……的攻击。</p><p>我们落在某颗行星上，南边似乎有殖民地。也许可以过去看看有没有美国殖民地陆战队。我们的船他妈的坏得普通手段根本修不好，还在等损伤评估。</p><p>科比和瑞安今天伤重不治……“该死的陆战队。”总有一天我会复仇……</p><p>总有一天，殖民地会摆脱维兰德-汤谷与陆战队爪牙的压迫统治。"
 
 /obj/item/paper/prison_station/nursery_rhyme
-	info = "<p>Mary had a little lamb,<BR>\nits fleece was white as snow;<BR>\nAnd everywhere that Mary went,<BR>\nthe lamb was sure to go.</p><p>It followed her to school one day,<BR>\nwhich was against the rule;<BR>\nIt made the children laugh and play,<BR>\nto see a lamb at school.</p><p>And so the teacher turned it out,<BR>\nbut still it lingered near,<BR>\nAnd waited patiently about,<BR>\ntill Mary did appear.</p><p>\"Why does the lamb love Mary so?\"<BR>\nthe eager children cry;<BR>\n\"Why, Mary loves the lamb, you know\",<BR>\nthe teacher did reply."
+	info = "<p>玛丽有只小羊羔，<BR>\n羊毛洁白像雪飘；<BR>\n玛丽无论去哪里，<BR>\n小羊总要跟着跑。</p><p>一天跟她进学校，<BR>\n学校规矩不准闹；<BR>\n孩子见了都欢笑，<BR>\n小羊竟然来学校。</p><p>老师把它赶出门，<BR>\n它却仍在近处绕；<BR>\n耐心等着不离开，<BR>\n直到玛丽露面了。</p><p>“小羊为何爱玛丽？”<BR>\n孩子急切问道；<BR>\n“因为玛丽也爱它呀”，<BR>\n老师微笑回答道。"
 
 /obj/item/paper/lv_624/cheese
-	name = "paper= 'Note on the contents of the armory'"
-	info = "<p>Seems the administrator had an extra shipment of cheese delivered in our last supply drop from Earth. We've got no space to store it in the main kitchen, and he wants it to \"age\" or something.</p><p>It's being kept in the armory for now, seems it has the right conditions. Anyway, apologies about the smell.</p><p> - Marshal Johnson"
+	name = "文件——《军械库物资说明》"
+	info = "<p>管理员似乎在上次地球补给中额外订了一批奶酪。主厨房没地方存，他又想让奶酪“陈化”之类的。</p><p>暂时放在军械库，那里条件似乎合适。总之，气味问题还请见谅。</p><p>——约翰逊法警</p>"
 
 /obj/item/paper/bigred/walls
-	name = "crumpled note"
-	info = "<b>there is cotten candy in the walls</b>"
+	name = "揉皱的便条"
+	info = "<b>墙里有棉花糖</b>"
 
 /obj/item/paper/bigred/lambda
-	name = "ripped diary entry"
-	info = "Director Smith's Diary\nEntry Date: 15 December 2181\nToday, I've felt true progress! The XX-121 reproduction program is in full effect, and Administrator Cooper have given us the all clear to continue producing specimens. To think that all this is coming from just that first specimen, a single 'Queen' form... It's grown to almost 5 meters tall and shows no signs of ceasing egg production! These creatures will be the next Synthetic of our time, we'll show those Seegson bastards."
+	name = "撕下的日记页"
+	info = "史密斯总监的日记\n记录日期：2181 年 12 月 15 日\n今天，我感受到了真正的进展！XX-121 繁殖项目全面展开，库珀管理员已批准继续生产标本。想想看，这一切竟都源于最初那一个“女王”形态的标本……它已长到近五米高，却完全没有停止产卵的迹象！这些生物将成为我们时代的新一代合成人，我们要让那些西格森混蛋瞧瞧。"
 
 /obj/item/paper/bigred/union
-	name = "Shaft miners union"
-	info = "Today we have had enough of being underpaid and treated like shit for not reaching the higher up's unreasonable quotas of ore. They say this place has a \"sea of valuable ores,\" yet we have been mining for years and are yet to find a single diamond. We have had it, enough is enough. They think they can control everything we do, they thought wrong! We, the oppressed workers, shall rise up against the capitalist dogs in a mutiny and take back our pay by force. \n If they send their dogs here to bust us, we will kill each and every single one of them."
+	name = "竖井矿工工会"
+	info = "今天，我们再也受不了因为达不到上级不合理的矿石指标，就被克扣工资、当狗使唤。他们说这里有“价值连城的矿石海洋”，可我们挖了多年，连一颗钻石都没见过。够了，忍无可忍。他们以为能控制我们的一切，那就错了！我们受压迫的工人要揭竿而起，反抗资本家的走狗，用武力夺回工资。\n如果他们派狗来镇压，我们会把每一个都杀光。"
 
 /obj/item/paper/bigred/finance
-	name = "Important Finance Letter"
-	info = "TO: JOSEPH BARNES, HEAD OF COLONY FINANCE \n FROM: AIDEN MENG, HEAD OF COLONY MINING \n When will we get additional funds to fix the mining robot. That robot could do a month's worth of work in a matter of hours! Yet we still have the same quotas that we had before it was broken. In fact, when will we get more funding at all? Most of my people are now going on 10 months without a single dollar from this work, and the few dollars we do have can barely keep this facility on its knees. \n When will research stop taking half of the colony's funds? Yes, I know they have some super secret W-Y corporate project, but in all honesty not a single word about that project has come out of the labs. Do you really want to trust a project you don’t even know about? \n Let me know ASAP if and when we may be getting funding. I am afraid I cannot keep their hopes up much longer... \n - Meng"
+	name = "重要财务信件"
+	info = "致：殖民地财务主管约瑟夫·巴恩斯\n发自：殖民地采矿主管艾登·孟\n我们什么时候才能拿到修采矿机器人的额外资金？那台机器人几小时就能完成一个月的工作！可它坏了以后，我们的指标却一点没减。说真的，我们究竟什么时候才能拿到任何新资金？我的大多数员工已经干了十个月，一分钱都没领到；手头仅剩的一点钱，连让设施勉强运转都很困难。\n科研部门什么时候才能不再拿走殖民地一半的资金？是，我知道他们有个超级机密的维兰德-汤谷项目，但说实话，实验室对这个项目一个字也没透露。你真要信任一个连内容都不知道的项目吗？\n请尽快告诉我是否能得到资金，以及何时到账。我怕自己撑不了多久，没法再让他们抱有希望……\n——孟"
 
 /obj/item/paper/bigred/smuggling
-	name = "Folded note"
-	info = "Alright Jeff, I know you still owe me after standing up for you when you got caught with a whole pill bottle of mindbreaker. Remember how I got you out of 15 years in the slammer? \n Anyways, I have a special task for you that you can do to repay me. \n <p> Whenever you unload a cargo container look for any crate with a blue hexagon on it. </p>  <p>Upon finding one, DO NOT OPEN it under ANY circumstances, and keep it away from anyone else. You then bring it to virology, specifically the back of the lobby where there is a hole into the caves. </p> \n <p> Then, leave it at the nearest crevice to the right and my men will take it. Should there be any backup, just stack it on top.</p> \n<p> Easy, right? Just moving cargo. If anyone asks what’s in it, it’s just power tools. </p> \n <p> Good luck, I'll slide you a few blunts of space weed that we have as a tip if you work well. </p>"
+	name = "折叠的便条"
+	info = "好吧，杰夫，你藏着整瓶碎心剂被抓时，是我替你出头的，你还欠着我。记得我怎么让你免去十五年牢狱之灾吗？\n总之，我有件特别的事要你办，就当还人情。\n<p>卸货柜时，留意带蓝色六边形标记的箱子。</p><p>找到后，任何情况下都别打开，也别让别人靠近。把它送到病毒学区，具体是大厅后方通向洞穴的洞口。</p>\n<p>放在右侧最近的裂隙边，我的人会来收。要是积压了，就往上叠。</p>\n<p>很简单吧？不过是搬货。有人问，就说里面是电动工具。</p>\n<p>祝好运。干得好，我会拿几根我们弄到的太空大麻烟卷给你当小费。</p>"
 	color = "grey"
 
 /obj/item/paper/bigred/witness
-	name = "Journal of the witness"
-	info = "Throughout history, humans have been fighting evil. Whether that be communists, slackers, liberals, assholes, or your boss, those evils are all eventually dealt with one way or another. <p> However, there is one that I have seen with my own eyes when I snuck into Lambda caves, an organism that reeks of so much evil that it immediately fills you with rage and terror. \n After I saw it, I realized the sheer insanity of this administration to even allow this monstrosity in our colony. \n Into... my colony ... my HOME for fucks sakes, and I have to LIVE with these chucklefuck bastards who are too blind by their idiocy and corporate percentages to even realise the evil that they have brought here."
+	name = "目击者的日记"
+	info = "纵观历史，人类一直在对抗邪恶。不管是共产主义者、懒鬼、自由派、混蛋，还是你的老板，这些邪恶最终总能以某种方式解决。<p>但我潜入拉姆达洞穴时，亲眼见到了一种生物，它散发的邪恶如此浓烈，立刻让人充满愤怒和恐惧。\n见过它之后，我才意识到，管理层竟允许这种怪物待在殖民地，简直疯了。\n在我的殖民地……我的家里，妈的！我还得和这些蠢货混蛋一起生活；他们被愚蠢和公司利润迷住了眼，根本看不见自己带来的邪恶。"
 	color = "green"
 /obj/item/paper/bigred/them
-	name = "THEM"
+	name = "它们"
 	color = "green"
-	info = "<p>I can't fucking take it, I am fully convinced with ZERO doubt that the entire colony administration is controlled by THEM. Those fucking THINGs that are so outrageously evil that calling them monsters would be an insult to monsters.</p> <p> I get why they are hiding them now, because they are their actual masters. Controlling the will of the colony and threatening the entire human race.</p> \n <p> Those... things are not the experiments being experimented on by our scientists, but rather we are the experiments for THEM! </p> \n And they don't want anyone not controlled by them to know about it. I bet if everyone knew about it, the lambda secret labs would be burned to the ground within hours... if only there was a way we could do that..."
+	info = "<p>我他妈受不了了。我毫不怀疑，整个殖民地管理层都被它们控制了。那些东西邪恶得令人发指，叫它们怪物都是侮辱怪物。</p><p>现在我明白为什么要藏着它们了，因为它们才是真正的主人，操纵殖民地的意志，威胁整个人类。</p>\n<p>那些……东西并不是科学家的实验对象，我们才是它们的实验对象！</p>\n它们不愿让任何未受控制的人知道。我敢说，只要大家知道，拉姆达秘密实验室几小时内就会被烧成平地……要是我们有办法做到就好了……"
 
 /obj/item/paper/bigred/crazy
-	name = "THEY ARE COMING FOR ME"
-	info = "Fuck man, I have tried and tried to tell people, from my co-workers and friends to anyone who would listen to me. Each and every single time I have been called crazy. <p> Then recently THEY took notice, and started sending their minions against me, almost everywhere i go outside of the caves, there is constantly a marshal on my ass, stalking me at least 30 feet away. They KNOW and they want me silenced or dead. </p> \n Then one day the head of security himself, Jim FUCKING Hamilton instructed me to stop \" spreading rumors \" or face consequences. <p> <b> No, I will not follow what a mere puppet wants me to do, a lap dog being controlled by THEM!</b>  </p> \n \n There is some hope, however. There is word going around of a mutiny at my workplace. The miners will rise up and forcibly take control of the administration, and their leader has agreed with me to investigate lambda and expose it once and for all!. <p> However, I can’t just leave them exposed with their twisted secrets uncovered. They’re too dangerous to be left alive and they are going to find some way to escape justice. When the mutiny happens, I will shoot my way through the security to find the thermobaric explosives that were mistakenly sent here, transport them amidst the chaos to the secret lab, and save the colony and ALL of humanity by obliterating it.  </p>"
+	name = "它们来找我了"
+	info = "妈的，我一遍又一遍地告诉别人，从同事、朋友，到任何肯听的人。可每一次，他们都说我疯了。<p>最近它们注意到了我，开始派爪牙对付我。只要离开洞穴，无论走到哪儿，几乎总有法警跟着，至少隔着三十英尺。它们知道了，想让我闭嘴，或者去死。</p>\n后来，安保主管吉姆·汉密尔顿那个混蛋亲自命令我停止“散播谣言”，否则后果自负。<p><b>不，我不会听命于一个傀儡，一个受它们控制的哈巴狗！</b></p>\n\n不过还有希望。工作场所里正传着兵变的消息。矿工会起义，用武力夺取管理权，领头人也答应我调查拉姆达，把真相彻底揭开！<p>但不能只是揭露那些扭曲的秘密，再把它们留在那里。它们活着太危险，而且一定会想办法逃脱惩罚。兵变发生时，我会杀穿安保防线，找到误运到这里的温压炸药，趁乱送进秘密实验室，将那里彻底炸毁，拯救殖民地和全人类。</p>"
 	color = "green"
 
 /obj/item/paper/bigred/final
-	name = "Final entry"
+	name = "最后一篇记录"
 	color = "green"
-	info =  "<p> I could not do it, the fucking marshals, the minions of THEM, have gotten a whiff of my co-workers plans and started raiding us pre-emptively. We managed to get word of it and erected a few barricades to slow them down, but it is too late. Our plan, my plan to save humanity has turned to dust. </p> As I lay and write this, they are gassing the entire area with tear gas, while gunshots echo around the caves. \n  They have gotten to my mind already, their voices are... laughing, saying that, \" it's over \" and that \n “we have risen\". Their voices are mocking me as I could do nothing to prevent their rise \n Just as I am about to finish my final entry, I overhear a few panicked radio calls from a dead officer's radio, about a code red lambda breach, and \" X-RAYS OUT OF CONTAINMENT\". \n However, not a single one of their cries has been met with a response as their fellow officers are too preoccupied with beating up poor miners... \n <b> They have won.... they have PLANNED THIS all along.... </b> \n only God may save us now..."
+	info =  "<p>我没能做到。那些该死的法警，它们的爪牙，嗅到了同事们的计划，提前发动了搜捕。我们得到消息，搭起几道路障想拖住他们，但已经太迟。我们的计划，我拯救人类的计划，全都化为乌有。</p>我躺着写下这些时，他们正用催泪气体灌满整片区域，枪声在洞穴中回荡。\n它们已经侵入我的脑海，声音在……笑，说“一切都结束了”，还说“我们已经崛起”。它们嘲笑我，因为我根本无力阻止。\n就在我快写完最后一篇记录时，一名死去军官的无线电里传出几声惊慌的呼叫，说拉姆达发生红色警报级突破，“异形已脱离收容”。\n可他们的呼救一个也没得到回应，因为同僚都忙着殴打可怜的矿工……\n<b>它们赢了……它们早就计划好了一切……</b>\n如今只有上帝能救我们……"
 
 /obj/item/paper/bigred/upp
-	name = "UPP Orders"
+	name = "进步人民联盟命令"
 
 /obj/item/paper/bigred/upp/Initialize(mapload, photo_list)
 	. = ..()
 
 	var/datum/asset/asset = get_asset_datum(/datum/asset/simple/paper)
-	info = "<center> <img src = [asset.get_url_mappings()["upplogo.png"]]> <br> <b><small>Union Of Progressive People's Fourth Fleet</b></small> <br> <b><large>Orders For 173rd Airborne Reconnaissance: 2nd Platoon</large></b> <br> <small>No.52</small></center> <hr> <b>Order of Military Officer of the UPP</b><br><b>Kolonel <redacted> Ganbaatar </b><br><b>Commander of MV-35</b> <br> Date: 2182 <br> <b><large>On Special Mission<large></b>  <hr>  The actions of the hostile Weyland-Yutani corporation on the fringes of the Neroid sector have grown increasingly intolerable. However, evidence suggesting they are researching into the creation and deployment of some form of biological weapons program represent an unacceptable risk to the security of UPP interests in this sector. The risk of these items falling into UA/USCM hands is unacceptable. <br><br> Orders for the Boris squad of the 173rd Airborne Recon are as follows. Initiate airborne reconnaissance of WY colony Oxley's Buttle, Trijent Dam, location on planet Raijin  (UA Code: LV-670). Ascertain veracity of onsight biological weapons program. If positive confirmation of the weapons program is identified, authorization for rapid assault and recovery is granted. Avoid all contact with UA/USCM military forces, abort missions if UA/USCM forces are encountered. <hr><center><b>Authorizing Officer: Gaanbatar</b><br>Name and Rank: Kolonel </center>  <hr><small><i>FOR SANCTIONED USE ONLY</i></small>"
+	info = "<center> <img src = [asset.get_url_mappings()["upplogo.png"]]> <br> <b><small>进步人民联盟第四舰队</b></small> <br> <b><large>第 173 空降侦察部队第 2 排命令</large></b> <br> <small>第 52 号</small></center> <hr> <b>进步人民联盟军官命令</b><br><b>上校 <redacted> 甘巴塔尔</b><br><b>MV-35 指挥官</b> <br> 日期：2182 年 <br> <b><large>特别任务<large></b> <hr> 敌对的维兰德-汤谷公司在尼洛德星区边缘的活动愈发令人无法容忍。更有证据表明，他们正在研究开发与部署某种生物武器，这对联盟在该星区的利益构成不可接受的安全威胁。此类武器落入美洲联盟或美国殖民地陆战队手中的风险，同样不可接受。<br><br>第 173 空降侦察部队鲍里斯小队接令如下：对雷神星（美洲联盟代号 LV-670）上维兰德-汤谷的奥克斯利之争殖民地、特里金特大坝实施空降侦察。查明当地生物武器项目是否属实。若明确证实项目存在，准许迅速突袭并回收。避免与美洲联盟及美国殖民地陆战队接触，若遭遇其军队，立即中止任务。<hr><center><b>授权军官：甘巴塔尔</b><br>姓名与军衔：上校</center> <hr><small><i>仅限授权用途</i></small>"
 
 /obj/item/paper/brynhild
-	name = "GRENADES NOTICE!"
-	info = "Since you useless tossers can't be trusted with the damn gas grenades, them and the other grenades have been moved to the munitions locker over by the weapons maintenance stations."
+	name = "手榴弹使用须知！"
+	info = "既然你们这群废物根本靠不住，连该死的毒气手榴弹都拿不稳，它们和其他手榴弹已被移到武器维护台旁的弹药柜。"
 
 /obj/item/paper/crumpled
-	name = "paper scrap"
+	name = "纸片"
 	icon_state = "scrap"
 
 /obj/item/paper/crumpled/update_icon()
@@ -622,7 +622,7 @@
 	icon_state = "scrap_bloodied"
 
 /obj/item/paper/crumpled/bloody/csheet
-	info = "<b>Character Sheet</b>\n\nKorbath the Barbarian\nLevel 6 Barbarian\nHitpoints: 47/93\nSTR: 18\nDEX: 14\nCON: 16\nINT: 8\nWIS: 11\nCHA: 15\n\n<B>Inventory:</b>\nGreatsword +3 \nChain M--\n\n\nThe rest of the page is covered in smears of blood."
+	info = "<b>角色卡</b>\n\n野蛮人科尔巴斯\n6 级野蛮人\n生命值：47/93\n力量：18\n敏捷：14\n体质：16\n智力：8\n感知：11\n魅力：15\n\n<B>物品栏：</b>\n巨剑 +3\n链甲——\n\n\n纸张其余部分都被血迹覆盖。"
 
 /obj/item/paper/wy
 	icon_state = "paper_wy"
@@ -679,30 +679,30 @@
 			random_chem = pick(GLOB.chemical_gen_classes_list["T1"])
 		C = GLOB.chemical_reagents_list["[random_chem]"]
 	var/datum/asset/asset = get_asset_datum(/datum/asset/simple/paper)
-	var/txt = "<center><img src = [asset.get_url_mappings()["wylogo.png"]]><HR><I><B>Official Weyland-Yutani Document</B><BR>Experiment Notes</I><HR><H2>"
+	var/txt = "<center><img src = [asset.get_url_mappings()["wylogo.png"]]><HR><I><B>维兰德-汤谷官方文件</B><BR>实验笔记</I><HR><H2>"
 	switch(note_type)
 		if("synthesis")
 			var/datum/chemical_reaction/G = GLOB.chemical_reactions_list[C.id]
-			name = "Synthesis of [C.name]"
+			name = "[C.name]的合成"
 			icon_state = "paper_wy_partial_report"
 			txt += "[name] </H2></center>"
-			txt += "During experiment <I>[pick("C","Q","V","W","X","Y","Z")][rand(100,999)][pick("a","b","c")]</I> the theorized compound identified as [C.name], was successfully synthesized using the following formula:<BR>\n<BR>\n"
+			txt += "在实验 <I>[pick("C","Q","V","W","X","Y","Z")][rand(100,999)][pick("a","b","c")]</I>中，成功按照以下配方合成了理论化合物[C.name]：<BR>\n<BR>\n"
 			for(var/I in G.required_reagents)
 				var/datum/reagent/R = GLOB.chemical_reagents_list["[I]"]
 				var/U = G.required_reagents[I]
 				txt += "<font size = \"2\"><I> - [U] [R.name]</I></font><BR>\n"
 			if(LAZYLEN(G.required_catalysts))
-				txt += "<BR>\nWhile using the following catalysts: <BR>\n<BR>\n"
+				txt += "<BR>\n并使用以下催化剂： <BR>\n<BR>\n"
 				for(var/I in G.required_catalysts)
 					var/datum/reagent/R = GLOB.chemical_reagents_list["[I]"]
 					var/U = G.required_catalysts[I]
 					txt += "<font size = \"2\"><I> - [U] [R.name]</I></font><BR>\n"
 			if(full_report)
-				txt += "<BR>The following properties have been discovered during tests:<BR><font size = \"2.5\">[C.description]\n"
-				txt += "<BR>Overdoses at: [C.overdose] units</font><BR>\n"
+				txt += "<BR>试验中发现以下性质：<BR><font size = \"2.5\">[C.description]\n"
+				txt += "<BR>过量阈值：[C.overdose]单位</font><BR>\n"
 				icon_state = "paper_wy_full_report"
 			else
-				txt += "<BR>\nTesting for chemical properties is currently pending.<BR>\n"
+				txt += "<BR>\n化学性质有待进一步检测。<BR>\n"
 			var/is_volatile = FALSE
 			if(C.chemfiresupp)
 				is_volatile = TRUE
@@ -712,22 +712,22 @@
 						is_volatile = TRUE
 						break
 			if(is_volatile)
-				txt += "<BR><B>\nWARNING: UNSTABLE REAGENT. MIX CAREFULLY.</B><BR>\n"
-			txt += "<BR>\n<HR> - <I>Weyland-Yutani</I>"
+				txt += "<BR><B>\n警告：试剂不稳定，请谨慎混合。</B><BR>\n"
+			txt += "<BR>\n<HR> - <I>维兰德-汤谷</I>"
 		if("test")
-			name = "Experiment [pick("C","Q","V","W","X","Y","Z")][rand(100,999)][pick("a","b","c")]"
+			name = "实验 [pick("C","Q","V","W","X","Y","Z")][rand(100,999)][pick("a","b","c")]"
 			icon_state = "paper_wy_synthesis"
-			txt += "Note for [name]</H2></center>"
-			txt += "Subject <I>[rand(10000,99999)]</I> experienced [pick(C.properties)] effects during testing of [C.name]. <BR>\nTesting for additional chemical properties is currently pending. <BR>\n"
-			txt += "<BR>\n<HR> - <I>Weyland-Yutani</I>"
+			txt += "[name]记录</H2></center>"
+			txt += "实验对象 <I>[rand(10000,99999)]</I>在[C.name]试验中出现了[pick(C.properties)]效果。 <BR>\n其他化学性质有待进一步检测。 <BR>\n"
+			txt += "<BR>\n<HR> - <I>维兰德-汤谷</I>"
 		if("grant")
 			if(!grant)
 				grant = rand(2,4)
 			icon_state = "paper_wy_grant"
-			name = "Research Grant"
-			txt += "Weyland-Yutani Research Grant</H2></center>"
-			txt += "Dear valued researcher. Weyland-Yutani has taken high interest of your recent scientific progress. To further support your work we have sent you this research grant of [grant] credits. Please scan at your local Weyland-Yutani research data terminal to receive the benefits.<BR>\n"
-			txt += "<BR>\n<HR> - <I>Weyland-Yutani</I>"
+			name = "研究经费"
+			txt += "维兰德-汤谷研究经费</H2></center>"
+			txt += "尊敬的研究员：维兰德-汤谷十分关注您近期的科研进展。为进一步支持您的工作，特拨付[grant]点研究经费。请在当地维兰德-汤谷科研数据终端扫描本文件以领取。<BR>\n"
+			txt += "<BR>\n<HR> - <I>维兰德-汤谷</I>"
 	info = txt
 
 /obj/item/paper/research_notes/bad
@@ -801,50 +801,50 @@
 /obj/item/paper/research_report/proc/generate(datum/reagent/S, info_only = FALSE)
 	if(!S)
 		return
-	info += "<B>ID:</B> <I>[S.name]</I><BR><BR>\n"
-	info += "<B>Database Details:</B><BR>\n"
+	info += "<B>标识：</B> <I>[S.name]</I><BR><BR>\n"
+	info += "<B>数据库详情：</B><BR>\n"
 	if(S.chemclass >= CHEM_CLASS_ULTRA)
 		if(GLOB.chemical_data.clearance_level >= S.gen_tier || info_only)
-			info += "<I>The following information relating to [S.name] is restricted with a level [S.gen_tier] clearance classification.</I><BR>"
+			info += "<I>以下有关[S.name]的信息列为[S.gen_tier]级权限机密。</I><BR>"
 			info += "<font size = \"2.5\">[S.description]\n"
-			info += "<BR>Overdoses at: [S.overdose] units\n"
-			info += "<BR>Standard duration multiplier of [REAGENTS_METABOLISM/S.custom_metabolism]x</font><BR>\n"
+			info += "<BR>过量阈值：[S.overdose]单位\n"
+			info += "<BR>标准持续时间倍率：[REAGENTS_METABOLISM/S.custom_metabolism]倍</font><BR>\n"
 			completed = TRUE
 			icon_state = "paper_wy_full_report"
 		else
-			info += "CLASSIFIED:<I> Clearance level [S.gen_tier] required to read the database entry.</I><BR>\n"
+			info += "机密：<I>阅读此数据库条目需要[S.gen_tier]级权限。</I><BR>\n"
 			icon_state = "paper_wy_partial_report"
 	else if(S.chemclass == CHEM_CLASS_SPECIAL && !GLOB.chemical_data.clearance_x_access && !info_only)
-		info += "CLASSIFIED:<I> Clearance level <B>X</B> required to read the database entry.</I><BR>\n"
+		info += "机密：<I>阅读此数据库条目需要<B>X</B>级权限。</I><BR>\n"
 		icon_state = "paper_wy_partial_report"
 	else if(S.description)
 		info += "<font size = \"2.5\">[S.description]\n"
-		info += "<BR>Overdoses at: [S.overdose] units\n"
-		info += "<BR>Standard duration multiplier: [REAGENTS_METABOLISM/S.custom_metabolism]x</font><BR>\n"
+		info += "<BR>过量阈值：[S.overdose]单位\n"
+		info += "<BR>标准持续时间倍率：[REAGENTS_METABOLISM/S.custom_metabolism]倍</font><BR>\n"
 		completed = TRUE
 		icon_state = "paper_wy_full_report"
 	else
-		info += "<I>No details on this reagent could be found in the database.</I><BR>\n"
+		info += "<I>数据库中没有此试剂的详细资料。</I><BR>\n"
 		icon_state = "paper_wy_synthesis"
 	if(S.chemclass >= CHEM_CLASS_SPECIAL && !GLOB.chemical_data.chemical_identified_list[S.id] && !info_only)
-		info += "<BR><I>Saved emission spectrum of [S.name] to the database.</I><BR>\n"
-	info += "<BR><B>Composition Details:</B><BR>\n"
+		info += "<BR><I>已将[S.name]的发射光谱存入数据库。</I><BR>\n"
+	info += "<BR><B>成分详情：</B><BR>\n"
 	if(GLOB.chemical_reactions_list[S.id])
 		var/datum/chemical_reaction/C = GLOB.chemical_reactions_list[S.id]
 		for(var/I in C.required_reagents)
 			var/datum/reagent/R = GLOB.chemical_reagents_list["[I]"]
 			if(R.chemclass >= CHEM_CLASS_SPECIAL && !GLOB.chemical_data.chemical_identified_list[R.id] && !info_only)
-				info += "<font size = \"2\"><I> - Unknown emission spectrum</I></font><BR>\n"
+				info += "<font size = \"2\"><I> - 未知发射光谱</I></font><BR>\n"
 				completed = FALSE
 			else
 				var/U = C.required_reagents[I]
 				info += "<font size = \"2\"><I> - [U] [R.name]</I></font><BR>\n"
 		if(LAZYLEN(C.required_catalysts))
-			info += "<BR>Reaction would require the following catalysts:<BR>\n"
+			info += "<BR>反应需要以下催化剂：<BR>\n"
 			for(var/I in C.required_catalysts)
 				var/datum/reagent/R = GLOB.chemical_reagents_list["[I]"]
 				if(R.chemclass >= CHEM_CLASS_SPECIAL && !GLOB.chemical_data.chemical_identified_list[R.id] && !info_only)
-					info += "<font size = \"2\"><I> - Unknown emission spectrum</I></font><BR>\n"
+					info += "<font size = \"2\"><I> - 未知发射光谱</I></font><BR>\n"
 					completed = FALSE
 				else
 					var/U = C.required_catalysts[I]
@@ -852,7 +852,7 @@
 	else if(GLOB.chemical_gen_classes_list["C1"].Find(S.id))
 		info += "<font size = \"2\"><I> - [S.name]</I></font><BR>\n"
 	else
-		info += "<I>ERROR: Unable to analyze emission spectrum of sample.</I>" //A reaction to make this doesn't exist, so this is our IC excuse
+		info += "<I>错误：无法分析样本的发射光谱。</I>" //A reaction to make this doesn't exist, so this is our IC excuse
 		completed = FALSE
 
 	if(info_only)
@@ -866,14 +866,14 @@
 	data = S
 
 /obj/item/paper/incident
-	name = "incident report"
+	name = "事件报告"
 	var/datum/crime_incident/incident
 
 /obj/item/paper/incident/Initialize()
 	. = ..()
 	var/template = {"\[center\]\[logo\]\[/center\]
-		\[center\]\[b\]\[i\]Encoded USCM Incident Report\[/b\]\[/i\]\[hr\]
-		\[small\]FOR USE BY MP'S ONLY\[/small\]\[br\]
+		\[center\]\[b\]\[i\]美国殖民地陆战队编码事件报告\[/b\]\[/i\]\[hr\]
+		\[small\]仅限宪兵使用\[/small\]\[br\]
 		\[barcode\]\[/center\]"}
 	info = parsepencode(template, null, null, FALSE)
 	update_icon()
@@ -885,7 +885,7 @@
 
 
 /obj/item/paper/fingerprint
-	name = "fingerprint report"
+	name = "指纹报告"
 
 /obj/item/paper/fingerprint/Initialize(mapload, list/prints)
 	. = ..()
@@ -894,12 +894,12 @@
 	var/i = 0
 	for(var/obj/effect/decal/prints/print_set in prints)
 		i++
-		template += {"\[center\]\[b\]\[i\]Fingerprint Sample #[i]\[/b\]\[/i\]\[hr\]
+		template += {"\[center\]\[b\]\[i\]指纹样本编号 [i]\[/b\]\[/i\]\[hr\]
 		\[small\]
-		Name: [print_set.criminal_name]\[br\]
-		Rank: [print_set.criminal_rank]\[br\]
-		Squad: [print_set.criminal_squad]\[br\]
-		Description: [print_set.description]\[br\]
+		姓名： [print_set.criminal_name]\[br\]
+		军衔： [print_set.criminal_rank]\[br\]
+		小队： [print_set.criminal_squad]\[br\]
+		描述： [print_set.description]\[br\]
 		\[/small\]
 		\[/center\]
 		\[br\]"}

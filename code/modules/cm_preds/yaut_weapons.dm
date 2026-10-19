@@ -31,7 +31,7 @@
 	item_state = "harpoon"
 
 	embeddable = FALSE
-	attack_verb = list("jabbed","stabbed","ripped", "skewered")
+	attack_verb = list("戳刺","刺击","撕裂", "刺穿")
 	throw_range = 4
 	unacidable = TRUE
 	edge = 1
@@ -46,7 +46,7 @@
 
 /obj/item/weapon/wristblades
 	name = "腕刃"
-	var/plural_name = "wrist blades"
+	var/plural_name = "腕刃"
 	desc = "一对从金属护手中伸出的巨大锯齿刀刃。"
 
 	icon = 'icons/obj/items/hunter/pred_gear.dmi'
@@ -66,7 +66,7 @@
 	attack_speed = 6
 	force = MELEE_FORCE_TIER_4
 	pry_capable = IS_PRY_CAPABLE_FORCE
-	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
+	attack_verb = list("切割", "劈砍", "戳刺", "撕扯", "贯穿")
 
 	var/has_speed_bonus = TRUE
 
@@ -121,12 +121,12 @@
 
 /obj/item/weapon/wristblades/scimitar
 	name = "腕弯刀"
-	plural_name = "wrist scimitars"
+	plural_name = "腕弯刀"
 	desc = "一把从金属护手中伸出的巨大锯齿刀刃。"
 	icon_state = "scim"
 	item_state = "scim"
 	attack_speed = 5
-	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
+	attack_verb = list("切割", "劈砍", "戳刺", "撕扯", "贯穿")
 	force = MELEE_FORCE_TIER_5
 	has_speed_bonus = FALSE
 
@@ -157,7 +157,7 @@
 	throwforce = MELEE_FORCE_TIER_5
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = TRUE
-	attack_verb = list("whipped", "slashed","sliced","diced","shredded")
+	attack_verb = list("鞭打", "劈砍","切割","剁砍","绞碎")
 	attack_speed = 0.8 SECONDS
 	hitsound = 'sound/weapons/chain_whip.ogg'
 
@@ -182,7 +182,7 @@
 	embeddable = FALSE
 	w_class = SIZE_LARGE
 	hitsound = "clan_sword_hit"
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("劈砍", "刺击", "切割", "撕扯", "撕裂", "剁砍", "割伤")
 	attack_speed = 1 SECONDS
 	unacidable = TRUE
 
@@ -207,7 +207,7 @@
 	embeddable = FALSE
 	w_class = SIZE_LARGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("劈砍", "刺击", "切割", "撕扯", "撕裂", "剁砍", "割伤")
 	unacidable = TRUE
 
 /obj/item/weapon/yautja/scythe/attack(mob/living/target as mob, mob/living/carbon/human/user as mob)
@@ -247,7 +247,7 @@
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = TRUE
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb = list("speared", "stabbed", "impaled")
+	attack_verb = list("矛刺", "刺击", "穿刺")
 
 	var/on = TRUE
 	var/charged = FALSE
@@ -334,13 +334,13 @@
 	if(user.put_in_hands(src, TRUE))
 		if(!pred_gloves.drain_power(user, 70))
 			return TRUE
-		user.visible_message(SPAN_WARNING("<b>[user]猛拽[src]的链条，将其接回手中！</b>"), SPAN_WARNING("<b>You yank [src]'s chain back, catching it inhand!</b>"))
+		user.visible_message(SPAN_WARNING("<b>[user]猛拽[src]的链条，将其接回手中！</b>"), SPAN_WARNING("<b>你猛拉[src]的链子，将它接回手中！</b>"))
 		cleanup_chain()
 
 	else
 		if(!pred_gloves.drain_power(user, 70))
 			return TRUE
-		user.visible_message(SPAN_WARNING("<b>[user] yanks [src]'s chain back, letting [src] fall at [user.p_their()]!</b>"), SPAN_WARNING("<b>You yank [src]'s chain back, letting it drop at your feet!</b>"))
+		user.visible_message(SPAN_WARNING("<b>[user]猛拉[src]的链子，让[src]落在身边！</b>"), SPAN_WARNING("<b>你猛拉[src]的链子，让它落在脚边！</b>"))
 		cleanup_chain()
 
 /obj/item/weapon/yautja/combistick/IsShield()
@@ -348,8 +348,8 @@
 
 /obj/item/weapon/yautja/combistick/verb/fold_combistick()
 	set category = "Weapons"
-	set name = "Collapse Combi-stick"
-	set desc = "Collapse or extend the combistick."
+	set name = "收起组合长矛"
+	set desc = "收拢或伸展伸缩战矛。"
 	set src = usr.contents
 
 	unique_action(usr)
@@ -362,7 +362,7 @@
 		else
 			wield(user)
 	else
-		to_chat(user, SPAN_WARNING("You need to extend the combi-stick before you can wield it."))
+		to_chat(user, SPAN_WARNING("你需要先伸展伸缩战矛，才能双手持握。"))
 
 
 /obj/item/weapon/yautja/combistick/wield(mob/user)
@@ -391,9 +391,9 @@
 	if(user.get_active_hand() != src)
 		return
 	if(!on)
-		user.visible_message(SPAN_INFO("With a flick of their wrist, [user] extends [src]."),\
-		SPAN_NOTICE("You extend [src]."),\
-		"You hear blades extending.")
+		user.visible_message(SPAN_INFO("[user]手腕一抖，展开了[src]。"),\
+		SPAN_NOTICE("你展开了[src]。"),\
+		"你听到刀刃伸出的声音。")
 		playsound(src,'sound/handling/combistick_open.ogg', 50, TRUE, 3)
 		icon_state = initial(icon_state)
 		flags_equip_slot = initial(flags_equip_slot)
@@ -401,7 +401,7 @@
 		w_class = SIZE_LARGE
 		force = force_unwielded
 		throwforce = MELEE_FORCE_TIER_6
-		attack_verb = list("speared", "stabbed", "impaled")
+		attack_verb = list("矛刺", "刺击", "穿刺")
 
 		if(blood_overlay && blood_color)
 			overlays.Cut()
@@ -410,7 +410,7 @@
 		update_icon()
 	else
 		unwield(user)
-		to_chat(user, SPAN_NOTICE("You collapse [src] for storage."))
+		to_chat(user, SPAN_NOTICE("你收拢了[src]以便存放。"))
 		playsound(src, 'sound/handling/combistick_close.ogg', 50, TRUE, 3)
 		icon_state = initial(icon_state) + "_f"
 		flags_equip_slot = SLOT_STORE
@@ -418,7 +418,7 @@
 		w_class = SIZE_TINY
 		force = force_storage
 		throwforce = MELEE_FORCE_TIER_6
-		attack_verb = list("thwacked", "smacked")
+		attack_verb = list("抡打", "猛拍")
 		overlays.Cut()
 		on = FALSE
 		update_icon()
@@ -441,13 +441,13 @@
 		xenomorph.AddComponent(/datum/component/status_effect/interference, 30, 30)
 
 	if(target == user || target.stat == DEAD)
-		to_chat(user, SPAN_DANGER("You think you're smart?")) //very funny
+		to_chat(user, SPAN_DANGER("你觉得自己很聪明？")) //very funny
 		return
 	if(isanimal(target))
 		return
 
 	if(!charged)
-		to_chat(user, SPAN_DANGER("Your combistick's reservoir fills up with your opponent's blood! You may now throw it!"))
+		to_chat(user, SPAN_DANGER("伸缩战矛的储槽已灌满对手的鲜血，现在可以投掷了！"))
 		charged = TRUE
 		var/color = target.get_blood_color()
 		var/alpha = 70
@@ -456,7 +456,7 @@
 
 /obj/item/weapon/yautja/combistick/attack_hand(mob/user) //Prevents marines from instantly picking it up via pickup macros.
 	if(!human_adapted && !HAS_TRAIT(user, TRAIT_SUPER_STRONG))
-		user.visible_message(SPAN_DANGER("[user] starts to untangle the chain on \the [src]..."), SPAN_NOTICE("You start to untangle the chain on \the [src]..."))
+		user.visible_message(SPAN_DANGER("[user]开始解开[src]上缠住的链子……"), SPAN_NOTICE("你开始解开[src]上缠住的链子……"))
 		if(do_after(user, 3 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE, src, INTERRUPT_MOVED, BUSY_ICON_HOSTILE))
 			..()
 	else ..()
@@ -465,8 +465,8 @@
 	if(isyautja(hit_atom))
 		var/mob/living/carbon/human/human = hit_atom
 		if(human.put_in_hands(src))
-			hit_atom.visible_message(SPAN_NOTICE(" [hit_atom] expertly catches [src] out of the air. "), \
-				SPAN_NOTICE(" You easily catch [src]. "))
+			hit_atom.visible_message(SPAN_NOTICE("[hit_atom]熟练地从空中接住[src]。"), \
+				SPAN_NOTICE("你轻松接住了[src]。"))
 			return
 	..()
 
@@ -485,7 +485,7 @@
 	throw_speed = SPEED_VERY_FAST
 	throw_range = 6
 	hitsound = 'sound/weapons/slash.ogg'
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("劈砍", "刺击", "切割", "撕扯", "撕裂", "剁砍", "割伤")
 	actions_types = list(/datum/action/item_action/toggle/use)
 	unacidable = TRUE
 
@@ -494,13 +494,13 @@
 		return ..()
 
 	if(!ishuman(target))
-		to_chat(user, SPAN_WARNING("You can only use this dagger to flay humanoids!"))
+		to_chat(user, SPAN_WARNING("这把匕首只能用于剥下人形生物的皮！"))
 		return
 
 	var/mob/living/carbon/human/victim = target
 
 	if(isspeciessynth(victim))
-		to_chat(user, SPAN_WARNING("You can't flay metal...")) //look at this dumbass
+		to_chat(user, SPAN_WARNING("你不能给金属剥皮……")) //look at this dumbass
 		return TRUE
 
 	if(SEND_SIGNAL(victim, COMSIG_HUMAN_FLAY_ATTEMPT, user, src) & COMPONENT_CANCEL_ATTACK)
@@ -512,14 +512,14 @@
 	if(!do_after(user, 1 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE, victim))
 		return TRUE
 
-	user.visible_message(SPAN_DANGER("<B>[user] begins to flay [victim] with \a [src]...</B>"),
-		SPAN_DANGER("<B>You start flaying [victim] with your [src.name]...</B>"))
+	user.visible_message(SPAN_DANGER("<B>[user]开始用[src]给[victim]剥皮……</B>"),
+		SPAN_DANGER("<B>你开始用[src.name]给[victim]剥皮……</B>"))
 	playsound(loc, 'sound/weapons/pierce.ogg', 25)
 	if(do_after(user, 4 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE, victim))
 		if(SEND_SIGNAL(victim, COMSIG_HUMAN_FLAY_ATTEMPT, user, src) & COMPONENT_CANCEL_ATTACK) //In case two preds try to flay the same person at once.
 			return TRUE
-		user.visible_message(SPAN_DANGER("<B>[user] makes a series of cuts in [victim]'s skin.</B>"),
-			SPAN_DANGER("<B>You prepare the skin, cutting the flesh off in vital places.</B>"))
+		user.visible_message(SPAN_DANGER("<B>[user]在[victim]的皮肤上切开一连串伤口。</B>"),
+			SPAN_DANGER("<B>你处理皮肤，在关键部位切开皮肉。</B>"))
 		playsound(loc, 'sound/weapons/slash.ogg', 25)
 
 		for(var/limb in victim.limbs)
@@ -529,7 +529,7 @@
 		new /datum/flaying_datum(victim)
 		SEND_SIGNAL(victim, COMSIG_HUMAN_FLAY_ATTEMPT, user, src, TRUE)
 	else
-		to_chat(user, SPAN_WARNING("You were interrupted before you could finish your work!"))
+		to_chat(user, SPAN_WARNING("你尚未完成工作就被打断了！"))
 	return TRUE
 
 ///Records status of flaying attempts and handles progress.
@@ -548,19 +548,19 @@
 	SIGNAL_HANDLER
 	if(current_flayer)
 		if(current_flayer != user)
-			to_chat(user, SPAN_WARNING("You can't flay [target], [current_flayer] is already at work!"))
+			to_chat(user, SPAN_WARNING("[current_flayer]已经在剥皮，你无法再给[target]剥皮！"))
 	else
 		current_flayer = user
 		if(!ongoing_attempt)
 			playsound(user.loc, 'sound/weapons/pierce.ogg', 25)
-			user.visible_message(SPAN_DANGER("<B>[user] resumes the flaying of [victim] with \a [tool]...</B>"),
-				SPAN_DANGER("<B>You resume the flaying of [victim] with your [tool.name]...</B>"))
+			user.visible_message(SPAN_DANGER("<B>[user]继续用[tool]给[victim]剥皮……</B>"),
+				SPAN_DANGER("<B>你继续用[tool.name]给[victim]剥皮……</B>"))
 		INVOKE_ASYNC(src, PROC_REF(flay), target, user, tool) //do_after sleeps.
 	return COMPONENT_CANCEL_ATTACK
 
 /datum/flaying_datum/proc/flay(mob/living/carbon/human/target, mob/living/carbon/human/user, obj/item/tool)
 	if(!do_after(user, 4 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE, victim))
-		to_chat(user, SPAN_WARNING("You were interrupted before you could finish your work!"))
+		to_chat(user, SPAN_WARNING("你尚未完成工作就被打断了！"))
 		current_flayer = null
 		return
 
@@ -571,24 +571,24 @@
 			var/obj/limb/head/v_head = victim.get_limb("head")
 			if(!v_head || (v_head.status & LIMB_DESTROYED)) //they might be beheaded
 				victim.apply_damage(10, BRUTE, "chest", sharp = TRUE)
-				user.visible_message(SPAN_DANGER("<B>[user] peels the skin around the stump of [victim]'s head loose with \the [tool].</B>"),
-					SPAN_DANGER("<B>[victim] is missing \his head. Pelts like this just aren't the same... You peel the skin around the stump loose with your [tool.name].</B>"))
+				user.visible_message(SPAN_DANGER("<B>[user]用[tool]剥松了[victim]断颈周围的皮肤。</B>"),
+					SPAN_DANGER("<B>[victim]没有头。这样的皮张总差点意思……你用[tool.name]剥松了断颈周围的皮肤。</B>"))
 			else
 				victim.apply_damage(10, BRUTE, v_head, sharp = TRUE)
 				if(victim.h_style == "Bald") //you can't scalp someone with no hair.
-					user.visible_message(SPAN_DANGER("<B>[user] makes some rough cuts on [victim]'s head and face with \a [tool].</B>"),
-						SPAN_DANGER("<B>You make some rough cuts on [victim]'s head and face.</B>"))
+					user.visible_message(SPAN_DANGER("<B>[user]用[tool]在[victim]的头部和脸上粗略切了几刀。</B>"),
+						SPAN_DANGER("<B>你在[victim]的头部和脸上粗略切了几刀。</B>"))
 				else
-					user.visible_message(SPAN_DANGER("<B>[user] cuts around [victim]'s hairline, then tears \his scalp from \his head!</B>"),
-						SPAN_DANGER("<B>You cut around [victim]'s hairline, then rip \his scalp from \his head.</B>"))
+					user.visible_message(SPAN_DANGER("<B>[user]沿[victim]的发际线切开，然后撕下头皮！</B>"),
+						SPAN_DANGER("<B>你沿[victim]的发际线切开，然后撕下头皮。</B>"))
 					var/obj/item/scalp/cut_scalp = new(get_turf(user), victim, user) //Create a scalp of the victim at the user's feet.
 					user.put_in_inactive_hand(cut_scalp) //Put it in the user's offhand if possible.
 					victim.h_style = "Bald"
 					victim.update_hair() //tear the hair off with the scalp
 
 		if(FLAY_STAGE_STRIP)
-			user.visible_message(SPAN_DANGER("<B>[user] jabs \his [tool.name] into [victim]'s cuts, prying, cutting, then tearing off large areas of skin. The remainder hangs loosely.</B>"),
-				SPAN_DANGER("<B>You jab your [tool.name] into [victim]'s cuts, prying, cutting, then tearing off large areas of skin. The remainder hangs loosely.</B>"))
+			user.visible_message(SPAN_DANGER("<B>[user]将[tool.name]插入[victim]的伤口，撬动、切割，再扯下大片皮肤。剩余皮肤松垮地悬挂着。</B>"),
+				SPAN_DANGER("<B>你将[tool.name]插入[victim]的伤口，撬动、切割，再扯下大片皮肤。剩余皮肤松垮地悬挂着。</B>"))
 			playsound(user.loc, 'sound/weapons/bladeslice.ogg', 25)
 			flaying_stage = FLAY_STAGE_SKIN
 			for(var/limb in victim.limbs)
@@ -600,8 +600,8 @@
 			victim.add_flay_overlay(stage = 2)
 
 		if(FLAY_STAGE_SKIN)
-			user.visible_message(SPAN_DANGER("<B>[user] completely flays [victim], pulling the remaining skin off of \his body like a glove!</B>"),
-				SPAN_DANGER("<B>You completely flay [victim], pulling the remaining skin off of \his body like a glove.\nUse rope to hang \him from the ceiling.</B>"))
+			user.visible_message(SPAN_DANGER("<B>[user]完成了对[victim]的剥皮，像脱手套一样扯下了剩余皮肤！</B>"),
+				SPAN_DANGER("<B>你完成了对[victim]的剥皮，像脱手套一样扯下了剩余皮肤。\n用绳子可将其悬挂在天花板上。</B>"))
 			playsound(user.loc, 'sound/weapons/wristblades_hit.ogg', 25)
 			for(var/limb in victim.limbs)
 				victim.apply_damage(22, BRUTE, limb, sharp = TRUE)
@@ -629,12 +629,12 @@
 /datum/flaying_datum/proc/create_leftovers(mob/living/victim, has_meat, skin_amount)
 	if(has_meat)
 		var/obj/item/reagent_container/food/snacks/meat/meat = new /obj/item/reagent_container/food/snacks/meat(victim.loc)
-		meat.name = "raw [victim.name] steak"
+		meat.name = "[victim.name]生肉排"
 
 	if(skin_amount)
 		var/obj/item/stack/sheet/animalhide/human/hide = new /obj/item/stack/sheet/animalhide/human(victim.loc)
-		hide.name = "[victim.name]-hide"
-		hide.singular_name = "[victim.name]-hide"
+		hide.name = "[victim.name]皮"
+		hide.singular_name = "[victim.name]皮"
 		hide.stack_id = "[victim.name]-hide"
 		hide.amount = skin_amount
 
@@ -650,15 +650,15 @@
 	var/obj/item/limb/current_limb = attacked_obj
 
 	if(current_limb.flayed)
-		to_chat(user, SPAN_NOTICE("This limb has already been flayed."))
+		to_chat(user, SPAN_NOTICE("这个肢体已经剥过皮。"))
 		return
 
 	playsound(loc, 'sound/weapons/pierce.ogg', 25)
-	to_chat(user, SPAN_WARNING("You start flaying the skin from [current_limb]."))
+	to_chat(user, SPAN_WARNING("你开始剥下[current_limb]的皮肤。"))
 	if(!do_after(user, 2 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE, current_limb))
-		to_chat(user, SPAN_NOTICE("You decide not to flay [current_limb]."))
+		to_chat(user, SPAN_NOTICE("你决定不给[current_limb]剥皮。"))
 		return
-	to_chat(user, SPAN_WARNING("You finish flaying [current_limb]."))
+	to_chat(user, SPAN_WARNING("你完成了[current_limb]的剥皮。"))
 	current_limb.flayed = TRUE
 
 /obj/item/weapon/yautja/knife/marine
@@ -678,7 +678,7 @@
 	throw_speed = SPEED_VERY_FAST
 	throw_range = 6
 	hitsound = 'sound/weapons/slash.ogg'
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("劈砍", "刺击", "切割", "撕扯", "撕裂", "剁砍", "割伤")
 	actions_types = list(/datum/action/item_action/toggle/use)
 	unacidable = TRUE
 
@@ -711,7 +711,7 @@
 	force = MELEE_FORCE_TIER_3
 	force_wielded = MELEE_FORCE_TIER_7
 	sharp = IS_SHARP_ITEM_SIMPLE
-	attack_verb = list("attacked", "stabbed", "jabbed", "torn", "gored")
+	attack_verb = list("攻击", "刺击", "戳刺", "撕扯", "贯穿")
 
 	var/busy_fishing = FALSE
 	var/common_weight = 60
@@ -726,16 +726,16 @@
 		if(!T.fishing_allowed)
 			return
 		busy_fishing = TRUE
-		user.visible_message(SPAN_NOTICE("[user] starts aiming \the [src] at the water..."), SPAN_NOTICE("You prepare to catch something in the water..."), max_distance = 3)
+		user.visible_message(SPAN_NOTICE("[user]开始将[src]对准水面……"), SPAN_NOTICE("你准备捕捞水里的东西……"), max_distance = 3)
 		if(do_after(user, 5 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
 			if(prob(60)) // fishing rods are prefered
 				busy_fishing = FALSE
-				to_chat(user, SPAN_WARNING("You fail to catch anything!"))
+				to_chat(user, SPAN_WARNING("你什么也没抓到！"))
 				return
 			user.animation_attack_on(T)
 			var/obj/item/caught_item = get_fishing_loot(T, get_area(T), common_weight, uncommon_weight, rare_weight, ultra_rare_weight)
 			if(user.put_in_inactive_hand(caught_item))
-				user.visible_message(SPAN_NOTICE("[user] quickly stabs \the [T] and pulls out \a <b>[caught_item]</b> with their free hand!"), SPAN_NOTICE("You quickly stab \the [T] and pull out \a <b>[caught_item]</b> with your free hand!"), max_distance = 3)
+				user.visible_message(SPAN_NOTICE("[user]迅速刺入[T]，用空着的手捞出一个<b>[caught_item]</b>！"), SPAN_NOTICE("你迅速刺入[T]，用空着的手捞出一个<b>[caught_item]</b>！"), max_distance = 3)
 				var/image/trick = image(caught_item.icon, user, caught_item.icon_state, BIG_XENO_LAYER)
 				switch(pick(1,2))
 					if(1) animation_toss_snatch(trick)
@@ -753,7 +753,7 @@
 				trick = null
 				caught_item.invisibility = 0
 			else
-				user.visible_message(SPAN_NOTICE("[user] quickly stabs \the [T] and \a <b>[caught_item]</b> drifts to the surface!"), SPAN_NOTICE("You quickly stab \the [T] and \a <b>[caught_item]</b> drifts to the surface!"), max_distance = 3)
+				user.visible_message(SPAN_NOTICE("[user]迅速刺入[T]，一个<b>[caught_item]</b>浮上水面！"), SPAN_NOTICE("你迅速刺入[T]，一个<b>[caught_item]</b>浮上水面！"), max_distance = 3)
 				caught_item.sway_jitter(3, 6)
 		busy_fishing = FALSE
 
@@ -768,7 +768,7 @@
 	embeddable = FALSE //so predators don't lose their glaive when thrown.
 	sharp = IS_SHARP_ITEM_BIG
 	flags_atom = FPRINT|QUICK_DRAWABLE|CONDUCT
-	attack_verb = list("sliced", "slashed", "carved", "diced", "gored")
+	attack_verb = list("切割", "劈砍", "刻切", "剁砍", "贯穿")
 	attack_speed = 14 //Default is 7.
 
 /obj/item/weapon/twohanded/yautja/glaive/attack(mob/living/target, mob/living/carbon/human/user)
@@ -860,10 +860,10 @@
 /obj/item/weapon/gun/launcher/spike/get_examine_text(mob/user)
 	if(isyautja(user))
 		. = ..()
-		. += SPAN_NOTICE("It currently has <b>[spikes]/[max_spikes]</b> spikes.")
+		. += SPAN_NOTICE("当前有 <b>[spikes]/[max_spikes]</b> 根尖刺。")
 	else
 		. = list()
-		. += SPAN_NOTICE("Looks like some kind of...mechanical donut.")
+		. += SPAN_NOTICE("看起来像某种……机械甜甜圈。")
 
 /obj/item/weapon/gun/launcher/spike/update_icon()
 	..()
@@ -872,7 +872,7 @@
 
 /obj/item/weapon/gun/launcher/spike/able_to_fire(mob/user)
 	if(!HAS_TRAIT(user, TRAIT_YAUTJA_TECH))
-		to_chat(user, SPAN_WARNING("You have no idea how this thing works!"))
+		to_chat(user, SPAN_WARNING("你完全不知道这东西怎么用！"))
 		return
 
 	return ..()
@@ -941,7 +941,7 @@
 	if(charge_time < 100)
 		charge_time++
 		if(charge_time == 99)
-			if(ismob(loc)) to_chat(loc, SPAN_NOTICE("[src] hums as it achieves maximum charge."))
+			if(ismob(loc)) to_chat(loc, SPAN_NOTICE("[src]充能完毕，发出嗡鸣。"))
 		update_icon()
 
 
@@ -958,10 +958,10 @@
 /obj/item/weapon/gun/energy/yautja/plasmarifle/get_examine_text(mob/user)
 	if(isyautja(user))
 		. = ..()
-		. += SPAN_NOTICE("It currently has <b>[charge_time]/100</b> charge.")
+		. += SPAN_NOTICE("当前电量为 <b>[charge_time]/100</b>。")
 	else
 		. = list()
-		. += SPAN_NOTICE("This thing looks like an alien rifle of some kind. Strange.")
+		. += SPAN_NOTICE("看起来像某种外星步枪，真奇怪。")
 
 /obj/item/weapon/gun/energy/yautja/plasmarifle/update_icon()
 	if(last_regen < charge_time + 20 || last_regen > charge_time || charge_time > 95)
@@ -971,10 +971,10 @@
 
 /obj/item/weapon/gun/energy/yautja/plasmarifle/able_to_fire(mob/user)
 	if(!HAS_TRAIT(user, TRAIT_YAUTJA_TECH))
-		to_chat(user, SPAN_WARNING("You have no idea how this thing works!"))
+		to_chat(user, SPAN_WARNING("你完全不知道这东西怎么用！"))
 		return
 	if(charge_time < 7)
-		to_chat(user, SPAN_WARNING("The rifle does not have enough power remaining!"))
+		to_chat(user, SPAN_WARNING("步枪剩余电量不足！"))
 		return
 
 	return ..()
@@ -1045,7 +1045,7 @@
 	if(charge_time < 40)
 		charge_time++
 		if(charge_time == 39)
-			if(ismob(loc)) to_chat(loc, SPAN_NOTICE("[src] hums as it achieves maximum charge."))
+			if(ismob(loc)) to_chat(loc, SPAN_NOTICE("[src]充能完毕，发出嗡鸣。"))
 
 
 
@@ -1061,20 +1061,20 @@
 /obj/item/weapon/gun/energy/yautja/plasmapistol/get_examine_text(mob/user)
 	if(isyautja(user))
 		. = ..()
-		. += SPAN_NOTICE("It currently has <b>[charge_time]/40</b> charge.")
+		. += SPAN_NOTICE("当前电量为 <b>[charge_time]/40</b>。")
 
 		if(mode == FIRE_MODE_INCENDIARY)
-			. += SPAN_RED("It is set to fire incendiary plasma bolts.")
+			. += SPAN_RED("当前设置为发射燃烧等离子束。")
 		else
-			. += SPAN_ORANGE("It is set to fire plasma bolts.")
+			. += SPAN_ORANGE("当前设置为发射等离子束。")
 	else
 		. = list()
-		. += SPAN_NOTICE("This thing looks like an alien gun of some kind. Strange.")
+		. += SPAN_NOTICE("看起来像某种外星枪械，真奇怪。")
 
 
 /obj/item/weapon/gun/energy/yautja/plasmapistol/able_to_fire(mob/user)
 	if(!HAS_TRAIT(user, TRAIT_YAUTJA_TECH))
-		to_chat(user, SPAN_WARNING("You have no idea how this thing works!"))
+		to_chat(user, SPAN_WARNING("你完全不知道这东西怎么用！"))
 		return
 	else
 		return ..()
@@ -1108,14 +1108,14 @@
 			mode = FIRE_MODE_INCENDIARY
 			shot_cost = 5
 			fire_delay = FIRE_DELAY_TIER_5
-			to_chat(usr, SPAN_NOTICE("[src] will now fire incendiary plasma bolts."))
+			to_chat(usr, SPAN_NOTICE("[src]现在会发射燃烧等离子束。"))
 			ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/pistol/incendiary]
 
 		if(FIRE_MODE_INCENDIARY)
 			mode = FIRE_MODE_STANDARD
 			shot_cost = 1
 			fire_delay = FIRE_DELAY_TIER_7
-			to_chat(usr, SPAN_NOTICE("[src] will now fire plasma bolts."))
+			to_chat(usr, SPAN_NOTICE("[src]现在会发射等离子束。"))
 			ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/pistol]
 
 #undef FIRE_MODE_STANDARD
@@ -1193,21 +1193,21 @@
 					charge_cost = 50
 					set_fire_delay(FIRE_DELAY_TIER_1)
 					fire_sound = 'sound/weapons/pred_lasercannon.ogg'
-					to_chat(user, SPAN_NOTICE("[src] will now fire [strength]."))
+					to_chat(user, SPAN_NOTICE("[src]现在会发射[localized_player_label(strength)]。"))
 					ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/caster/bolt/stun]
 				if("high power stun bolts")
 					strength = "plasma immobilizers"
 					charge_cost = 200
 					set_fire_delay(FIRE_DELAY_TIER_2 * 8)
 					fire_sound = 'sound/weapons/pulse.ogg'
-					to_chat(user, SPAN_NOTICE("[src] will now fire [strength]."))
+					to_chat(user, SPAN_NOTICE("[src]现在会发射[localized_player_label(strength)]。"))
 					ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/caster/sphere/stun]
 				if("plasma immobilizers")
 					strength = "low power stun bolts"
 					charge_cost = 30
 					set_fire_delay(FIRE_DELAY_TIER_6)
 					fire_sound = 'sound/weapons/pred_plasmacaster_fire.ogg'
-					to_chat(user, SPAN_NOTICE("[src] will now fire [strength]."))
+					to_chat(user, SPAN_NOTICE("[src]现在会发射[localized_player_label(strength)]。"))
 					ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/caster/stun]
 		if("lethal")
 			switch(strength)
@@ -1216,41 +1216,41 @@
 					charge_cost = 1000
 					set_fire_delay(FIRE_DELAY_TIER_2 * 12)
 					fire_sound = 'sound/weapons/pulse.ogg'
-					to_chat(user, SPAN_NOTICE("[src] will now fire [strength]."))
+					to_chat(user, SPAN_NOTICE("[src]现在会发射[localized_player_label(strength)]。"))
 					ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/caster/sphere]
 				if("plasma spheres")
 					strength = "plasma bolts"
 					charge_cost = 100
 					set_fire_delay(FIRE_DELAY_TIER_6 * 3)
 					fire_sound = 'sound/weapons/pred_lasercannon.ogg'
-					to_chat(user, SPAN_NOTICE("[src] will now fire [strength]."))
+					to_chat(user, SPAN_NOTICE("[src]现在会发射[localized_player_label(strength)]。"))
 					ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/caster/bolt]
 
 /obj/item/weapon/gun/energy/yautja/plasma_caster/use_unique_action()
 	switch(mode)
 		if("stun")
 			mode = "lethal"
-			to_chat(usr, SPAN_YAUTJABOLD("[src.source] beeps: [src] is now set to [mode] mode"))
+			to_chat(usr, SPAN_YAUTJABOLD("[src.source]发出哔声：[src]已设为[localized_player_label(mode)]模式。"))
 			strength = "plasma bolts"
 			charge_cost = 100
 			set_fire_delay(FIRE_DELAY_TIER_6 * 3)
 			fire_sound = 'sound/weapons/pred_lasercannon.ogg'
-			to_chat(usr, SPAN_NOTICE("[src] will now fire [strength]."))
+			to_chat(usr, SPAN_NOTICE("[src]现在会发射[localized_player_label(strength)]。"))
 			ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/caster/bolt]
 
 		if("lethal")
 			mode = "stun"
-			to_chat(usr, SPAN_YAUTJABOLD("[src.source] beeps: [src] is now set to [mode] mode"))
+			to_chat(usr, SPAN_YAUTJABOLD("[src.source]发出哔声：[src]已设为[localized_player_label(mode)]模式。"))
 			strength = "low power stun bolts"
 			charge_cost = 30
 			set_fire_delay(FIRE_DELAY_TIER_6)
 			fire_sound = 'sound/weapons/pred_plasmacaster_fire.ogg'
-			to_chat(usr, SPAN_NOTICE("[src] will now fire [strength]."))
+			to_chat(usr, SPAN_NOTICE("[src]现在会发射[localized_player_label(strength)]。"))
 			ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/caster/stun]
 
 /obj/item/weapon/gun/energy/yautja/plasma_caster/get_examine_text(mob/user)
 	. = ..()
-	var/msg = "It is set to fire [strength]."
+	var/msg = "当前设置为发射[localized_player_label(strength)]。"
 	if(mode == "lethal")
 		. += SPAN_RED(msg)
 	else
@@ -1258,7 +1258,7 @@
 
 /obj/item/weapon/gun/energy/yautja/plasma_caster/dropped(mob/living/carbon/human/M)
 	playsound(M, 'sound/weapons/pred_plasmacaster_off.ogg', 15, 1)
-	to_chat(M, SPAN_NOTICE("You deactivate your plasma caster."))
+	to_chat(M, SPAN_NOTICE("你关闭了等离子肩炮。"))
 	update_mouse_pointer(M, FALSE)
 
 	var/datum/action/predator_action/bracer/caster/caster_action
@@ -1277,7 +1277,7 @@
 	if(!source)
 		return
 	if(!HAS_TRAIT(user, TRAIT_YAUTJA_TECH))
-		to_chat(user, SPAN_WARNING("You have no idea how this thing works!"))
+		to_chat(user, SPAN_WARNING("你完全不知道这东西怎么用！"))
 		return
 	return ..()
 

@@ -26,10 +26,10 @@
 	ground_offset_x = 7
 	ground_offset_y = 7
 	var/identificable = TRUE //can medically trained people tell what's in it?
-	var/pill_desc = "An unknown pill." // The real description of the pill, shown when examined by a medically trained person
+	var/pill_desc = "一种不明药片。" // The real description of the pill, shown when examined by a medically trained person
 	var/pill_icon_class = "random" // Pills with the same icon class share icons
 	var/list/pill_initial_reagents // Default reagents if any
-	var/fluff_text = "pill" //what this object is logically, used for actions descriptions like force feeding
+	var/fluff_text = "药片" //what this object is logically, used for actions descriptions like force feeding
 
 /obj/item/reagent_container/pill/Initialize(mapload, ...)
 	. = ..()
@@ -65,11 +65,11 @@
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
 			if(H.species.flags & IS_SYNTHETIC)
-				to_chat(H, SPAN_DANGER("You can't eat [fluff_text]s."))
+				to_chat(H, SPAN_DANGER("你不能吃[fluff_text]。"))
 				return
 
-		M.visible_message(SPAN_NOTICE("[user] swallows [src]."),
-		SPAN_HELPFUL("You swallow [src]."))
+		M.visible_message(SPAN_NOTICE("[user]吞下了[src]。"),
+		SPAN_HELPFUL("你吞下了[src]。"))
 		var/list/reagents_in_pill = list()
 		for(var/datum/reagent/R in reagents.reagent_list)
 			reagents_in_pill += R.name
@@ -86,13 +86,13 @@
 	else if(istype(M, /mob/living/carbon/human) )
 		var/mob/living/carbon/human/H = M
 		if(H.species.flags & IS_SYNTHETIC)
-			to_chat(H, SPAN_DANGER("They have a monitor for a head, where do you think you're going to put that?"))
+			to_chat(H, SPAN_DANGER("对方的脑袋是台显示器，你打算把药塞到哪里去？"))
 			return
 
 		user.affected_message(M,
-			SPAN_HELPFUL("You <b>start feeding</b> [M] a [fluff_text]."),
-			SPAN_HELPFUL("[user] <b>starts feeding</b> you a [fluff_text]."),
-			SPAN_NOTICE("[user] starts feeding [M] a [fluff_text]."))
+			SPAN_HELPFUL("你<b>开始给</b>[M]<b>喂</b>[fluff_text]。"),
+			SPAN_HELPFUL("[user]<b>开始给</b>你<b>喂</b>[fluff_text]。"),
+			SPAN_NOTICE("[user]开始给[M]喂[fluff_text]。"))
 
 		var/ingestion_time = 30
 		if(user.skills)
@@ -106,9 +106,9 @@
 		user.drop_inv_item_on_ground(src) //icon update
 
 		user.affected_message(M,
-			SPAN_HELPFUL("You <b>fed</b> [M] a [fluff_text]."),
-			SPAN_HELPFUL("[user] <b>fed</b> you a [fluff_text]."),
-			SPAN_NOTICE("[user] fed [M] a [fluff_text]."))
+			SPAN_HELPFUL("你<b>给</b>[M]<b>喂下了</b>[fluff_text]。"),
+			SPAN_HELPFUL("[user]<b>给</b>你<b>喂下了</b>[fluff_text]。"),
+			SPAN_NOTICE("[user]给[M]喂下了[fluff_text]。"))
 		user.count_niche_stat(STATISTICS_NICHE_PILLS)
 
 		var/rgt_list_text = get_reagent_list_text()
@@ -131,9 +131,9 @@
 
 	if(target.is_open_container() != 0 && target.reagents)
 		if(!target.reagents.total_volume)
-			to_chat(user, SPAN_DANGER("[target] is empty. Can't dissolve [fluff_text]."))
+			to_chat(user, SPAN_DANGER("[target]是空的，无法溶解[fluff_text]。"))
 			return
-		to_chat(user, SPAN_NOTICE("You dissolve the [fluff_text] in [target]"))
+		to_chat(user, SPAN_NOTICE("你将[fluff_text]溶解在[target]中。"))
 
 		var/rgt_list_text = get_reagent_list_text()
 
@@ -142,7 +142,7 @@
 
 		reagents.trans_to(target, reagents.total_volume)
 		for(var/mob/O in viewers(2, user))
-			O.show_message(SPAN_DANGER("[user] puts something in \the [target]."), SHOW_MESSAGE_VISIBLE)
+			O.show_message(SPAN_DANGER("[user]往[target]里放了些什么。"), SHOW_MESSAGE_VISIBLE)
 
 		QDEL_IN(src, 5)
 
@@ -154,12 +154,12 @@
 
 //Pills
 /obj/item/reagent_container/pill/antitox
-	pill_desc = "An anti-toxin pill. It neutralizes many common toxins, as well as treating toxin damage"
+	pill_desc = "抗毒素药片，可中和多种常见毒素并治疗毒素损伤。"
 	pill_initial_reagents = list("anti_toxin" = 15)
 	pill_icon_class = "atox"
 
 /obj/item/reagent_container/pill/tox
-	pill_desc = "A toxins pill. It's highly toxic."
+	pill_desc = "毒素药片，毒性极强。"
 	pill_initial_reagents = list("toxin" = 50)
 	pill_icon_class = "tox"
 
@@ -170,120 +170,120 @@
 	pill_icon_class = "tox"
 
 /obj/item/reagent_container/pill/stox
-	pill_desc = "A sleeping pill commonly used to treat insomnia."
+	pill_desc = "通常用于治疗失眠的安眠药片。"
 	pill_initial_reagents = list("stoxin" = 15)
 	pill_icon_class = "psych"
 
 /obj/item/reagent_container/pill/kelotane
-	pill_desc = "A Kelotane pill. Used to treat burns."
+	pill_desc = "克洛坦药片，用于治疗烧伤。"
 	pill_initial_reagents = list("kelotane" = 15)
 	pill_icon_class = "kelo"
 
 /obj/item/reagent_container/pill/keloderm
-	pill_desc = "A Kelotane-Dermaline pill. Used to rapidly treat burns."
+	pill_desc = "克洛坦与德玛林复方药片，用于快速治疗烧伤。"
 	pill_initial_reagents = list("kelotane" = 10, "dermaline" = 10)
 	pill_icon_class = "kelo"
 
 /obj/item/reagent_container/pill/oxycodone
-	pill_desc = "A Oxycodone pill. A powerful painkiller."
+	pill_desc = "羟考酮药片，一种强效止痛药。"
 	pill_initial_reagents = list("oxycodone" = 15)
 	pill_icon_class = "oxy"
 
 /obj/item/reagent_container/pill/paracetamol
-	pill_desc = "A Paracetamol pill. Painkiller for the ages."
+	pill_desc = "对乙酰氨基酚药片，经久不衰的止痛药。"
 	pill_initial_reagents = list("paracetamol" = 15)
 	pill_icon_class = "para"
 
 /obj/item/reagent_container/pill/tramadol
-	pill_desc = "A Tramadol pill. A simple painkiller."
+	pill_desc = "曲马多药片，一种普通止痛药。"
 	pill_initial_reagents = list("tramadol" = 15)
 	pill_icon_class = "tram"
 
 /obj/item/reagent_container/pill/methylphenidate
-	pill_desc = "A Methylphenidate pill. This improves the ability to concentrate."
+	pill_desc = "哌甲酯药片，可提高专注力。"
 	pill_initial_reagents = list("methylphenidate" = 15)
 	pill_icon_class = "psych"
 
 /obj/item/reagent_container/pill/citalopram
-	pill_desc = "A Citalopram pill. A mild anti-depressant."
+	pill_desc = "西酞普兰药片，一种温和的抗抑郁药。"
 	pill_initial_reagents = list("citalopram" = 15)
 	pill_icon_class = "psych"
 
 /obj/item/reagent_container/pill/inaprovaline
-	pill_desc = "An Inaprovaline pill. Used to stabilize patients."
+	pill_desc = "因纳普罗伐林药片，用于稳定患者的病情。"
 	pill_initial_reagents = list("inaprovaline" = 30)
 	pill_icon_class = "inap"
 
 /obj/item/reagent_container/pill/dexalin
-	pill_desc = "A Dexalin pill. Used to treat oxygen deprivation."
+	pill_desc = "右氧林药片，用于治疗缺氧。"
 	pill_initial_reagents = list("dexalin" = 15)
 	pill_icon_class = "dex"
 
 /obj/item/reagent_container/pill/dexalinplus
-	pill_desc = "A Dexalin+ pill. Used to instantly treat oxygen deprivation."
+	pill_desc = "强化右氧林药片，可立即缓解缺氧。"
 	pill_initial_reagents = list("dexalinp" = 10)
 	pill_icon_class = "qc"
 
 /obj/item/reagent_container/pill/spaceacillin
-	pill_desc = "A Spaceacillin pill. Used to slow down viral infections."
+	pill_desc = "太空西林药片，用于减缓病毒感染。"
 	pill_initial_reagents = list("spaceacillin" = 10)
 	pill_icon_class = "spac"
 
 /obj/item/reagent_container/pill/happy
-	pill_desc = "A Happy Pill! Happy happy joy joy!"
+	pill_desc = "快乐药片！快快乐乐，欢欢喜喜！"
 	pill_initial_reagents = list("space_drugs" = 15, "sugar" = 15)
 	pill_icon_class = "drug"
 
 /obj/item/reagent_container/pill/zombie_powder
-	desc = "A strange pill that smells like death itself."
-	pill_desc = "A strange pill that smells like death itself."
+	desc = "一枚散发着死亡气息的奇怪药片。"
+	pill_desc = "一颗怪异的药片，散发着死亡的气息。"
 	pill_initial_reagents = list("zombiepowder" = 8, "copper" = 2) //roughly two minutes of death
 	pill_icon_class = "drug"
 
 /obj/item/reagent_container/pill/russianRed
-	pill_desc = "A Russian Red pill. A very dangerous radiation-countering substance."
+	pill_desc = "俄罗斯红药片，一种十分危险的抗辐射药物。"
 	pill_initial_reagents = list("russianred" = 10)
 	pill_icon_class = "spac"
 /obj/item/reagent_container/pill/peridaxon
-	pill_desc = "A Peridaxon pill. Temporarily halts the effects of internal organ damage."
+	pill_desc = "佩里达酮药片，可暂时遏制内脏损伤造成的影响。"
 	pill_initial_reagents = list("peridaxon" = 7)
 	pill_icon_class = "peri"
 
 /obj/item/reagent_container/pill/imidazoline
-	pill_desc = "An Imidazoline pill. Heals eye damage."
+	pill_desc = "咪唑啉药片，用于治疗眼部损伤。"
 	pill_initial_reagents = list("imidazoline" = 10)
 	pill_icon_class = "imi"
 
 /obj/item/reagent_container/pill/alkysine
-	pill_desc = "An Alkysine pill. Heals brain damage."
+	pill_desc = "神经修复素药片，用于治疗脑损伤。"
 	pill_initial_reagents = list("alkysine" = 10)
 	pill_icon_class = "alky"
 
 /obj/item/reagent_container/pill/imialk
-	pill_desc = "A pill containing Imidazoline and Alkysine, used to heal brain and ear damage."
+	pill_desc = "含有咪唑啉和神经修复素的药片，用于治疗脑部和眼部损伤。"
 	pill_initial_reagents = list("imidazoline" = 10, "alkysine" = 10)
 	pill_icon_class = "imi"
 
 /obj/item/reagent_container/pill/bicaridine
-	pill_desc = "A Bicaridine pill. Heals brute damage."
+	pill_desc = "比卡定药片，用于治疗物理创伤。"
 	pill_initial_reagents = list("bicaridine" = 15)
 	pill_icon_class = "bica"
 
 /obj/item/reagent_container/pill/merabica
-	pill_desc = "A Meralyne-Bicaridine pill. Rapidly heals brute damage."
+	pill_desc = "美拉林与比卡定复方药片，用于快速治疗物理创伤。"
 	pill_initial_reagents = list("bicaridine" = 10, "meralyne" = 10)
 	pill_icon_class = "bica"
 
 /obj/item/reagent_container/pill/ultrazine
-	pill_desc = "An Ultrazine pill. A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
+	pill_desc = "超能嗪药片，一种强效且持久的中枢神经与肌肉复合兴奋剂，极易成瘾。"
 	pill_initial_reagents = list("ultrazine" = 5)
 	pill_icon_class = "psych"
 
 /obj/item/reagent_container/pill/ultrazine/unmarked
-	pill_desc = "An unknown pill." // Or is it ?
+	pill_desc = "一种不明药片。" // Or is it ?
 
 /obj/item/reagent_container/pill/tricordrazine
-	pill_desc = "A Tricordrazine pill. A weak general use medicine for treating damage."
+	pill_desc = "广效康复嗪药片，一种用于治疗各类损伤的弱效通用药物。"
 	pill_initial_reagents = list("tricordrazine" = 15)
 	pill_icon_class = "tric"
 
@@ -292,24 +292,24 @@
 	pill_icon_class = "stim"
 
 /obj/item/reagent_container/pill/iron
-	pill_desc = "An iron pill. Used to regenerate blood."
+	pill_desc = "铁补充剂药片，用于促进血液再生。"
 	pill_initial_reagents = list("iron" = 15, "sugar" = 7.5)
 	pill_icon_class = "spac"
 
 /obj/item/reagent_container/pill/nitrogenwater
-	pill_desc = "A pill containing nitrogen and water. Used to treat Tramadol overdoses."
+	pill_desc = "含有氮和水的药片，用于治疗曲马多过量。"
 	pill_initial_reagents = list("nitrogen" = 15, "water" = 15)
 	pill_icon_class = "spac"
 	color = COLOR_BLUE
 
 /obj/item/reagent_container/pill/carbon
-	pill_desc = "A bulky pill of activated carbon. Commonly thought to be effective in treating posioning, in reality it is inadequate for most cases, especially at this dosage."
+	pill_desc = "一颗大块的活性炭药片。人们通常认为它能有效治疗中毒，但实际上它不足以应对大多数情况，尤其是这种剂量。"
 	pill_initial_reagents = list("carbon" = 7.5)
 	pill_icon_class = "alky"
 	color = "#38352e" //pretty dark but not 100% black
 
 /obj/item/reagent_container/pill/ethylredoxrazine
-	pill_desc = "An ethylredoxrazine pill. Used to treat alcohol poisoning and the related effects of similiar chemical depressants."
+	pill_desc = "乙醇氧化嗪药片，用于治疗酒精中毒，以及类似化学抑制剂造成的相关影响。"
 	pill_initial_reagents = list("ethylredoxrazine" = 7.5)
 	pill_icon_class = "alky"
 	color = COLOR_OLIVE

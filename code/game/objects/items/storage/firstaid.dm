@@ -101,7 +101,7 @@
 	return
 
 /obj/item/storage/firstaid/regular/response
-	desc = "It's an emergency medical kit containing basic medication and equipment."
+	desc = "内装基础药物和器材的应急医疗包。"
 
 
 /obj/item/storage/firstaid/robust
@@ -122,8 +122,8 @@
 	return
 
 /obj/item/storage/firstaid/toxin
-	name = "toxin first-aid kit"
-	desc = "It's an emergency medical kit containing lifesaving anti-toxic medication."
+	name = "中毒急救箱"
+	desc = "内装救命抗毒药物的应急医疗箱。"
 	icon_state = "antitoxin"
 	item_state = "firstaid-toxin"
 	possible_icons_full = list("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3")
@@ -142,8 +142,8 @@
 	return
 
 /obj/item/storage/firstaid/o2
-	name = "oxygen deprivation first-aid kit"
-	desc = "A box full of reoxygenating goodies."
+	name = "缺氧急救箱"
+	desc = "一箱用于恢复供氧的好东西。"
 	icon_state = "o2"
 	item_state = "firstaid-o2"
 
@@ -178,8 +178,8 @@
 	return
 
 /obj/item/storage/firstaid/synth
-	name = "synthetic repair kit"
-	desc = "Contains equipment to repair a damaged synthetic. A tag on the back reads: 'Does not contain a shocking tool to repair disabled synthetics, nor a scanning device to detect specific damage; pack separately.'"
+	name = "合成人维修箱"
+	desc = "内装修复受损合成人的工具。背面的标签写着：“不含恢复失能合成人所需的电击工具，也不含检测具体损伤的扫描设备；请另行准备。”"
 	icon_state = "bezerk"
 	item_state = "firstaid-advanced"
 	can_hold = list(
@@ -228,8 +228,8 @@
 	return
 
 /obj/item/storage/firstaid/surgical
-	name = "basic field surgery kit"
-	desc = "Contains a health analyzer, surgical line, Synth-Graft cautery, scalpel, hemostat, retractor, drapes and an oxycodone injector for tending wounds surgically."
+	name = "基础野战手术箱"
+	desc = "内装健康分析仪、手术缝线、合成植皮烧灼器、手术刀、止血钳、牵开器、手术铺巾和羟考酮注射器，用于外科创伤处理。"
 	icon_state = "bezerk"
 	storage_slots = 8
 	can_hold = list(
@@ -316,8 +316,8 @@
 	open_state = "softpack_empty_upp"
 
 /obj/item/storage/firstaid/softpack/brute
-	name = "brute first-aid pack"
-	desc = "A soft first-aid pack containing equipment for physical treatment in the field."
+	name = "创伤急救包"
+	desc = "内装野外物理创伤处理器材的软质急救包。"
 	icon_state = "softpack_purple"
 
 /obj/item/storage/firstaid/softpack/brute/fill_preset_inventory()
@@ -352,8 +352,8 @@
 	open_state = "softpack_empty_upp"
 
 /obj/item/storage/firstaid/softpack/burn
-	name = "burn first-aid pack"
-	desc = "A soft first-aid pack containing equipment for burns treatment in the field."
+	name = "烧伤急救包"
+	desc = "内装野外烧伤处理器材的软质急救包。"
 	icon_state = "softpack_darkorange"
 
 /obj/item/storage/firstaid/softpack/burn/fill_preset_inventory()
@@ -406,8 +406,8 @@
 	open_state = "softpack_empty_upp"
 
 /obj/item/storage/firstaid/softpack/synth
-	name = "synthetic repair pack"
-	desc = "A soft first-aid pack containing equipment to repair a damaged synthetic in the field."
+	name = "合成人维修包"
+	desc = "内装野外合成人损伤维修器材的软质急救包。"
 	icon_state = "softpack_gray"
 	can_hold = list(
 		/obj/item/device/healthanalyzer,
@@ -457,8 +457,8 @@
 	open_state = "softpack_empty_upp"
 
 /obj/item/storage/firstaid/softpack/surgical
-	name = "basic field surgery pack"
-	desc = "A soft first-aid pack containing tools and equipment necessary for surgically tending to wounds in the field."
+	name = "基础野战手术包"
+	desc = "内装野外创伤手术处理所需工具与器材的软质急救包。"
 	icon_state = "softpack_gray"
 	storage_slots = 8
 	can_hold = list(
@@ -641,23 +641,23 @@
 		var/percentage_filled = floor(pills_amount/max_storage_space * 100)
 		switch(percentage_filled)
 			if(80 to 101)
-				. += SPAN_INFO("The [name] seems fairly full.")
+				. += SPAN_INFO("[name]看起来还很满。")
 			if(60 to 79)
-				. += SPAN_INFO("The [name] feels more than half full.")
+				. += SPAN_INFO("[name]感觉还剩一半以上。")
 			if(40 to 59)
-				. += SPAN_INFO("The [name] seems to be around half full.")
+				. += SPAN_INFO("[name]看起来大约半满。")
 			if(20 to 39)
-				. += SPAN_INFO("The [name] feels less than half full.")
+				. += SPAN_INFO("[name]感觉还剩不到一半。")
 			if(0 to 19)
-				. += SPAN_INFO("The [name] feels like it's nearly empty!")
+				. += SPAN_INFO("[name]感觉快空了！")
 	else
-		. += SPAN_INFO("The [name] is empty.")
+		. += SPAN_INFO("[name]是空的。")
 
 /obj/item/storage/pill_bottle/attack_self(mob/living/user)
 	..()
 
 	if(user.get_inactive_hand())
-		to_chat(user, SPAN_WARNING("You need an empty hand to take out a pill."))
+		to_chat(user, SPAN_WARNING("你需要空出一只手才能取药片。"))
 		return
 	if(skilllock && !skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_MEDIC))
 		error_idlock(user)
@@ -667,13 +667,13 @@
 		if(user.put_in_inactive_hand(I))
 			playsound(loc, use_sound, 10, TRUE, 3)
 			remove_from_storage(I,user)
-			to_chat(user, SPAN_NOTICE("You take a pill out of the [name]."))
+			to_chat(user, SPAN_NOTICE("你从[name]中取出一片药。"))
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.swap_hand()
 			return
 	else
-		to_chat(user, SPAN_WARNING("The [name] is empty."))
+		to_chat(user, SPAN_WARNING("[name]是空的。"))
 		return
 
 
@@ -715,15 +715,15 @@
 		return FALSE
 	var/mob/living/carbon/C = user
 	if(C.is_mob_restrained())
-		to_chat(user, SPAN_WARNING("You are restrained!"))
+		to_chat(user, SPAN_WARNING("你被束缚住了！"))
 		return FALSE
 	if(!length(contents))
-		to_chat(user, SPAN_WARNING("The [name] is empty."))
+		to_chat(user, SPAN_WARNING("[name]是空的。"))
 		return FALSE
 	var/obj/item/I = contents[1]
 	if(user.put_in_active_hand(I))
 		remove_from_storage(I,user)
-		to_chat(user, SPAN_NOTICE("You take [I] out of the [name]."))
+		to_chat(user, SPAN_NOTICE("你从[name]中取出[I]。"))
 		return TRUE
 
 /obj/item/storage/pill_bottle/empty(mob/user, turf/T)
@@ -761,7 +761,7 @@
 	return ..()
 
 /obj/item/storage/pill_bottle/proc/error_idlock(mob/user)
-	to_chat(user, SPAN_WARNING("It must have some kind of ID lock..."))
+	to_chat(user, SPAN_WARNING("它一定有某种身份识别锁……"))
 
 /obj/item/storage/pill_bottle/ai_can_use(mob/living/carbon/human/user, datum/human_ai_brain/ai_brain, mob/living/carbon/human/target)
 	if(issynth(target))
@@ -810,14 +810,14 @@
 		"Red" = "11",
 		"Black" = "12",
 	)
-	var/selected_color = tgui_input_list(user, "Select a color.", "Color choice", possible_colors)
+	var/selected_color = localized_input_list(user, "请选择颜色。", "选择颜色", possible_colors)
 	if(!selected_color)
 		return
 
 	selected_color = possible_colors[selected_color]
 
 	icon_state = "pill_canister" + selected_color
-	to_chat(user, SPAN_NOTICE("You color [src]."))
+	to_chat(user, SPAN_NOTICE("你给[src]上了色。"))
 	update_icon()
 
 /obj/item/storage/pill_bottle/verb/set_maptext()
@@ -826,14 +826,14 @@
 	set src in usr
 
 	if(src && ishuman(usr))
-		var/str = copytext(reject_bad_text(input(usr,"Label text? (2 CHARACTERS MAXIMUM)", "Set \the [src]'s on-sprite label", "")), 1, 3)
+		var/str = copytext(reject_bad_text(input(usr,"标签文字？（最多两个字符）", "设置[src]的图标标签", "")), 1, 3)
 		if(!str || !length(str))
-			to_chat(usr, SPAN_NOTICE("You clear the label off \the [src]."))
+			to_chat(usr, SPAN_NOTICE("你清除了[src]上的标签。"))
 			maptext_label = null
 			update_icon()
 			return
 		maptext_label = str
-		to_chat(usr, SPAN_NOTICE("You label \the [src] with '[str]' in big, blocky letters."))
+		to_chat(usr, SPAN_NOTICE("你在[src]上用醒目的大字标记了“[str]”。"))
 		update_icon()
 
 /obj/item/storage/pill_bottle/kelotane
@@ -880,7 +880,7 @@
 	skilllock = SKILL_MEDICAL_DEFAULT
 
 /obj/item/storage/pill_bottle/spaceacillin
-	name = "\improper Spaceacillin pill bottle"
+	name = "\improper 太空西林药瓶"
 	icon_state = "pill_canister4"
 	pill_type_to_fill = /obj/item/reagent_container/pill/spaceacillin
 	maptext_label = "Sp"
@@ -960,7 +960,7 @@
 
 //Ultrazine
 /obj/item/storage/pill_bottle/ultrazine
-	name = "pill bottle"
+	name = "药瓶"
 	icon_state = "pill_canister11"
 	max_storage_space = 5
 	skilllock = SKILL_MEDICAL_DEFAULT //CL can open it
@@ -980,16 +980,16 @@
 	var/mob/living/carbon/human/human_user = user
 
 	if(!allowed(human_user))
-		to_chat(user, SPAN_NOTICE("It must have some kind of ID lock..."))
+		to_chat(user, SPAN_NOTICE("它一定有某种身份识别锁……"))
 		return FALSE
 
 	var/obj/item/card/id/idcard = human_user.get_idcard()
 	if(!idcard) //not wearing an ID
-		to_chat(human_user, SPAN_NOTICE("It must have some kind of ID lock..."))
+		to_chat(human_user, SPAN_NOTICE("它一定有某种身份识别锁……"))
 		return FALSE
 
 	if(!idcard.check_biometrics(human_user))
-		to_chat(human_user, SPAN_WARNING("Wrong ID card owner detected."))
+		to_chat(human_user, SPAN_WARNING("检测到身份卡持有者不符。"))
 		return FALSE
 
 	return TRUE
@@ -1005,14 +1005,14 @@
 	..()
 
 /obj/item/storage/pill_bottle/ultrazine/skillless
-	name = "\improper Ultrazine pill bottle"
+	name = "\improper 超能嗪药瓶"
 	idlock = FALSE
 	display_maptext = TRUE
 	maptext_label = "Uz"
 
 /obj/item/storage/pill_bottle/mystery
-	name = "\improper Weird-looking pill bottle"
-	desc = "You can't seem to identify this."
+	name = "\improper 外观古怪的药瓶"
+	desc = "你似乎无法辨认它。"
 
 /obj/item/storage/pill_bottle/mystery/Initialize()
 	icon_state = "pill_canister[rand(1, 12)]"
@@ -1030,7 +1030,7 @@
 	skilllock = SKILL_MEDICAL_DEFAULT
 
 /obj/item/storage/pill_bottle/stimulant
-	name = "\improper Stimulant pill bottle"
+	name = "\improper 兴奋剂药瓶"
 	icon_state = "pill_canister12"
 	pill_type_to_fill = /obj/item/reagent_container/pill/stimulant
 	maptext_label = "ST"
@@ -1040,8 +1040,8 @@
 
 //NOT FOR USCM USE!!!!
 /obj/item/storage/pill_bottle/paracetamol
-	name = "\improper Paracetamol pill bottle"
-	desc = "This is probably someone's prescription bottle."
+	name = "\improper 对乙酰氨基酚药瓶"
+	desc = "这大概是某人的处方药瓶。"
 	icon_state = "pill_canister7"
 	pill_type_to_fill = /obj/item/reagent_container/pill/paracetamol
 	skilllock = SKILL_MEDICAL_DEFAULT
@@ -1085,9 +1085,9 @@
 	display_maptext = FALSE
 
 /obj/item/storage/pill_bottle/packet/tricordrazine
-	name = "Tricordazine pill packet"
+	name = "广效康复嗪药片包"
 	icon_state = "tricordrazine_packet"
-	desc = "This packet contains tricordazine pills. Heals all types of damage slightly. Once you take them out, they don't go back in. Don't take more than 2 pills in a short period."
+	desc = "内装广效康复嗪药片，可轻度治疗各类损伤。药片取出后不能放回。短时间内不要服用超过两片。"
 	pill_type_to_fill = /obj/item/reagent_container/pill/tricordrazine
 
 /obj/item/storage/pill_bottle/packet/tramadol
@@ -1109,7 +1109,7 @@
 	pill_type_to_fill = /obj/item/reagent_container/pill/kelotane
 
 /obj/item/storage/pill_bottle/packet/oxycodone
-	name = "oxycodone pill packet"
+	name = "羟考酮药片包"
 	icon_state = "oxycodone_packet"
-	desc = "This packet contains oxycodone pills. A highly effective painkiller. Once you take them out, they don't go back in. Don't take more than 1 pill in a short period."
+	desc = "内装羟考酮药片，一种强效止痛药。药片取出后不能放回。短时间内不要服用超过一片。"
 	pill_type_to_fill = /obj/item/reagent_container/pill/oxycodone

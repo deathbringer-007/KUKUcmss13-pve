@@ -661,18 +661,18 @@
 	if(affecting == "head" && iscarbon(target) && !isxeno(target))
 		for(var/mob/O in viewers(user, null))
 			if(target != user)
-				O.show_message(text(SPAN_DANGER("<B>[target] has been hit over the head with a glass of [name], by [user]!</B>")), SHOW_MESSAGE_VISIBLE)
+				O.show_message(text(SPAN_DANGER("<B>[user]用一杯[name]砸中了[target]的头！</B>")), SHOW_MESSAGE_VISIBLE)
 			else
-				O.show_message(text(SPAN_DANGER("<B>[target] hit \himself with a glass of [name] on the head!</B>")), SHOW_MESSAGE_VISIBLE)
+				O.show_message(text(SPAN_DANGER("<B>[target]用一杯[name]砸中了自己的头！</B>")), SHOW_MESSAGE_VISIBLE)
 		if(drowsy_threshold > 0)
 			target.apply_effect(min(drowsy_threshold, 10) , DROWSY)
 
 	else //Regular attack text
 		for(var/mob/O in viewers(user, null))
 			if(target != user)
-				O.show_message(text(SPAN_DANGER("<B>[target] has been attacked with a glass of [name], by [user]!</B>")), SHOW_MESSAGE_VISIBLE)
+				O.show_message(text(SPAN_DANGER("<B>[user]用一杯[name]攻击了[target]！</B>")), SHOW_MESSAGE_VISIBLE)
 			else
-				O.show_message(text(SPAN_DANGER("<B>[target] has attacked \himself with a glass of [name]!</B>")), SHOW_MESSAGE_VISIBLE)
+				O.show_message(text(SPAN_DANGER("<B>[target]用一杯[name]攻击了自己！</B>")), SHOW_MESSAGE_VISIBLE)
 
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has attacked [target.name] ([target.ckey]) with a glass!</font>")
 	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been smashed with a glass by [user.name] ([user.ckey])</font>")
@@ -680,7 +680,7 @@
 
 	if(reagents)
 		for(var/mob/O in viewers(user, null))
-			O.show_message(text(SPAN_NOTICE("<B>The contents of \the [src] splashes all over [target]!</B>")), SHOW_MESSAGE_VISIBLE)
+			O.show_message(text(SPAN_NOTICE("<B>[src]里的液体泼了[target]一身！</B>")), SHOW_MESSAGE_VISIBLE)
 		reagents.reaction(target, TOUCH)
 
 	smash(target, user)
@@ -712,8 +712,8 @@
 
 // for /obj/structure/machinery/vending/sovietsoda
 /obj/item/reagent_container/food/drinks/drinkingglass/soda
-	name = "soda glass"
-	desc = "A drinking glass for soda."
+	name = "汽水杯"
+	desc = "用于盛放汽水的玻璃杯。"
 
 /obj/item/reagent_container/food/drinks/drinkingglass/soda/Initialize()
 	. = ..()
@@ -721,8 +721,8 @@
 	on_reagent_change()
 
 /obj/item/reagent_container/food/drinks/drinkingglass/cola
-	name = "cola glass"
-	desc = "A drinking glass for cola."
+	name = "可乐杯"
+	desc = "用于盛放可乐的玻璃杯。"
 
 /obj/item/reagent_container/food/drinks/drinkingglass/cola/Initialize()
 	. = ..()

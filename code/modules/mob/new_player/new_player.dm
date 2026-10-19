@@ -39,31 +39,31 @@
 	var/xeno_text = "[prefix_text]-[tempnumber][postfix_text]"
 	var/round_start = !SSticker || !SSticker.mode || SSticker.current_state <= GAME_STATE_PREGAME
 
-	var/output = "<div align='center'>Welcome,"
+	var/output = "<div align='center'>欢迎，"
 	output +="<br><b>[(client.prefs && client.prefs.real_name) ? client.prefs.real_name : client.key]</b>"
 	output +="<br><b>[xeno_text]</b>"
-	output += "<p><a href='byond://?src=\ref[src];lobby_choice=tutorial'>Tutorial</A></p>"
+	output += "<p><a href='byond://?src=\ref[src];lobby_choice=tutorial'>教程</A></p>"
 	output += "<p><a href='byond://?src=\ref[src];lobby_choice=show_preferences'>创建角色</A></p>"
 
-	output += "<p><a href='byond://?src=\ref[src];lobby_choice=show_playtimes'>View Playtimes</A></p>"
+	output += "<p><a href='byond://?src=\ref[src];lobby_choice=show_playtimes'>查看游玩时长</A></p>"
 
 	if(round_start)
-		output += "<p>\[ [ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [ready? "<a href='byond://?src=\ref[src];lobby_choice=unready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
-		output += "<b>Be Xenomorph:</b> [(client.prefs && (client.prefs.get_job_priority(JOB_XENOMORPH))) ? "Yes" : "No"]"
+		output += "<p>\[ [ready? "<b>已准备</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>准备</a>"] | [ready? "<a href='byond://?src=\ref[src];lobby_choice=unready'>取消准备</a>":"<b>未准备</b>"] \]</p>"
+		output += "<b>扮演异形：</b> [(client.prefs && (client.prefs.get_job_priority(JOB_XENOMORPH))) ? "是" : "否"]"
 
 	else
-		output += "<a href='byond://?src=\ref[src];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
+		output += "<a href='byond://?src=\ref[src];lobby_choice=manifest'>查看船员名册</A><br><br>"
 /*
 // commented out tutorial due to their lack of relevance/use on pve
 		output += "<a href='byond://?src=\ref[src];lobby_choice=hiveleaders'>View Hive Leaders</A><br><br>"
 */
-		output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join'>Join the round!</A></p>"
+		output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join'>加入本回合！</A></p>"
 /*
 		output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
 		if(SSticker.mode.flags_round_type & MODE_PREDATOR)
 			if(SSticker.mode.check_predator_late_join(src,0)) output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join_pred'>Join the Hunt!</A></p>"
 */
-	output += "<p><a href='byond://?src=\ref[src];lobby_choice=observe'>Observe</A></p>"
+	output += "<p><a href='byond://?src=\ref[src];lobby_choice=observe'>旁观</A></p>"
 
 	output += "</div>"
 	if (refresh)
@@ -83,17 +83,17 @@
 			// Otherwise the preview dummy will runtime
 			// because atoms aren't initialized yet
 			if(SSticker.current_state < GAME_STATE_PREGAME)
-				to_chat(src, "Game is still starting up, please wait")
+				to_chat(src, "游戏仍在初始化，请稍候。")
 				return
 			if(!SSentity_manager.ready)
-				to_chat(src, "DB is still starting up, please wait")
+				to_chat(src, "数据库仍在初始化，请稍候。")
 				return
 			client.prefs.ShowChoices(src)
 			return 1
 
 		if("show_playtimes")
 			if(!SSentity_manager.ready)
-				to_chat(src, "DB is still starting up, please wait")
+				to_chat(src, "数据库仍在初始化，请稍候。")
 				return
 			if(client.player_data)
 				client.player_data.tgui_interact(src)
@@ -118,7 +118,7 @@
 
 		if("observe")
 			if(!SSticker || SSticker.current_state == GAME_STATE_STARTUP)
-				to_chat(src, SPAN_WARNING("The game is still setting up, please try again later."))
+				to_chat(src, SPAN_WARNING("游戏仍在初始化，请稍后重试。"))
 				return
 			if(alert(src,"Are you sure you wish to observe? When you observe, you will not be able to join as marine. It might also take some time to become a xeno or responder!","Player Setup","Yes","No") == "Yes")
 				if(!client)
@@ -134,10 +134,10 @@
 
 				var/obj/effect/landmark/observer_start/O = SAFEPICK(GLOB.observer_starts)
 				if(istype(O))
-					to_chat(src, SPAN_NOTICE("Now teleporting."))
+					to_chat(src, SPAN_NOTICE("正在传送。"))
 					observer.forceMove(O.loc)
 				else
-					to_chat(src, SPAN_DANGER("Could not locate an observer spawn point. Use the Teleport verb to jump to the station map."))
+					to_chat(src, SPAN_DANGER("无法找到观察者出生点。请使用传送指令前往地图。"))
 				observer.icon = 'icons/mob/humans/species/r_human.dmi'
 				observer.icon_state = "anglo_example"
 				observer.alpha = 127
@@ -160,11 +160,11 @@
 		if("late_join")
 
 			if(SSticker.current_state != GAME_STATE_PLAYING || !SSticker.mode)
-				to_chat(src, SPAN_WARNING("The round is either not ready, or has already finished..."))
+				to_chat(src, SPAN_WARNING("回合尚未就绪，或已经结束……"))
 				return
 
 			if(SSticker.mode.flags_round_type & MODE_NO_LATEJOIN)
-				to_chat(src, SPAN_WARNING("Sorry, you cannot late join during [SSticker.mode.name]. You have to start at the beginning of the round. You may observe or try to join as an alien, if possible."))
+				to_chat(src, SPAN_WARNING("抱歉，[localized_player_label(SSticker.mode.name)]模式不允许中途加入，必须从回合开始时参与。你可以观察，或在允许时尝试作为异形加入。"))
 				return
 
 			// commented out tutorial due to its lack of relevance on pve
@@ -212,7 +212,7 @@
 		if("SelectedJob")
 
 			if(!GLOB.enter_allowed)
-				to_chat(usr, SPAN_WARNING("There is an administrative lock on entering the game! (The dropship likely crashed into the Almayer. This should take at most 20 minutes.)"))
+				to_chat(usr, SPAN_WARNING("管理员已暂时锁定加入功能！（运输艇可能撞上了阿尔迈耶号，此状态通常不会超过20分钟。）"))
 				return
 
 			AttemptLateSpawn(href_list["job_selected"])
@@ -226,15 +226,15 @@
 
 /mob/new_player/proc/tutorial_menu()
 	if(SSticker.current_state <= GAME_STATE_SETTING_UP)
-		to_chat(src, SPAN_WARNING("Please wait for the round to start before entering a tutorial."))
+		to_chat(src, SPAN_WARNING("请等待回合开始后再进入教程。"))
 		return
 
 	if(SSticker.current_state == GAME_STATE_FINISHED)
-		to_chat(src, SPAN_WARNING("The round has ended. Please wait for the next round to enter a tutorial."))
+		to_chat(src, SPAN_WARNING("本回合已结束，请等待下一回合再进入教程。"))
 		return
 
 	if(SSticker.tutorial_disabled)
-		to_chat(src, SPAN_WARNING("Tutorials are currently disabled because something broke, sorry!"))
+		to_chat(src, SPAN_WARNING("抱歉，教程因故障暂时停用！"))
 		return
 
 	var/datum/tutorial_menu/menu = new(src)
@@ -245,13 +245,13 @@
 	if (src != usr)
 		return
 	if(SSticker.current_state != GAME_STATE_PLAYING)
-		to_chat(usr, SPAN_WARNING("The round is either not ready, or has already finished!"))
+		to_chat(usr, SPAN_WARNING("回合尚未就绪，或已经结束！"))
 		return
 	if(!GLOB.enter_allowed)
-		to_chat(usr, SPAN_WARNING("There is an administrative lock on entering the game! (The dropship likely crashed into the Almayer. This should take at most 20 minutes.)"))
+		to_chat(usr, SPAN_WARNING("管理员已暂时锁定加入功能！（运输艇可能撞上了阿尔迈耶号，此状态通常不会超过20分钟。）"))
 		return
 	if(!GLOB.RoleAuthority.assign_role(src, player_rank, 1))
-		to_chat(src, alert("[rank] is not available. Please try another."))
+		to_chat(src, alert("[localized_player_label(rank)]职位不可用，请选择其他职位。"))
 		return
 
 	spawning = TRUE
@@ -261,7 +261,7 @@
 	GLOB.RoleAuthority.equip_role(character, player_rank, late_join = TRUE)
 
 	if((GLOB.security_level > SEC_LEVEL_BLUE || SShijack.hijack_status) && player_rank.gets_emergency_kit)
-		to_chat(character, SPAN_HIGHDANGER("As you stagger out of hypersleep, the sleep bay blares: '[SShijack.evac_status ? "VESSEL UNDERGOING EVACUATION PROCEDURES, SELF DEFENSE KIT PROVIDED" : "VESSEL IN HEIGHTENED ALERT STATUS, SELF DEFENSE KIT PROVIDED"]'."))
+		to_chat(character, SPAN_HIGHDANGER("你踉跄着离开超眠舱，舱室广播响起：“[SShijack.evac_status ? "舰船正在疏散，已提供自卫套件" : "舰船处于高度警戒状态，已提供自卫套件"]。”"))
 		character.put_in_hands(new /obj/item/storage/box/kit/cryo_self_defense(character.loc))
 
 	GLOB.data_core.manifest_inject(character)
@@ -311,15 +311,15 @@
 	var/hours = mills / 36000
 
 	var/dat = "<html><body onselectstart='return false;'><center>"
-	dat += "Round Duration: [floor(hours)]h [floor(mins)]m<br>"
+	dat += "回合时长：[floor(hours)] 小时 [floor(mins)] 分钟<br>"
 
 	if(SShijack)
 		switch(SShijack.evac_status)
 			if(EVACUATION_STATUS_INITIATED)
-				dat += "<font color='red'><b>The [MAIN_SHIP_NAME] is being evacuated.</b></font><br>"
+				dat += "<font color='red'><b>[MAIN_SHIP_NAME]正在疏散。</b></font><br>"
 
 	var/positions = FALSE
-	var/position_dat = "Choose from the following open positions:<br>"
+	var/position_dat = "请选择以下空缺职位：<br>"
 	var/roles_show = FLAG_SHOW_ALL_JOBS
 
 	for(var/i in GLOB.RoleAuthority.roles_for_mode)
@@ -332,44 +332,44 @@
 			if(M.client && M.job == J.title)
 				active++
 		if(roles_show & FLAG_SHOW_CIC && GLOB.ROLES_CIC.Find(J.title))
-			dat += "Command:<br>"
+			dat += "指挥部：<br>"
 			roles_show ^= FLAG_SHOW_CIC
 
 		else if(roles_show & FLAG_SHOW_AUXIL_SUPPORT && GLOB.ROLES_AUXIL_SUPPORT.Find(J.title))
-			dat += "<hr>Auxiliary Combat Support:<br>"
+			dat += "<hr>辅助战斗支援：<br>"
 			roles_show ^= FLAG_SHOW_AUXIL_SUPPORT
 
 		else if(roles_show & FLAG_SHOW_MISC && GLOB.ROLES_MISC.Find(J.title))
-			dat += "<hr>Other:<br>"
+			dat += "<hr>其他：<br>"
 			roles_show ^= FLAG_SHOW_MISC
 
 		else if(roles_show & FLAG_SHOW_POLICE && GLOB.ROLES_POLICE.Find(J.title))
-			dat += "<hr>Military Police:<br>"
+			dat += "<hr>宪兵：<br>"
 			roles_show ^= FLAG_SHOW_POLICE
 
 		else if(roles_show & FLAG_SHOW_ENGINEERING && GLOB.ROLES_ENGINEERING.Find(J.title))
-			dat += "<hr>Engineering:<br>"
+			dat += "<hr>工程部：<br>"
 			roles_show ^= FLAG_SHOW_ENGINEERING
 
 		else if(roles_show & FLAG_SHOW_REQUISITION && GLOB.ROLES_REQUISITION.Find(J.title))
-			dat += "<hr>Requisitions:<br>"
+			dat += "<hr>军需部：<br>"
 			roles_show ^= FLAG_SHOW_REQUISITION
 
 		else if(roles_show & FLAG_SHOW_MEDICAL && GLOB.ROLES_MEDICAL.Find(J.title))
-			dat += "<hr>Medbay:<br>"
+			dat += "<hr>医疗部：<br>"
 			roles_show ^= FLAG_SHOW_MEDICAL
 
 		else if(roles_show & FLAG_SHOW_MARINES && GLOB.ROLES_MARINES.Find(J.title))
-			dat += "<hr>Marines:<br>"
+			dat += "<hr>陆战队：<br>"
 			roles_show ^= FLAG_SHOW_MARINES
 
 		positions = TRUE
-		position_dat += "<a href='byond://?src=\ref[src];lobby_choice=SelectedJob;job_selected=[J.title]'>[J.disp_title] ([J.current_positions]) (Active: [active])</a><br>"
+		position_dat += "<a href='byond://?src=\ref[src];lobby_choice=SelectedJob;job_selected=[J.title]'>[localized_player_label(J.disp_title)] ([J.current_positions]) (活跃： [active])</a><br>"
 
-	dat += positions ? position_dat : "There are no available jobs. This mode has limited slotting per round. Please see the discord for more info and future playtimes: [CONFIG_GET(string/discordurl)]"
+	dat += positions ? position_dat : "暂无空缺职位。本模式每回合的名额有限。请前往 Discord 了解详情及后续开局时间： [CONFIG_GET(string/discordurl)]"
 
 	dat += "</center>"
-	show_browser(src, dat, "Late Join", "latechoices", width = 420, height = 700)
+	show_browser(src, dat, "中途加入", "latechoices", width = 420, height = 700)
 
 
 /mob/new_player/proc/create_character(is_late_join = FALSE)
@@ -391,10 +391,10 @@
 
 /mob/new_player/proc/ViewManifest()
 	var/dat = "<html><body>"
-	dat += "<h4><center>Crew Manifest:</center></h4>"
+	dat += "<h4><center>船员名册：</center></h4>"
 	dat += GLOB.data_core.get_manifest(FALSE, TRUE)
 
-	show_browser(src, dat, "Crew Manifest", "manifest", width = 450, height = 750)
+	show_browser(src, dat, "船员名册", "manifest", width = 450, height = 750)
 
 /mob/new_player/proc/ViewHiveLeaders()
 	if(!GLOB.hive_leaders_tgui)
@@ -408,7 +408,7 @@
 /datum/hive_leaders/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "HiveLeaders", "Hive Leaders")
+		ui = new(user, src, "HiveLeaders", "虫巢领袖")
 		ui.open()
 		ui.set_autoupdate(FALSE)
 
@@ -451,7 +451,7 @@
 /mob/new_player/is_ready()
 	return ready && ..()
 
-/mob/new_player/hear_say(message, verb = "says", datum/language/language = null, alt_name = "", italics = 0, mob/speaker = null)
+/mob/new_player/hear_say(message, verb = "说道", datum/language/language = null, alt_name = "", italics = 0, mob/speaker = null)
 	return
 
 /mob/new_player/hear_radio(message, verb, datum/language/language, part_a, part_b, mob/speaker, hard_to_hear, vname, command, no_paygrade = FALSE)
@@ -460,19 +460,19 @@
 /mob/new_player/get_status_tab_items()
 	. = ..()
 	. += ""
-	. += "Game Mode: [GLOB.master_mode]"
+	. += "游戏模式：[localized_player_label(GLOB.master_mode)]"
 
 	if(SSticker.HasRoundStarted())
 		return
 
 	var/time_remaining = SSticker.GetTimeLeft()
 	if(time_remaining > 0)
-		. += "Time To Start: [floor(time_remaining)]s[SSticker.delay_start ? " (DELAYED)" : ""]"
+		. += "开始倒计时：[floor(time_remaining)]秒[SSticker.delay_start ? "（已延迟）" : ""]"
 	else if(time_remaining == -10)
-		. += "Time To Start: DELAYED"
+		. += "开始倒计时：已延迟"
 	else
-		. += "Time To Start: SOON"
+		. += "开始倒计时：即将开始"
 
-	. += "Players: [SSticker.totalPlayers]"
+	. += "玩家数：[SSticker.totalPlayers]"
 	if(client.admin_holder)
-		. += "Players Ready: [SSticker.totalPlayersReady]"
+		. += "已准备玩家数：[SSticker.totalPlayersReady]"

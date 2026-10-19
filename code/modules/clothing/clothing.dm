@@ -25,11 +25,11 @@
 	var/list/ties = list()
 	for(var/obj/item/clothing/accessory/accessory in accessories)
 		if(accessory.high_visibility)
-			ties += "\a [accessory.get_examine_line(user)]"
+			ties += "[accessory.get_examine_line(user)]"
 	if(length(ties))
-		.+= " with [english_list(ties)] attached"
+		.+= "，装有[english_list(ties, and_text = "和", comma_text = "、")]"
 	if(LAZYLEN(accessories) > length(ties))
-		.+= ". <a href='byond://?src=\ref[src];list_acc=1'>\[See accessories\]</a>"
+		.+= "。<a href='byond://?src=\ref[src];list_acc=1'>\[查看配件\]</a>"
 
 /obj/item/clothing/Topic(href, href_list)
 	. = ..()
@@ -39,8 +39,8 @@
 		if(LAZYLEN(accessories))
 			var/list/ties = list()
 			for(var/accessory in accessories)
-				ties += "[icon2html(accessory)] \a [accessory]"
-			to_chat(usr, "Attached to \the [src] are [english_list(ties)].")
+				ties += "[icon2html(accessory)] [accessory]"
+			to_chat(usr, "[src]上装有[english_list(ties, and_text = "和", comma_text = "、")]。")
 		return
 
 /obj/item/clothing/attack_hand(mob/user as mob)
@@ -123,7 +123,7 @@
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
 /obj/item/clothing/ears
-	name = "ears"
+	name = "耳部装备"
 	w_class = SIZE_TINY
 	throwforce = 2
 	flags_equip_slot = SLOT_EAR
@@ -134,8 +134,8 @@
 		M.update_inv_ears()
 
 /obj/item/clothing/ears/earmuffs
-	name = "earmuffs"
-	desc = "Protects your hearing from loud noises, and quiet ones as well."
+	name = "隔音耳罩"
+	desc = "保护你的听力，隔绝响声，连轻微的声音也听不见。"
 	icon_state = "earmuffs"
 	item_state = "earmuffs"
 	flags_equip_slot = SLOT_EAR
@@ -199,7 +199,7 @@
 		var/obj/item/clothing/under/U = H.w_uniform
 		//some uniforms prevent you from wearing any suits but certain types
 		if(U && U.suit_restricted && !is_type_in_list(src, U.suit_restricted))
-			to_chat(H, SPAN_WARNING("[src] can't be worn with [U]."))
+			to_chat(H, SPAN_WARNING("[src]无法与[U]同时穿戴。"))
 			return 0
 	return 1
 
@@ -223,7 +223,7 @@
 	flags_armor_protection = BODY_FLAG_HANDS
 	flags_bodypart_hidden = BODY_FLAG_HANDS
 	flags_equip_slot = SLOT_HANDS
-	attack_verb = list("challenged")
+	attack_verb = list("挑衅")
 	valid_accessory_slots = list(ACCESSORY_SLOT_WRIST_L, ACCESSORY_SLOT_WRIST_R)
 	restricted_accessory_slots = list(ACCESSORY_SLOT_WRIST_L, ACCESSORY_SLOT_WRIST_R) // To prevent infinitely putting watches/wrist accessories on your gloves. That can be reserved for uniforms, where you have the whole ARM to put shit on
 	sprite_sheets = list(SPECIES_MONKEY = 'icons/mob/humans/species/monkeys/onmob/hands_monkey.dmi')
@@ -272,7 +272,7 @@
 	set src in usr
 
 	if(!(flags_inventory & ALLOWINTERNALS))
-		to_chat(usr, SPAN_NOTICE("This mask doesnt support internals."))
+		to_chat(usr, SPAN_NOTICE("这款面罩不支持供气设备。"))
 		return
 
 	if(!iscarbon(usr))
@@ -284,7 +284,7 @@
 
 	if(C.internal)
 		C.internal = null
-		to_chat(C, SPAN_NOTICE("No longer running on internals."))
+		to_chat(C, SPAN_NOTICE("已停止使用供气设备。"))
 	else
 		var/list/nicename = null
 		var/list/tankcheck = null
@@ -292,10 +292,10 @@
 		if(ishuman(C))
 			var/mob/living/carbon/human/H = C
 			breathes = H.species.breath_type
-			nicename = list ("suit", "back", "belt", "right hand", "left hand", "left pocket", "right pocket")
+			nicename = list ("外套", "背部", "腰带", "右手", "左手", "左口袋", "右口袋")
 			tankcheck = list (H.s_store, C.back, H.belt, C.r_hand, C.l_hand, H.l_store, H.r_store)
 		else
-			nicename = list("Right Hand", "Left Hand", "Back")
+			nicename = list("右手", "左手", "背部")
 			tankcheck = list(C.r_hand, C.l_hand, C.back)
 		var/best = 0
 		var/bestpressure = 0
@@ -322,10 +322,10 @@
 						bestpressure = t.pressure
 		//We've determined the best container now we set it as our internals
 		if(best)
-			to_chat(C, SPAN_NOTICE("You are now running on internals from [tankcheck[best]] on your [nicename[best]]."))
+			to_chat(C, SPAN_NOTICE("你开始使用[nicename[best]]处的[tankcheck[best]]供气。"))
 			C.internal = tankcheck[best]
 		if(!C.internal)
-			to_chat(C, SPAN_NOTICE("You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ",breathes)] tank."))
+			to_chat(C, SPAN_NOTICE("你没有[list("oxygen" = "氧气", "nitrogen" = "氮气", "phoron" = "弗燃素", "carbon dioxide" = "二氧化碳")[breathes] || breathes]罐。"))
 	return TRUE
 
 
@@ -377,7 +377,7 @@
 		return FALSE
 	// If the item's too big to fit in the shoes
 	if(is_type_in_typecache(item_to_insert, allowed_items_typecache) && item_to_insert.w_class >= SIZE_MEDIUM)
-		to_chat(usr, SPAN_DANGER("That won't fit in the footwear!"))
+		to_chat(usr, SPAN_DANGER("它放不进鞋子里！"))
 		return FALSE
 	// If `item_to_insert` isn't in the whitelist.
 	if(!is_type_in_typecache(item_to_insert, allowed_items_typecache))
@@ -397,7 +397,7 @@
 	if(!user.drop_inv_item_to_loc(item_to_insert, src))
 		return FALSE
 	_insert_item(item_to_insert)
-	to_chat(user, SPAN_NOTICE("You slide [item_to_insert] into [src]."))
+	to_chat(user, SPAN_NOTICE("你将[item_to_insert]塞入[src]。"))
 	playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, TRUE)
 	return TRUE
 
@@ -412,7 +412,7 @@
 /obj/item/clothing/shoes/proc/remove_item(mob/user)
 	if(!stored_item || !user.put_in_active_hand(stored_item))
 		return
-	to_chat(user, SPAN_NOTICE("You slide [stored_item] out of [src]."))
+	to_chat(user, SPAN_NOTICE("你从[src]中抽出[stored_item]。"))
 	playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, TRUE)
 	. = stored_item
 	stored_item = null
@@ -431,7 +431,7 @@
 /obj/item/clothing/shoes/get_examine_text(mob/user)
 	. = ..()
 	if(stored_item)
-		. += "\nIt is storing \a [stored_item]."
+		. += "\n里面存放着[stored_item]。"
 
 /obj/item/clothing/shoes/attack_hand(mob/living/user)
 	// Only allow someone to take out the `stored_item` if it's being worn or held, so that you can pick them up off the floor.

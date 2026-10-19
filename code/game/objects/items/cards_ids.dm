@@ -21,8 +21,8 @@
 	var/list/files = list(  )
 
 /obj/item/card/data
-	name = "data disk"
-	desc = "A disk of data."
+	name = "数据磁盘"
+	desc = "一张数据磁盘。"
 	icon_state = "data"
 	var/function = "storage"
 	var/data = "null"
@@ -35,19 +35,19 @@
 	set src in usr
 
 	if (t)
-		src.name = text("data disk- '[]'", t)
+		src.name = text("数据磁盘——“[]”", t)
 	else
-		src.name = "data disk"
+		src.name = "数据磁盘"
 	src.add_fingerprint(usr)
 	return
 
 /obj/item/card/data/clown
-	name = "\proper the coordinates to clown planet"
+	name = "\proper 小丑星球坐标"
 	icon_state = "data"
 	item_state = "red-id"
 	layer = OBJ_LAYER
 	level = 2
-	desc = "This card contains coordinates to the fabled Clown Planet. Handle with care."
+	desc = "卡内存有传说中小丑星球的坐标，小心保管。"
 	function = "teleporter"
 	data = "Clown Land"
 	black_market_value = 50
@@ -120,7 +120,7 @@
 
 /obj/item/card/id/attack_self(mob/user as mob)
 	..()
-	user.visible_message("[user] shows you: [icon2html(src, viewers(user))] [name]: assignment: [assignment]")
+	user.visible_message("[user]向你展示：[icon2html(src, viewers(user))][name]，职务：[localized_player_label(assignment)]。")
 	src.add_fingerprint(user)
 
 /obj/item/card/id/proc/set_user_data(mob/living/carbon/human/H)
@@ -134,7 +134,7 @@
 
 /obj/item/card/id/proc/set_assignment(new_assignment)
 	assignment = new_assignment
-	name = "[registered_name]'s [card_name] ([assignment])"
+	name = "[localized_player_label(registered_name)]的[localized_player_label(card_name)]（[localized_player_label(assignment)]）"
 
 /obj/item/card/id/GetAccess()
 	return access
@@ -147,8 +147,8 @@
 	set category = "Object"
 	set src in usr
 
-	to_chat(usr, "[icon2html(src, usr)] [name]: The current assignment on the card is [assignment]")
-	to_chat(usr, "The blood type on the card is [blood_type].")
+	to_chat(usr, "[icon2html(src, usr)][name]：卡上当前职务为[localized_player_label(assignment)]。")
+	to_chat(usr, "卡上的血型为[blood_type]。")
 
 /obj/item/card/id/proc/check_biometrics(mob/living/carbon/human/target)
 	if(registered_ref && (registered_ref != WEAKREF(target)))
@@ -158,81 +158,81 @@
 	return TRUE
 
 /obj/item/card/id/data
-	name = "identification holo-badge"
-	desc = "A plain, mass produced holo-badge."
+	name = "全息身份徽章"
+	desc = "朴素的量产全息徽章。"
 	icon_state = "data"
 
 /obj/item/card/id/lanyard
-	name = "identification holo-lanyard"
-	desc = "A crude holo-lanyard. As cheap as they come."
+	name = "全息身份挂绳"
+	desc = "粗制的全息身份挂绳，便宜得不能再便宜。"
 	icon_state = "lanyard"
 	item_state = "blue-id"
 
 /obj/item/card/id/silver
-	name = "identification holo-badge"
-	desc = "A silver plated holo-badge which shows honour and dedication."
+	name = "全息身份徽章"
+	desc = "象征荣誉与奉献的镀银全息徽章。"
 	icon_state = "silver"
 	item_state = "silver_id"
 
 /obj/item/card/id/silver/clearance_badge
-	name = "corporate doctor badge"
-	desc = "A corporate holo-badge. It is fingerprint locked with clearance level 3 access. It is commonly held by corporate doctors."
+	name = "公司医生徽章"
+	desc = "公司全息徽章，采用指纹锁，具有 3 级权限，通常由公司医生持有。"
 	icon_state = "clearance"
 	var/credits_to_give = 15 //gives the equivalent clearance access in credits
 
 /obj/item/card/id/silver/clearance_badge/scientist
-	name = "corporate scientist badge"
-	desc = "A corporate holo-badge. It is fingerprint locked with clearance level 4 access. It is commonly held by corporate scientists."
+	name = "公司科学家徽章"
+	desc = "公司全息徽章，采用指纹锁，具有 4 级权限，通常由公司科学家持有。"
 	credits_to_give = 27
 
 /obj/item/card/id/silver/clearance_badge/cl
-	name = "corporate liaison badge"
-	desc = "A corporate holo-badge in unique corporate orange and white. It is fingerprint locked with clearance level 5 access. It is commonly held by corporate liaisons."
+	name = "公司联络员徽章"
+	desc = "采用独特公司橙白配色的全息徽章，指纹锁定，具有 5 级权限，通常由公司联络员持有。"
 	icon_state = "cl"
 	credits_to_give = 42
 
 /obj/item/card/id/silver/clearance_badge/manager
-	name = "corporate manager badge"
-	desc = "A corporate holo-badge in standard corporate orange and white. It has a unique uncapped bottom. It is fingerprint locked with 5-X clearance level. Commonly held by corporate managers."
+	name = "公司经理徽章"
+	desc = "采用公司标准橙白配色的全息徽章，底部独特地未封口。指纹锁定，具有 5-X 级权限，通常由公司经理持有。"
 	icon_state = "pmc"
 	credits_to_give = 47
 
 /obj/item/card/id/pizza
-	name = "pizza guy badge"
-	desc = "It reads: 'Pizza-guy local union No. 217','We always deliver!'"
+	name = "披萨送餐员徽章"
+	desc = "上面写着：“披萨送餐员工会第 217 分会”，“使命必达！”"
 	icon_state = "pizza"
 	item_state = "gold_id"
 
 /obj/item/card/id/souto
-	name = "Souto Man"
-	desc = "It reads: 'The one and only!'"
+	name = "索托侠"
+	desc = "上面写着：“独一无二！”"
 	icon_state = "gold"
 	item_state = "gold_id"
 
 /obj/item/card/id/gold
-	name = "identification holo-badge"
-	desc = "A gold plated holo-badge which shows power and might."
+	name = "全息身份徽章"
+	desc = "象征权力与力量的镀金全息徽章。"
 	icon_state = "gold"
 	item_state = "gold_id"
 
 /obj/item/card/id/visa
-	name = "battered-up visa card"
-	desc = "A corporate holo-badge. It's a unique Corporate orange and white."
+	name = "破旧的签证卡"
+	desc = "采用独特公司橙白配色的全息徽章。"
 	icon_state = "visa"
 
 /obj/item/card/id/silver/cl
-	name = "corporate holo-badge"
-	desc = "A corporate holo-badge. It's a unique Corporate orange and white."
+	name = "公司全息徽章"
+	desc = "采用独特公司橙白配色的全息徽章。"
 	icon_state = "cl"
 
 /obj/item/card/id/gold/council
-	name = "identification holo-badge"
-	desc = "A real bronze gold Colonel's holo-badge. Commands respect, authority, and it makes an excellent paperweight."
+	name = "全息身份徽章"
+	desc = "真正的青铜金色上校全息徽章。象征威望与权威，也能当出色的镇纸。"
 	icon_state = "commodore"
 
 /obj/item/card/id/pmc
-	name = "\improper PMC holo-badge"
-	desc = "A corporate holo-badge. It has a unique uncapped bottom."
+	name = "\improper 私人军事公司全息徽章"
+	desc = "公司全息徽章，底部独特地未封口。"
 	icon_state = "pmc"
 	registered_name = "The Corporation"
 	assignment = "Corporate Mercenary"
@@ -242,27 +242,27 @@
 	..()
 
 /obj/item/card/id/pmc/ds
-	name = "\improper Corporate holo-badge"
-	desc = "It lists a callsign and a blood type. Issued to Whiteout protocol teams only."
+	name = "\improper 公司全息徽章"
+	desc = "列有呼号和血型，仅配发给白幕协议小队。"
 	icon_state = "ds"
 
 /obj/item/card/id/marshal
-	name = "\improper CMB marshal gold badge"
-	desc = "A coveted gold badge signifying that the wearer is one of the few CMB Marshals patroling the outer rim. It is a sign of justice, authority, and protection. Protecting those who can't. This badge represents a commitment to a sworn oath always kept."
+	name = "\improper 殖民地执法局法警金徽章"
+	desc = "令人向往的金徽章，表明佩戴者是少数巡逻外缘地区的殖民地执法局法警之一。它象征正义、权威与保护，保护无力自保者，代表对永不背弃之誓言的承诺。"
 	icon_state = "cmbmar"
 	item_state = "gold_badge"
 	paygrade = PAY_SHORT_CMBM
 
 /obj/item/card/id/deputy
-	name = "\improper CMB deputy silver badge"
-	desc = "The silver badge which represents that the wearer is a CMB Deputy. It is a sign of justice, authority, and protection. Protecting those who can't. This badge represents a commitment to a sworn oath always kept."
+	name = "\improper 殖民地执法局副法警银徽章"
+	desc = "表明佩戴者为殖民地执法局副法警的银徽章。它象征正义、权威与保护，保护无力自保者，代表对永不背弃之誓言的承诺。"
 	icon_state = "cmbdep"
 	item_state = "silver_badge"
 	paygrade = PAY_SHORT_CMBD
 
 /obj/item/card/id/general
-	name = "general officer holo-badge"
-	desc = "Top brass of the top brass. Issued to only the most dedicated."
+	name = "将官全息徽章"
+	desc = "高层中的高层，只授予最尽忠职守的人。"
 	icon_state = "general"
 	registered_name = "The USCM"
 	assignment = "General"
@@ -271,8 +271,8 @@
 	access = get_access(ACCESS_LIST_MARINE_ALL)
 
 /obj/item/card/id/provost
-	name = "provost holo-badge"
-	desc = "Issued to members of the Provost Office."
+	name = "军法监察全息徽章"
+	desc = "配发给军法监察办公室成员。"
 	icon_state = "provost"
 	registered_name = "Provost Office"
 	assignment = "Provost"
@@ -281,7 +281,7 @@
 	access = get_access(ACCESS_LIST_MARINE_ALL)
 
 /obj/item/card/id/adaptive
-	name = "agent card"
+	name = "特工身份卡"
 	access = list(ACCESS_ILLEGAL_PIRATE)
 
 /obj/item/card/id/adaptive/New(mob/user as mob)
@@ -289,7 +289,7 @@
 	if(!QDELETED(user)) // Runtime prevention on laggy starts or where users log out because of lag at round start.
 		registered_name = ishuman(user) ? user.real_name : "Unknown"
 	assignment = "Agent"
-	name = "[registered_name]'s [card_name] ([assignment])"
+	name = "[localized_player_label(registered_name)]的[localized_player_label(card_name)]（[localized_player_label(assignment)]）"
 
 /obj/item/card/id/adaptive/afterattack(obj/item/O as obj, mob/user as mob, proximity)
 	if(!proximity)
@@ -298,37 +298,37 @@
 		var/obj/item/card/id/target_id = O
 		access |= target_id.access
 		if(ishuman(user))
-			to_chat(user, SPAN_NOTICE("The card's microscanners activate as you pass it over the ID, copying its access."))
+			to_chat(user, SPAN_NOTICE("你将卡片扫过身份卡，微型扫描器随即启动，复制了它的权限。"))
 
 /obj/item/card/id/adaptive/attack_self(mob/user as mob)
-	switch(alert("Would you like to display the ID, or retitle it?","Choose.","Rename","Show"))
+	switch(localized_native_alert(user, "要展示身份卡，还是更改身份信息？", "选择操作","Rename","Show"))
 		if("Rename")
-			var/new_name = strip_html(input(user, "What name would you like to put on this card?", "Agent card name", ishuman(user) ? user.real_name : user.name),26)
+			var/new_name = strip_html(input(user, "要在卡上填写什么姓名？", "特工身份卡姓名", ishuman(user) ? user.real_name : user.name),26)
 			if(!new_name || new_name == "Unknown" || new_name == "floor" || new_name == "wall" || new_name == "r-wall") //Same as mob/new_player/prefrences.dm
-				to_chat(user, SPAN_WARNING("Invalid Name."))
+				to_chat(user, SPAN_WARNING("姓名无效。"))
 				return
 
-			var/new_job = strip_html(input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", "Assistant"))
+			var/new_job = strip_html(input(user, "要在卡上填写什么职务？\n注意：除维护区外，不会因此获得其他权限。", "特工身份卡职务", "Assistant"))
 			if(!new_job)
-				to_chat(user, SPAN_WARNING("Invalid Assignment."))
+				to_chat(user, SPAN_WARNING("职务无效。"))
 				return
 
-			var/new_rank = strip_html(input(user, "What paygrade do would you like to put on this card?\nNote: This must be the shorthand version of the grade, I.E CIV for Civillian or ME1 for Marine Private", "Agent card paygrade assignment", PAY_SHORT_CIV))
+			var/new_rank = strip_html(input(user, "要在卡上填写什么军衔等级？\n注意：必须使用军衔简码，例如平民为 CIV，陆战队列兵为 ME1。", "特工身份卡军衔", PAY_SHORT_CIV))
 			if(!new_rank || !(new_rank in GLOB.paygrades))
-				to_chat(user, SPAN_WARNING("Invalid Paygrade."))
+				to_chat(user, SPAN_WARNING("军衔等级无效。"))
 				return
 
 			registered_name = new_name
 			assignment = new_job
-			name = "[registered_name]'s ID Card ([assignment])"
+			name = "[localized_player_label(registered_name)]的身份卡（[localized_player_label(assignment)]）"
 			paygrade = new_rank
-			to_chat(user, SPAN_NOTICE("You successfully forge the ID card."))
+			to_chat(user, SPAN_NOTICE("你成功伪造了身份卡。"))
 			return
 	..()
 
 /obj/item/card/id/captains_spare
-	name = "captain's spare ID"
-	desc = "The spare ID of the High Lord himself."
+	name = "舰长备用身份卡"
+	desc = "那位至高大人物本人的备用身份卡。"
 	icon_state = "gold"
 	item_state = "gold_id"
 	registered_name = "Captain"
@@ -339,8 +339,8 @@
 	..()
 
 /obj/item/card/id/centcom
-	name = "\improper CentCom. ID"
-	desc = "An ID straight from Cent. Com."
+	name = "\improper 中央指挥部身份卡"
+	desc = "直接来自中央指挥部的身份卡。"
 	icon_state = "centcom"
 	registered_name = "Central Command"
 	assignment = "General"
@@ -365,8 +365,8 @@
 
 
 /obj/item/card/id/dogtag
-	name = "dog tag"
-	desc = "A dog tag."
+	name = "身份识别牌"
+	desc = "一块身份识别牌。"
 	icon_state = "dogtag"
 	item_state = "dogtag"
 	pinned_on_uniform = FALSE
@@ -376,11 +376,11 @@
 /obj/item/card/id/dogtag/get_examine_text(mob/user)
 	. = ..()
 	if(ishuman(user))
-		. += SPAN_NOTICE("It reads \"[registered_name] - [assignment] - [blood_type]\"")
+		. += SPAN_NOTICE("上面写着“[localized_player_label(registered_name)]——[localized_player_label(assignment)]——[localized_player_label(blood_type)]”。")
 
 /obj/item/dogtag
-	name = "information dog tag"
-	desc = "A fallen servicemember's information dog tag."
+	name = "信息识别牌"
+	desc = "阵亡军人的信息识别牌。"
 	icon_state = "dogtag_taken"
 	icon = 'icons/obj/items/card.dmi'
 	w_class = SIZE_TINY
@@ -398,8 +398,8 @@
 /obj/item/dogtag/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/dogtag))
 		var/obj/item/dogtag/D = I
-		to_chat(user, SPAN_NOTICE("You join the [length(fallen_names)>1 ? "tags":"two tags"] together."))
-		name = "information dog tags"
+		to_chat(user, SPAN_NOTICE("你将[length(fallen_names)>1 ? "这些识别牌":"两块识别牌"]合在一起。"))
+		name = "信息识别牌组"
 		if(D.fallen_names)
 			fallen_names += D.fallen_names
 			fallen_blood_types += D.fallen_blood_types
@@ -412,24 +412,24 @@
 /obj/item/dogtag/get_examine_text(mob/user)
 	. = ..()
 	if(ishuman(user) && LAZYLEN(fallen_names))
-		var/msg = "There [length(fallen_names)>1 ? \
-			"are [length(fallen_names)] tags.<br>They read":\
-			"is one ID tag.<br>It reads"]:"
+		var/msg = "[length(fallen_names)>1 ? \
+			"共有[length(fallen_names)]块识别牌。<br>上面写着":\
+			"有一块身份识别牌。<br>上面写着"]:"
 		for (var/i=1 to length(fallen_names))
-			msg += "<br>[i]. \"[fallen_names[i]] - [fallen_assgns[i]] - [fallen_blood_types[i]]\""
+			msg += "<br>[i]. \"[fallen_names[i]] - [localized_player_label(fallen_assgns[i])] - [fallen_blood_types[i]]\""
 		. += SPAN_NOTICE("[msg]")
 
 // Used to authenticate to CORSAT machines. Doesn't do anything except have its type variable
 /obj/item/card/data/corsat
-	name = "CORSAT administration code"
-	desc = "A disk of data containing one of the CORSAT administration authentication codes necessary to lift the biohazard lockdown."
+	name = "CORSAT 管理认证码"
+	desc = "存有 CORSAT 管理认证码之一的数据磁盘，用于解除生物危害封锁。"
 	icon_state = "data"
 	item_state = "red-id"
 	unacidable = 1
 
 /obj/item/card/data/prison
-	name = "prison lockdown administration code"
-	desc = "A disk of data containing one of the prison station administration authentication codes necessary to lift the security lockdown."
+	name = "监狱封锁管理认证码"
+	desc = "存有监狱空间站管理认证码之一的数据磁盘，用于解除安保封锁。"
 	icon_state = "data"
 	item_state = "red-id"
 	unacidable = 1

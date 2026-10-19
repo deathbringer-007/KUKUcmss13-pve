@@ -64,18 +64,18 @@
 	if(affecting == "head" && iscarbon(target) && !isxeno(target))
 		for(var/mob/O in viewers(user, null))
 			if(target != user)
-				O.show_message(text(SPAN_DANGER("<B>[target] has been hit over the head with a bottle of [name], by [user]!</B>")), SHOW_MESSAGE_VISIBLE)
+				O.show_message(text(SPAN_DANGER("<B>[user]用一瓶[name]砸中了[target]的头！</B>")), SHOW_MESSAGE_VISIBLE)
 			else
-				O.show_message(text(SPAN_DANGER("<B>[target] hit \himself with a bottle of [name] on the head!</B>")), SHOW_MESSAGE_VISIBLE)
+				O.show_message(text(SPAN_DANGER("<B>[target]用一瓶[name]砸中了自己的头！</B>")), SHOW_MESSAGE_VISIBLE)
 		if(drowsy_threshold > 0)
 			target.apply_effect(min(drowsy_threshold, 10) , DROWSY)
 
 	else //Regular attack text
 		for(var/mob/O in viewers(user, null))
 			if(target != user)
-				O.show_message(text(SPAN_DANGER("<B>[target] has been attacked with a bottle of [name], by [user]!</B>")), SHOW_MESSAGE_VISIBLE)
+				O.show_message(text(SPAN_DANGER("<B>[user]用一瓶[name]攻击了[target]！</B>")), SHOW_MESSAGE_VISIBLE)
 			else
-				O.show_message(text(SPAN_DANGER("<B>[target] has attacked \himself with a bottle of [name]!</B>")), SHOW_MESSAGE_VISIBLE)
+				O.show_message(text(SPAN_DANGER("<B>[target]用一瓶[name]攻击了自己！</B>")), SHOW_MESSAGE_VISIBLE)
 
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has attacked [target.name] ([target.ckey]) with a bottle!</font>")
 	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been smashed with a bottle by [user.name] ([user.ckey])</font>")
@@ -83,7 +83,7 @@
 
 	if(reagents)
 		for(var/mob/O in viewers(user, null))
-			O.show_message(text(SPAN_NOTICE("<B>The contents of \the [src] splashes all over [target]!</B>")), SHOW_MESSAGE_VISIBLE)
+			O.show_message(text(SPAN_NOTICE("<B>[src]中的液体溅了[target]一身！</B>")), SHOW_MESSAGE_VISIBLE)
 		reagents.reaction(target, TOUCH)
 
 	smash(target, user)
@@ -94,7 +94,7 @@
 	if(!isGlass || !istype(I, /obj/item/paper))
 		return ..()
 	if(!reagents || !length(reagents.reagent_list))
-		to_chat(user, SPAN_NOTICE("\The [src] is empty..."))
+		to_chat(user, SPAN_NOTICE("[src]是空的……"))
 		return
 	var/alcohol_potency = 0
 	for(var/datum/reagent/R in reagents.reagent_list)
@@ -105,7 +105,7 @@
 			alcohol_potency += RA.boozepwr * (R.volume / 8)
 
 	if(alcohol_potency < BURN_LEVEL_TIER_1)
-		to_chat(user, SPAN_NOTICE("There's not enough flammable liquid in \the [src]!"))
+		to_chat(user, SPAN_NOTICE("[src]中的易燃液体不足！"))
 		return
 	alcohol_potency = clamp(alcohol_potency, BURN_LEVEL_TIER_1, BURN_LEVEL_TIER_7)
 
@@ -113,7 +113,7 @@
 		return
 	var/turf/T = get_turf(src)
 	var/obj/item/explosive/grenade/incendiary/molotov/M = new /obj/item/explosive/grenade/incendiary/molotov(T, alcohol_potency)
-	to_chat(user, SPAN_NOTICE("You craft \a [M]!"))
+	to_chat(user, SPAN_NOTICE("你制作了[M]！"))
 	user.put_in_hands(M)
 	qdel(I)
 	qdel(src)
@@ -160,8 +160,8 @@
 	reagents.add_reagent("vodka", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/vodka/stolichnaya
-	name = "\improper Stolichnaya Vodka"
-	desc = "A premier export from the UPP member state of Russia. Because of meticulous enforcement of state regulations, it is considered one of the highest quality vodkas available."
+	name = "\improper 首都伏特加"
+	desc = "来自进步人民联盟成员国俄罗斯的优质出口酒。得益于对国家法规的一丝不苟地执行，它被公认为市面上品质最好的伏特加之一。"
 	icon_state = "vodkabottle"
 
 //chess bottles
@@ -248,8 +248,8 @@
 	reagents.add_reagent("specialwhiskey", 50)
 
 /obj/item/reagent_container/food/drinks/bottle/bottleofnothing
-	name = "Bottle of Nothing"
-	desc = "A bottle filled with nothing"
+	name = "虚无之瓶"
+	desc = "一个什么也没有装的瓶子。"
 	icon_state = "bottleofnothing"
 	center_of_mass = "x=17;y=5"
 
@@ -258,8 +258,8 @@
 	reagents.add_reagent("nothing", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/patron
-	name = "Wrapp Artiste Patron"
-	desc = "Silver laced tequila, served in space night clubs across the galaxy."
+	name = "说唱艺术家培恩龙舌兰"
+	desc = "掺有银箔的龙舌兰酒，遍及银河各地的太空夜总会。"
 	icon_state = "patronbottle"
 	center_of_mass = "x=16;y=6"
 
@@ -278,8 +278,8 @@
 	reagents.add_reagent("rum", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/holywater
-	name = "Flask of Holy Water"
-	desc = "A flask of the chaplain's holy water."
+	name = "圣水瓶"
+	desc = "一瓶随军牧师的圣水。"
 	icon_state = "holyflask"
 	center_of_mass = "x=17;y=10"
 
@@ -308,8 +308,8 @@
 	reagents.add_reagent("kahlua", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/goldschlager
-	name = "College Girl Goldschlager"
-	desc = "Because they are the only ones who will drink 100 proof cinnamon schnapps."
+	name = "女大学生金箔肉桂酒"
+	desc = "因为只有她们才会喝这种酒精度为 50% 的肉桂烈酒。"
 	icon_state = "goldschlagerbottle"
 	center_of_mass = "x=15;y=3"
 
@@ -348,8 +348,8 @@
 	reagents.add_reagent("absinthe", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/blackout //used for testing alcohol code
-	name = "Blackout Stout"
-	desc = "Renowned through space and time, a bottle of Blackout is enough to knock out almost anyone. A true test for the true drunkard."
+	name = "断片烈性黑啤"
+	desc = "名扬时空的美酒，一瓶就足以让几乎任何人醉倒。真正考验酒鬼的佳酿。"
 	icon_state = "pwineglass"
 	center_of_mass = "x=16;y=6"
 
@@ -388,8 +388,8 @@
 	reagents.add_reagent("grenadine", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/pwine
-	name = "Warlock's Velvet"
-	desc = "What a delightful packaging for a surely high-quality wine! The vintage must be amazing!"
+	name = "术士天鹅绒葡萄酒"
+	desc = "如此精美的包装，里面一定是上等葡萄酒！年份想必也很出色！"
 	icon_state = "pwinebottle"
 	center_of_mass = "x=16;y=4"
 

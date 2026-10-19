@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/yautja
-	name = "ancient alien bracers"
-	desc = "A pair of strange, alien bracers."
+	name = "古老外星护腕"
+	desc = "一对奇异的外星护腕。"
 
 	icon = 'icons/obj/items/hunter/pred_gear.dmi'
 	icon_state = "bracer"
@@ -212,7 +212,7 @@
 // Toggle the notification sound
 /obj/item/clothing/gloves/yautja/verb/toggle_notification_sound()
 	set name = "Toggle Bracer Sound"
-	set desc = "Toggle your bracer's notification sound."
+	set desc = "切换护腕通知音。"
 	set src in usr
 
 	notification_sound = !notification_sound
@@ -220,8 +220,8 @@
 
 
 /obj/item/clothing/gloves/yautja/thrall
-	name = "thrall bracers"
-	desc = "A pair of strange alien bracers, adapted for human biology."
+	name = "奴仆护腕"
+	desc = "一对经过改装、适应人类生理的奇异外星护腕。"
 
 	color = "#b85440"
 	minimap_icon = "thrall"
@@ -242,8 +242,8 @@
 		SSminimaps.add_marker(owner, wearer_turf.z, MINIMAP_FLAG_YAUTJA, minimap_icon)
 
 /obj/item/clothing/gloves/yautja/hunter
-	name = "clan bracers"
-	desc = "An extremely complex, yet simple-to-operate set of armored bracers worn by the Yautja. It has many functions, activate them to use some."
+	name = "氏族护腕"
+	desc = "铁血战士佩戴的装甲护腕，结构极其复杂，操作却很简单。功能众多，启动后即可使用。"
 
 	armor_melee = CLOTHING_ARMOR_MEDIUM
 	armor_bullet = CLOTHING_ARMOR_HIGH
@@ -410,7 +410,7 @@
 //Should put a cool menu here, like ninjas.
 /obj/item/clothing/gloves/yautja/hunter/verb/wristblades()
 	set name = "Use Wrist Blades"
-	set desc = "Extend your wrist blades. They cannot be dropped, but can be retracted."
+	set desc = "伸出腕刃。无法丢弃，但可以收回。"
 	set category = "Yautja.Weapons"
 	set src in usr
 	. = wristblades_internal(usr, FALSE)
@@ -468,7 +468,7 @@
 
 /obj/item/clothing/gloves/yautja/hunter/verb/track_gear()
 	set name = "Track Yautja Gear"
-	set desc = "Find Yauja Gear."
+	set desc = "寻找铁血装备。"
 	set category = "Yautja.Tracker"
 	set src in usr
 	. = track_gear_internal(usr, FALSE)
@@ -536,22 +536,22 @@
 		to_chat(M, SPAN_NOTICE("你的护腕显示已死亡铁血战士的生物信号统计[dead_on_planet ? "，猎场内<b>[dead_on_planet]</b>个" : ""][dead_on_almayer ? "，轨道上<b>[dead_on_almayer]</b>个" : ""][dead_low_orbit ? "，低轨道上<b>[dead_low_orbit]</b>个" : ""]。"))
 	if(gear_on_planet || gear_on_almayer || gear_low_orbit)
 		output = TRUE
-		to_chat(M, SPAN_NOTICE("Your bracer shows a readout of Yautja technology signatures[gear_on_planet ? ", <b>[gear_on_planet]</b> in the hunting grounds" : ""][gear_on_almayer ? ", <b>[gear_on_almayer]</b> in orbit" : ""][gear_low_orbit ? ", <b>[gear_low_orbit]</b> in low orbit" : ""]."))
+		to_chat(M, SPAN_NOTICE("护腕显示铁血科技信号读数[gear_on_planet ? "，狩猎场中有 <b>[gear_on_planet]</b> 个" : ""][gear_on_almayer ? "，轨道上有 <b>[gear_on_almayer]</b> 个" : ""][gear_low_orbit ? "，低轨道有 <b>[gear_low_orbit]</b> 个" : ""]。"))
 	if(closest < 900)
 		output = TRUE
 		var/areaName = get_area_name(areaLoc)
 		if(closest == 0)
-			to_chat(M, SPAN_NOTICE("You are directly on top of the[closest_item ? " <b>[closest_item.name]</b>'s" : ""] signature."))
+			to_chat(M, SPAN_NOTICE("你就在[closest_item ? "<b>[closest_item.name]</b>的" : ""]信号正上方。"))
 		else
-			to_chat(M, SPAN_NOTICE("The closest signature[closest_item ? ", a <b>[closest_item.name]</b>" : ""], is [closest > 10 ? "approximately <b>[round(closest, 10)]</b>" : "<b>[closest]</b>"] paces <b>[dir2text(direction)]</b> in <b>[areaName]</b>."))
+			to_chat(M, SPAN_NOTICE("最近的信号[closest_item ? "，即<b>[closest_item.name]</b>，" : ""]位于<b>[areaName]</b>的<b>[localized_player_label(dir2text(direction))]</b>方向，距离[closest > 10 ? "约 <b>[round(closest, 10)]</b>" : "<b>[closest]</b>"]步。"))
 	if(!output)
-		to_chat(M, SPAN_NOTICE("There are no signatures that require your attention."))
+		to_chat(M, SPAN_NOTICE("没有需要你留意的信号。"))
 	return TRUE
 
 
 /obj/item/clothing/gloves/yautja/hunter/verb/cloaker()
 	set name = "Toggle Cloaking Device"
-	set desc = "Activate your suit's cloaking device. It will malfunction if the suit takes damage or gets excessively wet."
+	set desc = "启动护甲的隐形装置。护甲受损或过度浸水时会故障。"
 	set category = "Yautja.Utility"
 	set src in usr
 	. = cloaker_internal(usr, FALSE)
@@ -569,20 +569,20 @@
 
 	if(HAS_TRAIT(user, TRAIT_CLOAKED)) //Turn it off.
 		if(cloak_timer > world.time)
-			to_chat(M, SPAN_WARNING("Your cloaking device is busy! Time left: <B>[max(floor((cloak_timer - world.time) / 10), 1)]</b> seconds."))
+			to_chat(M, SPAN_WARNING("隐形装置正忙！剩余 <B>[max(floor((cloak_timer - world.time) / 10), 1)]</b> 秒。"))
 			return FALSE
 		decloak(user)
 	else //Turn it on!
 		if(exploding)
-			to_chat(M, SPAN_WARNING("Your bracer is much too busy violently exploding to activate the cloaking device."))
+			to_chat(M, SPAN_WARNING("你的护腕正忙着猛烈爆炸，没空启动隐形装置。"))
 			return FALSE
 
 		if(cloak_malfunction > world.time)
-			to_chat(M, SPAN_WARNING("Your cloak is malfunctioning and can't be enabled right now!"))
+			to_chat(M, SPAN_WARNING("你的披风故障了，暂时无法启动！"))
 			return FALSE
 
 		if(cloak_timer > world.time)
-			to_chat(M, SPAN_WARNING("Your cloaking device is still recharging! Time left: <B>[max(floor((cloak_timer - world.time) / 10), 1)]</b> seconds."))
+			to_chat(M, SPAN_WARNING("隐形装置仍在充能！剩余 <B>[max(floor((cloak_timer - world.time) / 10), 1)]</b> 秒。"))
 			return FALSE
 
 		if(!drain_power(M, 50))
@@ -601,7 +601,7 @@
 
 		log_game("[key_name_admin(user)] has enabled their cloaking device.")
 		if(!silent)
-			M.visible_message(SPAN_WARNING("[M] vanishes into thin air!"), SPAN_NOTICE("You are now invisible to normal detection."))
+			M.visible_message(SPAN_WARNING("[M]凭空消失！"), SPAN_NOTICE("常规手段现在无法探测到你。"))
 			playsound(M.loc,'sound/effects/pred_cloakon.ogg', 15, 1)
 
 		if(!instant)
@@ -628,7 +628,7 @@
 	SIGNAL_HANDLER
 
 	var/mob/wearer = src.loc
-	wearer.visible_message(SPAN_DANGER("[wearer]'s cloak fizzles out!"), SPAN_DANGER("Your cloak fizzles out!"))
+	wearer.visible_message(SPAN_DANGER("[wearer]的披风失效了！"), SPAN_DANGER("你的披风失效了！"))
 
 	var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread
 	sparks.set_up(5, 4, src)
@@ -652,7 +652,7 @@
 
 	REMOVE_TRAIT(user, TRAIT_CLOAKED, TRAIT_SOURCE_EQUIPMENT(WEAR_HANDS))
 	log_game("[key_name_admin(user)] has disabled their cloaking device.")
-	user.visible_message(SPAN_WARNING("[user] shimmers into existence!"), SPAN_WARNING("Your cloaking device deactivates."))
+	user.visible_message(SPAN_WARNING("[user]闪烁着重新显现！"), SPAN_WARNING("你的隐形装置关闭了。"))
 	playsound(user.loc, 'sound/effects/pred_cloakoff.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 	if(true_cloak)
@@ -670,7 +670,7 @@
 
 /obj/item/clothing/gloves/yautja/hunter/verb/caster()
 	set name = "Use Plasma Caster"
-	set desc = "Activate your plasma caster. If it is dropped it will retract back into your armor."
+	set desc = "启动等离子肩炮。丢下后会自动收回护甲。"
 	set category = "Yautja.Weapons"
 	set src in usr
 	. = caster_internal(usr, FALSE)
@@ -691,17 +691,17 @@
 		if(!drain_power(user, 50))
 			return
 		if(user.get_active_hand())
-			to_chat(user, SPAN_WARNING("Your hand must be free to activate your wristblade!"))
+			to_chat(user, SPAN_WARNING("必须空出手，才能展开腕刃！"))
 			return
 		var/obj/limb/hand = user.get_limb(user.hand ? "l_hand" : "r_hand")
 		if(!istype(hand) || !hand.is_usable())
-			to_chat(user, SPAN_WARNING("You can't hold that!"))
+			to_chat(user, SPAN_WARNING("你无法持握它！"))
 			return
 		user.put_in_active_hand(caster)
 		caster_deployed = TRUE
 		if(user.client?.prefs.custom_cursors)
 			user.client?.mouse_pointer_icon = 'icons/effects/mouse_pointer/plasma_caster_mouse.dmi'
-		to_chat(user, SPAN_NOTICE("You activate your plasma caster. It is in [caster.mode] mode."))
+		to_chat(user, SPAN_NOTICE("你启动了等离子肩炮。当前为[localized_player_label(caster.mode)]模式。"))
 		playsound(src, 'sound/weapons/pred_plasmacaster_on.ogg', 15, TRUE)
 
 		var/datum/action/predator_action/bracer/caster/caster_action
@@ -719,7 +719,7 @@
 	if (exploding)
 		return
 
-	notify_ghosts(header = "Yautja self destruct", message = "[victim] is self destructing to protect their honor!", source = victim, action = NOTIFY_ORBIT)
+	notify_ghosts(header = "铁血自毁", message = "[victim]为捍卫荣誉，正在启动自毁！", source = victim, action = NOTIFY_ORBIT)
 
 	exploding = 1
 	var/turf/T = get_turf(src)
@@ -744,12 +744,12 @@
 
 /obj/item/clothing/gloves/yautja/hunter/verb/change_explosion_type()
 	set name = "Change Explosion Type"
-	set desc = "Changes your bracer explosion to either only gib you or be a big explosion."
+	set desc = "将护腕爆炸方式切换为仅炸碎自身，或引发大爆炸。"
 	set category = "Yautja.Misc"
 	set src in usr
 
 	if(explosion_type == SD_TYPE_SMALL && exploding)
-		to_chat(usr, SPAN_WARNING("Why would you want to do this?"))
+		to_chat(usr, SPAN_WARNING("你为什么想这么做？"))
 		return
 
 	if(alert("你想使用哪种爆炸模式？","爆炸护腕", "Small", "Big") == "Big")
@@ -762,7 +762,7 @@
 
 /obj/item/clothing/gloves/yautja/hunter/verb/activate_suicide()
 	set name = "Final Countdown (!)"
-	set desc = "Activate the explosive device implanted into your bracers. You have failed! Show some honor!"
+	set desc = "启动护腕中的爆炸装置。你已经失败！拿出荣耀来！"
 	set category = "Yautja.Misc"
 	set src in usr
 	. = activate_suicide_internal(usr, FALSE)
@@ -775,16 +775,16 @@
 	var/mob/living/carbon/human/M = user
 
 	if(HAS_TRAIT(M, TRAIT_CLOAKED))
-		to_chat(M, SPAN_WARNING("Not while you're cloaked. It might disrupt the sequence."))
+		to_chat(M, SPAN_WARNING("隐形时不行，可能会干扰启动程序。"))
 		return
 	if(M.stat == DEAD)
-		to_chat(M, SPAN_WARNING("Little too late for that now!"))
+		to_chat(M, SPAN_WARNING("现在有点太迟了！"))
 		return
 	if(M.health < HEALTH_THRESHOLD_CRIT)
-		to_chat(M, SPAN_WARNING("As you fall into unconsciousness you fail to activate your self-destruct device before you collapse."))
+		to_chat(M, SPAN_WARNING("你在失去意识倒下前，没能启动自毁装置。"))
 		return
 	if(M.stat)
-		to_chat(M, SPAN_WARNING("Not while you're unconscious..."))
+		to_chat(M, SPAN_WARNING("失去意识时不行……"))
 		return
 
 	var/obj/item/grab/G = M.get_active_hand()
@@ -805,10 +805,10 @@
 							log_attack("[key_name(M)] triggered the predator self-destruct sequence of [victim] ([victim.key]) in [A.name]")
 						if (!bracer.exploding)
 							bracer.explode(victim)
-						M.visible_message(SPAN_WARNING("[M] presses a few buttons on [victim]'s wrist bracer."),SPAN_DANGER("You activate the timer. May [victim]'s final hunt be swift."))
+						M.visible_message(SPAN_WARNING("[M]在[victim]的护腕上按了几个按钮。"),SPAN_DANGER("你启动了定时器。愿[victim]的最后一次狩猎迅速结束。"))
 						message_all_yautja("[M.real_name] has triggered [victim.real_name]'s bracer's self-destruction sequence.")
 			else
-				to_chat(M, SPAN_WARNING("<b>This [victim.species] does not have a bracer attached.</b>"))
+				to_chat(M, SPAN_WARNING("<b>这个[localized_player_label(victim.species)]没有佩戴护腕。</b>"))
 			return
 
 	if(M.gloves != src && !forced)
@@ -819,13 +819,13 @@
 			if(M.gloves != src)
 				return
 			if(M.stat == DEAD)
-				to_chat(M, SPAN_WARNING("Little too late for that now!"))
+				to_chat(M, SPAN_WARNING("现在有点太迟了！"))
 				return
 			if(M.stat)
-				to_chat(M, SPAN_WARNING("Not while you're unconscious..."))
+				to_chat(M, SPAN_WARNING("失去意识时不行……"))
 				return
 			exploding = FALSE
-			to_chat(M, SPAN_NOTICE("Your bracers stop beeping."))
+			to_chat(M, SPAN_NOTICE("你的护腕停止鸣响。"))
 			message_all_yautja("[M.real_name] has cancelled their bracer's self-destruction sequence.")
 			message_admins("[key_name(M)] has deactivated their Self-Destruct.")
 
@@ -838,21 +838,21 @@
 		return
 
 	if(istype(M.wear_mask,/obj/item/clothing/mask/facehugger) || (M.status_flags & XENO_HOST))
-		to_chat(M, SPAN_WARNING("Strange...something seems to be interfering with your bracer functions..."))
+		to_chat(M, SPAN_WARNING("奇怪……似乎有什么在干扰护腕功能……"))
 		return
 
 	if(forced || alert("确定要引爆护腕吗？\n\n注意：如果在战斗中或战斗结束后因非意外原因启动自毁，就必须完成自毁。启动自毁即表示你已接受以死亡维护失去的荣誉。","爆炸护腕", "Yes", "No") == "Yes")
 		if(M.gloves != src)
 			return
 		if(M.stat == DEAD)
-			to_chat(M, SPAN_WARNING("Little too late for that now!"))
+			to_chat(M, SPAN_WARNING("现在有点太迟了！"))
 			return
 		if(M.stat)
-			to_chat(M, SPAN_WARNING("Not while you're unconscious..."))
+			to_chat(M, SPAN_WARNING("失去意识时不行……"))
 			return
 		if(exploding)
 			return
-		to_chat(M, SPAN_DANGER("You set the timer. May your journey to the great hunting grounds be swift."))
+		to_chat(M, SPAN_DANGER("你设好了定时器。愿你迅速抵达伟大的狩猎场。"))
 		var/area/A = get_area(M)
 		var/turf/T = get_turf(M)
 		message_admins(FONT_SIZE_HUGE("ALERT: [M] ([M.key]) triggered their predator self-destruct sequence [A ? "in [A.name]":""] [ADMIN_JMP(T)]"))
@@ -870,9 +870,9 @@
 
 #define YAUTJA_CREATE_CRYSTAL_COOLDOWN "yautja_create_crystal_cooldown"
 /obj/item/clothing/gloves/yautja/hunter/verb/injectors()
-	set name = "Create Stabilising Crystal"
+	set name = "制造稳定水晶"
 	set category = "Yautja.Utility"
-	set desc = "Create a focus crystal to energize your natural healing processes."
+	set desc = "制造聚能晶体，促进自然愈合。"
 	set src in usr
 	. = injectors_internal(usr, FALSE)
 
@@ -885,12 +885,12 @@
 		return
 
 	if(user.get_active_hand())
-		to_chat(user, SPAN_WARNING("Your active hand must be empty!"))
+		to_chat(user, SPAN_WARNING("你的主手必须空着！"))
 		return FALSE
 
 	if(TIMER_COOLDOWN_CHECK(src, YAUTJA_CREATE_CRYSTAL_COOLDOWN))
 		var/remaining_time = DisplayTimeText(S_TIMER_COOLDOWN_TIMELEFT(src, YAUTJA_CREATE_CRYSTAL_COOLDOWN))
-		to_chat(user, SPAN_WARNING("You recently synthesized a stabilising crystal. A new crystal will be available in [remaining_time]."))
+		to_chat(user, SPAN_WARNING("你刚合成过稳定晶体，再过[remaining_time]才能制造下一枚。"))
 		return FALSE
 
 	if(!drain_power(user, 400))
@@ -898,7 +898,7 @@
 
 	S_TIMER_COOLDOWN_START(src, YAUTJA_CREATE_CRYSTAL_COOLDOWN, 2 MINUTES)
 
-	to_chat(user, SPAN_NOTICE("You feel a faint hiss and a crystalline injector drops into your hand."))
+	to_chat(user, SPAN_NOTICE("你感觉到轻微嘶响，一枚晶体注射器落入手中。"))
 	var/obj/item/reagent_container/hypospray/autoinjector/yautja/O = new(user)
 	user.put_in_active_hand(O)
 	playsound(src, 'sound/machines/click.ogg', 15, 1)
@@ -906,9 +906,9 @@
 #undef YAUTJA_CREATE_CRYSTAL_COOLDOWN
 
 /obj/item/clothing/gloves/yautja/hunter/verb/healing_capsule()
-	set name = "Create Healing Capsule"
+	set name = "制造治疗胶囊"
 	set category = "Yautja.Utility"
-	set desc = "Create a healing capsule for your healing gun."
+	set desc = "为治疗枪制造治疗胶囊。"
 	set src in usr
 	. = healing_capsule_internal(usr, FALSE)
 
@@ -922,12 +922,12 @@
 		return
 
 	if(user.get_active_hand())
-		to_chat(user, SPAN_WARNING("Your active hand must be empty!"))
+		to_chat(user, SPAN_WARNING("你的主手必须空着！"))
 		return FALSE
 
 	if(TIMER_COOLDOWN_CHECK(src, YAUTJA_CREATE_CAPSULE_COOLDOWN))
 		var/remaining_time = DisplayTimeText(S_TIMER_COOLDOWN_TIMELEFT(src, YAUTJA_CREATE_CAPSULE_COOLDOWN))
-		to_chat(user, SPAN_WARNING("You recently synthesized a healing capsule. A new capsule will be available in [remaining_time]."))
+		to_chat(user, SPAN_WARNING("你刚合成过治疗胶囊，再过[remaining_time]才能制造下一枚。"))
 		return FALSE
 
 	if(!drain_power(user, 600))
@@ -935,7 +935,7 @@
 
 	S_TIMER_COOLDOWN_START(src, YAUTJA_CREATE_CAPSULE_COOLDOWN, 4 MINUTES)
 
-	to_chat(user, SPAN_NOTICE("You feel your bracer churn as it pops out a healing capsule."))
+	to_chat(user, SPAN_NOTICE("护腕内部一阵运转，弹出了一枚治疗胶囊。"))
 	var/obj/item/tool/surgery/healing_gel/O = new(user)
 	user.put_in_active_hand(O)
 	playsound(src, 'sound/machines/click.ogg', 15, 1)
@@ -945,7 +945,7 @@
 /obj/item/clothing/gloves/yautja/hunter/verb/call_disc()
 	set name = "Call Smart-Disc"
 	set category = "Yautja.Weapons"
-	set desc = "Call back your smart-disc, if it's in range. If not you'll have to go retrieve it."
+	set desc = "召回范围内的智能飞盘。若超出范围，就得自己去捡。"
 	set src in usr
 	. = call_disc_internal(usr, FALSE)
 
@@ -959,7 +959,7 @@
 		return
 
 	if(disc_timer)
-		to_chat(user, SPAN_WARNING("Your bracers need some time to recuperate first."))
+		to_chat(user, SPAN_WARNING("护腕需要先恢复一段时间。"))
 		return FALSE
 
 	if(!drain_power(user, 70))
@@ -969,7 +969,7 @@
 	addtimer(VARSET_CALLBACK(src, disc_timer, FALSE), 10 SECONDS)
 
 	for(var/mob/living/simple_animal/hostile/smartdisc/S in range(7))
-		to_chat(user, SPAN_WARNING("[S] skips back towards you!"))
+		to_chat(user, SPAN_WARNING("[S]弹跳着飞回你身边！"))
 		new /obj/item/explosive/grenade/spawnergrenade/smartdisc(S.loc)
 		qdel(S)
 
@@ -981,7 +981,7 @@
 
 /obj/item/clothing/gloves/yautja/hunter/verb/remove_tracked_item()
 	set name = "Remove Item from Tracker"
-	set desc = "Remove an item from the Yautja tracker."
+	set desc = "将一件物品从铁血追踪器中移除。"
 	set category = "Yautja.Tracker"
 	set src in usr
 	. = remove_tracked_item_internal(usr, FALSE)
@@ -996,19 +996,19 @@
 
 	var/obj/item/tracked_item = user.get_active_hand()
 	if(!tracked_item)
-		to_chat(user, SPAN_WARNING("You need the item in your active hand to remove it from the tracker!"))
+		to_chat(user, SPAN_WARNING("必须用主手拿着物品，才能从追踪器中移除！"))
 		return FALSE
 	if(!(tracked_item in GLOB.tracked_yautja_gear))
-		to_chat(user, SPAN_WARNING("[tracked_item] isn't on the tracking system."))
+		to_chat(user, SPAN_WARNING("[tracked_item]不在追踪系统中。"))
 		return FALSE
 	tracked_item.RemoveElement(/datum/element/yautja_tracked_item)
-	to_chat(user, SPAN_NOTICE("You remove <b>[tracked_item]</b> from the tracking system."))
+	to_chat(user, SPAN_NOTICE("你将<b>[tracked_item]</b>从追踪系统中移除。"))
 	return TRUE
 
 
 /obj/item/clothing/gloves/yautja/hunter/verb/add_tracked_item()
 	set name = "Add Item to Tracker"
-	set desc = "Add an item to the Yautja tracker."
+	set desc = "将一件物品加入铁血追踪器。"
 	set category = "Yautja.Tracker"
 	set src in usr
 	. = add_tracked_item_internal(usr, FALSE)
@@ -1023,18 +1023,18 @@
 
 	var/obj/item/untracked_item = user.get_active_hand()
 	if(!untracked_item)
-		to_chat(user, SPAN_WARNING("You need the item in your active hand to remove it from the tracker!"))
+		to_chat(user, SPAN_WARNING("必须用主手拿着物品，才能从追踪器中移除！"))
 		return FALSE
 	if(untracked_item in GLOB.tracked_yautja_gear)
-		to_chat(user, SPAN_WARNING("[untracked_item] is already being tracked."))
+		to_chat(user, SPAN_WARNING("[untracked_item]已经在被追踪。"))
 		return FALSE
 	untracked_item.AddElement(/datum/element/yautja_tracked_item)
-	to_chat(user, SPAN_NOTICE("You add <b>[untracked_item]</b> to the tracking system."))
+	to_chat(user, SPAN_NOTICE("你将<b>[untracked_item]</b>加入了追踪系统。"))
 	return TRUE
 
 /obj/item/clothing/gloves/yautja/hunter/verb/translate()
-	set name = "Translator"
-	set desc = "Emit a message from your bracer to those nearby."
+	set name = "翻译器"
+	set desc = "通过护腕向附近的人发送消息。"
 	set category = "Yautja.Utility"
 	set src in usr
 	. = translate_internal(usr, FALSE)
@@ -1048,7 +1048,7 @@
 		return
 
 	if(user.client.prefs.muted & MUTE_IC)
-		to_chat(user, SPAN_DANGER("You cannot translate (muted)."))
+		to_chat(user, SPAN_DANGER("你已被禁言，无法使用翻译功能。"))
 		return
 
 	user.create_typing_indicator()
@@ -1082,17 +1082,17 @@
 
 	user.langchat_speech(msg, heard, GLOB.all_languages, overhead_color, TRUE)
 
-	var/voice_name = "A strange voice"
+	var/voice_name = "一个陌生的声音"
 	if(user.name == user.real_name && user.alpha == initial(user.alpha))
 		voice_name = "<b>[user.name]</b>"
 	for(var/mob/Q as anything in heard)
 		if(Q.stat && !isobserver(Q))
 			continue //Unconscious
-		to_chat(Q, "[SPAN_INFO("[voice_name] says,")] <span class='[span_class]'>'[msg]'</span>")
+		to_chat(Q, "[SPAN_INFO("[voice_name]说道：")]<span class='[span_class]'>“[msg]”</span>")
 
 /obj/item/clothing/gloves/yautja/hunter/verb/bracername()
 	set name = "Toggle Bracer Name"
-	set desc = "Toggle whether fellow Yautja that examine you will be able to see your name."
+	set desc = "切换其他铁血战士检查你时是否能看见你的名字。"
 	set category = "Yautja.Misc"
 	set src in usr
 
@@ -1100,11 +1100,11 @@
 		return
 
 	name_active = !name_active
-	to_chat(usr, SPAN_NOTICE("[src] will [name_active ? "now" : "no longer"] show your name when fellow Yautja examine you."))
+	to_chat(usr, SPAN_NOTICE("其他铁血战士检查你时，[src]将[name_active ? "显示" : "不再显示"]你的名字。"))
 
 /obj/item/clothing/gloves/yautja/hunter/verb/idchip()
 	set name = "Toggle ID Chip"
-	set desc = "Reveal/Hide your embedded bracer ID chip."
+	set desc = "显示或隐藏内置护腕身份芯片。"
 	set category = "Yautja.Misc"
 	set src in usr
 
@@ -1113,18 +1113,18 @@
 
 	var/mob/living/carbon/human/H = usr
 	if(!istype(H) || !HAS_TRAIT(usr, TRAIT_YAUTJA_TECH))
-		to_chat(usr, SPAN_WARNING("You do not know how to use this."))
+		to_chat(usr, SPAN_WARNING("你不知道如何使用它。"))
 		return
 
 	if(H.wear_id == embedded_id)
-		to_chat(H, SPAN_NOTICE("You retract your ID chip."))
+		to_chat(H, SPAN_NOTICE("你收回了身份芯片。"))
 		move_chip_to_bracer()
 	else if(H.wear_id)
-		to_chat(H, SPAN_WARNING("Something is obstructing the deployment of your ID chip!"))
+		to_chat(H, SPAN_WARNING("有东西挡住了身份芯片，无法展开！"))
 	else
-		to_chat(H, SPAN_NOTICE("You expose your ID chip."))
+		to_chat(H, SPAN_NOTICE("你露出了身份芯片。"))
 		if(!H.equip_to_slot_if_possible(embedded_id, WEAR_ID))
-			to_chat(H, SPAN_WARNING("Something went wrong during your chip's deployment! (Make a Bug Report about this)"))
+			to_chat(H, SPAN_WARNING("芯片展开时发生错误！请提交错误报告。"))
 			move_chip_to_bracer()
 
 /obj/item/clothing/gloves/yautja/hunter/proc/move_chip_to_bracer()
@@ -1143,15 +1143,15 @@
 /// Verb to let Yautja attempt the unlocking.
 /obj/item/clothing/gloves/yautja/hunter/verb/toggle_lock()
 	set name = "Toggle Bracer Lock"
-	set desc = "Toggle the lock on your bracers, allowing them to be removed."
+	set desc = "切换护腕锁，允许将其取下。"
 	set category = "Yautja.Misc"
 	set src in usr
 
 	if(usr.stat)
-		to_chat(usr, SPAN_WARNING("You can't do that right now..."))
+		to_chat(usr, SPAN_WARNING("你现在无法这样做……"))
 		return FALSE
 	if(!HAS_TRAIT(usr, TRAIT_YAUTJA_TECH))
-		to_chat(usr, SPAN_WARNING("You have no idea how to use this..."))
+		to_chat(usr, SPAN_WARNING("你完全不知道如何使用它……"))
 		return FALSE
 
 	attempt_toggle_lock(usr, FALSE)
@@ -1171,11 +1171,11 @@
 	var/mob/living/carbon/human/victim = held_mob.grabbed_thing
 	var/obj/item/clothing/gloves/yautja/bracer = victim.gloves
 	if(isspeciesyautja(victim) && !(victim.stat == DEAD))
-		to_chat(user, SPAN_WARNING("You cannot unlock the bracer of a living hunter!"))
+		to_chat(user, SPAN_WARNING("你不能解锁活着的猎手的护腕！"))
 		return FALSE
 
 	if(!istype(bracer))
-		to_chat(user, SPAN_WARNING("<b>This [victim.species] does not have a bracer attached.</b>"))
+		to_chat(user, SPAN_WARNING("<b>这个[localized_player_label(victim.species)]没有佩戴护腕。</b>"))
 		return FALSE
 
 	if(alert("确定要解锁这个 [victim.species] 的护腕吗？", "解锁护腕", "Yes", "No") != "Yes")
@@ -1183,7 +1183,7 @@
 
 	if(user.get_active_hand() == held_mob && victim && victim.gloves == bracer)
 		log_interact(user, victim, "[key_name(user)] unlocked the [bracer.name] of [key_name(victim)].")
-		user.visible_message(SPAN_WARNING("[user] presses a few buttons on [victim]'s wrist bracer."),SPAN_DANGER("You unlock the bracer."))
+		user.visible_message(SPAN_WARNING("[user]在[victim]的护腕上按了几个按钮。"),SPAN_DANGER("你解锁了护腕。"))
 		bracer.toggle_lock_internal(victim)
 		return TRUE
 
@@ -1199,9 +1199,9 @@
 	flags_inventory |= CANTSTRIP
 	if(wearer)
 		if(isyautja(wearer))
-			to_chat(wearer, SPAN_WARNING("The bracer clamps securely around your forearm and beeps in a comfortable, familiar way."))
+			to_chat(wearer, SPAN_WARNING("护腕牢固地夹住你的前臂，发出舒适熟悉的哔声。"))
 		else
-			to_chat(wearer, SPAN_WARNING("The bracer clamps painfully around your forearm and beeps angrily. It won't come off!"))
+			to_chat(wearer, SPAN_WARNING("护腕痛苦地夹住你的前臂，愤怒地鸣响。摘不下来了！"))
 	return TRUE
 
 /obj/item/clothing/gloves/yautja/proc/unlock_bracer(mob/wearer)
@@ -1209,7 +1209,7 @@
 	flags_inventory &= ~CANTSTRIP
 	if(wearer)
 		if(!isyautja(wearer))
-			to_chat(wearer, SPAN_WARNING("The bracer beeps pleasantly, releasing its grip on your forearm."))
+			to_chat(wearer, SPAN_WARNING("护腕愉快地鸣响，松开了你的前臂。"))
 		else
-			to_chat(wearer, SPAN_WARNING("With an angry blare, the bracer releases your forearm."))
+			to_chat(wearer, SPAN_WARNING("护腕愤怒地长鸣一声，松开了你的前臂。"))
 	return TRUE

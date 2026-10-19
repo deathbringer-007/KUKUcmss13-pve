@@ -23,7 +23,7 @@
 /obj/item/ammo_box/attack_self(mob/living/user)
 	..()
 	if(burning)
-		to_chat(user, SPAN_DANGER("It's on fire and might explode!"))
+		to_chat(user, SPAN_DANGER("它着火了，可能会爆炸！"))
 		return
 
 	if(user.a_intent == INTENT_HARM)
@@ -33,7 +33,7 @@
 
 /obj/item/ammo_box/proc/unfold_box(mob/user)
 	if(is_loaded())
-		to_chat(user, SPAN_WARNING("You need to empty the box before unfolding it!"))
+		to_chat(user, SPAN_WARNING("展开前必须先清空箱子！"))
 		return
 	new /obj/item/stack/sheet/cardboard(user.loc)
 	qdel(src)
@@ -125,31 +125,31 @@
 
 /obj/item/ammo_box/magazine/get_examine_text(mob/living/user)
 	. = ..()
-	. += SPAN_INFO("[SPAN_HELPFUL("Activate")] box in hand or [SPAN_HELPFUL("click")] with it on the ground to deploy it. Activating it while empty will fold it into cardboard sheet.")
+	. += SPAN_INFO("在手中[SPAN_HELPFUL("使用")]箱子，或拿着箱子[SPAN_HELPFUL("点击")]地面，即可将其部署。空箱在手中使用后会折叠成硬纸板。")
 	if(src.loc != user) //feeling box weight in a distance is unnatural and bad
 		return
 	if(!handfuls)
 		if(length(contents) < (num_of_magazines/3))
-			. += SPAN_INFO("It feels almost empty.")
+			. += SPAN_INFO("感觉几乎空了。")
 			return
 		if(length(contents) < ((num_of_magazines*2)/3))
-			. += SPAN_INFO("It feels about half full.")
+			. += SPAN_INFO("感觉大约半满。")
 			return
-		. += SPAN_INFO("It feels almost full.")
+		. += SPAN_INFO("感觉快满了。")
 	else
 		var/obj/item/ammo_magazine/AM = locate(/obj/item/ammo_magazine) in contents
 		if(AM)
 			if(AM.current_rounds < (AM.max_rounds/3))
-				. += SPAN_INFO("It feels almost empty.")
+				. += SPAN_INFO("感觉几乎空了。")
 				return
 			if(AM.current_rounds < ((AM.max_rounds*2)/3))
-				. += SPAN_INFO("It feels about half full.")
+				. += SPAN_INFO("感觉大约半满。")
 				return
-			. += SPAN_INFO("It feels almost full.")
+			. += SPAN_INFO("感觉快满了。")
 	if(burning && holds_ammo)
-		. += SPAN_DANGER("It's on fire and might explode!")
+		. += SPAN_DANGER("它着火了，可能会爆炸！")
 	if(burning && holds_grenades)
-		. += SPAN_DANGER("It's on fire and the grenades inside might explode at any time!")
+		. += SPAN_DANGER("它着火了，里面的手榴弹随时可能爆炸！")
 
 /obj/item/ammo_box/magazine/is_loaded()
 	if(handfuls)
@@ -159,17 +159,17 @@
 
 /obj/item/ammo_box/magazine/deploy_ammo_box(mob/living/user, turf/T)
 	if(burning && holds_ammo)
-		to_chat(user, SPAN_DANGER("It's on fire and might explode!"))
+		to_chat(user, SPAN_DANGER("它着火了，可能会爆炸！"))
 		return
 
 	var/box_on_tile = 0
 	for(var/obj/structure/magazine_box/found_MB in T.contents)
 		if(limit_per_tile != found_MB.limit_per_tile)
-			to_chat(user, SPAN_WARNING("You can't deploy different size boxes in one place!"))
+			to_chat(user, SPAN_WARNING("你不能在同一个位置部署不同尺寸的弹药箱！"))
 			return
 		box_on_tile++
 		if(box_on_tile == limit_per_tile)
-			to_chat(user, SPAN_WARNING("You can't cram any more boxes in here!"))
+			to_chat(user, SPAN_WARNING("这里塞不下更多弹药箱！"))
 			return
 
 	var/obj/structure/magazine_box/M = new /obj/structure/magazine_box(T)
@@ -193,7 +193,7 @@
 
 /obj/item/ammo_box/magazine/afterattack(atom/target, mob/living/user, proximity)
 	if(burning)
-		to_chat(user, SPAN_DANGER("It's on fire and might explode!"))
+		to_chat(user, SPAN_DANGER("它着火了，可能会爆炸！"))
 		return
 	if(!proximity)
 		return
@@ -254,11 +254,11 @@
 	return
 
 /obj/item/ammo_box/magazine/handle_side_effects(obj/structure/magazine_box/host_box, will_explode = FALSE)
-	var/shown_message = "\The [src] catches on fire!"
+	var/shown_message = "[src]着火了！"
 	if(will_explode && holds_ammo)
-		shown_message = "\The [src] catches on fire and ammunition starts cooking off! It's gonna blow!"
+		shown_message = "[src]着火，弹药开始殉爆！马上要炸了！"
 	if(holds_grenades)
-		shown_message = "\The [src] catches on fire and grenades begin cooking off! Duck and cover!"
+		shown_message = "[src]着火，手榴弹开始殉爆！卧倒隐蔽！"
 
 	if(holds_ammo)
 		if(host_box)
@@ -335,13 +335,13 @@
 
 /obj/item/ammo_box/rounds/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_INFO("To refill a magazine click on the box with it in your hand. Being on [SPAN_HELPFUL("HARM")] intent will fill box from the magazine.")
+	. += SPAN_INFO("拿着弹匣点击箱子即可补充弹药。切换到[SPAN_HELPFUL("伤害")]意图则会将弹匣中的弹药倒入箱子。")
 	if(bullet_amount)
-		. +=  "It contains [bullet_amount] round\s."
+		. +=  "内有[bullet_amount]发弹药。"
 	else
-		. +=  "It's empty."
+		. +=  "它是空的。"
 	if(burning)
-		. += SPAN_DANGER("It's on fire and might explode!")
+		. += SPAN_DANGER("它着火了，可能会爆炸！")
 
 
 
@@ -350,25 +350,25 @@
 
 /obj/item/ammo_box/rounds/attackby(obj/item/I, mob/user)
 	if(burning)
-		to_chat(user, SPAN_DANGER("It's on fire and might explode!"))
+		to_chat(user, SPAN_DANGER("它着火了，可能会爆炸！"))
 		return
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = I
 		if(!isturf(loc))
-			to_chat(user, SPAN_WARNING("\The [src] must be on the ground to be used."))
+			to_chat(user, SPAN_WARNING("[src]必须放在地上才能使用。"))
 			return
 		if(AM.flags_magazine & AMMUNITION_REFILLABLE)
 			if(default_ammo != AM.default_ammo)
-				to_chat(user, SPAN_WARNING("Those aren't the same rounds. Better not mix them up."))
+				to_chat(user, SPAN_WARNING("这些弹药不同，最好别混装。"))
 				return
 			if(caliber != AM.caliber)
-				to_chat(user, SPAN_WARNING("The rounds don't match up. Better not mix them up."))
+				to_chat(user, SPAN_WARNING("弹药不匹配，最好别混装。"))
 				return
 
 			var/dumping = FALSE // we REFILL BOX (dump to it) on harm intent, otherwise we refill FROM box
 			if(user.a_intent == INTENT_HARM)
 				if(AM.flags_magazine & AMMUNITION_CANNOT_REMOVE_BULLETS)
-					to_chat(user, SPAN_WARNING("You can't remove ammo from \the [AM]!"))
+					to_chat(user, SPAN_WARNING("你无法从[AM]中取出弹药！"))
 					return
 				dumping = TRUE
 
@@ -381,13 +381,13 @@
 				else
 					transferable = min(bullet_amount, AM.max_rounds - AM.current_rounds)
 				if(transferable < 1)
-					to_chat(user, SPAN_NOTICE("You cannot transfer any more rounds."))
+					to_chat(user, SPAN_NOTICE("你无法继续转移弹药。"))
 
 				// Half-Loop 1: Start transfering
 				else if(!transfering)
 					transfering = min(transferable, 48) // Max per transfer
 					if(!do_after(user, 1.5 SECONDS, INTERRUPT_ALL, dumping ? BUSY_ICON_HOSTILE : BUSY_ICON_FRIENDLY))
-						to_chat(user, SPAN_NOTICE("You stop transferring rounds."))
+						to_chat(user, SPAN_NOTICE("你停止转移弹药。"))
 						transferable = 0
 
 				// Half-Loop 2: Process transfer
@@ -399,7 +399,7 @@
 					AM.current_rounds += transfering
 					bullet_amount  -= transfering
 					playsound(src, pick('sound/weapons/handling/mag_refill_1.ogg', 'sound/weapons/handling/mag_refill_2.ogg', 'sound/weapons/handling/mag_refill_3.ogg'), 20, TRUE, 6)
-					to_chat(user, SPAN_NOTICE("You have transferred [abs(transfering)] round\s to [dumping ? src : AM]."))
+					to_chat(user, SPAN_NOTICE("你向[dumping ? src : AM]转移了[abs(transfering)]发弹药。"))
 					transfering = 0
 
 			while(transferable >= 1)
@@ -409,13 +409,13 @@
 
 		else if(AM.flags_magazine & AMMUNITION_HANDFUL)
 			if(default_ammo != AM.default_ammo)
-				to_chat(user, SPAN_WARNING("Those aren't the same rounds. Better not mix them up."))
+				to_chat(user, SPAN_WARNING("这些弹药不同，最好别混装。"))
 				return
 			if(caliber != AM.caliber)
-				to_chat(user, SPAN_WARNING("The rounds don't match up. Better not mix them up."))
+				to_chat(user, SPAN_WARNING("弹药不匹配，最好别混装。"))
 				return
 			if(bullet_amount == max_bullet_amount)
-				to_chat(user, SPAN_WARNING("\The [src] is already full."))
+				to_chat(user, SPAN_WARNING("[src]已经装满。"))
 				return
 
 			playsound(loc, pick('sound/weapons/handling/mag_refill_1.ogg', 'sound/weapons/handling/mag_refill_2.ogg', 'sound/weapons/handling/mag_refill_3.ogg'), 25, 1)
@@ -424,7 +424,7 @@
 			bullet_amount += S
 			AM.update_icon()
 			update_icon()
-			to_chat(user, SPAN_NOTICE("You put [S] round\s into [src]."))
+			to_chat(user, SPAN_NOTICE("你向[src]中放入了[S]发弹药。"))
 			if(AM.current_rounds <= 0)
 				user.temp_drop_inv_item(AM)
 				qdel(AM)
@@ -453,9 +453,9 @@
 
 /obj/item/ammo_box/rounds/handle_side_effects(will_explode = FALSE)
 	if(will_explode)
-		visible_message(SPAN_WARNING("\The [src] catches on fire and ammunition starts cooking off! It's gonna blow!"))
+		visible_message(SPAN_WARNING("[src]着火，弹药开始殉爆！马上要炸了！"))
 	else
-		visible_message(SPAN_WARNING("\The [src] catches on fire!"))
+		visible_message(SPAN_WARNING("[src]着火了！"))
 
 	apply_fire_overlay(will_explode)
 	set_light(3)

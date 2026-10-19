@@ -16,24 +16,24 @@
 
 /obj/item/reagent_container/food/condiment/attack(mob/M, mob/user)
 	if(!reagents?.total_volume)
-		to_chat(user, SPAN_DANGER("The [src.name] is empty!"))
+		to_chat(user, SPAN_DANGER("[src.name]是空的！"))
 		return FALSE
 
 	if(M == user)
-		to_chat(M, SPAN_NOTICE("You swallow some of contents of [src]."))
+		to_chat(M, SPAN_NOTICE("你吞下了一些[src]中的东西。"))
 
 	else if(istype(M, /mob/living/carbon/human))
 		user.affected_message(M,
-			SPAN_HELPFUL("You <b>start feeding</b> [user == M ? "yourself" : "[M]"] <b>[src]</b>."),
-			SPAN_HELPFUL("[user] <b>starts feeding</b> you <b>[src]</b>."),
-			SPAN_NOTICE("[user] starts feeding [user == M ? "themselves" : "[M]"] [src]."))
+			SPAN_HELPFUL("你<b>开始给</b>[user == M ? "自己" : "[M]"]喂<b>[src]</b>。"),
+			SPAN_HELPFUL("[user]<b>开始给你喂</b><b>[src]</b>。"),
+			SPAN_NOTICE("[user]开始给[user == M ? "自己" : "[M]"]喂[src]。"))
 
 		if(!do_after(user, 30, INTERRUPT_ALL, BUSY_ICON_FRIENDLY, M))
 			return FALSE
 		user.affected_message(M,
-			SPAN_HELPFUL("You <b>fed</b> [user == M ? "yourself" : "[M]"] <b>[src]</b>."),
-			SPAN_HELPFUL("[user] <b>fed</b> you <b>[src]</b>."),
-			SPAN_NOTICE("[user] fed [user == M ? "themselves" : "[M]"] [src]."))
+			SPAN_HELPFUL("你<b>给</b>[user == M ? "自己" : "[M]"]<b>喂下了[src]</b>。"),
+			SPAN_HELPFUL("[user]<b>给你喂下了[src]</b>。"),
+			SPAN_NOTICE("[user]给[user == M ? "自己" : "[M]"]喂下了[src]。"))
 
 		var/rgt_list_text = get_reagent_list_text()
 
@@ -56,31 +56,31 @@
 	if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
 
 		if(!target.reagents.total_volume)
-			to_chat(user, SPAN_DANGER("[target] is empty."))
+			to_chat(user, SPAN_DANGER("[target]是空的。"))
 			return
 
 		if(reagents.total_volume >= reagents.maximum_volume)
-			to_chat(user, SPAN_DANGER("[src] is full."))
+			to_chat(user, SPAN_DANGER("[src]已经装满。"))
 			return
 
 		var/trans = target.reagents.trans_to(src, target:amount_per_transfer_from_this)
 
 		if(!trans)
-			to_chat(user, SPAN_DANGER("You fail to fill [src] with reagents from [target]."))
+			to_chat(user, SPAN_DANGER("你没能将[target]中的试剂装入[src]。"))
 			return
 
-		to_chat(user, SPAN_NOTICE(" You fill [src] with [trans] units of the contents of [target]."))
+		to_chat(user, SPAN_NOTICE("你将[target]中[trans]单位的内容物装入[src]。"))
 
 	//Something like a glass or a food item. Player probably wants to transfer TO it.
 	else if(target.is_open_container() || istype(target, /obj/item/reagent_container/food/snacks))
 		if(!reagents.total_volume)
-			to_chat(user, SPAN_DANGER("[src] is empty."))
+			to_chat(user, SPAN_DANGER("[src]是空的。"))
 			return
 		if(target.reagents.total_volume >= target.reagents.maximum_volume)
-			to_chat(user, SPAN_DANGER("You can't add any more to [target]."))
+			to_chat(user, SPAN_DANGER("[target]已经装不下更多东西。"))
 			return
 		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
-		to_chat(user, SPAN_NOTICE(" You transfer [trans] units of the condiment to [target]."))
+		to_chat(user, SPAN_NOTICE("你向[target]中转移了[trans]单位调味料。"))
 
 /obj/item/reagent_container/food/condiment/on_reagent_change()
 	if(icon_state == "saltshakersmall" || icon_state == "peppermillsmall" || icon_state == "hotsauce_cholula" || icon_state == "hotsauce_franks" || icon_state == "hotsauce_sriracha" || icon_state == "hotsauce_tabasco" || icon_state == "coldsauce_cole" || icon_state == "eggpowder" || icon_state == "milkpowder" || icon_state == "bjpowder" || icon_state == "ojpowder" || icon_state == "ajpowder" || icon_state == "wjpowder" || icon_state == "gjpowder" || icon_state == "pjpowder")
@@ -157,8 +157,8 @@
 	reagents.add_reagent("sugar", 50)
 
 /obj/item/reagent_container/food/condiment/saltshaker //Separate from above since it's a small shaker rather then
-	name = "Salt Shaker" // a large one.
-	desc = "Salt. From space oceans, presumably."
+	name = "盐瓶" // a large one.
+	desc = "盐。大概来自太空海洋。"
 	icon_state = "saltshakersmall"
 	possible_transfer_amounts = list(1,20) //for clown turning the lid off
 	amount_per_transfer_from_this = 1
@@ -191,33 +191,33 @@
 	reagents.add_reagent("hotsauce", 60)
 
 /obj/item/reagent_container/food/condiment/hotsauce/cholula
-	name = "\improper Cholula bottle"
-	desc = "A bottle of Weyland-Yutani brand Cholula hot sauce."
+	name = "\improper 丘鲁拉辣椒酱瓶"
+	desc = "一瓶维兰德-汤谷牌丘鲁拉辣椒酱。"
 	icon_state = "hotsauce_cholula"
 	item_state = "hotsauce_cholula"
 
 /obj/item/reagent_container/food/condiment/hotsauce/franks
-	name = "\improper Frank's Red Hot bottle"
-	desc = "A bottle of Weyland-Yutani brand Frank's Red Hot hot sauce."
-	desc_lore = "Supposedly designed as a middle-ground flavor between ketchup and cayenne, this brand of spicy goodness achieved critical acclaim throughout UA space within both colonies and vessels alike. The sudden and widespread adoption was curiously timed with the near-simultaneous shelving of the original Frank's 'ULTRA' hot sauce."
+	name = "\improper 弗兰克红辣酱瓶"
+	desc = "一瓶维兰德-汤谷牌弗兰克红辣酱。"
+	desc_lore = "据说这种风味介于番茄酱与卡宴辣椒之间的辣酱，在美洲联盟疆域的殖民地和舰船上都大获好评。它突然普及的时间，恰巧与原版弗兰克“究极”辣酱下架的时间几乎一致。"
 	icon_state = "hotsauce_franks"
 	item_state = "hotsauce_franks"
 
 /obj/item/reagent_container/food/condiment/hotsauce/sriracha
-	name = "\improper Sriracha bottle"
-	desc = "A bottle of Weyland-Yutani brand Sriracha hot sauce."
+	name = "\improper 是拉差辣椒酱瓶"
+	desc = "一瓶维兰德-汤谷牌是拉差辣椒酱。"
 	icon_state = "hotsauce_sriracha"
 	item_state = "hotsauce_sriracha"
 
 /obj/item/reagent_container/food/condiment/hotsauce/tabasco
-	name = "\improper Tabasco bottle"
-	desc = "A bottle of Weyland-Yutani brand Tabasco hot sauce."
+	name = "\improper 塔巴斯科辣椒酱瓶"
+	desc = "一瓶维兰德-汤谷牌塔巴斯科辣椒酱。"
 	icon_state = "hotsauce_tabasco"
 	item_state = "hotsauce_tabasco"
 
 /obj/item/reagent_container/food/condiment/hotsauce/franks/macho
-	name = "\improper Frank's ULTRA Hot bottle"
-	desc = "A bottle of Weyland-Yutani brand Frank's ULTRA Hot sauce, taken off the market after reports of what was described as 'something closer to ignition than digestion' happening to those who drink it."
+	name = "\improper 弗兰克究极辣酱瓶"
+	desc = "一瓶维兰德-汤谷牌弗兰克究极辣酱。有人喝下后出现了“更像着火而非消化”的反应，因此它已被下架。"
 	icon_state = "hotsauce_franks"
 	item_state = "hotsauce_franks"
 
@@ -226,8 +226,8 @@
 	reagents.add_reagent("machosauce", 60)
 
 /obj/item/reagent_container/food/condiment/coldsauce
-	name = "Cole's Cold bottle"
-	desc = "A bottle of cold sauce locally produced in Shivas Snowball. You probably shouldn't drink this on its own."
+	name = "科尔冰凉酱瓶"
+	desc = "一瓶希瓦雪球本地生产的冰凉酱。你大概不该直接喝它。"
 	icon_state = "coldsauce_cole"
 
 /obj/item/reagent_container/food/condiment/coldsauce/Initialize()
@@ -288,8 +288,8 @@
 	reagents.add_reagent("dehydrated_pineapple_juice", 6)
 
 /obj/item/reagent_container/food/condiment/juice/egg
-	name = "Powdered Egg Packet"
-	desc = "A small packet of dehydrated egg-whites and egg-yolk powder. Mix with water for a passable alternative to the real deal."
+	name = "蛋粉包"
+	desc = "一小包脱水蛋白和蛋黄粉。加水混合后，勉强可以替代真鸡蛋。"
 	icon_state = "eggpowder"
 	volume = 12
 	w_class = SIZE_SMALL
@@ -299,8 +299,8 @@
 	reagents.add_reagent("dehydrated_egg_powder", 12)
 
 /obj/item/reagent_container/food/condiment/juice/milk
-	name = "Dehydrated Milk Packet"
-	desc = "A small packet of dehydrated milk powder. Mix with water for a passable alternative to actual milk."
+	name = "奶粉包"
+	desc = "一小包脱水奶粉。加水混合后，勉强可以替代鲜奶。"
 	icon_state = "milkpowder"
 	amount_per_transfer_from_this = 1
 	volume = 12

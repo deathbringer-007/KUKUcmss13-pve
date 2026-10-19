@@ -2,8 +2,8 @@
 //=======================================================================\\
 
 /obj/item/clothing/suit/storage/marine/sof
-	name = "\improper SOF Armor"
-	desc = "A heavily customized suit of M3 armor. Used by Marine Raiders."
+	name = "\improper 特种作战部队护甲"
+	desc = "深度定制的 M3 护甲，由陆战突击队使用。"
 	icon_state = "marsoc"
 	armor_melee = CLOTHING_ARMOR_HIGH
 	armor_bullet = CLOTHING_ARMOR_HIGH
@@ -77,8 +77,8 @@
 	item_state_slots = list(WEAR_JACKET = "pmc_sniper")
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/light/corporate
-	name = "\improper M1 pattern corporate security armor"
-	desc = "A basic vest with a Weyland-Yutani badge on the right breast. This is commonly worn by low-level guards protecting Weyland-Yutani facilities."
+	name = "\improper M1 式公司安保护甲"
+	desc = "右胸带维兰德-汤谷徽章的基础背心，通常由守卫公司设施的低级警卫穿戴。"
 	icon = 'icons/mob/humans/onmob/contained/wy_goons.dmi'
 	icon_state = "armor"
 	item_state = "armor"
@@ -91,19 +91,19 @@
 	flags_heat_protection = BODY_FLAG_CHEST
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/light/corporate/lead
-	desc = "A basic vest with a Weyland-Yutani badge on the right breast. This variant is worn by low-level guards that have elevated in rank due to 'good conduct in the field', also known as corporate bootlicking."
+	desc = "右胸带维兰德-汤谷徽章的基础背心。这一型供因“战地表现良好”而晋升的低级警卫穿戴，也就是公司马屁精。"
 	icon_state = "lead_armor"
 	item_state = "lead_armor"
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/leader
-	name = "\improper M4 pattern PMC leader armor"
-	desc = "A modification of the standard Armat Systems M3 armor. Designed for high-profile security operators and corporate mercenaries in mind. This particular suit looks like it belongs to a high-ranking officer."
+	name = "\improper M4 式私人军事公司领队护甲"
+	desc = "标准阿玛特系统 M3 护甲的改型，为高级安保人员和公司雇佣兵设计。这件看起来属于高级军官。"
 	icon_state = "officer_armor"
 	item_state_slots = list(WEAR_JACKET = "officer_armor")
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/light/synth
-	name = "\improper M4 Synthetic PMC armor"
-	desc = "A serious modification of the standard Armat Systems M3 armor. This variant was designed for PMC Support Units in the field, with every armor insert removed. It's designed with the idea of a high speed lifesaver in mind."
+	name = "\improper M4 合成人私人军事公司护甲"
+	desc = "标准阿玛特系统 M3 护甲的深度改型。专为野外私人军事公司支援单位设计，所有护甲插板均已移除，以高速救援为理念。"
 	time_to_unequip = 0.5 SECONDS
 	time_to_equip = 1 SECONDS
 	armor_melee = CLOTHING_ARMOR_NONE
@@ -118,8 +118,8 @@
 	slowdown = SLOWDOWN_ARMOR_SUPER_LIGHT
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/corporate
-	name = "\improper M1 pattern PMC leader armor"
-	desc = "A modification of the standard Armat Systems M3 armor. Designed for high-profile security operators and corporate mercenaries in mind. This particular suit looks like it belongs to a high-ranking officer."
+	name = "\improper M1 式私人军事公司领队护甲"
+	desc = "标准阿玛特系统 M3 护甲的改型，为高级安保人员和公司雇佣兵设计。这件看起来属于高级军官。"
 	icon_state = "officer_armor"
 	item_state_slots = list(WEAR_JACKET = "officer_armor")
 
@@ -129,8 +129,8 @@
 	return ..()
 
 /obj/item/clothing/suit/storage/marine/smartgunner/veteran/pmc
-	name = "\improper PMC gunner armor"
-	desc = "A modification of the standard Armat Systems M3 armor. Hooked up with harnesses and straps allowing the user to carry an M56 Smartgun."
+	name = "\improper 私人军事公司机枪手护甲"
+	desc = "标准阿玛特系统 M3 护甲的改型，配有各种背带与绑带，使使用者可以携带 M56 智能机枪。"
 	icon_state = "heavy_armor"
 	flags_inventory = BLOCKSHARPOBJ|BLOCK_KNOCKDOWN|SMARTGUN_HARNESS
 	flags_bodypart_hidden = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
@@ -143,8 +143,8 @@
 	item_state_slots = list(WEAR_JACKET = "heavy_armor")
 
 /obj/item/clothing/suit/storage/marine/smartgunner/veteran/pmc/terminator
-	name = "\improper M5Xg exoskeleton gunner armor"
-	desc = "A complex system of overlapping plates intended to render the wearer all but impervious to small arms fire. A passive exoskeleton supports the weight of the armor, allowing a human to carry its massive bulk. This variant is designed to support a M56 Smartgun."
+	name = "\improper M5Xg 外骨骼机枪手护甲"
+	desc = "由重叠装甲板组成的复杂系统，旨在让穿着者几乎不受轻武器火力伤害。被动外骨骼承担护甲重量，使人类能够负担其巨大体积。这一型可支撑 M56 智能机枪。"
 	icon_state = "commando_armor"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	movement_compensation = SLOWDOWN_ARMOR_VERY_HEAVY
@@ -160,8 +160,8 @@
 	unacidable = TRUE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/commando
-	name = "\improper M5X exoskeleton armor"
-	desc = "A complex system of overlapping plates intended to render the wearer all but impervious to small arms fire. A passive exoskeleton supports the weight of the armor, allowing a human to carry its massive bulk."
+	name = "\improper M5X 外骨骼护甲"
+	desc = "由重叠装甲板组成的复杂系统，旨在让穿着者几乎不受轻武器火力伤害。被动外骨骼承担护甲重量，使人类能够负担其巨大体积。"
 	icon_state = "commando_armor"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	movement_compensation = SLOWDOWN_ARMOR_VERY_HEAVY
@@ -181,8 +181,8 @@
 //=======================================================================\\
 
 /obj/item/clothing/suit/storage/marine/veteran/bear
-	name = "\improper H1 Iron Bears vest"
-	desc = "A protective vest worn by Iron Bears mercenaries."
+	name = "\improper H1 铁熊背心"
+	desc = "铁熊雇佣兵穿戴的防护背心。"
 	icon_state = "bear_armor"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
 	armor_energy = CLOTHING_ARMOR_MEDIUMLOW
@@ -192,8 +192,8 @@
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 
 /obj/item/clothing/suit/storage/marine/veteran/dutch
-	name = "\improper D2 armored vest"
-	desc = "A protective vest worn by some seriously experienced mercs."
+	name = "\improper D2 装甲背心"
+	desc = "一些身经百战的雇佣兵穿戴的防护背心。"
 	icon_state = "dutch_armor"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS //Makes no sense but they need leg/arm armor too.
 	armor_melee = CLOTHING_ARMOR_HIGH
@@ -206,8 +206,8 @@
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 
 /obj/item/clothing/suit/storage/marine/veteran/van_bandolier
-	name = "safari jacket"
-	desc = "A tailored hunting jacket, cunningly lined with segmented armor plates. Sometimes the game shoots back."
+	name = "狩猎夹克"
+	desc = "精心裁制的狩猎夹克，巧妙地衬入分段装甲板。有时猎物也会还击。"
 	icon_state = "van_bandolier"
 	item_state = "van_bandolier_jacket"
 	blood_overlay_type = "coat"
@@ -274,7 +274,7 @@
 	flags_inventory = BLOCKSHARPOBJ
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_DECORARMOR, ACCESSORY_SLOT_DECORGROIN, ACCESSORY_SLOT_DECORSHIN, ACCESSORY_SLOT_DECORBRACER, ACCESSORY_SLOT_DECORNECK, ACCESSORY_SLOT_PAINT, ACCESSORY_SLOT_M3UTILITY, ACCESSORY_SLOT_PONCHO, ACCESSORY_SLOT_DECORKNEE)
 	restricted_accessory_slots = list(ACCESSORY_SLOT_DECORARMOR, ACCESSORY_SLOT_DECORGROIN, ACCESSORY_SLOT_DECORBRACER, ACCESSORY_SLOT_DECORNECK, ACCESSORY_SLOT_DECORSHIN, ACCESSORY_SLOT_M3UTILITY, ACCESSORY_SLOT_PAINT, ACCESSORY_SLOT_DECORKNEE)
-	specialty = "\improper 6B90 pattern"
+	specialty = "\improper 6B90 式"
 
 /obj/item/clothing/suit/marine/faction/UPP/standard/Initialize(mapload)
 	. = ..()
@@ -284,8 +284,8 @@
 	src.attach_accessory(null, crotch, TRUE)
 
 /obj/item/clothing/suit/marine/smartgunner/upp
-	name = "\improper 6B91-2 UPP armor"
-	desc = "Deep modification of the standard body armor, intended for Union machinegunners. Contains compact fire control computers and an encrypted data processing unit in the lower back, as well as an armored cable to connect to the machine gun. Covers all requirements to operate the weapon, but a common complaint is the bulkiness."
+	name = "\improper 6B91-2 进步人民联盟护甲"
+	desc = "标准防弹衣的深度改型，专为联盟机枪手设计。腰背部内置紧凑型火控计算机和加密数据处理单元，并配有连接机枪的装甲电缆，满足操作武器的一切要求，但笨重是常见抱怨。"
 	icon_state = "upp_armor_support"
 	slowdown = SLOWDOWN_ARMOR_LOWHEAVY
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
@@ -300,7 +300,7 @@
 	armor_internaldamage = CLOTHING_ARMOR_HIGH
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_DECORARMOR,ACCESSORY_SLOT_DECORSHIN, ACCESSORY_SLOT_DECORBRACER, ACCESSORY_SLOT_DECORNECK, ACCESSORY_SLOT_PAINT, ACCESSORY_SLOT_M3UTILITY, ACCESSORY_SLOT_PONCHO, ACCESSORY_SLOT_DECORKNEE)
 	restricted_accessory_slots = list(ACCESSORY_SLOT_DECORARMOR,ACCESSORY_SLOT_DECORBRACER, ACCESSORY_SLOT_DECORNECK, ACCESSORY_SLOT_DECORSHIN, ACCESSORY_SLOT_M3UTILITY, ACCESSORY_SLOT_PAINT, ACCESSORY_SLOT_DECORKNEE)
-	specialty = "\improper 6B91-2 pattern"
+	specialty = "\improper 6B91-2 式"
 	allowed = list(
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/device/flashlight,
@@ -349,7 +349,7 @@
 	flags_inventory = null
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_DECORARMOR,ACCESSORY_SLOT_DECORSHIN, ACCESSORY_SLOT_DECORBRACER, ACCESSORY_SLOT_DECORNECK, ACCESSORY_SLOT_PAINT, ACCESSORY_SLOT_M3UTILITY, ACCESSORY_SLOT_PONCHO, ACCESSORY_SLOT_DECORKNEE)
 	restricted_accessory_slots = list(ACCESSORY_SLOT_DECORARMOR,ACCESSORY_SLOT_DECORBRACER, ACCESSORY_SLOT_DECORNECK, ACCESSORY_SLOT_DECORSHIN, ACCESSORY_SLOT_M3UTILITY, ACCESSORY_SLOT_PAINT, ACCESSORY_SLOT_DECORKNEE)
-	specialty = "\improper 6B72-03 pattern"
+	specialty = "\improper 6B72-03 式"
 
 /obj/item/clothing/suit/marine/faction/UPP/light/Initialize(mapload)
 	. = ..()
@@ -357,8 +357,8 @@
 	src.attach_accessory(null, greaves, TRUE)
 
 /obj/item/clothing/suit/marine/faction/UPP/CANC
-	name = "\improper Type 12 CANC armor"
-	desc = "Vintage CANC armor system. Provides basic ballistic/shrapnel protection."
+	name = "\improper 12 式 CANC 护甲"
+	desc = "老式 CANC 护甲系统，提供基础的弹道与破片防护。"
 	icon_state = "canc"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_LEGS
 	slowdown = SLOWDOWN_ARMOR_LIGHT
@@ -373,7 +373,7 @@
 	flags_inventory = null
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_DECORARMOR,ACCESSORY_SLOT_DECORSHIN, ACCESSORY_SLOT_DECORBRACER, ACCESSORY_SLOT_DECORNECK, ACCESSORY_SLOT_PAINT, ACCESSORY_SLOT_M3UTILITY, ACCESSORY_SLOT_PONCHO, ACCESSORY_SLOT_DECORKNEE)
 	restricted_accessory_slots = list(ACCESSORY_SLOT_DECORARMOR,ACCESSORY_SLOT_DECORBRACER, ACCESSORY_SLOT_DECORNECK, ACCESSORY_SLOT_DECORSHIN, ACCESSORY_SLOT_M3UTILITY, ACCESSORY_SLOT_PAINT, ACCESSORY_SLOT_DECORKNEE)
-	specialty = "\improper Type 12"
+	specialty = "\improper 12 式"
 
 /obj/item/clothing/suit/marine/faction/UPP/CANC/Initialize(mapload)
 	. = ..()
@@ -381,8 +381,8 @@
 	src.attach_accessory(null, webbing, TRUE)
 
 /obj/item/clothing/suit/marine/smartgunner/upp/canc
-	name = "\improper Type 12 CANC harness"
-	desc = "Vintage CANC armor system. Provides basic ballistic/shrapnel protection."
+	name = "\improper 12 式 CANC 背负装备"
+	desc = "老式 CANC 护甲系统，提供基础的弹道与破片防护。"
 	icon_state = "canc"
 	slowdown = SLOWDOWN_ARMOR_LOWHEAVY
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
@@ -397,12 +397,12 @@
 	armor_internaldamage = CLOTHING_ARMOR_HIGH
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_DECORARMOR,ACCESSORY_SLOT_DECORSHIN, ACCESSORY_SLOT_DECORBRACER, ACCESSORY_SLOT_DECORNECK, ACCESSORY_SLOT_PAINT, ACCESSORY_SLOT_M3UTILITY, ACCESSORY_SLOT_PONCHO, ACCESSORY_SLOT_DECORKNEE)
 	restricted_accessory_slots = list(ACCESSORY_SLOT_DECORARMOR,ACCESSORY_SLOT_DECORBRACER, ACCESSORY_SLOT_DECORNECK, ACCESSORY_SLOT_DECORSHIN, ACCESSORY_SLOT_M3UTILITY, ACCESSORY_SLOT_PAINT, ACCESSORY_SLOT_DECORKNEE)
-	specialty = "\improper Type 12 CANC harness"
+	specialty = "\improper 12 式 CANC 背负"
 
 /obj/item/clothing/suit/marine/faction/UPP/jacket
-	name = "\improper UH4 camouflaged jacket"
+	name = "\improper UH4 迷彩夹克"
 	icon_state = "upp_coat"
-	desc = "Military jacket featuring small dispersed para-aramid inserts providing the barest of defensive functionality, and a Personal Light Unit rig."
+	desc = "军用夹克，分散嵌有少量对位芳纶插片，提供最基本的防护，并配有个人照明单元。"
 	blood_overlay_type = "coat"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_ARMS
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROT
@@ -421,13 +421,13 @@
 	time_to_equip = 5
 
 /obj/item/clothing/suit/marine/faction/UPP/jacket/mp
-	name = "\improper UH4-P camouflaged jacket"
-	desc = "A UPP Military Police jacket featuring small dispersed para-aramid inserts providing the barest of defensive functionality, and a Personal Light Unit rig."
+	name = "\improper UH4-P 迷彩夹克"
+	desc = "进步人民联盟宪兵夹克，分散嵌有少量对位芳纶插片，提供最基本的防护，并配有个人照明单元。"
 	icon_state = "upp_coat_mp"
 
 /obj/item/clothing/suit/marine/faction/UPP/jacket/pap
-	name = "\improper PaP uniform jacket"
-	desc = "A People's Armed Police service jacket featuring small dispersed para-aramid inserts providing the barest of defensive functionality, and a Personal Light Unit rig."
+	name = "\improper 人民武警制服夹克"
+	desc = "人民武警常服夹克，分散嵌有少量对位芳纶插片，提供最基本的防护，并配有个人照明单元。"
 	icon_state = "upp_coat_pap"
 
 
@@ -435,8 +435,8 @@
 //=====================================================================\\
 
 /obj/item/clothing/suit/storage/marine/faction/freelancer
-	name = "freelancer cuirass"
-	desc = "An armored protective chestplate scrapped together from various plates. It keeps up remarkably well, as the craftsmanship is solid, and the design mirrors such armors in the UPP and the USCM. The many skilled craftsmen in the freelancers ranks produce these vests at a rate about one a month."
+	name = "自由佣兵胸甲"
+	desc = "由各类护甲板拼成的防护胸甲。做工扎实，防护出奇地好，设计与进步人民联盟和美国殖民地陆战队的同类护甲相似。自由佣兵中许多熟练工匠每月能制作约一件。"
 	icon_state = "freelancer_armor"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_LEGS
@@ -523,13 +523,13 @@
 	slowdown = 0.2
 
 /obj/item/clothing/suit/storage/militia/smartgun
-	name = "colonial militia harness"
-	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This one has straps interweaved with the plates, that allow the user to fire a captured smartgun, if a bit uncomfortably."
+	name = "殖民地民兵背负装备"
+	desc = "由煮制皮革和现代护甲板制成的殖民地民兵锁甲。防护虽不算强，与现代护甲相比也很原始，却几乎不妨碍行动，符合当地殖民者的需求。穿脱迅速、便于隐藏，也可在大型作坊低成本生产。这件在装甲板之间编入绑带，能让使用者操作缴获的智能机枪，虽然有些不舒服。"
 	flags_inventory = BLOCKSHARPOBJ|SMARTGUN_HARNESS
 
 /obj/item/clothing/suit/storage/CMB
-	name = "\improper CMB Deputy jacket"
-	desc = "A polyster blue bomber jacket enforced with light ballistic weaving. It has a Marshal's Deputy badge pinned to it. The back is enscribed with the word 'DEPUTY'."
+	name = "\improper 殖民地执法局副法警夹克"
+	desc = "用轻型防弹织层加强的蓝色聚酯纤维飞行夹克，别着副法警徽章，背后写有“副法警”。"
 	icon_state = "CMB_jacket"
 	item_state = "CMB_jacket"
 	blood_overlay_type = "coat"
@@ -579,8 +579,8 @@
 	pockets.max_storage_space = 8
 
 /obj/item/clothing/suit/storage/CMB/marshal
-	name = "\improper CMB Marshal jacket"
-	desc = "A thick and stylish black leather jacket with a Marshal's badge pinned to it. The back is enscribed with the powerful letters of 'MARSHAL' representing justice, authority, and protection in the outer rim. The laws of the Earth stretch beyond the Sol."
+	name = "\improper 殖民地执法局法警夹克"
+	desc = "厚实而时髦的黑色皮夹克，别着法警徽章。背后醒目的“法警”字样象征外缘地区的正义、权威与保护。地球的法律延伸到了太阳系之外。"
 	icon_state = "CMB_jacket_marshal"
 	item_state = "CMB_jacket_marshal"
 
@@ -588,8 +588,8 @@
 //=====================================================================\\
 
 /obj/item/clothing/suit/storage/marine/veteran/mercenary
-	name = "\improper K12 ceramic plated armor"
-	desc = "A set of grey, heavy ceramic armor with dark blue highlights. It is the standard uniform of an unknown mercenary group working in the sector."
+	name = "\improper K12 陶瓷板护甲"
+	desc = "带深蓝装饰的灰色重型陶瓷护甲，是活动于本星区的某个不明雇佣兵组织的制式服装。"
 	icon_state = "mercenary_heavy_armor"
 	flags_inventory = BLOCKSHARPOBJ|BLOCK_KNOCKDOWN
 	armor_melee = CLOTHING_ARMOR_VERYHIGH
@@ -620,8 +620,8 @@
 	item_state_slots = list(WEAR_JACKET = "mercenary_heavy_armor")
 
 /obj/item/clothing/suit/storage/marine/veteran/mercenary/heavy
-	name = "\improper Modified K12 ceramic plated armor"
-	desc = "A set of grey, heavy ceramic armor with dark blue highlights. It has been modified with extra ceramic plates placed in its storage pouch, and seems intended to support an extremely heavy weapon."
+	name = "\improper 改装 K12 陶瓷板护甲"
+	desc = "带深蓝装饰的灰色重型陶瓷护甲，储物袋内加装了额外陶瓷板，似乎用于支撑极重的武器。"
 	armor_melee = CLOTHING_ARMOR_ULTRAHIGH
 	armor_bullet = CLOTHING_ARMOR_ULTRAHIGHPLUS
 	armor_bomb = CLOTHING_ARMOR_HIGHPLUS
@@ -631,8 +631,8 @@
 	storage_slots = 1
 
 /obj/item/clothing/suit/storage/marine/veteran/mercenary/miner
-	name = "\improper Y8 armored miner vest"
-	desc = "A set of beige, light armor built for protection while mining. It is a specialized uniform of an unknown mercenary group working in the sector."
+	name = "\improper Y8 装甲采矿背心"
+	desc = "用于采矿防护的米色轻型护甲，是活动于本星区的某个不明雇佣兵组织的专用制服。"
 	icon_state = "mercenary_miner_armor"
 	storage_slots = 3
 	allowed = list(
@@ -654,15 +654,15 @@
 	item_state_slots = list(WEAR_JACKET = "mercenary_miner_armor")
 
 /obj/item/clothing/suit/storage/marine/veteran/mercenary/support
-	name = "\improper Z7 armored vest"
-	desc = "A set of blue armor with yellow highlights built for protection while building or carrying out medical treatment in highly dangerous environments. It is a specialized uniform of an unknown mercenary group working in the sector."
+	name = "\improper Z7 装甲背心"
+	desc = "带黄色装饰的蓝色护甲，用于在高危环境中施工或进行医疗作业时提供防护，是活动于本星区的某个不明雇佣兵组织的专用制服。"
 	icon_state = "mercenary_engineer_armor"
 	item_state_slots = list(WEAR_JACKET = "mercenary_engineer_armor")
 
 /obj/item/clothing/suit/storage/marine/M3G/hefa
-	name = "\improper HEFA Knight armor"
-	desc = "A thick piece of armor adorning a HEFA. Usually seen on a HEFA knight."
-	specialty = "HEFA Knight"
+	name = "\improper HEFA 骑士护甲"
+	desc = "饰有 HEFA 手榴弹图案的厚重护甲，通常由 HEFA 骑士穿戴。"
+	specialty = "HEFA 骑士"
 	icon_state = "hefadier"
 	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
 	flags_item = NO_CRYO_STORE
@@ -676,8 +676,8 @@
 //=======================================================================\\
 
 /obj/item/clothing/suit/storage/marine/MP/provost
-	name = "\improper M3 pattern Provost armor"
-	desc = "A standard Provost M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	name = "\improper M3 式军法监察护甲"
+	desc = "标准军法监察 M3 式胸甲，可保护胸部免受子弹、刀刃和意外伤害，附带小皮袋，提供有限储物空间。"
 	icon_state = "pvmedium"
 	item_state_slots = list(WEAR_JACKET = "pvmedium")
 	slowdown = SLOWDOWN_ARMOR_LIGHT
@@ -690,29 +690,29 @@
 	storage_slots = 3
 
 /obj/item/clothing/suit/storage/marine/MP/provost/tml
-	name = "\improper M3 pattern Senior Provost armor"
-	desc = "A more refined Provost M3 Pattern Chestplate for senior officers. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	name = "\improper M3 式高级军法监察护甲"
+	desc = "高级军官使用的精制军法监察 M3 式胸甲，可保护胸部免受子弹、刀刃和意外伤害，附带小皮袋，提供有限储物空间。"
 	icon_state = "pvleader"
 	item_state_slots = list(WEAR_JACKET = "pvleader")
 
 /obj/item/clothing/suit/storage/marine/MP/provost/marshal
-	name = "\improper M5 pattern Provost Marshal armor"
-	desc = "A custom fit luxury armor suit for Provost Marshals. Useful for letting your men know who is in charge when taking to the field."
+	name = "\improper M5 式军法监察长护甲"
+	desc = "为军法监察长量身定制的豪华护甲，亲临战场时能让部下清楚谁说了算。"
 	icon_state = "pvmarshal"
 	item_state_slots = list(WEAR_JACKET = "pvmarshal")
 	w_class = SIZE_MEDIUM
 	storage_slots = 4
 
 /obj/item/clothing/suit/storage/marine/MP/provost/light
-	name = "\improper M3 pattern Provost light armor"
-	desc = "A lighter Provost M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	name = "\improper M3 式军法监察轻型护甲"
+	desc = "轻型军法监察 M3 式胸甲，可保护胸部免受子弹、刀刃和意外伤害，附带小皮袋，提供有限储物空间。"
 	icon_state = "pvlight"
 	item_state_slots = list(WEAR_JACKET = "pvlight")
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 
 /obj/item/clothing/suit/storage/marine/MP/provost/light/flexi
-	name = "\improper M3 pattern Provost flexi-armor"
-	desc = "A flexible and easy to store M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	name = "\improper M3 式军法监察柔性护甲"
+	desc = "柔软易收纳的 M3 式胸甲，可保护胸部免受子弹、刀刃和意外伤害，附带小皮袋，提供有限储物空间。"
 	w_class = SIZE_MEDIUM
 	icon_state = "pvlight_2"
 	item_state_slots = list(WEAR_JACKET = "pvlight_2")
@@ -722,8 +722,8 @@
 //=======================================================================\\
 
 /obj/item/clothing/suit/storage/marine/veteran/ua_riot
-	name = "\improper UA-M1 body armor"
-	desc = "Based on the M-3 pattern employed by the USCM, the UA-M1 body armor is employed by UA security, riot control and union-busting teams. While robust against melee and bullet attacks, it critically lacks coverage of the legs and arms."
+	name = "\improper UA-M1 防弹衣"
+	desc = "以美国殖民地陆战队的 M3 式护甲为基础，供美洲联盟安保、防暴及镇压工会小队使用。对近战和子弹防护良好，但四肢缺乏保护是致命短板。"
 	icon_state = "ua_riot"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
 	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
@@ -738,8 +738,8 @@
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/suit/storage/marine/veteran/ua_riot/synth
-	name = "\improper UA-M1S Synthetic body armor"
-	desc = "Based on the M-3 pattern employed by the USCM, the UA-M1 body armor is employed by UA security, riot control and union-busting teams. The UA-1MS modification is Synthetic programming compliant, sacrificing protection for speed and carrying capacity."
+	name = "\improper UA-M1S 合成人防弹衣"
+	desc = "以美国殖民地陆战队的 M3 式护甲为基础，供美洲联盟安保、防暴及镇压工会小队使用。UA-1MS 改型符合合成人程序限制，牺牲防护以换取速度和携行能力。"
 	armor_melee = CLOTHING_ARMOR_NONE
 	armor_bullet = CLOTHING_ARMOR_NONE
 	armor_laser = CLOTHING_ARMOR_NONE
@@ -799,8 +799,8 @@
 	src.attach_accessory(null, greaves, TRUE)
 
 /obj/item/clothing/suit/marine/veteran/royal_marine/smartgun //Smartgun Spec Armor
-	name = "\improper Kestrel GPMG harness"
-	desc = "Standard RMC issue Kestrel Personal Armor designed by Weyland-Yutani subsidary, Lindenthal-Ehrenfeld Militärindustrie. This version features the support armature for the L58A3 weapons system, which significantly limits what additional storage equipment can be clipped to the armor. Advanced composite ballistic armor of the latest generation, integral biomonitoring system, and brackets for a load carrying system as well as the TNR Shoulder Lamp."
+	name = "\improper 红隼通用机枪背负装备"
+	desc = "皇家陆战突击队制式红隼个人护甲，由维兰德-汤谷子公司林登塔尔－埃伦费尔德军工设计。这一型带有 L58A3 武器系统支撑架，严重限制可额外挂载的储物装备。采用最新一代先进复合防弹材料、内置生物监测系统，以及携行系统和 TNR 肩灯安装架。"
 	icon_state = "rmc_smartgun"
 	item_state = "rmc_smartgun"
 	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
@@ -814,8 +814,8 @@
 
 //CBRN
 /obj/item/clothing/suit/storage/marine/cbrn
-	name = "\improper M3-M armor"
-	desc = "While lacking the appearance of the M3 pattern armor worn in regular service, this armor piece is still a derivative of it. It has been heavily modified to fit over the MOPP suit with additional padding and Venlar composite layers removed, so as not to restrict the wearer’s movement. However, with the reduction of composite layers, the personal protection offered is less than desired with complaints having been lodged since 2165."
+	name = "\improper M3-M 护甲"
+	desc = "虽不像常规服役的 M3 式护甲，仍由其衍生。它经过大幅改造，以套在任务导向防护服外，移除了额外衬垫和文拉尔复合材料层，避免限制行动。但减少复合层也使防护不尽人意，自 2165 年起便不断有人投诉。"
 	icon_state = "cbrn"
 	item_state = "cbrn"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
@@ -843,8 +843,8 @@
 
 //Mercs
 /obj/item/clothing/suit/storage/marine/veteran/merc
-	name = "DP TAC-PACK Gen II armored vest"
-	desc = "A decent armored vest used by better funded insurgencies and mercenary groups, able to take some small arm hits before going down. Made by Davis Proprietary."
+	name = "DP TAC-PACK II 代装甲背心"
+	desc = "资金较充足的叛军和雇佣兵组织使用的可靠装甲背心，能在失去战斗力前挡住几次轻武器命中。由戴维斯专有技术公司制造。"
 	icon = 'icons/obj/items/clothing/cm_suits.dmi'
 	item_icons = list(
 		WEAR_JACKET = 'icons/mob/humans/onmob/suit_1.dmi'
@@ -862,8 +862,8 @@
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_ARMS|BODY_FLAG_GROIN
 
 /obj/item/clothing/suit/storage/marine/veteran/merc/light
-	name = "DP TAC-PACK Gen I-L armored vest"
-	desc = "A slightly less armored vest which prioritises freedom of movement and mobility over actual armour. Made by Davis Proprietary."
+	name = "DP TAC-PACK I-L 代装甲背心"
+	desc = "防护略弱的背心，比起装甲厚度更重视行动自由与机动性。由戴维斯专有技术公司制造。"
 	icon = 'icons/obj/items/clothing/cm_suits.dmi'
 	item_icons = list(
 		WEAR_JACKET = 'icons/mob/humans/onmob/suit_1.dmi'
@@ -876,8 +876,8 @@
 	flags_armor_protection = BODY_FLAG_CHEST
 
 /obj/item/clothing/suit/storage/marine/veteran/merc/heavy
-	name = "DP TAC-PACK Gen IV-H armored vest"
-	desc = "A much heavier armored vest built off the other two previous versions under GEN II and GEN I, sporting much heavier armor plates and better coverage of parts, allowing users to resist a lot of damage before going down. Made by Davis Proprietary."
+	name = "DP TAC-PACK IV-H 代装甲背心"
+	desc = "以 II 代和 I 代为基础的重型装甲背心，装甲板更厚，覆盖也更全面，让使用者能承受大量伤害后才倒下。由戴维斯专有技术公司制造。"
 	icon = 'icons/obj/items/clothing/cm_suits.dmi'
 	item_icons = list(
 		WEAR_JACKET = 'icons/mob/humans/onmob/suit_1.dmi'

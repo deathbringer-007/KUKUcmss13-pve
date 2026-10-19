@@ -57,9 +57,9 @@
 /obj/item/reagent_container/hypospray/autoinjector/get_examine_text(mob/user)
 	. = ..()
 	if(uses_left)
-		. += SPAN_NOTICE("It is currently loaded with [uses_left].")
+		. += SPAN_NOTICE("当前还可使用[uses_left]次。")
 	else
-		. += SPAN_NOTICE("It is empty.")
+		. += SPAN_NOTICE("它是空的。")
 
 /obj/item/reagent_container/hypospray/autoinjector/equipped()
 	..()
@@ -139,9 +139,9 @@
 	return ..()
 
 /obj/item/reagent_container/hypospray/autoinjector/chloralhydrate
-	name = "anesthetic autoinjector"
+	name = "麻醉自动注射器"
 	chemname = "anesthetic"
-	desc = "An autoinjector loaded with 3 uses of Chloral Hydrate and Sleeping Agent. Good to quickly pacify someone, for surgery of course."
+	desc = "装有三剂水合氯醛和催眠剂的自动注射器。能迅速让人安静下来，当然是为了做手术。"
 	amount_per_transfer_from_this = 10
 	volume = 30
 	mixed_chem = TRUE
@@ -170,7 +170,7 @@
 	skilllock = SKILL_MEDICAL_DEFAULT
 
 /obj/item/reagent_container/hypospray/autoinjector/tramadol/skillless/one_use
-	desc = "An EZ autoinjector loaded with 1 use of Tramadol, a weak but effective painkiller for normal wounds. Doesn't require any training to use."
+	desc = "装有一剂曲马多的 EZ 自动注射器。这是一种温和而有效的普通创伤止痛药。无需任何训练即可使用。"
 	volume = 15
 	amount_per_transfer_from_this = 15
 	uses_left = 1
@@ -201,7 +201,7 @@
 	skilllock = SKILL_MEDICAL_DEFAULT
 
 /obj/item/reagent_container/hypospray/autoinjector/kelotane/skillless/one_use
-	desc = "An EZ autoinjector loaded with 1 use of Kelotane, a common burn medicine. Doesn't require any training to use."
+	desc = "装有一剂克洛坦的 EZ 自动注射器。这是一种常见烧伤药。无需任何训练即可使用。"
 	volume = 15
 	amount_per_transfer_from_this = 15
 	uses_left = 1
@@ -223,7 +223,7 @@
 	skilllock = SKILL_MEDICAL_DEFAULT
 
 /obj/item/reagent_container/hypospray/autoinjector/bicaridine/skillless/one_use
-	desc = "An EZ autoinjector loaded with 1 use of Bicaridine, a common brute and circulatory damage medicine.  Doesn't require any training to use."
+	desc = "装有一剂比卡定的 EZ 自动注射器。这是一种常见的物理创伤及循环系统损伤药物。无需任何训练即可使用。"
 	volume = 15
 	amount_per_transfer_from_this = 15
 	uses_left = 1
@@ -279,9 +279,9 @@
 	maptext_label = "??"
 
 /obj/item/reagent_container/hypospray/autoinjector/yautja
-	name = "unusual crystal"
+	name = "异常晶体"
 	chemname = "thwei"
-	desc = "A strange glowing crystal with a spike at one end."
+	desc = "一块奇异的发光晶体，一端带有尖刺。"
 	icon = 'icons/obj/items/hunter/pred_gear.dmi'
 	icon_state = "crystal"
 	amount_per_transfer_from_this = REAGENTS_OVERDOSE
@@ -293,7 +293,7 @@
 	if(HAS_TRAIT(user, TRAIT_YAUTJA_TECH))
 		..()
 	else
-		to_chat(user, SPAN_DANGER("You have no idea where to inject [src]."))
+		to_chat(user, SPAN_DANGER("你完全不知道该将[src]注射到哪里。"))
 
 /obj/item/reagent_container/hypospray/autoinjector/skillless
 	name = "急救自动注射器"
@@ -320,11 +320,11 @@
 /obj/item/reagent_container/hypospray/autoinjector/skillless/get_examine_text(mob/user)
 	. = ..()
 	if(reagents && length(reagents.reagent_list))
-		. += SPAN_NOTICE("It is currently loaded.")
+		. += SPAN_NOTICE("它尚未使用。")
 	else if(!uses_left)
-		. += SPAN_NOTICE("It is spent.")
+		. += SPAN_NOTICE("它已用尽。")
 	else
-		. += SPAN_NOTICE("It is empty.")
+		. += SPAN_NOTICE("它是空的。")
 
 /obj/item/reagent_container/hypospray/autoinjector/skillless/tramadol
 	name = "止痛自动注射器"
@@ -333,17 +333,17 @@
 	icon_state = "tramadol"
 
 /obj/item/reagent_container/hypospray/autoinjector/dylovene
-	name = "dylovene autoinjector"
+	name = "迪洛文自动注射器"
 	chemname = "anti_toxin"
-	desc = "An autoinjector loaded with 3 uses of Dylovene, a general-use anti-toxin."
+	desc = "装有三剂迪洛文的自动注射器。迪洛文是一种通用抗毒素。"
 	amount_per_transfer_from_this = LOWM_REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD
 	volume = (LOWM_REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD) * INJECTOR_USES
 	display_maptext = TRUE
 	maptext_label = "Dy"
 
 /obj/item/reagent_container/hypospray/autoinjector/dylovene/skillless
-	name = "dylovene EZ autoinjector"
-	desc = "An EZ autoinjector loaded with 3 uses of Dylovene, a general-use anti-toxin. Doesn't require any training to use."
+	name = "迪洛文 EZ 自动注射器"
+	desc = "装有三剂通用抗毒素迪洛文的 EZ 自动注射器。无需任何训练即可使用。"
 	icon_state = "emptyskill"
 	item_state = "emptyskill"
 	skilllock = SKILL_MEDICAL_DEFAULT
@@ -359,8 +359,8 @@
 
 /obj/item/reagent_container/hypospray/autoinjector/iron/skillless
 
-	name = "iron EZ autoinjector"
-	desc = "An EZ autoinjector loaded with 3 uses of iron, to restore blood volume. Doesn't require any training to use."
+	name = "铁补充剂 EZ 自动注射器"
+	desc = "装有三剂铁补充剂的 EZ 自动注射器，可恢复血容量。无需任何训练即可使用。"
 	icon_state = "emptyskill"
 	item_state = "emptyskill"
 	skilllock = SKILL_MEDICAL_DEFAULT
@@ -377,7 +377,7 @@
 
 /obj/item/reagent_container/hypospray/autoinjector/empty/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_NOTICE("It transfers [amount_per_transfer_from_this]u per injection and has a maximum of [volume/amount_per_transfer_from_this] injections.")
+	. += SPAN_NOTICE("每次注射[amount_per_transfer_from_this]单位，最多可注射[volume/amount_per_transfer_from_this]次。")
 
 /obj/item/reagent_container/hypospray/autoinjector/empty/update_icon()
 	overlays.Cut()
@@ -387,23 +387,23 @@
 		overlays += cust_fill
 
 /obj/item/reagent_container/hypospray/autoinjector/empty/small
-	name = "autoinjector (C-S)"
+	name = "自动注射器（C-S）"
 	amount_per_transfer_from_this = 15
 	volume = 45
 
 /obj/item/reagent_container/hypospray/autoinjector/empty/medium
-	name = "autoinjector (C-M)"
+	name = "自动注射器（C-M）"
 	amount_per_transfer_from_this = 30
 	volume = 90
 
 /obj/item/reagent_container/hypospray/autoinjector/empty/large
-	name = "autoinjector (C-L)"
+	name = "自动注射器（C-L）"
 	amount_per_transfer_from_this = 60
 	volume = 180
 
 /obj/item/reagent_container/hypospray/autoinjector/empty/skillless
-	name = "Autoinjector (E-T)"
-	desc = "A custom-made EZ autoinjector, likely from research. Injects its entire payload immediately and doesn't require any training."
+	name = "自动注射器（E-T）"
+	desc = "定制的 EZ 自动注射器，可能来自科研部门。会立即注入全部内容物，无需任何训练即可使用。"
 	chemname = "custom_ez"
 	icon_state = "empty_ez"
 	item_state = "empty_ez"
@@ -413,32 +413,32 @@
 	uses_left = 0
 
 /obj/item/reagent_container/hypospray/autoinjector/empty/skillless/unit
-	name = "Autoinjector (E-U)"
+	name = "自动注射器（E-U）"
 	volume = 1
 	amount_per_transfer_from_this = 1
 
 /obj/item/reagent_container/hypospray/autoinjector/empty/skillless/verysmall
-	name = "Autoinjector (E-VS)"
+	name = "自动注射器（E-VS）"
 	volume = 5
 	amount_per_transfer_from_this = 5
 
 /obj/item/reagent_container/hypospray/autoinjector/empty/skillless/small
-	name = "Autoinjector (E-S)"
+	name = "自动注射器（E-S）"
 	volume = 10
 	amount_per_transfer_from_this = 10
 
 /obj/item/reagent_container/hypospray/autoinjector/empty/skillless/medium
-	name = "Autoinjector (E-M)"
+	name = "自动注射器（E-M）"
 	volume = 30
 	amount_per_transfer_from_this = 30
 
 /obj/item/reagent_container/hypospray/autoinjector/empty/skillless/large
-	name = "Autoinjector (E-L)"
+	name = "自动注射器（E-L）"
 	volume = 45
 	amount_per_transfer_from_this = 45
 
 /obj/item/reagent_container/hypospray/autoinjector/empty/skillless/extralarge
-	name = "Autoinjector (E-XL)"
+	name = "自动注射器（E-XL）"
 	volume = 60
 	amount_per_transfer_from_this = 60
 
@@ -454,6 +454,6 @@
 	uses_left = 0
 
 /obj/item/reagent_container/hypospray/autoinjector/empty/medic/large
-	name = "Medic Autoinjector (M-L)"
+	name = "医用自动注射器（M-L）"
 	volume = 180
 	amount_per_transfer_from_this = 30

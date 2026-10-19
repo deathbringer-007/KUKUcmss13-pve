@@ -8,7 +8,7 @@
 	throw_speed = SPEED_FAST
 	throw_range = 20
 	var/datum/character_trait/trait = /datum/character_trait
-	var/flavour_text = "You read over the pamphlet a few times, learning a new skill."
+	var/flavour_text = "你反复阅读手册，学会了一项新技能。"
 	var/bypass_pamphlet_limit = FALSE
 
 /obj/item/pamphlet/Initialize()
@@ -29,10 +29,10 @@
 	if(!istype(user))
 		return FALSE
 	if(trait in user.traits)
-		to_chat(user, SPAN_WARNING("You know this already!"))
+		to_chat(user, SPAN_WARNING("你已经掌握这些知识了！"))
 		return FALSE
 	if(user.has_used_pamphlet == TRUE && !bypass_pamphlet_limit)
-		to_chat(user, SPAN_WARNING("You've already used a pamphlet!"))
+		to_chat(user, SPAN_WARNING("你已经使用过一本教学手册了！"))
 		return FALSE
 	return TRUE
 
@@ -43,8 +43,8 @@
 		user.has_used_pamphlet = TRUE
 
 /obj/item/pamphlet/skill/medical
-	name = "medical instructional pamphlet"
-	desc = "A pamphlet used to quickly impart vital knowledge. This one has a medical insignia."
+	name = "医疗教学手册"
+	desc = "用于快速传授关键知识的手册。这本印有医疗徽记。"
 	icon_state = "pamphlet_medical"
 	trait = /datum/character_trait/skills/medical
 
@@ -61,22 +61,22 @@
 	trait = /datum/character_trait/skills/jtac
 
 /obj/item/pamphlet/skill/spotter
-	name = "Spotter instructional pamphlet"
-	desc = "A pamphlet used to quickly impart vital knowledge. This one has the image of a pair of binoculars on it."
+	name = "观测员教学手册"
+	desc = "用于快速传授关键知识的手册。这本印有双筒望远镜的图案。"
 	icon_state = "pamphlet_spotter"
 	trait = /datum/character_trait/skills/spotter
 	bypass_pamphlet_limit = TRUE
 
 /obj/item/pamphlet/skill/spotter/can_use(mob/living/carbon/human/user)
 	if(user.job != JOB_SQUAD_MARINE)
-		to_chat(user, SPAN_WARNING("Only squad riflemen can use this."))
+		to_chat(user, SPAN_WARNING("只有小队步枪手才能使用它。"))
 		return
 	var/obj/item/card/id/ID = user.get_idcard()
 	if(!ID) //not wearing an ID
-		to_chat(user, SPAN_WARNING("You should wear your ID before doing this."))
+		to_chat(user, SPAN_WARNING("这样做之前你应该先戴好身份卡。"))
 		return FALSE
 	if(!ID.check_biometrics(user))
-		to_chat(user, SPAN_WARNING("You should wear your ID before doing this."))
+		to_chat(user, SPAN_WARNING("这样做之前你应该先戴好身份卡。"))
 		return FALSE
 
 	return ..()
@@ -99,14 +99,14 @@
 
 /obj/item/pamphlet/skill/loader/can_use(mob/living/carbon/human/user)
 	if(user.job != JOB_SQUAD_MARINE)
-		to_chat(user, SPAN_WARNING("Only squad riflemen can use this."))
+		to_chat(user, SPAN_WARNING("只有小队步枪手才能使用它。"))
 		return
 	var/obj/item/card/id/ID = user.get_idcard()
 	if(!ID) //not wearing an ID
-		to_chat(user, SPAN_WARNING("You should wear your ID before doing this."))
+		to_chat(user, SPAN_WARNING("这样做之前你应该先戴好身份卡。"))
 		return FALSE
 	if(!ID.check_biometrics(user))
-		to_chat(user, SPAN_WARNING("You should wear your ID before doing this."))
+		to_chat(user, SPAN_WARNING("这样做之前你应该先戴好身份卡。"))
 		return FALSE
 	return ..()
 
@@ -135,103 +135,103 @@
 	bypass_pamphlet_limit = TRUE
 
 /obj/item/pamphlet/skill/police
-	name = "Policing instructional pamphlet"
-	desc = "A pamphlet used to quickly impart vital knowledge. This one has the image of a radio on it."
+	name = "警务教学手册"
+	desc = "用于快速传授关键知识的手册。这本印有无线电图案。"
 	icon_state = "pamphlet_jtac"
 	trait = /datum/character_trait/skills/police
 	bypass_pamphlet_limit = TRUE
 
 /obj/item/pamphlet/skill/surgery
-	name = "Surgery instructional pamphlet"
-	desc = "A pamphlet used to quickly impart vital knowledge. This one has a medical insignia."
+	name = "外科教学手册"
+	desc = "用于快速传授关键知识的手册。这本印有医疗徽记。"
 	icon_state = "pamphlet_medical"
 	trait = /datum/character_trait/skills/surgery
 	bypass_pamphlet_limit = TRUE
 
 /obj/item/pamphlet/skill/intel
-	name = "field intelligence instructional pamphlet"
-	desc = "A pamphlet used to quickly impart vital knowledge. This one has an intelligence insignia."
+	name = "战地情报教学手册"
+	desc = "用于快速传授关键知识的手册。这本印有情报部门徽记。"
 	icon_state = "pamphlet_reading"
 	trait = /datum/character_trait/skills/intel
 	bypass_pamphlet_limit = TRUE
 
 /obj/item/pamphlet/language
-	name = "translation pamphlet"
-	desc = "A pamphlet used by lazy USCM interpreters to quickly learn new languages on the spot."
-	flavour_text = "You go over the pamphlet, learning a new language."
+	name = "语言教学手册"
+	desc = "懒惰的美国殖民地陆战队口译员用它在现场快速学习新语言。"
+	flavour_text = "你阅读手册，学会了一门新语言。"
 	bypass_pamphlet_limit = TRUE
 
 /obj/item/pamphlet/language/russian
-	name = "Printed Copy of Pari"
-	desc = "Pari, also known as 'The Bet' in English, is a short story written by Russian playwright Anton Chekhov about a bet between a lawyer and a banker; the banker wagers that the lawyer cannot remain in solitary confinement for 15 years, and promises 2 million rubles in exchange. You must be a refined reader if you know this one; why are you even in the USCM if you know that?"
+	name = "《打赌》印刷本"
+	desc = "《打赌》是俄罗斯剧作家安东·契诃夫写的一篇短篇小说，讲述律师与银行家的赌约：银行家认定律师无法独居禁闭十五年，许诺他若做到就付给他两百万卢布。知道这篇作品，看来你很有文学修养；既然如此，你怎么还会在美国殖民地陆战队？"
 	trait = /datum/character_trait/language/russian
 
 /obj/item/pamphlet/language/japanese
-	name = "Pages of Turedobando Yohei Adobencha Zohuken"
-	desc = "These are some torn pages from a famous isekai manga named 'Turedobando Yohei Adobencha Zohuken' or Japanese Mercenary Adventure Sequel about a travelling band of Freelancers sent into a fantasy world. Why do you even know this?"
+	name = "《流浪佣兵异世界冒险续篇》残页"
+	desc = "几张从著名异世界漫画《流浪佣兵异世界冒险续篇》撕下来的书页，讲述一群四处漂泊的自由佣兵被送进奇幻世界的故事。你怎么会知道这个？"
 	trait = /datum/character_trait/language/japanese
 
 /obj/item/pamphlet/language/chinese
-	name = "Pages from the Little Red Book"
+	name = "《毛主席语录》书页"
 	desc = "没有共产党就没有新中国! Pages from the handbook to starting a famine that kills over 100 million of your people. Apparently this will help you learn Chinese."
 	trait = /datum/character_trait/language/chinese
 
 /obj/item/pamphlet/language/german
-	name = "Translated Lyrics to 99 Luftballons"
-	desc = "These hastily scribbled translations of 99 Luftballons, an iconic German hit of the 80s, were meant for the yearly Battalion Karaoke Night. I guess you can get some better use out of this."
+	name = "《九十九个气球》歌词译稿"
+	desc = "这些匆匆写就的译稿原本是为营部年度卡拉 OK 之夜准备的，原曲《九十九个气球》是八十年代的德国流行经典。也许你能让它派上更好的用场。"
 	trait = /datum/character_trait/language/german
 
 /obj/item/pamphlet/language/spanish
-	name = "America Latina - A Quick Translation Guide for Southern UA states"
-	desc = "This pamphlet was designed for Intelligence Officers operating on Earth to interact with the local populaces of the Latin American states, but only for IOs who managed to sleep through Dialects and Mannerisms Class."
+	name = "《拉丁美洲——美洲联盟南部各州速译指南》"
+	desc = "这本手册为在地球执行任务的情报军官编写，便于他们与拉丁美洲各州居民交流——尤其适合那些在方言与礼仪课上睡大觉的情报军官。"
 	trait = /datum/character_trait/language/spanish
 
 /obj/item/pamphlet/language/filipino
-	name = "Simples phrases in Filipino"
-	desc = "This pamphlet teaches you Filipino."
+	name = "菲律宾语常用短句"
+	desc = "这本手册教你菲律宾语。"
 	trait = /datum/character_trait/language/filipino
 
 /obj/item/pamphlet/language/french
-	name = "Simples phrases in French"
-	desc = "This pamphlet teaches you French."
+	name = "法语常用短句"
+	desc = "这本手册教你法语。"
 	trait = /datum/character_trait/language/french
 
 /obj/item/pamphlet/language/portuguese
-	name = "Simples phrases in Portuguese."
-	desc = "This pamphlet teaches you Portuguese."
+	name = "葡萄牙语常用短句"
+	desc = "这本手册教你葡萄牙语。"
 	trait = /datum/character_trait/language/portuguese
 
 /obj/item/pamphlet/language/polish
-	name = "Simples phrases in Polish"
-	desc = "This pamphlet teaches you Polish."
+	name = "波兰语常用短句"
+	desc = "这本手册教你波兰语。"
 	trait = /datum/character_trait/language/polish
 
 /obj/item/pamphlet/language/ruspatois
-	name = "Simples phrases in Russian patois"
-	desc = "This pamphlet teaches you Russian patois."
+	name = "俄语土话常用短句"
+	desc = "这本手册教你俄语土话。"
 	trait = /datum/character_trait/language/ruspatois
 
 /obj/item/pamphlet/language/scandinavian
-	name = "Simples phrases in various Scandinavian languages."
-	desc = "This pamphlet teaches you Scandinavian."
+	name = "斯堪的纳维亚各语言常用短句"
+	desc = "这本手册教你斯堪的纳维亚语言。"
 	trait = /datum/character_trait/language/scandinavian
 
 //Restricted languages, spawnable for events.
 
 /obj/item/pamphlet/language/yautja
-	name = "stained parchment"
-	desc = "A yellowed old piece of parchment covered in strange runes from an alien writing system. The letters seem to shift back and forth into place before your eyes."
+	name = "污渍斑斑的羊皮纸"
+	desc = "一张泛黄的旧羊皮纸，上面布满外星文字系统的奇异符文。字母仿佛在你眼前来回移动，自行排列。"
 	trait = /datum/character_trait/language/sainja
 
 /obj/item/pamphlet/language/xenomorph
-	name = "Xenobiologist's file"
-	desc = "A xenobiologist's document recording and detailing observations on captive Xenomorph communication via vocalisations and pheromones, as well as notes on attempting to reproduce them by human beings."
+	name = "异种生物学家的档案"
+	desc = "一份异种生物学家的文件，详细记录了圈养异形通过发声和信息素进行交流的观察，以及尝试由人类模仿这些信号的笔记。"
 	trait = /datum/character_trait/language/xenomorph
 
 /obj/item/pamphlet/language/monkey
-	name = "scribbled drawings"
+	name = "潦草涂鸦"
 	gender = PLURAL
-	desc = "A piece of paper covered in crude depictions of bananas and various types of primates. Probably drawn by a three-year-old child - or an unusually intelligent marine."
+	desc = "一张纸，上面粗糙地画着香蕉和各种灵长类动物。大概出自三岁小孩之手——也可能是某个异常聪明的陆战队员。"
 	trait = /datum/character_trait/language/primitive
 
 
@@ -245,15 +245,15 @@
 		return FALSE
 
 	if(HAS_TRAIT(user, trait_to_give))
-		to_chat(user, SPAN_WARNING("You know this already!"))
+		to_chat(user, SPAN_WARNING("你已经掌握这些知识了！"))
 		return FALSE
 
 	if(!(user.job in JOB_SQUAD_ROLES_LIST))
-		to_chat(user, SPAN_WARNING("Only squad riflemen can use this."))
+		to_chat(user, SPAN_WARNING("只有小队步枪手才能使用它。"))
 		return FALSE
 
 	if(user.has_used_pamphlet && !bypass_pamphlet_limit)
-		to_chat(user, SPAN_WARNING("You've already used a pamphlet!"))
+		to_chat(user, SPAN_WARNING("你已经使用过一本教学手册了！"))
 		return FALSE
 
 	return TRUE
@@ -265,7 +265,7 @@
 		user.has_used_pamphlet = TRUE
 
 /obj/item/pamphlet/trait/vulture
-	name = "\improper M707 instructional pamphlet"
-	desc = "A pamphlet used to quickly impart vital knowledge of how to shoot big guns and spot for them."
+	name = "\improper M707 教学手册"
+	desc = "用于快速传授大口径枪械射击及观测知识的手册。"
 	icon_state = "pamphlet_vulture"
 	trait_to_give = TRAIT_VULTURE_USER

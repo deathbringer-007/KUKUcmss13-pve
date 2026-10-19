@@ -118,7 +118,7 @@
 			else
 				X.ammo = GLOB.ammo_list[X.caste.spit_types[i+1]]
 			break
-	to_chat(X, SPAN_NOTICE("We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma)."))
+	to_chat(X, SPAN_NOTICE("我们现在将喷吐[X.ammo.name]（消耗[X.ammo.spit_cost]等离子体）。"))
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/hud/actions_xeno.dmi', button, "shift_spit_[X.ammo.icon_state]")
 	return ..()
@@ -224,7 +224,7 @@
 		return
 	var/datum/resin_construction/resin_construction = GLOB.resin_constructions_list[selected_type]
 	if(to_chat)
-		to_chat(usr, SPAN_NOTICE("We will now build <b>[resin_construction.construction_name]\s</b> when secreting resin."))
+		to_chat(usr, SPAN_NOTICE("我们分泌树脂时将建造<b>[resin_construction.construction_name]</b>。"))
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/hud/actions_xeno.dmi', button, resin_construction.construction_name)
 
@@ -235,7 +235,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(isstorage(A.loc) || X.contains(A) || istype(A, /atom/movable/screen)) return FALSE
 	if(A.z != X.z)
-		to_chat(owner, SPAN_XENOWARNING("This area is too far away to affect!"))
+		to_chat(owner, SPAN_XENOWARNING("这片区域太远，无法施加影响！"))
 		return
 	apply_cooldown()
 	switch(X.build_resin(A, thick, make_message, plasma_cost != 0, build_speed_mod))
@@ -266,17 +266,17 @@
 		return FALSE
 
 	if(ismob(A)) //anticheese : if they click a mob, it will cancel.
-		to_chat(X, SPAN_XENOWARNING("We can't place resin markers on living things!"))
+		to_chat(X, SPAN_XENOWARNING("不能将树脂标记放在活物身上！"))
 		return FALSE //this is because xenos have thermal vision and can see mobs through walls - which would negate not being able to place them through walls
 
 	if(isstorage(A.loc) || X.contains(A) || istype(A, /atom/movable/screen)) return FALSE
 	var/turf/target_turf = get_turf(A)
 
 	if(target_turf.z != X.z)
-		to_chat(X, SPAN_XENOWARNING("This area is too far away to affect!"))
+		to_chat(X, SPAN_XENOWARNING("这片区域太远，无法施加影响！"))
 		return
 	if(!X.hive.living_xeno_queen || X.hive.living_xeno_queen.z != X.z)
-		to_chat(X, SPAN_XENOWARNING("We have no queen, the psychic link is gone!"))
+		to_chat(X, SPAN_XENOWARNING("我们没有女王，精神链接已经断开！"))
 		return
 
 	var/tally = 0
@@ -285,14 +285,14 @@
 		if(MRK.createdby == X.nicknumber)
 			tally++
 	if(tally >= max_markers)
-		to_chat(X, SPAN_XENOWARNING("We have reached the maximum number of resin marks."))
+		to_chat(X, SPAN_XENOWARNING("树脂标记数量已达上限。"))
 		var/list/promptlist = list("Yes", "No")
 		var/obj/effect/alien/resin/marker/Goober = null
 		var/promptuser = null
 		for(var/i=1, i<=length(X.hive.resin_marks))
 			Goober = X.hive.resin_marks[i]
 			if(Goober.createdby == X.nicknumber)
-				promptuser = tgui_input_list(X, "移除最早放置的标记“[Goober.mark_meaning.name]”吗？", "已达标记数量上限。", promptlist, theme="hive_status")
+				promptuser = localized_input_list(X, "移除最早放置的标记“[Goober.mark_meaning.name]”吗？", "已达标记数量上限。", promptlist, theme="hive_status")
 				break
 			i++
 		if(promptuser == "No")
@@ -327,43 +327,43 @@
 	if(!check_state(TRUE))
 		return
 	if(!(locate(/datum/action/xeno_action/onclick/emit_pheromones) in actions))
-		to_chat(src, SPAN_XENOWARNING("We are incapable of emitting pheromones!"))
+		to_chat(src, SPAN_XENOWARNING("我们无法释放信息素！"))
 		return
 	if(!pheromone)
 		if(current_aura)
 			current_aura = null
-			visible_message(SPAN_XENOWARNING("\The [src] stops emitting pheromones."), \
-			SPAN_XENOWARNING("We stop emitting pheromones."), null, 5)
+			visible_message(SPAN_XENOWARNING("[src]停止释放信息素。"), \
+			SPAN_XENOWARNING("我们停止释放信息素。"), null, 5)
 		else
 			if(!check_plasma(emit_cost))
-				to_chat(src, SPAN_XENOWARNING("We do not have enough plasma!"))
+				to_chat(src, SPAN_XENOWARNING("我们的等离子体不足！"))
 				return
 			if(client.prefs && client.prefs.no_radials_preference)
-				pheromone = tgui_input_list(src, "选择信息素", "信息素菜单", caste.aura_allowed + "help" + "cancel", theme="hive_status")
+				pheromone = localized_input_list(src, "选择信息素", "信息素菜单", caste.aura_allowed + "help" + "cancel", theme="hive_status")
 				if(pheromone == "help")
-					to_chat(src, SPAN_NOTICE("<br>Pheromones provide a buff to all Xenos in range at the cost of some stored plasma every second, as follows:<br><B>Frenzy</B> - Increased run speed, damage and chance to knock off headhunter masks.<br><B>Warding</B> - While in critical state, increased maximum negative health and slower off weed bleedout.<br><B>Recovery</B> - Increased plasma and health regeneration.<br>"))
+					to_chat(src, SPAN_NOTICE("<br>信息素每秒消耗一定储存等离子体，为范围内所有异形提供以下增益：<br><B>狂暴</B>——提高奔跑速度、伤害及击落猎头者面具的概率。<br><B>守护</B>——濒危时提高负生命值承受上限，并减缓离开菌毯后的失血。<br><B>恢复</B>——加快等离子体与生命值恢复。<br>"))
 					return
 				if(!pheromone || pheromone == "cancel" || current_aura || !check_state(1)) //If they are stacking windows, disable all input
 					return
 			else
 				var/static/list/phero_selections = list("Help" = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_help"), "Frenzy" = image(icon = 'icons/mob/radial.dmi', icon_state = "phero_frenzy"), "Warding" = image(icon = 'icons/mob/radial.dmi', icon_state = "phero_warding"), "Recovery" = image(icon = 'icons/mob/radial.dmi', icon_state = "phero_recov"))
-				pheromone = lowertext(show_radial_menu(src, src.client?.eye, phero_selections))
+				pheromone = lowertext(localized_radial_menu(src, src.client?.eye, phero_selections))
 				if(pheromone == "help")
-					to_chat(src, SPAN_XENONOTICE("<br>Pheromones provide a buff to all Xenos in range at the cost of some stored plasma every second, as follows:<br><B>Frenzy (Red)</B> - Increased run speed, damage and chance to knock off headhunter masks.<br><B>Warding (Green)</B> - While in critical state, increased maximum negative health and slower off weed bleedout.<br><B>Recovery (Blue)</B> - Increased plasma and health regeneration.<br>"))
+					to_chat(src, SPAN_XENONOTICE("<br>信息素每秒消耗一定储存等离子体，为范围内所有异形提供以下增益：<br><B>狂暴（红色）</B>——提高奔跑速度、伤害及击落猎头者面具的概率。<br><B>守护（绿色）</B>——濒危时提高负生命值承受上限，并减缓离开菌毯后的失血。<br><B>恢复（蓝色）</B>——加快等离子体与生命值恢复。<br>"))
 					return
 				if(!pheromone || current_aura || !check_state(1)) //If they are stacking windows, disable all input
 					return
 	if(pheromone)
 		if(pheromone == current_aura)
-			to_chat(src, SPAN_XENOWARNING("We are already emitting [pheromone] pheromones!"))
+			to_chat(src, SPAN_XENOWARNING("我们已经在释放[localized_player_label(pheromone)]信息素了！"))
 			return
 		if(!check_plasma(emit_cost))
-			to_chat(src, SPAN_XENOWARNING("We do not have enough plasma!"))
+			to_chat(src, SPAN_XENOWARNING("我们的等离子体不足！"))
 			return
 		use_plasma(emit_cost)
 		current_aura = pheromone
-		visible_message(SPAN_XENOWARNING("\The [src] begins to emit strange-smelling pheromones."), \
-		SPAN_XENOWARNING("We begin to emit '[pheromone]' pheromones."), null, 5)
+		visible_message(SPAN_XENOWARNING("[src]开始释放气味奇特的信息素。"), \
+		SPAN_XENOWARNING("我们开始释放“[localized_player_label(pheromone)]”信息素。"), null, 5)
 		SEND_SIGNAL(src, COMSIG_XENO_START_EMIT_PHEROMONES, pheromone)
 		playsound(loc, "alien_drool", 25)
 
@@ -384,14 +384,14 @@
 		return
 
 	if(!isturf(X.loc))
-		to_chat(X, SPAN_XENOWARNING("We can't [ability_name] from here!"))
+		to_chat(X, SPAN_XENOWARNING("我们不能从这里使用[localized_player_label(ability_name)]！"))
 		return
 
 	if(!X.check_state())
 		return
 
 	if(X.legcuffed)
-		to_chat(X, SPAN_XENODANGER("We can't [ability_name] with that thing on our leg!"))
+		to_chat(X, SPAN_XENODANGER("腿上有那个东西，无法使用[localized_player_label(ability_name)]！"))
 		return
 
 	if(!check_and_use_plasma_owner())
@@ -418,7 +418,7 @@
 		pre_windup_effects()
 
 		if (!do_after(X, windup_duration, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
-			to_chat(X, SPAN_XENODANGER("We cancel our [ability_name]!"))
+			to_chat(X, SPAN_XENODANGER("我们取消了[localized_player_label(ability_name)]！"))
 			if (!windup_interruptable)
 				REMOVE_TRAIT(X, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Pounce"))
 				X.anchored = FALSE
@@ -430,7 +430,7 @@
 			X.anchored = FALSE
 		post_windup_effects()
 
-	X.visible_message(SPAN_XENOWARNING("\The [X] [ability_name][findtext(ability_name, "e", -1) || findtext(ability_name, "p", -1) ? "s" : "es"] at [A]!"), SPAN_XENOWARNING("We [ability_name] at [A]!"))
+	X.visible_message(SPAN_XENOWARNING("[X]向[A]发起[localized_player_label(ability_name)]！"), SPAN_XENOWARNING("我们向[A]发起[localized_player_label(ability_name)]！"))
 
 	pre_pounce_effects()
 
@@ -457,7 +457,7 @@
 		return
 
 	if(!isturf(X.loc))
-		to_chat(X, SPAN_XENOWARNING("We can't [ability_name] from here!"))
+		to_chat(X, SPAN_XENOWARNING("我们不能从这里使用[localized_player_label(ability_name)]！"))
 		return
 
 	if(!X.check_state() || X.action_busy)
@@ -465,7 +465,7 @@
 
 	if (activation_delay)
 		if(!do_after(X, activation_delay_length, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
-			to_chat(X, SPAN_XENOWARNING("We decide to cancel our acid spray."))
+			to_chat(X, SPAN_XENOWARNING("我们决定取消酸液喷洒。"))
 			end_cooldown()
 			return
 
@@ -478,7 +478,7 @@
 		return
 
 	playsound(get_turf(X), 'sound/effects/refill.ogg', 25, 1)
-	X.visible_message(SPAN_XENOWARNING("[X] vomits a flood of acid!"), SPAN_XENOWARNING("We vomit a flood of acid!"), null, 5)
+	X.visible_message(SPAN_XENOWARNING("[X]吐出奔涌的酸液！"), SPAN_XENOWARNING("我们吐出奔涌的酸液！"), null, 5)
 
 	apply_cooldown()
 
@@ -501,12 +501,12 @@
 		return
 	if(xeno.layer != XENO_HIDING_LAYER)
 		xeno.layer = XENO_HIDING_LAYER
-		to_chat(xeno, SPAN_NOTICE("We are now hiding."))
+		to_chat(xeno, SPAN_NOTICE("我们现在隐藏起来了。"))
 		button.icon_state = "template_active"
 		RegisterSignal(xeno, COMSIG_MOB_STATCHANGE, PROC_REF(unhide_on_stat))
 	else
 		xeno.layer = initial(xeno.layer)
-		to_chat(xeno, SPAN_NOTICE("We have stopped hiding."))
+		to_chat(xeno, SPAN_NOTICE("我们停止隐藏。"))
 		button.icon_state = "template"
 		UnregisterSignal(xeno, COMSIG_MOB_STATCHANGE)
 	xeno.update_wounds()
@@ -530,17 +530,17 @@
 
 	var/turf/T = get_turf(X)
 	if(!istype(T))
-		to_chat(X, SPAN_XENOWARNING("We can't do that here."))
+		to_chat(X, SPAN_XENOWARNING("我们无法在这里这样做。"))
 		return
 	var/area/AR = get_area(T)
 	if(istype(AR,/area/shuttle/drop1/lz1) || istype(AR,/area/shuttle/drop2/lz2) || SSinterior.in_interior(owner))
-		to_chat(X, SPAN_WARNING("We sense this is not a suitable area for creating a resin hole."))
+		to_chat(X, SPAN_WARNING("我们感知到这里不适合制造树脂坑。"))
 		return
 	var/obj/effect/alien/weeds/alien_weeds = T.check_xeno_trap_placement(X)
 	if(!alien_weeds)
 		return
 	if(istype(alien_weeds, /obj/effect/alien/weeds/node))
-		to_chat(X, SPAN_NOTICE("We start uprooting the node so we can put the resin hole in its place..."))
+		to_chat(X, SPAN_NOTICE("我们开始拔除节点，准备在原处放置树脂坑……"))
 		if(!do_after(X, 1 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC, target, INTERRUPT_ALL))
 			return
 		if(!T.check_xeno_trap_placement(X))
@@ -556,39 +556,39 @@
 	X.use_plasma(plasma_cost)
 	playsound(X.loc, "alien_resin_build", 25)
 	new /obj/effect/alien/resin/trap(T, X)
-	to_chat(X, SPAN_XENONOTICE("We place a resin hole on the weeds, it still needs a sister to fill it with acid."))
+	to_chat(X, SPAN_XENONOTICE("我们在菌毯上放置了树脂坑，仍需一位姐妹注入酸液。"))
 	return ..()
 
 /turf/proc/check_xeno_trap_placement(mob/living/carbon/xenomorph/X)
 	if(is_weedable() < FULLY_WEEDABLE || !can_xeno_build(src))
-		to_chat(X, SPAN_XENOWARNING("We can't do that here."))
+		to_chat(X, SPAN_XENOWARNING("我们无法在这里这样做。"))
 		return FALSE
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in src
 	if(!alien_weeds)
-		to_chat(X, SPAN_XENOWARNING("We can only shape on weeds. We must find some resin before we start building!"))
+		to_chat(X, SPAN_XENOWARNING("我们只能在菌毯上塑形。开始建造前，必须先找到树脂！"))
 		return FALSE
 
 	// This snowflake check exists because stairs specifically are indestructable, tile-covering, and cannot be moved, which allows resin holes to be
 	// planted under them without any possible counterplay. In the future if resin holes stop being able to be hidden under objects, remove this check.
 	var/obj/structure/stairs/staircase = locate() in src
 	if(staircase)
-		to_chat(X, SPAN_XENOWARNING("We cannot make a hole beneath a staircase!"))
+		to_chat(X, SPAN_XENOWARNING("我们无法在楼梯下面挖坑！"))
 		return FALSE
 
 	if(alien_weeds.linked_hive.hivenumber != X.hivenumber)
-		to_chat(X, SPAN_XENOWARNING("These weeds don't belong to our hive!"))
+		to_chat(X, SPAN_XENOWARNING("这些菌毯不属于我们的虫巢！"))
 		return FALSE
 
 	if(!X.check_alien_construction(src, check_doors = TRUE))
 		return FALSE
 
 	if(locate(/obj/effect/alien/resin/trap) in orange(1, src)) // obj/effect/alien/resin presence is checked on turf by check_alien_construction, so we just check orange.
-		to_chat(X, SPAN_XENOWARNING("This is too close to another resin hole!"))
+		to_chat(X, SPAN_XENOWARNING("离另一个树脂坑太近了！"))
 		return FALSE
 
 	if(locate(/obj/effect/alien/resin/fruit) in orange(1, src))
-		to_chat(X, SPAN_XENOWARNING("This is too close to a fruit!"))
+		to_chat(X, SPAN_XENOWARNING("离果实太近了！"))
 		return FALSE
 
 	return alien_weeds
@@ -602,13 +602,13 @@
 
 	//Make sure construction is unrestricted
 	if(X.hive && X.hive.construction_allowed == XENO_LEADER && X.hive_pos == NORMAL_XENO)
-		to_chat(X, SPAN_WARNING("Construction is currently restricted to Leaders only!"))
+		to_chat(X, SPAN_WARNING("目前仅允许领袖建造！"))
 		return FALSE
 	else if(X.hive && X.hive.construction_allowed == XENO_QUEEN && !istype(X.caste, /datum/caste_datum/queen))
-		to_chat(X, SPAN_WARNING("Construction is currently restricted to Queen only!"))
+		to_chat(X, SPAN_WARNING("目前仅允许女王建造！"))
 		return FALSE
 	else if(X.hive && X.hive.construction_allowed == XENO_NOBODY)
-		to_chat(X, SPAN_WARNING("The hive is too weak and fragile to have the strength to design constructions."))
+		to_chat(X, SPAN_WARNING("虫巢太弱小脆弱，无力设计建筑。"))
 		return FALSE
 
 	var/turf/T = get_turf(A)
@@ -616,17 +616,17 @@
 	var/area/AR = get_area(T)
 	if(isnull(AR) || !(AR.is_resin_allowed))
 		if(AR.flags_area & AREA_UNWEEDABLE)
-			to_chat(X, SPAN_XENOWARNING("This area is unsuited to host the hive!"))
+			to_chat(X, SPAN_XENOWARNING("这片区域不适合建立巢群！"))
 			return
-		to_chat(X, SPAN_XENOWARNING("It's too early to spread the hive this far."))
+		to_chat(X, SPAN_XENOWARNING("现在还太早，无法将巢群扩展到这么远。"))
 		return FALSE
 
 	if(T.z != X.z)
-		to_chat(X, SPAN_XENOWARNING("This area is too far away to affect!"))
+		to_chat(X, SPAN_XENOWARNING("这片区域太远，无法施加影响！"))
 		return FALSE
 
 	if(SSinterior.in_interior(X))
-		to_chat(X, SPAN_XENOWARNING("It's too tight in here to build."))
+		to_chat(X, SPAN_XENOWARNING("这里太狭窄，无法建造。"))
 		return FALSE
 
 	if(!X.check_alien_construction(T))
@@ -634,14 +634,14 @@
 
 	var/choice = XENO_STRUCTURE_CORE
 	if(X.hive.hivecore_cooldown)
-		to_chat(X, SPAN_WARNING("The weeds are still recovering from the death of the hive core, wait until the weeds have recovered!"))
+		to_chat(X, SPAN_WARNING("菌毯仍在从虫巢核心死亡的创伤中恢复，请等待它们恢复！"))
 		return FALSE
 	if(X.hive.has_structure(XENO_STRUCTURE_CORE) || !X.hive.can_build_structure(XENO_STRUCTURE_CORE))
-		choice = tgui_input_list(X, "选择要建造的建筑。", "建造建筑", X.hive.hive_structure_types + "help", theme = "hive_status")
+		choice = localized_input_list(X, "选择要建造的建筑。", "建造建筑", X.hive.hive_structure_types + "help", theme = "hive_status")
 		if(!choice)
 			return
 		if(choice == "help")
-			var/message = "Placing a construction node creates a template for special structures that can benefit the hive, which require the insertion of plasma to construct the following:<br>"
+			var/message = "放置建造节点会生成有益于虫巢的特殊建筑模板。注入等离子体即可建造以下建筑：<br>"
 			for(var/structure_name in X.hive.hive_structure_types)
 				var/datum/construction_template/xenomorph/structure_type = X.hive.hive_structure_types[structure_name]
 				message += "<b>[capitalize_first_letters(structure_name)]</b> - [initial(structure_type.description)]<br>"
@@ -663,40 +663,40 @@
 
 	if((choice == XENO_STRUCTURE_CORE) && isqueen(X) && X.hive.has_structure(XENO_STRUCTURE_CORE))
 		if(X.hive.hive_location.hardcore || world.time > XENOMORPH_PRE_SETUP_CUTOFF)
-			to_chat(X, SPAN_WARNING("We can't rebuild this structure!"))
+			to_chat(X, SPAN_WARNING("我们无法重建这种建筑！"))
 			return FALSE
 		if(alert(X, "确定要迁移虫巢并摧毁旧的虫巢核心吗？", , "Yes", "No") != "Yes")
 			return FALSE
 		qdel(X.hive.hive_location)
 	else if(!X.hive.can_build_structure(choice))
-		to_chat(X, SPAN_WARNING("We can't build any more [choice]s for the hive."))
+		to_chat(X, SPAN_WARNING("虫巢无法再建更多[localized_player_label(choice)]。"))
 		qdel(structure_template)
 		return FALSE
 
 	if(QDELETED(T))
-		to_chat(X, SPAN_WARNING("We cannot build here!"))
+		to_chat(X, SPAN_WARNING("我们无法在这里建造！"))
 		qdel(structure_template)
 		return FALSE
 
 	var/queen_on_zlevel = !X.hive.living_xeno_queen || X.hive.living_xeno_queen.z == T.z
 	if(!queen_on_zlevel)
-		to_chat(X, SPAN_WARNING("Our link to the Queen is too weak here. She is on another world."))
+		to_chat(X, SPAN_WARNING("这里与女王的链接太弱，她在另一个世界。"))
 		qdel(structure_template)
 		return FALSE
 
 	if(SSinterior.in_interior(X))
-		to_chat(X, SPAN_WARNING("It's too tight in here to build."))
+		to_chat(X, SPAN_WARNING("这里太狭窄，无法建造。"))
 		qdel(structure_template)
 		return FALSE
 
 	if(T.is_weedable() < FULLY_WEEDABLE)
-		to_chat(X, SPAN_WARNING("\The [T] can't support a [structure_template.name]!"))
+		to_chat(X, SPAN_WARNING("[T]无法支撑[localized_player_label(structure_template.name)]！"))
 		qdel(structure_template)
 		return FALSE
 
 	var/obj/effect/alien/weeds/weeds = locate() in T
 	if(weeds?.block_structures >= BLOCK_SPECIAL_STRUCTURES)
-		to_chat(X, SPAN_WARNING("\The [weeds] block the construction of any special structures!"))
+		to_chat(X, SPAN_WARNING("[weeds]阻止了特殊建筑的建造！"))
 		qdel(structure_template)
 		return FALSE
 
@@ -711,21 +711,21 @@
 	if(tem.block_range)
 		for(var/turf/TA in range(tem.block_range, T))
 			if(!X.check_alien_construction(TA, FALSE, TRUE, ignore_nest = TRUE))
-				to_chat(X, SPAN_WARNING("We need more open space to build here."))
+				to_chat(X, SPAN_WARNING("这里需要更多开阔空间才能建造。"))
 				qdel(tem)
 				return FALSE
 		if(!X.check_alien_construction(T, ignore_nest = TRUE))
-			to_chat(X, SPAN_WARNING("We need more open space to build here."))
+			to_chat(X, SPAN_WARNING("这里需要更多开阔空间才能建造。"))
 			qdel(tem)
 			return FALSE
 		var/obj/effect/alien/weeds/alien_weeds = locate() in T
 		if(!alien_weeds || alien_weeds.weed_strength < WEED_LEVEL_HIVE || alien_weeds.linked_hive.hivenumber != X.hivenumber)
-			to_chat(X, SPAN_WARNING("We can only shape on [lowertext(GLOB.hive_datum[X.hivenumber].prefix)]hive weeds. We must find a hive node or core before we start building!"))
+			to_chat(X, SPAN_WARNING("我们只能在[localized_player_label(trim(GLOB.hive_datum[X.hivenumber].prefix))]虫巢的菌毯上塑形。开始建造前，必须先找到虫巢节点或核心！"))
 			qdel(tem)
 			return FALSE
 		if(T.density)
 			qdel(tem)
-			to_chat(X, SPAN_WARNING("We need empty space to build this."))
+			to_chat(X, SPAN_WARNING("建造这个需要空地。"))
 			return FALSE
 	return TRUE
 
@@ -736,15 +736,15 @@
 		return
 
 	if(spitting)
-		to_chat(src, SPAN_WARNING("We are already preparing a spit!"))
+		to_chat(src, SPAN_WARNING("我们已经在准备喷吐！"))
 		return
 
 	if(!isturf(xeno.loc))
-		to_chat(src, SPAN_WARNING("We can't spit from here!"))
+		to_chat(src, SPAN_WARNING("我们无法从这里喷吐！"))
 		return
 
 	if(!action_cooldown_check())
-		to_chat(src, SPAN_WARNING("We must wait for our spit glands to refill."))
+		to_chat(src, SPAN_WARNING("必须等待喷吐腺重新充满。"))
 		return
 
 	var/turf/current_turf = get_turf(xeno)
@@ -759,11 +759,11 @@
 		spitting = TRUE
 		if(xeno.ammo.pre_spit_warn)
 			playsound(xeno.loc,"alien_drool", 55, 1)
-		to_chat(xeno, SPAN_WARNING("We begin to prepare a large spit!"))
-		xeno.visible_message(SPAN_WARNING("[xeno] prepares to spit a massive glob!"),\
-		SPAN_WARNING("We begin to spit [xeno.ammo.name]!"))
+		to_chat(xeno, SPAN_WARNING("我们开始准备大团喷吐物！"))
+		xeno.visible_message(SPAN_WARNING("[xeno]准备喷出巨大的液团！"),\
+		SPAN_WARNING("我们开始喷吐[xeno.ammo.name]！"))
 		if (!do_after(xeno, xeno.ammo.spit_windup, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_HOSTILE))
-			to_chat(xeno, SPAN_XENODANGER("We decide to cancel our spit."))
+			to_chat(xeno, SPAN_XENODANGER("我们决定取消喷吐。"))
 			spitting = FALSE
 			return
 	plasma_cost = xeno.ammo.spit_cost
@@ -773,9 +773,9 @@
 		return
 
 	xeno_cooldown = xeno.caste.spit_delay + xeno.ammo.added_spit_delay
-	xeno.visible_message(SPAN_XENOWARNING("[xeno] spits at [atom]!"), \
+	xeno.visible_message(SPAN_XENOWARNING("[xeno]朝[atom]喷吐！"), \
 
-	SPAN_XENOWARNING("We spit [xeno.ammo.name] at [atom]!") )
+	SPAN_XENOWARNING("我们向[atom]喷吐[xeno.ammo.name]！") )
 	playsound(xeno.loc, sound_to_play, 25, 1)
 
 	var/obj/projectile/proj = new (current_turf, create_cause_data(xeno.ammo.name, xeno))
@@ -800,23 +800,23 @@
 	var/turf/T = get_turf(A)
 
 	if(isnull(T) || istype(T, /turf/closed) || !T.can_bombard(owner))
-		to_chat(X, SPAN_XENODANGER("We can't bombard that!"))
+		to_chat(X, SPAN_XENODANGER("我们无法轰击那个目标！"))
 		return FALSE
 
 	if (!check_plasma_owner())
 		return FALSE
 
 	if(T.z != X.z)
-		to_chat(X, SPAN_WARNING("That target is too far away!"))
+		to_chat(X, SPAN_WARNING("那个目标太远了！"))
 		return FALSE
 
 	var/atom/bombard_source = get_bombard_source()
 	if (!X.can_bombard_turf(T, range, bombard_source))
 		return FALSE
 
-	X.visible_message(SPAN_XENODANGER("[X] digs itself into place!"), SPAN_XENODANGER("We dig ourself into place!"))
+	X.visible_message(SPAN_XENODANGER("[X]掘地固定住身体！"), SPAN_XENODANGER("我们掘地固定住身体！"))
 	if (!do_after(X, activation_delay, interrupt_flags, BUSY_ICON_HOSTILE))
-		to_chat(X, SPAN_XENODANGER("We decide to cancel our bombard."))
+		to_chat(X, SPAN_XENODANGER("我们决定取消轰击。"))
 		return FALSE
 
 	if (!X.can_bombard_turf(T, range, bombard_source)) //Second check in case something changed during the do_after.
@@ -827,7 +827,7 @@
 
 	apply_cooldown()
 
-	X.visible_message(SPAN_XENODANGER("[X] launches a massive ball of acid at [A]!"), SPAN_XENODANGER("You launch a massive ball of acid at [A]!"))
+	X.visible_message(SPAN_XENODANGER("[X]向[A]发射了一颗巨大酸球！"), SPAN_XENODANGER("你向[A]发射了一颗巨大酸球！"))
 	playsound(get_turf(X), 'sound/effects/blobattack.ogg', 25, 1)
 
 	recursive_spread(T, effect_range, effect_range)
@@ -847,7 +847,7 @@
 	addtimer(CALLBACK(src, PROC_REF(new_effect), T, owner), 2*(orig_depth - dist_left))
 
 	for(var/mob/living/L in T)
-		to_chat(L, SPAN_XENOHIGHDANGER("You see a massive ball of acid flying towards you!"))
+		to_chat(L, SPAN_XENOHIGHDANGER("你看见一颗巨大酸球正朝自己飞来！"))
 
 	for(var/dirn in GLOB.alldirs)
 		recursive_spread(get_step(T, dirn), dist_left - 1, orig_depth)
@@ -877,13 +877,13 @@
 
 /mob/living/carbon/xenomorph/proc/can_bombard_turf(atom/target, range = 5, atom/bombard_source) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
 	if(!bombard_source || !isturf(bombard_source.loc))
-		to_chat(src, SPAN_XENODANGER("That target is obstructed!"))
+		to_chat(src, SPAN_XENODANGER("那个目标被遮挡了！"))
 		return FALSE
 	var/turf/current = bombard_source.loc
 	var/turf/target_turf = get_turf(target)
 
 	if (get_dist_sqrd(current, target_turf) > (range*range))
-		to_chat(src, SPAN_XENODANGER("That is too far away!"))
+		to_chat(src, SPAN_XENODANGER("太远了！"))
 		return
 
 	. = TRUE
@@ -900,7 +900,7 @@
 					. = FALSE
 					break
 		if(!.)
-			to_chat(src, SPAN_XENODANGER("That target is obstructed!"))
+			to_chat(src, SPAN_XENODANGER("那个目标被遮挡了！"))
 			return
 
 		current = get_step_towards(current, target_turf)
@@ -909,7 +909,7 @@
 	var/mob/living/carbon/xenomorph/stabbing_xeno = owner
 
 	if(HAS_TRAIT(stabbing_xeno, TRAIT_ABILITY_BURROWED) || stabbing_xeno.is_ventcrawling)
-		to_chat(stabbing_xeno, SPAN_XENOWARNING("We must be above ground to do this."))
+		to_chat(stabbing_xeno, SPAN_XENOWARNING("必须在地表才能这样做。"))
 		return
 
 	if(!stabbing_xeno.check_state() || stabbing_xeno.cannot_slash)
@@ -933,18 +933,18 @@
 	var/list/turf/path = get_line(stabbing_xeno, targetted_atom, include_start_atom = FALSE)
 	for(var/turf/path_turf as anything in path)
 		if(path_turf.density)
-			to_chat(stabbing_xeno, SPAN_WARNING("There's something blocking our strike!"))
+			to_chat(stabbing_xeno, SPAN_WARNING("有什么挡住了我们的攻击！"))
 			return FALSE
 		for(var/obj/path_contents in path_turf.contents)
 			if(path_contents != targetted_atom && path_contents.density && !path_contents.throwpass)
-				to_chat(stabbing_xeno, SPAN_WARNING("There's something blocking our strike!"))
+				to_chat(stabbing_xeno, SPAN_WARNING("有什么挡住了我们的攻击！"))
 				return FALSE
 
 		var/atom/barrier = path_turf.handle_barriers(stabbing_xeno, null, (PASS_MOB_THRU_XENO|PASS_OVER_THROW_MOB|PASS_TYPE_CRAWLER))
 		if(barrier != path_turf)
 			var/tail_stab_cooldown_multiplier = barrier.handle_tail_stab(stabbing_xeno)
 			if(!tail_stab_cooldown_multiplier)
-				to_chat(stabbing_xeno, SPAN_WARNING("There's something blocking our strike!"))
+				to_chat(stabbing_xeno, SPAN_WARNING("有什么挡住了我们的攻击！"))
 			else
 				apply_cooldown(cooldown_modifier = tail_stab_cooldown_multiplier)
 				xeno_attack_delay(stabbing_xeno)
@@ -958,7 +958,7 @@
 		return ..()
 
 	if(!isxeno_human(targetted_atom))
-		stabbing_xeno.visible_message(SPAN_XENOWARNING("\The [stabbing_xeno] swipes their tail through the air!"), SPAN_XENOWARNING("We swipe our tail through the air!"))
+		stabbing_xeno.visible_message(SPAN_XENOWARNING("[stabbing_xeno]的尾巴划过空气！"), SPAN_XENOWARNING("我们的尾巴划过空气！"))
 		apply_cooldown(cooldown_modifier = 0.1)
 		xeno_attack_delay(stabbing_xeno)
 		playsound(stabbing_xeno, "alien_tail_swipe", 50, TRUE)
@@ -974,7 +974,7 @@
 
 	var/obj/limb/limb = target.get_limb(check_zone(stabbing_xeno.zone_selected))
 	if (ishuman(target) && (!limb || (limb.status & LIMB_DESTROYED)))
-		to_chat(stabbing_xeno, (SPAN_WARNING("What [limb.display_name]?")))
+		to_chat(stabbing_xeno, (SPAN_WARNING("哪来的[localized_player_label(limb.display_name)]？")))
 		return FALSE
 
 	if(!check_and_use_plasma_owner())
@@ -1002,7 +1002,7 @@
 	var/stab_overlay
 
 	if(blunt_stab)
-		stabbing_xeno.visible_message(SPAN_XENOWARNING("\The [stabbing_xeno] swipes its tail into [target]'s [limb ? limb.display_name : "chest"], bashing it!"), SPAN_XENOWARNING("We swipe our tail into [target]'s [limb? limb.display_name : "chest"], bashing it!"))
+		stabbing_xeno.visible_message(SPAN_XENOWARNING("[stabbing_xeno]用尾巴抽中[target]的[limb ? localized_player_label(limb.display_name) : "胸部"]，狠狠将其打伤！"), SPAN_XENOWARNING("我们用尾巴抽中[target]的[limb? localized_player_label(limb.display_name) : "胸部"]，狠狠将其打伤！"))
 		if(prob(1))
 			playsound(target, 'sound/effects/comical_bonk.ogg', 50, TRUE)
 		else
@@ -1011,7 +1011,7 @@
 		stab_direction = turn(stabbing_xeno.dir, pick(90, -90))
 		stab_overlay = "slam"
 	else
-		stabbing_xeno.visible_message(SPAN_XENOWARNING("\The [stabbing_xeno] skewers [target] through the [limb ? limb.display_name : "chest"] with its razor sharp tail!"), SPAN_XENOWARNING("We skewer [target] through the [limb? limb.display_name : "chest"] with our razor sharp tail!"))
+		stabbing_xeno.visible_message(SPAN_XENOWARNING("[stabbing_xeno]用锋利尾刺穿透了[target]的[limb ? localized_player_label(limb.display_name) : "胸部"]！"), SPAN_XENOWARNING("我们用锋利尾刺穿透了[target]的[limb? localized_player_label(limb.display_name) : "胸部"]！"))
 		playsound(target, "alien_bite", 50, TRUE)
 		// The xeno flips around for a second to impale the target with their tail. These look awsome.
 		stab_direction = turn(get_dir(stabbing_xeno, target), 180)

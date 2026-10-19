@@ -25,15 +25,15 @@
 	var/datum/reagents/R = src.reagents
 
 	if(!R.total_volume || !R)
-		to_chat(user, SPAN_DANGER("The [src.name] is empty!"))
+		to_chat(user, SPAN_DANGER("[src.name]是空的！"))
 		return FALSE
 
 	if(HAS_TRAIT(M, TRAIT_CANNOT_EAT))
-		to_chat(user, SPAN_DANGER("[user == M ? "You are" : "[M] is"] unable to drink!"))
+		to_chat(user, SPAN_DANGER("[user == M ? "你" : "[M]"]无法饮用！"))
 		return FALSE
 
 	if(M == user)
-		to_chat(M, SPAN_NOTICE(" You swallow a gulp from \the [src]."))
+		to_chat(M, SPAN_NOTICE("你从[src]中喝了一大口。"))
 		if(reagents.total_volume)
 			reagents.set_source_mob(user)
 			reagents.trans_to_ingest(M, gulp_size)
@@ -43,16 +43,16 @@
 	else if(istype(M, /mob/living/carbon/human))
 
 		user.affected_message(M,
-			SPAN_HELPFUL("You <b>start feeding</b> [user == M ? "yourself" : "[M]"] <b>[src]</b>."),
-			SPAN_HELPFUL("[user] <b>starts feeding</b> you <b>[src]</b>."),
-			SPAN_NOTICE("[user] starts feeding [user == M ? "themselves" : "[M]"] [src]."))
+			SPAN_HELPFUL("你<b>开始给</b>[user == M ? "自己" : "[M]"]喂<b>[src]</b>。"),
+			SPAN_HELPFUL("[user]<b>开始给你喂</b><b>[src]</b>。"),
+			SPAN_NOTICE("[user]开始给[user == M ? "自己" : "[M]"]喂[src]。"))
 
 		if(!do_after(user, 30, INTERRUPT_ALL, BUSY_ICON_FRIENDLY, M))
 			return FALSE
 		user.affected_message(M,
-			SPAN_HELPFUL("You <b>fed</b> [user == M ? "yourself" : "[M]"] <b>[src]</b>."),
-			SPAN_HELPFUL("[user] <b>fed</b> you <b>[src]</b>."),
-			SPAN_NOTICE("[user] fed [user == M ? "themselves" : "[M]"] [src]."))
+			SPAN_HELPFUL("你<b>给</b>[user == M ? "自己" : "[M]"]<b>喂下了[src]</b>。"),
+			SPAN_HELPFUL("[user]<b>给你喂下了[src]</b>。"),
+			SPAN_NOTICE("[user]给[user == M ? "自己" : "[M]"]喂下了[src]。"))
 
 		var/rgt_list_text = get_reagent_list_text()
 
@@ -76,32 +76,32 @@
 	if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
 
 		if(!target.reagents.total_volume)
-			to_chat(user, SPAN_DANGER("[target] is empty."))
+			to_chat(user, SPAN_DANGER("[target]是空的。"))
 			return
 
 		if(reagents.total_volume >= reagents.maximum_volume)
-			to_chat(user, SPAN_DANGER("[src] is full."))
+			to_chat(user, SPAN_DANGER("[src]已经装满。"))
 			return
 
 		var/trans = target.reagents.trans_to(src, target:amount_per_transfer_from_this)
 
 		if(!trans)
-			to_chat(user, SPAN_DANGER("You fail to fill [src] with reagents from [target]."))
+			to_chat(user, SPAN_DANGER("你没能将[target]中的试剂装入[src]。"))
 			return
 
-		to_chat(user, SPAN_NOTICE(" You fill [src] with [trans] units of the contents of [target]."))
+		to_chat(user, SPAN_NOTICE("你将[target]中[trans]单位的内容物装入[src]。"))
 
 	else if(target.is_open_container()) //Something like a glass. Player probably wants to transfer TO it.
 		if(!reagents.total_volume)
-			to_chat(user, SPAN_DANGER("[src] is empty."))
+			to_chat(user, SPAN_DANGER("[src]是空的。"))
 			return
 
 		if(target.reagents.total_volume >= target.reagents.maximum_volume)
-			to_chat(user, SPAN_DANGER("[target] is full."))
+			to_chat(user, SPAN_DANGER("[target]已经装满。"))
 			return
 
 		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
-		to_chat(user, SPAN_NOTICE(" You transfer [trans] units of the solution to [target]."))
+		to_chat(user, SPAN_NOTICE("你向[target]中转移了[trans]单位溶液。"))
 
 	return ..()
 
@@ -110,15 +110,15 @@
 	if (get_dist(user, src) > 1 && user != loc)
 		return
 	if(!reagents || reagents.total_volume==0)
-		. += SPAN_NOTICE("\The [src] is empty!")
+		. += SPAN_NOTICE("[src]是空的！")
 	else if (reagents.total_volume<=src.volume/4)
-		. += SPAN_NOTICE("\The [src] is almost empty!")
+		. += SPAN_NOTICE("[src]快空了！")
 	else if (reagents.total_volume<=src.volume*0.66)
-		. += SPAN_NOTICE("\The [src] is half full!")
+		. += SPAN_NOTICE("[src]大约半满！")
 	else if (reagents.total_volume<=src.volume*0.90)
-		. += SPAN_NOTICE("\The [src] is almost full!")
+		. += SPAN_NOTICE("[src]快满了！")
 	else
-		. += SPAN_NOTICE("\The [src] is full!")
+		. += SPAN_NOTICE("[src]已经装满！")
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -126,8 +126,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/reagent_container/food/drinks/golden_cup
-	desc = "A golden cup"
-	name = "golden cup"
+	desc = "一个金杯"
+	name = "金杯"
 	icon_state = "golden_cup"
 	item_state = "" //nope :(
 	w_class = SIZE_LARGE
@@ -140,7 +140,7 @@
 	black_market_value = 20
 
 /obj/item/reagent_container/food/drinks/golden_cup/tournament_26_06_2011
-	desc = "A golden cup. It will be presented to a winner of tournament 26 June and name of the winner will be graved on it."
+	desc = "一个金杯，将颁发给 6 月 26 日比赛的冠军，获胜者的名字会刻在上面。"
 
 
 ///////////////////////////////////////////////Drinks
@@ -186,8 +186,8 @@
 	reagents.add_reagent("soymilk", 50)
 
 /obj/item/reagent_container/food/drinks/chocolatemilk
-	name = "chocolate milk carton"
-	desc = "A carton of chocolate milk."
+	name = "巧克力牛奶盒"
+	desc = "一盒巧克力牛奶。"
 	icon_state = "chocmilk"
 	item_state = "carton"
 	center_of_mass = "x=16;y=9"
@@ -265,8 +265,8 @@
 	reagents.add_reagent("hot_coco", 30)
 
 /obj/item/reagent_container/food/drinks/dry_ramen
-	name = "cup ramen"
-	desc = "Just add 10ml water, self-heats! A taste that reminds you of your school years."
+	name = "杯装拉面"
+	desc = "加 10 毫升水即可自动加热！让人想起学生时代的味道。"
 	icon_state = "ramen"
 	center_of_mass = "x=16;y=11"
 
@@ -276,8 +276,8 @@
 
 
 /obj/item/reagent_container/food/drinks/sillycup
-	name = "paper cup"
-	desc = "A paper water cup."
+	name = "纸杯"
+	desc = "一个纸制水杯。"
 	icon_state = "water_cup_e"
 	possible_transfer_amounts = null
 	volume = 10
@@ -300,29 +300,29 @@
 	throwforce = 0
 	w_class = SIZE_TINY
 	matter = list("plastic" = 5)
-	attack_verb = list("bludgeoned", "whacked", "slapped")
+	attack_verb = list("重击", "敲击", "拍击")
 
 /obj/item/reagent_container/food/drinks/cup/attack_self(mob/user)
 	. = ..()
 	if(user.a_intent == INTENT_HARM)
-		user.visible_message(SPAN_WARNING("[user] crushes \the [src]!"), SPAN_WARNING("You crush \the [src]!"))
+		user.visible_message(SPAN_WARNING("[user]捏扁了[src]！"), SPAN_WARNING("你捏扁了[src]！"))
 		if(reagents.total_volume > 0)
 			reagents.clear_reagents()
 			playsound(src.loc, 'sound/effects/slosh.ogg', 25, 1, 3)
-			to_chat(user, SPAN_WARNING("The contents of \the [src] spill!"))
+			to_chat(user, SPAN_WARNING("[src]中的东西洒了出来！"))
 		qdel(src)
 		var/obj/item/trash/crushed_cup/C = new /obj/item/trash/crushed_cup(user)
 		user.equip_to_slot_if_possible(C, (user.hand ? WEAR_L_HAND : WEAR_R_HAND))
 
 /obj/item/trash/crushed_cup
-	name = "crushed cup"
-	desc = "A sad crushed and destroyed cup. It's now useless trash. What a waste."
+	name = "捏扁的杯子"
+	desc = "一个被捏扁毁坏的可怜杯子。现在只剩下无用的垃圾。真浪费。"
 	icon = 'icons/obj/items/cup.dmi'
 	icon_state = "crushed_solocup"
 	throwforce = 0
 	w_class = SIZE_TINY
 	matter = list("plastic" = 5)
-	attack_verb = list("bludgeoned", "whacked", "slapped")
+	attack_verb = list("重击", "敲击", "拍击")
 
 //////////////////////////drinkingglass and shaker//
 //Note by Darem: This code handles the mixing of drinks. New drinks go in three places: In Chemistry-Reagents.dm (for the drink
@@ -330,8 +330,8 @@
 // icon states.
 
 /obj/item/reagent_container/food/drinks/shaker
-	name = "shaker"
-	desc = "A metal shaker to mix drinks in."
+	name = "调酒壶"
+	desc = "用于混合饮料的金属调酒壶。"
 	icon_state = "shaker"
 	amount_per_transfer_from_this = 10
 	volume = 100
@@ -385,8 +385,8 @@
 	reagents.clear_reagents()
 
 /obj/item/reagent_container/food/drinks/flask/detflask
-	name = "brown leather flask"
-	desc = "A flask with a leather band around the sides, often seen filled with whiskey and carried by rugged, gritty detectives."
+	name = "棕色皮革酒壶"
+	desc = "侧面裹有皮带的酒壶，常被粗犷坚毅的侦探装满威士忌随身携带。"
 	icon_state = "brownflask"
 	volume = 120
 	center_of_mass = "x=17;y=8"
@@ -418,8 +418,8 @@
 	center_of_mass = "x=15;y=13"
 
 /obj/item/reagent_container/food/drinks/coffeecup/uscm
-	name = "USCM coffee mug"
-	desc = "A red, white and blue coffee mug depicting the emblem of the USCM. Patriotic and bold, and commonly seen among veterans as a novelty."
+	name = "美国殖民地陆战队咖啡杯"
+	desc = "印有美国殖民地陆战队徽记的红白蓝三色咖啡杯。爱国又醒目，常被老兵当作纪念品。"
 	icon_state = "uscmcup"
 
 /obj/item/reagent_container/food/drinks/coffeecup/wy
@@ -428,6 +428,6 @@
 	icon_state = "wycup"
 
 /obj/item/reagent_container/food/drinks/plasticcup
-	name = "plastic cup"
+	name = "塑料杯"
 	icon_state = "plasticcup"
-	desc = "A decent sized plastic cup, perfect aboard starships for it's capacity to deal with careless handling by roughnecks."
+	desc = "大小适中的塑料杯，经得起粗鲁工人的随手摆弄，非常适合在星舰上使用。"

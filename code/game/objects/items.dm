@@ -216,7 +216,7 @@
 	return ..()
 
 /obj/item/ex_act(severity, explosion_direction)
-	var/msg = pick("is destroyed by the blast!", "is obliterated by the blast!", "shatters as the explosion engulfs it!", "disintegrates in the blast!", "perishes in the blast!", "is mangled into uselessness by the blast!")
+	var/msg = pick("被爆炸摧毁！", "被炸得荡然无存！", "在爆炸中粉碎！", "在爆炸中解体！", "在爆炸中毁坏！", "被炸得面目全非，彻底报废！")
 	explosion_throw(severity, explosion_direction)
 	switch(severity)
 		if(0 to EXPLOSION_THRESHOLD_LOW)
@@ -280,29 +280,29 @@ cases. Override_icon_state should be a list.*/
 	var/size
 	switch(w_class)
 		if(SIZE_TINY)
-			size = "tiny"
+			size = "微小型"
 		if(SIZE_SMALL)
-			size = "small"
+			size = "小型"
 		if(SIZE_MEDIUM)
-			size = "normal-sized"
+			size = "中型"
 		if(SIZE_LARGE)
-			size = "bulky"
+			size = "大型"
 		if(SIZE_HUGE)
-			size = "huge"
+			size = "超大型"
 		if(SIZE_MASSIVE)
-			size = "massive"
-	. += "[p_are() == "are" ? "These are " : "This is a "][blood_color ? blood_color != COLOR_OIL ? "bloody " : "oil-stained " : ""][icon2html(src, user)][src.name]. [p_they(TRUE)] [p_are()] a [size] item."
+			size = "巨型"
+	. += "这是[blood_color ? blood_color != COLOR_OIL ? "沾血的" : "沾满油污的" : ""][icon2html(src, user)][src.name]，属于[size]物品。"
 	if(desc)
 		. += desc
 	if(desc_lore)
-		. += SPAN_NOTICE("This has an <a href='byond://?src=\ref[src];desc_lore=1'>extended lore description</a>.")
+		. += SPAN_NOTICE("<a href='byond://?src=\ref[src];desc_lore=1'>查看详细背景介绍</a>。")
 
 /obj/item/attack_hand(mob/user)
 	if (!user)
 		return
 
 	if(anchored)
-		to_chat(user, "[src] is anchored to the ground.")
+		to_chat(user, "[src]固定在地面上。")
 		return
 
 	if(!Adjacent(user)) // needed because of alt-click
@@ -348,11 +348,11 @@ cases. Override_icon_state should be a list.*/
 					success = 1
 					S.handle_item_insertion(I, TRUE, user) //The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
 				if(success && !failure)
-					to_chat(user, SPAN_NOTICE("You put everything in [S]."))
+					to_chat(user, SPAN_NOTICE("你把所有东西都放进了[S]。"))
 				else if(success)
-					to_chat(user, SPAN_NOTICE("You put some things in [S]."))
+					to_chat(user, SPAN_NOTICE("你把一些东西放进了[S]。"))
 				else
-					to_chat(user, SPAN_NOTICE("You fail to pick anything up with [S]."))
+					to_chat(user, SPAN_NOTICE("你没能用[S]收起任何东西。"))
 
 			else if(S.can_be_inserted(src, user))
 				S.handle_item_insertion(src, FALSE, user)
@@ -478,7 +478,7 @@ cases. Override_icon_state should be a list.*/
 			if(light_on)
 				turn_light(toggle_on = FALSE)
 			user.drop_inv_item_on_ground(src)
-			to_chat(user, SPAN_NOTICE("You drop \the [src] to the ground while unequipping \the [item]."))
+			to_chat(user, SPAN_NOTICE("你卸下[item]时，[src]掉到了地上。"))
 
 //sometimes we only want to grant the item's action if it's equipped in a specific slot.
 /obj/item/proc/item_action_slot_check(mob/user, slot)
@@ -529,7 +529,7 @@ cases. Override_icon_state should be a list.*/
 						break
 			if(!restriction_satisfied)
 				if(!disable_warning)
-					to_chat(human, SPAN_WARNING("You cannot wear this without wearing one of the following; [required_clothing.Join(", ")]."))
+					to_chat(human, SPAN_WARNING("你必须先穿上以下服装之一才能装备它：[required_clothing.Join("、")]。"))
 				return FALSE
 
 		switch(slot)
@@ -537,14 +537,14 @@ cases. Override_icon_state should be a list.*/
 				if(human.l_hand)
 					return FALSE
 				if(human.body_position == LYING_DOWN)
-					to_chat(human, SPAN_WARNING("You can't equip that while lying down."))
+					to_chat(human, SPAN_WARNING("你躺着时无法装备它。"))
 					return
 				return TRUE
 			if(WEAR_R_HAND)
 				if(human.r_hand)
 					return FALSE
 				if(human.body_position == LYING_DOWN)
-					to_chat(human, SPAN_WARNING("You can't equip that while lying down."))
+					to_chat(human, SPAN_WARNING("你躺着时无法装备它。"))
 					return
 				return TRUE
 			if(WEAR_FACE)
@@ -582,7 +582,7 @@ cases. Override_icon_state should be a list.*/
 					return FALSE
 				if(!human.w_uniform && (WEAR_BODY in mob_equip))
 					if(!disable_warning)
-						to_chat(human, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
+						to_chat(human, SPAN_WARNING("你需要先穿上制服，才能别上这个[name]。"))
 					return FALSE
 				if(!(flags_equip_slot & SLOT_WAIST))
 					return
@@ -605,7 +605,7 @@ cases. Override_icon_state should be a list.*/
 				if(HAS_TRAIT(src, TRAIT_ITEM_EAR_EXCLUSIVE))
 					if(human.wear_r_ear && HAS_TRAIT(human.wear_r_ear, TRAIT_ITEM_EAR_EXCLUSIVE))
 						if(!disable_warning)
-							to_chat(human, SPAN_WARNING("You can't wear [src] while you have [human.wear_r_ear] in your right ear!"))
+							to_chat(human, SPAN_WARNING("你的右耳已经戴着[human.wear_r_ear]，无法再戴上[src]！"))
 						return FALSE
 				if(!(flags_equip_slot & SLOT_EAR))
 					return FALSE
@@ -616,7 +616,7 @@ cases. Override_icon_state should be a list.*/
 				if(HAS_TRAIT(src, TRAIT_ITEM_EAR_EXCLUSIVE))
 					if(human.wear_l_ear && HAS_TRAIT(human.wear_l_ear, TRAIT_ITEM_EAR_EXCLUSIVE))
 						if(!disable_warning)
-							to_chat(human, SPAN_WARNING("You can't wear [src] while you have [human.wear_l_ear] in your left ear!"))
+							to_chat(human, SPAN_WARNING("你的左耳已经戴着[human.wear_l_ear]，无法再戴上[src]！"))
 						return FALSE
 				if(!(flags_equip_slot & SLOT_EAR))
 					return FALSE
@@ -638,7 +638,7 @@ cases. Override_icon_state should be a list.*/
 					return FALSE
 				if(!human.w_uniform && (WEAR_BODY in mob_equip))
 					if(!disable_warning)
-						to_chat(human, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
+						to_chat(human, SPAN_WARNING("你需要先穿上制服，才能别上这个[name]。"))
 					return FALSE
 				if(flags_equip_slot & SLOT_NO_STORE)
 					return FALSE
@@ -649,7 +649,7 @@ cases. Override_icon_state should be a list.*/
 					return FALSE
 				if(!human.w_uniform && (WEAR_BODY in mob_equip))
 					if(!disable_warning)
-						to_chat(human, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
+						to_chat(human, SPAN_WARNING("你需要先穿上制服，才能别上这个[name]。"))
 					return FALSE
 				if(flags_equip_slot & SLOT_NO_STORE)
 					return FALSE
@@ -670,11 +670,11 @@ cases. Override_icon_state should be a list.*/
 					return FALSE
 				if(!human.wear_suit && (WEAR_JACKET in mob_equip))
 					if(!disable_warning)
-						to_chat(human, SPAN_WARNING("You need a suit before you can attach this [name]."))
+						to_chat(human, SPAN_WARNING("你需要先穿上外套，才能别上这个[name]。"))
 					return FALSE
 				if(human.wear_suit && !human.wear_suit.allowed)
 					if(!disable_warning)
-						to_chat(usr, "You somehow have a suit with no defined allowed items for suit storage, stop that.")
+						to_chat(usr, "你身上的外套居然没有定义可存放的物品，请联系管理员。")
 					return FALSE
 				if(human.wear_suit && is_type_in_list(src, human.wear_suit.allowed))
 					return TRUE
@@ -815,9 +815,9 @@ cases. Override_icon_state should be a list.*/
 
 /obj/item/proc/showoff(mob/user)
 	var/list/viewers = get_mobs_in_view(GLOB.world_view_size, user)
-	user.langchat_speech("holds up [src].", viewers, GLOB.all_languages, skip_language_check = TRUE, animation_style = LANGCHAT_FAST_POP, additional_styles = list("langchat_small", "emote"))
+	user.langchat_speech("举起[src]。", viewers, GLOB.all_languages, skip_language_check = TRUE, animation_style = LANGCHAT_FAST_POP, additional_styles = list("langchat_small", "emote"))
 	for (var/mob/M in viewers)
-		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];lookitem=\ref[src]>Take a closer look.</a>", SHOW_MESSAGE_VISIBLE)
+		M.show_message("[user]举起[src]。<a HREF=?src=\ref[M];lookitem=\ref[src]>仔细查看。</a>", SHOW_MESSAGE_VISIBLE)
 
 /mob/living/carbon/verb/showoff()
 	set name = "Show Held Item"
@@ -831,21 +831,21 @@ cases. Override_icon_state should be a list.*/
 /obj/item/proc/zoom(mob/living/user, tileoffset = 11, viewsize = 12, keep_zoom = 0) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	if(!user)
 		return
-	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
+	var/zoom_device = zoomdevicename ? "\improper [src]的[localized_player_label(zoomdevicename)]" : "\improper [src]"
 
 	for(var/obj/item/I in user.contents)
 		if(I.zoom && I != src)
-			to_chat(user, SPAN_WARNING("You are already looking through \the [zoom_device]."))
+			to_chat(user, SPAN_WARNING("你已经在使用[zoom_device]观察。"))
 			return //Return in the interest of not unzooming the other item. Check first in the interest of not fucking with the other clauses
 
 	if(user.eye_blind)
-		to_chat(user, SPAN_WARNING("You are too blind to see anything."))
+		to_chat(user, SPAN_WARNING("你失明得太严重，什么也看不见。"))
 	else if(user.stat || !ishuman(user))
-		to_chat(user, SPAN_WARNING("You are unable to focus through \the [zoom_device]."))
+		to_chat(user, SPAN_WARNING("你无法透过[zoom_device]对焦。"))
 	else if(!zoom && user.client && user.update_tint())
-		to_chat(user, SPAN_WARNING("Your welding equipment gets in the way of you looking through \the [zoom_device]."))
+		to_chat(user, SPAN_WARNING("你的焊接装备挡住了视线，无法使用[zoom_device]观察。"))
 	else if(!zoom && user.get_active_hand() != src && !istype(src, /obj/item/clothing/mask))
-		to_chat(user, SPAN_WARNING("You need to hold \the [zoom_device] to look through it."))
+		to_chat(user, SPAN_WARNING("你需要拿着[zoom_device]才能使用它观察。"))
 	else if(!zoom)
 		do_zoom(user, tileoffset, viewsize, keep_zoom)
 		return
@@ -854,9 +854,9 @@ cases. Override_icon_state should be a list.*/
 /obj/item/proc/unzoom(mob/living/user)
 	if(user.interactee == src)
 		user.unset_interaction()
-	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
-	INVOKE_ASYNC(user, TYPE_PROC_REF(/atom, visible_message), SPAN_NOTICE("[user] looks up from [zoom_device]."),
-	SPAN_NOTICE("You look up from [zoom_device]."))
+	var/zoom_device = zoomdevicename ? "\improper [src]的[localized_player_label(zoomdevicename)]" : "\improper [src]"
+	INVOKE_ASYNC(user, TYPE_PROC_REF(/atom, visible_message), SPAN_NOTICE("[user]停止使用[zoom_device]观察。"),
+	SPAN_NOTICE("你停止使用[zoom_device]观察。"))
 	zoom = !zoom
 	COOLDOWN_START(user, zoom_cooldown, 20)
 	SEND_SIGNAL(user, COMSIG_LIVING_ZOOM_OUT, src)
@@ -921,9 +921,9 @@ cases. Override_icon_state should be a list.*/
 				user.client.pixel_y = 0
 
 	SEND_SIGNAL(src, COMSIG_ITEM_ZOOM, user)
-	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
-	user.visible_message(SPAN_NOTICE("[user] peers through \the [zoom_device]."),
-	SPAN_NOTICE("You peer through \the [zoom_device]."))
+	var/zoom_device = zoomdevicename ? "\improper [src]的[localized_player_label(zoomdevicename)]" : "\improper [src]"
+	user.visible_message(SPAN_NOTICE("[user]透过[zoom_device]观察。"),
+	SPAN_NOTICE("你透过[zoom_device]观察。"))
 	zoom = !zoom
 
 /obj/item/proc/get_icon_state(mob/user_mob, slot)
@@ -1045,7 +1045,7 @@ cases. Override_icon_state should be a list.*/
 		table_setup = TRUE
 		usr.drop_inv_item_to_loc(src, target.loc)
 	else
-		to_chat(usr, SPAN_WARNING("You fail to setup the [name]"))
+		to_chat(usr, SPAN_WARNING("你没能架好[name]。"))
 
 /**
  * Called to reset the state of the item to not be settled on the table.

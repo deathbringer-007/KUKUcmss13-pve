@@ -37,7 +37,7 @@
 
 /obj/item/storage/pouch/get_examine_text(mob/user)
 	. = ..()
-	. += "Can be worn by attaching it to a pocket."
+	. += "可固定在口袋上佩戴。"
 
 
 /obj/item/storage/pouch/equipped(mob/user, slot)
@@ -143,12 +143,12 @@
 		COOLDOWN_START(src, draw_cooldown, BAYONET_DRAW_DELAY)
 		playsound(src, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, TRUE)
 	else
-		to_chat(user, SPAN_WARNING("You need to wait before drawing another knife!"))
+		to_chat(user, SPAN_WARNING("你需要稍等才能再拔一把刀！"))
 		return 0
 
 /obj/item/storage/pouch/survival
-	name = "survival pouch"
-	desc = "A pouch given to colonists in the event of an emergency."
+	name = "生存袋"
+	desc = "紧急情况下发给殖民者的携行袋。"
 	icon_state = "tools"
 	storage_slots = 7
 	max_w_class = SIZE_MEDIUM
@@ -172,8 +172,8 @@
 	new /obj/item/stack/medical/splint(src)
 
 /obj/item/storage/pouch/survival/synth
-	name = "synth survival pouch"
-	desc = "An emergency pouch given to synthetics in the event of an emergency."
+	name = "合成人生存袋"
+	desc = "紧急情况下发给合成人的应急携行袋。"
 	icon_state = "tools"
 	storage_slots = 6
 	max_w_class = SIZE_MEDIUM
@@ -230,7 +230,7 @@
 	new /obj/item/storage/pill_bottle/packet/tramadol(src)
 
 /obj/item/storage/pouch/firstaid/ert
-	desc = "A first aid pouch capable of storing a variety of basic medical supplies. It can hold ointments, bandages, injectors, splints and pill packets. This one has some extra stuff."
+	desc = "能存放多种基础医疗物资的急救袋，可装药膏、绷带、注射器、夹板和药片包。这件还多装了一些东西。"
 	icon_state = "firstaid"
 	storage_slots = 5
 
@@ -277,7 +277,7 @@
 		return
 	if(current_gun && isgun(W))
 		if(!stop_messages)
-			to_chat(usr, SPAN_WARNING("[src] already holds a gun."))
+			to_chat(usr, SPAN_WARNING("[src]已经装有一把枪。"))
 		return FALSE
 
 /obj/item/storage/pouch/pistol/_item_insertion(obj/item/I, prevent_warning = 0, mob/user)
@@ -310,8 +310,8 @@
 
 ///CO pouch. This pouch can hold only 1 of each type of item: 1 sidearm, 1 pair of binoculars, 1 CO tablet
 /obj/item/storage/pouch/pistol/command
-	name = "command pouch"
-	desc = "A specialized, sturdy pouch issued to Commanding Officers. Can hold their sidearm, the command tablet and a set of binoculars."
+	name = "指挥官携行袋"
+	desc = "配发给舰长的坚固专用携行袋，可容纳副武器、指挥平板和一副双筒望远镜。"
 	storage_slots = 3
 	icon_state = "command_pouch"
 	can_hold = list(
@@ -344,11 +344,11 @@
 		return
 	if(binos && istype(I, /obj/item/device/binoculars))
 		if(!stop_messages)
-			to_chat(usr, SPAN_WARNING("[src] already holds a pair of binoculars."))
+			to_chat(usr, SPAN_WARNING("[src]已经装有一副双筒望远镜。"))
 		return FALSE
 	else if(tablet && istype(I, /obj/item/device/cotablet))
 		if(!stop_messages)
-			to_chat(usr, SPAN_WARNING("[src] already holds a tablet."))
+			to_chat(usr, SPAN_WARNING("[src]已经装有一台平板。"))
 		return FALSE
 
 /obj/item/storage/pouch/pistol/command/_item_insertion(obj/item/I, prevent_warning = 0, mob/user)
@@ -698,8 +698,8 @@
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 
 /obj/item/storage/pouch/medical/socmed
-	name = "tactical medical pouch"
-	desc = "A heavy pouch containing everything one needs to get themselves back on their feet. Quite the selection."
+	name = "战术医疗袋"
+	desc = "沉甸甸的携行袋，装有让自己重新站起来所需的一切。选择相当丰富。"
 	icon_state = "socmed"
 	storage_slots = 13
 	can_hold = list(
@@ -740,8 +740,8 @@
 	new /obj/item/tool/extinguisher/mini(src)
 
 /obj/item/storage/pouch/medical/socmed/dutch
-	name = "\improper Dutch's Medical Pouch"
-	desc = "A pouch bought from a black market trader by Dutch quite a few years ago. Rumoured to be stolen from secret USCM assets. Its contents have been slowly used up and replaced over the years."
+	name = "\improper 达奇的医疗袋"
+	desc = "达奇多年前从黑市商人手中买来的携行袋，据说偷自美国殖民地陆战队的秘密资产。多年来，其中物资被逐渐消耗和替换。"
 
 /obj/item/storage/pouch/medical/socmed/dutch/fill_preset_inventory()
 	new /obj/item/device/healthanalyzer(src)
@@ -759,8 +759,8 @@
 	new /obj/item/tool/extinguisher/mini(src)
 
 /obj/item/storage/pouch/medical/socmed/dutch/unmarked
-	name = "tactical medical pouch"
-	desc = "A heavy pouch containing everything one needs to get themselves back on their feet. Quite the selection. Somehow, the whole pouch manages to look classified, you feel like you're going to get court-marshalled for even looking at it."
+	name = "战术医疗袋"
+	desc = "沉甸甸的携行袋，装有让自己重新站起来所需的一切，选择相当丰富。不知为何，整个袋子都透着机密感，让你觉得光是看一眼就会被送上军事法庭。"
 
 /obj/item/storage/pouch/first_responder
 	name = "急救响应袋"
@@ -1030,12 +1030,12 @@
 /obj/item/storage/pouch/pressurized_reagent_canister/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/reagent_container/glass/pressurized_canister))
 		if(inner)
-			to_chat(user, SPAN_WARNING("There already is a container inside [src]!"))
+			to_chat(user, SPAN_WARNING("[src]里面已经有容器了！"))
 		else
 			user.drop_inv_item_to_loc(W, src)
 			inner = W
 			contents -= W
-			to_chat(user, SPAN_NOTICE("You insert [W] into [src]!"))
+			to_chat(user, SPAN_NOTICE("你将[W]装入了[src]！"))
 			update_icon()
 		return
 
@@ -1044,7 +1044,7 @@
 		fill_autoinjector(A)
 		return ..()
 	else if(istype(W, /obj/item/reagent_container/hypospray/autoinjector))
-		to_chat(user, SPAN_WARNING("[W] is not compatible with this system!"))
+		to_chat(user, SPAN_WARNING("[W]与该系统不兼容！"))
 	return ..()
 
 /obj/item/storage/pouch/pressurized_reagent_canister/proc/fill_autoinjector(obj/item/reagent_container/hypospray/autoinjector/autoinjector)
@@ -1063,19 +1063,19 @@
 		return ..()
 
 	if(!inner)
-		to_chat(user, SPAN_WARNING("[src] has no internal container!"))
+		to_chat(user, SPAN_WARNING("[src]没有内置容器！"))
 		return ..()
 
 	if(istype(target, /obj/structure/machinery/chem_dispenser))
 		var/obj/structure/machinery/chem_dispenser/cd = target
 		if(!cd.beaker)
-			to_chat(user, SPAN_NOTICE("You unhook the inner container and connect it to [target]."))
+			to_chat(user, SPAN_NOTICE("你解开内置容器，将它连接到[target]。"))
 			inner.forceMove(cd)
 			cd.beaker = inner
 			inner = null
 			update_icon()
 		else
-			to_chat(user, SPAN_WARNING("[cd] already has a container!"))
+			to_chat(user, SPAN_WARNING("[cd]已经有容器了！"))
 		return
 
 	if(!istype(target, /obj/structure/reagent_dispensers/fueltank))
@@ -1085,12 +1085,12 @@
 
 	var/obj/O = target
 	if(!O.reagents || length(O.reagents.reagent_list) < 1)
-		to_chat(user, SPAN_WARNING("[O] is empty!"))
+		to_chat(user, SPAN_WARNING("[O]是空的！"))
 		return
 
 	var/amt_to_remove = clamp(O.reagents.total_volume, 0, inner.volume)
 	if(!amt_to_remove)
-		to_chat(user, SPAN_WARNING("[O] is empty!"))
+		to_chat(user, SPAN_WARNING("[O]是空的！"))
 		return
 
 	//Fill our inner reagent canister
@@ -1107,7 +1107,7 @@
 
 	playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
 
-	to_chat(user, SPAN_NOTICE("You refill the [src]."))
+	to_chat(user, SPAN_NOTICE("你补满了[src]。"))
 	update_icon()
 
 /obj/item/storage/pouch/pressurized_reagent_canister/get_examine_text(mob/user)
@@ -1135,17 +1135,17 @@
 	if(isxeno(user))
 		return
 	if(!inner)
-		return "This [src] has no container inside!"
+		return "[src]里面没有容器！"
 	if(skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_TRAINED))
-		return "This [src] contains: [get_reagent_list_text()]"
+		return "[src]内含： [get_reagent_list_text()]"
 	else
-		return "You don't know what's in it."
+		return "你不知道里面装着什么。"
 
 //returns a text listing the reagents (and their volume) in the atom. Used by Attack logs for reagents in pills
 /obj/item/storage/pouch/pressurized_reagent_canister/proc/get_reagent_list_text()
 	if(inner && inner.reagents && LAZYLEN(inner.reagents.reagent_list))
 		var/datum/reagent/R = inner.reagents.reagent_list[1]
-		. = "[R.name]([R.volume]u)"
+		. = "[R.name]（[R.volume]单位）"
 
 		if(length(inner.reagents.reagent_list) < 2)
 			return
@@ -1156,9 +1156,9 @@
 			if(!R)
 				continue
 
-			. += "; [R.name]([R.volume]u)"
+			. += "；[R.name]（[R.volume]单位）"
 	else
-		. = "No reagents"
+		. = "无试剂"
 
 /obj/item/storage/pouch/pressurized_reagent_canister/verb/flush_container()
 	set category = "Weapons"
@@ -1166,13 +1166,13 @@
 	set desc = "强制倒空容器内的试剂。"
 	set src in usr
 	if(!inner)
-		to_chat(usr, SPAN_WARNING("There is no container inside this pouch!"))
+		to_chat(usr, SPAN_WARNING("这个携行袋里没有容器！"))
 		return
 
-	to_chat(usr, SPAN_NOTICE("You hold down the emergency flush button. Wait 3 seconds..."))
+	to_chat(usr, SPAN_NOTICE("你按住紧急排空按钮。请等待三秒……"))
 	if(do_after(usr, 3 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		if(inner)
-			to_chat(usr, SPAN_NOTICE("You flush the [src]."))
+			to_chat(usr, SPAN_NOTICE("你排空了[src]。"))
 			inner.reagents.clear_reagents()
 			update_icon()
 
@@ -1182,7 +1182,7 @@
 	set desc = "从袋中取出加压罐。"
 	set src in usr
 	if(!inner)
-		to_chat(usr, SPAN_WARNING("There is no container inside this pouch!"))
+		to_chat(usr, SPAN_WARNING("这个携行袋里没有容器！"))
 		return
 
 	var/had_empty_hand = usr.put_in_any_hand_if_possible(inner, disable_warning = TRUE)
@@ -1218,11 +1218,11 @@
 		new /obj/item/device/flashlight/flare/rmc(src)
 
 /obj/item/storage/pouch/radio
-	name = "radio pouch"
+	name = "无线电袋"
 	storage_slots = 2
 	icon_state = "radio"
 	storage_flags = STORAGE_FLAGS_POUCH|STORAGE_USING_DRAWING_METHOD
-	desc = "It can contain two handheld radios."
+	desc = "可装两台手持无线电。"
 	can_hold = list(/obj/item/device/radio)
 
 
@@ -1391,8 +1391,8 @@
 	new /obj/item/explosive/plastic/breaching_charge(src)
 
 /obj/item/storage/pouch/tools/tactical/upp
-	name = "synthetic tools pouch"
-	desc = "Special issue tools pouch for UPP synthetics. Due to the enhanced strength of the synthetic and its inability to feel discomfort, this pouch is designed to maximize internal space with no concern for its wearer's comfort."
+	name = "合成人工具袋"
+	desc = "进步人民联盟合成人专用工具袋。由于合成人力量更强，也不会感到不适，设计者完全不考虑佩戴舒适性，尽可能扩大了内部空间。"
 	icon_state = "tools"
 	storage_slots = 7
 
@@ -1427,17 +1427,17 @@
 /obj/item/storage/pouch/sling/get_examine_text(mob/user)
 	. = ..()
 	if(slung && slung.loc != src)
-		. += "\The [slung] is attached to the sling."
+		. += "[slung]连接在枪带上。"
 
 /obj/item/storage/pouch/sling/can_be_inserted(obj/item/I, mob/user, stop_messages = FALSE)
 	if(slung)
 		if(slung != I)
 			if(!stop_messages)
-				to_chat(usr, SPAN_WARNING("\the [slung] is already attached to the sling."))
+				to_chat(usr, SPAN_WARNING("[slung]已经连接在枪带上。"))
 			return FALSE
 	else if(SEND_SIGNAL(I, COMSIG_DROP_RETRIEVAL_CHECK) & COMPONENT_DROP_RETRIEVAL_PRESENT)
 		if(!stop_messages)
-			to_chat(usr, SPAN_WARNING("[I] is already attached to another sling."))
+			to_chat(usr, SPAN_WARNING("[I]已经连接在另一条枪带上。"))
 		return FALSE
 	return ..()
 
@@ -1446,12 +1446,12 @@
 		slung = I
 		slung.AddElement(/datum/element/drop_retrieval/pouch_sling, src)
 		if(!prevent_warning)
-			to_chat(user, SPAN_NOTICE("You attach the sling to [I]."))
+			to_chat(user, SPAN_NOTICE("你将枪带接到[I]上。"))
 	..()
 
 /obj/item/storage/pouch/sling/attack_self(mob/user)
 	if(slung)
-		to_chat(user, SPAN_NOTICE("You retract the sling from [slung]."))
+		to_chat(user, SPAN_NOTICE("你从[slung]上收回枪带。"))
 		unsling()
 		return
 	return ..()
@@ -1473,7 +1473,7 @@
 		return FALSE
 	if(handle_item_insertion(slung))
 		if(user)
-			to_chat(user, SPAN_NOTICE("[slung] snaps back into [src]."))
+			to_chat(user, SPAN_NOTICE("[slung]弹回了[src]！"))
 		return TRUE
 
 /obj/item/storage/pouch/sling/proc/attempt_retrieval(mob/living/carbon/human/user)
@@ -1481,7 +1481,7 @@
 		return
 	unsling()
 	if(user && src.loc == user)
-		to_chat(user, SPAN_WARNING("The sling of your [src] snaps back empty!"))
+		to_chat(user, SPAN_WARNING("你的[src]的枪带弹了回来，上面却空无一物！"))
 
 /obj/item/storage/pouch/sling/proc/handle_retrieval(mob/living/carbon/human/user)
 	if(slung && slung.loc == src)

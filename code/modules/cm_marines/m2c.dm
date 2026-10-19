@@ -21,8 +21,8 @@
 
 //STORAGE BOX FOR THE MACHINEGUN
 /obj/item/storage/box/m56d/m2c
-	name = "\improper M2C Assembly-Supply Crate"
-	desc = "A large case labelled 'M2C, .50 BMG caliber heavy machinegun', seems to be fairly heavy to hold. Contains a deadly M2C Heavy Machinegun System and its ammunition."
+	name = "\improper M2C 组装补给箱"
+	desc = "一个标有“M2C，.50 BMG 口径重机枪”的大箱子，拿起来相当沉。内装致命的 M2C 重机枪系统及弹药。"
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D_case"
 	w_class = SIZE_HUGE
@@ -73,20 +73,20 @@
 	if(!ishuman(user) && !HAS_TRAIT(user, TRAIT_OPPOSABLE_THUMBS))
 		return FALSE
 	if(broken_gun)
-		to_chat(user, SPAN_WARNING("You can't set up \the [src], it's completely broken!"))
+		to_chat(user, SPAN_WARNING("[src]已经彻底损坏，无法架设！"))
 		return FALSE
 	if(SSinterior.in_interior(user))
-		to_chat(usr, SPAN_WARNING("It's too cramped in here to deploy \a [src]."))
+		to_chat(usr, SPAN_WARNING("这里太拥挤，无法部署[src]。"))
 		return FALSE
 	if(OT.density || !isturf(OT) || !OT.allow_construction)
-		to_chat(user, SPAN_WARNING("You can't set up \the [src] here."))
+		to_chat(user, SPAN_WARNING("你无法在这里架设[src]。"))
 		return FALSE
 	if(rotate_check.density)
-		to_chat(user, SPAN_WARNING("You can't set up \the [src] that way, there's a wall behind you!"))
+		to_chat(user, SPAN_WARNING("你无法朝这个方向架设[src]，身后有墙！"))
 		return FALSE
 	for(var/obj/structure/potential_blocker in rotate_check)
 		if(potential_blocker.density)
-			to_chat(user, SPAN_WARNING("You can't set up \the [src] that way, there's \a [potential_blocker] behind you!"))
+			to_chat(user, SPAN_WARNING("你无法朝这个方向架设[src]，身后有[potential_blocker]！"))
 			return FALSE
 
 	var/fail = FALSE
@@ -101,7 +101,7 @@
 			fail = TRUE
 			break
 	if(fail)
-		to_chat(user, SPAN_WARNING("You can't install \the [src] here, something is in the way."))
+		to_chat(user, SPAN_WARNING("你无法在这里安装[src]，有东西挡住了。"))
 		return FALSE
 
 	return TRUE
@@ -126,7 +126,7 @@
 	HMG.setDir(user.dir) // Make sure we face the right direction
 	HMG.anchored = TRUE
 	playsound(HMG, 'sound/items/m56dauto_setup.ogg', 75, TRUE)
-	to_chat(user, SPAN_NOTICE("You deploy [HMG]."))
+	to_chat(user, SPAN_NOTICE("你部署了[HMG]。"))
 	HMG.rounds = rounds
 	HMG.overheat_value = overheat_value
 	HMG.health = health
@@ -145,35 +145,35 @@
 		return
 
 	if(!HAS_TRAIT(O, TRAIT_TOOL_BLOWTORCH))
-		to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+		to_chat(user, SPAN_WARNING("你需要功率更大的焊枪！"))
 		return
 
 	if(!broken_gun)
-		to_chat(user, SPAN_WARNING("[src] isn't critically broken, no need for field recovery operations."))
+		to_chat(user, SPAN_WARNING("[src]尚未严重损毁，无需进行战地抢修。"))
 		return
 
 	var/obj/item/tool/weldingtool/WT = O
 
 	if(WT.remove_fuel(2, user))
-		user.visible_message(SPAN_NOTICE("[user] begins field recovering \the [src]."), \
-			SPAN_NOTICE("You begin repairing the severe damages on \the [src] in an effort to restore its functions."))
+		user.visible_message(SPAN_NOTICE("[user]开始对[src]进行战地抢修。"), \
+			SPAN_NOTICE("你开始修复[src]的严重损伤，试图恢复它的功能。"))
 		playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 		if(!do_after(user, field_recovery * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL, BUSY_ICON_FRIENDLY, src))
 			return
-		user.visible_message(SPAN_NOTICE("[user] field recovers \the [src], restoring it back to its original state."), \
-			SPAN_NOTICE("You repair \the [src] back to a functional state."))
+		user.visible_message(SPAN_NOTICE("[user]对[src]进行了战地抢修，使其恢复原状。"), \
+			SPAN_NOTICE("你修好了[src]，使其恢复正常运行。"))
 		broken_gun = FALSE
 		health = 110
 		update_icon()
 		return
 	else
-		to_chat(user, SPAN_WARNING("You need more fuel in \the [WT] to start field recovery on [src]."))
+		to_chat(user, SPAN_WARNING("[WT]的燃料不足，无法开始对[src]进行战地抢修。"))
 
 // MACHINEGUN, AUTOMATIC
 /obj/structure/machinery/m56d_hmg/auto
-	name = "\improper M2C Heavy Machinegun"
-	desc = "A deployable, heavy machine gun. The M2C is a modified M2 HB made with contemporary materials. It is capable of recoilless fire and fast-rotating. <B> Click its sprite while behind it without holding anything to man it. Click-drag on NON-GRAB intent to disassemble the gun, GRAB INTENT to remove ammo magazines.</B>"
-	desc_lore = "Initially requested by DOD to substantially reinforce Colonial Guard units with high-caliber weaponry for cheap price, this mean killing machine soon found its way into hands of mercenaries, colonists and rebels by the means of warehouse raiding or plain ol' corruption. If you're a marine and somehow found it and for some reason decided to use it... better reconsider, since this thing has NO place on the modern battlefield, requiring static position, taking up valuable kit space and not really being much better than modern 10x28 caliber machineguns. Seriously, its 2182, just let it go."
+	name = "\improper M2C 重机枪"
+	desc = "可部署的重机枪，采用现代材料改进自 M2 HB，能够无后坐力射击并快速转向。<B>空手站在后方，点击机枪即可操作。非抓取意图下点击并拖动可拆卸机枪，抓取意图下则可取下弹药箱。</B>"
+	desc_lore = "国防部原本希望以低价用大口径武器大幅增强殖民地卫队的火力，却没过多久，这种凶狠的杀戮机器就通过仓库劫掠和老掉牙的腐败手段，流入雇佣兵、殖民者和叛军手中。如果你是陆战队员，碰巧找到了它，又莫名决定用它……最好再想想。这东西必须固定架设，占用宝贵的装备空间，性能也不见得比现代 10×28 毫米机枪好多少，在现代战场上毫无用武之地。拜托，现在都 2182 年了，放过它吧。"
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56DE"
 	icon_full = "M56DE"
@@ -281,7 +281,7 @@
 	health -= amount
 	if(health <= 0)
 		playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-		visible_message(SPAN_WARNING("[src] has broken down completely!"))
+		visible_message(SPAN_WARNING("[src]已经彻底损坏！"))
 		var/obj/item/device/m2c_gun/HMG = new(loc)
 		HMG.rounds = rounds
 		HMG.broken_gun = TRUE
@@ -304,10 +304,10 @@
 	if(istype(O, /obj/item/ammo_magazine/m2c))
 		var/obj/item/ammo_magazine/m2c/M = O
 		if(rounds)
-			to_chat(user, SPAN_WARNING("There's already an ammo box inside of [src], remove it first!"))
+			to_chat(user, SPAN_WARNING("[src]里面已经有一个弹药箱，先将它取出！"))
 			return
 		if(user.action_busy) return
-		user.visible_message(SPAN_NOTICE("[user] loads [src] with an ammo box! "), SPAN_NOTICE("You load [src] with an ammo box!"))
+		user.visible_message(SPAN_NOTICE("[user]为[src]装入了弹药箱！"), SPAN_NOTICE("你为[src]装入了弹药箱！"))
 		playsound(src.loc, 'sound/items/m56dauto_load.ogg', 75, 1)
 		rounds = min(rounds + M.current_rounds, rounds_max)
 		update_icon()
@@ -318,7 +318,7 @@
 	// WELDER REPAIR
 	if(iswelder(O))
 		if(!HAS_TRAIT(O, TRAIT_TOOL_BLOWTORCH))
-			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			to_chat(user, SPAN_WARNING("你需要功率更大的焊枪！"))
 			return
 		if(user.action_busy)
 			return
@@ -326,21 +326,21 @@
 		var/obj/item/tool/weldingtool/WT = O
 
 		if(health == health_max)
-			to_chat(user, SPAN_WARNING("[src] doesn't need repairs, it's well-maintained."))
+			to_chat(user, SPAN_WARNING("[src]保养良好，无需修理。"))
 			return
 
 		if(WT.remove_fuel(2, user))
-			user.visible_message(SPAN_NOTICE("[user] begins repairing damage on \the [src]."), \
-				SPAN_NOTICE("You begin repairing the damage on \the [src]."))
+			user.visible_message(SPAN_NOTICE("[user]开始修理[src]的损伤。"), \
+				SPAN_NOTICE("你开始修理[src]的损伤。"))
 			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 			if(!do_after(user, repair_time * user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL, BUSY_ICON_FRIENDLY, src))
 				return
-			user.visible_message(SPAN_NOTICE("[user] repairs some of the damage on [src]."), \
-					SPAN_NOTICE("You repair [src]."))
+			user.visible_message(SPAN_NOTICE("[user]修复了[src]的部分损伤。"), \
+					SPAN_NOTICE("你修复了[src]。"))
 			update_health(-floor(health_max*0.2))
 			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 		else
-			to_chat(user, SPAN_WARNING("You need more fuel in [WT] to repair damage to [src]."))
+			to_chat(user, SPAN_WARNING("[WT]需要更多燃料才能修理[src]。"))
 		return
 	return
 
@@ -352,12 +352,12 @@
 
 	if(overheat_value >= overheat_threshold)
 		if(world.time > overheat_text_cooldown)
-			operator.visible_message(SPAN_HIGHDANGER("[src] has overheated and has been shortly disabled!"), SPAN_HIGHDANGER("[src] has overheated! You have to wait for it to cooldown!"))
+			operator.visible_message(SPAN_HIGHDANGER("[src]已经过热，暂时无法使用！"), SPAN_HIGHDANGER("[src]已经过热！你必须等待它冷却！"))
 			overheat_text_cooldown = world.time + 3 SECONDS
 
 		if(!emergency_cooling)
 			emergency_cooling = TRUE
-			to_chat(operator, SPAN_DANGER("You wait for [src]'s barrel to cooldown to continue sustained fire."))
+			to_chat(operator, SPAN_DANGER("你等待[src]的枪管冷却，以便继续持续射击。"))
 			fire_stopper = TRUE
 			STOP_PROCESSING(SSobj, src)
 			addtimer(CALLBACK(src, PROC_REF(force_cooldown)), force_cooldown_timer)
@@ -375,7 +375,7 @@
 		START_PROCESSING(SSobj, src)
 
 /obj/structure/machinery/m56d_hmg/auto/handle_ammo_out(mob/user)
-	visible_message(SPAN_NOTICE("[icon2html(src, viewers(src))] [src]'s ammo box drops onto the ground, now completely empty."))
+	visible_message(SPAN_NOTICE("[icon2html(src, viewers(src))][src]的弹药箱掉到地上，里面已经彻底空了。"))
 	playsound(loc, empty_alarm, 70, 1)
 	update_icon() //final safeguard.
 	var/obj/item/ammo_magazine/m2c/AM = new /obj/item/ammo_magazine/m2c(src.loc)
@@ -392,7 +392,7 @@
 
 	overheat_value = floor((rand(M2C_LOW_COOLDOWN_ROLL, M2C_HIGH_COOLDOWN_ROLL) * overheat_threshold))
 	playsound(src.loc, 'sound/weapons/hmg_cooling.ogg', 75, 1)
-	to_chat(user, SPAN_NOTICE("[src]'s barrel has cooled down enough to restart firing."))
+	to_chat(user, SPAN_NOTICE("[src]的枪管已经冷却到可以继续射击。"))
 	emergency_cooling = FALSE
 	fire_stopper = FALSE
 	fire_delay = initial(fire_delay)
@@ -408,7 +408,7 @@
 			return ..()
 		if(!CAN_PICKUP(user, src))
 			return ..()
-		to_chat(user, SPAN_NOTICE("You try to toggle a burst-mode on \the [src], but realize that it doesn't exist."))
+		to_chat(user, SPAN_NOTICE("你试图切换[src]的点射模式，却发现它根本没有这个功能。"))
 		return TRUE
 
 	return ..()
@@ -433,7 +433,7 @@
 	if(over_object == user && in_range(src, user))
 		if((rounds > 0) && (user.a_intent & (INTENT_GRAB)))
 			playsound(src.loc, 'sound/items/m56dauto_load.ogg', 75, 1)
-			user.visible_message(SPAN_NOTICE(" [user] removes [src]'s ammo box."),SPAN_NOTICE(" You remove [src]'s ammo box, preparing the gun for disassembly."))
+			user.visible_message(SPAN_NOTICE("[user]取下了[src]的弹药箱。"),SPAN_NOTICE("你取下了[src]的弹药箱，为拆卸机枪做准备。"))
 			var/obj/item/ammo_magazine/m2c/used_ammo = new(user.loc)
 			used_ammo.current_rounds = rounds
 			user.put_in_active_hand(used_ammo)
@@ -442,7 +442,7 @@
 		else
 			if(!do_after(user, fold_time* user.get_skill_duration_multiplier(SKILL_ENGINEER), INTERRUPT_ALL, BUSY_ICON_FRIENDLY, src)) // disassembly time reduced
 				return
-			user.visible_message(SPAN_NOTICE("[user] disassembles [src]."),SPAN_NOTICE("You fold up the tripod for [src], disassembling it."))
+			user.visible_message(SPAN_NOTICE("[user]拆解了[src]。"),SPAN_NOTICE("你收起[src]的三脚架，将其拆卸。"))
 			playsound(src.loc, 'sound/items/m56dauto_setup.ogg', 75, 1)
 			var/obj/item/device/m2c_gun/HMG = new(loc)
 			transfer_label_component(HMG)
@@ -454,7 +454,7 @@
 			HMG.health = health
 			user.put_in_active_hand(HMG)
 			if(user.equip_to_slot_if_possible(HMG, WEAR_BACK, disable_warning = TRUE))
-				to_chat(user, SPAN_NOTICE("You quickly heave the machine gun onto your back!"))
+				to_chat(user, SPAN_NOTICE("你迅速将机枪扛到背上！"))
 			qdel(src)
 
 	update_icon()
@@ -534,14 +534,14 @@
 
 	var/turf/rotate_check = get_step(src.loc, turn(direction,180))
 	if(rotate_check.density)
-		to_chat(user, SPAN_WARNING("You can't rotate it that way."))
+		to_chat(user, SPAN_WARNING("你不能朝那个方向转动它。"))
 		return
 
 	src.setDir(direction)
 	user.setDir(direction)
 	update_pixels(user)
 	playsound(src.loc, 'sound/items/m56dauto_rotate.ogg', 25, 1)
-	to_chat(user, SPAN_NOTICE("You rotate [src], using the tripod to support your pivoting movement."))
+	to_chat(user, SPAN_NOTICE("你以三脚架为支点，转动了[src]。"))
 
 
 /obj/structure/machinery/m56d_hmg/auto/proc/disable_interaction(mob/living/user, NewLoc, direction)

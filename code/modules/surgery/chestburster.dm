@@ -75,7 +75,7 @@
 			SPAN_NOTICE("你用[tool]切断了最后的假根，没有洒出幼体的酸血。"))
 	else
 		user.visible_message(SPAN_WARNING("[user]切断幼体管道时，受压的酸液四处喷溅！"),
-			SPAN_WARNING("你切断幼体假根时，酸液喷向空中，积在[target]的[surgery.affected_limb.cavity]内，又嘶嘶作响地流过内脏！"))
+			SPAN_WARNING("你切断幼体假根时，酸液喷向空中，积在[target]的[localized_player_label(surgery.affected_limb.cavity)]内，又嘶嘶作响地流过内脏！"))
 
 		if(target.stat == CONSCIOUS)
 			to_chat(target, SPAN_HIGHDANGER("你的器官正在融化！"))
@@ -178,9 +178,9 @@
 
 /datum/surgery_step/remove_larva/failure(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_WARNING("你手一滑，挫伤了[target]的器官，酸液洒进了[surgery.affected_limb.cavity]内！"),
-		SPAN_WARNING("[user]手一滑，挫伤了你的器官，酸液洒进了你的[surgery.affected_limb.cavity]内！"),
-		SPAN_WARNING("[user]手一滑，挫伤了[target]的器官，酸液洒进了[surgery.affected_limb.cavity]内！"))
+		SPAN_WARNING("你手一滑，挫伤了[target]的器官，酸液洒进了[localized_player_label(surgery.affected_limb.cavity)]内！"),
+		SPAN_WARNING("[user]手一滑，挫伤了你的器官，酸液洒进了你的[localized_player_label(surgery.affected_limb.cavity)]内！"),
+		SPAN_WARNING("[user]手一滑，挫伤了[target]的器官，酸液洒进了[localized_player_label(surgery.affected_limb.cavity)]内！"))
 
 	var/datum/internal_organ/I = pick(surgery.affected_limb.internal_organs)
 	I.take_damage(5,0)

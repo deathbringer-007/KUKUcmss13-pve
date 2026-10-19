@@ -154,7 +154,7 @@
 	if(!ui)
 		user.client.register_map_obj(tacmap.map_holder.map)
 		SEND_SIGNAL(src, COMSIG_CAMERA_REGISTER_UI, user)
-		ui = new(user, src, "DropshipWeaponsConsole", "Weapons Console")
+		ui = new(user, src, "DropshipWeaponsConsole", "武器控制台")
 		ui.open()
 
 /obj/structure/machinery/computer/dropship_weapons/ui_close(mob/user)
@@ -243,7 +243,7 @@
 		.["firemission_message"] = firemission_envelope.firemission_status_message()
 		.["firemission_name"] = selected_firemission ? selected_firemission.name : ""
 		.["firemission_step"] = firemission_envelope.stat
-		.["firemission_selected_laser"] = firemission_envelope.recorded_loc ? firemission_envelope.recorded_loc.get_name() : "NOT SELECTED"
+		.["firemission_selected_laser"] = firemission_envelope.recorded_loc ? firemission_envelope.recorded_loc.get_name() : "未选择"
 
 	.["configuration"] = configuration
 	.["dummy_mode"] = simulation.dummy_mode
@@ -599,7 +599,7 @@
 	for(var/obj/structure/dropship_equipment/equipment in dropship.equipments)
 		var/list/data = list(
 			"name"= equipment.name,
-			"shorthand" = equipment.shorthand,
+			"shorthand" = localized_player_label(equipment.shorthand),
 			"eqp_tag" = element_nbr,
 			"is_weapon" = equipment.is_weapon,
 			"is_interactable" = equipment.is_interactable,
@@ -667,14 +667,14 @@
 		to_chat(weapon_operator, SPAN_WARNING("你没有受过发射此武器所需的训练！"))
 		return FALSE
 	if(!dropship.in_flyby && DEW.fire_mission_only)
-		to_chat(weapon_operator, SPAN_WARNING("[DEW] requires a fire mission flight type to be fired."))
+		to_chat(weapon_operator, SPAN_WARNING("[DEW]需要火力任务飞行模式才能开火。"))
 		return FALSE
 
 	if(!DEW.ammo_equipped || DEW.ammo_equipped.ammo_count <= 0)
-		to_chat(weapon_operator, SPAN_WARNING("[DEW] has no ammo."))
+		to_chat(weapon_operator, SPAN_WARNING("[DEW]没有弹药。"))
 		return FALSE
 	if(DEW.last_fired > world.time - DEW.firing_delay)
-		to_chat(weapon_operator, SPAN_WARNING("[DEW] just fired, wait for it to cool down."))
+		to_chat(weapon_operator, SPAN_WARNING("[DEW]刚刚开火，请等待冷却。"))
 		return FALSE
 
 	var/datum/cas_iff_group/cas_group = GLOB.cas_groups[faction]
@@ -697,10 +697,10 @@
 				if(CEILING_GLASS)
 					is_outside = TRUE
 		if(!is_outside && !cavebreaker) //cavebreaker doesn't care
-			to_chat(weapon_operator, SPAN_WARNING("WARNING: Target obstructed by terrain features."))
+			to_chat(weapon_operator, SPAN_WARNING("警告：目标被地形遮挡。"))
 			return FALSE
 		if (protected_by_pylon(TURF_PROTECTION_CAS, TU))
-			to_chat(weapon_operator, SPAN_WARNING("WARNING: Signal garbled, launch aborted."))
+			to_chat(weapon_operator, SPAN_WARNING("警告：信号混乱，发射已中止。"))
 			return FALSE
 		if(!DEW.ammo_equipped.can_fire_at(TU, weapon_operator))
 			return FALSE
@@ -711,26 +711,26 @@
 
 /obj/structure/machinery/computer/dropship_weapons/proc/ui_create_firemission(mob/weapon_operator, firemission_name, firemission_length)
 	if(!skillcheck(weapon_operator, SKILL_PILOT, SKILL_PILOT_TRAINED)) //only pilots can fire dropship weapons.
-		to_chat(weapon_operator, SPAN_WARNING("A screen with graphics and walls of physics and engineering values open, you immediately force it closed."))
+		to_chat(weapon_operator, SPAN_WARNING("屏幕上打开了图表，以及成墙的物理和工程数值，你立刻强行将其关闭。"))
 		return FALSE
 	// Check name
 	if(!firemission_name || length(firemission_name) < 1)
-		to_chat(weapon_operator, SPAN_WARNING("Name too short (at least 1 symbols)."))
+		to_chat(weapon_operator, SPAN_WARNING("名称太短，至少需要一个字符。"))
 		return FALSE
 	// Check length
 	if(!firemission_length)
-		to_chat(weapon_operator, SPAN_WARNING("Incorrect input format."))
+		to_chat(weapon_operator, SPAN_WARNING("输入格式不正确。"))
 		return FALSE
 	if(firemission_length > firemission_envelope.fire_length)
-		to_chat(weapon_operator, SPAN_WARNING("Fire Mission is longer than allowed by this vehicle."))
+		to_chat(weapon_operator, SPAN_WARNING("火力任务超出了本载具允许的长度。"))
 		return FALSE
 	if(firemission_envelope.stat != FIRE_MISSION_STATE_IDLE)
-		to_chat(weapon_operator, SPAN_WARNING("Vehicle has to be idle to allow Fire Mission editing and creation."))
+		to_chat(weapon_operator, SPAN_WARNING("载具必须处于空闲状态才能编辑或创建火力任务。"))
 		return FALSE
 
 	for(var/datum/cas_fire_mission/mission in firemission_envelope.missions)
 		if(firemission_name == mission.name)
-			to_chat(weapon_operator, SPAN_WARNING("Fire Mission name must be unique."))
+			to_chat(weapon_operator, SPAN_WARNING("火力任务名称必须唯一。"))
 			return FALSE
 	//everything seems to be fine now
 	firemission_envelope.generate_mission(firemission_name, firemission_length)
@@ -738,29 +738,29 @@
 
 /obj/structure/machinery/computer/dropship_weapons/proc/ui_delete_firemission(mob/weapon_operator, firemission_tag)
 	if(!skillcheck(weapon_operator, SKILL_PILOT, SKILL_PILOT_TRAINED)) //only pilots can fire dropship weapons.
-		to_chat(weapon_operator, SPAN_WARNING("A screen with graphics and walls of physics and engineering values open, you immediately force it closed."))
+		to_chat(weapon_operator, SPAN_WARNING("屏幕上打开了图表，以及成墙的物理和工程数值，你立刻强行将其关闭。"))
 		return FALSE
 	if(firemission_tag > length(firemission_envelope.missions))
-		to_chat(weapon_operator, SPAN_WARNING("Fire Mission ID corrupted or already deleted."))
+		to_chat(weapon_operator, SPAN_WARNING("火力任务编号已损坏或已删除。"))
 		return FALSE
 	if(selected_firemission == firemission_envelope.missions[firemission_tag])
-		to_chat(weapon_operator, SPAN_WARNING("Can't delete selected Fire Mission."))
+		to_chat(weapon_operator, SPAN_WARNING("无法删除已选中的火力任务。"))
 		return FALSE
 	var/result = firemission_envelope.delete_firemission(firemission_tag)
 	if(result != 1)
-		to_chat(weapon_operator, SPAN_WARNING("Unable to delete Fire Mission while in combat."))
+		to_chat(weapon_operator, SPAN_WARNING("战斗期间无法删除火力任务。"))
 		return FALSE
 	return TRUE
 
 /obj/structure/machinery/computer/dropship_weapons/proc/ui_select_firemission(mob/weapon_operator, firemission_tag)
 	if(!skillcheck(weapon_operator, SKILL_PILOT, SKILL_PILOT_TRAINED)) //only pilots can fire dropship weapons.
-		to_chat(weapon_operator, SPAN_WARNING("A screen with graphics and walls of physics and engineering values open, you immediately force it closed."))
+		to_chat(weapon_operator, SPAN_WARNING("屏幕上打开了图表，以及成墙的物理和工程数值，你立刻强行将其关闭。"))
 		return FALSE
 	if(firemission_envelope.stat > FIRE_MISSION_STATE_IN_TRANSIT && firemission_envelope.stat < FIRE_MISSION_STATE_COOLDOWN)
-		to_chat(weapon_operator, SPAN_WARNING("Fire Mission already underway."))
+		to_chat(weapon_operator, SPAN_WARNING("火力任务已在执行中。"))
 		return FALSE
 	if(firemission_tag > length(firemission_envelope.missions))
-		to_chat(weapon_operator, SPAN_WARNING("Fire Mission ID corrupted or deleted."))
+		to_chat(weapon_operator, SPAN_WARNING("火力任务编号已损坏或已删除。"))
 		return FALSE
 	if(selected_firemission == firemission_envelope.missions[firemission_tag])
 		selected_firemission = null
@@ -770,7 +770,7 @@
 
 /obj/structure/machinery/computer/dropship_weapons/proc/ui_firemission_change_offset(mob/weapons_operator, fm_tag, weapon_id, offset_id, offset_value)
 	if(!skillcheck(weapons_operator, SKILL_PILOT, SKILL_PILOT_TRAINED)) //only pilots can fire dropship weapons.
-		to_chat(weapons_operator, SPAN_WARNING("A screen with graphics and walls of physics and engineering values open, you immediately force it closed."))
+		to_chat(weapons_operator, SPAN_WARNING("屏幕上打开了图表，以及成墙的物理和工程数值，你立刻强行将其关闭。"))
 		return FALSE
 
 	var/result = firemission_envelope.update_mission(fm_tag, weapon_id, offset_id, offset_value)
@@ -780,16 +780,16 @@
 
 /obj/structure/machinery/computer/dropship_weapons/proc/ui_select_laser_firemission(mob/weapons_operator, obj/docking_port/mobile/marine_dropship/dropship, laser)
 	if(!laser)
-		to_chat(weapons_operator, SPAN_WARNING("Bad Target."))
+		to_chat(weapons_operator, SPAN_WARNING("目标无效。"))
 		return FALSE
 	if(!skillcheck(weapons_operator, SKILL_PILOT, SKILL_PILOT_TRAINED)) //only pilots can fire dropship weapons.
-		to_chat(weapons_operator, SPAN_WARNING("A screen with graphics and walls of physics and engineering values open, you immediately force it closed."))
+		to_chat(weapons_operator, SPAN_WARNING("屏幕上打开了图表，以及成墙的物理和工程数值，你立刻强行将其关闭。"))
 		return FALSE
 	if(firemission_envelope.stat > FIRE_MISSION_STATE_IN_TRANSIT && firemission_envelope.stat < FIRE_MISSION_STATE_COOLDOWN)
-		to_chat(weapons_operator, SPAN_WARNING("Fire Mission already underway."))
+		to_chat(weapons_operator, SPAN_WARNING("火力任务已在执行中。"))
 		return FALSE
 	if(dropship.mode != SHUTTLE_CALL)
-		to_chat(weapons_operator, SPAN_WARNING("Shuttle has to be in orbit."))
+		to_chat(weapons_operator, SPAN_WARNING("运输机必须位于轨道上。"))
 		return FALSE
 	var/datum/cas_iff_group/cas_group = GLOB.cas_groups[faction]
 	var/datum/cas_signal/cas_sig
@@ -798,7 +798,7 @@
 		if(LT.target_id == laser  && LT.valid_signal())
 			cas_sig = LT
 	if(!cas_sig)
-		to_chat(weapons_operator, SPAN_WARNING("Target lost or obstructed."))
+		to_chat(weapons_operator, SPAN_WARNING("目标已丢失或被遮挡。"))
 		return FALSE
 
 	update_location(weapons_operator, cas_sig)
@@ -810,10 +810,10 @@
 	if (!istype(dropship))
 		return FALSE
 	if (!dropship.in_flyby || dropship.mode != SHUTTLE_CALL)
-		to_chat(user, SPAN_WARNING("You must be making a flyby!"))
+		to_chat(user, SPAN_WARNING("你必须正在进行掠过飞行！"))
 		return FALSE
 	if (dropship.timer && dropship.timeLeft(1) < firemission_envelope.flyoff_period)
-		to_chat(user, SPAN_WARNING("Not enough time on station to complete the firemission."))
+		to_chat(user, SPAN_WARNING("驻留时间不足，无法完成火力任务。"))
 		return FALSE
 	var/datum/cas_signal/recorded_loc = firemission_envelope.recorded_loc
 	var/obj/source = recorded_loc.signal_loc
@@ -824,13 +824,13 @@
 	)
 	var/result = firemission_envelope.execute_firemission(recorded_loc, target, dir, fmId)
 	if(result != FIRE_MISSION_ALL_GOOD)
-		to_chat(user, SPAN_WARNING("Screen beeps with an error: [firemission_envelope.mission_error]"))
+		to_chat(user, SPAN_WARNING("屏幕发出错误哔声：[localized_player_label(firemission_envelope.mission_error)]"))
 	return TRUE
 
 /obj/structure/machinery/computer/dropship_weapons/proc/update_location(mob/user, new_location)
 	var/result = firemission_envelope.change_target_loc(new_location)
 	if(result<1)
-		to_chat(user, SPAN_WARNING("Screen beeps with an error: [firemission_envelope.mission_error]"))
+		to_chat(user, SPAN_WARNING("屏幕发出错误哔声：[localized_player_label(firemission_envelope.mission_error)]"))
 		return FALSE
 	return TRUE
 
@@ -838,7 +838,7 @@
 /obj/structure/machinery/computer/dropship_weapons/proc/update_direction(mob/user, new_direction)
 	var/result = firemission_envelope.change_direction(new_direction)
 	if(result<1)
-		to_chat(user, SPAN_WARNING("Screen beeps with an error: [firemission_envelope.mission_error]"))
+		to_chat(user, SPAN_WARNING("屏幕发出错误哔声：[localized_player_label(firemission_envelope.mission_error)]"))
 		return FALSE
 	return TRUE
 
@@ -849,7 +849,7 @@
 		return
 	if(firemission_envelope.recorded_loc.obstructed_signal())
 		if(firemission_envelope.user_is_guided(user))
-			to_chat(user, SPAN_WARNING("Signal obstructed. You have to go in blind."))
+			to_chat(user, SPAN_WARNING("信号受阻，只能盲飞。"))
 		return
 	var/sx = 0
 	var/sy = 0
@@ -875,32 +875,32 @@
 	var/area/laser_area = get_area(shootloc)
 	if(!istype(laser_area) || CEILING_IS_PROTECTED(laser_area.ceiling, CEILING_PROTECTION_TIER_1))
 		if(firemission_envelope.user_is_guided(user))
-			to_chat(user, SPAN_WARNING("Vision obstructed. You have to go in blind."))
+			to_chat(user, SPAN_WARNING("视野受阻，只能盲飞。"))
 		firemission_envelope.change_current_loc()
 	else
 		firemission_envelope.change_current_loc(shootloc)
 	return TRUE
 
 /obj/structure/machinery/computer/dropship_weapons/dropship1
-	name = "\improper 'Alamo' weapons controls"
+	name = "\improper “阿拉莫”武器控制台"
 	req_one_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_WY_FLIGHT, ACCESS_MARINE_PREP)
 	firemission_envelope = new /datum/cas_fire_envelope/uscm_dropship()
 	shuttle_tag = DROPSHIP_ALAMO
 
 /obj/structure/machinery/computer/dropship_weapons/dropship2
-	name = "\improper 'Normandy' weapons controls"
+	name = "\improper “诺曼底”武器控制台"
 	req_one_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_WY_FLIGHT, ACCESS_MARINE_PREP)
 	firemission_envelope = new /datum/cas_fire_envelope/uscm_dropship()
 	shuttle_tag = DROPSHIP_NORMANDY
 
 /obj/structure/machinery/computer/dropship_weapons/dropship3
-	name = "\improper 'Saipan' weapons controls"
+	name = "\improper “塞班”武器控制台"
 	req_one_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_WY_FLIGHT, ACCESS_MARINE_PREP)
 	firemission_envelope = new /datum/cas_fire_envelope/uscm_dropship()
 	shuttle_tag = DROPSHIP_SAIPAN
 
 /obj/structure/machinery/computer/dropship_weapons/midway
-	name = "\improper 'Midway' weapons controls"
+	name = "\improper “中途岛”武器控制台"
 	req_one_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_WY_FLIGHT, ACCESS_MARINE_PREP)
 	firemission_envelope = new /datum/cas_fire_envelope/uscm_dropship()
 	shuttle_tag = DROPSHIP_MIDWAY
@@ -911,7 +911,7 @@
 	density = FALSE
 
 /obj/structure/machinery/computer/dropship_weapons/cyclone
-	name = "\improper 'Cyclone' weapons controls"
+	name = "\improper “气旋”武器控制台"
 	req_one_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_WY_FLIGHT, ACCESS_MARINE_PREP)
 	firemission_envelope = new /datum/cas_fire_envelope/uscm_dropship()
 	shuttle_tag = DROPSHIP_CYCLONE
@@ -922,7 +922,7 @@
 	density = FALSE
 
 /obj/structure/machinery/computer/dropship_weapons/tornado
-	name = "\improper 'Tornado' weapons controls"
+	name = "\improper “龙卷风”武器控制台"
 	req_one_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_WY_FLIGHT, ACCESS_MARINE_PREP)
 	firemission_envelope = new /datum/cas_fire_envelope/uscm_dropship()
 	shuttle_tag = DROPSHIP_TORNADO
@@ -933,7 +933,7 @@
 	density = FALSE
 
 /obj/structure/machinery/computer/dropship_weapons/typhoon
-	name = "\improper 'Typhoon' weapons controls"
+	name = "\improper “台风”武器控制台"
 	req_one_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_WY_FLIGHT, ACCESS_MARINE_PREP)
 	firemission_envelope = new /datum/cas_fire_envelope/uscm_dropship()
 	shuttle_tag = DROPSHIP_TYPHOON
@@ -944,7 +944,7 @@
 	density = FALSE
 
 /obj/structure/machinery/computer/dropship_weapons/tripoli
-	name = "\improper 'Tripoli' weapons controls"
+	name = "\improper “的黎波里”武器控制台"
 	req_one_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_WY_FLIGHT, ACCESS_MARINE_PREP)
 	firemission_envelope = new /datum/cas_fire_envelope/uscm_dropship()
 	shuttle_tag = DROPSHIP_TRIPOLI
@@ -955,7 +955,7 @@
 	density = FALSE
 
 /obj/structure/machinery/computer/dropship_weapons/gibraltar
-	name = "\improper 'Gibraltar' weapons controls"
+	name = "\improper “直布罗陀”武器控制台"
 	req_one_access = list(ACCESS_TWE_LEADERSHIP, ACCESS_TWE_ARMORY, ACCESS_WY_FLIGHT)
 	firemission_envelope = new /datum/cas_fire_envelope/uscm_dropship()
 	shuttle_tag = DROPSHIP_GIBRALTAR
@@ -967,16 +967,16 @@
 
 /obj/structure/machinery/computer/dropship_weapons/proc/simulate_firemission(mob/living/user)
 	if(!configuration)
-		to_chat(user, SPAN_WARNING("Configure a firemission before attempting to run the simulation"))
+		to_chat(user, SPAN_WARNING("运行模拟前，请先配置火力任务。"))
 		return
 	if(configuration.check(src) != FIRE_MISSION_ALL_GOOD)
-		to_chat(user, SPAN_WARNING("Configured firemission has errors, fix the errors before attempting to run the simulation"))
+		to_chat(user, SPAN_WARNING("配置的火力任务存在错误，请修正后再运行模拟。"))
 		return
 
 	simulation.spawn_mobs(user)
 
 	if(!simulation.sim_camera)
-		to_chat(user, SPAN_WARNING("The simulator has malfunctioned!"))
+		to_chat(user, SPAN_WARNING("模拟器故障！"))
 
 	//acutal firemission
 	configuration.simulate_execute_firemission(src, get_turf(simulation.sim_camera), user)

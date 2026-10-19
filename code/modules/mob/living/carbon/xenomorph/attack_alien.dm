@@ -134,8 +134,8 @@
 
 			//The normal attack proceeds
 			playsound(loc, slash_noise, 25, TRUE)
-			attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno] [attacking_xeno.slashes_verb] [src]!"), \
-			SPAN_DANGER("We [attacking_xeno.slash_verb] [src]!"), null, null, CHAT_TYPE_XENO_COMBAT)
+			attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno][localized_player_label(attacking_xeno.slashes_verb)][src]！"), \
+			SPAN_DANGER("我们[localized_player_label(attacking_xeno.slash_verb)][src]！"), null, null, CHAT_TYPE_XENO_COMBAT)
 
 			handle_blood_splatter(get_dir(attacking_xeno.loc, src.loc))
 
@@ -179,13 +179,13 @@
 
 		if(INTENT_DISARM)
 			if(attacking_xeno.legcuffed && isyautja(src))
-				to_chat(attacking_xeno, SPAN_XENODANGER("We don't have the dexterity to tackle the headhunter with that thing on our leg!"))
+				to_chat(attacking_xeno, SPAN_XENODANGER("腿上有那个东西，我们无法灵活地扑倒猎头者！"))
 				return XENO_NO_DELAY_ACTION
 
 			attacking_xeno.animation_attack_on(src)
 			if(check_shields(0, attacking_xeno.name)) // Blocking check
-				attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno]'s tackle is blocked by [src]'s shield!"), \
-				SPAN_DANGER("We tackle is blocked by [src]'s shield!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+				attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno]的扑击被[src]的盾挡住了！"), \
+				SPAN_DANGER("我们的扑击被[src]的盾挡住了！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 				playsound(loc, 'sound/weapons/alien_claw_block.ogg', 25, 1) //Feedback
 				return XENO_ATTACK_ACTION
 			attacking_xeno.flick_attack_overlay(src, "disarm")
@@ -204,18 +204,18 @@
 				var/strength = rand(attacking_xeno.tacklestrength_min, attacking_xeno.tacklestrength_max)
 				Stun(strength)
 				KnockDown(strength) // Purely for knockdown visuals. All the heavy lifting is done by Stun
-				attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno] tackles down [src]!"), \
-				SPAN_DANGER("We tackle down [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+				attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno]扑倒了[src]！"), \
+				SPAN_DANGER("我们扑倒了[src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 				SEND_SIGNAL(src, COMSIG_MOB_TACKLED_DOWN, attacking_xeno)
 				knocked_down = TRUE
 			else
 				playsound(loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 				if (body_position == LYING_DOWN)
-					attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno] tries to tackle [src], but they are already down!"), \
-					SPAN_DANGER("We try to tackle [src], but they are already down!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+					attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno]试图扑倒[src]，但对方已经倒地！"), \
+					SPAN_DANGER("我们试图扑倒[src]，但对方已经倒地！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 				else
-					attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno] tries to tackle [src]"), \
-					SPAN_DANGER("We try to tackle [src]"), null, 5, CHAT_TYPE_XENO_COMBAT)
+					attacking_xeno.visible_message(SPAN_DANGER("[attacking_xeno]试图扑倒[src]。"), \
+					SPAN_DANGER("我们试图扑倒[src]。"), null, 5, CHAT_TYPE_XENO_COMBAT)
 				knocked_down = FALSE
 
 			attacking_xeno.attack_log += "\[[time_stamp()]\] <font color='red'>[knocked_down ? "S" : "Uns"]uccessfully tackled [key_name(src)]</font>"
@@ -231,8 +231,8 @@
 
 	switch(M.a_intent)
 		if(INTENT_HELP)
-			M.visible_message(SPAN_NOTICE("[M] caresses [src] with its claws."), \
-			SPAN_NOTICE("We caress [src] with our claws."), null, 5, CHAT_TYPE_XENO_FLUFF)
+			M.visible_message(SPAN_NOTICE("[M]用爪子轻抚[src]。"), \
+			SPAN_NOTICE("我们用爪子轻抚[src]。"), null, 5, CHAT_TYPE_XENO_FLUFF)
 
 		if(INTENT_GRAB)
 			if(M == src || anchored || buckled)
@@ -245,8 +245,8 @@
 			if(isxeno(src) && xeno_hivenumber(src) == M.hivenumber)
 				var/mob/living/carbon/xenomorph/X = src
 				if(!X.banished)
-					M.visible_message(SPAN_WARNING("[M] nibbles [src]."), \
-					SPAN_WARNING("We nibble [src]."), null, 5, CHAT_TYPE_XENO_FLUFF)
+					M.visible_message(SPAN_WARNING("[M]轻咬[src]。"), \
+					SPAN_WARNING("我们轻咬[src]。"), null, 5, CHAT_TYPE_XENO_FLUFF)
 					return XENO_ATTACK_ACTION
 
 			// copypasted from attack_alien.dm
@@ -263,14 +263,14 @@
 			if(!damage)
 				playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 
-				M.visible_message(SPAN_DANGER("[M] lunges at [src]!"), \
-				SPAN_DANGER("We lunge at [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+				M.visible_message(SPAN_DANGER("[M]扑向[src]！"), \
+				SPAN_DANGER("我们猛扑向[src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 				return XENO_ATTACK_ACTION
 
 			handle_blood_splatter(get_dir(M.loc, loc))
 			last_damage_data = create_cause_data(initial(M.name), M)
-			M.visible_message(SPAN_DANGER("[M] [M.slashes_verb] [src]!"), \
-			SPAN_DANGER("We [M.slash_verb] [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+			M.visible_message(SPAN_DANGER("[M][localized_player_label(M.slashes_verb)][src]！"), \
+			SPAN_DANGER("我们[localized_player_label(M.slash_verb)][src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 			attack_log += text("\[[time_stamp()]\] <font color='orange'>was [M.slash_verb]ed by [key_name(M)]</font>")
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>[M.slash_verb]ed [key_name(src)]</font>")
 			log_attack("[key_name(M)] [M.slash_verb]ed [key_name(src)]")
@@ -284,15 +284,15 @@
 		if(INTENT_DISARM)
 
 			playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
-			M.visible_message(SPAN_WARNING("[M] shoves [src]!"), \
-			SPAN_WARNING("We shove [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+			M.visible_message(SPAN_WARNING("[M]推搡[src]！"), \
+			SPAN_WARNING("我们推搡[src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 			if(ismonkey(src))
 				apply_effect(8, WEAKEN)
 	return XENO_ATTACK_ACTION
 
 /mob/living/attack_larva(mob/living/carbon/xenomorph/larva/M)
-	M.visible_message(SPAN_DANGER("[M] nudges its head against [src]."), \
-	SPAN_DANGER("We nudge our head against [src]."), null, 5, CHAT_TYPE_XENO_FLUFF)
+	M.visible_message(SPAN_DANGER("[M]用头轻蹭[src]。"), \
+	SPAN_DANGER("我们用头轻蹭[src]。"), null, 5, CHAT_TYPE_XENO_FLUFF)
 	M.animation_attack_on(src)
 
 /mob/living/proc/is_xeno_grabbable()
@@ -335,12 +335,12 @@
 			playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 		health -= rand(M.melee_damage_lower, M.melee_damage_upper)
 		if(health <= 0)
-			M.visible_message(SPAN_DANGER("[M] slices [src] apart!"), \
-			SPAN_DANGER("We slice [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+			M.visible_message(SPAN_DANGER("[M]将[src]切成碎片！"), \
+			SPAN_DANGER("我们将[src]切成碎片！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 			deconstruct(FALSE)
 		else
-			M.visible_message(SPAN_DANGER("[M] [M.slashes_verb] [src]!"), \
-			SPAN_DANGER("We [M.slash_verb] [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+			M.visible_message(SPAN_DANGER("[M][localized_player_label(M.slashes_verb)][src]！"), \
+			SPAN_DANGER("我们[localized_player_label(M.slash_verb)][src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		return XENO_ATTACK_ACTION
 
 //Breaking barricades
@@ -350,14 +350,14 @@
 	if(barricade_hitsound)
 		playsound(src, barricade_hitsound, 25, 1)
 	if(health <= 0)
-		M.visible_message(SPAN_DANGER("[M] slices [src] apart!"), \
-		SPAN_DANGER("We slice [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M]将[src]切成碎片！"), \
+		SPAN_DANGER("我们将[src]切成碎片！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	else
-		M.visible_message(SPAN_DANGER("[M] [M.slashes_verb] [src]!"), \
-		SPAN_DANGER("We [M.slash_verb] [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M][localized_player_label(M.slashes_verb)][src]！"), \
+		SPAN_DANGER("我们[localized_player_label(M.slash_verb)][src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	if(is_wired)
-		M.visible_message(SPAN_DANGER("The barbed wire slices into [M]!"),
-		SPAN_DANGER("The barbed wire slices into us!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("铁丝网割伤了[M]！"),
+		SPAN_DANGER("铁丝网割伤了我们！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		M.apply_damage(10)
 	return XENO_ATTACK_ACTION
 
@@ -366,19 +366,19 @@
 	if(barricade_hitsound)
 		playsound(src, barricade_hitsound, 25, 1)
 	if(health <= 0)
-		xeno.visible_message(SPAN_DANGER("[xeno] stabs \the [src] apart!"), SPAN_DANGER("We stab \the [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		xeno.visible_message(SPAN_DANGER("[xeno]将[src]刺碎！"), SPAN_DANGER("我们将[src]刺碎！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	else
-		xeno.visible_message(SPAN_DANGER("[xeno] stabs \the [src] with its razor sharp tail!"), SPAN_DANGER("We stab \the [src] with our razor sharp tail!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		xeno.visible_message(SPAN_DANGER("[xeno]用锋利尾刺刺向[src]！"), SPAN_DANGER("我们用锋利尾刺刺向[src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	if(is_wired)
-		xeno.visible_message(SPAN_DANGER("The barbed wire slices into \the [xeno]'s tail!"), SPAN_DANGER("The barbed wire slices into our tail!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		xeno.visible_message(SPAN_DANGER("铁丝网割伤了[xeno]的尾巴！"), SPAN_DANGER("铁丝网割伤了我们的尾巴！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		xeno.apply_damage(5)
 	return TAILSTAB_COOLDOWN_NORMAL
 
 /obj/structure/surface/rack/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
-	M.visible_message(SPAN_DANGER("[M] slices [src] apart!"), \
-	SPAN_DANGER("We slice [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+	M.visible_message(SPAN_DANGER("[M]将[src]切成碎片！"), \
+	SPAN_DANGER("我们将[src]切成碎片！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	deconstruct(FALSE)
 	return XENO_ATTACK_ACTION
 
@@ -387,7 +387,7 @@
 /obj/structure/attack_alien(mob/living/carbon/xenomorph/M)
 	// fuck off dont destroy my unslashables
 	if(unslashable || health <= 0 && !HAS_TRAIT(usr, TRAIT_OPPOSABLE_THUMBS))
-		to_chat(M, SPAN_WARNING("We stare at \the [src] cluelessly."))
+		to_chat(M, SPAN_WARNING("我们茫然地盯着[src]。"))
 		return XENO_NO_DELAY_ACTION
 
 /obj/structure/magazine_box/attack_alien(mob/living/carbon/xenomorph/xeno)
@@ -404,8 +404,8 @@
 			return
 		M.animation_attack_on(src)
 		playsound(src, hit_bed_sound, 25, 1)
-		M.visible_message(SPAN_DANGER("[M] slices [src] apart!"),
-		SPAN_DANGER("We slice [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M]将[src]切成碎片！"),
+		SPAN_DANGER("我们将[src]切成碎片！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		unbuckle()
 		deconstruct(FALSE)
 		return XENO_ATTACK_ACTION
@@ -429,8 +429,8 @@
 	if(is_broken()) //Ignore if broken. Note that we can't use defines here
 		return FALSE
 	M.animation_attack_on(src)
-	M.visible_message(SPAN_DANGER("[M] smashes [src]!"), \
-	SPAN_DANGER("We smash [src]!"), null, 5)
+	M.visible_message(SPAN_DANGER("[M]猛砸[src]！"), \
+	SPAN_DANGER("我们猛砸[src]！"), null, 5)
 	broken() //Smashola!
 	return XENO_ATTACK_ACTION
 
@@ -438,9 +438,9 @@
 /obj/structure/window/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HELP)
 		playsound(loc, 'sound/effects/glassknock.ogg', 25, 1)
-		M.visible_message(SPAN_WARNING("[M] creepily taps on [src] with its huge claw."), \
-		SPAN_WARNING("We creepily tap on [src]."), \
-		SPAN_WARNING("You hear a glass tapping sound."), 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_WARNING("[M]用巨爪诡异地轻敲[src]。"), \
+		SPAN_WARNING("我们诡异地轻敲[src]。"), \
+		SPAN_WARNING("你听到敲击玻璃的声音。"), 5, CHAT_TYPE_XENO_COMBAT)
 	else
 		attack_generic(M, M.melee_damage_lower)
 	return XENO_ATTACK_ACTION
@@ -450,11 +450,11 @@
 	M.animation_attack_on(src)
 	health -= rand(15, 30)
 	if(health <= 0)
-		M.visible_message(SPAN_DANGER("[M] slices [src] apart!"), \
-		SPAN_DANGER("We slice [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M]将[src]切成碎片！"), \
+		SPAN_DANGER("我们将[src]切成碎片！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	else
-		M.visible_message(SPAN_DANGER("[M] [M.slashes_verb] [src]!"), \
-		SPAN_DANGER("We [M.slash_verb] [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M][localized_player_label(M.slashes_verb)][src]！"), \
+		SPAN_DANGER("我们[localized_player_label(M.slash_verb)][src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	playsound(loc, "alien_claw_metal", 25, 1)
 	if(prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(loc)
@@ -464,8 +464,8 @@
 //Slashing cameras
 /obj/structure/machinery/camera/attack_alien(mob/living/carbon/xenomorph/M)
 	if(status)
-		M.visible_message(SPAN_DANGER("[M] slices [src] apart!"), \
-		SPAN_DANGER("We slice [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M]将[src]切成碎片！"), \
+		SPAN_DANGER("我们将[src]切成碎片！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		playsound(loc, "alien_claw_metal", 25, 1)
 		wires = 0 //wires all cut
 		light_disabled = 0
@@ -476,8 +476,8 @@
 /obj/structure/machinery/door/window/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
-	M.visible_message(SPAN_DANGER("[M] smashes against [src]!"), \
-	SPAN_DANGER("We smash against [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+	M.visible_message(SPAN_DANGER("[M]猛撞[src]！"), \
+	SPAN_DANGER("我们猛撞[src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	var/damage = 25
 	if(M.mob_size >= MOB_SIZE_BIG)
 		damage = 40
@@ -489,14 +489,14 @@
 	M.animation_attack_on(src)
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 	var/damage_dealt = 5
-	M.visible_message(SPAN_DANGER("[M] mangles [src]!"), \
-	SPAN_DANGER("We mangle [src]!"), \
-	SPAN_DANGER("We hear twisting metal!"), 5, CHAT_TYPE_XENO_COMBAT)
+	M.visible_message(SPAN_DANGER("[M]撕扯[src]！"), \
+	SPAN_DANGER("我们撕扯[src]！"), \
+	SPAN_DANGER("我们听到金属扭曲的声音！"), 5, CHAT_TYPE_XENO_COMBAT)
 
 	if(shock(M, 70))
-		M.visible_message(SPAN_DANGER("ZAP! [M] spazzes wildly amongst a smell of burnt ozone."), \
-		SPAN_DANGER("ZAP! You twitch and dance like a monkey on hyperzine!"), \
-		SPAN_DANGER("You hear a sharp ZAP and a smell of ozone."))
+		M.visible_message(SPAN_DANGER("滋啪！[M]疯狂抽搐，空气里弥漫着烧灼的臭氧味。"), \
+		SPAN_DANGER("滋啪！你像打了亢奋嗪的猴子一样抽搐乱跳！"), \
+		SPAN_DANGER("你听到尖锐的放电声，闻到臭氧气味。"))
 		return XENO_NO_DELAY_ACTION //Intended apparently ?
 
 	health -= damage_dealt
@@ -507,9 +507,9 @@
 /obj/structure/fence/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	var/damage_dealt = 25
-	M.visible_message(SPAN_DANGER("[M] mangles [src]!"), \
-	SPAN_DANGER("We mangle [src]!"), \
-	SPAN_DANGER("We hear twisting metal!"), 5, CHAT_TYPE_XENO_COMBAT)
+	M.visible_message(SPAN_DANGER("[M]撕扯[src]！"), \
+	SPAN_DANGER("我们撕扯[src]！"), \
+	SPAN_DANGER("我们听到金属扭曲的声音！"), 5, CHAT_TYPE_XENO_COMBAT)
 
 	health -= damage_dealt
 	healthcheck()
@@ -523,12 +523,12 @@
 		return XENO_ATTACK_ACTION
 
 	if(M.a_intent == INTENT_HELP)
-		M.visible_message(SPAN_WARNING("[M] ogles its own reflection in [src]."), \
-			SPAN_WARNING("We ogle our own reflection in [src]."), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_WARNING("[M]盯着[src]中自己的倒影。"), \
+			SPAN_WARNING("我们盯着[src]中自己的倒影。"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		return XENO_NONCOMBAT_ACTION
 	else
-		M.visible_message(SPAN_DANGER("[M] smashes [src]!"), \
-			SPAN_DANGER("We smash [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M]猛砸[src]！"), \
+			SPAN_DANGER("我们猛砸[src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		shatter()
 	return XENO_ATTACK_ACTION
 
@@ -539,7 +539,7 @@
 	. = XENO_NO_DELAY_ACTION
 
 	if(M.action_busy)
-		to_chat(M, SPAN_WARNING("You are already doing something!"))
+		to_chat(M, SPAN_WARNING("你正在忙别的事情！"))
 		return
 
 	if(M.claw_type >= CLAW_TYPE_SHARP)
@@ -552,19 +552,19 @@
 		return
 
 	if(!density)
-		to_chat(M, SPAN_WARNING("[src] is already open!"))
+		to_chat(M, SPAN_WARNING("[src]已经打开了！"))
 		return
 
 	if(heavy)
-		to_chat(M, SPAN_WARNING("[src] is too heavy to open."))
+		to_chat(M, SPAN_WARNING("[src]太重，无法打开。"))
 		return
 
 	if(welded)
-		to_chat(M, SPAN_WARNING("[src] is welded shut."))
+		to_chat(M, SPAN_WARNING("[src]被焊死了。"))
 		return
 
 	if(locked)
-		to_chat(M, SPAN_WARNING("[src] is bolted down tight."))
+		to_chat(M, SPAN_WARNING("[src]被门栓牢牢锁住。"))
 		return
 
 	if(!istype(cur_loc))
@@ -585,8 +585,8 @@
 		delay = 4 SECONDS
 		playsound(loc, "alien_doorpry", 25, TRUE)
 
-	M.visible_message(SPAN_WARNING("[M] digs into [src] and begins to pry it open."), \
-	SPAN_WARNING("We dig into [src] and begin to pry it open."), null, 5, CHAT_TYPE_XENO_COMBAT)
+	M.visible_message(SPAN_WARNING("[M]抠住[src]，开始将其撬开。"), \
+	SPAN_WARNING("我们抠住[src]，开始将其撬开。"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	xeno_attack_delay(M)
 
 	if(do_after(M, delay, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
@@ -595,16 +595,16 @@
 		if(M.is_mob_incapacitated() || M.body_position != STANDING_UP)
 			return XENO_NO_DELAY_ACTION
 		if(locked)
-			to_chat(M, SPAN_WARNING("[src] is bolted down tight."))
+			to_chat(M, SPAN_WARNING("[src]被门栓牢牢锁住。"))
 			return XENO_NO_DELAY_ACTION
 		if(welded)
-			to_chat(M, SPAN_WARNING("[src] is welded shut."))
+			to_chat(M, SPAN_WARNING("[src]被焊死了。"))
 			return XENO_NO_DELAY_ACTION
 		if(density) //Make sure it's still closed
 			spawn(0)
 				open(1)
-				M.visible_message(SPAN_DANGER("[M] pries [src] open."), \
-				SPAN_DANGER("We pry [src] open."), null, 5, CHAT_TYPE_XENO_COMBAT)
+				M.visible_message(SPAN_DANGER("[M]撬开了[src]。"), \
+				SPAN_DANGER("我们撬开了[src]。"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	return XENO_NO_DELAY_ACTION
 
 /obj/structure/machinery/door/airlock/attack_larva(mob/living/carbon/xenomorph/larva/M)
@@ -614,30 +614,30 @@
 /obj/structure/machinery/door/firedoor/attack_alien(mob/living/carbon/xenomorph/M)
 	var/turf/cur_loc = M.loc
 	if(blocked)
-		to_chat(M, SPAN_WARNING("[src] is welded shut."))
+		to_chat(M, SPAN_WARNING("[src]被焊死了。"))
 		return XENO_NO_DELAY_ACTION
 	if(!istype(cur_loc))
 		return XENO_NO_DELAY_ACTION //Some basic logic here
 	if(!density)
-		to_chat(M, SPAN_WARNING("[src] is already open!"))
+		to_chat(M, SPAN_WARNING("[src]已经打开了！"))
 		return XENO_NO_DELAY_ACTION
 
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	M.visible_message(SPAN_WARNING("[M] digs into [src] and begins to pry it open."), \
-	SPAN_WARNING("We dig into [src] and begin to pry it open."), null, 5, CHAT_TYPE_XENO_COMBAT)
+	M.visible_message(SPAN_WARNING("[M]抠住[src]，开始将其撬开。"), \
+	SPAN_WARNING("我们抠住[src]，开始将其撬开。"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	xeno_attack_delay(M)
 
 	if(do_after(M, 30, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
 		if(M.loc != cur_loc)
 			return XENO_NO_DELAY_ACTION //Make sure we're still there
 		if(blocked)
-			to_chat(M, SPAN_WARNING("[src] is welded shut."))
+			to_chat(M, SPAN_WARNING("[src]被焊死了。"))
 			return XENO_NO_DELAY_ACTION
 		if(density) //Make sure it's still closed
 			spawn(0)
 				open(1)
-				M.visible_message(SPAN_DANGER("[M] pries [src] open."), \
-				SPAN_DANGER("We pry [src] open."), null, 5, CHAT_TYPE_XENO_COMBAT)
+				M.visible_message(SPAN_DANGER("[M]撬开了[src]。"), \
+				SPAN_DANGER("我们撬开了[src]。"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	return XENO_NO_DELAY_ACTION
 
 /obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/xenomorph/larva/M)
@@ -659,8 +659,8 @@
 		if(islarva(M))
 			return
 		else
-			M.visible_message(SPAN_XENONOTICE("[M] claws [src]!"), \
-			SPAN_XENONOTICE("We claw [src]."), null, null, CHAT_TYPE_XENO_COMBAT)
+			M.visible_message(SPAN_XENONOTICE("[M]抓挠[src]！"), \
+			SPAN_XENONOTICE("我们抓挠[src]。"), null, null, CHAT_TYPE_XENO_COMBAT)
 			playsound(loc, "alien_resin_break", 25)
 
 		M.animation_attack_on(src)
@@ -676,83 +676,83 @@
 //Exception is Queen and shuttles, because plot power
 /obj/structure/machinery/attack_alien(mob/living/carbon/xenomorph/M)
 	if(unslashable || health <= 0 && !HAS_TRAIT(usr, TRAIT_OPPOSABLE_THUMBS))
-		to_chat(M, SPAN_WARNING("We stare at \the [src] cluelessly."))
+		to_chat(M, SPAN_WARNING("我们茫然地盯着[src]。"))
 		return XENO_NO_DELAY_ACTION
 
 	M.animation_attack_on(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	update_health(rand(M.melee_damage_lower, M.melee_damage_upper) * M.melee_sentry_damage_multiplier)
 	if(health <= 0)
-		M.visible_message(SPAN_DANGER("[M] slices \the [src] apart!"), \
-		SPAN_DANGER("We slice \the [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M]将[src]切成碎片！"), \
+		SPAN_DANGER("我们将[src]切成碎片！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		if(!unacidable)
 			qdel(src)
 	else
-		M.visible_message(SPAN_DANGER("[M] [M.slashes_verb] \the [src]!"), \
-		SPAN_DANGER("We [M.slash_verb] \the [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M][localized_player_label(M.slashes_verb)][src]！"), \
+		SPAN_DANGER("我们[localized_player_label(M.slash_verb)][src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	return XENO_ATTACK_ACTION
 
 //This SHOULD, if I did it right, have xenos target assemblies finally please god let me have done it right
 /obj/structure/airlock_assembly/attack_alien(mob/living/carbon/xenomorph/M)
 	if(unslashable || health <= 0 && !HAS_TRAIT(usr, TRAIT_OPPOSABLE_THUMBS))
-		to_chat(M, SPAN_WARNING("We stare at \the [src] cluelessly."))
+		to_chat(M, SPAN_WARNING("我们茫然地盯着[src]。"))
 		return XENO_NO_DELAY_ACTION
 
 	M.animation_attack_on(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	update_health(rand(M.melee_damage_lower, M.melee_damage_upper) * M.melee_sentry_damage_multiplier)
 	if(health <= 0)
-		M.visible_message(SPAN_DANGER("[M] slices \the [src] apart!"), \
-		SPAN_DANGER("We slice \the [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M]将[src]切成碎片！"), \
+		SPAN_DANGER("我们将[src]切成碎片！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		if(!unacidable)
 			qdel(src)
 	else
-		M.visible_message(SPAN_DANGER("[M] [M.slashes_verb] \the [src]!"), \
-		SPAN_DANGER("We [M.slash_verb] \the [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M][localized_player_label(M.slashes_verb)][src]！"), \
+		SPAN_DANGER("我们[localized_player_label(M.slash_verb)][src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	return XENO_ATTACK_ACTION
 
 // Destroying reagent dispensers
 /obj/structure/reagent_dispensers/attack_alien(mob/living/carbon/xenomorph/M)
 	if(unslashable || health <= 0 && !HAS_TRAIT(usr, TRAIT_OPPOSABLE_THUMBS))
-		to_chat(M, SPAN_WARNING("We stare at \the [src] cluelessly."))
+		to_chat(M, SPAN_WARNING("我们茫然地盯着[src]。"))
 		return XENO_NO_DELAY_ACTION
 
 	M.animation_attack_on(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	update_health(rand(M.melee_damage_lower, M.melee_damage_upper))
 	if(health <= 0)
-		M.visible_message(SPAN_DANGER("[M] slices \the [src] apart!"), \
-		SPAN_DANGER("We slice \the [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M]将[src]切成碎片！"), \
+		SPAN_DANGER("我们将[src]切成碎片！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		if(!unacidable)
 			qdel(src)
 	else
-		M.visible_message(SPAN_DANGER("[M] [M.slashes_verb] \the [src]!"), \
-		SPAN_DANGER("We [M.slash_verb] \the [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M][localized_player_label(M.slashes_verb)][src]！"), \
+		SPAN_DANGER("我们[localized_player_label(M.slash_verb)][src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	return XENO_ATTACK_ACTION
 
 // Destroying filing cabinets
 /obj/structure/filingcabinet/attack_alien(mob/living/carbon/xenomorph/M)
 	if(unslashable || health <= 0)
-		to_chat(M, SPAN_WARNING("We stare at \the [src] cluelessly."))
+		to_chat(M, SPAN_WARNING("我们茫然地盯着[src]。"))
 		return XENO_NO_DELAY_ACTION
 
 	M.animation_attack_on(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	update_health(rand(M.melee_damage_lower, M.melee_damage_upper))
 	if(health <= 0)
-		M.visible_message(SPAN_DANGER("[M] slices \the [src] apart!"), \
-		SPAN_DANGER("We slice \the [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M]将[src]切成碎片！"), \
+		SPAN_DANGER("我们将[src]切成碎片！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		if(!unacidable)
 			qdel(src)
 	else
-		M.visible_message(SPAN_DANGER("[M] [M.slashes_verb] \the [src]!"), \
-		SPAN_DANGER("We [M.slash_verb] \the [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M][localized_player_label(M.slashes_verb)][src]！"), \
+		SPAN_DANGER("我们[localized_player_label(M.slash_verb)][src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	return XENO_ATTACK_ACTION
 
 // Destroying morgues & crematoriums
 /obj/structure/morgue/attack_alien(mob/living/carbon/xenomorph/alien)
 	if(unslashable)
-		to_chat(alien, SPAN_WARNING("We stare at \the [src] cluelessly."))
+		to_chat(alien, SPAN_WARNING("我们茫然地盯着[src]。"))
 		return XENO_NO_DELAY_ACTION
 
 	var destroyloc = loc
@@ -760,48 +760,48 @@
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	update_health(rand(alien.melee_damage_lower, alien.melee_damage_upper))
 	if(health <= 0)
-		alien.visible_message(SPAN_DANGER("[alien] slices \the [src] apart!"), \
-		SPAN_DANGER("We slice \the [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		alien.visible_message(SPAN_DANGER("[alien]将[src]切成碎片！"), \
+		SPAN_DANGER("我们将[src]切成碎片！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		new /obj/item/stack/sheet/metal(destroyloc, 2)
 	else
-		alien.visible_message(SPAN_DANGER("[alien] [alien.slashes_verb] \the [src]!"), \
-		SPAN_DANGER("We [alien.slash_verb] \the [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		alien.visible_message(SPAN_DANGER("[alien][localized_player_label(alien.slashes_verb)][src]！"), \
+		SPAN_DANGER("我们[localized_player_label(alien.slash_verb)][src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	return XENO_ATTACK_ACTION
 
 // Destroying hydroponics trays
 /obj/structure/machinery/portable_atmospherics/hydroponics/attack_alien(mob/living/carbon/xenomorph/alien)
 	if(unslashable)
-		to_chat(alien, SPAN_WARNING("We stare at \the [src] cluelessly."))
+		to_chat(alien, SPAN_WARNING("我们茫然地盯着[src]。"))
 		return XENO_NO_DELAY_ACTION
 
 	alien.animation_attack_on(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	update_health(rand(alien.melee_damage_lower, alien.melee_damage_upper))
 	if(health <= 0)
-		alien.visible_message(SPAN_DANGER("[alien] slices \the [src] apart!"), \
-		SPAN_DANGER("We slice \the [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		alien.visible_message(SPAN_DANGER("[alien]将[src]切成碎片！"), \
+		SPAN_DANGER("我们将[src]切成碎片！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		if(!unacidable)
 			qdel(src)
 	else
-		alien.visible_message(SPAN_DANGER("[alien] [alien.slashes_verb] \the [src]!"), \
-		SPAN_DANGER("We [alien.slash_verb] \the [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		alien.visible_message(SPAN_DANGER("[alien][localized_player_label(alien.slashes_verb)][src]！"), \
+		SPAN_DANGER("我们[localized_player_label(alien.slash_verb)][src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	return XENO_ATTACK_ACTION
 
 /datum/shuttle/ferry/marine/proc/hijack(mob/living/carbon/xenomorph/M, shuttle_tag)
 	if(!queen_locked) //we have not hijacked it yet
 		if(world.time < SHUTTLE_LOCK_TIME_LOCK)
-			to_chat(M, SPAN_XENODANGER("We can't mobilize the strength to hijack the shuttle yet. Please wait another [time_left_until(SHUTTLE_LOCK_TIME_LOCK, world.time, 1 MINUTES)] minutes before trying again."))
+			to_chat(M, SPAN_XENODANGER("我们还无法积蓄足够力量劫持运输机。请再等[time_left_until(SHUTTLE_LOCK_TIME_LOCK, world.time, 1 MINUTES)]分钟再试。"))
 			return
 
 		var/message
 		if(shuttle_tag == "Ground Transport 1") // CORSAT monorail
-			message = "We have wrested away remote control of the metal crawler! Rejoice!"
+			message = "我们夺走了金属爬行物的远程控制权！欢呼吧！"
 		else
-			message = "We have wrested away remote control of the metal bird! Rejoice!"
+			message = "我们夺走了金属飞鸟的远程控制权！欢呼吧！"
 			if(!GLOB.resin_lz_allowed)
 				set_lz_resin_allowed(TRUE)
 
-		to_chat(M, SPAN_XENONOTICE("We interact with the machine and disable remote control."))
+		to_chat(M, SPAN_XENONOTICE("我们操作机器，禁用了远程控制。"))
 		xeno_message(SPAN_XENOANNOUNCE("[message]"),3,M.hivenumber)
 		last_locked = world.time
 		if(GLOB.almayer_orbital_cannon)
@@ -811,8 +811,8 @@
 
 /datum/shuttle/ferry/marine/proc/door_override(mob/living/carbon/xenomorph/M, shuttle_tag)
 	if(!door_override)
-		to_chat(M, SPAN_XENONOTICE("We override the doors."))
-		xeno_message(SPAN_XENOANNOUNCE("The doors of the metal bird have been overridden! Rejoice!"),3,M.hivenumber)
+		to_chat(M, SPAN_XENONOTICE("我们强制接管了舱门。"))
+		xeno_message(SPAN_XENOANNOUNCE("金属飞鸟的舱门控制已被覆盖！欢呼吧！"),3,M.hivenumber)
 		last_door_override = world.time
 		door_override = 1
 
@@ -842,29 +842,29 @@
 /obj/structure/machinery/power/apc/attack_alien(mob/living/carbon/xenomorph/M)
 
 	if(stat & BROKEN)
-		to_chat(M, SPAN_XENONOTICE("[src] is already broken!"))
+		to_chat(M, SPAN_XENONOTICE("[src]已经坏了！"))
 		return XENO_NO_DELAY_ACTION
 	else if(beenhit >= XENO_HITS_TO_CUT_WIRES && M.mob_size < MOB_SIZE_BIG)
-		to_chat(M, SPAN_XENONOTICE("We aren't big enough to further damage [src]."))
+		to_chat(M, SPAN_XENONOTICE("我们的体型不够大，无法进一步损坏[src]。"))
 		return XENO_NO_DELAY_ACTION
 	M.animation_attack_on(src)
-	M.visible_message(SPAN_DANGER("[M] [M.slashes_verb] [src]!"), \
-	SPAN_DANGER("We [M.slash_verb] [src]!"), null, 5)
+	M.visible_message(SPAN_DANGER("[M][localized_player_label(M.slashes_verb)][src]！"), \
+	SPAN_DANGER("我们[localized_player_label(M.slash_verb)][src]！"), null, 5)
 	playsound(loc, "alien_claw_metal", 25, 1)
 	if (beenhit >= XENO_HITS_TO_CUT_WIRES)
 		set_broken()
-		visible_message(SPAN_DANGER("[src]'s electronics are destroyed!"), null, null, 5)
+		visible_message(SPAN_DANGER("[src]的电子元件被摧毁了！"), null, null, 5)
 	else if(wiresexposed)
 		for(var/wire = 1; wire <= length(GLOB.apc_wire_descriptions); wire++) // Cut all the wires because xenos don't know any better
 			if(!isWireCut(wire)) // Xenos don't need to mend the wires either
 				cut(wire, M, FALSE) // This is XOR so it toggles; FALSE just because we don't want the messages
 		update_icon()
 		beenhit = XENO_HITS_TO_CUT_WIRES
-		visible_message(SPAN_DANGER("[src]'s wires snap apart in a rain of sparks!"), null, null, 5)
+		visible_message(SPAN_DANGER("[src]的电线迸出一阵火花，纷纷断裂！"), null, null, 5)
 	else if(beenhit >= pick(XENO_HITS_TO_EXPOSE_WIRES_MIN, XENO_HITS_TO_EXPOSE_WIRES_MAX))
 		wiresexposed = TRUE
 		update_icon()
-		visible_message(SPAN_DANGER("[src]'s cover swings open, exposing the wires!"), null, null, 5)
+		visible_message(SPAN_DANGER("[src]的盖板翻开，露出了电线！"), null, null, 5)
 	else
 		beenhit++
 	return XENO_ATTACK_ACTION
@@ -878,10 +878,10 @@
 
 /obj/structure/machinery/colony_floodlight/attack_alien(mob/living/carbon/xenomorph/M)
 	if(!is_lit)
-		to_chat(M, "Why bother? It's just some weird metal thing.")
+		to_chat(M, "何必费心？只是个古怪的金属东西。")
 		return XENO_NO_DELAY_ACTION
 	if(damaged)
-		to_chat(M, "It's already damaged.")
+		to_chat(M, "它已经坏了。")
 		return XENO_NO_DELAY_ACTION
 	M.animation_attack_on(src)
 	M.visible_message("[M] 不停地抓挠着 [src]！","我们挥动利爪，抓挠这盏刺眼的灯！", max_distance = 5, message_flags = CHAT_TYPE_XENO_COMBAT)
@@ -904,7 +904,7 @@
 	if(M.a_intent == INTENT_HELP || !bleed_layer)
 		return ..()
 
-	M.visible_message(SPAN_NOTICE("[M] starts clearing out \the [src]..."), SPAN_NOTICE("We start \the clearing out [src]..."), null, 5, CHAT_TYPE_XENO_COMBAT)
+	M.visible_message(SPAN_NOTICE("[M]开始清理[src]……"), SPAN_NOTICE("我们开始清空[src]……"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 
 	while(bleed_layer > 0)
@@ -914,7 +914,7 @@
 			return XENO_NO_DELAY_ACTION
 
 		if(!bleed_layer)
-			to_chat(M, SPAN_WARNING("There is nothing to clear out!"))
+			to_chat(M, SPAN_WARNING("没有需要清理的东西！"))
 			return XENO_NO_DELAY_ACTION
 
 		bleed_layer--
@@ -937,54 +937,54 @@
 				difficulty = 30 // if its welded shut it should be harder to smash open
 			if(prob(difficulty))
 				break_open()
-				M.visible_message(SPAN_DANGER("[M] smashes \the [src] open!"), \
-				SPAN_DANGER("We smash \the [src] open!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+				M.visible_message(SPAN_DANGER("[M]砸开了[src]！"), \
+				SPAN_DANGER("我们砸开了[src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		else
 			take_damage(M.melee_damage_upper)
-			M.visible_message(SPAN_DANGER("[M] smashes [src]!"), \
-			SPAN_DANGER("We smash [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+			M.visible_message(SPAN_DANGER("[M]猛砸[src]！"), \
+			SPAN_DANGER("我们猛砸[src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		return XENO_ATTACK_ACTION
 
 /obj/structure/girder/attack_alien(mob/living/carbon/xenomorph/M)
 	if((M.caste && M.caste.tier < 2 && M.claw_type < CLAW_TYPE_VERY_SHARP) || unacidable)
-		to_chat(M, SPAN_WARNING("Our claws aren't sharp enough to damage [src]."))
+		to_chat(M, SPAN_WARNING("我们的爪子不够锋利，无法损坏[src]。"))
 		return XENO_NO_DELAY_ACTION
 	M.animation_attack_on(src)
 	health -= floor(rand(M.melee_damage_lower, M.melee_damage_upper) * 0.5)
 	if(health <= 0)
-		M.visible_message(SPAN_DANGER("[M] smashes [src] apart!"), \
-		SPAN_DANGER("We slice [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M]把[src]砸碎了！"), \
+		SPAN_DANGER("我们将[src]切成碎片！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		playsound(loc, 'sound/effects/metalhit.ogg', 25, TRUE)
 		dismantle()
 	else
-		M.visible_message(SPAN_DANGER("[M] smashes [src]!"), \
-		SPAN_DANGER("We [M.slash_verb] [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M]猛砸[src]！"), \
+		SPAN_DANGER("我们[localized_player_label(M.slash_verb)][src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		playsound(loc, 'sound/effects/metalhit.ogg', 25, TRUE)
 	return XENO_ATTACK_ACTION
 
 /obj/structure/machinery/vending/attack_alien(mob/living/carbon/xenomorph/M)
 	if(is_tipped_over)
-		to_chat(M, SPAN_WARNING("There's no reason to bother with that old piece of trash."))
+		to_chat(M, SPAN_WARNING("没必要理会那块旧垃圾。"))
 		return XENO_NO_DELAY_ACTION
 
 	if(M.a_intent == INTENT_HARM)
 		M.animation_attack_on(src)
 		if(prob(M.melee_damage_lower))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-			M.visible_message(SPAN_DANGER("[M] smashes [src] beyond recognition!"), \
-			SPAN_DANGER("We enter a frenzy and smash [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+			M.visible_message(SPAN_DANGER("[M]将[src]砸得面目全非！"), \
+			SPAN_DANGER("我们陷入狂怒，将[src]彻底砸碎！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 			malfunction()
 			tip_over()
 		else
-			M.visible_message(SPAN_DANGER("[M] [M.slashes_verb] [src]!"), \
-			SPAN_DANGER("We [M.slash_verb] [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+			M.visible_message(SPAN_DANGER("[M][localized_player_label(M.slashes_verb)][src]！"), \
+			SPAN_DANGER("我们[localized_player_label(M.slash_verb)][src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 		return XENO_ATTACK_ACTION
 
 	if(M.action_busy)
 		return XENO_NO_DELAY_ACTION
-	M.visible_message(SPAN_WARNING("[M] begins to lean against [src]."), \
-	SPAN_WARNING("We begin to lean against [src]."), null, 5, CHAT_TYPE_XENO_COMBAT)
+	M.visible_message(SPAN_WARNING("[M]开始倚靠[src]。"), \
+	SPAN_WARNING("我们开始倚靠[src]。"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	var/shove_time = 100
 	if(M.mob_size >= MOB_SIZE_BIG)
 		shove_time = 50
@@ -995,8 +995,8 @@
 
 	if(do_after(M, shove_time, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
 		M.animation_attack_on(src)
-		M.visible_message(SPAN_DANGER("[M] knocks [src] down!"), \
-		SPAN_DANGER("We knock [src] down!"), null, 5, CHAT_TYPE_XENO_COMBAT)
+		M.visible_message(SPAN_DANGER("[M]推倒了[src]！"), \
+		SPAN_DANGER("我们推倒了[src]！"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		tip_over()
 	return XENO_NO_DELAY_ACTION
 
@@ -1025,8 +1025,8 @@
 //Misc
 /obj/structure/prop/invuln/joey/attack_alien(mob/living/carbon/xenomorph/alien)
 	alien.animation_attack_on(src)
-	alien.visible_message(SPAN_DANGER("[alien] [alien.slashes_verb] [src]!"), \
-	SPAN_DANGER("We [alien.slash_verb] [src]!"), null, 5)
+	alien.visible_message(SPAN_DANGER("[alien][localized_player_label(alien.slashes_verb)][src]！"), \
+	SPAN_DANGER("我们[localized_player_label(alien.slash_verb)][src]！"), null, 5)
 	playsound(loc, "alien_claw_metal", 25, 1)
 	attacked()
 	return XENO_ATTACK_ACTION

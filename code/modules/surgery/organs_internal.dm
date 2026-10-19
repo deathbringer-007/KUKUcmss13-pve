@@ -5,7 +5,7 @@ and organ transplant code which may come in handy in future but haven't been edi
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery/organ_repair
-	name = "Organ Rejuvenation Surgery"
+	name = "器官修复手术"
 	priority = SURGERY_PRIORITY_HIGH
 	possible_locs = list("chest")
 	invasiveness = list(SURGERY_DEPTH_DEEP)
@@ -26,7 +26,7 @@ and organ transplant code which may come in handy in future but haven't been edi
 //------------------------------------
 
 /datum/surgery_step/repair_organs
-	name = "Repair Damaged Organs"
+	name = "修复受损器官"
 	desc = "修复器官损伤。"
 	//Tools used to fix damaged organs. Predator herbs may be herbal and organic, but are not as good for surgery.
 	tools = list(
@@ -52,24 +52,24 @@ and organ transplant code which may come in handy in future but haven't been edi
 
 	switch(tool_type)
 		if(/obj/item/stack/medical/bruise_pack)
-			toolname = "the gauze"
+			toolname = "纱布"
 		if(/obj/item/stack/medical/advanced/bruise_pack)
-			toolname = "regenerative membrane"
+			toolname = "再生膜"
 		else
-			toolname = "the poultice"
+			toolname = "药膏"
 
 	if(length(damaged_organs) > 1)
 		user.affected_message(target,
-			SPAN_NOTICE("你开始用[toolname]治疗[target]的[surgery.affected_limb.display_name]内受损的器官。"),
-			SPAN_NOTICE("[user]开始用[toolname]治疗你[surgery.affected_limb.display_name]内受损的器官。"),
-			SPAN_NOTICE("[user]开始用[toolname]治疗[target]的[surgery.affected_limb.display_name]内受损的器官。"))
+			SPAN_NOTICE("你开始用[toolname]治疗[target]的[localized_player_label(surgery.affected_limb.display_name)]内受损的器官。"),
+			SPAN_NOTICE("[user]开始用[toolname]治疗你[localized_player_label(surgery.affected_limb.display_name)]内受损的器官。"),
+			SPAN_NOTICE("[user]开始用[toolname]治疗[target]的[localized_player_label(surgery.affected_limb.display_name)]内受损的器官。"))
 	else
 		user.affected_message(target,
 			SPAN_NOTICE("你开始用[toolname]治疗[target]受损的[damaged_organs[1]]。"),
 			SPAN_NOTICE("[user]开始用[toolname]治疗你受损的[damaged_organs[1]]。"),
 			SPAN_NOTICE("[user]开始用[toolname]治疗[target]受损的[damaged_organs[1]]。"))
 
-	target.custom_pain("你的[surgery.affected_limb.display_name]痛得如同身在地狱！", 1)
+	target.custom_pain("你的[localized_player_label(surgery.affected_limb.display_name)]痛得如同身在地狱！", 1)
 	playsound(target.loc, 'sound/handling/bandage.ogg', 25, TRUE)
 	log_interact(user, target, "[key_name(user)] began mending organs in [key_name(target)]'s [surgery.affected_limb.display_name], beginning [surgery].")
 

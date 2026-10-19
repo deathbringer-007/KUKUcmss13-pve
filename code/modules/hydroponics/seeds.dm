@@ -28,23 +28,23 @@
 	var/mob/living/carbon/human/user = usr
 	var/obj/item/seeds/S = user.get_active_hand()
 	if(!istype(S))
-		to_chat(user, SPAN_WARNING("Where did you put those seeds you wanted to rename?"))
+		to_chat(user, SPAN_WARNING("你把想重命名的种子放到哪里去了？"))
 		return
 	if (seed.roundstart)
-		to_chat(user, SPAN_WARNING("You can't rename basic seeds!"))
+		to_chat(user, SPAN_WARNING("你不能重命名基础品种的种子！"))
 		return
-	var/new_name = copytext(reject_bad_text(tgui_input_text(user,"Rename seed variety?", "Set new seed variety name", "")), 1, MAX_NAME_LEN)
+	var/new_name = copytext(reject_bad_text(tgui_input_text(user,"重命名种子品种？", "设置新的种子品种名称", "")), 1, MAX_NAME_LEN)
 	if (!new_name)
 		return
 	S.seed.seed_name = new_name
 	//Sure, the various seed types have different names for the plant thing but honestly it's too much work changing that for what it's worth...
 	//So generic name instead!
-	S.seed.display_name = "[new_name] plant"
+	S.seed.display_name = "[new_name]植株"
 	for (var/obj/item/seeds/SS in GLOB.seed_list)
 		if (SS.seed.uid == S.seed.uid)
 			SS.update_appearance() //updates the name
 
-	to_chat(user, SPAN_INFO("Variety #[seed.uid] renamed to \"[new_name]\""))
+	to_chat(user, SPAN_INFO("品种编号 [seed.uid] 已重命名为“[new_name]”。"))
 	msg_admin_niche("[user] renamed seed variety #[seed.uid] to \"[new_name]\"")
 
 
@@ -58,22 +58,22 @@
 /obj/item/seeds/proc/update_appearance()
 	if(!seed) return
 	icon_state = seed.packet_icon
-	src.name = "packet of [seed.seed_name] [seed.seed_noun]"
-	src.desc = "It has a picture of [seed.display_name] on the front."
+	src.name = "一包[localized_seed_label(seed.seed_name)][localized_seed_label(seed.seed_noun)]"
+	src.desc = "正面印有[localized_seed_label(seed.display_name)]的图片。"
 
 /obj/item/seeds/get_examine_text(mob/user)
 	. = ..()
 	if(seed && !seed.roundstart)
-		. += "It's tagged as variety #[seed.uid]."
+		. += "标签标明这是编号 [seed.uid] 的品种。"
 
 /obj/item/seeds/cutting
-	name = "cuttings"
-	desc = "Some plant cuttings."
+	name = "插穗"
+	desc = "一些植物插穗。"
 
 /obj/item/seeds/cutting/update_appearance()
 	..()
 
-	name = "packet of [seed.seed_name] cuttings"
+	name = "一包[localized_seed_label(seed.seed_name)]插穗"
 
 /obj/item/seeds/poppyseed
 	seed_type = "poppies"
@@ -85,7 +85,7 @@
 
 /obj/item/seeds/plastiseed
 	seed_type = "plastic"
-	name = "pack of plastic seeds"
+	name = "一包塑料植物种子"
 
 /obj/item/seeds/grapeseed
 	seed_type = "grapes"
@@ -93,7 +93,7 @@
 
 /obj/item/seeds/greengrapeseed
 	seed_type = "greengrapes"
-	name = "pack of greengrape seeds"
+	name = "一包绿葡萄种子"
 
 /obj/item/seeds/peanutseed
 	seed_type = "peanut"
@@ -105,7 +105,7 @@
 
 /obj/item/seeds/shandseed
 	seed_type = "shand"
-	name = "pack of shand seeds"
+	name = "一包香德草种子"
 
 /obj/item/seeds/mtearseed
 	seed_type = "mtear"
@@ -117,7 +117,7 @@
 
 /obj/item/seeds/glowberryseed
 	seed_type = "glowberries"
-	name = "pack of glowberrie seeds"
+	name = "一包发光浆果种子"
 
 /obj/item/seeds/bananaseed
 	seed_type = "banana"
@@ -129,11 +129,11 @@
 
 /obj/item/seeds/eggyseed
 	seed_type = "realeggplant"
-	name = "pack of real eggplant seeds"
+	name = "一包真蛋茄种子"
 
 /obj/item/seeds/bloodtomatoseed
 	seed_type = "bloodtomato"
-	name = "pack of blood tomato seeds"
+	name = "一包血番茄种子"
 
 /obj/item/seeds/tomatoseed
 	seed_type = "tomato"
@@ -141,15 +141,15 @@
 
 /obj/item/seeds/killertomatoseed
 	seed_type = "killertomato"
-	name = "pack of killer tomato seeds"
+	name = "一包杀人番茄种子"
 
 /obj/item/seeds/bluetomatoseed
 	seed_type = "bluetomato"
-	name = "pack of blue tomato seeds"
+	name = "一包蓝番茄种子"
 
 /obj/item/seeds/bluespacetomatoseed
 	seed_type = "bluespacetomato"
-	name = "pack of bluespace tomato seeds"
+	name = "一包蓝空间番茄种子"
 
 /obj/item/seeds/cornseed
 	seed_type = "corn"
@@ -165,7 +165,7 @@
 
 /obj/item/seeds/icepepperseed
 	seed_type = "icechili"
-	name = "pack of ice chili seeds"
+	name = "一包冰辣椒种子"
 
 /obj/item/seeds/soyaseed
 	seed_type = "soybean"
@@ -189,11 +189,11 @@
 
 /obj/item/seeds/amanitamycelium
 	seed_type = "amanita"
-	name = "pack of amanita spores"
+	name = "一包毒蝇伞孢子"
 
 /obj/item/seeds/angelmycelium
 	seed_type = "destroyingangel"
-	name = "pack of destroying angel spores"
+	name = "一包毁灭天使菌孢子"
 
 /obj/item/seeds/libertymycelium
 	seed_type = "libertycap"
@@ -205,11 +205,11 @@
 
 /obj/item/seeds/towermycelium
 	seed_type = "towercap"
-	name = "pack of towercap spores"
+	name = "一包高帽菇孢子"
 
 /obj/item/seeds/glowshroom
 	seed_type = "glowshroom"
-	name = "pack of glowshroom spores"
+	name = "一包发光菇孢子"
 
 /obj/item/seeds/plumpmycelium
 	seed_type = "plumphelmet"
@@ -217,7 +217,7 @@
 
 /obj/item/seeds/walkingmushroommycelium
 	seed_type = "walkingmushroom"
-	name = "pack of walking mushroom spores"
+	name = "一包行走蘑菇孢子"
 
 /obj/item/seeds/nettleseed
 	seed_type = "nettle"
@@ -225,15 +225,15 @@
 
 /obj/item/seeds/deathnettleseed
 	seed_type = "deathnettle"
-	name = "pack of deathnettle seeds"
+	name = "一包死荨麻种子"
 
 /obj/item/seeds/weeds
 	seed_type = "weeds"
-	name = "pack of weed seeds"
+	name = "一包杂草种子"
 
 /obj/item/seeds/harebell
 	seed_type = "harebells"
-	name = "pack of harebell seeds"
+	name = "一包风铃草种子"
 
 /obj/item/seeds/sunflowerseed
 	seed_type = "sunflowers"
@@ -241,7 +241,7 @@
 
 /obj/item/seeds/brownmold
 	seed_type = "mold"
-	name = "pack of mold spores"
+	name = "一包霉菌孢子"
 
 /obj/item/seeds/appleseed
 	seed_type = "apple"
@@ -249,11 +249,11 @@
 
 /obj/item/seeds/poisonedappleseed
 	seed_type = "poisonapple"
-	name = "pack of poisonous apple seeds"
+	name = "一包毒苹果种子"
 
 /obj/item/seeds/goldappleseed
 	seed_type = "goldapple"
-	name = "pack of golden apple seeds"
+	name = "一包金苹果种子"
 
 /obj/item/seeds/ambrosiavulgarisseed
 	seed_type = "ambrosia"
@@ -261,7 +261,7 @@
 
 /obj/item/seeds/ambrosiadeusseed
 	seed_type = "ambrosiadeus"
-	name = "pack of ambrosiadeus seeds"
+	name = "一包神赐草种子"
 
 /obj/item/seeds/whitebeetseed
 	seed_type = "whitebeet"
@@ -293,11 +293,11 @@
 
 /obj/item/seeds/poisonberryseed
 	seed_type = "poisonberries"
-	name = "pack of poisonous berry seeds"
+	name = "一包毒浆果种子"
 
 /obj/item/seeds/deathberryseed
 	seed_type = "deathberries"
-	name = "pack of deathberry seeds"
+	name = "一包致死浆果种子"
 
 /obj/item/seeds/grassseed
 	seed_type = "grass"
@@ -313,4 +313,4 @@
 
 /obj/item/seeds/kudzuseed
 	seed_type = "kudzu"
-	name = "pack of kudzu seeds"
+	name = "一包葛藤种子"

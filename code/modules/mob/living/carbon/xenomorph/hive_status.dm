@@ -187,9 +187,9 @@
 	for(var/datum/caste_datum/current_caste as anything in available_castes)
 		castes_available += initial(current_caste.caste_type)
 
-	var/castes = castes_available.Join(", ")
+	var/castes = jointext(localized_player_list(castes_available), "、")
 	xeno_message(SPAN_XENOANNOUNCE("巢群现在已足够强大，可以容纳：[castes]"))
-	xeno_maptext("The Hive can now support: [castes]", "Hive Strengthening")
+	xeno_maptext("虫巢现在可支持：[castes]", "虫巢壮大")
 
 
 // Adds a xeno to this hive
@@ -510,7 +510,7 @@
 		// goddamn fucking larvas with their weird ass maturing system
 		// its name updates with its icon, unlike other castes which only update the mature/elder, etc. prefix on evolve
 		if(istype(X, /mob/living/carbon/xenomorph/larva))
-			xeno_name = "Larva ([X.nicknumber])"
+			xeno_name = "幼虫（[X.nicknumber]）"
 		xenos["[X.nicknumber]"] = list(
 			"name" = xeno_name,
 			"strain" = X.get_strain_name(),
@@ -746,8 +746,8 @@
 		qdel(new_xeno)
 		return FALSE
 
-	new_xeno.visible_message(SPAN_XENODANGER("A larva suddenly emerges from a dead husk!"),
-	SPAN_XENOANNOUNCE("The hive has no core! You manage to emerge from your old husk as a larva!"))
+	new_xeno.visible_message(SPAN_XENODANGER("一只幼虫突然从干枯的尸壳中钻出！"),
+	SPAN_XENOANNOUNCE("虫巢没有核心！你设法以幼虫形态从旧躯壳中钻了出来！"))
 	msg_admin_niche("[key_name(new_xeno)] respawned at \a [spawning_turf]. [ADMIN_JMP(spawning_turf)]")
 	playsound(new_xeno, 'sound/effects/xeno_newlarva.ogg', 50, 1)
 	if(new_xeno.client?.prefs?.toggles_flashing & FLASH_POOLSPAWN)
@@ -783,11 +783,11 @@
 	if(!SSticker.mode.transfer_xeno(xeno_candidate, new_xeno))
 		qdel(new_xeno)
 		return FALSE
-	new_xeno.visible_message(SPAN_XENODANGER("A larva suddenly burrows out of \the [spawning_turf]!"),
-	SPAN_XENODANGER("You burrow out of \the [spawning_turf] and awaken from your slumber. For the Hive!"))
+	new_xeno.visible_message(SPAN_XENODANGER("一只幼虫突然从[spawning_turf]中钻出！"),
+	SPAN_XENODANGER("你从[spawning_turf]中钻出，从沉睡中苏醒。为了虫巢！"))
 	msg_admin_niche("[key_name(new_xeno)] burrowed out from \a [spawning_turf]. [ADMIN_JMP(spawning_turf)]")
 	playsound(new_xeno, 'sound/effects/xeno_newlarva.ogg', 50, 1)
-	to_chat(new_xeno, SPAN_XENOANNOUNCE("You are a xenomorph larva awakened from slumber!"))
+	to_chat(new_xeno, SPAN_XENOANNOUNCE("你是一只刚从沉眠中苏醒的异形幼体！"))
 	if(new_xeno.client)
 		if(new_xeno.client?.prefs?.toggles_flashing & FLASH_POOLSPAWN)
 			window_flash(new_xeno.client)
@@ -838,25 +838,25 @@
 	if(!GLOB.hive_datum || ! GLOB.hive_datum[hivenumber])
 		return FALSE
 	if(MODE_HAS_TOGGLEABLE_FLAG(MODE_NO_JOIN_AS_XENO))
-		to_chat(user, SPAN_WARNING("Joining as xenos is currently disabled in this mode."))
+		to_chat(user, SPAN_WARNING("此模式当前禁止以异形身份加入。"))
 		return FALSE
 	if(jobban_isbanned(user, JOB_XENOMORPH)) // User is jobbanned
-		to_chat(user, SPAN_WARNING("You are banned from playing aliens and cannot spawn as a xenomorph."))
+		to_chat(user, SPAN_WARNING("你已被禁止扮演异形，无法以异形身份加入。"))
 		return FALSE
 	if(world.time < hugger_timelock)
-		to_chat(user, SPAN_WARNING("The hive cannot support facehuggers yet..."))
+		to_chat(user, SPAN_WARNING("虫巢目前还无法支持抱脸虫……"))
 		return FALSE
 	if(world.time - user.timeofdeath < JOIN_AS_FACEHUGGER_DELAY)
 		var/time_left = floor((user.timeofdeath + JOIN_AS_FACEHUGGER_DELAY - world.time) / 10)
-		to_chat(user, SPAN_WARNING("You ghosted too recently. You cannot become a facehugger until 3 minutes have passed ([time_left] seconds remaining)."))
+		to_chat(user, SPAN_WARNING("你刚刚成为幽灵，还需等待三分钟才能成为抱脸虫（剩余[time_left]秒）。"))
 		return FALSE
 	if(length(totalXenos) <= 0)
 		//This is to prevent people from joining as Forsaken Huggers on the pred ship
-		to_chat(user, SPAN_WARNING("The hive has fallen, you can't join it!"))
+		to_chat(user, SPAN_WARNING("虫巢已覆灭，你无法加入！"))
 		return FALSE
 	for(var/mob_name in banished_ckeys)
 		if(banished_ckeys[mob_name] == user.ckey)
-			to_chat(user, SPAN_WARNING("You are banished from the [name], you may not rejoin unless the Queen re-admits you or dies."))
+			to_chat(user, SPAN_WARNING("你已被[localized_player_label(name)]放逐。除非女王重新接纳你或女王死亡，否则不能重新加入。"))
 			return FALSE
 
 	update_hugger_limit()
@@ -866,7 +866,7 @@
 		if(isfacehugger(mob))
 			current_hugger_count++
 	if(playable_hugger_limit <= current_hugger_count)
-		to_chat(user, SPAN_WARNING("\The [GLOB.hive_datum[hivenumber]] cannot support more facehuggers! Limit: <b>[current_hugger_count]/[playable_hugger_limit]</b>"))
+		to_chat(user, SPAN_WARNING("[GLOB.hive_datum[hivenumber]]无法支持更多抱脸虫！上限：<b>[current_hugger_count]/[playable_hugger_limit]</b>"))
 		return FALSE
 
 	if(tgui_alert(user, "确定要变成抱脸虫吗？", "确认", list("Yes", "No")) != "Yes")
@@ -887,7 +887,7 @@
 /datum/hive_status/proc/spawn_as_hugger(mob/dead/observer/user, atom/A)
 	var/mob/living/carbon/xenomorph/facehugger/hugger = new /mob/living/carbon/xenomorph/facehugger(A.loc, null, hivenumber)
 	user.mind.transfer_to(hugger, TRUE)
-	hugger.visible_message(SPAN_XENODANGER("A facehugger suddenly emerges out of \the [A]!"), SPAN_XENODANGER("You emerge out of \the [A] and awaken from your slumber. For the Hive!"))
+	hugger.visible_message(SPAN_XENODANGER("一只抱脸虫突然从[A]中钻出！"), SPAN_XENODANGER("你从[A]中钻出，从沉睡中苏醒。为了虫巢！"))
 	playsound(hugger, 'sound/effects/xeno_newlarva.ogg', 25, TRUE)
 	hugger.generate_name()
 	hugger.timeofdeath = user.timeofdeath // Keep old death time
@@ -905,28 +905,28 @@
 		return FALSE
 
 	if(MODE_HAS_TOGGLEABLE_FLAG(MODE_NO_JOIN_AS_XENO))
-		to_chat(user, SPAN_WARNING("Joining as xenos is currently disabled in this mode."))
+		to_chat(user, SPAN_WARNING("此模式当前禁止以异形身份加入。"))
 		return FALSE
 
 	if(jobban_isbanned(user, JOB_XENOMORPH)) // User is jobbanned
-		to_chat(user, SPAN_WARNING("You are banned from playing aliens and cannot spawn as a xenomorph."))
+		to_chat(user, SPAN_WARNING("你已被禁止扮演异形，无法以异形身份加入。"))
 		return FALSE
 
 	if(world.time - user.timeofdeath < JOIN_AS_LESSER_DRONE_DELAY)
 		var/time_left = floor((user.timeofdeath + JOIN_AS_LESSER_DRONE_DELAY - world.time) / 10)
-		to_chat(user, SPAN_WARNING("You ghosted too recently. You cannot become a lesser drone until 30 seconds have passed ([time_left] seconds remaining)."))
+		to_chat(user, SPAN_WARNING("你刚刚成为幽灵，还需等待三十秒才能成为次级工蜂（剩余[time_left]秒）。"))
 		return FALSE
 
 	if(length(totalXenos) <= 0)
-		to_chat(user, SPAN_WARNING("The hive has fallen, you can't join it!"))
+		to_chat(user, SPAN_WARNING("虫巢已覆灭，你无法加入！"))
 		return FALSE
 
 	if(!living_xeno_queen)
-		to_chat(user, SPAN_WARNING("The selected hive does not have a Queen!"))
+		to_chat(user, SPAN_WARNING("所选虫巢没有女王！"))
 		return FALSE
 
 	if(spawning_pylon.lesser_drone_spawns < 1)
-		to_chat(user, SPAN_WARNING("The selected core or pylon does not have enough power for a lesser drone!"))
+		to_chat(user, SPAN_WARNING("所选核心或晶塔的能量不足，无法产生次级工蜂！"))
 		return FALSE
 
 	update_lesser_drone_limit()
@@ -937,7 +937,7 @@
 			current_lesser_drone_count++
 
 	if(lesser_drone_limit <= current_lesser_drone_count)
-		to_chat(user, SPAN_WARNING("[GLOB.hive_datum[hivenumber]] cannot support more lesser drones! Limit: <b>[current_lesser_drone_count]/[lesser_drone_limit]</b>"))
+		to_chat(user, SPAN_WARNING("[GLOB.hive_datum[hivenumber]]无法支持更多次级工蜂！上限：<b>[current_lesser_drone_count]/[lesser_drone_limit]</b>"))
 		return FALSE
 
 	if(!user.client)
@@ -1221,7 +1221,7 @@
 		allies[faction] = TRUE
 
 /datum/hive_status/corrupted/renegade/can_spawn_as_hugger(mob/dead/observer/user)
-	to_chat(user, SPAN_WARNING("The [name] cannot support facehuggers."))
+	to_chat(user, SPAN_WARNING("[localized_player_label(name)]无法支持抱脸虫。"))
 	return FALSE
 
 /datum/hive_status/corrupted/renegade/proc/iff_protection_check(mob/living/carbon/xenomorph/xeno, mob/living/carbon/attempt_harm_mob)
@@ -1257,7 +1257,7 @@
 
 
 	if(broken_alliances)
-		xeno_message(SPAN_XENOANNOUNCE("With the death of the Queen, all alliances have been broken."), 3, hivenumber)
+		xeno_message(SPAN_XENOANNOUNCE("女王死亡，所有联盟均已解除。"), 3, hivenumber)
 
 /datum/hive_status/proc/change_stance(faction, should_ally)
 	if(faction == name)
@@ -1268,9 +1268,9 @@
 
 	if(living_xeno_queen)
 		if(allies[faction])
-			xeno_message(SPAN_XENOANNOUNCE("Our Queen set up an alliance with [faction]!"), 3, hivenumber)
+			xeno_message(SPAN_XENOANNOUNCE("我们的女王与[localized_player_label(faction)]结盟了！"), 3, hivenumber)
 		else
-			xeno_message(SPAN_XENOANNOUNCE("Our Queen broke the alliance with [faction]!"), 3, hivenumber)
+			xeno_message(SPAN_XENOANNOUNCE("我们的女王解除了与[localized_player_label(faction)]的联盟！"), 3, hivenumber)
 
 	for(var/number in GLOB.hive_datum)
 		var/datum/hive_status/target_hive = GLOB.hive_datum[number]
@@ -1279,10 +1279,10 @@
 		if(!target_hive.living_xeno_queen && !target_hive.allow_no_queen_actions)
 			return
 		if(allies[faction])
-			xeno_message(SPAN_XENOANNOUNCE("We sense that [name] [living_xeno_queen ? "Queen " : ""]set up an alliance with us!"), 3, target_hive.hivenumber)
+			xeno_message(SPAN_XENOANNOUNCE("我们感知到[localized_player_label(name)][living_xeno_queen ? "女王" : ""]与我们结盟了！"), 3, target_hive.hivenumber)
 			return
 
-		xeno_message(SPAN_XENOANNOUNCE("We sense that [name] [living_xeno_queen ? "Queen " : ""]broke the alliance with us!"), 3, target_hive.hivenumber)
+		xeno_message(SPAN_XENOANNOUNCE("我们感知到[localized_player_label(name)][living_xeno_queen ? "女王" : ""]解除了与我们的联盟！"), 3, target_hive.hivenumber)
 		if(target_hive.allies[name]) //autobreak alliance on betrayal
 			target_hive.change_stance(name, FALSE)
 
@@ -1308,14 +1308,14 @@
 /datum/hive_status/corrupted/proc/give_defection_choice(mob/living/carbon/xenomorph/xeno, faction)
 	if(tgui_alert(xeno, "女皇已与 [faction] 解除同盟。甲壳内的装置开始压制我们与巢群的联系。要移除它、继续效忠女皇吗？", "同盟已解除！", list("Stay loyal", "Obey the talls"), 10 SECONDS) == "Obey the talls")
 		if(!xeno.iff_tag)
-			to_chat(xeno, SPAN_XENOWARNING("It's too late now. The device is gone and our service to the Queen continues."))
+			to_chat(xeno, SPAN_XENOWARNING("太晚了。装置已经不在，我们将继续侍奉女王。"))
 			return
 		defectors += xeno
 		xeno.set_hive_and_update(XENO_HIVE_RENEGADE)
-		to_chat(xeno, SPAN_XENOANNOUNCE("You lost the connection with your Hive. Now you have no Queen, only your masters."))
-		to_chat(xeno, SPAN_NOTICE("Your instincts have changed, you seem compelled to protect [english_list(xeno.iff_tag.faction_groups, "no one")]."))
+		to_chat(xeno, SPAN_XENOANNOUNCE("你与虫巢失去了联系。如今你没有女王，只有主人。"))
+		to_chat(xeno, SPAN_NOTICE("你的本能改变了，似乎不得不保护[english_list(localized_player_list(xeno.iff_tag.faction_groups), "任何人都不保护", and_text = "和", comma_text = "、")]。"))
 		return
-	xeno.visible_message(SPAN_XENOWARNING("[xeno] rips out [xeno.iff_tag]!"), SPAN_XENOWARNING("We rip out [xeno.iff_tag]! For the Hive!"))
+	xeno.visible_message(SPAN_XENOWARNING("[xeno]扯出了[xeno.iff_tag]！"), SPAN_XENOWARNING("我们扯出了[xeno.iff_tag]！为了虫巢！"))
 	xeno.adjustBruteLoss(50)
 	xeno.iff_tag.forceMove(get_turf(xeno))
 	xeno.iff_tag = null
@@ -1328,21 +1328,21 @@
 			continue
 		if(!(faction in xeno.iff_tag.faction_groups))
 			continue
-		xeno.visible_message(SPAN_XENOWARNING("[xeno] rips out [xeno.iff_tag]!"), SPAN_XENOWARNING("We rip out [xeno.iff_tag]! For the hive!"))
+		xeno.visible_message(SPAN_XENOWARNING("[xeno]扯出了[xeno.iff_tag]！"), SPAN_XENOWARNING("我们扯出了[xeno.iff_tag]！为了虫巢！"))
 		xeno.adjustBruteLoss(50)
 		xeno.iff_tag.forceMove(get_turf(xeno))
 		xeno.iff_tag = null
 	if(!length(defectors))
 		return
 
-	xeno_message(SPAN_XENOANNOUNCE("We sense that [english_list(defectors)] turned their backs against their sisters and the Queen in favor of their slavemasters!"), 3, hivenumber)
+	xeno_message(SPAN_XENOANNOUNCE("我们感知到[english_list(defectors, and_text = "和", comma_text = "、")]背弃了姐妹与女王，投向了奴役它们的主人！"), 3, hivenumber)
 	defectors.Cut()
 
 /datum/hive_status/corrupted/proc/add_personal_ally(mob/living/ally)
 	personal_allies += WEAKREF(ally)
 	ally.status_flags |= CORRUPTED_ALLY
 	ally.med_hud_set_status()
-	xeno_message(SPAN_XENOANNOUNCE("Our Queen proclaimed [ally] our ally! We must not harm them."), 3, hivenumber)
+	xeno_message(SPAN_XENOANNOUNCE("我们的女王宣布[ally]是盟友！不得伤害对方。"), 3, hivenumber)
 
 /datum/hive_status/corrupted/proc/remove_personal_ally(datum/weakref/ally_ref)
 	personal_allies -= ally_ref
@@ -1350,7 +1350,7 @@
 	if(ally)
 		ally.status_flags &= ~CORRUPTED_ALLY
 		ally.med_hud_set_status()
-	xeno_message(SPAN_XENOANNOUNCE("Our Queen has declared that [ally] is no longer our ally!"), 3, hivenumber)
+	xeno_message(SPAN_XENOANNOUNCE("我们的女王宣布[ally]不再是盟友！"), 3, hivenumber)
 
 /datum/hive_status/corrupted/proc/clear_personal_allies(death = FALSE)
 	for(var/datum/weakref/ally_ref in personal_allies)
@@ -1361,9 +1361,9 @@
 		ally.med_hud_set_status()
 	personal_allies.Cut()
 	if(!death)
-		xeno_message(SPAN_XENOANNOUNCE("Our Queen has broken all personal alliances with the talls! Favoritism is no more."), 3, hivenumber)
+		xeno_message(SPAN_XENOANNOUNCE("我们的女王解除了与高个子的全部私人联盟！不再偏袒任何人。"), 3, hivenumber)
 		return
-	xeno_message(SPAN_XENOWARNING("With the death of the Queen, her friends no longer matter to us."), 3, hivenumber)
+	xeno_message(SPAN_XENOWARNING("女王已死，她的朋友不再与我们有关。"), 3, hivenumber)
 
 /datum/hive_status/corrupted/is_ally(mob/living/living_mob)
 	if(living_mob.status_flags & CORRUPTED_ALLY)
@@ -1385,58 +1385,58 @@
 /datum/xeno_mark_define
 	var/name = "xeno_declare"
 	var/icon_state = "empty"
-	var/desc = "Xenos make psychic markers with this meaning as positional lasting communication to eachother"
+	var/desc = "异形通过赋予此含义的灵能标记，持续向彼此传达位置信息。"
 
 /datum/xeno_mark_define/fortify
-	name = "Fortify"
-	desc = "Fortify this area!"
+	name = "加固"
+	desc = "加固这片区域！"
 	icon_state = "fortify"
 
 /datum/xeno_mark_define/weeds
-	name = "Need Weeds"
-	desc = "Need weeds here!"
+	name = "需要菌毯"
+	desc = "这里需要菌毯！"
 	icon_state = "weed"
 
 /datum/xeno_mark_define/nest
-	name = "Nest"
-	desc = "Nest enemies here!"
+	name = "筑巢"
+	desc = "将敌人筑巢束缚在这里！"
 	icon_state = "nest"
 
 /datum/xeno_mark_define/hosts
-	name = "Hosts"
-	desc = "Hosts here!"
+	name = "宿主"
+	desc = "这里有宿主！"
 	icon_state = "hosts"
 
 /datum/xeno_mark_define/aide
-	name = "Aide"
-	desc = "Aide here!"
+	name = "援助"
+	desc = "这里需要援助！"
 	icon_state = "aide"
 
 /datum/xeno_mark_define/defend
-	name = "Defend"
-	desc = "Defend the hive here!"
+	name = "防守"
+	desc = "在此保卫虫巢！"
 	icon_state = "defend"
 
 /datum/xeno_mark_define/danger
-	name = "Danger Warning"
-	desc = "Caution, danger here!"
+	name = "危险警告"
+	desc = "小心，这里有危险！"
 	icon_state = "danger"
 
 /datum/xeno_mark_define/rally
-	name = "Rally"
-	desc = "Group up here!"
+	name = "集合"
+	desc = "在这里集合！"
 	icon_state = "rally"
 
 /datum/xeno_mark_define/hold
-	name = "Hold"
-	desc = "Hold this area!"
+	name = "坚守"
+	desc = "守住这片区域！"
 	icon_state = "hold"
 
 /datum/xeno_mark_define/ambush
-	name = "Ambush"
-	desc = "Ambush the enemy here!"
+	name = "伏击"
+	desc = "在这里伏击敌人！"
 	icon_state = "ambush"
 /datum/xeno_mark_define/attack
-	name = "Attack"
-	desc = "Attack the enemy here!"
+	name = "攻击"
+	desc = "攻击这里的敌人！"
 	icon_state = "attack"

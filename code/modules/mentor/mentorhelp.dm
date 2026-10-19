@@ -161,18 +161,18 @@
 
 // Sanitizes and wraps the message with some info and links, depending on the sender...?
 /datum/mentorhelp/proc/wrap_message(message, client/sender)
-	var/message_title = "MentorPM"
+	var/message_title = "导师私信"
 	var/message_sender_key = "<a href='byond://?src=\ref[src];action=message'>[sender.key]</a>"
 	var/message_sender_options = ""
 
 	// The message is being sent to the mentor and should be formatted as a mentorhelp message
 	if(sender == author)
-		message_title = "MentorHelp"
+		message_title = "导师求助"
 		// If there's a mentor, let them mark it. If not, let them unmark it
 		message_sender_options = " (<a href='byond://?src=\ref[src];action=mark'>Mark/Unmark</a>"
 		message_sender_options += " | <a href='byond://?src=\ref[src];action=close'>Close</a> | <a href='byond://?src=\ref[src];action=autorespond'>AutoResponse</a>)"
 
-	var/message_header = SPAN_MENTORHELP("<span class='prefix'>[message_title] from [message_sender_key]:</span> <span class='message'>[message_sender_options]</span><br>")
+	var/message_header = SPAN_MENTORHELP("<span class='prefix'>[localized_player_label(message_title)]，来自[message_sender_key]：</span><span class='message'>[message_sender_options]</span><br>")
 	var/message_body = "&emsp;[SPAN_MENTORBODY("<span class='message'>[message]</span>")]<br>"
 	// Et voila! Beautiful wrapped mentorhelp messages
 	return (message_header + message_body)
@@ -331,30 +331,30 @@
 		if("L: Marine Quickstart Guide")
 			msg += "我们的维基《陆战队员快速入门指南》中有你需要的答案。<a href='[CONFIG_GET(string/wikiarticleurl)]/[URL_WIKI_MARINE_QUICKSTART]'>点击此处查看。</a>"
 		if("L: Current Map")
-			msg += "If you need a map overview of the current round, use Current Map verb in OOC tab to check name of the map. Then open our <a href='[CONFIG_GET(string/wikiurl)]'>wiki front page</a> and look for the map overview in the 'Maps' section. If the map is not listed, it's a new or rare map and the overview hasn't been finished yet."
+			msg += "若需当前回合的地图概览，可在 OOC 标签页使用 Current Map 指令查看地图名，再打开我们的<a href='[CONFIG_GET(string/wikiurl)]'>维基首页</a>，在“地图”部分查找。若没有列出，说明地图较新或罕见，概览尚未完成。"
 		if("A: No plasma regen")
-			msg += "If you have low/no plasma regen, it's most likely because you are off weeds or are currently using a passive ability, such as the Runner's 'Hide' or emitting a pheromone."
+			msg += "等离子体恢复缓慢或停止，通常是因为你离开了菌毯，或正在使用被动能力，例如奔跑者的“隐藏”或释放信息素。"
 		if("A: Devour as Xeno")
-			msg += "Devouring is useful to quickly transport incapacitated hosts from one place to another. In order to devour a host as a Xeno, grab the mob (CTRL+Click) and then click on yourself to begin devouring. The host can break out of your belly, which will result in your death so make sure your target is incapacitated. After approximately 1 minute host will be automatically regurgitated. To release your target voluntary, click 'Regurgitate' on the HUD to throw them back up."
+			msg += "吞噬可快速转移失能宿主。先抓住目标（Ctrl＋点击），再点击自己开始吞噬。宿主可能破腹而出，导致你死亡，所以务必确认目标已失能。约一分钟后，宿主会被自动吐出。若要主动放出目标，点击 HUD 上的“吐出”按钮。"
 		if("T: Tunnel")
-			msg += "Click on the tunnel to enter it. While being in the tunnel, Alt + Click it to exit, Ctrl + Click to choose a destination."
+			msg += "点击隧道即可进入。在隧道中，按住 Alt 点击可退出，按住 Ctrl 点击可选择目的地。"
 		if("E: Event in progress")
-			msg += "There is currently a special event running and many things may be changed or different, however normal rules still apply unless you have been specifically instructed otherwise by a staff member."
+			msg += "当前正在进行特殊事件，许多内容可能变化。但除非工作人员明确另行说明，通常规则仍然适用。"
 		if("R: Radios")
-			msg += "Take your headset in hand and activate it by clicking it or pressing \"Page Down\" or \"Z\" (in Hotkey Mode). This will open window with all available channels, which also contains channel keys. Marine headsets have their respective squad channels available on \";\" key. Ship crew headsets have access to the Almayer public comms on \";\" and their respective department channel on \":h\"."
+			msg += "将耳机拿在手中，点击它或按 Page Down，快捷键模式下也可按 Z。随后会打开列出全部可用频道及频道键的窗口。陆战队耳机用“;”访问所属小队频道，舰员耳机用“;”访问阿尔迈耶公共频道，用“:h”访问所属部门频道。"
 		if("B: Binoculars")
-			msg += "Binoculars allow you to increase distance of your view in direction you are looking. To zoom in, take them into your hand and activate them by pressing \"Page Down\" or \"Z\" (in Hotkey Mode) or clicking them while they are in your hand.\nRangefinders allow you to get tile coordinates (longitude and latitude) by lasing it while zoomed in (produces a GREEN laser). Ctrl + Click on any open tile to start lasing. Ctrl + Click on your rangefinders to stop lasing without zooming out. Coordinates can be used by Staff Officers to send supply drops or to perform Orbital Bombardment. You also can use them to call mortar fire if there are engineers with a mortar. \nLaser Designators have a second mode (produces a RED laser) that allows highlighting targets for Close Air Support performed by dropship pilots. They also have a fixed ID number that is shown on the pilot's weaponry console. Examine the laser designator to check its ID. Red laser must be maintained as long as needed in order for the dropship pilot to bomb the designated area. To switch between lasing modes, Alt + Click the laser designator. Alternatively, Right + Click it in hand and click \"Toggle Mode\"."
+			msg += "双筒望远镜能扩大朝向方向的视野。拿在手中，点击它或按 Page Down，快捷键模式下也可按 Z，即可放大。\n测距仪可在放大时照射目标，获得地格经纬坐标，发出绿色激光。按住 Ctrl 点击空地开始照射，按住 Ctrl 点击测距仪可停止照射而不退出放大。参谋军官可用坐标进行补给空投或轨道轰炸；若有工程兵操作迫击炮，也可请求炮击。\n激光指示器还有红色激光模式，用于为运输机飞行员的近距空中支援标记目标。它具有固定编号，会显示在飞行员武器控制台上；检查设备可查看编号。飞行员轰炸指定区域前，应持续保持红色激光。按住 Alt 点击可切换模式，也可在手中右键点击并选择 Toggle Mode。"
 		if("D: Joining disabled")
-			msg += "Joining for new players is disabled for the current round due to either a staff member or and automatic setting during the end of the round. You can observe while it ends and wait for a new round to start."
+			msg += "工作人员或回合结束时的自动设置已关闭本回合的新玩家加入。你可以旁观，等待下一回合开始。"
 		if("L: Leaving the server")
-			msg += "If you need to leave the server as a marine, either go to cryo or ask someone to cryo you before leaving. If you are a xenomorph, find a safe place to rest and ghost before leaving, that will instantly unlock your xeno for observers to join."
+			msg += "陆战队员离服前，应先进入冷冻休眠，或请他人将你送去休眠。异形应先找安全位置休息，再成为幽灵；这样会立即解锁异形身体，供观察者接管。"
 		if("M: Macros")
-			msg += "This <a href='[CONFIG_GET(string/wikiarticleurl)]/[URL_WIKI_MACROS]'>guide</a> explains how to set up macros including examples of most common and useful ones."
+			msg += "这份<a href='[CONFIG_GET(string/wikiarticleurl)]/[URL_WIKI_MACROS]'>指南</a>介绍如何设置宏，并提供常见实用宏的示例。"
 		if("C: Changelog")
-			msg += "The answer to your question can be found in the changelog. Click the changelog button at the top-right of the screen to view it in-game."
+			msg += "你的问题可以在更新日志中找到答案。点击屏幕右上角的更新日志按钮，即可在游戏内查看。"
 		if("H: Clear Cache")
-			msg += "In order to clear cache, you need to click on gear icon located in upper-right corner of your BYOND client and select preferences. Switch to Games tab and click Clear Cache button. In some cases you need to manually delete cache. To do that, select Advanced tab and click Open User Directory and delete \"cache\" folder there."
+			msg += "清理缓存时，点击 BYOND 客户端右上角齿轮并打开 Preferences，切到 Games 标签页，点击 Clear Cache。有时需要手动删除：切到 Advanced，点击 Open User Directory，再删除其中的“cache”文件夹。"
 		if("O: Combat Click-Drag Override")
-			msg += "When clicking while moving the mouse, Byond sometimes detects it as a click-and-drag attempt and prevents the click from taking effect, even if the button was only held down for an instant.\nThis toggle means that when you're on disarm or harm intent, depressing the mouse triggers a click immediately even if you hold it down - unless you're trying to click-drag yourself, an ally, or something in your own inventory."
+			msg += "移动鼠标时点击，BYOND 有时会误判为拖拽，即使只按住一瞬间，也会阻止点击生效。\n开启此选项后，在缴械或伤害意图下，按下鼠标就会立即触发点击，无论是否继续按住；但拖拽自己、盟友或自身物品栏内物品时除外。"
 
 	message_handlers(msg, responder, author)

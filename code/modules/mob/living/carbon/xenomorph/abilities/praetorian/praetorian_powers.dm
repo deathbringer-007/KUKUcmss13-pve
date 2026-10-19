@@ -308,7 +308,7 @@
 	REMOVE_TRAIT(xeno, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Abduct"))
 
 	playsound(get_turf(xeno), 'sound/effects/bang.ogg', 25, 0)
-	xeno.visible_message(SPAN_XENODANGER("\The [xeno] suddenly uncoils its tail, firing it towards [atom]!"), SPAN_XENODANGER("We uncoil our tail, sending it out towards \the [atom]!"))
+	xeno.visible_message(SPAN_XENODANGER("[xeno]突然展开尾巴，射向[atom]！"), SPAN_XENODANGER("我们展开尾巴，射向[atom]！"))
 
 	var/list/targets = list()
 	for (var/turf/target_turf in turflist)
@@ -318,16 +318,16 @@
 
 			targets += target
 	if (LAZYLEN(targets) == 1)
-		xeno.balloon_alert(xeno, "our tail catches and slows one target!", text_color = "#51a16c")
+		xeno.balloon_alert(xeno, "我们的尾巴勾住并减速了一个目标！", text_color = "#51a16c")
 	else if (LAZYLEN(targets) == 2)
-		xeno.balloon_alert(xeno, "our tail catches and roots two targets!", text_color = "#51a16c")
+		xeno.balloon_alert(xeno, "我们的尾巴勾住并定身了两个目标！", text_color = "#51a16c")
 	else if (LAZYLEN(targets) >= 3)
-		xeno.balloon_alert(xeno, "our tail catches and stuns [LAZYLEN(targets)] targets!", text_color = "#51a16c")
+		xeno.balloon_alert(xeno, "我们的尾巴勾住并眩晕了[LAZYLEN(targets)]个目标！", text_color = "#51a16c")
 
 	apply_cooldown()
 
 	for (var/mob/living/carbon/target in targets)
-		xeno.visible_message(SPAN_XENODANGER("\The [xeno]'s hooked tail coils itself around [target]!"), SPAN_XENODANGER("Our hooked tail coils itself around [target]!"))
+		xeno.visible_message(SPAN_XENODANGER("[xeno]带钩的尾巴缠住了[target]！"), SPAN_XENODANGER("我们带钩的尾巴缠住了[target]！"))
 
 		target.apply_effect(0.2, WEAKEN)
 
@@ -340,12 +340,12 @@
 				var/mob/living/carbon/human/target_human = target
 				target_human.update_xeno_hostile_hud()
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(unroot_human), target, TRAIT_SOURCE_ABILITY("Abduct")), get_xeno_stun_duration(target, 25))
-			to_chat(target, SPAN_XENOHIGHDANGER("[xeno] has pinned you to the ground! You cannot move!"))
+			to_chat(target, SPAN_XENOHIGHDANGER("[xeno]将你压在地上，无法动弹！"))
 
 			target.set_effect(2, DAZE)
 		else if (LAZYLEN(targets) >= 3)
 			target.apply_effect(get_xeno_stun_duration(target, 1.3), WEAKEN)
-			to_chat(target, SPAN_XENOHIGHDANGER("You are slammed into the other victims of [xeno]!"))
+			to_chat(target, SPAN_XENOHIGHDANGER("你被狠狠撞向[xeno]的其他受害者！"))
 
 
 		shake_camera(target, 10, 1)
@@ -393,8 +393,8 @@
 
 	target_carbon.last_damage_data = create_cause_data(oppressor_user.caste_type, oppressor_user)
 
-	oppressor_user.visible_message(SPAN_XENOWARNING("\The [oppressor_user] hits [target_carbon] in the [target_limb? target_limb.display_name : "chest"] with a devastatingly powerful punch!"), \
-	SPAN_XENOWARNING("We hit [target_carbon] in the [target_limb ? target_limb.display_name : "chest"] with a devastatingly powerful punch!"))
+	oppressor_user.visible_message(SPAN_XENOWARNING("[oppressor_user]以毁灭性重拳击中[target_carbon]的[target_limb? localized_player_label(target_limb.display_name) : "胸部"]！"), \
+	SPAN_XENOWARNING("我们以毁灭性重拳击中[target_carbon]的[target_limb ? localized_player_label(target_limb.display_name) : "胸部"]！"))
 	var/hitsound = pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg')
 	playsound(target_carbon,hitsound, 50, 1)
 
@@ -411,7 +411,7 @@
 			Hu.update_xeno_hostile_hud()
 
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(unroot_human), target_carbon, TRAIT_SOURCE_ABILITY("Oppressor Punch")), get_xeno_stun_duration(target_carbon, 1.2 SECONDS))
-		to_chat(target_carbon, SPAN_XENOHIGHDANGER("[oppressor_user] has pinned you to the ground! You cannot move!"))
+		to_chat(target_carbon, SPAN_XENOHIGHDANGER("[oppressor_user]将你压在地上，无法动弹！"))
 	else
 		target_carbon.apply_armoured_damage(get_xeno_damage_slash(target_carbon, damage), ARMOR_MELEE, BRUTE, target_limb? target_limb.name : "chest")
 		step_away(target_carbon, oppressor_user, 2)
@@ -477,11 +477,11 @@
 		telegraph_atom_list += new /obj/effect/xenomorph/xeno_telegraph/lash(next_turf, windup)
 
 	if(!length(target_turfs))
-		to_chat(X, SPAN_XENOWARNING("We don't have any room to do our tail lash!"))
+		to_chat(X, SPAN_XENOWARNING("没有足够空间甩尾！"))
 		return
 
 	if(!do_after(X, windup, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
-		to_chat(X, SPAN_XENOWARNING("We cancel our tail lash."))
+		to_chat(X, SPAN_XENOWARNING("我们取消了甩尾。"))
 
 		for(var/obj/effect/xenomorph/xeno_telegraph/XT in telegraph_atom_list)
 			telegraph_atom_list -= XT
@@ -493,7 +493,7 @@
 
 	apply_cooldown()
 
-	X.visible_message(SPAN_XENODANGER("[X] lashes its tail furiously, hitting everything in front of it!"), SPAN_XENODANGER("We lash our tail furiously, hitting everything in front of us!"))
+	X.visible_message(SPAN_XENODANGER("[X]猛烈甩尾，击中前方的一切！"), SPAN_XENODANGER("我们猛烈甩尾，击中前方的一切！"))
 	X.spin_circle()
 	X.emote("tail")
 
@@ -527,17 +527,17 @@
 		return
 
 	if (!isxeno_human(target_atom) || dancer_user.can_not_harm(target_atom))
-		to_chat(dancer_user, SPAN_XENODANGER("We must target a hostile!"))
+		to_chat(dancer_user, SPAN_XENODANGER("我们必须选择一个敌对目标！"))
 		return
 
 	if (!dancer_user.Adjacent(target_atom))
-		to_chat(dancer_user, SPAN_XENODANGER("We must be adjacent to [target_atom]!"))
+		to_chat(dancer_user, SPAN_XENODANGER("我们必须紧邻[target_atom]！"))
 		return
 
 	var/mob/living/carbon/target_carbon = target_atom
 
 	if (target_carbon.stat == DEAD)
-		to_chat(dancer_user, SPAN_XENOWARNING("[target_atom] is dead, why would we want to attack it?"))
+		to_chat(dancer_user, SPAN_XENOWARNING("[target_atom]已经死了，为什么还要攻击它？"))
 		return
 
 	if (!check_and_use_plasma_owner())
@@ -559,8 +559,8 @@
 
 	var/damage = get_xeno_damage_slash(target_carbon, rand(dancer_user.melee_damage_lower, dancer_user.melee_damage_upper))
 
-	dancer_user.visible_message(SPAN_DANGER("\The [dancer_user] violently slices [target_atom] with its tail[buffed?" twice":""]!"), \
-					SPAN_DANGER("We slice [target_atom] with our tail[buffed?" twice":""]!"))
+	dancer_user.visible_message(SPAN_DANGER("[dancer_user]用尾巴猛烈切割[target_atom][buffed?"两次":""]！"), \
+					SPAN_DANGER("我们用尾巴切割[target_atom][buffed?"两次":""]！"))
 
 	if(buffed)
 		// Do two attacks instead of one
@@ -601,7 +601,7 @@
 
 	behavior.dodge_activated = TRUE
 	button.icon_state = "template_active"
-	to_chat(xeno, SPAN_XENOHIGHDANGER("We can now dodge through mobs!"))
+	to_chat(xeno, SPAN_XENOHIGHDANGER("我们现在可以闪避穿过生物！"))
 	xeno.speed_modifier -= speed_buff_amount
 	xeno.add_temp_pass_flags(PASS_MOB_THRU)
 	xeno.recalculate_speed()
@@ -627,7 +627,7 @@
 		xeno.speed_modifier += speed_buff_amount
 		xeno.remove_temp_pass_flags(PASS_MOB_THRU)
 		xeno.recalculate_speed()
-		to_chat(xeno, SPAN_XENOHIGHDANGER("We can no longer dodge through mobs!"))
+		to_chat(xeno, SPAN_XENOHIGHDANGER("我们无法再闪避穿过生物！"))
 
 /datum/action/xeno_action/activable/prae_tail_trip/use_ability(atom/target_atom)
 	var/mob/living/carbon/xenomorph/dancer_user = owner
@@ -639,13 +639,13 @@
 		return
 
 	if (!isxeno_human(target_atom) || dancer_user.can_not_harm(target_atom))
-		to_chat(dancer_user, SPAN_XENODANGER("We must target a hostile!"))
+		to_chat(dancer_user, SPAN_XENODANGER("我们必须选择一个敌对目标！"))
 		return
 
 	var/mob/living/carbon/target_carbon = target_atom
 
 	if (target_carbon.stat == DEAD)
-		to_chat(dancer_user, SPAN_XENOWARNING("[target_atom] is dead, why would we want to attack it?"))
+		to_chat(dancer_user, SPAN_XENOWARNING("[target_atom]已经死了，为什么还要攻击它？"))
 		return
 
 	if (!check_and_use_plasma_owner())
@@ -659,18 +659,18 @@
 	var/dist = get_dist(dancer_user, target_carbon)
 
 	if (dist > range)
-		to_chat(dancer_user, SPAN_WARNING("[target_carbon] is too far away!"))
+		to_chat(dancer_user, SPAN_WARNING("[target_carbon]太远了！"))
 		return
 
 	if (dist > 1)
 		var/turf/targetTurf = get_step(dancer_user, get_dir(dancer_user, target_carbon))
 		if (targetTurf.density)
-			to_chat(dancer_user, SPAN_WARNING("We can't attack through [targetTurf]!"))
+			to_chat(dancer_user, SPAN_WARNING("我们无法隔着[targetTurf]攻击！"))
 			return
 		else
 			for (var/atom/atom_in_turf in targetTurf)
 				if (atom_in_turf.density && !atom_in_turf.throwpass && !istype(atom_in_turf, /obj/structure/barricade) && !istype(atom_in_turf, /mob/living))
-					to_chat(dancer_user, SPAN_WARNING("We can't attack through [atom_in_turf]!"))
+					to_chat(dancer_user, SPAN_WARNING("我们无法隔着[atom_in_turf]攻击！"))
 					return
 
 
@@ -704,17 +704,17 @@
 		if(Xeno.mob_size >= MOB_SIZE_BIG)
 			xeno_smashed = TRUE
 			shake_camera(Xeno, 10, 1)
-			dancer_user.visible_message(SPAN_XENODANGER("[dancer_user] smashes [Xeno] with it's tail!"), SPAN_XENODANGER("We smash [Xeno] with your tail!"))
-			to_chat(Xeno, SPAN_XENOHIGHDANGER("You feel dizzy as [dancer_user] smashes you with their tail!"))
+			dancer_user.visible_message(SPAN_XENODANGER("[dancer_user]用尾巴猛击[Xeno]！"), SPAN_XENODANGER("我们用尾巴猛击[Xeno]！"))
+			to_chat(Xeno, SPAN_XENOHIGHDANGER("[dancer_user]用尾巴猛击你，让你头晕目眩！"))
 			dancer_user.animation_attack_on(Xeno)
 
 	if(!xeno_smashed)
 		if (stun_duration > 0)
 			target_carbon.apply_effect(stun_duration, WEAKEN)
-		dancer_user.visible_message(SPAN_XENODANGER("[dancer_user] trips [target_atom] with it's tail!"), SPAN_XENODANGER("We trip [target_atom] with our tail!"))
+		dancer_user.visible_message(SPAN_XENODANGER("[dancer_user]用尾巴绊倒了[target_atom]！"), SPAN_XENODANGER("我们用尾巴绊倒了[target_atom]！"))
 		dancer_user.spin_circle()
 		dancer_user.emote("tail")
-		to_chat(target_carbon, SPAN_XENOHIGHDANGER("You are swept off your feet by [dancer_user]!"))
+		to_chat(target_carbon, SPAN_XENOHIGHDANGER("你被[dancer_user]扫倒在地！"))
 	if (daze_duration > 0)
 		target_carbon.apply_effect(daze_duration, DAZE)
 
@@ -737,13 +737,13 @@
 		return
 
 	if (!do_after(X, activation_delay, INTERRUPT_ALL | BEHAVIOR_IMMOBILE, BUSY_ICON_HOSTILE))
-		to_chat(X, SPAN_XENODANGER("We cancel our acid ball."))
+		to_chat(X, SPAN_XENODANGER("我们取消了酸球。"))
 		return
 
 
 	apply_cooldown()
 
-	to_chat(X, SPAN_XENOWARNING("We lob a compressed ball of acid into the air!"))
+	to_chat(X, SPAN_XENOWARNING("我们将压缩酸球抛向空中！"))
 
 	var/obj/item/explosive/grenade/xeno_acid_grenade/grenade = new /obj/item/explosive/grenade/xeno_acid_grenade
 	grenade.cause_data = create_cause_data(initial(X.caste_type), X)
@@ -765,21 +765,21 @@
 		return
 
 	if (!isxeno(A) || !X.can_not_harm(A))
-		to_chat(X, SPAN_XENODANGER("We must target one of our sisters!"))
+		to_chat(X, SPAN_XENODANGER("必须选择一位姐妹！"))
 		return
 
 	if (A == X)
-		to_chat(X, SPAN_XENODANGER("We cannot heal ourself!"))
+		to_chat(X, SPAN_XENODANGER("我们无法治疗自己！"))
 		return
 
 	if (A.z != X.z)
-		to_chat(X, SPAN_XENODANGER("That Sister is too far away!"))
+		to_chat(X, SPAN_XENODANGER("那位姐妹太远了！"))
 		return
 
 	var/mob/living/carbon/xenomorph/targetXeno = A
 
 	if(targetXeno.stat == DEAD)
-		to_chat(X, SPAN_WARNING("[targetXeno] is already dead!"))
+		to_chat(X, SPAN_WARNING("[targetXeno]已经死了！"))
 		return
 
 	if (!check_plasma_owner())
@@ -789,7 +789,7 @@
 
 	if (curr_effect_type == WARDEN_HEAL_SHIELD)
 		if (SEND_SIGNAL(targetXeno, COMSIG_XENO_PRE_HEAL) & COMPONENT_CANCEL_XENO_HEAL)
-			to_chat(X, SPAN_XENOWARNING("We cannot bolster the defenses of this xeno!"))
+			to_chat(X, SPAN_XENOWARNING("我们无法强化这只异形的防御！"))
 			return
 
 		var/bonus_shield = 0
@@ -808,13 +808,13 @@
 		var/total_shield_amount = shield_amount + bonus_shield
 
 		if (X.observed_xeno != null)
-			to_chat(X, SPAN_XENOHIGHDANGER("We cannot shield [targetXeno] as effectively over distance!"))
+			to_chat(X, SPAN_XENOHIGHDANGER("隔得太远，无法有效保护[targetXeno]！"))
 			total_shield_amount = total_shield_amount/4
-			targetXeno.visible_message(SPAN_BOLDNOTICE("[targetXeno]'s exoskeleton shimmers for a fraction of a second."))//marines probably should know if a xeno gets healed
+			targetXeno.visible_message(SPAN_BOLDNOTICE("[targetXeno]的外骨骼闪烁了一瞬。"))//marines probably should know if a xeno gets healed
 		else //so both visible messages don't appear at the same time
-			targetXeno.visible_message(SPAN_BOLDNOTICE("[X] points at [targetXeno], and it shudders as its exoskeleton shimmers for a second!")) //this one is a bit less important than healing and rejuvenating
-		to_chat(X, SPAN_XENODANGER("We bolster the defenses of [targetXeno]!")) //but i imagine it'll be useful for predators, survivors and for battle flavor
-		to_chat(targetXeno, SPAN_XENOHIGHDANGER("We feel our defenses bolstered by [X]!"))
+			targetXeno.visible_message(SPAN_BOLDNOTICE("[X]指向[targetXeno]，后者颤抖了一下，外骨骼短暂闪烁！")) //this one is a bit less important than healing and rejuvenating
+		to_chat(X, SPAN_XENODANGER("我们强化了[targetXeno]的防御！")) //but i imagine it'll be useful for predators, survivors and for battle flavor
+		to_chat(targetXeno, SPAN_XENOHIGHDANGER("[X]强化了我们的防御！"))
 
 		targetXeno.add_xeno_shield(total_shield_amount, XENO_SHIELD_SOURCE_WARDEN_PRAE, duration = shield_duration, decay_amount_per_second = shield_decay)
 		targetXeno.xeno_jitter(1 SECONDS)
@@ -826,10 +826,10 @@
 
 	else if (curr_effect_type == WARDEN_HEAL_HP)
 		if (!X.Adjacent(A))
-			to_chat(X, SPAN_XENODANGER("We must be within touching distance of [targetXeno]!"))
+			to_chat(X, SPAN_XENODANGER("必须靠近到能触及[targetXeno]！"))
 			return
 		if (SEND_SIGNAL(targetXeno, COMSIG_XENO_PRE_HEAL) & COMPONENT_CANCEL_XENO_HEAL)
-			to_chat(X, SPAN_XENOWARNING("We cannot heal this xeno!"))
+			to_chat(X, SPAN_XENOWARNING("我们无法治疗这只异形！"))
 			return
 
 		var/bonus_heal = 0
@@ -844,8 +844,8 @@
 		if (!behavior.use_internal_hp_ability(bonus_heal))
 			bonus_heal = 0
 
-		to_chat(X, SPAN_XENOHIGHDANGER("We heal [targetXeno]!"))
-		to_chat(targetXeno, SPAN_XENOHIGHDANGER("We are healed by [X]!"))
+		to_chat(X, SPAN_XENOHIGHDANGER("我们治疗了[targetXeno]！"))
+		to_chat(targetXeno, SPAN_XENOHIGHDANGER("[X]治疗了我们！"))
 		//Amount to heal in this cast of the ability
 		var/quantity_healed = heal_amount
 		if(istype(targetXeno.strain, /datum/xeno_strain/warden))
@@ -855,7 +855,7 @@
 			quantity_healed = quantity_healed + bonus_heal
 
 		targetXeno.gain_health(quantity_healed)
-		targetXeno.visible_message(SPAN_BOLDNOTICE("[X] places its claws on [targetXeno], and its wounds are quickly sealed!")) //marines probably should know if a xeno gets healed
+		targetXeno.visible_message(SPAN_BOLDNOTICE("[X]将爪子放在[targetXeno]身上，伤口迅速愈合！")) //marines probably should know if a xeno gets healed
 		X.gain_health(heal_amount*0.5 + bonus_heal*0.5)
 		X.flick_heal_overlay(3 SECONDS, "#00B800")
 		behavior.transferred_healing += quantity_healed
@@ -864,7 +864,7 @@
 
 	else if (curr_effect_type == WARDEN_HEAL_DEBUFFS)
 		if (X.observed_xeno != null)
-			to_chat(X, SPAN_XENOHIGHDANGER("We cannot rejuvenate targets through overwatch!"))
+			to_chat(X, SPAN_XENOHIGHDANGER("我们无法通过监视视角使目标恢复活力！"))
 			return
 
 		var/datum/behavior_delegate/praetorian_warden/behavior = X.behavior_delegate
@@ -874,9 +874,9 @@
 		if (!behavior.use_internal_hp_ability(debuff_cost))
 			return
 
-		to_chat(X, SPAN_XENOHIGHDANGER("We rejuvenate [targetXeno]!"))
-		to_chat(targetXeno, SPAN_XENOHIGHDANGER("We are rejuvenated by [X]!"))
-		targetXeno.visible_message(SPAN_BOLDNOTICE("[X] points at [targetXeno], and it spasms as it recuperates unnaturally quickly!")) //marines probably should know if a xeno gets rejuvenated
+		to_chat(X, SPAN_XENOHIGHDANGER("我们使[targetXeno]恢复了活力！"))
+		to_chat(targetXeno, SPAN_XENOHIGHDANGER("[X]使我们恢复了活力！"))
+		targetXeno.visible_message(SPAN_BOLDNOTICE("[X]指向[targetXeno]，后者痉挛着，以超乎寻常的速度恢复！")) //marines probably should know if a xeno gets rejuvenated
 		targetXeno.xeno_jitter(1 SECONDS) //it might confuse them as to why the queen got up half a second after being AT rocketed, and give them feedback on the Praetorian rejuvenating
 		targetXeno.flick_heal_overlay(3 SECONDS, "#F5007A") //therefore making the Praetorian a priority target
 		targetXeno.clear_debuffs()
@@ -897,34 +897,34 @@
 		return
 
 	if(X.observed_xeno != null)
-		to_chat(X, SPAN_XENOHIGHDANGER("We cannot retrieve sisters through overwatch!"))
+		to_chat(X, SPAN_XENOHIGHDANGER("我们无法通过监视视角拉回姐妹！"))
 		return
 
 	if(!isxeno(A) || !X.can_not_harm(A))
-		to_chat(X, SPAN_XENODANGER("We must target one of our sisters!"))
+		to_chat(X, SPAN_XENODANGER("必须选择一位姐妹！"))
 		return
 
 	if(A == X)
-		to_chat(X, SPAN_XENODANGER("We cannot retrieve ourself!"))
+		to_chat(X, SPAN_XENODANGER("我们无法拉回自己！"))
 		return
 
 	if(!(A in view(7, X)))
-		to_chat(X, SPAN_XENODANGER("That sister is too far away!"))
+		to_chat(X, SPAN_XENODANGER("那位姐妹太远了！"))
 		return
 
 	var/mob/living/carbon/xenomorph/targetXeno = A
 
 	if(targetXeno.anchored)
-		to_chat(X, SPAN_XENODANGER("That sister cannot move!"))
+		to_chat(X, SPAN_XENODANGER("那位姐妹无法移动！"))
 		return
 
 	if(!(targetXeno.resting || targetXeno.stat == UNCONSCIOUS))
 		if(targetXeno.mob_size > MOB_SIZE_BIG)
-			to_chat(X, SPAN_WARNING("[targetXeno] is too big to retrieve while standing up!"))
+			to_chat(X, SPAN_WARNING("[targetXeno]体型太大，站着时无法拉回！"))
 			return
 
 	if(targetXeno.stat == DEAD)
-		to_chat(X, SPAN_WARNING("[targetXeno] is already dead!"))
+		to_chat(X, SPAN_WARNING("[targetXeno]已经死了！"))
 		return
 
 	if(!action_cooldown_check() || X.action_busy)
@@ -966,7 +966,7 @@
 				blocked = TRUE
 				break
 		if(blocked)
-			to_chat(X, SPAN_XENOWARNING("We can't reach [targetXeno] with our resin retrieval hook!"))
+			to_chat(X, SPAN_XENOWARNING("树脂回收钩够不到[targetXeno]！"))
 			return
 
 		T = temp
@@ -979,10 +979,10 @@
 		telegraph_atom_list += new /obj/effect/xenomorph/xeno_telegraph/green(T, windup)
 
 	if(!length(turflist))
-		to_chat(X, SPAN_XENOWARNING("We don't have any room to do our retrieve!"))
+		to_chat(X, SPAN_XENOWARNING("没有足够空间拉回目标！"))
 		return
 
-	X.visible_message(SPAN_XENODANGER("[X] prepares to fire its resin retrieval hook at [A]!"), SPAN_XENODANGER("We prepare to fire our resin retrieval hook at [A]!"))
+	X.visible_message(SPAN_XENODANGER("[X]准备向[A]发射树脂回收钩！"), SPAN_XENODANGER("我们准备向[A]发射树脂回收钩！"))
 	X.emote("roar")
 
 	var/throw_target_turf = get_step(X.loc, facing)
@@ -993,7 +993,7 @@
 	ADD_TRAIT(X, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Praetorian Retrieve"))
 	if(windup)
 		if(!do_after(X, windup, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE, numticks = 1))
-			to_chat(X, SPAN_XENOWARNING("We cancel our retrieve."))
+			to_chat(X, SPAN_XENOWARNING("我们取消了拉回。"))
 			apply_cooldown()
 
 			for (var/obj/effect/xenomorph/xeno_telegraph/XT in telegraph_atom_list)
@@ -1015,18 +1015,18 @@
 			break
 
 	if(!successful_retrieve)
-		to_chat(X, SPAN_XENOWARNING("We can't reach [targetXeno] with our resin retrieval hook!"))
+		to_chat(X, SPAN_XENOWARNING("树脂回收钩够不到[targetXeno]！"))
 		return
 
-	to_chat(targetXeno, SPAN_XENOBOLDNOTICE("We are pulled toward [X]!"))
+	to_chat(targetXeno, SPAN_XENOBOLDNOTICE("我们被拉向[X]！"))
 
 	shake_camera(targetXeno, 10, 1)
 	var/throw_dist = get_dist(throw_target_turf, targetXeno)-1
 	if(throw_target_turf == behind_turf)
 		throw_dist++
-		to_chat(X, SPAN_XENOBOLDNOTICE("We fling [targetXeno] over our head with our resin hook, and they land behind us!"))
+		to_chat(X, SPAN_XENOBOLDNOTICE("我们用树脂钩将[targetXeno]甩过头顶，使其落在身后！"))
 	else
-		to_chat(X, SPAN_XENOBOLDNOTICE("We fling [targetXeno] towards us with our resin hook, and they land in front of us!"))
+		to_chat(X, SPAN_XENOBOLDNOTICE("我们用树脂钩将[targetXeno]甩向自己，使其落在面前！"))
 	targetXeno.throw_atom(throw_target_turf, throw_dist, SPEED_VERY_FAST, pass_flags = PASS_MOB_THRU)
 	apply_cooldown()
 	return ..()

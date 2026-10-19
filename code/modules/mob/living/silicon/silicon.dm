@@ -45,7 +45,7 @@
 			apply_effect(rand(1,5), STUN)
 	flash_eyes(1, TRUE, type = /atom/movable/screen/fullscreen/flash/noise)
 
-	to_chat(src, SPAN_DANGER("<B>*BZZZT*</B>"))
+	to_chat(src, SPAN_DANGER("<B>*滋啪*</B>"))
 	to_chat(src, SPAN_DANGER("警告：检测到电磁脉冲。"))
 
 /mob/living/silicon/stun_effect_act(stun_amount, agony_amount)
@@ -78,7 +78,7 @@
 	if(SShijack)
 		var/eta_status = SShijack.get_evac_eta()
 		if(eta_status)
-			stat(null, "疏散目标：[eta_status]")
+			stat(null, "疏散目标：[localized_player_label(eta_status)]")
 
 
 // this function displays the stations manifest in a separate window
@@ -122,7 +122,7 @@
 	var/dat = "<b><font size = 5>已知语言</font></b><br/><br/>"
 
 	for(var/datum/language/L in languages)
-		dat += "<b>[L.name] (:[L.key])</b><br/>语音合成器：<i>[(L in speech_synthesizer_langs)? "支持":"不支持"]</i><br/>[L.desc]<br/><br/>"
+		dat += "<b>[localized_player_label(L.name)] (:[L.key])</b><br/>语音合成器：<i>[(L in speech_synthesizer_langs)? "支持":"不支持"]</i><br/>[L.desc]<br/><br/>"
 
 	src << browse(dat, "window=checklanguage")
 	return

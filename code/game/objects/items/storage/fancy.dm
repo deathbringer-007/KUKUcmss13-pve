@@ -36,11 +36,11 @@
 /obj/item/storage/fancy/get_examine_text(mob/user)
 	. = ..()
 	if(!length(contents))
-		. += "There are no [src.icon_type][plural] left in the box."
+		. += "盒子里的[localized_player_label(src.icon_type)]已经用完。"
 	else if(length(contents) == 1)
-		. += "There is one [src.icon_type] left in the box."
+		. += "盒子里还剩一个[localized_player_label(src.icon_type)]。"
 	else
-		. += "There are [length(src.contents)] [src.icon_type][plural] in the box."
+		. += "盒子里有[length(src.contents)]个[localized_player_label(src.icon_type)]。"
 
 // EGG BOX
 
@@ -62,8 +62,8 @@
 // CANDLE BOX
 
 /obj/item/storage/fancy/candle_box
-	name = "candle pack"
-	desc = "A pack of red candles."
+	name = "蜡烛包"
+	desc = "一包红蜡烛。"
 	icon = 'icons/obj/items/candle.dmi'
 	icon_state = "candlebox5"
 	icon_type = "candle"
@@ -81,8 +81,8 @@
 // CRAYON BOX
 
 /obj/item/storage/fancy/crayons
-	name = "box of crayons"
-	desc = "A box of every flavor of crayon."
+	name = "蜡笔盒"
+	desc = "一盒各种颜色的蜡笔。"
 	icon = 'icons/obj/items/crayons.dmi'
 	icon_state = "crayonbox"
 	w_class = SIZE_SMALL
@@ -109,10 +109,10 @@
 	if(istype(W,/obj/item/toy/crayon))
 		switch(W:colorName)
 			if("mime")
-				to_chat(usr, "This crayon is too sad to be contained in this box.")
+				to_chat(usr, "这支蜡笔太悲伤了，装不进这个盒子。")
 				return
 			if("rainbow")
-				to_chat(usr, "This crayon is too powerful to be contained in this box.")
+				to_chat(usr, "这支蜡笔太强大了，装不进这个盒子。")
 				return
 	..()
 
@@ -161,7 +161,7 @@
 		if(C)
 			remove_from_storage(C, get_turf(user))
 			user.equip_to_slot_if_possible(C, WEAR_FACE)
-			to_chat(user, SPAN_NOTICE("You take a cigarette out of the pack."))
+			to_chat(user, SPAN_NOTICE("你从烟盒里取出一支香烟。"))
 			update_icon()
 	else
 		..()
@@ -179,8 +179,8 @@
 	item_state = "wypacket"
 
 /obj/item/storage/fancy/cigarettes/wypacket_4
-	name = "\improper Weyland-Yutani Gold mini packet"
-	desc = "Building Better Worlds, and rolling better cigarettes. Compact and ready for your executive ventures, protecting corporate assets never felt cooler."
+	name = "\improper 维兰德-汤谷金装迷你烟盒"
+	desc = "建设更美好的世界，卷出更优质的香烟。小巧便携，随时陪你处理高管事务，保卫公司资产从未如此酷炫。"
 	icon_state = "wy4packet"
 	item_state = "wypacket"
 	item_state_slots = list(WEAR_AS_GARB = "cig_wypack")
@@ -193,8 +193,8 @@
 	item_state = "bpacket"
 
 /obj/item/storage/fancy/cigarettes/balaji_4
-	name = "\improper Balaji Imperial Mini packet"
-	desc = "Smoke 'em if you gottem! Now a field, in the new compact package!"
+	name = "\improper 巴拉吉帝国迷你烟盒"
+	desc = "有烟就抽！如今推出适合战地的新款紧凑包装！"
 	icon_state = "b4packet"
 	item_state = "bpacket"
 	item_state_slots = list(WEAR_AS_GARB = "cig_bpack")
@@ -208,8 +208,8 @@
 	default_cig_type = /obj/item/clothing/mask/cigarette/ucigarette
 
 /obj/item/storage/fancy/cigarettes/lucky_strikes_4
-	name = "\improper Lucky Strikes Mini Packet"
-	desc = "These four-packs of Luckies come in every MRE. They're not as good as the Habana Reals that come in the LACN MREs, but at least they're free."
+	name = "\improper 好彩迷你烟盒"
+	desc = "每份即食口粮里都有一包四支装好彩香烟。虽比不上拉丁美洲殖民地海军口粮里的哈瓦那皇家香烟，但至少不用花钱。"
 	icon_state = "ls4packet"
 	item_state = "lspacket"
 	item_state_slots = list(WEAR_AS_GARB = "cig_ls_mre")
@@ -224,8 +224,8 @@
 	default_cig_type = /obj/item/clothing/mask/cigarette/bcigarette
 
 /obj/item/storage/fancy/cigarettes/blackpack_4
-	name = "\improper Executive Select mini packet"
-	desc = "Luxury right in your ration. You will have them just in time to use them while observing a nuclear blast and enjoying it."
+	name = "\improper 高管精选迷你烟盒"
+	desc = "口粮中的奢华享受。正好赶上让你边抽烟边欣赏核爆。"
 	icon_state = "black4packet"
 	item_state = "blackpacket"
 	item_state_slots = list(WEAR_AS_GARB = "cig_blackpack")
@@ -350,7 +350,7 @@
 		if(C)
 			remove_from_storage(C, get_turf(user))
 			user.equip_to_slot_if_possible(C, WEAR_FACE)
-			to_chat(user, SPAN_NOTICE("You remove a cigar."))
+			to_chat(user, SPAN_NOTICE("你取出一支雪茄。"))
 			update_icon()
 	else
 		..()
@@ -395,16 +395,16 @@
 	if(prob(light_chance))
 		if(!match.heat_source && !match.burnt)
 			if(prob(burn_chance))
-				to_chat(user, SPAN_WARNING("\The [match] lights, but you burn your hand in the process! Ouch!"))
+				to_chat(user, SPAN_WARNING("[match]点着了，但你也烫伤了手！哎哟！"))
 				user.apply_damage(3, BURN, pick("r_hand", "l_hand"))
 				if((user.pain.feels_pain) && prob(25))
 					user.emote("scream")
 				match.light_match()
 			else
 				match.light_match()
-				to_chat(user, SPAN_NOTICE("You light \the [match] on \the [src]."))
+				to_chat(user, SPAN_NOTICE("你在[src]上划燃了[match]。"))
 	else
-		to_chat(user, SPAN_NOTICE("\The [match] fails to light."))
+		to_chat(user, SPAN_NOTICE("[match]没能点着。"))
 
 /obj/item/storage/fancy/cigar/matchbook/brown
 	name = "棕色折页火柴"
@@ -443,8 +443,8 @@
 	icon = 'icons/obj/items/vialbox.dmi'
 	icon_state = "vialbox0"
 	icon_type = "vial"
-	name = "vial storage box"
-	desc = "A place to store your fragile vials when you are not using them."
+	name = "小药瓶收纳盒"
+	desc = "不用小药瓶时，把这些易碎品放在这里。"
 	is_objective = TRUE
 	storage_slots = 6
 	storage_flags = STORAGE_FLAGS_DEFAULT|STORAGE_CLICK_GATHER
@@ -484,8 +484,8 @@
 		return ..()
 
 /obj/item/storage/lockbox/vials
-	name = "secure vial storage box"
-	desc = "A locked box for keeping things away from children."
+	name = "安全小药瓶收纳盒"
+	desc = "一个上锁的盒子，用于让儿童远离其中的东西。"
 	icon = 'icons/obj/items/vialbox.dmi'
 	icon_state = "vialbox0"
 	item_state = "syringe_kit"

@@ -53,13 +53,13 @@
 //checks for things that would prevent us from placing the mine.
 /obj/item/explosive/mine/proc/check_for_obstacles(mob/living/user)
 	if(locate(/obj/item/explosive/mine) in get_turf(src))
-		to_chat(user, SPAN_WARNING("There already is a mine at this position!"))
+		to_chat(user, SPAN_WARNING("这里已经有一枚地雷！"))
 		return TRUE
 	if(user.loc && (user.loc.density || locate(/obj/structure/fence) in user.loc))
-		to_chat(user, SPAN_WARNING("You can't plant a mine here."))
+		to_chat(user, SPAN_WARNING("你无法在这里布雷。"))
 		return TRUE
 	if(SSinterior.in_interior(user))
-		to_chat(user, SPAN_WARNING("It's too cramped in here to deploy \a [src]."))
+		to_chat(user, SPAN_WARNING("这里太拥挤，无法部署[src]。"))
 		return TRUE
 
 //Arming
@@ -73,11 +73,11 @@
 	if(active || user.action_busy)
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] starts deploying [src]."),
-		SPAN_NOTICE("You start deploying [src]."))
+	user.visible_message(SPAN_NOTICE("[user]开始部署[src]。"),
+		SPAN_NOTICE("你开始部署[src]。"))
 	if(!do_after(user, 40, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
-		user.visible_message(SPAN_NOTICE("[user] stops deploying [src]."), \
-			SPAN_NOTICE("You stop deploying \the [src]."))
+		user.visible_message(SPAN_NOTICE("[user]停止部署[src]。"), \
+			SPAN_NOTICE("你停止部署[src]。"))
 		return
 
 	if(active)
@@ -86,8 +86,8 @@
 	if(check_for_obstacles(user))
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] finishes deploying [src]."), \
-		SPAN_NOTICE("You finish deploying [src]."))
+	user.visible_message(SPAN_NOTICE("[user]完成了[src]的部署。"), \
+		SPAN_NOTICE("你完成了[src]的部署。"))
 
 	deploy_mine(user)
 
@@ -111,14 +111,14 @@
 			if(user.action_busy)
 				return
 			if(user.faction == iff_signal)
-				user.visible_message(SPAN_NOTICE("[user] starts disarming [src]."), \
-				SPAN_NOTICE("You start disarming [src]."))
+				user.visible_message(SPAN_NOTICE("[user]开始拆除[src]。"), \
+				SPAN_NOTICE("你开始拆除[src]。"))
 			else
-				user.visible_message(SPAN_NOTICE("[user] starts fiddling with \the [src], trying to disarm it."), \
-				SPAN_NOTICE("You start disarming [src], but you don't know its IFF data. This might end badly..."))
+				user.visible_message(SPAN_NOTICE("[user]开始摆弄[src]，试图将其拆除。"), \
+				SPAN_NOTICE("你开始拆除[src]，但你不知道它的敌我识别数据。这可能会出事……"))
 			if(!do_after(user, 30, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY))
-				user.visible_message(SPAN_WARNING("[user] stops disarming [src]."), \
-					SPAN_WARNING("You stop disarming [src]."))
+				user.visible_message(SPAN_WARNING("[user]停止拆除[src]。"), \
+					SPAN_WARNING("你停止拆除[src]。"))
 				return
 			if(user.faction != iff_signal) //ow!
 				if(prob(5))
@@ -130,8 +130,8 @@
 					prime()
 			if(!active)//someone beat us to it
 				return
-			user.visible_message(SPAN_NOTICE("[user] finishes disarming [src]."), \
-			SPAN_NOTICE("You finish disarming [src]."))
+			user.visible_message(SPAN_NOTICE("[user]完成了[src]的拆除。"), \
+			SPAN_NOTICE("你完成了[src]的拆除。"))
 			disarm()
 
 	else
@@ -203,9 +203,9 @@
 		return
 	if(HAS_TRAIT(L, TRAIT_ABILITY_BURROWED))
 		return
-	L.visible_message(SPAN_DANGER("[icon2html(src, viewers(src))] The [name] clicks as [L] moves in front of it."), \
-	SPAN_DANGER("[icon2html(src, L)] The [name] clicks as you move in front of it."), \
-	SPAN_DANGER("You hear a click."))
+	L.visible_message(SPAN_DANGER("[icon2html(src, viewers(src))][L]走到[name]前方时，它发出一声咔嗒。"), \
+	SPAN_DANGER("[icon2html(src, L)]你走到[name]前方时，它发出一声咔嗒。"), \
+	SPAN_DANGER("你听到一声咔嗒。"))
 
 	triggered = TRUE
 	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)
@@ -233,12 +233,12 @@
 		return XENO_NO_DELAY_ACTION
 
 	if(M.a_intent == INTENT_HELP)
-		to_chat(M, SPAN_XENONOTICE("If you hit this hard enough, it would probably explode."))
+		to_chat(M, SPAN_XENONOTICE("如果用力击打它，很可能会爆炸。"))
 		return XENO_NO_DELAY_ACTION
 
 	M.animation_attack_on(src)
-	M.visible_message(SPAN_DANGER("[M] has slashed [src]!"), \
-		SPAN_DANGER("You slash [src]!"))
+	M.visible_message(SPAN_DANGER("[M]劈砍了[src]！"), \
+		SPAN_DANGER("你劈砍了[src]！"))
 	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
 
 	//We move the tripwire randomly in either of the four cardinal directions
@@ -260,7 +260,7 @@
 
 
 /obj/effect/mine_tripwire
-	name = "claymore tripwire"
+	name = "阔剑地雷绊线"
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = 101
@@ -314,8 +314,8 @@
 	map_deployed = TRUE
 
 /obj/item/explosive/mine/pmc
-	name = "\improper M20P Claymore anti-personnel mine"
-	desc = "The M20P Claymore is a directional anti-personnel smart mine modified for corporate PMC use. Generates 120 degree cone of shrapnel if a valid target crosses before or over it. On its face, it reads \"FRONT TOWARD ENEMY\"."
+	name = "\improper M20P 阔剑反步兵地雷"
+	desc = "为公司私人军事部队改装的 M20P 阔剑定向反步兵智能地雷。有效目标从前方经过或踩上它时，会向前方 120 度扇形区域喷射破片。正面写着“此面向敌”。"
 	icon_state = "m20p"
 	iff_signal = FACTION_PMC
 	hard_iff_lock = TRUE
@@ -327,23 +327,23 @@
 	map_deployed = TRUE
 
 /obj/item/explosive/mine/pmc/strong
-	name = "\improper M20A2P Claymore anti-personnel mine"
+	name = "\improper M20A2P 阔剑反步兵地雷"
 	shrapnel_count = 60
 	shrapnel_type = /datum/ammo/bullet/shrapnel/claymore/strong
 	explosive_power = 90
 	explosive_falloff = 35
 
 /obj/item/explosive/mine/custom
-	name = "custom mine"
-	desc = "A custom chemical mine built from an M20 casing."
+	name = "自制地雷"
+	desc = "用 M20 外壳组装的自制化学地雷。"
 	icon_state = "m20_custom"
 	customizable = TRUE
 	matter = list("metal" = 3750)
 	has_blast_wave_dampener = TRUE
 
 /obj/item/explosive/mine/sharp
-	name = "\improper P9 SHARP explosive dart"
-	desc = "An experimental P9 SHARP proximity triggered explosive dart designed by Armat Systems for use by the United States Colonial Marines. This one has full 360 detection range."
+	name = "\improper P9 SHARP 爆炸飞镖"
+	desc = "阿玛特系统公司为美国殖民地陆战队设计的实验型 P9 SHARP 近炸飞镖，具有 360 度全向探测能力。"
 	icon_state = "sonicharpoon_g"
 	angle = 360
 	var/disarmed = FALSE
@@ -407,9 +407,9 @@
 	else
 		return
 /obj/item/explosive/mine/sebb
-	name = "\improper G2 Electroshock grenade"
+	name = "\improper G2 电击手榴弹"
 	icon_state = "grenade_sebb_planted"
-	desc = "A G2 electroshock grenade planted as a landmine."
+	desc = "作为地雷埋设的 G2 电击手榴弹。"
 	pixel_y = -5
 	anchored = TRUE // this is supposed to be planeted already when spawned
 

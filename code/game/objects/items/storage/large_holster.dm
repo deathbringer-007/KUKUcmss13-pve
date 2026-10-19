@@ -118,7 +118,7 @@
 
 	if(!user.wear_suit || !(user.wear_suit.flags_inventory & SMARTGUN_HARNESS))
 		if(!disable_warning)
-			to_chat(equipping_mob, SPAN_WARNING("You can't equip [src] without a harness."))
+			to_chat(equipping_mob, SPAN_WARNING("没有背负装备，无法装备[src]。"))
 		return FALSE
 
 /obj/item/storage/large_holster/machete/smartgunner/full/fill_preset_inventory()
@@ -129,7 +129,7 @@
 	desc = "用于携带日本刀的大型鲜艳刀鞘，可背在背上或挂在腰间。坚固木壳使它在紧急时也能充当不错的防身武器。"
 	icon_state = "katana_holster"
 	force = 12
-	attack_verb = list("bludgeoned", "struck", "cracked")
+	attack_verb = list("重击", "击打", "猛击")
 	flags_equip_slot = SLOT_WAIST|SLOT_BACK
 	can_hold = list(/obj/item/weapon/sword/katana)
 
@@ -284,15 +284,15 @@
 		return FALSE
 
 	if(user.back != src)
-		to_chat(user, SPAN_WARNING("[src] must be equipped before you can switch types."))
+		to_chat(user, SPAN_WARNING("必须先装备[src]才能切换类型。"))
 		return
 
 	if(!linked_flamer)
-		to_chat(user, SPAN_WARNING("An incinerator unit must be linked in order to switch fuel types."))
+		to_chat(user, SPAN_WARNING("必须先连接焚烧器才能切换燃料类型。"))
 		return
 
 	if(user.get_active_hand() != linked_flamer)
-		to_chat(user, SPAN_WARNING("You must be holding [linked_flamer] to use [src]."))
+		to_chat(user, SPAN_WARNING("你必须拿着[linked_flamer]才能使用[src]。"))
 		return
 
 	if(!active_fuel)
@@ -311,7 +311,7 @@
 	for(var/datum/action/action_added as anything in actions)
 		action_added.update_button_icon()
 
-	to_chat(user, "You switch the fuel tank to <b>[active_fuel.caliber]</b>")
+	to_chat(user, "你将燃料罐切换为<b>[localized_player_label(active_fuel.caliber)]</b>。")
 	playsound(src, 'sound/machines/click.ogg', 25, TRUE)
 	linked_flamer.current_mag = active_fuel
 	linked_flamer.update_icon()
@@ -335,7 +335,7 @@
 	if(istype(F) && !(F.fuelpack))
 		F.link_fuelpack(user)
 		if(F.current_mag && !(F.current_mag in list(fuel,fuelB,fuelX)))
-			to_chat(user, SPAN_WARNING("\The [F.current_mag] is ejected by the Broiler-T back harness and replaced with \the [active_fuel]!"))
+			to_chat(user, SPAN_WARNING("炙炉-T 背负供油架弹出了[F.current_mag]，并换上[active_fuel]！"))
 			F.unload(user, drop_override = TRUE)
 			F.current_mag = active_fuel
 			F.update_icon()
@@ -353,8 +353,8 @@
 	else
 		fuel.forceMove(get_turf(user))
 		fuel = new_fuel
-	visible_message("[user] swaps out the fuel tank in [src].","You swap out the fuel tank in [src] and drop the old one.")
-	to_chat(user, "The newly inserted [new_fuel.caliber] contains: [floor(new_fuel.get_ammo_percent())]% fuel.")
+	visible_message("[user]更换了[src]中的燃料罐。","你更换了[src]中的燃料罐，并丢下旧罐。")
+	to_chat(user, "新装入的[localized_player_label(new_fuel.caliber)]剩余[floor(new_fuel.get_ammo_percent())]%燃料。")
 	user.temp_drop_inv_item(new_fuel)
 	new_fuel.moveToNullspace() //necessary to not confuse the storage system
 	playsound(src, 'sound/machines/click.ogg', 25, TRUE)
@@ -366,14 +366,14 @@
 /obj/item/storage/large_holster/fuelpack/get_examine_text(mob/user)
 	. = ..()
 	if(length(contents))
-		. += "It is storing a M240-T incinerator unit."
+		. += "内装一把 M240-T 焚烧器。"
 	if (get_dist(user, src) <= 1)
 		if(fuel)
-			. += "The [fuel.caliber] currently contains: [floor(fuel.get_ammo_percent())]% fuel."
+			. += "[localized_player_label(fuel.caliber)]当前剩余[floor(fuel.get_ammo_percent())]%燃料。"
 		if(fuelB)
-			. += "The [fuelB.caliber] currently contains: [floor(fuelB.get_ammo_percent())]% fuel."
+			. += "[localized_player_label(fuelB.caliber)]当前剩余[floor(fuelB.get_ammo_percent())]%燃料。"
 		if(fuelX)
-			. += "The [fuelX.caliber] currently contains: [floor(fuelX.get_ammo_percent())]% fuel."
+			. += "[localized_player_label(fuelX.caliber)]当前剩余[floor(fuelX.get_ammo_percent())]%燃料。"
 
 /datum/action/item_action/specialist/toggle_fuel
 	ability_primacy = SPEC_PRIMARY_ACTION_1
@@ -381,7 +381,7 @@
 /datum/action/item_action/specialist/toggle_fuel/New(mob/living/user, obj/item/holder)
 	..()
 	name = "Toggle Fuel Type"
-	button.name = name
+	button.name = "切换燃料类型"
 	update_button_icon()
 
 /datum/action/item_action/specialist/toggle_fuel/update_button_icon()

@@ -27,8 +27,8 @@
 				H.pain.recalculate_pain()
 				H.updatehealth()
 				use(1)
-				var/others_msg = "[user]用[src]将纳米修复膏涂在[user != M ? "[M]的" : "自己的"][S.display_name]上。" // Needs to create vars for these messages because macro doesn't work otherwise
-				var/user_msg = "你将纳米修复膏涂在[user == M ? "自己的" : "[M]的"][S.display_name]上。"
+				var/others_msg = "[user]用[src]将纳米修复膏涂在[user != M ? "[M]的" : "自己的"][localized_player_label(S.display_name)]上。" // Needs to create vars for these messages because macro doesn't work otherwise
+				var/user_msg = "你将纳米修复膏涂在[user == M ? "自己的" : "[M]的"][localized_player_label(S.display_name)]上。"
 				user.visible_message(SPAN_NOTICE("[others_msg]"),\
 					SPAN_NOTICE("[user_msg]"))
 			else

@@ -1,7 +1,7 @@
 /obj/item/clothing/suit/storage/jacket/marine //BASE ITEM
-	name = "marine jacket"
+	name = "陆战队夹克"
 	//This really should not be spawned
-	desc = "What the hell is this doing here?"
+	desc = "这鬼东西怎么会在这里？"
 	icon = 'icons/obj/items/clothing/cm_suits.dmi'
 	item_icons = list(
 		WEAR_JACKET = 'icons/mob/humans/onmob/suit_1.dmi'
@@ -59,11 +59,11 @@
 	if(src.buttoned == TRUE)
 		src.icon_state = "[initial_icon_state]_o"
 		src.buttoned = FALSE
-		to_chat(usr, SPAN_INFO("You unbutton \the [src]."))
+		to_chat(usr, SPAN_INFO("你解开了[src]的扣子。"))
 	else
 		src.icon_state = "[initial_icon_state]"
 		src.buttoned = TRUE
-		to_chat(usr, SPAN_INFO("You button \the [src]."))
+		to_chat(usr, SPAN_INFO("你扣上了[src]的扣子。"))
 	update_clothing_icon()
 
 /obj/item/clothing/suit/storage/jacket/marine/Initialize()
@@ -106,8 +106,8 @@
 	initial_icon_state = "coat_mp"
 
 /obj/item/clothing/suit/storage/jacket/marine/service/warden
-	name = "military warden service jacket"
-	desc = "A marine service jacket adopted for use by Military Wardens on board USCM ships. Ironically most ships require their MP departments to use full armor, making these barely used by on duty Wardens. The jacket of choice for looking all night at a set of monitors, while cigarette butts pile around you."
+	name = "宪兵监狱官常服夹克"
+	desc = "美国殖民地陆战队舰船上宪兵监狱官使用的陆战队常服夹克。讽刺的是，大多数舰船都要求宪兵值勤时穿全套护甲，因此在岗监狱官很少穿它。适合整夜盯着监控屏幕，任由烟蒂在周围堆积。"
 	has_buttons = TRUE
 	icon_state = "coat_warden"
 	flags_atom = NO_SNOW_TYPE
@@ -130,8 +130,8 @@
 	initial_icon_state = "jacket_tanker"
 
 /obj/item/clothing/suit/storage/jacket/marine/chef
-	name = "mess technician jacket"
-	desc = "Smells like vanilla. Signifies prestige and power, if a little flashy."
+	name = "伙食技师夹克"
+	desc = "闻起来有香草味。象征地位与权力，虽然有点花哨。"
 	icon_state = "chef_jacket"
 	armor_melee = CLOTHING_ARMOR_LOW
 	armor_bullet = CLOTHING_ARMOR_LOW
@@ -190,8 +190,8 @@
 	icon_state = "co_suit"
 
 /obj/item/clothing/suit/storage/jacket/marine/dress/officer/falcon
-	name = "commanding officer falcon jacket"
-	desc = "A refurbished jacket liner tailor made for a senior officer. This liner has become more of a proper piece of attire, with a new layer of fabric, wrist cuffs, front pockets, and a custom embroidered falcon on the back. This jacket will keep its wearer warm no matter the circumstance, from a cool Sunday drive to chilly autumn's eve."
+	name = "舰长猎鹰夹克"
+	desc = "专为高级军官定制的翻新夹克内衬。加上新的面料层、袖口、前口袋和背部定制猎鹰刺绣后，它已经成为一件完整的衣服。无论是凉爽周日的驾车出游，还是寒冷的秋夜，它都能让穿着者保持温暖。"
 	icon_state = "co_falcon"
 
 /obj/item/clothing/suit/storage/jacket/marine/dress/general
@@ -212,21 +212,21 @@
 	w_class = SIZE_MEDIUM
 
 /obj/item/clothing/suit/storage/jacket/marine/dress/general/executive
-	name = "director's jacket"
-	desc = "A black trench coat with gold metallic trim. Flashy, highly protective, and over-the-top. Fit for a king - or, in this case, a Director. Has quite a few pockets."
+	name = "总监夹克"
+	desc = "饰有金色金属滚边的黑色风衣。华丽、防护出色，也十分夸张。适合国王——或者说，适合总监。有不少口袋。"
 	has_buttons = FALSE
 
 /obj/item/clothing/suit/storage/jacket/marine/dress/bridge_coat
-	name = "bridge coat"
-	desc = "A heavy synthetic woolen coat issued to USCM Officers. Based on a classical design this coat is quite nice on cold nights in the Air conditioned CIC or a miserable cold night on a barren world. This one is a Dressy Blue for a Commanding officer."
+	name = "舰桥大衣"
+	desc = "配发给美国殖民地陆战队军官的厚重合成羊毛大衣。采用经典设计，无论是在空调寒冷的作战指挥中心，还是荒芜星球上的凄冷夜晚，都十分舒适。这件是舰长礼服蓝配色。"
 	has_buttons = FALSE
 	item_state = "bridge_coat"
 	icon_state = "bridge_coat"
 	valid_accessory_slots = list(ACCESSORY_SLOT_ARMBAND, ACCESSORY_SLOT_RANK, ACCESSORY_SLOT_MEDAL)
 
 /obj/item/clothing/suit/storage/jacket/marine/dress/bridge_coat_grey
-	name = "bridge coat"
-	desc = "A heavy synthetic woolen coat issued to USCM Officers. Based on a classical design this coat is quite nice on cold nights in the Air conditioned CIC or a miserable cold night on a barren world. This one is Black."
+	name = "舰桥大衣"
+	desc = "配发给美国殖民地陆战队军官的厚重合成羊毛大衣。采用经典设计，无论是在空调寒冷的作战指挥中心，还是荒芜星球上的凄冷夜晚，都十分舒适。这件是黑色的。"
 	has_buttons = FALSE
 	item_state = "bridge_coat_grey"
 	icon_state = "bridge_coat_grey"
@@ -245,24 +245,24 @@
 //=======================================================================\\
 
 /obj/item/clothing/suit/storage/jacket/marine/provost
-	name = "\improper Provost Jacket"
-	desc = "A crisp jacket with the Provost sigil."
+	name = "\improper 军法监察夹克"
+	desc = "带有军法监察徽记的挺括夹克。"
 	icon_state = "provost_jacket"
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 	valid_accessory_slots = list(ACCESSORY_SLOT_ARMBAND, ACCESSORY_SLOT_RANK, ACCESSORY_SLOT_DECOR)
 
 /obj/item/clothing/suit/storage/jacket/marine/provost/chief
-	name = "\improper Provost Command Jacket"
-	desc = "A crisp jacket with the Provost sigil."
+	name = "\improper 军法监察指挥夹克"
+	desc = "带有军法监察徽记的挺括夹克。"
 	icon_state = "provostci_jacket"
 
 /obj/item/clothing/suit/storage/jacket/marine/provost/coat
-	name = "\improper Provost Coat"
-	desc = "The crisp coat of a Provost Officer."
+	name = "\improper 军法监察大衣"
+	desc = "军法监察军官的挺括大衣。"
 	icon_state = "provost_coat"
 
 /obj/item/clothing/suit/storage/jacket/marine/provost/coat/marshal
-	name = "\improper Provost Marshal Coat"
+	name = "\improper 军法监察长大衣"
 	icon_state = "provost_coat_marshal"
 
 
@@ -376,8 +376,8 @@
 	has_buttons = FALSE
 
 /obj/item/clothing/suit/storage/jacket/marine/corporate/grey
-	name = "grey suit jacket"
-	desc = "A grey suit jacket."
+	name = "灰色西装夹克"
+	desc = "一件灰色西装夹克。"
 	icon_state = "corporate_grey"
 	item_state = "corporate_grey"
 	has_buttons = FALSE
@@ -407,22 +407,22 @@
 //==================UPP==================\\
 
 /obj/item/clothing/suit/storage/jacket/marine/upp
-	name = "\improper UPP service uniform jacket"
-	desc = "A UPP service uniform jacket featuring small dispersed para-aramid inserts providing the barest of defensive functionality."
+	name = "\improper 进步人民联盟常服夹克"
+	desc = "进步人民联盟常服夹克，分散嵌有少量对位芳纶插片，只能提供最基本的防护。"
 	icon_state = "upp_coat_service"
 	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/suit/storage/jacket/marine/upp/mss
-	name = "\improper MSS uniform jacket"
-	desc = "A Ministry of Space Security service jacket featuring small dispersed para-aramid inserts providing the barest of defensive functionality."
+	name = "\improper 太空安全部制服夹克"
+	desc = "太空安全部常服夹克，分散嵌有少量对位芳纶插片，只能提供最基本的防护。"
 	icon_state = "upp_coat_mss"
 
 /obj/item/clothing/suit/storage/jacket/marine/upp/coldweather
-	name = "\improper UL2 coldweather service jacket"
-	desc = "A standard issue coldweather UPP military service jacket featuring small dispersed para-aramid inserts providing the barest of defensive functionality, and a Personal Light Unit rig."
+	name = "\improper UL2 冬季常服夹克"
+	desc = "进步人民联盟制式冬季常服夹克，分散嵌有少量对位芳纶插片，提供最基本的防护，并配有个人照明单元。"
 	icon_state = "upp_coat_officer"
 
 /obj/item/clothing/suit/storage/jacket/marine/upp/naval
-	name = "\improper UPP naval infantry jacket"
-	desc = "A standard issue naval infantry service jacket featuring small dispersed para-aramid inserts providing the barest of defensive functionality."
+	name = "\improper 进步人民联盟海军步兵夹克"
+	desc = "制式海军步兵常服夹克，分散嵌有少量对位芳纶插片，只能提供最基本的防护。"
 	icon_state = "upp_coat_naval"

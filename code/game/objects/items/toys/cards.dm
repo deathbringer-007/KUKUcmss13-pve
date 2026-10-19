@@ -1,5 +1,5 @@
 /datum/playing_card
-	var/name = "playing card"
+	var/name = "扑克牌"
 	var/card_icon = "card_back"
 	var/back_icon = "card_back"
 	var/sort_index = 0
@@ -36,13 +36,13 @@
 
 /obj/item/toy/deck/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_NOTICE("There are <b>[length(cards)]</b> cards remaining in the deck.")
+	. += SPAN_NOTICE("牌堆中还剩 <b>[length(cards)]</b> 张牌。")
 
 /obj/item/toy/deck/proc/populate_deck()
 	var/card_id = 1
 	for(var/suit in list("spades", "clubs", "diamonds", "hearts"))
 		for(var/number in list("ace", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king"))
-			cards += new /datum/playing_card("[number] of [suit]", "[suit]_[number]", "back_[base_icon]", card_id++)
+			cards += new /datum/playing_card("[localized_player_label("card:[suit]")][localized_player_label("card:[number]")]", "[suit]_[number]", "back_[base_icon]", card_id++)
 
 /obj/item/toy/deck/uno
 	name = "一副 UNO 牌"
@@ -56,17 +56,17 @@
 	//wild cards
 	for(var/suit in list("wild", "wild-draw-four"))
 		for(var/i = 1 to 4)
-			cards += new /datum/playing_card("[suit]", "[suit]", "back_[base_icon]", card_id++)
+			cards += new /datum/playing_card("[localized_player_label("card:[suit]")]", "[suit]", "back_[base_icon]", card_id++)
 
 	//color cards
 	for(var/suit in list("red", "purple", "blue", "yellow"))
 		//1 zero per color
-		cards += new /datum/playing_card("[suit] zero", "[suit]_zero", "back_[base_icon]", card_id++)
+		cards += new /datum/playing_card("[localized_player_label("card:[suit]")]0", "[suit]_zero", "back_[base_icon]", card_id++)
 
 		//2 of each 1-9, skip, draw 2, reverse per color
 		for(var/i = 1 to 2)
 			for(var/number in list("one","two","three","four","five","six","seven","eight","nine","skip","draw-two","reverse"))
-				cards += new /datum/playing_card("[suit] [number]", "[suit]_[number]", "back_[base_icon]", card_id++)
+				cards += new /datum/playing_card("[localized_player_label("card:[suit]")][localized_player_label("card:[number]")]", "[suit]_[number]", "back_[base_icon]", card_id++)
 
 /obj/item/toy/deck/attack_hand(mob/user)
 	if(user.get_inactive_hand() == src)
@@ -82,7 +82,7 @@
 			H.cards -= P
 		update_icon()
 		qdel(O)
-		user.visible_message(SPAN_NOTICE("<b>[user]</b> places their cards on the bottom of \the [src]."), SPAN_NOTICE("You place your cards on the bottom of the deck."))
+		user.visible_message(SPAN_NOTICE("<b>[user]</b>将手牌放到[src]底部。"), SPAN_NOTICE("你将手牌放到了牌堆底部。"))
 		return
 	..()
 
@@ -107,7 +107,7 @@
 	var/mob/living/carbon/human/user = usr
 
 	if(!length(cards))
-		to_chat(usr, SPAN_WARNING("There are no cards in the deck."))
+		to_chat(usr, SPAN_WARNING("牌堆里没有牌了。"))
 		return
 
 	var/obj/item/toy/handcard/H = get_or_make_user_hand(user)
@@ -116,7 +116,7 @@
 	cards -= P
 	H.update_icon()
 	update_icon()
-	user.visible_message(SPAN_NOTICE("\The [user] draws a card."), SPAN_NOTICE("You draw the <b>[P]</b>."))
+	user.visible_message(SPAN_NOTICE("[user]抽了一张牌。"), SPAN_NOTICE("你抽到了<b>[P]</b>。"))
 
 /obj/item/toy/deck/verb/draw_cards()
 	set category = "Object"
@@ -134,22 +134,22 @@
 
 	var/cards_length = length(cards)
 	if(!cards_length)
-		to_chat(user, SPAN_WARNING("There are no cards in the deck."))
+		to_chat(user, SPAN_WARNING("牌堆里没有牌了。"))
 		return
 
-	var/num_cards = tgui_input_number(user, "How many cards do you want to draw? ([cards_length] remaining)", "Card Drawing", 1, cards_length, 1)
+	var/num_cards = tgui_input_number(user, "要抽多少张牌？（剩余[cards_length]张）", "抽牌", 1, cards_length, 1)
 	cards_length = length(cards)
 	if(!cards_length)
-		to_chat(user, SPAN_WARNING("There are no cards in the deck."))
+		to_chat(user, SPAN_WARNING("牌堆里没有牌了。"))
 		return
 	if(!num_cards || num_cards <= 0)
 		return
 	num_cards = min(num_cards, cards_length)
 
 	if(num_cards==1)
-		user.visible_message(SPAN_NOTICE("\The [user] draws a card."), SPAN_NOTICE("You draw a card."))
+		user.visible_message(SPAN_NOTICE("[user]抽了一张牌。"), SPAN_NOTICE("你抽了一张牌。"))
 	else
-		user.visible_message(SPAN_NOTICE("\The [user] draws [num_cards] cards."), SPAN_NOTICE("You draw [num_cards] cards."))
+		user.visible_message(SPAN_NOTICE("[user]抽了[num_cards]张牌。"), SPAN_NOTICE("你抽了[num_cards]张牌。"))
 
 	var/obj/item/toy/handcard/H = get_or_make_user_hand(user)
 
@@ -164,7 +164,7 @@
 	H.update_icon()
 	update_icon()
 
-	to_chat(user, SPAN_NOTICE("You've drawn: [chat_message]"))
+	to_chat(user, SPAN_NOTICE("你抽到了：[chat_message]"))
 
 /obj/item/toy/deck/verb/draw_pile()
 	set name = "Draw Pile (Concealed)"
@@ -179,7 +179,7 @@
 
 	var/cards_length = length(cards)
 	if(!cards_length)
-		to_chat(user, SPAN_WARNING("There are no cards in the deck."))
+		to_chat(user, SPAN_WARNING("牌堆里没有牌了。"))
 		return
 
 	var/obj/item/toy/handcard/H = new(get_turf(src))
@@ -188,7 +188,7 @@
 	H.concealed = TRUE
 	H.pile_state = TRUE
 
-	user.visible_message(SPAN_NOTICE("\The [user] draws a concealed pile of cards."), SPAN_NOTICE("You draw a concealed pile of cards."))
+	user.visible_message(SPAN_NOTICE("[user]抽出了一叠背面朝上的牌。"), SPAN_NOTICE("你抽出了一叠背面朝上的牌。"))
 
 	H.cards = cards.Copy()
 	cards = list()
@@ -205,7 +205,7 @@
 		return
 
 	if(!length(cards))
-		to_chat(usr, SPAN_WARNING("There are no cards in the deck."))
+		to_chat(usr, SPAN_WARNING("牌堆里没有牌了。"))
 		return
 
 	var/list/players = list()
@@ -213,12 +213,12 @@
 		if(!player.stat)
 			players += player
 
-	var/mob/living/M = tgui_input_list(usr, "Who do you wish to deal a card?", "Deal card", players)
+	var/mob/living/M = tgui_input_list(usr, "要给谁发牌？", "发牌", players)
 	if(!usr || QDELETED(src) || !Adjacent(usr) || !M || QDELETED(M))
 		return
 
 	if(!length(cards))
-		to_chat(usr, SPAN_WARNING("There are no cards in the deck."))
+		to_chat(usr, SPAN_WARNING("牌堆里没有牌了。"))
 		return
 
 	if(get_dist(usr, M) < 4)
@@ -233,9 +233,9 @@
 	H.update_icon()
 	update_icon()
 	if(user == target)
-		user.visible_message(SPAN_NOTICE("\The [user] deals a card to \himself."), SPAN_NOTICE("You deal a card to yourself."))
+		user.visible_message(SPAN_NOTICE("[user]给自己发了一张牌。"), SPAN_NOTICE("你给自己发了一张牌。"))
 	else
-		user.visible_message(SPAN_NOTICE("\The [user] deals a card to \the [target]."), SPAN_NOTICE("You deal a card to \the [target]."))
+		user.visible_message(SPAN_NOTICE("[user]给[target]发了一张牌。"), SPAN_NOTICE("你给[target]发了一张牌。"))
 	H.throw_atom(get_step(target,target.dir), 10, SPEED_VERY_FAST, H)
 
 /obj/item/toy/deck/attack_self(mob/user)
@@ -245,7 +245,7 @@
 		var/datum/playing_card/P = pick_n_take(cards)
 		newcards += P
 	cards = newcards
-	user.visible_message(SPAN_NOTICE("\The [user] shuffles \the [src]."), SPAN_NOTICE("You shuffle \the [src]."))
+	user.visible_message(SPAN_NOTICE("[user]洗了[src]。"), SPAN_NOTICE("你洗了[src]。"))
 
 /obj/item/toy/deck/MouseDrop(atom/over)
 	if(!usr || !over)
@@ -255,14 +255,14 @@
 		return
 
 	if(!length(cards))
-		to_chat(usr, SPAN_WARNING("There are no cards in the deck."))
+		to_chat(usr, SPAN_WARNING("牌堆里没有牌了。"))
 		return
 
 	deal_at(usr, over)
 
 /obj/item/toy/handcard
-	name = "hand of cards"
-	desc = "Some playing cards."
+	name = "一手牌"
+	desc = "几张扑克牌。"
 	icon = 'icons/obj/items/playing_cards.dmi'
 	icon_state = "empty"
 	w_class = SIZE_TINY
@@ -275,7 +275,7 @@
 /obj/item/toy/handcard/get_examine_line(mob/user)
 	. = ..()
 	if(!concealed)
-		. += " ([length(cards)] card\s)"
+		. += "（[length(cards)]张牌）"
 
 /obj/item/toy/handcard/Destroy(force)
 	. = ..()
@@ -283,23 +283,23 @@
 
 /obj/item/toy/handcard/aceofspades
 	icon_state = "spades_ace"
-	desc = "An Ace of Spades"
+	desc = "黑桃 A"
 
 /obj/item/toy/handcard/uno_reverse_red
 	icon_state = "red_reverse"
-	desc = "Always handy to have one or three of these up your sleeve."
+	desc = "袖子里藏上一张或三张，总能派上用场。"
 
 /obj/item/toy/handcard/uno_reverse_blue
 	icon_state = "blue_reverse"
-	desc = "Always handy to have one or three of these up your sleeve."
+	desc = "袖子里藏上一张或三张，总能派上用场。"
 
 /obj/item/toy/handcard/uno_reverse_yellow
 	icon_state = "yellow_reverse"
-	desc = "Always handy to have one or three of these up your sleeve."
+	desc = "袖子里藏上一张或三张，总能派上用场。"
 
 /obj/item/toy/handcard/uno_reverse_purple
 	icon_state = "purple_reverse"
-	desc = "Always handy to have one or three of these up your sleeve."
+	desc = "袖子里藏上一张或三张，总能派上用场。"
 
 /obj/item/toy/handcard/verb/toggle_discard_state()
 	set name = "Toggle Pile State"
@@ -311,7 +311,7 @@
 		return
 
 	pile_state = !pile_state
-	usr.visible_message(SPAN_NOTICE("\The [usr] [pile_state ? "sets" : "unsets"] a pile."), SPAN_NOTICE("You [pile_state ? "set" : "unset"] a pile."))
+	usr.visible_message(SPAN_NOTICE("[usr][pile_state ? "叠起" : "散开"]了一叠牌。"), SPAN_NOTICE("你[pile_state ? "叠起" : "散开"]了一叠牌。"))
 	update_icon()
 
 /obj/item/toy/handcard/verb/sort_cards()
@@ -326,7 +326,7 @@
 	//fuck any qsorts and merge sorts. This needs to be brutally easy
 	var/cards_length = length(cards)
 	if(cards_length >= 200)
-		to_chat(usr, SPAN_WARNING("Your hand is too big to sort. Remove some cards."))
+		to_chat(usr, SPAN_WARNING("你的手牌太多，无法整理。先取走一些牌。"))
 		return
 	for(var/i = 1 to cards_length)
 		for(var/k = 2 to cards_length)
@@ -336,7 +336,7 @@
 				cards[k] = crd
 
 	update_icon()
-	usr.visible_message(SPAN_NOTICE("\The [usr] sorts \his hand."), SPAN_NOTICE("You sort your hand."))
+	usr.visible_message(SPAN_NOTICE("[usr]整理了手牌。"), SPAN_NOTICE("你整理了手牌。"))
 
 /obj/item/toy/handcard/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/toy/handcard))
@@ -348,9 +348,9 @@
 		qdel(O)
 		if(pile_state)
 			if(concealed)
-				user.visible_message(SPAN_NOTICE("\The [user] adds [cards_length > 1 ? "their hand" : "a card"] to \the [src]."), SPAN_NOTICE("You add [cards_length > 1 ? "your hand" : "<b>[cards[length(cards)].name]</b>"] to the \the [src]."))
+				user.visible_message(SPAN_NOTICE("[user]将[cards_length > 1 ? "手牌" : "一张牌"]放到[src]上。"), SPAN_NOTICE("你将[cards_length > 1 ? "手牌" : "<b>[cards[length(cards)].name]</b>"]放到[src]上。"))
 			else
-				user.visible_message(SPAN_NOTICE("\The [user] adds [cards_length > 1 ? "their hand" : "<b>[cards[length(cards)].name]</b>"] to \the [src]."), SPAN_NOTICE("You add [cards_length > 1 ? "your hand" : "<b>[cards[length(cards)].name]</b>"] to \the [src]."))
+				user.visible_message(SPAN_NOTICE("[user]将[cards_length > 1 ? "手牌" : "<b>[cards[length(cards)].name]</b>"]放到[src]上。"), SPAN_NOTICE("你将[cards_length > 1 ? "手牌" : "<b>[cards[length(cards)].name]</b>"]放到[src]上。"))
 		else
 			if(loc != user)
 				if(isstorage(loc))
@@ -367,7 +367,7 @@
 		for(var/datum/playing_card/P as anything in cards)
 			to_pick_up[P.name] = P
 
-		var/picking_up = tgui_input_list(user, "Which card do you wish to pick up?", "Take a card", to_pick_up)
+		var/picking_up = tgui_input_list(user, "要取哪张牌？", "取牌", to_pick_up)
 		if(!picking_up || !user || QDELETED(src))
 			return
 
@@ -390,7 +390,7 @@
 		H.cards += P
 		cards -= P
 		H.update_icon()
-		user.visible_message(SPAN_NOTICE("<b>[user]</b> draws a card from \the [src]."), SPAN_NOTICE("You draw <b>[P.name]</b> from \the [src]."))
+		user.visible_message(SPAN_NOTICE("<b>[user]</b>从[src]中抽出了一张牌。"), SPAN_NOTICE("你从[src]中抽出了<b>[P.name]</b>。"))
 		if(!length(cards))
 			qdel(src)
 		else
@@ -402,7 +402,7 @@
 	..()
 	concealed = !concealed
 	update_icon()
-	user.visible_message(SPAN_NOTICE("\The [user] [concealed ? "conceals" : "reveals"] their hand."), SPAN_NOTICE("You [concealed ? "conceal" : "reveal"] your hand."))
+	user.visible_message(SPAN_NOTICE("[user][concealed ? "藏起" : "亮出"]了手牌。"), SPAN_NOTICE("你[concealed ? "藏起" : "亮出"]了手牌。"))
 
 /obj/item/toy/handcard/MouseDrop(atom/over)
 	if(usr != over || !Adjacent(usr))
@@ -418,33 +418,33 @@
 /obj/item/toy/handcard/get_examine_text(mob/user)
 	. = ..()
 	if(length(cards))
-		. += SPAN_NOTICE("It has <b>[length(cards)]</b> cards.")
+		. += SPAN_NOTICE("其中有 <b>[length(cards)]</b> 张牌。")
 		if(pile_state)
 			if(!concealed)
-				. += SPAN_NOTICE("The top card is <b>[cards[length(cards)].name]</b>.")
+				. += SPAN_NOTICE("最上面一张是<b>[cards[length(cards)].name]</b>。")
 		else if(loc == user)
 			var/card_names = list()
 			for(var/datum/playing_card/P as anything in cards)
 				card_names += P.name
-			. += SPAN_NOTICE("The cards are: [english_list(card_names)]")
+			. += SPAN_NOTICE("这些牌是：[english_list(card_names, and_text = "和", comma_text = "、")]")
 
 
 /obj/item/toy/handcard/update_icon(direction = 0)
 	var/cards_length = length(cards)
 	if(pile_state)
 		if(concealed)
-			name = "draw pile"
-			desc = "A pile of cards to draw from."
+			name = "抽牌堆"
+			desc = "可供抽牌的牌堆。"
 		else
-			name = "discard pile"
-			desc = "A pile of cards you can discard to."
+			name = "弃牌堆"
+			desc = "可供弃牌的牌堆。"
 	else
 		if(cards_length > 1)
-			name = "hand of cards"
-			desc = "Some playing cards."
+			name = "一手牌"
+			desc = "几张扑克牌。"
 		else
-			name = "a playing card"
-			desc = "A playing card."
+			name = "一张扑克牌"
+			desc = "一张扑克牌。"
 
 	if(length(cards) >= 200)
 		// BYOND will flat out choke when using thousands of cards for some unknown reason,

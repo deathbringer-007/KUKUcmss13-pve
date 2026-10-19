@@ -238,7 +238,7 @@ Each var depends on others
 	dispersing = 0
 
 /obj/structure/machinery/dispersal_initiator
-	name = "\improper Dispersal Initiator"
+	name = "\improper 扩散启动器"
 	icon = 'icons/old_stuff/mark.dmi'
 	icon_state = "spawn_shuttle_move"
 	layer = ABOVE_FLY_LAYER - 0.1 //to make it visible in the map editor

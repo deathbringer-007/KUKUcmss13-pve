@@ -8,11 +8,11 @@
 	//Can open sound
 	var/open_sound = 'sound/effects/canopen.ogg'
 	//Can open message
-	var/open_message = "You open the drink with an audible pop!"
+	var/open_message = "你打开饮料，发出清脆的噗声！"
 	//Eating sound
 	var/consume_sound = 'sound/items/drink.ogg'
 	//What this object is, used during interactions
-	var/object_fluff = "drink"
+	var/object_fluff = "饮料"
 	//If can transfer reagents to food
 	var/food_interactable = FALSE
 	//If can has a dedicated crushed icon
@@ -31,7 +31,7 @@
 /obj/item/reagent_container/food/drinks/cans/attackby(obj/item/opening_tool as obj, mob/user as mob)
 	var/opening_time
 	var/opening_sound
-	var/hiss = pick("Nice hiss!", "No hiss.", "A small hiss.") //i couldn't not include stevemre reference
+	var/hiss = pick("漂亮的嘶声！", "没有嘶声。", "轻微的嘶声。") //i couldn't not include stevemre reference
 	if(user.action_busy || open || !needs_can_opener || !(opening_tool.type in CAN_OPENER_EFFECTIVE) && !(opening_tool.type in CAN_OPENER_CRUDE))
 		return
 
@@ -39,22 +39,22 @@
 		if(istype(opening_tool, /obj/item/tool/kitchen/can_opener/compact))
 			var/obj/item/tool/kitchen/can_opener/compact/tool = opening_tool
 			if(!tool.active)
-				to_chat(user, SPAN_WARNING("You need to unfold it before trying to use it."))
+				to_chat(user, SPAN_WARNING("你需要先将它展开才能使用。"))
 				return
 		opening_time = 4 SECONDS
 		opening_sound = 'sound/items/can_open2.ogg'
-		to_chat(user, SPAN_NOTICE("You begin to open the can with a can opener. [hiss]"))
+		to_chat(user, SPAN_NOTICE("你开始用开罐器打开罐头。[hiss]"))
 	if(opening_tool.type in CAN_OPENER_CRUDE)
 		opening_time = 12 SECONDS
 		opening_sound = 'sound/items/can_open1.ogg'
-		to_chat(user, SPAN_NOTICE("You begin to crudely jam the can with a blade. [hiss]"))
+		to_chat(user, SPAN_NOTICE("你开始用刀刃粗暴地撬开罐头。[hiss]"))
 
 	playsound(src.loc, opening_sound, 15, FALSE, 5)
 
 	if(!do_after(user, opening_time, INTERRUPT_ALL, BUSY_ICON_GENERIC))
 		return
 	if(prob(25) && (opening_tool.type in CAN_OPENER_CRUDE))
-		to_chat(user, SPAN_WARNING("You fail to open the [object_fluff] with [opening_tool]! Try again!"))
+		to_chat(user, SPAN_WARNING("你没能用[opening_tool]打开[object_fluff]！再试一次！"))
 		playsound(src, "sound/items/can_crush.ogg", 20, FALSE, 5)
 		return
 	playsound(src.loc, open_sound, 15, 1, 5)
@@ -69,9 +69,9 @@
 /obj/item/reagent_container/food/drinks/cans/get_examine_text(mob/user)
 	. = ..()
 	if(needs_can_opener)
-		. += SPAN_NOTICE("The can is completely sealed, you need some sort of a can opener to open it.")
+		. += SPAN_NOTICE("罐头完全密封，需要某种开罐器才能打开。")
 	if(food_interactable)
-		. += SPAN_NOTICE("You can transfer the contents of this [object_fluff] to other foods.")
+		. += SPAN_NOTICE("你可以将这个[object_fluff]中的内容物转移到其他食物上。")
 
 /obj/item/reagent_container/food/drinks/cans/attack_self(mob/user)
 	..()
@@ -83,7 +83,7 @@
 		return
 
 	if(needs_can_opener)
-		to_chat(user, SPAN_NOTICE("You need to open the [object_fluff] using some sort of a can opener!"))
+		to_chat(user, SPAN_NOTICE("你需要用某种开罐器打开[object_fluff]！"))
 		return
 
 	playsound(src.loc, open_sound, 15, 1)
@@ -113,7 +113,7 @@
 		return
 
 	if(!open)
-		to_chat(user, SPAN_NOTICE("You need to open the drink!"))
+		to_chat(user, SPAN_NOTICE("你需要先打开饮料！"))
 		return
 	var/datum/reagents/R = src.reagents
 
@@ -121,11 +121,11 @@
 		if(M == user && M.a_intent == INTENT_HARM && M.zone_selected == "head" && crushable)
 			crush_can(M)
 			return
-		to_chat(user, SPAN_DANGER("The [src.name] is empty!"))
+		to_chat(user, SPAN_DANGER("[src.name]是空的！"))
 		return 0
 
 	if(M == user)
-		to_chat(M, SPAN_NOTICE("You swallow a gulp of [src]."))
+		to_chat(M, SPAN_NOTICE("你喝了一大口[src]。"))
 		if(reagents.total_volume)
 			reagents.set_source_mob(user)
 			reagents.trans_to_ingest(M, gulp_size)
@@ -134,18 +134,18 @@
 		return 1
 	else if( istype(M, /mob/living/carbon/human) )
 		if (!open)
-			to_chat(user, SPAN_NOTICE("You need to open the [object_fluff]!"))
+			to_chat(user, SPAN_NOTICE("你需要先打开[object_fluff]！"))
 			return
 
 		user.affected_message(M,
-			SPAN_HELPFUL("You <b>start feeding</b> [user == M ? "yourself" : "[M]"] <b>[src]</b>."),
-			SPAN_HELPFUL("[user] <b>starts feeding</b> you <b>[src]</b>."),
-			SPAN_NOTICE("[user] starts feeding [user == M ? "themselves" : "[M]"] [src]."))
+			SPAN_HELPFUL("你<b>开始给</b>[user == M ? "自己" : "[M]"]喂<b>[src]</b>。"),
+			SPAN_HELPFUL("[user]<b>开始给你喂</b><b>[src]</b>。"),
+			SPAN_NOTICE("[user]开始给[user == M ? "自己" : "[M]"]喂[src]。"))
 		if(!do_after(user, 30, INTERRUPT_ALL, BUSY_ICON_FRIENDLY, M)) return
 		user.affected_message(M,
-			SPAN_HELPFUL("You <b>fed</b> [user == M ? "yourself" : "[M]"] <b>[src]</b>."),
-			SPAN_HELPFUL("[user] <b>fed</b> you <b>[src]</b>."),
-			SPAN_NOTICE("[user] fed [user == M ? "themselves" : "[M]"] [src]."))
+			SPAN_HELPFUL("你<b>给</b>[user == M ? "自己" : "[M]"]<b>喂下了[src]</b>。"),
+			SPAN_HELPFUL("[user]<b>给你喂下了[src]</b>。"),
+			SPAN_NOTICE("[user]给[user == M ? "自己" : "[M]"]喂下了[src]。"))
 
 		var/rgt_list_text = get_reagent_list_text()
 
@@ -168,35 +168,35 @@
 
 	if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
 		if (!open)
-			to_chat(user, SPAN_NOTICE("You need to open the [object_fluff]!"))
+			to_chat(user, SPAN_NOTICE("你需要先打开[object_fluff]！"))
 			return
 
 
 	else if(target.is_open_container()) //Something like a glass. Player probably wants to transfer TO it.
 		if (!open)
-			to_chat(user, SPAN_NOTICE("You need to open the [object_fluff]!"))
+			to_chat(user, SPAN_NOTICE("你需要先打开[object_fluff]！"))
 			return
 
 		if (istype(target, /obj/item/reagent_container/food/drinks/cans))
 			var/obj/item/reagent_container/food/drinks/cans/cantarget = target
 			if(!cantarget.open)
-				to_chat(user, SPAN_NOTICE("You need to open the [object_fluff] you want to pour into!"))
+				to_chat(user, SPAN_NOTICE("你需要先打开准备用来接收内容物的[object_fluff]！"))
 				return
 
 	else if(istype(target, /obj/item/reagent_container/food/snacks) && food_interactable)
 		if (!open)
-			to_chat(user, SPAN_NOTICE("You need to open the [object_fluff]!"))
+			to_chat(user, SPAN_NOTICE("你需要先打开[object_fluff]！"))
 			return
 
 		if(!reagents.total_volume)
-			to_chat(user, SPAN_DANGER("[src] is empty."))
+			to_chat(user, SPAN_DANGER("[src]是空的。"))
 			return
 
 		if(target.reagents.total_volume >= target.reagents.maximum_volume)
-			to_chat(user, SPAN_DANGER("You can't add any more to [target]."))
+			to_chat(user, SPAN_DANGER("[target]已经装不下更多东西。"))
 			return
 		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
-		to_chat(user, SPAN_NOTICE(" You transfer [trans] units of the contents to [target]."))
+		to_chat(user, SPAN_NOTICE("你向[target]中转移了[trans]单位内容物。"))
 
 	return ..()
 
@@ -213,33 +213,33 @@
 	L = H.get_limb(H.zone_selected)
 
 	if(src == H.get_inactive_hand())
-		message = "between [user.gender == MALE ? "his" : "her"] hands"
-		to_chat(user, SPAN_NOTICE("You start crushing the [name] between your hands!"))
+		message = "用双手"
+		to_chat(user, SPAN_NOTICE("你开始用双手捏扁[name]！"))
 		if(!do_after(user, 2 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC)) //crushing with hands takes great effort and might
 			return
 	else
 		switch(user.zone_selected)
 			if("head")
 				if(!L)
-					to_chat(user, SPAN_WARNING("You don't have a [H.zone_selected], can't crush yer can on nothing!"))
+					to_chat(user, SPAN_WARNING("你没有[localized_player_label(H.zone_selected)]，无法在那个部位上捏扁罐子！"))
 					return
-				message = "against [user.gender == MALE ? "his" : "her"] head!"
+				message = "用头部"
 				L.take_damage(brute = 3) //ouch! but you're a tough badass so it barely hurts
 				H.UpdateDamageIcon()
 			if("l_foot" , "r_foot")
 				if(!L)
-					to_chat(user, SPAN_WARNING("You don't have a [H.zone_selected], can't crush yer can under nothing!"))
+					to_chat(user, SPAN_WARNING("你没有[localized_player_label(H.zone_selected)]，无法用那个部位压扁罐子！"))
 					return
-				message = "under [user.gender == MALE ? "his" : "her"] foot!"
+				message = "用脚"
 
 	crushed = TRUE
 	flags_atom &= ~OPENCONTAINER
-	desc += "\nIts been crushed! A badass must have been through here..."
+	desc += "\n它被压扁了！一定有个狠人来过这里……"
 	if(!crushed_icon)
 		icon_state = "[icon_state]_crushed"
 	else
 		icon_state = crushed_icon
-	user.visible_message(SPAN_BOLDNOTICE("[user] crushed the [name] [message]"), null, null, CHAT_TYPE_FLUFF_ACTION)
+	user.visible_message(SPAN_BOLDNOTICE("[user][message]压扁了[name]。"), null, null, CHAT_TYPE_FLUFF_ACTION)
 	playsound(src,"sound/items/can_crush.ogg", 20, FALSE, 15)
 
 /obj/item/reagent_container/food/drinks/cans/on_reagent_change()
@@ -260,8 +260,8 @@
 	reagents.add_reagent("cola", 30)
 
 /obj/item/reagent_container/food/drinks/cans/pepsi
-	name = "\improper Pepsi"
-	desc = "The Cola Wars left it defeated, but this beverage retains its place as second-most popular soft drink in the UA."
+	name = "\improper 百事可乐"
+	desc = "虽然在可乐大战中落败，它仍是美洲联盟第二受欢迎的软饮料。"
 	icon_state = "pepsi"
 
 /obj/item/reagent_container/food/drinks/cans/pepsi/Initialize()
@@ -279,9 +279,9 @@
 	reagents.add_reagent("spacemountainwind", 30)
 
 /obj/item/reagent_container/food/drinks/cans/thirteenloko
-	name = "\improper Thirteen Loko"
-	desc = "Consumption of Thirteen Loko may result in seizures, blindness, drunkenness, or even death. Please Drink Responsibly."
-	desc_lore = "A rarity among modern markets, Thirteen Loko is an all-Earth original. With a name coined by the general consensus that only the mildly insane willing to imbibe it, this energy drink has garnered a notorious reputation for itself and a sizeable cult following to match it. After a series of legal proceedings by Weyland-Yutani, denatured cobra venom was removed from the recipe, much to the disappointment of the drink's consumers."
+	name = "\improper 十三疯能量饮料"
+	desc = "饮用十三疯可能导致癫痫、失明、醉酒，甚至死亡。请适量饮用。"
+	desc_lore = "十三疯是一款纯地球原创饮料，在如今的市场上十分罕见。人们普遍认为，只有脑子不太正常的人才愿意喝它，因此得名。这种能量饮料恶名远扬，却也收获了一批狂热拥趸。经过维兰德-汤谷提起的一系列诉讼，配方中的变性眼镜蛇毒液被移除，令消费者大失所望。"
 	icon_state = "thirteen_loko"
 	center_of_mass = "x=16;y=8"
 
@@ -300,8 +300,8 @@
 	reagents.add_reagent("dr_gibb", 30)
 
 /obj/item/reagent_container/food/drinks/cans/starkist
-	name = "\improper Sunkist"
-	desc = "Despite tasting ostensibly like carbonated orange juice, it holds no vitamin C content."
+	name = "\improper 新奇士"
+	desc = "喝起来似乎是碳酸橙汁，却完全不含维生素 C。"
 	icon_state = "starkist"
 	center_of_mass = "x=16;y=10"
 
@@ -311,8 +311,8 @@
 	reagents.add_reagent("orangejuice", 15)
 
 /obj/item/reagent_container/food/drinks/cans/space_up
-	name = "\improper 7-UP"
-	desc = "Friend to many a cocktail."
+	name = "\improper 七喜"
+	desc = "许多鸡尾酒的好搭档。"
 	icon_state = "space-up"
 	center_of_mass = "x=16;y=10"
 
@@ -321,8 +321,8 @@
 	reagents.add_reagent("space_up", 30)
 
 /obj/item/reagent_container/food/drinks/cans/lemon_lime
-	name = "lemon-lime"
-	desc = "You wanted ORANGE. It gave you Lemon Lime."
+	name = "柠檬青柠汽水"
+	desc = "你想要橙汁，它却给了你柠檬青柠味。"
 	icon_state = "lemon-lime"
 	center_of_mass = "x=16;y=10"
 
@@ -341,8 +341,8 @@
 	reagents.add_reagent("icetea", 30)
 
 /obj/item/reagent_container/food/drinks/cans/grape_juice
-	name = "grape juice"
-	desc = "A can of probably not grape juice."
+	name = "葡萄汁"
+	desc = "一罐大概不是葡萄汁的东西。"
 	icon_state = "purple_can"
 	center_of_mass = "x=16;y=10"
 
@@ -422,15 +422,15 @@
 	reagents.add_reagent("water", 30)
 
 /obj/item/reagent_container/food/drinks/cans/waterbottle/upp
-	name = "\improper Gerolsteiner Bottled Sparkling Water"
-	desc = "German bottled, sparkling water popular among germanic population of UPP."
-	desc_lore = "After Gerolsteiner company becoming an intergrated state enterprise, their products became a common thing in military rations and in other places."
+	name = "\improper 杰罗尔施泰纳瓶装气泡水"
+	desc = "德国瓶装气泡水，深受进步人民联盟德语族群喜爱。"
+	desc_lore = "杰罗尔施泰纳公司被整合为国有企业后，其产品成了军用口粮等处的常见物品。"
 	icon_state = "upp_water"
 	crushed_icon = "upp_water_crushed"
 
 /obj/item/reagent_container/food/drinks/cans/coconutmilk
-	name = "\improper Weyland-Yutani Bottled Coconut Milk"
-	desc = "Rich in vitamins and (artificial) flavor, quenches thirst in a few sips. Bottled by the Weyland-Yutani Corporation."
+	name = "\improper 维兰德-汤谷瓶装椰奶"
+	desc = "富含维生素和人工香料，几口就能解渴。由维兰德-汤谷公司灌装。"
 	icon_state = "pmc_cocomilk"
 	crushed_icon = "pmc_cocomilk_crushed"
 	item_icons = list(
@@ -445,9 +445,9 @@
 	reagents.add_reagent("coconutmilk", 30)
 
 /obj/item/reagent_container/food/drinks/cans/soylent
-	name = "\improper Weyland-Yutani Premium Choco Soylent"
-	desc = "Plastic bottle full of gooey goodness, choco flavor. One bottle has enough calories for a lunch - don't drink it all in one sitting, better not risk getting diarrhea."
-	desc_lore = "Initially designed in 2173 as meal replacement for high-intensity workers, MRD was recalled from the market multiple times due to reports of gastrointestinal illness, including nausea, vomiting, and diarrhea. Improved formula was created, but the brand name was already stained (quite literally), so now the drink remains as emergency food supply for internal Company use."
+	name = "\improper 维兰德-汤谷优质巧克力代餐"
+	desc = "一塑料瓶黏稠的巧克力味美味。一瓶的热量足够当午餐，别一口气喝完，最好别冒腹泻的风险。"
+	desc_lore = "这款代餐饮料最初于 2173 年为高强度劳动者设计，却因恶心、呕吐、腹泻等胃肠不适报告而多次被召回。虽然后来改良了配方，品牌的名声却已臭了——字面意义上也是如此。因此如今仅作为公司内部的应急食品储备。"
 	icon_state = "wy_soylent"
 	crushed_icon = "wy_soylent_crushed"
 	item_icons = list(
@@ -465,9 +465,9 @@
 	reagents.add_reagent("coco_drink", 10)
 
 /obj/item/reagent_container/food/drinks/cans/bugjuice
-	name = "\improper Weyland-Yutani Bug Juice Protein Drink"
-	desc = "W-Y brand plastic bottle full of toxic looking green goo, tastes like kiwi, but you are more than sure that there is none of it here."
-	desc_lore = "'Bug Juice' Protein Drink, more commonly labeled Bug Juice, is an inexpensive and calorific beverage made with farmed and processed insects such as cockroaches, mealworms, and beetles. Offered by a variety of manufacturers, Bug Juice is packaged in cartons and bottles, and is widely consumed on the Frontier. It is classified as both a drink and a foodstuff, and is a source of protein and water."
+	name = "\improper 维兰德-汤谷虫汁蛋白饮料"
+	desc = "维兰德-汤谷牌塑料瓶，装满看起来有毒的绿色黏液，喝着像猕猴桃，但你很确定里面一点猕猴桃也没有。"
+	desc_lore = "“虫汁”蛋白饮料，通常简称虫汁，是用养殖并加工的蟑螂、黄粉虫和甲虫等昆虫制成的廉价高热量饮料。多家厂商生产，采用纸盒或瓶装，在边疆广为饮用。它既是饮料也是食品，可补充蛋白质和水分。"
 	icon_state = "wy_bug_juice"
 	crushed_icon = "wy_bug_juice_crushed"
 	item_icons = list(

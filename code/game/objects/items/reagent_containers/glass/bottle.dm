@@ -159,8 +159,8 @@
 	reagents.add_reagent("dexalinp", 140)
 
 /obj/item/reagent_container/glass/bottle/spaceacillin
-	name = "\improper Spaceacillin bottle"
-	desc = "A small bottle. Contains spaceacillin - used to treat infected wounds."
+	name = "\improper 太空西林药瓶"
+	desc = "一个小药瓶，内含用于治疗伤口感染的太空西林。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle8"
 	amount_per_transfer_from_this = 180
@@ -170,8 +170,8 @@
 	reagents.add_reagent("spaceacillin", 180)
 
 /obj/item/reagent_container/glass/bottle/toxin
-	name = "toxin bottle"
-	desc = "A small bottle of toxins. Do not drink, it is poisonous."
+	name = "毒素瓶"
+	desc = "一小瓶毒素。有毒，请勿饮用。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle12"
 
@@ -180,8 +180,8 @@
 	reagents.add_reagent("toxin", 150)
 
 /obj/item/reagent_container/glass/bottle/cyanide
-	name = "cyanide bottle"
-	desc = "A small bottle of cyanide. Bitter almonds?"
+	name = "氰化物瓶"
+	desc = "一小瓶氰化物。苦杏仁味？"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle12"
 
@@ -190,8 +190,8 @@
 	reagents.add_reagent("cyanide", 150)
 
 /obj/item/reagent_container/glass/bottle/stoxin
-	name = "Soporific bottle"
-	desc = "A small bottle of soporific. Just the fumes make you sleepy."
+	name = "催眠剂瓶"
+	desc = "一小瓶催眠剂，光是气味就能让你昏昏欲睡。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle20"
 	amount_per_transfer_from_this = 150
@@ -201,8 +201,8 @@
 	reagents.add_reagent("stoxin", 150)
 
 /obj/item/reagent_container/glass/bottle/chloralhydrate
-	name = "chloral hydrate bottle"
-	desc = "A small bottle of Choral Hydrate. Mickey's Favorite!"
+	name = "水合氯醛瓶"
+	desc = "一小瓶水合氯醛，米基的最爱！"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle20"
 
@@ -261,8 +261,8 @@
 	reagents.add_reagent("dermaline", 70)
 
 /obj/item/reagent_container/glass/bottle/mutagen
-	name = "unstable mutagen bottle"
-	desc = "A small bottle of unstable mutagen. Randomly changes the DNA structure of whoever comes in contact."
+	name = "不稳定诱变剂瓶"
+	desc = "一小瓶不稳定诱变剂，会随机改变接触者的 DNA 结构。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle7"
 
@@ -291,8 +291,8 @@
 	reagents.add_reagent("diethylamine", 150)
 
 /obj/item/reagent_container/glass/bottle/flu_virion
-	name = "flu virion culture bottle"
-	desc = "A small bottle. Contains H13N1 flu virion culture in synthblood medium."
+	name = "流感病毒培养瓶"
+	desc = "一个小瓶，内含以合成血液为培养基的 H13N1 流感病毒培养物。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle3"
 
@@ -303,8 +303,8 @@
 	reagents.add_reagent("blood", 20, data)
 
 /obj/item/reagent_container/glass/bottle/epiglottis_virion
-	name = "epiglottis virion culture bottle"
-	desc = "A small bottle. Contains Epiglottis virion culture in synthblood medium."
+	name = "会厌炎病毒培养瓶"
+	desc = "一个小瓶，内含以合成血液为培养基的会厌炎病毒培养物。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle3"
 
@@ -315,8 +315,8 @@
 	reagents.add_reagent("blood", 20, data)
 
 /obj/item/reagent_container/glass/bottle/liver_enhance_virion
-	name = "liver enhancement virion culture bottle"
-	desc = "A small bottle. Contains liver enhancement virion culture in synthblood medium."
+	name = "肝脏强化病毒培养瓶"
+	desc = "一个小瓶，内含以合成血液为培养基的肝脏强化病毒培养物。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle3"
 
@@ -327,8 +327,8 @@
 	reagents.add_reagent("blood", 20, data)
 
 /obj/item/reagent_container/glass/bottle/hullucigen_virion
-	name = "hullucigen virion culture bottle"
-	desc = "A small bottle. Contains hullucigen virion culture in synthblood medium."
+	name = "致幻病毒培养瓶"
+	desc = "一个小瓶，内含以合成血液为培养基的致幻病毒培养物。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle3"
 
@@ -339,8 +339,8 @@
 	reagents.add_reagent("blood", 20, data)
 
 /obj/item/reagent_container/glass/bottle/pierrot_throat
-	name = "\improper Pierrot's Throat culture bottle"
-	desc = "A small bottle. Contains H0NI<42 virion culture in synthblood medium."
+	name = "\improper 皮埃罗之喉培养瓶"
+	desc = "一个小瓶，内含以合成血液为培养基的 H0NI<42 病毒培养物。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle3"
 
@@ -351,8 +351,8 @@
 	reagents.add_reagent("blood", 20, data)
 
 /obj/item/reagent_container/glass/bottle/cold
-	name = "rhinovirus culture bottle"
-	desc = "A small bottle. Contains XY-rhinovirus culture in synthblood medium."
+	name = "鼻病毒培养瓶"
+	desc = "一个小瓶，内含以合成血液为培养基的 XY 鼻病毒培养物。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle3"
 
@@ -363,8 +363,8 @@
 	reagents.add_reagent("blood", 20, data)
 
 /obj/item/reagent_container/glass/bottle/random
-	name = "random culture bottle"
-	desc = "A small bottle. Contains a random disease."
+	name = "随机培养瓶"
+	desc = "一个小瓶，内含一种随机疾病。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle3"
 
@@ -375,8 +375,8 @@
 	reagents.add_reagent("blood", 20, data)
 
 /obj/item/reagent_container/glass/bottle/gbs
-	name = "\improper GBS culture bottle"
-	desc = "A small bottle. Contains Gravitokinetic Bipotential SADS+ culture in synthblood medium."//Or simply - General BullShit
+	name = "\improper GBS 培养瓶"
+	desc = "一个小瓶，内含以合成血液为培养基的重力动能双势体 SADS+ 培养物。"//Or simply - General BullShit
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle3"
 	amount_per_transfer_from_this = 5
@@ -389,8 +389,8 @@
 	reagents.add_reagent("blood", 20, data)
 
 /obj/item/reagent_container/glass/bottle/fake_gbs
-	name = "\improper GBS culture bottle"
-	desc = "A small bottle. Contains Gravitokinetic Bipotential SADS- culture in synthblood medium."//Or simply - General BullShit
+	name = "\improper GBS 培养瓶"
+	desc = "一个小瓶，内含以合成血液为培养基的重力动能双势体 SADS- 培养物。"//Or simply - General BullShit
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle3"
 
@@ -417,8 +417,8 @@
 */
 
 /obj/item/reagent_container/glass/bottle/brainrot
-	name = "\improper Brainrot culture bottle"
-	desc = "A small bottle. Contains Cryptococcus Cosmosis culture in synthblood medium."
+	name = "\improper 脑腐病培养瓶"
+	desc = "一个小瓶，内含以合成血液为培养基的宇宙隐球菌培养物。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle3"
 
@@ -429,8 +429,8 @@
 	reagents.add_reagent("blood", 20, data)
 
 /obj/item/reagent_container/glass/bottle/magnitis
-	name = "\improper Magnitis culture bottle"
-	desc = "A small bottle. Contains a small dosage of Fukkos Miracos."
+	name = "\improper 磁化症培养瓶"
+	desc = "一个小瓶，内含少量福科斯·米拉科斯。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle3"
 
@@ -441,8 +441,8 @@
 	reagents.add_reagent("blood", 20, data)
 
 /obj/item/reagent_container/glass/bottle/pacid
-	name = "polytrinic acid bottle"
-	desc = "A small bottle. Contains a small amount of Polytrinic Acid, an extremely potent and dangerous acid."
+	name = "聚三酸瓶"
+	desc = "一个小瓶，内含少量极为强效且危险的聚三酸。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle17"
 
@@ -451,8 +451,8 @@
 	reagents.add_reagent("pacid", 150)
 
 /obj/item/reagent_container/glass/bottle/adminordrazine
-	name = "\improper Adminordrazine bottle"
-	desc = "A small bottle. Contains the liquid essence of the gods."
+	name = "\improper 神赐康复嗪瓶"
+	desc = "一个小瓶，内含诸神的液态精华。"
 	icon = 'icons/obj/items/drinks.dmi'
 	icon_state = "holyflask"
 
@@ -461,8 +461,8 @@
 	reagents.add_reagent("adminordrazine", 150)
 
 /obj/item/reagent_container/glass/bottle/capsaicin
-	name = "\improper Capsaicin bottle"
-	desc = "A small bottle. Contains hot sauce."
+	name = "\improper 辣椒素瓶"
+	desc = "一个小瓶，内含辣酱。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle3"
 
@@ -471,8 +471,8 @@
 	reagents.add_reagent("capsaicin", 150)
 
 /obj/item/reagent_container/glass/bottle/frostoil
-	name = "\improper Frost Oil bottle"
-	desc = "A small bottle. Contains cold sauce."
+	name = "\improper 寒霜油瓶"
+	desc = "一个小瓶，内含冰凉酱。"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle17"
 

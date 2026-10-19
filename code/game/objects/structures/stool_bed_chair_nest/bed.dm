@@ -8,8 +8,8 @@
  * Beds
  */
 /obj/structure/bed
-	name = "bed"
-	desc = "A mattress seated on a rectangular metallic frame. This is used to support a lying person in a comfortable manner, notably for regular sleep. Ancient technology, but still useful."
+	name = "床"
+	desc = "矩形金属框架上铺着床垫，用于舒适地承托躺下的人，尤其适合日常睡眠。技术古老，但仍然实用。"
 	icon_state = "bed"
 	icon = 'icons/obj/objects.dmi'
 	can_buckle = TRUE
@@ -76,7 +76,7 @@
 
 //Unsafe proc
 /obj/structure/bed/proc/do_buckle_bodybag(obj/structure/closet/bodybag/B, mob/user)
-	B.visible_message(SPAN_NOTICE("[user] buckles [B] to [src]!"))
+	B.visible_message(SPAN_NOTICE("[user]将[B]固定到了[src]上！"))
 	B.roller_buckled = src
 	B.forceMove(loc)
 	B.setDir(dir)
@@ -148,8 +148,8 @@
 			if (H==usr && !H.is_mob_incapacitated() && Adjacent(H) && in_range(src, over_object))
 				var/obj/item/I = new foldabletype(get_turf(src))
 				H.put_in_hands(I)
-				H.visible_message(SPAN_WARNING("[H] grabs [src] from the floor!"),
-				SPAN_WARNING("You grab [src] from the floor!"))
+				H.visible_message(SPAN_WARNING("[H]从地上抓起[src]！"),
+				SPAN_WARNING("你从地上抓起[src]！"))
 				qdel(src)
 
 
@@ -166,12 +166,12 @@
 			var/mob/M = G.grabbed_thing
 			var/atom/blocker = LinkBlocked(user, user.loc, loc)
 			if(!Adjacent(M))
-				visible_message(SPAN_DANGER("[M] is too far to place onto [src]."))
+				visible_message(SPAN_DANGER("[M]太远，无法放到[src]上。"))
 				return FALSE
 			if(blocker)
-				to_chat(user, SPAN_WARNING("\The [blocker] is in the way!"))
+				to_chat(user, SPAN_WARNING("[blocker]挡住了！"))
 				return FALSE
-			to_chat(user, SPAN_NOTICE("You place [M] on [src]."))
+			to_chat(user, SPAN_NOTICE("你将[M]放到了[src]上。"))
 			M.forceMove(loc)
 		return TRUE
 
@@ -185,8 +185,8 @@
  * Roller beds
  */
 /obj/structure/bed/roller
-	name = "roller bed"
-	desc = "A basic cushioned leather board resting on a small frame. Not very comfortable at all, but allows the patient to rest lying down while moved to another location rapidly. Not great for surgery, but better than nothing."
+	name = "担架床"
+	desc = "小框架上铺着带软垫的皮革板。虽然不太舒服，却能让患者平躺并快速转移。做手术不太合适，但总比没有强。"
 	icon = 'icons/obj/structures/rollerbed.dmi'
 	icon_state = "roller_down"
 	anchored = FALSE
@@ -201,7 +201,7 @@
 		if(buckled_mob || buckled_bodybag)
 			manual_unbuckle()
 		else
-			visible_message(SPAN_NOTICE("[user] collapses [name]."))
+			visible_message(SPAN_NOTICE("[user]折叠了[name]。"))
 			new/obj/item/roller(get_turf(src))
 			qdel(src)
 		return
@@ -211,7 +211,7 @@
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		if(C.handcuffed)
-			to_chat(user, SPAN_DANGER("You cannot buckle someone who is handcuffed onto this bed."))
+			to_chat(user, SPAN_DANGER("你不能把戴着手铐的人固定到这张床上。"))
 			return
 	..()
 
@@ -255,7 +255,7 @@
 	if(istype(W, /obj/item/roller_holder) && rollertype == /obj/structure/bed/roller)
 		var/obj/item/roller_holder/RH = W
 		if(!RH.held)
-			to_chat(user, SPAN_NOTICE("You pick up [src]."))
+			to_chat(user, SPAN_NOTICE("你拾起了[src]。"))
 			forceMove(RH)
 			RH.held = src
 			return
@@ -268,8 +268,8 @@
 	qdel(src)
 
 /obj/item/roller_holder
-	name = "roller bed rack"
-	desc = "A rack for carrying a collapsed roller bed."
+	name = "担架床挂架"
+	desc = "用于携带折叠担架床的挂架。"
 	icon = 'icons/obj/structures/rollerbed.dmi'
 	icon_state = "folded"
 	var/obj/item/roller/held
@@ -282,11 +282,11 @@
 	..()
 
 	if(!held)
-		to_chat(user, SPAN_WARNING("The rack is empty."))
+		to_chat(user, SPAN_WARNING("挂架是空的。"))
 		return
 
 	var/obj/structure/bed/roller/R = new(user.loc)
-	to_chat(user, SPAN_NOTICE("You deploy [R]."))
+	to_chat(user, SPAN_NOTICE("你展开了[R]。"))
 	R.add_fingerprint(user)
 	QDEL_NULL(held)
 
@@ -295,8 +295,8 @@
 //////////////////////////////////////////////
 
 /obj/structure/bed/portable_surgery
-	name = "portable surgical bed"
-	desc = "A collapsible surgical bed. It's not perfect, but it's the best you'll get short of an actual surgical table."
+	name = "便携式手术床"
+	desc = "可折叠手术床。虽然不完美，但没有正规手术台时，这已经是最好的选择。"
 	icon = 'icons/obj/structures/rollerbed.dmi'
 	icon_state = "surgical_down"
 	buckling_y = 2
@@ -306,8 +306,8 @@
 	surgery_duration_multiplier = SURGERY_SURFACE_MULT_ADEQUATE
 
 /obj/item/roller/surgical
-	name = "portable surgical bed"
-	desc = "A collapsed surgical bed that can be carried around."
+	name = "便携式手术床"
+	desc = "可随身携带的折叠手术床。"
 	icon_state = "surgical_folded"
 	rollertype = /obj/structure/bed/portable_surgery
 	matter = list("plastic" = 6000)
@@ -320,8 +320,8 @@
 GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/structure/bed/medevac_stretcher
-	name = "medevac stretcher"
-	desc = "A medevac stretcher with integrated beacon for rapid evacuation of an injured patient via dropship lift. Accepts patients and body bags. Completely useless for surgery."
+	name = "医疗后送担架"
+	desc = "带有内置信标的医疗后送担架，可借助运输机吊运快速撤离伤员。可承载患者和裹尸袋，完全不适合做手术。"
 	icon = 'icons/obj/structures/rollerbed.dmi'
 	icon_state = "stretcher_down"
 	buckling_y = -1
@@ -373,11 +373,11 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		return
 
 	if(!skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_MEDIC))
-		to_chat(user, SPAN_WARNING("You don't know how to use [src]."))
+		to_chat(user, SPAN_WARNING("你不知道如何使用[src]。"))
 		return
 
 	if(user == buckled_mob)
-		to_chat(user, SPAN_WARNING("You can't reach the beacon activation button while buckled to [src]."))
+		to_chat(user, SPAN_WARNING("你被固定在[src]上，够不到信标启动按钮。"))
 		return
 
 	if(stretcher_activated)
@@ -386,27 +386,27 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		if(linked_medevac)
 			linked_medevac.linked_stretcher = null
 			linked_medevac = null
-		to_chat(user, SPAN_NOTICE("You deactivate [src]'s beacon."))
+		to_chat(user, SPAN_NOTICE("你关闭了[src]的信标。"))
 		update_icon()
 
 	else
 		if(!is_ground_level(z))
-			to_chat(user, SPAN_WARNING("You can't activate [src]'s beacon here."))
+			to_chat(user, SPAN_WARNING("你无法在这里启动[src]的信标。"))
 			return
 
 		var/area/AR = get_area(src)
 		if(CEILING_IS_PROTECTED(AR.ceiling, CEILING_PROTECTION_TIER_1))
-			to_chat(user, SPAN_WARNING("[src] must be in the open or under a glass roof."))
+			to_chat(user, SPAN_WARNING("[src]必须位于露天或玻璃屋顶下。"))
 			return
 
 		stretcher_activated = TRUE
 		GLOB.activated_medevac_stretchers += src
-		to_chat(user, SPAN_NOTICE("You activate [src]'s beacon."))
+		to_chat(user, SPAN_NOTICE("你启动了[src]的信标。"))
 		update_icon()
 
 /obj/item/roller/medevac
-	name = "medevac stretcher"
-	desc = "A collapsed medevac stretcher that can be carried around."
+	name = "医疗后送担架"
+	desc = "可随身携带的折叠医疗后送担架。"
 	icon_state = "stretcher_folded"
 	rollertype = /obj/structure/bed/medevac_stretcher
 	matter = list("plastic" = 5000, "metal" = 5000)
@@ -420,8 +420,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 //bedroll
 /obj/structure/bed/bedroll
-	name = "unfolded bedroll"
-	desc = "Perfect for those long missions, when there's nowhere else to sleep, you remembered to bring at least one thing of comfort."
+	name = "展开的铺盖卷"
+	desc = "漫长任务中无处安睡时格外有用，至少你还记得带上一点舒适。"
 	icon = 'icons/obj/structures/rollerbed.dmi'
 	icon_state = "bedroll_o"
 	buckling_y = 0
@@ -440,7 +440,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 //Hospital Rollers (non foldable)
 
 /obj/structure/bed/roller/hospital
-	name = "hospital bed"
+	name = "病床"
 	icon = 'icons/obj/structures/rollerbed.dmi'
 	icon_state = "bigrollerempty_up"
 	foldabletype = null
