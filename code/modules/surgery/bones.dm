@@ -53,44 +53,44 @@
 	else //Otherwise, use metal rods
 		var/obj/item/stack/rods/rods = user.get_inactive_hand()
 		if(!istype(rods))
-			to_chat(user, SPAN_BOLDWARNING("要用[tool]修复[target]的[surgery.affected_limb.display_name]，你需要在另一只手中拿着金属棒。"))
+			to_chat(user, SPAN_BOLDWARNING("要用[tool]修复[target]的[localized_player_label(surgery.affected_limb.display_name)]，你需要在另一只手中拿着金属棒。"))
 			return FALSE
 		if(!rods.use(2)) //Refunded on failure
-			to_chat(user, SPAN_BOLDWARNING("要用[tool]修复[target]的[surgery.affected_limb.display_name]，你还需要更多金属棒。"))
+			to_chat(user, SPAN_BOLDWARNING("要用[tool]修复[target]的[localized_player_label(surgery.affected_limb.display_name)]，你还需要更多金属棒。"))
 			return FALSE
 
 /datum/surgery_step/mend_bones/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/bone_repair/surgery)
 	if(surgery.affected_bone)
 		if(tool_type == /obj/item/tool/surgery/bonegel)
 			user.affected_message(target,
-				SPAN_NOTICE("你开始将[tool]涂在[target]断裂的[surgery.affected_bone]上。"),
-				SPAN_NOTICE("[user]开始将[tool]涂在你断裂的[surgery.affected_bone]上。"),
-				SPAN_NOTICE("[user]开始将[tool]涂在[target]断裂的[surgery.affected_bone]上。"))
+				SPAN_NOTICE("你开始将[tool]涂在[target]断裂的[localized_player_label(surgery.affected_bone)]上。"),
+				SPAN_NOTICE("[user]开始将[tool]涂在你断裂的[localized_player_label(surgery.affected_bone)]上。"),
+				SPAN_NOTICE("[user]开始将[tool]涂在[target]断裂的[localized_player_label(surgery.affected_bone)]上。"))
 
-			target.custom_pain("你的[surgery.affected_limb.display_name]内部一阵刺痛！", 1)
+			target.custom_pain("你的[localized_player_label(surgery.affected_limb.display_name)]内部一阵刺痛！", 1)
 		else
 			user.affected_message(target,
-				SPAN_NOTICE("你开始用[tool]将固定钉打入[target]的[surgery.affected_bone]。"),
-				SPAN_NOTICE("[user]开始用[tool]将固定钉打入你的[surgery.affected_bone]。"),
-				SPAN_NOTICE("[user]开始用[tool]将固定钉打入[target]的[surgery.affected_bone]。"))
+				SPAN_NOTICE("你开始用[tool]将固定钉打入[target]的[localized_player_label(surgery.affected_bone)]。"),
+				SPAN_NOTICE("[user]开始用[tool]将固定钉打入你的[localized_player_label(surgery.affected_bone)]。"),
+				SPAN_NOTICE("[user]开始用[tool]将固定钉打入[target]的[localized_player_label(surgery.affected_bone)]。"))
 
-			target.custom_pain("你感觉有什么东西在[surgery.affected_bone]里研磨！", 1)
+			target.custom_pain("你感觉有什么东西在[localized_player_label(surgery.affected_bone)]里研磨！", 1)
 			playsound(target.loc, 'sound/items/Screwdriver.ogg', 25, TRUE)
 	else
 		if(tool_type == /obj/item/tool/surgery/bonegel)
 			user.affected_message(target,
-				SPAN_NOTICE("你开始将[tool]涂在[target]的[surgery.affected_limb.display_name]内断裂的骨骼上。"),
-				SPAN_NOTICE("[user]开始将[tool]涂在你的[surgery.affected_limb.display_name]内断裂的骨骼上。"),
-				SPAN_NOTICE("[user]开始将[tool]涂在[target]的[surgery.affected_limb.display_name]内断裂的骨骼上。"))
+				SPAN_NOTICE("你开始将[tool]涂在[target]的[localized_player_label(surgery.affected_limb.display_name)]内断裂的骨骼上。"),
+				SPAN_NOTICE("[user]开始将[tool]涂在你的[localized_player_label(surgery.affected_limb.display_name)]内断裂的骨骼上。"),
+				SPAN_NOTICE("[user]开始将[tool]涂在[target]的[localized_player_label(surgery.affected_limb.display_name)]内断裂的骨骼上。"))
 
-			target.custom_pain("你的[surgery.affected_limb.display_name]内部一阵刺痛！", 1)
+			target.custom_pain("你的[localized_player_label(surgery.affected_limb.display_name)]内部一阵刺痛！", 1)
 		else
 			user.affected_message(target,
-				SPAN_NOTICE("你开始用[tool]将固定钉打入[target]的[surgery.affected_limb.display_name]内断裂的骨骼。"),
-				SPAN_NOTICE("[user]开始用[tool]将固定钉打入你的[surgery.affected_limb.display_name]内断裂的骨骼。"),
-				SPAN_NOTICE("[user]开始用[tool]将固定钉打入[target]的[surgery.affected_limb.display_name]内断裂的骨骼。"))
+				SPAN_NOTICE("你开始用[tool]将固定钉打入[target]的[localized_player_label(surgery.affected_limb.display_name)]内断裂的骨骼。"),
+				SPAN_NOTICE("[user]开始用[tool]将固定钉打入你的[localized_player_label(surgery.affected_limb.display_name)]内断裂的骨骼。"),
+				SPAN_NOTICE("[user]开始用[tool]将固定钉打入[target]的[localized_player_label(surgery.affected_limb.display_name)]内断裂的骨骼。"))
 
-			target.custom_pain("你感觉有什么东西在[surgery.affected_limb.display_name]的骨头里研磨！", 1)
+			target.custom_pain("你感觉有什么东西在[localized_player_label(surgery.affected_limb.display_name)]的骨头里研磨！", 1)
 
 	log_interact(user, target, "[key_name(user)] attempted to begin repairing bones in [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool].")
 
@@ -100,45 +100,45 @@
 	if(surgery.affected_bone)
 		if(tool_type == /obj/item/tool/surgery/bonegel)
 			user.affected_message(target,
-				SPAN_NOTICE("你将[tool]厚厚地涂在[target]断裂的[surgery.affected_bone]上。"),
-				SPAN_NOTICE("[user]将[tool]厚厚地涂在你断裂的[surgery.affected_bone]上。"),
-				SPAN_NOTICE("[user]将[tool]厚厚地涂在[target]断裂的[surgery.affected_bone]上。"))
+				SPAN_NOTICE("你将[tool]厚厚地涂在[target]断裂的[localized_player_label(surgery.affected_bone)]上。"),
+				SPAN_NOTICE("[user]将[tool]厚厚地涂在你断裂的[localized_player_label(surgery.affected_bone)]上。"),
+				SPAN_NOTICE("[user]将[tool]厚厚地涂在[target]断裂的[localized_player_label(surgery.affected_bone)]上。"))
 		else
 			user.affected_message(target,
-				SPAN_NOTICE("你像[improvised_desc]一样，粗糙地加固了[target]的[surgery.affected_bone]。"),
-				SPAN_NOTICE("[user]像[improvised_desc]一样，粗糙地加固了你的[surgery.affected_bone]。"),
-				SPAN_NOTICE("[user]像[improvised_desc]一样，粗糙地加固了[target]的[surgery.affected_bone]。"))
+				SPAN_NOTICE("你像[improvised_desc]一样，粗糙地加固了[target]的[localized_player_label(surgery.affected_bone)]。"),
+				SPAN_NOTICE("[user]像[improvised_desc]一样，粗糙地加固了你的[localized_player_label(surgery.affected_bone)]。"),
+				SPAN_NOTICE("[user]像[improvised_desc]一样，粗糙地加固了[target]的[localized_player_label(surgery.affected_bone)]。"))
 	else
 		if(tool_type == /obj/item/tool/surgery/bonegel)
 			user.affected_message(target,
-				SPAN_NOTICE("你将[tool]厚厚地涂在[target]的[surgery.affected_limb.display_name]内断裂的骨骼上。"),
-				SPAN_NOTICE("[user]将[tool]厚厚地涂在你的[surgery.affected_limb.display_name]内断裂的骨骼上。"),
-				SPAN_NOTICE("[user]将[tool]厚厚地涂在[target]的[surgery.affected_limb.display_name]内断裂的骨骼上。"))
+				SPAN_NOTICE("你将[tool]厚厚地涂在[target]的[localized_player_label(surgery.affected_limb.display_name)]内断裂的骨骼上。"),
+				SPAN_NOTICE("[user]将[tool]厚厚地涂在你的[localized_player_label(surgery.affected_limb.display_name)]内断裂的骨骼上。"),
+				SPAN_NOTICE("[user]将[tool]厚厚地涂在[target]的[localized_player_label(surgery.affected_limb.display_name)]内断裂的骨骼上。"))
 		else
 			user.affected_message(target,
-				SPAN_NOTICE("你像[improvised_desc]一样，粗糙地加固了[target]的[surgery.affected_limb.display_name]内的骨骼。"),
-				SPAN_NOTICE("[user]像[improvised_desc]一样，粗糙地加固了你的[surgery.affected_limb.display_name]内的骨骼。"),
-				SPAN_NOTICE("[user]像[improvised_desc]一样，粗糙地加固了[target]的[surgery.affected_limb.display_name]内的骨骼。"))
+				SPAN_NOTICE("你像[improvised_desc]一样，粗糙地加固了[target]的[localized_player_label(surgery.affected_limb.display_name)]内的骨骼。"),
+				SPAN_NOTICE("[user]像[improvised_desc]一样，粗糙地加固了你的[localized_player_label(surgery.affected_limb.display_name)]内的骨骼。"),
+				SPAN_NOTICE("[user]像[improvised_desc]一样，粗糙地加固了[target]的[localized_player_label(surgery.affected_limb.display_name)]内的骨骼。"))
 
 	log_interact(user, target, "[key_name(user)] successfully began repairing bones in [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool], starting [surgery].")
 
 /datum/surgery_step/mend_bones/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/bone_repair/surgery)
 	if(surgery.affected_bone)
 		user.affected_message(target,
-			SPAN_WARNING("你手一滑，让[target]的[surgery.affected_bone]损伤得更严重了！"),
-			SPAN_WARNING("[user]手一滑，让你的[surgery.affected_bone]损伤得更严重了！"),
-			SPAN_WARNING("[user]手一滑，让[target]的[surgery.affected_bone]损伤得更严重了！"))
+			SPAN_WARNING("你手一滑，让[target]的[localized_player_label(surgery.affected_bone)]损伤得更严重了！"),
+			SPAN_WARNING("[user]手一滑，让你的[localized_player_label(surgery.affected_bone)]损伤得更严重了！"),
+			SPAN_WARNING("[user]手一滑，让[target]的[localized_player_label(surgery.affected_bone)]损伤得更严重了！"))
 	else
 		user.affected_message(target,
-			SPAN_WARNING("你手一滑，让[target]的[surgery.affected_limb.display_name]内的骨骼损伤得更严重了！"),
-			SPAN_WARNING("[user]手一滑，让你的[surgery.affected_limb.display_name]内的骨骼损伤得更严重了！"),
-			SPAN_WARNING("[user]手一滑，让[target]的[surgery.affected_limb.display_name]内的骨骼损伤得更严重了！"))
+			SPAN_WARNING("你手一滑，让[target]的[localized_player_label(surgery.affected_limb.display_name)]内的骨骼损伤得更严重了！"),
+			SPAN_WARNING("[user]手一滑，让你的[localized_player_label(surgery.affected_limb.display_name)]内的骨骼损伤得更严重了！"),
+			SPAN_WARNING("[user]手一滑，让[target]的[localized_player_label(surgery.affected_limb.display_name)]内的骨骼损伤得更严重了！"))
 
 	target.apply_damage(10, BRUTE, target_zone)
 	log_interact(user, target, "[key_name(user)] failed to begin repairing bones in [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool], aborting [surgery].")
 
 	if(tool_type != /obj/item/tool/surgery/bonegel)
-		to_chat(user, SPAN_NOTICE("用于[target]的[surgery.affected_limb.display_name]上的金属棒从其[surgery.affected_limb]中松脱了。"))
+		to_chat(user, SPAN_NOTICE("用于[target]的[localized_player_label(surgery.affected_limb.display_name)]上的金属棒从其[localized_player_label(surgery.affected_limb.display_name)]中松脱了。"))
 		var/obj/item/stack/rods/rods = new /obj/item/stack/rods(get_turf(target))
 		rods.amount = 2 //Refund 2 rods on failure
 		rods.update_icon()
@@ -179,24 +179,24 @@
 				SPAN_NOTICE("[user]开始用[tool]为[target]骨折的骨盆复位。"))
 		else
 			user.affected_message(target,
-				SPAN_NOTICE("你开始用[tool]为[target]的[surgery.affected_limb.display_name]内断裂的骨骼复位。"),
-				SPAN_NOTICE("[user]开始用[tool]为你的[surgery.affected_limb.display_name]内断裂的骨骼复位。"),
-				SPAN_NOTICE("[user]开始用[tool]为[target]的[surgery.affected_limb.display_name]内断裂的骨骼复位。"))
+				SPAN_NOTICE("你开始用[tool]为[target]的[localized_player_label(surgery.affected_limb.display_name)]内断裂的骨骼复位。"),
+				SPAN_NOTICE("[user]开始用[tool]为你的[localized_player_label(surgery.affected_limb.display_name)]内断裂的骨骼复位。"),
+				SPAN_NOTICE("[user]开始用[tool]为[target]的[localized_player_label(surgery.affected_limb.display_name)]内断裂的骨骼复位。"))
 
-	target.custom_pain("你的[surgery.affected_limb.display_name]痛得快让你昏过去了！", 1)
+	target.custom_pain("你的[localized_player_label(surgery.affected_limb.display_name)]痛得快让你昏过去了！", 1)
 	log_interact(user, target, "[key_name(user)] attempted to begin setting bones in [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool].")
 
 /datum/surgery_step/set_bones/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/bone_repair/surgery)
 	if(surgery.affected_bone)
 		user.affected_message(target,
-			SPAN_NOTICE("你为[target]的[surgery.affected_bone]完成了复位。"),
-			SPAN_NOTICE("[user]为你的[surgery.affected_bone]完成了复位。"),
-			SPAN_NOTICE("[user]为[target]的[surgery.affected_bone]完成了复位。"))
+			SPAN_NOTICE("你为[target]的[localized_player_label(surgery.affected_bone)]完成了复位。"),
+			SPAN_NOTICE("[user]为你的[localized_player_label(surgery.affected_bone)]完成了复位。"),
+			SPAN_NOTICE("[user]为[target]的[localized_player_label(surgery.affected_bone)]完成了复位。"))
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("你为[target]的[surgery.affected_limb.display_name]内的骨骼完成了复位。"),
-			SPAN_NOTICE("[user]为你的[surgery.affected_limb.display_name]内的骨骼完成了复位。"),
-			SPAN_NOTICE("[user]为[target]的[surgery.affected_limb.display_name]内的骨骼完成了复位。"))
+			SPAN_NOTICE("你为[target]的[localized_player_label(surgery.affected_limb.display_name)]内的骨骼完成了复位。"),
+			SPAN_NOTICE("[user]为你的[localized_player_label(surgery.affected_limb.display_name)]内的骨骼完成了复位。"),
+			SPAN_NOTICE("[user]为[target]的[localized_player_label(surgery.affected_limb.display_name)]内的骨骼完成了复位。"))
 
 	user.count_niche_stat(STATISTICS_NICHE_SURGERY_BONES)
 	if(surgery.affected_limb.status & LIMB_SPLINTED_INDESTRUCTIBLE)
@@ -209,14 +209,14 @@
 /datum/surgery_step/set_bones/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/bone_repair/surgery)
 	if(surgery.affected_bone)
 		user.affected_message(target,
-			SPAN_WARNING("你手一滑，用[tool]损伤了[target]的[surgery.affected_bone]！"),
-			SPAN_WARNING("[user]手一滑，用[tool]损伤了你的[surgery.affected_bone]！"),
-			SPAN_WARNING("[user]手一滑，用[tool]损伤了[target]的[surgery.affected_bone]！"))
+			SPAN_WARNING("你手一滑，用[tool]损伤了[target]的[localized_player_label(surgery.affected_bone)]！"),
+			SPAN_WARNING("[user]手一滑，用[tool]损伤了你的[localized_player_label(surgery.affected_bone)]！"),
+			SPAN_WARNING("[user]手一滑，用[tool]损伤了[target]的[localized_player_label(surgery.affected_bone)]！"))
 	else
 		user.affected_message(target,
-			SPAN_WARNING("你手一滑，用[tool]损伤了[target]的[surgery.affected_limb.display_name]内的骨骼！"),
-			SPAN_WARNING("[user]手一滑，用[tool]损伤了你的[surgery.affected_limb.display_name]内的骨骼！"),
-			SPAN_WARNING("[user]手一滑，用[tool]损伤了[target]的[surgery.affected_limb.display_name]内的骨骼！"))
+			SPAN_WARNING("你手一滑，用[tool]损伤了[target]的[localized_player_label(surgery.affected_limb.display_name)]内的骨骼！"),
+			SPAN_WARNING("[user]手一滑，用[tool]损伤了你的[localized_player_label(surgery.affected_limb.display_name)]内的骨骼！"),
+			SPAN_WARNING("[user]手一滑，用[tool]损伤了[target]的[localized_player_label(surgery.affected_limb.display_name)]内的骨骼！"))
 
 	target.apply_damage(10, BRUTE, target_zone)
 	log_interact(user, target, "[key_name(user)] failed to set bones in [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool].")

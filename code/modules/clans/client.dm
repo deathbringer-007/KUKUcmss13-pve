@@ -41,7 +41,7 @@
 			for(var/datum/view_record/clan_view/CV in CPV)
 				clans += list("[CV.name]" = CV.clan_id)
 
-			clans += list("People without clans" = null)
+			clans += list("未加入氏族的玩家" = null)
 
 			var/input = tgui_input_list(src, "Choose the clan to view", "View clan", clans)
 
@@ -53,11 +53,11 @@
 		else if(clan_info.clan_id)
 
 			var/options = list(
-				"Your clan" = clan_info.clan_id,
-				"People without clans" = null
+				"你的氏族" = clan_info.clan_id,
+				"未加入氏族的玩家" = null
 			)
 
-			var/input = tgui_input_list(src, "Choose the clan to view", "View clan", options)
+			var/input = tgui_input_list(src, "选择要查看的氏族", "查看氏族", options)
 
 			if(!input)
 				return
@@ -109,8 +109,8 @@
 	else
 		data = list(
 			clan_id = null,
-			clan_name = "Players without a clan",
-			clan_description = "This is a list of players without a clan",
+			clan_name = "未加入氏族的玩家",
+			clan_description = "以下玩家尚未加入任何氏族。",
 			clan_honor = null,
 			clan_keys = list(),
 
@@ -138,7 +138,7 @@
 		var/list/player = list(
 			player_id = CP.player_id,
 			name = CP.ckey,
-			rank = GLOB.clan_ranks[CP.clan_rank], // rank_to_give not used here, because we need to get their visual rank, not their position
+			rank = get_clan_rank_display_name(GLOB.clan_ranks[CP.clan_rank]), // rank_to_give not used here, because we need to get their visual rank, not their position
 			rank_pos = rank_to_give,
 			honor = (CP.honor? CP.honor : 0)
 		)
@@ -149,10 +149,31 @@
 
 	var/datum/nanoui/ui = SSnano.nanomanager.try_update_ui(mob, mob, "clan_status_ui", null, data)
 	if(!ui)
-		ui = new(mob, mob, "clan_status_ui", "clan_menu.tmpl", "Clan Menu", 550, 500)
+		ui = new(mob, mob, "clan_status_ui", "clan_menu.tmpl", "氏族菜单", 550, 500)
 		ui.set_initial_data(data)
 		ui.set_auto_update(FALSE)
 		ui.open()
+
+/client/proc/get_clan_rank_display_name(value)
+	var/static/list/labels = list(
+		"Unblooded" = "未染血者",
+		"Young Blood" = "新血者",
+		"Blooded" = "染血者",
+		"Elite" = "精英",
+		"Elder" = "长老",
+		"Clan Leader" = "氏族领袖",
+		"Ancient" = "远古者",
+	)
+	return labels[value] || value
+
+/client/proc/choose_clan_rank(list/ranks)
+	var/list/choices = list()
+	for(var/rank in ranks)
+		choices[get_clan_rank_display_name(rank)] = rank
+	var/selected = tgui_input_list(src, "选择要为这名玩家设置的等级。", "选择等级", choices)
+	if(isnull(selected))
+		return null
+	return choices[selected]
 
 /client/proc/has_clan_permission(permission_flag, clan_id, warn)
 	if(!clan_info)
@@ -223,13 +244,13 @@
 				if(!has_clan_permission(CLAN_PERMISSION_USER_MODIFY))
 					return
 
-				var/input = input(usr, "Input a new description", "Set Description", target_clan.description) as message|null
+				var/input = input(usr, "输入新的氏族描述", "编辑描述", target_clan.description) as message|null
 
 				if(!input || input == target_clan.description)
 					return
 
 				message_admins("[key_name_admin(src)] has set the description of [target_clan.name].")
-				to_chat(src, SPAN_NOTICE("Set the description of [target_clan.name]."))
+				to_chat(src, SPAN_NOTICE("已更新[target_clan.name]的氏族描述。"))
 				target_clan.description = trim(input)
 
 			if(CLAN_ACTION_CLAN_SETCOLOR)
@@ -403,7 +424,7 @@
 						if(!has_clan_permission(ranks[rank].permission_required, warn = FALSE))
 							ranks -= rank
 
-					var/input = tgui_input_list(src, "Select the rank to change this user to.", "Select Rank", ranks)
+					var/input = choose_clan_rank(ranks)
 
 					if(!input)
 						return
@@ -424,7 +445,7 @@
 								var/available_slots = ceil(length(clan_players) / chosen_rank.limit)
 
 								if(players_in_rank >= available_slots)
-									to_chat(src, SPAN_DANGER("此名额已满！（按氏族人数最多提供[chosen_rank.limit]个名额，目前为[available_slots]）"))
+									to_chat(src, SPAN_DANGER("该等级名额已满！（按每[chosen_rank.limit]名氏族成员一档计算，目前共有[available_slots]个名额）"))
 									return
 
 
@@ -437,7 +458,7 @@
 				target.clan_rank = GLOB.clan_ranks_ordered[chosen_rank.name]
 				target.permissions = chosen_rank.permissions
 				message_admins("[key_name_admin(src)] has set the rank of [player_name] to [chosen_rank.name] for their clan.")
-				to_chat(src, SPAN_NOTICE("Set [player_name]'s rank to [chosen_rank.name]"))
+				to_chat(src, SPAN_NOTICE("已将[player_name]的等级设为[get_clan_rank_display_name(chosen_rank.name)]。"))
 
 		target.save()
 		target.sync()

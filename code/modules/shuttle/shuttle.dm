@@ -926,16 +926,16 @@
 
 	if(istype(dockedAt, /obj/docking_port/stationary/transit))
 		if (timeLeft() > 1 HOURS)
-			return "hyperspace"
+			return "超空间"
 		else
 			var/obj/docking_port/stationary/dst
 			if(mode == SHUTTLE_RECALL)
 				dst = previous
 			else
 				dst = destination
-			. = "正在前往[dst?.name || "未知地点"]（[getTimerStr()]）"
+			. = "正在前往[localized_player_label(dst?.name) || "未知地点"]（[getTimerStr()]）"
 	else
-		return dockedAt?.name || "unknown"
+		return localized_player_label(dockedAt?.name) || "未知地点"
 
 
 /obj/docking_port/mobile/proc/getDbgStatusText()

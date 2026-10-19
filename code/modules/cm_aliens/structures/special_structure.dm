@@ -31,7 +31,11 @@
 	else
 		linked_hive = GLOB.hive_datum[XENO_HIVE_NORMAL]
 
+	var/structure_display_name = localized_player_label(name)
 	set_hive_data(src, linked_hive.hivenumber)
+	name = structure_display_name
+	if(length(linked_hive.prefix))
+		name = "[localized_player_label(linked_hive.name)]的[name]"
 
 	if(!linked_hive.add_special_structure(src))
 		return INITIALIZE_HINT_QDEL

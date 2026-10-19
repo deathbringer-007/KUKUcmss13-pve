@@ -133,7 +133,7 @@
 				if(world.time < cooldown_message + COOLDOWN_COMM_MESSAGE_LONG)
 					to_chat(usr, SPAN_WARNING("两次公告之间至少需要间隔[COOLDOWN_COMM_MESSAGE_LONG*0.1]秒。"))
 					return FALSE
-				var/input = stripped_multiline_input(usr, "Please write a message to announce to the station crew.", "Priority Announcement", "")
+				var/input = stripped_multiline_input(usr, "请输入要向全体舰员广播的消息。", "优先公告", "")
 				if(!input || authenticated != 2 || world.time < cooldown_message + COOLDOWN_COMM_MESSAGE_LONG || !(usr in dview(1, src)))
 					return FALSE
 
@@ -161,7 +161,7 @@
 
 				log_game("[key_name(usr)] has called for an emergency evacuation.")
 				message_admins("[key_name_admin(usr)] has called for an emergency evacuation.")
-				log_ares_security("Initiate Evacuation", "Called for an emergency evacuation.", usr)
+				log_ares_security("启动撤离", "已启动紧急撤离。", usr)
 				return TRUE
 
 			state = STATE_EVACUATION
@@ -187,7 +187,7 @@
 
 				log_game("[key_name(usr)] has canceled the emergency evacuation.")
 				message_admins("[key_name_admin(usr)] has canceled the emergency evacuation.")
-				log_ares_security("Cancel Evacuation", "Cancelled the emergency evacuation.", usr)
+				log_ares_security("取消撤离", "已取消紧急撤离。", usr)
 				return TRUE
 
 			state = STATE_EVACUATION_CANCEL
@@ -320,7 +320,7 @@
 		if("selectlz")
 			if(!SSticker.mode.active_lz)
 				var/lz_choices = list("lz1", "lz2")
-				var/new_lz = tgui_input_list(usr, "选择主要着陆区", "选择着陆区", lz_choices)
+				var/new_lz = localized_input_list(usr, "选择主要着陆区", "选择着陆区", lz_choices)
 				if(!new_lz)
 					return
 				if(new_lz == "lz1")
@@ -347,7 +347,7 @@
 	user.set_interaction(src)
 	var/dat = "<head><title>通讯控制台</title></head><body>"
 	if(SShijack.evac_status == EVACUATION_STATUS_INITIATED)
-		dat += "<B>疏散正在进行</B>\n<BR>\n预计抵达时间：[SShijack.get_evac_eta()]<BR>"
+		dat += "<B>疏散正在进行</B>\n<BR>\n预计抵达时间：[SShijack.get_eta_display(SShijack.get_evac_eta())]<BR>"
 	switch(state)
 		if(STATE_DEFAULT)
 			if(authenticated)
@@ -372,27 +372,27 @@
 					dat += "<BR><A href='byond://?src=\ref[src];operation=destroy'>启动自毁</A>"
 					switch(SShijack.evac_status)
 						if(EVACUATION_STATUS_NOT_INITIATED)
-							dat += "<BR><A href='byond://?src=\ref[src];operation=evacuation_start'>Initiate emergency evacuation</A>"
+							dat += "<BR><A href='byond://?src=\ref[src];operation=evacuation_start'>启动紧急撤离</A>"
 						if(EVACUATION_STATUS_INITIATED)
-							dat += "<BR><A href='byond://?src=\ref[src];operation=evacuation_cancel'>Cancel emergency evacuation</A>"
+							dat += "<BR><A href='byond://?src=\ref[src];operation=evacuation_cancel'>取消紧急撤离</A>"
 
 			else
-				dat += "<BR><A href='byond://?src=\ref[src];operation=login'>LOG IN</A>"
+				dat += "<BR><A href='byond://?src=\ref[src];operation=login'>登录</A>"
 
 		if(STATE_EVACUATION)
-			dat += "Are you sure you want to evacuate the [MAIN_SHIP_NAME]? <A href='byond://?src=\ref[src];operation=evacuation_start'>Confirm</A>"
+			dat += "确定要从[MAIN_SHIP_NAME]撤离吗？<A href='byond://?src=\ref[src];operation=evacuation_start'>确认</A>"
 
 		if(STATE_EVACUATION_CANCEL)
-			dat += "Are you sure you want to cancel the evacuation of the [MAIN_SHIP_NAME]? <A href='byond://?src=\ref[src];operation=evacuation_cancel'>Confirm</A>"
+			dat += "确定要取消[MAIN_SHIP_NAME]的撤离吗？<A href='byond://?src=\ref[src];operation=evacuation_cancel'>确认</A>"
 
 		if(STATE_DISTRESS)
-			dat += "Are you sure you want to trigger a distress signal? The signal can be picked up by anyone listening, friendly or not. <A href='byond://?src=\ref[src];operation=distress'>Confirm</A>"
+			dat += "确定要发送求救信号吗？任何正在监听的人都可能收到，无论敌友。<A href='byond://?src=\ref[src];operation=distress'>确认</A>"
 
 		if(STATE_DESTROY)
-			dat += "Are you sure you want to trigger the self-destruct? This would mean abandoning ship. <A href='byond://?src=\ref[src];operation=destroy'>Confirm</A>"
+			dat += "确定要启动自毁吗？这意味着放弃舰船。<A href='byond://?src=\ref[src];operation=destroy'>确认</A>"
 
 		if(STATE_MESSAGELIST)
-			dat += "Messages:"
+			dat += "消息："
 			for(var/i = 1; i<=length(messagetitle); i++)
 				dat += "<BR><A href='byond://?src=\ref[src];operation=viewmessage;message-num=[i]'>[messagetitle[i]]</A>"
 
@@ -400,7 +400,7 @@
 			if (currmsg)
 				dat += "<B>[messagetitle[currmsg]]</B><BR><BR>[messagetext[currmsg]]"
 				if (authenticated)
-					dat += "<BR><BR><A href='byond://?src=\ref[src];operation=delmessage'>Delete"
+					dat += "<BR><BR><A href='byond://?src=\ref[src];operation=delmessage'>删除"
 			else
 				state = STATE_MESSAGELIST
 				attack_hand(user)
@@ -408,36 +408,36 @@
 
 		if(STATE_DELMESSAGE)
 			if (currmsg)
-				dat += "Are you sure you want to delete this message? <A href='byond://?src=\ref[src];operation=delmessage2'>OK</A>|<A href='byond://?src=\ref[src];operation=viewmessage'>Cancel</A>"
+				dat += "确定要删除这条消息吗？<A href='byond://?src=\ref[src];operation=delmessage2'>确定</A>|<A href='byond://?src=\ref[src];operation=viewmessage'>取消</A>"
 			else
 				state = STATE_MESSAGELIST
 				attack_hand(user)
 				return FALSE
 
 		if(STATE_STATUSDISPLAY)
-			dat += "Set Status Displays<BR>"
-			dat += "<A href='byond://?src=\ref[src];operation=setstat;statdisp=blank'>Clear</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];operation=setstat;statdisp=time'>Station Time</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];operation=setstat;statdisp=shuttle'>Shuttle ETA</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];operation=setstat;statdisp=message'>Message</A>"
-			dat += "<ul><li> Line 1: <A href='byond://?src=\ref[src];operation=setmsg1'>[ stat_msg1 ? stat_msg1 : "(none)"]</A>"
-			dat += "<li> Line 2: <A href='byond://?src=\ref[src];operation=setmsg2'>[ stat_msg2 ? stat_msg2 : "(none)"]</A></ul><br>"
-			dat += "\[ Alert: <A href='byond://?src=\ref[src];operation=setstat;statdisp=alert;alert=default'>None</A> |"
-			dat += " <A href='byond://?src=\ref[src];operation=setstat;statdisp=alert;alert=redalert'>Red Alert</A> |"
-			dat += " <A href='byond://?src=\ref[src];operation=setstat;statdisp=alert;alert=lockdown'>Lockdown</A> |"
-			dat += " <A href='byond://?src=\ref[src];operation=setstat;statdisp=alert;alert=biohazard'>Biohazard</A> \]<BR><HR>"
+			dat += "设置状态显示屏<BR>"
+			dat += "<A href='byond://?src=\ref[src];operation=setstat;statdisp=blank'>清空</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];operation=setstat;statdisp=time'>站内时间</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];operation=setstat;statdisp=shuttle'>穿梭机预计抵达时间</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];operation=setstat;statdisp=message'>消息</A>"
+			dat += "<ul><li>第1行：<A href='byond://?src=\ref[src];operation=setmsg1'>[ stat_msg1 ? stat_msg1 : "（无）"]</A>"
+			dat += "<li>第2行：<A href='byond://?src=\ref[src];operation=setmsg2'>[ stat_msg2 ? stat_msg2 : "（无）"]</A></ul><br>"
+			dat += "\[警报：<A href='byond://?src=\ref[src];operation=setstat;statdisp=alert;alert=default'>无</A> |"
+			dat += " <A href='byond://?src=\ref[src];operation=setstat;statdisp=alert;alert=redalert'>红色警报</A> |"
+			dat += " <A href='byond://?src=\ref[src];operation=setstat;statdisp=alert;alert=lockdown'>封锁</A> |"
+			dat += " <A href='byond://?src=\ref[src];operation=setstat;statdisp=alert;alert=biohazard'>生物危害</A> \]<BR><HR>"
 
 		if(STATE_ALERT_LEVEL)
-			dat += "Current alert level: [get_security_level()]<BR>"
-			dat += "<A href='byond://?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_BLUE]'>Blue</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_GREEN]'>Green</A>"
+			dat += "当前警报等级：[localized_player_label(get_security_level())]<BR>"
+			dat += "<A href='byond://?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_BLUE]'>蓝色</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_GREEN]'>绿色</A>"
 
 		if(STATE_CONFIRM_LEVEL)
-			dat += "Current alert level: [get_security_level()]<BR>"
-			dat += "Confirm the change to: [num2seclevel(tmp_alertlevel)]<BR>"
-			dat += "<A href='byond://?src=\ref[src];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
+			dat += "当前警报等级：[localized_player_label(get_security_level())]<BR>"
+			dat += "确认变更为：[localized_player_label(num2seclevel(tmp_alertlevel))]<BR>"
+			dat += "<A href='byond://?src=\ref[src];operation=swipeidseclevel'>刷身份卡</A>以确认变更。<BR>"
 
-	dat += "<BR>[(state != STATE_DEFAULT) ? "<A href='byond://?src=\ref[src];operation=main'>Main Menu</A>|" : ""]<A href='byond://?src=\ref[user];mach_close=communications'>Close</A>"
+	dat += "<BR>[(state != STATE_DEFAULT) ? "<A href='byond://?src=\ref[src];operation=main'>主菜单</A>|" : ""]<A href='byond://?src=\ref[user];mach_close=communications'>关闭</A>"
 	show_browser(user, dat, name, "communications")
 	onclose(user, "communications")
 
@@ -452,20 +452,20 @@
 	switch(state)
 		if(STATE_DEFAULT)
 			if(authenticated)
-				dat += "<BR><A href='byond://?src=\ref[src];operation=logout'>LOG OUT</A>"
-				dat += "<BR><A href='byond://?src=\ref[src];operation=messagelist'>Message list</A>"
-				dat += "<BR><A href='byond://?src=\ref[src];operation=mapview'>Toggle Tactical Map</A>"
+				dat += "<BR><A href='byond://?src=\ref[src];operation=logout'>退出登录</A>"
+				dat += "<BR><A href='byond://?src=\ref[src];operation=messagelist'>消息列表</A>"
+				dat += "<BR><A href='byond://?src=\ref[src];operation=mapview'>切换战术地图</A>"
 				dat += "<BR><hr>"
 
 				if(authenticated == 2)
-					dat += "<BR><A href='byond://?src=\ref[src];operation=announce'>Make an announcement</A>"
-					dat += "<BR><A href='byond://?src=\ref[src];operation=award'>Award a medal</A>"
+					dat += "<BR><A href='byond://?src=\ref[src];operation=announce'>发布公告</A>"
+					dat += "<BR><A href='byond://?src=\ref[src];operation=award'>授予勋章</A>"
 
 			else
-				dat += "<BR><A href='byond://?src=\ref[src];operation=login'>LOG IN</A>"
+				dat += "<BR><A href='byond://?src=\ref[src];operation=login'>登录</A>"
 
 		if(STATE_MESSAGELIST)
-			dat += "Messages:"
+			dat += "消息："
 			for(var/i = 1; i<=length(messagetitle); i++)
 				dat += "<BR><A href='byond://?src=\ref[src];operation=viewmessage;message-num=[i]'>[messagetitle[i]]</A>"
 
@@ -473,7 +473,7 @@
 			if (currmsg)
 				dat += "<B>[messagetitle[currmsg]]</B><BR><BR>[messagetext[currmsg]]"
 				if (authenticated)
-					dat += "<BR><BR><A href='byond://?src=\ref[src];operation=delmessage'>Delete"
+					dat += "<BR><BR><A href='byond://?src=\ref[src];operation=delmessage'>删除"
 			else
 				state = STATE_MESSAGELIST
 				attack_hand(user)
@@ -481,14 +481,14 @@
 
 		if(STATE_DELMESSAGE)
 			if (currmsg)
-				dat += "Are you sure you want to delete this message? <A href='byond://?src=\ref[src];operation=delmessage2'>OK</A>|<A href='byond://?src=\ref[src];operation=viewmessage'>Cancel</A>"
+				dat += "确定要删除这条消息吗？<A href='byond://?src=\ref[src];operation=delmessage2'>确定</A>|<A href='byond://?src=\ref[src];operation=viewmessage'>取消</A>"
 			else
 				state = STATE_MESSAGELIST
 				attack_hand(user)
 				return FALSE
 
-	dat += "<BR>[(state != STATE_DEFAULT) ? "<A href='byond://?src=\ref[src];operation=main'>Main Menu</A>|" : ""]<A href='byond://?src=\ref[user];mach_close=communications'>Close</A>"
-	show_browser(user, dat, "Communications Console", "communications", width = 400, height = 500)
+	dat += "<BR>[(state != STATE_DEFAULT) ? "<A href='byond://?src=\ref[src];operation=main'>主菜单</A>|" : ""]<A href='byond://?src=\ref[user];mach_close=communications'>关闭</A>"
+	show_browser(user, dat, "通信控制台", "communications", width = 400, height = 500)
 	onclose(user, "communications")
 #undef STATE_DEFAULT
 #undef STATE_MESSAGELIST

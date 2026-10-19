@@ -177,11 +177,11 @@ CULT
 		return
 	var/mob/living/carbon/human/H = owner
 	if(H.selected_ability == src)
-		to_chat(H, "你将不再通过[H.get_ability_mouse_name()]使用[name]。")
+		to_chat(H, "你将不再通过[H.get_ability_mouse_name()]使用[localized_player_label(name)]。")
 		button.icon_state = "template"
 		H.set_selected_ability(null)
 	else
-		to_chat(H, "你现在会通过[H.get_ability_mouse_name()]使用[name]。")
+		to_chat(H, "你现在会通过[H.get_ability_mouse_name()]使用[localized_player_label(name)]。")
 		if(H.selected_ability)
 			H.selected_ability.button.icon_state = "template"
 			H.set_selected_ability(null)
@@ -257,8 +257,8 @@ CULT
 		return
 
 	if(assigned_droppod)
-		if(tgui_alert(H, "要召回当前的空投舱吗？",\
-			"Recall Droppod", list("No", "Yes")) == "Yes")
+		if(localized_tgui_alert(H, "要召回当前的空降舱吗？",\
+			"召回空降舱", list("No", "Yes")) == "Yes")
 			if(!assigned_droppod)
 				return
 
@@ -335,7 +335,7 @@ CULT
 	var/mob/living/carbon/human/H = owner
 
 
-	var/message = input(H, "通过蜂巢意识发言", "蜂巢意识聊天") as null|text
+	var/message = input(H, "通过虫巢意志发言", "虫巢意志通信") as null|text
 	if(!message)
 		return
 
@@ -365,7 +365,7 @@ CULT
 
 	var/mob/living/carbon/human/H = owner
 
-	var/input = tgui_alert(H, "一旦领取就无法脱下，请确认选择。", "领取装备", list("Yes","No"))
+	var/input = localized_tgui_alert(H, "一旦领取就无法脱下，请确认选择。", "领取装备", list("Yes","No"))
 
 	if(input != "Yes")
 		to_chat(H, SPAN_WARNING("你决定不领取装备。"))
@@ -464,7 +464,7 @@ CULT
 	to_chat(chosen, SPAN_ROLE_HEADER("你现在是异形教徒！"))
 	to_chat(chosen, SPAN_ROLE_BODY("崇拜异形，听从教派领袖的命令。领袖通常就是转化你的人。除非穿着黑袍，否则不要杀人；你可以进行自卫。"))
 
-	xeno_message("[chosen] has been converted into a cultist!", 2, hive.hivenumber)
+	xeno_message("[chosen]已被转化为异形教徒！", 2, hive.hivenumber)
 
 	chosen.apply_effect(5, PARALYZE)
 	chosen.make_jittery(105)
@@ -546,7 +546,7 @@ CULT
 
 	to_chat(H, SPAN_NOTICE("已向[chosen]发送叛变加入请求！"))
 
-	if(tgui_alert(chosen, "你想成为叛乱者吗？", "成为叛乱者", list("Yes", "No")) != "Yes")
+	if(localized_tgui_alert(chosen, "你想成为叛乱者吗？", "成为叛乱者", list("Yes", "No")) != "Yes")
 		return
 
 	converted += chosen
@@ -565,7 +565,7 @@ CULT
 
 	var/mob/living/carbon/human/H = owner
 
-	if(tgui_alert(H, "确定要发动叛乱吗？", "发动叛乱？", list("Yes", "No")) != "Yes")
+	if(localized_tgui_alert(H, "确定要发动叛乱吗？", "发动叛乱？", list("Yes", "No")) != "Yes")
 		return
 
 	shipwide_ai_announcement("危险警报：收到通信报告，叛乱正在发生。行动指令：拘留、逮捕、保卫。")

@@ -243,16 +243,16 @@
 		if(limb.brute_dam && welding)
 			remove_fuel(1,user)
 			if(self_fixing)
-				user.visible_message(SPAN_WARNING("[user]开始修补自己[limb.display_name]上的凹痕。"), \
-					SPAN_WARNING("你开始小心地修补自己[limb.display_name]上的凹痕，以免失去保修资格。"))
+				user.visible_message(SPAN_WARNING("[user]开始修补自己[localized_player_label(limb.display_name)]上的凹痕。"), \
+					SPAN_WARNING("你开始小心地修补自己[localized_player_label(limb.display_name)]上的凹痕，以免失去保修资格。"))
 				if(!do_after(user, 30, INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
 					return
 
 			limb.heal_damage(15, 0, TRUE)
 			human.pain.recalculate_pain()
 			human.UpdateDamageIcon()
-			user.visible_message(SPAN_WARNING("[user]用[src]修补了[human]的[limb.display_name]上的一些凹痕。"), \
-								SPAN_WARNING("你用[src]修补了[human]的[limb.display_name]上的一些凹痕。"))
+			user.visible_message(SPAN_WARNING("[user]用[src]修补了[human]的[localized_player_label(limb.display_name)]上的一些凹痕。"), \
+								SPAN_WARNING("你用[src]修补了[human]的[localized_player_label(limb.display_name)]上的一些凹痕。"))
 			return
 		else
 			to_chat(user, SPAN_WARNING("没有需要修理的地方！"))

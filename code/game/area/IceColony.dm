@@ -10,7 +10,7 @@
 
 //Base Instance
 /area/ice_colony
-	name = "\improper Ice Colony"
+	name = "\improper 冰原殖民地"
 	icon_state = "ice_colony"
 	icon_state = "cliff_blocked"
 	can_build_special = TRUE
@@ -24,7 +24,7 @@
  */
 
 /area/ice_colony/exterior
-	name = "\improper Ice Colony"
+	name = "\improper 冰原殖民地"
 	icon_state = "cliff_blocked"
 	requires_power = 1
 	always_unpowered = 1
@@ -44,24 +44,24 @@
 //Buildings : Native Color. Command stays Blue, Clinic is Red
 
 /area/ice_colony/exterior/surface
-	name = "\improper Ice Colony - Exterior Surface"
+	name = "\improper 冰原殖民地地表外围"
 	soundscape_playlist = SCAPE_PL_WIND
 
 //Equivalent of space. None of this area should be accessible. If these are valleys, make separate areas
 /area/ice_colony/exterior/surface/cliff
-	name = "\improper Ice Cliffs"
+	name = "\improper 冰崖"
 	icon_state = "cliff_blocked"
 
 //Landing Pad for the Rasp. THIS IS NOT THE SHUTTLE AREA
 /area/ice_colony/exterior/surface/landing_pad
-	name = "\improper Aerodrome Landing Pad"
+	name = "\improper 机场着陆坪"
 	icon_state = "landing_pad"
 	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 
 //Landing Pad for the Vindi. THIS IS NOT THE SHUTTLE AREA
 /area/ice_colony/exterior/surface/landing_pad2
-	name = "\improper Emergency Landing Pad"
+	name = "\improper 应急着陆坪"
 	icon_state = "landing_pad"
 	minimap_color = MINIMAP_AREA_LZ
 	is_resin_allowed = FALSE
@@ -69,14 +69,14 @@
 
 //Everything around the physical landing pad
 /area/ice_colony/exterior/surface/landing_pad_external
-	name = "\improper Aerodrome Landing Valley"
+	name = "\improper 机场着陆谷地"
 	icon_state = "landing_pad_ext"
 	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 
 //Aerodrome Container Yard
 /area/ice_colony/exterior/surface/container_yard
-	name = "\improper Aerodrome Container Yard"
+	name = "\improper 机场集装箱堆场"
 	icon_state = "container_yard"
 	minimap_color = MINIMAP_AREA_LZ
 	is_resin_allowed = FALSE
@@ -88,40 +88,40 @@
 //
 
 /area/ice_colony/exterior/surface/valley
-	name = "\improper Ice Cliffs Valley"
+	name = "\improper 冰崖谷地"
 	icon_state = "valley"
 
 /area/ice_colony/exterior/surface/valley/north
-	name = "\improper Northern Valleys"
+	name = "\improper 北部谷地"
 	icon_state = "valley_north"
 
 /area/ice_colony/exterior/surface/valley/northeast
-	name = "\improper North Eastern Valleys"
+	name = "\improper 东北谷地"
 	icon_state = "valley_north_east"
 
 /area/ice_colony/exterior/surface/valley/northwest
-	name = "\improper North Western Valleys"
+	name = "\improper 西北谷地"
 	icon_state = "valley_north_west"
 
 /area/ice_colony/exterior/surface/valley/west
-	name = "\improper Western Valleys"
+	name = "\improper 西部谷地"
 	icon_state = "valley_west"
 
 /area/ice_colony/exterior/surface/valley/south
-	name = "\improper Southern Valleys"
+	name = "\improper 南部谷地"
 	icon_state = "valley_south"
 
 /area/ice_colony/exterior/surface/valley/south/excavation
-	name = "\improper Southern Valleys - Excavation Site"
+	name = "\improper 南部谷地挖掘场"
 	icon_state = "valley_south_excv"
 	ceiling = CEILING_UNDERGROUND_ALLOW_CAS
 
 /area/ice_colony/exterior/surface/valley/southeast
-	name = "\improper Eastern Valleys"
+	name = "\improper 东部谷地"
 	icon_state = "valley_east"
 
 /area/ice_colony/exterior/surface/valley/southwest
-	name = "\improper South Western Valleys"
+	name = "\improper 西南谷地"
 	icon_state = "valley_south_west"
 
 /area/ice_colony/exterior/surface/valley/northeast/apc_support
@@ -136,19 +136,19 @@
 //
 
 /area/ice_colony/exterior/surface/clearing
-	name = "\improper Ice Colony Clearing"
+	name = "\improper 冰原殖民地空地"
 	icon_state = "clear"
 
 /area/ice_colony/exterior/surface/clearing/pass
-	name = "\improper Colony Central Valley"
+	name = "\improper 殖民地中央谷地"
 	icon_state = "clear_pass"
 
 /area/ice_colony/exterior/surface/clearing/south
-	name = "\improper Colony Southern Clearing"
+	name = "\improper 殖民地南部空地"
 	icon_state = "clear_south"
 
 /area/ice_colony/exterior/surface/clearing/north
-	name = "\improper Colony Northern Clearing"
+	name = "\improper 殖民地北部空地"
 	icon_state = "clear_north"
 
 /*
@@ -156,7 +156,7 @@
  */
 
 /area/ice_colony/exterior/underground
-	name = "\improper Ice Colony - Exterior Underground"
+	name = "\improper 冰原殖民地地下外围"
 	icon_state = "cave"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	ambience_exterior = null
@@ -168,7 +168,7 @@
 //
 
 /area/ice_colony/exterior/underground/caves
-	name = "\improper Underground Caves"
+	name = "\improper 地下洞穴"
 	icon_state = "cave"
 	sound_environment = SOUND_ENVIRONMENT_AUDITORIUM
 	soundscape_playlist = SCAPE_PL_CAVE
@@ -191,7 +191,7 @@
  */
 
 /area/ice_colony/surface
-	name = "\improper Ice Colony - Built Surface"
+	name = "\improper 冰原殖民地地表建筑区"
 	icon_state = "clear"
 	ceiling = CEILING_METAL
 
@@ -201,14 +201,14 @@
 
 
 /area/ice_colony/surface/bar
-	name = "\improper Anti-Freeze"
+	name = "\improper 防冻区"
 	icon_state = "bar"
 
 /area/ice_colony/surface/bar/bar
-	name = "\improper Anti-Freeze Bar"
+	name = "\improper 防冻酒吧"
 
 /area/ice_colony/surface/bar/canteen
-	name = "\improper Anti-Freeze Canteen"
+	name = "\improper 防冻食堂"
 	icon_state = "kitchen"
 
 /*
@@ -216,21 +216,21 @@
  */
 
 /area/ice_colony/surface/clinic
-	name = "\improper Aurora Medical Clinic"
+	name = "\improper 极光医疗诊所"
 	icon_state = "medbay"
 	soundscape_playlist = SCAPE_PL_ELEVATOR_MUSIC
 	soundscape_interval = 60
 	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/ice_colony/surface/clinic/lobby
-	name = "\improper Aurora Medical Clinic Lobby"
+	name = "\improper 极光医疗诊所大厅"
 
 /area/ice_colony/surface/clinic/treatment
-	name = "\improper Aurora Medical Clinic Treatment"
+	name = "\improper 极光医疗诊所治疗室"
 	icon_state = "medbay2"
 
 /area/ice_colony/surface/clinic/storage
-	name = "\improper Aurora Medical Clinic Storage"
+	name = "\improper 极光医疗诊所储藏室"
 	icon_state = "medbay3"
 
 /*
@@ -238,33 +238,33 @@
  */
 
 /area/ice_colony/surface/command
-	name = "\improper Colony Administration"
+	name = "\improper 殖民地行政部"
 	icon_state = "bridge"
 	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/ice_colony/surface/command/checkpoint
-	name = "\improper Colony Administration Security Checkpoint"
+	name = "\improper 殖民地行政部安保检查站"
 	icon_state = "security"
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/ice_colony/surface/command/control
-	name = "\improper Colony Control Center"
+	name = "\improper 殖民地控制中心"
 	icon_state = "maintcentral"
 
 /area/ice_colony/surface/command/control/office
-	name = "\improper Colony Control Central Office"
+	name = "\improper 殖民地控制中心办公室"
 	icon_state = "bridge"
 
 /area/ice_colony/surface/command/control/pv1
-	name = "\improper Colony Control Private Office"
+	name = "\improper 殖民地控制中心私人办公室"
 	icon_state = "yellow"
 
 /area/ice_colony/surface/command/control/pv2
-	name = "\improper Colony Control Private Office"
+	name = "\improper 殖民地控制中心私人办公室"
 	icon_state = "green"
 
 /area/ice_colony/surface/command/crisis
-	name = "\improper Colony Crisis Room"
+	name = "\improper 殖民地危机处理室"
 	icon_state = "head_quarters"
 
 /*
@@ -272,7 +272,7 @@
  */
 
 /area/ice_colony/surface/disposals
-	name = "\improper Surface Disposals"
+	name = "\improper 地表废物处理区"
 	icon_state = "disposal"
 
 /*
@@ -280,23 +280,23 @@
  */
 
 /area/ice_colony/surface/dorms
-	name = "\improper Dormitories"
+	name = "\improper 宿舍"
 	icon_state = "Sleep"
 
 /area/ice_colony/surface/dorms/canteen
-	name = "\improper Dormitories Canteen"
+	name = "\improper 宿舍食堂"
 	icon_state = "kitchen"
 
 /area/ice_colony/surface/dorms/lavatory
-	name = "\improper Dormitories Lavatory"
+	name = "\improper 宿舍卫生间"
 	icon_state = "janitor"
 
 /area/ice_colony/surface/dorms/restroom_w
-	name = "\improper Dormitories West Restroom"
+	name = "\improper 宿舍西卫生间"
 	icon_state = "toilet"
 
 /area/ice_colony/surface/dorms/restroom_e
-	name = "\improper Dormitories East Restroom"
+	name = "\improper 宿舍东卫生间"
 	icon_state = "toilet"
 
 /*
@@ -304,20 +304,20 @@
  */
 
 /area/ice_colony/surface/engineering
-	name = "\improper Engineering"
+	name = "\improper 工程部"
 	icon_state = "engine_hallway"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/ice_colony/surface/engineering/generator
-	name = "\improper Engineering Generator Room"
+	name = "\improper 工程部发电机室"
 	icon_state = "engine"
 
 /area/ice_colony/surface/engineering/electric
-	name = "\improper Engineering Electric Storage"
+	name = "\improper 工程部电气器材储藏室"
 	icon_state = "engine_storage"
 
 /area/ice_colony/surface/engineering/tool
-	name = "\improper Engineering Tool Storage"
+	name = "\improper 工程部工具储藏室"
 	icon_state = "storage"
 
 /*
@@ -325,12 +325,12 @@
  */
 
 /area/ice_colony/surface/excavation
-	name = "\improper Excavation Outpost"
+	name = "\improper 挖掘哨站"
 	icon_state = "mining_outpost"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/ice_colony/surface/excavation/storage
-	name = "\improper Excavation Outpost External Storage"
+	name = "\improper 挖掘哨站外部储藏室"
 	icon_state = "mining_storage"
 
 /*
@@ -338,19 +338,19 @@
  */
 
 /area/ice_colony/surface/garage
-	name = "\improper Garage"
+	name = "\improper 车库"
 	icon_state = "garage"
 
 /area/ice_colony/surface/garage/one
-	name = "\improper Garage Western Unit"
+	name = "\improper 车库西区"
 	icon_state = "garage_one"
 
 /area/ice_colony/surface/garage/two
-	name = "\improper Garage Eastern Unit"
+	name = "\improper 车库东区"
 	icon_state = "garage_two"
 
 /area/ice_colony/surface/garage/repair
-	name = "\improper Garage Repair Station"
+	name = "\improper 车库维修站"
 	icon_state = "engine"
 
 /*
@@ -358,24 +358,24 @@
  */
 
 /area/ice_colony/surface/hangar
-	name = "\improper Aerodrome Hangar"
+	name = "\improper 机场机库"
 	icon_state = "hangar"
 
 /area/ice_colony/surface/hangar/hallway
-	name = "\improper Aerodrome Hangar Hallway"
+	name = "\improper 机场机库走廊"
 	is_resin_allowed = FALSE
 
 /area/ice_colony/surface/hangar/alpha
-	name = "\improper Aerodrome Hangar 'Alpha'"
+	name = "\improper 机场阿尔法机库"
 	icon_state = "hangar_alpha"
 
 /area/ice_colony/surface/hangar/beta
-	name = "\improper Aerodrome Hangar 'Beta'"
+	name = "\improper 机场贝塔机库"
 	icon_state = "hangar_beta"
 	is_resin_allowed = FALSE
 
 /area/ice_colony/surface/hangar/checkpoint
-	name = "\improper Aerodrome Hangar Security Checkpoint"
+	name = "\improper 机场机库安保检查站"
 	icon_state = "security"
 
 /*
@@ -383,21 +383,21 @@
  */
 
 /area/ice_colony/surface/hydroponics
-	name = "\improper Ice Colony Hydroponics"
+	name = "\improper 冰原殖民地水培区"
 	icon_state = "hydro"
 	ceiling = CEILING_GLASS
 	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/ice_colony/surface/hydroponics/lobby
-	name = "\improper Hydroponics Relaxation Module"
+	name = "\improper 水培休闲舱室"
 	icon_state = "garden"
 
 /area/ice_colony/surface/hydroponics/north
-	name = "\improper Hydroponics North Wing"
+	name = "\improper 水培区北翼"
 	icon_state = "hydro_north"
 
 /area/ice_colony/surface/hydroponics/south
-	name = "\improper Hydroponics South Wing"
+	name = "\improper 水培区南翼"
 	icon_state = "hydro_south"
 
 /*
@@ -405,7 +405,7 @@
  */
 
 /area/ice_colony/surface/mining
-	name = "\improper Mining Outpost"
+	name = "\improper 采矿哨站"
 	icon_state = "mining_production"
 	minimap_color = MINIMAP_AREA_ENGI
 
@@ -414,12 +414,12 @@
  */
 
 /area/ice_colony/surface/substation
-	name = "\improper Surface Power Substation"
+	name = "\improper 地表变电站"
 	icon_state = "dk_yellow"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/ice_colony/surface/substation/smes
-	name = "\improper Surface Power Substation SMES"
+	name = "\improper 地表变电站超导磁储能装置"
 	icon_state = "substation"
 
 /*
@@ -427,7 +427,7 @@
  */
 
 /area/ice_colony/surface/requesitions
-	name = "\improper Surface Requesition Warehouse"
+	name = "\improper 地表军需仓库"
 	icon_state = "quartstorage"
 
 /*
@@ -435,20 +435,20 @@
  */
 
 /area/ice_colony/surface/research
-	name = "\improper Omicron Dome"
+	name = "\improper 奥密克戎穹顶"
 	icon_state = "toxlab"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/ice_colony/surface/research/tech_storage
-	name = "\improper Omicron Dome Technical Storage"
+	name = "\improper 奥密克戎穹顶技术器材储藏室"
 	icon_state = "primarystorage"
 
 /area/ice_colony/surface/research/field_gear
-	name = "\improper Omicron Dome Field Gear Storage"
+	name = "\improper 奥密克戎穹顶野外装备储藏室"
 	icon_state = "eva"
 
 /area/ice_colony/surface/research/temporary
-	name = "\improper Omicron Dome Temporary Storage"
+	name = "\improper 奥密克戎穹顶临时储藏室"
 	icon_state = "storage"
 
 /*
@@ -456,19 +456,19 @@
  */
 
 /area/ice_colony/surface/storage_unit
-	name = "\improper Storage Unit"
+	name = "\improper 储藏单元"
 	icon_state = "storage"
 
 /area/ice_colony/surface/storage_unit/research
-	name = "\improper Storage Unit Research"
+	name = "\improper 科研储藏单元"
 	icon_state = "storage"
 
 /area/ice_colony/surface/storage_unit/telecomms
-	name = "\improper Storage Unit T-Comms"
+	name = "\improper 电信储藏单元"
 	icon_state = "storage"
 
 /area/ice_colony/surface/storage_unit/power
-	name = "\improper Storage Unit Power"
+	name = "\improper 电力储藏单元"
 	icon_state = "storage"
 
 /*
@@ -476,7 +476,7 @@
  */
 
 /area/ice_colony/surface/tcomms
-	name = "\improper Colony Telecommunications"
+	name = "\improper 殖民地电信室"
 	icon_state = "tcomsatcham"
 
 /*
@@ -486,7 +486,7 @@
  */
 
 /area/ice_colony/underground
-	name = "\improper Ice Colony - Built Underground"
+	name = "\improper 冰原殖民地地下建筑区"
 	icon_state = "explored"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	ambience_exterior = AMBIENCE_ALMAYER
@@ -499,44 +499,44 @@
  */
 
 /area/ice_colony/underground/crew
-	name = "\improper Underground Crew Area"
+	name = "\improper 地下人员生活区"
 	icon_state = "crew_quarters"
 
 /area/ice_colony/underground/crew/dorm_l
-	name = "\improper West Dormitory"
+	name = "\improper 西部宿舍"
 	icon_state = "Sleep"
 
 /area/ice_colony/underground/crew/dorm_r
-	name = "\improper East Dormitory"
+	name = "\improper 东部宿舍"
 	icon_state = "Sleep"
 
 /area/ice_colony/underground/crew/canteen
-	name = "\improper Underground Canteen"
+	name = "\improper 地下食堂"
 	icon_state = "kitchen"
 
 /area/ice_colony/underground/crew/disposals
-	name = "\improper Underground Disposals"
+	name = "\improper 地下废物处理区"
 	icon_state = "disposal"
 
 /area/ice_colony/underground/crew/lavatory
-	name = "\improper Underground Lavatory"
+	name = "\improper 地下卫生间"
 	icon_state = "janitor"
 
 /area/ice_colony/underground/crew/leisure
-	name = "\improper Underground Leisure Area"
+	name = "\improper 地下休闲区"
 
 /area/ice_colony/underground/crew/bball
-	name = "\improper Underground Sports Center"
+	name = "\improper 地下体育中心"
 
 /area/ice_colony/underground/crew/chapel
-	name = "\improper Underground Chapel"
+	name = "\improper 地下礼拜堂"
 
 /area/ice_colony/underground/crew/library
-	name = "\improper Underground Library"
+	name = "\improper 地下图书馆"
 	icon_state = "library"
 
 /area/ice_colony/underground/crew/morgue
-	name = "\improper Underground Morgue"
+	name = "\improper 地下停尸房"
 	icon_state = "morgue"
 
 /*
@@ -544,24 +544,24 @@
  */
 
 /area/ice_colony/underground/command
-	name = "\improper Underground Colonial Administration"
+	name = "\improper 地下殖民地行政部"
 	icon_state = "bridge"
 	minimap_color = MINIMAP_AREA_COMMAND_CAVE
 
 /area/ice_colony/underground/command/checkpoint
-	name = "\improper Underground Colonial Administration Lobby"
+	name = "\improper 地下殖民地行政部大厅"
 	icon_state = "security"
 
 /area/ice_colony/underground/command/center
-	name = "\improper Underground Colonial Administration Command Center"
+	name = "\improper 地下殖民地行政部指挥中心"
 	icon_state = "head_quarters"
 
 /area/ice_colony/underground/command/pv1
-	name = "\improper Underground Colonial Administration Private Office"
+	name = "\improper 地下殖民地行政部私人办公室"
 	icon_state = "yellow"
 
 /area/ice_colony/underground/command/pv2
-	name = "\improper Underground Colonial Administration Private Office"
+	name = "\improper 地下殖民地行政部私人办公室"
 	icon_state = "green"
 
 /*
@@ -569,17 +569,17 @@
  */
 
 /area/ice_colony/underground/engineering
-	name = "\improper Underground Engineering"
+	name = "\improper 地下工程部"
 	icon_state = "engine_hallway"
 	minimap_color = MINIMAP_AREA_ENGI_CAVE
 
 /area/ice_colony/underground/engineering/locker
-	name = "\improper Underground Engineering Locker Room"
+	name = "\improper 地下工程部更衣室"
 	icon_state = "storage"
 
 
 /area/ice_colony/underground/engineering/substation
-	name = "\improper Underground Power Substation"
+	name = "\improper 地下变电站"
 	icon_state = "substation"
 
 /*
@@ -587,14 +587,14 @@
  */
 
 /area/ice_colony/underground/hallway
-	name = "\improper Underground Hallway"
+	name = "\improper 地下走廊"
 	icon_state = "hallC1"
 
 /area/ice_colony/underground/hallway/north_west
-	name = "\improper Underground Hallway NW"
+	name = "\improper 地下西北走廊"
 
 /area/ice_colony/underground/hallway/south_east
-	name = "\improper Underground Hallway SE"
+	name = "\improper 地下东南走廊"
 	icon_state = "hallF"
 
 /*
@@ -602,40 +602,40 @@
  */
 
 /area/ice_colony/underground/maintenance
-	name = "\improper Underground Maintenance"
+	name = "\improper 地下维护区"
 	icon_state = "maintcentral"
 	sound_environment = SOUND_ENVIRONMENT_AUDITORIUM
 	base_muffle = MUFFLE_MEDIUM
 
 /area/ice_colony/underground/maintenance/central
-	name = "\improper Underground Central Maintenance"
+	name = "\improper 地下中央维护区"
 
 /area/ice_colony/underground/maintenance/central/construction
-	name = "\improper Underground Central Maintenance Project"
+	name = "\improper 地下中央维护工程区"
 	icon_state = "construction"
 
 /area/ice_colony/underground/maintenance/security
-	name = "\improper Underground Security Maintenance"
+	name = "\improper 地下安保维护区"
 	icon_state = "maint_security_port"
 
 /area/ice_colony/underground/maintenance/engineering
-	name = "\improper Underground Engineering Maintenance"
+	name = "\improper 地下工程维护区"
 	icon_state = "maint_engineering"
 
 /area/ice_colony/underground/maintenance/research
-	name = "\improper Underground Research Maintenance"
+	name = "\improper 地下科研维护区"
 	icon_state = "maint_research_port"
 
 /area/ice_colony/underground/maintenance/east
-	name = "\improper Underground Eastern Maintenance"
+	name = "\improper 地下东部维护区"
 	icon_state = "fmaint"
 
 /area/ice_colony/underground/maintenance/south
-	name = "\improper Underground Southern Maintenance"
+	name = "\improper 地下南部维护区"
 	icon_state = "asmaint"
 
 /area/ice_colony/underground/maintenance/north
-	name = "\improper Underground Northern Maintenance"
+	name = "\improper 地下北部维护区"
 	icon_state = "asmaint"
 	is_resin_allowed = FALSE
 
@@ -644,27 +644,27 @@
  */
 
 /area/ice_colony/underground/medical
-	name = "\improper Underground Medical Laboratory"
+	name = "\improper 地下医疗实验室"
 	icon_state = "medbay"
 	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
 
 /area/ice_colony/underground/medical/lobby
-	name = "\improper Underground Medical Laboratory Lobby"
+	name = "\improper 地下医疗实验室大厅"
 
 /area/ice_colony/underground/medical/hallway
-	name = "\improper Underground Medical Laboratory Hallway"
+	name = "\improper 地下医疗实验室走廊"
 	icon_state = "medbay2"
 
 /area/ice_colony/underground/medical/storage
-	name = "\improper Underground Medical Laboratory Storage"
+	name = "\improper 地下医疗实验室储藏室"
 	icon_state = "storage"
 
 /area/ice_colony/underground/medical/treatment
-	name = "\improper Underground Medical Laboratory Treatment"
+	name = "\improper 地下医疗实验室治疗室"
 	icon_state = "medbay3"
 
 /area/ice_colony/underground/medical/or
-	name = "\improper Underground Medical Laboratory Operating Room"
+	name = "\improper 地下医疗实验室手术室"
 	icon_state = "surgery"
 
 /*
@@ -672,23 +672,23 @@
  */
 
 /area/ice_colony/underground/reception
-	name = "\improper Underground Reception"
+	name = "\improper 地下接待区"
 	icon_state = "showroom"
 
 /area/ice_colony/underground/reception/checkpoint_north
-	name = "\improper Underground Reception Northern Security Checkpoint"
+	name = "\improper 地下接待区北部安保检查站"
 	icon_state = "security"
 
 /area/ice_colony/underground/reception/checkpoint_south
-	name = "\improper Underground Reception Southern Security Checkpoint"
+	name = "\improper 地下接待区南部安保检查站"
 	icon_state = "security"
 
 /area/ice_colony/underground/reception/toilet_men
-	name = "\improper Underground Reception Men's Restroom"
+	name = "\improper 地下接待区男卫生间"
 	icon_state = "toilet"
 
 /area/ice_colony/underground/reception/toilet_women
-	name = "\improper Underground Reception Women's Restroom"
+	name = "\improper 地下接待区女卫生间"
 	icon_state = "toilet"
 
 /*
@@ -696,20 +696,20 @@
  */
 
 /area/ice_colony/underground/requesition
-	name = "\improper Underground Requesitions"
+	name = "\improper 地下军需部"
 	icon_state = "quart"
 	is_resin_allowed = FALSE
 
 /area/ice_colony/underground/requesition/lobby
-	name = "\improper Underground Requesitions Lobby"
+	name = "\improper 地下军需部大厅"
 	icon_state = "quartoffice"
 
 /area/ice_colony/underground/requesition/storage
-	name = "\improper Underground Requesitions Storage"
+	name = "\improper 地下军需部储藏室"
 	icon_state = "quartstorage"
 
 /area/ice_colony/underground/requesition/sec_storage
-	name = "\improper Underground Requesitions Secure Storage"
+	name = "\improper 地下军需部安全储藏室"
 	icon_state = "storage"
 	is_resin_allowed = TRUE
 
@@ -718,20 +718,20 @@
  */
 
 /area/ice_colony/underground/research
-	name = "\improper Theta-V Research Laboratory"
+	name = "\improper 西塔-V研究实验室"
 	icon_state = "anolab"
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/ice_colony/underground/research/work
-	name = "\improper Theta-V Research Laboratory Work Station"
+	name = "\improper 西塔-V研究实验室工作站"
 	icon_state = "toxmix"
 
 /area/ice_colony/underground/research/storage
-	name = "\improper Theta-V Research Laboratory Storage"
+	name = "\improper 西塔-V研究实验室储藏室"
 	icon_state = "storage"
 
 /area/ice_colony/underground/research/sample
-	name = "\improper Theta-V Research Laboratory Sample Isolation"
+	name = "\improper 西塔-V研究实验室样本隔离区"
 	icon_state = "anosample"
 
 /*
@@ -739,36 +739,36 @@
  */
 
 /area/ice_colony/underground/security
-	name = "\improper Underground Security Center"
+	name = "\improper 地下安保中心"
 	icon_state = "security"
 	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /area/ice_colony/underground/security/marshal
-	name = "\improper Marshal's Office"
+	name = "\improper 法警办公室"
 	icon_state = "sec_hos"
 
 /area/ice_colony/underground/security/detective
-	name = "\improper Detective's Office"
+	name = "\improper 侦探办公室"
 	icon_state = "detective"
 
 /area/ice_colony/underground/security/interrogation
-	name = "\improper Interrogation Office"
+	name = "\improper 审讯室"
 	icon_state = "interrogation"
 
 /area/ice_colony/underground/security/backroom
-	name = "\improper Underground Security Center Custodial Closet"
+	name = "\improper 地下安保中心清洁用品柜"
 	icon_state = "sec_backroom"
 
 /area/ice_colony/underground/security/hallway
-	name = "\improper Underground Security Center Hallway"
+	name = "\improper 地下安保中心走廊"
 	icon_state = "checkpoint1"
 
 /area/ice_colony/underground/security/armory
-	name = "\improper Underground Security Center Armory"
+	name = "\improper 地下安保中心军械库"
 	icon_state = "armory"
 
 /area/ice_colony/underground/security/brig
-	name = "\improper Underground Security Center Brig"
+	name = "\improper 地下安保中心禁闭室"
 	icon_state = "brig"
 
 /*
@@ -776,7 +776,7 @@
  */
 
 /area/ice_colony/underground/hangar
-	name = "\improper Underground Hangar"
+	name = "\improper 地下机库"
 	icon_state = "hangar"
 	ceiling = CEILING_NONE
 	is_resin_allowed = FALSE
@@ -786,92 +786,92 @@
  */
 
 /area/ice_colony/underground/storage
-	name = "\improper Underground Technical Storage"
+	name = "\improper 地下技术器材储藏室"
 	icon_state = "storage"
 
 /area/ice_colony/underground/storage/highsec
-	name = "\improper Underground High Security Technical Storage"
+	name = "\improper 地下高安保技术器材储藏室"
 	icon_state = "armory"
 
 //Elevator-------
 /area/shuttle/elevator1/ground
-	name = "\improper Elevator I"
+	name = "\improper I号电梯"
 	icon_state = "shuttlered"
 	requires_power = TRUE
 	unlimited_power = FALSE
 
 /area/shuttle/elevator1/underground
-	name = "\improper Elevator I"
+	name = "\improper I号电梯"
 	icon_state = "shuttle"
 	requires_power = TRUE
 	unlimited_power = FALSE
 
 /area/shuttle/elevator1/transit
-	name = "\improper Elevator I"
+	name = "\improper I号电梯"
 	icon_state = "shuttle2"
 	requires_power = TRUE
 	unlimited_power = FALSE
 
 /area/shuttle/elevator2/ground
-	name = "\improper Elevator II"
+	name = "\improper II号电梯"
 	icon_state = "shuttle"
 	requires_power = TRUE
 	unlimited_power = FALSE
 
 /area/shuttle/elevator2/underground
-	name = "\improper Elevator II"
+	name = "\improper II号电梯"
 	icon_state = "shuttle2"
 	requires_power = TRUE
 	unlimited_power = FALSE
 
 /area/shuttle/elevator2/transit
-	name = "\improper Elevator II"
+	name = "\improper II号电梯"
 	icon_state = "shuttlered"
 	requires_power = TRUE
 	unlimited_power = FALSE
 
 /area/shuttle/elevator3/ground
-	name = "\improper Elevator III"
+	name = "\improper III号电梯"
 	icon_state = "shuttle"
 	requires_power = TRUE
 	unlimited_power = FALSE
 
 /area/shuttle/elevator3/underground
-	name = "\improper Elevator III"
+	name = "\improper III号电梯"
 	icon_state = "shuttle2"
 	requires_power = TRUE
 	unlimited_power = FALSE
 
 /area/shuttle/elevator3/transit
-	name = "\improper Elevator III"
+	name = "\improper III号电梯"
 	icon_state = "shuttlered"
 	requires_power = TRUE
 	unlimited_power = FALSE
 
 /area/shuttle/elevator4/ground
-	name = "\improper Elevator IV"
+	name = "\improper IV号电梯"
 	icon_state = "shuttlered"
 	requires_power = TRUE
 	unlimited_power = FALSE
 
 /area/shuttle/elevator4/underground
-	name = "\improper Elevator IV"
+	name = "\improper IV号电梯"
 	icon_state = "shuttle"
 	requires_power = TRUE
 	unlimited_power = FALSE
 
 /area/shuttle/elevator4/transit
-	name = "\improper Elevator IV"
+	name = "\improper IV号电梯"
 	icon_state = "shuttle2"
 	requires_power = TRUE
 	unlimited_power = FALSE
 
 /area/ice_colony/landing/console
-	name = "\improper LZ1 'Lazarus'"
+	name = "\improper 1号着陆区“拉撒路”"
 	icon_state = "tcomsatcham"
 	requires_power = FALSE
 
 /area/ice_colony/landing/console2
-	name = "\improper LZ2 'Underground'"
+	name = "\improper 2号着陆区“地下”"
 	icon_state = "tcomsatcham"
 	requires_power = FALSE

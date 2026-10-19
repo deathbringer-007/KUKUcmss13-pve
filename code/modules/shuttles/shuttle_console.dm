@@ -133,34 +133,34 @@ GLOBAL_LIST_EMPTY(shuttle_controls)
 	switch (shuttle.process_state)
 		if(IDLE_STATE)
 			if (shuttle.in_use)
-				shuttle_status = "Busy."
+				shuttle_status = "忙碌中。"
 			else if (!shuttle.location)
-				shuttle_status = "Standing by at station."
+				shuttle_status = "在站内待命。"
 			else
-				shuttle_status = "Standing by at an off-site location."
+				shuttle_status = "在外部地点待命。"
 		if(WAIT_LAUNCH, FORCE_LAUNCH)
-			shuttle_status = "Shuttle has received command and will depart shortly."
+			shuttle_status = "穿梭机已收到指令，即将出发。"
 		if(WAIT_ARRIVE)
-			shuttle_status = "Proceeding to destination."
+			shuttle_status = "正在前往目的地。"
 		if(WAIT_FINISH)
-			shuttle_status = "Arriving at destination now."
+			shuttle_status = "正在抵达目的地。"
 
 	var/shuttle_status_message
 	if(shuttle.transit_gun_mission && (onboard || shuttle.moving_status != SHUTTLE_IDLE))
-		shuttle_status_message = "<b>Flight type:</b> <span style='font-weight: bold;color: #ff4444'>FLYBY. </span>"
+		shuttle_status_message = "<b>飞行类型：</b> <span style='font-weight: bold;color: #ff4444'>飞掠。 </span>"
 	else //console not onboard stays on TRANSPORT and only shows FIRE MISSION when shuttle has already launched
-		shuttle_status_message = "<b>Flight type:</b> <span style='font-weight: bold;color: #44ff44'>TRANSPORT. </span>"
+		shuttle_status_message = "<b>飞行类型：</b> <span style='font-weight: bold;color: #44ff44'>运输。 </span>"
 
 	if(shuttle.transit_optimized) //If the shuttle is recharging, just go ahead and tell them it's unoptimized (it will be once recharged)
 		if(shuttle.recharging && shuttle.moving_status == SHUTTLE_IDLE)
-			shuttle_status_message += "<br>No custom flight subroutines have been submitted for the upcoming flight" //FYI: Flight plans are reset once recharging ends
+			shuttle_status_message += "<br>尚未为即将开始的航程提交自定义飞行子程序" //FYI: Flight plans are reset once recharging ends
 		else
-			shuttle_status_message += "<br>Custom flight subroutines have been submitted for the [shuttle.moving_status == SHUTTLE_INTRANSIT ? "ongoing":"upcoming"] flight."
+			shuttle_status_message += "<br>已为[shuttle.moving_status == SHUTTLE_INTRANSIT ? "当前":"即将开始的"]航程提交自定义飞行子程序。"
 	else
 		if(shuttle.moving_status == SHUTTLE_INTRANSIT)
-			shuttle_status_message += "<br>Default failsafe flight subroutines are being used for the current flight."
+			shuttle_status_message += "<br>当前航程正在使用默认的安全飞行子程序。"
 		else
-			shuttle_status_message += "<br>No custom flight subroutines have been submitted for the upcoming flight"
+			shuttle_status_message += "<br>尚未为即将开始的航程提交自定义飞行子程序"
 
 	var/effective_recharge_time = shuttle.recharge_time
 	if(shuttle.transit_optimized)
@@ -204,7 +204,7 @@ GLOBAL_LIST_EMPTY(shuttle_controls)
 	ui = SSnano.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
-		ui = new(user, src, ui_key, shuttle.iselevator? "elevator_control_console.tmpl" : "shuttle_control_console.tmpl", shuttle.iselevator? "Elevator Control" : "Shuttle Control", 550, 500)
+		ui = new(user, src, ui_key, shuttle.iselevator? "elevator_control_console.tmpl" : "shuttle_control_console.tmpl", shuttle.iselevator? "电梯控制" : "穿梭机控制", 550, 500)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -260,11 +260,11 @@ GLOBAL_LIST_EMPTY(shuttle_controls)
 					return
 
 				// Allow the queen to choose the ship section to crash into
-				var/crash_target = tgui_input_list(usr, "选择要前往的舰船区域。","劫持", GLOB.almayer_ship_sections + list("Cancel"))
+				var/crash_target = localized_input_list(usr, "选择要前往的舰船区域。","劫持", GLOB.almayer_ship_sections + list("Cancel"))
 				if(crash_target == "Cancel")
 					return
 
-				var/i = tgui_alert(Q, "警告：穿梭机出发后将无法返回。仍要继续吗？", "警告", list("Yes", "No"))
+				var/i = localized_tgui_alert(Q, "警告：穿梭机出发后将无法返回。仍要继续吗？", "警告", list("Yes", "No"))
 				if(i != "Yes")
 					return
 
@@ -289,16 +289,16 @@ GLOBAL_LIST_EMPTY(shuttle_controls)
 					if(GLOB.round_statistics)
 						GLOB.round_statistics.track_hijack()
 
-					marine_announcement("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", "Dropship Alert", 'sound/AI/hijack.ogg', logging = ARES_LOG_SECURITY)
+					marine_announcement("检测到运输艇未经预定从行动区域起飞，疑似遭到劫持。正在关闭自动驾驶。", "运输艇警报", 'sound/AI/hijack.ogg', logging = ARES_LOG_SECURITY)
 					shuttle.alerts_allowed--
-					log_ares_flight("Unknown", "Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.")
+					log_ares_flight("Unknown", "检测到运输艇未经预定从行动区域起飞，疑似遭到劫持。正在关闭自动驾驶。")
 
 					to_chat(Q, SPAN_DANGER("[src]突然发出响亮警报！血肉宿主一定知道我们能够操作它了！"))
 					xeno_message(SPAN_XENOANNOUNCE("女皇已命令金属飞鸟飞往天空中的金属虫巢！欢呼吧！"),3,Q.hivenumber)
 					xeno_message(SPAN_XENOANNOUNCE("虫巢的力量澎湃！你现在会随时间持续获得地底幼体。"),2,Q.hivenumber)
 
 					// Notify the yautja too so they stop the hunt
-					message_all_yautja("The serpent Queen has commanded the landing shuttle to depart.")
+					message_all_yautja("巨蛇女皇已命令登陆穿梭机起飞。")
 					playsound(src, 'sound/misc/queen_alarm.ogg')
 
 					Q.count_niche_stat(STATISTICS_NICHE_FLIGHT)

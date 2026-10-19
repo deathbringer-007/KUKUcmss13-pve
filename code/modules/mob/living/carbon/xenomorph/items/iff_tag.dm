@@ -20,7 +20,7 @@
 		xeno.iff_tag = src
 		injector.drop_inv_item_to_loc(src, xeno)
 		if(xeno.hive.hivenumber == XENO_HIVE_RENEGADE) //it's important to know their IFF settings for renegade
-			to_chat(xeno, SPAN_NOTICE("设备植入甲壳后，你的本能发生了变化，驱使你保护以下对象：[english_list(faction_groups, "无")]。"))
+			to_chat(xeno, SPAN_NOTICE("设备植入甲壳后，你的本能发生了变化，驱使你保护以下对象：[get_factions_display(faction_groups)]。"))
 		return
 	return ..()
 
@@ -30,9 +30,15 @@
 		return
 	return ..()
 
+/obj/item/iff_tag/proc/get_factions_display(list/factions)
+	var/list/labels = list()
+	for(var/faction in factions)
+		labels += get_statistic_display_label(faction)
+	return length(labels) ? jointext(labels, "、") : "无"
+
 /obj/item/iff_tag/proc/handle_reprogramming(mob/living/carbon/human/programmer, mob/living/carbon/xenomorph/xeno)
 	var/list/id_faction_groups = programmer.get_id_faction_group()
-	var/option = tgui_alert(programmer, "异形标签当前的敌我识别阵营：[english_list(faction_groups, "无")]\n你的身份卡的敌我识别阵营：[english_list(id_faction_groups, "无")]", "异形敌我识别标签", list("覆盖", "添加", "清空"))
+	var/option = tgui_alert(programmer, "异形标签当前的敌我识别阵营：[get_factions_display(faction_groups)]\n你的身份卡的敌我识别阵营：[get_factions_display(id_faction_groups)]", "异形敌我识别标签", list("覆盖", "添加", "清空"))
 	if(!option)
 		return FALSE
 	if(xeno)
@@ -49,9 +55,9 @@
 			faction_groups |= id_faction_groups
 		if("清空")
 			faction_groups = list()
-	to_chat(programmer, SPAN_NOTICE("你已<b>[option]</b>敌我识别阵营数据，标签当前的识别阵营为：[english_list(faction_groups, "无")]。"))
+	to_chat(programmer, SPAN_NOTICE("你已<b>[option]</b>敌我识别阵营数据，标签当前的识别阵营为：[get_factions_display(faction_groups)]。"))
 	if(xeno?.hive.hivenumber == XENO_HIVE_RENEGADE) //it's important to know their IFF settings for renegade
-		to_chat(xeno, SPAN_NOTICE("你的本能发生了变化，似乎在驱使你保护以下对象：[english_list(faction_groups, "无")]。"))
+		to_chat(xeno, SPAN_NOTICE("你的本能发生了变化，似乎在驱使你保护以下对象：[get_factions_display(faction_groups)]。"))
 	return TRUE
 
 /obj/item/iff_tag/pmc_handler

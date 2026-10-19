@@ -322,7 +322,7 @@
 		to_chat(responder, SPAN_NOTICE("<b>NOTICE:</b> A mentor is already handling this thread!"))
 		return
 
-	var/msg = SPAN_MENTORSAY("<span class='prefix'>自动回复：</span><span class='message'>[choice]</span>")
+	var/msg = SPAN_MENTORSAY("<span class='prefix'>自动回复：</span><span class='message'>[localized_player_label(choice)]</span>")
 	switch(choice)
 		if("L: Discord")
 			msg += "你可以通过<a href='[CONFIG_GET(string/discordurl)]'>此链接</a>加入我们的Discord服务器！"

@@ -63,14 +63,14 @@
 			stat_gotten = death_stat_gotten
 			additional_message = "，随后死亡"
 			if(death_to_report.cause_name)
-				additional_message += "，死因为<b>[death_to_report.cause_name]</b>"
+				additional_message += "，死因为<b>[get_statistic_display_label(death_to_report.cause_name)]</b>"
 			additional_message += "。干得好！"
 	else if(death_to_report)
 		name = death_to_report.mob_name
 		stat_gotten = death_stat_gotten
 		additional_message = "，随后死亡"
 		if(death_to_report.cause_name)
-			additional_message += "，死因为<b>[death_to_report.cause_name]</b>"
+			additional_message += "，死因为<b>[get_statistic_display_label(death_to_report.cause_name)]</b>"
 		additional_message += "。干得好！"
 	else
 		name = mob_to_report.real_name

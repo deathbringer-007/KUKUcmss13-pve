@@ -56,14 +56,14 @@ and organ transplant code which may come in handy in future but haven't been edi
 
 	if(length(damaged_organs) > 1)
 		user.affected_message(target,
-			SPAN_NOTICE("你开始用[toolname]修复[target]的[surgery.affected_limb.display_name]内受损的器官。"),
-			SPAN_NOTICE("[user]开始用[toolname]修复你的[surgery.affected_limb.display_name]内受损的器官。"),
-			SPAN_NOTICE("[user]开始用[toolname]修复[target]的[surgery.affected_limb.display_name]内受损的器官。"))
+			SPAN_NOTICE("你开始用[toolname]修复[target]的[localized_player_label(surgery.affected_limb.display_name)]内受损的器官。"),
+			SPAN_NOTICE("[user]开始用[toolname]修复你的[localized_player_label(surgery.affected_limb.display_name)]内受损的器官。"),
+			SPAN_NOTICE("[user]开始用[toolname]修复[target]的[localized_player_label(surgery.affected_limb.display_name)]内受损的器官。"))
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("你开始用[toolname]修复[target]受损的[damaged_organs[1]]。"),
-			SPAN_NOTICE("[user]开始用[toolname]修复你受损的[damaged_organs[1]]。"),
-			SPAN_NOTICE("[user]开始用[toolname]修复[target]受损的[damaged_organs[1]]。"))
+			SPAN_NOTICE("你开始用[toolname]修复[target]受损的[localized_player_label(damaged_organs[1].name)]。"),
+			SPAN_NOTICE("[user]开始用[toolname]修复你受损的[localized_player_label(damaged_organs[1].name)]。"),
+			SPAN_NOTICE("[user]开始用[toolname]修复[target]受损的[localized_player_label(damaged_organs[1].name)]。"))
 
 	playsound(target.loc, 'sound/handling/bandage.ogg', 25, TRUE)
 	log_interact(user, target, "[key_name(user)] began mending organs in [key_name(target)]'s [surgery.affected_limb.display_name], beginning [surgery].")
@@ -73,9 +73,9 @@ and organ transplant code which may come in handy in future but haven't been edi
 	for(var/datum/internal_organ/I as anything in surgery.affected_limb.internal_organs)
 		if(I && I.damage > 0 && I.robotic == ORGAN_ROBOT)
 			user.affected_message(target,
-				SPAN_NOTICE("你修好了[target]受损的[I.name]。"),
-				SPAN_NOTICE("[user]修好了你受损的[I.name]。"),
-				SPAN_NOTICE("[user]修好了[target]受损的[I.name]。"))
+				SPAN_NOTICE("你修好了[target]受损的[localized_player_label(I.name)]。"),
+				SPAN_NOTICE("[user]修好了你受损的[localized_player_label(I.name)]。"),
+				SPAN_NOTICE("[user]修好了[target]受损的[localized_player_label(I.name)]。"))
 
 			user.count_niche_stat(STATISTICS_NICHE_SURGERY_ORGAN_REPAIR)
 			I.rejuvenate()
@@ -83,9 +83,9 @@ and organ transplant code which may come in handy in future but haven't been edi
 
 /datum/surgery_step/repair_robotic_organs/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_WARNING("你手一滑，挫伤了[target]的器官，还污染了[surgery.affected_limb.cavity]！"),
-		SPAN_WARNING("[user]手一滑，挫伤了你的器官，还污染了你的[surgery.affected_limb.cavity]！"),
-		SPAN_WARNING("[user]手一滑，挫伤了[target]的器官，还污染了[surgery.affected_limb.cavity]！"))
+		SPAN_WARNING("你手一滑，挫伤了[target]的器官，还污染了[localized_player_label(surgery.affected_limb.cavity)]！"),
+		SPAN_WARNING("[user]手一滑，挫伤了你的器官，还污染了你的[localized_player_label(surgery.affected_limb.cavity)]！"),
+		SPAN_WARNING("[user]手一滑，挫伤了[target]的器官，还污染了[localized_player_label(surgery.affected_limb.cavity)]！"))
 
 	var/dam_amt = 5
 	target.apply_damage(10, TOX)

@@ -13,7 +13,7 @@
 		return
 
 	if(target_xeno.hivenumber != user_xeno.hivenumber)
-		to_chat(user_xeno, SPAN_XENOWARNING("[target_xeno]不属于你的巢群！"))
+		to_chat(user_xeno, SPAN_XENOWARNING("[target_xeno]不属于你的虫巢！"))
 		return
 
 	if(target_xeno.is_ventcrawling)
@@ -42,7 +42,7 @@
 	if(length(target_xeno.caste.deevolves_to) == 1)
 		newcaste = target_xeno.caste.deevolves_to[1]
 	else if(length(target_xeno.caste.deevolves_to) > 1)
-		newcaste = tgui_input_list(user_xeno, "选择要将 [target_xeno] 退化成的品级。", "退化", target_xeno.caste.deevolves_to, theme="hive_status")
+		newcaste = localized_input_list(user_xeno, "选择要将 [target_xeno] 退化成的种姓。", "退化", target_xeno.caste.deevolves_to, theme="hive_status")
 
 	if(!newcaste)
 		return
@@ -54,7 +54,7 @@
 	if (user_xeno.observed_xeno != target_xeno)
 		return
 
-	var/confirm = tgui_alert(user_xeno, "确定要将 [target_xeno] 从 [target_xeno.caste.caste_type] 退化为 [newcaste] 吗？", "退化", list("Yes", "No"))
+	var/confirm = localized_tgui_alert(user_xeno, "确定要将 [target_xeno] 从 [get_statistic_display_label(target_xeno.caste.caste_type)] 退化为 [get_statistic_display_label(newcaste)] 吗？", "退化", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -66,7 +66,7 @@
 	if (!check_and_use_plasma_owner(plasma_cost))
 		return
 
-	to_chat(target_xeno, SPAN_XENOWARNING("女王正将你退化，理由如下：[reason]"))
+	to_chat(target_xeno, SPAN_XENOWARNING("女皇正将你退化，理由如下：[reason]"))
 
 	var/xeno_type
 	var/level_to_switch_to = target_xeno.get_vision_level()
@@ -141,7 +141,7 @@
 		return
 
 	if(X.action_busy) return
-	var/answer = alert(X, "确定要移除产卵器吗？（再次生长需要等待5分钟。）", , "Yes", "No")
+	var/answer = localized_native_alert(X, "确定要移除产卵器吗？（再次生长需要等待5分钟。）", , "Yes", "No")
 	if(answer != "Yes")
 		return
 	if(!X.check_state())
@@ -229,7 +229,7 @@
 				to_chat(X, SPAN_XENOWARNING("无法任命领袖。"))
 				return
 			to_chat(X, SPAN_XENONOTICE("你选定[T]为虫巢领袖。"))
-			to_chat(T, SPAN_XENOANNOUNCE("[X]任命你为虫巢领袖，其他异形必须听从你。你也将成为女王信息素的信标。"))
+			to_chat(T, SPAN_XENOANNOUNCE("[X]任命你为虫巢领袖，其他异形必须听从你。你也将成为女皇信息素的信标。"))
 		else
 			hive.remove_hive_leader(T)
 			to_chat(X, SPAN_XENONOTICE("你撤去了[T]的虫巢领袖职务。"))
@@ -343,7 +343,7 @@
 		to_chat(user_xeno, SPAN_XENOWARNING("至少需要[required_larva]只潜伏幼虫，才能献祭一只换取进化点数。"))
 		return
 
-	if(tgui_alert(user_xeno, "确定要牺牲一只幼体，为 [target_xeno] 提供 [evo_points_per_larva] 点进化点数吗？", "给予进化点数", list("Yes", "No")) != "Yes")
+	if(localized_tgui_alert(user_xeno, "确定要牺牲一只幼体，为 [target_xeno] 提供 [evo_points_per_larva] 点进化点数吗？", "给予进化点数", list("Yes", "No")) != "Yes")
 		return
 
 	if(!user_xeno.check_state() || !check_and_use_plasma_owner(plasma_cost) || target_xeno.health < 0 || user_xeno.hive.stored_larva < required_larva)
@@ -383,7 +383,7 @@
 			options += "Remove Personal Ally"
 			options += "Clear Personal Allies"
 
-	var/choice = localized_input_list(queen_manager, "管理巢群", "巢群管理",  options, theme="hive_status")
+	var/choice = localized_input_list(queen_manager, "管理虫巢", "虫巢管理",  options, theme="hive_status")
 	switch(choice)
 		if("Banish (500)")
 			banish()
@@ -498,7 +498,7 @@
 		to_chat(user_xeno, SPAN_WARNING("我们没有私人盟友。"))
 		return
 
-	if(tgui_alert(user_xeno, "确定要清除个人盟友吗？", "清除个人盟友", list("No", "Yes"), 10 SECONDS) != "Yes")
+	if(localized_tgui_alert(user_xeno, "确定要清除个人盟友吗？", "清除个人盟友", list("No", "Yes"), 10 SECONDS) != "Yes")
 		return
 
 	if(!length(hive.personal_allies))
@@ -545,11 +545,11 @@
 		to_chat(user_xeno, SPAN_XENOWARNING("有什么意义？它已经快死了。"))
 		return
 
-	var/confirm = tgui_alert(user_xeno, "确定要将 [target_xeno] 放逐出巢群吗？必须有充分理由才能这么做。（除非重新接纳，否则其死亡后30分钟内也无法重新加入巢群。）", "放逐", list("Yes", "No"))
+	var/confirm = localized_tgui_alert(user_xeno, "确定要将 [target_xeno] 放逐出虫巢吗？必须有充分理由才能这么做。（除非重新接纳，否则其死亡后30分钟内也无法重新加入虫巢。）", "放逐", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
-	var/reason = stripped_input(user_xeno, "请说明放逐 [target_xeno] 的理由。这将向整个巢群公告！")
+	var/reason = stripped_input(user_xeno, "请说明放逐 [target_xeno] 的理由。这将向整个虫巢公告！")
 	if(!reason)
 		to_chat(user_xeno, SPAN_XENOWARNING("你必须说明放逐[target_xeno]的理由。"))
 		return
@@ -613,7 +613,7 @@
 			to_chat(user_xeno, SPAN_XENOWARNING("这只异形没有被放逐！"))
 			return
 
-		var/confirm = tgui_alert(user_xeno, "确定要重新接纳 [target_xeno] 加入巢群吗？", "重新接纳", list("Yes", "No"))
+		var/confirm = localized_tgui_alert(user_xeno, "确定要重新接纳 [target_xeno] 加入虫巢吗？", "重新接纳", list("Yes", "No"))
 		if(confirm != "Yes")
 			return
 
@@ -669,9 +669,9 @@
 	var/area/AR = get_area(T)
 	if(!AR.is_resin_allowed)
 		if(AR.flags_area & AREA_UNWEEDABLE)
-			to_chat(X, SPAN_XENOWARNING("这片区域不适合建立巢群！"))
+			to_chat(X, SPAN_XENOWARNING("这片区域不适合建立虫巢！"))
 			return
-		to_chat(X, SPAN_XENOWARNING("现在还太早，无法将巢群扩展到这么远。"))
+		to_chat(X, SPAN_XENOWARNING("现在还太早，无法将虫巢扩展到这么远。"))
 		return
 
 	var/obj/effect/alien/weeds/located_weeds = locate() in T
@@ -743,7 +743,7 @@
 	for(var/i in transported_xenos)
 		UnregisterSignal(i, COMSIG_MOVABLE_PRE_MOVE)
 
-	to_chat(Q, SPAN_XENONOTICE("你召集虫巢前往女王信标！"))
+	to_chat(Q, SPAN_XENONOTICE("你召集虫巢前往女皇信标！"))
 	LAZYCLEARLIST(transported_xenos)
 	RegisterSignal(SSdcs, COMSIG_GLOB_XENO_SPAWN, PROC_REF(tunnel_xeno))
 	for(var/xeno in hive.totalXenos)
@@ -757,7 +757,7 @@
 /datum/action/xeno_action/activable/place_queen_beacon/proc/tunnel_xeno(datum/source, mob/living/carbon/xenomorph/X)
 	SIGNAL_HANDLER
 	if(X.z == owner.z)
-		to_chat(X, SPAN_XENONOTICE("你开始掘地前往女王信标！"))
+		to_chat(X, SPAN_XENONOTICE("你开始掘地前往女皇信标！"))
 		RegisterSignal(X, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(cancel_movement))
 		LAZYADD(transported_xenos, X)
 
@@ -765,7 +765,7 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_XENO_SPAWN)
 	for(var/xeno in transported_xenos)
 		var/mob/living/carbon/xenomorph/X = xeno
-		to_chat(X, SPAN_XENONOTICE("你掘地抵达了女王信标！"))
+		to_chat(X, SPAN_XENONOTICE("你掘地抵达了女皇信标！"))
 		UnregisterSignal(X, COMSIG_MOVABLE_PRE_MOVE)
 		if(target)
 			X.forceMove(target)
@@ -776,7 +776,7 @@
 
 /datum/action/xeno_action/activable/place_queen_beacon/proc/check_turf(mob/living/carbon/xenomorph/queen/Q, turf/T)
 	if(!T || T.density)
-		to_chat(Q, SPAN_XENOWARNING("这里无法放置女王信标。"))
+		to_chat(Q, SPAN_XENOWARNING("这里无法放置女皇信标。"))
 		return FALSE
 
 	if(T.z != Q.z)
@@ -785,7 +785,7 @@
 
 	var/obj/effect/alien/weeds/located_weeds = locate() in T
 	if(!located_weeds)
-		to_chat(Q, SPAN_XENOWARNING("女王信标必须放在菌毯上。"))
+		to_chat(Q, SPAN_XENOWARNING("女皇信标必须放在菌毯上。"))
 		return FALSE
 
 	return TRUE

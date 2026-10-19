@@ -66,16 +66,16 @@
 
 /datum/surgery_step/remove_bone_chips/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_WARNING("你手一滑，用[tool]划破了[target]的[surgery.affected_limb.display_name]内的一根血管！"),
-		SPAN_WARNING("[user]手一滑，用[tool]划破了你的[surgery.affected_limb.display_name]内的一根血管！"),
-		SPAN_WARNING("[user]手一滑，用[tool]划破了[target]的[surgery.affected_limb.display_name]内的一根血管！"))
+		SPAN_WARNING("你手一滑，用[tool]划破了[target]的[localized_player_label(surgery.affected_limb.display_name)]内的一根血管！"),
+		SPAN_WARNING("[user]手一滑，用[tool]划破了你的[localized_player_label(surgery.affected_limb.display_name)]内的一根血管！"),
+		SPAN_WARNING("[user]手一滑，用[tool]划破了[target]的[localized_player_label(surgery.affected_limb.display_name)]内的一根血管！"))
 
 	log_interact(user, target, "[key_name(user)] failed to take the bone chips out of [key_name(target)]'s brain with \the [tool], possibly aborting [surgery].")
 
 	var/datum/wound/internal_bleeding/I = new (0)
 	surgery.affected_limb.add_bleeding(I, TRUE)
 	surgery.affected_limb.wounds += I
-	target.custom_pain("你感觉[surgery.affected_limb.display_name]里面有什么东西裂开了！", 1)
+	target.custom_pain("你感觉[localized_player_label(surgery.affected_limb.display_name)]里面有什么东西裂开了！", 1)
 	return FALSE
 
 //------------------------------------

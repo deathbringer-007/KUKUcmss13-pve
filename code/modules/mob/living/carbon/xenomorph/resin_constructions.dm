@@ -108,27 +108,27 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 // Resin Walls
 /datum/resin_construction/resin_turf/wall
-	name = "Resin Wall"
+	name = "树脂墙"
 	desc = "能阻挡通行的树脂墙。"
-	construction_name = "树脂墙"
+	construction_name = "resin wall"
 	cost = XENO_RESIN_WALL_COST
 
 	build_path = /turf/closed/wall/resin
 	build_animation_effect = /obj/effect/resin_construct/weak
 
 /datum/resin_construction/resin_turf/wall/thick
-	name = "Thick Resin Wall"
+	name = "厚实树脂墙"
 	desc = "比普通树脂墙更坚固的厚实树脂墙。"
-	construction_name = "厚实树脂墙"
+	construction_name = "thick resin wall"
 	cost = XENO_RESIN_WALL_THICK_COST
 
 	build_path = /turf/closed/wall/resin/thick
 	build_animation_effect = /obj/effect/resin_construct/thick
 
 /datum/resin_construction/resin_turf/wall/queen
-	name = "Queen Resin Wall"
+	name = "女皇树脂墙"
 	desc = "能阻挡通行的树脂墙，建造类型取决于菌毯。"
-	construction_name = "女皇树脂墙"
+	construction_name = "queen resin wall"
 
 	cost = XENO_RESIN_WALL_QUEEN_COST
 
@@ -138,9 +138,9 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 	build_animation_effect = /obj/effect/resin_construct/weak
 
 /datum/resin_construction/resin_turf/wall/reflective
-	name = "Reflective Resin Wall"
+	name = "反射树脂墙"
 	desc = "能将所有弹丸反射回射手的反射树脂墙。"
-	construction_name = "反射树脂墙"
+	construction_name = "reflective resin wall"
 	cost = XENO_RESIN_WALL_REFLECT_COST
 	max_per_xeno = 5
 
@@ -148,18 +148,18 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 // Resin Membrane
 /datum/resin_construction/resin_turf/membrane
-	name = "Resin Membrane"
+	name = "树脂膜"
 	desc = "能透过它观察另一侧的树脂膜。"
-	construction_name = "树脂膜"
+	construction_name = "resin membrane"
 	cost = XENO_RESIN_MEMBRANE_COST
 
 	build_path = /turf/closed/wall/resin/membrane
 	build_animation_effect = /obj/effect/resin_construct/transparent/weak
 
 /datum/resin_construction/resin_turf/membrane/queen
-	name = "Queen Resin Membrane"
+	name = "女皇树脂膜"
 	desc = "能透过它观察另一侧的树脂膜，建造类型取决于菌毯。"
-	construction_name = "女皇树脂膜"
+	construction_name = "queen resin membrane"
 	cost = XENO_RESIN_MEMBRANE_QUEEN_COST
 
 	build_path = /turf/closed/wall/resin/membrane
@@ -168,9 +168,9 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 	build_animation_effect = /obj/effect/resin_construct/transparent/weak
 
 /datum/resin_construction/resin_turf/membrane/thick
-	name = "Thick Resin Membrane"
+	name = "厚实树脂膜"
 	desc = "坚固且能透过它观察另一侧的树脂膜。"
-	construction_name = "厚实树脂膜"
+	construction_name = "thick resin membrane"
 	cost = XENO_RESIN_MEMBRANE_THICK_COST
 
 	build_path = /turf/closed/wall/resin/membrane/thick
@@ -178,9 +178,9 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 // Resin Doors
 /datum/resin_construction/resin_obj/door
-	name = "Resin Door"
+	name = "树脂门"
 	desc = "只有姐妹们才能通过的树脂门。"
-	construction_name = "树脂门"
+	construction_name = "resin door"
 	cost = XENO_RESIN_DOOR_COST
 
 	build_path = /obj/structure/mineral_door/resin
@@ -208,9 +208,9 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 	return TRUE
 
 /datum/resin_construction/resin_obj/door/queen
-	name = "Queen Resin Door"
+	name = "女皇树脂门"
 	desc = "只有姐妹们才能通过的树脂门，建造类型取决于菌毯。"
-	construction_name = "女皇树脂门"
+	construction_name = "queen resin door"
 	cost = XENO_RESIN_DOOR_QUEEN_COST
 
 	build_path = /obj/structure/mineral_door/resin
@@ -219,9 +219,9 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 	build_animation_effect = /obj/effect/resin_construct/door
 
 /datum/resin_construction/resin_obj/door/thick
-	name = "Thick Resin Door"
+	name = "厚实树脂门"
 	desc = "更耐用的厚实树脂门，只有姐妹们才能通过。"
-	construction_name = "厚实树脂门"
+	construction_name = "thick resin door"
 	cost = XENO_RESIN_DOOR_THICK_COST
 
 	build_path = /obj/structure/mineral_door/resin/thick
@@ -229,9 +229,9 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 // Sticky Resin
 /datum/resin_construction/resin_obj/sticky_resin
-	name = "Sticky Resin"
+	name = "黏性树脂"
 	desc = "高个宿主走过时会被减速的树脂。"
-	construction_name = "黏性树脂"
+	construction_name = "sticky resin"
 	cost = XENO_RESIN_STICKY_COST
 	build_time = 1 SECONDS
 
@@ -239,27 +239,27 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 
 // Fast Resin
 /datum/resin_construction/resin_obj/fast_resin
-	name = "Fast Resin"
+	name = "加速树脂"
 	desc = "姐妹们走过时会加速的树脂。"
-	construction_name = "加速树脂"
+	construction_name = "fast resin"
 	cost = XENO_RESIN_FAST_COST
 	build_time = 1 SECONDS
 
 	build_path = /obj/effect/alien/resin/sticky/fast
 
 /datum/resin_construction/resin_obj/resin_spike
-	name = "Resin Spike"
+	name = "树脂尖刺"
 	desc = "高个宿主走过时会受到伤害的树脂。"
-	construction_name = "树脂尖刺"
+	construction_name = "resin spike"
 	cost = XENO_RESIN_SPIKE_COST
 	max_per_xeno = 15
 
 	build_path = /obj/effect/alien/resin/spike
 
 /datum/resin_construction/resin_obj/acid_pillar
-	name = "Acid Pillar"
+	name = "酸液柱"
 	desc = "高大的绿色柱体，能同时向多个目标发射弱酸液。"
-	construction_name = "酸液柱"
+	construction_name = "acid pillar"
 	cost = XENO_RESIN_ACID_PILLAR_COST
 	max_per_xeno = 1
 
@@ -271,9 +271,9 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 	range_between_constructions = 5
 
 /datum/resin_construction/resin_obj/shield_dispenser
-	name = "Shield Pillar"
+	name = "护盾柱"
 	desc = "高大而奇异的柱体，能为与其互动的成员提供护盾，冷却时间较长。"
-	construction_name = "护盾柱"
+	construction_name = "shield pillar"
 	cost = XENO_RESIN_SHIELD_PILLAR_COST
 	max_per_xeno = 1
 
@@ -286,9 +286,9 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 	range_between_constructions = initial(SP.range)*2
 
 /datum/resin_construction/resin_obj/grenade
-	name = "Resin Acid Grenade"
+	name = "树脂酸液手榴弹"
 	desc = "一枚酸液手榴弹。"
-	construction_name = "酸液手榴弹"
+	construction_name = "acid grenade"
 	cost = XENO_RESIN_ACID_GRENADE_COST
 	max_per_xeno = 1
 
@@ -298,49 +298,49 @@ GLOBAL_VAR_INIT(resin_lz_allowed, FALSE)
 //CHRISTMAS
 
 /datum/resin_construction/resin_obj/festivizer
-	name = "Christmas Festivizer"
+	name = "圣诞气氛棒"
 	desc = "圣诞快乐！用它敲打任何东西，营造最欢乐的节日气氛！"
-	construction_name = "圣诞气氛棒"
+	construction_name = "christmas festivizer"
 	max_per_xeno = 5
 	build_path = /obj/item/toy/festivizer/xeno
 	build_time = 2 SECONDS
 
 /datum/resin_construction/resin_obj/movable
-	construction_name = "树脂墙"
+	construction_name = "resin wall"
 
 	max_per_xeno = 7
 	cost = XENO_RESIN_WALL_MOVABLE_COST
 	build_time = 3 SECONDS
 
 /datum/resin_construction/resin_obj/movable/wall
-	name = "Movable Resin Wall"
+	name = "可移动树脂墙"
 	desc = "只要有菌毯，就能移到任意相邻地格上的树脂墙。"
-	construction_name = "树脂墙"
+	construction_name = "resin wall"
 	build_path = /obj/structure/alien/movable_wall
 
 /datum/resin_construction/resin_obj/movable/membrane
-	name = "Movable Resin Membrane"
+	name = "可移动树脂膜"
 	desc = "只要有菌毯，就能移到任意相邻地格上的树脂膜。"
-	construction_name = "树脂墙"
+	construction_name = "resin wall"
 	build_path = /obj/structure/alien/movable_wall/membrane
 
 /datum/resin_construction/resin_obj/movable/thick_wall
-	name = "Movable Thick Resin Wall"
+	name = "可移动厚实树脂墙"
 	desc = "只要有菌毯，就能移到任意相邻地格上的厚实树脂墙。"
-	construction_name = "厚实树脂墙"
+	construction_name = "thick resin wall"
 	build_path = /obj/structure/alien/movable_wall/thick
 
 /datum/resin_construction/resin_obj/movable/thick_membrane
-	name = "Movable Thick Membrane Wall"
+	name = "可移动厚实树脂膜"
 	desc = "只要有菌毯，就能移到任意相邻地格上的厚实树脂膜。"
-	construction_name = "厚实树脂膜"
+	construction_name = "thick resin membrane"
 	build_path = /obj/structure/alien/movable_wall/membrane/thick
 
 // Remote Weed Nodes for originally coded for Resin Whisperers
 /datum/resin_construction/resin_obj/resin_node
-	name = "Weed Node"
+	name = "菌毯节点"
 	desc = "引导能量，扩散我们的影响。"
-	construction_name = "菌毯节点"
+	construction_name = "weed node"
 	cost = (XENO_RESIN_MEMBRANE_THICK_COST * 2) // 3x the cost of a thick membrane. At the time of coding that is 95*2 = 190
 
 	build_path = /obj/effect/alien/weeds/node

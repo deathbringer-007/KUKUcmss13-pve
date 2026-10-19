@@ -56,26 +56,26 @@
 
 /datum/surgery_step/create_cavity/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("你开始用[tool]在[target]的[surgery.affected_limb.cavity]壁上开辟一个小腔隙。"),
-		SPAN_NOTICE("[user]开始用[tool]在你的[surgery.affected_limb.cavity]壁上开辟一个小腔隙。"),
-		SPAN_NOTICE("[user]开始用[tool]在[target]的[surgery.affected_limb.cavity]壁上开辟一个小腔隙。"))
+		SPAN_NOTICE("你开始用[tool]在[target]的[localized_player_label(surgery.affected_limb.cavity)]壁上开辟一个小腔隙。"),
+		SPAN_NOTICE("[user]开始用[tool]在你的[localized_player_label(surgery.affected_limb.cavity)]壁上开辟一个小腔隙。"),
+		SPAN_NOTICE("[user]开始用[tool]在[target]的[localized_player_label(surgery.affected_limb.cavity)]壁上开辟一个小腔隙。"))
 
-	target.custom_pain("[user]正在你的[surgery.affected_limb.display_name]里钻孔！", 1)
+	target.custom_pain("[user]正在你的[localized_player_label(surgery.affected_limb.display_name)]里钻孔！", 1)
 	log_interact(user, target, "[key_name(user)] started to make some space in [key_name(target)]'s [surgery.affected_limb.cavity] with \the [tool].")
 
 /datum/surgery_step/create_cavity/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("你在[target]的[surgery.affected_limb.cavity]内开辟了一个植入腔。"),
-		SPAN_NOTICE("[user]在你的[surgery.affected_limb.cavity]内开辟了一个植入腔。"),
-		SPAN_NOTICE("[user]在[target]的[surgery.affected_limb.cavity]内开辟了一个植入腔。"))
+		SPAN_NOTICE("你在[target]的[localized_player_label(surgery.affected_limb.cavity)]内开辟了一个植入腔。"),
+		SPAN_NOTICE("[user]在你的[localized_player_label(surgery.affected_limb.cavity)]内开辟了一个植入腔。"),
+		SPAN_NOTICE("[user]在[target]的[localized_player_label(surgery.affected_limb.cavity)]内开辟了一个植入腔。"))
 
 	log_interact(user, target, "[key_name(user)] made some space in [key_name(target)]'s [surgery.affected_limb.cavity] with \the [tool], beginning [surgery].")
 
 /datum/surgery_step/create_cavity/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_WARNING("你的手一滑，用[tool]擦伤了[target]的[surgery.affected_limb.cavity]内的组织！"),
-		SPAN_WARNING("[user]的手一滑，用[tool]擦伤了你的[surgery.affected_limb.cavity]内的组织！"),
-		SPAN_WARNING("[user]的手一滑，用[tool]擦伤了[target]的[surgery.affected_limb.cavity]内的组织！"))
+		SPAN_WARNING("你的手一滑，用[tool]擦伤了[target]的[localized_player_label(surgery.affected_limb.cavity)]内的组织！"),
+		SPAN_WARNING("[user]的手一滑，用[tool]擦伤了你的[localized_player_label(surgery.affected_limb.cavity)]内的组织！"),
+		SPAN_WARNING("[user]的手一滑，用[tool]擦伤了[target]的[localized_player_label(surgery.affected_limb.cavity)]内的组织！"))
 
 	target.apply_damage(15, BRUTE, target_zone)
 	log_interact(user, target, "[key_name(user)] failed to make some space in [key_name(target)]'s [surgery.affected_limb.cavity] with \the [tool], aborting [surgery].")
@@ -109,23 +109,23 @@
 		if(HAS_TRAIT(tool, TRAIT_ITEM_NOT_IMPLANTABLE))
 			return FALSE
 		if(tool.w_class > get_max_wclass(surgery))
-			to_chat(user, SPAN_WARNING("[tool]太大，无法植入[surgery.target]的[surgery.affected_limb.cavity]！"))
+			to_chat(user, SPAN_WARNING("[tool]太大，无法植入[surgery.target]的[localized_player_label(surgery.affected_limb.cavity)]！"))
 			return FALSE
 
 /datum/surgery_step/place_item/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("你开始将[tool]植入[target]的[surgery.affected_limb.cavity]。"),
-		SPAN_NOTICE("[user]开始将[tool]植入你的[surgery.affected_limb.cavity]。"),
-		SPAN_NOTICE("[user]开始将[tool]植入[target]的[surgery.affected_limb.cavity]。"))
+		SPAN_NOTICE("你开始将[tool]植入[target]的[localized_player_label(surgery.affected_limb.cavity)]。"),
+		SPAN_NOTICE("[user]开始将[tool]植入你的[localized_player_label(surgery.affected_limb.cavity)]。"),
+		SPAN_NOTICE("[user]开始将[tool]植入[target]的[localized_player_label(surgery.affected_limb.cavity)]。"))
 
-	target.custom_pain("你的[surgery.affected_limb.cavity]传来地狱般的剧痛！", 1)
+	target.custom_pain("你的[localized_player_label(surgery.affected_limb.cavity)]传来地狱般的剧痛！", 1)
 	log_interact(user, target, "[key_name(user)] started to put \the [tool] inside [key_name(target)]'s [surgery.affected_limb.cavity].")
 
 /datum/surgery_step/place_item/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("你将[tool]植入了[target]的[surgery.affected_limb.cavity]。"),
-		SPAN_NOTICE("[user]将[tool]植入了你的[surgery.affected_limb.cavity]。"),
-		SPAN_NOTICE("[user]将[tool]植入了[target]的[surgery.affected_limb.cavity]。"))
+		SPAN_NOTICE("你将[tool]植入了[target]的[localized_player_label(surgery.affected_limb.cavity)]。"),
+		SPAN_NOTICE("[user]将[tool]植入了你的[localized_player_label(surgery.affected_limb.cavity)]。"),
+		SPAN_NOTICE("[user]将[tool]植入了[target]的[localized_player_label(surgery.affected_limb.cavity)]。"))
 
 	log_interact(user, target, "[key_name(user)] put \the [tool] inside [key_name(target)]'s [surgery.affected_limb.cavity].")
 
@@ -136,16 +136,16 @@
 		var/datum/wound/internal_bleeding/I = new (0)
 		surgery.affected_limb.add_bleeding(I, TRUE)
 		surgery.affected_limb.wounds += I
-		surgery.affected_limb.owner.custom_pain("你感觉[surgery.affected_limb.display_name]里有什么东西撕裂了！", 1)
+		surgery.affected_limb.owner.custom_pain("你感觉[localized_player_label(surgery.affected_limb.display_name)]里有什么东西撕裂了！", 1)
 
 	user.drop_inv_item_to_loc(tool, target)
 	surgery.affected_limb.hidden = tool
 
 /datum/surgery_step/place_item/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_WARNING("你的手一滑，用[tool]擦伤了[target]的[surgery.affected_limb.cavity]内的组织！"),
-		SPAN_WARNING("[user]的手一滑，用[tool]擦伤了你的[surgery.affected_limb.cavity]内的组织！"),
-		SPAN_WARNING("[user]的手一滑，用[tool]擦伤了[target]的[surgery.affected_limb.cavity]内的组织！"))
+		SPAN_WARNING("你的手一滑，用[tool]擦伤了[target]的[localized_player_label(surgery.affected_limb.cavity)]内的组织！"),
+		SPAN_WARNING("[user]的手一滑，用[tool]擦伤了你的[localized_player_label(surgery.affected_limb.cavity)]内的组织！"),
+		SPAN_WARNING("[user]的手一滑，用[tool]擦伤了[target]的[localized_player_label(surgery.affected_limb.cavity)]内的组织！"))
 
 	target.apply_damage(10, BRUTE, target_zone)
 	log_interact(user, target, "[key_name(user)] failed to implant \the [tool] into [key_name(target)]'s [surgery.affected_limb.cavity].")
@@ -165,24 +165,24 @@
 /datum/surgery_step/remove_implant/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(surgery.affected_limb.hidden) //Perhaps it self-deleted in the meantime.
 		user.affected_message(target,
-			SPAN_NOTICE("你试图用[tool]夹住植入[target]的[surgery.affected_limb.cavity]内的[surgery.affected_limb.hidden]。"),
-			SPAN_NOTICE("[user]试图用[tool]夹住植入你的[surgery.affected_limb.cavity]内的[surgery.affected_limb.hidden]。"),
-			SPAN_NOTICE("[user]试图用[tool]夹住植入[target]的[surgery.affected_limb.cavity]内的[surgery.affected_limb.hidden]。"))
+			SPAN_NOTICE("你试图用[tool]夹住植入[target]的[localized_player_label(surgery.affected_limb.cavity)]内的[surgery.affected_limb.hidden]。"),
+			SPAN_NOTICE("[user]试图用[tool]夹住植入你的[localized_player_label(surgery.affected_limb.cavity)]内的[surgery.affected_limb.hidden]。"),
+			SPAN_NOTICE("[user]试图用[tool]夹住植入[target]的[localized_player_label(surgery.affected_limb.cavity)]内的[surgery.affected_limb.hidden]。"))
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("你开始用[tool]在[target]的[surgery.affected_limb.cavity]内探查。"),
-			SPAN_NOTICE("[user]开始用[tool]在你的[surgery.affected_limb.cavity]内探查。"),
-			SPAN_NOTICE("[user]开始用[tool]在[target]的[surgery.affected_limb.cavity]内探查。"))
+			SPAN_NOTICE("你开始用[tool]在[target]的[localized_player_label(surgery.affected_limb.cavity)]内探查。"),
+			SPAN_NOTICE("[user]开始用[tool]在你的[localized_player_label(surgery.affected_limb.cavity)]内探查。"),
+			SPAN_NOTICE("[user]开始用[tool]在[target]的[localized_player_label(surgery.affected_limb.cavity)]内探查。"))
 
-	target.custom_pain("你的[surgery.affected_limb.cavity]内不断受到夹扯，疼痛难忍！", 1)
+	target.custom_pain("你的[localized_player_label(surgery.affected_limb.cavity)]内不断受到夹扯，疼痛难忍！", 1)
 	log_interact(user, target, "[key_name(user)] started poking around inside the incision on [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool].")
 
 /datum/surgery_step/remove_implant/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(surgery.affected_limb.hidden)
 		user.affected_message(target,
-			SPAN_NOTICE("你从[target]的[surgery.affected_limb.cavity]内取出了[surgery.affected_limb.hidden]。"),
-			SPAN_NOTICE("[user]从你的[surgery.affected_limb.cavity]内取出了[surgery.affected_limb.hidden]。"),
-			SPAN_NOTICE("[user]从[target]的[surgery.affected_limb.cavity]内取出了[surgery.affected_limb.hidden]。"))
+			SPAN_NOTICE("你从[target]的[localized_player_label(surgery.affected_limb.cavity)]内取出了[surgery.affected_limb.hidden]。"),
+			SPAN_NOTICE("[user]从你的[localized_player_label(surgery.affected_limb.cavity)]内取出了[surgery.affected_limb.hidden]。"),
+			SPAN_NOTICE("[user]从[target]的[localized_player_label(surgery.affected_limb.cavity)]内取出了[surgery.affected_limb.hidden]。"))
 
 		log_interact(user, target, "[key_name(user)] removed something from [key_name(target)]'s [surgery.affected_limb.cavity] with \the [tool].")
 
@@ -192,17 +192,17 @@
 		surgery.affected_limb.hidden = null
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("你在[target]的[surgery.affected_limb.cavity]内没有找到任何东西。"),
-			SPAN_NOTICE("[user]在你的[surgery.affected_limb.cavity]内没有找到任何东西。"),
-			SPAN_NOTICE("[user]在[target]的[surgery.affected_limb.cavity]内没有找到任何东西。"))
+			SPAN_NOTICE("你在[target]的[localized_player_label(surgery.affected_limb.cavity)]内没有找到任何东西。"),
+			SPAN_NOTICE("[user]在你的[localized_player_label(surgery.affected_limb.cavity)]内没有找到任何东西。"),
+			SPAN_NOTICE("[user]在[target]的[localized_player_label(surgery.affected_limb.cavity)]内没有找到任何东西。"))
 
 		log_interact(user, target, "[key_name(user)] found nothing inside [key_name(target)]'s [surgery.affected_limb.cavity] with \the [tool].")
 
 /datum/surgery_step/remove_implant/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_WARNING("你的手一滑，用[tool]擦伤了[target]的[surgery.affected_limb.cavity]内的组织！"),
-		SPAN_WARNING("[user]的手一滑，用[tool]擦伤了你的[surgery.affected_limb.cavity]内的组织！"),
-		SPAN_WARNING("[user]的手一滑，用[tool]擦伤了[target]的[surgery.affected_limb.cavity]内的组织！"))
+		SPAN_WARNING("你的手一滑，用[tool]擦伤了[target]的[localized_player_label(surgery.affected_limb.cavity)]内的组织！"),
+		SPAN_WARNING("[user]的手一滑，用[tool]擦伤了你的[localized_player_label(surgery.affected_limb.cavity)]内的组织！"),
+		SPAN_WARNING("[user]的手一滑，用[tool]擦伤了[target]的[localized_player_label(surgery.affected_limb.cavity)]内的组织！"))
 
 	log_interact(user, target, "[key_name(user)] damaged the inside of [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool].")
 
@@ -218,26 +218,26 @@
 
 /datum/surgery_step/cauterize/close_cavity/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("你开始用[tool]封闭[target]的[surgery.affected_limb.cavity]内的植入腔。"),
-		SPAN_NOTICE("[user]开始用[tool]封闭你的[surgery.affected_limb.cavity]内的植入腔。"),
-		SPAN_NOTICE("[user]开始用[tool]封闭[target]的[surgery.affected_limb.cavity]内的植入腔。"))
+		SPAN_NOTICE("你开始用[tool]封闭[target]的[localized_player_label(surgery.affected_limb.cavity)]内的植入腔。"),
+		SPAN_NOTICE("[user]开始用[tool]封闭你的[localized_player_label(surgery.affected_limb.cavity)]内的植入腔。"),
+		SPAN_NOTICE("[user]开始用[tool]封闭[target]的[localized_player_label(surgery.affected_limb.cavity)]内的植入腔。"))
 
-	target.custom_pain("你的[surgery.affected_limb.cavity]像着火一样疼！", 1)
+	target.custom_pain("你的[localized_player_label(surgery.affected_limb.cavity)]像着火一样疼！", 1)
 	log_interact(user, target, "[key_name(user)] started to mend [key_name(target)]'s [surgery.affected_limb.cavity] wall with \the [tool].")
 
 /datum/surgery_step/cauterize/close_cavity/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("你修复了[target]的[surgery.affected_limb.cavity]壁。"),
-		SPAN_NOTICE("[user]修复了你的[surgery.affected_limb.cavity]壁。"),
-		SPAN_NOTICE("[user]修复了[target]的[surgery.affected_limb.cavity]壁。"))
+		SPAN_NOTICE("你修复了[target]的[localized_player_label(surgery.affected_limb.cavity)]壁。"),
+		SPAN_NOTICE("[user]修复了你的[localized_player_label(surgery.affected_limb.cavity)]壁。"),
+		SPAN_NOTICE("[user]修复了[target]的[localized_player_label(surgery.affected_limb.cavity)]壁。"))
 
 	log_interact(user, target, "[key_name(user)] mended [key_name(target)]'s [surgery.affected_limb.cavity] wall with \the [tool], ending [surgery].")
 
 /datum/surgery_step/cauterize/close_cavity/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_WARNING("你的手一滑，用[tool]灼伤了[target]的[surgery.affected_limb.cavity]壁！"),
-		SPAN_WARNING("[user]的手一滑，用[tool]灼伤了你的[surgery.affected_limb.cavity]壁！"),
-		SPAN_WARNING("[user]的手一滑，用[tool]灼伤了[target]的[surgery.affected_limb.cavity]壁！"))
+		SPAN_WARNING("你的手一滑，用[tool]灼伤了[target]的[localized_player_label(surgery.affected_limb.cavity)]壁！"),
+		SPAN_WARNING("[user]的手一滑，用[tool]灼伤了你的[localized_player_label(surgery.affected_limb.cavity)]壁！"),
+		SPAN_WARNING("[user]的手一滑，用[tool]灼伤了[target]的[localized_player_label(surgery.affected_limb.cavity)]壁！"))
 
 	log_interact(user, target, "[key_name(user)] failed to mend [key_name(target)]'s [surgery.affected_limb.cavity] wall with \the [tool].")
 
@@ -272,11 +272,11 @@
 
 /datum/surgery_step/remove_embedded/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("你开始用[tool]在[target]的[surgery.affected_limb.display_name]切口内探查。"),
-		SPAN_NOTICE("[user]开始用[tool]在你的[surgery.affected_limb.display_name]切口内探查。"),
-		SPAN_NOTICE("[user]开始用[tool]在[target]的[surgery.affected_limb.display_name]切口内探查。"))
+		SPAN_NOTICE("你开始用[tool]在[target]的[localized_player_label(surgery.affected_limb.display_name)]切口内探查。"),
+		SPAN_NOTICE("[user]开始用[tool]在你的[localized_player_label(surgery.affected_limb.display_name)]切口内探查。"),
+		SPAN_NOTICE("[user]开始用[tool]在[target]的[localized_player_label(surgery.affected_limb.display_name)]切口内探查。"))
 
-	target.custom_pain("你的[surgery.affected_limb.display_name]内被不断戳探、撬动，令人难受。")
+	target.custom_pain("你的[localized_player_label(surgery.affected_limb.display_name)]内被不断戳探、撬动，令人难受。")
 	log_interact(user, target, "[key_name(user)] started poking around inside the incision on [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool].")
 
 /datum/surgery_step/remove_embedded/success(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
@@ -287,9 +287,9 @@
 
 		if(length(shrapnel))
 			user.affected_message(target,
-				SPAN_NOTICE("你从[target]的[surgery.affected_limb.display_name]内取出了弹片。"),
-				SPAN_NOTICE("[user]从你的[surgery.affected_limb.display_name]内取出了弹片。"),
-				SPAN_NOTICE("[user]从[target]的[surgery.affected_limb.display_name]内取出了弹片。"))
+				SPAN_NOTICE("你从[target]的[localized_player_label(surgery.affected_limb.display_name)]内取出了弹片。"),
+				SPAN_NOTICE("[user]从你的[localized_player_label(surgery.affected_limb.display_name)]内取出了弹片。"),
+				SPAN_NOTICE("[user]从[target]的[localized_player_label(surgery.affected_limb.display_name)]内取出了弹片。"))
 			for(var/obj/item/shard/S as anything in shrapnel)
 				S.forceMove(target.loc)
 				surgery.affected_limb.implants -= S
@@ -304,9 +304,9 @@
 			var/obj/item/obj = surgery.affected_limb.implants[1]
 
 			user.affected_message(target,
-				SPAN_NOTICE("你从[target]的[surgery.affected_limb.display_name]内取出了[obj]。"),
-				SPAN_NOTICE("[user]从你的[surgery.affected_limb.display_name]内取出了[obj]。"),
-				SPAN_NOTICE("[user]从[target]的[surgery.affected_limb.display_name]内取出了[obj]。"))
+				SPAN_NOTICE("你从[target]的[localized_player_label(surgery.affected_limb.display_name)]内取出了[obj]。"),
+				SPAN_NOTICE("[user]从你的[localized_player_label(surgery.affected_limb.display_name)]内取出了[obj]。"),
+				SPAN_NOTICE("[user]从[target]的[localized_player_label(surgery.affected_limb.display_name)]内取出了[obj]。"))
 
 			surgery.affected_limb.implants -= obj
 			obj.forceMove(get_turf(target))
@@ -323,17 +323,17 @@
 			log_interact(user, target, "[key_name(user)] removed [obj] from [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool], ending [surgery].")
 	else
 		user.affected_message(target,
-			SPAN_NOTICE("你在[target]的[surgery.affected_limb.display_name]内没有找到任何东西。"),
-			SPAN_NOTICE("[user]在你的[surgery.affected_limb.display_name]内没有找到任何东西。"),
-			SPAN_NOTICE("[user]在[target]的[surgery.affected_limb.display_name]内没有找到任何东西。"))
+			SPAN_NOTICE("你在[target]的[localized_player_label(surgery.affected_limb.display_name)]内没有找到任何东西。"),
+			SPAN_NOTICE("[user]在你的[localized_player_label(surgery.affected_limb.display_name)]内没有找到任何东西。"),
+			SPAN_NOTICE("[user]在[target]的[localized_player_label(surgery.affected_limb.display_name)]内没有找到任何东西。"))
 
 		log_interact(user, target, "[key_name(user)] found nothing inside [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool], ending [surgery].")
 
 /datum/surgery_step/remove_embedded/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_WARNING("你的手一滑，用[tool]擦伤了[target]的[surgery.affected_limb.display_name]内的组织！"),
-		SPAN_WARNING("[user]的手一滑，用[tool]擦伤了你的[surgery.affected_limb.display_name]内的组织！"),
-		SPAN_WARNING("[user]的手一滑，用[tool]擦伤了[target]的[surgery.affected_limb.display_name]内的组织！"))
+		SPAN_WARNING("你的手一滑，用[tool]擦伤了[target]的[localized_player_label(surgery.affected_limb.display_name)]内的组织！"),
+		SPAN_WARNING("[user]的手一滑，用[tool]擦伤了你的[localized_player_label(surgery.affected_limb.display_name)]内的组织！"),
+		SPAN_WARNING("[user]的手一滑，用[tool]擦伤了[target]的[localized_player_label(surgery.affected_limb.display_name)]内的组织！"))
 
 	log_interact(user, target, "[key_name(user)] damaged the inside of [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool], ending [surgery].")
 
@@ -341,7 +341,7 @@
 	if(length(surgery.affected_limb.implants) && prob(10 + 100 * (tools[tool_type] - 1)))
 		var/obj/item/implant/imp = surgery.affected_limb.implants[1]
 		if(istype(imp))
-			target.visible_message(SPAN_WARNING("[target]的[surgery.affected_limb.display_name]内有什么东西发出了哔哔声！"))
+			target.visible_message(SPAN_WARNING("[target]的[localized_player_label(surgery.affected_limb.display_name)]内有什么东西发出了哔哔声！"))
 			playsound(target, 'sound/items/countdown.ogg', 25, TRUE)
 			addtimer(CALLBACK(imp, TYPE_PROC_REF(/obj/item/implant, activate)), 2.5 SECONDS)
 	return FALSE

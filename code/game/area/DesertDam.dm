@@ -1,6 +1,6 @@
 //Base Instance
 /area/desert_dam
-	name = "Desert Dam"
+	name = "沙漠大坝"
 	icon_state = "cliff_blocked"
 	can_build_special = TRUE
 	powernet_name = "ground"
@@ -13,65 +13,65 @@
 	ceiling = CEILING_UNDERGROUND_METAL_ALLOW_CAS
 //NorthEastern Lab Section
 /area/desert_dam/interior/lab_northeast
-	name = "Northeastern Lab"
+	name = "东北实验室"
 	icon_state = "purple"
 	minimap_color = MINIMAP_AREA_RESEARCH
 /area/desert_dam/interior/lab_northeast/east_lab_lobby
-	name = "East Lab Lobby"
+	name = "东部实验室大厅"
 	icon_state = "green"
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway
-	name = "East Lab Western Hallway"
+	name = "东部实验室西走廊"
 	icon_state = "blue"
 /area/desert_dam/interior/lab_northeast/east_lab_central_hallway
-	name = "East Lab Central Hallway"
+	name = "东部实验室中央走廊"
 	icon_state = "green"
 /area/desert_dam/interior/lab_northeast/east_lab_east_hallway
-	name = "East Lab East Hallway"
+	name = "东部实验室东走廊"
 	icon_state = "yellow"
 /area/desert_dam/interior/lab_northeast/east_lab_workshop
-	name = "East Lab Workshop"
+	name = "东部实验室工坊"
 	icon_state = "ass_line"
 /area/desert_dam/interior/lab_northeast/east_lab_storage
-	name = "East Lab Storage "
+	name = "东部实验室储藏室"
 	icon_state = "storage"
 /area/desert_dam/interior/lab_northeast/east_lab_RD_office
-	name = "East Lab Research Director's Office"
+	name = "东部实验室研究主管办公室"
 	icon_state = "yellow"
 /area/desert_dam/interior/lab_northeast/east_lab_maintenence
-	name = "East Lab Maintenence"
+	name = "东部实验室维护区"
 	icon_state = "maintcentral"
 /area/desert_dam/interior/lab_northeast/east_lab_containment
-	name = "East Lab Containment"
+	name = "东部实验室收容区"
 	icon_state = "purple"
 /area/desert_dam/interior/lab_northeast/east_lab_RND
-	name = "East Lab Research and Development"
+	name = "东部实验室研发区"
 	icon_state = "purple"
 /area/desert_dam/interior/lab_northeast/east_lab_biology
-	name = "East Lab Biology"
+	name = "东部实验室生物学区"
 	icon_state = "purple"
 /area/desert_dam/interior/lab_northeast/east_lab_surgery
-	name = "East Lab Surgery"
+	name = "东部实验室手术室"
 	icon_state = "red"
 /area/desert_dam/interior/lab_northeast/east_lab_excavation
-	name = "East Lab Excavation Prep"
+	name = "东部实验室挖掘准备区"
 	icon_state = "blue"
 /area/desert_dam/interior/lab_northeast/east_lab_west_entrance
-	name = "East Lab West Entrance"
+	name = "东部实验室西入口"
 	icon_state = "purple"
 /area/desert_dam/interior/lab_northeast/east_lab_east_entrance
-	name = "East Lab Entrance"
+	name = "东部实验室入口"
 	icon_state = "purple"
 /area/desert_dam/interior/lab_northeast/east_lab_security_checkpoint
-	name = "East Lab Security Checkpoint"
+	name = "东部实验室安保检查站"
 	icon_state = "purple"
 /area/desert_dam/interior/lab_northeast/east_lab_security_office
-	name = "East Lab Security Office"
+	name = "东部实验室安保办公室"
 	icon_state = "security"
 /area/desert_dam/interior/lab_northeast/east_lab_security_armory
-	name = "East Lab Armory"
+	name = "东部实验室军械库"
 	icon_state = "armory"
 /area/desert_dam/interior/lab_northeast/east_lab_xenobiology
-	name = "East Lab Xenobiology"
+	name = "东部实验室异星生物学区"
 	icon_state = "red"
 
 //Dam Interior
@@ -79,98 +79,98 @@
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/desert_dam/interior/dam_interior/engine_room
-	name = "Engineering Generator Room"
+	name = "工程部发电机室"
 	icon_state = "yellow"
 /area/desert_dam/interior/dam_interior/control_room
-	name = "Engineering Control Room"
+	name = "工程部控制室"
 	icon_state = "red"
 /area/desert_dam/interior/dam_interior/smes_main
-	name = "Engineering Main Substation"
+	name = "工程部主变电站"
 	icon_state = "purple"
 /area/desert_dam/interior/dam_interior/smes_backup
-	name = "Engineering Secondary Backup Substation"
+	name = "工程部次级备用变电站"
 	icon_state = "green"
 /area/desert_dam/interior/dam_interior/engine_east_wing
-	name = "Engineering East Engine Wing"
+	name = "工程部东侧引擎区"
 	icon_state = "blue-red"
 /area/desert_dam/interior/dam_interior/engine_west_wing
-	name = "Engineering West Engine Wing"
+	name = "工程部西侧引擎区"
 	icon_state = "yellow"
 /area/desert_dam/interior/dam_interior/lobby
-	name = "Engineering Lobby"
+	name = "工程部大厅"
 	icon_state = "purple"
 /area/desert_dam/interior/dam_interior/atmos_storage
-	name = "Engineering Atmospheric Storage"
+	name = "工程部气体储存区"
 	icon_state = "purple"
 /area/desert_dam/interior/dam_interior/northwestern_tunnel
-	name = "Engineering Northwestern Tunnel"
+	name = "工程部西北隧道"
 	icon_state = "green"
 /area/desert_dam/interior/dam_interior/north_tunnel
-	name = "Engineering Northern Tunnel"
+	name = "工程部北部隧道"
 	icon_state = "blue-red"
 /area/desert_dam/interior/dam_interior/west_tunnel
-	name = "Engineering Western Tunnel"
+	name = "工程部西部隧道"
 	icon_state = "yellow"
 /area/desert_dam/interior/dam_interior/central_tunnel
-	name = "Engineering Central Tunnel"
+	name = "工程部中央隧道"
 	icon_state = "red"
 /area/desert_dam/interior/dam_interior/south_tunnel
-	name = "Engineering Southern Tunnel"
+	name = "工程部南部隧道"
 	icon_state = "purple"
 /area/desert_dam/interior/dam_interior/northeastern_tunnel
-	name = "Engineering Northeastern Tunnel"
+	name = "工程部东北隧道"
 	icon_state = "green"
 /area/desert_dam/interior/dam_interior/CE_office
-	name = "Engineering Chief Engineer's Office"
+	name = "工程部总工程师办公室"
 	icon_state = "yellow"
 /area/desert_dam/interior/dam_interior/workshop
-	name = "Engineering Workshop"
+	name = "工程部工坊"
 	icon_state = "purple"
 /area/desert_dam/interior/dam_interior/hanger
-	name = "Engineering Hangar"
+	name = "工程部机库"
 	icon_state = "hangar"
 /area/desert_dam/interior/dam_interior/hangar_storage
-	name = "Engineering Hangar Storage"
+	name = "工程部机库储藏室"
 	icon_state = "storage"
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage
-	name = "Engineering Auxiliary Tool Storage"
+	name = "工程部辅助工具储藏室"
 	icon_state = "red"
 /area/desert_dam/interior/dam_interior/primary_tool_storage
-	name = "Engineering Primary Tool Storage"
+	name = "工程部主要工具储藏室"
 	icon_state = "blue"
 /area/desert_dam/interior/dam_interior/tech_storage
-	name = "Engineering Secure Tech Storage"
+	name = "工程部安全技术器材储藏室"
 	icon_state = "dark"
 /area/desert_dam/interior/dam_interior/break_room
-	name = "Engineering Breakroom"
+	name = "工程部休息室"
 	icon_state = "yellow"
 /area/desert_dam/interior/dam_interior/disposals
-	name = "Engineering Disposals"
+	name = "工程部废物处理区"
 	icon_state = "disposal"
 /area/desert_dam/interior/dam_interior/western_dam_cave
-	name = "Engineering West Entrance"
+	name = "工程部西入口"
 	icon_state = "red"
 /area/desert_dam/interior/dam_interior/office
-	name = "Engineering Office"
+	name = "工程部办公室"
 	icon_state = "red"
 /area/desert_dam/interior/dam_interior
-	name = "Engineering"
+	name = "工程部"
 	icon_state = ""
 
 /area/desert_dam/interior/dam_interior/north_tunnel_entrance
-	name = "Engineering North Tunnel Entrance"
+	name = "工程部北部隧道入口"
 	icon_state = "yellow"
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance
-	name = "Engineering East Tunnel Entrance"
+	name = "工程部东部隧道入口"
 	icon_state = "yellow"
 /area/desert_dam/interior/dam_interior/south_tunnel_entrance
-	name = "Engineering South Tunnel Entrance"
+	name = "工程部南部隧道入口"
 	icon_state = "red"
 /area/desert_dam/interior/dam_interior/garage
-	name = "Garage"
+	name = "车库"
 	icon_state = "green"
 /area/desert_dam/interior/caves
-	name = "Caves"
+	name = "洞穴"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "red"
 	ambience_exterior = AMBIENCE_CAVE
@@ -179,27 +179,27 @@
 	sound_environment = SOUND_ENVIRONMENT_AUDITORIUM
 	minimap_color = MINIMAP_AREA_CAVES
 /area/desert_dam/interior/caves/northern_caves
-	name = "Northern Caves"
+	name = "北部洞穴"
 	icon_state = "red"
 /area/desert_dam/interior/caves/east_caves
-	name = "Eastern Caves"
+	name = "东部洞穴"
 	icon_state = "red"
 
 /area/desert_dam/interior/caves/central_caves
-	name = "Central Caves"
+	name = "中央洞穴"
 	icon_state = "yellow"
 /area/desert_dam/interior/caves/central_caves/entrances/east_tunnel_entrance
-	name = "Eastern Central Tunnel Entrance"
+	name = "中央隧道东入口"
 	icon_state = "red"
 /area/desert_dam/interior/caves/central_caves/entrances/south_tunnel_entrance
-	name = "Southern Central Tunnel Entrance"
+	name = "中央隧道南入口"
 	icon_state = "red"
 /area/desert_dam/interior/caves/central_caves/entrances/west_tunnel_entrance
-	name = "Western Central Tunnel Entrance"
+	name = "中央隧道西入口"
 	icon_state = "red"
 
 /area/desert_dam/interior/caves/temple
-	name = "Sand Temple"
+	name = "沙之神庙"
 	icon_state = "green"
 
 //BUILDING
@@ -209,31 +209,31 @@
 	ceiling = CEILING_METAL
 //Substations
 /area/desert_dam/building/substation
-	name = "Substation"
+	name = "变电站"
 	icon = 'icons/turf/dam_areas.dmi'
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/desert_dam/building/substation/northwest
-	name = "Command Substation"
+	name = "指挥区变电站"
 	icon_state = "northewestern_ss"
 	is_landing_zone = TRUE
 /area/desert_dam/building/substation/northeast
-	name = "Command Substation"
+	name = "指挥区变电站"
 	icon_state = "northeastern_ss"
 /area/desert_dam/building/substation/east
-	name = "Command Substation"
+	name = "指挥区变电站"
 	icon_state = "eastern_ss"
 /area/desert_dam/building/substation/southeast
-	name = "Command Substation"
+	name = "指挥区变电站"
 	icon_state = "southeastern_ss"
 /area/desert_dam/building/substation/central
-	name = "Command Substation"
+	name = "指挥区变电站"
 	icon_state = "central_ss"
 /area/desert_dam/building/substation/southwest
-	name = "Command Substation"
+	name = "指挥区变电站"
 	icon_state = "southwestern_ss"
 /area/desert_dam/building/substation/west
-	name = "Command Substation"
+	name = "指挥区变电站"
 	icon_state = "western_ss"
 	is_resin_allowed = FALSE
 
@@ -242,80 +242,80 @@
 	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/desert_dam/building/administration/control_room
-	name = "Administration Landing Control Room"
+	name = "行政部着陆控制室"
 	icon_state = "yellow"
 	is_resin_allowed = FALSE
 /area/desert_dam/building/administration/lobby
-	name = "Administration Lobby"
+	name = "行政部大厅"
 	icon_state = "green"
 	is_resin_allowed = FALSE
 /area/desert_dam/building/administration/hallway
-	name = "Administration Hallway"
+	name = "行政部走廊"
 	icon_state = "purple"
 	is_resin_allowed = FALSE
 /area/desert_dam/building/administration/office
-	name = "Administration Office"
+	name = "行政办公室"
 	icon_state = "blue-red"
 	is_resin_allowed = FALSE
 /area/desert_dam/building/administration/overseer_office
-	name = "Administration Overseer's Office"
+	name = "行政部监管员办公室"
 	icon_state = "red"
 	is_resin_allowed = FALSE
 /area/desert_dam/building/administration/meetingrooom
-	name = "Administration Meeting Room"
+	name = "行政部会议室"
 	icon_state = "yellow"
 	is_resin_allowed = FALSE
 /area/desert_dam/building/administration/archives
-	name = "Administration Archives"
+	name = "行政部档案室"
 	icon_state = "green"
 	is_resin_allowed = FALSE
 
 
 //Bar
 /area/desert_dam/building/bar/bar
-	name = "Bar"
+	name = "酒吧"
 	icon_state = "yellow"
 /area/desert_dam/building/bar/backroom
-	name = "Bar Backroom"
+	name = "酒吧后屋"
 	icon_state = "green"
 /area/desert_dam/building/bar/bar_restroom
-	name = "Bar Restroom"
+	name = "酒吧卫生间"
 	icon_state = "purple"
 
 
 //Cafe
 /area/desert_dam/building/cafeteria/cafeteria
-	name = "Cafeteria"
+	name = "餐厅"
 	icon_state = "yellow"
 /area/desert_dam/building/cafeteria/backroom
-	name = "Cafeteria Backroom"
+	name = "餐厅后屋"
 	icon_state = "green"
 /area/desert_dam/building/cafeteria/restroom
-	name = "Cafeteria Restroom"
+	name = "餐厅卫生间"
 	icon_state = "purple"
 /area/desert_dam/building/cafeteria/loading
-	name = "Cafeteria Loading Room"
+	name = "餐厅装卸间"
 	icon_state = "blue-red"
 /area/desert_dam/building/cafeteria/cold_room
-	name = "Cafeteria Coldroom"
+	name = "餐厅冷库"
 	icon_state = "red"
 
 
 //Dorms
 /area/desert_dam/building/dorms/hallway_northwing
-	name = "Dormitory North Wing"
+	name = "宿舍北翼"
 	icon_state = "yellow"
 /area/desert_dam/building/dorms/hallway_westwing
-	name = "Dormitory West Wing"
+	name = "宿舍西翼"
 	icon_state = "green"
 /area/desert_dam/building/dorms/hallway_eastwing
-	name = "Dormitory East Wing"
+	name = "宿舍东翼"
 	icon_state = "purple"
 /area/desert_dam/building/dorms/restroom
-	name = "Dormitory Showers"
+	name = "宿舍淋浴间"
 	icon_state = "blue-red"
 /area/desert_dam/building/dorms/pool
-	name = "Dormitory Pool Room"
+	name = "宿舍泳池室"
 	icon_state = "red"
 
 
@@ -324,81 +324,81 @@
 	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/desert_dam/building/medical/garage
-	name = "Medical Garage"
+	name = "医疗部车库"
 	icon_state = "garage"
 /area/desert_dam/building/medical/emergency_room
-	name = "Medical Emergency Room"
+	name = "医疗部急诊室"
 	icon_state = "medbay"
 /area/desert_dam/building/medical/treatment_room
-	name = "Medical Treatment Room"
+	name = "医疗部治疗室"
 	icon_state = "medbay2"
 /area/desert_dam/building/medical/lobby
-	name = "Medical Lobby"
+	name = "医疗部大厅"
 	icon_state = "medbay3"
 /area/desert_dam/building/medical/chemistry
-	name = "Medical Pharmacy"
+	name = "医疗部药房"
 	icon_state = "medbay"
 /area/desert_dam/building/medical/west_wing_hallway
-	name = "Medical West Wing "
+	name = "医疗部西翼"
 	icon_state = "medbay2"
 /area/desert_dam/building/medical/north_wing_hallway
-	name = "Medical North Wing"
+	name = "医疗部北翼"
 	icon_state = "medbay3"
 /area/desert_dam/building/medical/east_wing_hallway
-	name = "Medical East Wing"
+	name = "医疗部东翼"
 	icon_state = "medbay"
 /area/desert_dam/building/medical/primary_storage
-	name = "Medical Primary Storage"
+	name = "医疗部主储藏室"
 	icon_state = "red"
 /area/desert_dam/building/medical/surgery_room_one
-	name = "Medical Surgery Room One"
+	name = "医疗部1号手术室"
 	icon_state = "yellow"
 /area/desert_dam/building/medical/surgery_room_two
-	name = "Medical Surgery Room Two"
+	name = "医疗部2号手术室"
 	icon_state = "purple"
 /area/desert_dam/building/medical/surgury_observation
-	name = "Medical Surgery Observation"
+	name = "医疗部手术观察室"
 	icon_state = "medbay2"
 /area/desert_dam/building/medical/morgue
-	name = "Medical Morgue"
+	name = "医疗部停尸房"
 	icon_state = "blue"
 /area/desert_dam/building/medical/break_room
-	name = "Medical Breakroom"
+	name = "医疗部休息室"
 	icon_state = "medbay"
 /area/desert_dam/building/medical/CMO
-	name = "Medical CMO's Office"
+	name = "医疗部首席医疗官办公室"
 	icon_state = "CMO"
 /area/desert_dam/building/medical/office1
-	name = "Medical Office One"
+	name = "医疗部1号办公室"
 	icon_state = "red"
 /area/desert_dam/building/medical/office2
-	name = "Medical Office Two"
+	name = "医疗部2号办公室"
 	icon_state = "blue"
 /area/desert_dam/building/medical/patient_wing
-	name = "Medical Patient Wing"
+	name = "医疗部病房区"
 	icon_state = "medbay2"
 /area/desert_dam/building/medical/virology_wing
-	name = "Medical Virology Wing"
+	name = "医疗部病毒学区"
 	icon_state = "medbay3"
 /area/desert_dam/building/medical/virology_isolation
-	name = "Medical Virology Isolation"
+	name = "医疗部病毒隔离区"
 	icon_state = "medbay"
 /area/desert_dam/building/medical
-	name = "Medical"
+	name = "医疗部"
 	icon_state = "medbay2"
 
 
 //Warehouse
 /area/desert_dam/building/warehouse/warehouse
-	name = "Warehouse"
+	name = "仓库"
 	icon_state = "yellow"
 	is_resin_allowed = FALSE
 /area/desert_dam/building/warehouse/loading
-	name = "Warehouse Loading Room"
+	name = "仓库装卸间"
 	icon_state = "red"
 	is_resin_allowed = FALSE
 /area/desert_dam/building/warehouse/breakroom
-	name = "Warehouse Breakroom"
+	name = "仓库休息室"
 	icon_state = "green"
 	is_resin_allowed = FALSE
 
@@ -408,22 +408,22 @@
 	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/desert_dam/building/hydroponics/hydroponics
-	name = "Hydroponics"
+	name = "水培区"
 	icon_state = "hydro"
 /area/desert_dam/building/hydroponics/hydroponics_storage
-	name = "Hydroponics Storage"
+	name = "水培储藏室"
 	icon_state = "green"
 /area/desert_dam/building/hydroponics/hydroponics_loading
-	name = "Hydroponics Loading Room"
+	name = "水培装卸间"
 	icon_state = "garage"
 /area/desert_dam/building/hydroponics/hydroponics_breakroom
-	name = "Hydroponics Breakroom"
+	name = "水培休息室"
 	icon_state = "red"
 
 
 //Telecoms
 /area/desert_dam/building/telecommunication
-	name = "Telecommunications"
+	name = "电信室"
 	icon_state = "yellow"
 	is_resin_allowed = FALSE
 
@@ -432,43 +432,43 @@
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/desert_dam/building/water_treatment_one
-	name = "Water Treatment One"
+	name = "1号水处理厂"
 	icon_state = "yellow"
 //Water Treatment Plant 1
 /area/desert_dam/building/water_treatment_one/lobby
-	name = "Water Treatment One Lobby"
+	name = "1号水处理厂大厅"
 	icon_state = "red"
 /area/desert_dam/building/water_treatment_one/breakroom
-	name = "Water Treatment One Breakroom"
+	name = "1号水处理厂休息室"
 	icon_state = "green"
 /area/desert_dam/building/water_treatment_one/garage
-	name = "Water Treatment One Garage"
+	name = "1号水处理厂车库"
 	icon_state = "garage"
 /area/desert_dam/building/water_treatment_one/sedimentation
-	name = "Water Treatment One Sedimentation"
+	name = "1号水处理厂沉淀区"
 	icon_state = "blue"
 /area/desert_dam/building/water_treatment_one/equipment
-	name = "Water Treatment One Equipment Room"
+	name = "1号水处理厂设备间"
 	icon_state = "red"
 /area/desert_dam/building/water_treatment_one/hallway
-	name = "Water Treatment One Hallway"
+	name = "1号水处理厂走廊"
 	icon_state = "purple"
 /area/desert_dam/building/water_treatment_one/control_room
-	name = "Water Treatment One Control Room"
+	name = "1号水处理厂控制室"
 	icon_state = "yellow"
 /area/desert_dam/building/water_treatment_one/purification
-	name = "Water Treatment One Purification"
+	name = "1号水处理厂净化区"
 	icon_state = "green"
 /area/desert_dam/building/water_treatment_one/floodgate_control
-	name = "Water Treatment One Floodgate Control"
+	name = "1号水处理厂水闸控制室"
 	icon_state = "green"
 
 /area/desert_dam/building/water_treatment_one/floodgate_control/central
-	name = "Central Floodgate Control"
+	name = "中央水闸控制室"
 	icon_state = "green"
 
 /area/desert_dam/building/water_treatment_one/floodgate_control/central2
-	name = "Central Floodgate Control Storage"
+	name = "中央水闸控制室储藏间"
 	icon_state = "green"
 
 //Water Treatment Plant 2
@@ -476,34 +476,34 @@
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/desert_dam/building/water_treatment_two
-	name = "Water Treatment Two"
+	name = "2号水处理厂"
 	icon_state = "yellow"
 /area/desert_dam/building/water_treatment_two/lobby
-	name = "Water Treatment Two Lobby"
+	name = "2号水处理厂大厅"
 	icon_state = "red"
 /area/desert_dam/building/water_treatment_two/breakroom
-	name = "Water Treatment Two Breakroom"
+	name = "2号水处理厂休息室"
 	icon_state = "green"
 /area/desert_dam/building/water_treatment_two/garage
-	name = "Water Treatment Two Garage"
+	name = "2号水处理厂车库"
 	icon_state = "garage"
 /area/desert_dam/building/water_treatment_two/sedimentation
-	name = "Water Treatment Two Sedimentation"
+	name = "2号水处理厂沉淀区"
 	icon_state = "blue"
 /area/desert_dam/building/water_treatment_two/equipment
-	name = "Water Treatment Two Equipment"
+	name = "2号水处理厂设备间"
 	icon_state = "red"
 /area/desert_dam/building/water_treatment_two/hallway
-	name = "Water Treatment Two Hallway"
+	name = "2号水处理厂走廊"
 	icon_state = "purple"
 /area/desert_dam/building/water_treatment_two/control_room
-	name = "Water Treatment Two Control Room"
+	name = "2号水处理厂控制室"
 	icon_state = "yellow"
 /area/desert_dam/building/water_treatment_two/purification
-	name = "Water Treatment Two Purification"
+	name = "2号水处理厂净化区"
 	icon_state = "green"
 /area/desert_dam/building/water_treatment_two/floodgate_control
-	name = "Water Treatment Two Floodgate Control"
+	name = "2号水处理厂水闸控制室"
 	icon_state = "green"
 
 
@@ -525,72 +525,72 @@
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/desert_dam/building/security/prison
-	name = "Security Prison"
+	name = "安保部监狱"
 	icon_state = "sec_prison"
 /area/desert_dam/building/security/marshals_office
-	name = "Security Marshal's Office"
+	name = "安保部法警办公室"
 	icon_state = "sec_hos"
 /area/desert_dam/building/security/armory
-	name = "Security Armory"
+	name = "安保部军械库"
 	icon_state = "armory"
 /area/desert_dam/building/security/warden
-	name = "Security Warden's Office"
+	name = "安保部监狱长办公室"
 	icon_state = "Warden"
 /area/desert_dam/building/security/interrogation
-	name = "Security Interrogation"
+	name = "安保部审讯室"
 	icon_state = "interrogation"
 /area/desert_dam/building/security/backroom
-	name = "Security Interrogation"
+	name = "安保部审讯室"
 	icon_state = "sec_backroom"
 /area/desert_dam/building/security/observation
-	name = "Security Observation"
+	name = "安保部观察室"
 	icon_state = "observatory"
 /area/desert_dam/building/security/detective
-	name = "Security Detective's Office"
+	name = "安保部侦探办公室"
 	icon_state = "detective"
 /area/desert_dam/building/security/office
-	name = "Security Office"
+	name = "安保办公室"
 	icon_state = "yellow"
 /area/desert_dam/building/security/lobby
-	name = "Security Lobby"
+	name = "安保部大厅"
 	icon_state = "green"
 /area/desert_dam/building/security/northern_hallway
-	name = "Security North Hallway"
+	name = "安保部北走廊"
 	icon_state = "purple"
 /area/desert_dam/building/security/courtroom
-	name = "Security Courtroom"
+	name = "安保部法庭"
 	icon_state = "courtroom"
 /area/desert_dam/building/security/evidence
-	name = "Security Evidence"
+	name = "安保部证物室"
 	icon_state = "red"
 /area/desert_dam/building/security/holding
-	name = "Security Holding Room"
+	name = "安保部拘留室"
 	icon_state = "yellow"
 /area/desert_dam/building/security/southern_hallway
-	name = "Security South Hallway"
+	name = "安保部南走廊"
 	icon_state = "green"
 /area/desert_dam/building/security/deathrow
-	name = "Security Death Row"
+	name = "安保部死囚区"
 	icon_state = "cells_max_n"
 /area/desert_dam/building/security/execution_chamber
-	name = "Security Execution Chamber"
+	name = "安保部行刑室"
 	icon_state = "red"
 /area/desert_dam/building/security/staffroom
-	name = "Security Staffroom"
+	name = "安保部员工休息室"
 	icon_state = "security"
 
 //Church
 /area/desert_dam/building/church
-	name = "Church"
+	name = "教堂"
 	icon_state = "courtroom"
 	is_resin_allowed = FALSE
 
 //Mining area
 /area/desert_dam/building/mining/workshop
-	name = "Mining Workshop"
+	name = "采矿工坊"
 	icon_state = "yellow"
 /area/desert_dam/building/mining/workshop_foyer
-	name = "Mining Workshop Foyer"
+	name = "采矿工坊门厅"
 	icon_state = "purple"
 //Legacy Areas for mining
 	/*
@@ -638,43 +638,43 @@
 	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/desert_dam/building/lab_northwest/west_lab_robotics
-	name = "West Lab Robotics"
+	name = "西部实验室机器人技术区"
 	icon_state = "ass_line"
 /area/desert_dam/building/lab_northwest/west_lab_robotics_mechbay
-	name = "West Lab Mechbay"
+	name = "西部实验室机甲库"
 	icon_state = "purple"
 /area/desert_dam/building/lab_northwest/west_lab_east_hallway
-	name = "West Lab Hallway"
+	name = "西部实验室走廊"
 	icon_state = "red"
 /area/desert_dam/building/lab_northwest/west_lab_west_hallway
-	name = "West Lab Hallway"
+	name = "西部实验室走廊"
 	icon_state = "red"
 /area/desert_dam/building/lab_northwest/west_lab_maintenance
-	name = "West Lab Maintenance"
+	name = "西部实验室维护区"
 	icon_state = "purple"
 /area/desert_dam/building/lab_northwest/west_lab_chemistry
-	name = "West Lab Chemistry"
+	name = "西部实验室化学区"
 	icon_state = "yellow"
 /area/desert_dam/building/lab_northwest/west_lab_cafeteria
-	name = "West Lab Cafeteria"
+	name = "西部实验室餐厅"
 	icon_state = "blue"
 /area/desert_dam/building/lab_northwest/west_lab_kitchen
-	name = "West Lab Kitchen"
+	name = "西部实验室厨房"
 	icon_state = "kitchen"
 /area/desert_dam/building/lab_northwest/west_lab_dormitory
-	name = "West Lab Dormitory"
+	name = "西部实验室宿舍"
 	icon_state = "red"
 /area/desert_dam/building/lab_northwest/west_lab_meeting_room
-	name = "West Lab Meeting Room"
+	name = "西部实验室会议室"
 	icon_state = "purple"
 /area/desert_dam/building/lab_northwest/west_lab_xenoflora
-	name = "West Lab Xenoflora"
+	name = "西部实验室异星植物区"
 	icon_state = "purple"
 /area/desert_dam/building/lab_northeast/checkpoint
-	name = "East Lab Checkpoint"
+	name = "东部实验室检查站"
 	icon_state = "red"
 /area/desert_dam/building/lab_northeast/garage
-	name = "East Lab Garage"
+	name = "东部实验室车库"
 	icon_state = "garage"
 
 
@@ -690,19 +690,19 @@
 	//ambience = list('sound/ambience/ambiatm1.ogg')
 
 /area/desert_dam/exterior/rock
-	name = "Rock"
+	name = "岩石区"
 	icon_state = "cave"
 
 //Landing Pad for the Alamo. THIS IS NOT THE SHUTTLE AREA
 /area/desert_dam/exterior/landing_pad_one
-	name = "Airstrip Landing Pad"
+	name = "简易跑道着陆坪"
 	icon_state = "landing_pad"
 	is_resin_allowed = FALSE
 	is_landing_zone = TRUE
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/desert_dam/exterior/landing_pad_one_external
-	name = "Airstrip Landing Valley"
+	name = "简易跑道着陆谷地"
 	icon_state = "landing_pad_ext"
 	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_LZ
@@ -710,14 +710,14 @@
 
 //Landing Pad for the Normandy. THIS IS NOT THE SHUTTLE AREA
 /area/desert_dam/exterior/landing_pad_two
-	name = "Aerodrome Landing Pad"
+	name = "机场着陆坪"
 	icon_state = "landing_pad"
 	is_resin_allowed = FALSE
 	is_landing_zone = TRUE
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/desert_dam/exterior/landing_pad_two_external
-	name = "Aerodrome Landing Valley"
+	name = "机场着陆谷地"
 	icon_state = "landing_pad_ext"
 	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_LZ
@@ -728,27 +728,27 @@
 
 /area/desert_dam/exterior/valley
 /area/desert_dam/exterior/valley/valley_northwest
-	name = "Northwest Valley"
+	name = "西北谷地"
 	icon_state = "valley_north_west"
 	is_resin_allowed = FALSE
 /area/desert_dam/exterior/valley/valley_cargo
-	name = "Shipping Valley"
+	name = "货运谷地"
 	icon_state = "valley_south_west"
 	is_resin_allowed = FALSE
 /area/desert_dam/exterior/valley/valley_telecoms
-	name = "Telecomms Valley"
+	name = "电信站谷地"
 	icon_state = "valley_west"
 	is_resin_allowed = FALSE
 
 // Generic bridge used in nightmare inserts... Can in fact be different places (sigh)
 /area/desert_dam/exterior/valley/valley_bridge
-	name = "Valley Bridge"
+	name = "谷地大桥"
 	icon_state = "valley"
 
 
 //telecomms areas
 /area/desert_dam/exterior/telecomm
-	name = "\improper Trijent Dam Communications Relay"
+	name = "\improper 特里金特大坝通信中继站"
 	icon_state = "ass_line"
 	is_resin_allowed = FALSE
 	ceiling_muffle = FALSE
@@ -756,60 +756,60 @@
 	always_unpowered = 0
 
 /area/desert_dam/exterior/telecomm/lz2_containers
-	name = "\improper Containers Communications Relay"
+	name = "\improper 集装箱区通信中继站"
 
 /area/desert_dam/exterior/telecomm/lz2_tcomms
-	name = "\improper Telecomms Communications Relay"
+	name = "\improper 电信站通信中继站"
 
 /area/desert_dam/exterior/telecomm/lz2_storage
-	name = "\improper East LZ2 Communications Relay"
+	name = "\improper 2号着陆区东部通信中继站"
 
 /area/desert_dam/exterior/telecomm/lz1_south
-	name = "\improper South LZ1 Communications Relay"
+	name = "\improper 1号着陆区南部通信中继站"
 
 /area/desert_dam/exterior/telecomm/lz1_valley
-	name = "\improper LZ1 Valley Communications Relay"
+	name = "\improper 1号着陆区谷地通信中继站"
 
 /area/desert_dam/exterior/telecomm/lz1_xenoflora
-	name = "\improper Xenoflora Communications Relay"
+	name = "\improper 异星植物区通信中继站"
 
 //Away from LZ
 
 /area/desert_dam/exterior/valley/valley_labs
-	name = "Lab Valley"
+	name = "实验室谷地"
 	icon_state = "valley_north"
 /area/desert_dam/exterior/valley/valley_mining
-	name = "Mining Valley"
+	name = "采矿谷地"
 	icon_state = "valley_east"
 /area/desert_dam/exterior/valley/valley_civilian
-	name = "Civilian Valley"
+	name = "平民区谷地"
 	icon_state = "valley_south_excv"
 /area/desert_dam/exterior/valley/valley_medical
-	name = "Medical Valley"
+	name = "医疗区谷地"
 	icon_state = "valley"
 /area/desert_dam/exterior/valley/valley_hydro
-	name = "Hydro Valley"
+	name = "水培区谷地"
 	icon_state = "valley"
 /area/desert_dam/exterior/valley/valley_crashsite
-	name = "Crash Site Valley"
+	name = "坠毁现场谷地"
 	icon_state = "yellow"
 /area/desert_dam/exterior/valley/north_valley_dam
-	name = "North Dam Valley"
+	name = "大坝北部谷地"
 	icon_state = "valley"
 /area/desert_dam/exterior/valley/south_valley_dam
-	name = "South Dam Valley"
+	name = "大坝南部谷地"
 	icon_state = "valley"
 /area/desert_dam/exterior/valley/bar_valley_dam
-	name = "Bar Valley"
+	name = "酒吧谷地"
 	icon_state = "yellow"
 /area/desert_dam/exterior/valley/valley_wilderness
-	name = "Wilderness Valley"
+	name = "荒野谷地"
 	icon_state = "central"
 
 
 //Rivers
 /area/desert_dam/exterior/river
-	name = "River"
+	name = "河流"
 	icon_state = "bluenew"
 	var/filtered = 0
 	var/list/Next_areas = list()//The next river to update - that is, unless...
@@ -832,47 +832,47 @@
 
 //End of the river areas, no Next
 /area/desert_dam/exterior/river/riverside_northwest
-	name = "Northwestern Riverbed"
+	name = "西北河床"
 	icon_state = "bluenew"
 /area/desert_dam/exterior/river/riverside_central_north
-	name = "Northern Central Riverbed"
+	name = "中北部河床"
 	icon_state = "purple"
 /area/desert_dam/exterior/river/riverside_central_south
-	name = "Southern Central Riverbed"
+	name = "中南部河床"
 	icon_state = "purple"
 /area/desert_dam/exterior/river/riverside_south
-	name = "Southern Riverbed"
+	name = "南部河床"
 	icon_state = "bluenew"
 /area/desert_dam/exterior/river/riverside_east
-	name = "Eastern Riverbed"
+	name = "东部河床"
 	icon_state = "bluenew"
 /area/desert_dam/exterior/river/riverside_northeast
-	name = "Northeastern Riverbed"
+	name = "东北河床"
 	icon_state = "bluenew"
 //The filtration plants - This area isn't for the WHOLE plant, but the areas that have water in them, so the water changes color as well.
 
 /area/desert_dam/exterior/river/filtration_a
-	name = "Filtration Plant A"
+	name = "A号过滤厂"
 
 /area/desert_dam/exterior/river/filtration_b
-	name = "Filtration Plant B"
+	name = "B号过滤厂"
 
 //Areas that are rivers, but will not change because they're before the floodgates
 /area/desert_dam/exterior/river_mouth/southern
-	name = "Southern River Mouth"
+	name = "南部河口"
 	icon_state = "purple"
 
 /area/desert_dam/exterior/river_mouth/eastern
-	name = "Eastern River Mouth"
+	name = "东部河口"
 	icon_state = "purple"
 
 /area/desert_dam/landing/console
-	name = "LZ1 'Admin'"
+	name = "1号着陆区“行政部”"
 	icon_state = "tcomsatcham"
 	requires_power = 0
 
 /area/desert_dam/landing/console2
-	name = "LZ2 'Supply'"
+	name = "2号着陆区“补给”"
 	icon_state = "tcomsatcham"
 	requires_power = 0
 

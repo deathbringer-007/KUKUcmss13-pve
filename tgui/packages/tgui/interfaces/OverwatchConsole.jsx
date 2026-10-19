@@ -14,6 +14,58 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+const overwatchLabels = new Map([
+  ['Alpha', '阿尔法'],
+  ['Bravo', '布拉沃'],
+  ['Charlie', '查理'],
+  ['Delta', '德尔塔'],
+  ['Echo', '艾可'],
+  ['Foxtrot', '狐步'],
+  ['Intel', '情报'],
+  ['SOF', '特种作战部队'],
+  ['Cryo', '冷冻休眠'],
+  ['NONE', '无'],
+  ['MULTIPLE', '多种专精'],
+  ['UNKNOWN', '未知'],
+  ['unknown', '未知'],
+  ['N/A', '不适用'],
+  ['Sniper', '狙击手'],
+  ['Heavy Grenadier', '重型榴弹兵'],
+  ['Demolitionist', '爆破手'],
+  ['Demolitions', '爆破'],
+  ['Scout', '侦察兵'],
+  ['Pyrotechnician', '火焰兵'],
+  ['groundside', '地面'],
+  ['shipside', '舰上'],
+  ['all', '全部'],
+  ['N', '北'],
+  ['NE', '东北'],
+  ['E', '东'],
+  ['SE', '东南'],
+  ['S', '南'],
+  ['SW', '西南'],
+  ['W', '西'],
+  ['NW', '西北'],
+]);
+const overwatchLabel = (value) => overwatchLabels.get(value) ?? value;
+const overwatchState = (value) =>
+  String(value).replace(
+    /Conscious|Unconscious|Incapacitated|Dead|\(SSD\)/g,
+    (state) =>
+      ({
+        Conscious: '清醒',
+        Unconscious: '昏迷',
+        Incapacitated: '失能',
+        Dead: '阵亡',
+        '(SSD)': '（断线）',
+      })[state],
+  );
+const overwatchDistance = (value) =>
+  String(overwatchLabel(value)).replace(
+    /\((N|NE|E|SE|S|SW|W|NW)\)/g,
+    (_, direction) => `（${overwatchLabel(direction)}）`,
+  );
+
 export const OverwatchConsole = (props) => {
   const { act, data } = useBackend();
 
@@ -48,7 +100,7 @@ const HomePanel = (props) => {
     <Section
       fontSize="20px"
       textAlign="center"
-      title="OVERWATCH DISABLED - SELECT UNIT"
+      title="战术指挥未启用——请选择单位"
     >
       <Stack justify="center" align="end" fontSize="20px">
         {data.squad_list.map((squad, index) => {
@@ -62,7 +114,7 @@ const HomePanel = (props) => {
                 }
                 onClick={() => act('pick_squad', { squad: squad })}
               >
-                {squad.toUpperCase()}
+                {overwatchLabel(squad)}
               </Button>
             </Stack.Item>
           );
@@ -80,12 +132,12 @@ const SquadPanel = (props) => {
   return (
     <Stack fill vertical>
       <Stack.Item>
-        <Collapsible title="Main Dashboard" fontSize="16px">
+        <Collapsible title="主面板" fontSize="16px">
           <MainDashboard />
         </Collapsible>
       </Stack.Item>
       <Stack.Item>
-        <Collapsible title="Squad Roles" fontSize="16px">
+        <Collapsible title="小队岗位" fontSize="16px">
           <RoleTable />
         </Collapsible>
       </Stack.Item>
@@ -96,7 +148,7 @@ const SquadPanel = (props) => {
             icon="heartbeat"
             onClick={() => setCategory('monitor')}
           >
-            Squad Monitor
+            小队监控
           </Tabs.Tab>
           {!!data.can_launch_crates && (
             <Tabs.Tab
@@ -104,7 +156,7 @@ const SquadPanel = (props) => {
               icon="wrench"
               onClick={() => setCategory('supply')}
             >
-              Supply Drop
+              补给空投
             </Tabs.Tab>
           )}
           {!!data.can_launch_obs && (
@@ -113,11 +165,11 @@ const SquadPanel = (props) => {
               icon="bomb"
               onClick={() => setCategory('ob')}
             >
-              Orbital Bombardment
+              轨道轰炸
             </Tabs.Tab>
           )}
           <Tabs.Tab icon="map" onClick={() => act('tacmap_unpin')}>
-            Tactical Map
+            战术地图
           </Tabs.Tab>
         </Tabs>
       </Stack.Item>
@@ -138,29 +190,29 @@ const MainDashboard = (props) => {
   return (
     <Section
       fontSize="16px"
-      title={current_squad + ' Overwatch | Dashboard'}
+      title={overwatchLabel(current_squad) + '战术指挥 | 主面板'}
       buttons={
         <>
           <Button icon="user" onClick={() => act('change_operator')}>
-            Operator - {data.operator}
+            操作员：{data.operator}
           </Button>
           <Button icon="sign-out-alt" onClick={() => act('logout')}>
-            Stop Overwatch
+            停止战术指挥
           </Button>
         </>
       }
     >
       <Table mb="5px">
         <Table.Row bold>
-          <Table.Cell textAlign="center">PRIMARY ORDERS</Table.Cell>
-          <Table.Cell textAlign="center">SECONDARY ORDERS</Table.Cell>
+          <Table.Cell textAlign="center">主要命令</Table.Cell>
+          <Table.Cell textAlign="center">次要命令</Table.Cell>
         </Table.Row>
         <Table.Row>
           <Table.Cell textAlign="center">
-            {primary_objective ? primary_objective : 'NONE'}
+            {primary_objective ? primary_objective : '无'}
           </Table.Cell>
           <Table.Cell textAlign="center">
-            {secondary_objective ? secondary_objective : 'NONE'}
+            {secondary_objective ? secondary_objective : '无'}
           </Table.Cell>
         </Table.Row>
       </Table>
@@ -171,7 +223,7 @@ const MainDashboard = (props) => {
           icon="envelope"
           onClick={() => act('set_primary')}
         >
-          SET PRIMARY
+          设置主要目标
         </Button>
         {primary_objective && (
           <Button
@@ -180,7 +232,7 @@ const MainDashboard = (props) => {
             icon="person"
             onClick={() => act('remind_primary')}
           >
-            REMIND PRIMARY
+            提醒主要目标
           </Button>
         )}
         <Button
@@ -189,7 +241,7 @@ const MainDashboard = (props) => {
           icon="envelope"
           onClick={() => act('set_secondary')}
         >
-          SET SECONDARY
+          设置次要目标
         </Button>
         {secondary_objective && (
           <Button
@@ -198,7 +250,7 @@ const MainDashboard = (props) => {
             icon="person"
             onClick={() => act('remind_secondary')}
           >
-            REMIND SECONDARY
+            提醒次要目标
           </Button>
         )}
       </Box>
@@ -210,7 +262,7 @@ const MainDashboard = (props) => {
           icon="envelope"
           onClick={() => act('message')}
         >
-          MESSAGE SECTION
+          向分队发消息
         </Button>
         <Button
           inline
@@ -218,7 +270,7 @@ const MainDashboard = (props) => {
           icon="person"
           onClick={() => act('sl_message')}
         >
-          MESSAGE SECTION LEADER
+          向分队长发消息
         </Button>
       </Box>
     </Section>
@@ -250,71 +302,70 @@ const RoleTable = (props) => {
     <Table pb="4px" m="1px" fontSize="12px" bold>
       <Table.Row>
         <Table.Cell textAlign="center" p="4px">
-          Section Sergeant
+          分队士官
         </Table.Cell>
         <Table.Cell collapsing p="4px">
-          Squad Leaders
+          小队长
         </Table.Cell>
         <Table.Cell collapsing p="4px">
-          Specialist
+          武器专家
         </Table.Cell>
         <Table.Cell collapsing p="4px">
-          Smartgunner
+          智能机枪手
         </Table.Cell>
         <Table.Cell collapsing p="4px">
-          Platoon Corpsmen
+          排卫生员
         </Table.Cell>
         <Table.Cell collapsing p="4px">
-          Combat Technicians
+          战斗技术员
         </Table.Cell>
         <Table.Cell collapsing p="4px">
-          Total/Living
+          总数／存活
         </Table.Cell>
       </Table.Row>
       <Table.Row>
         {(squad_leader && (
           <Table.Cell textAlign="center">
-            {squad_leader.name ? squad_leader.name : 'NONE'}
+            {squad_leader.name ? squad_leader.name : '无'}
             <Box color={squad_leader.state !== 'Dead' ? 'green' : 'red'}>
-              {squad_leader.state !== 'Dead' ? 'ALIVE' : 'DEAD'}
+              {squad_leader.state !== 'Dead' ? '存活' : '阵亡'}
             </Box>
           </Table.Cell>
         )) || (
           <Table.Cell textAlign="center">
-            NONE
-            <Box color="red">NOT DEPLOYED</Box>
+            无<Box color="red">未部署</Box>
           </Table.Cell>
         )}
 
         <Table.Cell textAlign="center" bold>
-          <Box>{ftl_count} DEPLOYED</Box>
-          <Box color={ftl_alive ? 'green' : 'red'}>{ftl_alive} ALIVE</Box>
+          <Box>{ftl_count}人已部署</Box>
+          <Box color={ftl_alive ? 'green' : 'red'}>{ftl_alive}人存活</Box>
         </Table.Cell>
         <Table.Cell textAlign="center" bold>
-          <Box>{specialist_type ? specialist_type : 'NONE'}</Box>
+          <Box>{specialist_type ? overwatchLabel(specialist_type) : '无'}</Box>
           <Box color={spec_alive ? 'green' : 'red'}>
-            {spec_count ? (spec_alive ? 'ALIVE' : 'DEAD') : 'NOT DEPLOYED'}
+            {spec_count ? (spec_alive ? '存活' : '阵亡') : '未部署'}
           </Box>
         </Table.Cell>
         <Table.Cell textAlign="center" bold>
           <Box color={smart_count ? 'green' : 'red'}>
-            {smart_count ? smart_count + ' DEPLOYED' : 'NONE'}
+            {smart_count ? smart_count + '人已部署' : '无'}
           </Box>
           <Box color={smart_alive ? 'green' : 'red'}>
-            {smart_count ? (smart_alive ? 'ALIVE' : 'DEAD') : 'N/A'}
+            {smart_count ? (smart_alive ? '存活' : '阵亡') : '不适用'}
           </Box>
         </Table.Cell>
         <Table.Cell textAlign="center" bold>
-          <Box>{medic_count} DEPLOYED</Box>
-          <Box color={medic_alive ? 'green' : 'red'}>{medic_alive} ALIVE</Box>
+          <Box>{medic_count}人已部署</Box>
+          <Box color={medic_alive ? 'green' : 'red'}>{medic_alive}人存活</Box>
         </Table.Cell>
         <Table.Cell textAlign="center" bold>
-          <Box>{engi_count} DEPLOYED</Box>
-          <Box color={engi_alive ? 'green' : 'red'}>{engi_alive} ALIVE</Box>
+          <Box>{engi_count}人已部署</Box>
+          <Box color={engi_alive ? 'green' : 'red'}>{engi_alive}人存活</Box>
         </Table.Cell>
         <Table.Cell textAlign="center" bold>
-          <Box>{total_deployed} TOTAL</Box>
-          <Box color={living_count ? 'green' : 'red'}>{living_count} ALIVE</Box>
+          <Box>{total_deployed}人总计</Box>
+          <Box color={living_count ? 'green' : 'red'}>{living_count}人存活</Box>
         </Table.Cell>
       </Table.Row>
     </Table>
@@ -413,32 +464,32 @@ const SquadMonitor = (props) => {
       pb="3%"
       fill
       fontSize="14px"
-      title="Monitor"
+      title="人员监控"
       buttons={
         <>
           <Button
             color="yellow"
-            tooltip="Show marines depending on location"
+            tooltip="按位置筛选陆战队员"
             onClick={() => act('change_locations_ignored')}
           >
-            Shown: {location_filter}
+            显示范围：{overwatchLabel(location_filter)}
           </Button>
           {(showDeadMarines && (
             <Button color="yellow" onClick={() => setShowDeadMarines(false)}>
-              Hide dead
+              隐藏阵亡人员
             </Button>
           )) || (
             <Button color="yellow" onClick={() => setShowDeadMarines(true)}>
-              Show dead
+              显示阵亡人员
             </Button>
           )}
           {(showHiddenMarines && (
             <Button color="yellow" onClick={() => setShowHiddenMarines(false)}>
-              Hide hidden
+              隐藏已隐藏人员
             </Button>
           )) || (
             <Button color="yellow" onClick={() => setShowHiddenMarines(true)}>
-              Show hidden
+              显示已隐藏人员
             </Button>
           )}
           <Button
@@ -446,17 +497,17 @@ const SquadMonitor = (props) => {
             icon="arrow-right"
             onClick={() => act('transfer_marine')}
           >
-            Transfer Marine
+            调动陆战队员
           </Button>
           <Button color="blue" icon="medal" onClick={() => act('award_medal')}>
-            Award Medal
+            授予勋章
           </Button>
         </>
       }
     >
       <Input
         fluid
-        placeholder="Search.."
+        placeholder="搜索……"
         m="0"
         value={marineSearch}
         onInput={(e, value) => setMarineSearch(value)}
@@ -466,14 +517,14 @@ const SquadMonitor = (props) => {
           <Section mt="2px" width="96vw" fill scrollable>
             <Table>
               <Table.Row bold fontSize="14px">
-                <Table.Cell textAlign="center">Name</Table.Cell>
-                <Table.Cell textAlign="center">Role</Table.Cell>
+                <Table.Cell textAlign="center">姓名</Table.Cell>
+                <Table.Cell textAlign="center">职务</Table.Cell>
                 <Table.Cell textAlign="center" collapsing>
-                  State
+                  状态
                 </Table.Cell>
-                <Table.Cell textAlign="center">Location</Table.Cell>
+                <Table.Cell textAlign="center">位置</Table.Cell>
                 <Table.Cell textAlign="center" collapsing fontSize="12px">
-                  SL Dist.
+                  距小队长
                 </Table.Cell>
                 <Table.Cell textAlign="center" />
               </Table.Row>
@@ -489,19 +540,22 @@ const SquadMonitor = (props) => {
                         {squad_leader.name}
                       </Button>
                     )) || (
-                      <Box color="yellow">{squad_leader.name} (NO CAMERA)</Box>
+                      <Box color="yellow">{squad_leader.name} （无摄像头）</Box>
                     )}
                   </Table.Cell>
-                  <Table.Cell p="2px">{squad_leader.role}</Table.Cell>
+                  <Table.Cell p="2px">
+                    {squad_leader.role_display ||
+                      overwatchLabel(squad_leader.role)}
+                  </Table.Cell>
                   <Table.Cell
                     p="2px"
                     color={determine_status_color(squad_leader.state)}
                   >
-                    {squad_leader.state}
+                    {overwatchState(squad_leader.state)}
                   </Table.Cell>
                   <Table.Cell p="2px">{squad_leader.area_name}</Table.Cell>
                   <Table.Cell p="2px" collapsing>
-                    {squad_leader.distance}
+                    {overwatchDistance(squad_leader.distance)}
                   </Table.Cell>
                   <Table.Cell />
                 </Table.Row>
@@ -548,40 +602,42 @@ const SquadMonitor = (props) => {
                               {marine.name}
                             </Button>
                           )) || (
-                            <Box color="yellow">{marine.name} (NO CAMERA)</Box>
+                            <Box color="yellow">{marine.name} （无摄像头）</Box>
                           )}
                         </Table.Cell>
-                        <Table.Cell p="2px">{marine.role}</Table.Cell>
+                        <Table.Cell p="2px">
+                          {marine.role_display || overwatchLabel(marine.role)}
+                        </Table.Cell>
                         <Table.Cell
                           p="2px"
                           color={determine_status_color(marine.state)}
                         >
-                          {marine.state}
+                          {overwatchState(marine.state)}
                         </Table.Cell>
                         <Table.Cell p="2px">{marine.area_name}</Table.Cell>
                         <Table.Cell p="2px" collapsing>
-                          {marine.distance}
+                          {overwatchDistance(marine.distance)}
                         </Table.Cell>
                         <Table.Cell p="2px">
                           {(hidden_marines.includes(marine.ref) && (
                             <Button
                               icon="plus"
                               color="green"
-                              tooltip="Show marine"
+                              tooltip="显示此陆战队员"
                               onClick={() => toggle_marine_hidden(marine.ref)}
                             />
                           )) || (
                             <Button
                               icon="minus"
                               color="red"
-                              tooltip="Hide marine"
+                              tooltip="隐藏此陆战队员"
                               onClick={() => toggle_marine_hidden(marine.ref)}
                             />
                           )}
                           <Button
                             icon="arrow-up"
                             color="green"
-                            tooltip="Promote marine to Unit Leader"
+                            tooltip="将此陆战队员晋升为单位长官"
                             onClick={() =>
                               act('replace_lead', { ref: marine.ref })
                             }
@@ -604,22 +660,22 @@ const SupplyDrop = (props) => {
   const [supplyX, setSupplyX] = useSharedState('supplyx', 0);
   const [supplyY, setSupplyY] = useSharedState('supply', 0);
 
-  let crate_status = 'Crate Loaded';
+  let crate_status = '补给箱已装载';
   let crate_color = 'green';
   if (data.supply_cooldown) {
-    crate_status = 'Cooldown - ' + data.supply_cooldown / 10 + ' seconds';
+    crate_status = '冷却中——' + data.supply_cooldown / 10 + '秒';
     crate_color = 'yellow';
   } else if (!data.has_crate_loaded) {
-    crate_status = 'No crate loaded';
+    crate_status = '未装载补给箱';
     crate_color = 'red';
   }
 
   return (
-    <Section fill fontSize="14px" title="Supply Drop">
+    <Section fill fontSize="14px" title="补给空投">
       <Stack justify={'space-between'} m="10px">
         <Stack.Item fontSize="14px">
           <LabeledControls mb="5px">
-            <LabeledControls.Item label="LONGITUDE">
+            <LabeledControls.Item label="经度">
               <NumberInput
                 value={supplyX}
                 step={1}
@@ -629,7 +685,7 @@ const SupplyDrop = (props) => {
                 width="75px"
               />
             </LabeledControls.Item>
-            <LabeledControls.Item label="LATITUDE">
+            <LabeledControls.Item label="纬度">
               <NumberInput
                 value={supplyY}
                 step={1}
@@ -639,7 +695,7 @@ const SupplyDrop = (props) => {
                 width="75px"
               />
             </LabeledControls.Item>
-            <LabeledControls.Item label="STATUS">
+            <LabeledControls.Item label="状态">
               <Box color={crate_color} bold>
                 {crate_status}
               </Box>
@@ -653,7 +709,7 @@ const SupplyDrop = (props) => {
               color="yellow"
               onClick={() => act('dropsupply', { x: supplyX, y: supplyY })}
             >
-              Launch
+              发射
             </Button>
             <Button
               fontSize="20px"
@@ -664,7 +720,7 @@ const SupplyDrop = (props) => {
                 act('save_coordinates', { x: supplyX, y: supplyY })
               }
             >
-              Save
+              保存
             </Button>
           </Box>
         </Stack.Item>
@@ -684,22 +740,22 @@ const OrbitalBombardment = (props) => {
   const [OBX, setOBX] = useSharedState('obx', 0);
   const [OBY, setOBY] = useSharedState('oby', 0);
 
-  let ob_status = 'Ready';
+  let ob_status = '就绪';
   let ob_color = 'green';
   if (data.ob_cooldown) {
-    ob_status = 'Cooldown - ' + data.ob_cooldown / 10 + ' seconds';
+    ob_status = '冷却中——' + data.ob_cooldown / 10 + '秒';
     ob_color = 'yellow';
   } else if (!data.ob_loaded) {
-    ob_status = 'Not chambered';
+    ob_status = '未装弹入膛';
     ob_color = 'red';
   }
 
   return (
-    <Section fill fontSize="14px" title="Orbital Bombardment">
+    <Section fill fontSize="14px" title="轨道轰炸">
       <Stack justify={'space-between'} m="10px">
         <Stack.Item fontSize="14px">
           <LabeledControls mb="5px">
-            <LabeledControls.Item label="LONGITUDE">
+            <LabeledControls.Item label="经度">
               <NumberInput
                 value={OBX}
                 step={1}
@@ -709,7 +765,7 @@ const OrbitalBombardment = (props) => {
                 width="75px"
               />
             </LabeledControls.Item>
-            <LabeledControls.Item label="LATITUDE">
+            <LabeledControls.Item label="纬度">
               <NumberInput
                 value={OBY}
                 step={1}
@@ -720,7 +776,7 @@ const OrbitalBombardment = (props) => {
               />
             </LabeledControls.Item>
 
-            <LabeledControls.Item label="STATUS">
+            <LabeledControls.Item label="状态">
               <Box color={ob_color} bold>
                 {ob_status}
               </Box>
@@ -734,7 +790,7 @@ const OrbitalBombardment = (props) => {
               color="red"
               onClick={() => act('dropbomb', { x: OBX, y: OBY })}
             >
-              Fire
+              开火
             </Button>
             <Button
               fontSize="20px"
@@ -743,7 +799,7 @@ const OrbitalBombardment = (props) => {
               color="yellow"
               onClick={() => act('save_coordinates', { x: OBX, y: OBY })}
             >
-              Save
+              保存
             </Button>
           </Box>
         </Stack.Item>
@@ -780,17 +836,17 @@ const SavedCoordinates = (props) => {
   return (
     <Stack.Item>
       <Box bold textAlign="center">
-        Max 3 stored coordinates. Will overwrite oldest first.
+        最多保存3组坐标，超出后将优先覆盖最早保存的一组。
       </Box>
       <Table>
         <Table.Row bold>
           <Table.Cell p="5px" collapsing>
-            LONG.
+            经度
           </Table.Cell>
           <Table.Cell p="5px" collapsing>
-            LAT.
+            纬度
           </Table.Cell>
-          <Table.Cell p="5px">COMMENT</Table.Cell>
+          <Table.Cell p="5px">备注</Table.Cell>
           <Table.Cell p="5px" collapsing />
         </Table.Row>
         {data.saved_coordinates.map((coords, index) => (

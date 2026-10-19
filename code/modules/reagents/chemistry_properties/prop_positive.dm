@@ -404,7 +404,7 @@
 				var/total_knitting_time = world.time + L.time_to_knit - min(150*potency, L.time_to_knit - 50)
 				L.knitting_time = total_knitting_time
 				L.start_processing()
-				to_chat(M, SPAN_NOTICE("你感觉[L.display_name]中的骨骼开始重新接合。"))
+				to_chat(M, SPAN_NOTICE("你感觉[localized_player_label(L.display_name)]中的骨骼开始重新接合。"))
 
 /datum/chem_property/positive/bonemending/process_overdose(mob/living/M, potency = 1)
 	M.take_limb_damage(POTENCY_MULTIPLIER_MEDIUM*potency)

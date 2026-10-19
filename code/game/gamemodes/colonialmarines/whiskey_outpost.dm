@@ -117,29 +117,29 @@
 
 	CONFIG_SET(flag/remove_gun_restrictions, TRUE)
 	sleep(10)
-	to_world(SPAN_ROUND_HEADER("当前游戏模式——威士忌前哨站！"))
+	to_world(SPAN_ROUND_HEADER("当前游戏模式——威士忌哨站！"))
 	to_world(SPAN_ROUNDBODY("2177年，LV-624行星。此时距离USS阿尔迈耶号与“坠落猎鹰”第2营抵达该星区还有五年。"))
 	to_world(SPAN_ROUNDBODY("“尘土突袭者”第3营受命在尼洛德星区建立美国殖民地海军陆战队的存在。"))
-	to_world(SPAN_ROUNDBODY("[SSmapping.configs[GROUND_MAP].map_name]是尘土突袭者在该星区建立的基地之一，如今正遭受未知外星势力的攻击。"))
-	to_world(SPAN_ROUNDBODY("伤亡不断增加，补给日渐匮乏。驻守[SSmapping.configs[GROUND_MAP].map_name]的尘土突袭者必须撑过一小时，才能向星区内其余部队发出警报。"))
+	to_world(SPAN_ROUNDBODY("[get_statistic_display_label(SSmapping.configs[GROUND_MAP].map_name)]是尘土突袭者在该星区建立的基地之一，如今正遭受未知外星势力的攻击。"))
+	to_world(SPAN_ROUNDBODY("伤亡不断增加，补给日渐匮乏。驻守[get_statistic_display_label(SSmapping.configs[GROUND_MAP].map_name)]的尘土突袭者必须撑过一小时，才能向星区内其余部队发出警报。"))
 	to_world(SPAN_ROUNDBODY("尽可能长时间地坚守。"))
 	world << sound('sound/effects/siren.ogg')
 
 	sleep(10)
 	switch(map_locale) //Switching it up.
 		if(0)
-			marine_announcement("This is Captain Hans Naiche, commander of the 3rd Battalion 'Dust Raiders' forces here on LV-624. In our attempts to establish a base on this planet, several of our patrols were wiped out by hostile creatures.  We're setting up a distress call, but we need you to hold [SSmapping.configs[GROUND_MAP].map_name] in order for our engineers to set up the relay. We're prepping several M402 mortar units to provide fire support. If they overrun your positon, we will be wiped out with no way to call for help. Hold the line or we all die.", "Captain Naiche, 3rd Battalion Command, LV-624 Garrison")
+			marine_announcement("这里是汉斯·奈奇上尉，LV-624驻军“尘土突袭者”第3营指挥官。我们尝试在这颗行星建立基地时，已有数支巡逻队被敌对生物消灭。我们正在准备发出求救信号，但需要你们守住[get_statistic_display_label(SSmapping.configs[GROUND_MAP].map_name)]，为工程师架设中继站争取时间。数门M402迫击炮正在准备提供火力支援。一旦你们的阵地被突破，我们就会全军覆没，连求援的机会都没有。守住防线，否则我们都得死。", "奈奇上尉，第3营指挥部，LV-624驻军")
 	addtimer(CALLBACK(src, PROC_REF(story_announce), 0), 3 MINUTES)
 	return ..()
 
 /datum/game_mode/whiskey_outpost/proc/story_announce(time)
 	switch(time)
 		if(0)
-			marine_announcement("This is Captain Hans Naiche, Commander of the 3rd Bataillion, 'Dust Raiders' forces on LV-624. As you already know, several of our patrols have gone missing and likely wiped out by hostile local creatures as we've attempted to set our base up.", "Captain Naiche, 3rd Battalion Command, LV-624 Garrison")
+			marine_announcement("这里是汉斯·奈奇上尉，LV-624“尘土突袭者”第3营指挥官。各位已经知道，在我们尝试建立基地的过程中，数支巡逻队失踪，很可能已被当地的敌对生物消灭。", "奈奇上尉，第3营指挥部，LV-624驻军")
 		if(1)
-			marine_announcement("Our scouts report increased activity in the area and given our intel, we're already preparing for the worst. We're setting up a comms relay to send out a distress call, but we're going to need time while our engineers get everything ready. All other stations should prepare accordingly and maximize combat readiness, effective immediately.", "Captain Naiche, 3rd Battalion Command, LV-624 Garrison")
+			marine_announcement("侦察兵报告，这一带的活动日益频繁。根据现有情报，我们已经在做最坏的打算。我们正架设通信中继站以发送求救信号，但工程师完成准备还需要时间。其他所有驻地立即做好相应准备，将战备水平提升至最高。", "奈奇上尉，第3营指挥部，LV-624驻军")
 		if(2)
-			marine_announcement("Captain Naiche here. We've tracked the bulk of enemy forces on the move and [SSmapping.configs[GROUND_MAP].map_name] is likely to be hit before they reach the base. We need you to hold them off while we finish sending the distress call. Expect incoming within a few minutes. Godspeed, [SSmapping.configs[GROUND_MAP].map_name].", "Captain Naiche, 3rd Battalion Command, LV-624 Garrison")
+			marine_announcement("我是奈奇上尉。我们已经追踪到敌方主力的动向。在它们抵达基地前，[get_statistic_display_label(SSmapping.configs[GROUND_MAP].map_name)]很可能先遭到攻击。我们需要你们挡住它们，让我们有时间发出求救信号。预计敌军数分钟内抵达。愿上帝保佑你们，[get_statistic_display_label(SSmapping.configs[GROUND_MAP].map_name)]。", "奈奇上尉，第3营指挥部，LV-624驻军")
 
 	if(time <= 2)
 		addtimer(CALLBACK(src, PROC_REF(story_announce), time+1), 3 MINUTES)
@@ -588,7 +588,7 @@
 //This should at least give SLs the ability to rearm their squad at the frontlines.
 
 /obj/item/device/whiskey_supply_beacon //Whiskey Outpost Supply beacon. Might as well reuse the IR target beacon (Time to spook the fucking shit out of people.)
-	name = "ASB beacon"
+	name = "ASB弹药补给信标"
 	desc = "弹药补给信标，具有5种设置，对应不同补给。可在武器命令分页中切换空投弹药类型。"
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "ir_beacon"
@@ -619,7 +619,7 @@
 		"Smartgun ammo",
 	)
 
-	var/supply_drop_choice = tgui_input_list(user, "要呼叫哪种补给？", "补给空投", supplies)
+	var/supply_drop_choice = localized_input_list(user, "要呼叫哪种补给？", "补给空投", supplies)
 
 	switch(supply_drop_choice)
 		if("10x24mm, slugs, buckshot, and 10x20mm rounds")
@@ -797,4 +797,4 @@
 	return // No bioscans needed in WO
 
 /datum/game_mode/whiskey_outpost/get_escape_menu()
-	return "Making a last stand on..."
+	return "最后坚守于……"

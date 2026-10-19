@@ -83,7 +83,7 @@
 
 	data["evac_status"] = SShijack.evac_status
 	if(SShijack.evac_status == EVACUATION_STATUS_INITIATED)
-		data["evac_eta"] = SShijack.get_evac_eta()
+		data["evac_eta"] = SShijack.get_eta_display(SShijack.get_evac_eta())
 
 	if(!length(messagetitle))
 		data["messages"] = null
@@ -131,7 +131,7 @@
 
 			log_game("[key_name(user)] has called for an emergency evacuation.")
 			message_admins("[key_name_admin(user)] has called for an emergency evacuation.")
-			log_ares_security("Initiate Evacuation", "Called for an emergency evacuation.", user)
+			log_ares_security("启动撤离", "已启动紧急撤离。", user)
 			. = TRUE
 
 		if("evacuation_cancel")
@@ -154,7 +154,7 @@
 
 			log_game("[key_name(user)] has canceled the emergency evacuation.")
 			message_admins("[key_name_admin(user)] has canceled the emergency evacuation.")
-			log_ares_security("Cancel Evacuation", "Cancelled the emergency evacuation.", user)
+			log_ares_security("取消撤离", "已取消紧急撤离。", user)
 			. = TRUE
 
 		// evac stuff end \\
@@ -169,14 +169,14 @@
 				if(SEC_LEVEL_DELTA)
 					return
 
-			var/level_selected = tgui_input_list(user, "要设置为何种警报等级？", "警报等级", alert_list)
+			var/level_selected = localized_input_list(user, "要设置为何种警报等级？", "警报等级", alert_list)
 			if(!level_selected)
 				return
 
 			set_security_level(seclevel2num(level_selected), log = ARES_LOG_NONE)
 			log_game("[key_name(user)] has changed the security level to [get_security_level()].")
 			message_admins("[key_name_admin(user)] has changed the security level to [get_security_level()].")
-			log_ares_security("Manual Security Update", "Changed the security level to [get_security_level()].", user)
+			log_ares_security("手动更改警报", "已将警报等级更改为[localized_player_label(get_security_level())]。", user)
 			. = TRUE
 
 		if("messageUSCM")

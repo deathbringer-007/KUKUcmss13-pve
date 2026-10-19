@@ -103,8 +103,8 @@
 		return
 
 	var/datum/resin_construction/resing_construction = GLOB.resin_constructions_list[hivelord.selected_resin]
-	target_turf.visible_message(SPAN_XENONOTICE("菌毯开始剧烈搏动，分泌树脂形成了[resing_construction.construction_name]！"), null, 5)
-	to_chat(owner, SPAN_XENONOTICE("我们将等离子体注入脚下的菌毯，驱使其分泌树脂形成[resing_construction.construction_name]。"))
+	target_turf.visible_message(SPAN_XENONOTICE("菌毯开始剧烈搏动，分泌树脂形成了[resing_construction.name]！"), null, 5)
+	to_chat(owner, SPAN_XENONOTICE("我们将等离子体注入脚下的菌毯，驱使其分泌树脂形成[resing_construction.name]。"))
 	playsound(target_turf, "alien_resin_build", 25)
 	return TRUE
 

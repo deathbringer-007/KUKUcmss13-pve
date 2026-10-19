@@ -79,7 +79,7 @@
 
 	if(organ)
 		data["organ"] = TRUE
-		data["caste"] = caste_of_organ
+		data["caste"] = localized_player_label(caste_of_organ)
 		data["value"] = organ.research_value
 	else
 		data["organ"] = FALSE

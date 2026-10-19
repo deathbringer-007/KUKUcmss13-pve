@@ -202,7 +202,7 @@
 							cur_obs.ManualFollow(affected_mob)
 							if(cur_obs.client.prefs?.toggles_flashing & FLASH_POOLSPAWN)
 								window_flash(cur_obs.client)
-						if(is_nested || tgui_alert(cur_obs, "你寄生过的一个未入巢宿主即将破胸！要控制新幼体吗？", "幼体成熟", list("Yes", "No"), 10 SECONDS) == "Yes")
+						if(is_nested || localized_tgui_alert(cur_obs, "你寄生过的一个未入巢宿主即将破胸！要控制新幼体吗？", "幼体成熟", list("Yes", "No"), 10 SECONDS) == "Yes")
 							picked = cur_obs
 							candidates -= cur_obs
 							message_alien_candidates(candidates, dequeued = 0)
@@ -232,7 +232,7 @@
 						cur_candidate.ManualFollow(affected_mob)
 						if(cur_candidate.client.prefs?.toggles_flashing & FLASH_POOLSPAWN)
 							window_flash(cur_candidate.client)
-						if(tgui_alert(cur_candidate, "一个未入巢的宿主即将破胸！要控制新幼体吗？", "幼体成熟", list("Yes", "No"), 10 SECONDS) == "Yes")
+						if(localized_tgui_alert(cur_candidate, "一个未入巢的宿主即将破胸！要控制新幼体吗？", "幼体成熟", list("Yes", "No"), 10 SECONDS) == "Yes")
 							picked = cur_candidate
 							candidates -= cur_candidate
 							message_alien_candidates(candidates, dequeued = 0)
@@ -278,7 +278,7 @@
 	if(!HAS_TRAIT(affected_mob, TRAIT_NESTED))
 		var/area/burst_area = get_area(src)
 		var/area_text = burst_area ? "，位于<b>[burst_area]</b>" : ""
-		notify_ghosts(header = "即将破胸", message = "一只<b>[new_xeno.hive.prefix]幼体</b>即将从<b>[affected_mob]</b>的胸口破体而出[area_text]！", source = affected_mob)
+		notify_ghosts(header = "即将破胸", message = "一只<b>[localized_player_label(new_xeno.hive.name)]的幼体</b>即将从<b>[affected_mob]</b>的胸口破体而出[area_text]！", source = affected_mob)
 
 	stage = 7 // Begin the autoburst countdown
 

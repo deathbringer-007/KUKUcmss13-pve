@@ -28,13 +28,13 @@
 		return
 	var/castepick
 	if((client.prefs && client.prefs.no_radials_preference) || !hive.evolution_menu_images)
-		castepick = tgui_input_list(usr, "我们正在成长为强大的异形！是时候选择阶级了。", "进化", castes_available, theme="hive_status")
+		castepick = localized_input_list(usr, "我们正在成长为强大的异形！是时候选择阶级了。", "进化", castes_available, theme="hive_status")
 	else
 		var/list/fancy_caste_list = list()
 		for(var/caste in castes_available)
 			fancy_caste_list[caste] = hive.evolution_menu_images[caste]
 
-		castepick = show_radial_menu(src, src.client?.eye, fancy_caste_list)
+		castepick = localized_radial_menu(src, src.client?.eye, fancy_caste_list)
 	if(!castepick) //Changed my mind
 		return
 
@@ -92,12 +92,12 @@
 	M = GLOB.RoleAuthority.get_caste_by_text(castepick)
 
 	if(isnull(M))
-		to_chat(usr, SPAN_WARNING("[castepick]不是有效的阶级！若看到此提示，请联系开发者！"))
+		to_chat(usr, SPAN_WARNING("[localized_player_label(castepick)]不是有效的阶级！若看到此提示，请联系开发者！"))
 		return
 
 	if(!can_evolve(castepick, potential_queens))
 		return
-	to_chat(src, SPAN_XENONOTICE("虫巢似乎已经能够支撑我们演化为[SPAN_BOLD(castepick)]！"))
+	to_chat(src, SPAN_XENONOTICE("虫巢似乎已经能够支撑我们演化为[SPAN_BOLD(localized_player_label(castepick))]！"))
 
 	visible_message(SPAN_XENONOTICE("[src]的身体开始扭曲变形。"), \
 	SPAN_XENONOTICE("我们的身体开始扭曲变形。"))
@@ -178,7 +178,7 @@
 
 	built_structures = null
 
-	new_xeno.visible_message(SPAN_XENODANGER("一只[new_xeno.caste.display_name || new_xeno.caste.caste_type]从[src]的空壳中钻了出来。"), \
+	new_xeno.visible_message(SPAN_XENODANGER("一只[localized_player_label(new_xeno.caste.display_name || new_xeno.caste.caste_type)]从[src]的空壳中钻了出来。"), \
 	SPAN_XENODANGER("我们抛下旧躯壳，以更强大的形态钻出。为了虫巢！"))
 
 	if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == src)
@@ -290,12 +290,12 @@
 	if(length(caste.deevolves_to) == 1)
 		newcaste = caste.deevolves_to[1]
 	else if(length(caste.deevolves_to) > 1)
-		newcaste = tgui_input_list(src, "选择想要退化到的阶级。", "退化", caste.deevolves_to, theme="hive_status")
+		newcaste = localized_input_list(src, "选择想要退化到的阶级。", "退化", caste.deevolves_to, theme="hive_status")
 
 	if(!newcaste)
 		return
 
-	var/confirm = tgui_alert(src, "确定要从 [caste.caste_type] 退化为 [newcaste] 吗？", "退化", list("Yes", "No"))
+	var/confirm = localized_tgui_alert(src, "确定要从[localized_player_label(caste.caste_type)]退化为[localized_player_label(newcaste)]吗？", "退化", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -366,7 +366,7 @@
 	new_xeno.generate_name()
 	if(new_xeno.client)
 		new_xeno.set_lighting_alpha(level_to_switch_to)
-	new_xeno.visible_message(SPAN_XENODANGER("一只[new_xeno.caste.display_name || new_xeno.caste.caste_type]从[src]的空壳中钻了出来。"), \
+	new_xeno.visible_message(SPAN_XENODANGER("一只[localized_player_label(new_xeno.caste.display_name || new_xeno.caste.caste_type)]从[src]的空壳中钻了出来。"), \
 	SPAN_XENODANGER("我们退回了先前的形态。"))
 
 	if(GLOB.round_statistics && !new_xeno.statistic_exempt)

@@ -78,7 +78,7 @@
 	if(SShijack)
 		var/eta_status = SShijack.get_evac_eta()
 		if(eta_status)
-			stat(null, "疏散目标：[localized_player_label(eta_status)]")
+			stat(null, "疏散目标：[SShijack.get_eta_display(eta_status)]")
 
 
 // this function displays the stations manifest in a separate window

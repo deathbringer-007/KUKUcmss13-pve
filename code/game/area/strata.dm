@@ -7,7 +7,7 @@ EXTERIOR is FUCKING FREEZING, and refers to areas out in the open and or exposed
 */
 
 /area/strata
-	name = "Sorokyne Strata"
+	name = "索罗基内地层"
 	icon = 'icons/turf/area_strata.dmi'
 	//ambience = list('figuresomethingout.ogg')
 	icon_state = "strata"
@@ -17,25 +17,25 @@ EXTERIOR is FUCKING FREEZING, and refers to areas out in the open and or exposed
 	minimap_color = MINIMAP_AREA_COLONY
 
 /area/shuttle/drop1/strata //Not in Sulaco.DM because holy shit we need to sort things.
-	name = "Dropship Alamo Landing Zone"
+	name = "阿拉莫运输艇着陆区"
 	icon_state = "shuttle"
 	base_lighting_alpha = 255
 	minimap_color = MINIMAP_AREA_LZ
 	is_resin_allowed = FALSE
 
 /area/shuttle/drop2/strata
-	name = "Dropship Normandy Landing Zone"
+	name = "诺曼底运输艇着陆区"
 	icon_state = "shuttle2"
 	base_lighting_alpha = 255
 	minimap_color = MINIMAP_AREA_LZ
 	is_resin_allowed = FALSE
 
 /area/strata/ag
-	name = "Above Ground Area"
+	name = "地上区域"
 	icon_state = "ag"
 
 /area/strata/ag/exterior
-	name = "Exterior Above Ground Area"
+	name = "地上室外区域"
 	icon_state = "ag_e"
 	//always_unpowered = 1 So exterior lights work, this will be commented out unless it causes unforseen issues.
 	is_resin_allowed = FALSE
@@ -47,14 +47,14 @@ EXTERIOR is FUCKING FREEZING, and refers to areas out in the open and or exposed
 	flags_area = AREA_NOTUNNEL
 
 /area/strata/ag/interior
-	name = "Interior Above Ground Area"
+	name = "地上室内区域"
 	icon_state = "ag_i"
 	requires_power = 1
 	temperature = T20C //Nice and room temp
 	ceiling = CEILING_METAL
 
 /area/strata/ag/interior/mountain
-	name = "Outside mountain"
+	name = "山体外侧"
 	icon_state = "ag_e"
 
 /area/strata/ag/interior/restricted
@@ -62,21 +62,21 @@ EXTERIOR is FUCKING FREEZING, and refers to areas out in the open and or exposed
 	flags_area = AREA_NOTUNNEL
 
 /area/strata/ag/interior/restricted/devroom
-	name = "Super Secret Credits Room"
+	name = "超级秘密制作人员名单室"
 
 /area/strata/ug
-	name = "Under Ground Area"
+	name = "地下区域"
 	icon_state = "ug"
 	ceiling = CEILING_UNDERGROUND_ALLOW_CAS
 
 /area/strata/ug/interior
-	name = "Interior Under Ground Area"
+	name = "地下室内区域"
 	icon_state = "ug_i"
 	requires_power = 1
 	temperature = T20C
 
 /area/strata/ug/exterior
-	name = "Exterior Under Ground Area"
+	name = "地下室外区域"
 	icon_state = "ug_i"
 	requires_power = 1
 	temperature = T20C
@@ -89,7 +89,7 @@ EXTERIOR is FUCKING FREEZING, and refers to areas out in the open and or exposed
 //Landing Zones, places near LZs (Open Air, Above Ground)
 
 /area/strata/ag/interior/landingzone_1
-	name = "Landing Zone 1 Pad - Mining Aerodrome"
+	name = "1号着陆平台——采矿航空港"
 	icon_state = "landingzone_1"
 	weather_enabled = FALSE
 	unlimited_power = 1 //So the DS computer always works for the Queen
@@ -98,7 +98,7 @@ EXTERIOR is FUCKING FREEZING, and refers to areas out in the open and or exposed
 	is_resin_allowed = FALSE
 
 /area/strata/ag/exterior/landingzone_2
-	name = "Landing Zone 2 Pad - Ice Fields"
+	name = "2号着陆平台——冰原"
 	icon_state = "landingzone_2"
 	weather_enabled = FALSE
 	unlimited_power = 1 //So the DS computer always works for the Queen
@@ -107,88 +107,88 @@ EXTERIOR is FUCKING FREEZING, and refers to areas out in the open and or exposed
 	is_resin_allowed = FALSE
 
 /area/strata/ag/interior/nearlz1
-	name = "Landing Zone 1 - Mining Aerodrome"
+	name = "1号着陆区——采矿航空港"
 	icon_state = "nearlz1"
 	weather_enabled = FALSE
 	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/strata/ag/exterior/nearlz2
-	name = "Landing Zone 2 - Ice Fields"
+	name = "2号着陆区——冰原"
 	icon_state = "nearlz2"
 	weather_enabled = TRUE //This LZ is outside, but consider disabling if it destroys the meta.
 	minimap_color = MINIMAP_AREA_LZ
 	is_resin_allowed = FALSE
 
 /area/strata/ag/exterior/landingzone_valley
-	name = "Landing Zone Valley"
+	name = "着陆区山谷"
 	icon_state = "lzvalley"
 
 /area/strata/ag/exterior/landingzone_lake
-	name = "Landing Zone Lake Ice"
+	name = "着陆区湖面冰层"
 	icon_state = "lzfrozenlake"
 
 /area/strata/ag/exterior/landingzone_water
-	name = "Landing Zone Lake Water"
+	name = "着陆区湖泊水域"
 	icon_state = "lzfrozenwater"
 	temperature = TCMB //Cold enough to kill through protective clothing.
 
 /////Research Station//////
 
 /area/strata/ag/exterior/research_decks
-	name = "Outpost Decks"
+	name = "哨站平台"
 	icon_state = "rdecks"
 	is_resin_allowed = TRUE
 	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/strata/ag/exterior/research_decks/center //The decks on the deck.
-	name = "Seconday Outpost Decks"
+	name = "哨站次级平台"
 
 /area/strata/ag/exterior/research_decks/pipes //pipemaze thingy
-	name = "Pipes at Outpost Decks"
+	name = "哨站平台管道区"
 	icon_state = "security_station"
 
 /area/strata/ag/interior/research_decks/security //For all security stuff outside the outpost.
-	name = "Outpost Deck Security Checkpoint"
+	name = "哨站平台安检站"
 	icon_state = "rdecks_sec"
 
 /area/strata/ag/exterior/paths/north_outpost //The area north of the outpost
-	name = "Outpost - North Access Channel"
+	name = "哨站北通道"
 	icon_state = "outpost_gen_2"
 
 ////////close to research/////////
 
 /area/strata/ag/exterior/paths/southresearch
 	minimap_color = MINIMAP_AREA_RESEARCH
-	name = "South Of The Outpost"
+	name = "哨站南侧"
 
 /area/strata/ag/exterior/shed_five_caves
-	name = "Terminal Five Topside Caves"
+	name = "5号终端上方洞穴"
 	icon_state = "lzcaves"
 	is_resin_allowed = TRUE
 
 ////////Telecomms//////////////////
 
 /area/strata/ag/interior/tcomms/ //T-Comms is inside until you leave the sheltered area..
-	name = "Relay"
+	name = "中继站"
 	icon_state = "tcomms1"
 
 /area/strata/ag/interior/tcomms/tcomms_engi
-	name = "Relay Maintenance"
+	name = "中继站维护区"
 	icon_state = "tcomms2"
 
 /area/strata/ag/exterior/tcomms/tcomms_cave
-	name = "Relay Cave"
+	name = "中继站洞穴"
 	icon_state = "tcomms3"
 
 /area/strata/ag/exterior/tcomms/tcomms_deck
-	name = "Relay Storage Deck"
+	name = "中继站储藏平台"
 	icon_state = "tcomms4"
 
 //JUNGLE CAVES, ALL UNDERGROUND, ALL INTERIOR//
 
 /area/strata/ug/interior/jungle
-	name = "Deep I"
+	name = "深层I区"
 
 //Maintenance/Generator Sheds (Above & Below Ground)
 //Terminals are below ground, Sheds are above ground.
@@ -206,165 +206,165 @@ EXTERIOR is FUCKING FREEZING, and refers to areas out in the open and or exposed
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/strata/ag/interior/engi_shed/one
-	name = "Generator Shed One"
+	name = "1号发电机棚"
 	icon_state = "shed_1_ag"
 	ceiling = CEILING_METAL
 
 /area/strata/ug/interior/engi_shed/one
-	name = "Generator Terminal One"
+	name = "1号发电终端"
 	icon_state = "shed_1_ug"
 
 /area/strata/ag/interior/engi_shed/two
-	name = "Generator Shed Two"
+	name = "2号发电机棚"
 	icon_state = "shed_2_ag"
 
 /area/strata/ug/interior/engi_shed/two
-	name = "Generator Terminal Two"
+	name = "2号发电终端"
 	icon_state = "shed_2_ug"
 
 /area/strata/ag/interior/engi_shed/three
-	name = "Generator Shed Three"
+	name = "3号发电机棚"
 	icon_state = "shed_3_ag"
 
 /area/strata/ug/interior/engi_shed/three
-	name = "Generator Terminal Three"
+	name = "3号发电终端"
 	icon_state = "shed_3_ug"
 
 /area/strata/ag/interior/engi_shed/four
-	name = "Generator Shed Four"
+	name = "4号发电机棚"
 	icon_state = "shed_4_ag"
 
 /area/strata/ug/interior/engi_shed/four
-	name = "Generator Terminal Four"
+	name = "4号发电终端"
 	icon_state = "shed_4_ug"
 
 /area/strata/ag/interior/engi_shed/five
-	name = "Generator Shed Five"
+	name = "5号发电机棚"
 	icon_state = "shed_5_ag"
 
 /area/strata/ug/interior/engi_shed/five
-	name = "Generator Terminal Five"
+	name = "5号发电终端"
 	icon_state = "shed_5_ug"
 
 /area/strata/ag/interior/engi_shed/six
-	name = "Generator Shed Six"
+	name = "6号发电机棚"
 	icon_state = "shed_6_ag"
 
 /area/strata/ug/interior/engi_shed/six
-	name = "Generator Terminal Six"
+	name = "6号发电终端"
 	icon_state = "shed_6_ug"
 
 /area/strata/ag/interior/engi_shed/seven
-	name = "Generator Shed Seven"
+	name = "7号发电机棚"
 	icon_state = "shed_7_ag"
 
 /area/strata/ug/interior/engi_shed/seven
-	name = "Generator Terminal Seven"
+	name = "7号发电终端"
 	icon_state = "shed_7_ug"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/strata/ag/interior/engi_shed/eight
-	name = "Generator Shed Eight"
+	name = "8号发电机棚"
 	icon_state = "shed_8_ag"
 
 /area/strata/ug/interior/engi_shed/eight
-	name = "Generator Terminal Eight"
+	name = "8号发电终端"
 	icon_state = "shed_8_ug"
 
 
 //Topside Structures //Clean these up into a sub tree
 
 /area/strata/ag/interior/landingzone_checkpoint
-	name = "Landing Zone Security Checkpoint"
+	name = "着陆区安检站"
 	icon_state = "security_station"
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/strata/ag/exterior/landingzone_checkpoint_deck
-	name = "Landing Zone Security Checkpoint Deck"
+	name = "着陆区安检平台"
 	icon_state = "security_station"
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/strata/ag/exterior/disposals
-	name = "Disposals Courtyard"
+	name = "废物处理庭院"
 	icon_state = "disposal"
 
 /area/strata/ag/interior/disposals
-	name = "Disposals Overhang"
+	name = "废物处理区外伸棚"
 	icon_state = "disposal"
 
 /area/strata/ag/interior/vanjam //a jam, just for vans
-	name = "Flight Control Garage Overhang"
+	name = "飞控车库外伸棚"
 	icon_state = "garage"
 
 /area/strata/ag/exterior/vanyard
-	name = "Flight Control Vehicle Yard"
+	name = "飞控车辆场"
 	icon_state = "garage"
 
 /area/strata/ag/interior/administration
-	name = "Flight Control Offices"
+	name = "飞控办公室"
 	icon_state = "offices"
 	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/strata/ag/interior/admin_tcomms/ //T-Comms is inside until you leave the sheltered area..
-	name = "Telecommunications"
+	name = "通信室"
 	icon_state = "tcomms1"
 	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/strata/ag/exterior/administration_decks
-	name = "Flight Control Office Deck"
+	name = "飞控办公室平台"
 	icon_state = "offices"
 	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/strata/ag/interior/administrative_wash_closet
-	name = "Flight Control Wash Closet"
+	name = "飞控洗手间"
 	icon_state = "offices"
 	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/strata/ag/interior/dorms
-	name = "External Mining"
+	name = "外围采矿区"
 	icon_state = "dorms_0"
 	is_resin_allowed = FALSE
 
 /area/strata/ag/interior/dorms/north
-	name = "North External Mining Dormitories"
+	name = "外围采矿区北宿舍"
 	icon_state = "dorms_1"
 
 /area/strata/ag/interior/dorms/west
-	name = "West External Mining Dormitories"
+	name = "外围采矿区西宿舍"
 	icon_state = "dorms_2"
 
 /area/strata/ag/interior/dorms/south
-	name = "South External Mining Dormitories"
+	name = "外围采矿区南宿舍"
 	icon_state = "dorms_3"
 
 /area/strata/ag/exterior/dorms_deck
-	name = "External Mining Dormitory Decks"
+	name = "外围采矿宿舍平台"
 	icon_state = "dorms_2"
 
 /area/strata/ag/interior/dorms/maintenance
-	name = "External Mining Dormitory Maintenance"
+	name = "外围采矿宿舍维护区"
 	icon_state = "outpost_maint"
 	is_resin_allowed = TRUE
 
 /area/strata/ag/interior/dorms/hive
-	name = "External Mining Dormitory Thermal Storage"
+	name = "外围采矿宿舍温控储藏室"
 	icon_state = "dorms_beno"
 	is_resin_allowed = TRUE
 
 /area/strata/ag/interior/dorms/canteen
-	name = "External Mining Dormitory Canteen"
+	name = "外围采矿宿舍食堂"
 	icon_state = "dorms_canteen"
 
 /area/strata/ag/interior/dorms/flight_control
-	name = "External Mining Flight Control"
+	name = "外围采矿区飞控室"
 	icon_state = "dorms_lobby"
 
 /area/strata/ag/interior/dorms/lobby
-	name = "External Mining Lobby"
+	name = "外围采矿区大厅"
 	icon_state = "dorms_2"
 
 /area/strata/ag/interior/dorms/bar
-	name = "External Mining Bar"
+	name = "外围采矿区酒吧"
 	icon_state = "dorms_1"
 
 
@@ -373,91 +373,91 @@ EXTERIOR is FUCKING FREEZING, and refers to areas out in the open and or exposed
 //Also marshes
 
 /area/strata/ag/exterior/marsh
-	name = "Cryo-Thermal Marshes"
+	name = "冰热区沼泽"
 	icon_state = "marsh"
 
 /area/strata/ag/exterior/marsh/center
-	name = "Cryo-Thermal Springs"
+	name = "冰热区泉水"
 	icon_state = "marshcenter"
 
 /area/strata/ag/exterior/marsh/river
-	name = "Cryo-Thermal River"
+	name = "冰热区河流"
 	icon_state = "marshriver"
 
 /area/strata/ag/exterior/marsh/crash
-	name = "Cryo-Thermal Crashed Lifeboat"
+	name = "冰热区坠毁救生艇"
 	icon_state = "marshship"
 
 /area/strata/ag/exterior/marsh/water
-	name = "Cryo-Thermal Water"
+	name = "冰热区水域"
 	icon_state = "marshwater"
 	temperature = TCMB //space cold
 
 /area/strata/ag/exterior/north_lz_caves
-	name = "External Mining Aerodrome Caves"
+	name = "外围采矿航空港洞穴"
 	icon_state = "lzcaves"
 
 /area/strata/ag/exterior/paths //parent entity, just for sorting within the object tree, if anything, very generic, use as a placeholder.
-	name = "Ice Path"
+	name = "冰道"
 	icon_state = "path"
 
 /area/strata/ag/exterior/paths/adminext
-	name = "Flight Control Exterior"
+	name = "飞控室外区"
 
 /area/strata/ag/exterior/paths/dorms_quad //The area between the deck.
-	name = "Mining Dormitories Quad"
+	name = "采矿宿舍院落"
 	icon_state = "path"
 	is_resin_allowed = FALSE
 
 /area/strata/ag/exterior/paths/cabin_area
-	name = "Far North Of The Outpost"
+	name = "哨站远北区域"
 	icon_state = "cabin"
 
 /area/strata/ag/exterior/paths/cabin_area/lake
-	name = "Wooden Hospital - Lake"
+	name = "木屋医院——湖泊"
 
 /area/strata/ag/exterior/paths/cabin_area/shed
-	name = "Wooden Hospital - Out Shed"
+	name = "木屋医院——外部棚屋"
 
 /area/strata/ag/exterior/paths/cabin_area/central
-	name = "Wooden Hospital - Front Yard"
+	name = "木屋医院——前院"
 
 /area/strata/ag/interior/paths/cabin_area/central
-	name = "Wooden Hospital - Hospital Proper"
+	name = "木屋医院——医院主楼"
 	icon_state = "cabin3"
 
 /area/strata/ag/interior/paths/cabin_area/cave
-	name = "Wooden Hospital - Forgotten Passage"
+	name = "木屋医院——遗忘通道"
 	icon_state = "hive_1"
 
 /area/strata/ag/exterior/paths/cabin_area/minehead
-	name = "Wooden Hospital - Minehead"
+	name = "木屋医院——矿井口"
 
 /area/strata/ug/interior/jungle/deep/minehead
 	icon_state = "cabin2"
-	name = "Deep Jungle - Minehead"
+	name = "密林深处——矿井口"
 
 
 ///OUTPOST INTERIOR///
 
 /area/strata/ag/interior/outpost
-	name = "Sorokyne Outpost"
+	name = "索罗基内哨站"
 	icon_state = "research_station"
 
 /area/strata/ag/interior/outpost/gen
-	name = "Outpost Interior"
+	name = "哨站内部"
 	icon_state = "outpost_gen_0"
 
 /area/strata/ag/interior/outpost/gen/foyer
-	name = "Outpost Main Foyer"
+	name = "哨站主门厅"
 	icon_state = "outpost_gen_1"
 
 /area/strata/ag/interior/outpost/gen/bball //come on and SLAM.
-	name = "Outpost Basket Ball Court"
+	name = "哨站篮球场"
 	icon_state = "outpost_gen_4"
 
 /area/strata/ag/interior/outpost/gen/bball/nest //come on and BURST AND DIE.
-	name = "Outpost - B-Ball Caves"
+	name = "哨站篮球场洞穴"
 	icon_state = "hive_1"
 
 
@@ -465,356 +465,356 @@ EXTERIOR is FUCKING FREEZING, and refers to areas out in the open and or exposed
 
 
 /area/strata/ag/interior/outpost/maint
-	name = "Outpost Maintenance"
+	name = "哨站维护区"
 	icon_state = "outpost_maint"
 
 /area/strata/ag/interior/outpost/maint/foyer1
-	name = "Outpost Main Foyer North Maintenance"
+	name = "哨站主门厅北维护区"
 
 /area/strata/ag/interior/outpost/maint/foyer2
-	name = "Outpost Main Foyer South Maintenance"
+	name = "哨站主门厅南维护区"
 
 /area/strata/ag/interior/outpost/maint/med1
-	name = "Outpost Medical - Admin Lobby Maintenance"
+	name = "哨站医疗部——行政大厅维护区"
 	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/strata/ag/interior/outpost/maint/med2
-	name = "Outpost Medical - Directors Office Maintenance"
+	name = "哨站医疗部——主管办公室维护区"
 	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/strata/ag/interior/outpost/maint/med3
-	name = "Outpost Medical - Admin Lounge Maintenance"
+	name = "哨站医疗部——行政休息室维护区"
 	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/strata/ag/interior/outpost/maint/sec_west
-	name = "Outpost Security - West Maintenance"
+	name = "哨站安保部——西维护区"
 
 /area/strata/ag/interior/outpost/maint/aerodrome_to_admin
-	name = "Outpost Aerodrome - West Maintenance"
+	name = "哨站航空港——西维护区"
 
 /area/strata/ag/interior/outpost/maint/aerodrome_to_jungle
-	name = "Outpost Aerodrome - South Maintenance"
+	name = "哨站航空港——南维护区"
 
 /area/strata/ag/interior/outpost/maint/canteen_e_1
-	name = "Outpost Canteen - Eastern Maintenance"
+	name = "哨站食堂——东维护区"
 
 /area/strata/ag/interior/outpost/maint/canteen_e_2
-	name = "Outpost Canteen - Emergency Rations"
+	name = "哨站食堂——应急口粮储藏室"
 
 /area/strata/ag/interior/outpost/maint/canteen_e_3
-	name = "Outpost Canteen - Emergency Manuals"
+	name = "哨站食堂——应急手册储藏室"
 
 /area/strata/ag/interior/outpost/maint/bar
-	name = "Outpost Bar - Maintenance"
+	name = "哨站酒吧——维护区"
 
 ///OUTPOST MEDICAL///
 
 /area/strata/ag/interior/outpost/med
-	name = "Outpost Medical"
+	name = "哨站医疗部"
 	icon_state = "outpost_med"
 	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/strata/ag/interior/outpost/med/hall
-	name = "Outpost Medical Primary Hall"
+	name = "哨站医疗部主走廊"
 	icon_state = "outpost_med_hall"
 
 /area/strata/ag/interior/outpost/med/reception
-	name = "Outpost Medical Reception"
+	name = "哨站医疗部接待处"
 	icon_state = "outpost_med_recp"
 
 /area/strata/ag/interior/outpost/med/or1
-	name = "Outpost Medical Operating Theatre 1"
+	name = "哨站医疗部1号手术室"
 	icon_state = "outpost_med_or"
 
 /area/strata/ag/interior/outpost/med/chemstorage
-	name = "Outpost Medical Chemical Storage"
+	name = "哨站医疗部化学品储藏室"
 	icon_state = "outpost_med_chem"
 
 /area/strata/ag/interior/outpost/med/recovery
-	name = "Outpost Medical Recovery"
+	name = "哨站医疗部康复室"
 	icon_state = "outpost_med_recovery"
 
 /area/strata/ag/interior/outpost/med/paperroom
-	name = "Outpost Medical Paper Room"
+	name = "哨站医疗部文书室"
 	icon_state = "outpost_med_stock"
 
 /area/strata/ag/interior/outpost/med/spareuniform
-	name = "Outpost Medical Spare Uniform Closet"
+	name = "哨站医疗部备用制服间"
 	icon_state = "outpost_med_closet"
 
 /area/strata/ag/interior/outpost/med/lounge
-	name = "Outpost Medical Lounge"
+	name = "哨站医疗部休息室"
 
 /area/strata/ag/interior/outpost/med/utility
-	name = "Outpost Medical Utility Closet"
+	name = "哨站医疗部杂物间"
 
 /area/strata/ag/interior/outpost/med/lounge
-	name = "Outpost Medical Lounge"
+	name = "哨站医疗部休息室"
 
 /area/strata/ag/interior/outpost/med/stockroom
-	name = "Outpost Medical Stock Room"
+	name = "哨站医疗部储物间"
 	icon_state = "outpost_med_stock"
 
 /area/strata/ag/interior/outpost/med/morgue
-	name = "Outpost Morgue"
+	name = "哨站停尸房"
 
 /area/strata/ag/interior/outpost/med/autopsy
-	name = "Outpost Autopsy Room"
+	name = "哨站验尸室"
 
 /area/strata/ag/interior/outpost/med/records
-	name = "Outpost Medical - Engineering Records"
+	name = "哨站医疗部——工程档案室"
 
 /area/strata/ag/interior/outpost/med/jung_hall
-	name = "Outpost Medical South Hall"
+	name = "哨站医疗部南走廊"
 
 /area/strata/ag/interior/outpost/med/jungle_lock
-	name = "Outpost Medical Cave Lock"
+	name = "哨站医疗部洞穴闸口"
 
 ///OUTPOST ENGINEERING///
 
 /area/strata/ag/interior/outpost/engi
-	name = "Outpost Engineering"
+	name = "哨站工程部"
 	icon_state = "outpost_engi_0"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/strata/ag/interior/outpost/engi/foyer
-	name = "Outpost Engineering Main Foyer"
+	name = "哨站工程部门厅"
 	icon_state = "outpost_engi_1"
 
 /area/strata/ag/interior/outpost/engi/foyerdecks
-	name = "Outpost Engineering Main Foyer Decks"
+	name = "哨站工程部门厅平台"
 
 /area/strata/ag/interior/outpost/engi/garage
-	name = "Outpost Engineering Garage"
+	name = "哨站工程部车库"
 
 /area/strata/ag/interior/outpost/engi/tool_storage
-	name = "Outpost Engineering Tool Storage"
+	name = "哨站工程部工具间"
 	icon_state = "outpost_engi_2"
 
 /area/strata/ag/interior/outpost/engi/power_monitoring
-	name = "Outpost Engineering Power Monitoring"
+	name = "哨站工程部电力监控室"
 	icon_state = "outpost_engi_3"
 
 /area/strata/ag/interior/outpost/engi/hall
-	name = "Outpost Engineering Main Hall"
+	name = "哨站工程部主走廊"
 
 /area/strata/ag/interior/outpost/engi/emergency_storage
-	name = "Outpost Engineering Emergency Storage"
+	name = "哨站工程部应急物资库"
 	icon_state = "outpost_engi_4"
 
 /area/strata/ag/interior/outpost/engi/drome
-	name = "Outpost Aerodome"
+	name = "哨站航空港"
 	icon_state = "outpost_engi_4"
 
 /area/strata/ag/interior/outpost/engi/drome/shuttle
-	name = "Dismantled VDVK Eagle Mk 4"
+	name = "已拆解的VDVK“鹰”Mk4"
 	icon_state = "outpost_engi_3"
 
 /area/strata/ag/interior/outpost/engi/drome/security
-	name = "Outpost Aerodome Security Station"
+	name = "哨站航空港安保站"
 	icon_state = "outpost_engi_2"
 
 /area/strata/ag/interior/outpost/engi/drome/northlock
-	name = "Outpost Aerodome EOD Closet"
+	name = "哨站航空港排爆器材间"
 	icon_state = "outpost_engi_2"
 
 /area/strata/ag/interior/outpost/engi/drome/foreman
-	name = "Outpost Foreman's Office"
+	name = "哨站工头办公室"
 	icon_state = "outpost_engi_1"
 
 /area/strata/ag/interior/outpost/engi/drome/northhall
-	name = "Outpost Aerodrome North Hall"
+	name = "哨站航空港北走廊"
 
 /area/strata/ag/interior/outpost/engi/drome/jung_hall
-	name = "Outpost Aerodrome East Hall"
+	name = "哨站航空港东走廊"
 
 /area/strata/ag/interior/outpost/engi/drome/jungle_lock
-	name = "Outpost Aerodrome Cave Lock"
+	name = "哨站航空港洞穴闸口"
 	icon_state = "outpost_engi_4"
 
 ///OUTPOST SECURITY
 
 /area/strata/ag/interior/outpost/security
-	name = "Outpost Security"
+	name = "哨站安保部"
 	icon_state = "outpost_sec_0"
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/strata/ag/interior/outpost/security/hall
-	name = "Outpost Security Main Hall"
+	name = "哨站安保部主走廊"
 	icon_state = "outpost_sec_1"
 
 /area/strata/ag/interior/outpost/security/armory
-	name = "Outpost Armory"
+	name = "哨站军械库"
 	icon_state = "outpost_sec_4"
 
 /area/strata/ag/interior/outpost/security/access_line
-	name = "Outpost Security ID Processing"
+	name = "哨站安保部证件办理室"
 	icon_state = "outpost_sec_3"
 
 /area/strata/ag/interior/outpost/security/breakroom
-	name = "Outpost Security Breakroom"
+	name = "哨站安保部休息室"
 	icon_state = "outpost_sec_2"
 
 /area/strata/ag/interior/outpost/security/holding
-	name = "Outpost Security Holding Cell"
+	name = "哨站安保部拘留室"
 	icon_state = "outpost_sec_4"
 
 /area/strata/ag/interior/outpost/security/briefing
-	name = "Outpost Security Briefing"
+	name = "哨站安保部简报室"
 
 /area/strata/ag/interior/outpost/security/lockers
-	name = "Outpost Security Locker Room"
+	name = "哨站安保部更衣室"
 
 /area/strata/ag/interior/outpost/security/wardens
-	name = "Outpost Warden's Office"
+	name = "哨站监狱长办公室"
 	icon_state = "outpost_sec_3"
 
 /area/strata/ag/interior/outpost/security/helpdesk
-	name = "Outpost Helpdesk"
+	name = "哨站咨询台"
 
 /area/strata/ag/interior/outpost/security/dispatch
-	name = "Outpost Security Dispatch And Monitoring"
+	name = "哨站安保调度与监控室"
 	icon_state = "outpost_sec_3"
 
 ///OUTPOST ADMINISTRATION
 
 /area/strata/ag/interior/outpost/admin
-	name = "Outpost Administration"
+	name = "哨站行政部"
 	icon_state = "outpost_admin_0"
 	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/strata/ag/interior/outpost/admin/dir_office
-	name = "Outpost Director's Office"
+	name = "哨站主管办公室"
 	icon_state = "outpost_admin_1"
 
 /area/strata/ag/interior/outpost/admin/dir_waiting
-	name = "Outpost Administration Waiting Room"
+	name = "哨站行政部等候室"
 
 /area/strata/ag/interior/outpost/admin/office_0
-	name = "Outpost Administration Offices Ground Level"
+	name = "哨站行政部地面层办公室"
 
 /area/strata/ag/interior/outpost/admin/office_1
-	name = "Outpost Administration Offices Level 1"
+	name = "哨站行政部1层办公室"
 	icon_state = "outpost_admin_1"
 
 /area/strata/ag/interior/outpost/admin/office_2
-	name = "Outpost Administration Offices Level 2"
+	name = "哨站行政部2层办公室"
 	icon_state = "outpost_admin_2"
 
 /area/strata/ag/interior/outpost/admin/lounge
-	name = "Outpost Administration Lounge"
+	name = "哨站行政部休息室"
 	icon_state = "outpost_admin_4"
 
 /area/strata/ag/interior/outpost/admin/records
-	name = "Outpost Administration Records"
+	name = "哨站行政部档案室"
 	icon_state = "outpost_admin_4"
 
 /area/strata/ag/interior/outpost/admin/wc
-	name = "Outpost Administration Wash Closet"
+	name = "哨站行政部洗手间"
 	icon_state = "outpost_admin_2"
 
 /area/strata/ag/interior/outpost/admin/backhall
-	name = "Outpost Administration East Hall"
+	name = "哨站行政部东走廊"
 
 ///CANTEEN / GENERAL QUARTERS///
 
 /area/strata/ag/interior/outpost/canteen
-	name = "Outpost Canteen"
+	name = "哨站食堂"
 	icon_state = "outpost_canteen_0"
 
 /area/strata/ag/interior/outpost/canteen/kitchen
-	name = "Outpost Kitchen"
+	name = "哨站厨房"
 	icon_state = "outpost_canteen_1"
 
 /area/strata/ag/interior/outpost/canteen/bar
-	name = "Outpost Bar"
+	name = "哨站酒吧"
 	icon_state = "outpost_canteen_2"
 
 /area/strata/ag/interior/outpost/canteen/northlock
-	name = "Outpost Canteen North Airlock"
+	name = "哨站食堂北气闸"
 	icon_state = "outpost_canteen_2"
 
 /area/strata/ag/interior/outpost/canteen/freezer
-	name = "Outpost Kitchen and Bar Freezer"
+	name = "哨站厨房与酒吧冷冻库"
 	icon_state = "outpost_canteen_3"
 
 /area/strata/ag/interior/outpost/canteen/janitors
-	name = "Outpost Sanitation Closet"
+	name = "哨站清洁工具间"
 	icon_state = "outpost_canteen_4"
 
 /area/strata/ag/interior/outpost/canteen/upper_cafeteria
-	name = "Outpost Cafeteria Elevated Seating"
+	name = "哨站餐厅高台座位区"
 	icon_state = "outpost_canteen_4"
 
 /area/strata/ag/interior/outpost/canteen/lower_cafeteria
-	name = "Outpost Cafeteria"
+	name = "哨站餐厅"
 	icon_state = "outpost_canteen_0"
 
 /area/strata/ag/interior/outpost/canteen/hall
-	name = "Outpost Canteen East Hall"
+	name = "哨站食堂东走廊"
 	icon_state = "outpost_canteen_3"
 
 /area/strata/ag/interior/outpost/canteen/personal_storage
-	name = "Outpost Personal Storage"
+	name = "哨站个人物品储藏室"
 
 /area/strata/ag/interior/outpost/canteen/spare_uniforms
-	name = "Outpost Spare Uniform Closet"
+	name = "哨站备用制服间"
 
 /area/strata/ag/interior/outpost/canteen/showers
-	name = "Outpost Communal Showers"
+	name = "哨站公共淋浴间"
 
 /area/strata/ag/interior/outpost/canteen/bar_2
-	name = "Outpost Gambling Den"
+	name = "哨站赌场"
 
 /area/strata/ag/interior/outpost/canteen/jungle_lock
-	name = "Outpost General Cave Lock"
+	name = "哨站公共洞穴闸口"
 
 
 ///JUNGLE STRUCTURES - UNDERGROUND///
 
 /area/strata/ug/interior/outpost/jung
-	name = "Underground Jungle Structures"
+	name = "地下丛林建筑群"
 	icon_state = "ug_jung_dorm"
 	minimap_color = MINIMAP_AREA_CAVES
 
 /area/strata/ug/interior/outpost/jung/dorms
-	name = "Underground Dorms"
+	name = "地下宿舍区"
 
 /area/strata/ug/interior/outpost/jung/dorms/sec1
-	name = "Underground Security Dorm #1"
+	name = "地下安保宿舍1号"
 
 /area/strata/ug/interior/outpost/jung/dorms/sec2
-	name = "Underground Security Dorm #2"
+	name = "地下安保宿舍2号"
 
 /area/strata/ug/interior/outpost/jung/dorms/admin1
-	name = "Underground General Staff Dorm #1"
+	name = "地下普通员工宿舍1号"
 
 /area/strata/ug/interior/outpost/jung/dorms/admin2
-	name = "Underground General Staff Dorm #2"
+	name = "地下普通员工宿舍2号"
 
 /area/strata/ug/interior/outpost/jung/dorms/admin3
-	name = "Underground General Staff Dorm #3"
+	name = "地下普通员工宿舍3号"
 
 /area/strata/ug/interior/outpost/jung/dorms/admin4
-	name = "Underground Colony Administration Dorm #1"
+	name = "地下殖民地行政人员宿舍1号"
 
 /area/strata/ug/interior/outpost/jung/dorms/engi1
-	name = "Underground Engineering Dorm #1"
+	name = "地下工程人员宿舍1号"
 
 /area/strata/ug/interior/outpost/jung/dorms/engi2
-	name = "Underground Engineering Dorm #2"
+	name = "地下工程人员宿舍2号"
 
 /area/strata/ug/interior/outpost/jung/dorms/engi3
-	name = "Underground Engineering Dorm #3"
+	name = "地下工程人员宿舍3号"
 
 /area/strata/ug/interior/outpost/jung/dorms/engi4
-	name = "Underground Engineering Dorm #4"
+	name = "地下工程人员宿舍4号"
 
 /area/strata/ug/interior/outpost/jung/dorms/med1
-	name = "Underground Medical Dorm #1"
+	name = "地下医护人员宿舍1号"
 
 /area/strata/ug/interior/outpost/jung/dorms/med2
-	name = "Underground Medical Dorm #2"
+	name = "地下医护人员宿舍2号"
 
 
 ////END OUTPOST DEFINES////
@@ -822,145 +822,145 @@ EXTERIOR is FUCKING FREEZING, and refers to areas out in the open and or exposed
 ///DEEP JUNGLE///
 
 /area/strata/ug/interior/jungle
-	name = "Underground Jungle"
+	name = "地下丛林"
 	icon_state = "ug_jung_0"
 	minimap_color = MINIMAP_AREA_JUNGLE
 
 
 /area/strata/ug/interior/jungle/platform
-	name = "Underground Platform"
+	name = "地下平台"
 	icon_state = "ug_jung_2"
 
 /area/strata/ug/interior/jungle/platform/south
-	name = "Underground Platform South"
+	name = "地下平台南侧"
 
 /area/strata/ug/interior/jungle/platform/south/scrub
-	name = "Underground Platform South Scrub"
+	name = "地下平台南侧灌木地"
 	icon_state = "ug_jung_1"
 
 /area/strata/ug/interior/jungle/platform/east
-	name = "Underground Platform East"
+	name = "地下平台东侧"
 
 /area/strata/ug/interior/jungle/platform/east/scrub
-	name = "Underground Platform East Scrub"
+	name = "地下平台东侧灌木地"
 	icon_state = "ug_jung_1"
 
 /area/strata/ug/interior/jungle/deep
-	name = "Deep Jungle"
+	name = "密林深处"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/strata/ug/interior/jungle/deep/carplake
-	name = "Deep Jungle - Carp Lake Shores"
+	name = "密林深处——鲤鱼湖岸"
 	icon_state = "ug_jung_2"
 
 /area/strata/ug/exterior
 	ceiling = CEILING_NONE
 
 /area/strata/ug/exterior/jungle/deep/carplake_water
-	name = "Deep Jungle - Carp Lake Waters"
+	name = "密林深处——鲤鱼湖水域"
 	icon_state = "ug_jung_5"
 
 /area/strata/ug/exterior/jungle/deep/carplake_center
-	name = "Deep Jungle - Carp Lake Center Island"
+	name = "密林深处——鲤鱼湖中央岛屿"
 	icon_state = "ug_jung_1"
 
 
 /area/strata/ug/interior/jungle/deep/north_carp
-	name = "Deep Jungle - North of Carp Lake"
+	name = "密林深处——鲤鱼湖以北"
 	icon_state = "ug_jung_6"
 
 /area/strata/ug/interior/jungle/deep/south_carp
-	name = "Deep Jungle - South of Carp Lake"
+	name = "密林深处——鲤鱼湖以南"
 	icon_state = "ug_jung_3"
 
 /area/strata/ug/interior/jungle/deep/east_carp
-	name = "Deep Jungle - East of Carp Lake"
+	name = "密林深处——鲤鱼湖以东"
 	icon_state = "ug_jung_5"
 
 /area/strata/ug/interior/jungle/deep/tearlake
-	name = "Deep Jungle - Weeping Pool"
+	name = "密林深处——泪池"
 	icon_state = "ug_jung_3"
 
 /area/strata/ug/interior/jungle/deep/tearlake_south
-	name = "Deep Jungle - South of Weeping Pool"
+	name = "密林深处——泪池以南"
 	icon_state = "ug_jung_8"
 
 /area/strata/ug/interior/jungle/deep/tearlake_north
-	name = "Deep Jungle - North of Weeping Pool"
+	name = "密林深处——泪池以北"
 	icon_state = "ug_jung_3"
 
 /area/strata/ug/interior/jungle/deep/tearlake_east
-	name = "Deep Jungle - East of Weeping Pool"
+	name = "密林深处——泪池以东"
 	icon_state = "ug_jung_6"
 
 /area/strata/ug/interior/jungle/deep/tearlake_west
-	name = "Deep Jungle - West of Weeping Pool"
+	name = "密林深处——泪池以西"
 	icon_state = "ug_jung_5"
 
 /area/strata/ug/interior/jungle/deep/south_dorms
-	name = "Deep Jungle - South Dorms"
+	name = "密林深处——南部宿舍"
 	icon_state = "ug_jung_4"
 
 /area/strata/ug/interior/jungle/deep/east_dorms
-	name = "Deep Jungle - East Dorms"
+	name = "密林深处——东部宿舍"
 	icon_state = "ug_jung_0"
 
 /area/strata/ug/interior/jungle/deep/structures
-	name = "Deep Jungle - Unknown Structure"
+	name = "密林深处——未知建筑"
 	icon_state = "ug_jung_1"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/strata/ug/interior/jungle/deep/structures/res
 	icon_state = "ug_jung_2"
-	name = "Deep Jungle - Classified Research Station"
+	name = "密林深处——机密研究站"
 
 /area/strata/ug/interior/jungle/deep/south_res
 	icon_state = "ug_jung_3"
-	name = "Deep Jungle - South of Classified Research Station"
+	name = "密林深处——机密研究站以南"
 
 /area/strata/ug/interior/jungle/deep/hotsprings
 	icon_state = "ug_jung_4"
-	name = "Deep Jungle - Hot Springs"
+	name = "密林深处——温泉"
 
 /area/strata/ug/interior/jungle/deep/structures/engi
 	icon_state = "ug_jung_5"
-	name = "Deep Jungle - Planetary Core Monitoring"
+	name = "密林深处——行星地核监测站"
 
 /area/strata/ug/interior/jungle/deep/south_engi
 	icon_state = "ug_jung_7"
-	name = "Deep Jungle - South of Core Monitoring"
+	name = "密林深处——地核监测站以南"
 
 /area/strata/ug/interior/jungle/deep/east_engi
 	icon_state = "ug_jung_6"
-	name = "Deep Jungle - East of Core Monitoring"
+	name = "密林深处——地核监测站以东"
 
 /area/strata/ug/interior/jungle/deep/west_engi
 	icon_state = "ug_jung_8"
-	name = "Deep Jungle - West of Core Monitoring"
+	name = "密林深处——地核监测站以西"
 
 /area/strata/ug/interior/jungle/deep/minehead
 	icon_state = "ug_jung_mine_1"
-	name = "Deep Jungle - Old Tunnels"
+	name = "密林深处——旧隧道"
 
 /area/strata/ug/interior/jungle/deep/minehead/north
 	icon_state = "ug_jung_mine_2"
-	name = "Deep Jungle - North Old Tunnels"
+	name = "密林深处——北部旧隧道"
 
 /area/strata/ug/interior/jungle/deep/minehead/south
 	icon_state = "ug_jung_mine_3"
-	name = "Deep Jungle - South Old Tunnels"
+	name = "密林深处——南部旧隧道"
 
 /area/strata/ug/interior/jungle/deep/minehead/east
 	icon_state = "ug_jung_mine_4"
-	name = "Deep Jungle - East Old Tunnels"
+	name = "密林深处——东部旧隧道"
 
 /area/strata/ug/interior/jungle/deep/minehead/west
 	icon_state = "ug_jung_mine_5"
-	name = "Deep Jungle - West Old Tunnels"
+	name = "密林深处——西部旧隧道"
 
 /area/strata/ug/interior/jungle/deep/minehead/ruins
 	icon_state = "ug_jung_mine_4"
-	name = "Deep Jungle - Ancient Dorms"
+	name = "密林深处——古旧宿舍"
 
 
 

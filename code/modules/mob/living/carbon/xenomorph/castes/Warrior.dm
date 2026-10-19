@@ -201,8 +201,8 @@
 	if(limb.body_part == BODY_FLAG_HEAD)
 		limb_time = rand(90,110)
 
-	visible_message(SPAN_XENOWARNING("[src]开始以惊人的力量拉扯[mob]的[limb.display_name]！"), \
-	SPAN_XENOWARNING("我们开始以惊人的力量拉扯[mob]的[limb.display_name]！"))
+	visible_message(SPAN_XENOWARNING("[src]开始以惊人的力量拉扯[mob]的[localized_player_label(limb.display_name)]！"), \
+	SPAN_XENOWARNING("我们开始以惊人的力量拉扯[mob]的[localized_player_label(limb.display_name)]！"))
 
 	if(!do_after(src, limb_time, INTERRUPT_ALL|INTERRUPT_DIFF_SELECT_ZONE, BUSY_ICON_HOSTILE) || mob.stat == DEAD || mob.status_flags & XENO_HOST)
 		to_chat(src, SPAN_NOTICE("我们停止了撕扯肢体。"))
@@ -215,11 +215,11 @@
 
 	if(limb.status & (LIMB_ROBOT|LIMB_SYNTHSKIN))
 		limb.take_damage(rand(30,40), 0, 0) // just do more damage
-		visible_message(SPAN_XENOWARNING("你听见[mob]的[limb.display_name]被拉扯到极限的声音！"), \
-		SPAN_XENOWARNING("[mob]的[limb.display_name]开始撕裂！"))
+		visible_message(SPAN_XENOWARNING("你听见[mob]的[localized_player_label(limb.display_name)]被拉扯到极限的声音！"), \
+		SPAN_XENOWARNING("[mob]的[localized_player_label(limb.display_name)]开始撕裂！"))
 	else
-		visible_message(SPAN_XENOWARNING("我们听见[mob]的[limb.display_name]骨头断裂，发出令人作呕的脆响！"), \
-		SPAN_XENOWARNING("[mob]的[limb.display_name]骨头断裂，发出令人满足的脆响！"))
+		visible_message(SPAN_XENOWARNING("我们听见[mob]的[localized_player_label(limb.display_name)]骨头断裂，发出令人作呕的脆响！"), \
+		SPAN_XENOWARNING("[mob]的[localized_player_label(limb.display_name)]骨头断裂，发出令人满足的脆响！"))
 		limb.take_damage(rand(15,25), 0, 0)
 		limb.fracture(100)
 	mob.last_damage_data = create_cause_data(initial(caste_type), src)
@@ -234,8 +234,8 @@
 	if(limb.status & LIMB_DESTROYED)
 		return FALSE
 
-	visible_message(SPAN_XENOWARNING("[src]将[mob]的[limb.display_name]从身体上撕了下来！"), \
-	SPAN_XENOWARNING("[mob]的[limb.display_name]被撕离了身体！"))
+	visible_message(SPAN_XENOWARNING("[src]将[mob]的[localized_player_label(limb.display_name)]从身体上撕了下来！"), \
+	SPAN_XENOWARNING("[mob]的[localized_player_label(limb.display_name)]被撕离了身体！"))
 	src.attack_log += text("\[[time_stamp()]\] <font color='red'>ripped the [limb.display_name] off of [mob.name] ([mob.ckey]) 2/2 progress</font>")
 	mob.attack_log += text("\[[time_stamp()]\] <font color='orange'>had their [limb.display_name] ripped off by [src.name] ([src.ckey]) 2/2 progress</font>")
 	log_attack("[src.name] ([src.ckey]) ripped the [limb.display_name] off of [mob.name] ([mob.ckey]) 2/2 progress")

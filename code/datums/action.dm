@@ -27,7 +27,7 @@
 		IMG.pixel_y = 0
 		button.overlays += IMG
 	button.source_action = src
-	button.name = name
+	button.name = localized_player_label(name)
 	if(button_icon_state)
 		button.icon_state = button_icon_state
 	button.overlays += image(icon_file, button, override_icon_state || action_icon_state)
@@ -62,7 +62,7 @@
 
 /datum/action/proc/set_name(new_name)
 	name = new_name
-	button.name = new_name
+	button.name = localized_player_label(new_name)
 
 /**
  * Gives an action to a mob and returns it
@@ -178,7 +178,7 @@
 	holder_item = holder
 	LAZYADD(holder_item.actions, src)
 	name = "Use [target]"
-	button.name = name
+	button.name = "使用[target]"
 
 	update_button_icon()
 
@@ -205,7 +205,7 @@
 /datum/action/item_action/toggle/New(Target)
 	..()
 	name = "Toggle [target]"
-	button.name = name
+	button.name = "切换[target]"
 
 /datum/action/item_action/toggle/action_activate()
 	. = ..()
@@ -216,7 +216,7 @@
 /datum/action/item_action/toggle/use/New(target)
 	. = ..()
 	name = "Use [target]"
-	button.name = name
+	button.name = "使用[target]"
 
 //This is the proc used to update all the action buttons.
 /mob/proc/update_action_buttons(reload_screen)

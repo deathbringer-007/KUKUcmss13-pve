@@ -107,6 +107,69 @@ SUBSYSTEM_DEF(vote)
 	return .
 
 
+/datum/controller/subsystem/vote/proc/get_vote_choice_display_name(choice)
+	if(mode == "custom")
+		return choice
+	var/static/list/labels = list(
+		"Restart Round" = "重启回合",
+		"Continue Playing" = "继续游戏",
+		"Distress Signal" = "求救信号",
+		"Hunter Games" = "狩猎游戏",
+		"Extended" = "自由模式",
+		"Faction Clash" = "阵营冲突",
+		"Extended - No Spawn" = "自由模式（无生成）",
+		"Infection" = "感染",
+		"Distress Signal: Lowpop" = "求救信号：低人数",
+		"Distress Signal: Lowpop (No Spawn)" = "求救信号：低人数（无生成）",
+		"Hive Wars" = "虫巢战争",
+		"Whiskey Outpost" = "威士忌哨站",
+		"Solaris Ridge" = "索拉里斯山脊",
+		"Binhai Supply Station" = "滨海补给站",
+		"Bosenmori Basho" = "博森莫里地区",
+		"USS Almayer" = "阿尔迈耶号",
+		"Calliope Desert Bus" = "卡利俄佩沙漠巴士",
+		"BMG-290 Otogi Egress Point" = "BMG-290御伽撤离点",
+		"Chinook 91 GSO" = "奇努克91号地球同步轨道站",
+		"Canyon 32B" = "32B峡谷",
+		"Derelict Almayer" = "废弃阿尔迈耶号",
+		"Fiorina Science Annex" = "菲奥里纳科研附属区",
+		"CORSAT" = "CORSAT",
+		"Calliope Highway" = "卡利俄佩公路",
+		"SSV Chapaev" = "恰帕耶夫号",
+		"Trijent Dam" = "特里金特大坝",
+		"USCSS Firefly" = "萤火虫号",
+		"USS Golden Arrow" = "金箭号",
+		"USS Golden Arrow (Classic)" = "金箭号（经典版）",
+		"HMS Brynhild" = "布伦希尔德号",
+		"Ice Colony" = "冰原殖民地",
+		"Ice Colony v2" = "冰原殖民地v2",
+		"Ice Colony Classic" = "冰原殖民地（经典版）",
+		"Kutjevo Refinery" = "库特耶沃精炼厂",
+		"LV-522 Chance's Claim" = "LV-522机遇矿区",
+		"Kleschers Research Site" = "克莱舍科研区",
+		"LV-522 Chance's Claim Forecon" = "LV-522机遇矿区（武装侦察部队）",
+		"LV295 Blacksite" = "LV295秘密基地",
+		"LV-624" = "LV-624",
+		"LV-624 Repaired" = "LV-624（修复版）",
+		"New Varadero" = "新巴拉德罗",
+		"USS Runtime" = "运行时号",
+		"Area of Operation" = "行动区域",
+		"New Varadero Repaired" = "新巴拉德罗（修复版）",
+		"USS Rover" = "漫游者号",
+		"Fiorina Cellblocks" = "菲奥里纳监区",
+		"OBW - Oread Garrison" = "OBW——奥瑞亚德驻军基地",
+		"Shivas Snowball" = "湿婆雪球",
+		"Redemption Valley" = "救赎谷",
+		"Ship" = "舰船",
+		"SI-391 Sekhmet Swamp" = "SI-391塞赫迈特沼泽",
+		"Sorokyne Strata" = "索罗基内地层",
+		"Taipei Way-Station" = "台北中转站",
+		"USCSS Obsidian Falk" = "黑曜法尔克号",
+		"USCSS Onyx Karain" = "缟玛瑙卡赖恩号",
+		"Space" = "太空",
+	)
+	return labels[choice] || choice
+
 /datum/controller/subsystem/vote/proc/announce_result()
 	var/list/winners = get_result()
 	var/text
@@ -114,7 +177,7 @@ SUBSYSTEM_DEF(vote)
 		if(question)
 			text += "<b>[question]</b>"
 		else
-			text += "<b>[capitalize(mode)] Vote</b>"
+			text += "<b>[GLOB.possible_vote_types[mode]["name"]]</b>"
 		for(var/i = 1 to length(choices))
 			var/choice = choices[i]
 			var/votes = choices[choice]
@@ -124,28 +187,28 @@ SUBSYSTEM_DEF(vote)
 			var/carryover = src.carryover[choice]
 			var/votes_actual = votes + adjustment + carryover
 
-			var/msg = "<br><b>[choice]:</b> [votes_actual]"
+			var/msg = "<br><b>[get_vote_choice_display_name(choice)]：</b> [votes_actual]"
 			if(votes)
 				msg += " ("
 				if(votes)
-					msg += "[votes] new vote[votes > 1 ? "s" : ""]; "
+					msg += "新增[votes]票; "
 				if(adjustment)
-					msg += "[abs(adjustment)] vote[abs(adjustment) > 1 ? "s" : ""] [adjustment < 0 ? "removed" : "added"] for adjustment; "
+					msg += "票数调整[adjustment < 0 ? "减少" : "增加"][abs(adjustment)]票; "
 				// Remove the trailing "; "
 				msg = copytext(msg, 1, length(msg)-1)
 				msg += ")"
 			text += msg
 		if(mode != "custom")
 			if(length(winners) > 1)
-				text = "<br><b>Vote Tied Between:</b>"
+				text = "<br><b>以下选项票数相同：</b>"
 				for(var/option in winners)
-					text += "<br>[FOURSPACES][option]"
+					text += "<br>[FOURSPACES][get_vote_choice_display_name(option)]"
 			. = pick(winners)
-			text += "<br><b>Vote Result: [.]</b>"
+			text += "<br><b>投票结果：[get_vote_choice_display_name(.)]</b>"
 		else
-			text += "<br><b>Did not vote:</b> [length(GLOB.clients) - length(voted)]"
+			text += "<br><b>未投票人数：</b> [length(GLOB.clients) - length(voted)]"
 	else
-		text += "<b>Vote Result: Inconclusive - No Votes!</b>"
+		text += "<b>投票结果：无人投票，未能得出结论！</b>"
 	log_vote(text)
 	remove_action_buttons()
 	to_chat(world, "<br><font color='purple'>[text]</font>")
@@ -160,7 +223,7 @@ SUBSYSTEM_DEF(vote)
 			if("gamemode")
 				SSticker.save_mode(.)
 				GLOB.master_mode = .
-				to_chat(world, SPAN_BOLDNOTICE("提示：下一回合的游戏模式已设为[.]"))
+				to_chat(world, SPAN_BOLDNOTICE("提示：下一回合的游戏模式已设为[get_vote_choice_display_name(.)]"))
 			if("restart")
 				if(. == "Restart Round")
 					restart = TRUE
@@ -196,7 +259,7 @@ SUBSYSTEM_DEF(vote)
 
 	var/datum/action/innate/vote/V = give_action(C.mob, /datum/action/innate/vote)
 	if(question)
-		V.set_name("Vote: [question]")
+		V.set_name("投票：[question]")
 	C.player_details.player_actions += V
 
 /datum/controller/subsystem/vote/proc/submit_vote(vote)
@@ -267,10 +330,10 @@ SUBSYSTEM_DEF(vote)
 		reset()
 		switch(vote_type)
 			if("restart")
-				question = "Restart vote"
+				question = "重启投票"
 				choices.Add("Restart Round", "Continue Playing")
 			if("gamemode")
-				question = "Gamemode vote"
+				question = "游戏模式投票"
 				randomize_entries = TRUE
 				for(var/mode_type in config.gamemode_cache)
 					var/datum/game_mode/cur_mode = mode_type
@@ -282,7 +345,7 @@ SUBSYSTEM_DEF(vote)
 							choices += initial(cur_mode.config_tag)
 						qdel(cur_mode)
 			if("groundmap")
-				question = "Ground map vote"
+				question = "地面地图投票"
 				vote_sound = 'sound/voice/start_your_voting.ogg'
 				vote_sound_vol = 15
 				randomize_entries = TRUE
@@ -313,7 +376,7 @@ SUBSYSTEM_DEF(vote)
 				if(CONFIG_GET(flag/allow_vote_adjustment_callback))
 					vote_adjustment_callback = CALLBACK(src, PROC_REF(map_vote_adjustment))
 			if("shipmap")
-				question = "Ship map vote"
+				question = "舰船地图投票"
 				randomize_entries = TRUE
 				var/list/maps = list()
 				for(var/i in config.maplist[SHIP_MAP])
@@ -356,19 +419,19 @@ SUBSYSTEM_DEF(vote)
 		initiator = initiator_key
 		started_time = world.time
 		on_vote_end = on_end
-		var/text = "[capitalize(mode)] vote started by [initiator]."
+		var/text = "[initiator]发起了[GLOB.possible_vote_types[mode]["name"]]。"
 		if(mode == "custom")
 			text += "<br>[question]"
 		log_vote(text)
 		var/vp = CONFIG_GET(number/vote_period)
 		SEND_SOUND(world, sound(vote_sound, channel = SOUND_CHANNEL_VOX, volume = vote_sound_vol))
-		to_chat(world, SPAN_CENTERBOLD("<br><br><font color='purple'><b>[text]</b><br>Type <b>vote</b> or click <a href='byond://?src=[REF(src)]'>here</a> to place your votes.<br>You have [DisplayTimeText(vp)] to vote.</font><br><br>"))
+		to_chat(world, SPAN_CENTERBOLD("<br><br><font color='purple'><b>[text]</b><br>输入 <b>vote</b> 或点击<a href='byond://?src=[REF(src)]'>这里</a>投票。<br>你有[DisplayTimeText(vp)]时间投票。</font><br><br>"))
 		time_remaining = floor(vp/10)
 		for(var/c in GLOB.clients)
 			var/client/C = c
 			var/datum/action/innate/vote/V = give_action(C.mob, /datum/action/innate/vote)
 			if(question)
-				V.set_name("Vote: [question]")
+				V.set_name("投票：[question]")
 			C.player_details.player_actions += V
 			if(send_clients_vote)
 				C.mob.vote()
@@ -404,6 +467,7 @@ SUBSYSTEM_DEF(vote)
 
 /datum/action/innate/vote/give_to(mob/M)
 	. = ..()
+	button.name = "投票"
 	RegisterSignal(SSdcs, COMSIG_GLOB_REMOVE_VOTE_BUTTON, PROC_REF(remove_vote_action))
 
 /datum/action/innate/vote/proc/remove_vote_action(datum/source)
@@ -431,7 +495,7 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "VoteMenu", "Vote Menu")
+		ui = new(user, src, "VoteMenu", "投票菜单")
 		ui.open()
 
 /datum/controller/subsystem/vote/ui_state(mob/user)
@@ -443,6 +507,10 @@ SUBSYSTEM_DEF(vote)
 
 	.["vote_in_progress"] = mode
 	.["vote_choices"] = choices
+	var/list/vote_choice_labels = list()
+	for(var/choice in choices)
+		vote_choice_labels[choice] = get_vote_choice_display_name(choice)
+	.["vote_choice_labels"] = vote_choice_labels
 	.["vote_title"] = question
 
 	. += get_config_restrictions()
@@ -462,31 +530,31 @@ SUBSYSTEM_DEF(vote)
 // variable_required string The vote may not be activated (by non-admins) if a variable passed in data does not evaluate to true.
 GLOBAL_LIST_INIT(possible_vote_types, list(
 	"restart" = list(
-		"name" = "Restart Vote",
+		"name" = "重启投票",
 		"color" = "red",
 		"icon" = "power-off",
 		"variable_required" = "can_restart_vote",
 	),
 	"gamemode" = list(
-		"name" = "Gamemode Vote",
+		"name" = "游戏模式投票",
 		"color" = "purple",
 		"icon" = "dice-d6",
 		"variable_required" = "can_gamemode_vote",
 	),
 	"shipmap" = list(
-		"name" = "Shipmap Vote",
+		"name" = "舰船地图投票",
 		"color" = "blue",
 		"icon" = "plane",
 		"admin_only" = TRUE,
 	),
 	"groundmap" = list(
-		"name" = "Groundmap Vote",
+		"name" = "地面地图投票",
 		"color" = "blue",
 		"icon" = "campground",
 		"admin_only" = TRUE,
 	),
 	"custom" = list(
-		"name" = "Custom Vote",
+		"name" = "自定义投票",
 		"color" = "yellow",
 		"icon" = "question",
 		"admin_only" = TRUE,
@@ -512,7 +580,7 @@ GLOBAL_LIST_INIT(possible_vote_types, list(
 		switch(action)
 			if("cancel")
 				reset()
-				to_chat(world, "<b><font color='purple'>The vote has been cancelled.</font></b>")
+				to_chat(world, "<b><font color='purple'>投票已取消。</font></b>")
 			if("toggle_restart")
 				CONFIG_SET(flag/allow_vote_restart, !CONFIG_GET(flag/allow_vote_restart))
 			if("toggle_gamemode")

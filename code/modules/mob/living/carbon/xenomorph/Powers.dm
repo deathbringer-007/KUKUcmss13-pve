@@ -131,8 +131,8 @@
 	if(use_plasma)
 		use_plasma(total_resin_cost)
 	if(message)
-		visible_message(SPAN_XENONOTICE("[src]吐出一团黏稠物质，将其塑造成[RC.construction_name]！"), \
-			SPAN_XENONOTICE("我们吐出一些树脂，将其塑造成[RC.construction_name][use_plasma ? "，共消耗[total_resin_cost]等离子体" : ""]。"), null, 5)
+		visible_message(SPAN_XENONOTICE("[src]吐出一团黏稠物质，将其塑造成[RC.name]！"), \
+			SPAN_XENONOTICE("我们吐出一些树脂，将其塑造成[RC.name][use_plasma ? "，共消耗[total_resin_cost]等离子体" : ""]。"), null, 5)
 		playsound(loc, "alien_resin_build", 25)
 
 	var/atom/new_resin = RC.build(current_turf, hivenumber, src)

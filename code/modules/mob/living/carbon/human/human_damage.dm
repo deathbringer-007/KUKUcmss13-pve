@@ -188,21 +188,21 @@
 			if(length(candidates))
 				var/obj/limb/O = pick(candidates)
 				O.mutate()
-				to_chat(src, SPAN_NOTICE("你的[O.display_name]似乎有些不对劲……"))
+				to_chat(src, SPAN_NOTICE("你的[localized_player_label(O.display_name)]似乎有些不对劲……"))
 				return
 	else
 		if(prob(heal_prob))
 			for(var/obj/limb/O in limbs)
 				if(O.status & LIMB_MUTATED)
 					O.unmutate()
-					to_chat(src, SPAN_NOTICE("你的[O.display_name]恢复了正常形状。"))
+					to_chat(src, SPAN_NOTICE("你的[localized_player_label(O.display_name)]恢复了正常形状。"))
 					return
 
 	if(getCloneLoss() < 1)
 		for(var/obj/limb/O in limbs)
 			if(O.status & LIMB_MUTATED)
 				O.unmutate()
-				to_chat(src, SPAN_NOTICE("你的[O.display_name]恢复了正常形状。"))
+				to_chat(src, SPAN_NOTICE("你的[localized_player_label(O.display_name)]恢复了正常形状。"))
 
 
 // Defined here solely to take species flags into account without having to recast at mob/living level.

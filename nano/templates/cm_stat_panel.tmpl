@@ -4,42 +4,42 @@ Used in: /code/datums/statistics/entities/player_entity.dm
  -->
 <div class="item">
     {{if data.round}}
-        {{:helper.link('Global', 'home', {'menu' : 0, 'subMenu' : 0, 'dataMenu': 0}, data.menu == 0 ? 'selected' : null)}}
+        {{:helper.link('全局', 'home', {'menu' : 0, 'subMenu' : 0, 'dataMenu': 0}, data.menu == 0 ? 'selected' : null)}}
     {{/if}}
 </div>
 <div class="item">
     {{if data.menu == 0}}
-        {{:helper.link('General', null, {'subMenu' : 0, 'dataMenu': 0}, data.subMenu == 0 ? 'selected' : null)}}
-        {{:helper.link('Participants', null, {'subMenu' : 1, 'dataMenu': 0}, data.subMenu == 1 ? 'selected' : null)}}
-        {{:helper.link('Deaths', null, {'subMenu' : 2, 'dataMenu': 0}, data.subMenu == 2 ? 'selected' : null)}}
-        {{:helper.link('Jobs', null, {'subMenu' : 3, 'dataMenu': 0}, data.subMenu == 3 ? 'selected' : null)}}
-        {{:helper.link('Castes', null, {'subMenu' : 4, 'dataMenu': 0}, data.subMenu == 4 ? 'selected' : null)}}
-        {{:helper.link('Weapons', null, {'subMenu' : 5, 'dataMenu': 0}, data.subMenu == 5 ? 'selected' : null)}}
+        {{:helper.link('概览', null, {'subMenu' : 0, 'dataMenu': 0}, data.subMenu == 0 ? 'selected' : null)}}
+        {{:helper.link('参与者', null, {'subMenu' : 1, 'dataMenu': 0}, data.subMenu == 1 ? 'selected' : null)}}
+        {{:helper.link('死亡记录', null, {'subMenu' : 2, 'dataMenu': 0}, data.subMenu == 2 ? 'selected' : null)}}
+        {{:helper.link('职业', null, {'subMenu' : 3, 'dataMenu': 0}, data.subMenu == 3 ? 'selected' : null)}}
+        {{:helper.link('种姓', null, {'subMenu' : 4, 'dataMenu': 0}, data.subMenu == 4 ? 'selected' : null)}}
+        {{:helper.link('武器', null, {'subMenu' : 5, 'dataMenu': 0}, data.subMenu == 5 ? 'selected' : null)}}
     {{else data.menu == 1}}
         {{if data.human}}
-            {{:helper.link('Human', null, {'subMenu' : 0, 'dataMenu' : 0}, data.subMenu == 0 ? 'selected' : null)}}
+            {{:helper.link('人类', null, {'subMenu' : 0, 'dataMenu' : 0}, data.subMenu == 0 ? 'selected' : null)}}
         {{/if}}
         {{if data.xeno}}
-            {{:helper.link('Xeno', null, {'subMenu' : 1, 'dataMenu' : 0}, data.subMenu == 1 ? 'selected' : null)}}
+            {{:helper.link('异形', null, {'subMenu' : 1, 'dataMenu' : 0}, data.subMenu == 1 ? 'selected' : null)}}
         {{/if}}
     {{/if}}
 </div>
 {{if data.menu == 1 && data.subMenu != 2}}
     <div class="item">
-        {{:helper.link('General', null, {'dataMenu' : 0}, data.dataMenu == 0 ? 'selected' : null)}}
-        {{:helper.link('Deaths', null, {'dataMenu' : 2}, data.dataMenu == 2 ? 'selected' : null)}}
+        {{:helper.link('概览', null, {'dataMenu' : 0}, data.dataMenu == 0 ? 'selected' : null)}}
+        {{:helper.link('死亡记录', null, {'dataMenu' : 2}, data.dataMenu == 2 ? 'selected' : null)}}
         {{if data.subMenu == 0}}
-            {{:helper.link('Weapons', null, {'dataMenu' : 3}, data.dataMenu == 3 ? 'selected' : null)}}
-            {{:helper.link('Roles', null, {'dataMenu' : 4}, data.dataMenu == 4 ? 'selected' : null)}}
-            {{:helper.link('Medals', null, {'dataMenu' : 5}, data.dataMenu == 5 ? 'selected' : null)}}
+            {{:helper.link('武器', null, {'dataMenu' : 3}, data.dataMenu == 3 ? 'selected' : null)}}
+            {{:helper.link('身份', null, {'dataMenu' : 4}, data.dataMenu == 4 ? 'selected' : null)}}
+            {{:helper.link('勋章', null, {'dataMenu' : 5}, data.dataMenu == 5 ? 'selected' : null)}}
         {{else data.subMenu == 1}}
-            {{:helper.link('Castes', null, {'dataMenu' : 3}, data.dataMenu == 3 ? 'selected' : null)}}
-            {{:helper.link('Jellies', null, {'dataMenu' : 5}, data.dataMenu == 5 ? 'selected' : null)}}
+            {{:helper.link('种姓', null, {'dataMenu' : 3}, data.dataMenu == 3 ? 'selected' : null)}}
+            {{:helper.link('王浆', null, {'dataMenu' : 5}, data.dataMenu == 5 ? 'selected' : null)}}
         {{/if}}
     </div>
 {{/if}}
 <div class="itemLabelClearBoth">
-    <b>Updated {{:data.current_time}}</b>
+    <b>更新时间： {{:data.current_time}}</b>
 </div>
 <div class="item">
     {{if data.menu == 0}}
@@ -49,34 +49,34 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                     <b>{{:data.round.name}}</b>
                 </div>
                 <div class="itemLabelClear">
-                    Map:
+                    地图：
                 </div>
                 <div class="itemContentSmallRight">
                     {{:data.round.map_name}}
                 </div>
                 <div class="itemLabelClear">
-                    Gamemode:
+                    游戏模式：
                 </div>
                 <div class="itemContentSmallRight">
                     {{:data.round.game_mode}}
                 </div>
                 {{if data.round.round_result}}
                     <div class="itemLabelClear">
-                        Result:
+                        结果：
                     </div>
                     <div class="itemContentSmallRight">
                         {{:data.round.round_result}}
                     </div>
                 {{/if}}
                 <div class="itemLabelClear">
-                    Round Start:
+                    回合开始：
                 </div>
                 <div class="itemContentSmallRight">
                     {{:data.round.real_time_start}}
                 </div>
                 {{if data.round.real_time_end}}
                     <div class="itemLabelClear">
-                        Round End:
+                        回合结束：
                     </div>
                     <div class="itemContentSmallRight">
                         {{:data.round.real_time_end}}
@@ -84,7 +84,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                 {{/if}}
                 {{if data.round.round_length}}
                     <div class="itemLabelClear">
-                        Round Length:
+                        回合时长：
                     </div>
                     <div class="itemContentSmallRight">
                         {{:data.round.round_length}}
@@ -92,7 +92,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                 {{/if}}
                 {{if data.round.round_hijack_time}}
                     <div class="itemLabelClear">
-                        Hijack Time:
+                        劫持时间：
                     </div>
                     <div class="itemContentSmallRight">
                         {{:data.round.round_hijack_time}}
@@ -100,86 +100,86 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                 {{/if}}
                 {{if data.round.end_round_player_population}}
                     <div class="itemLabelClear">
-                        Final Population:
+                        最终玩家人数：
                     </div>
                     <div class="itemContentSmallRight">
                         {{:data.round.end_round_player_population}}
                     </div>
                 {{/if}}
                 <div class="itemLabelClear">
-                    DEFCON Level:
+                    防御戒备等级：
                 </div>
                 <div class="itemContentSmallRight">
                     {{:data.round.defcon_level}}
                 </div>
                 {{if data.round.total_objective_points}}
                     <div class="itemLabelClear">
-                        Objective Points:
+                        目标点数：
                     </div>
                     <div class="itemContentSmallRight">
                         {{:data.round.objective_points}}
                     </div>
                     <div class="itemLabelClear">
-                        Total Objective Points:
+                        目标总点数：
                     </div>
                     <div class="itemContentSmallRight">
                         {{:data.round.total_objective_points}}
                     </div>
                 {{/if}}
                 <div class="itemLabelClear">
-                    Total Shots Fired:
+                    总射击数：
                 </div>
                 <div class="itemContentSmallRight">
                     {{:data.round.total_projectiles_fired}}
                 </div>
                 <div class="itemLabelClear">
-                    Total Shots Hit:
+                    总命中数：
                 </div>
                 <div class="itemContentSmallRight">
                     {{:data.round.total_projectiles_hit}}
                 </div>
                 <div class="itemLabelClear">
-                    Total Shots Hit (Human):
+                    总命中数（人类）：
                 </div>
                 <div class="itemContentSmallRight">
                     {{:data.round.total_projectiles_hit_human}}
                 </div>
                 <div class="itemLabelClear">
-                    Total Shots Hit (Xeno):
+                    总命中数（异形）：
                 </div>
                 <div class="itemContentSmallRight">
                     {{:data.round.total_projectiles_hit_xeno}}
                 </div>
                 <div class="itemLabelClear">
-                    Total FF Instances:
+                    总误伤次数：
                 </div>
                 <div class="itemContentSmallRight">
                     {{:data.round.total_friendly_fire_instances}}
                 </div>
                 <div class="itemLabelClear">
-                    Total Friendly Fire Kills:
+                    总误杀数：
                 </div>
                 <div class="itemLabelClear">
-                    Total Slashes:
+                    总撕砍次数：
                 </div>
                 <div class="itemContentSmallRight">
                     {{:data.round.total_slashes}}
                 </div>
                 <div class="itemLabelClear">
-                    Total Facehuggers Applied:
+                    总抱脸次数：
                 </div>
                 <div class="itemContentSmallRight">
                     {{:data.round.total_huggers_applied}}
                 </div>
                 <div class="itemLabelClear">
-                    Total Larva Bursts:
+                    总破胸次数：
                 </div>
                 <div class="itemContentSmallRight">
                     {{:data.round.total_larva_burst}}
                 </div>
             {{else data.subMenu == 1}}
                 <div class="itemLabelClearBoth">
-                    Total Participants:
+                    总参与人数：
                 </div>
                 <fieldset class="fieldContainerSpaced">
                     {{props data.round.participants}}
@@ -192,7 +192,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                     {{/props}}
                 </fieldset>
                 <div class="itemLabelClearBoth">
-                    Total Deaths:
+                    总死亡数：
                 </div>
                 <fieldset class="fieldContainerSpaced">
                     {{props data.round.total_deaths}}
@@ -206,7 +206,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                 </fieldset>
                 {{if data.round.round_hijack_time}}
                     <div class="itemLabelClearBoth">
-                        Hijack Participants:
+                        劫持时参与者：
                     </div>
                     <fieldset class="fieldContainerSpaced">
                         {{props data.round.hijack_participants}}
@@ -221,7 +221,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                 {{/if}}
                 {{if data.round.real_time_end}}
                     <div class="itemLabelClearBoth">
-                        Final Participants:
+                        最终参与者：
                     </div>
                     <div class="itemContentSmallRight">
                         <fieldset class="fieldContainerSpaced">
@@ -244,44 +244,44 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                         </div>
                         {{if death_value.job_name}}
                             <div class="itemLabelClear">
-                                Role:
+                                身份：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:death_value.job_name}}
                             </div>
                         {{/if}}
                         <div class="itemLabelClear">
-                            Area:
+                            区域：
                         </div>
                         <div class="itemContentSmallRight">
                             {{:death_value.area_name}}
                         </div>
                         <div class="itemLabelClear">
-                            Cause:
+                            死因：
                         </div>
                         <div class="itemContentSmallRight">
                             {{:death_value.cause_name}}
                         </div>
                         <div class="itemLabelClear">
-                            Time of Death:
+                            死亡时间：
                         </div>
                         <div class="itemContentSmallRight">
                             {{:death_value.time_of_death}}
                         </div>
                         <div class="itemLabelClear">
-                            Lifespan:
+                            存活时长：
                         </div>
                         <div class="itemContentSmallRight">
                             {{:death_value.total_time_alive}}
                         </div>
                         <div class="itemLabelClear">
-                            Damage Taken:
+                            所受伤害：
                         </div>
                         <div class="itemContentSmallRight">
                             {{:death_value.total_damage_taken}}
                         </div>
                         <div class="itemLabelClear">
-                            Location:
+                            坐标：
                         </div>
                         <div class="itemContentSmallRight">
                             ({{:death_value.x}}, {{:death_value.y}}, {{:death_value.z}})
@@ -296,7 +296,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                         </div>
                         {{if job_value.total_shots}}
                             <div class="itemLabelClear">
-                                Total Shots:
+                                总射击数：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:job_value.total_shots}}
@@ -304,7 +304,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                         {{/if}}
                         {{if job_value.total_shots_hit}}
                             <div class="itemLabelClear">
-                                Total Shots Hit:
+                                总命中数：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:job_value.total_shots_hit}}
@@ -312,7 +312,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                         {{/if}}
                         {{if job_value.total_friendly_fire}}
                             <div class="itemLabelClear">
-                                Total FF Instances:
+                                总误伤次数：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:job_value.total_friendly_fire}}
@@ -320,7 +320,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                         {{/if}}
                         {{if job_value.total_revives}}
                             <div class="itemLabelClear">
-                                Total Times Revived:
+                                总复苏次数：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:job_value.total_revives}}
@@ -328,7 +328,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                         {{/if}}
                         {{if job_value.total_lives_saved}}
                             <div class="itemLabelClear">
-                                Total Lives Saved:
+                                总救命次数：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:job_value.total_lives_saved}}
@@ -336,7 +336,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                         {{/if}}
                         {{if job_value.total_screams}}
                             <div class="itemLabelClear">
-                                Total Screams:
+                                总尖叫次数：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:job_value.total_screams}}
@@ -352,7 +352,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                         {{/props}}
                         {{if job_value.nemesis}}
                             <div class="itemLabelClearBoth">
-                                Nemesis:
+                                最常见死因：
                             </div>
                             <fieldset class="fieldContainerSpaced">
                                 <div class="itemLabelClearBoth">
@@ -378,7 +378,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                         {{/props}}
 						<hr>
                         <div class="itemLabelClearBoth">
-                            <b>Abilities Used:</b>
+                            <b>技能使用次数：</b>
                         </div>
                         {{props caste_value.abilities_used :ability_value:ability_index}}
                             <div class="itemLabelClear">
@@ -390,7 +390,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                         {{/props}}
                         {{if caste_value.nemesis}}
                             <div class="itemLabelClearBoth">
-                                Nemesis:
+                                最常见死因：
                             </div>
                             <fieldset class="fieldContainerSpaced">
                                 <div class="itemLabelClearBoth">
@@ -409,7 +409,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                             </div>
                             {{if value.total_hits}}
                                 <div class="itemLabelClear">
-                                    Total Hits:
+                                    总命中数：
                                 </div>
                                 <div class="itemContentSmallRight">
                                     {{:value.total_hits}}
@@ -417,7 +417,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                             {{/if}}
                             {{if value.total_shots}}
                                 <div class="itemLabelClear">
-                                    Total Shots:
+                                    总射击数：
                                 </div>
                                 <div class="itemContentSmallRight">
                                     {{:value.total_shots}}
@@ -425,7 +425,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                             {{/if}}
                             {{if value.total_shots_hit}}
                                 <div class="itemLabelClear">
-                                    Total Shots Hit:
+                                    总命中数：
                                 </div>
                                 <div class="itemContentSmallRight">
                                     {{:value.total_shots_hit}}
@@ -433,7 +433,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                             {{/if}}
                             {{if value.total_friendly_fire}}
                                 <div class="itemLabelClear">
-                                    Total FF Instances:
+                                    总误伤次数：
                                 </div>
                                 <div class="itemContentSmallRight">
                                     {{:value.total_friendly_fire}}
@@ -457,32 +457,32 @@ Used in: /code/datums/statistics/entities/player_entity.dm
             {{if data.human}}
                 {{if data.dataMenu == 0}}
                     <div class="itemLabelClear">
-                        Total Playtime:
+                        总游玩时长：
                     </div>
                     <div class="itemContentSmallRight">
                         {{:data.human.total_playtime}}
                     </div>
                     <div class="itemLabelClear">
-                        Total Rounds Played:
+                        总参与回合数：
                     </div>
                     <div class="itemContentSmallRight">
                         {{:data.human.total_rounds_played}}
                     </div>
                     <div class="itemLabelClear">
-                        Total Shots:
+                        总射击数：
                     </div>
                     <div class="itemContentSmallRight">
                         {{:data.human.total_shots}}
                     </div>
                     <div class="itemLabelClear">
-                        Total Shots Hit:
+                        总命中数：
                     </div>
                     <div class="itemContentSmallRight">
                         {{:data.human.total_shots_hit}}
                     </div>
                     {{if data.human.total_lives_saved}}
                         <div class="itemLabelClear">
-                            Total FF Instances:
+                            总误伤次数：
                         </div>
                         <div class="itemContentSmallRight">
                             {{:data.human.total_friendly_fire}}
@@ -490,7 +490,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                     {{/if}}
                     {{if data.human.total_revives}}
                         <div class="itemLabelClear">
-                            Total Times Revived:
+                            总复苏次数：
                         </div>
                         <div class="itemContentSmallRight">
                             {{:data.human.total_revives}}
@@ -498,7 +498,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                     {{/if}}
                     {{if data.human.total_lives_saved}}
                         <div class="itemLabelClear">
-                            Total Lives Saved:
+                            总救命次数：
                         </div>
                         <div class="itemContentSmallRight">
                             {{:data.human.total_lives_saved}}
@@ -506,7 +506,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                     {{/if}}
                     {{if data.human.total_lives_saved}}
                         <div class="itemLabelClear">
-                            Total Screams:
+                            总尖叫次数：
                         </div>
                         <div class="itemContentSmallRight">
                             {{:data.human.total_screams}}
@@ -522,7 +522,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                     {{/props}}
                     {{if data.human.top_weapon}}
                         <div class="itemLabelClearBoth">
-                            Top Weapon:
+                            击杀最多的武器：
                         </div>
                         <fieldset class="fieldContainerSpaced">
                             <div class="itemLabelClearBoth">
@@ -530,7 +530,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                             </div>
                             {{if data.human.top_weapon.total_shots}}
                                 <div class="itemLabelClear">
-                                    Total Shots:
+                                    总射击数：
                                 </div>
                                 <div class="itemContentSmallRight">
                                     {{:data.human.top_weapon.total_shots}}
@@ -538,7 +538,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                             {{/if}}
                             {{if data.human.top_weapon.total_shots_hit}}
                                 <div class="itemLabelClear">
-                                    Total Shots Hit:
+                                    总命中数：
                                 </div>
                                 <div class="itemContentSmallRight">
                                     {{:data.human.top_weapon.total_shots_hit}}
@@ -546,7 +546,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                             {{/if}}
                             {{if data.human.top_weapon.total_hits}}
                                 <div class="itemLabelClear">
-                                    Total Hits:
+                                    总命中数：
                                 </div>
                                 <div class="itemContentSmallRight">
                                     {{:data.human.top_weapon.total_hits}}
@@ -554,7 +554,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                             {{/if}}
                             {{if data.human.top_weapon.total_friendly_fire}}
                                 <div class="itemLabelClear">
-                                    Total FF Instances:
+                                    总误伤次数：
                                 </div>
                                 <div class="itemContentSmallRight">
                                     {{:data.human.top_weapon.total_friendly_fire}}
@@ -564,7 +564,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                     {{/if}}
                     {{if data.human.nemesis}}
                         <div class="itemLabelClearBoth">
-                            Nemesis:
+                            最常见死因：
                         </div>
                         <fieldset class="fieldContainerSpaced">
                             <div class="itemLabelClearBoth">
@@ -580,44 +580,44 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                             </div>
                             {{if death_value.job_name}}
                                 <div class="itemLabelClear">
-                                    Role:
+                                    身份：
                                 </div>
                                 <div class="itemContentSmallRight">
                                     {{:death_value.job_name}}
                                 </div>
                             {{/if}}
                             <div class="itemLabelClear">
-                                Area:
+                                区域：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:death_value.area_name}}
                             </div>
                             <div class="itemLabelClear">
-                                Cause:
+                                死因：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:death_value.cause_name}}
                             </div>
                             <div class="itemLabelClear">
-                                Time of Death:
+                                死亡时间：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:death_value.time_of_death}}
                             </div>
                             <div class="itemLabelClear">
-                                Lifespan:
+                                存活时长：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:death_value.total_time_alive}}
                             </div>
                             <div class="itemLabelClear">
-                                Damage Taken:
+                                所受伤害：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:death_value.total_damage_taken}}
                             </div>
                             <div class="itemLabelClear">
-                                Location:
+                                坐标：
                             </div>
                             <div class="itemContentSmallRight">
                                 ({{:death_value.x}}, {{:death_value.y}}, {{:death_value.z}})
@@ -633,7 +633,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                                 </div>
                                 {{if value.total_hits}}
                                     <div class="itemLabelClear">
-                                        Total Hits:
+                                        总命中数：
                                     </div>
                                     <div class="itemContentSmallRight">
                                         {{:value.total_hits}}
@@ -641,7 +641,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                                 {{/if}}
                                 {{if value.total_shots}}
                                     <div class="itemLabelClear">
-                                        Total Shots:
+                                        总射击数：
                                     </div>
                                     <div class="itemContentSmallRight">
                                         {{:value.total_shots}}
@@ -649,7 +649,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                                 {{/if}}
                                 {{if value.total_shots_hit}}
                                     <div class="itemLabelClear">
-                                        Total Shots Hit:
+                                        总命中数：
                                     </div>
                                     <div class="itemContentSmallRight">
                                         {{:value.total_shots_hit}}
@@ -657,7 +657,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                                 {{/if}}
                                 {{if value.total_friendly_fire}}
                                     <div class="itemLabelClear">
-                                        Total FF Instances:
+                                        总误伤次数：
                                     </div>
                                     <div class="itemContentSmallRight">
                                         {{:value.total_friendly_fire}}
@@ -681,20 +681,20 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                                 <b>{{:job_value.name}}</b>
                             </div>
                             <div class="itemLabelClear">
-                                Total Playtime:
+                                总游玩时长：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:job_value.total_playtime}}
                             </div>
                             <div class="itemLabelClear">
-                                Total Rounds Played:
+                                总参与回合数：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:job_value.total_rounds_played}}
                             </div>
                             {{if job_value.total_shots}}
                                 <div class="itemLabelClear">
-                                    Total Shots:
+                                    总射击数：
                                 </div>
                                 <div class="itemContentSmallRight">
                                     {{:job_value.total_shots}}
@@ -702,7 +702,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                             {{/if}}
                             {{if job_value.total_shots_hit}}
                                 <div class="itemLabelClear">
-                                    Total Shots Hit:
+                                    总命中数：
                                 </div>
                                 <div class="itemContentSmallRight">
                                     {{:job_value.total_shots_hit}}
@@ -710,7 +710,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                             {{/if}}
                             {{if job_value.total_friendly_fire}}
                                 <div class="itemLabelClear">
-                                    Total FF Instances:
+                                    总误伤次数：
                                 </div>
                                 <div class="itemContentSmallRight">
                                     {{:job_value.total_friendly_fire}}
@@ -718,7 +718,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                             {{/if}}
                             {{if job_value.total_revives}}
                                 <div class="itemLabelClear">
-                                    Total Times Revived:
+                                    总复苏次数：
                                 </div>
                                 <div class="itemContentSmallRight">
                                     {{:job_value.total_revives}}
@@ -726,7 +726,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                             {{/if}}
                             {{if job_value.total_lives_saved}}
                                 <div class="itemLabelClear">
-                                    Total Lives Saved:
+                                    总救命次数：
                                 </div>
                                 <div class="itemContentSmallRight">
                                     {{:job_value.total_lives_saved}}
@@ -734,7 +734,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                             {{/if}}
                             {{if job_value.total_screams}}
                                 <div class="itemLabelClear">
-                                    Total Screams:
+                                    总尖叫次数：
                                 </div>
                                 <div class="itemContentSmallRight">
                                     {{:job_value.total_screams}}
@@ -751,7 +751,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
 							<hr>
                             {{if job_value.nemesis}}
                                 <div class="itemLabelClearBoth">
-                                    Nemesis:
+                                    最常见死因：
                                 </div>
                                 <fieldset class="fieldContainerSpaced">
                                     <div class="itemLabelClearBoth">
@@ -785,19 +785,19 @@ Used in: /code/datums/statistics/entities/player_entity.dm
             {{if data.xeno}}
                 {{if data.dataMenu == 0}}
                     <div class="itemLabelClear">
-                        Total Playtime:
+                        总游玩时长：
                     </div>
                     <div class="itemContentSmallRight">
                         {{:data.xeno.total_playtime}}
                     </div>
                     <div class="itemLabelClear">
-                        Total Rounds Played:
+                        总参与回合数：
                     </div>
                     <div class="itemContentSmallRight">
                         {{:data.xeno.total_rounds_played}}
                     </div>
                     <div class="itemLabelClear">
-                        Total Slashes:
+                        总撕砍次数：
                     </div>
                     <div class="itemContentSmallRight">
                         {{:data.xeno.total_hits}}
@@ -812,20 +812,20 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                     {{/props}}
                     {{if data.xeno.top_caste}}
                         <div class="itemLabelClearBoth">
-                            Top Caste:
+                            击杀最多的种姓：
                         </div>
                         <fieldset class="fieldContainerSpaced">
                             <div class="itemLabelClearBoth">
                                 <b>{{:data.xeno.top_caste.name}}</b>
                             </div>
                             <div class="itemLabelClear">
-                                Total Playtime:
+                                总游玩时长：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:data.xeno.top_caste.total_playtime}}
                             </div>
                             <div class="itemLabelClear">
-                                Total Rounds Played:
+                                总参与回合数：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:data.xeno.top_caste.total_rounds_played}}
@@ -834,7 +834,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                     {{/if}}
                     {{if data.xeno.nemesis}}
                         <div class="itemLabelClearBoth">
-                            Nemesis:
+                            最常见死因：
                         </div>
                         <fieldset class="fieldContainerSpaced">
                             <div class="itemLabelClearBoth">
@@ -850,44 +850,44 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                             </div>
                             {{if death_value.job_name}}
                                 <div class="itemLabelClear">
-                                    Caste:
+                                    种姓：
                                 </div>
                                 <div class="itemContentSmallRight">
                                     {{:death_value.job_name}}
                                 </div>
                             {{/if}}
                             <div class="itemLabelClear">
-                                Area:
+                                区域：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:death_value.area_name}}
                             </div>
                             <div class="itemLabelClear">
-                                Cause:
+                                死因：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:death_value.cause_name}}
                             </div>
                             <div class="itemLabelClear">
-                                Time of Death:
+                                死亡时间：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:death_value.time_of_death}}
                             </div>
                             <div class="itemLabelClear">
-                                Lifespan:
+                                存活时长：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:death_value.total_time_alive}}
                             </div>
                             <div class="itemLabelClear">
-                                Damage Taken:
+                                所受伤害：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:death_value.total_damage_taken}}
                             </div>
                             <div class="itemLabelClear">
-                                Location:
+                                坐标：
                             </div>
                             <div class="itemContentSmallRight">
                                 ({{:death_value.x}}, {{:death_value.y}}, {{:death_value.z}})
@@ -901,13 +901,13 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                                 <b>{{:caste_value.name}}<b>
                             </div>
                             <div class="itemLabelClear">
-                                Total Playtime:
+                                总游玩时长：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:caste_value.total_playtime}}
                             </div>
                             <div class="itemLabelClear">
-                                Total Rounds Played:
+                                总参与回合数：
                             </div>
                             <div class="itemContentSmallRight">
                                 {{:caste_value.total_rounds_played}}
@@ -922,7 +922,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                             {{/props}}
 							<hr>
                             <div class="itemLabelClearBoth">
-                                <b>Abilities Used:</b>
+                                <b>技能使用次数：</b>
                             </div>
                             {{props caste_value.abilities_used :ability_value:ability_index}}
                                 <div class="itemLabelClear">
@@ -934,7 +934,7 @@ Used in: /code/datums/statistics/entities/player_entity.dm
                             {{/props}}
                             {{if caste_value.nemesis}}
                                 <div class="itemLabelClearBoth">
-                                    Nemesis:
+                                    最常见死因：
                                 </div>
                                 <fieldset class="fieldContainerSpaced">
                                     <div class="itemLabelClearBoth">

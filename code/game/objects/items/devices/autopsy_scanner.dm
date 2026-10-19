@@ -24,6 +24,29 @@
 
 	LAZYREMOVE(GLOB.objects_of_interest, src)
 
+/obj/item/device/autopsy_scanner/proc/get_weapon_display_name(value)
+	var/static/list/causes = list(
+		"teeth marks" = "牙印",
+		"EMP" = "电磁脉冲",
+		"falling" = "坠落",
+		"Misadventure" = "意外事故",
+		"Electrocution" = "触电",
+		"Electronics meltdown" = "电子设备熔毁",
+		"High Body Temperature" = "体温过高",
+		"Low Body Temperature" = "体温过低",
+		"Explosive blast" = "爆炸冲击",
+		"An unlucky pull of the trigger during Russian Roulette!" = "俄罗斯轮盘赌中的致命一枪！",
+	)
+	var/prefix = "Point blank shot in the mouth with "
+	if(findtext(value, prefix) == 1)
+		var/weapon_label = copytext(value, length(prefix) + 1)
+		if(findtext(weapon_label, "a ") == 1)
+			weapon_label = copytext(weapon_label, 3)
+		else if(findtext(weapon_label, "an ") == 1)
+			weapon_label = copytext(weapon_label, 4)
+		return "用[localized_player_label(weapon_label)]向口中近距离射击"
+	return causes[value] || localized_player_label(value)
+
 /datum/autopsy_data_scanner
 	var/weapon = null // this is the DEFINITE weapon type that was used
 	var/list/organs_scanned = list() // this maps a number of scanned organs to the wounds to those organs with this data's weapon type
@@ -68,7 +91,7 @@
 
 		if(!D.organs_scanned[O.name])
 			if(D.organ_names == "")
-				D.organ_names = O.display_name
+				D.organ_names = localized_player_label(O.display_name)
 			else
 				D.organ_names += "、[O.display_name]"
 
@@ -143,7 +166,7 @@
 		scan_data += "受伤部位：[D.organ_names]<br>"
 		scan_data += "可能的致伤武器：<br>"
 		for(var/weapon_name in weapon_chances)
-			scan_data += "\t[100*weapon_chances[weapon_name]/total_score]% [weapon_name]<br>"
+			scan_data += "\t[100*weapon_chances[weapon_name]/total_score]% [get_weapon_display_name(weapon_name)]<br>"
 
 		scan_data += "<br>"
 
@@ -205,7 +228,7 @@
 		to_chat(usr, "<b>你必须先切开这个身体部位！</b>")
 		return
 	for(var/mob/O in viewers(M))
-		O.show_message(SPAN_DANGER("[user.name]用[src.name]扫描[M.name][S.display_name]上的伤口。"), SHOW_MESSAGE_VISIBLE)
+		O.show_message(SPAN_DANGER("[user.name]用[src.name]扫描[M.name]的[localized_player_label(S.display_name)]上的伤口。"), SHOW_MESSAGE_VISIBLE)
 
 	src.add_data(S)
 

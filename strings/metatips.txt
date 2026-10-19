@@ -1,22 +1,22 @@
-Remember hotkeys and macros can be customized to your liking. Hotkeys can be accessed in your preferences, and macros can be edited in the Byond macro editor, available in the top left drop down menu (click the Byond logo in the corner of the game window).
-If you're unsure about a gameplay mechanic, use the 'mentorhelp' verb in the Admin tab to ask veteran players on the subject. It is also available from the pause menu, pressing ESCAPE.
-Try not to get too mad about dying. We’re all here to have fun.
-You can get information on current TestMerges by pressing 'Show Server Revision' in 'OOC' tab.
-After dying, ask yourself what you did wrong and make a mental note to not make the same mistake again.
-Communication, be it from a marine to a marine, a drone to the queen, or command to everyone, is vital and information on flanks can change how the entire round plays out.
-As a marine, be careful of the flank, regardless of if the push is going well or stalling out.
-Half of getting good is knowing to be aggressive. The other half is knowing when not to be aggressive.
-Alt-click a storage item to draw the last item in it (last non-weapon if it's a weapon belt). Middle-click a storage item to immediately open it, and middle-click structures to attempt to vault them.
-Use "North, South, West, East" when referring to locations in-game rather than "up, down, left, right".
-As a mentor, you can become the imaginary friend of a new player to teach them!
-You shouldn't ignore what your allies are up to. Sometimes they can be organizing a flank on the radio, sometimes they can be walking up behind you with a buck-loaded shotgun. Either way, it pays to be alert to what they're doing, as much to as what the enemies are.
-The Wiki (https://cm-ss13.com/wiki) is a very useful repository of information about the game, such as weapons, equipment, xenomorph castes and their strains. It may not be fully up to date much of the time, but the basics are usually accurate.
-As an observer, you may see how much remaining hijack time is left in the status panel.
-As an observer, you can quickly follow someone by ctrl-clicking on their sprite.
-You can always AdminHelp with the F1 key to question a member of staff regarding rules or game bugs.
-As ghost you are given extra tools for spectating the round: you can jump and follow specific players, get notifications about CAS and OB strikes, can see all health bars, and such.
-You can press ESC key to bring up the game pause menu. It allows you change settings, AdminHelp and MentorHelp, and even access the Web Maps of game by clicking at top right.
-Dead? You can take that moment to 'Edit Characters' from Preferences or Escape menus, to flesh out your characters or change your settings.
-If the lobby music is too loud or bothering you, you can disable it in Preferences tab at top right.
-Maps can and will be unpredictably modified by the Nightmare system - stay frosty while roaming around!
-You can go to GitHub to view code of the game and propose modifications of your own.
+快捷键和宏都可以按自己的习惯自定义。快捷键在偏好设置中调整；宏可在 BYOND 宏编辑器中修改，点击游戏窗口左上角的 BYOND 标志，在下拉菜单中即可找到。
+如果不确定某项游戏机制，可以在 Admin 标签页使用 mentorhelp（导师求助），向有经验的玩家请教。按 Esc 打开的暂停菜单中也有此功能。
+别因为角色死亡而太生气。大家都是来享受游戏的。
+在 OOC 标签页点击 Show Server Revision（查看服务器版本），可以了解当前启用的 TestMerge 临时合并改动。
+死亡后，想想自己哪里出了错，记住教训，尽量别再犯同样的错误。
+无论是陆战队员之间、工蜂与女皇之间，还是指挥部与全体人员之间，沟通都至关重要。侧翼情报足以改变整场回合的走向。
+作为陆战队员，无论推进顺利还是陷入僵局，都要留意侧翼。
+进步的一半在于懂得主动出击，另一半在于懂得什么时候不该出击。
+按住 Alt 点击储物物品，可以取出最后放入的物品；如果是武器腰带，则取出最后放入的非武器物品。鼠标中键点击储物物品可以立即打开它，中键点击建筑物则会尝试翻越。
+在游戏中描述方位时，请说“北、南、西、东”，不要说“上、下、左、右”。
+导师可以成为新玩家的想象朋友，陪伴并教导他们！
+别忽视队友在做什么。他们可能正在无线电里组织侧翼行动，也可能端着装有鹿弹的霰弹枪走到你身后。关注队友的动向，和关注敌人一样重要。
+维基（https://cm-ss13.com/wiki）收录了武器、装备、异形种姓及其变种等大量游戏资料。内容未必始终最新，但基础信息通常可靠。
+作为观察者，你可以在状态面板查看剩余的劫持时间。
+作为观察者，按住 Ctrl 点击某个角色的图像，就能快速跟随对方。
+你随时可以按 F1 使用 AdminHelp（管理员求助），向工作人员询问规则或报告游戏缺陷。
+幽灵拥有更多观战工具，例如跳转到指定玩家并跟随、接收近距空中支援与轨道轰炸通知，以及查看所有生命值条。
+按 Esc 可以打开游戏暂停菜单，在其中修改设置、联系管理员或导师，也可以点击右上方入口查看网页地图。
+角色死后，可以利用这段时间，在偏好设置或 Esc 菜单中选择 Edit Characters（编辑角色），完善人物设定或调整设置。
+如果大厅音乐太响或让你感到烦扰，可以在右上方的偏好设置标签页关闭。
+噩梦系统可能以难以预料的方式改变地图，四处探索时务必保持警惕！
+你可以在 GitHub 查看游戏代码，也可以提出自己的修改方案。

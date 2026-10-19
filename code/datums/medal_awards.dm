@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(human_medals, list(MARINE_CONDUCT_MEDAL))
 		if(medal_override == "On Recipient")
 			medal_location = get_turf(recipient_mob)
 			playsound(recipient_mob, 'sound/items/trayhit1.ogg', 15, FALSE)
-			recipient_mob.visible_message(SPAN_DANGER("[recipient_mob]的头被[medal_type]砸中了。"), null, null, 5)
+			recipient_mob.visible_message(SPAN_DANGER("[recipient_mob]的头被[localized_player_label(medal_type)]砸中了。"), null, null, 5)
 		else if(medal_override == "On Me")
 			medal_location = get_turf(usr)
 
@@ -579,12 +579,12 @@ GLOBAL_DATUM_INIT(ic_medals_panel, /datum/ic_medal_panel, new)
 	for(var/datum/medal_recommendation/recommendation in GLOB.medal_recommendations)
 		var/recommendation_list = list()
 
-		recommendation_list["rank"] = recommendation.recipient_rank
+		recommendation_list["rank"] = get_statistic_display_label(recommendation.recipient_rank)
 		recommendation_list["name"] = recommendation.recipient_name
 		recommendation_list["ref"] = REF(recommendation)
 		recommendation_list["recommender_name"] = recommendation.recommended_by_name
 		recommendation_list["reason"] = recommendation.reason
-		recommendation_list["recommender_rank"] = recommendation.recommended_by_rank
+		recommendation_list["recommender_rank"] = get_statistic_display_label(recommendation.recommended_by_rank)
 
 		data["recommendations"] += list(recommendation_list)
 	return data
@@ -637,12 +637,12 @@ GLOBAL_DATUM_INIT(ic_medals_panel, /datum/ic_medal_panel, new)
 				to_chat(user, SPAN_WARNING("你不能给自己颁发勋章！"))
 				return
 
-			var/choice = tgui_alert(user, "要修改勋章嘉奖词吗？", "勋章嘉奖词", list("Yes", "No"))
+			var/choice = localized_tgui_alert(user, "要修改勋章嘉奖词吗？", "勋章嘉奖词", list("Yes", "No"))
 			var/medal_citation = recommendation.reason
 			if(choice == "Yes")
 				medal_citation = strip_html(tgui_input_text(user, "勋章嘉奖词应写些什么？", "勋章嘉奖词", null, MAX_PAPER_MESSAGE_LEN, TRUE), MAX_PAPER_MESSAGE_LEN)
 
-			var/confirm_choice = tgui_alert(user, "确定要向[recommendation.recipient_name]颁发勋章吗？", "授勋确认", list("Yes", "No"))
+			var/confirm_choice = localized_tgui_alert(user, "确定要向[recommendation.recipient_name]颁发勋章吗？", "授勋确认", list("Yes", "No"))
 			if(confirm_choice != "Yes")
 				return
 
@@ -657,7 +657,7 @@ GLOBAL_DATUM_INIT(ic_medals_panel, /datum/ic_medal_panel, new)
 			var/datum/medal_recommendation/recommendation = locate(recommendation_ref) in GLOB.medal_recommendations
 			if(!recommendation)
 				return
-			var/confirm = tgui_alert(user, "确定要否决这项授勋推荐吗？", "授勋确认", list("Yes", "No"))
+			var/confirm = localized_tgui_alert(user, "确定要否决这项授勋推荐吗？", "授勋确认", list("Yes", "No"))
 			if(confirm != "Yes")
 				return
 			GLOB.medal_recommendations -= recommendation

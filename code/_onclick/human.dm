@@ -58,8 +58,8 @@
 	var/obj/limb/O = H.get_limb(H.hand?"l_hand":"r_hand")
 	if (!O) return
 
-	var/s = SPAN_DANGER("[H.name] 咬着自己的[O.display_name]！")
-	H.visible_message(s, SPAN_DANGER("你咬着自己的[O.display_name]！"),null, null, CHAT_TYPE_FLUFF_ACTION)
+	var/s = SPAN_DANGER("[H.name]咬着自己的[localized_player_label(O.display_name)]！")
+	H.visible_message(s, SPAN_DANGER("你咬着自己的[localized_player_label(O.display_name)]！"),null, null, CHAT_TYPE_FLUFF_ACTION)
 	H.attack_log += text("\[[time_stamp()]\] <font color='red'>[s] [key_name(H)]</font>")
 	log_attack("[s] [key_name(H)]")
 
@@ -83,7 +83,7 @@
 
 	var/obj/limb/temp = get_limb(hand ? "l_hand" : "r_hand")
 	if(temp && !temp.is_usable())
-		to_chat(src, SPAN_NOTICE("你试图移动[temp.display_name]，却做不到！"))
+		to_chat(src, SPAN_NOTICE("你试图移动[localized_player_label(temp.display_name)]，却做不到！"))
 		return
 
 	if(SEND_SIGNAL(A, COMSIG_ATOM_BEFORE_HUMAN_ATTACK_HAND, src, click_parameters) & COMPONENT_CANCEL_HUMAN_ATTACK_HAND)
@@ -112,13 +112,13 @@
 				if(!carbon_user || !carbon_user.ally_of_hivenumber(xeno.hivenumber))
 					carbon_user.KnockDown(rand(xeno.caste.tacklestrength_min, xeno.caste.tacklestrength_max))
 					playsound(user.loc, 'sound/weapons/pierce.ogg', 25, TRUE)
-					user.visible_message(SPAN_WARNING("\The [user] 试图解开固定在 [xeno] 身上的 \the [back_item]，却被一记扫尾击中了头部！"))
+					user.visible_message(SPAN_WARNING("[user]试图解开固定在[xeno]身上的[back_item]，却被一记扫尾击中了头部！"))
 					return
 			if(user.get_active_hand())
-				to_chat(user, SPAN_WARNING("你双手都拿着东西，无法从 [xeno] 身上解下 \the [back_item]。"))
+				to_chat(user, SPAN_WARNING("你双手都拿着东西，无法从[xeno]身上解下[back_item]。"))
 				return
-			user.visible_message(SPAN_NOTICE("\The [user] 开始从 [xeno] 身上解下 \the [back_item]。"), \
-			SPAN_NOTICE("你开始从 [xeno] 身上解下 \the [back_item]。"), null, 5, CHAT_TYPE_FLUFF_ACTION)
+			user.visible_message(SPAN_NOTICE("[user]开始从[xeno]身上解下[back_item]。"), \
+			SPAN_NOTICE("你开始从[xeno]身上解下[back_item]。"), null, 5, CHAT_TYPE_FLUFF_ACTION)
 			if(!do_after(user, HUMAN_STRIP_DELAY * user.get_skill_duration_multiplier(SKILL_CQC), INTERRUPT_ALL, BUSY_ICON_GENERIC, xeno, INTERRUPT_MOVED, BUSY_ICON_GENERIC))
 				to_chat(user, SPAN_WARNING("你的操作被打断了！"))
 				return
@@ -147,14 +147,14 @@
 
 	var/mob/living/carbon/human/target = dropping
 
-	user.visible_message(SPAN_WARNING("[src] 开始把 [target] 背到背上。"),\
-	SPAN_WARNING("你开始把 [target] 背到背上。"))
+	user.visible_message(SPAN_WARNING("[src]开始把[target]背到背上。"),\
+	SPAN_WARNING("你开始把[target]背到背上。"))
 
 	if(!do_after(src, carry_delay * get_skill_duration_multiplier(SKILL_FIREMAN), INTERRUPT_ALL, BUSY_ICON_HOSTILE, pulling, INTERRUPT_MOVED, BUSY_ICON_HOSTILE))
 		return
 
-	user.visible_message(SPAN_WARNING("[src] 把 [target] 背到了背上。"),\
-	SPAN_WARNING("你把 [target] 背到了背上。"))
+	user.visible_message(SPAN_WARNING("[src]把[target]背到了背上。"),\
+	SPAN_WARNING("你把[target]背到了背上。"))
 
 	if(pulling != dropping || !dropping || QDELETED(dropping))
 		return . = ..()

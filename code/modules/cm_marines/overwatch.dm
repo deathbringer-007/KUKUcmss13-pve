@@ -83,7 +83,7 @@
 		return ..()
 	if(mods[ALT_CLICK]) //Changing UI theme
 		var/list/possible_options = list("Blue"= "crtblue", "Green" = "crtgreen", "Yellow" = "crtyellow", "Red" = "crtred")
-		var/chosen_theme = tgui_input_list(user, "选择界面主题：", "界面主题", list("Blue", "Green", "Yellow", "Red"))
+		var/chosen_theme = localized_input_list(user, "选择界面主题：", "界面主题", list("Blue", "Green", "Yellow", "Red"))
 		if(possible_options[chosen_theme])
 			ui_theme = possible_options[chosen_theme]
 		return TRUE
@@ -105,7 +105,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		user.client.register_map_obj(tacmap.map_holder.map)
-		ui = new(user, src, "OverwatchConsole", "Overwatch Console")
+		ui = new(user, src, "OverwatchConsole", "战术指挥控制台")
 		ui.open()
 
 /obj/structure/machinery/computer/overwatch/ui_data(mob/user)
@@ -280,7 +280,7 @@
 				if(mob_state != "Dead")
 					marines_alive++
 
-		var/marine_data = list(list("name" = mob_name, "state" = mob_state, "has_helmet" = has_helmet, "role" = role, "acting_sl" = acting_sl, "fteam" = fteam, "distance" = distance, "area_name" = area_name,"ref" = REF(marine)))
+		var/marine_data = list(list("name" = mob_name, "state" = mob_state, "has_helmet" = has_helmet, "role" = role, "role_display" = get_statistic_display_label(role), "acting_sl" = acting_sl, "fteam" = fteam, "distance" = distance, "area_name" = area_name,"ref" = REF(marine)))
 		data["marines"] += marine_data
 		if(is_squad_leader)
 			if(!data["squad_leader"])
@@ -368,8 +368,8 @@
 				else
 					var/mob/living/carbon/human/human_operator = operator
 					var/obj/item/card/id/ID = human_operator.get_idcard()
-					current_squad.send_squad_message("Attention. [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"] is no longer your Overwatch officer. Overwatch functions deactivated.", displayed_icon = src)
-					visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("战术指挥系统已关闭。再见，[ID ? "[ID.rank] ":""][operator ? "[operator.name]":"系统管理员"]。")]")
+					current_squad.send_squad_message("Attention. [ID ? "[get_statistic_display_label(ID.rank)] ":""][operator ? "[operator.name]":"sysadmin"] is no longer your Overwatch officer. Overwatch functions deactivated.", displayed_icon = src)
+					visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("战术指挥系统已关闭。再见，[ID ? "[get_statistic_display_label(ID.rank)] ":""][operator ? "[operator.name]":"系统管理员"]。")]")
 			operator = null
 			current_squad = null
 			if(cam && !isSilicon(user))
@@ -388,7 +388,7 @@
 				return TRUE
 
 			current_squad.send_message(input, 1) //message, adds username
-			current_squad.send_maptext(input, "Section Message:")
+			current_squad.send_maptext(input, "分队消息：")
 			visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("讯息“[input]”已发送给[current_squad]排的全体陆战队员。")]")
 			log_overwatch("[key_name(user)] sent '[input]' to platoon [current_squad].")
 
@@ -396,7 +396,7 @@
 
 			for(var/mob/dead/observer/cycled_observer in GLOB.player_list)
 				if(cycled_observer.client && cycled_observer.client.prefs && (cycled_observer.client.prefs.toggles_chat & CHAT_GHOSTRADIO))
-					var/ghost_message = "<span class='medium'><span class='orange'><span class='name'>[comm_paygrade][user] (<a href='byond://?src=\ref[cycled_observer];track=\ref[user]'>F</a>)</span> messaged squad '[current_squad]': <span class='body'>\"[input]\"</span></span></span>"
+					var/ghost_message = "<span class='medium'><span class='orange'><span class='name'>[comm_paygrade][user] (<a href='byond://?src=\ref[cycled_observer];track=\ref[user]'>F</a>)</span>向[current_squad]小队发送消息：<span class='body'>\"[input]\"</span></span></span>"
 					cycled_observer.show_message(ghost_message)
 
 			return TRUE
@@ -410,7 +410,7 @@
 				return TRUE
 
 			current_squad.send_message(input, 1, 1) //message, adds username, only to leader
-			current_squad.send_maptext(input, "Section Sergeant Message:", 1)
+			current_squad.send_maptext(input, "分队士官消息：", 1)
 			visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("讯息“[input]”已发送给[current_squad]排的分队士官[current_squad.squad_leader]。")]")
 			log_overwatch("[key_name(user)] sent '[input]' to Section Sergeant [current_squad.squad_leader] of squad [current_squad].")
 
@@ -418,7 +418,7 @@
 
 			for(var/mob/dead/observer/cycled_observer in GLOB.player_list)
 				if(cycled_observer.client && cycled_observer.client.prefs && (cycled_observer.client.prefs.toggles_chat & CHAT_GHOSTRADIO))
-					var/ghost_message = "<span class='medium'><span class='orange'><span class='name'>[comm_paygrade][user] (<a href='byond://?src=\ref[cycled_observer];track=\ref[user]'>F</a>)</span> messaged platoon leader of '[current_squad]': <span class='body'>\"[input]\"</span></span></span>"
+					var/ghost_message = "<span class='medium'><span class='orange'><span class='name'>[comm_paygrade][user] (<a href='byond://?src=\ref[cycled_observer];track=\ref[user]'>F</a>)</span>向[current_squad]排的排长发送消息：<span class='body'>\"[input]\"</span></span></span>"
 					cycled_observer.show_message(ghost_message)
 
 			return TRUE
@@ -427,22 +427,22 @@
 			if(current_squad) //This is already checked, but ehh.
 				if(current_squad.primary_objective)
 					visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("已提醒[current_squad]主要目标：[current_squad.primary_objective]。")]")
-					current_squad.send_message("Your primary objective is '[current_squad.primary_objective]'. See Status pane for details.")
-					current_squad.send_maptext(current_squad.primary_objective, "Primary Objective:")
+					current_squad.send_message("你的主要目标是“[current_squad.primary_objective]”。详见状态面板。")
+					current_squad.send_maptext(current_squad.primary_objective, "主要目标：")
 
 		if("check_secondary")
 			if(current_squad) //This is already checked, but ehh.
 				if(current_squad.secondary_objective)
 					visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("已提醒[current_squad]次要目标：[current_squad.secondary_objective]。")]")
-					current_squad.send_message("Your secondary objective is '[current_squad.secondary_objective]'. See Status pane for details.")
-					current_squad.send_maptext(current_squad.secondary_objective, "Secondary Objective:")
+					current_squad.send_message("你的次要目标是“[current_squad.secondary_objective]”。详见状态面板。")
+					current_squad.send_maptext(current_squad.secondary_objective, "次要目标：")
 
 		if("set_primary")
 			var/input = sanitize_control_chars(stripped_input(usr, "分队的主要目标是什么？", "主要目标"))
 			if(current_squad && input)
 				current_squad.primary_objective = "[input] ([worldtime2text()])"
-				current_squad.send_message("Your primary objective has been changed to '[input]'. See Status pane for details.")
-				current_squad.send_maptext(input, "Primary Objective Updated:")
+				current_squad.send_message("你的主要目标已改为“[input]”。详见状态面板。")
+				current_squad.send_maptext(input, "主要目标已更新：")
 				visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("[current_squad]小队的主要目标已设为“[input]”。")]")
 				log_overwatch("[key_name(usr)] set [current_squad]'s primary objective to '[input]'.")
 				return TRUE
@@ -451,8 +451,8 @@
 			var/input = sanitize_control_chars(stripped_input(usr, "分队的次要目标是什么？", "次要目标"))
 			if(input)
 				current_squad.secondary_objective = input + " ([worldtime2text()])"
-				current_squad.send_message("Your secondary objective has been changed to '[input]'. See Status pane for details.")
-				current_squad.send_maptext(input, "Secondary Objective Updated:")
+				current_squad.send_message("你的次要目标已改为“[input]”。详见状态面板。")
+				current_squad.send_maptext(input, "次要目标已更新：")
 				visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("[current_squad]小队的次要目标已设为“[input]”。")]")
 				log_overwatch("[key_name(usr)] set [current_squad]'s secondary objective to '[input]'.")
 				return TRUE
@@ -562,8 +562,8 @@
 				else
 					var/mob/living/carbon/human/H = operator
 					var/obj/item/card/id/ID = H.get_idcard()
-					visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("基础战术指挥系统已初始化。欢迎，[ID ? "[ID.rank] ":""][operator.name]。请选择小队。")]")
-					current_squad?.send_squad_message("Attention. Your Overwatch officer is now [ID ? "[ID.rank] ":""][operator.name].", displayed_icon = src)
+					visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("基础战术指挥系统已初始化。欢迎，[ID ? "[get_statistic_display_label(ID.rank)] ":""][operator.name]。请选择小队。")]")
+					current_squad?.send_squad_message("Attention. Your Overwatch officer is now [ID ? "[get_statistic_display_label(ID.rank)] ":""][operator.name].", displayed_icon = src)
 
 
 /obj/structure/machinery/computer/overwatch/proc/change_lead(mob/user, sl_ref)
@@ -589,13 +589,13 @@
 		to_chat(user, "[icon2html(src, usr)] [SPAN_WARNING("[selected_sl]不适合担任指挥！")]")
 		return
 	if(current_squad.squad_leader)
-		current_squad.send_message("Attention: [current_squad.squad_leader] is [current_squad.squad_leader.stat == DEAD ? "stepping down" : "demoted"]. A new Squad Leader has been set: [selected_sl.real_name].")
+		current_squad.send_message("注意：[current_squad.squad_leader][current_squad.squad_leader.stat == DEAD ? "卸任" : "被撤职"]。新任小队长为[selected_sl.real_name]。")
 		visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("[current_squad]小队长[current_squad.squad_leader]已被[selected_sl.real_name][current_squad.squad_leader.stat == DEAD ? "接替" : "降职并接替"]！正在写入服役档案。")]")
 		var/old_lead = current_squad.squad_leader
 		current_squad.demote_squad_leader(current_squad.squad_leader.stat != DEAD)
 		SStracking.start_tracking(current_squad.tracking_id, old_lead)
 	else
-		current_squad.send_message("Attention: A new Squad Leader has been set: [selected_sl.real_name].")
+		current_squad.send_message("注意：新任小队长为[selected_sl.real_name]。")
 		visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("[selected_sl.real_name]已成为[current_squad]的新任小队长！正在写入服役档案。")]")
 
 	to_chat(selected_sl, "[icon2html(src, selected_sl)] <font size='3' color='blue'><B>战术指挥：你已被任命为[current_squad.name]的\'[selected_sl.job == JOB_SQUAD_LEADER ? "小队长" : "代理小队长"]\'。你的耳机已开通指挥频道（:v）。</B></font>")
@@ -701,7 +701,7 @@
 				continue
 			playsound_client(M.client, 'sound/effects/ob_alert.ogg', M)
 			to_chat(M, SPAN_HIGHDANGER("检测到轨道轰炸发射指令！"))
-			to_chat(M, SPAN_DANGER("发射指令指定[ob_type]弹头。预计落点区域：[ob_area.name]。"))
+			to_chat(M, SPAN_DANGER("发射指令指定[localized_player_label(ob_type)]弹头。预计落点区域：[ob_area.name]。"))
 
 
 /obj/structure/machinery/computer/overwatch/proc/mark_insubordination()
@@ -782,7 +782,7 @@
 		return
 
 	if(GLOB.RoleAuthority.check_squad_capacity(transfer_marine, new_squad))
-		to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("调动已取消。[new_squad]无法再容纳一名[transfer_marine.job]。")]")
+		to_chat(usr, "[icon2html(src, usr)] [SPAN_WARNING("调动已取消。[new_squad]无法再容纳一名[get_statistic_display_label(transfer_marine.job)]。")]")
 		return
 
 	. = transfer_marine_to_squad(transfer_marine, new_squad, old_squad, card)
@@ -848,7 +848,7 @@
 			if(H.client)
 				shake_camera(H, 10, 1)
 	visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("[current_squad]小队的轨道轰炸已发射！即将命中！")]")
-	current_squad.send_message("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
+	current_squad.send_message("警告！检测到跨大气层弹道发射！立即撤出近距危险区！")
 
 /obj/structure/machinery/computer/overwatch/proc/fire_bombard(mob/user,turf/T)
 	if(!T)
@@ -856,10 +856,10 @@
 
 	var/ob_name = lowertext(GLOB.almayer_orbital_cannon.tray.warhead.name)
 	var/mutable_appearance/warhead_appearance = mutable_appearance(GLOB.almayer_orbital_cannon.tray.warhead.icon, GLOB.almayer_orbital_cannon.tray.warhead.icon_state)
-	notify_ghosts(header = "Bombardment Inbound", message = "\A [ob_name] targeting [get_area(T)] has been fired!", source = T, alert_overlay = warhead_appearance, extra_large = TRUE)
+	notify_ghosts(header = "轨道轰炸来袭", message = "以[get_area(T)]为目标的[ob_name]已发射！", source = T, alert_overlay = warhead_appearance, extra_large = TRUE)
 
 	/// Project ARES interface log.
-	log_ares_bombardment(user.name, ob_name, "Bombardment fired at X[x_bomb], Y[y_bomb] in [get_area(T)]")
+	log_ares_bombardment(user.name, ob_name, "已向[get_area(T)]发射轨道轰炸，坐标X[x_bomb]、Y[y_bomb]。")
 
 	busy = FALSE
 	if(istype(T))

@@ -74,10 +74,10 @@
 	data["current_menu"] = current_menu
 	data["last_page"] = last_menu
 
-	data["logged_in"] = last_login
+	data["logged_in"] = last_login == "No User" ? "无用户" : last_login
 	data["sudo"] = sudo_holder ? TRUE : FALSE
 
-	data["access_text"] = "[sudo_holder ? "(SUDO)," : ""] access level [authentication], [ares_auth_to_text(authentication)]."
+	data["access_text"] = "[sudo_holder ? "（SUDO）" : ""]访问等级[authentication]，[ares_auth_to_text(authentication)]。"
 	data["access_level"] = authentication
 
 	data["alert_level"] = GLOB.security_level
@@ -260,7 +260,7 @@
 				playsound(src, 'sound/machines/buzz-two.ogg', 15, 1)
 				return FALSE
 			if(authentication)
-				datacore.interface_access_list += "[last_login] at [worldtime2text()], Access Level [authentication] - [ares_auth_to_text(authentication)]."
+				datacore.interface_access_list += "[last_login]于[worldtime2text()]登录，访问等级[authentication]——[ares_auth_to_text(authentication)]。"
 			current_menu = "main"
 
 		if("sudo")
@@ -276,10 +276,10 @@
 					return FALSE
 				sudo_holder = last_login
 				last_login = new_user
-				datacore.interface_access_list += "[last_login] at [worldtime2text()], Sudo Access."
+				datacore.interface_access_list += "[last_login]于[worldtime2text()]以SUDO身份访问。"
 				return TRUE
 		if("sudo_logout")
-			datacore.interface_access_list += "[last_login] at [worldtime2text()], Sudo Logout."
+			datacore.interface_access_list += "[last_login]于[worldtime2text()]退出SUDO身份。"
 			last_login = sudo_holder
 			sudo_holder = null
 			return
@@ -288,10 +288,10 @@
 			last_menu = current_menu
 			current_menu = "login"
 			if(sudo_holder)
-				datacore.interface_access_list += "[last_login] at [worldtime2text()], Sudo Logout."
+				datacore.interface_access_list += "[last_login]于[worldtime2text()]退出SUDO身份。"
 				last_login = sudo_holder
 				sudo_holder = null
-			datacore.interface_access_list += "[last_login] logged out at [worldtime2text()]."
+			datacore.interface_access_list += "[last_login]于[worldtime2text()]退出登录。"
 			last_login = "No User"
 			authentication = ARES_ACCESS_LOGOUT
 
@@ -369,20 +369,20 @@
 						</style><div id='container'>   \
 						<div class='header'>   \
 							<p id='title' class='important'>A.S.R.S.</p>   \
-							<p class='important'>Automatic Storage Retrieval System</p>    \
-							<p class='field'>Audit Log</p> \
+							<p class='important'>自动仓储检索系统</p>    \
+							<p class='field'>审计记录</p> \
 						</div><hr>
-						<u>Printed By:</u> [last_login]<br>
-						<u>Print Time:</u> [worldtime2text()]<br>
+						<u>打印人：</u> [last_login]<br>
+						<u>打印时间：</u> [worldtime2text()]<br>
 						<hr>
 						<center>
 						<table border=1 cellspacing=0 cellpadding=3 style='border: 1px solid black;'>
 						<thead>
 							<tr>
-							<th scope="col">Time</th>
-							<th scope="col">User</th>
-							<th scope="col">Source</th>
-							<th scope="col">Order</th>
+							<th scope="col">时间</th>
+							<th scope="col">用户</th>
+							<th scope="col">来源</th>
+							<th scope="col">订单</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -402,7 +402,7 @@
 			contents += "</center></tbody></table>"
 
 			var/obj/item/paper/log = new(loc)
-			log.name = "ASRS Audit Log"
+			log.name = "ASRS审计记录"
 			log.info += contents
 			log.icon_state = "paper_uscm_words"
 			visible_message(SPAN_NOTICE("[src]打印出一张纸。"))
@@ -415,31 +415,31 @@
 			if(record.record_name == ARES_RECORD_DELETED)
 				return FALSE
 			var/datum/ares_record/deletion/new_delete = new
-			var/new_details = "Error"
-			var/new_title = "Error"
+			var/new_details = "错误"
+			var/new_title = "错误"
 			switch(record.record_name)
 				if(ARES_RECORD_ANNOUNCE)
-					new_title = "[record.title] at [record.time]"
+					new_title = "[record.title]（[record.time]）"
 					new_details = record.details
 					datacore.records_announcement -= record
 				if(ARES_RECORD_SECURITY, ARES_RECORD_ANTIAIR)
-					new_title = "[record.title] at [record.time]"
+					new_title = "[record.title]（[record.time]）"
 					new_details = record.details
 					datacore.records_security -= record
 				if(ARES_RECORD_BIOSCAN)
-					new_title = "[record.title] at [record.time]"
+					new_title = "[record.title]（[record.time]）"
 					new_details = record.details
 					datacore.records_bioscan -= record
 				if(ARES_RECORD_BOMB)
-					new_title = "[record.title] at [record.time]"
-					new_details = "[record.details] Launched by [record.user]."
+					new_title = "[record.title]（[record.time]）"
+					new_details = "[record.details] 发射人：[record.user]。"
 					datacore.records_bombardment -= record
 				if(ARES_RECORD_TECH)
-					new_title = "[record.title] at [record.time]"
+					new_title = "[record.title]（[record.time]）"
 					new_details = record.details
 					datacore.records_tech -= record
 				if(ARES_RECORD_FLIGHT)
-					new_title = "[record.title] at [record.time]"
+					new_title = "[record.title]（[record.time]）"
 					new_details = record.details
 					datacore.records_flight -= record
 
@@ -452,7 +452,7 @@
 		// -- 1:1 Conversation -- //
 		if("new_conversation")
 			var/datum/ares_record/talk_log/convo = new(last_login)
-			convo.conversation += "[MAIN_AI_SYSTEM] at [worldtime2text()], 'New 1:1 link initiated. Greetings, [last_login].'"
+			convo.conversation += "[MAIN_AI_SYSTEM]于[worldtime2text()]：“新的一对一连接已建立。你好，[last_login]。”"
 			datacore.records_talking += convo
 
 		if("clear_conversation")
@@ -487,10 +487,10 @@
 				return FALSE
 			if(GLOB.security_level < SEC_LEVEL_RED)
 				set_security_level(SEC_LEVEL_RED, no_sound = TRUE, announce = FALSE)
-			shipwide_ai_announcement("ATTENTION! GENERAL QUARTERS. ALL HANDS, MAN YOUR BATTLESTATIONS.", MAIN_AI_SYSTEM, 'sound/effects/GQfullcall.ogg')
+			shipwide_ai_announcement("注意！全员进入战斗部署。所有人员，立即就战斗岗位。", MAIN_AI_SYSTEM, 'sound/effects/GQfullcall.ogg')
 			log_game("[key_name(user)] has called for general quarters via ARES.")
 			message_admins("[key_name_admin(user)] has called for general quarters via ARES.")
-			log_ares_security("General Quarters", "Called for general quarters via ARES.", last_login)
+			log_ares_security("全员战斗部署", "已通过ARES发布全员战斗部署命令。", last_login)
 			COOLDOWN_START(datacore, ares_quarters_cooldown, 10 MINUTES)
 			. = TRUE
 
@@ -512,7 +512,7 @@
 
 			log_game("[key_name(user)] has called for an emergency evacuation via ARES.")
 			message_admins("[key_name_admin(user)] has called for an emergency evacuation via ARES.")
-			log_ares_security("Initiate Evacuation", "Called for an emergency evacuation via ARES.", last_login)
+			log_ares_security("启动撤离", "已通过ARES启动紧急撤离。", last_login)
 			. = TRUE
 
 		if("distress")
@@ -566,10 +566,10 @@
 					playsound_client(admin,'sound/effects/sos-morse-code.ogg',10)
 			message_admins("[key_name(user)] has requested use of Nuclear Ordnance (via ARES)! Reason: <b>[reason]</b> [CC_MARK(user)] (<A href='byond://?_src_=admin_holder;[HrefToken(forceGlobal = TRUE)];nukeapprove=\ref[user]'>APPROVE</A>) (<A href='byond://?_src_=admin_holder;[HrefToken(forceGlobal = TRUE)];nukedeny=\ref[user]'>DENY</A>) [ADMIN_JMP_USER(user)] [CC_REPLY(user)]")
 			to_chat(user, SPAN_NOTICE("已向美国殖民地海军陆战队最高指挥部发送核武器申请，理由如下：[reason]"))
-			log_ares_security("Nuclear Ordnance Request", "Sent a request for nuclear ordnance for the following reason: [reason]", last_login)
+			log_ares_security("核武器申请", "已提交核武器申请，理由如下：[reason]", last_login)
 			if(ares_can_interface())
-				ai_silent_announcement("[last_login] has sent a request for nuclear ordnance to USCM High Command.", ".V")
-				ai_silent_announcement("Reason given: [reason].", ".V")
+				ai_silent_announcement("[last_login]已向殖民地海军陆战队最高司令部提交核武器申请。", ".V")
+				ai_silent_announcement("申请理由：[reason]。", ".V")
 			COOLDOWN_START(datacore, ares_nuclear_cooldown, COOLDOWN_COMM_DESTRUCT)
 			return TRUE
 
@@ -587,8 +587,8 @@
 			to_chat(user, SPAN_WARNING("开始从[sec_vent.vent_tag]释放气体。"))
 			playsound(src, 'sound/machines/chime.ogg', 15, 1)
 			COOLDOWN_START(sec_vent, vent_trigger_cooldown, COOLDOWN_ARES_VENT)
-			ares_apollo_talk("Nerve Gas release imminent from [sec_vent.vent_tag].")
-			log_ares_security("Nerve Gas Release", "Released Nerve Gas from Vent '[sec_vent.vent_tag]'.", last_login)
+			ares_apollo_talk("[sec_vent.vent_tag]即将释放神经毒气。")
+			log_ares_security("神经毒气释放", "已从通风口“[sec_vent.vent_tag]”释放神经毒气。", last_login)
 			sec_vent.create_gas(VENT_GAS_CN20_XENO, 6, 5 SECONDS)
 			log_admin("[key_name(user)] released nerve gas from Vent '[sec_vent.vent_tag]' via ARES.")
 

@@ -235,7 +235,7 @@
 	if(!S.Lock())
 		to_chat(owner, SPAN_BOLDWARNING("无法加载你的偏好设置文件，文件可能正被其他进程使用。请重试。"))
 
-		var/options = tgui_alert(owner, "无法加载你的偏好设置文件，文件可能正被其他进程使用。请重试。", "加载失败", list("Retry", "Disconnect"), timeout = FALSE)
+		var/options = localized_tgui_alert(owner, "无法加载你的偏好设置文件，文件可能正被其他进程使用。请重试。", "加载失败", list("Retry", "Disconnect"), timeout = FALSE)
 		if(options != "Retry")
 			qdel(owner, force = TRUE)
 			return FALSE
@@ -882,7 +882,7 @@
 	to_chat(owner, SPAN_ALERTWARNING("<u>按键绑定冲突</u>"))
 	to_chat(owner, SPAN_ALERTWARNING("新增的<a href='byond://?_src_=prefs;preference=viewmacros'>按键绑定</a>默认使用了你已绑定的按键，因此这些新绑定将保持未设置状态。"))
 	for(var/datum/keybinding/conflicted as anything in notadded)
-		to_chat(owner, SPAN_DANGER("[conflicted.category]：[conflicted.full_name] 需要更新。"))
+		to_chat(owner, SPAN_DANGER("[localized_player_label(conflicted.category)]：[istype(conflicted, /datum/keybinding/emote) ? "动作 *[conflicted.name]" : conflicted.full_name] 需要更新。"))
 
 		if(hotkeys)
 			for(var/entry in conflicted.hotkey_keys)

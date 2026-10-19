@@ -30,22 +30,22 @@
 /datum/surgery_step/connect_prosthesis/tool_check(mob/user, obj/item/robot_parts/tool, datum/surgery/surgery)
 	. = ..()
 	if(. && (!tool.part || !(user.zone_selected in tool.part)))
-		to_chat(user, SPAN_WARNING("[tool]不能用来替代缺失的[parse_zone(user.zone_selected)]。"))
+		to_chat(user, SPAN_WARNING("[tool]不能用来替代缺失的[localized_player_label(parse_zone(user.zone_selected))]。"))
 		return FALSE
 
 /datum/surgery_step/connect_prosthesis/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/robot_parts/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("你开始将[tool]接到[target]已经处理好的[parse_zone(target_zone)]残端上。"),
-		SPAN_NOTICE("[user]开始将[tool]接到你已经处理好的[parse_zone(target_zone)]残端上。"),
-		SPAN_NOTICE("[user]开始将[tool]接到[target]已经处理好的[parse_zone(target_zone)]残端上。"))
+		SPAN_NOTICE("你开始将[tool]接到[target]已经处理好的[localized_player_label(parse_zone(target_zone))]残端上。"),
+		SPAN_NOTICE("[user]开始将[tool]接到你已经处理好的[localized_player_label(parse_zone(target_zone))]残端上。"),
+		SPAN_NOTICE("[user]开始将[tool]接到[target]已经处理好的[localized_player_label(parse_zone(target_zone))]残端上。"))
 
 	log_interact(user, target, "[key_name(user)] attempted to begin attaching a prosthesis to [key_name(target)]'s [surgery.affected_limb.display_name].")
 
 /datum/surgery_step/connect_prosthesis/success(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("你用[tool]替代了[target]缺失的[parse_zone(target_zone)]。"),
-		SPAN_NOTICE("[user]用[tool]替代了你缺失的[parse_zone(target_zone)]。"),
-		SPAN_NOTICE("[user]用[tool]替代了[target]缺失的[parse_zone(target_zone)]。"))
+		SPAN_NOTICE("你用[tool]替代了[target]缺失的[localized_player_label(parse_zone(target_zone))]。"),
+		SPAN_NOTICE("[user]用[tool]替代了你缺失的[localized_player_label(parse_zone(target_zone))]。"),
+		SPAN_NOTICE("[user]用[tool]替代了[target]缺失的[localized_player_label(parse_zone(target_zone))]。"))
 
 	surgery.affected_limb.robotize(surgery_in_progress = TRUE, uncalibrated = TRUE, synth_skin = issynth(target))
 	target.update_body()
@@ -79,9 +79,9 @@
 
 /datum/surgery_step/strenghten_prosthesis_connection/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("你开始紧固[target]的新义肢（[parse_zone(target_zone)]）与身体的连接处。"),
-		SPAN_NOTICE("[user]开始紧固你的新义肢（[parse_zone(target_zone)]）与身体的连接处。"),
-		SPAN_NOTICE("[user]开始紧固[target]的新义肢（[parse_zone(target_zone)]）与身体的连接处。"))
+		SPAN_NOTICE("你开始紧固[target]的新义肢（[localized_player_label(parse_zone(target_zone))]）与身体的连接处。"),
+		SPAN_NOTICE("[user]开始紧固你的新义肢（[localized_player_label(parse_zone(target_zone))]）与身体的连接处。"),
+		SPAN_NOTICE("[user]开始紧固[target]的新义肢（[localized_player_label(parse_zone(target_zone))]）与身体的连接处。"))
 
 	log_interact(user, target, "[key_name(user)] began tightening a prosthesis to [key_name(target)]'s [surgery.affected_limb.display_name].")
 
@@ -140,9 +140,9 @@
 		failure_mode = pick("疯狂乱踢起来", "以非人的姿态扭曲起来", "差点用脚趾夹碎了什么东西")
 
 	user.affected_message(target,
-		SPAN_WARNING("你在校准义肢（[parse_zone(target_zone)]）时出了差错，它[failure_mode]！"),
-		SPAN_WARNING("[user]在校准义肢（[parse_zone(target_zone)]）时出了差错，它[failure_mode]！"),
-		SPAN_WARNING("[user]在校准义肢（[parse_zone(target_zone)]）时出了差错，它[failure_mode]！"))
+		SPAN_WARNING("你在校准义肢（[localized_player_label(parse_zone(target_zone))]）时出了差错，它[failure_mode]！"),
+		SPAN_WARNING("[user]在校准义肢（[localized_player_label(parse_zone(target_zone))]）时出了差错，它[failure_mode]！"),
+		SPAN_WARNING("[user]在校准义肢（[localized_player_label(parse_zone(target_zone))]）时出了差错，它[failure_mode]！"))
 
 	log_interact(user, target, "[key_name(user)] failed to calibrate a prosthesis on [key_name(target)]'s [surgery.affected_limb.display_name].")
 	return FALSE

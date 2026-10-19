@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(ui_data_keybindings)
 			return TRUE
 
 		if("clear_all_keybinds")
-			var/choice = tgui_alert(owner, "你更喜欢“hotkey（快捷键）”还是“classic（经典）”默认设置？", "设置按键绑定", list("Hotkey", "Classic", "Cancel"))
+			var/choice = localized_tgui_alert(owner, "你希望使用哪套默认按键设置？", "设置按键绑定", list("Hotkey", "Classic", "Cancel"))
 			if(choice == "Cancel")
 				return TRUE
 			prefs.hotkeys = (choice == "Hotkey")

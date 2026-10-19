@@ -20,7 +20,7 @@
 
 	for(var/zone in surgery_limbs) //Loops through the limbs of the patient
 		if(istype(patient.active_surgeries[zone], /datum/surgery/mcomp_wounds)) //Checks if there is already a surgery of this type existing elsewhere.
-			to_chat(user, SPAN_WARNING("[zone]上的操作尚未完成，你得先完成它！"))//gives a message to the person trying to perform the action
+			to_chat(user, SPAN_WARNING("[localized_player_label(parse_zone(zone))]上的操作尚未完成，你得先完成它！"))//gives a message to the person trying to perform the action
 			return FALSE
 
 	if(istype(user) && HAS_TRAIT(user, TRAIT_YAUTJA_TECH))

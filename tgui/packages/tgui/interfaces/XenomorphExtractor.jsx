@@ -27,7 +27,16 @@ export const XenomorphExtractor = () => {
     current_clearance,
     is_x_level,
   } = data;
-  const dropdownOptions = categories;
+  const categoryLabels = {
+    NONE: '选择类别',
+    Machinery: '机械设备',
+    Items: '物品',
+    Armor: '护甲',
+  };
+  const dropdownOptions = categories.map((value) => ({
+    value,
+    displayText: categoryLabels[value] ?? value,
+  }));
   const [selectedTab, setSelectedTab] = useState('NONE');
 
   return (
@@ -76,6 +85,7 @@ export const XenomorphExtractor = () => {
           <Box ml={1}>
             <Dropdown
               selected={selectedTab}
+              displayText={categoryLabels[selectedTab] ?? selectedTab}
               options={dropdownOptions}
               color={'#876500'}
               onSelected={(value) => setSelectedTab(value)}

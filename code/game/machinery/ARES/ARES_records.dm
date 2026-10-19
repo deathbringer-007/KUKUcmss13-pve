@@ -37,7 +37,7 @@
 
 /datum/ares_record/security/antiair/New(details)
 	time = worldtime2text()
-	src.title = "AntiAir Adjustment"
+	src.title = "防空系统调整"
 	src.details = details
 
 /datum/ares_record/flight
@@ -45,7 +45,7 @@
 
 /datum/ares_record/flight/New(details, user)
 	time = worldtime2text()
-	title = "Flight Log"
+	title = "飞行记录"
 	src.details = details
 	src.user = user
 
@@ -82,7 +82,7 @@
 
 /datum/ares_record/talk_log/New(user)
 	src.user = user
-	src.title = "1:1 Log ([user])"
+	src.title = "一对一记录（[user]）"
 
 /datum/ares_record/deleted_talk
 	record_name = ARES_RECORD_DELETED

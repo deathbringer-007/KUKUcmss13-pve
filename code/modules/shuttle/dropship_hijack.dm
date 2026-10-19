@@ -116,7 +116,7 @@
 		if(!offset_target)
 			offset_target = target // Welp the offsetting failed so...
 		crash_site.forceMove(offset_target)
-		marine_announcement("A hostile aircraft on course for the [target_ship_section] has been successfully deterred.", "IX-50 MGAD System", logging = ARES_LOG_SECURITY)
+		marine_announcement("已成功迫使一架飞往[localized_player_label(target_ship_section)]的敌机偏离航线。", "IX-50微重力与防空系统", logging = ARES_LOG_SECURITY)
 		target_ship_section = new_target_ship_section
 		// TODO mobs not alerted
 		for(var/area/internal_area in shuttle.shuttle_areas)
@@ -142,9 +142,9 @@
 
 	shuttle.crashing = TRUE
 
-	marine_announcement("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT." , "EMERGENCY", 'sound/AI/dropship_emergency.ogg', logging = ARES_LOG_SECURITY)
+	marine_announcement("运输艇正驶向碰撞点，撞击即将发生！" , "紧急警报", 'sound/AI/dropship_emergency.ogg', logging = ARES_LOG_SECURITY)
 
-	notify_ghosts(header = "登陆艇撞击", message = "登陆艇即将撞上[get_area_name(crash_site)]！", source = crash_site, extra_large = TRUE)
+	notify_ghosts(header = "运输艇撞击", message = "运输艇即将撞上[get_area_name(crash_site)]！", source = crash_site, extra_large = TRUE)
 	final_announcement = TRUE
 
 	playsound_area(get_area(crash_site), 'sound/effects/engine_landing.ogg', 100)

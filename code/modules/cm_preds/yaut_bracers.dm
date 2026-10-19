@@ -578,7 +578,7 @@
 			return FALSE
 
 		if(cloak_malfunction > world.time)
-			to_chat(M, SPAN_WARNING("你的披风故障了，暂时无法启动！"))
+			to_chat(M, SPAN_WARNING("你的隐形装置故障了，暂时无法启动！"))
 			return FALSE
 
 		if(cloak_timer > world.time)
@@ -628,7 +628,7 @@
 	SIGNAL_HANDLER
 
 	var/mob/wearer = src.loc
-	wearer.visible_message(SPAN_DANGER("[wearer]的披风失效了！"), SPAN_DANGER("你的披风失效了！"))
+	wearer.visible_message(SPAN_DANGER("[wearer]的隐形装置失效了！"), SPAN_DANGER("你的隐形装置失效了！"))
 
 	var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread
 	sparks.set_up(5, 4, src)
@@ -752,7 +752,7 @@
 		to_chat(usr, SPAN_WARNING("你为什么想这么做？"))
 		return
 
-	if(alert("你想使用哪种爆炸模式？","爆炸护腕", "Small", "Big") == "Big")
+	if(localized_native_alert(usr, "你想使用哪种爆炸模式？","爆炸护腕", "Small", "Big") == "Big")
 		explosion_type = SD_TYPE_BIG
 		log_attack("[key_name_admin(usr)] has changed their Self-Destruct to Large")
 	else
@@ -792,11 +792,11 @@
 		var/mob/living/carbon/human/victim = G.grabbed_thing
 		if(victim.stat == DEAD)
 			var/obj/item/clothing/gloves/yautja/hunter/bracer = victim.gloves
-			var/message = "确定要引爆这个 [victim.species] 的护腕吗？"
+			var/message = "确定要引爆这个 [localized_player_label(victim.species.name)] 的护腕吗？"
 			if(isspeciesyautja(victim))
-				message = "确定要送这个 [victim.species] 前往伟大的狩猎场吗？"
+				message = "确定要送这个 [localized_player_label(victim.species.name)] 前往伟大的狩猎场吗？"
 			if(istype(bracer))
-				if(forced || alert(message,"爆炸护腕", "Yes", "No") == "Yes")
+				if(forced || localized_native_alert(usr, message,"爆炸护腕", "Yes", "No") == "Yes")
 					if(M.get_active_hand() == G && victim && victim.gloves == bracer && !bracer.exploding)
 						var/area/A = get_area(M)
 						var/turf/T = get_turf(M)
@@ -806,16 +806,16 @@
 						if (!bracer.exploding)
 							bracer.explode(victim)
 						M.visible_message(SPAN_WARNING("[M]在[victim]的护腕上按了几个按钮。"),SPAN_DANGER("你启动了定时器。愿[victim]的最后一次狩猎迅速结束。"))
-						message_all_yautja("[M.real_name] has triggered [victim.real_name]'s bracer's self-destruction sequence.")
+						message_all_yautja("[M.real_name]启动了[victim.real_name]护腕的自毁程序。")
 			else
-				to_chat(M, SPAN_WARNING("<b>这个[localized_player_label(victim.species)]没有佩戴护腕。</b>"))
+				to_chat(M, SPAN_WARNING("<b>这个[localized_player_label(victim.species.name)]没有佩戴护腕。</b>"))
 			return
 
 	if(M.gloves != src && !forced)
 		return
 
 	if(exploding)
-		if(forced || alert("确定要停止倒计时吗？","护腕", "Yes", "No") == "Yes")
+		if(forced || localized_native_alert(usr, "确定要停止倒计时吗？","护腕", "Yes", "No") == "Yes")
 			if(M.gloves != src)
 				return
 			if(M.stat == DEAD)
@@ -826,7 +826,7 @@
 				return
 			exploding = FALSE
 			to_chat(M, SPAN_NOTICE("你的护腕停止鸣响。"))
-			message_all_yautja("[M.real_name] has cancelled their bracer's self-destruction sequence.")
+			message_all_yautja("[M.real_name]取消了自己的护腕自毁程序。")
 			message_admins("[key_name(M)] has deactivated their Self-Destruct.")
 
 			var/datum/action/predator_action/bracer/self_destruct/sd_action
@@ -841,7 +841,7 @@
 		to_chat(M, SPAN_WARNING("奇怪……似乎有什么在干扰护腕功能……"))
 		return
 
-	if(forced || alert("确定要引爆护腕吗？\n\n注意：如果在战斗中或战斗结束后因非意外原因启动自毁，就必须完成自毁。启动自毁即表示你已接受以死亡维护失去的荣誉。","爆炸护腕", "Yes", "No") == "Yes")
+	if(forced || localized_native_alert(usr, "确定要引爆护腕吗？\n\n注意：如果在战斗中或战斗结束后因非意外原因启动自毁，就必须完成自毁。启动自毁即表示你已接受以死亡维护失去的荣誉。","爆炸护腕", "Yes", "No") == "Yes")
 		if(M.gloves != src)
 			return
 		if(M.stat == DEAD)
@@ -857,7 +857,7 @@
 		var/turf/T = get_turf(M)
 		message_admins(FONT_SIZE_HUGE("ALERT: [M] ([M.key]) triggered their predator self-destruct sequence [A ? "in [A.name]":""] [ADMIN_JMP(T)]"))
 		log_attack("[key_name(M)] triggered their predator self-destruct sequence in [A ? "in [A.name]":""]")
-		message_all_yautja("[M.real_name] has triggered their bracer's self-destruction sequence.")
+		message_all_yautja("[M.real_name]启动了自己的护腕自毁程序。")
 		explode(M)
 
 		var/datum/action/predator_action/bracer/self_destruct/sd_action
@@ -1175,10 +1175,10 @@
 		return FALSE
 
 	if(!istype(bracer))
-		to_chat(user, SPAN_WARNING("<b>这个[localized_player_label(victim.species)]没有佩戴护腕。</b>"))
+		to_chat(user, SPAN_WARNING("<b>这个[localized_player_label(victim.species.name)]没有佩戴护腕。</b>"))
 		return FALSE
 
-	if(alert("确定要解锁这个 [victim.species] 的护腕吗？", "解锁护腕", "Yes", "No") != "Yes")
+	if(localized_native_alert(usr, "确定要解锁这个 [localized_player_label(victim.species.name)] 的护腕吗？", "解锁护腕", "Yes", "No") != "Yes")
 		return FALSE
 
 	if(user.get_active_hand() == held_mob && victim && victim.gloves == bracer)

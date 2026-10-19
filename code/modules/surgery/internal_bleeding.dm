@@ -30,11 +30,11 @@
 
 /datum/surgery_step/fix_vein/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.affected_message(target,
-		SPAN_NOTICE("你开始用[tool]修补[target]的[surgery.affected_limb.display_name]内受损的静脉。"),
-		SPAN_NOTICE("[user]开始用[tool]修补你的[surgery.affected_limb.display_name]内受损的静脉。"),
-		SPAN_NOTICE("[user]开始用[tool]修补[target]的[surgery.affected_limb.display_name]内受损的静脉。"))
+		SPAN_NOTICE("你开始用[tool]修补[target]的[localized_player_label(surgery.affected_limb.display_name)]内受损的静脉。"),
+		SPAN_NOTICE("[user]开始用[tool]修补你的[localized_player_label(surgery.affected_limb.display_name)]内受损的静脉。"),
+		SPAN_NOTICE("[user]开始用[tool]修补[target]的[localized_player_label(surgery.affected_limb.display_name)]内受损的静脉。"))
 
-	target.custom_pain("你的[surgery.affected_limb.display_name]痛得难以忍受！", 1)
+	target.custom_pain("你的[localized_player_label(surgery.affected_limb.display_name)]痛得难以忍受！", 1)
 	log_interact(user, target, "[key_name(user)] began repairing internal bleeding in [key_name(target)]'s [surgery.affected_limb.display_name], beginning [surgery].")
 
 /datum/surgery_step/fix_vein/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
@@ -60,14 +60,14 @@
 /datum/surgery_step/fix_vein/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	if(tool_type == /obj/item/tool/surgery/FixOVein)
 		user.affected_message(target,
-			SPAN_WARNING("你手一滑，将[tool]涂抹在了[target]的[surgery.affected_limb.display_name]内！"),
-			SPAN_WARNING("[user]手一滑，将[tool]涂抹在了你的[surgery.affected_limb.display_name]内！"),
-			SPAN_WARNING("[user]手一滑，将[tool]涂抹在了[target]的[surgery.affected_limb.display_name]内！"))
+			SPAN_WARNING("你手一滑，将[tool]涂抹在了[target]的[localized_player_label(surgery.affected_limb.display_name)]内！"),
+			SPAN_WARNING("[user]手一滑，将[tool]涂抹在了你的[localized_player_label(surgery.affected_limb.display_name)]内！"),
+			SPAN_WARNING("[user]手一滑，将[tool]涂抹在了[target]的[localized_player_label(surgery.affected_limb.display_name)]内！"))
 	else
 		user.affected_message(target,
-			SPAN_WARNING("你手一滑，用[tool]弄伤了[target]的[surgery.affected_limb.display_name]上的切口！"),
-			SPAN_WARNING("[user]手一滑，用[tool]弄伤了你的[surgery.affected_limb.display_name]上的切口！"),
-			SPAN_WARNING("[user]手一滑，用[tool]弄伤了[target]的[surgery.affected_limb.display_name]上的切口！"))
+			SPAN_WARNING("你手一滑，用[tool]弄伤了[target]的[localized_player_label(surgery.affected_limb.display_name)]上的切口！"),
+			SPAN_WARNING("[user]手一滑，用[tool]弄伤了你的[localized_player_label(surgery.affected_limb.display_name)]上的切口！"),
+			SPAN_WARNING("[user]手一滑，用[tool]弄伤了[target]的[localized_player_label(surgery.affected_limb.display_name)]上的切口！"))
 
 	user.add_blood(target.get_blood_color(), BLOOD_HANDS)
 	target.apply_damage(10, BRUTE, target_zone)

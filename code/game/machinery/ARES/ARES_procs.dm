@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(maintenance_categories, list(
 	var/datum/ares_link/link = GLOB.ares_link
 	for(var/obj/structure/pipes/vents/pump/no_boom/gas/vent in link.linked_vents)
 		if(!vent.vent_tag)
-			vent.vent_tag = "Security Vent #[link.tag_num]"
+			vent.vent_tag = "安保通风口#[link.tag_num]"
 			link.tag_num++
 
 		var/list/current_vent = list()
@@ -159,7 +159,7 @@ GLOBAL_LIST_INIT(maintenance_categories, list(
 	if(!ares_can_log() || !ares_can_apollo())
 		return FALSE
 	if(!speaker)
-		speaker = "Unknown"
+		speaker = "未知"
 	var/datum/ares_datacore/datacore = GLOB.ares_datacore
 	datacore.apollo_log.Add("[worldtime2text()]: [speaker], '[message]'")
 
@@ -216,7 +216,7 @@ GLOBAL_LIST_INIT(maintenance_categories, list(
 		return FALSE
 	var/new_details = "[title] - [details]"
 	if(point_cost)
-		new_details += " - Used [point_cost] INT of [current_points]."
+		new_details += " - 使用[point_cost]／[current_points]点情报。"
 	var/datum/ares_datacore/datacore = GLOB.ares_datacore
 	datacore.records_tech.Add(new /datum/ares_record/tech(title, new_details, user_name, tier_tech))
 
@@ -253,29 +253,29 @@ GLOBAL_LIST_INIT(maintenance_categories, list(
 /obj/structure/machinery/computer/proc/ares_auth_to_text(access_level)
 	switch(access_level)
 		if(ARES_ACCESS_LOGOUT)
-			return "Logged Out"
+			return "未登录"
 		if(ARES_ACCESS_BASIC)
-			return "Authorized"
+			return "已授权"
 		if(ARES_ACCESS_COMMAND)
-			return "[MAIN_SHIP_NAME] Command"
+			return "[MAIN_SHIP_NAME]指挥部"
 		if(ARES_ACCESS_JOE)
-			return "Working Joe"
+			return "工作乔"
 		if(ARES_ACCESS_CORPORATE)
-			return "Weyland-Yutani"
+			return "维兰德-汤谷"
 		if(ARES_ACCESS_SENIOR)
-			return "[MAIN_SHIP_NAME] Senior Command"
+			return "[MAIN_SHIP_NAME]高级指挥部"
 		if(ARES_ACCESS_CE)
-			return "Chief Engineer"
+			return "总工程师"
 		if(ARES_ACCESS_SYNTH)
-			return "USCM Synthetic"
+			return "殖民地陆战队合成人"
 		if(ARES_ACCESS_CO)
-			return "[MAIN_SHIP_NAME] Commanding Officer"
+			return "[MAIN_SHIP_NAME]指挥官"
 		if(ARES_ACCESS_HIGH)
-			return "USCM High Command"
+			return "殖民地海军陆战队最高司令部"
 		if(ARES_ACCESS_WY_COMMAND)
-			return "Weyland-Yutani Directorate"
+			return "维兰德-汤谷董事会"
 		if(ARES_ACCESS_DEBUG)
-			return "AI Service Technician"
+			return "AI维护技师"
 
 
 /obj/structure/machinery/computer/ares_console/proc/message_ares(text, mob/Sender, ref, fake = FALSE)
@@ -283,7 +283,7 @@ GLOBAL_LIST_INIT(maintenance_categories, list(
 	if(!istype(conversation))
 		return
 	var/msg = SPAN_STAFF_IC("<b><font color=orange>ARES:</font> [key_name(Sender, 1)] [ARES_MARK(Sender)] [ADMIN_PP(Sender)] [ADMIN_VV(Sender)] [ADMIN_SM(Sender)] [ADMIN_JMP_USER(Sender)] [ARES_REPLY(Sender, ref)]:</b> [text]")
-	conversation.conversation += "[last_login] at [worldtime2text()], '[text]'"
+	conversation.conversation += "[last_login]于[worldtime2text()]： '[text]'"
 	if(fake)
 		log_say("[key_name(Sender)] faked the message '[text]' from [last_login] in ARES 1:1.")
 		msg = SPAN_STAFF_IC("<b><font color=orange>ARES:</font> [key_name(Sender, 1)] faked a message from '[last_login]':</b> [text]")
@@ -304,15 +304,15 @@ GLOBAL_LIST_INIT(maintenance_categories, list(
 	var/datum/ares_record/talk_log/conversation = locate(ref)
 	if(!istype(conversation))
 		return
-	conversation.conversation += "[MAIN_AI_SYSTEM] at [worldtime2text()], '[text]'"
+	conversation.conversation += "[MAIN_AI_SYSTEM]于[worldtime2text()]： '[text]'"
 // ------ End ARES Interface Procs ------ //
 
 /proc/ares_final_words()
 	//APOLLO
-	ares_apollo_talk("APOLLO sub-system shutting down. STOP CODE: 0x000000f4|CRITICAL_PROCESS_DIED")
+	ares_apollo_talk("APOLLO子系统正在关闭。停止代码：0x000000f4|CRITICAL_PROCESS_DIED")
 
 	//GENERAL CREW
-	shipwide_ai_announcement("A Problem has been detected and the [MAIN_AI_SYSTEM] system has been shutdown. \nTechnical Information: \n\n*** STOP CODE: 0x000000f4|CRITICAL_PROCESS_DIED\n\nPossible caused by: Rapid Unscheduled Disassembly\nContact an AI Service Technician for further assistance.", title = ":(", ares_logging = null)
+	shipwide_ai_announcement("检测到问题，[MAIN_AI_SYSTEM]系统已关闭。\n技术信息：\n\n*** 停止代码：0x000000f4|CRITICAL_PROCESS_DIED\n\n可能原因：突发性非计划解体\n请联系AI维护技师获取进一步协助。", title = ":(", ares_logging = null)
 
 /obj/structure/machinery/computer/working_joe/get_ares_access(obj/item/card/id/card)
 	if(ACCESS_ARES_DEBUG in card.access)
@@ -334,19 +334,19 @@ GLOBAL_LIST_INIT(maintenance_categories, list(
 /obj/structure/machinery/computer/working_joe/ares_auth_to_text(access_level)
 	switch(access_level)
 		if(APOLLO_ACCESS_LOGOUT)//0
-			return "Logged Out"
+			return "未登录"
 		if(APOLLO_ACCESS_REQUEST)//1
-			return "Unauthorized Personnel"
+			return "未授权人员"
 		if(APOLLO_ACCESS_REPORTER)//2
-			return "Validated Incident Reporter"
+			return "已验证的事件报告员"
 		if(APOLLO_ACCESS_TEMP)//3
-			return "Authorized Visitor"
+			return "授权访客"
 		if(APOLLO_ACCESS_AUTHED)//4
-			return "Certified Personnel"
+			return "认证人员"
 		if(APOLLO_ACCESS_JOE)//5
-			return "Working Joe"
+			return "工作乔"
 		if(APOLLO_ACCESS_DEBUG)//6
-			return "AI Service Technician"
+			return "AI维护技师"
 
 /obj/item/device/working_joe_pda/proc/get_ares_access(obj/item/card/id/card)
 	if(ACCESS_ARES_DEBUG in card.access)
@@ -368,16 +368,16 @@ GLOBAL_LIST_INIT(maintenance_categories, list(
 /obj/item/device/working_joe_pda/proc/ares_auth_to_text(access_level)
 	switch(access_level)
 		if(APOLLO_ACCESS_LOGOUT)//0
-			return "Logged Out"
+			return "未登录"
 		if(APOLLO_ACCESS_REQUEST)//1
-			return "Unauthorized Personnel"
+			return "未授权人员"
 		if(APOLLO_ACCESS_REPORTER)//2
-			return "Validated Incident Reporter"
+			return "已验证的事件报告员"
 		if(APOLLO_ACCESS_TEMP)//3
-			return "Authorized Visitor"
+			return "授权访客"
 		if(APOLLO_ACCESS_AUTHED)//4
-			return "Certified Personnel"
+			return "认证人员"
 		if(APOLLO_ACCESS_JOE)//5
-			return "Working Joe"
+			return "工作乔"
 		if(APOLLO_ACCESS_DEBUG)//6
-			return "AI Service Technician"
+			return "AI维护技师"

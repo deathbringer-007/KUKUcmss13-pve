@@ -176,7 +176,7 @@
 
 /datum/surgery_step/cauterize/reposition_flesh/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.visible_message(SPAN_WARNING("[user]手一滑，灼伤了[target]的颈部！"), \
-	SPAN_WARNING("你手一滑，灼伤了[target]的[surgery.affected_limb.name]！"))
+	SPAN_WARNING("你手一滑，灼伤了[target]的[localized_player_label(surgery.affected_limb.name)]！"))
 	log_interact(user, target, "[key_name(user)] failed to adjust the area around [key_name(target)]'s neck with \the [tool].")
 
 	return FALSE

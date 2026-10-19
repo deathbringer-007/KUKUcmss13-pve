@@ -60,9 +60,9 @@
 		failure_mode = pick("疯狂乱踢起来", "以非人的姿态扭曲起来", "差点用脚趾夹碎了什么东西")
 
 	user.affected_message(target,
-		SPAN_WARNING("你在重新校准义肢（[parse_zone(target_zone)]）时出了差错，它[failure_mode]！"),
-		SPAN_WARNING("[user]在重新校准义肢（[parse_zone(target_zone)]）时出了差错，它[failure_mode]！"),
-		SPAN_WARNING("[user]在重新校准义肢（[parse_zone(target_zone)]）时出了差错，它[failure_mode]！"))
+		SPAN_WARNING("你在重新校准义肢（[localized_player_label(parse_zone(target_zone))]）时出了差错，它[failure_mode]！"),
+		SPAN_WARNING("[user]在重新校准义肢（[localized_player_label(parse_zone(target_zone))]）时出了差错，它[failure_mode]！"),
+		SPAN_WARNING("[user]在重新校准义肢（[localized_player_label(parse_zone(target_zone))]）时出了差错，它[failure_mode]！"))
 
 	log_interact(user, target, "[key_name(user)] failed to recalibrate a prosthesis on [key_name(target)]'s [surgery.affected_limb.display_name].")
 	return FALSE

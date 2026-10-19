@@ -125,7 +125,7 @@
 	if(!linked_hive.can_spawn_as_lesser_drone(xeno_candidate, src))
 		return FALSE
 
-	if(tgui_alert(xeno_candidate, "确定要变成次级工蜂吗？", "确认", list("Yes", "No")) != "Yes")
+	if(localized_tgui_alert(xeno_candidate, "确定要变成次级工蜂吗？", "确认", list("Yes", "No")) != "Yes")
 		return FALSE
 
 	if(!linked_hive.can_spawn_as_lesser_drone(xeno_candidate, src))
@@ -407,7 +407,7 @@
 			linked_hive.hardcore = TRUE
 			linked_hive.allow_queen_evolve = FALSE
 			linked_hive.hive_structures_limit[XENO_STRUCTURE_CORE] = 0
-			xeno_announcement("[preference_label(linked_hive.name)]失去了虫巢核心！", "everything", HIGHER_FORCE_ANNOUNCE)
+			xeno_announcement("[localized_player_label(linked_hive.name)]失去了虫巢核心！", "everything", HIGHER_FORCE_ANNOUNCE)
 
 		if(linked_hive.hijack_burrowed_surge)
 			visible_message(SPAN_XENODANGER("[src]被摧毁时，我们听见了类似尖叫的声音！"))

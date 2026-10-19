@@ -188,7 +188,7 @@
 		castes_available += initial(current_caste.caste_type)
 
 	var/castes = jointext(localized_player_list(castes_available), "、")
-	xeno_message(SPAN_XENOANNOUNCE("巢群现在已足够强大，可以容纳：[castes]"))
+	xeno_message(SPAN_XENOANNOUNCE("虫巢现在已足够强大，可以容纳：[castes]"))
 	xeno_maptext("虫巢现在可支持：[castes]", "虫巢壮大")
 
 
@@ -510,7 +510,7 @@
 		// goddamn fucking larvas with their weird ass maturing system
 		// its name updates with its icon, unlike other castes which only update the mature/elder, etc. prefix on evolve
 		if(istype(X, /mob/living/carbon/xenomorph/larva))
-			xeno_name = "幼虫（[X.nicknumber]）"
+			xeno_name = "幼体（[X.nicknumber]）"
 		xenos["[X.nicknumber]"] = list(
 			"name" = xeno_name,
 			"strain" = X.get_strain_name(),
@@ -523,7 +523,7 @@
 	if(!C || C == hive_location)
 		return
 	var/area/A = get_area(C)
-	xeno_message(SPAN_XENOANNOUNCE("女王已将巢群位置设在[A]。"), 3, hivenumber)
+	xeno_message(SPAN_XENOANNOUNCE("女皇已将虫巢位置设在[A]。"), 3, hivenumber)
 	hive_location = C
 	hive_ui.update_hive_location()
 
@@ -547,7 +547,7 @@
 
 		xenos["[X.nicknumber]"] = list(
 			"health" = round((X.health / X.maxHealth) * 100, 1),
-			"area" = area_name,
+			"area" = localized_player_label(area_name),
 			"is_ssd" = (!X.client)
 		)
 
@@ -685,17 +685,17 @@
 	for(var/mob/living/carbon/xenomorph/xeno as anything in totalXenos)
 		if(get_area(xeno) != hijacked_dropship && xeno.loc && is_ground_level(xeno.loc.z))
 			if(isfacehugger(xeno) || islesserdrone(xeno))
-				to_chat(xeno, SPAN_XENOANNOUNCE("女王抛下了你。随着你与巢群意识失去联系，你赶紧找个地方躲藏起来，进入休眠。"))
+				to_chat(xeno, SPAN_XENOANNOUNCE("女皇抛下了你。随着你与虫巢意志失去联系，你赶紧找个地方躲藏起来，进入休眠。"))
 				if(length(xeno.stomach_contents))
 					xeno.devour_timer = 0
 					xeno.handle_stomach_contents()
 				qdel(xeno)
 				continue
 			if(xeno.hunter_data.hunted && !isqueen(xeno))
-				to_chat(xeno, SPAN_XENOANNOUNCE("女王抛下了你，让你与她的巢群失去了联系！你必须先躲过猎头者的追杀，才能进入休眠……"))
+				to_chat(xeno, SPAN_XENOANNOUNCE("女皇抛下了你，让你与她的虫巢失去了联系！你必须先躲过猎头者的追杀，才能进入休眠……"))
 				xeno.set_hive_and_update(XENO_HIVE_FORSAKEN)
 			else
-				to_chat(xeno, SPAN_XENOANNOUNCE("女王抛下了你。随着你与巢群意识失去联系，你赶紧找个地方躲藏起来，进入休眠。"))
+				to_chat(xeno, SPAN_XENOANNOUNCE("女皇抛下了你。随着你与虫巢意志失去联系，你赶紧找个地方躲藏起来，进入休眠。"))
 				if(length(xeno.stomach_contents))
 					xeno.devour_timer = 0
 					xeno.handle_stomach_contents()
@@ -728,7 +728,7 @@
 	hijack_burrowed_surge = TRUE
 	hijack_burrowed_left = max(ceil(shipside_humans_weighted_count * 0.5) - xenos_count, 5)
 	hivecore_cooldown = FALSE
-	xeno_message(SPAN_XENOBOLDNOTICE("菌毯已经恢复！可以建造新的巢群核心了！"),3,hivenumber)
+	xeno_message(SPAN_XENOBOLDNOTICE("菌毯已经恢复！可以建造新的虫巢核心了！"),3,hivenumber)
 
 /datum/hive_status/proc/free_respawn(client/C)
 	stored_larva++
@@ -746,8 +746,8 @@
 		qdel(new_xeno)
 		return FALSE
 
-	new_xeno.visible_message(SPAN_XENODANGER("一只幼虫突然从干枯的尸壳中钻出！"),
-	SPAN_XENOANNOUNCE("虫巢没有核心！你设法以幼虫形态从旧躯壳中钻了出来！"))
+	new_xeno.visible_message(SPAN_XENODANGER("一只幼体突然从干枯的尸壳中钻出！"),
+	SPAN_XENOANNOUNCE("虫巢没有核心！你设法以幼体形态从旧躯壳中钻了出来！"))
 	msg_admin_niche("[key_name(new_xeno)] respawned at \a [spawning_turf]. [ADMIN_JMP(spawning_turf)]")
 	playsound(new_xeno, 'sound/effects/xeno_newlarva.ogg', 50, 1)
 	if(new_xeno.client?.prefs?.toggles_flashing & FLASH_POOLSPAWN)
@@ -783,7 +783,7 @@
 	if(!SSticker.mode.transfer_xeno(xeno_candidate, new_xeno))
 		qdel(new_xeno)
 		return FALSE
-	new_xeno.visible_message(SPAN_XENODANGER("一只幼虫突然从[spawning_turf]中钻出！"),
+	new_xeno.visible_message(SPAN_XENODANGER("一只幼体突然从[spawning_turf]中钻出！"),
 	SPAN_XENODANGER("你从[spawning_turf]中钻出，从沉睡中苏醒。为了虫巢！"))
 	msg_admin_niche("[key_name(new_xeno)] burrowed out from \a [spawning_turf]. [ADMIN_JMP(spawning_turf)]")
 	playsound(new_xeno, 'sound/effects/xeno_newlarva.ogg', 50, 1)
@@ -856,7 +856,7 @@
 		return FALSE
 	for(var/mob_name in banished_ckeys)
 		if(banished_ckeys[mob_name] == user.ckey)
-			to_chat(user, SPAN_WARNING("你已被[localized_player_label(name)]放逐。除非女王重新接纳你或女王死亡，否则不能重新加入。"))
+			to_chat(user, SPAN_WARNING("你已被[localized_player_label(name)]放逐。除非女皇重新接纳你或女皇死亡，否则不能重新加入。"))
 			return FALSE
 
 	update_hugger_limit()
@@ -866,10 +866,10 @@
 		if(isfacehugger(mob))
 			current_hugger_count++
 	if(playable_hugger_limit <= current_hugger_count)
-		to_chat(user, SPAN_WARNING("[GLOB.hive_datum[hivenumber]]无法支持更多抱脸虫！上限：<b>[current_hugger_count]/[playable_hugger_limit]</b>"))
+		to_chat(user, SPAN_WARNING("[localized_player_label(name)]无法支持更多抱脸虫！上限：<b>[current_hugger_count]/[playable_hugger_limit]</b>"))
 		return FALSE
 
-	if(tgui_alert(user, "确定要变成抱脸虫吗？", "确认", list("Yes", "No")) != "Yes")
+	if(localized_tgui_alert(user, "确定要变成抱脸虫吗？", "确认", list("Yes", "No")) != "Yes")
 		return FALSE
 
 	if(!user.client)
@@ -922,11 +922,11 @@
 		return FALSE
 
 	if(!living_xeno_queen)
-		to_chat(user, SPAN_WARNING("所选虫巢没有女王！"))
+		to_chat(user, SPAN_WARNING("所选虫巢没有女皇！"))
 		return FALSE
 
 	if(spawning_pylon.lesser_drone_spawns < 1)
-		to_chat(user, SPAN_WARNING("所选核心或晶塔的能量不足，无法产生次级工蜂！"))
+		to_chat(user, SPAN_WARNING("所选核心或巢群尖塔的能量不足，无法产生次级工蜂！"))
 		return FALSE
 
 	update_lesser_drone_limit()
@@ -937,7 +937,7 @@
 			current_lesser_drone_count++
 
 	if(lesser_drone_limit <= current_lesser_drone_count)
-		to_chat(user, SPAN_WARNING("[GLOB.hive_datum[hivenumber]]无法支持更多次级工蜂！上限：<b>[current_lesser_drone_count]/[lesser_drone_limit]</b>"))
+		to_chat(user, SPAN_WARNING("[localized_player_label(name)]无法支持更多次级工蜂！上限：<b>[current_lesser_drone_count]/[lesser_drone_limit]</b>"))
 		return FALSE
 
 	if(!user.client)
@@ -1257,7 +1257,7 @@
 
 
 	if(broken_alliances)
-		xeno_message(SPAN_XENOANNOUNCE("女王死亡，所有联盟均已解除。"), 3, hivenumber)
+		xeno_message(SPAN_XENOANNOUNCE("女皇死亡，所有联盟均已解除。"), 3, hivenumber)
 
 /datum/hive_status/proc/change_stance(faction, should_ally)
 	if(faction == name)
@@ -1268,9 +1268,9 @@
 
 	if(living_xeno_queen)
 		if(allies[faction])
-			xeno_message(SPAN_XENOANNOUNCE("我们的女王与[localized_player_label(faction)]结盟了！"), 3, hivenumber)
+			xeno_message(SPAN_XENOANNOUNCE("我们的女皇与[localized_player_label(faction)]结盟了！"), 3, hivenumber)
 		else
-			xeno_message(SPAN_XENOANNOUNCE("我们的女王解除了与[localized_player_label(faction)]的联盟！"), 3, hivenumber)
+			xeno_message(SPAN_XENOANNOUNCE("我们的女皇解除了与[localized_player_label(faction)]的联盟！"), 3, hivenumber)
 
 	for(var/number in GLOB.hive_datum)
 		var/datum/hive_status/target_hive = GLOB.hive_datum[number]
@@ -1279,10 +1279,10 @@
 		if(!target_hive.living_xeno_queen && !target_hive.allow_no_queen_actions)
 			return
 		if(allies[faction])
-			xeno_message(SPAN_XENOANNOUNCE("我们感知到[localized_player_label(name)][living_xeno_queen ? "女王" : ""]与我们结盟了！"), 3, target_hive.hivenumber)
+			xeno_message(SPAN_XENOANNOUNCE("我们感知到[localized_player_label(name)][living_xeno_queen ? "女皇" : ""]与我们结盟了！"), 3, target_hive.hivenumber)
 			return
 
-		xeno_message(SPAN_XENOANNOUNCE("我们感知到[localized_player_label(name)][living_xeno_queen ? "女王" : ""]解除了与我们的联盟！"), 3, target_hive.hivenumber)
+		xeno_message(SPAN_XENOANNOUNCE("我们感知到[localized_player_label(name)][living_xeno_queen ? "女皇" : ""]解除了与我们的联盟！"), 3, target_hive.hivenumber)
 		if(target_hive.allies[name]) //autobreak alliance on betrayal
 			target_hive.change_stance(name, FALSE)
 
@@ -1306,13 +1306,13 @@
 	addtimer(CALLBACK(src, PROC_REF(handle_defectors), faction), 11 SECONDS)
 
 /datum/hive_status/corrupted/proc/give_defection_choice(mob/living/carbon/xenomorph/xeno, faction)
-	if(tgui_alert(xeno, "女皇已与 [faction] 解除同盟。甲壳内的装置开始压制我们与巢群的联系。要移除它、继续效忠女皇吗？", "同盟已解除！", list("Stay loyal", "Obey the talls"), 10 SECONDS) == "Obey the talls")
+	if(localized_tgui_alert(xeno, "女皇已与 [get_statistic_display_label(faction)] 解除同盟。甲壳内的装置开始压制我们与虫巢的联系。要移除它、继续效忠女皇吗？", "同盟已解除！", list("Stay loyal", "Obey the talls"), 10 SECONDS) == "Obey the talls")
 		if(!xeno.iff_tag)
-			to_chat(xeno, SPAN_XENOWARNING("太晚了。装置已经不在，我们将继续侍奉女王。"))
+			to_chat(xeno, SPAN_XENOWARNING("太晚了。装置已经不在，我们将继续侍奉女皇。"))
 			return
 		defectors += xeno
 		xeno.set_hive_and_update(XENO_HIVE_RENEGADE)
-		to_chat(xeno, SPAN_XENOANNOUNCE("你与虫巢失去了联系。如今你没有女王，只有主人。"))
+		to_chat(xeno, SPAN_XENOANNOUNCE("你与虫巢失去了联系。如今你没有女皇，只有主人。"))
 		to_chat(xeno, SPAN_NOTICE("你的本能改变了，似乎不得不保护[english_list(localized_player_list(xeno.iff_tag.faction_groups), "任何人都不保护", and_text = "和", comma_text = "、")]。"))
 		return
 	xeno.visible_message(SPAN_XENOWARNING("[xeno]扯出了[xeno.iff_tag]！"), SPAN_XENOWARNING("我们扯出了[xeno.iff_tag]！为了虫巢！"))
@@ -1335,14 +1335,14 @@
 	if(!length(defectors))
 		return
 
-	xeno_message(SPAN_XENOANNOUNCE("我们感知到[english_list(defectors, and_text = "和", comma_text = "、")]背弃了姐妹与女王，投向了奴役它们的主人！"), 3, hivenumber)
+	xeno_message(SPAN_XENOANNOUNCE("我们感知到[english_list(defectors, and_text = "和", comma_text = "、")]背弃了姐妹与女皇，投向了奴役它们的主人！"), 3, hivenumber)
 	defectors.Cut()
 
 /datum/hive_status/corrupted/proc/add_personal_ally(mob/living/ally)
 	personal_allies += WEAKREF(ally)
 	ally.status_flags |= CORRUPTED_ALLY
 	ally.med_hud_set_status()
-	xeno_message(SPAN_XENOANNOUNCE("我们的女王宣布[ally]是盟友！不得伤害对方。"), 3, hivenumber)
+	xeno_message(SPAN_XENOANNOUNCE("我们的女皇宣布[ally]是盟友！不得伤害对方。"), 3, hivenumber)
 
 /datum/hive_status/corrupted/proc/remove_personal_ally(datum/weakref/ally_ref)
 	personal_allies -= ally_ref
@@ -1350,7 +1350,7 @@
 	if(ally)
 		ally.status_flags &= ~CORRUPTED_ALLY
 		ally.med_hud_set_status()
-	xeno_message(SPAN_XENOANNOUNCE("我们的女王宣布[ally]不再是盟友！"), 3, hivenumber)
+	xeno_message(SPAN_XENOANNOUNCE("我们的女皇宣布[ally]不再是盟友！"), 3, hivenumber)
 
 /datum/hive_status/corrupted/proc/clear_personal_allies(death = FALSE)
 	for(var/datum/weakref/ally_ref in personal_allies)
@@ -1361,9 +1361,9 @@
 		ally.med_hud_set_status()
 	personal_allies.Cut()
 	if(!death)
-		xeno_message(SPAN_XENOANNOUNCE("我们的女王解除了与高个子的全部私人联盟！不再偏袒任何人。"), 3, hivenumber)
+		xeno_message(SPAN_XENOANNOUNCE("我们的女皇解除了与高个子的全部私人联盟！不再偏袒任何人。"), 3, hivenumber)
 		return
-	xeno_message(SPAN_XENOWARNING("女王已死，她的朋友不再与我们有关。"), 3, hivenumber)
+	xeno_message(SPAN_XENOWARNING("女皇已死，她的朋友不再与我们有关。"), 3, hivenumber)
 
 /datum/hive_status/corrupted/is_ally(mob/living/living_mob)
 	if(living_mob.status_flags & CORRUPTED_ALLY)

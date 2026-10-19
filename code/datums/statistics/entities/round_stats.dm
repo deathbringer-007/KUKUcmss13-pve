@@ -267,13 +267,13 @@
 		var/list/damage_list = list()
 
 		if(new_death.total_brute > 0)
-			damage_list += list(list("name" = "brute", "value" = new_death.total_brute))
+			damage_list += list(list("name" = "物理伤害", "value" = new_death.total_brute))
 		if(new_death.total_burn > 0)
-			damage_list += list(list("name" = "burn", "value" = new_death.total_burn))
+			damage_list += list(list("name" = "烧伤", "value" = new_death.total_burn))
 		if(new_death.total_oxy > 0)
-			damage_list += list(list("name" = "oxy", "value" = new_death.total_oxy))
+			damage_list += list(list("name" = "缺氧", "value" = new_death.total_oxy))
 		if(new_death.total_tox > 0)
-			damage_list += list(list("name" = "tox", "value" = new_death.total_tox))
+			damage_list += list(list("name" = "毒素伤害", "value" = new_death.total_tox))
 
 		var/new_time_of_death
 		if(new_death.time_of_death)
@@ -284,9 +284,9 @@
 
 		var/death = list(list(
 			"mob_name" = sanitize(new_death.mob_name),
-			"job_name" = new_death.role_name,
+			"job_name" = get_statistic_display_label(new_death.role_name),
 			"area_name" = sanitize_area(new_death.area_name),
-			"cause_name" = sanitize_area(new_death.cause_name),
+			"cause_name" = sanitize_area(get_statistic_display_label(new_death.cause_name)),
 			"total_kills" = new_death.total_kills,
 			"total_damage" = damage_list,
 			"time_of_death" = new_time_of_death,
@@ -382,6 +382,10 @@
 
 /datum/action/show_round_statistics
 	name = "View End-Round Statistics"
+
+/datum/action/show_round_statistics/give_to(mob/L)
+	. = ..()
+	button.name = "查看回合结束统计"
 
 /datum/action/show_round_statistics/can_use_action()
 	if(!..())

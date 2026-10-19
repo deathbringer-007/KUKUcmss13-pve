@@ -1,0 +1,1082 @@
+{
+  "batchId": "batch309",
+  "startProcessedCount": 1676,
+  "endProcessedCount": 1704,
+  "actualModifiedSourceFiles": 102,
+  "fullyTranslatedPlayerTextFileCount": 100,
+  "localizationSupportFileCount": 2,
+  "newSourceFiles": 28,
+  "revisitedSourceFiles": 74,
+  "files": [
+    "code/__DEFINES/typecheck/xenos.dm",
+    "code/_onclick/human.dm",
+    "code/controllers/subsystem/hijack.dm",
+    "code/controllers/subsystem/vote.dm",
+    "code/datums/action.dm",
+    "code/datums/bug_report.dm",
+    "code/datums/effects/bleeding.dm",
+    "code/datums/elements/suturing.dm",
+    "code/datums/fluff_emails.dm",
+    "code/datums/medal_awards.dm",
+    "code/datums/research_upgrade_datum.dm",
+    "code/datums/statistics/entities/panel_stats.dm",
+    "code/datums/statistics/entities/round_stats.dm",
+    "code/datums/statistics/random_facts/random_fact.dm",
+    "code/game/area/BigRed.dm",
+    "code/game/area/Corsat.dm",
+    "code/game/area/DesertDam.dm",
+    "code/game/area/IceColony.dm",
+    "code/game/area/LV522_Chances_Claim.dm",
+    "code/game/area/LV624.dm",
+    "code/game/area/Prison_Station_FOP.dm",
+    "code/game/area/almayer.dm",
+    "code/game/area/strata.dm",
+    "code/game/gamemodes/colonialmarines/whiskey_outpost.dm",
+    "code/game/gamemodes/colonialmarines/whiskey_outpost/whiskey_output_waves.dm",
+    "code/game/gamemodes/colonialmarines/xenovsxeno.dm",
+    "code/game/jobs/job/marine/squads.dm",
+    "code/game/machinery/ARES/ARES_interface.dm",
+    "code/game/machinery/ARES/ARES_interface_apollo.dm",
+    "code/game/machinery/ARES/ARES_procs.dm",
+    "code/game/machinery/ARES/ARES_records.dm",
+    "code/game/machinery/ARES/apollo_pda.dm",
+    "code/game/machinery/computer/almayer_control.dm",
+    "code/game/machinery/computer/communications.dm",
+    "code/game/objects/items/devices/autopsy_scanner.dm",
+    "code/game/objects/items/stacks/cable_coil.dm",
+    "code/game/objects/items/tools/maintenance_tools.dm",
+    "code/modules/clans/client.dm",
+    "code/modules/client/preferences_savefile.dm",
+    "code/modules/client/tgui_macro.dm",
+    "code/modules/cm_aliens/structures/construction_node.dm",
+    "code/modules/cm_aliens/structures/special/pylon_core.dm",
+    "code/modules/cm_aliens/structures/special_structure.dm",
+    "code/modules/cm_marines/Donator_Items.dm",
+    "code/modules/cm_marines/overwatch.dm",
+    "code/modules/cm_preds/yaut_bracers.dm",
+    "code/modules/cm_preds/yaut_machines.dm",
+    "code/modules/mentor/mentorhelp.dm",
+    "code/modules/mob/dead/observer/observer.dm",
+    "code/modules/mob/living/blood.dm",
+    "code/modules/mob/living/carbon/human/human.dm",
+    "code/modules/mob/living/carbon/human/human_abilities.dm",
+    "code/modules/mob/living/carbon/human/human_damage.dm",
+    "code/modules/mob/living/carbon/human/life/handle_organs.dm",
+    "code/modules/mob/living/carbon/human/species/yautja/_species.dm",
+    "code/modules/mob/living/carbon/xenomorph/Embryo.dm",
+    "code/modules/mob/living/carbon/xenomorph/Evolution.dm",
+    "code/modules/mob/living/carbon/xenomorph/Powers.dm",
+    "code/modules/mob/living/carbon/xenomorph/abilities/general_powers.dm",
+    "code/modules/mob/living/carbon/xenomorph/abilities/queen/queen_powers.dm",
+    "code/modules/mob/living/carbon/xenomorph/abilities/warrior/warrior_powers.dm",
+    "code/modules/mob/living/carbon/xenomorph/castes/Warrior.dm",
+    "code/modules/mob/living/carbon/xenomorph/hive_status.dm",
+    "code/modules/mob/living/carbon/xenomorph/items/iff_tag.dm",
+    "code/modules/mob/living/carbon/xenomorph/resin_constructions.dm",
+    "code/modules/mob/living/carbon/xenomorph/strains/castes/hivelord/resin_whisperer.dm",
+    "code/modules/mob/living/living_defines.dm",
+    "code/modules/mob/living/silicon/silicon.dm",
+    "code/modules/reagents/chemistry_machinery/xenomorph_analyzer.dm",
+    "code/modules/reagents/chemistry_properties/prop_positive.dm",
+    "code/modules/recycling/sortingmachinery.dm",
+    "code/modules/shuttle/computer.dm",
+    "code/modules/shuttle/computers/dropship_computer.dm",
+    "code/modules/shuttle/dropship_hijack.dm",
+    "code/modules/shuttle/shuttle.dm",
+    "code/modules/shuttles/shuttle_console.dm",
+    "code/modules/surgery/amputation.dm",
+    "code/modules/surgery/bones.dm",
+    "code/modules/surgery/brainrepair.dm",
+    "code/modules/surgery/headreattach.dm",
+    "code/modules/surgery/implant.dm",
+    "code/modules/surgery/internal_bleeding.dm",
+    "code/modules/surgery/mcomp_tendwounds.dm",
+    "code/modules/surgery/robolimb_repair.dm",
+    "code/modules/surgery/robolimbs.dm",
+    "code/modules/surgery/robotic_organs_internal.dm",
+    "code/modules/surgery/tendwounds.dm",
+    "code/modules/surgery/xeno.dm",
+    "code/modules/tgui/tgui_alert.dm",
+    "html/templates/header.html",
+    "nano/templates/clan_menu.tmpl",
+    "nano/templates/cm_stat_panel.tmpl",
+    "nano/templates/elevator_control_console.tmpl",
+    "nano/templates/layout_basic.tmpl",
+    "nano/templates/layout_default.tmpl",
+    "nano/templates/monorail_control_console.tmpl",
+    "nano/templates/shuttle_control_console.tmpl",
+    "strings/metatips.txt",
+    "strings/pvetips.txt",
+    "tgui/packages/tgui/interfaces/OverwatchConsole.jsx",
+    "tgui/packages/tgui/interfaces/VoteMenu.jsx",
+    "tgui/packages/tgui/interfaces/XenomorphExtractor.jsx"
+  ],
+  "wholeFileReview": [
+    {
+      "file": "code/__DEFINES/typecheck/xenos.dm",
+      "sha256": "dc5165ea4a71b8f466fea40a2f729c618e7aadf899a3da22fc9575c468beee72",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/_onclick/human.dm",
+      "sha256": "a304d66b89614cc1c531f20841229f5d110c61397e65278272214ca5115eebf8",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/controllers/subsystem/hijack.dm",
+      "sha256": "4600bcc4cc1ccfc6ee39571ac1ce5362a9bb1b384d7eb74d104d65cb5ce73055",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/controllers/subsystem/vote.dm",
+      "sha256": "6f80caa0f2719b21c584e7c8d92cc46b617a95246322bda515960443071e1678",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/datums/action.dm",
+      "sha256": "6b20e614fa13d0d0703191aadf63aba43faeda4578d8ca80f8e5be5f9de71b31",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/datums/bug_report.dm",
+      "sha256": "39ca0bfc2cf63ffb81ee4c97c81dc2f82d87b6d47472adf542ab5931730a7dde",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/datums/effects/bleeding.dm",
+      "sha256": "d58656dda34856f15ba26ee528235515179427efbbbf5893f6d5d542099e7224",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/datums/elements/suturing.dm",
+      "sha256": "ba2dcaf0ecb6e1ac5c2c4867d9ff1365257cd568968b86d513a1ec068b4efa21",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/datums/fluff_emails.dm",
+      "sha256": "50ee3d58baebf7428245bfe97161775d36083bae5bb02ca30528187a7087da80",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/datums/medal_awards.dm",
+      "sha256": "4c7794de0f9cf17d4e5f7b0fa5c3ed53d7cf28252f488d709ef489e61ae746dd",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/datums/research_upgrade_datum.dm",
+      "sha256": "5f42af7ec81013fafdc425f85493c5b041d5f5d8431118fd1ebeca6e6c8b87ce",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/datums/statistics/entities/panel_stats.dm",
+      "sha256": "c3defae079ee28359b9222ca1afc4f93ec7339ad824b664e32d6d5f753cc3811",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/datums/statistics/entities/round_stats.dm",
+      "sha256": "700986aa5f87cfb69df336e68b548109b10586c1435044a156c95fcb3bbbaefb",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/datums/statistics/random_facts/random_fact.dm",
+      "sha256": "47021716c4f587908986d57516b71a91155ff90a1e9802d07ff62fac14161e1f",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/area/BigRed.dm",
+      "sha256": "82fb71cd8d8fec0ad2b2baf59f9b9ebfae6ee5c575d1345c5d124f5b14725b1b",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/area/Corsat.dm",
+      "sha256": "1004a52192d1d3e61f05482a5d19f5d3773a28af87412ca838b0dfb3dccb5bbd",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/area/DesertDam.dm",
+      "sha256": "c135fe747d2ff3e5cdd83ba10e74e66488d3000cc96cbce021b00798d6731f09",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/area/IceColony.dm",
+      "sha256": "f4af1488418673ce6aa7a9d8090d6b7189d455204bcf5997d4793ee430b8f615",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/area/LV522_Chances_Claim.dm",
+      "sha256": "0d19360c56555fca00c81c6be0cbf3360f255b6772fe6ad063330a0a7140a910",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/area/LV624.dm",
+      "sha256": "f08f451ab8f44fc474d4ed10eecf09a4332ce6d4edc24b77c58786847fff2d54",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/area/Prison_Station_FOP.dm",
+      "sha256": "5981be4ac620758ce718a91969a4141d72c5cbea0f44019ddfe5ceb5adc554cf",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/area/almayer.dm",
+      "sha256": "e509dea8e7d4e11a7e83877ae431dd4ae9b248f540eb040f9a32f5b1e0b354cc",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/area/strata.dm",
+      "sha256": "9af616ee6c042e9d3eb24c3f9d0484557e0c2205be54df04253765a83a19fe64",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/gamemodes/colonialmarines/whiskey_outpost.dm",
+      "sha256": "7d75e78368cb1f69385d50d804937c6c0ffb1e7209d91129abb2040f5819de5e",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/gamemodes/colonialmarines/whiskey_outpost/whiskey_output_waves.dm",
+      "sha256": "0903879a302e4691a168853b300faf633d932cdbb0b28e3d96eb3062766d0ad7",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/gamemodes/colonialmarines/xenovsxeno.dm",
+      "sha256": "372a18d64f4071aa2794114788938eae620ba5d9586f4d103a1369f48fe9adf3",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/jobs/job/marine/squads.dm",
+      "sha256": "2f6c9c441f27dfe862399add34fc156c2120846b29d93d42152a318e06b2aafa",
+      "scope": "localization_support",
+      "localPlayerTextReview": "support_repair_only_full_player_review_pending",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/machinery/ARES/ARES_interface.dm",
+      "sha256": "56e7df02e276e318f0f8d646018dce0694c4f502f5f662fe4c9acc451bf1349a",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/machinery/ARES/ARES_interface_apollo.dm",
+      "sha256": "c6f3e0daf14a318b20d10b6b26fa2842d65044a43549e34abad5a8496ca36973",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/machinery/ARES/ARES_procs.dm",
+      "sha256": "ea516499fd21e098edbf28d53eaaa55213972ad44bf0cbabe1bd0afbe3e07c20",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/machinery/ARES/ARES_records.dm",
+      "sha256": "c00f196f908ba4a5c2f57f8de4b65594e7c926ae9e9fd3d65b583104e2c24d99",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/machinery/ARES/apollo_pda.dm",
+      "sha256": "e9859a54ebdeddc7ba8695d72f0fdac7fb101d156449892458f68ae661c582af",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/machinery/computer/almayer_control.dm",
+      "sha256": "1001bb0d12f3960ebd42592dc4ffb21e1c06f81eefabebd35ca56fff3711026b",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/machinery/computer/communications.dm",
+      "sha256": "0e0ee0bb12881cc482043d394b0cf80460cafb56bb9c9d8718e30feb5bce3c16",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/objects/items/devices/autopsy_scanner.dm",
+      "sha256": "cdb15dabbbb46ebbd9a26041912b7cc091c707a5f65f618bc6a4be7c9ab74e6a",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/objects/items/stacks/cable_coil.dm",
+      "sha256": "e4a9a9218a99354f1ca33d6bc7ad374e2b7c4e936d9b4ae5bc8d4cec0f9b4080",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/game/objects/items/tools/maintenance_tools.dm",
+      "sha256": "2ed573400cd3fd4169c12cbb15b4f83f8b31061e44fcfa856e6b42ffa088ace4",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/clans/client.dm",
+      "sha256": "47cfe9e61d8894f2b92fa8c507c86252abec4a63c2ea5f272ec2251a3a6e9750",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/client/preferences_savefile.dm",
+      "sha256": "b499db0ba6831302ca0e8e07fede7f526f613edc99d230e14965cce25484b3e4",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/client/tgui_macro.dm",
+      "sha256": "52dbbf3e0548274288a2683ef8ff96447fb1c5645165da6cf9101e58eb5c1a56",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/cm_aliens/structures/construction_node.dm",
+      "sha256": "62549888c9858487649fe39d52b93bd9c58fc7ed1150b118239eec94af517826",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/cm_aliens/structures/special/pylon_core.dm",
+      "sha256": "27c4159ed8c21b1bd4c6021a061752dde377903f73ebee17f11f052c3b76efb7",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/cm_aliens/structures/special_structure.dm",
+      "sha256": "b16c31e3068d1e817daa0c862f7f3202e8a9b0e461bd67b732930bcfcd66c433",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/cm_marines/Donator_Items.dm",
+      "sha256": "d265bf681f2dd21d89822f3f600994d09aba0a6b1eefe85e349b0d7ade2e1eb4",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/cm_marines/overwatch.dm",
+      "sha256": "5fc2b383d5e7698df0f2ee9eb1d53e17d56523b8ad6e4d82743ce108244af6e3",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/cm_preds/yaut_bracers.dm",
+      "sha256": "9be56d5205f2753e32acc7122504dc2273c6e1973a3efe273c43a3507117d1f2",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/cm_preds/yaut_machines.dm",
+      "sha256": "466a062a65be6ee0037ddd14f4abaa47fc3e568f41c787a904e2f38333ba7e26",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mentor/mentorhelp.dm",
+      "sha256": "1878ce0e648f2bf0290b3f7f5920ce9416d6da8787f43d6d4645fb170ef21cd3",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/dead/observer/observer.dm",
+      "sha256": "8f7d34b5f172f0a44b555e9494eb93c66e16a245301373e8bff598ca4e98f008",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/blood.dm",
+      "sha256": "0244baa00eb53eec851ac030ceb1411f9d7d8f691b4660245e081919d62f9387",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/human/human.dm",
+      "sha256": "88083a730fd5a1eee76e2b99ea95d13f16fc63e243ccecc4601673ab18025f52",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/human/human_abilities.dm",
+      "sha256": "1e383120a9c04bebbe3ee36c869130ee0181ebec0edc4811068fab36038104a2",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/human/human_damage.dm",
+      "sha256": "fcf8b9701eaabce66bdab645048685d7752de4542d4e0ad837f2ab6caea45c42",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/human/life/handle_organs.dm",
+      "sha256": "3addef5d72b0d98d8295a3459396e86f481c2975f0bc940842f76588307613af",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/human/species/yautja/_species.dm",
+      "sha256": "2db43fae5f5e64ab9eebc985cb76c61dc0293f1f08008d354686f759ed325601",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/xenomorph/Embryo.dm",
+      "sha256": "b107d9c2da85c9d86d8b4bd3462c8359b41169dcb03e764b84870432076b34bc",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/xenomorph/Evolution.dm",
+      "sha256": "01d1e9f270828f0321b005f8a9c0283fbdb4f5e8b520575fff80972ae1611177",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/xenomorph/Powers.dm",
+      "sha256": "bff86049f7e4eaab9c01f690623fde01b89e5950abc43a7867bcd3ea48e7c6d3",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/xenomorph/abilities/general_powers.dm",
+      "sha256": "37c45b482bc57bd64c846ecb782095d980443fd9e6210fdd7f5f053bfc0d9617",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/xenomorph/abilities/queen/queen_powers.dm",
+      "sha256": "071fa5b8f2aeea8ae543dfb766444850765de30a5280451587d611971730a860",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/xenomorph/abilities/warrior/warrior_powers.dm",
+      "sha256": "662f090ab180402cd17f57dfcab4bdfe0215b5415fbfaaf2134e59b775f389dd",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/xenomorph/castes/Warrior.dm",
+      "sha256": "b0ccd04acad6833c48c6e7aba44e2741144b4121e59eae34c81e440eff81dfc2",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/xenomorph/hive_status.dm",
+      "sha256": "fc4fa2b57bbfbbf2518871c3c5cbd4128c062ee034bc50ce25a275460167336c",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/xenomorph/items/iff_tag.dm",
+      "sha256": "cfbfae5743a8a0260652fea2591d86b5889fc4767c72576e6221b1f38ad3a2a5",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/xenomorph/resin_constructions.dm",
+      "sha256": "1f69c79e0509d17ee41859fb89c594ab626e74093198c7494d8a525b29316da4",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/carbon/xenomorph/strains/castes/hivelord/resin_whisperer.dm",
+      "sha256": "68acb700bee658af5622863f80e0d5491e4dc3af1adf7aa289e3adfb35cc1a5d",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/living_defines.dm",
+      "sha256": "5359f725b14bc5fd93b1ad5cadd872848e0e83ea515c585f30dd07e8016753cc",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/mob/living/silicon/silicon.dm",
+      "sha256": "999df892872316399a288475021be4ef8691d8be03ac40334c3a010c0b5d8b20",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/reagents/chemistry_machinery/xenomorph_analyzer.dm",
+      "sha256": "4dd9896c4ef8490e7a01bc94172431b4f5ccb43933c5b77ffad588db9e24b213",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/reagents/chemistry_properties/prop_positive.dm",
+      "sha256": "bbd5e1c6aa5b0ffa8c1e03bf69912d197c8218bdb28fb3c2cf2151c1c7d70f7b",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/recycling/sortingmachinery.dm",
+      "sha256": "bff10ec120480d43c7b6140ce47ec35eb5483ffb5ae9e2394b6a27bdb49fe7e2",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/shuttle/computer.dm",
+      "sha256": "3b35ff8188c98c5de30070ec1c67646dabf35e164855617aa074ad8910199cad",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/shuttle/computers/dropship_computer.dm",
+      "sha256": "2c7bde2db1729a79c7f67dee2a0c0eb4a71fd585d4f7dd0a17d02274809d123d",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/shuttle/dropship_hijack.dm",
+      "sha256": "212bdb070e08309217b3997a28e914f7240285639461f68a31da11287218db75",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/shuttle/shuttle.dm",
+      "sha256": "eb927d4d84e44d6d4701d9e2bce1ee03cabafc925db145c53e47f3b6ee8c46c2",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/shuttles/shuttle_console.dm",
+      "sha256": "73d8299adb65cae6fc7991085e21843ccba22878c3a23295ed67e40edc0ce3b5",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/surgery/amputation.dm",
+      "sha256": "5b2ee0d4a31f4153a1e07f72411d7eb85a7356d767a5794b35ea03782c7b061d",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/surgery/bones.dm",
+      "sha256": "52b1344f0a2cd5b6409b5b09f6b356dd66d0e6682b92b765ed34da6a4777f630",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/surgery/brainrepair.dm",
+      "sha256": "1cdde8393efb491cbe394b24073b6697c7ed6cc6d21121509435bd00951a055f",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/surgery/headreattach.dm",
+      "sha256": "0c15cb3ed16a1f21eba492bf7e4746571eb3e97371e629adb97ac1fe532ac183",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/surgery/implant.dm",
+      "sha256": "d711bc16590e3f6efd73209869e9496a7b75966dbfdcafcc3d4096bb8f2b6859",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/surgery/internal_bleeding.dm",
+      "sha256": "ee31a4d25990ae251ecb49b1a840dbed4703f82ea711f55aafa3807decee4ac9",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/surgery/mcomp_tendwounds.dm",
+      "sha256": "b23ab3d3e6a01b56d4803a56e73340f663b6371bd53efca2bd3cab73dc2b7097",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/surgery/robolimb_repair.dm",
+      "sha256": "074dfd29a6f3d8581eaa46176e688dbdce27988f8473bf52ee7e801a64839d67",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/surgery/robolimbs.dm",
+      "sha256": "7ae54a96af4ad4032f797796f10946a8eed1a640111b99e6089caa49248558c3",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/surgery/robotic_organs_internal.dm",
+      "sha256": "f104126d2380e2cee04e58964aa172b82eb2f98add34ebec90be087b5307875c",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/surgery/tendwounds.dm",
+      "sha256": "0a57b38fef838a4b7b7948bb0718ee91d7b17ce919f5fa3601f3bc222864f837",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/surgery/xeno.dm",
+      "sha256": "512f163db2c8dfa901640354aff325033084f5b18d7b802b11a28d6fed6971ff",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "code/modules/tgui/tgui_alert.dm",
+      "sha256": "7de4d9cd4c45ee211e1d6bff83b1e2b5367604994ea52045100bdaeb5e47bd00",
+      "scope": "localization_support",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "html/templates/header.html",
+      "sha256": "110a2dc224f6f95ab395290ed29c4d782fcdc55753eaf4abe748054c2d7f2165",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "nano/templates/clan_menu.tmpl",
+      "sha256": "073adbeb49be33450713fb301496389973bc0bb0433136f13d8e637621c2cff7",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "nano/templates/cm_stat_panel.tmpl",
+      "sha256": "0262b6ac7a36c94e710e62fbbe18909bee4720936edbf4ba3450bb955d90650d",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "nano/templates/elevator_control_console.tmpl",
+      "sha256": "844420513cd290c68c5ba190f637650377b8befb42f3bbabcb12c4f68857a0e9",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "nano/templates/layout_basic.tmpl",
+      "sha256": "4ea726efecaefbcef444e758e6f3f13fce4a324c7a8a6b040062c84f1cb8f213",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "nano/templates/layout_default.tmpl",
+      "sha256": "b69a37a6f6e9fdf8b3c110a0a9d7772da8d5d04455e01ca94340ee003e9bf95d",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "nano/templates/monorail_control_console.tmpl",
+      "sha256": "4499867173c1e69c97d61398d0b16bb233efdee6955d9c1bbb989d62e1ee5f0a",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "nano/templates/shuttle_control_console.tmpl",
+      "sha256": "99a37cb4dc19901fce42ca3700e28b091a8341bc91d50c452610f107c5bfc07d",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "strings/metatips.txt",
+      "sha256": "921397bb8103db0039b38de49585111d653bef6aab8de014fec0618c2eb47feb",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "strings/pvetips.txt",
+      "sha256": "096111ae5e0fa479e25634c1afd6830ea3fc9f759a0c859e26d4818c7462d845",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "tgui/packages/tgui/interfaces/OverwatchConsole.jsx",
+      "sha256": "b932aaadb2525e879581f79418ef8e2403db4ef295f13ba65292c5ffe26ae569",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "tgui/packages/tgui/interfaces/VoteMenu.jsx",
+      "sha256": "7f953f9f1a8bc12d2dc54b9e1890a2f7c709d6173b474c05b1371100a8881fde",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    },
+    {
+      "file": "tgui/packages/tgui/interfaces/XenomorphExtractor.jsx",
+      "sha256": "2d37fb4079f045c02a93e2bfab75d91365e5d4c8f9bf2de4fb580e778fd29e60",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "retainedKeysReviewed": true,
+      "commentsAndResourcesPreserved": true,
+      "reviewBatch": "batch309"
+    }
+  ],
+  "glossaryRowsAddedOrCorrected": 1801,
+  "closureRule": "全文核对玩家文案、动态名称及其来源；原命令、逻辑键、资源、存档、日志和管理文本保留。squads.dm仅键修复不计为全文玩家翻译。",
+  "retainedEnglishClassification": [
+    "命令、宏、索引与保存键",
+    "资源路径、icon_state、construction_name和图标状态",
+    "状态、投票、阵营、种姓与列表的原值，仅显示时转换",
+    "管理界面、服务端日志与注释",
+    "型号、品牌缩写、单位、链接与玩家输入"
+  ],
+  "compileSuccess": true,
+  "compilerErrors": 0,
+  "compilerWarnings": 3,
+  "compileOutput": "compile309-final-verified.json",
+  "compileSummary": "DM compiler version 516.1682\r\nloading colonialmarines.dme\r\ncode\\_compile_options.dm:34:warning: #warn Building with Dream Maker is no longer supported and will result in errors.\r\ncode\\_compile_options.dm:35:warning: #warn In order to build, run BUILD.bat in the bin directory.\r\ncode\\_compile_options.dm:36:warning: #warn Consider switching to VSCode editor instead, where you can press Ctrl+Shift+B to build.\r\nloading interface/skin.dmf\r\nloading maps/map_files/generic/Admin_level.dmm\r\nsaving colonialmarines.dmb (DEBUG mode)\r\ncolonialmarines.dmb - 0 errors, 3 warnings (10/19/26 5:05 pm)\r\nTotal time: 0:20\r\n",
+  "staticAuditSuccess": true,
+  "staticAuditOutput": "audit-batch309-final.json",
+  "independentInvariants": {
+    "batch": "batch309",
+    "sourceFiles": 102,
+    "playerTextFiles": 100,
+    "supportFiles": 2,
+    "commentsChecked": 2577,
+    "resourcesChecked": 361,
+    "protectedLinesChecked": 1662,
+    "externalSourceFilesPreserved": 64,
+    "problems": [],
+    "testsRun": false,
+    "gameLaunched": false
+  },
+  "frontendStaticSyntax": {
+    "files": [
+      "tgui/packages/tgui/interfaces/OverwatchConsole.jsx",
+      "tgui/packages/tgui/interfaces/VoteMenu.jsx",
+      "tgui/packages/tgui/interfaces/XenomorphExtractor.jsx"
+    ],
+    "parsedFiles": 3,
+    "syntaxDiagnostics": [],
+    "formattingAppliedTo": "tgui/packages/tgui/interfaces/OverwatchConsole.jsx",
+    "testsRun": false,
+    "gameLaunched": false
+  },
+  "gitDiffCheckSuccess": true,
+  "testsRun": false,
+  "gameLaunched": false,
+  "fullProjectComplete": false,
+  "goalStatus": "active",
+  "pauseRequestedByUser": false,
+  "validationNote": "仅dm-mcp编译和静态审查；未运行测试或启动游戏。"
+}

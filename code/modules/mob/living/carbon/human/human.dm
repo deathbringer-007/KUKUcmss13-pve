@@ -95,7 +95,7 @@
 	. = ..()
 
 	. += ""
-	. += "警报等级：[uppertext(get_security_level())]"
+	. += "警报等级：[localized_player_label(get_security_level())]"
 
 	if(species?.has_species_tab_items)
 		var/list/species_tab_items = species.get_status_tab_items(src)
@@ -128,9 +128,9 @@
 	if(SShijack)
 		var/eta_status = SShijack.get_evac_eta()
 		if(eta_status)
-			. += "撤离目标：[eta_status]"
+			. += "撤离目标：[SShijack.get_eta_display(eta_status)]"
 		if(SShijack.sd_unlocked)
-			. += "自毁状态：[SShijack.get_sd_eta()]"
+			. += "自毁状态：[SShijack.get_eta_display(SShijack.get_sd_eta())]"
 
 /mob/living/carbon/human/ex_act(severity, direction, datum/cause_data/cause_data)
 	if(body_position == LYING_DOWN && direction)
@@ -345,7 +345,7 @@
 	var/face_name = get_face_name()
 	var/id_name = get_id_name("")
 	if(id_name && (id_name != face_name))
-		return "[face_name] (as [id_name])"
+		return "[face_name]（证件名：[id_name]）"
 	return face_name
 
 //Returns "Unknown" if facially unidentifiable and real_name if not. Useful for setting name when headless or when updating a human's name variable
@@ -466,10 +466,10 @@
 						for(var/datum/data/record/R in GLOB.data_core.security)
 							if(R.fields["id"] == E.fields["id"])
 
-								var/setcriminal = tgui_input_list(usr, "为此人指定新的犯罪状态。", "安保HUD", list("None", "*Arrest*", "Incarcerated", "Released", "Suspect", "NJP", "Cancel"))
+								var/setcriminal = localized_input_list(usr, "为此人指定新的犯罪状态。", "安保抬头显示", list("None", "*Arrest*", "Incarcerated", "Released", "Suspect", "NJP", "Cancel"))
 
 								if(hasHUD(usr, "security"))
-									if(setcriminal != "Cancel")
+									if(!isnull(setcriminal) && setcriminal != "Cancel")
 										R.fields["criminal"] = setcriminal
 										modified = 1
 										sec_hud_set_security_status()
@@ -492,7 +492,7 @@
 					for(var/datum/data/record/R in GLOB.data_core.security)
 						if(R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security") || isobserver(usr))
-								to_chat(usr, "<b>姓名：</b>[R.fields["name"]] <b>犯罪状态：</b>[R.fields["criminal"]]")
+								to_chat(usr, "<b>姓名：</b>[R.fields["name"]] <b>犯罪状态：</b>[localized_player_label(R.fields["criminal"])]")
 								to_chat(usr, "<b>事件：</b>[R.fields["incident"]]")
 								to_chat(usr, "<a href='byond://?src=\ref[src];secrecordComment=1'>\[查看备注记录\]</a>")
 								read = 1
@@ -523,11 +523,11 @@
 					var/comment_markup = ""
 					for(var/com_i in R.fields["comments"])
 						var/comment = R.fields["comments"][com_i]
-						comment_markup += text("<br /><b>[] / [] ([])</b><br />", comment["created_at"], comment["created_by"]["name"], comment["created_by"]["rank"])
+						comment_markup += text("<br /><b>[] / [] ([])</b><br />", comment["created_at"], comment["created_by"]["name"], localized_player_label(comment["created_by"]["rank"]))
 						if (isnull(comment["deleted_by"]))
 							comment_markup += text("[]<br />", comment["entry"])
 							continue
-						comment_markup += text("<i>Comment deleted by [] at []</i><br />", comment["deleted_by"], comment["deleted_at"])
+						comment_markup += text("<i>备注由[]于[]删除</i><br />", comment["deleted_by"], comment["deleted_at"])
 					to_chat(usr, comment_markup)
 					if(!isobserver(usr))
 						to_chat(usr, "<a href='byond://?src=\ref[src];secrecordadd=1'>\[添加备注\]</a><br />")
@@ -552,7 +552,7 @@
 					var/t1 = copytext(trim(strip_html(input("你的姓名和时间将记录在这条新备注中。", "添加备注", null, null)  as message)), 1, MAX_MESSAGE_LEN)
 					if(!(t1) || usr.stat || usr.is_mob_restrained())
 						return
-					var/created_at = text("[]&nbsp;&nbsp;[]&nbsp;&nbsp;[]", time2text(world.realtime, "MMM DD"), time2text(world.time, "[worldtime2text()]:ss"), GLOB.game_year)
+					var/created_at = text("[]&nbsp;&nbsp;[]&nbsp;&nbsp;[]", time2text(world.realtime, "MM-DD"), time2text(world.time, "[worldtime2text()]:ss"), GLOB.game_year)
 					var/new_comment = list("entry" = t1, "created_by" = list("name" = "", "rank" = ""), "deleted_by" = null, "deleted_at" = null, "created_at" = created_at)
 					if(istype(usr,/mob/living/carbon/human))
 						var/mob/living/carbon/human/U = usr
@@ -581,10 +581,10 @@
 						for(var/datum/data/record/R in GLOB.data_core.general)
 							if(R.fields["id"] == E.fields["id"])
 
-								var/setmedical = tgui_input_list(usr, "为此人指定新的医疗状态。", "医疗HUD", R.fields["p_stat"], list("*SSD*", "*Deceased*", "Physically Unfit", "Active", "Disabled", "Cancel"))
+								var/setmedical = localized_input_list(usr, "为此人指定新的医疗状态。", "医疗抬头显示", list("*SSD*", "*Deceased*", "Physically Unfit", "Active", "Disabled", "Cancel"), default = R.fields["p_stat"])
 
 								if(hasHUD(usr,"medical"))
-									if(setmedical != "Cancel")
+									if(!isnull(setmedical) && setmedical != "Cancel")
 										R.fields["p_stat"] = setmedical
 										modified = 1
 
@@ -613,9 +613,9 @@
 							if(R.fields["id"] == E.fields["id"])
 								if(hasHUD(usr,"medical"))
 									to_chat(usr, "<b>姓名：</b>[R.fields["name"]] <b>血型：</b>[R.fields["b_type"]]")
-									to_chat(usr, "<b>轻度残疾：</b>[R.fields["mi_dis"]]")
+									to_chat(usr, "<b>轻度残疾：</b>[localized_player_label(R.fields["mi_dis"])]")
 									to_chat(usr, "<b>详情：</b>[R.fields["mi_dis_d"]]")
-									to_chat(usr, "<b>重度残疾：</b>[R.fields["ma_dis"]]")
+									to_chat(usr, "<b>重度残疾：</b>[localized_player_label(R.fields["ma_dis"])]")
 									to_chat(usr, "<b>详情：</b>[R.fields["ma_dis_d"]]")
 									to_chat(usr, "<b>备注：</b>[R.fields["notes"]]")
 									to_chat(usr, "<a href='byond://?src=\ref[src];medrecordComment=1'>\[查看备注记录\]</a>")
@@ -674,7 +674,7 @@
 										counter++
 									if(istype(usr,/mob/living/carbon/human))
 										var/mob/living/carbon/human/U = usr
-										R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOB.game_year]<BR>[t1]")
+										R.fields[text("com_[counter]")] = text("由[U.get_authentification_name()]（[localized_player_label(U.get_assignment())]）于[time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")]记录，年份：[GLOB.game_year]<BR>[t1]")
 
 	if(href_list["medholocard"])
 		change_holo_card(usr)
@@ -700,7 +700,7 @@
 				flavor_texts[href_list["flavor_change"]] = msg
 				return
 			else
-				var/msg = input(usr,"更新你[href_list["flavor_change"]]的外观描述。","外观描述",html_decode(flavor_texts[href_list["flavor_change"]])) as message
+				var/msg = input(usr,"更新你[get_human_flavor_part_label(href_list["flavor_change"])]的外观描述。","外观描述",html_decode(flavor_texts[href_list["flavor_change"]])) as message
 				if(msg != null)
 					msg = copytext(msg, 1, MAX_FLAVOR_MESSAGE_LEN)
 					msg = html_encode(msg)
@@ -750,7 +750,7 @@
 	if(!skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_MEDIC))
 		// Removing your own holocard when you are not trained
 		if(user == src && holo_card_color)
-			if(tgui_alert(user, "确定要重置自己的全息分诊卡吗？", "重置全息分诊卡", list("Yes", "No")) != "Yes")
+			if(localized_tgui_alert(user, "确定要重置自己的全息分诊卡吗？", "重置全息分诊卡", list("Yes", "No")) != "Yes")
 				return
 			holo_card_color = null
 			to_chat(user, SPAN_NOTICE("你重置了全息分诊卡。"))
@@ -761,7 +761,7 @@
 	if(!has_species(src, "Human"))
 		to_chat(user, SPAN_WARNING("全息分诊卡只能用于人类。"))
 		return
-	var/newcolor = tgui_input_list(user, "选择要为患者添加的全息分诊卡：", "全息分诊卡", list("black", "red", "orange", "purple", "none"))
+	var/newcolor = localized_input_list(user, "选择要为患者添加的全息分诊卡：", "全息分诊卡", list("black", "red", "orange", "purple", "none"))
 	if(!newcolor)
 		return
 	if(get_dist(user, src) > 7)
@@ -774,14 +774,14 @@
 		to_chat(user, SPAN_NOTICE("你移除了[src]身上的全息分诊卡。"))
 	else if(newcolor != holo_card_color)
 		holo_card_color = newcolor
-		to_chat(user, SPAN_NOTICE("你为[src]添加了一张[newcolor]全息分诊卡。"))
+		to_chat(user, SPAN_NOTICE("你为[src]添加了一张[localized_player_label(newcolor)]全息分诊卡。"))
 	hud_set_holocard()
 
 /mob/living/carbon/human/tgui_interact(mob/user, datum/tgui/ui) // I'M SORRY, SO FUCKING SORRY
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "HealthScan", "Last Medical Scan of [src]")
+		ui = new(user, src, "HealthScan", "[src]最近的医疗扫描")
 		ui.open()
 		ui.set_autoupdate(FALSE)
 
@@ -862,7 +862,7 @@
 	if(!lastpuke)
 		lastpuke = 1
 		to_chat(src, SPAN_WARNING("你感到恶心……"))
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), src, "You feel like you are about to throw up!"), 15 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), src, "你感觉自己快要吐了！"), 15 SECONDS)
 		addtimer(CALLBACK(src, PROC_REF(do_vomit)), 25 SECONDS)
 
 /mob/living/carbon/human/proc/do_vomit()
@@ -973,7 +973,7 @@
 			if(prob(20)) //Let's not make throwing knives too good in HvH
 				organ.take_damage(rand(1,2), 0, 0)
 		if(prob(30)) // Spam chat less
-			to_chat(src, SPAN_HIGHDANGER("你的动作晃动了[organ.display_name]里的[W]，引起一阵疼痛。"))
+			to_chat(src, SPAN_HIGHDANGER("你的动作晃动了[localized_player_label(organ.display_name)]里的[W]，引起一阵疼痛。"))
 
 /mob/living/carbon/human/proc/check_status(mob/living/carbon/human/target)
 	if(is_dead() || is_mob_restrained())
@@ -987,7 +987,7 @@
 	if(self)
 		var/list/broken_limbs = target.get_broken_limbs() - list("chest","head","groin")
 		if(length(broken_limbs))
-			msg += "你的[jointext(broken_limbs, "、")]骨折了。\n"
+			msg += "你的[jointext(localized_player_list(broken_limbs), "、")]骨折了。\n"
 	if(target.toxloss > 20)
 		msg += "[self ? "你的" : "对方的"]皮肤略微发绿。\n"
 
@@ -996,7 +996,7 @@
 
 	if(!self && skillcheck(usr, SKILL_SURGERY, SKILL_SURGERY_NOVICE))
 		for(var/datum/effects/bleeding/internal/internal_bleed in target.effects_list)
-			msg += "对方的[internal_bleed.limb.display_name]肿胀且变色。\n"
+			msg += "对方的[localized_player_label(internal_bleed.limb.display_name)]肿胀且变色。\n"
 
 	switch(target.stat)
 		if(DEAD)
@@ -1021,7 +1021,7 @@
 
 	if(job in GLOB.ROLES_USCM)
 		var/dat = GLOB.data_core.get_manifest()
-		show_browser(src, dat, "Crew Manifest", "manifest", width = 400, height = 750)
+		show_browser(src, dat, "船员名单", "manifest", width = 400, height = 750)
 	else
 		to_chat(usr, SPAN_WARNING("你没有权限查看[MAIN_SHIP_NAME]的船员名单。"))
 
@@ -1139,7 +1139,7 @@
 	for(var/T in flavor_texts)
 		if(flavor_texts[T] && flavor_texts[T] != "")
 			if((T == "head" && head_exposed) || (T == "face" && face_exposed) || (T == "eyes" && eyes_exposed) || (T == "torso" && torso_exposed) || (T == "arms" && arms_exposed) || (T == "hands" && hands_exposed) || (T == "legs" && legs_exposed) || (T == "feet" && feet_exposed) || (T == "armor" && armor_on) || (T == "helmet" && helmet_on))
-				flavor_text += "[capitalize(T)]: "
+				flavor_text += "[get_human_flavor_part_label(T)]："
 				flavor_text += "\n\n"
 				flavor_text += flavor_texts[T]
 				flavor_text += "\n\n"
@@ -1367,7 +1367,7 @@
 				if(wear_suit && istype(wear_suit,/obj/item/clothing/suit/space))
 					var/obj/item/clothing/suit/space/suit = target.wear_suit
 					if(LAZYLEN(suit.supporting_limbs))
-						msg = "[user == target ? "your":"\proper [target]'s"]"
+						msg = "[user == target ? "你":"[target]"]"
 						to_chat(user, SPAN_WARNING("你无法拆除夹板，[msg]的[suit]仍在支撑部分骨折部位。"))
 						can_reach_splints = FALSE
 				if(can_reach_splints)
@@ -1388,12 +1388,12 @@
 							new_splint.add(1)
 					if(new_splint.amount == 0)
 						qdel(new_splint) //we only removed nano splints
-					msg = "[user == target ? "their own":"\proper [target]'s"]"
+					msg = "[user == target ? "自己":"[target]"]"
 					target.visible_message(SPAN_NOTICE("[user]拆除了[msg]的[amount_removed>1 ? "夹板":"夹板"]。"), \
 						SPAN_NOTICE("你的[amount_removed>1 ? "夹板已":"夹板已"]被拆除。"))
 					target.update_med_icon()
 			else
-				msg = "[user == target ? "your":"\proper [target]'s"]"
+				msg = "[user == target ? "你":"[target]"]"
 				to_chat(user, SPAN_NOTICE("你停止尝试拆除[msg]的夹板。"))
 		else
 			if(same_arm_side)
@@ -1568,6 +1568,22 @@
 
 	pose =  strip_html(input(usr, "这是 [src]。其样子是……", "姿态描述", null)  as message, MAX_FLAVOR_MESSAGE_LEN)
 
+/proc/get_human_flavor_part_label(value)
+	var/static/list/labels = list(
+		"general" = "总体描述",
+		"head" = "头部",
+		"face" = "面部",
+		"eyes" = "眼睛",
+		"torso" = "躯干",
+		"arms" = "双臂",
+		"hands" = "双手",
+		"legs" = "双腿",
+		"feet" = "双脚",
+		"armor" = "护甲",
+		"helmet" = "头盔",
+	)
+	return labels[value] || value
+
 /mob/living/carbon/human/verb/set_flavor()
 	set name = "Set Flavour Text"
 	set desc = "设置关于角色外貌特征的扩展描述。"
@@ -1575,40 +1591,40 @@
 
 	var/HTML = "<body>"
 	HTML += "<tt>"
-	HTML += "<a href='byond://?src=\ref[src];flavor_change=general'>General:</a> "
+	HTML += "<a href='byond://?src=\ref[src];flavor_change=general'>总体描述：</a> "
 	HTML += TextPreview(flavor_texts["general"])
 	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[src];flavor_change=head'>Head:</a> "
+	HTML += "<a href='byond://?src=\ref[src];flavor_change=head'>头部：</a> "
 	HTML += TextPreview(flavor_texts["head"])
 	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[src];flavor_change=face'>Face:</a> "
+	HTML += "<a href='byond://?src=\ref[src];flavor_change=face'>面部：</a> "
 	HTML += TextPreview(flavor_texts["face"])
 	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[src];flavor_change=eyes'>Eyes:</a> "
+	HTML += "<a href='byond://?src=\ref[src];flavor_change=eyes'>眼睛：</a> "
 	HTML += TextPreview(flavor_texts["eyes"])
 	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[src];flavor_change=torso'>Body:</a> "
+	HTML += "<a href='byond://?src=\ref[src];flavor_change=torso'>躯干：</a> "
 	HTML += TextPreview(flavor_texts["torso"])
 	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[src];flavor_change=arms'>Arms:</a> "
+	HTML += "<a href='byond://?src=\ref[src];flavor_change=arms'>双臂：</a> "
 	HTML += TextPreview(flavor_texts["arms"])
 	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[src];flavor_change=hands'>Hands:</a> "
+	HTML += "<a href='byond://?src=\ref[src];flavor_change=hands'>双手：</a> "
 	HTML += TextPreview(flavor_texts["hands"])
 	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[src];flavor_change=legs'>Legs:</a> "
+	HTML += "<a href='byond://?src=\ref[src];flavor_change=legs'>双腿：</a> "
 	HTML += TextPreview(flavor_texts["legs"])
 	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[src];flavor_change=feet'>Feet:</a> "
+	HTML += "<a href='byond://?src=\ref[src];flavor_change=feet'>双脚：</a> "
 	HTML += TextPreview(flavor_texts["feet"])
 	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[src];flavor_change=armor'>Armor:</a> "
+	HTML += "<a href='byond://?src=\ref[src];flavor_change=armor'>护甲：</a> "
 	HTML += TextPreview(flavor_texts["armor"])
 	HTML += "<br>"
 	HTML += "<hr />"
-	HTML +="<a href='byond://?src=\ref[src];flavor_change=done'>\[Done\]</a>"
+	HTML +="<a href='byond://?src=\ref[src];flavor_change=done'>\[完成\]</a>"
 	HTML += "<tt>"
-	show_browser(src, HTML, "Update Flavor Text", "flavor_changes", width = 430, height = 300)
+	show_browser(src, HTML, "更新外观描述", "flavor_changes", width = 430, height = 300)
 
 /mob/living/carbon/human/throw_item(atom/target)
 	if(!throw_allowed)
@@ -1660,7 +1676,7 @@
 /mob/living/carbon/human/proc/play_opening_sequence()
 	if(SSticker.intro_sequence)
 		sleeping = 11
-		addtimer(CALLBACK(src, PROC_REF(play_screen_text), "HYPERSLEEP MONITOR<br><br>SYSTEM STATUS<br>LIFE SUPPORT:ONLINE<br>THAWING SYSTEMS:ONLINE<br>IMMUNIZATION:COMPLETE<br>OCCUPANT REM:NOMINAL", /atom/movable/screen/text/screen_text/hypersleep_status), 1.25 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(play_screen_text), "冷冻休眠监测器<br><br>系统状态<br>生命维持：在线<br>解冻系统：在线<br>免疫接种：完成<br>休眠者快速眼动：正常", /atom/movable/screen/text/screen_text/hypersleep_status), 1.25 SECONDS)
 		addtimer(CALLBACK(src, PROC_REF(play_manifest)), 13 SECONDS)
 		overlay_fullscreen_timer(13 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
 		overlay_fullscreen_timer(13 SECONDS, 10, "roundstartcrt1", /atom/movable/screen/fullscreen/crt)
@@ -1685,24 +1701,24 @@
 	overlay_fullscreen_timer(time_to_remove, 10, "roundstartcrt2", /atom/movable/screen/fullscreen/crt)
 	overlay_fullscreen_timer(time_to_remove + 2 SECONDS, 20, "roundstart_fade", /atom/movable/screen/fullscreen/spawning_in)
 	var/alert_type = /atom/movable/screen/text/screen_text/picture/starting
-	var/platoon = "3rd Bat. 'Solar Devils"
+	var/platoon = "第3营“太阳恶魔”"
 	switch(faction)
 		if(FACTION_MARINE)
 			alert_type = /atom/movable/screen/text/screen_text/picture/starting
 			if(assigned_squad && assigned_squad.name == SQUAD_LRRP)
-				platoon = "Snake Eaters"
+				platoon = "食蛇者"
 			else
-				platoon = "3rd Bat. 'Solar Devils"
+				platoon = "第3营“太阳恶魔”"
 		if(FACTION_UPP)
 			alert_type = /atom/movable/screen/text/screen_text/picture/starting/upp
-			platoon = "Red Dawn"
+			platoon = "赤色黎明"
 		if(FACTION_PMC)
 			alert_type = /atom/movable/screen/text/screen_text/picture/starting/wy
-			platoon = "Azure-15"
+			platoon = "蔚蓝-15"
 		if(FACTION_TWE)
 			alert_type = /atom/movable/screen/text/screen_text/picture/starting/twe
-			platoon = "Gamma Troop"
-	play_screen_text("<u>[SSmapping.configs[SHIP_MAP].map_name]<br></u>" + "[platoon]<br><br>" + human_manifest, alert_type)
+			platoon = "伽马分队"
+	play_screen_text("<u>[get_statistic_display_label(SSmapping.configs[SHIP_MAP].map_name)]<br></u>" + "[platoon]<br><br>" + human_manifest, alert_type)
 
 /mob/living/carbon/human/point_to_atom(atom/A, turf/T)
 	if(isitem(A))

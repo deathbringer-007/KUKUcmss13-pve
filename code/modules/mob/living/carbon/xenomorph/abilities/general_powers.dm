@@ -53,9 +53,9 @@
 	var/area/area = get_area(turf)
 	if(isnull(area) || !(area.is_resin_allowed))
 		if(area.flags_area & AREA_UNWEEDABLE)
-			to_chat(xeno, SPAN_XENOWARNING("这片区域不适合建立巢群！"))
+			to_chat(xeno, SPAN_XENOWARNING("这片区域不适合建立虫巢！"))
 			return
-		to_chat(xeno, SPAN_XENOWARNING("现在还太早，无法将巢群扩展到这么远。"))
+		to_chat(xeno, SPAN_XENOWARNING("现在还太早，无法将虫巢扩展到这么远。"))
 		return
 
 	if(!check_and_use_plasma_owner())
@@ -186,7 +186,7 @@
 /datum/action/xeno_action/onclick/choose_resin/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "ChooseResin", "Choose Resin")
+		ui = new(user, src, "ChooseResin", "选择树脂建筑")
 		ui.set_autoupdate(FALSE)
 		ui.open()
 
@@ -224,7 +224,7 @@
 		return
 	var/datum/resin_construction/resin_construction = GLOB.resin_constructions_list[selected_type]
 	if(to_chat)
-		to_chat(usr, SPAN_NOTICE("我们分泌树脂时将建造<b>[resin_construction.construction_name]</b>。"))
+		to_chat(usr, SPAN_NOTICE("我们分泌树脂时将建造<b>[resin_construction.name]</b>。"))
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/hud/actions_xeno.dmi', button, resin_construction.construction_name)
 
@@ -276,7 +276,7 @@
 		to_chat(X, SPAN_XENOWARNING("这片区域太远，无法施加影响！"))
 		return
 	if(!X.hive.living_xeno_queen || X.hive.living_xeno_queen.z != X.z)
-		to_chat(X, SPAN_XENOWARNING("我们没有女王，精神链接已经断开！"))
+		to_chat(X, SPAN_XENOWARNING("我们没有女皇，精神链接已经断开！"))
 		return
 
 	var/tally = 0
@@ -341,7 +341,7 @@
 			if(client.prefs && client.prefs.no_radials_preference)
 				pheromone = localized_input_list(src, "选择信息素", "信息素菜单", caste.aura_allowed + "help" + "cancel", theme="hive_status")
 				if(pheromone == "help")
-					to_chat(src, SPAN_NOTICE("<br>信息素每秒消耗一定储存等离子体，为范围内所有异形提供以下增益：<br><B>狂暴</B>——提高奔跑速度、伤害及击落猎头者面具的概率。<br><B>守护</B>——濒危时提高负生命值承受上限，并减缓离开菌毯后的失血。<br><B>恢复</B>——加快等离子体与生命值恢复。<br>"))
+					to_chat(src, SPAN_NOTICE("<br>信息素每秒消耗一定储存等离子体，为范围内所有异形提供以下增益：<br><B>狂暴</B>——提高奔跑速度、伤害及击落铁血战士面具的概率。<br><B>守护</B>——濒危时提高负生命值承受上限，并减缓离开菌毯后的失血。<br><B>恢复</B>——加快等离子体与生命值恢复。<br>"))
 					return
 				if(!pheromone || pheromone == "cancel" || current_aura || !check_state(1)) //If they are stacking windows, disable all input
 					return
@@ -349,7 +349,7 @@
 				var/static/list/phero_selections = list("Help" = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_help"), "Frenzy" = image(icon = 'icons/mob/radial.dmi', icon_state = "phero_frenzy"), "Warding" = image(icon = 'icons/mob/radial.dmi', icon_state = "phero_warding"), "Recovery" = image(icon = 'icons/mob/radial.dmi', icon_state = "phero_recov"))
 				pheromone = lowertext(localized_radial_menu(src, src.client?.eye, phero_selections))
 				if(pheromone == "help")
-					to_chat(src, SPAN_XENONOTICE("<br>信息素每秒消耗一定储存等离子体，为范围内所有异形提供以下增益：<br><B>狂暴（红色）</B>——提高奔跑速度、伤害及击落猎头者面具的概率。<br><B>守护（绿色）</B>——濒危时提高负生命值承受上限，并减缓离开菌毯后的失血。<br><B>恢复（蓝色）</B>——加快等离子体与生命值恢复。<br>"))
+					to_chat(src, SPAN_XENONOTICE("<br>信息素每秒消耗一定储存等离子体，为范围内所有异形提供以下增益：<br><B>狂暴（红色）</B>——提高奔跑速度、伤害及击落铁血战士面具的概率。<br><B>守护（绿色）</B>——濒危时提高负生命值承受上限，并减缓离开菌毯后的失血。<br><B>恢复（蓝色）</B>——加快等离子体与生命值恢复。<br>"))
 					return
 				if(!pheromone || current_aura || !check_state(1)) //If they are stacking windows, disable all input
 					return
@@ -605,7 +605,7 @@
 		to_chat(X, SPAN_WARNING("目前仅允许领袖建造！"))
 		return FALSE
 	else if(X.hive && X.hive.construction_allowed == XENO_QUEEN && !istype(X.caste, /datum/caste_datum/queen))
-		to_chat(X, SPAN_WARNING("目前仅允许女王建造！"))
+		to_chat(X, SPAN_WARNING("目前仅允许女皇建造！"))
 		return FALSE
 	else if(X.hive && X.hive.construction_allowed == XENO_NOBODY)
 		to_chat(X, SPAN_WARNING("虫巢太弱小脆弱，无力设计建筑。"))
@@ -616,9 +616,9 @@
 	var/area/AR = get_area(T)
 	if(isnull(AR) || !(AR.is_resin_allowed))
 		if(AR.flags_area & AREA_UNWEEDABLE)
-			to_chat(X, SPAN_XENOWARNING("这片区域不适合建立巢群！"))
+			to_chat(X, SPAN_XENOWARNING("这片区域不适合建立虫巢！"))
 			return
-		to_chat(X, SPAN_XENOWARNING("现在还太早，无法将巢群扩展到这么远。"))
+		to_chat(X, SPAN_XENOWARNING("现在还太早，无法将虫巢扩展到这么远。"))
 		return FALSE
 
 	if(T.z != X.z)
@@ -644,7 +644,7 @@
 			var/message = "放置建造节点会生成有益于虫巢的特殊建筑模板。注入等离子体即可建造以下建筑：<br>"
 			for(var/structure_name in X.hive.hive_structure_types)
 				var/datum/construction_template/xenomorph/structure_type = X.hive.hive_structure_types[structure_name]
-				message += "<b>[capitalize_first_letters(structure_name)]</b> - [initial(structure_type.description)]<br>"
+				message += "<b>[localized_player_label(structure_name)]</b> - [initial(structure_type.description)]<br>"
 			to_chat(X, SPAN_NOTICE(message))
 			return TRUE
 	if(!X.check_state(TRUE) || !X.check_plasma(400))
@@ -665,7 +665,7 @@
 		if(X.hive.hive_location.hardcore || world.time > XENOMORPH_PRE_SETUP_CUTOFF)
 			to_chat(X, SPAN_WARNING("我们无法重建这种建筑！"))
 			return FALSE
-		if(alert(X, "确定要迁移虫巢并摧毁旧的虫巢核心吗？", , "Yes", "No") != "Yes")
+		if(localized_native_alert(X, "确定要迁移虫巢并摧毁旧的虫巢核心吗？", , "Yes", "No") != "Yes")
 			return FALSE
 		qdel(X.hive.hive_location)
 	else if(!X.hive.can_build_structure(choice))
@@ -680,7 +680,7 @@
 
 	var/queen_on_zlevel = !X.hive.living_xeno_queen || X.hive.living_xeno_queen.z == T.z
 	if(!queen_on_zlevel)
-		to_chat(X, SPAN_WARNING("这里与女王的链接太弱，她在另一个世界。"))
+		to_chat(X, SPAN_WARNING("这里与女皇的链接太弱，她在另一个世界。"))
 		qdel(structure_template)
 		return FALSE
 

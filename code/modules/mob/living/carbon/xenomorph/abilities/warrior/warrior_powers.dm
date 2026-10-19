@@ -135,8 +135,8 @@
 
 	carbon.last_damage_data = create_cause_data(initial(xeno.caste_type), xeno)
 
-	xeno.visible_message(SPAN_XENOWARNING("[xeno]用毁灭性的重拳击中了[carbon]的[target_limb ? target_limb.display_name : "胸部"]！"), \
-	SPAN_XENOWARNING("我们用毁灭性的重拳击中了[carbon]的[target_limb ? target_limb.display_name : "胸部"]！"))
+	xeno.visible_message(SPAN_XENOWARNING("[xeno]用毁灭性的重拳击中了[carbon]的[target_limb ? localized_player_label(target_limb.display_name) : "胸部"]！"), \
+	SPAN_XENOWARNING("我们用毁灭性的重拳击中了[carbon]的[target_limb ? localized_player_label(target_limb.display_name) : "胸部"]！"))
 	var/sound = pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg')
 	playsound(carbon, sound, 50, 1)
 	do_base_warrior_punch(carbon, target_limb)
@@ -151,7 +151,7 @@
 		if((target_limb.status & LIMB_SPLINTED) && !(target_limb.status & LIMB_SPLINTED_INDESTRUCTIBLE)) //If they have it splinted, the splint won't hold.
 			target_limb.status &= ~LIMB_SPLINTED
 			playsound(get_turf(carbon), 'sound/items/splintbreaks.ogg', 20)
-			to_chat(carbon, SPAN_DANGER("你[target_limb.display_name]上的夹板散开了！"))
+			to_chat(carbon, SPAN_DANGER("你的[localized_player_label(target_limb.display_name)]上的夹板散开了！"))
 			carbon.pain.apply_pain(PAIN_BONE_BREAK_SPLINTED)
 
 		if(ishuman_strict(carbon))

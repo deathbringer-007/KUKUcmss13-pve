@@ -31,12 +31,12 @@
 	behavior = RESEARCH_UPGRADE_CATEGORY // one on the dropdown choices you get
 
 /datum/research_upgrades/machinery/autodoc
-	name = "AutoDoc Upgrade"
+	name = "自动手术舱升级"
 	behavior = RESEARCH_UPGRADE_EXCLUDE_BUY
 	upgrade_type = ITEM_MACHINERY_UPGRADE
 
 /datum/research_upgrades/machinery/autodoc/internal_bleed
-	name = "AutoDoc Internal Bleeding Repair"
+	name = "自动手术舱内出血修复"
 	desc = "一套供自动手术舱使用的数据与指令，可使其快速修复内出血。"
 	behavior = RESEARCH_UPGRADE_ITEM
 	value_upgrade = 200
@@ -46,7 +46,7 @@
 	new /obj/item/research_upgrades/autodoc(machine_loc)
 
 /datum/research_upgrades/machinery/autodoc/broken_bone
-	name = "AutoDoc Bone Fracture Repair"
+	name = "自动手术舱骨折修复"
 	desc = "一套供自动手术舱使用的数据与指令，可使其复位骨折并涂抹接骨胶。"
 	behavior = RESEARCH_UPGRADE_ITEM
 	value_upgrade = 2000
@@ -56,7 +56,7 @@
 	new /obj/item/research_upgrades/autodoc/tier2(machine_loc)
 
 /datum/research_upgrades/machinery/autodoc/organ_damage
-	name = "AutoDoc Broken Organ Repair"
+	name = "自动手术舱器官损伤修复"
 	desc = "一套供自动手术舱使用的数据与指令，可使其修复器官损伤。"
 	behavior = RESEARCH_UPGRADE_ITEM
 	value_upgrade = 1500
@@ -66,8 +66,8 @@
 	new /obj/item/research_upgrades/autodoc/tier3(machine_loc)
 
 /datum/research_upgrades/machinery/autodoc/larva_removal
-	name = "AutoDoc Embryo Removal"
-	desc = "Data and instruction set for AutoDoc making it mildly proficient in removing parasites left by unknown organism."
+	name = "自动手术舱胚胎移除"
+	desc = "一套供自动手术舱使用的数据与指令，可使其初步掌握移除未知生物留下的寄生虫的技术。"
 	behavior = RESEARCH_UPGRADE_ITEM
 	value_upgrade = 4000
 	clearance_req = 6
@@ -77,8 +77,8 @@
 
 
 /datum/research_upgrades/machinery/sleeper
-	name = "Sleeper Upgrade"
-	desc = "Research upgrade for Sleeper system, technology on this disk is used on a sleeper to allow wider spectrum of chemicals to be administered, as well as upgrading dialysis software."
+	name = "医疗休眠舱升级"
+	desc = "医疗休眠舱系统的研究升级模块。磁盘中的技术可让医疗休眠舱使用更多种类的药物，并升级透析软件。"
 	behavior = RESEARCH_UPGRADE_ITEM
 	value_upgrade = 500
 	item_reference = /obj/item/research_upgrades/sleeper
@@ -90,8 +90,8 @@
 	behavior = RESEARCH_UPGRADE_CATEGORY
 
 /datum/research_upgrades/item/research_credits
-	name = "Research Credits"
-	desc = "Sell the data acquired to the nearest Weyland-Yutani Science division team for 8 or 9 points."
+	name = "科研点数"
+	desc = "将获得的数据出售给最近的维兰德-汤谷科研部门小组，换取8或9点科研点数。"
 	value_upgrade = 2000
 	behavior = RESEARCH_UPGRADE_ITEM
 	upgrade_type = ITEM_ACCESSORY_UPGRADE
@@ -101,8 +101,8 @@
 	clearance_req = 5
 
 /datum/research_upgrades/item/laser_scalpel
-	name = "Laser Scalpel"
-	desc = "An advanced, robust version of the normal scalpel, allowing it to pierce through thick skin and chitin alike with extreme ease."
+	name = "激光手术刀"
+	desc = "普通手术刀的先进耐用版本，能够轻松刺穿厚实的皮肤和几丁质。"
 	value_upgrade = 3000
 	behavior = RESEARCH_UPGRADE_ITEM
 	upgrade_type = ITEM_ACCESSORY_UPGRADE
@@ -110,8 +110,8 @@
 	clearance_req = 3
 
 /datum/research_upgrades/item/incision_management
-	name = "Incision Management System"
-	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision, allowing for the immediate commencement of therapeutic steps."
+	name = "切口处理系统"
+	desc = "这件神奇的器械宛如外科医生身体的延伸，能瞬间完成切口准备，让治疗步骤立即开始。"
 	value_upgrade = 3000
 	behavior = RESEARCH_UPGRADE_ITEM
 	upgrade_type = ITEM_ACCESSORY_UPGRADE
@@ -120,8 +120,8 @@
 
 
 /datum/research_upgrades/item/nanosplints
-	name = "Reinforced Fiber Splints"
-	desc = "A set of splints made from durable carbon fiber sheets reinforced with flexible titanium lattice, comes in a stack of five."
+	name = "强化纤维夹板"
+	desc = "一组由耐用碳纤维板制成、以柔性钛网格加固的夹板，每叠五块。"
 	value_upgrade = 800
 	clearance_req = 3
 	change_purchase = -200
@@ -133,8 +133,8 @@
 	new /obj/item/stack/medical/splint/nano/research(machine_loc, 5)//adjust this to change amount of nanosplints in a stack, cant be higher than five, go change max_amount in the nanosplint itself, then change it.
 
 /datum/research_upgrades/item/flamer_tank
-	name = "Upgraded Incinerator Tank"
-	desc = "An upgraded incinerator tank, with larger capacity and able to handle stronger fuels."
+	name = "升级型焚烧器燃料罐"
+	desc = "升级后的焚烧器燃料罐，容量更大，并能使用更强力的燃料。"
 	value_upgrade = 300
 	clearance_req = 1
 	change_purchase = 100
@@ -145,8 +145,8 @@
 	item_reference = /obj/item/ammo_magazine/flamer_tank/custom/upgraded
 
 /datum/research_upgrades/item/flamer_tank/smoke
-	name = "Upgraded Incinerator Smoke Tank"
-	desc = "An upgraded incinerator smoke tank with a larger capacity."
+	name = "升级型焚烧器烟雾罐"
+	desc = "升级后的焚烧器烟雾罐，容量更大。"
 	value_upgrade = 100 //not useful enough to be expensive
 	clearance_req = 1
 	change_purchase = 50
@@ -159,8 +159,8 @@
 	behavior = RESEARCH_UPGRADE_CATEGORY
 
 /datum/research_upgrades/armor/translator
-	name = "Universal Translator Plate"
-	desc = "A uniform-attachable plate capable of translating any unknown language heard by the wearer."
+	name = "通用翻译插板"
+	desc = "可安装在制服上的插板，能够翻译穿戴者听到的任何未知语言。"
 	value_upgrade = 2000
 	behavior = RESEARCH_UPGRADE_ITEM
 	clearance_req = 6
@@ -168,8 +168,8 @@
 	item_reference = /obj/item/clothing/accessory/health/research_plate/translator
 
 /datum/research_upgrades/armor/coagulator
-	name = "Active Blood Coagulator Plate"
-	desc = "A uniform-attachable plate capable of coagulating any bleeding wounds the user possesses."
+	name = "主动凝血插板"
+	desc = "可安装在制服上的插板，能够使使用者身上出血的伤口凝血。"
 	value_upgrade = 1200
 	behavior = RESEARCH_UPGRADE_ITEM
 	clearance_req = 2
@@ -180,8 +180,8 @@
 
 
 /datum/research_upgrades/armor/emergency_injector
-	name = "Medical Emergency Injector"
-	desc = "A medical plate with two buttons on the sides and a hefty chemical tank. Attached to a uniform and on a simultaneous press, it injects an emergency dose of medical chemicals much larger than a normal emergency autoinjector. Single time use and is recycled in biomass printer. Features overdose protection."
+	name = "医疗应急注射器"
+	desc = "一块两侧各有一个按钮、配有大容量药剂罐的医疗插板。安装在制服上，同时按下两个按钮，即可注入远大于普通应急自动注射器剂量的急救药物。仅能使用一次，可在生物质打印机中回收。配有过量用药保护。"
 	value_upgrade = 250
 	clearance_req = 1
 	behavior = RESEARCH_UPGRADE_ITEM
@@ -191,8 +191,8 @@
 	item_reference = /obj/item/clothing/accessory/health/research_plate/emergency_injector
 
 /datum/research_upgrades/armor/ceramic
-	name = "Ceramic Armor Plate"
-	desc = "A strong trauma plate, able to protect the user from a large amount of bullets. Completely useless against sharp objects."
+	name = "陶瓷护甲插板"
+	desc = "一块坚固的防弹插板，可抵御大量子弹。对尖锐物体完全无效。"
 	value_upgrade = 500
 	clearance_req = 4
 	behavior = RESEARCH_UPGRADE_ITEM
@@ -202,8 +202,8 @@
 	item_reference = /obj/item/clothing/accessory/health/ceramic_plate
 
 /datum/research_upgrades/armor/preservation
-	name = "Death Preservation Plate"
-	desc = "Preservation plate which activates once the user is dead, uses variety of different substances and sensors to slow down the decay and increase the time before the user is permanently dead, due to small tank of preservatives, it needs to be replaced on each death. Extends time to permadeath by around four minutes."
+	name = "遗体保存插板"
+	desc = "使用者死亡后启动的保存插板，利用多种物质和传感器减缓腐败，延长彻底死亡前的时间。防腐剂罐容量有限，每次死亡后都需要更换。可将彻底死亡的时限延长约四分钟。"
 	value_upgrade = 500
 	clearance_req = 4
 	behavior = RESEARCH_UPGRADE_ITEM

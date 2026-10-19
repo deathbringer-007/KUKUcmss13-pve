@@ -35,7 +35,7 @@
 	return TRUE
 
 /datum/game_mode/xenovs/announce()
-	to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDHEADER("当前地图：[SSmapping.configs[GROUND_MAP].map_name]！"))
+	to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDHEADER("当前地图：[get_statistic_display_label(SSmapping.configs[GROUND_MAP].map_name)]！"))
 
 /datum/game_mode/xenovs/get_roles_list()
 	return GLOB.ROLES_XENO
@@ -187,7 +187,7 @@
 
 			if(!sudden_death && world.time > round_time_sd)
 				sudden_death = TRUE
-				xeno_announcement("The hives have entered sudden death mode. No more respawns, no more Queens", "everything", HIGHER_FORCE_ANNOUNCE)
+				xeno_announcement("虫巢已进入骤死模式，不再允许重生，也无法诞生新的女皇。", "everything", HIGHER_FORCE_ANNOUNCE)
 				for(var/obj/effect/alien/resin/special/pylon/core/C in hive_cores)
 					qdel(C)
 				hive_cores = list()
@@ -234,7 +234,7 @@
 			living_hives++
 			last_living_hive = H
 		else if (H in current_hives)
-			xeno_announcement("\The [H] has been eliminated from the world", "everything", HIGHER_FORCE_ANNOUNCE)
+			xeno_announcement("[localized_player_label(H)]已被彻底消灭。", "everything", HIGHER_FORCE_ANNOUNCE)
 			current_hives -= H
 
 
@@ -276,12 +276,24 @@
 
 	return TRUE
 
+/datum/game_mode/xenovs/proc/get_round_result_display()
+	if(round_finished == "No one has won.")
+		return "无人获胜。"
+	if(!istext(round_finished))
+		return round_finished
+	var/prefix = "The "
+	var/suffix = " has won."
+	if(findtext(round_finished, prefix) == 1 && copytext(round_finished, length(round_finished) - length(suffix) + 1) == suffix)
+		var/hive_name = copytext(round_finished, length(prefix) + 1, length(round_finished) - length(suffix) + 1)
+		return "[localized_player_label(hive_name)]获胜。"
+	return round_finished
+
 /datum/game_mode/xenovs/announce_ending()
 	if(GLOB.round_statistics)
 		GLOB.round_statistics.track_round_end()
 	log_game("Round end result: [round_finished]")
 	to_chat_spaced(world, margin_top = 2, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDHEADER("|本局结束|"))
-	to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDBODY("争斗的异形巢群在 [SSmapping.configs[GROUND_MAP].map_name] 的故事就此结束。[round_finished]\n游戏模式：[GLOB.master_mode]！\n[CONFIG_GET(string/endofroundblurb)]"))
+	to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDBODY("异形虫巢在[get_statistic_display_label(SSmapping.configs[GROUND_MAP].map_name)]的争斗已告一段落。[get_round_result_display()]\n游戏模式：[get_statistic_display_label(GLOB.master_mode)]！\n[CONFIG_GET(string/endofroundblurb)]"))
 
 // for the toolbox
 /datum/game_mode/xenovs/end_round_message()

@@ -32,14 +32,14 @@
 			if(!M.check_dock(S, silent=TRUE))
 				continue
 			destination_found = TRUE
-			dat += "<A href='byond://?src=[REF(src)];move=[S.id]'>派往 [S.name]</A><br>"
+			dat += "<A href='byond://?src=[REF(src)];move=[S.id]'>派往[localized_player_label(S.name)]</A><br>"
 		if(!destination_found)
 			dat += "<B>穿梭机已锁定</B><br>"
 			if(admin_controlled)
 				dat += "仅限授权人员<br>"
 				dat += "<A href='byond://?src=[REF(src)];request=1]'>申请授权</A><br>"
 
-	var/datum/browser/popup = new(user, "computer", "<div align='center'>[M ? M.name : "shuttle"]</div>", 300, 200)
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>[M ? localized_player_label(M.name) : "穿梭机"]</div>", 300, 200)
 	popup.set_content("<center>[dat]</center>")
 	popup.open()
 
@@ -189,7 +189,7 @@
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "NavigationShuttle", "[ert.name] Navigation Computer")
+		ui = new(user, src, "NavigationShuttle", "[localized_player_label(ert.name)]导航计算机")
 		ui.open()
 
 
@@ -229,7 +229,7 @@
 			locked_count++
 	.["locked_down"] = door_count == locked_count
 
-	.["target_destination"] = ert.destination?.name
+	.["target_destination"] = localized_player_label(ert.destination?.name)
 
 	.["destinations"] = list()
 	for(var/obj/docking_port/stationary/dock in compatible_landing_zones)
@@ -241,7 +241,7 @@
 		var/can_dock = ert.canDock(dock)
 		var/list/dockinfo = list(
 			"id" = dock.id,
-			"name" = dock.name,
+			"name" = localized_player_label(dock.name),
 			"available" = can_dock == SHUTTLE_CAN_DOCK && !dock_reserved,
 			"error" = can_dock,
 		)
@@ -303,10 +303,10 @@
 					dock_reserved = TRUE
 					break
 			if(dock_reserved)
-				to_chat(usr, SPAN_WARNING("[dock]目前正在使用中。"))
+				to_chat(usr, SPAN_WARNING("[localized_player_label(dock.name)]目前正在使用中。"))
 				return TRUE
 			SSshuttle.moveShuttle(ert.id, dock.id, TRUE)
-			to_chat(usr, SPAN_NOTICE("你启动了前往[dock]的发射程序。"))
+			to_chat(usr, SPAN_NOTICE("你启动了前往[localized_player_label(dock.name)]的发射程序。"))
 			return TRUE
 		if("launch_home")
 			if(!must_launch_home)
@@ -433,7 +433,7 @@
 					to_chat(user, SPAN_NOTICE("[src]屏幕闪烁，显示：\"发射程序已经启动\"。"))
 					return
 
-				var/response = tgui_alert(user, "要发射救生艇吗？", "确认", list("Yes", "No", "Emergency Launch"), 10 SECONDS)
+				var/response = localized_tgui_alert(user, "要发射救生艇吗？", "确认", list("Yes", "No", "Emergency Launch"), 10 SECONDS)
 				if(launch_initiated)
 					to_chat(user, SPAN_NOTICE("[src]屏幕闪烁，显示：\"发射程序已经启动\"。"))
 					return
@@ -441,7 +441,7 @@
 					if ("Yes")
 						launch_initiated = TRUE
 						to_chat(user, "[src]屏幕闪烁，显示：\"发射指令已接受\"。")
-						shipwide_ai_announcement("Launch command received. [lifeboat.id == MOBILE_SHUTTLE_LIFEBOAT_PORT ? "Port" : "Starboard"] Lifeboat doors will close in 10 seconds.")
+						shipwide_ai_announcement("已收到发射指令。[lifeboat.id == MOBILE_SHUTTLE_LIFEBOAT_PORT ? "左舷" : "右舷"]救生艇舱门将在10秒后关闭。")
 						addtimer(CALLBACK(lifeboat, TYPE_PROC_REF(/obj/docking_port/mobile/crashable/lifeboat, evac_launch)), 10 SECONDS)
 						lifeboat.alarm_sound_loop.start()
 						lifeboat.playing_launch_announcement_alarm = TRUE
@@ -451,7 +451,7 @@
 						launch_initiated = TRUE
 						to_chat(user, "[src]屏幕闪烁，显示：\"紧急发射指令已接受\"。")
 						lifeboat.evac_launch()
-						shipwide_ai_announcement("Emergency Launch command received. Launching [lifeboat.id == MOBILE_SHUTTLE_LIFEBOAT_PORT ? "Port" : "Starboard"] Lifeboat.")
+						shipwide_ai_announcement("已收到紧急发射指令。正在发射[lifeboat.id == MOBILE_SHUTTLE_LIFEBOAT_PORT ? "左舷" : "右舷"]救生艇。")
 						return
 
 			if(SHUTTLE_IGNITING)

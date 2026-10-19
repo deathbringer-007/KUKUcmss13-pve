@@ -7,186 +7,132 @@
 /datum/fluff_email/almayer
 
 /datum/fluff_email/almayer/iwantout
-	title = "RE: I want out."
+	title = "回复：我想退出。"
 	entry_text = {"<html>
-					Okay, yep, I know what you're saying. Stilettos aren't safe, you want out of my sharp stick business,
-					and sooner or later we're going to get hung upside down from our ankles by the MPs, stuffed in a freezer
-					in the lower decks, and tossed to the nearest military tribunal in a sack in six to eight weeks.
+					行，没错，我懂你的意思。细刃匕首不安全，你想退出我的尖刀生意。迟早有一天，宪兵会把咱们脚朝上吊起来，塞进下层甲板的冷库，再过六到八周，就装进麻袋送到最近的军事法庭。
 					<br>
 					<br>
-					Maybe that reserve grunt in Echo Company just about gutted himself with one of our blades in his bunk,
-					and maybe one of them accidently got flashed in front of one of the officers during a 'disagreement',
-					but neither of those things are 'explicitly' OUR faults.
+					也许回声连那个预备役大兵，的确差点在铺位上用咱们的刀把自己开膛破肚；也许有人跟军官“争执”的时候，不小心亮出过其中一把刀。但这两件事，都不能说“明确”是咱们的错。
 					<br>
 					<br>
-					I know you could just as easily fashion your
-					metalworking equipment towards making canteens for PFC Marshall's little business, or helping those jackass
-					flyboys spruce up their tin cans, but you need to realize we occupy a market nobody else on the ship is filling.
-					We'll talk about it when we're next woken for shore leave in a month, but I personally think you're making a huge
-					mistake trying to opt out.
+					我知道，你完全可以拿那些金工设备去做水壶，给马歇尔一等兵的小生意供货，或者替那群蠢飞行员装点他们的铁皮罐头。但你得明白，咱们填补的是整艘船上没人做的生意。一个月后，咱们下次被唤醒上岸休假的时候再谈。不过我个人觉得，你现在退出，绝对是在犯大错。
 					<br>
 					<br>
-					I know a dozen men in the battalion who claim your stilettos pulled them out of trouble.
-					Doesn't matter if they're being used to open MREs in a jam, or save one of our guys from some yokel colonist
-					with a carving knife, we're doing more than just lining our pockets- we're doing a service for the men of the corps.
+					营里有十来个人跟我说过，你做的细刃匕首曾救他们脱离困境。无论是急着拿它拆开野战口粮，还是用它把咱们的人从挥着切肉刀的乡巴佬殖民者手里救下来，咱们做的都不只是往自己口袋里捞钱，也是在为陆战队的兄弟们服务。
 					<br>
 					<br>
-					Keep that in mind.
+					记住这一点。
 				</html>
 				"}
 
 
 /datum/fluff_email/almayer/thermalcloak
-	title = "M68 Thermal Cloak."
+	title = "M68 热隐蔽披风。"
 	entry_text = {"<html>
-					Are you sure these things are safe, man? I just tried one on during a training exercise back at Bernice 378, took a wrong turn,
-					and wound up on an outdoor firing range being used by another Battalion (5th "Hammerheads" I think?). Now typically, somebody would have spotted me,
-					the range officer would have called for a ceasefire, the captain gives me a slap on the wrist, and I claim 'emotional trauma' and get served warm cookies
-					and milk by the base psychiatrist.
+					伙计，你确定这玩意儿安全吗？上次在伯妮斯378基地训练时，我穿了一件试试，结果走错路，闯进了另一个营正在使用的露天靶场，好像是第5“锤头”营？照理说，总该有人看见我，靶场军官会下令停火，上尉训我两句，我再声称受了“精神创伤”，就能去基地心理医生那里吃热饼干、喝牛奶。
 					<br>
 					<br>
-					But this time, they kept firing their howling pulse rifles downrange even with me there. I hit the turf the moment
-					I realized what was happening, but the rounds kept screaming overhead. My armor got snagged in the thermal cloak (couldn't get the damn thing free),
-					so I had to roll myself sideways until I was clear. Turns out later I cracked a rib (didn't realize it from all the adrenaline I was pumping at the time),
-					and bruised my skin so badly it turned purple. I get these cloaks are supposed to keep us concealed, but what about the rounds from our own guys?
+					可这回，我都已经站在那里了，他们还在端着脉冲步枪往靶场里扫。意识到出事的瞬间，我就趴下了，但子弹还在头顶呼啸。我那套护甲又被热隐蔽披风挂住，怎么也扯不开，只能横着一路滚出去。后来才发现，我断了一根肋骨，当时肾上腺素飙得太高，根本没感觉，皮肤也撞得青紫一片。我知道这些披风是用来隐藏我们的，可自己人的子弹怎么办？
 					<br>
 					<br>
-					If you'd ask me what I was afraid of more, a squad of our own guys or the entire insurrection on Linna 349, I've since changed my answer.
+					要是现在再问我，究竟更怕自己人的一个小队，还是林纳349上所有的叛军，我的答案已经变了。
 				</html>
 				"}
 
 
 /datum/fluff_email/almayer/snow
-	title = "Snow? Where the hell is all the snow?"
+	title = "雪呢？该死的雪都去哪了？"
 	entry_text = {"<html>
-					Why were we issued these damn snow uniforms in the first place? We've been around the sector almost three dozen times and we've
-					yet to put them to use. They even issued us bulky kits to repaint our rifles, pistols and shotguns to match the cold weather gear,
-					and masks to keep us warm. But what's the point? They're just taking up a forth of the cargo hold, half infested with moths we picked
-					up six months ago from Bernice 378 (that base is a sanitation nightmare), and they need to be steamed on a regular basis.
+					当初到底为什么给我们发这些该死的雪地制服？我们在这片星区转了快三十六趟，到现在一次都没用上。他们甚至还发了笨重的涂装工具，好把步枪、手枪和霰弹枪重涂成与寒区装备配套的颜色，还发了保暖面罩。可这有什么用？这些东西占了四分之一的货舱，一半都被六个月前从伯妮斯378带来的蛀虫啃过，那个基地的卫生状况简直是场噩梦，还得定期用蒸汽处理。
 					<br>
 					<br>
-					For all the effort it's been worth to me, the moment the "Falling Falcons" have the misfortune of falling on what is probably
-					the last ice planet in the galaxy, I'm making sure we stay there for another two cycles.
+					反正我已经为这些破东西折腾得够多了。等“坠隼”部队哪天倒霉，真落到银河系里大概最后一颗冰封行星上时，我非得让我们在那里多待两个周期不可。
 				</html>
 				"}
 
 
 /datum/fluff_email/almayer/hawaianpizza
-	title = "Hawaiian Pizza in the MREs?"
+	title = "野战口粮里还有夏威夷披萨？"
 	entry_text = {"<html>
-					I swear this must have been a joke, but the other day I opened up my MRE packet to come face to face with a 'Hawaiian Pizza" packet.
-					Of course, I had already cut the seal open (otherwise I'd have fenced it to the Damien twins from Bravo Squad and have retired by now),
-					but the smell was horrendous! I guess pineapple just doesn't stow well. I neglected to check the date, but it must have been an old issue,
-					otherwise we'd have seen one by now. Either that, or those chinophiles in Task Force Eridani and those prissy boys in Task Force Sol haven't
-					been sharing the full menu with us Task Force Herculis folks.
+					我发誓，这一定是在开玩笑。前几天，我拆开一包野战即食口粮，里面居然是一包“夏威夷披萨”。当然，我已经剪开封口了，不然早就倒卖给布拉沃小队的达米恩双胞胎，赚够退休的钱了。可那味道实在太可怕！看来菠萝就是不耐储存。我忘了看日期，但这肯定是老批次，不然我们早该见过。要不就是波江座特遣队那帮亲华的家伙，和太阳特遣队那群娇气鬼，一直没把完整菜单分给我们武仙座特遣队。
 					<br>
 					<br>
-					PS: The supply sergeant's grandparents are from Naples. Don't let him hear about this or he'll be sure to cause a big fuss.
-					Last time he went on a personal crusade on behalf of the entire battalion, those pricks over at central started supplying
-					the Almayer store-rooms with only the 'Meatloaf' flavored MRE for months. I can still taste the stuff it in my mouth I think..
+					附言：补给军士的祖辈来自那不勒斯。千万别让他听说这事，不然他肯定又得闹翻天。上次他自告奋勇替全营讨公道，中央那群混蛋就接连几个月，只给阿尔迈耶号的库房供应“肉糜糕”口味的野战口粮。我觉得嘴里到现在还留着那股味儿……
 				</html>
 				"}
 
 
 /datum/fluff_email/almayer/themajor
-	title = "The Major?"
+	title = "那位少校？"
 	entry_text = {"<html>
-					I keep forgetting what the new Major's name is. I got quizzed by one of the jackass staff officers last week about the Major's name,
-					and I absolutely spilled my marbles. PFC Mable was watching too, and she probably thinks I've got rocks in my head. I know it's been weeks
-					since the new Major took over, but for some reason the name keeps escaping me when it matters. Either the cryo-sleepers are juicing my
-					memory capacity or the CO keeps changing their name and not telling anybody. Maybe next jump I'll scrawl it on a sticky note and plaster it
-					to the inside of my sleeper pod. I can't be the only one having this problem.
+					我总是记不住新来的少校叫什么。上周，一个混账参谋军官突然考我少校的名字，我当场就懵了。梅布尔一等兵也在旁边看着，她大概以为我脑袋里装的全是石头。我知道，新少校接任已经好几周了，可不知道为什么，一到要紧关头，我就想不起那个名字。要么是冷冻休眠舱把我的记忆力冻坏了，要么就是指挥官总在改名字，又不告诉别人。下次跃迁前，也许我得把名字写在便利贴上，贴到休眠舱内壁。碰上这种问题的，肯定不止我一个。
 				</html>
 				"}
 
 
 /datum/fluff_email/almayer/tunes
-	title = "RE: Tunes"
+	title = "回复：听点什么"
 	entry_text = {"<html>
-					Cryosleep is killing me, man. Inside and outside. I mean really, they expect us to sit in that tube for god only knows how long, and when we wake up?
-					It's all 'grab a crappy protein bar and grab your gear, you're going to war, Marine!' Bullshit.
+					伙计，冷冻休眠真要把我折腾死了，从里到外都难受。说真的，他们让我们在那根管子里躺上天知道多久，等醒过来，就只会喊：“拿根破蛋白棒，带上装备，陆战队员，你要去打仗了！”扯淡。
 					<br>
 					<br>
-					Anywho, I've been thinking how to make the whole thing more bearable. Tried to take a plush from the bunks with me inside. That dickwad MP took it away from me though, said it was against Operating Procedure. Like I care. Can't do anything fun around here, right?
-					My new idea, though, is a Walkman. I'm hoping that I might at least have a sounder sleep with good tunes to go along with it. Now, I know it might sound dumb, but I'm figuratively grasping at straws here, man. Bear with me.
-					I don't usually use these things, and frankly that vendor near Medbay has waaay too many cassettes to choose from. Not that I know most songs on them anywho.
+					总之，我一直在想，怎么才能让这事好受一点。我试过从铺位上带只毛绒玩具进舱，结果那个混蛋宪兵给我没收了，说是违反操作规程。谁在乎啊。这里就是不能让人有点乐子，对吧？不过，我现在有个新点子：随身听。听着好音乐，没准至少能睡得安稳些。我知道这听起来挺蠢，可我真是病急乱投医了，伙计，你就体谅体谅。我平常不怎么用这玩意儿，医疗区旁边那台售货机里的磁带又多得离谱，大多数歌我根本没听过。
 					<br>
 					<br>
-					I saw you with a Walkman from time to time, so... any chances you could recommend a tape to me? Or two, I'm not gonna be picky.
-					Just anything to start out with, I just want some nice sounds. Please, I'm gonna go mad if I don't do something about my cryophobia or whatever.
-					This might just help with that.
+					我时不时看见你戴着随身听，所以……能不能给我推荐一盘磁带？两盘也行，我不挑。先随便来点好听的声音就好。求你了，要是再不想办法治治我这冷冻恐惧症，或者随便它叫什么，我真要疯了。这个办法说不定能管点用。
 				</html>
 				"}
 
 
 /datum/fluff_email/almayer/lasergun1
-	title = "Prototype Weapon"
+	title = "武器原型"
 	entry_text = {"<html>
-					This thing is an absolute blast to use.
-					It disintegrated some of the targets down range but you're going to need to work on those cooling coils.
-					I used it a few times and I'm seeing the front barrel glow red.
+					这东西用起来实在太过瘾了。靶场里有几个靶子直接被它打得灰飞烟灭，不过，你们得再改改冷却线圈。我才用了几次，就看到枪管前端开始发红。
 					<br>
 					<br>
-					Surprisingly accurate too despite being a prototype.
-					I know there's like, a couple of prototypes issued to some USCM detachments, but we got to have this shit in production one day.
+					虽然还是原型，精度却出乎意料地好。我知道，已经有少量原型配发给部分殖民地陆战队分遣队，但这玩意儿总有一天必须量产。
 					<br>
 					<br>
-					Even as a prototype, it's leagues better than some of the junk we're issued.
-					Now, I don't think it's going to replace the old Mark Twos, but it would be a nice addition for some of our grunts that prefer the high-tech approach.
+					就算只是原型，它也比我们领到的某些破烂强得多。我倒不觉得它能取代老式的 Mk II，不过对那些偏爱高科技的大兵来说，肯定是很好的补充。
 					<br>
 					<br>
-					You know the ones, all nerdy and gadget loving geeks in the corps. Hell, I can already hear them glossing over this thing in their sleep.
-					My report has been sent back to you and I'm really excited to see how this turns out.
+					你知道我说的是哪帮人，就是陆战队里那群痴迷各种小玩意儿的技术宅。见鬼，我仿佛已经听见他们做梦都在念叨这东西了。报告已经发回给你，我非常期待它最后会变成什么样。
 				</html>
 				"}
 
 
 /datum/fluff_email/almayer/lasergun2
-	title = "New Prototype Design"
+	title = "新的原型设计"
 	entry_text = {"<html>
-					Thanks for sending the report in, we've been mulling over the data you sent over.
-					We've updated the design for the prototype which solves most of the problems everyone has encountered.
-					This one looks more promising than the last one.
-					And as much as everyone wants this done and shippped, I don't think this is going to be issued en masse for a good while.
+					谢谢你提交报告，我们一直在仔细研究发来的数据。原型的设计已经更新，解决了大家遇到的大部分问题，这一版看起来比上一版更有前景。尽管所有人都希望尽快完工发货，但我认为，距离大规模配发还得有一段时间。
 				</html>
 				"}
 
 
 /datum/fluff_email/almayer/beatup
-	title = "Beat Up"
+	title = "被打惨了"
 	entry_text = {"<html>
-				Man last mission was an absolute shit show.
+				伙计，上次任务简直是一场灾难。
 				<br>
-				The USS Heyst got their shit kicked in with a missile and we got our cargo hold set on fire. And most of our good ammo is gone too!
-				Now we're left with the FMJs and the older AP munitions. What's worse is that most of 1st platoon is pretty much out of action.
-				Lotta folks are in the sickbay and the rest of us are heading off to cryosleep, well what's left of us. There's not many of the old guard left I'm afraid.
-				Until we get reinforced with more bodies, command has given the go ahead to merge 2nd platoon into 1st for the time being.
+				海斯特号被一发导弹打得七零八落，我们的货舱也着了火，大部分好弹药都没了！现在只剩全金属被甲弹和老式穿甲弹。更糟的是，第一排基本已经没法作战。很多人还躺在医务室，剩下的我们也要进冷冻休眠了，至少幸存下来的人是这样。恐怕老面孔已经没剩几个。在新兵员补充到位之前，指挥部已经批准，暂时把第二排并入第一排。
 				</html>
 				"}
 
 
 /datum/fluff_email/almayer/rallyrace
-	title = "Rally Racing"
+	title = "拉力赛"
 	entry_text = {"<html>
-				Hey, remember last shore leave on LV-179? Man, that was one crazy night. The folks at the colony had setup a rally race with their tractors all stripped of non-essentials.
-				LCPL Millard got pretty friendly with the locals and got himself into the competition.
-				We all put in a little wager to see if he'd even get close to first place or even survive to the finish line.
-				Now most of the boys bet a fair amount against him since he was pretty new to our outfit, yet I've been out on detail with the guy.
+				嘿，还记得上次在 LV-179 上岸休假的事吗？那晚真够疯狂的。殖民地的人把拖拉机上能拆的非必要部件全拆了，搞起了一场拉力赛。米勒德准下士跟当地人混得挺熟，自己也报了名。我们都下了点小注，赌他能不能接近第一名，或者活着跑到终点。大多数兄弟都押了不少钱赌他输，毕竟他刚来我们部队没多久。不过，我以前跟这家伙一起出过勤。
 				<br>
 				<br>
-				Millard grew up on one of those shake and bake colonies and used to drive the big daisies around.
-				He knew the ins and outs of what made them tick. The few of us who had faith in him reaped everyone else's
-				paycheck for the week with Millard finishing first place by a near country mile.
+				米勒德在那种速成殖民地长大，以前就开着那些叫“大雏菊”的大家伙到处跑，对它们的运转门道了如指掌。最后，他以遥遥领先的优势拿了第一。我们这几个信他的人，把其他人整整一周的薪水都赢走了。
 				</html>
 				"}
 
 /datum/fluff_email/almayer/missing
-	title = "Missing Personnel"
+	title = "有人不见了"
 	entry_text = {"<html>
-				Has anyone seen Mendoza around? He owes me half of his paycheck from last month's poker game.
-				Everyone's payday was a week ago and we're all set to head back to Chinook station.
-				Could have sworn I saw him near the cargo elevator yesterday.
-				I'll catch him back at base once we've docked because I need that money to pay off my tab at the bar.
+				有人看见门多萨了吗？上个月打扑克，他还欠我他一半的薪水。发薪日都过去一周了，我们也都准备返回奇努克空间站。我敢发誓，昨天还在货运电梯附近看见过他。等靠泊以后，我非得回基地把他逮住不可，我还指望那笔钱还清酒吧欠账呢。
 				</html>
 				"}
 

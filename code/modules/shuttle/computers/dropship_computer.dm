@@ -223,9 +223,9 @@
 				to_chat(xeno, SPAN_WARNING("金属飞鸟无法在这里降落，位置可能已被占用！"))
 				return
 			to_chat(xeno, SPAN_NOTICE("你命令金属飞鸟降下来。聪明的姑娘。"))
-			xeno_announcement(SPAN_XENOANNOUNCE("女皇已命令金属飞鸟飞往[linked_lz]的虫巢。"), xeno.hivenumber, XENO_GENERAL_ANNOUNCE)
-			log_ares_flight("Unknown", "Remote launch signal for [shuttle.name] received. Authentication garbled.")
-			log_ares_security("Security Alert", "Remote launch signal for [shuttle.name] received. Authentication garbled.")
+			xeno_announcement(SPAN_XENOANNOUNCE("女皇已命令金属飞鸟飞往[localized_player_label(linked_lz)]的虫巢。"), xeno.hivenumber, XENO_GENERAL_ANNOUNCE)
+			log_ares_flight("未知", "已收到[shuttle.name]的远程起飞信号，身份验证信息无法辨认。")
+			log_ares_security("安保警报", "已收到[shuttle.name]的远程起飞信号，身份验证信息无法辨认。")
 			return
 		if(shuttle.destination && shuttle.destination.id != linked_lz)
 			to_chat(xeno, "穿梭机尚未就绪，屏幕显示T-[shuttle.timeLeft(10)]。耐心等待。")
@@ -290,7 +290,7 @@
 		to_chat(xeno, SPAN_XENONOTICE("你覆盖了舱门控制。"))
 		xeno_message(SPAN_XENOANNOUNCE("金属飞鸟的舱门控制已被覆盖！欢呼吧！"), 3, xeno.hivenumber)
 		message_admins("[key_name(xeno)] has locked the dropship '[dropship]'", xeno.x, xeno.y, xeno.z)
-		notify_ghosts(header = "Dropship Locked", message = "[xeno] has locked [dropship]!", source = xeno, action = NOTIFY_ORBIT)
+		notify_ghosts(header = "运输艇已锁定", message = "[xeno]锁定了[dropship]！", source = xeno, action = NOTIFY_ORBIT)
 		return
 
 	if(dropship_control_lost)
@@ -314,7 +314,7 @@
 	// select crash location
 	var/turf/source_turf = get_turf(src)
 	var/obj/docking_port/mobile/marine_dropship/dropship = SSshuttle.getShuttle(shuttleId)
-	var/result = tgui_input_list(user, "要在哪里“着陆”？", "劫持运输艇", GLOB.almayer_ship_sections , timeout = 10 SECONDS)
+	var/result = localized_input_list(user, "要在哪里“着陆”？", "劫持运输艇", GLOB.almayer_ship_sections , timeout = 10 SECONDS)
 	if(!result)
 		return
 	if(!user.Adjacent(source_turf) && !force)
@@ -333,8 +333,8 @@
 	hijack.fire()
 	GLOB.alt_ctrl_disabled = TRUE
 
-	marine_announcement("Unknown fault in remote flight control. Resolving as possible hijack. Marking dropship as possibly hostile and disconnecting from sensor matrix.", "Dropship Alert", 'sound/misc/notice2.ogg', logging = ARES_LOG_SECURITY)
-	log_ares_flight("Unknown", "Unknown fault in remote flight control. Resolving as possible hijack. Marking dropship as possibly hostile and disconnecting from sensor matrix.")
+	marine_announcement("远程飞行控制发生未知故障，判定为疑似劫持。已将运输艇标记为潜在敌对目标，并断开其与传感器网络的连接。", "运输艇警报", 'sound/misc/notice2.ogg', logging = ARES_LOG_SECURITY)
+	log_ares_flight("未知", "远程飞行控制发生未知故障，判定为疑似劫持。已将运输艇标记为潜在敌对目标，并断开其与传感器网络的连接。")
 
 	var/mob/living/carbon/xenomorph/xeno = user
 	var/hivenumber = XENO_HIVE_NORMAL
@@ -352,7 +352,7 @@
 	addtimer(CALLBACK(hive, TYPE_PROC_REF(/datum/hive_status, override_evilution), original_evilution, FALSE), XENO_HIJACK_EVILUTION_TIME)
 
 	// Notify the yautja too so they stop the hunt
-	message_all_yautja("The serpent Queen has commanded the landing shuttle to depart.")
+	message_all_yautja("毒蛇女皇已命令登陆穿梭机起飞。")
 	playsound(src, 'sound/misc/queen_alarm.ogg')
 
 	if(istype(SSticker.mode, /datum/game_mode/colonialmarines))
@@ -389,7 +389,7 @@
 	)
 	.["primary_lz"] = SSticker.mode.active_lz?.linked_lz
 	if(shuttle?.destination)
-		.["target_destination"] = shuttle?.in_flyby? "Flyby" : shuttle?.destination.name
+		.["target_destination"] = shuttle?.in_flyby? "掠过飞行" : shuttle?.destination.name
 
 	.["door_status"] = is_remote ? list() : shuttle?.get_door_data()
 	.["has_flyby_skill"] = skillcheck(user, SKILL_PILOT, SKILL_PILOT_TRAINED)
@@ -403,7 +403,7 @@
 		.["destinations"] += list(
 			list(
 				"id" = DROPSHIP_FLYBY_ID,
-				"name" = "Flyby",
+				"name" = "掠过飞行",
 				"available" = TRUE,
 				"error" = FALSE
 			)
@@ -462,7 +462,7 @@
 					return FALSE
 				update_equipment(is_optimised, TRUE)
 				to_chat(user, SPAN_NOTICE("你启动了掠过飞行的起飞程序。"))
-				log_ares_flight(user.name, "Launched Dropship [shuttle.name] on a flyby.")
+				log_ares_flight(user.name, "已启动运输艇[shuttle.name]的掠过飞行。")
 				var/log = "[key_name(user)] launched the dropship [src.shuttleId] on flyby."
 				msg_admin_niche(log)
 				log_interact(user, msg = "[log]")
@@ -493,7 +493,7 @@
 				return TRUE
 			SSshuttle.moveShuttle(shuttle.id, dock.id, TRUE)
 			to_chat(user, SPAN_NOTICE("你启动了前往[dock]的发射程序。"))
-			log_ares_flight(user.name, "Launched Dropship [shuttle.name] on a flight to [dock].")
+			log_ares_flight(user.name, "已启动运输艇[shuttle.name]前往[dock]的飞行。")
 			var/log = "[key_name(user)] launched the dropship [src.shuttleId] on transport."
 			msg_admin_niche(log)
 			log_interact(user, msg = "[log]")
@@ -535,7 +535,7 @@
 			shuttle.automated_lz_id = ground_lz
 			shuttle.automated_delay = delay
 			playsound(loc, get_sfx("terminal_button"), KEYBOARD_SOUND_VOLUME, 1)
-			log_ares_flight(user.name, "Enabled autopilot for Dropship [shuttle.name].")
+			log_ares_flight(user.name, "已启用运输艇[shuttle.name]的自动驾驶。")
 			var/log = "[key_name(user)] has enabled auto pilot on '[shuttle.name]'"
 			message_admins(log)
 			log_interact(user, msg = "[log]")
@@ -547,7 +547,7 @@
 			shuttle.automated_lz_id = null
 			shuttle.automated_delay = null
 			playsound(loc, get_sfx("terminal_button"), KEYBOARD_SOUND_VOLUME, 1)
-			log_ares_flight(user.name, "Disabled autopilot for Dropship [shuttle.name].")
+			log_ares_flight(user.name, "已关闭运输艇[shuttle.name]的自动驾驶。")
 			var/log = "[key_name(user)] has disabled auto pilot on '[shuttle.name]'"
 			message_admins(log)
 			log_interact(user, msg = "[log]")

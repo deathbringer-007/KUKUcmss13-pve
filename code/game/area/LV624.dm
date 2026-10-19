@@ -7,7 +7,7 @@
 	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv624/ground
-	name = "Ground"
+	name = "地表"
 	icon_state = "green"
 	always_unpowered = 1 //Will this mess things up? God only knows
 
@@ -16,17 +16,17 @@
 	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle/south_east_jungle
-	name ="\improper Southeast Jungle"
+	name ="\improper 东南丛林"
 	icon_state = "southeast"
 	//ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/jungle/south_central_jungle
-	name ="\improper Southern Central Jungle"
+	name ="\improper 中南丛林"
 	icon_state = "south"
 	//ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/jungle/south_west_jungle
-	name ="\improper Southwest Jungle"
+	name ="\improper 西南丛林"
 	icon_state = "southwest"
 	//ambience = list('sound/ambience/jungle_amb1.ogg')
 
@@ -34,7 +34,7 @@
 	ceiling = CEILING_GLASS
 
 /area/lv624/ground/jungle/west_jungle
-	name ="\improper Western Jungle"
+	name ="\improper 西部丛林"
 	icon_state = "west"
 	//ambience = list('sound/ambience/jungle_amb1.ogg')
 	is_resin_allowed = FALSE
@@ -43,49 +43,49 @@
 	ceiling = CEILING_GLASS
 
 /area/lv624/ground/jungle/east_jungle
-	name ="\improper Eastern Jungle"
+	name ="\improper 东部丛林"
 	icon_state = "east"
 	//ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/jungle/north_west_jungle
-	name ="\improper Northwest Jungle"
+	name ="\improper 西北丛林"
 	icon_state = "northwest"
 	//ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/jungle/north_jungle
-	name ="\improper Northern Jungle"
+	name ="\improper 北部丛林"
 	icon_state = "north"
 	//ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/jungle/north_east_jungle
-	name ="\improper Northeast Jungle"
+	name ="\improper 东北丛林"
 	icon_state = "northeast"
 	//ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/jungle/central_jungle
-	name ="\improper Central Jungle"
+	name ="\improper 中央丛林"
 	icon_state = "central"
 	//ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/jungle/west_central_jungle
-	name ="\improper West Central Jungle"
+	name ="\improper 中西部丛林"
 	icon_state = "west"
 	//ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/jungle/east_central_jungle
-	name ="\improper East Central Jungle"
+	name ="\improper 中东部丛林"
 	icon_state = "east"
 	//ambience = list('sound/ambience/jungle_amb1.ogg')
 
 
 //The Barrens
 /area/lv624/ground/barrens
-	name = "\improper Barrens"
+	name = "\improper 荒地"
 	icon_state = "yellow"
 	//ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
 /area/lv624/ground/barrens/west_barrens
-	name = "\improper Western Barrens"
+	name = "\improper 西部荒地"
 	icon_state = "west"
 	//ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
@@ -93,7 +93,7 @@
 	ceiling = CEILING_GLASS
 
 /area/lv624/ground/barrens/east_barrens
-	name = "\improper Eastern Barrens"
+	name = "\improper 东部荒地"
 	icon_state = "east"
 	//ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
@@ -101,12 +101,12 @@
 	ceiling = CEILING_GLASS
 
 /area/lv624/ground/barrens/containers
-	name = "\improper Containers"
+	name = "\improper 集装箱区"
 	icon_state = "blue-red"
 	//ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
 /area/lv624/ground/barrens/north_east_barrens
-	name = "\improper North Eastern Barrens"
+	name = "\improper 东北荒地"
 	icon_state = "northeast"
 	//ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
@@ -114,76 +114,76 @@
 	ceiling = CEILING_GLASS
 
 /area/lv624/ground/barrens/south_west_barrens
-	name = "\improper South Western Barrens"
+	name = "\improper 西南荒地"
 	icon_state = "southwest"
 	//ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
 /area/lv624/ground/barrens/central_barrens
-	name = "\improper Central Barrens"
+	name = "\improper 中央荒地"
 	icon_state = "away1"
 	//ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
 /area/lv624/ground/barrens/south_eastern_barrens
-	name = "\improper South Eastern Barrens"
+	name = "\improper 东南荒地"
 	icon_state = "southeast"
 // ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
 /area/lv624/ground/barrens/south_eastern_jungle_barrens
-	name = "\improper South East Jungle Barrens"
+	name = "\improper 东南丛林荒地"
 	icon_state = "southeast"
 // ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
 /area/lv624/ground/river
-	name = "\improper River"
+	name = "\improper 河流"
 	icon_state = "blueold"
 // ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/river/west_river
-	name = "\improper Western River"
+	name = "\improper 西部河流"
 	icon_state = "blueold"
 // ambience = list('sound/ambience/jungle_amb1.ogg')
 /area/lv624/ground/river/central_river
-	name = "\improper Central River"
+	name = "\improper 中央河流"
 	icon_state = "purple"
 // ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/river/east_river
-	name = "\improper Eastern River"
+	name = "\improper 东部河流"
 	icon_state = "bluenew"
 // ambience = list('sound/ambience/jungle_amb1.ogg')
 
 
 //Colony Areas
 /area/lv624/ground/colony
-	name = "\improper Weyland-Yutani Compound"
+	name = "\improper 维兰德-汤谷园区"
 	icon_state = "green"
 
 /area/lv624/ground/colony/north_nexus_road
-	name = "\improper North Nexus Road"
+	name = "\improper 枢纽北路"
 	icon_state = "north"
 
 /area/lv624/ground/colony/south_medbay_road
-	name = "\improper South Medbay Road"
+	name = "\improper 医务室南路"
 	icon_state = "south"
 
 /area/lv624/ground/colony/south_nexus_road
-	name = "\improper South Nexus Road"
+	name = "\improper 枢纽南路"
 	icon_state = "south"
 
 /area/lv624/ground/colony/west_nexus_road
-	name = "\improper West Nexus Road"
+	name = "\improper 枢纽西路"
 	icon_state = "west"
 
 /area/lv624/ground/colony/north_tcomms_road
-	name = "\improper North T-Comms Road"
+	name = "\improper 电信站北路"
 	icon_state = "north"
 
 /area/lv624/ground/colony/west_tcomms_road
-	name = "\improper West T-Comms Road"
+	name = "\improper 电信站西路"
 	icon_state = "west"
 
 /area/lv624/ground/colony/telecomm
-	name = "\improper LZ1 Communications Relay"
+	name = "\improper 1号着陆区通信中继站"
 	icon_state = "ass_line"
 	ceiling = CEILING_UNDERGROUND_METAL_ALLOW_CAS
 	is_resin_allowed = FALSE
@@ -192,22 +192,22 @@
 	always_unpowered = FALSE
 
 /area/lv624/ground/colony/telecomm/cargo
-	name = "\improper Far North Storage Dome Communications Relay"
+	name = "\improper 最北端储藏穹顶通信中继站"
 
 
 /area/lv624/ground/colony/telecomm/sw_lz1
-	name = "\improper South-West LZ1 Communications Relay"
+	name = "\improper 1号着陆区西南通信中继站"
 	ceiling = CEILING_NONE
 
 /area/lv624/ground/colony/telecomm/tcommdome
-	name = "\improper Telecomms Dome Communications Relay"
+	name = "\improper 电信穹顶通信中继站"
 
 /area/lv624/ground/colony/telecomm/tcommdome/south
-	name = "\improper South Telecomms Dome Communications Relay"
+	name = "\improper 电信穹顶南部通信中继站"
 	ceiling = CEILING_NONE
 
 /area/lv624/ground/colony/telecomm/sw_lz2
-	name = "\improper South-West LZ2 Communications Relay"
+	name = "\improper 2号着陆区西南通信中继站"
 	ceiling = CEILING_NONE
 
 // ambience = list('sound/ambience/jungle_amb1.ogg')
@@ -215,7 +215,7 @@
 
 //The Caves
 /area/lv624/ground/caves //Does not actually exist
-	name ="\improper Caves"
+	name ="\improper 洞穴"
 	icon_state = "cave"
 	//ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambisin4.ogg')
 	ambience_exterior = AMBIENCE_CAVE
@@ -226,53 +226,53 @@
 	minimap_color = MINIMAP_AREA_CAVES
 
 /area/lv624/ground/caves/west_caves
-	name ="\improper Western Caves"
+	name ="\improper 西部洞穴"
 	icon_state = "away1"
 
 /area/lv624/ground/caves/south_west_caves
-	name ="\improper South Western Caves"
+	name ="\improper 西南洞穴"
 	icon_state = "red"
 
 /area/lv624/ground/caves/east_caves
-	name ="\improper Eastern Caves"
+	name ="\improper 东部洞穴"
 	icon_state = "away"
 
 /area/lv624/ground/caves/central_caves
-	name ="\improper Central Caves"
+	name ="\improper 中央洞穴"
 	icon_state = "away4" //meh
 
 /area/lv624/ground/caves/north_west_caves
-	name ="\improper North Western Caves"
+	name ="\improper 西北洞穴"
 	icon_state = "cave"
 
 /area/lv624/ground/caves/north_east_caves
-	name ="\improper North Eastern Caves"
+	name ="\improper 东北洞穴"
 	icon_state = "cave"
 
 /area/lv624/ground/caves/north_central_caves
-	name ="\improper North Central Caves"
+	name ="\improper 中北部洞穴"
 	icon_state = "away3" //meh
 
 /area/lv624/ground/caves/south_central_caves
-	name ="\improper South Central Caves"
+	name ="\improper 中南部洞穴"
 	icon_state = "away2" //meh
 
 /area/lv624/ground/caves/south_east_caves
-	name ="\improper South East Caves"
+	name ="\improper 东南洞穴"
 	icon_state = "away2" //meh
 
 /area/lv624/ground/caves/sand_temple
-	name = "\improper Sand Temple"
+	name = "\improper 沙之神庙"
 	icon_state = "bluenew"
 
 /area/lv624/ground/caves/sand_temple/powered
-	name = "\improper Sand Temple - Powered"
+	name = "\improper 沙之神庙供电区"
 	icon_state = "green"
 	requires_power = FALSE
 
 //Lazarus landing
 /area/lv624/lazarus
-	name = "\improper Lazarus"
+	name = "\improper 拉撒路"
 	icon_state = "green"
 	ceiling = CEILING_METAL
 
@@ -282,152 +282,152 @@
 	is_landing_zone = TRUE
 
 /area/lv624/lazarus/landing_zones/lz1
-	name = "\improper Alamo Landing Zone"
+	name = "\improper 阿拉莫号着陆区"
 
 /area/lv624/lazarus/landing_zones/lz2
-	name = "\improper Normandy Landing Zone"
+	name = "\improper 诺曼底号着陆区"
 
 /area/lv624/lazarus
-	name = "\improper Lazarus"
+	name = "\improper 拉撒路"
 	icon_state = "green"
 	ceiling = CEILING_METAL
 
 /area/lv624/lazarus/corporate_dome
-	name = "\improper Corporate Dome"
+	name = "\improper 公司穹顶"
 	icon_state = "green"
 
 /area/lv624/lazarus/yggdrasil
-	name = "\improper Yggdrasil Tree"
+	name = "\improper 世界树"
 	icon_state = "atmos"
 	ceiling = CEILING_GLASS
 
 /area/lv624/lazarus/medbay
-	name = "\improper Medbay"
+	name = "\improper 医务室"
 	icon_state = "medbay"
 	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/lv624/lazarus/armory
-	name = "\improper Armory"
+	name = "\improper 军械库"
 	icon_state = "armory"
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/lv624/lazarus/security
-	name = "\improper Security"
+	name = "\improper 安保部"
 	icon_state = "security"
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/lv624/lazarus/captain
-	name = "\improper Commandant's Quarters"
+	name = "\improper 司令官宿舍"
 	icon_state = "captain"
 	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lv624/lazarus/hop
-	name = "\improper Head of Personnel's Office"
+	name = "\improper 人事主管办公室"
 	icon_state = "head_quarters"
 	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lv624/lazarus/kitchen
-	name = "\improper Kitchen"
+	name = "\improper 厨房"
 	icon_state = "kitchen"
 	is_resin_allowed = FALSE
 
 /area/lv624/lazarus/canteen
-	name = "\improper Canteen"
+	name = "\improper 食堂"
 	icon_state = "cafeteria"
 	is_resin_allowed = FALSE
 
 /area/lv624/lazarus/main_hall
-	name = "\improper Main Hallway"
+	name = "\improper 主走廊"
 	icon_state = "hallC1"
 	is_resin_allowed = FALSE
 
 /area/lv624/lazarus/toilet
-	name = "\improper Dormitory Toilet"
+	name = "\improper 宿舍卫生间"
 	icon_state = "toilet"
 
 /area/lv624/lazarus/chapel
-	name = "\improper Chapel"
+	name = "\improper 礼拜堂"
 	icon_state = "chapel"
 	//ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg')
 
 /area/lv624/lazarus/toilet
-	name = "\improper Dormitory Toilet"
+	name = "\improper 宿舍卫生间"
 	icon_state = "toilet"
 
 /area/lv624/lazarus/sleep_male
-	name = "\improper Male Dorm"
+	name = "\improper 男性宿舍"
 	icon_state = "Sleep"
 
 /area/lv624/lazarus/sleep_female
-	name = "\improper Female Dorm"
+	name = "\improper 女性宿舍"
 	icon_state = "Sleep"
 	is_resin_allowed = FALSE
 
 /area/lv624/lazarus/quart
-	name = "\improper Quartermasters"
+	name = "\improper 军需官办公室"
 	icon_state = "quart"
 	is_resin_allowed = FALSE
 
 /area/lv624/lazarus/quartstorage
-	name = "\improper Cargo Bay"
+	name = "\improper 货舱"
 	icon_state = "quartstorage"
 	is_resin_allowed = FALSE
 
 /area/lv624/lazarus/quartstorage/outdoors
-	name = "\improper Cargo Bay Area"
+	name = "\improper 货舱区"
 	icon_state = "purple"
 	ceiling = CEILING_NONE
 	is_resin_allowed = FALSE
 	always_unpowered = TRUE
 
 /area/lv624/lazarus/engineering
-	name = "\improper Engineering"
+	name = "\improper 工程部"
 	icon_state = "engine_smes"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv624/lazarus/comms
-	name = "\improper Communications Relay"
+	name = "\improper 通信中继站"
 	icon_state = "tcomsatcham"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv624/lazarus/secure_storage
-	name = "\improper Secure Storage"
+	name = "\improper 安全储藏室"
 	icon_state = "storage"
 	flags_area = AREA_NOTUNNEL
 
 /area/lv624/lazarus/robotics
-	name = "\improper Robotics"
+	name = "\improper 机器人技术部"
 	icon_state = "ass_line"
 	is_resin_allowed = FALSE
 
 /area/lv624/lazarus/research
-	name = "\improper Research Lab"
+	name = "\improper 研究实验室"
 	icon_state = "toxlab"
 	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/lv624/lazarus/fitness
-	name = "\improper Fitness Room"
+	name = "\improper 健身房"
 	icon_state = "fitness"
 
 /area/lv624/lazarus/hydroponics
-	name = "\improper Hydroponics"
+	name = "\improper 水培区"
 	icon_state = "hydro"
 	ceiling = CEILING_GLASS
 
 /area/lv624/landing/console
-	name = "\improper LZ1 'Nexus'"
+	name = "\improper 1号着陆区“枢纽”"
 	icon_state = "tcomsatcham"
 	requires_power = FALSE
 
 /area/lv624/landing/console2
-	name = "\improper LZ2 'Robotics'"
+	name = "\improper 2号着陆区“机器人技术部”"
 	icon_state = "tcomsatcham"
 	requires_power = FALSE
 
 /area/lv624/lazarus/crashed_ship
-	name = "\improper Crashed Ship"
+	name = "\improper 坠毁飞船"
 	icon_state = "syndie-ship"
 
 /area/lv624/lazarus/crashed_ship_containers
-	name = "\improper Crashed Ship Containers"
+	name = "\improper 坠毁飞船集装箱区"
 	icon_state = "syndie-ship"

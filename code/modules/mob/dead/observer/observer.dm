@@ -638,7 +638,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/value = SStechtree.trees[1]
 
 	if(length(trees) > 1)
-		value = tgui_input_list(src, "选择要进入的科技树。", "进入科技树", trees)
+		value = localized_input_list(src, "选择要进入的科技树。", "进入科技树", trees)
 
 	if(!value)
 		return
@@ -879,7 +879,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/verb/hive_status()
 	set name = "Hive Status"
-	set desc = "查看巢群状态。"
+	set desc = "查看虫巢状态。"
 	set category = "Ghost.View"
 
 	var/list/hives = list()
@@ -898,7 +898,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else if(length(hives) == 1) // Only one hive, don't need an input menu for that
 		last_hive_checked.hive_ui.open_hive_status(src)
 	else
-		faction = localized_input_list(src, "选择要打开的巢群状态菜单。", "选择巢群", hives, theme="hive_status")
+		faction = localized_input_list(src, "选择要打开的虫巢状态菜单。", "选择虫巢", hives, theme="hive_status")
 		if(!faction)
 			to_chat(src, SPAN_ALERT("虫巢选择出错，操作中止。"))
 			return
@@ -955,7 +955,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/verb/join_as_lesser_drone()
 	set category = "Ghost.Join"
 	set name = "Join as a Lesser Drone"
-	set desc = "尝试以次级工蜂身份加入，支援巢群。"
+	set desc = "尝试以次级工蜂身份加入，支援虫巢。"
 
 	if (!client)
 		return
@@ -1050,7 +1050,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/list/freed_mob_choices = list() // the list we'll be choosing from
 	for(var/role in mobs_by_role)
 		for(var/freed_mob in mobs_by_role[role])
-			freed_mob_choices["[freed_mob] ([role])"] = freed_mob
+			freed_mob_choices["[freed_mob]（[get_statistic_display_label(role)]）"] = freed_mob
 
 	var/choice = tgui_input_list(usr, "选择一个可接管角色：", "以可接管角色身份加入", freed_mob_choices)
 	if(!choice)
@@ -1190,7 +1190,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Go DNR"
 	set desc = "阻止你的角色被复苏。"
 
-	if(alert("要设置为拒绝复苏吗？", "选择拒绝复苏", "Yes", "No") == "Yes")
+	if(localized_native_alert(src, "要设置为拒绝复苏吗？", "选择拒绝复苏", "Yes", "No") == "Yes")
 		can_reenter_corpse = FALSE
 		var/ref
 		var/mob/living/carbon/human/H = mind.original
@@ -1237,10 +1237,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(SShijack)
 		var/eta_status = SShijack.get_evac_eta()
 		if(eta_status)
-			. += "疏散目标：[localized_player_label(eta_status)]"
+			. += "疏散目标：[SShijack.get_eta_display(eta_status)]"
 
 		if(SShijack.sd_unlocked)
-			. += "自毁目标：[SShijack.get_sd_eta()]"
+			. += "自毁目标：[SShijack.get_eta_display(SShijack.get_sd_eta())]"
 
 	if(client.prefs?.be_special & BE_ALIEN_AFTER_DEATH)
 		if(larva_queue_cached_message)
@@ -1262,10 +1262,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/proc/format_jump(atom/target, jump_tag)
 	if(ismob(target))
 		if(!jump_tag)
-			jump_tag = "FLW"
+			jump_tag = "跟随"
 		return "(<a href='byond://?src=\ref[src];track=\ref[target]'>[jump_tag]</a>)"
 	if(!jump_tag)
-		jump_tag = "JMP"
+		jump_tag = "跳转"
 	var/turf/turf = get_turf(target)
 	return "(<a href='byond://?src=\ref[src];jumptocoord=1;X=[turf.x];Y=[turf.y];Z=[turf.z]'>[jump_tag]</a>)"
 

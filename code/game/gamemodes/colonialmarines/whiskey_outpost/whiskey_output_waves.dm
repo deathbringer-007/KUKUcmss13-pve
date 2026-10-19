@@ -47,14 +47,14 @@
 		to_chat(xeno_candidate, SPAN_WARNING("目前没有可用异形。"))
 		return FALSE
 
-	var/userInput = tgui_input_list(usr, "可用异形", "以异形身份加入", available_xenos, theme="hive_status")
+	var/userInput = localized_input_list(usr, "可用异形", "以异形身份加入", available_xenos, theme="hive_status")
 
 	if(!xeno_candidate)
 		return FALSE
 
 	if(GLOB.RoleAuthority.castes_by_name[userInput])
 		if(!(userInput in xeno_pool))
-			to_chat(xeno_candidate, SPAN_WARNING("你选择的阶级已被其他人占用。"))
+			to_chat(xeno_candidate, SPAN_WARNING("你选择的种姓已被其他人占用。"))
 			return FALSE
 		var/spawn_loc = pick(xeno_spawns)
 		var/xeno_type = GLOB.RoleAuthority.get_caste_by_text(userInput)

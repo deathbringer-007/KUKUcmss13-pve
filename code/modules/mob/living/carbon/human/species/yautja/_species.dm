@@ -110,7 +110,7 @@
 	hive.hive_structure_types[XENO_STRUCTURE_NEST] = /datum/construction_template/xenomorph/nest
 	hive.hive_structures_limit[XENO_STRUCTURE_NEST]++
 
-	xeno_message(SPAN_XENOANNOUNCE("虫巢感应到一名猎头者被感染了！特殊建筑列表现已开放厚重树脂巢穴！"),hivenumber = hive.hivenumber)
+	xeno_message(SPAN_XENOANNOUNCE("虫巢感应到一名猎头者被感染了！特殊建筑列表现已开放厚实树脂巢穴！"),hivenumber = hive.hivenumber)
 
 /datum/species/yautja/handle_death(mob/living/carbon/human/H, gibbed)
 	if(gibbed)
@@ -135,12 +135,12 @@
 	set_predator_status(H, gibbed ? "Gibbed" : "Dead")
 
 	// Notify all yautja so they start the gear recovery
-	message_all_yautja("[H.real_name] has died at \the [get_area_name(H)].")
+	message_all_yautja("[H.real_name]已在[get_area_name(H)]死亡。")
 
 	if(H.hunter_data.thrall)
 		var/mob/living/carbon/T = H.hunter_data.thrall
-		message_all_yautja("[H.real_name]'s Thrall, [T.real_name] is now masterless.")
-		H.message_thrall("Your master has fallen!")
+		message_all_yautja("[H.real_name]的仆从[T.real_name]如今已失去主人。")
+		H.message_thrall("你的主人已倒下！")
 		H.hunter_data.thrall = null
 
 /datum/species/yautja/handle_dead_death(mob/living/carbon/human/H, gibbed)

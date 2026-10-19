@@ -343,8 +343,8 @@
 	newdir = angle2dir(angle)
 
 	visible_message(\
-			SPAN_WARNING("你看见鲜血从[src]的[O.display_name]喷涌而出！"),
-			SPAN_HIGHDANGER("鲜血从你的[O.display_name]喷涌而出！"),
+			SPAN_WARNING("你看见鲜血从[src]的[localized_player_label(O.display_name)]喷涌而出！"),
+			SPAN_HIGHDANGER("鲜血从你的[localized_player_label(O.display_name)]喷涌而出！"),
 			SPAN_HIGHDANGER("你听见血肉中液体喷涌的声音！"))
 	for(var/i = 1 to (floor(src.blood_volume / 160)))
 		var/reverse_odd_numbered_decals

@@ -82,7 +82,7 @@
 				<td><div unselectable="on">{{:helper.link('Rename Clan', '', { 'clan_href' : data.clan_id, 'clan_action': 'rename' })}}</div></td>
 			{{/if}}
 			{{if data.player_setdesc_clan}}
-				<td><div unselectable="on">{{:helper.link('Set Description', '', { 'clan_href' : data.clan_id, 'clan_action': 'setdesc' })}}</div></td>
+				<td><div unselectable="on">{{:helper.link('编辑描述', '', { 'clan_href' : data.clan_id, 'clan_action': 'setdesc' })}}</div></td>
 			{{/if}}
 			{{if data.player_sethonor_clan}}
 				<td><div unselectable="on">{{:helper.link('Set Honor', '', { 'clan_href' : data.clan_id, 'clan_action': 'sethonor' })}}</div></td>
@@ -106,8 +106,8 @@
 <table id="clan_list">
 	<tr style="text-align: left;">
 		<th class="noPadCell"></th>
-		<th>Name</th>
-		<th>Rank</th>
+		<th>账号</th>
+		<th>等级</th>
 		{{if data.player_modify_ranks}}
 			<th></th>
 		{{/if}}
@@ -126,7 +126,7 @@
 			<td>{{:keys.rank}}</td>
 			{{if data.player_rank_pos > keys.rank_pos}}
 				{{if data.player_modify_ranks}}
-					<td><div unselectable="on">{{:helper.link('Set Rank', '', { 'clan_target_href' : keys.player_id, 'clan_action': 'modifyrank' })}}</div></td>
+					<td><div unselectable="on">{{:helper.link('设置等级', '', { 'clan_target_href' : keys.player_id, 'clan_action': 'modifyrank' })}}</div></td>
 				{{/if}}
 				{{if data.player_move_clans}}
 					<td><div unselectable="on">{{:helper.link('Move Clans', '', { 'clan_target_href' : keys.player_id, 'clan_action': 'moveclan' })}}</div></td>

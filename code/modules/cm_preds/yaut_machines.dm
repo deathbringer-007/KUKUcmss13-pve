@@ -1,6 +1,6 @@
 /obj/structure/machinery/prop/almayer/CICmap/yautja
-	name = "猎手全息球"
-	desc = "猎手制造的球形装置，可显示猎场中猎物的位置。"
+	name = "铁血战士全息球"
+	desc = "铁血战士制造的球形装置，可显示猎场中猎物的位置。"
 	icon = 'icons/obj/structures/machinery/yautja_machines.dmi'
 	icon_state = "globe"
 	breakable = FALSE
@@ -45,14 +45,14 @@
 		to_chat(user, SPAN_NOTICE("这条肢体还没处理好。"))
 		return
 	icon_state = "vat_boiling"
-	to_chat(user, SPAN_WARNING("你放入[current_limb]并启动煮骨锅。"))
+	to_chat(user, SPAN_WARNING("你放入[localized_player_label(current_limb.name)]并启动煮骨锅。"))
 	if(!do_after(user, 15 SECONDS, INTERRUPT_NONE, BUSY_ICON_HOSTILE, current_limb))
-		to_chat(user, SPAN_NOTICE("你把[current_limb]从锅中拿了出来。"))
+		to_chat(user, SPAN_NOTICE("你把[localized_player_label(current_limb.name)]从锅中拿了出来。"))
 		icon_state = initial(icon_state)
 		return
 	icon_state = initial(icon_state)
 
 	var/obj/item/clothing/accessory/limb/skeleton/new_bone = new current_limb.bone_type(get_turf(src))
 	if(istype(new_bone, /obj/item/clothing/accessory/limb/skeleton/head))
-		new_bone.desc = SPAN_NOTICE("这颗头骨原本是[current_limb.name]。")
+		new_bone.desc = SPAN_NOTICE("这颗头骨原本是[localized_player_label(current_limb.name)]。")
 	qdel(current_limb)

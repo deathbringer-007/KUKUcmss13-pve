@@ -41,7 +41,7 @@
 /obj/effect/alien/resin/construction/get_examine_text(mob/user)
 	. = ..()
 	if((isxeno(user) || isobserver(user)) && linked_hive)
-		var/message = "这里已规划建造[template.name]，还需要[template.plasma_required - template.plasma_stored]点等离子体。"
+		var/message = "这里已规划建造[localized_player_label(template.name)]，还需要[template.plasma_required - template.plasma_stored]点等离子体。"
 		. += message
 
 /obj/effect/alien/resin/construction/attack_alien(mob/living/carbon/xenomorph/M)

@@ -48,7 +48,7 @@
 	var/datum/hive_status/hive = GLOB.hive_datum[hivenumber]
 	if (hive.color)
 		focused_atom.color = hive.color
-	focused_atom.name = "[lowertext(hive.prefix)][focused_atom.name]"
+	focused_atom.name = "[localized_player_label(lowertext(hive.prefix))][focused_atom.name]"
 
 /proc/get_xeno_stun_duration(mob/stun_mob, duration)
 	if(iscarbonsizexeno(stun_mob))

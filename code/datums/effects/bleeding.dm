@@ -132,8 +132,8 @@
 			if(prob(3))
 				has_been_bandaged = FALSE
 				affected_mob.visible_message(\
-			SPAN_WARNING("[affected_mob] 的[limb.display_name]上的纱布已经浸透了！"),
-			SPAN_HIGHDANGER("你[limb.display_name]上的纱布已经浸透了！"),
+			SPAN_WARNING("[affected_mob]的[localized_player_label(limb.display_name)]上的纱布已经浸透了！"),
+			SPAN_HIGHDANGER("你的[localized_player_label(limb.display_name)]上的纱布已经浸透了！"),
 			null) //fix later
 
 				var/obj/item/prop/colony/usedbandage/bloody_bandage = new /obj/item/prop/colony/usedbandage(affected_mob.loc)

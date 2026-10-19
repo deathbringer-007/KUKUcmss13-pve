@@ -933,7 +933,7 @@
 			else
 				SStracking.stop_tracking(H.assigned_fireteam, H) //remove from previous FT group
 				if(H.stat == CONSCIOUS)
-					to_chat(fireteam_leaders[localized_player_label(fireteam)], FONT_SIZE_BIG(SPAN_BLUE("[H.mind ? H.comm_title : ""] [H]已被调离你的战斗组。")))
+					to_chat(fireteam_leaders[fireteam], FONT_SIZE_BIG(SPAN_BLUE("[H.mind ? H.comm_title : ""] [H]已被调离你的战斗组。")))
 		fireteams[H.assigned_fireteam].Remove(H)
 		var/ft = H.assigned_fireteam
 		H.assigned_fireteam = fireteam
@@ -944,7 +944,7 @@
 			SStracking.start_tracking(fireteam, H)
 			if(H.stat == CONSCIOUS)
 				to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("你已被编入[localized_player_label(fireteam)]。请尽快向战斗组长报到。")))
-			to_chat(fireteam_leaders[localized_player_label(fireteam)], FONT_SIZE_BIG(SPAN_BLUE("[H.mind ? H.comm_title : ""][H]已被分配到你的战斗组。")))
+			to_chat(fireteam_leaders[fireteam], FONT_SIZE_BIG(SPAN_BLUE("[H.mind ? H.comm_title : ""][H]已被分配到你的战斗组。")))
 		else
 			SStracking.start_tracking(tracking_id, H)
 			if(H.stat == CONSCIOUS)
@@ -959,7 +959,7 @@
 			SStracking.start_tracking(fireteam, H)
 			if(H.stat == CONSCIOUS)
 				to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("你已被分配到[localized_player_label(fireteam)]。请尽快向战斗组长报到。")))
-			to_chat(fireteam_leaders[localized_player_label(fireteam)], FONT_SIZE_BIG(SPAN_BLUE("[H.mind ? H.comm_title : ""][H]已被分配到你的战斗组。")))
+			to_chat(fireteam_leaders[fireteam], FONT_SIZE_BIG(SPAN_BLUE("[H.mind ? H.comm_title : ""][H]已被分配到你的战斗组。")))
 		if(H.stat == CONSCIOUS)
 			to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("你已被分配到[localized_player_label(fireteam)]。")))
 	H.hud_set_squad()

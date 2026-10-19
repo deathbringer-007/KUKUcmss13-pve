@@ -20,7 +20,7 @@
 			// Moving around with fractured ribs won't do you any good
 				if(E.is_broken() && E.internal_organs && prob(15))
 					var/datum/internal_organ/I = pick(E.internal_organs)
-					custom_pain("你感到[E.display_name]里的断骨正在移动！", 1)
+					custom_pain("你感到[localized_player_label(E.display_name)]里的断骨正在移动！", 1)
 					var/damage = rand(3,5)
 					I.take_damage(damage)
 					pain.apply_pain(damage * PAIN_ORGAN_DAMAGE_MULTIPLIER)
@@ -29,7 +29,7 @@
 					var/datum/wound/internal_bleeding/internal_bleed = new
 					E.add_bleeding(internal_bleed, TRUE, damage)
 					E.wounds += internal_bleed
-					custom_pain("你感到[E.display_name]里的断骨正在割伤你！", 1)
+					custom_pain("你感到[localized_player_label(E.display_name)]里的断骨正在割伤你！", 1)
 					pain.apply_pain(damage * 1.5)
 
 	if(body_position == STANDING_UP && !buckled && prob(2))

@@ -106,7 +106,7 @@
 		current_maint["id"] = maint_ticket.ticket_id
 		current_maint["time"] = maint_ticket.ticket_time
 		current_maint["priority_status"] = maint_ticket.ticket_priority
-		current_maint["category"] = maint_ticket.ticket_name
+		current_maint["category"] = localized_player_label(maint_ticket.ticket_name)
 		current_maint["details"] = maint_ticket.ticket_details
 		current_maint["status"] = maint_ticket.ticket_status
 		current_maint["submitter"] = maint_ticket.ticket_submitter
@@ -234,7 +234,7 @@
 				return FALSE
 
 			if((authentication >= APOLLO_ACCESS_REPORTER) && !priority_report)
-				var/is_priority = tgui_alert(user, "这是优先报告吗？", "优先级设置", list("Yes", "No"))
+				var/is_priority = localized_tgui_alert(user, "这是优先报告吗？", "优先级设置", list("Yes", "No"))
 				if(is_priority == "Yes")
 					priority_report = TRUE
 
@@ -259,14 +259,14 @@
 			var/assigned = ticket.ticket_assignee
 			if(assigned)
 				if(assigned == last_login)
-					var/prompt = tgui_alert(user, "你已经接取了这张工单！要放弃接取吗？", "放弃工单", list("Yes", "No"))
+					var/prompt = localized_tgui_alert(user, "你已经接取了这张工单！要放弃接取吗？", "放弃工单", list("Yes", "No"))
 					if(prompt != "Yes")
 						return FALSE
 					/// set ticket back to pending
 					ticket.ticket_assignee = null
 					ticket.ticket_status = TICKET_PENDING
 					return claim
-				var/choice = tgui_alert(user, "这张工单已由 [assigned] 接取！要覆盖对方的接取记录吗？", "覆盖接取记录", list("Yes", "No"))
+				var/choice = localized_tgui_alert(user, "这张工单已由 [assigned] 接取！要覆盖对方的接取记录吗？", "覆盖接取记录", list("Yes", "No"))
 				if(choice != "Yes")
 					claim = FALSE
 			if(claim)
@@ -296,7 +296,7 @@
 			if(ticket.ticket_assignee != last_login && ticket.ticket_assignee) //must be claimed by you or unclaimed.)
 				to_chat(user, SPAN_WARNING("你不能更新未分配给自己的工单！"))
 				return FALSE
-			var/choice = tgui_alert(user, "你想将工单标记为什么状态？", "标记", list(TICKET_COMPLETED, TICKET_REJECTED), 20 SECONDS)
+			var/choice = localized_tgui_alert(user, "你想将工单标记为什么状态？", "标记", list(TICKET_COMPLETED, TICKET_REJECTED), 20 SECONDS)
 			switch(choice)
 				if(TICKET_COMPLETED)
 					ticket.ticket_status = TICKET_COMPLETED

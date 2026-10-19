@@ -66,6 +66,7 @@ const MainMenu = (props) => {
   const {
     vote_in_progress,
     vote_choices,
+    vote_choice_labels,
     vote_title,
     is_admin,
     vote_has_voted,
@@ -87,7 +88,7 @@ const MainMenu = (props) => {
                         textAlign="center"
                         className="VoteMenu__Textbox"
                       >
-                        {key}
+                        {vote_choice_labels[key] || key}
                       </Box>
                     </Flex.Item>
                     <Flex.Item pl={1}>

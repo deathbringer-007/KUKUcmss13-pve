@@ -322,14 +322,14 @@
 
 		if(S.burn_dam > 0 && use(1))
 			if(self_fixing)
-				user.visible_message(SPAN_WARNING("[user]开始修复自己[S.display_name]上的烧伤。"), \
-					SPAN_WARNING("你开始小心修补自己[S.display_name]上的烧伤，以免失去保修资格。"))
+				user.visible_message(SPAN_WARNING("[user]开始修复自己[localized_player_label(S.display_name)]上的烧伤。"), \
+					SPAN_WARNING("你开始小心修补自己[localized_player_label(S.display_name)]上的烧伤，以免失去保修资格。"))
 				if(!do_after(user, 30, INTERRUPT_ALL, BUSY_ICON_FRIENDLY))
 					return
 
 			S.heal_damage(0, 15, TRUE)
 			H.pain.recalculate_pain()
-			user.visible_message(SPAN_DANGER("[user]用[src]修复了[M]的[S.display_name]上的部分烧伤。"))
+			user.visible_message(SPAN_DANGER("[user]用[src]修复了[M]的[localized_player_label(S.display_name)]上的部分烧伤。"))
 			return
 		else
 			to_chat(user, "没有需要修复的损伤！")
