@@ -30,7 +30,7 @@ GLOBAL_LIST_INIT(hive_alliable_factions, generate_alliable_factions())
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "HiveFaction", "[assoc_hive.name] Faction Panel")
+		ui = new(user, src, "HiveFaction", "[localized_player_label(assoc_hive.name)]阵营面板")
 		ui.open()
 		ui.set_autoupdate(FALSE)
 

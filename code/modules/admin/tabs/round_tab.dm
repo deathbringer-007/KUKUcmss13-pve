@@ -178,7 +178,7 @@
 	else
 		SSticker.delay_start = !SSticker.delay_start
 		message_admins("[SPAN_NOTICE("[key_name(usr)] [SSticker.delay_start ? "delayed the round start" : "has made the round start normally"].")]")
-		to_chat(world, SPAN_CENTERBOLD("The game start has been [SSticker.delay_start ? "delayed" : "continued"]."))
+		to_chat(world, SPAN_CENTERBOLD("回合开始倒计时已[SSticker.delay_start ? "暂停" : "恢复"]。"))
 		return
 
 /datum/admins/proc/startnow()

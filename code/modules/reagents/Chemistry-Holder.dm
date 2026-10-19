@@ -106,6 +106,12 @@
 
 	return the_name
 
+/datum/reagents/proc/get_master_reagent_display_name()
+	var/datum/reagent/master_reagent = get_master_reagent()
+	if(!master_reagent)
+		return null
+	return master_reagent.localized_name || master_reagent.name
+
 /datum/reagents/proc/get_master_reagent_id()
 	var/the_id = null
 	var/the_volume = 0

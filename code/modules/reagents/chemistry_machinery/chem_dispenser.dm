@@ -144,7 +144,7 @@
 	var/beakerCurrentVolume = 0
 	if(beaker && beaker.reagents && length(beaker.reagents.reagent_list))
 		for(var/datum/reagent/current_reagent in beaker.reagents.reagent_list)
-			beakerContents += list(list("name" = current_reagent.name, "volume" = current_reagent.volume))  // list in a list because Byond merges the first list...
+			beakerContents += list(list("name" = current_reagent.localized_name || current_reagent.name, "volume" = current_reagent.volume))  // list in a list because Byond merges the first list...
 			beakerCurrentVolume += current_reagent.volume
 	.["beakerContents"] = beakerContents
 
@@ -159,7 +159,7 @@
 	for(var/re in dispensable_reagents)
 		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
 		if(temp)
-			var/chemname = temp.name
+			var/chemname = temp.localized_name || temp.name
 			chemicals.Add(list(list("title" = chemname, "id" = temp.id)))
 	.["chemicals"] = chemicals
 

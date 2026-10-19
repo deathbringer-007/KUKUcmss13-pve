@@ -62,7 +62,7 @@ const MaterialsData = (props) => {
               value={materials[category] / capacity[category]}
             >
               <Box textAlign="center">
-                {{ metal: '金属', glass: '玻璃' }[category] ??
+                {{ metal: '金属', glass: '玻璃', plastic: '塑料' }[category] ??
                   capitalize(category)}
                 : {materials[category]}/{capacity[category]}
               </Box>
@@ -81,7 +81,7 @@ const CurrentlyMaking = (props) => {
 
   const MakingName =
     '正在制造：' +
-    capitalize(currently_making.name) +
+    capitalize(currently_making.display_name || currently_making.name) +
     (currently_making.multiplier > 1
       ? ' (x' + currently_making.multiplier + ')'
       : '');
@@ -117,7 +117,7 @@ const QueueList = (props) => {
                 <Button>
                   {item.index +
                     ': ' +
-                    capitalize(item.name) +
+                    capitalize(item.display_name || item.name) +
                     (item.multiplier > 1 ? ' (x' + item.multiplier + ')' : '')}
                 </Button>
                 <Box width="5px" />
@@ -170,7 +170,8 @@ const PrintablesSection = (props) => {
   const filteredPrintables = printables.filter(
     (val) =>
       (val.recipe_category === currentCategory || currentCategory === 'All') &&
-      val.name.toLowerCase().match(currentSearch),
+      ((val.display_name || val.name).toLowerCase().match(currentSearch) ||
+        val.name.toLowerCase().match(currentSearch)),
   );
 
   return (
@@ -229,16 +230,18 @@ const PrintablesSection = (props) => {
                           })
                         }
                       >
-                        {capitalize(val.name) +
+                        {capitalize(val.display_name || val.name) +
                           ' (' + // sorry for this shitcode, also yes this will break if an autolathe uses more than 2 material types
-                          (val.materials[Object.keys(materials)[0]] &&
-                          val.materials[Object.keys(materials)[1]]
-                            ? val.materials[Object.keys(materials)[0]] +
-                              ', ' +
-                              val.materials[Object.keys(materials)[1]]
-                            : val.materials[Object.keys(materials)[0]]
-                              ? val.materials[Object.keys(materials)[0]]
-                              : val.materials[Object.keys(materials)[1]]) +
+                          (typeof val.materials === 'string'
+                            ? val.materials
+                            : val.materials[Object.keys(materials)[0]] &&
+                                val.materials[Object.keys(materials)[1]]
+                              ? val.materials[Object.keys(materials)[0]] +
+                                ', ' +
+                                val.materials[Object.keys(materials)[1]]
+                              : val.materials[Object.keys(materials)[0]]
+                                ? val.materials[Object.keys(materials)[0]]
+                                : val.materials[Object.keys(materials)[1]]) +
                           ') '}
                       </Button>
                     </Flex.Item>

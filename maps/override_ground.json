@@ -2,7 +2,7 @@
     "override_map": true,
     "map_name": "Area of Operation",
     "map_item_type": "/obj/item/map/big_red_map",
-    "announce_text": "Now in orbit above Area of Operation.",
+    "announce_text": "现已进入行动区域上空的轨道。",
     "camouflage": "jungle",
     "traits": [{ "Ground": true }],
     "gamemodes": [

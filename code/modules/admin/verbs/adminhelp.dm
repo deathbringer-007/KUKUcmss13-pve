@@ -242,7 +242,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	player_interactions = list()
 
 	if(is_bwoink)
-		AddInteraction("<font color='blue'>[key_name_admin(usr)] PM'd [LinkedReplyName()]</font>", player_message = "<font color='blue'>[key_name_admin(usr, include_name = FALSE)] PM'd [LinkedReplyName()]</font>")
+		AddInteraction("<font color='blue'>[key_name_admin(usr)] PM'd [LinkedReplyName()]</font>", player_message = "<font color='blue'>[key_name_admin(usr, include_name = FALSE)]向[LinkedReplyName()]发送了私信</font>")
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] created</font>")
 	else
 		MessageNoRecipient(msg_raw, urgent)
@@ -292,7 +292,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/send_message_to_external(message, urgent = FALSE)
 	if(urgent)
 		var/extra_message = CONFIG_GET(string/urgent_ahelp_message)
-		to_chat(initiator, SPAN_BOLDNOTICE("Notified admins to prioritize your ticket"))
+		to_chat(initiator, SPAN_BOLDNOTICE("已通知管理员优先处理你的求助。"))
 		var/datum/discord_embed/embed = format_embed_discord(message)
 		embed.content = extra_message
 		embed.footer = "This player requested an admin"
@@ -304,7 +304,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	log_admin_private("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
 	if(admin_number_present <= 0)
-		to_chat(initiator, SPAN_NOTICE("No active admins are online, your adminhelp was sent to admins who are available through IRC or Discord."), confidential = TRUE)
+		to_chat(initiator, SPAN_NOTICE("目前没有活跃管理员在线，你的求助已通过IRC或Discord发送给可联系的管理员。"), confidential = TRUE)
 		heard_by_no_admins = TRUE
 		var/regular_webhook_url = CONFIG_GET(string/regular_adminhelp_webhook_url)
 		if(regular_webhook_url && (!urgent || regular_webhook_url != CONFIG_GET(string/urgent_adminhelp_webhook_url)))
@@ -425,7 +425,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	//show it to the person adminhelping too
 	to_chat(initiator,
 		type = MESSAGE_TYPE_ADMINPM,
-		html = SPAN_ADMINNOTICE("PM to-<b>Admins</b>: <span class='linkify'>[msg]</span>"),
+		html = SPAN_ADMINNOTICE("发送给<b>管理员</b>的私信: <span class='linkify'>[msg]</span>"),
 		confidential = TRUE)
 	log_ahelp(id, "Ticket Opened", msg, null, initiator.ckey, urgent = urgent)
 
@@ -448,7 +448,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(initiator)
 		initiator.current_ticket = src
 
-	AddInteraction("<font color='purple'>Reopened by [key_name_admin(usr)]</font>", player_message = "Ticket reopened!")
+	AddInteraction("<font color='purple'>Reopened by [key_name_admin(usr)]</font>", player_message = "求助已重新开启！")
 	var/msg = SPAN_ADMINHELP("Ticket [TicketHref("#[id]")] reopened by [key_name_admin(usr)].")
 	message_admins(msg)
 	log_admin_private(msg)
@@ -480,7 +480,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	RemoveActive()
 	state = AHELP_CLOSED
 	GLOB.ahelp_tickets.ListInsert(src)
-	AddInteraction("<font color='red'>Closed by [key_name].</font>", player_message = "<font color='red'>Ticket closed!</font>")
+	AddInteraction("<font color='red'>Closed by [key_name].</font>", player_message = "<font color='red'>求助已关闭！</font>")
 	if(!silent)
 		var/msg = "Ticket [TicketHref("#[id]")] closed by [key_name]."
 		message_admins(msg)
@@ -505,8 +505,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	addtimer(CALLBACK(initiator, /client/proc/giveadminhelpverb), 50)
 
-	AddInteraction("<font color='green'>Resolved by [key_name].</font>", player_message = "<font color='green'>Ticket resolved!</font>")
-	to_chat(initiator, SPAN_ADMINHELP("Your ticket has been resolved by an admin. The Adminhelp verb will be returned to you shortly."), confidential = TRUE)
+	AddInteraction("<font color='green'>Resolved by [key_name].</font>", player_message = "<font color='green'>求助已处理完毕！</font>")
+	to_chat(initiator, SPAN_ADMINHELP("管理员已处理完你的求助。你很快就可以再次使用管理员求助指令。"), confidential = TRUE)
 	if(!silent)
 		var/msg = "Ticket [TicketHref("#[id]")] resolved by [key_name]"
 		message_admins(msg)
@@ -537,8 +537,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				return
 			initiator.current_mhelp.broadcast_unhandled(message, initiator)
 
-	AddInteraction("Deferred to Mentors by [key_name_admin(usr)].", player_message = "Deferred to Mentors.")
-	to_chat(initiator, SPAN_ADMINHELP("Your ticket has been deferred to Mentors."))
+	AddInteraction("Deferred to Mentors by [key_name_admin(usr)].", player_message = "已转交给导师。")
+	to_chat(initiator, SPAN_ADMINHELP("你的求助已转交给导师。"))
 	log_admin_private("Ticket [TicketHref("#[id]")] deferred to mentors by [usr.key].")
 	log_ahelp(id, "Defer", "Deferred to mentors by [usr.key]", null,  usr.ckey)
 	Close(silent = TRUE)
@@ -558,8 +558,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			return
 
 	var/key_name = key_name_admin(user)
-	AddInteraction("Marked by [key_name].", player_message = "Ticket marked!")
-	to_chat(initiator, SPAN_ADMINHELP("An admin is preparing to respond to your ticket."))
+	AddInteraction("Marked by [key_name].", player_message = "管理员已接手求助！")
+	to_chat(initiator, SPAN_ADMINHELP("一名管理员正准备回复你的求助。"))
 	var/msg = "Ticket [TicketHref("#[id]")] marked by [key_name]."
 	message_admins(msg)
 	log_admin_private(msg)
@@ -568,7 +568,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /datum/admin_help/proc/unmark_ticket()
 	var/key_name = key_name_admin(usr)
-	AddInteraction("Unmarked by [key_name] (previously [marked_admin]).", player_message = "Ticket unmarked!")
+	AddInteraction("Unmarked by [key_name] (previously [marked_admin]).", player_message = "管理员已取消接手求助。")
 	var/msg = "Ticket [TicketHref("#[id]")] unmarked by [key_name]."
 	message_admins(msg)
 	log_admin_private(msg)
@@ -592,14 +592,14 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 		SEND_SOUND(initiator, sound('sound/effects/adminhelp_new.ogg'))
 
-		to_chat(initiator, "<font color='red' size='4'><b>- AdminHelp Rejected! -</b></font>", confidential = TRUE)
-		to_chat(initiator, "<font color='red'><b>Your admin help was rejected.</b> The adminhelp verb has been returned to you so that you may try again.</font>", confidential = TRUE)
-		to_chat(initiator, "Please try to be calm, clear, and descriptive in admin helps, do not assume the admin has seen any related events, and clearly state the names of anybody you are reporting.", confidential = TRUE)
+		to_chat(initiator, "<font color='red' size='4'><b>- 管理员求助已退回！ -</b></font>", confidential = TRUE)
+		to_chat(initiator, "<font color='red'><b>你的管理员求助已被退回。</b>你可以重新使用管理员求助指令提交。</font>", confidential = TRUE)
+		to_chat(initiator, "提交求助时请保持冷静，清楚、具体地描述情况。不要假定管理员已看到相关事件，并请明确写出你举报的玩家姓名。", confidential = TRUE)
 
 	var/msg = "Ticket [TicketHref("#[id]")] rejected by [key_name]"
 	message_admins(msg)
 	log_admin_private(msg)
-	AddInteraction("Rejected by [key_name].", player_message = "Ticket rejected!")
+	AddInteraction("Rejected by [key_name].", player_message = "求助已退回！")
 	log_ahelp(id, "Rejected", "Rejected by [usr.key]", null, usr.ckey)
 	Close(silent = TRUE)
 
@@ -623,7 +623,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(!response || !istype(response))
 		return
 
-	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as [response.title]! -</b></font><br>"
+	var/msg = "<font color='red' size='4'><b>- 管理员求助已标记为[response.localized_title || response.title]！ -</b></font><br>"
 	msg += "<font color='red'>[response.message]</font>"
 
 	if(initiator)
@@ -632,7 +632,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	msg = "Ticket [TicketHref("#[id]")] marked as [response.title] by [key_name]"
 	message_admins(msg)
 	log_admin_private(msg)
-	AddInteraction("Marked as [response.title] by [key_name]", player_message = "Marked as [response.title]!")
+	AddInteraction("Marked as [response.title] by [key_name]", player_message = "已标记为[response.localized_title || response.title]！")
 	log_ahelp(id, "Autoreply", "Marked as [response.title] by [usr.key]", null,  usr.ckey)
 	if(response.closer)
 		Resolve(silent = TRUE)
@@ -732,23 +732,23 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			defer_to_mentors()
 
 /datum/admin_help/proc/player_ticket_panel()
-	var/list/dat = list("<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Player Ticket</title></head>")
-	dat += "<b>State: "
+	var/list/dat = list("<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>我的求助</title></head>")
+	dat += "<b>状态："
 	switch(state)
 		if(AHELP_ACTIVE)
-			dat += "<font color='red'>OPEN</font></b>"
+			dat += "<font color='red'>处理中</font></b>"
 		if(AHELP_RESOLVED)
-			dat += "<font color='green'>RESOLVED</font></b>"
+			dat += "<font color='green'>已解决</font></b>"
 		if(AHELP_CLOSED)
-			dat += "CLOSED</b>"
+			dat += "已关闭</b>"
 		else
-			dat += "UNKNOWN</b>"
-	dat += "\n[FOURSPACES]<A href='byond://?_src_=admin_holder;[HrefToken(forceGlobal = TRUE)];player_ticket_panel=1'>Refresh</A>"
-	dat += "<br><br>Opened at: [gameTimestamp("hh:mm:ss", opened_at)] (Approx [DisplayTimeText(world.time - opened_at)] ago)"
+			dat += "未知</b>"
+	dat += "\n[FOURSPACES]<A href='byond://?_src_=admin_holder;[HrefToken(forceGlobal = TRUE)];player_ticket_panel=1'>刷新</A>"
+	dat += "<br><br>开启时间：[gameTimestamp("hh:mm:ss", opened_at)] （约[DisplayTimeText(world.time - opened_at)]前）"
 	if(closed_at)
-		dat += "<br>Closed at: [gameTimestamp("hh:mm:ss", closed_at)] (Approx [DisplayTimeText(world.time - closed_at)] ago)"
+		dat += "<br>关闭时间：[gameTimestamp("hh:mm:ss", closed_at)] （约[DisplayTimeText(world.time - closed_at)]前）"
 	dat += "<br><br>"
-	dat += "<br><b>Log:</b><br><br>"
+	dat += "<br><b>记录：</b><br><br>"
 	for (var/interaction in player_interactions)
 		dat += "[interaction]<br>"
 
@@ -845,7 +845,7 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 
 	//handle muting and automuting
 	if(user_client.prefs.muted & MUTE_ADMINHELP)
-		to_chat(user_client, SPAN_DANGER("Error: Admin-PM: You cannot send adminhelps (Muted)."), confidential = TRUE)
+		to_chat(user_client, SPAN_DANGER("错误：你已被禁言，无法向管理员求助。"), confidential = TRUE)
 		return
 	if(user_client.handle_spam_prevention(message, MUTE_ADMINHELP))
 		return
@@ -881,7 +881,7 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 	set category = "Admin"
 	set name = "Adminhelp"
 	GLOB.admin_help_ui_handler.tgui_interact(mob)
-	to_chat(src, SPAN_BOLDNOTICE("Adminhelp failing to open or work? <a href='byond://?src=[REF(src)];tguiless_adminhelp=1'>Click here</a>"))
+	to_chat(src, SPAN_BOLDNOTICE("管理员求助界面无法打开或使用？ <a href='byond://?src=[REF(src)];tguiless_adminhelp=1'>点击此处</a>"))
 
 /client/verb/mentorhelp()
 	set category = "Admin"
@@ -891,7 +891,7 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 
 /client/proc/execute_mentorhelp()
 	if(current_mhelp && current_mhelp.open)
-		if(tgui_alert(src, "You already have a mentorhelp thread open, would you like to close it?", "Mentor Help", list("Yes", "No")) == "Yes")
+		if(localized_tgui_alert(src, "你已经有一条未关闭的导师求助，是否将其关闭？", "导师求助", list("Yes", "No")) == "Yes")
 			current_mhelp.close(src)
 		return
 	current_mhelp = new(src)
@@ -921,7 +921,7 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 			return
 
 		// client had no tickets this round
-		to_chat(src, SPAN_WARNING("You have not had an ahelp ticket this round."))
+		to_chat(src, SPAN_WARNING("你本回合尚未向管理员求助。"))
 		return
 
 	current_ticket.player_ticket_panel()

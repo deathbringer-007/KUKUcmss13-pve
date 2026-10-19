@@ -1,7 +1,7 @@
 /datum/species/synthetic/colonial/working_joe
 	name = SYNTH_WORKING_JOE
-	name_plural = "Working Joes"
-	death_message = "violently gargles fluid and seizes up, the glow in their eyes dimming..."
+	name_plural = "工作乔"
+	death_message = "喉间剧烈地涌起液体，身体僵住，双眼的光芒渐渐黯淡……"
 	uses_skin_color = FALSE
 	burn_mod = 0.65 // made for hazardous environments, withstanding temperatures up to 1210 degrees
 	mob_inherent_traits = list(TRAIT_SUPER_STRONG, TRAIT_INTENT_EYES, TRAIT_EMOTE_CD_EXEMPT, TRAIT_CANNOT_EAT, TRAIT_UNSTRIPPABLE, TRAIT_IRON_TEETH)
@@ -15,7 +15,7 @@
 
 /datum/species/synthetic/colonial/working_joe/hazard
 	name = SYNTH_HAZARD_JOE //TECHNICALLY the proper name would be Hazard Working Joes, but we will stick with Hazard Joe for now
-	name_plural = "Hazard Joes"
+	name_plural = "防护乔"
 	emote_panel_type = /datum/joe_emote_panel/hazard
 
 /datum/species/synthetic/colonial/working_joe/handle_post_spawn(mob/living/carbon/human/joe)
@@ -34,7 +34,7 @@
 	ui.ui_interact(usr)
 
 /datum/action/joe_emote_panel
-	name = "Open Voice Synthesizer"
+	name = "打开语音合成器"
 	action_icon_state = "looc_toggle"
 
 
@@ -65,7 +65,7 @@
 /datum/joe_emote_panel/proc/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "JoeEmotes")
+		ui = new(user, src, "JoeEmotes", "语音合成器")
 		ui.open()
 
 

@@ -52,7 +52,7 @@
 
 			turfs_visited++
 
-			new /obj/effect/xenomorph/acid_damage_delay(turf, damage, 7, FALSE, "You are blasted with a stream of high-velocity acid!", xeno)
+			new /obj/effect/xenomorph/acid_damage_delay(turf, damage, 7, FALSE, "一股高速酸液击中了你！", xeno)
 
 		xeno.visible_message(SPAN_XENODANGER("[xeno]向[affected_atom]发射了一大股酸液！"), SPAN_XENODANGER("我们向[affected_atom]发射了一大股酸液！"))
 		remove_stack_effects("我们的速度恢复正常了！")
@@ -255,10 +255,10 @@
 		acid_bolt_message = "一股强劲的酸液"
 
 	xeno.visible_message(SPAN_XENODANGER("[xeno]发射了" + acid_bolt_message + "，射向[affected_atom]！"), SPAN_XENODANGER("我们发射了" + acid_bolt_message + "，射向[affected_atom]！"))
-	new /obj/effect/xenomorph/acid_damage_delay/boiler_landmine(turf, damage, delay, empowered, "You are blasted with " + acid_bolt_message + "!", xeno)
+	new /obj/effect/xenomorph/acid_damage_delay/boiler_landmine(turf, damage, delay, empowered, "你被" + acid_bolt_message + "击中了！", xeno)
 
 	for (var/turf/target_turf in orange(1, turf))
-		new /obj/effect/xenomorph/acid_damage_delay/boiler_landmine(target_turf, damage, delay, empowered, "You are blasted with a " + acid_bolt_message + "!", xeno)
+		new /obj/effect/xenomorph/acid_damage_delay/boiler_landmine(target_turf, damage, delay, empowered, "你被" + acid_bolt_message + "击中了！", xeno)
 
 	if(empowered)
 		empowered = FALSE

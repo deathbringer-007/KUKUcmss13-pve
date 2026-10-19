@@ -1,5 +1,5 @@
 /datum/hive_status_ui
-	var/name = "Hive Status"
+	var/name = "虫巢状态"
 
 	// Data to pass when rendering the UI (not static)
 	var/total_xenos
@@ -122,9 +122,9 @@
 	if(assoc_hive.get_structure_count(XENO_STRUCTURE_PYLON) < 1)
 		pylon_status = ""
 	else if(assoc_hive.hit_larva_pylon_limit)
-		pylon_status = "The hive's power has surpassed what the pylons can provide."
+		pylon_status = "虫巢的力量已超出巢群尖塔所能提供的增益。"
 	else
-		pylon_status = "Pylons are strengthening our numbers!"
+		pylon_status = "巢群尖塔正在壮大我们的数量！"
 	if(send_update)
 		SStgui.update_uis(src)
 
@@ -163,7 +163,7 @@
 	. = list()
 	.["user_ref"] = REF(user)
 	.["hive_color"] = assoc_hive.ui_color
-	.["hive_name"] = assoc_hive.name
+	.["hive_name"] = localized_player_label(assoc_hive.name)
 
 /datum/hive_status_ui/proc/open_hive_status(mob/user)
 	if(!user)
@@ -181,7 +181,7 @@
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "HiveStatus", "[assoc_hive.name] Status")
+		ui = new(user, src, "HiveStatus", "[localized_player_label(assoc_hive.name)]状态")
 		ui.open()
 		ui.set_autoupdate(FALSE)
 

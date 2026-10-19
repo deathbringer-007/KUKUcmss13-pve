@@ -11,7 +11,7 @@
         0.0
     ],
     "map_item_type": "/obj/item/map/kutjevo_map",
-    "announce_text": "An automated distress signal has been received from Weyland-Yutani colony Kutjevo Refinery, known for botanical research, export, and raw materials processing and refinement. The ###SHIPNAME### has been dispatched to investigate.",
+    "announce_text": "已收到维兰德-汤谷所属库特耶沃精炼厂发出的自动求救信号。该殖民地以植物研究、出口，以及原料加工与精炼而闻名。###SHIPNAME###已奉命前往调查。",
     "monkey_types": [
         "neaera",
         "stok"

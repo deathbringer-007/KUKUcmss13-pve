@@ -44,10 +44,10 @@ var NanoUtility = function ()
 } (); 
 
 if (typeof jQuery == 'undefined') {  
-	alert('ERROR: Javascript library failed to load!');
+	alert('错误：JavaScript库加载失败！');
 }
 if (typeof doT == 'undefined') {  
-	alert('ERROR: Template engine failed to load!');
+	alert('错误：模板引擎加载失败！');
 }	
 
 // All scripts are initialised here, this allows control of init order

@@ -33,13 +33,13 @@
 
 	message_admins("[key_name_admin(src)] granted [key_name_admin(target)] access to runtime logs this round.")
 	target.verbs |= /client/proc/getruntimelog
-	to_chat(target, "<font color='red'>You have been granted access to runtime logs. Please use them responsibly or risk being banned.</font>")
+	to_chat(target, "<font color='red'>你已获准查看运行错误日志。请负责任地使用，否则可能被封禁。</font>")
 
 //This proc allows download of runtime logs saved within the data/logs/ folder by dreamdeamon.
 //It works similarly to show-server-log.
 /client/proc/getruntimelog()
 	set name = ".getruntimelog"
-	set desc = "Pick a logfile from data/logs/runtime to view."
+	set desc = "从data/logs/runtime选择要查看的日志文件。"
 	set category = null
 
 	var/path = browse_files("data/logs/runtime/")
@@ -50,7 +50,7 @@
 		return
 
 	message_admins("[key_name_admin(src)] accessed file: [path]")
-	to_chat(src, "Attempting to send file, this may take a fair few minutes if the file is very large.")
+	to_chat(src, CLIENT_IS_STAFF(src) ? "Attempting to send file, this may take a fair few minutes if the file is very large." : "正在发送文件；如果文件很大，可能需要几分钟。")
 	src << ftp(file(path))
 
 //This proc allows download of past server logs saved within the data/logs/ folder.

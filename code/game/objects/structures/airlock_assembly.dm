@@ -17,7 +17,7 @@
 	density = TRUE
 	var/state = STATE_STANDARD
 	var/base_icon_state = ""
-	var/base_name = "airlock"
+	var/base_name = "气闸门"
 	var/obj/item/circuitboard/airlock/electronics = null
 	var/airlock_type = "generic" //the type path of the airlock once completed
 	var/glass = AIRLOCK_NOGLASS // see defines
@@ -93,21 +93,21 @@
 			if(anchored)
 				var/temp = ""
 				if(width == 1)
-					temp += "It looks like a [SPAN_HELPFUL("扳手")] will unsecure it. "
-				helpmessage += "[temp]You can insert an [SPAN_HELPFUL("气闸门电路板")]. "
+					temp += "看起来可用[SPAN_HELPFUL("扳手")]松开它。"
+				helpmessage += "[temp]可装入[SPAN_HELPFUL("气闸门电路板")]。"
 				if(!glass)
-					helpmessage += "Insert some [SPAN_HELPFUL("玻璃板")] to add windows to it. "
+					helpmessage += "加入[SPAN_HELPFUL("玻璃板")]可为其安装窗户。"
 				else if(glass == AIRLOCK_GLASSIN)
-					helpmessage += "You can take out the windows with a [SPAN_HELPFUL("螺丝刀")]. "
+					helpmessage += "可用[SPAN_HELPFUL("螺丝刀")]拆下窗户。"
 			else
-				helpmessage += "It looks like a [SPAN_HELPFUL("扳手")] will secure it. "
+				helpmessage += "看起来可用[SPAN_HELPFUL("扳手")]固定它。"
 		if(STATE_CIRCUIT)
-			helpmessage += "Add [SPAN_HELPFUL("电缆卷")] to the circuit. "
+			helpmessage += "用[SPAN_HELPFUL("电缆卷")]为电路板接线。"
 		if(STATE_WIRES)
-			helpmessage += "Secure the circuit with a [SPAN_HELPFUL("螺丝刀")]. "
+			helpmessage += "用[SPAN_HELPFUL("螺丝刀")]固定电路板。"
 		if(STATE_SCREWDRIVER)
-			helpmessage += "[SPAN_HELPFUL("焊接")] it all in place. "
-	helpmessage += "You can name it with a [SPAN_HELPFUL("笔")]."
+			helpmessage += "通过[SPAN_HELPFUL("焊接")]将全部部件固定到位。"
+	helpmessage += "可用[SPAN_HELPFUL("笔")]为其命名。"
 	. += SPAN_NOTICE(helpmessage)
 
 /obj/structure/airlock_assembly/attackby(obj/item/attacking_item as obj, mob/user as mob)
@@ -314,77 +314,77 @@
 
 /obj/structure/airlock_assembly/airlock_assembly_com
 	base_icon_state = "com"
-	base_name = "Command Airlock"
+	base_name = "指挥区气闸门"
 	airlock_type = "command"
 
 /obj/structure/airlock_assembly/airlock_assembly_sec
 	base_icon_state = "sec"
-	base_name = "Security Airlock"
+	base_name = "安保区气闸门"
 	airlock_type = "security"
 
 /obj/structure/airlock_assembly/airlock_assembly_eng
 	base_icon_state = "eng"
-	base_name = "Engineering Airlock"
+	base_name = "工程区气闸门"
 	airlock_type = "engineering"
 
 /obj/structure/airlock_assembly/airlock_assembly_min
 	base_icon_state = "min"
-	base_name = "Mining Airlock"
+	base_name = "采矿区气闸门"
 	airlock_type = "mining"
 
 /obj/structure/airlock_assembly/airlock_assembly_atmo
 	base_icon_state = "atmo"
-	base_name = "Atmospherics Airlock"
+	base_name = "大气设备区气闸门"
 	airlock_type = "atmos"
 
 /obj/structure/airlock_assembly/airlock_assembly_research
 	base_icon_state = "res"
-	base_name = "Research Airlock"
+	base_name = "科研区气闸门"
 	airlock_type = "research"
 
 /obj/structure/airlock_assembly/airlock_assembly_science
 	base_icon_state = "sci"
-	base_name = "Science Airlock"
+	base_name = "科学区气闸门"
 	airlock_type = "science"
 
 /obj/structure/airlock_assembly/airlock_assembly_med
 	base_icon_state = "med"
-	base_name = "Medical Airlock"
+	base_name = "医疗区气闸门"
 	airlock_type = "medical"
 
 /obj/structure/airlock_assembly/airlock_assembly_mai
 	base_icon_state = "mai"
-	base_name = "Maintenance Airlock"
+	base_name = "维护区气闸门"
 	airlock_type = "maintenance"
 	glass = AIRLOCK_CANTGLASS
 
 /obj/structure/airlock_assembly/airlock_assembly_ext
 	base_icon_state = "ext"
-	base_name = "External Airlock"
+	base_name = "外部气闸门"
 	airlock_type = "external"
 	glass = AIRLOCK_CANTGLASS
 
 /obj/structure/airlock_assembly/airlock_assembly_fre
 	base_icon_state = "fre"
-	base_name = "Freezer Airlock"
+	base_name = "冷库气闸门"
 	airlock_type = "freezer"
 	glass = AIRLOCK_CANTGLASS
 
 /obj/structure/airlock_assembly/airlock_assembly_hatch
 	base_icon_state = "hatch"
-	base_name = "Airtight Hatch"
+	base_name = "气密舱门"
 	airlock_type = "hatch"
 	glass = AIRLOCK_CANTGLASS
 
 /obj/structure/airlock_assembly/airlock_assembly_mhatch
 	base_icon_state = "mhatch"
-	base_name = "Maintenance Hatch"
+	base_name = "维护舱门"
 	airlock_type = "maintenance_hatch"
 	glass = AIRLOCK_CANTGLASS
 
 /obj/structure/airlock_assembly/airlock_assembly_highsecurity // Borrowing this until WJohnston makes sprites for the assembly
 	base_icon_state = "highsec"
-	base_name = "High Security Airlock"
+	base_name = "高安保气闸门"
 	airlock_type = "highsecurity"
 	glass = AIRLOCK_CANTGLASS
 

@@ -14,9 +14,9 @@
         580,
         0.0
     ],
-    "survivor_message": "You are a survivor of the containment breach on the Corporate Orbital Research Station for Advanced Technology (CORSAT). You worked or lived on the station, and managed to avoid the alien attacks... until now.",
+    "survivor_message": "你是公司轨道先进技术研究站（CORSAT）收容失效事件的幸存者。你曾在站上工作或生活，设法躲过了异形的袭击……直到现在。",
     "map_item_type": "/obj/item/map/corsat",
-    "announce_text": "An automated distress signal has been received from Weyland-Yutani's Corporate Orbital Research Station for Advanced Technology, or CORSAT. The ###SHIPNAME### has been dispatched to investigate.",
+    "announce_text": "已收到维兰德-汤谷所属公司轨道先进技术研究站（简称CORSAT）发出的自动求救信号。###SHIPNAME###已奉命前往调查。",
     "monkey_types": [
         "yiren",
         "farwa",

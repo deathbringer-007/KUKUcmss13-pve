@@ -9,6 +9,22 @@
 #define YAUTJA_ANNOUNCE "You receive a message from your ship AI..." //preds announcement
 #define HIGHER_FORCE_ANNOUNCE SPAN_ANNOUNCEMENT_HEADER_BLUE("未知的高等力量")
 
+/proc/localized_announcement_title(title)
+	var/static/list/labels = list(
+		COMMAND_ANNOUNCE = "指挥部公告",
+		UPP_COMMAND_ANNOUNCE = "进步人民联盟指挥部公告",
+		CLF_COMMAND_ANNOUNCE = "殖民地解放阵线指挥部公告",
+		PMC_COMMAND_ANNOUNCE = "私人军事承包商指挥部公告",
+		TWE_COMMAND_ANNOUNCE = "皇家陆战队指挥部公告",
+		QUEEN_ANNOUNCE = "女皇的话语在你的脑海中回荡……",
+		QUEEN_MOTHER_ANNOUNCE = "母皇心灵指令",
+		XENO_GENERAL_ANNOUNCE = "你感受到某种异样……",
+		YAUTJA_ANNOUNCE = "你收到一条来自舰载AI的消息……",
+		"Station Security Authority automated announcement" = "空间站安保机构自动公告",
+		"CORSAT Security Authority automated announcement" = "CORSAT安保机构自动公告",
+	)
+	return labels[title] || title
+
 //xenomorph hive announcement
 /proc/xeno_announcement(message, hivenumber, title = QUEEN_ANNOUNCE)
 	var/list/targets = GLOB.living_xeno_list + GLOB.dead_mob_list
@@ -167,7 +183,7 @@
 		if(istype(T, /mob/new_player))
 			continue
 
-		to_chat_spaced(T, html = "[SPAN_ANNOUNCEMENT_HEADER(title)]<br><br>[SPAN_ANNOUNCEMENT_BODY(message)]", type = MESSAGE_TYPE_RADIO)
+		to_chat_spaced(T, html = "[SPAN_ANNOUNCEMENT_HEADER(localized_announcement_title(title))]<br><br>[SPAN_ANNOUNCEMENT_BODY(message)]", type = MESSAGE_TYPE_RADIO)
 		if(isobserver(T) && !(T.client?.prefs?.toggles_sound & SOUND_OBSERVER_ANNOUNCEMENTS))
 			continue
 		playsound_client(T.client, sound_to_play, T, vol = 45)

@@ -26,7 +26,7 @@ NanoStateManager = function ()
 		
 		if (_data == null || !_data.hasOwnProperty('config') || !_data.hasOwnProperty('data'))
 		{
-			alert('Error: Initial data did not load correctly.');
+			alert('错误：初始数据未能正确加载。');
 		}
 
 		var stateKey = 'default';
@@ -94,7 +94,7 @@ NanoStateManager = function ()
 
 		if (data === false)
 		{
-            alert('data is false, return');
+            alert('界面更新已取消。');
 			return; // A beforeUpdateCallback returned a false value, this prevents the render from occuring
 		}
 		
@@ -178,12 +178,12 @@ NanoStateManager = function ()
 		{
 			if (!(state instanceof NanoStateClass))
 			{
-				alert('ERROR: Attempted to add a state which is not instanceof NanoStateClass');
+				alert('错误：无法添加状态，提供的对象不是NanoStateClass的实例。');
 				return;
 			}
 			if (!state.key)
 			{
-				alert('ERROR: Attempted to add a state with an invalid stateKey');
+				alert('错误：无法添加状态，stateKey无效。');
 				return;
 			}
 			_states[state.key] = state;
@@ -191,12 +191,12 @@ NanoStateManager = function ()
 		setCurrentState: function (stateKey)
 		{
 			if (typeof stateKey == 'undefined' || !stateKey) {
-				alert('ERROR: No state key was passed!');				
+				alert('错误：未提供状态键！');
                 return false;
             }
 			if (!_states.hasOwnProperty(stateKey))
 			{
-				alert('ERROR: Attempted to set a current state which does not exist: ' + stateKey);
+				alert('错误：无法切换到不存在的状态：' + stateKey);
 				return false;
 			}			
 			
@@ -218,4 +218,3 @@ NanoStateManager = function ()
 		}
 	};
 } ();
- 

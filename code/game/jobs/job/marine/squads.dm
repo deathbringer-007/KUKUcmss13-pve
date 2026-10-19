@@ -987,7 +987,7 @@
 	if(fireteam_leaders[ft])
 		SStracking.stop_tracking(ft, H) //remove from FT group
 		SStracking.start_tracking(tracking_id, H) //add to SL group
-		to_chat(fireteam_leaders[localized_player_label(ft)], FONT_SIZE_HUGE(SPAN_BLUE("[H.mind ? H.comm_title : ""][H]已被调离你的战斗组。")))
+		to_chat(fireteam_leaders[ft], FONT_SIZE_HUGE(SPAN_BLUE("[H.mind ? H.comm_title : ""][H]已被调离你的战斗组。")))
 	if(!H.stat)
 		to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("你已被调离[localized_player_label(ft)]。")))
 	H.hud_set_squad()

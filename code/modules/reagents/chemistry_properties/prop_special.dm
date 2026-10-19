@@ -85,7 +85,7 @@
 	message_admins("The research department has discovered DNA_Disintegrating in [holder.name] adding 10 bonus tech points.")
 	var/datum/techtree/tree = GET_TREE(TREE_MARINE)
 	tree.add_points(10)
-	ai_announcement("NOTICE: Encrypted data transmission received from USCSS Royce. Shuttle inbound.")
+	ai_announcement("通知：已收到来自USCSS罗伊斯号的加密数据传输。穿梭艇正在接近。")
 
 /datum/chem_property/special/ciphering
 	name = PROPERTY_CIPHERING

@@ -154,7 +154,7 @@ GLOBAL_DATUM_INIT(chemical_data, /datum/chemical_data, new)
 		return
 	var/list/clue = list()
 
-	clue["text"] = chem.name
+	clue["text"] = chem.localized_name || chem.name
 
 	return clue
 

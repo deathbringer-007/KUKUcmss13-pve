@@ -95,7 +95,7 @@ export const AlmayerControl = (_props) => {
               {!canMessage && (
                 <Button color="bad" warning={1} fluid icon="ban">
                   全舰广播正在冷却：{' '}
-                  {Math.ceil((data.time_message - worldTime) / 10)} secs
+                  {Math.ceil((data.time_message - worldTime) / 10)}秒
                 </Button>
               )}
               {!!canMessage && (
@@ -114,7 +114,7 @@ export const AlmayerControl = (_props) => {
               {!canCentral && (
                 <Button color="bad" warning={1} fluid icon="ban">
                   量子中继器正在恢复：{' '}
-                  {Math.ceil((data.time_message - worldTime) / 10)} secs
+                  {Math.ceil((data.time_message - worldTime) / 10)}秒
                 </Button>
               )}
               {!!canCentral && (

@@ -307,7 +307,7 @@
 			notify_ghosts(header = "遭到抱脸", message = "[human]在[hug_area]被[name]抱脸了！", source = human, action = NOTIFY_ORBIT)
 			to_chat(src, SPAN_DEADSAY("<b>[human]</b>在<b>[hug_area]</b>被<b>[name]</b>抱脸了。"))
 		else
-			notify_ghosts(header = "遭到抱脸", message = "[human] has been hugged by [name]!", source = human, action = NOTIFY_ORBIT)
+			notify_ghosts(header = "遭到抱脸", message = "[human]被[name]抱脸了！", source = human, action = NOTIFY_ORBIT)
 			to_chat(src, SPAN_DEADSAY("<b>[human]</b>被<b>[name]</b>抱脸了。"))
 
 	if(hug_area)

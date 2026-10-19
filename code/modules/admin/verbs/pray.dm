@@ -13,10 +13,10 @@
 			return
 
 	var/prefix = SPAN_PURPLE("PRAY: ")
-	var/receipt = "Your prayers have been received by the gods."
+	var/receipt = "众神已收到你的祈祷。"
 	if(job == JOB_CORPORATE_LIAISON)
 		prefix = SPAN_PURPLE("LIAISON: ")
-		receipt = "Your corporate overlords at Weyland-Yutani have received your message."
+		receipt = "你在维兰德-汤谷公司的上级已收到你的消息。"
 
 	msg = SPAN_BIGNOTICE("[prefix][key_name(src, 1)] [CC_MARK(src)] [ADMIN_PP(src)] [ADMIN_VV(src)] [ADMIN_SM(src)] [ADMIN_JMP_USER(src)] [ADMIN_SC(src)]: [msg]")
 	log_admin(msg)

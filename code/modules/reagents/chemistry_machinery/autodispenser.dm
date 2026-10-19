@@ -358,7 +358,7 @@
 				continue
 		if(R.chemclass != CHEM_CLASS_BASIC && R.chemclass != CHEM_CLASS_COMMON)
 			//We have to wait until the chem is stored
-			error = R.name + "：未找到"
+			error = (R.localized_name || R.name) + "：未找到"
 			status = -5
 			update_icon()
 
@@ -387,7 +387,7 @@
 			var/list/L[0]
 			L["[R.name]"] = V.reagents.total_volume
 			program_amount[save_to] += L
-			tgui_friendly_program_list[save_to]["[R.name]"] += list("name" = R.name, "amount" = V.reagents.total_volume)
+			tgui_friendly_program_list[save_to]["[R.name]"] += list("name" = R.localized_name || R.name, "amount" = V.reagents.total_volume)
 
 /obj/structure/machinery/autodispenser/proc/recharge()
 	energy = min(energy + 10, max_energy)
@@ -439,7 +439,7 @@
 			reagents.clear_reagents()
 			return
 
-		var/name = reagents.get_master_reagent_name()
+		var/name = reagents.get_master_reagent_display_name()
 		var/obj/item/reagent_container/glass/P
 		while(reagents.total_volume > 0)
 			P = new /obj/item/reagent_container/glass/bottle()

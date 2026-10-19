@@ -7,7 +7,7 @@
     "traits": [{ "ground": true}],
     "camouflage": "jungle",
     "environment_traits": {},
-    "announce_text": "Taipei Station, An unassuming waystation from the not-so-distant past of the colony-rush, now defunct.",
+    "announce_text": "台北中转站，殖民拓荒热潮中一座不起眼的中转站；那段往事并不久远，如今这里却已被废弃。",
     "gamemodes": [
         "Distress Signal",
         "Hunter Games",

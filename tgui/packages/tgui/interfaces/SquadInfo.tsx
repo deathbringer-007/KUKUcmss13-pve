@@ -6,6 +6,43 @@ import { BoxProps } from '../components/Box';
 import { TableCell, TableRow } from '../components/Table';
 import { Window } from '../layouts';
 
+const squadLabels = new Map<string, string>([
+  ['Alpha', '阿尔法'],
+  ['Bravo', '布拉沃'],
+  ['Charlie', '查理'],
+  ['Delta', '德尔塔'],
+  ['Echo', '埃科'],
+  ['Foxtrot', '福克斯特罗特'],
+  ['Sun Riders', '烈日骑兵'],
+  ['Sun Riders B-Sct', '烈日骑兵 B 分队'],
+  ['Intel', '情报组'],
+  ['SOF', '特种部队'],
+  ['CBRN', '核生化'],
+  ['FORECON', '武装侦察部队'],
+  ['Solar Devils', '太阳恶魔'],
+  ['US Army', '美国陆军'],
+  ['Red Dawn', '赤色黎明'],
+  ['Golden Embers', '金色余烬'],
+  ['AZURE-15', '苍蓝-15'],
+  ['VIRIDIAN-22', '翠绿-22'],
+  ['AZURE-16', '苍蓝-16'],
+  ['Gamma Troop', '伽马分队'],
+  ['Snake Eaters', '食蛇者'],
+  ['Ocelot Grapplers', '豹猫搏击队'],
+  ['UPPS1', '联盟第1小队'],
+  ['UPPS2', '联盟第2小队'],
+  ['UPPS3', '联盟第3小队'],
+  ['UPPS4', '联盟第4小队'],
+  ['UPPKdo', '联盟突击队'],
+  ['Team Upsilon', '宇普西隆小组'],
+  ['Team Gamma', '伽马小组'],
+  ['Taskforce White', '白色特遣队'],
+  ['Python', '蟒蛇'],
+  ['Viper', '蝰蛇'],
+  ['Cobra', '眼镜蛇'],
+  ['Boa', '蚺蛇'],
+]);
+
 interface SquadLeadEntry {
   name: string;
   observer: number;
@@ -66,7 +103,7 @@ const FireTeamLeadLabel = (props: { readonly ftl: SquadMarineEntry }) => {
       </Stack.Item>
       <Stack.Item>
         <span>
-          {ftl.paygrade} {ftl.name}
+          {ftl.paygrade === 'N/A' ? '不适用' : ftl.paygrade} {ftl.name}
         </span>
       </Stack.Item>
     </>
@@ -233,7 +270,9 @@ const FireTeamMember = (props: {
           ])}
         />
       </TableCell>
-      <TableCell>{props.member.paygrade}</TableCell>
+      <TableCell>
+        {props.member.paygrade === 'N/A' ? '不适用' : props.member.paygrade}
+      </TableCell>
       <TableCell>{props.member.name}</TableCell>
 
       {data.is_lead === 'sctsgt' && (
@@ -298,7 +337,7 @@ export const SquadInfo = () => {
         <Flex fill={1} justify="space-around" direction="column">
           <Flex.Item>
             <Section
-              title={`${data.squad}分队军士：${data.sctsgt?.name ?? '无'}`}
+              title={`${squadLabels.get(data.squad) ?? data.squad}分队军士：${data.sctsgt?.name ?? '无'}`}
             >
               <SquadObjectives />
             </Section>

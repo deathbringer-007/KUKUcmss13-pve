@@ -18,7 +18,7 @@
 		return
 
 	var/dat
-	dat = "<h1 class='alert'>[faction]事件消息</h1>"
+	dat = "<h1 class='alert'>[faction == "Global" ? "全局" : faction == "default" ? "默认" : get_statistic_display_label(localized_player_label(faction))]事件消息</h1>"
 	dat += "<h2 class='alert'>自定义事件正在进行。场外信息：</h2>"
 	dat += SPAN_ALERT("[msg]<br>")
 	to_chat(user, dat)
@@ -31,8 +31,8 @@
 		return
 
 	if(faction == "Global")
-		var/dat = "<h1 class='alert'>[faction] Event Message</h1>"
-		dat += "<h2 class='alert'>A custom event is in process. OOC Info:</h2>"
+		var/dat = "<h1 class='alert'>全局事件消息</h1>"
+		dat += "<h2 class='alert'>自定义事件正在进行。场外信息：</h2>"
 		dat += SPAN_ALERT("[msg]<br>")
 		to_world(dat)
 		return

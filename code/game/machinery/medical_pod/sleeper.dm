@@ -198,7 +198,7 @@
 
 			pretty_amount = round(reagent_amount, 0.05)
 
-			chemicals.Add(list(list("title" = temp.name, "id" = temp.id, "commands" = list("chemical" = temp.id), "occ_amount" = reagent_amount, "pretty_amount" = pretty_amount, "injectable" = injectable, "overdosing" = overdosing, "od_warning" = caution)))
+			chemicals.Add(list(list("title" = temp.localized_name || temp.name, "id" = temp.id, "commands" = list("chemical" = temp.id), "occ_amount" = reagent_amount, "pretty_amount" = pretty_amount, "injectable" = injectable, "overdosing" = overdosing, "od_warning" = caution)))
 	data["chemicals"] = chemicals
 	return data
 
@@ -393,7 +393,7 @@
 		if(occupant.reagents.get_reagent_amount(chemical) + amount <= max_chem)
 			occupant.reagents.add_reagent(chemical, amount, , , user)
 			var/datum/reagent/temp = GLOB.chemical_reagents_list[chemical]
-			to_chat(user, SPAN_NOTICE("[occupant]的血液中现有[occupant.reagents.get_reagent_amount(chemical)]单位[temp.name]。"))
+			to_chat(user, SPAN_NOTICE("[occupant]的血液中现有[occupant.reagents.get_reagent_amount(chemical)]单位[temp.localized_name || temp.name]。"))
 			return
 	to_chat(user, SPAN_WARNING("医疗休眠舱内没有患者，或患者体内药物已过多！"))
 	return

@@ -152,7 +152,7 @@
 			var/anything = 0
 			for(var/datum/reagent/R in beaker.reagents.reagent_list)
 				anything = 1
-				beaker_contents += "[R.volume] - [R.name] <A href='byond://?src=\ref[src];bottle=[R.id]'>装瓶</a><A href='byond://?src=\ref[src];dispose=[R.id]'>废弃</a><br>"
+				beaker_contents += "[R.volume] - [R.localized_name || R.name] <A href='byond://?src=\ref[src];bottle=[R.id]'>装瓶</a><A href='byond://?src=\ref[src];dispose=[R.id]'>废弃</a><br>"
 			if(!anything)
 				beaker_contents += "空<br>"
 
@@ -195,7 +195,7 @@
 		var/obj/item/reagent_container/glass/bottle/P = new /obj/item/reagent_container/glass/bottle()
 		P.icon_state = "bottle-1" // Default bottle
 		beaker.reagents.trans_id_to(P, id, P.reagents.maximum_volume)
-		P.name = "[P.reagents.get_master_reagent_name()]试剂瓶"
+		P.name = "[P.reagents.get_master_reagent_display_name()]试剂瓶"
 		linked_storage.add_local_item(P)
 	else if(href_list["dispose"])
 		var/id = href_list["dispose"]

@@ -14,7 +14,7 @@ var NanoTemplate = function () {
 
 		if (_templateData == null)
 		{
-			alert('Error: Template data did not load correctly.');
+			alert('错误：模板数据未能正确加载。');
 		}
 
 		loadNextTemplate();
@@ -53,7 +53,7 @@ var NanoTemplate = function () {
                     }
                     catch(error)
                     {
-                        alert('ERROR: An error occurred while loading the UI: ' + error.message);
+                        alert('错误：界面加载失败：' + error.message);
                         return;
                     }
 
@@ -62,7 +62,7 @@ var NanoTemplate = function () {
                     loadNextTemplate();
                 })
                 .fail(function () {
-                    alert('ERROR: Loading template ' + key + '(' + _templateData[key] + ') failed!');
+                    alert('错误：模板' + key + '（' + _templateData[key] + '）加载失败！');
                 });
 
             return;
@@ -94,21 +94,21 @@ var NanoTemplate = function () {
         parse: function (templateKey, data) {
             if (!_compiledTemplates.hasOwnProperty(templateKey) || !_compiledTemplates[templateKey]) {
                 if (!_templates.hasOwnProperty(templateKey)) {
-                    alert('ERROR: Template "' + templateKey + '" does not exist in _compiledTemplates!');
-                    return '<h2>Template error (does not exist)</h2>';
+                    alert('错误：模板“' + templateKey + '”在_compiledTemplates中不存在！');
+                    return '<h2>模板错误（模板不存在）</h2>';
                 }
                 compileTemplates();
             }
             if (typeof _compiledTemplates[templateKey] != 'function') {
                 alert(_compiledTemplates[templateKey]);
-                alert('ERROR: Template "' + templateKey + '" failed to compile!');
-                return '<h2>Template error (failed to compile)</h2>';
+                alert('错误：模板“' + templateKey + '”编译失败！');
+                return '<h2>模板错误（编译失败）</h2>';
             }
             return _compiledTemplates[templateKey].call(this, data['data'], data['config'], _helpers);
         },
 		addHelper: function (helperName, helperFunction) {
 			if (!jQuery.isFunction(helperFunction)) {
-				alert('NanoTemplate.addHelper failed to add ' + helperName + ' as it is not a function.');
+				alert('NanoTemplate.addHelper无法添加' + helperName + '，因为它不是函数。');
 				return;	
 			}
 			

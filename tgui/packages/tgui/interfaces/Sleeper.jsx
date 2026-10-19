@@ -137,11 +137,11 @@ const SleeperOccupant = (props) => {
                   good: [0.6, Infinity],
                 }}
               >
-                {occupant.bloodPercent}%, {occupant.bloodLevel}cl
+                {occupant.bloodPercent}%, {occupant.bloodLevel}厘升
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item label="脉搏" verticalAlign="middle">
-              {occupant.pulse} BPM
+              {occupant.pulse}次/分
             </LabeledList.Item>
           </>
         )}

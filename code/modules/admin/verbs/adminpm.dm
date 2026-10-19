@@ -102,18 +102,18 @@
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = SPAN_DANGER("Error: Admin-PM: You are unable to use admin PM-s (muted)."),
+			html = SPAN_DANGER(CLIENT_IS_STAFF(src) ? "Error: Admin-PM: You are unable to use admin PM-s (muted)." : "错误：你已被禁言，无法向管理员发送私信。"),
 			confidential = TRUE)
 		return
 
 	if(!CLIENT_IS_STAFF(src) && !current_ticket) //no ticket? https://www.youtube.com/watch?v=iHSPf6x1Fdo
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = SPAN_DANGER("You can no longer reply to this ticket, please open another one by using the Adminhelp verb if need be."),
+			html = SPAN_DANGER("你已无法回复这条求助。如有需要，请使用管理员求助指令重新提交。"),
 			confidential = TRUE)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = SPAN_NOTICE("Message: [msg]"),
+			html = SPAN_NOTICE("消息：[msg]"),
 			confidential = TRUE)
 		return
 
@@ -129,7 +129,7 @@
 	if(!recipient)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = SPAN_DANGER("Error: Admin-PM: Client not found."),
+			html = SPAN_DANGER(CLIENT_IS_STAFF(src) ? "Error: Admin-PM: Client not found." : "错误：未找到该用户，其可能已经断开连接。"),
 			confidential = TRUE)
 		return
 
@@ -138,7 +138,7 @@
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
-		msg = input(src,"Message:", "Private message to [recipient.admin_holder?.fakekey ? "an Administrator" : key_name(recipient, 0, 0)].") as message|null
+		msg = input(src, CLIENT_IS_STAFF(src) ? "Message:" : "消息：", CLIENT_IS_STAFF(src) ? "Private message to [recipient.admin_holder?.fakekey ? "an Administrator" : key_name(recipient, 0, 0)]." : "发送私信给[recipient.admin_holder?.fakekey ? "管理员" : key_name(recipient, 0, 0)]。") as message|null
 		msg = trim(msg)
 		if(!msg)
 			return
@@ -167,7 +167,7 @@
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = SPAN_DANGER("Error: Admin-PM: You are unable to use admin PM-s (muted)."),
+			html = SPAN_DANGER(CLIENT_IS_STAFF(src) ? "Error: Admin-PM: You are unable to use admin PM-s (muted)." : "错误：你已被禁言，无法向管理员发送私信。"),
 			confidential = TRUE)
 		return
 
@@ -203,7 +203,7 @@
 			SEND_SIGNAL(src, COMSIG_ADMIN_HELP_RECEIVED, msg)
 			//omg this is dumb, just fill in both their tickets
 			var/interaction_message = "<font color='green'>PM from-<b>[key_name(src, recipient, TRUE)]</b> to-<b>[key_name(recipient, src, TRUE)]</b>: [msg]</font>"
-			var/player_interaction_message = "<font color='green'>PM from-<b>[key_name(src, recipient, FALSE)]</b> to-<b>[key_name(recipient, src, FALSE)]</b>: [msg]</font>"
+			var/player_interaction_message = "<font color='green'>私信，来自<b>[key_name(src, recipient, FALSE)]</b>，发给<b>[key_name(recipient, src, FALSE)]</b>: [msg]</font>"
 			admin_ticket_log(src, interaction_message, log_in_blackbox = FALSE, player_message = player_interaction_message)
 			if(recipient != src) //reeee
 				admin_ticket_log(recipient, interaction_message, log_in_blackbox = FALSE, player_message = player_interaction_message)
@@ -212,7 +212,7 @@
 			current_ticket.player_replied = TRUE
 			SEND_SIGNAL(current_ticket, COMSIG_ADMIN_HELP_REPLIED)
 			var/replymsg = "Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[msg]</span>"
-			var/player_replymsg = "Reply PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span>"
+			var/player_replymsg = "回复私信，来自<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span>"
 			admin_ticket_log(src, "<font color='red'>[replymsg]</font>", log_in_blackbox = FALSE, player_message = player_replymsg)
 			to_chat(recipient,
 				type = MESSAGE_TYPE_ADMINPM,
@@ -220,7 +220,7 @@
 				confidential = TRUE)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = SPAN_NOTICE("PM to-<b>Admins</b>: <span class='linkify'>[msg]</span>"),
+				html = SPAN_NOTICE("发送给<b>管理员</b>的私信: <span class='linkify'>[msg]</span>"),
 				confidential = TRUE)
 			log_ahelp(current_ticket.id, "Reply", msg, recipient.ckey, src.ckey)
 
@@ -239,22 +239,22 @@
 			SEND_SIGNAL(src, COMSIG_ADMIN_HELP_RECEIVED, msg)
 			to_chat(recipient,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = "\n<font color='red' size='4'><b>-- Administrator private message --</b></font>",
+				html = "\n<font color='red' size='4'><b>-- 管理员私信 --</b></font>",
 				confidential = TRUE)
 			to_chat(recipient,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = SPAN_ADMINSAY("Admin PM from-<b>[key_name(src, recipient, 0)]</b>: <span class='linkify'>[msg]</span>"),
+				html = SPAN_ADMINSAY("管理员私信，来自<b>[key_name(src, recipient, 0)]</b>: <span class='linkify'>[msg]</span>"),
 				confidential = TRUE)
 			to_chat(recipient,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = SPAN_ADMINSAY("<i>Click on the administrator's name to reply.</i>\n\n"),
+				html = SPAN_ADMINSAY("<i>点击管理员姓名即可回复。</i>\n\n"),
 				confidential = TRUE)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
 				html = SPAN_NOTICE("Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[msg]</span>"),
 				confidential = TRUE)
 
-			admin_ticket_log(recipient, "<font color='green'>PM From [key_name_admin(src)]: [msg]</font>", log_in_blackbox = FALSE, player_message = "<font color='green'>PM From [key_name_admin(src, include_name = FALSE)]: [msg]</font>")
+			admin_ticket_log(recipient, "<font color='green'>PM From [key_name_admin(src)]: [msg]</font>", log_in_blackbox = FALSE, player_message = "<font color='green'>私信来自[key_name_admin(src, include_name = FALSE)]: [msg]</font>")
 
 			if(!already_logged) //Reply to an existing ticket
 				log_ahelp(recipient.current_ticket.id, "Reply", msg, recipient.ckey, src.ckey)
@@ -266,11 +266,11 @@
 			if(!current_ticket)
 				to_chat(src,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = SPAN_DANGER("Error: Admin-PM: Non-admin to non-admin PM communication is forbidden."),
+					html = SPAN_DANGER("错误：普通玩家不能通过管理员私信功能相互发送消息。"),
 					confidential = TRUE)
 				to_chat(src,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = "[SPAN_DANGER("<b>Message not sent:</b>")]<br>[msg]",
+					html = "[SPAN_DANGER("<b>消息未发送：</b>")]<br>[msg]",
 					confidential = TRUE)
 				return
 			current_ticket.MessageNoRecipient(msg)

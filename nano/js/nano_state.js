@@ -101,7 +101,7 @@ NanoStateClass.prototype.onUpdate = function (data) {
     }
     catch(error)
     {
-        alert('ERROR: An error occurred while rendering the UI: ' + error.message);
+        alert('错误：界面显示失败：' + error.message);
         return;
     }
 };

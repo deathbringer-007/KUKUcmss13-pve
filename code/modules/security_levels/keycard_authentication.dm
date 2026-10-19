@@ -153,18 +153,18 @@ GLOBAL_VAR_INIT(maint_all_access, TRUE)
 
 /proc/make_maint_all_access()
 	GLOB.maint_all_access = TRUE
-	ai_announcement("The maintenance access requirement has been removed on all airlocks.")
+	ai_announcement("所有气闸门均已取消维护区访问权限要求。")
 
 /proc/revoke_maint_all_access()
 	GLOB.maint_all_access = FALSE
-	ai_announcement("The maintenance access requirement has been added on all airlocks.")
+	ai_announcement("所有气闸门均已启用维护区访问权限要求。")
 
 // Keycard reader at the CORSAT locks
 /obj/structure/machinery/keycard_auth/lockdown
 	name = "自动封锁覆盖装置"
 	desc = "用于解除安全封锁的设备。"
 	channel = "map_lockdown"
-	var/window_desc = "This device is used to override the security lockdown. It requires both of the authentication disks."
+	var/window_desc = "此装置用于解除安保封锁，需要同时使用两张认证磁盘。"
 	var/announce_title = "Station Security Authority automated announcement"
 	var/card_type
 	var/podlock_id = "map_lockdown"
@@ -175,12 +175,12 @@ GLOBAL_VAR_INIT(maint_all_access, TRUE)
 	name = "CORSAT自动生化封锁覆盖装置"
 	card_type = /obj/item/card/data/corsat
 	announce_title = "CORSAT Security Authority automated announcement"
-	window_desc = "This device is used to override the CORSAT automated lockdown. It requires both of the authentication disks, which can be found in the offices of various heads of departments around the station."
+	window_desc = "此装置用于解除CORSAT自动封锁，需要两张认证磁盘；磁盘可在空间站各部门主管的办公室内找到。"
 	desc = "用于解除CORSAT自动生化封锁的设备。"
 
 /obj/structure/machinery/keycard_auth/lockdown/prison
 	card_type = /obj/item/card/data/prison
-	window_desc = "This device is used to override the security lockdown. It requires both of the authentication disks, which can be found in the security offices of various cell blocks around the station."
+	window_desc = "此装置用于解除安保封锁，需要两张认证磁盘；磁盘可在空间站各监区的安保办公室内找到。"
 
 /obj/structure/machinery/keycard_auth/lockdown/attackby(obj/item/W as obj, mob/user as mob)
 	if(inoperable())
@@ -261,15 +261,15 @@ GLOBAL_VAR_INIT(maint_all_access, TRUE)
 			return
 		gCM.round_status_flags |= ROUNDSTATUS_PODDOORS_OPEN // So we don't spam the message twice
 
-	var/text_timeleft = "[timeleft * 0.01] minutes"
+	var/text_timeleft = "[timeleft / (1 MINUTES)]分钟"
 	var/next_interval = 1 MINUTES
 	if(timeleft <= 1 MINUTES)
 		next_interval = 55 SECONDS
-		text_timeleft = "[timeleft] minute"
+		text_timeleft = "[timeleft / (1 MINUTES)]分钟"
 	if(timeleft <= 5 SECONDS)
 		next_interval = timeleft
-		text_timeleft = "[timeleft] seconds"
-	var/input = "Station shutter locks lifting in [text_timeleft] per manual override."
+		text_timeleft = "[timeleft / (1 SECONDS)]秒"
+	var/input = "根据手动覆盖指令，空间站闸门将在[text_timeleft]后解除锁定。"
 	var/title = announce_title
 	marine_announcement(input, title, 'sound/AI/commandreport.ogg')
 	for(var/mob/M in GLOB.player_list)

@@ -38,7 +38,7 @@ function onByondStorageLoad(event) {
 }
 
 // Status panel implementation ------------------------------------------------
-var status_tab_parts = ["Loading..."];
+var status_tab_parts = ["加载中……"];
 var current_tab = null;
 var current_fontsize = 14; // in px, also determines line height and category header sizes for the verb menus
 // Per `storage.js` for tgui:
@@ -89,7 +89,241 @@ function run_after_focus(callback) {
 	setTimeout(callback, 0);
 }
 
-function createStatusTab(name) {
+var stat_command_labels = {
+	"Adminhelp": "向管理员求助",
+	"Pray": "祈祷",
+	"Mentorhelp": "向导师求助",
+	"View Latest Ticket": "查看最近的求助",
+	"Activate Cloak": "启动隐身",
+	"Add Item to Tracker": "将物品加入追踪器",
+	"Add Teleporter Destination": "添加传送目的地",
+	"Adjust Volume Ambience": "调整环境音量",
+	"Adjust Volume LobbyMusic": "调整大厅音乐音量",
+	"Adjust Volume SFX": "调整音效音量",
+	"Analyze Air": "分析空气",
+	"Call Smart-Disc": "召回智能飞盘",
+	"Change Explosion Type": "切换爆炸类型",
+	"Claim Equipment": "领取装备",
+	"Configure Hunting Trap": "配置狩猎陷阱",
+	"Current Map": "当前地图",
+	"Deal": "发牌",
+	"Destroy Kit": "销毁套件",
+	"Detach revolver holster": "拆下左轮手枪套",
+	"Draw": "抽牌",
+	"Draw Pile (Concealed)": "抽取牌堆（背面朝上）",
+	"Draw X Cards": "抽取指定张数的牌",
+	"Drop held item": "放下手持物品",
+	"Eject ID Card": "弹出ID卡",
+	"Empty": "清空",
+	"Empty canister": "清空燃料罐",
+	"Examine": "查看",
+	"Examine Meta-Info (OOC)": "查看机制信息（角色外）",
+	"Field Strip Weapon": "分解武器",
+	"Final Countdown (!)": "最终倒计时（！）",
+	"Fit Viewport": "适配游戏视口",
+	"Fix Interfaces": "修复界面",
+	"Flip table": "掀翻桌子",
+	"Flush Container": "清空容器",
+	"Flush Tray": "冲洗培养槽",
+	"Follow Local Mob": "跟随附近角色",
+	"Give Medal Recommendation": "提交勋章推荐",
+	"Go DNR": "拒绝复苏",
+	"Hear/Silence Ambience": "开关环境音",
+	"Hear/Silence Ghost Announcements": "开关观察者公告提示音",
+	"Hear/Silence Ghost Fax Machines": "开关幽灵传真机音效",
+	"Hear/Silence LobbyMusic": "开关大厅音乐",
+	"Hear/Silence Reboot Sound": "开关重启音效",
+	"Hide Combat Chat Prefs": "隐藏战斗聊天偏好",
+	"Hide Ghost Prefs": "隐藏幽灵偏好",
+	"Hive Status": "虫巢状态",
+	"Join Response Team": "加入响应队",
+	"Join as Xeno": "作为异形加入",
+	"Join as a Facehugger": "作为抱脸虫加入",
+	"Join as a Lesser Drone": "作为次级工蜂加入",
+	"Join as a Working Joe": "作为工作乔加入",
+	"Join the Hunt": "加入狩猎",
+	"LOOC": "本地角色外聊天",
+	"Label Disk": "标注磁盘",
+	"Mark for Hunt": "标记猎物",
+	"Me": "表情动作",
+	"OOC": "角色外聊天",
+	"OOC Text Color - Global": "全局角色外聊天颜色",
+	"Permit/Disallow Construction Placement": "允许或禁止放置建筑",
+	"Permit/Disallow Slashing": "允许或禁止爪击",
+	"Permit/Disallow Special Structure Destruction": "允许或禁止摧毁特殊建筑",
+	"Permit/Disallow Unnesting": "允许或禁止解开巢穴束缚",
+	"Pick Ghost Orbit Shape": "选择幽灵环绕轨迹",
+	"Pick Up": "拿起",
+	"Pick-Say": "选择发言",
+	"Pull": "拖拽",
+	"Put table back": "扶正桌子",
+	"Re-enter Corpse": "重新进入尸体",
+	"Read ID Card": "读取ID卡",
+	"Remove Canister": "卸下燃料罐",
+	"Remove Item from Tracker": "将物品移出追踪器",
+	"Remove Your Splints": "拆除自己的夹板",
+	"Remove from Hunt": "移除猎物标记",
+	"Rename Seeds": "重命名种子",
+	"Rename paper": "重命名纸张",
+	"Rotate Chair": "旋转椅子",
+	"Rotate Window Clockwise": "顺时针旋转窗户",
+	"Rotate Window Counter-Clockwise": "逆时针旋转窗户",
+	"Say": "说话",
+	"Scan Health": "扫描健康状况",
+	"Set Flavour Text": "设置外观描述",
+	"Set Headset Volume": "设置耳机音量",
+	"Set Hive Orders (50)": "设置虫巢指令（50）",
+	"Set Pose": "设置姿态描述",
+	"Set short label (on-sprite)": "设置短标签（显示在图像上）",
+	"Shake": "摇晃",
+	"Show Combat Chat Prefs": "显示战斗聊天偏好",
+	"Show Ghost Prefs": "显示幽灵偏好",
+	"Show Held Item": "展示手持物品",
+	"Show Server Revision": "显示服务器版本",
+	"Show/Hide Actions": "显示或隐藏动作按钮",
+	"Show/Hide LOOC": "显示或隐藏本地角色外聊天",
+	"Show/Hide OOC": "显示或隐藏角色外聊天",
+	"Silence Current Admin Sound": "停止当前管理员音效",
+	"Sit": "坐下",
+	"Sleep": "睡觉",
+	"Sort Hand": "整理手牌",
+	"Spectator Vote": "观察者投票",
+	"Steal from ground": "从地上偷取",
+	"Steal from mob": "从角色身上偷取",
+	"Switch Gathering Method": "切换收集方式",
+	"Switch Storage Drawing Method": "切换取物方式",
+	"Switch Tracker Target": "切换追踪目标",
+	"Teleport to Area": "传送到区域",
+	"Teleport to Mob": "传送到角色",
+	"Teleport to Techtree": "传送到科技树",
+	"Tie Up/Down": "绑起或放下护耳",
+	"Toggle Abovehead Chat": "切换头顶聊天",
+	"Toggle Abovehead Chat Emotes": "切换头顶表情动作",
+	"Toggle Adaptive Zooming": "切换自适应缩放",
+	"Toggle Admin PM Flash": "切换管理员私信闪烁提醒",
+	"Toggle Ambient Occlusion": "切换环境光遮蔽",
+	"Toggle Auto Eject": "切换自动退匣",
+	"Toggle Auto Viewport Fit": "切换自动适配视口",
+	"Toggle Bracer Lock": "切换护腕锁定",
+	"Toggle Bracer Name": "切换护腕名称",
+	"Toggle Bracer Sound": "切换护腕提示音",
+	"Toggle Buttons": "切换纽扣",
+	"Toggle Cloaking Device": "切换隐身装置",
+	"Toggle Country Flag": "切换国旗显示",
+	"Toggle Custom Cursors": "切换自定义鼠标指针",
+	"Toggle Deadchat": "切换死者聊天",
+	"Toggle Firemode": "切换射击模式",
+	"Toggle Firing Messages": "切换开火消息",
+	"Toggle Fuel Type": "切换燃料类型",
+	"Toggle Fullscreen Preference": "切换全屏偏好",
+	"Toggle Ghost HUDs": "切换幽灵抬头显示",
+	"Toggle Ghost Vision": "切换幽灵视觉",
+	"Toggle GhostEars": "切换幽灵全局听觉",
+	"Toggle GhostHivemind": "切换幽灵虫巢意志收听",
+	"Toggle GhostRadio": "切换幽灵全局无线电",
+	"Toggle GhostSight": "切换幽灵全局视觉",
+	"Toggle GhostSpyRadio": "切换幽灵窃听器收听",
+	"Toggle Gun Safety": "切换枪械保险",
+	"Toggle Hair": "收放头发",
+	"Toggle Headset HUD": "切换耳机抬头显示",
+	"Toggle Health Scan": "切换健康扫描",
+	"Toggle Hood": "收放兜帽",
+	"Toggle ID Chip": "切换身份芯片",
+	"Toggle Inquisitiveness": "切换点击检视",
+	"Toggle Internals": "切换内部供气",
+	"Toggle Jacket Buttons": "开合夹克纽扣",
+	"Toggle Larva Unpool Flash": "切换幼虫出池闪烁提醒",
+	"Toggle Laser": "开关激光",
+	"Toggle M2 night vision goggles": "开关M2夜视仪",
+	"Toggle Mask Visors": "切换面具目镜",
+	"Toggle Mask Zoom": "切换面具缩放",
+	"Toggle Membership Publicity": "切换会员身份公开显示",
+	"Toggle Open": "打开或关闭",
+	"Toggle Pain Messages": "切换疼痛消息",
+	"Toggle Permission Errors": "切换权限错误提示",
+	"Toggle Pile State": "切换牌堆状态",
+	"Toggle Preferences": "切换偏好设置",
+	"Toggle Revival Flash": "切换复苏闪烁提醒",
+	"Toggle Roundend Flash": "切换回合结束闪烁提醒",
+	"Toggle Roundstart Flash": "切换回合开始闪烁提醒",
+	"Toggle Say Input Color": "切换发言输入框配色",
+	"Toggle Say Input Style": "切换发言输入框样式",
+	"Toggle Scope Zoom Level": "切换瞄准镜倍率",
+	"Toggle Self Visibility": "切换自身可见性",
+	"Toggle Someone Hit Messages": "切换他人命中消息",
+	"Toggle SpecialRole Candidacy": "切换特殊身份候选资格",
+	"Toggle Stock Attachment": "切换枪托附件",
+	"Toggle Tile Dumping": "切换整格倾倒",
+	"Toggle Underbarrel Attachment": "切换下挂附件",
+	"Toggle Unnest Flash": "切换脱离巢穴闪烁提醒",
+	"Toggle Xeno Armor Messages": "切换异形护甲消息",
+	"Toggle Xeno Attack Messages": "切换异形攻击消息",
+	"Toggle You Hit Messages": "切换自身命中消息",
+	"Toggle Zoom": "切换缩放",
+	"Toggle belt mode": "切换腰带模式",
+	"Toggle hotkey buttons": "切换快捷键按钮",
+	"Toggle medevac": "切换医疗撤离",
+	"Track Yautja Gear": "追踪铁血装备",
+	"Unique Action": "独特动作",
+	"Unload Weapon": "卸下弹药",
+	"Use Attachment": "使用附件",
+	"Use Plasma Caster": "使用等离子肩炮",
+	"Use Rail Attachment": "使用导轨附件",
+	"Use Wrist Blades": "使用腕刃",
+	"View Clan Info": "查看氏族信息",
+	"View Crew Manifest": "查看船员名册",
+	"View Kill Feed": "查看击杀信息",
+	"View USCM Tacmap": "查看陆战队战术地图",
+	"Vote": "投票",
+	"Whisper": "低语",
+	"Who": "在线玩家",
+	"Word of the Queen (50)": "女皇之言（50）",
+	"Yank combi-stick": "拔回伸缩战矛",
+	"Yank out object": "拔出嵌入物"
+};
+var stat_tab_labels = {
+	"Admin": "管理",
+	"Status": "状态",
+	"Panel Options": "面板选项",
+	"Alien": "异形",
+	"Ghost": "幽灵",
+	"IC": "角色",
+	"OOC": "角色外",
+	"Object": "物品",
+	"Preferences": "偏好设置",
+	"Parrot": "鹦鹉",
+	"Pyro": "火焰兵",
+	"Scout": "侦察兵",
+	"Weapons": "武器",
+	"Yautja": "铁血战士",
+	"Body": "躯体",
+	"Follow": "跟随",
+	"Join": "加入",
+	"Settings": "设置",
+	"View": "查看",
+	"Medals": "勋章",
+	"Fix": "修复",
+	"Records": "记录",
+	"Chat": "聊天",
+	"Combat": "战斗",
+	"Sound": "声音",
+	"TaskbarFlashing": "任务栏闪烁",
+	"UI": "界面",
+	"Marks": "猎物标记",
+	"Misc": "杂项",
+	"Tracker": "追踪器",
+	"Utility": "工具"
+};
+
+function stat_display_label(value, category, labels) {
+	if (labels === stat_tab_labels && value === "Admin") return labels[value];
+	if (labels === stat_command_labels && category === "Admin" && /^(Adminhelp|Mentorhelp|View Latest Ticket)$/.test(value)) return labels[value];
+	if (/^(Admin|Debug|Game Master|GameMaster|MC)(\.|$)/.test(category || "")) return value;
+	return Object.prototype.hasOwnProperty.call(labels, value) ? labels[value] : value;
+}
+
+function createStatusTab(name, category) {
+	var original_category = category || name;
 	if (name.indexOf(".") != -1) {
 		var splitName = name.split(".");
 		if (split_admin_tabs && splitName[0] === "Admin") name = splitName[1];
@@ -107,7 +341,7 @@ function createStatusTab(name) {
 		this.blur();
 	};
 	B.id = name;
-	B.textContent = name;
+	B.textContent = stat_display_label(name, original_category, stat_tab_labels);
 	B.className = "button";
 	//ORDERING ALPHABETICALLY
 
@@ -320,7 +554,7 @@ function tab_change(tab, force) {
 		openOptionsMenu();
 		tab_change(oldTab);
 	} else {
-		statcontentdiv.textContext = "Loading...";
+		statcontentdiv.textContext = "加载中……";
 	}
 	Byond.winset(Byond.windowId, {
 		"is-visible": true,
@@ -410,6 +644,8 @@ function draw_debug() {
 function draw_status() {
 	var status_tab_map_href_exception =
 		"<a href='byond://?MapView=1'>View Tactical Map</a>";
+	var status_tab_map_chinese_href =
+		"<a href='byond://?MapView=1'>查看战术地图</a>";
 	if (!document.getElementById("Status")) {
 		createStatusTab("Status");
 		current_tab = "Status";
@@ -422,10 +658,11 @@ function draw_status() {
 				.appendChild(document.createElement("br"));
 		} else if (
 			// hardcoded because merely using .includes() to test for a href seems unreliable for some reason.
-			status_tab_parts[i] == status_tab_map_href_exception
+			status_tab_parts[i] == status_tab_map_href_exception ||
+			status_tab_parts[i] == status_tab_map_chinese_href
 		) {
 			var maplink = document.createElement("a");
-			maplink.innerHTML = status_tab_parts[i];
+			maplink.innerHTML = status_tab_map_chinese_href;
 			document.getElementById("statcontent").appendChild(maplink);
 		} else {
 			var div = document.createElement("div");
@@ -731,6 +968,7 @@ function make_verb_onclick(command) {
 }
 
 function draw_verbs(cat) {
+	var display_category = cat;
 	statcontentdiv.textContent = "";
 	var table = document.createElement("div");
 	var additions = {}; // additional sub-categories to be rendered
@@ -765,11 +1003,12 @@ function draw_verbs(cat) {
 
 			var a = document.createElement("a");
 			a.href = "#";
+			display_category = part[0];
 			a.onclick = make_verb_onclick(command.replace(/\s/g, "-"));
 			a.className = "grid-item";
 			a.style.lineHeight = current_fontsize + 2 + "px";
 			var t = document.createElement("span");
-			t.textContent = command;
+			t.textContent = stat_display_label(command, part[0], stat_command_labels);
 			t.className = "grid-item-text";
 			a.appendChild(t);
 			(subCat ? additions[subCat] : table).appendChild(a);
@@ -785,7 +1024,7 @@ function draw_verbs(cat) {
 		if (additions.hasOwnProperty(cat)) {
 			// do addition here
 			var header = document.createElement("h3");
-			header.textContent = cat;
+			header.textContent = stat_display_label(cat, display_category, stat_tab_labels);
 			header.style.fontSize = current_fontsize + 4 + "px";
 			content.appendChild(header);
 			content.appendChild(additions[cat]);
@@ -861,7 +1100,7 @@ function add_verb_list(payload) {
 		} else if (category) {
 			verb_tabs.push(category);
 			verbs.push(part);
-			createStatusTab(category);
+			createStatusTab(category, part[0]);
 		}
 	}
 }

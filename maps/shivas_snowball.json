@@ -14,9 +14,9 @@
         580,
         0.0
     ],
-    "survivor_message": "You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks... until now.",
+    "survivor_message": "你是冰原殖民地遇袭后的幸存者。你曾在这里工作或生活，设法躲过了异形的袭击……直到现在。",
     "map_item_type": "/obj/item/map/ice_colony_map",
-    "announce_text": "An automated distress signal has been received from archaeology site \"Shiva's Snowball\", on border ice world \"Ifrit\". A response team from the ###SHIPNAME### will be dispatched shortly to investigate.",
+    "announce_text": "已收到边境冰雪星球“伊弗利特”上的考古遗址“湿婆雪球”发出的自动求救信号。###SHIPNAME###的响应小队即将出发调查。",
     "monkey_types": [
         "yiren"
     ],

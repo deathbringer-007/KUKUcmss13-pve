@@ -10,9 +10,9 @@
         875,
         0.0
     ],
-    "survivor_message": "You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks... until now.",
+    "survivor_message": "你是菲奥里纳轨道监狱遇袭后的幸存者。你曾在这座监狱空间站工作或生活，设法躲过了异形的袭击……直到现在。",
     "map_item_type": "/obj/item/map/FOP_map_v3",
-    "announce_text": "An automated distress signal has been received from maximum-security prison \"Fiorina Orbital Penitentiary\". A response team from the ###SHIPNAME### will be dispatched shortly to investigate.",
+    "announce_text": "已收到最高戒备监狱“菲奥里纳轨道监狱”发出的自动求救信号。###SHIPNAME###的响应小队即将出发调查。",
     "environment_traits": { "InSpace": true },
     "traits": [{ "Ground": true }],
     "nightmare_path": "maps/Nightmare/maps/FOP_v3_Sciannex/",

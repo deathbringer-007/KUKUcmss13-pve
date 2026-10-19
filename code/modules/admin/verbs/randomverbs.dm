@@ -71,11 +71,20 @@
 		if(MUTE_ALL) mute_string = "everything"
 		else return FALSE
 
+	var/player_mute_string = list(
+		"IC (say and emote)" = "角色内发言与表情动作（IC）",
+		"OOC" = "角色外聊天（OOC）",
+		"pray" = "祈祷",
+		"adminhelp, admin PM and ASAY" = "管理员求助、管理员私信与管理员聊天（ASAY）",
+		"deadchat and DSAY" = "死者聊天（DSAY）",
+		"everything" = "全部交流功能",
+	)[mute_string] || mute_string
+
 	if(automute)
 		muteunmute = "auto-muted"
 		M.client.prefs.muted |= mute_type
 		message_admins("SPAM AUTOMUTE: [muteunmute] [key_name_admin(M)] from [mute_string].", 1)
-		to_chat(M, "You have been [muteunmute] from [mute_string] by the SPAM AUTOMUTE system. Contact an admin.")
+		to_chat(M, "防刷屏系统已自动禁止你使用[player_mute_string]。如有疑问，请联系管理员。")
 
 		return FALSE
 
@@ -87,7 +96,7 @@
 		M.client.prefs.muted |= mute_type
 
 	message_admins("[key_name_admin(usr)] has [muteunmute] [key_name_admin(M)] from [mute_string].", 1)
-	to_chat(M, "You have been [muteunmute] from [mute_string].")
+	to_chat(M, muteunmute == "unmuted" ? "你对[player_mute_string]的禁言已被解除。" : "你已被禁止使用[player_mute_string]。")
 
 /client/proc/toggle_own_ghost_vis()
 	set name = "Show/Hide Own Ghost"

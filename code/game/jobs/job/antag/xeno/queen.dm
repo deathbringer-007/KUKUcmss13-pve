@@ -16,4 +16,4 @@
 	to_chat(new_queen, "<B>你现在是异形女皇！</B>")
 	to_chat(new_queen, "<B>你的使命是扩张虫巢。</B>")
 	to_chat(new_queen, "<B>你应该先建造虫巢核心。</B>")
-	to_chat(new_queen, "使用<strong>;</strong>通过虫巢意识交谈（例如“;你好，我的孩子们！”）。")
+	to_chat(new_queen, "使用<strong>;</strong>通过虫巢意志交谈（例如“;你好，我的孩子们！”）。")

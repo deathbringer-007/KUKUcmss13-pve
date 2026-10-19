@@ -97,7 +97,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/attackby(obj/item/I, mob/user)
 	if(flags_attach_features & ATTACH_RELOADABLE)
 		if(user.get_inactive_hand() != src)
-			to_chat(user, SPAN_WARNING("You have to hold [src] to do that!"))
+			to_chat(user, SPAN_WARNING("你必须拿着[src]才能这样做！"))
 		else
 			reload_attachment(I, user)
 		return TRUE
@@ -106,7 +106,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/proc/can_be_attached_to_gun(mob/user, obj/item/weapon/gun/G)
 	if(G.attachable_allowed && !(type in G.attachable_allowed) )
-		to_chat(user, SPAN_WARNING("[src] doesn't fit on [G]!"))
+		to_chat(user, SPAN_WARNING("[src]无法安装在[G]上！"))
 		return FALSE
 	return TRUE
 
@@ -230,21 +230,21 @@ Defined in conflicts.dm of the #defines folder.
 	var/base_attachment_desc
 	switch(slot)
 		if("rail")
-			base_attachment_desc = "It has a [icon2html(src)] [name] mounted on the top."
+			base_attachment_desc = "顶部装有[icon2html(src)] [name]。"
 		if("side_rail")
-			base_attachment_desc = "It has a [icon2html(src)] [name] mounted on the side."
+			base_attachment_desc = "侧面装有[icon2html(src)] [name]。"
 		if("muzzle")
-			base_attachment_desc = "It has a [icon2html(src)] [name] mounted on the front."
+			base_attachment_desc = "前端装有[icon2html(src)] [name]。"
 		if("stock")
-			base_attachment_desc = "It has a [icon2html(src)] [name] for a stock."
+			base_attachment_desc = "装有[icon2html(src)] [name]作为枪托。"
 		if("under")
-			var/output = "It has a [icon2html(src)] [name]"
+			var/output = "下方装有[icon2html(src)] [name]"
 			if(flags_attach_features & ATTACH_WEAPON)
 				output += " ([current_rounds]/[max_rounds])"
-			output += " mounted underneath."
+			output += "。"
 			base_attachment_desc = output
 		else
-			base_attachment_desc = "It has a [icon2html(src)] [name] attached."
+			base_attachment_desc = "装有[icon2html(src)] [name]。"
 	return handle_pre_break_attachment_description(base_attachment_desc) + "<br>"
 
 /obj/item/attachable/proc/handle_pre_break_attachment_description(base_description_text as text)
@@ -269,7 +269,7 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = pick("suppressor_a","suppressor2_a")
 
 /obj/item/attachable/suppressor/xm40_integral
-	name = "\improper XM40 integral suppressor"
+	name = "XM40 一体式消音器"
 	icon_state = "m40sd_suppressor"
 	attach_icon = "m40sd_suppressor_a"
 
@@ -289,7 +289,7 @@ Defined in conflicts.dm of the #defines folder.
 	throw_speed = SPEED_VERY_FAST
 	throw_range = 5
 	hitsound = 'sound/weapons/slash.ogg'
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("挥砍", "刺击", "切割", "撕扯", "撕裂", "切碎", "割伤")
 	attack_speed = 9
 	flags_equip_slot = SLOT_FACE
 	flags_armor_protection = SLOT_FACE
@@ -325,12 +325,12 @@ Defined in conflicts.dm of the #defines folder.
 	pry_delay = 1 SECONDS
 
 /obj/item/attachable/bayonet/upp/surplus
-	desc = "The standard-issue bayonet of the UPP, this one is somewhat dulled."
+	desc = "UPP制式刺刀，这一把已经有些钝了。"
 	throwforce = MELEE_FORCE_STRONG
 
 /obj/item/attachable/bayonet/co2
-	name = "\improper M8 cartridge bayonet"
-	desc = "A back issue USCM approved exclusive for Boots subscribers found in issue #255 'Inside the Night Raider - morale breaking alternatives with 2nd LT. Juliane Gerd'. A pressurized tube runs along the inside of the blade, and a button allows one to inject compressed CO2 into the stab wound. It feels cheap to the touch. Faulty even."
+	name = "M8 气瓶刺刀"
+	desc = "一件经USCM认可、专供《新兵！》订阅者的过刊赠品，出自第255期《深入夜袭者——朱莉安娜·格德少尉谈摧毁士气的另类手段》。刀刃内部有一根加压管，按下按钮即可向刺伤处注入压缩CO2。摸起来很廉价，甚至像是坏的。"
 	icon_state = "co2_knife"
 	attach_icon = "co2_bayonet_a"
 	var/filled = FALSE
@@ -347,8 +347,8 @@ Defined in conflicts.dm of the #defines folder.
 	pry_delay = 1 SECONDS
 
 /obj/item/attachable/bayonet/van_bandolier
-	name = "\improper Fairbairn-Sykes fighting knife"
-	desc = "This isn't for dressing game or performing camp chores. It's for killing men and has done so successfully for a number of centuries. When all else has failed you, this knife will be in your hand, ready to execute its grim task."
+	name = "费尔贝恩-赛克斯格斗刀"
+	desc = "这把刀不是用来处理猎物或做营地杂务的，而是用来杀人的，几个世纪以来一直干得很出色。当其他一切都辜负了你，这把刀仍会握在你手中，准备执行它阴森的使命。"
 
 /obj/item/attachable/bayonet/co2/update_icon()
 	icon_state = "co2_knife[filled ? "-f" : ""]"
@@ -358,30 +358,30 @@ Defined in conflicts.dm of the #defines folder.
 	if(istype(W, /obj/item/co2_cartridge))
 		if(!filled)
 			filled = TRUE
-			user.visible_message(SPAN_NOTICE("[user] slots a CO2 cartridge into [src]. A second later, \he apparently looks dismayed."), SPAN_WARNING("You slot a fresh CO2 cartridge into [src] and snap the slot cover into place. Only then do you realize [W]'s valve broke inside [src]. Fuck."))
+			user.visible_message(SPAN_NOTICE("[user]把一枚CO2气瓶装进了[src]。片刻之后，脸上明显露出了沮丧。"), SPAN_WARNING("你把一枚新的CO2气瓶装进[src]，扣好槽盖，才发现[W]的阀门断在[src]里面了。妈的。"))
 			playsound(src, 'sound/machines/click.ogg')
 			qdel(W)
 			update_icon()
 			return
 		else
-			user.visible_message(SPAN_WARNING("[user] fiddles with [src]. \He looks frustrated."), SPAN_NOTICE("No way man! You can't seem to pry the existing container out of [src]... try a screwdriver?"))
+			user.visible_message(SPAN_WARNING("[user]摆弄着[src]，看起来很懊恼。"), SPAN_NOTICE("不行，老兄！你似乎没法把里面的气瓶从[src]中撬出来……试试螺丝刀？"))
 			return
 	if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER) && do_after(user, 2 SECONDS, INTERRUPT_ALL, BUSY_ICON_BUILD))
-		user.visible_message(SPAN_WARNING("[user] screws with [src], using \a [W]. \He looks very frustrated."), SPAN_NOTICE("You try to pry the cartridge out of [src], but it's stuck damn deep. Piece of junk..."))
+		user.visible_message(SPAN_WARNING("[user]用[W]折腾着[src]，看起来十分懊恼。"), SPAN_NOTICE("你试图从[src]里撬出气瓶，可它卡得太深了。这破烂玩意……"))
 		return
 	..()
 
 /obj/item/co2_cartridge //where tf else am I gonna put this?
-	name = "\improper CO2 cartridge"
-	desc = "A cartridge of compressed CO2 for the M8 cartridge bayonet. Do not consume or puncture."
+	name = "CO2 气瓶"
+	desc = "供M8气瓶刺刀使用的压缩CO2气瓶。请勿吞食或刺穿。"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "co2_cartridge"
 	item_state = ""
 	w_class = SIZE_TINY
 
 /obj/item/attachable/bayonet/canc
-	name = "\improper Type 4 bayonet"
-	desc = "A relic of bygone era, this once-CANC-produced bayonet is no longer in service of any army since Cooperative's dissolution. Despite not being adopted by any UPPAC formations, it can still be found on flea markets, in the hands of former CANC servicemembers or current CANC restoration fanatics. Too bad it only fits on their shitty LW-317 carbines..."
+	name = "4式刺刀"
+	desc = "一件旧时代的遗物，曾由中国与亚洲国家合作体生产；自合作体解体后，已没有军队继续使用。尽管UPP联合武装各部都未采用它，仍能在跳蚤市场、前CANC军人或如今的CANC复辟狂热分子手中找到。可惜它只装得上那破烂的LW-317卡宾枪……"
 	icon_state = "knife_chinese"
 	item_state = "knife_chinese"
 	attach_icon = "canc_bayonet_a"
@@ -404,8 +404,8 @@ Defined in conflicts.dm of the #defines folder.
 	velocity_mod = AMMO_SPEED_TIER_1
 
 /obj/item/attachable/heavy_barrel
-	name = "barrel charger"
-	desc = "A hyper threaded barrel extender that fits to the muzzle of most firearms. Increases bullet speed and velocity.\nGreatly increases projectile damage at the cost of accuracy and firing speed."
+	name = "枪管增压器"
+	desc = "适用于大多数枪械枪口的超螺纹枪管延长装置，可提高子弹飞行速度。\n以精度和射速为代价，大幅提高弹体伤害。"
 	slot = "muzzle"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "hbarrel"
@@ -448,10 +448,10 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/slavicbarrel
-	name = "sniper barrel"
+	name = "狙击枪管"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "slavicbarrel"
-	desc = "A heavy barrel. CANNOT BE REMOVED."
+	desc = "一根重型枪管。无法拆卸。"
 	slot = "muzzle"
 
 	pixel_shift_x = 20
@@ -465,7 +465,7 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -SCATTER_AMOUNT_TIER_8
 
 /obj/item/attachable/f90_dmr_barrel
-	name = "f90 barrel"
+	name = "f90 枪管"
 	desc = "This isn't supposed to be separated from the gun, how'd this happen?"
 	icon_state = "aug_dmr_barrel_a"
 	attach_icon = "aug_dmr_barrel_a"
@@ -476,7 +476,7 @@ Defined in conflicts.dm of the #defines folder.
 	size_mod = 0
 
 /obj/item/attachable/f90_shotgun_barrel
-	name = "f90 barrel"
+	name = "f90 枪管"
 	desc = "This isn't supposed to be separated from the gun, how'd this happen?"
 	icon_state = "aug_mkey_barrel_a"
 	attach_icon = "aug_mkey_barrel_a"
@@ -487,7 +487,7 @@ Defined in conflicts.dm of the #defines folder.
 	size_mod = 0
 
 /obj/item/attachable/l56a2_smartgun
-	name = "L58A3 barrel"
+	name = "L58A3 枪管"
 	desc = "This isn't supposed to be separated from the gun, how'd this happen?"
 	icon_state = "magsg_barrel_a"
 	attach_icon = "magsg_barrel_a"
@@ -498,7 +498,7 @@ Defined in conflicts.dm of the #defines folder.
 	size_mod = 0
 
 /obj/item/attachable/upp_smartgun
-	name = "RFVS-37 barrel"
+	name = "RFVS-37 枪管"
 	desc = "This isn't supposed to be separated from the gun, how'd this happen?"
 	icon_state = "rfvs37_barrel"
 	attach_icon = "rfvs37_barrel"
@@ -509,10 +509,10 @@ Defined in conflicts.dm of the #defines folder.
 	size_mod = 0
 
 /obj/item/attachable/sniperbarrel
-	name = "sniper barrel"
+	name = "狙击枪管"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "sniperbarrel"
-	desc = "A heavy barrel. CANNOT BE REMOVED."
+	desc = "一根重型枪管。无法拆卸。"
 	slot = "muzzle"
 	flags_attach_features = NO_FLAGS
 	hud_offset_mod = -3
@@ -523,10 +523,10 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -SCATTER_AMOUNT_TIER_8
 
 /obj/item/attachable/supsniperbarrel
-	name = "suppressed sniper barrel"
+	name = "消音狙击枪管"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "supsniperbarrel"
-	desc = "A heavy barrel. CANNOT BE REMOVED."
+	desc = "一根重型枪管。无法拆卸。"
 	slot = "muzzle"
 	flags_attach_features = NO_FLAGS
 	gun_traits = list(TRAIT_GUN_SILENCED)
@@ -538,10 +538,10 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -SCATTER_AMOUNT_TIER_8
 
 /obj/item/attachable/pmc_sniperbarrel
-	name = "sniper barrel"
+	name = "狙击枪管"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "pmc_sniperbarrel"
-	desc = "A heavy barrel. CANNOT BE REMOVED."
+	desc = "一根重型枪管。无法拆卸。"
 	slot = "muzzle"
 	flags_attach_features = NO_FLAGS
 	hud_offset_mod = -3
@@ -552,15 +552,15 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -SCATTER_AMOUNT_TIER_8
 
 /obj/item/attachable/sniperbarrel/vulture
-	name = "\improper M707 barrel"
+	name = "M707 枪管"
 	icon_state = "vulture_barrel"
 	hud_offset_mod = -1
 
 /obj/item/attachable/m60barrel
-	name = "M60 barrel"
+	name = "M60 枪管"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "m60barrel"
-	desc = "A heavy barrel. CANNOT BE REMOVED."
+	desc = "一根重型枪管。无法拆卸。"
 	slot = "muzzle"
 	flags_attach_features = NO_FLAGS
 	hud_offset_mod = -6
@@ -571,10 +571,10 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -SCATTER_AMOUNT_TIER_8
 
 /obj/item/attachable/mar50barrel
-	name = "MAR-50 barrel"
+	name = "MAR-50 枪管"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "mar50barrel"
-	desc = "A heavy barrel. CANNOT BE REMOVED."
+	desc = "一根重型枪管。无法拆卸。"
 	slot = "muzzle"
 	flags_attach_features = NO_FLAGS
 	hud_offset_mod = -6
@@ -585,35 +585,35 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -SCATTER_AMOUNT_TIER_8
 
 /obj/item/attachable/smartbarrel
-	name = "smartgun barrel"
+	name = "智能机枪枪管"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "m56_barrel"
-	desc = "The very end of the M56 smart gun, featuring a compensator. CANNOT BE REMOVED."
+	desc = "M56智能机枪的枪管末端，带有补偿器。无法拆卸。"
 	slot = "muzzle"
 	flags_attach_features = NO_FLAGS
 	pixel_shift_x = 14
 	hud_offset_mod = -4
 
 /obj/item/attachable/smartbarrel/suppressed
-	name = "suppressed smartgun barrel"
+	name = "消音智能机枪枪管"
 	icon_state = "silenced_smartgun"
 	gun_traits = list(TRAIT_GUN_SILENCED)
 
 /obj/item/attachable/simbarrel
-	name = "SIM-118 barrel"
+	name = "SIM-118 发射管"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "fim_barrel"
-	desc = "The very end of an SIM 118 launcher. CANNOT BE REMOVED."
+	desc = "SIM 118发射器的发射管末端。无法拆卸。"
 	slot = "muzzle"
 	flags_attach_features = NO_FLAGS
 	pixel_shift_x = 14
 	hud_offset_mod = -4
 
 /obj/item/attachable/emblrbarrel
-	name = "EMBLR 92 barrel"
+	name = "EMBLR 92 发射管"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "emblr_barrel"
-	desc = "The very end of an EMBLR surface-to-air missile launcher. CANNOT BE REMOVED."
+	desc = "EMBLR地对空导弹发射器的发射管末端。无法拆卸。"
 	slot = "muzzle"
 	flags_attach_features = NO_FLAGS
 	pixel_shift_x = 14
@@ -622,10 +622,10 @@ Defined in conflicts.dm of the #defines folder.
 // Mateba barrels
 
 /obj/item/attachable/mateba
-	name = "standard mateba barrel"
+	name = "标准马特巴枪管"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "mateba_medium"
-	desc = "A standard mateba barrel. Offers a balance between accuracy and fire rate."
+	desc = "标准马特巴枪管，在精度与射速之间取得平衡。"
 	slot = "special"
 	flags_attach_features = NO_FLAGS
 
@@ -645,9 +645,9 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "mateba_medium_a"
 
 /obj/item/attachable/mateba/long
-	name = "marksman mateba barrel"
+	name = "马特巴精确射击枪管"
 	icon_state = "mateba_long"
-	desc = "A marksman mateba barrel. Offers a greater accuracy at the cost of fire rate."
+	desc = "马特巴精确射击枪管，以射速为代价提高精度。"
 	flags_attach_features = NO_FLAGS
 	hud_offset_mod = -1
 
@@ -665,9 +665,9 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "mateba_long_a"
 
 /obj/item/attachable/mateba/short
-	name = "snubnose mateba barrel"
+	name = "马特巴短枪管"
 	icon_state = "mateba_short"
-	desc = "A snubnosed mateba barrel. Offers a fast fire rate at the cost of accuracy."
+	desc = "马特巴短枪管，以精度为代价提高射速。"
 	hud_offset_mod = 2
 
 /obj/item/attachable/mateba/short/New()
@@ -684,7 +684,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "mateba_short_a"
 
 /obj/item/attachable/isr_barrel
-	name = "ISR barrel"
+	name = "ISR 枪管"
 	desc = "This isn't supposed to be separated from the gun, how'd this happen?"
 	icon_state = "isr_barrel"
 	attach_icon = "isr_barrel"
@@ -711,8 +711,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_onehanded_acc_penalty_mod = MOVEMENT_ACCURACY_PENALTY_MULT_TIER_5
 
 /obj/item/attachable/reddot/upp
-	name = "EKP-9-M Red Dot Sight"
-	desc = "Cutting edge UPP sight with automated reticle correction for a fixed zero point. Increases accuracy significantly."
+	name = "EKP-9-M 红点瞄准镜"
+	desc = "UPP的尖端瞄准镜，可自动修正分划以保持固定归零点，显著提高精度。"
 
 /obj/item/attachable/reflex
 	name = "S6 反射式瞄准镜"
@@ -731,8 +731,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_onehanded_acc_penalty_mod = MOVEMENT_ACCURACY_PENALTY_MULT_TIER_5
 
 /obj/item/attachable/reflex/upp
-	name = "PK-12 Reflex Sight"
-	desc = "Reflector type gunsight compatible with most standard issue UPP firearms. Durable but the power supply is notoriously unreliable. Reduces scatter significantly and boosts accuracy slightly."
+	name = "PK-12 反射式瞄准镜"
+	desc = "兼容大多数UPP制式枪械的反射式瞄准镜。经久耐用，但供电系统出了名地不可靠。显著减小散布，并略微提高精度。"
 
 /obj/item/attachable/flashlight
 	name = "导轨手电筒"
@@ -863,7 +863,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/flashlight/attackby(obj/item/I, mob/user)
 	if(HAS_TRAIT(I, TRAIT_TOOL_SCREWDRIVER))
-		to_chat(user, SPAN_NOTICE("You strip the rail flashlight of its mount, converting it to a normal flashlight."))
+		to_chat(user, SPAN_NOTICE("你拆下导轨手电筒的安装座，把它改成了普通手电筒。"))
 		if(isstorage(loc))
 			var/obj/item/storage/S = loc
 			S.remove_from_storage(src)
@@ -876,8 +876,8 @@ Defined in conflicts.dm of the #defines folder.
 		. = ..()
 
 /obj/item/attachable/flashlight/grip //Grip Light is here because it is a child object. Having it further down might cause a future coder a headache.
-	name = "underbarrel flashlight grip"
-	desc = "Holy smokes RO man, they put a grip on a flashlight! \nReduces recoil and scatter by a tiny amount. Boosts accuracy by a tiny amount. Works as a light source."
+	name = "下挂手电握把"
+	desc = "天哪，后勤军官老兄，他们居然给手电筒装了个握把！\n小幅降低后坐力与散布，并小幅提高精度，还能照明。"
 	icon = 'icons/obj/items/weapons/guns/attachments/under.dmi'
 	icon_state = "flashgrip"
 	attach_icon = "flashgrip_a"
@@ -893,16 +893,16 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/flashlight/grip/attackby(obj/item/I, mob/user)
 	if(HAS_TRAIT(I, TRAIT_TOOL_SCREWDRIVER))
-		to_chat(user, SPAN_NOTICE("Hold on there cowboy, that grip is bolted on. You are unable to modify it."))
+		to_chat(user, SPAN_NOTICE("慢着，牛仔。握把是用螺栓固定的，你没法改装它。"))
 	return
 
 /obj/item/attachable/flashlight/grip/upp
-	name = "RK-5A Flashlight Grip"
-	desc = "Folding grip with an integrated flashlight. Reduces recoil and scatter marginally, boosts accuracy slightly. \nStatistically udentical to the underbarrel flashlight grip."
+	name = "RK-5A 手电握把"
+	desc = "内置手电筒的折叠握把，略微降低后坐力与散布，并略微提高精度。\n性能与下挂手电握把相同。"
 
 /obj/item/attachable/flashlight/laser_light_combo //Unique attachment for the VP78 based on the fact it has a Laser-Light Module in AVP2010
-	name = "Laser-Light Module"
-	desc = "A Laser-Light module for the VP78 Service Pistol which is currently undergoing limited field testing as part of the USCMs next generation pistol program. All VP78 pistols come equipped with the module."
+	name = "激光照明模块"
+	desc = "供VP78制式手枪使用的激光照明模块，正作为USCM下一代手枪计划的一部分进行有限范围的实地试用。所有VP78手枪都配有该模块。"
 	icon = 'icons/obj/items/weapons/guns/attachments/under.dmi'
 	icon_state = "vplaserlight"
 	attach_icon = "vplaserlight_a"
@@ -920,7 +920,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/flashlight/laser_light_combo/attackby(obj/item/combo_light, mob/user)
 	if(HAS_TRAIT(combo_light, TRAIT_TOOL_SCREWDRIVER))
-		to_chat(user, SPAN_NOTICE("You are unable to modify it."))
+		to_chat(user, SPAN_NOTICE("你无法改装它。"))
 	return
 
 /obj/item/attachable/magnetic_harness
@@ -940,7 +940,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/magnetic_harness/can_be_attached_to_gun(mob/user, obj/item/weapon/gun/G)
 	if(SEND_SIGNAL(G, COMSIG_DROP_RETRIEVAL_CHECK) & COMPONENT_DROP_RETRIEVAL_PRESENT)
-		to_chat(user, SPAN_WARNING("[G] already has a retrieval system installed!"))
+		to_chat(user, SPAN_WARNING("[G]已经装有回收系统了！"))
 		return FALSE
 	return ..()
 
@@ -953,8 +953,8 @@ Defined in conflicts.dm of the #defines folder.
 	detaching_gub.RemoveElement(/datum/element/drop_retrieval/gun, retrieval_slot)
 
 /obj/item/attachable/magnetic_harness/lever_sling
-	name = "R4T magnetic sling" //please don't make this attachable to any other guns...
-	desc = "A custom sling designed for comfortable holstering of a 19th century lever action rifle, for some reason. Contains magnets specifically built to make sure the lever-action rifle never drops from your back, however they somewhat get in the way of the grip."
+	name = "R4T 磁力枪背带" //please don't make this attachable to any other guns...
+	desc = "不知为何，专门为舒适携带十九世纪杠杆式步枪设计的定制枪背带。内置磁铁，确保杠杆式步枪不会从背上掉落，不过也有点妨碍握持。"
 	icon = 'icons/obj/items/weapons/guns/attachments/under.dmi'
 	icon_state = "r4t-sling"
 	attach_icon = "r4t-sling_a"
@@ -989,8 +989,8 @@ Defined in conflicts.dm of the #defines folder.
 			attach_icon = new_attach_icon ? new_attach_icon : "c_" + attach_icon
 
 /obj/item/attachable/sling //Mostly cosmetic, some one-handed fire adjustments
-	name = "two-point sling"
-	desc = "A traditional strip of toughened nylon fabric with clips on either end for attaching to suitable mounting points on most longarms in the UA armed forces arsenals."
+	name = "两点式枪背带"
+	desc = "一条传统的强化尼龙枪背带，两端配有卡扣，可连接到美洲联盟武装部队大多数长枪的相应挂点上。"
 	icon = 'icons/obj/items/weapons/guns/attachments/rail.dmi'
 	icon_state = "pve-sling"
 	attach_icon = "pve-sling_a"
@@ -1075,11 +1075,11 @@ Defined in conflicts.dm of the #defines folder.
 	if(!G.zoom)
 		if(!(G.flags_item & WIELDED))
 			if(user)
-				to_chat(user, SPAN_WARNING("You must hold [G] with two hands to use [src]."))
+				to_chat(user, SPAN_WARNING("你必须双手握持[G]才能使用[src]。"))
 			return FALSE
 		if(MODE_HAS_FLAG(MODE_FACTION_CLASH) && !ignore_clash_fog)
 			if(user)
-				to_chat(user, SPAN_DANGER("You peer into [src], but it seems to have fogged up. You can't use this!"))
+				to_chat(user, SPAN_DANGER("你透过[src]看去，却发现镜片似乎起雾了，无法使用！"))
 			return FALSE
 		else
 			G.zoom(user, zoom_offset, zoom_viewsize, allows_movement)
@@ -1092,12 +1092,12 @@ Defined in conflicts.dm of the #defines folder.
 #define ZOOM_LEVEL_4X 1
 
 /obj/item/attachable/scope/upp
-	name = "PO-M 4x Optic"
-	desc = "Old fashioned 4x scope. Sturdy, but a little unergonomic. UPP tradition. Reduces RoF and increases wield time. Major accuracy bonus when scoped."
+	name = "PO-M 4倍瞄准镜"
+	desc = "老式4倍瞄准镜，坚固，但人体工学稍差。UPP的传统。降低射速并延长举枪时间，开镜时大幅提高精度。"
 
 /obj/item/attachable/scope/variable_zoom
-	name = "S10 variable zoom telescopic scope"
-	desc = "An ARMAT S10 telescopic eye piece. Can be switched between 2x zoom, which allows the user to move while scoped in, and 4x zoom. Press the 'use rail attachment' HUD icon or use the verb of the same name to zoom."
+	name = "S10 可变倍望远瞄准镜"
+	desc = "阿玛特S10望远瞄准镜，可在2倍与4倍之间切换；2倍时允许开镜移动。点击“使用导轨附件”抬头显示图标，或使用同名命令（Use Rail Attachment）开镜。"
 	attachment_action_type = /datum/action/item_action/toggle
 	var/dynamic_aim_slowdown = SLOWDOWN_ADS_MINISCOPE_DYNAMIC
 	var/zoom_level = ZOOM_LEVEL_4X
@@ -1123,28 +1123,28 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/scope/variable_zoom/proc/toggle_zoom_level()
 	if(using_scope)
-		to_chat(usr, SPAN_WARNING("You can't change the zoom setting on the [src] while you're looking through it!"))
+		to_chat(usr, SPAN_WARNING("透过[src]观察时，无法调整倍率！"))
 		return
 	if(zoom_level == ZOOM_LEVEL_2X)
 		zoom_level = ZOOM_LEVEL_4X
 		zoom_offset = 11
 		zoom_viewsize = 12
 		allows_movement = 0
-		to_chat(usr, SPAN_NOTICE("Zoom level switched to 4x"))
+		to_chat(usr, SPAN_NOTICE("倍率已切换为4倍。"))
 		return
 	else
 		zoom_level = ZOOM_LEVEL_2X
 		zoom_offset = 6
 		zoom_viewsize = 7
 		allows_movement = 1
-		to_chat(usr, SPAN_NOTICE("Zoom level switched to 2x"))
+		to_chat(usr, SPAN_NOTICE("倍率已切换为2倍。"))
 		return
 
 /datum/action/item_action/toggle_zoom_level
 
 /datum/action/item_action/toggle_zoom_level/New()
 	..()
-	name = "Toggle Zoom Level"
+	name = "切换倍率"
 	button.name = name
 
 /datum/action/item_action/toggle_zoom_level/action_activate()
@@ -1156,10 +1156,10 @@ Defined in conflicts.dm of the #defines folder.
 //other variable zoom scopes
 
 /obj/item/attachable/scope/variable_zoom/integrated
-	name = "variable zoom scope"
+	name = "可变倍瞄准镜"
 
 /obj/item/attachable/scope/variable_zoom/integrated/svd_iff
-	name = "variable IFF enabled zoom scope"
+	name = "带敌我识别功能的可变倍瞄准镜"
 
 /obj/item/attachable/scope/variable_zoom/integrated/svd_iff/New()
 	..()
@@ -1175,18 +1175,18 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/scope/variable_zoom/slavic
 	icon_state = "slavicscope"
 	attach_icon = "slavicscope"
-	desc = "Oppa! Why did you get this off glorious Stalin weapon? Blyat, put back on and do job tovarish. Yankee is not shoot self no?"
+	desc = "哎呀！你为什么把它从光荣的斯大林武器上拆下来了？妈的，装回去干活，同志。洋基佬总不会自己朝自己开枪，对吧？"
 
 /obj/item/attachable/scope/variable_zoom/eva
-	name = "RXF-M5 EVA telescopic variable scope"
+	name = "RXF-M5 EVA 可变倍望远瞄准镜"
 	icon_state = "rxfm5_eva_scope"
 	attach_icon = "rxfm5_eva_scope_a"
-	desc = "A civilian-grade scope that can be switched between short and long range magnification, intended for use in extraterrestrial scouting. Looks ridiculous on a pistol."
+	desc = "一款可在近距和远距倍率之间切换的民用瞄准镜，设计用于外星勘察。装在手枪上显得很滑稽。"
 	aim_speed_mod = 0
 
 /obj/item/attachable/scope/variable_zoom/canc
-	name = "LMR-72 4x smartscope"
-	desc = "Outdated CANC scope."
+	name = "LMR-72 4倍智能瞄准镜"
+	desc = "一款过时的CANC瞄准镜。"
 	icon_state = "canc_scope"
 	attach_icon = "canc_scope"
 	pixel_shift_x = 13
@@ -1196,7 +1196,7 @@ Defined in conflicts.dm of the #defines folder.
 	if(ishuman(usr))
 		var/mob/living/carbon/human/human = usr
 		if(!istype(human.glasses, /obj/item/clothing/glasses/canc_monoscope))
-			to_chat(human, SPAN_WARNING("You can not use high-resolution magnification of this sight without a monoscope!"))
+			to_chat(human, SPAN_WARNING("没有单目镜，就无法使用该瞄准镜的高分辨率放大功能！"))
 			return
 	..()
 
@@ -1239,8 +1239,8 @@ Defined in conflicts.dm of the #defines folder.
 	..()
 
 /obj/item/attachable/scope/mini/upp
-	name = "1P93 2x Optic"
-	desc = "Mild update of a 2159 UPP design. Holds zero in all conditions, antiglint grid prevents glare, but the reticle is unfortunately cluttered and busy. Reduces RoF and increases wield time, boosts accuracy while scoped."
+	name = "1P93 2倍瞄准镜"
+	desc = "基于2159年UPP设计小幅改进的瞄准镜。能在各种条件下保持归零，防反光格栅可避免眩光，可惜分划过于繁杂。降低射速、延长举枪时间，开镜时提高精度。"
 
 /obj/item/attachable/scope/mini/flaregun
 	wield_delay_mod = 0
@@ -1265,30 +1265,30 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "普通的固定 2 倍光学瞄准镜，在民间几乎随处可见，有时执法部门也会使用。"
 
 /obj/item/attachable/scope/mini/hunting/upp
-	name = "POS-3 hunting mini-scope"
+	name = "POS-3 狩猎小型瞄准镜"
 	icon_state = "upphuntingscope"
 	attach_icon = "upphuntingscope"
-	desc = "Simple Union-made civilian hunting/sport scope."
+	desc = "联盟制造的简易民用狩猎与运动瞄准镜。"
 
 /obj/item/attachable/scope/mini/nsg23
-	name = "W-Y S4 2x advanced telescopic mini-scope"
-	desc = "An ARMAT S4 telescoping eye piece, tweaked by a third-party contractor for ergonomics."
+	name = "维兰德-汤谷 S4 2倍高级小型望远瞄准镜"
+	desc = "阿玛特S4望远瞄准镜，经第三方承包商调整，改善了人体工学。"
 	icon_state = "miniscope_nsg23"
 	attach_icon = "miniscope_nsg23_a"
 	zoom_offset = 4
 	dynamic_aim_slowdown = SLOWDOWN_ADS_NONE
 
 /obj/item/attachable/scope/mini/nsg23/rmc
-	name = "L4A5 SUMSA mini-scope" //Sight Unit, General Marine Armaments was a serious contender for the name instead of this
-	desc = "Sight Unit, Marine Small-Arms. A modified ARMAT S4 telescoping eye piece, adopted by the RMC for use on their L23A1 rifles. This one is has been coated in a coat of dark matte paint."
+	name = "L4A5 SUMSA 小型瞄准镜" //Sight Unit, General Marine Armaments was a serious contender for the name instead of this
+	desc = "陆战队轻武器瞄准装置。由阿玛特S4望远瞄准镜改进而来，皇家陆战突击队将其用于L23A1步枪。这一款涂有深色哑光涂层。"
 	icon_state = "miniscope"
 	attach_icon = "miniscope_a"
 
 /obj/item/attachable/scope/mini/rmcdmr
-	name = "L5A2 SUMMR scope"
+	name = "L5A2 SUMMR 瞄准镜"
 	icon_state = "sniperscope"
 	attach_icon = "sniperscope_a"
-	desc = "Sight Unit, Marine Marksman Rifle. A 4x power optic commonly fielded on the Royal Marines L64A3 DMRs."
+	desc = "陆战队精确射手步枪瞄准装置。一款4倍光学瞄准镜，常配用于皇家陆战队的L64A3精确射手步枪。"
 	dynamic_aim_slowdown = SLOWDOWN_ADS_QUICK
 	zoom_offset = 8
 	zoom_viewsize = 9
@@ -1306,31 +1306,31 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = icon_state
 
 /obj/item/attachable/scope/mini/sadar
-	name = "M83A2 SADAR sight assembly"
-	desc = "SADAR sight system."
+	name = "M83A2 SADAR 瞄准组件"
+	desc = "SADAR瞄准系统。"
 	zoom_offset = 3
 
 /obj/item/attachable/scope/mini/rmcgl
-	name = "L164A3 collimator sight assembly"
-	desc = "L164A3 sight system."
+	name = "L164A3 准直式瞄准组件"
+	desc = "L164A3瞄准系统。"
 	zoom_offset = 3
 	icon_state = "reflex"
 
 /obj/item/attachable/scope/mini/rmcsg
-	name = "L58A3 gunsight interface"
+	name = "L58A3 瞄准接口"
 	desc = "L58A3 gunsight interface. You shouldn't ever see this."
 	zoom_offset = 4
 	icon_state = "sgsight"
 
 /obj/item/attachable/scope/mini/army
-	desc = "An ARMAT S4 scope, type designation AN/PVQ-45. 2x magnification optic, increases accuracy while scoped, decreases RoF and increased wield speed."
+	desc = "阿玛特S4瞄准镜，型号AN/PVQ-45。2倍光学放大，开镜时提高精度、降低射速，并提高举枪速度。"
 	zoom_offset = 4
 
 //Mini-scope for the scout rifle
 
 /obj/item/attachable/scope/mini/scout
-	name = "M49A targeting relay"
-	desc = "An ARMAT M49A5 optical interface, type designation AN/PVX-56. Wirelessly links to the operators M49A eyepiece to give a one-to-one boresighted picture of where the rifle is aiming. Includes a Computer-Calculated-Impact-Point system for precision shooting."
+	name = "M49A 瞄准中继器"
+	desc = "阿玛特M49A5光学接口，型号AN/PVX-56。可无线连接操作员的M49A目镜，提供与枪膛轴线对应的一比一瞄准画面，另有计算机命中点计算系统，辅助精确射击。"
 	icon_state = "m49a_custom_scope"
 	attach_icon = "m49a_custom_scope"
 	zoom_offset = 7
@@ -1340,15 +1340,15 @@ Defined in conflicts.dm of the #defines folder.
 	if(ishuman(user))
 		var/mob/living/carbon/human/human = user
 		if(!istype(human.glasses, /obj/item/clothing/glasses/night/M49A))
-			to_chat(human, SPAN_WARNING("You can't use the targeting relay without the battle-sight eyepiece!"))
+			to_chat(human, SPAN_WARNING("没有战斗瞄准目镜，就无法使用瞄准中继器！"))
 			return
 	..()
 
 // PVE tech-man compliant mini scope, planned to have togglable vision modes for shitty night-vision when scoped in
 
 /obj/item/attachable/scope/pve
-	name = "AN/RVS-52 CCD television sight system"
-	desc = "An ARMAT designed 3x magnification weapon sight, allows for greater accuracy at range and under low-light conditions. The mounting brackets are designed to fit on the most commonly-used rifles of the USCM. This one looks like it's been in service since the start of the Linna 349 campaign."
+	name = "AN/RVS-52 CCD 电视瞄准系统"
+	desc = "阿玛特设计的3倍武器瞄准镜，能提高远距离及低光环境下的射击精度。安装座兼容USCM最常用的步枪。这一款看起来从林纳349战役开始就一直在服役。"
 	icon_state = "pvescope"
 	zoom_offset = 3
 	zoom_viewsize = 7
@@ -1369,7 +1369,7 @@ Defined in conflicts.dm of the #defines folder.
 	..()
 
 /obj/item/attachable/scope/m79
-	name = "M79 sight"
+	name = "M79 瞄具"
 	desc = "You shouldn't be seeing this!"
 	icon_state = "m79_sight"
 	zoom_offset = 3
@@ -1421,14 +1421,14 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/scope/slavic
 	icon_state = "slavicscope"
 	attach_icon = "slavicscope"
-	desc = "Oppa! How did you get this off glorious Stalin weapon? Blyat, put back on and do job tovarish. Yankee is not shoot self no?"
+	desc = "哎呀！你怎么把它从光荣的斯大林武器上拆下来了？妈的，装回去干活，同志。洋基佬总不会自己朝自己开枪，对吧？"
 
 /obj/item/attachable/vulture_scope // not a subtype of scope because it uses basically none of the scope's features
-	name = "\improper M707 \"Vulture\" scope"
+	name = "M707“秃鹫”瞄准镜"
 	icon = 'icons/obj/items/weapons/guns/attachments/rail.dmi'
 	icon_state = "vulture_scope"
 	attach_icon = "vulture_scope"
-	desc = "A powerful yet obtrusive sight for the M707 anti-materiel rifle." // Can't be seen normally, anyway
+	desc = "供M707反器材步枪使用的强大瞄准镜，不过有些碍事。" // Can't be seen normally, anyway
 	slot = "rail"
 	aim_speed_mod = SLOWDOWN_ADS_SCOPE //Extra slowdown when wielded
 	wield_delay_mod = WIELD_DELAY_FAST
@@ -1549,7 +1549,7 @@ Defined in conflicts.dm of the #defines folder.
 			if(slow_use)
 				if(!COOLDOWN_FINISHED(src, scope_interact_cd))
 					return
-				to_chat(scoper, SPAN_NOTICE("You begin adjusting [src]..."))
+				to_chat(scoper, SPAN_NOTICE("你开始调整[src]……"))
 				COOLDOWN_START(src, scope_interact_cd, adjust_delay / 2)
 				if(!do_after(scoper, 0.4 SECONDS))
 					return
@@ -1567,7 +1567,7 @@ Defined in conflicts.dm of the #defines folder.
 				if(!COOLDOWN_FINISHED(src, scope_interact_cd))
 					return
 
-				to_chat(scoper, SPAN_NOTICE("You begin moving [src]..."))
+				to_chat(scoper, SPAN_NOTICE("你开始移动[src]……"))
 				COOLDOWN_START(src, scope_interact_cd, adjust_delay)
 				if(!do_after(scoper, 0.8 SECONDS))
 					return
@@ -1615,11 +1615,11 @@ Defined in conflicts.dm of the #defines folder.
 
 	if(!scoping)
 		if(!(gun.flags_item & WIELDED))
-			to_chat(user, SPAN_WARNING("You must hold [gun] with two hands to use [src]."))
+			to_chat(user, SPAN_WARNING("你必须双手握持[gun]才能使用[src]。"))
 			return FALSE
 
 		if(!HAS_TRAIT(gun, TRAIT_GUN_BIPODDED))
-			to_chat(user, SPAN_WARNING("You must have a deployed bipod to use [src]."))
+			to_chat(user, SPAN_WARNING("必须先架好两脚架，才能使用[src]。"))
 			return FALSE
 
 		on_scope()
@@ -1868,7 +1868,7 @@ Defined in conflicts.dm of the #defines folder.
 		return
 
 	var/mob/scoper = scope_user.resolve()
-	to_chat(scoper, SPAN_NOTICE("You hold your breath, steadying your scope..."))
+	to_chat(scoper, SPAN_NOTICE("你屏住呼吸，稳住了瞄准镜……"))
 	holding_breath = TRUE
 	INVOKE_ASYNC(src, PROC_REF(tick_down_breath_scope))
 	addtimer(CALLBACK(src, PROC_REF(stop_holding_breath)), breath_time)
@@ -1889,7 +1889,7 @@ Defined in conflicts.dm of the #defines folder.
 		return
 
 	var/mob/scoper = scope_user.resolve()
-	to_chat(scoper, SPAN_NOTICE("You breathe out, letting your scope sway."))
+	to_chat(scoper, SPAN_NOTICE("你呼出气息，瞄准镜又开始晃动。"))
 	holding_breath = FALSE
 	scope_element.icon_state = "vulture_unsteady"
 	COOLDOWN_START(src, hold_breath_cd, breath_cooldown_time)
@@ -1925,7 +1925,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/collapsible = FALSE
 	var/stock_activated = TRUE
 	var/collapse_delay  = 0
-	var/list/deploy_message = list("collapse", "extend")
+	var/list/deploy_message = list("收起", "展开")
 
 /obj/item/attachable/stock/proc/apply_on_weapon(obj/item/weapon/gun/gun)
 	return TRUE
@@ -1945,7 +1945,7 @@ Defined in conflicts.dm of the #defines folder.
 		return TRUE
 
 	if(gun.flags_item & WIELDED)
-		to_chat(user, SPAN_NOTICE("You need a free hand to adjust [src]."))
+		to_chat(user, SPAN_NOTICE("你需要空出一只手才能调整[src]。"))
 		return TRUE
 
 	if(!do_after(user, collapse_delay, INTERRUPT_INCAPACITATED|INTERRUPT_NEEDHAND, BUSY_ICON_GENERIC, gun, INTERRUPT_DIFF_LOC))
@@ -1955,7 +1955,7 @@ Defined in conflicts.dm of the #defines folder.
 	apply_on_weapon(gun)
 	playsound(user, activation_sound, 15, 1)
 	var/message = deploy_message[1 + stock_activated]
-	to_chat(user, SPAN_NOTICE("You [message] [src]."))
+	to_chat(user, SPAN_NOTICE("你[message]了[src]。"))
 
 	for(var/X in gun.actions)
 		var/datum/action/A = X
@@ -1992,8 +1992,8 @@ Defined in conflicts.dm of the #defines folder.
 	select_gamemode_skin(type)
 
 /obj/item/attachable/stock/double
-	name = "\improper double barrel shotgun stock"
-	desc = "A chunky piece of wood coated in varnish and age."
+	name = "双管霰弹枪枪托"
+	desc = "一块厚实的木料，外面裹着清漆与岁月的痕迹。"
 	slot = "stock"
 	icon_state = "db_stock"
 	wield_delay_mod = WIELD_DELAY_NONE//part of the gun's base stats
@@ -2021,8 +2021,8 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_unwielded_mod = -SCATTER_AMOUNT_TIER_10
 
 /obj/item/attachable/stock/r4t
-	name = "\improper R4T scouting stock"
-	desc = "A wooden stock designed for the R4T lever-action rifle, designed to withstand harsh environments. It increases weapon stability but really gets in the way."
+	name = "R4T 侦察枪托"
+	desc = "为R4T杠杆式步枪设计的木制枪托，可承受恶劣环境。能提高武器稳定性，但实在有些碍事。"
 	icon_state = "r4t-stock"
 	wield_delay_mod = WIELD_DELAY_SLOW
 	hud_offset_mod = 6
@@ -2051,7 +2051,7 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_unwielded_mod = SCATTER_AMOUNT_TIER_4
 
 /obj/item/attachable/stock/vulture
-	name = "\improper M707 heavy stock"
+	name = "M707 重型枪托"
 	icon_state = "vulture_stock"
 	attach_icon = "vulture_stock"
 	hud_offset_mod = 3
@@ -2075,8 +2075,8 @@ Defined in conflicts.dm of the #defines folder.
 			attach_icon = new_attach_icon ? new_attach_icon : "u_" + attach_icon
 
 /obj/item/attachable/stock/tactical
-	name = "\improper M120 tactical stock"
-	desc = "A metal stock made for the M120 tactical shotgun."
+	name = "M120 战术枪托"
+	desc = "专为M120战术霰弹枪制作的金属枪托。"
 	icon_state = "tactical_stock"
 	hud_offset_mod = 6
 
@@ -2091,8 +2091,8 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_unwielded_mod = -SCATTER_AMOUNT_TIER_10
 
 /obj/item/attachable/stock/type23
-	name = "\improper Type 23 standard stock"
-	desc = "A stamped metal stock with internal recoil springs designed to absorb the ridiculous kick the 8 Gauge shotgun causes when fired. Not recommended to remove."
+	name = "23式标准枪托"
+	desc = "冲压金属枪托，内置缓冲弹簧，用来吸收8号口径霰弹枪开火时夸张的后坐力。不建议拆卸。"
 	icon_state = "type23_stock"
 	pixel_shift_x = 15
 	pixel_shift_y = 15
@@ -2111,8 +2111,8 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_unwielded_mod = -SCATTER_AMOUNT_TIER_10
 
 /obj/item/attachable/stock/type23/wood
-	name = "\improper KS-29 wooden stock"
-	desc = "A standard heavy wooden stock for the KS-29 riot shotgun. Allegedly makes a pretty good club in a fight too."
+	name = "KS-29 木制枪托"
+	desc = "KS-29防暴霰弹枪的标准重型木制枪托。据说打架时也是根不错的棍子。"
 	slot = "stock"
 	icon_state = "type23_wood"
 	wield_delay_mod = WIELD_DELAY_FAST
@@ -2138,8 +2138,8 @@ Defined in conflicts.dm of the #defines folder.
 	matter = list("wood" = 2000)
 
 /obj/item/attachable/stock/slavic
-	name = "wooden stock"
-	desc = "A non-standard heavy wooden stock for Slavic firearms."
+	name = "木制枪托"
+	desc = "供斯拉夫枪械使用的非制式重型木制枪托。"
 	icon_state = "slavicstock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
@@ -2158,8 +2158,8 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_unwielded_mod = -SCATTER_AMOUNT_TIER_10
 
 /obj/item/attachable/stock/hunting
-	name = "wooden stock"
-	desc = "The non-detachable stock of a Basira-Armstrong rifle."
+	name = "木制枪托"
+	desc = "巴西拉-阿姆斯特朗步枪不可拆卸的枪托。"
 	icon_state = "huntingstock"
 	pixel_shift_x = 41
 	pixel_shift_y = 10
@@ -2179,7 +2179,7 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_unwielded_mod = SCATTER_AMOUNT_TIER_8
 
 /obj/item/attachable/stock/olympiets
-	name = "Olympiets 'wooden' stock"
+	name = "奥林匹亚人“木制”枪托"
 	desc = "Shouldn't be seeing this."
 	icon_state = "olympiets_stock"
 	flags_attach_features = NO_FLAGS
@@ -2195,8 +2195,8 @@ Defined in conflicts.dm of the #defines folder.
 	wield_delay_mod = WIELD_DELAY_NONE
 
 /obj/item/attachable/stock/hg3712
-	name = "hg3712 stock"
-	desc = "The non-detachable stock of a HG 37-12 pump shotgun."
+	name = "hg3712 枪托"
+	desc = "HG 37-12泵动霰弹枪不可拆卸的枪托。"
 	icon_state = "hg3712_stock"
 	pixel_shift_x = 41
 	pixel_shift_y = 10
@@ -2218,13 +2218,13 @@ Defined in conflicts.dm of the #defines folder.
 	wield_delay_mod = WIELD_DELAY_NONE
 
 /obj/item/attachable/stock/hg3712/m3717
-	name = "hg3717 stock"
-	desc = "The non-detachable stock of a M37-17 pump shotgun."
+	name = "hg3717 枪托"
+	desc = "M37-17泵动霰弹枪不可拆卸的枪托。"
 	icon_state = "hg3717_stock"
 
 /obj/item/attachable/stock/rmcdmr
-	name = "L64A3 stock"
-	desc = "The non-detachable stock of a L64A3 DMR."
+	name = "L64A3 枪托"
+	desc = "L64A3精确射手步枪不可拆卸的枪托。"
 	icon_state = "rmcdmr_stock"
 	pixel_shift_x = 40
 	pixel_shift_y = 10
@@ -2338,8 +2338,8 @@ Defined in conflicts.dm of the #defines folder.
 	gun.update_overlays(src, "stock")
 
 /obj/item/attachable/stock/m20a
-	name = "\improper M20A stock"
-	desc = "The M20A's standard polymer collapsible stock. When extended, it improves scatter, accuracy, and recoil, but slightly hinders agility."
+	name = "M20A 枪托"
+	desc = "M20A的制式聚合物伸缩枪托。展开后能减小散布、提高精度并降低后坐力，但会略微影响灵活性。"
 	slot = "stock"
 	melee_mod = 5
 	size_mod = 1
@@ -2353,8 +2353,8 @@ Defined in conflicts.dm of the #defines folder.
 	..()
 
 /obj/item/attachable/stock/rifle/ag80/collapsible
-	name = "\improper AG80 extendable stock"
-	desc = "The AG80's standard polymer extendable stock. When extended, it improves scatter, accuracy, and recoil, but slightly hinders agility."
+	name = "AG80 伸缩枪托"
+	desc = "AG80的制式聚合物伸缩枪托。展开后能减小散布、提高精度并降低后坐力，但会略微影响灵活性。"
 	slot = "stock"
 	melee_mod = 5
 	size_mod = 1
@@ -2418,8 +2418,8 @@ Defined in conflicts.dm of the #defines folder.
 	gun.update_overlays(src, "stock")
 
 /obj/item/attachable/stock/m16
-	name = "\improper M16 bump stock"
-	desc = "Technically illegal in the state of California."
+	name = "M16 撞火枪托"
+	desc = "严格来说，在加利福尼亚州属于违禁品。"
 	icon_state = "m16_stock"
 	attach_icon = "m16_stock"
 	wield_delay_mod = WIELD_DELAY_MIN
@@ -2430,8 +2430,8 @@ Defined in conflicts.dm of the #defines folder.
 	..()
 
 /obj/item/attachable/stock/m16/xm177
-	name = "\improper collapsible M16 stock"
-	desc = "Very illegal in the state of California."
+	name = "M16 伸缩枪托"
+	desc = "在加利福尼亚州绝对属于违禁品。"
 	icon_state = "m16_folding"
 	attach_icon = "m16_folding"
 	flags_attach_features = NO_FLAGS
@@ -2484,8 +2484,8 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/stock/ar10
-	name = "\improper AR10 wooden stock"
-	desc = "The spring's in here, don't take it off!"
+	name = "AR10 木制枪托"
+	desc = "弹簧就在里面，别拆！"
 	icon_state = "ar10_stock"
 	attach_icon = "ar10_stock"
 	wield_delay_mod = WIELD_DELAY_MIN
@@ -2496,8 +2496,8 @@ Defined in conflicts.dm of the #defines folder.
 	..()
 
 /obj/item/attachable/stock/m79
-	name = "\improper M79 hardened polykevlon stock"
-	desc = "Helps to mitigate the recoil of launching a 40mm grenade. Fits only to the M79."
+	name = "M79 硬化聚合凯夫纶枪托"
+	desc = "有助于缓解发射40mm榴弹时的后坐力，仅适用于M79。"
 	icon_state = "m79_stock"
 	icon_state = "m79_stock_a"
 	wield_delay_mod = WIELD_DELAY_NONE
@@ -2528,13 +2528,13 @@ Defined in conflicts.dm of the #defines folder.
 	aim_speed_mod = CONFIG_GET(number/slowdown_med)
 
 /obj/item/attachable/stock/xm51/military
-	name = "\improper XM51 stock"
-	desc = "A specialized stock designed for XM51 shotguns. Helps the user absorb the recoil of the weapon while also reducing scatter."
+	name = "XM51 枪托"
+	desc = "专为XM51霰弹枪设计的枪托，可帮助使用者吸收后坐力，并减小散布。"
 	icon_state = "xm51_military_stock"
 	attach_icon = "xm51_military_stock_a"
 
 /obj/item/attachable/stock/vp70
-	name = "\improper VP70 burst stock"
+	name = "VP70 点射枪托"
 	desc = "Increases the fire rate and burst amount on the VP70. Some versions act as a holster for the weapon when un-attached. This is a test item and should not be used in normal gameplay (yet)."
 	icon_state = "mod88_stock"
 	attach_icon = "mod88_stock_a"
@@ -2560,8 +2560,8 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_unwielded_mod = -SCATTER_AMOUNT_TIER_10
 
 /obj/item/attachable/stock/carbine
-	name = "\improper L42 synthetic stock"
-	desc = "A special issue stock made of sturdy, yet lightweight materials. Attaches to the L42A Battle Rifle. Not effective as a blunt force weapon."
+	name = "L42 合成材料枪托"
+	desc = "采用结实轻质材料制成的特供枪托，可安装在L42A战斗步枪上。不适合当钝器使用。"
 	slot = "stock"
 	size_mod = 1
 	icon_state = "l42stock"
@@ -2584,8 +2584,8 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_unwielded_mod = SCATTER_AMOUNT_TIER_8
 
 /obj/item/attachable/stock/carbine/wood
-	name = "\improper ABR-40 \"wooden\" stock"
-	desc = "The default \"wooden\" stock for the ABR-40 hunting rifle, the civilian version of the military L42A battle rifle. Theoretically compatible with an L42. Wait, did you just take the stock out of a weapon with no grip...? Great job, genius."
+	name = "ABR-40“木制”枪托"
+	desc = "ABR-40猎枪的默认“木制”枪托，该枪是军用L42A战斗步枪的民用版本。理论上也兼容L42。等等，你刚把一把没有握把的枪的枪托拆下来了……？干得好，天才。"
 	icon_state = "abr40stock"
 	attach_icon = "abr40stock_a"
 	melee_mod = 6
@@ -2598,20 +2598,20 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = (-SCATTER_AMOUNT_TIER_8) - SCATTER_AMOUNT_TIER_5
 
 /obj/item/attachable/stock/carbine/wood/tactical
-	name = "\improper ABR-40 tactical stock"
-	desc = "An ABR-40 stock with a sleek paintjob. Wait, did you just take the stock out of a weapon with no grip...? Great job, genius."
+	name = "ABR-40 战术枪托"
+	desc = "涂装精致的ABR-40枪托。等等，你刚把一把没有握把的枪的枪托拆下来了……？干得好，天才。"
 	icon_state = "abr40stock_tac"
 	attach_icon = "abr40stock_tac_a"
 
 /obj/item/attachable/stock/rifle/marksman
-	name = "\improper M41A marksman stock"
+	name = "M41A 精确射击枪托"
 	icon_state = "m4markstock"
 	attach_icon = "m4markstock"
 	flags_attach_features = NO_FLAGS
 	hud_offset_mod = 2
 
 /obj/item/attachable/stock/twobore
-	name = "heavy wooden stock"
+	name = "重型木制枪托"
 	icon_state = "twobore_stock"
 	attach_icon = "twobore_stock"
 	slot = "stock"
@@ -2624,7 +2624,7 @@ Defined in conflicts.dm of the #defines folder.
 	hud_offset_mod = 10 //A sprite long enough to touch the Moon.
 
 /obj/item/attachable/m49a_barrel
-	name = "M49A barrel"
+	name = "M49A 枪管"
 	desc = "This isn't supposed to be separated from the gun, how'd this happen?"
 	icon_state = "m49a_barrel"
 	attach_icon = "m49a_barrel"
@@ -2635,7 +2635,7 @@ Defined in conflicts.dm of the #defines folder.
 	size_mod = 0
 
 /obj/item/attachable/m49a_barrel/forecon
-	name = "M49A2 barrel"
+	name = "M49A2 枪管"
 	icon_state = "m49a_barrel_a"
 	attach_icon = "m49a_barrel_a"
 
@@ -2655,7 +2655,7 @@ Defined in conflicts.dm of the #defines folder.
 			attach_icon = new_attach_icon ? new_attach_icon : "c_" + attach_icon */
 
 /obj/item/attachable/m49a_barrel_custom
-	name = "custom M49A barrel"
+	name = "定制M49A枪管"
 	desc = "This isn't supposed to be separated from the gun, how'd this happen?"
 	icon_state = "m49a_custom_barrel"
 	attach_icon = "m49a_custom_barrel"
@@ -2666,12 +2666,12 @@ Defined in conflicts.dm of the #defines folder.
 	size_mod = 0
 
 /obj/item/attachable/m49a_barrel/pve
-	name = "M49A6 muzzle break"
+	name = "M49A6 枪口制退器"
 	icon_state = "pve_m49a_barrel"
 	attach_icon = "pve_m49a_barrel"
 
 /obj/item/attachable/olympiets_barrel
-	name = "Olympiets barrel"
+	name = "奥林匹亚人枪管"
 	desc = "This isn't supposed to be separated from the gun, how'd this happen?"
 	icon_state = "olympiets_barrel"
 	attach_icon = "olympiets_barrel"
@@ -2682,7 +2682,7 @@ Defined in conflicts.dm of the #defines folder.
 	size_mod = 0
 
 /obj/item/attachable/upp_rpg_breech
-	name = "HJRA-12 Breech"
+	name = "HJRA-12 后膛"
 	desc = "This isn't supposed to be separated from the gun, how'd this happen?"
 	icon = 'icons/obj/items/weapons/guns/attachments/stock.dmi'
 	icon_state = "hjra_breech"
@@ -2694,7 +2694,7 @@ Defined in conflicts.dm of the #defines folder.
 	size_mod = 0
 
 /obj/item/attachable/pkpbarrel
-	name = "QYJ-72 Barrel"
+	name = "QYJ-72 枪管"
 	desc = "This isn't supposed to be separated from the gun, how'd this happen?"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "uppmg_barrel"
@@ -2706,7 +2706,7 @@ Defined in conflicts.dm of the #defines folder.
 	size_mod = 0
 
 /obj/item/attachable/stock/pkpstock
-	name = "QYJ-72 Stock"
+	name = "QYJ-72 枪托"
 	desc = "This isn't supposed to be separated from the gun, how'd this happen?"
 	icon = 'icons/obj/items/weapons/guns/attachments/stock.dmi'
 	icon_state = "uppmg_stock"
@@ -2718,7 +2718,7 @@ Defined in conflicts.dm of the #defines folder.
 	size_mod = 0
 
 /obj/item/attachable/type88_barrel
-	name = "Type-88 Barrel"
+	name = "88式枪管"
 	desc = "This isn't supposed to be separated from the gun, how'd this happen?"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "type88_barrel"
@@ -2730,7 +2730,7 @@ Defined in conflicts.dm of the #defines folder.
 	size_mod = 0
 
 /obj/item/attachable/type73suppressor
-	name = "Type 73 Integrated Suppressor"
+	name = "73式一体消音器"
 	desc = "This isn't supposed to be separated from the gun, how'd this happen?"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "type73_suppressor"
@@ -2742,7 +2742,7 @@ Defined in conflicts.dm of the #defines folder.
 	size_mod = 0
 
 /obj/item/attachable/stock/type71
-	name = "Type 71 Stock"
+	name = "71式枪托"
 	desc = "This isn't supposed to be separated from the gun, how'd this happen?"
 	icon = 'icons/obj/items/weapons/guns/attachments/stock.dmi'
 	icon_state = "type71_stock"
@@ -2757,7 +2757,7 @@ Defined in conflicts.dm of the #defines folder.
 	..()
 
 /obj/item/attachable/stock/m60
-	name = "M60 stock"
+	name = "M60 枪托"
 	desc = "This isn't supposed to be separated from the gun, how'd this happen?"
 	icon = 'icons/obj/items/weapons/guns/attachments/stock.dmi'
 	icon_state = "m60_stock"
@@ -2770,7 +2770,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/stock/ppsh
-	name = "PPSh-17b stock"
+	name = "PPSh-17b 枪托"
 	desc = "This isn't supposed to be separated from the gun, how'd this happen?"
 	icon = 'icons/obj/items/weapons/guns/attachments/stock.dmi'
 	icon_state = "ppsh17b_stock"
@@ -2883,7 +2883,7 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 11
 	collapse_delay = 2.5 SECONDS
 	stock_activated = FALSE
-	deploy_message = list("unlock","lock")
+	deploy_message = list("解锁","锁定")
 	hud_offset_mod = 4
 
 /obj/item/attachable/stock/smg/collapsible/brace/New()
@@ -2970,9 +2970,9 @@ Defined in conflicts.dm of the #defines folder.
 
 	if(R.flags_item & WIELDED)
 		if(folded)
-			to_chat(user, SPAN_NOTICE("You need a free hand to unfold [src]."))
+			to_chat(user, SPAN_NOTICE("你需要空出一只手才能展开[src]。"))
 		else
-			to_chat(user, SPAN_NOTICE("You need a free hand to fold [src]."))
+			to_chat(user, SPAN_NOTICE("你需要空出一只手才能折叠[src]。"))
 		return 0
 
 	if(!do_after(user, 15, INTERRUPT_INCAPACITATED|INTERRUPT_NEEDHAND, BUSY_ICON_GENERIC, G, INTERRUPT_DIFF_LOC))
@@ -2981,7 +2981,7 @@ Defined in conflicts.dm of the #defines folder.
 	playsound(user, activation_sound, 15, 1)
 
 	if(folded)
-		to_chat(user, SPAN_NOTICE("You unfold [src]."))
+		to_chat(user, SPAN_NOTICE("你展开了[src]。"))
 		R.flags_equip_slot &= ~SLOT_WAIST
 		R.folded = FALSE
 		icon_state = "44stock"
@@ -2989,7 +2989,7 @@ Defined in conflicts.dm of the #defines folder.
 		hud_offset_mod = 7
 		G.recalculate_attachment_bonuses()
 	else
-		to_chat(user, SPAN_NOTICE("You fold [src]."))
+		to_chat(user, SPAN_NOTICE("你折叠起了[src]。"))
 		R.flags_equip_slot |= SLOT_WAIST // Allow to be worn on the belt when folded
 		R.folded = TRUE // We can't shoot anymore, its folded
 		icon_state = "44stock_folded"
@@ -3025,7 +3025,7 @@ Defined in conflicts.dm of the #defines folder.
 		R.flags_equip_slot |= SLOT_WAIST
 
 /obj/item/attachable/stock/nsg23
-	name = "NSG 23 stock"
+	name = "NSG 23 枪托"
 	desc = "If you can read this, someone screwed up. Go Github this and bug a coder."
 	icon_state = "nsg23_stock"
 	slot = "stock"
@@ -3037,12 +3037,12 @@ Defined in conflicts.dm of the #defines folder.
 	hud_offset_mod = 2
 
 /obj/item/attachable/stock/nsg23/rmc
-	name = "NSG L23A1 stock"
+	name = "NSG L23A1 枪托"
 	desc = "If you can read this, someone screwed up. Go Github this and bug a coder."
 	icon_state = "rmc_nsg23_stock"
 
 /obj/item/attachable/stock/isr
-	name = "ISR stock"
+	name = "ISR 枪托"
 	desc = "If you can read this, someone screwed up. Go Github this and bug a coder."
 	icon_state = "isr_stock"
 	slot = "stock"
@@ -3107,7 +3107,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/attached_gun/activate_attachment(obj/item/weapon/gun/G, mob/living/user, turn_off)
 	if(G.active_attachable == src)
 		if(user)
-			to_chat(user, SPAN_NOTICE("You are no longer using [src]."))
+			to_chat(user, SPAN_NOTICE("你不再使用[src]。"))
 			playsound(user, gun_deactivate_sound, 30, 1)
 		G.active_attachable = null
 		var/diff = G.damage_mult - 1 //so that if we buffed gun in process, it still does stuff
@@ -3116,7 +3116,7 @@ Defined in conflicts.dm of the #defines folder.
 		icon_state = initial(icon_state)
 	else if(!turn_off)
 		if(user)
-			to_chat(user, SPAN_NOTICE("You are now using [src]."))
+			to_chat(user, SPAN_NOTICE("你开始使用[src]。"))
 			playsound(user, gun_activate_sound, 60, 1)
 		G.active_attachable = src
 		gun_original_damage_mult = G.damage_mult
@@ -3165,8 +3165,8 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/attached_gun/grenade/get_examine_text(mob/user)
 	. = ..()
-	if(current_rounds) . += "It has [current_rounds] grenade\s left."
-	else . += "It's empty."
+	if(current_rounds) . += "还剩[current_rounds]发榴弹。"
+	else . += "已经空了。"
 
 /obj/item/attachable/attached_gun/grenade/unique_action(mob/user)
 	if(!has_breech)
@@ -3174,7 +3174,7 @@ Defined in conflicts.dm of the #defines folder.
 	if(!ishuman(usr))
 		return
 	if(user.is_mob_incapacitated() || !isturf(usr.loc))
-		to_chat(user, SPAN_WARNING("Not right now."))
+		to_chat(user, SPAN_WARNING("现在不行。"))
 		return
 
 	var/obj/item/weapon/gun/G = user.get_held_item()
@@ -3183,7 +3183,7 @@ Defined in conflicts.dm of the #defines folder.
 	if(!istype(G) && G != null)
 		G = user.get_active_hand()
 	if(!G)
-		to_chat(user, SPAN_WARNING("You need to hold \the [src] to do that"))
+		to_chat(user, SPAN_WARNING("你必须拿着[src]才能这样做。"))
 		return
 
 	pump(user)
@@ -3203,42 +3203,42 @@ Defined in conflicts.dm of the #defines folder.
 	if(breech_open) // if it was ALREADY open
 		breech_open = FALSE
 		cocked = TRUE // by closing the gun we have cocked it and readied it to fire
-		to_chat(user, SPAN_NOTICE("You close \the [src]'s breech, cocking it!"))
+		to_chat(user, SPAN_NOTICE("你合上了[src]的后膛，将其上膛待击！"))
 		playsound(src, close_sound, 15, 1)
 	else
 		breech_open = TRUE
 		cocked = FALSE
-		to_chat(user, SPAN_NOTICE("You open \the [src]'s breech!"))
+		to_chat(user, SPAN_NOTICE("你打开了[src]的后膛！"))
 		playsound(src, open_sound, 15, 1)
 	update_icon()
 
 /obj/item/attachable/attached_gun/grenade/reload_attachment(obj/item/explosive/grenade/G, mob/user)
 	if(has_breech && !breech_open)
-		to_chat(user, SPAN_WARNING("\The [src]'s breech must be open to load grenades! (use unique-action)"))
+		to_chat(user, SPAN_WARNING("必须打开[src]的后膛，才能装填榴弹！（使用独特动作）"))
 		return
 	if(!istype(G) || (G.caliber != caliber))
-		to_chat(user, SPAN_WARNING("[src] doesn't accept that type of grenade."))
+		to_chat(user, SPAN_WARNING("[src]无法装填这种榴弹。"))
 		return
 	if(!G.active) //can't load live grenades
 		if(!G.underslug_launchable)
-			to_chat(user, SPAN_WARNING("[src] doesn't accept that type of grenade."))
+			to_chat(user, SPAN_WARNING("[src]无法装填这种榴弹。"))
 			return
 		if(current_rounds >= max_rounds)
-			to_chat(user, SPAN_WARNING("[src] is full."))
+			to_chat(user, SPAN_WARNING("[src]已经装满了。"))
 		else
 			playsound(user, 'sound/weapons/grenade_insert.wav', 25, 1)
 			current_rounds++
 			loaded_grenades += G
-			to_chat(user, SPAN_NOTICE("You load \the [G] into \the [src]."))
+			to_chat(user, SPAN_NOTICE("你把[G]装进了[src]。"))
 			user.drop_inv_item_to_loc(G, src)
 
 /obj/item/attachable/attached_gun/grenade/unload_attachment(mob/user, reload_override = FALSE, drop_override = FALSE, loc_override = FALSE)
 	. = TRUE //Always uses special unloading.
 	if(has_breech && !breech_open)
-		to_chat(user, SPAN_WARNING("\The [src] is closed! You must open it to take out grenades!"))
+		to_chat(user, SPAN_WARNING("[src]的后膛关着！必须先打开，才能取出榴弹！"))
 		return
 	if(!current_rounds)
-		to_chat(user, SPAN_WARNING("It's empty!"))
+		to_chat(user, SPAN_WARNING("已经空了！"))
 		return
 
 	var/obj/item/explosive/grenade/nade = loaded_grenades[length(loaded_grenades)] //Grab the last-inserted one. Or the only one, as the case may be.
@@ -3250,27 +3250,27 @@ Defined in conflicts.dm of the #defines folder.
 	else
 		user.put_in_hands(nade)
 
-	user.visible_message(SPAN_NOTICE("[user] unloads \a [nade] from \the [src]."),
-	SPAN_NOTICE("You unload \a [nade] from \the [src]."), null, 4, CHAT_TYPE_COMBAT_ACTION)
+	user.visible_message(SPAN_NOTICE("[user]从[src]中卸下了[nade]。"),
+	SPAN_NOTICE("你从[src]中卸下了[nade]。"), null, 4, CHAT_TYPE_COMBAT_ACTION)
 	playsound(user, unload_sound, 30, 1)
 
 /obj/item/attachable/attached_gun/grenade/fire_attachment(atom/target,obj/item/weapon/gun/gun,mob/living/user)
 	if(!(gun.flags_item & WIELDED))
 		if(user)
-			to_chat(user, SPAN_WARNING("You must hold [gun] with two hands to use \the [src]."))
+			to_chat(user, SPAN_WARNING("你必须双手握持[gun]才能使用[src]。"))
 		return
 	if(has_breech && breech_open)
 		if(user)
-			to_chat(user, SPAN_WARNING("You must close the breech to fire \the [src]!"))
+			to_chat(user, SPAN_WARNING("必须合上后膛，才能发射[src]！"))
 			playsound(user, 'sound/weapons/gun_empty.ogg', 50, TRUE, 5)
 		return
 	if(has_breech && !cocked)
 		if(user)
-			to_chat(user, SPAN_WARNING("You must cock \the [src] to fire it! (open and close the breech)"))
+			to_chat(user, SPAN_WARNING("必须先将[src]上膛待击，才能开火！（打开再合上后膛）"))
 			playsound(user, 'sound/weapons/gun_empty.ogg', 50, TRUE, 5)
 		return
 	if(get_dist(user,target) > max_range)
-		to_chat(user, SPAN_WARNING("Too far to fire the attachment!"))
+		to_chat(user, SPAN_WARNING("距离太远，无法使用下挂武器开火！"))
 		playsound(user, 'sound/weapons/gun_empty.ogg', 50, TRUE, 5)
 		return
 
@@ -3282,7 +3282,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/obj/item/explosive/grenade/G = loaded_grenades[1]
 
 	if(G.antigrief_protection && user.faction == FACTION_MARINE && explosive_antigrief_check(G, user))
-		to_chat(user, SPAN_WARNING("\The [name]'s safe-area accident inhibitor prevents you from firing!"))
+		to_chat(user, SPAN_WARNING("[name]的安全区事故防止装置阻止了开火！"))
 		msg_admin_niche("[key_name(user)] attempted to prime \a [G.name] in [get_area(src)] [ADMIN_JMP(src.loc)]")
 		return
 
@@ -3315,30 +3315,30 @@ Defined in conflicts.dm of the #defines folder.
 	var/base_attachment_desc
 	switch(slot)
 		if("rail")
-			base_attachment_desc = "It has a [icon2html(src)] [name] mounted on the top."
+			base_attachment_desc = "顶部装有[icon2html(src)] [name]。"
 		if("side_rail")
-			base_attachment_desc = "It has a [icon2html(src)] [name] mounted on the side."
+			base_attachment_desc = "侧面装有[icon2html(src)] [name]。"
 		if("muzzle")
-			base_attachment_desc = "It has a [icon2html(src)] [name] mounted on the front."
+			base_attachment_desc = "前端装有[icon2html(src)] [name]。"
 		if("stock")
-			base_attachment_desc = "It has a [icon2html(src)] [name] for a stock."
+			base_attachment_desc = "装有[icon2html(src)] [name]作为枪托。"
 		if("under")
-			var/output = "It has a [icon2html(src)] [name]"
+			var/output = "下方装有[icon2html(src)] [name]"
 			var/shorten = in_chamber?.name
 			var/list/select_text = splittext(shorten, " ")
 			if(length(select_text) > 1)
 				shorten = select_text?[1] + " " + select_text?[2]
 			if(flags_attach_features & ATTACH_WEAPON)
-				output += " ([current_rounds]/[max_rounds]) mounted underneath[in_chamber ? ", with an [shorten] chambered." : "."]"
+				output += "（[current_rounds]/[max_rounds]）[in_chamber ? "，膛内装有[shorten]。" : "。"]"
 			base_attachment_desc = output
 		else
-			base_attachment_desc = "It has a [icon2html(src)] [name] attached."
+			base_attachment_desc = "装有[icon2html(src)] [name]。"
 	return handle_pre_break_attachment_description(base_attachment_desc) + "<br>"
 
 //NSG L23 variant
 /obj/item/attachable/attached_gun/grenade/nsg
-	name = "\improper L34 30mm underslung grenade launcher"
-	desc = "Standard TWE pump action underslung grenade launcher. Fits the L23, two round tube, chambers one."
+	name = "L34 30mm 下挂榴弹发射器"
+	desc = "三世界帝国制式泵动下挂榴弹发射器，适用于L23。管式弹仓容量两发，膛室可容纳一发。"
 
 /obj/item/attachable/attached_gun/grenade/nsg/preloaded
 
@@ -3349,8 +3349,8 @@ Defined in conflicts.dm of the #defines folder.
 
 //For the Mk1
 /obj/item/attachable/attached_gun/grenade/mk1
-	name = "\improper PN 30mm underslung grenade launcher"
-	desc = "Standard pump action underslung grenade launcher. Fits the M41A, four round tube, chambers one."
+	name = "PN 30mm 下挂榴弹发射器"
+	desc = "制式泵动下挂榴弹发射器，适用于M41A。管式弹仓容量四发，膛室可容纳一发。"
 	icon_state = "grenade-mk1"
 	attach_icon = "grenade-mk1_a"
 	flags_attach_features = ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
@@ -3366,7 +3366,7 @@ Defined in conflicts.dm of the #defines folder.
 			in_chamber = loaded_grenades[length(loaded_grenades)]
 			current_rounds--
 			loaded_grenades.Cut(length(loaded_grenades))
-		to_chat(user, SPAN_NOTICE("You bring \the [src]'s pump forward, cocking it!"))
+		to_chat(user, SPAN_NOTICE("你把[src]的护木推向前方，将其上膛待击！"))
 		playsound(src, close_sound, 15, 1)
 	else
 		breech_open = TRUE
@@ -3374,43 +3374,43 @@ Defined in conflicts.dm of the #defines folder.
 			var/obj/item/explosive/grenade/new_grenade = in_chamber
 			in_chamber = null
 			user.put_in_hands(new_grenade)
-		to_chat(user, SPAN_NOTICE("You bring \the [src]'s pump back!"))
+		to_chat(user, SPAN_NOTICE("你把[src]的护木拉了回来！"))
 		playsound(src, open_sound, 15, 1)
 	update_icon()
 
 /obj/item/attachable/attached_gun/grenade/mk1/reload_attachment(obj/item/explosive/grenade/G, mob/user)
 	if(!istype(G) || istype(G, /obj/item/explosive/grenade/spawnergrenade/))
-		to_chat(user, SPAN_WARNING("[src] doesn't accept that type of grenade."))
+		to_chat(user, SPAN_WARNING("[src]无法装填这种榴弹。"))
 		return
 	if(!G.active) //can't load live grenades
 		if(!G.underslug_launchable)
-			to_chat(user, SPAN_WARNING("[src] doesn't accept that type of grenade."))
+			to_chat(user, SPAN_WARNING("[src]无法装填这种榴弹。"))
 			return
 		if(breech_open)
 			if(!in_chamber)
 				in_chamber = G
-				to_chat(user, SPAN_NOTICE("You load \the [G] into \the [src]'s chamber."))
+				to_chat(user, SPAN_NOTICE("你把[G]装进了[src]的膛室。"))
 				playsound(user, 'sound/weapons/grenade_insert.wav', 25, 1)
 				user.drop_inv_item_to_loc(G, src)
 			else
-				to_chat(user, SPAN_WARNING("\The [src]'s loading port is covered, put the pump forward! (use unique-action)"))
+				to_chat(user, SPAN_WARNING("[src]的装填口被挡住了，请把护木推向前方！（使用独特动作）"))
 			return
 		if(current_rounds >= max_rounds)
-			to_chat(user, SPAN_WARNING("[src] is full."))
+			to_chat(user, SPAN_WARNING("[src]已经装满了。"))
 		else
 			playsound(user, 'sound/weapons/grenade_insert.wav', 25, 1)
 			current_rounds++
 			loaded_grenades += G
-			to_chat(user, SPAN_NOTICE("You load \the [G] into \the [src]."))
+			to_chat(user, SPAN_NOTICE("你把[G]装进了[src]。"))
 			user.drop_inv_item_to_loc(G, src)
 
 /obj/item/attachable/attached_gun/grenade/mk1/unload_attachment(mob/user, reload_override = FALSE, drop_override = FALSE, loc_override = FALSE)
 	. = TRUE //Always uses special unloading.
 	if(breech_open)
-		to_chat(user, SPAN_WARNING("\The [src]'s loading port is covered, put the pump forward! (use unique-action)"))
+		to_chat(user, SPAN_WARNING("[src]的装填口被挡住了，请把护木推向前方！（使用独特动作）"))
 		return
 	if(!current_rounds)
-		to_chat(user, SPAN_WARNING("It's empty!"))
+		to_chat(user, SPAN_WARNING("已经空了！"))
 		return
 
 	var/obj/item/explosive/grenade/nade = loaded_grenades[length(loaded_grenades)] //Grab the last-inserted one. Or the only one, as the case may be.
@@ -3422,8 +3422,8 @@ Defined in conflicts.dm of the #defines folder.
 	else
 		user.put_in_hands(nade)
 
-	user.visible_message(SPAN_NOTICE("[user] unloads \a [nade] from \the [src]."),
-	SPAN_NOTICE("You unload \a [nade] from \the [src]."), null, 4, CHAT_TYPE_COMBAT_ACTION)
+	user.visible_message(SPAN_NOTICE("[user]从[src]中卸下了[nade]。"),
+	SPAN_NOTICE("你从[src]中卸下了[nade]。"), null, 4, CHAT_TYPE_COMBAT_ACTION)
 	playsound(user, unload_sound, 30, 1)
 
 /obj/item/attachable/attached_gun/grenade/mk1/prime_grenade(atom/target,obj/item/weapon/gun/gun,mob/living/user)
@@ -3435,7 +3435,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 	if(G.antigrief_protection && user.faction == FACTION_MARINE && explosive_antigrief_check(G, user))
-		to_chat(user, SPAN_WARNING("\The [name]'s safe-area accident inhibitor prevents you from firing!"))
+		to_chat(user, SPAN_WARNING("[name]的安全区事故防止装置阻止了开火！"))
 		msg_admin_niche("[key_name(user)] attempted to prime \a [G.name] in [get_area(src)] [ADMIN_JMP(src.loc)]")
 		return
 
@@ -3489,14 +3489,14 @@ Defined in conflicts.dm of the #defines folder.
 	loaded_grenades = list(new/obj/item/explosive/grenade/high_explosive(src))
 
 /obj/item/attachable/attached_gun/grenade/mk1/m120
-	name = "\improper PN/c 30mm underslung grenade launcher"
-	desc = "Compact variant of the PN pump action underslung grenade launcher. Fits the M120 shotgun, two round tube, chambers one."
+	name = "PN/c 30mm 下挂榴弹发射器"
+	desc = "PN泵动下挂榴弹发射器的紧凑型号，适用于M120霰弹枪。管式弹仓容量两发，膛室可容纳一发。"
 	flags_attach_features = ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 	max_rounds = 3
 
 /obj/item/attachable/attached_gun/grenade/m203 //M16 GL, only DD have it.
-	name = "\improper M203 Grenade Launcher"
-	desc = "An antique underbarrel grenade launcher. Adopted in 1969 for the M16, it was made obsolete centuries ago; how its ended up here is a mystery to you. Holds only one propriatary 40mm grenade, does not have modern IFF systems, it won't pass through your friends."
+	name = "M203 榴弹发射器"
+	desc = "一件古董下挂榴弹发射器，1969年为M16配套列装，几个世纪前就已过时；你完全不明白它怎么会出现在这里。只能装填一发专用40mm榴弹，没有现代敌我识别系统，弹药不会穿过友军。"
 	icon_state = "grenade-m203"
 	attach_icon = "grenade-m203_a"
 	caliber = "40x53mm"
@@ -3535,7 +3535,7 @@ Defined in conflicts.dm of the #defines folder.
 	loaded_grenades = list(new/obj/item/explosive/grenade/high_explosive/impact/upp(src))
 
 /obj/item/attachable/attached_gun/grenade/type71/ag80
-	name = "\improper GP-45 grenade launcher"
+	name = "GP-45 榴弹发射器"
 	icon_state = "grenade-ag80"
 	attach_icon = "grenade-ag80_a"
 	has_breech = TRUE
@@ -3577,26 +3577,26 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/attached_gun/flamer/get_examine_text(mob/user)
 	. = ..()
 	if(intense_mode)
-		. += "It is currently using a more intense and volatile flame."
+		. += "当前使用的是更猛烈、不稳定的火焰。"
 	else
-		. += "It is using a normal and stable flame."
+		. += "当前使用的是普通、稳定的火焰。"
 	if(current_rounds > 0)
-		. += "It has [current_rounds] unit\s of fuel left."
+		. += "还剩[current_rounds]单位燃料。"
 	else
-		. += "It's empty."
+		. += "已经空了。"
 
 /obj/item/attachable/attached_gun/flamer/unique_action(mob/user)
 	..()
 	playsound(user,'sound/weapons/handling/flamer_ignition.ogg', 25, 1)
 	if(intense_mode)
-		to_chat(user, SPAN_WARNING("You change \the [src] back to using a normal and more stable flame."))
+		to_chat(user, SPAN_WARNING("你将[src]切回了普通、更稳定的火焰。"))
 		round_usage_per_tile = 1
 		burn_level = BURN_LEVEL_TIER_1
 		burn_duration = BURN_TIME_TIER_1
 		max_range = 5
 		intense_mode = FALSE
 	else
-		to_chat(user, SPAN_WARNING("You change \the [src] to use a more intense and volatile flame."))
+		to_chat(user, SPAN_WARNING("你将[src]切换为更猛烈、不稳定的火焰。"))
 		round_usage_per_tile = 5
 		burn_level = BURN_LEVEL_TIER_5
 		burn_duration = BURN_TIME_TIER_2
@@ -3604,17 +3604,17 @@ Defined in conflicts.dm of the #defines folder.
 		intense_mode = TRUE
 
 /obj/item/attachable/attached_gun/flamer/handle_pre_break_attachment_description(base_description_text as text)
-	return base_description_text + " It is on [intense_mode ? "intense" : "normal"] mode."
+	return base_description_text + "当前处于[intense_mode ? "强焰" : "普通"]模式。"
 
 /obj/item/attachable/attached_gun/flamer/reload_attachment(obj/item/ammo_magazine/flamer_tank/FT, mob/user)
 	if(istype(FT))
 		if(current_rounds >= max_rounds)
-			to_chat(user, SPAN_WARNING("[src] is full."))
+			to_chat(user, SPAN_WARNING("[src]已经装满了。"))
 		else if(FT.current_rounds <= 0)
-			to_chat(user, SPAN_WARNING("[FT] is empty!"))
+			to_chat(user, SPAN_WARNING("[FT]已经空了！"))
 		else
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
-			to_chat(user, SPAN_NOTICE("You refill [src] with [FT]."))
+			to_chat(user, SPAN_NOTICE("你用[FT]为[src]补充了燃料。"))
 			var/transfered_rounds = min(max_rounds - current_rounds, FT.current_rounds)
 			current_rounds += transfered_rounds
 			FT.current_rounds -= transfered_rounds
@@ -3625,21 +3625,21 @@ Defined in conflicts.dm of the #defines folder.
 				R.volume -= amount_removed_per_reagent
 			FT.update_icon()
 	else
-		to_chat(user, SPAN_WARNING("[src] can only be refilled with an incinerator tank."))
+		to_chat(user, SPAN_WARNING("[src]只能用喷火器燃料罐补充燃料。"))
 
 /obj/item/attachable/attached_gun/flamer/fire_attachment(atom/target, obj/item/weapon/gun/gun, mob/living/user)
 	if(get_dist(user,target) > max_range+4)
-		to_chat(user, SPAN_WARNING("Too far to fire the attachment!"))
+		to_chat(user, SPAN_WARNING("距离太远，无法使用下挂武器开火！"))
 		return
 
 	if(!istype(loc, /obj/item/weapon/gun))
-		to_chat(user, SPAN_WARNING("\The [src] must be attached to a gun!"))
+		to_chat(user, SPAN_WARNING("[src]必须安装在枪械上！"))
 		return
 
 	var/obj/item/weapon/gun/attached_gun = loc
 
 	if(!(attached_gun.flags_item & WIELDED))
-		to_chat(user, SPAN_WARNING("You must wield [attached_gun] to fire [src]!"))
+		to_chat(user, SPAN_WARNING("你必须双手握持[attached_gun]才能使用[src]开火！"))
 		return
 
 	if(current_rounds > round_usage_per_tile && ..())
@@ -3708,13 +3708,13 @@ Defined in conflicts.dm of the #defines folder.
 	return	//No need for volatile mode, it already does high damage by default
 
 /obj/item/attachable/attached_gun/flamer/advanced/integrated
-	name = "integrated flamethrower"
+	name = "一体式喷火器"
 
 /obj/item/attachable/attached_gun/shotgun //basically, a masterkey
-	name = "\improper U7 underbarrel shotgun"
+	name = "U7 下挂霰弹枪"
 	icon_state = "masterkey"
 	attach_icon = "masterkey_a"
-	desc = "An ARMAT U7 tactical shotgun. Attaches to the underbarrel of most weapons. Only capable of loading up to five buckshot shells. Specialized for breaching into buildings, shorter barrel reduces actual damage."
+	desc = "阿玛特U7战术霰弹枪，可安装在大多数武器的枪管下方，最多只能装填五发鹿弹。专用于突入建筑，短枪管会降低实际伤害。"
 	w_class = SIZE_MEDIUM
 	max_rounds = 5
 	current_rounds = 5
@@ -3731,8 +3731,8 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/attached_gun/shotgun/get_examine_text(mob/user)
 	. = ..()
-	if(current_rounds > 0) . += "It has [current_rounds] shell\s left."
-	else . += "It's empty."
+	if(current_rounds > 0) . += "还剩[current_rounds]发霰弹。"
+	else . += "已经空了。"
 
 /obj/item/attachable/attached_gun/shotgun/set_bullet_traits()
 	LAZYADD(traits_to_give_attached, list(
@@ -3745,25 +3745,25 @@ Defined in conflicts.dm of the #defines folder.
 	if(istype(mag) && mag.flags_magazine & AMMUNITION_HANDFUL)
 		if(mag.default_ammo == /datum/ammo/bullet/shotgun/buckshot)
 			if(current_rounds >= max_rounds)
-				to_chat(user, SPAN_WARNING("[src] is full."))
+				to_chat(user, SPAN_WARNING("[src]已经装满了。"))
 			else
 				current_rounds++
 				mag.current_rounds--
 				mag.update_icon()
-				to_chat(user, SPAN_NOTICE("You load one shotgun shell in [src]."))
+				to_chat(user, SPAN_NOTICE("你向[src]中装入了一发霰弹。"))
 				playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
 				if(mag.current_rounds <= 0)
 					user.temp_drop_inv_item(mag)
 					qdel(mag)
 			return
-	to_chat(user, SPAN_WARNING("[src] only accepts shotgun buckshot."))
+	to_chat(user, SPAN_WARNING("[src]只能装填霰弹枪鹿弹。"))
 
 /obj/item/attachable/attached_gun/shotgun/m20a/unloaded
 	current_rounds = 0
 
 /obj/item/attachable/attached_gun/shotgun/m20a
-	name = "\improper U3 underbarrel shotgun"
-	desc = "An ARMAT U3 tactical shotgun. Integrated into the M20A Harrington rifle. Only capable of loading up to five buckshot shells."
+	name = "U3 下挂霰弹枪"
+	desc = "阿玛特U3战术霰弹枪，集成于M20A“哈灵顿”步枪，最多只能装填五发鹿弹。"
 	icon_state = "masterkey"
 	attach_icon = "masterkey_a"
 	flags_attach_features = ATTACH_ACTIVATION|ATTACH_PROJECTILE|ATTACH_RELOADABLE|ATTACH_WEAPON
@@ -3787,12 +3787,12 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/attached_gun/extinguisher/get_examine_text(mob/user)
 	. = ..()
 	if(internal_extinguisher)
-		. += SPAN_NOTICE("It has [internal_extinguisher.reagents.total_volume] unit\s of water left!")
+		. += SPAN_NOTICE("还剩[internal_extinguisher.reagents.total_volume]单位水！")
 		return
-	. += SPAN_WARNING("It's empty.")
+	. += SPAN_WARNING("已经空了。")
 
 /obj/item/attachable/attached_gun/extinguisher/handle_attachment_description(slot)
-	return "It has a [icon2html(src)] [name] ([internal_extinguisher.reagents.total_volume]/[internal_extinguisher.max_water]) mounted underneath.<br>"
+	return "下方装有[icon2html(src)] [name]（[internal_extinguisher.reagents.total_volume]/[internal_extinguisher.max_water]）。<br>"
 
 /obj/item/attachable/attached_gun/extinguisher/New()
 	..()
@@ -3811,8 +3811,8 @@ Defined in conflicts.dm of the #defines folder.
 	internal_extinguisher.reagents.add_reagent("water", internal_extinguisher.max_water)
 
 /obj/item/attachable/attached_gun/extinguisher/pyro
-	name = "HME-88B underbarrel extinguisher"
-	desc = "An experimental Taiho-Technologies HME-88B underbarrel extinguisher integrated with a select few gun models. It is capable of putting out the strongest of flames. Point at flame before applying pressure."
+	name = "HME-88B 下挂灭火器"
+	desc = "大丰科技的实验型HME-88B下挂灭火器，集成于少数枪械型号，能扑灭最猛烈的火焰。按压前请先对准火焰。"
 	flags_attach_features = ATTACH_ACTIVATION|ATTACH_WEAPON|ATTACH_MELEE //not removable
 
 /obj/item/attachable/attached_gun/extinguisher/pyro/initialize_internal_extinguisher()
@@ -3847,7 +3847,7 @@ Defined in conflicts.dm of the #defines folder.
 	)
 
 /obj/item/attachable/attached_gun/flamer_nozzle/handle_attachment_description(slot)
-	return "It has a [icon2html(src)] [name] mounted beneath the barrel.<br>"
+	return "枪管下方装有[icon2html(src)] [name]。<br>"
 
 /obj/item/attachable/attached_gun/flamer_nozzle/activate_attachment(obj/item/weapon/gun/G, mob/living/user, turn_off)
 	. = ..()
@@ -3861,32 +3861,32 @@ Defined in conflicts.dm of the #defines folder.
 		return
 
 	if((gun.flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(gun.flags_item & WIELDED))
-		to_chat(user, SPAN_WARNING("You must wield [gun] to fire [src]!"))
+		to_chat(user, SPAN_WARNING("你必须双手握持[gun]才能使用[src]开火！"))
 		return
 
 	if(gun.flags_gun_features & GUN_TRIGGER_SAFETY)
-		to_chat(user, SPAN_WARNING("\The [gun] isn't lit!"))
+		to_chat(user, SPAN_WARNING("[gun]还没点火！"))
 		return
 
 	if(!istype(gun.current_mag, /obj/item/ammo_magazine/flamer_tank))
-		to_chat(user, SPAN_WARNING("\The [gun] needs a flamer tank installed!"))
+		to_chat(user, SPAN_WARNING("[gun]需要先装上喷火器燃料罐！"))
 		return
 
 	if(!length(gun.current_mag.reagents.reagent_list))
-		to_chat(user, SPAN_WARNING("\The [gun] doesn't have enough fuel to launch a projectile!"))
+		to_chat(user, SPAN_WARNING("[gun]的燃料不足，无法发射弹体！"))
 		return
 
 	var/datum/reagent/flamer_reagent = gun.current_mag.reagents.reagent_list[1]
 	if(flamer_reagent.volume < FLAME_REAGENT_USE_AMOUNT * fuel_per_projectile)
-		to_chat(user, SPAN_WARNING("\The [gun] doesn't have enough fuel to launch a projectile!"))
+		to_chat(user, SPAN_WARNING("[gun]的燃料不足，无法发射弹体！"))
 		return
 
 	if(istype(flamer_reagent, /datum/reagent/foaming_agent/stabilized))
-		to_chat(user, SPAN_WARNING("This chemical will clog the nozzle!"))
+		to_chat(user, SPAN_WARNING("这种化学物质会堵塞喷嘴！"))
 		return
 
 	if(istype(gun.current_mag, /obj/item/ammo_magazine/flamer_tank/smoke)) // you can't fire smoke like a projectile!
-		to_chat(user, SPAN_WARNING("[src] can't be used with this fuel tank!"))
+		to_chat(user, SPAN_WARNING("[src]无法配合这种燃料罐使用！"))
 		return
 
 	gun.last_fired = world.time
@@ -3903,7 +3903,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/turf/user_turf = get_turf(user)
 	playsound(user_turf, pick(fire_sounds), 50, TRUE)
 
-	to_chat(user, SPAN_WARNING("The gauge reads: <b>[floor(gun.current_mag.get_ammo_percent())]</b>% fuel remaining!"))
+	to_chat(user, SPAN_WARNING("仪表显示：剩余燃料<b>[floor(gun.current_mag.get_ammo_percent())]</b>%！"))
 
 /obj/item/attachable/verticalgrip
 	name = "垂直握把"
@@ -3925,8 +3925,8 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_unwielded_mod = SCATTER_AMOUNT_TIER_10
 
 /obj/item/attachable/verticalgrip/upp
-	name = "RK-5 Vertical Grip"
-	desc = "Sturdy grip positioned at optimal place offers enhanced stability in rapid fire. Increases weapon size, penalizes one handed fire, improves scatter and accuracy while wielded."
+	name = "RK-5 垂直握把"
+	desc = "安装在最佳位置的坚固握把，可提高快速射击时的稳定性。会增大武器体积、影响单手射击，但双手握持时能减小散布并提高精度。"
 
 /obj/item/attachable/angledgrip
 	name = "倾斜握把"
@@ -3939,8 +3939,8 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_x = 20
 
 /obj/item/attachable/angledgrip/upp
-	name = "RK-9 Angled Grip"
-	desc = "Ergonomic grip decreases time for shouldering the weapon. Increases weapon size, accelerates wield speed."
+	name = "RK-9 倾斜握把"
+	desc = "符合人体工学的握把，可缩短武器抵肩所需时间。会增大武器体积，并加快举枪速度。"
 
 /obj/item/attachable/gyro
 	name = "陀螺稳定器"
@@ -3986,8 +3986,8 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_unwielded_mod = HIT_ACCURACY_MULT_TIER_1
 
 /obj/item/attachable/lasersight/upp
-	name = "Zvezda Laser Module"
-	desc = "Visible band 512nm green laser, compatible with NVG and IR. Bears striking resemblance to an old Weyland Yutani offering... Decreases scatter, especially onehanded, slightly boosts accuracy. "
+	name = "星辰激光模块"
+	desc = "512nm可见光波段绿激光模块，兼容夜视仪和红外设备。和维兰德-汤谷的一款老产品惊人地相似……可减小散布，单手射击时尤其明显，并略微提高精度。"
 	icon = 'icons/obj/items/weapons/guns/attachments/under.dmi'
 	icon_state = "lasersight_upp"
 	attach_icon = "lasersight_upp_a"
@@ -4109,7 +4109,7 @@ Defined in conflicts.dm of the #defines folder.
 	else
 		var/obj/support = check_bipod_support(gun, user)
 		if(!support&&!bipod_deployed)
-			to_chat(user, SPAN_NOTICE("You start deploying [src] on the ground."))
+			to_chat(user, SPAN_NOTICE("你开始在地面上架设[src]。"))
 			if(!do_after(user, 15, INTERRUPT_ALL, BUSY_ICON_HOSTILE, gun, INTERRUPT_DIFF_LOC))
 				return FALSE
 
@@ -4117,7 +4117,7 @@ Defined in conflicts.dm of the #defines folder.
 		if(user)
 			if(bipod_deployed)
 				ADD_TRAIT(gun, TRAIT_GUN_BIPODDED, "attached_bipod")
-				to_chat(user, SPAN_NOTICE("You deploy [src] [support ? "on [support]" : "on the ground"]."))
+				to_chat(user, SPAN_NOTICE("你把[src]架在了[support ? "[support]上" : "地面上"]。"))
 				SEND_SIGNAL(user, COMSIG_MOB_DEPLOYED_BIPOD)
 				playsound(user,'sound/items/m56dauto_rotate.ogg', 55, 1)
 				accuracy_mod = HIT_ACCURACY_MULT_TIER_5
@@ -4146,7 +4146,7 @@ Defined in conflicts.dm of the #defines folder.
 					gun.do_toggle_firemode(user, null, GUN_FIREMODE_AUTOMATIC)
 
 			else
-				to_chat(user, SPAN_NOTICE("You retract [src]."))
+				to_chat(user, SPAN_NOTICE("你收起了[src]。"))
 				undeploy_bipod(gun, user)
 
 	update_icon()
@@ -4181,7 +4181,7 @@ Defined in conflicts.dm of the #defines folder.
 //item actions for handling deployment to full auto.
 /datum/action/item_action/bipod/toggle_full_auto_switch/New(Target, obj/item/holder)
 	. = ..()
-	name = "Toggle Full Auto Switch"
+	name = "架设后切换全自动"
 	action_icon_state = "full_auto_switch"
 	button.name = name
 	button.overlays.Cut()
@@ -4193,7 +4193,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/obj/item/attachable/bipod/attached_bipod = holder_gun.attachments["under"]
 
 	attached_bipod.full_auto_switch = !attached_bipod.full_auto_switch
-	to_chat(owner, SPAN_NOTICE("[icon2html(holder_gun, owner)] You will [attached_bipod.full_auto_switch? "<B>start</b>" : "<B>stop</b>"] switching to full auto when deploying the bipod."))
+	to_chat(owner, SPAN_NOTICE("[icon2html(holder_gun, owner)] [attached_bipod.full_auto_switch? "架设两脚架后将<B>自动切换</b>为全自动射击模式。" : "架设两脚架后将<B>不再自动切换</b>为全自动射击模式。"]"))
 	playsound(owner, 'sound/weapons/handling/gun_burst_toggle.ogg', 15, 1)
 
 	if(attached_bipod.full_auto_switch)
@@ -4205,8 +4205,8 @@ Defined in conflicts.dm of the #defines folder.
 	button.overlays += image('icons/mob/hud/actions.dmi', button, action_icon_state)
 
 /obj/item/attachable/bipod/integral
-	name = "integral bipod"
-	desc = "An integral bipod for the M41AE2 Heavy Pulse Rifle."
+	name = "一体式两脚架"
+	desc = "M41AE2重型脉冲步枪的一体式两脚架。"
 	icon_state = "bipod"
 	attach_icon = "integ_bipod_a"
 	slot = "under"
@@ -4225,16 +4225,16 @@ Defined in conflicts.dm of the #defines folder.
 	fa_scatter_peak_mod = 15 //fifteen more shots until you hit max scatter
 
 /obj/item/attachable/bipod/m60
-	name = "bipod"
-	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. This one looks rather old.\nGreatly increases accuracy and reduces recoil when properly placed, but also increases weapon size and slows firing speed."
+	name = "两脚架"
+	desc = "一组用于射击时稳定武器的简易伸缩支脚，这一组看起来相当老旧。\n正确架设后可大幅提高精度并降低后坐力，但也会增大武器体积、降低射速。"
 	icon_state = "bipod_m60"
 	attach_icon = "bipod_m60_a"
 
 	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/bipod/vulture
-	name = "heavy bipod"
-	desc = "A set of rugged telescopic poles to keep a weapon stabilized during firing."
+	name = "重型两脚架"
+	desc = "一组结实耐用的伸缩支脚，可在射击时稳定武器。"
 	icon_state = "bipod_m60"
 	attach_icon = "vulture_bipod"
 	heavy_bipod = TRUE
@@ -4272,8 +4272,8 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_unwielded_mod = -HIT_ACCURACY_MULT_TIER_4
 
 /obj/item/attachable/eva_doodad
-	name = "RXF-M5 EVA beam projector"
-	desc = "A strange little doodad that projects an invisible beam that the EVA pistol's actual laser travels in, used as a focus that slightly weakens the laser's intensity. Or at least that's what the manual said."
+	name = "RXF-M5 EVA 光束投射器"
+	desc = "一个古怪的小装置，会投射出一道不可见光束，EVA手枪的激光就在其中传播。它用于聚焦，但会略微削弱激光强度。至少说明书是这么说的。"
 	icon = 'icons/obj/items/weapons/guns/attachments/under.dmi'
 	icon_state = "rxfm5_eva_doodad"
 	attach_icon = "rxfm5_eva_doodad_a"
@@ -4286,7 +4286,7 @@ Defined in conflicts.dm of the #defines folder.
 	damage_mod -= BULLET_DAMAGE_MULT_TIER_4
 
 /obj/item/attachable/lw317barrel
-	name = "LW-317 Barrel"
+	name = "LW-317 枪管"
 	desc = "This isn't supposed to be separated from the gun, how'd this happen?"
 	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
 	icon_state = "lw317_dmr_barrel"

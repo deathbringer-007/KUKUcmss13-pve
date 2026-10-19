@@ -47,7 +47,7 @@
 
 	var/list/defcon_triggers = list(5150, 4225, 2800, 1000, 0.0)
 
-	var/survivor_message = "You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks... until now."
+	var/survivor_message = "你是殖民地遇袭后的幸存者。你曾在这座考古殖民地工作或生活，设法躲过了异形的袭击……直到现在。"
 
 	var/map_item_type
 

@@ -264,9 +264,7 @@ export class CanvasLayer extends Component {
           <Tooltip
             position="bottom"
             content={
-              'This drawing may be too complex to submit. (' +
-              this.complexity +
-              ')'
+              '这幅图画过于复杂，可能无法提交。（' + this.complexity + '）'
             }
           >
             <Icon
@@ -296,9 +294,7 @@ export class CanvasLayer extends Component {
     return (
       <div>
         <Box my="273.5px">
-          <h1>
-            Please wait a few minutes before attempting to access the canvas.
-          </h1>
+          <h1>请等待几分钟后再尝试打开画布。</h1>
         </Box>
       </div>
     );

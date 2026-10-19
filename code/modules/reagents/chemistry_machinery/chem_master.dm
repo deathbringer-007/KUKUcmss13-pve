@@ -227,7 +227,7 @@
 
 			for(var/datum/reagent/R in reagents.reagent_list)
 				if(R.flags & REAGENT_NOT_INGESTIBLE)
-					to_chat(user, SPAN_WARNING("[R.name]必须静脉给药，不能制成药片。"))
+					to_chat(user, SPAN_WARNING("[R.localized_name || R.name]必须静脉给药，不能制成药片。"))
 					return
 
 			var/amount_per_pill = reagents.total_volume/count
@@ -257,7 +257,7 @@
 
 		else if(href_list["createglass"])
 			if(!condi)
-				var/name = reject_bad_text(input(user,"标签：","输入标签", reagents.get_master_reagent_name()) as text|null)
+				var/name = reject_bad_text(input(user,"标签：","输入标签", reagents.get_master_reagent_display_name()) as text|null)
 				if(!name)
 					return
 
@@ -368,7 +368,7 @@
 		else
 			dat += "加入暂存槽：<BR>"
 			for(var/datum/reagent/G in beaker.reagents.reagent_list)
-				dat += "[G.name]，[G.volume] 单位 - "
+				dat += "[G.localized_name || G.name]，[G.volume] 单位 - "
 				dat += "<A href='byond://?src=\ref[src];add=[G.id];amount=1'>1</A> "
 				dat += "<A href='byond://?src=\ref[src];add=[G.id];amount=5'>5</A> "
 				dat += "<A href='byond://?src=\ref[src];add=[G.id];amount=10'>10</A> "
@@ -381,7 +381,7 @@
 		dat += "<HR>转移至 <A href='byond://?src=\ref[src];toggle=1'>[(!mode ? "废弃" : "烧杯")]：</A><BR>"
 		if(reagents.total_volume)
 			for(var/datum/reagent/N in reagents.reagent_list)
-				dat += "[N.name]，[N.volume] 单位 - "
+				dat += "[N.localized_name || N.name]，[N.volume] 单位 - "
 				dat += "<A href='byond://?src=\ref[src];remove=[N.id];amount=1'>1</A> "
 				dat += "<A href='byond://?src=\ref[src];remove=[N.id];amount=5'>5</A> "
 				dat += "<A href='byond://?src=\ref[src];remove=[N.id];amount=10'>10</A> "

@@ -80,7 +80,7 @@
 /datum/mind/proc/show_memory(mob/recipient)
 	var/output = memory
 
-	show_browser(recipient, output, "[current.real_name]'s Memory", "memory")
+	show_browser(recipient, output, "[current.real_name]的记忆", "memory")
 
 /datum/mind/Topic(href, href_list)
 	if(!check_rights(R_ADMIN))

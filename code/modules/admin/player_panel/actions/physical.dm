@@ -60,7 +60,7 @@
 
 	H.pain.recalculate_pain()
 
-	to_chat(target, SPAN_HELPFUL("You feel your limbs regrow back."))
+	to_chat(target, SPAN_HELPFUL("你感觉失去的肢体重新长了出来。"))
 
 	return TRUE
 

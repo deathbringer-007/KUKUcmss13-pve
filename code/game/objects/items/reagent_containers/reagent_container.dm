@@ -44,7 +44,7 @@
 	var/reagent_desc = "[src]内含："
 
 	if(user.can_see_reagents())
-		reagent_desc += get_reagent_list_text()
+		reagent_desc += get_reagent_list_text(localized = TRUE)
 		return SPAN_INFO(reagent_desc)
 
 	if(!transparent)
@@ -68,10 +68,10 @@
 	if(!skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_TRAINED))
 		return "你不知道里面装着什么。"
 
-	return "[src]内含：[get_reagent_list_text()]。"
+	return "[src]内含：[get_reagent_list_text(localized = TRUE)]。"
 
 /// Returns a string listing all reagents (and their volume) in the container
-/obj/item/reagent_container/proc/get_reagent_list_text()
+/obj/item/reagent_container/proc/get_reagent_list_text(localized = FALSE)
 	if(!reagents || !LAZYLEN(reagents.reagent_list))
 		return "无试剂"
 
@@ -79,7 +79,7 @@
 	for(var/datum/reagent/current_reagent as anything in reagents.reagent_list)
 		if(total_reagent_desc != "")
 			total_reagent_desc += ", "
-		total_reagent_desc += "[current_reagent.name] ([current_reagent.volume]u)"
+		total_reagent_desc += "[localized ? (current_reagent.localized_name || current_reagent.name) : current_reagent.name] ([current_reagent.volume]u)"
 
 	return total_reagent_desc
 

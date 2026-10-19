@@ -143,13 +143,13 @@
 
 	switch(message_option)
 		if("Voice in head")
-			to_chat(M, SPAN_ANNOUNCEMENT_HEADER_BLUE("You hear a voice in your head... [msg]"))
+			to_chat(M, SPAN_ANNOUNCEMENT_HEADER_BLUE("你听见一个声音在脑海中响起……[msg]"))
 
 		if("QM Psychic Whisper")
 			if(isxeno(M))
-				to_chat(M, SPAN_XENONOTICE("You hear the voice of the Queen Mother... [msg]"))
+				to_chat(M, SPAN_XENONOTICE("你听见母皇的声音……[msg]"))
 			else
-				to_chat(M, SPAN_XENONOTICE("You hear a strange, distant, alien voice in your head... [msg]"))
+				to_chat(M, SPAN_XENONOTICE("你听见一个陌生而遥远的外星声音在脑海中响起……[msg]"))
 		else
 			var/mob/living/carbon/human/H = M
 
@@ -160,7 +160,7 @@
 			if(!H.get_type_in_ears(/obj/item/device/radio/headset))
 				to_chat(usr, "The person you are trying to contact is not wearing a headset")
 				return
-			to_chat(H, SPAN_ANNOUNCEMENT_HEADER_BLUE("Message received through headset. [message_option] Transmission <b>\"[msg]\"</b>"))
+			to_chat(H, SPAN_ANNOUNCEMENT_HEADER_BLUE("通过耳机收到消息。[message_option == "Weyland-Yutani" ? "维兰德-汤谷" : message_option == "USCM High Command" ? "殖民地海军陆战队最高司令部" : message_option]传输：<b>\"[msg]\"</b>"))
 
 	var/message = WRAP_STAFF_LOG(usr, SPAN_STAFF_IC("subtle messaged [key_name(M)] as [message_option], saying \"[msg]\" in [get_area(M)] ([M.x],[M.y],[M.z])."))
 	message_admins(message, M.x, M.y, M.z)
@@ -179,7 +179,7 @@
 	var/res = alert(src, "Do you wish to send an admin alert to this user?",,"Yes","No","Custom")
 	switch(res)
 		if("Yes")
-			var/message = "An admin is trying to talk to you!<br>Check your chat window and click their name to respond or you may be banned!"
+			var/message = "管理员正在尝试与你交谈！<br>请查看聊天窗口，点击其姓名回复，否则你可能被封禁！"
 
 			show_blurb(M, 15, message, null, "center", "center", COLOR_RED, null, null, 1)
 			log_admin("[key_name(src)] sent a default admin alert to [key_name(M)].")
@@ -374,10 +374,10 @@
 		var/mob/living/carbon/human/human = carbon
 		var/obj/item/card/id/card = human.get_idcard()
 		if(card)
-			card.name = "[human.real_name]'s ID Card"
+			card.name = "[human.real_name]的身份卡"
 			card.registered_name = "[human.real_name]"
 			if(card.assignment)
-				card.name += " ([card.assignment])"
+				card.name += "（[preference_label(card.assignment)]）"
 
 	message_admins("[key_name(src)] changed name of [old_name] to [newname].")
 

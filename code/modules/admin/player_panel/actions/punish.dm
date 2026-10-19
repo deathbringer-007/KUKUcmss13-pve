@@ -34,7 +34,7 @@
 	switch(alert("Are you sure you want to EORG ban [target.ckey]?", , "Yes", "No"))
 		if("Yes")
 			mins = 180
-			reason = "EORG - Generating combat logs with, or otherwise griefing, friendly/allied players."
+			reason = "回合结束后恶意破坏（EORG）——对友军或盟友制造战斗日志，或以其他方式恶意破坏游戏。"
 		if("No")
 			return
 
@@ -91,7 +91,7 @@
 		return
 
 	user.cmd_admin_do_stickyban(target.ckey, reason, message, impacted_ckeys = list(target.ckey), impacted_cids = list(persistent_cid), impacted_ips = list(persistent_ip))
-	player.add_note("Stickybanned | [message]", FALSE, NOTE_ADMIN, TRUE)
+	player.add_note("关联封禁 | [message]", FALSE, NOTE_ADMIN, TRUE)
 	player.add_note("Internal reason: [reason]", TRUE, NOTE_ADMIN)
 
 	if(target.client)
@@ -148,7 +148,7 @@
 
 	message_admins("[user.ckey] has reset [X.ckey] xeno name")
 
-	to_chat(X, SPAN_DANGER("Warning: Your xeno name has been reset by [user.ckey]."))
+	to_chat(X, SPAN_DANGER("警告：[user.ckey]已重置你的异形名称。"))
 
 	X.client.xeno_prefix = "XX"
 	X.client.xeno_postfix = ""
@@ -181,7 +181,7 @@
 		message_admins("[user.ckey] has unbanned [target.ckey] from using xeno names")
 
 		notes_add(target.ckey, "Xeno Name Unbanned by [user.ckey]", user.mob)
-		to_chat(target, SPAN_DANGER("Warning: You can use xeno names again."))
+		to_chat(target, SPAN_DANGER("提示：你现在可以重新使用自定义异形名称。"))
 		return
 
 	if(!isxeno(target))
@@ -199,7 +199,7 @@
 
 	notes_add(target.ckey, "Xeno Name Banned by [user.ckey]|Reason: Xeno name was [target.name]", user.mob)
 
-	to_chat(target, SPAN_DANGER("Warning: You were banned from using xeno names by [user.ckey]."))
+	to_chat(target, SPAN_DANGER("警告：[user.ckey]已禁止你使用自定义异形名称。"))
 
 	targetClient.xeno_prefix = "XX"
 	targetClient.xeno_postfix = ""
@@ -269,17 +269,17 @@
 		var/mob/living/carbon/human/target_human = target_mob
 		var/obj/item/card/id/card = target_human.get_idcard()
 		if(card?.registered_ref == WEAKREF(target_human))
-			card.name = "[target_human.real_name]'s ID Card"
+			card.name = "[target_human.real_name]的身份卡"
 			card.registered_name = "[target_human.real_name]"
 			if(card.assignment)
-				card.name += " ([card.assignment])"
+				card.name += "（[preference_label(card.assignment)]）"
 
 	target_mob.client.prefs.real_name = new_name
 	target_mob.client.prefs.save_character()
 
 	message_admins("[user.ckey] has reset [target_mob.ckey]'s name.")
 
-	to_chat(target_mob, FONT_SIZE_HUGE(SPAN_ADMINHELP("Warning: Your name has been reset by [user.ckey].")))
+	to_chat(target_mob, FONT_SIZE_HUGE(SPAN_ADMINHELP("警告：[user.ckey]已重置你的角色姓名。")))
 
 	playsound_client(target_mob.client, sound('sound/effects/adminhelp_new.ogg'), src, 50)
 
@@ -312,7 +312,7 @@
 
 		notes_add(target.ckey, "Human Name Unbanned by [user.ckey]", user.mob)
 
-		to_chat(target, FONT_SIZE_HUGE(SPAN_ADMINHELP("Warning: You can use human names again.")))
+		to_chat(target, FONT_SIZE_HUGE(SPAN_ADMINHELP("提示：你现在可以重新使用自定义人类姓名。")))
 		return
 
 
@@ -327,7 +327,7 @@
 
 	notes_add(target.ckey, "Human Name Banned by [user.ckey]", user.mob)
 
-	to_chat(target, FONT_SIZE_HUGE(SPAN_ADMINHELP("Warning: You were banned from using human names by [user.ckey].")))
+	to_chat(target, FONT_SIZE_HUGE(SPAN_ADMINHELP("警告：[user.ckey]已禁止你使用自定义人类姓名。")))
 	playsound_client(target_client, sound('sound/effects/adminhelp_new.ogg'), src, 50)
 
 	var/new_name = random_name(target.gender)

@@ -396,15 +396,15 @@ The default value assumes youtube-dl is in your system PATH
 
 
 /datum/config_entry/string/soft_popcap_message
-	config_entry_value = "The server is currently serving a high number of users, joining the round may get disabled soon."
+	config_entry_value = "服务器当前在线人数较多，可能很快会停止接受玩家加入本回合。"
 
 
 /datum/config_entry/string/hard_popcap_message
-	config_entry_value = "The server is currently serving a high number of users, You cannot currently join, but you can observe or wait for the number of living crew to decline."
+	config_entry_value = "服务器当前在线人数较多，暂时无法加入本回合。你可以旁观，或等待存活船员数量减少后再加入。"
 
 
 /datum/config_entry/string/extreme_popcap_message
-	config_entry_value = "The server is currently serving a high number of users, joining the server has been disabled."
+	config_entry_value = "服务器当前在线人数较多，已停止接受新连接。"
 
 
 /datum/config_entry/flag/byond_member_bypass_popcap
@@ -428,7 +428,7 @@ The default value assumes youtube-dl is in your system PATH
 
 
 /datum/config_entry/string/panic_bunker_message
-	config_entry_value = "Sorry but the server is currently not accepting connections from never before seen players."
+	config_entry_value = "抱歉，服务器目前不接受首次连接本服的玩家。"
 
 
 /datum/config_entry/string/default_view
@@ -510,7 +510,7 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 	default = ""
 
 /datum/config_entry/string/urgent_ahelp_user_prompt
-	default = "There are no admins currently on. Do not press the button below if your ahelp is a joke, a request or a question. Use it only for cases of obvious grief."
+	default = "目前没有管理员在线。若求助内容是玩笑、请求或一般问题，请勿点击下方按钮。此按钮仅用于报告明显的恶意破坏行为。"
 
 /datum/config_entry/string/urgent_adminhelp_webhook_url
 
@@ -647,7 +647,7 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 	min_val = 0
 
 /datum/config_entry/string/client_warn_message
-	default = "Your version of BYOND may have issues or be blocked from accessing this server in the future."
+	default = "你的BYOND版本可能存在问题，今后也可能被禁止连接此服务器。"
 
 /datum/config_entry/flag/client_warn_popup
 
@@ -660,7 +660,7 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 	min_val = 0
 
 /datum/config_entry/string/client_error_message
-	default = "Your version of BYOND is too old, may have issues, and is blocked from accessing this server."
+	default = "你的BYOND版本过旧，可能存在问题，已被禁止连接此服务器。"
 
 // GitHub API, used for anonymous bug report handling.
 /datum/config_entry/string/github_app_api

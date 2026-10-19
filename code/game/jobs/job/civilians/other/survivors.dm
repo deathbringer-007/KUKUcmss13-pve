@@ -90,17 +90,17 @@
 
 /datum/job/civilian/survivor/proc/tell_survivor_story(mob/living/carbon/human/H)
 	var/list/survivor_story = list(
-								"You watched as a larva burst from the chest of your friend, {name}. You tried to capture the alien thing, but it escaped through the ventilation.",
-								"{name} was attacked by a facehugging alien, which impregnated them with an alien lifeform. {name}'s chest exploded in gore as some creature escaped.",
-								"You watched in horror as {name} got the alien lifeform's acid on their skin, melting away their flesh. You can still hear the screaming and panic.",
-								"The Colony Marshal, {name}, made an announcement that the hostile lifeforms killed many, and that everyone should hide or stay behind closed doors.",
-								"You were there when the alien lifeforms broke into the mess hall and dragged away the others. It was a terrible sight, and you have tried avoid large open areas since.",
-								"It was horrible, as you watched your friend, {name}, get mauled by the horrible monsters. Their screams of agony hunt you in your dreams, leading to insomnia.",
-								"You tried your best to hide, and you have seen the creatures travel through the underground tunnels and ventilation shafts. They seem to like the dark.",
-								"When you woke up, it felt like you've slept for years. You don't recall much about your old life, except maybe your name. Just what the hell happened to you?",
-								"You were on the front lines, trying to fight the aliens. You have seen them hatch more monsters from other humans, and you know better than to fight against death.",
-								"You found something, something incredible. But your discovery was cut short when the monsters appeared and began taking people. Damn the beasts!",
-								"{name} protected you when the aliens came. You don't know what happened to them, but that was some time ago, and you haven't seen them since. Maybe they are alive."
+								"你眼看着一只幼体从朋友{name}的胸口破体而出。你试图抓住那只外星生物，却被它钻进通风管逃走了。",
+								"{name}遭到一只抱脸虫袭击，体内被植入了外星生命。后来，一只怪物从{name}的胸口钻出，鲜血与碎肉四处飞溅。",
+								"你惊恐地看着外星生物的酸液溅到{name}的皮肤上，将血肉腐蚀殆尽。那阵恐惧的尖叫至今仍在你耳边回荡。",
+								"殖民地执法官{name}发布公告，称敌对生物已杀害许多人，要求所有人躲藏起来，或待在紧闭的门后。",
+								"外星生物冲进食堂、拖走其他人时，你就在现场。那景象惨不忍睹，从此你总是尽量避开大片空旷地带。",
+								"你亲眼看见朋友{name}遭到可怕怪物的撕咬，那一幕太恐怖了。痛苦的惨叫不断萦绕在你的梦中，令你无法安睡。",
+								"你拼尽全力躲藏，也曾见过那些生物穿行于地下隧道和通风井之间。它们似乎喜欢黑暗。",
+								"醒来时，你感觉自己仿佛已经沉睡了很多年。过去的生活几乎全都记不清了，也许只剩自己的名字。你身上到底发生了什么？",
+								"你曾在前线试图抵抗异形。你亲眼见过它们从其他人体内孵出更多怪物，也已明白不该再去白白送死。",
+								"你发现了某样东西，某样不可思议的东西。然而怪物突然出现，开始抓走人们，你的发现也就此中断。该死的畜生！",
+								"{name}在异形来袭时保护了你。你不知道后来发生了什么；那已是前一阵子的事，你此后再没见过对方。也许人还活着。"
 								)
 
 	/*
@@ -120,7 +120,7 @@
 										*/
 
 	var/random_name = pick(random_name(FEMALE), random_name(MALE))
-	var/temp_story = "<b>Your story thus far</b>: " + replacetext(pick(survivor_story), "{name}", "[random_name]")
+	var/temp_story = "<b>你的经历</b>：" + replacetext(pick(survivor_story), "{name}", "[random_name]")
 	to_chat(H, temp_story)
 	H.mind.memory += temp_story
 

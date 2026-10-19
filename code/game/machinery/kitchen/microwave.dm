@@ -208,7 +208,7 @@
 		reagent["count"] = contents_reagent.volume
 		reagent["measure"] = contents_reagent.volume > 1 ? "单位" : "单位"
 
-		reagent["name"] = contents_reagent.name
+		reagent["name"] = contents_reagent.localized_name || contents_reagent.name
 		if (contents_reagent.id == "hotsauce")
 			reagent["name"] = "辣酱"
 		if (contents_reagent.id == "frostoil")

@@ -27,12 +27,12 @@ SUBSYSTEM_DEF(statpanels)
 		if(SSmapping.next_map_configs)
 			cached = SSmapping.next_map_configs[GROUND_MAP]
 		global_data = list(
-			"Map: [SSmapping.configs?[GROUND_MAP]?.map_name || "Loading..."]",
-			cached ? "Next Map: [cached?.map_name]" : null,
-			"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
-			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
-			"Round Time: [gameTimestamp("hh:mm:ss")]",
-			"Operation Time: [worldtime2text()]",
+			"地图：[get_statistic_display_label(SSmapping.configs?[GROUND_MAP]?.map_name) || "加载中……"]",
+			cached ? "下一张地图：[get_statistic_display_label(cached?.map_name)]" : null,
+			"回合编号：[GLOB.round_id ? GLOB.round_id : "暂无"]",
+			"服务器时间：[time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
+			"回合时间：[gameTimestamp("hh:mm:ss")]",
+			"行动时间：[worldtime2text()]",
 		)
 
 		src.currentrun = GLOB.clients.Copy()

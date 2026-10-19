@@ -33,15 +33,15 @@ GLOBAL_DATUM(escape_menu_details, /atom/movable/screen/escape_menu/details)
 /atom/movable/screen/escape_menu/details/proc/update_text()
 	var/webmap_host = CONFIG_GET(string/webmap_host)
 
-	var/ship_map = "<a style='color: #88f;' href=\"[webmap_host][SSmapping.configs[SHIP_MAP]?.webmap_url]\"><u>[SSmapping.configs[SHIP_MAP].map_name || "Loading..."]</u></a>"
-	var/ground_map = "<a style='color: #88f;' href=\"[webmap_host][SSmapping.configs[GROUND_MAP]?.webmap_url]\"><u>[SSmapping.configs[GROUND_MAP].map_name || "Loading..."]</u></a>"
+	var/ship_map = "<a style='color: #88f;' href=\"[webmap_host][SSmapping.configs[SHIP_MAP]?.webmap_url]\"><u>[get_statistic_display_label(SSmapping.configs[SHIP_MAP].map_name) || "加载中……"]</u></a>"
+	var/ground_map = "<a style='color: #88f;' href=\"[webmap_host][SSmapping.configs[GROUND_MAP]?.webmap_url]\"><u>[get_statistic_display_label(SSmapping.configs[GROUND_MAP].map_name) || "加载中……"]</u></a>"
 
 	var/new_maptext = {"
 		<span style='text-align: right; line-height: 0.7'>
-			Round ID: [GLOB.round_id || "NULL"]<br />
-			Round Time: [duration2text()]<br />
-			[SSmapping.configs[GROUND_MAP].disable_ship_map ? "" : "Ship: [ship_map]<br />"]
-			Ground: [ground_map]<br />
+			回合编号： [GLOB.round_id || "NULL"]<br />
+			回合时长： [duration2text()]<br />
+			[SSmapping.configs[GROUND_MAP].disable_ship_map ? "" : "舰船：[ship_map]<br />"]
+			地面：[ground_map]<br />
 		</span>
 	"}
 

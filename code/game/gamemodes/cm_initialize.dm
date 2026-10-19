@@ -208,7 +208,7 @@ Additional game mode variables.
 			to_chat(pred_candidate, SPAN_WARNING("你本轮已经扮演过铁血战士了！给别人一个机会。"))
 		return FALSE
 
-	if(show_warning && tgui_alert(pred_candidate, "确认加入狩猎。你将以 \a [lowertext(pred_job.get_whitelist_status(pred_candidate.client))] 铁血战士的身份加入。", "确认", list("Yes", "No"), 10 SECONDS) != "Yes")
+	if(show_warning && localized_tgui_alert(pred_candidate, "确认加入狩猎。你将以 [pred_candidate.client.get_clan_rank_display_name(pred_job.get_whitelist_status(pred_candidate.client))]铁血战士的身份加入。", "确认", list("Yes", "No"), 10 SECONDS) != "Yes")
 		return FALSE
 
 	if(pred_job.get_whitelist_status(pred_candidate.client) == WHITELIST_NORMAL)
@@ -390,7 +390,7 @@ Additional game mode variables.
 			available_xenos |= "any buried larva"
 			LAZYADD(available_xenos["any buried larva"], hive)
 		else
-			var/larva_option = "buried larva ([hive])"
+			var/larva_option = "地底幼体（[localized_player_label(hive.name)]）"
 			available_xenos += larva_option
 			available_xenos[larva_option] = list(hive)
 
@@ -434,15 +434,15 @@ Additional game mode variables.
 			cur_hive = GLOB.hive_datum[hive_num]
 			for(var/mob_name in cur_hive.banished_ckeys)
 				if(cur_hive.banished_ckeys[mob_name] == candidate_observer.ckey)
-					candidate_observer.larva_queue_cached_message += "\n注意：你已被 [cur_hive] 放逐；除非\
-						女皇重新接纳你或死亡，否则你无法重新加入。出现未将你放逐的巢群之前，你的队列编号不会更新。"
+					candidate_observer.larva_queue_cached_message += "\n注意：你已被 [localized_player_label(cur_hive.name)]放逐；除非\
+						女皇重新接纳你或死亡，否则你无法重新加入。出现未将你放逐的虫巢之前，你的队列编号不会更新。"
 					break
 		to_chat(candidate_observer, SPAN_XENONOTICE(candidate_observer.larva_queue_cached_message))
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/new_xeno
 	if(!instant_join)
-		var/userInput = tgui_input_list(usr, "可用异形", "以异形身份加入", available_xenos, theme="hive_status")
+		var/userInput = localized_input_list(usr, "可用异形", "以异形身份加入", available_xenos, theme="hive_status")
 
 		if(available_xenos[userInput]) //Free xeno mobs have no associated value and skip this. "Pooled larva" strings have a list of hives.
 			var/datum/hive_status/picked_hive = pick(available_xenos[userInput]) //The list contains all available hives if we are to choose at random, only one element if we already chose a hive by its name.
@@ -459,7 +459,7 @@ Additional game mode variables.
 
 				for(var/mob_name in picked_hive.banished_ckeys)
 					if(picked_hive.banished_ckeys[mob_name] == xeno_candidate.ckey)
-						to_chat(xeno_candidate, SPAN_WARNING("你已被[picked_hive]放逐，除非女皇重新接纳你或死亡，否则无法重新加入。"))
+						to_chat(xeno_candidate, SPAN_WARNING("你已被[localized_player_label(picked_hive.name)]放逐，除非女皇重新接纳你或死亡，否则无法重新加入。"))
 						return FALSE
 				if(isnewplayer(xeno_candidate))
 					var/mob/new_player/noob = xeno_candidate
@@ -481,11 +481,11 @@ Additional game mode variables.
 		new_xeno = userInput
 
 		if(!(new_xeno in GLOB.living_xeno_list) || new_xeno.stat == DEAD)
-			to_chat(xeno_candidate, SPAN_WARNING("这只异形已死亡，你无法入住。"))
+			to_chat(xeno_candidate, SPAN_WARNING("这只异形已死亡，你无法接管。"))
 			return FALSE
 
 		if(new_xeno.health <= 0)
-			to_chat(xeno_candidate, SPAN_WARNING("这只异形处于濒死或昏迷状态，你无法入住。"))
+			to_chat(xeno_candidate, SPAN_WARNING("这只异形处于濒死或昏迷状态，你无法接管。"))
 			return FALSE
 
 		if(!xeno_bypass_timer)
@@ -505,7 +505,7 @@ Additional game mode variables.
 				to_chat(xeno_candidate, SPAN_WARNING("那位玩家离开的时间还不够长，请再等[to_wait]秒。"))
 				return FALSE
 
-		if(alert(xeno_candidate, "检查无误。确定要转入 [new_xeno] 的身体吗？", "确认转移", "Yes", "No") == "Yes")
+		if(localized_native_alert(xeno_candidate, "检查无误。确定要转入 [new_xeno] 的身体吗？", "确认转移", "Yes", "No") == "Yes")
 			if(((!islarva(new_xeno) && new_xeno.away_timer < XENO_LEAVE_TIMER) || (islarva(new_xeno) && new_xeno.away_timer < XENO_LEAVE_TIMER_LARVA)) || !(new_xeno in GLOB.living_xeno_list) || new_xeno.stat == DEAD || !xeno_candidate) // Do it again, just in case
 				to_chat(xeno_candidate, SPAN_WARNING("那只异形已无法控制，请换一只。"))
 				return FALSE
@@ -540,7 +540,7 @@ Additional game mode variables.
 		return FALSE
 
 	if(length(active_hives) > 1)
-		var/hive_picked = tgui_input_list(xeno_candidate, "选择想要加入的虫巢。", "选择虫巢", active_hives, theme="hive_status")
+		var/hive_picked = localized_input_list(xeno_candidate, "选择想要加入的虫巢。", "选择虫巢", active_hives, theme="hive_status")
 		if(!hive_picked)
 			to_chat(xeno_candidate, SPAN_ALERT("虫巢选择出错，操作中止。"))
 			return
@@ -554,14 +554,14 @@ Additional game mode variables.
 	for(var/mob/living/carbon/xenomorph/carrier/carrier in hive.totalXenos)
 		if(carrier.huggers_cur > carrier.huggers_reserved)
 			var/area_name = get_area_name(carrier)
-			var/descriptive_name = "[carrier.name] in [area_name]"
+			var/descriptive_name = "[carrier.name]（[area_name]）"
 			available_facehugger_sources[descriptive_name] = carrier
 
 	for(var/obj/effect/alien/resin/special/eggmorph/morpher in hive.hive_structures[XENO_STRUCTURE_EGGMORPH])
 		if(morpher)
 			if(morpher.stored_huggers)
 				var/area_name = get_area_name(morpher)
-				var/descriptive_name = "[morpher.name] in [area_name]"
+				var/descriptive_name = "[morpher.name]（[area_name]）"
 				available_facehugger_sources[descriptive_name] = morpher
 
 	if(length(available_facehugger_sources) <= 0)
@@ -606,7 +606,7 @@ Additional game mode variables.
 		return FALSE
 
 	if(length(active_hives) > 1)
-		var/hive_picked = tgui_input_list(xeno_candidate, "选择想要加入的虫巢。", "选择虫巢", active_hives, theme="hive_status")
+		var/hive_picked = localized_input_list(xeno_candidate, "选择想要加入的虫巢。", "选择虫巢", active_hives, theme="hive_status")
 		if(!hive_picked)
 			to_chat(xeno_candidate, SPAN_ALERT("虫巢选择出错，操作中止。"))
 			return FALSE
@@ -616,7 +616,7 @@ Additional game mode variables.
 
 	for(var/mob_name in hive.banished_ckeys)
 		if(hive.banished_ckeys[mob_name] == xeno_candidate.ckey)
-			to_chat(xeno_candidate, SPAN_WARNING("你已被[hive]放逐，除非女皇重新接纳你或死亡，否则无法重新加入。"))
+			to_chat(xeno_candidate, SPAN_WARNING("你已被[localized_player_label(hive.name)]放逐，除非女皇重新接纳你或死亡，否则无法重新加入。"))
 			return FALSE
 
 	var/list/selection_list = list()
@@ -629,7 +629,7 @@ Additional game mode variables.
 	for(var/obj/effect/alien/resin/special/pylon/cycled_pylon as anything in hive.hive_structures[XENO_STRUCTURE_PYLON])
 		if(cycled_pylon.lesser_drone_spawns >= 1)
 			var/pylon_number = 1
-			var/pylon_name = "[cycled_pylon.name] at [get_area(cycled_pylon)]"
+			var/pylon_name = "[cycled_pylon.name]（[get_area(cycled_pylon)]）"
 			//For renaming the pylon if we have duplicates
 			var/pylon_selection_name = pylon_name
 			while(pylon_selection_name in selection_list)
@@ -642,7 +642,7 @@ Additional game mode variables.
 		to_chat(xeno_candidate, SPAN_WARNING("所选虫巢的核心和树脂塔均没有足够能量生成次级工蜂！"))
 		return FALSE
 
-	var/prompt = tgui_input_list(xeno_candidate, "选择出生位置？", "选择出生点", selection_list)
+	var/prompt = localized_input_list(xeno_candidate, "选择出生位置？", "选择出生点", selection_list)
 	if(!prompt)
 		return FALSE
 
@@ -760,7 +760,7 @@ Additional game mode variables.
 	to_chat(new_queen, "<B>你现在是异形女皇！</B>")
 	to_chat(new_queen, "<B>你的使命是扩张虫巢。</B>")
 	to_chat(new_queen, "<B>你应该先建造虫巢核心。</B>")
-	to_chat(new_queen, "使用<strong>;</strong>通过虫巢意识交谈（例如“;你好，我的孩子们！”）。")
+	to_chat(new_queen, "使用<strong>;</strong>通过虫巢意志交谈（例如“;你好，我的孩子们！”）。")
 
 	new_queen.update_icons()
 
@@ -845,7 +845,7 @@ Additional game mode variables.
 		if(spawner.story_text)
 			. = 1
 			spawn(6)
-				var/temp_story = "<b>Your story thus far</b>: " + spawner.story_text
+				var/temp_story = "<b>你的经历</b>：" + spawner.story_text
 				to_chat(H, temp_story)
 				H.mind.memory += temp_story
 				//remove ourselves, so we don't get stuff generated for us
@@ -867,30 +867,30 @@ Additional game mode variables.
 
 /datum/game_mode/proc/tell_survivor_story()
 	var/list/survivor_story = list(
-								"You watched as a larva burst from the chest of your friend, {name}. You tried to capture the alien thing, but it escaped through the ventilation.",
-								"{name} was attacked by a facehugging alien, which impregnated them with an alien lifeform. {name}'s chest exploded in gore as some creature escaped.",
-								"You watched in horror as {name} got the alien lifeform's acid on their skin, melting away their flesh. You can still hear the screaming and panic.",
-								"The Colony Marshal, {name}, made an announcement that the hostile lifeforms killed many, and that everyone should hide or stay behind closed doors.",
-								"You were there when the alien lifeforms broke into the mess hall and dragged away the others. It was a terrible sight, and you have tried avoid large open areas since.",
-								"It was horrible, as you watched your friend, {name}, get mauled by the horrible monsters. Their screams of agony hunt you in your dreams, leading to insomnia.",
-								"You tried your best to hide, and you have seen the creatures travel through the underground tunnels and ventilation shafts. They seem to like the dark.",
-								"When you woke up, it felt like you've slept for years. You don't recall much about your old life, except maybe your name. Just what the hell happened to you?",
-								"You were on the front lines, trying to fight the aliens. You have seen them hatch more monsters from other humans, and you know better than to fight against death.",
-								"You found something, something incredible. But your discovery was cut short when the monsters appeared and began taking people. Damn the beasts!",
-								"{name} protected you when the aliens came. You don't know what happened to them, but that was some time ago, and you haven't seen them since. Maybe they are alive."
+								"你眼看着一只幼体从朋友{name}的胸口破体而出。你试图抓住那只外星生物，却被它钻进通风管逃走了。",
+								"{name}遭到一只抱脸虫袭击，体内被植入了外星生命。后来，一只怪物从{name}的胸口钻出，鲜血与碎肉四处飞溅。",
+								"你惊恐地看着外星生物的酸液溅到{name}的皮肤上，将血肉腐蚀殆尽。那阵恐惧的尖叫至今仍在你耳边回荡。",
+								"殖民地执法官{name}发布公告，称敌对生物已杀害许多人，要求所有人躲藏起来，或待在紧闭的门后。",
+								"外星生物冲进食堂、拖走其他人时，你就在现场。那景象惨不忍睹，从此你总是尽量避开大片空旷地带。",
+								"你亲眼看见朋友{name}遭到可怕怪物的撕咬，那一幕太恐怖了。痛苦的惨叫不断萦绕在你的梦中，令你无法安睡。",
+								"你拼尽全力躲藏，也曾见过那些生物穿行于地下隧道和通风井之间。它们似乎喜欢黑暗。",
+								"醒来时，你感觉自己仿佛已经沉睡了很多年。过去的生活几乎全都记不清了，也许只剩自己的名字。你身上到底发生了什么？",
+								"你曾在前线试图抵抗异形。你亲眼见过它们从其他人体内孵出更多怪物，也已明白不该再去白白送死。",
+								"你发现了某样东西，某样不可思议的东西。然而怪物突然出现，开始抓走人们，你的发现也就此中断。该死的畜生！",
+								"{name}在异形来袭时保护了你。你不知道后来发生了什么；那已是前一阵子的事，你此后再没见过对方。也许人还活着。"
 								)
 	var/list/survivor_multi_story = list(
-										"You were separated from your friend, {surv}. You hope they're still alive.",
-										"You were having some drinks at the bar with {surv} and {name} when an alien crawled out of the vent and dragged {name} away. You and {surv} split up to find help.",
-										"Something spooked you when you were out with {surv} scavenging. You took off in the opposite direction from them, and you haven't seen them since.",
-										"When {name} became infected, you and {surv} argued over what to do with the afflicted. You nearly came to blows before walking away, leaving them behind.",
-										"You ran into {surv} when out looking for supplies. After a tense stand off, you agreed to stay out of each other's way. They didn't seem so bad.",
-										"A lunatic by the name of {name} was preaching doomsday to anyone who would listen. {surv} was there too, and you two shared a laugh before the creatures arrived.",
-										"Your last decent memory before everything went to hell is of {surv}. They were generally a good person to have around, and they helped you through tough times.",
-										"When {name} called for evacuation, {surv} came with you. The aliens appeared soon after and everyone scattered. You hope your friend {surv} is alright.",
-										"You remember an explosion. Then everything went dark. You can only recall {name} and {surv}, who were there. Maybe they know what really happened?",
-										"The aliens took your mutual friend, {name}. {surv} helped with the rescue. When you got to the alien hive, your friend was dead. You took different passages out.",
-										"You were playing basketball with {surv} when the creatures descended. You bolted in opposite directions, and actually managed to lose the monsters, somehow."
+										"你和朋友{surv}走散了。你希望对方还活着。",
+										"你正和{surv}、{name}在酒吧喝酒，一只异形却从通风口钻出，拖走了{name}。你和{surv}分头去寻求帮助。",
+										"你和{surv}外出搜寻物资时，被什么东西吓了一跳。你们朝相反的方向逃跑，从此再没见过彼此。",
+										"{name}被感染后，你和{surv}为了该如何处置感染者争论不休，几乎大打出手。最后你转身离开，把两人留在了身后。",
+										"你外出寻找物资时遇见了{surv}。经过一场紧张的对峙，你们同意互不干涉。对方看起来倒也不算坏。",
+										"一个名叫{name}的疯子逢人便宣扬世界末日。{surv}当时也在场，在那些生物来袭之前，你们还曾一起拿这事开过玩笑。",
+										"在一切变得糟糕透顶之前，你最后一段美好的回忆与{surv}有关。对方是个值得相处的人，曾帮你度过艰难时光。",
+										"{name}号召撤离时，{surv}和你一起动身。不久异形便出现了，所有人四散奔逃。你希望朋友{surv}平安无事。",
+										"你记得发生过一次爆炸，随后眼前便一片漆黑。你只能想起当时在场的{name}和{surv}。也许他们知道究竟发生了什么？",
+										"异形抓走了你们共同的朋友{name}。{surv}也参与了营救，但你们赶到虫巢时，朋友已经死了。后来你们沿不同的通道逃了出去。",
+										"那些生物扑来时，你正和{surv}打篮球。你们朝相反的方向拔腿就跑，竟然不知怎么就甩掉了怪物。"
 										)
 
 	var/current_survivors[] = survivors //These are the current survivors, so we can remove them once we tell a story.
@@ -918,10 +918,10 @@ Additional game mode variables.
 				survivor_multi_story -= story
 				story = replacetext(story, "{name}", "[random_name]")
 				spawn(6)
-					var/temp_story = "<b>Your story thus far</b>: " + replacetext(story, "{surv}", "[another_survivor.current.real_name]")
+					var/temp_story = "<b>你的经历</b>：" + replacetext(story, "{surv}", "[another_survivor.current.real_name]")
 					to_chat(survivor.current, temp_story)
 					survivor.memory += temp_story //Add it to their memories.
-					temp_story = "<b>Your story thus far</b>: " + replacetext(story, "{surv}", "[survivor.current.real_name]")
+					temp_story = "<b>你的经历</b>：" + replacetext(story, "{surv}", "[survivor.current.real_name]")
 					to_chat(another_survivor.current, temp_story)
 					another_survivor.memory += temp_story
 		else
@@ -929,7 +929,7 @@ Additional game mode variables.
 				story = pick(survivor_story)
 				survivor_story -= story
 				spawn(6)
-					var/temp_story = "<b>Your story thus far</b>: " + replacetext(story, "{name}", "[random_name]")
+					var/temp_story = "<b>你的经历</b>：" + replacetext(story, "{name}", "[random_name]")
 					to_chat(survivor.current, temp_story)
 					survivor.memory += temp_story
 
@@ -993,7 +993,7 @@ Additional game mode variables.
 	return "Extended round has ended."
 
 /datum/game_mode/proc/get_escape_menu()
-	return "On the [SSmapping.configs[SHIP_MAP].map_name], orbiting..."
+	return "身处[get_statistic_display_label(SSmapping.configs[SHIP_MAP].map_name)]，正在轨道上……"
 
 
 //===================================================\\
@@ -1054,7 +1054,7 @@ Additional game mode variables.
 			to_chat(joe_candidate, SPAN_WARNING("管理员已锁定游戏加入权限。"))
 		return
 
-	if(show_warning && tgui_alert(joe_candidate, "确认以工作乔的身份加入。", "确认", list("Yes", "No"), 10 SECONDS) != "Yes")
+	if(show_warning && localized_tgui_alert(joe_candidate, "确认以工作乔的身份加入。", "确认", list("Yes", "No"), 10 SECONDS) != "Yes")
 		return
 
 	return TRUE

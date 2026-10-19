@@ -64,10 +64,11 @@ and organ transplant code which may come in handy in future but haven't been edi
 			SPAN_NOTICE("[user]开始用[toolname]治疗你[localized_player_label(surgery.affected_limb.display_name)]内受损的器官。"),
 			SPAN_NOTICE("[user]开始用[toolname]治疗[target]的[localized_player_label(surgery.affected_limb.display_name)]内受损的器官。"))
 	else
+		var/datum/internal_organ/damaged_organ = damaged_organs[1]
 		user.affected_message(target,
-			SPAN_NOTICE("你开始用[toolname]治疗[target]受损的[damaged_organs[1]]。"),
-			SPAN_NOTICE("[user]开始用[toolname]治疗你受损的[damaged_organs[1]]。"),
-			SPAN_NOTICE("[user]开始用[toolname]治疗[target]受损的[damaged_organs[1]]。"))
+			SPAN_NOTICE("你开始用[toolname]治疗[target]受损的[localized_player_label(damaged_organ.name)]。"),
+			SPAN_NOTICE("[user]开始用[toolname]治疗你受损的[localized_player_label(damaged_organ.name)]。"),
+			SPAN_NOTICE("[user]开始用[toolname]治疗[target]受损的[localized_player_label(damaged_organ.name)]。"))
 
 	target.custom_pain("你的[localized_player_label(surgery.affected_limb.display_name)]痛得如同身在地狱！", 1)
 	playsound(target.loc, 'sound/handling/bandage.ogg', 25, TRUE)

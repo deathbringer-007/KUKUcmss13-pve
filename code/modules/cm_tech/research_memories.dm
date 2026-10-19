@@ -3,7 +3,7 @@
 /datum/research_objective_memory_interface/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "ResearchMemories", "Research Objectives")
+		ui = new(user, src, "ResearchMemories", "科研目标")
 		ui.open()
 		ui.set_autoupdate(TRUE)
 
@@ -11,7 +11,7 @@
 	var/list/clue_categories = list()
 
 	var/list/clue_category = list()
-	clue_category["name"] = "Analyze Chemicals"
+	clue_category["name"] = "分析化学物质"
 	clue_category["icon"] = "scroll"
 	clue_category["clues"] = list()
 	for (var/chemid in GLOB.chemical_data.chemical_not_completed_objective_list)

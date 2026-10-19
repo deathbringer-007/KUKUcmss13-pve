@@ -26,11 +26,25 @@ GLOBAL_DATUM(escape_menu_title, /atom/movable/screen/escape_menu/title)
 	return ..()
 
 /atom/movable/screen/escape_menu/title/proc/update_text()
-	var/subtitle_text = MAPTEXT("<span style='font-size: 8px'>[SSmapping.configs[GROUND_MAP].disable_ship_map ? "正在此地作战……" : "身处[SSmapping.configs[SHIP_MAP].map_name]，正绕行于……"]</span>")
+	var/subtitle_text = MAPTEXT("<span style='font-size: 8px'>[SSmapping.configs[GROUND_MAP].disable_ship_map ? "正在此地作战……" : "身处[get_statistic_display_label(SSmapping.configs[SHIP_MAP].map_name)]，正绕行于……"]</span>")
 	var/short_name = SSmapping.configs[GROUND_MAP].short_name
+	var/static/list/map_short_labels = list(
+		"Binhai" = "滨海",
+		"Otogi Egress" = "御伽撤离点",
+		"Bosenmori" = "博森莫里",
+		"Route 44" = "44号公路",
+		"Highway" = "公路",
+		"Kleschers" = "克莱舍",
+		"Chance's Claim" = "机遇矿区",
+		"Oread Garrison" = "奥瑞亚德驻军基地",
+		"Valley" = "山谷",
+		"Sekhmet" = "塞赫迈特",
+		"Taipei Station" = "台北中转站",
+	)
+	short_name = map_short_labels[short_name] || short_name
 	var/title_text = {"
 		<span style='font-weight: bolder; font-size: 24px'>
-			[short_name ? short_name : SSmapping.configs[GROUND_MAP].map_name]
+			[get_statistic_display_label(short_name ? short_name : SSmapping.configs[GROUND_MAP].map_name)]
 		</span>
 	"}
 

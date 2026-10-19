@@ -3,8 +3,8 @@
 #define AUTOLATHE_WIRES_UNCUT (AUTOLATHE_WIRE_HACK|AUTOLATHE_WIRE_SHOCK) // when none of the wires are cut
 
 GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
-		AUTOLATHE_WIRE_HACK = "Item template controller",
-		AUTOLATHE_WIRE_SHOCK = "Ground safety",
+		AUTOLATHE_WIRE_HACK = "物品模板控制器",
+		AUTOLATHE_WIRE_SHOCK = "接地保护",
 	)))
 
 /obj/structure/machinery/autolathe
@@ -105,7 +105,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 /obj/structure/machinery/autolathe/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "Autolathe", "[name] control panel")
+		ui = new(user, src, "Autolathe", "[name]控制面板")
 		ui.open()
 
 /obj/structure/machinery/autolathe/ui_data(mob/user)
@@ -118,7 +118,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 			i++
 			var/datum/autolathe/recipe/making = params[1]
 			var/multiplier = params[2]
-			queue_list += list(list("name" = making.name, "multiplier" = multiplier, "index" = i))
+			queue_list += list(list("name" = making.name, "display_name" = making.localized_name || making.name, "multiplier" = multiplier, "index" = i))
 
 		data["queued"] = queue_list
 	else
@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 			for (var/material in making.resources)
 				projected_stored_material[material] = min(projected_stored_material[material]+(making.resources[material]*multiplier), storage_capacity[material])
 
-			to_chat(usr, SPAN_NOTICE("已从队列中移除物品\"[making.name]\"。"))
+			to_chat(usr, SPAN_NOTICE("已从队列中移除物品\"[making.localized_name || making.name]\"。"))
 			queue -= list(to_del)
 			update_printables()
 			. = TRUE
@@ -373,7 +373,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 	for(var/material in making.resources)
 		if(projected_stored_material[material] && projected_stored_material[material] >= (making.resources[material]*multiplier))
 			continue
-		to_chat(user, SPAN_DANGER("[name]没有足够的材料制造[making.name]。"))
+		to_chat(user, SPAN_DANGER("[name]没有足够的材料制造[making.localized_name || making.name]。"))
 		return AUTOLATHE_FAILED
 
 	for (var/material in making.resources)
@@ -383,7 +383,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 	queue += list(print_params) // This notation is necessary because of how adding to lists works
 
 	if(busy)
-		to_chat(usr, SPAN_NOTICE("已将物品\"[making.name]\"加入队列。"))
+		to_chat(usr, SPAN_NOTICE("已将物品\"[making.localized_name || making.name]\"加入队列。"))
 		update_printables()
 		return AUTOLATHE_QUEUED
 
@@ -407,7 +407,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 	// Make sure autolathe can print the item
 	for(var/material in making.resources)
 		if(isnull(stored_material[material]) || stored_material[material] < (making.resources[material]*multiplier))
-			visible_message("[name]急促地鸣响，无法打印当前物品\"[making.name]\"。")
+			visible_message("[name]急促地鸣响，无法打印当前物品\"[making.localized_name || making.name]\"。")
 			return
 
 	//Consume materials.
@@ -419,6 +419,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 
 	currently_making_data = list(
 		"name" = making.name,
+		"display_name" = making.localized_name || making.name,
 		"multiplier" = multiplier
 	)
 	SStgui.update_uis(src)
@@ -514,6 +515,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 		var/list/print_data = list()
 
 		print_data["name"] = R.name
+		print_data["display_name"] = R.localized_name || R.name
 		print_data["index"] = index
 		print_data["can_make"] = TRUE
 		print_data["materials"] = list()
@@ -525,7 +527,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 		max_print_amt = -1
 
 		if(!LAZYLEN(R.resources))
-			print_data["materials"] = "No resources required"
+			print_data["materials"] = "无需材料"
 		else
 			//Make sure it's buildable and list requires resources.
 			for(var/material in R.resources)
@@ -538,7 +540,7 @@ GLOBAL_LIST_INIT(autolathe_wire_descriptions, flatten_numeric_alist(alist(
 				if(print_data["can_make"] && max_print_amt < 0 || max_print_amt > print_amt)
 					max_print_amt = print_amt
 
-				print_data["materials"][material] = "[R.resources[material]] [material]"
+				print_data["materials"][material] = "[R.resources[material]] [material == "metal" ? "金属" : material == "glass" ? "玻璃" : material == "plastic" ? "塑料" : material]"
 
 			if(print_data["can_make"] && max_print_amt > 1)
 				print_data["has_multipliers"] = TRUE

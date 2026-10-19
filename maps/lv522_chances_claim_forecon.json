@@ -12,8 +12,8 @@
         580,
         0.0
     ],
-    "survivor_message": "You are USCM Force Reconnaissance (FORECON) marine from the USS Hanyut, stranded on this planet after your team was wiped out while investigating the distress signal. With your pilot dead along with the majority of your unit, you and your team have been running and gunning to survive... but with supplies low and food running out maybe your only means of survival is to move west to the crashed dropship to salvage anything useful.",
-    "announce_text": "Pan-Pan. This is the commanding officer of the USS Hanyut, USCMC FORECON. We are currently grounded on planet LV-522 in the immediate area of Chance's Claim. We are unable to contact the Hanyut and our dropships are unable to take off at this time. We are requesting assistance from any nearby vessels; this broadcast is set to repeat every 24 hours.",
+    "survivor_message": "你是来自汉尤特号的美国殖民地海军陆战队武装侦察部队（FORECON）队员。你的小队在调查求救信号时遭受毁灭性打击，你也被困在这颗行星上。飞行员和部队中的大多数人都已阵亡，你与幸存的队友一直边打边撤，挣扎求生……但物资匮乏，食物也快耗尽，唯一的生路或许就是向西前往坠毁的运输艇，搜寻一切有用的东西。",
+    "announce_text": "PAN-PAN紧急呼叫。这里是汉尤特号指挥官，隶属美国殖民地海军陆战队武装侦察部队。我们目前受困于LV-522行星地表的机遇矿区附近，无法与汉尤特号取得联系，运输艇目前也无法起飞。我们请求附近所有舰船提供援助；本广播设为每24小时重复一次。",
     "map_item_type": "/obj/item/map/lv522_map",
 	"monkey_types": [
         "neaera",

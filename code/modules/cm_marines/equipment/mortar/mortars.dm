@@ -1,8 +1,8 @@
 // The Marine mortar, the M402 Mortar
 // Works like a contemporary crew weapon mortar
 /obj/structure/mortar
-	name = "\improper M402 mortar"
-	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses an advanced targeting computer. Insert round to fire."
+	name = "\improper M402 迫击炮"
+	desc = "一套由炮组手动操作的迫击炮系统，向瞄准区域倾泻80毫米的“美好问候”。配备先进的瞄准计算机，装入炮弹即可发射。"
 	icon = 'icons/obj/structures/mortar.dmi'
 	icon_state = "mortar_m402"
 	anchored = TRUE
@@ -42,8 +42,8 @@
 
 	var/firesound = 'sound/weapons/gun_mortar_fire.ogg'
 
-	var/warning_text = "A SHELL IS COMING DOWN"
-	var/close_warning_text = "A SHELL IS ABOUT TO IMPACT"
+	var/warning_text = "炮弹正在落下，方位："
+	var/close_warning_text = "炮弹即将落地，方位："
 
 /obj/structure/mortar/Initialize()
 	. = ..()
@@ -84,7 +84,7 @@
 		return XENO_NO_DELAY_ACTION
 
 	if(fixed)
-		to_chat(xeno, SPAN_XENOWARNING("\The [src]'s supports are bolted and welded into the floor. It looks like it's going to be staying there."))
+		to_chat(xeno, SPAN_XENOWARNING("[src]的支架已用螺栓和焊接固定在地面上，看起来是要永久留在这里了。"))
 		return XENO_NO_DELAY_ACTION
 
 	if(firing)
@@ -93,12 +93,12 @@
 		playsound(src, "acid_hit", 25, 1)
 		playsound(xeno, "alien_help", 25, 1)
 		xeno.apply_damage(10, BURN)
-		xeno.visible_message(SPAN_DANGER("[xeno] tried to knock the steaming hot [src] over, but burned itself and pulled away!"),
-		SPAN_XENOWARNING("\The [src] is burning hot! Wait a few seconds."))
+		xeno.visible_message(SPAN_DANGER("[xeno]试图掀翻滚烫的[src]，却被烫得缩了回去！"),
+		SPAN_XENOWARNING("[src]烫得厉害！再等几秒。"))
 		return XENO_ATTACK_ACTION
 
-	xeno.visible_message(SPAN_DANGER("[xeno] lashes at \the [src] and knocks it over!"),
-	SPAN_DANGER("You knock \the [src] over!"))
+	xeno.visible_message(SPAN_DANGER("[xeno]猛击[src]，将其掀翻了！"),
+	SPAN_DANGER("你掀翻了[src]！"))
 	xeno.animation_attack_on(src)
 	xeno.flick_attack_overlay(src, "slash")
 	playsound(loc, 'sound/effects/metalhit.ogg', 25)
@@ -110,23 +110,24 @@
 
 /obj/structure/mortar/attack_hand(mob/user)
 	if(isyautja(user))
-		to_chat(user, SPAN_WARNING("You kick [src] but nothing happens."))
+		to_chat(user, SPAN_WARNING("你踢了[src]一脚，却什么也没发生。"))
 		return
 	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_NOVICE))
-		to_chat(user, SPAN_WARNING("You don't have the training to use [src]."))
+		to_chat(user, SPAN_WARNING("你没有接受过使用[src]的训练。"))
 		return
 	if(busy)
-		to_chat(user, SPAN_WARNING("Someone else is currently using [src]."))
+		to_chat(user, SPAN_WARNING("已经有人在使用[src]了。"))
 		return
 	if(firing)
-		to_chat(user, SPAN_WARNING("[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it."))
+		to_chat(user, SPAN_WARNING("[src]的炮管仍然滚烫。停止射击，等几秒再操作。"))
 		return
 	add_fingerprint(user)
 
 	if(computer_enabled)
 		tgui_interact(user)
 	else
-		var/choice = alert(user, "Would you like to set the mortar's target coordinates, or dial the mortar? Setting coordinates will make you lose your fire adjustment.", "Mortar Dialing", "Target", "Dial", "Cancel")
+		var/list/mortar_choices = list("设置目标" = "Target", "微调" = "Dial", "取消" = "Cancel")
+		var/choice = mortar_choices[alert(user, "要设置迫击炮的目标坐标，还是进行微调？重新设置坐标会清除当前射击修正。", "迫击炮调整", "设置目标", "微调", "取消")]
 		if(choice == "Cancel")
 			return
 		if(choice == "Target")
@@ -137,7 +138,7 @@
 /obj/structure/mortar/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "Mortar", "Mortar Interface")
+		ui = new(user, src, "Mortar", "迫击炮控制界面")
 		ui.open()
 
 /obj/structure/mortar/ui_data(mob/user)
@@ -171,14 +172,14 @@
 
 /obj/structure/mortar/proc/handle_target(mob/user, temp_targ_x = 0, temp_targ_y = 0, manual = FALSE)
 	if(manual)
-		temp_targ_x = tgui_input_real_number(user, "Input the longitude of the target.")
-		temp_targ_y = tgui_input_real_number(user, "Input the latitude of the target.")
+		temp_targ_x = tgui_input_real_number(user, "输入目标的经度。")
+		temp_targ_y = tgui_input_real_number(user, "输入目标的纬度。")
 
 	if(!can_fire_at(user, test_targ_x = deobfuscate_x(temp_targ_x), test_targ_y = deobfuscate_y(temp_targ_y)))
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] starts adjusting [src]'s firing angle and distance."),
-	SPAN_NOTICE("You start adjusting [src]'s firing angle and distance to match the new coordinates."))
+	user.visible_message(SPAN_NOTICE("[user]开始调整[src]的射击角度和距离。"),
+	SPAN_NOTICE("你开始调整[src]的射击角度和距离，使其与新坐标对应。"))
 	busy = TRUE
 
 	var/soundfile = 'sound/machines/scanning.ogg'
@@ -190,8 +191,8 @@
 	busy = FALSE
 	if(!success)
 		return
-	user.visible_message(SPAN_NOTICE("[user] finishes adjusting [src]'s firing angle and distance."),
-	SPAN_NOTICE("You finish adjusting [src]'s firing angle and distance to match the new coordinates."))
+	user.visible_message(SPAN_NOTICE("[user]完成了[src]的射击角度和距离调整。"),
+	SPAN_NOTICE("你完成了[src]的射击角度和距离调整，使其与新坐标对应。"))
 	targ_x = deobfuscate_x(temp_targ_x)
 	targ_y = deobfuscate_y(temp_targ_y)
 	var/offset_x_max = floor(abs((targ_x) - x)/offset_per_turfs) //Offset of mortar shot, grows by 1 every 20 tiles travelled
@@ -203,14 +204,14 @@
 
 /obj/structure/mortar/proc/handle_dial(mob/user, temp_dial_x = 0, temp_dial_y = 0, manual = FALSE)
 	if(manual)
-		temp_dial_x = tgui_input_number(user, "Set longitude adjustement from -10 to 10.", "Longitude", 0, 10, -10)
-		temp_dial_y = tgui_input_number(user, "Set latitude adjustement from -10 to 10.", "Latitude", 0, 10, -10)
+		temp_dial_x = tgui_input_number(user, "设置经度修正量，范围为-10至10。", "经度", 0, 10, -10)
+		temp_dial_y = tgui_input_number(user, "设置纬度修正量，范围为-10至10。", "纬度", 0, 10, -10)
 
 	if(!can_fire_at(user, test_dial_x = temp_dial_x, test_dial_y = temp_dial_y))
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] starts dialing [src]'s firing angle and distance."),
-	SPAN_NOTICE("You start dialing [src]'s firing angle and distance to match the new coordinates."))
+	user.visible_message(SPAN_NOTICE("[user]开始微调[src]的射击角度和距离。"),
+	SPAN_NOTICE("你开始微调[src]的射击角度和距离，使其与新坐标对应。"))
 	busy = TRUE
 
 	var/soundfile = 'sound/machines/scanning.ogg'
@@ -222,8 +223,8 @@
 	busy = FALSE
 	if(!success)
 		return
-	user.visible_message(SPAN_NOTICE("[user] finishes dialing [src]'s firing angle and distance."),
-	SPAN_NOTICE("You finish dialing [src]'s firing angle and distance to match the new coordinates."))
+	user.visible_message(SPAN_NOTICE("[user]完成了[src]的射击角度和距离微调。"),
+	SPAN_NOTICE("你完成了[src]的射击角度和距离微调，使其与新坐标对应。"))
 	dial_x = temp_dial_x
 	dial_y = temp_dial_y
 
@@ -233,31 +234,31 @@
 	if(istype(item, /obj/item/mortar_shell))
 		var/obj/item/mortar_shell/mortar_shell = item
 		if(!istypestrict(src, mortar_shell.allowed_mortar))
-			to_chat(user, SPAN_WARNING("[src] can't fire this [mortar_shell]."))
+			to_chat(user, SPAN_WARNING("[src]无法发射这枚[mortar_shell]。"))
 			return
 		var/turf/target_turf = locate(targ_x + dial_x + offset_x, targ_y + dial_y + offset_y, z)
 		var/area/target_area = get_area(target_turf)
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_NOVICE))
-			to_chat(user, SPAN_WARNING("You don't have the training to fire [src]."))
+			to_chat(user, SPAN_WARNING("你没有接受过发射[src]的训练。"))
 			return
 		if(busy)
-			to_chat(user, SPAN_WARNING("Someone else is currently using [src]."))
+			to_chat(user, SPAN_WARNING("已经有人在使用[src]了。"))
 			return
 		if(!ship_side)
 			if(targ_x == 0 && targ_y == 0) //Mortar wasn't set
-				to_chat(user, SPAN_WARNING("[src] needs to be aimed first."))
+				to_chat(user, SPAN_WARNING("需要先为[src]瞄准。"))
 				return
 			if(!target_turf)
-				to_chat(user, SPAN_WARNING("You cannot fire [src] to this target."))
+				to_chat(user, SPAN_WARNING("你无法使用[src]向这个目标射击。"))
 				return
 			if(!istype(target_area))
-				to_chat(user, SPAN_WARNING("This area is out of bounds!"))
+				to_chat(user, SPAN_WARNING("这片区域超出了地图边界！"))
 				return
 			if(CEILING_IS_PROTECTED(target_area.ceiling, CEILING_PROTECTION_TIER_2) || protected_by_pylon(TURF_PROTECTION_MORTAR, target_turf))
-				to_chat(user, SPAN_WARNING("You cannot hit the target. It is probably underground."))
+				to_chat(user, SPAN_WARNING("你无法命中这个目标，它可能位于地下。"))
 				return
 			if(SSticker.mode && MODE_HAS_TOGGLEABLE_FLAG(MODE_LZ_PROTECTION) && target_area.is_landing_zone)
-				to_chat(user, SPAN_WARNING("You cannot bomb the landing zone!"))
+				to_chat(user, SPAN_WARNING("你不能炮击着陆区！"))
 				return
 
 		var/area/our_area = get_area(src)
@@ -268,23 +269,23 @@
 				target_turf = our_turf
 				travel_time = 0.5 SECONDS
 			else
-				to_chat(user, SPAN_RED("You realize how bad of an idea this is and quickly stop."))
+				to_chat(user, SPAN_RED("你意识到这个主意有多糟糕，赶紧停了下来。"))
 				return
 		else
 			var/turf/deviation_turf = locate(target_turf.x + pick(-1,0,0,1), target_turf.y + pick(-1,0,0,1), target_turf.z) //Small amount of spread so that consecutive mortar shells don't all land on the same tile
 			if(deviation_turf)
 				target_turf = deviation_turf
 
-		user.visible_message(SPAN_NOTICE("[user] starts loading \a [mortar_shell.name] into [src]."),
-		SPAN_NOTICE("You start loading \a [mortar_shell.name] into [src]."))
+		user.visible_message(SPAN_NOTICE("[user]开始将[mortar_shell.name]装入[src]。"),
+		SPAN_NOTICE("你开始将[mortar_shell.name]装入[src]。"))
 		playsound(loc, 'sound/weapons/gun_mortar_reload.ogg', 50, 1)
 		busy = TRUE
 		var/success = do_after(user, 1.5 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE)
 		busy = FALSE
 		if(success)
-			user.visible_message(SPAN_NOTICE("[user] loads \a [mortar_shell.name] into [src]."),
-			SPAN_NOTICE("You load \a [mortar_shell.name] into [src]."))
-			visible_message("[icon2html(src, viewers(src))] [SPAN_DANGER("The [name] fires!")]")
+			user.visible_message(SPAN_NOTICE("[user]将[mortar_shell.name]装入了[src]。"),
+			SPAN_NOTICE("你将[mortar_shell.name]装入了[src]。"))
+			visible_message("[icon2html(src, viewers(src))] [SPAN_DANGER("[name]开火了！")]")
 			user.drop_inv_item_to_loc(mortar_shell, src)
 			playsound(loc, firesound, 50, 1)
 			busy = FALSE
@@ -303,23 +304,23 @@
 
 	if(HAS_TRAIT(item, TRAIT_TOOL_WRENCH))
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_NOVICE))
-			to_chat(user, SPAN_WARNING("You don't have the training to undeploy [src]."))
+			to_chat(user, SPAN_WARNING("你没有接受过收起[src]的训练。"))
 			return
 		if(fixed)
-			to_chat(user, SPAN_WARNING("[src]'s supports are bolted and welded into the floor. It looks like it's going to be staying there."))
+			to_chat(user, SPAN_WARNING("[src]的支架已用螺栓和焊接固定在地面上，看起来是要永久留在这里了。"))
 			return
 		if(busy)
-			to_chat(user, SPAN_WARNING("Someone else is currently using [src]."))
+			to_chat(user, SPAN_WARNING("已经有人在使用[src]了。"))
 			return
 		if(firing)
-			to_chat(user, SPAN_WARNING("[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it."))
+			to_chat(user, SPAN_WARNING("[src]的炮管仍然滚烫。停止射击，等几秒再操作。"))
 			return
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-		user.visible_message(SPAN_NOTICE("[user] starts undeploying [src]."), \
-				SPAN_NOTICE("You start undeploying [src]."))
+		user.visible_message(SPAN_NOTICE("[user]开始收起[src]。"), \
+				SPAN_NOTICE("你开始收起[src]。"))
 		if(do_after(user, 4 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-			user.visible_message(SPAN_NOTICE("[user] undeploys [src]."), \
-				SPAN_NOTICE("You undeploy [src]."))
+			user.visible_message(SPAN_NOTICE("[user]收起了[src]。"), \
+				SPAN_NOTICE("你收起了[src]。"))
 			playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 			var/obj/item/mortar_kit/mortar = new kit_type(loc)
 			mortar.name = src.name
@@ -327,8 +328,8 @@
 
 	if(HAS_TRAIT(item, TRAIT_TOOL_SCREWDRIVER))
 		if(do_after(user, 1 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-			user.visible_message(SPAN_NOTICE("[user] toggles the targeting computer on [src]."), \
-				SPAN_NOTICE("You toggle the targeting computer on [src]."))
+			user.visible_message(SPAN_NOTICE("[user]切换了[src]的瞄准计算机开关。"), \
+				SPAN_NOTICE("你切换了[src]的瞄准计算机开关。"))
 			computer_enabled = !computer_enabled
 			playsound(loc, 'sound/machines/switch.ogg', 25, 1)
 
@@ -357,7 +358,7 @@
 	if(istype(shell, /obj/item/mortar_shell/custom)) // big shell warning for ghosts
 		var/obj/effect/effect = new /obj/effect/mortar_effect(target)
 		QDEL_IN(effect, 5 SECONDS)
-		notify_ghosts(header = "Custom Shell", message = "A custom mortar shell is about to land at [get_area(target)].", source = effect)
+		notify_ghosts(header = "自制炮弹", message = "一枚自制迫击炮弹即将在[get_area(target)]落地。", source = effect)
 
 	playsound(target, 'sound/weapons/gun_mortar_travel.ogg', 50, 1)
 	var/relative_dir
@@ -367,8 +368,8 @@
 		else
 			relative_dir = Get_Compass_Dir(mob, target)
 		mob.show_message( \
-			SPAN_DANGER("[warning_text] [SPAN_UNDERLINE(relative_dir ? uppertext(("TO YOUR " + dir2text(relative_dir))) : uppertext("right above you"))]!"), SHOW_MESSAGE_VISIBLE, \
-			SPAN_DANGER("YOU HEAR SOMETHING COMING DOWN [SPAN_UNDERLINE(relative_dir ? uppertext(("TO YOUR " + dir2text(relative_dir))) : uppertext("right above you"))]!"), SHOW_MESSAGE_AUDIBLE \
+			SPAN_DANGER("[warning_text][SPAN_UNDERLINE(relative_dir ? "你的[localized_player_label(dir2text(relative_dir))]侧" : "你的正上方")]！"), SHOW_MESSAGE_VISIBLE, \
+			SPAN_DANGER("你听见有东西正在[SPAN_UNDERLINE(relative_dir ? "你的[localized_player_label(dir2text(relative_dir))]侧" : "你的正上方")]落下！"), SHOW_MESSAGE_AUDIBLE \
 		)
 	sleep(2.5 SECONDS) // Sleep a bit to give a message
 	for(var/mob/mob in range(10, target))
@@ -377,8 +378,8 @@
 		else
 			relative_dir = Get_Compass_Dir(mob, target)
 		mob.show_message( \
-			SPAN_HIGHDANGER("[close_warning_text] [SPAN_UNDERLINE(relative_dir ? uppertext(("TO YOUR " + dir2text(relative_dir))) : uppertext("right above you"))]!"), SHOW_MESSAGE_VISIBLE, \
-			SPAN_HIGHDANGER("YOU HEAR SOMETHING VERY CLOSE COMING DOWN [SPAN_UNDERLINE(relative_dir ? uppertext(("TO YOUR " + dir2text(relative_dir))) : uppertext("right above you"))]!"), SHOW_MESSAGE_AUDIBLE \
+			SPAN_HIGHDANGER("[close_warning_text][SPAN_UNDERLINE(relative_dir ? "你的[localized_player_label(dir2text(relative_dir))]侧" : "你的正上方")]！"), SHOW_MESSAGE_VISIBLE, \
+			SPAN_HIGHDANGER("你听见有东西正在[SPAN_UNDERLINE(relative_dir ? "你的[localized_player_label(dir2text(relative_dir))]侧" : "你的正上方")]落下，声音近在咫尺！"), SHOW_MESSAGE_AUDIBLE \
 		)
 	sleep(2 SECONDS) // Wait out the rest of the landing time
 	target.ceiling_debris_check(2)
@@ -390,24 +391,24 @@
 /obj/structure/mortar/proc/can_fire_at(mob/user, test_targ_x = targ_x, test_targ_y = targ_y, test_dial_x, test_dial_y)
 	var/dialing = test_dial_x || test_dial_y
 	if(test_dial_x + test_targ_x > world.maxx || test_dial_x + test_targ_x < 0)
-		to_chat(user, SPAN_WARNING("You cannot [dialing ? "dial to" : "aim at"] this coordinate, it is outside of the area of operations."))
+		to_chat(user, SPAN_WARNING("你无法[dialing ? "将射击修正至" : "瞄准"]这个坐标，它超出了作战区域。"))
 		return FALSE
 	if(test_dial_x < -10 || test_dial_x > 10 || test_dial_y < -10 || test_dial_y > 10)
-		to_chat(user, SPAN_WARNING("You cannot [dialing ? "dial to" : "aim at"] this coordinate, it is too far away from the original target."))
+		to_chat(user, SPAN_WARNING("你无法[dialing ? "将射击修正至" : "瞄准"]这个坐标，它离原目标太远了。"))
 		return FALSE
 	if(test_dial_y + test_targ_y > world.maxy || test_dial_y + test_targ_y < 0)
-		to_chat(user, SPAN_WARNING("You cannot [dialing ? "dial to" : "aim at"] this coordinate, it is outside of the area of operations."))
+		to_chat(user, SPAN_WARNING("你无法[dialing ? "将射击修正至" : "瞄准"]这个坐标，它超出了作战区域。"))
 		return FALSE
 	if(get_dist(src, locate(test_targ_x + test_dial_x, test_targ_y + test_dial_y, z)) < 10)
-		to_chat(user, SPAN_WARNING("You cannot [dialing ? "dial to" : "aim at"] this coordinate, it is too close to your mortar."))
+		to_chat(user, SPAN_WARNING("你无法[dialing ? "将射击修正至" : "瞄准"]这个坐标，它离迫击炮太近了。"))
 		return FALSE
 	if(busy)
-		to_chat(user, SPAN_WARNING("Someone else is currently using this mortar."))
+		to_chat(user, SPAN_WARNING("已经有人在使用这门迫击炮了。"))
 		return FALSE
 	return TRUE
 
 /obj/structure/mortar/fixed
-	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targeting dials. Insert round to fire. This one is bolted and welded into the ground."
+	desc = "一套由炮组手动操作的迫击炮系统，向瞄准区域倾泻80毫米的“美好问候”。使用手动瞄准刻度盘，装入炮弹即可发射。这一门已用螺栓和焊接固定在地面上。"
 	fixed = TRUE
 
 /obj/structure/mortar/wo
@@ -441,28 +442,28 @@
 	if(!deploy_turf)
 		return
 	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_NOVICE))
-		to_chat(user, SPAN_WARNING("You don't have the training to deploy [src]."))
+		to_chat(user, SPAN_WARNING("你没有接受过部署[src]的训练。"))
 		return
 	var/area/area = get_area(deploy_turf)
 	if(CEILING_IS_PROTECTED(area.ceiling, CEILING_PROTECTION_TIER_1) && is_ground_level(deploy_turf.z))
-		to_chat(user, SPAN_WARNING("You probably shouldn't deploy [src] indoors."))
+		to_chat(user, SPAN_WARNING("你大概不该在室内部署[src]。"))
 		return
-	user.visible_message(SPAN_NOTICE("[user] starts deploying [src]."), \
-		SPAN_NOTICE("You start deploying [src]."))
+	user.visible_message(SPAN_NOTICE("[user]开始部署[src]。"), \
+		SPAN_NOTICE("你开始部署[src]。"))
 	playsound(deploy_turf, 'sound/items/Deconstruct.ogg', 25, 1)
 	if(do_after(user, 4 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		var/obj/structure/mortar/mortar = new mortar_type(deploy_turf)
 		if(!is_ground_level(deploy_turf.z))
 			mortar.ship_side = TRUE
 			if(CEILING_IS_PROTECTED(area.ceiling, CEILING_PROTECTION_TIER_2))
-				user.visible_message(SPAN_NOTICE("[user] deploys [src]."), \
-					SPAN_NOTICE("You deploy [src]. This is a bad idea."))
+				user.visible_message(SPAN_NOTICE("[user]部署了[src]。"), \
+					SPAN_NOTICE("你部署了[src]。这可不是个好主意。"))
 			else
-				user.visible_message(SPAN_NOTICE("[user] deploys [src]."), \
-					SPAN_NOTICE("You deploy [src]."))
+				user.visible_message(SPAN_NOTICE("[user]部署了[src]。"), \
+					SPAN_NOTICE("你部署了[src]。"))
 		else
-			user.visible_message(SPAN_NOTICE("[user] deploys [src]."), \
-				SPAN_NOTICE("You deploy [src]."))
+			user.visible_message(SPAN_NOTICE("[user]部署了[src]。"), \
+				SPAN_NOTICE("你部署了[src]。"))
 		playsound(deploy_turf, 'sound/weapons/gun_mortar_unpack.ogg', 25, 1)
 		mortar.name = src.name
 		mortar.setDir(user.dir)
@@ -470,12 +471,12 @@
 
 /obj/structure/mortar/himat
 	name = "M112 HIMAT"
-	desc = "A man-portable two-stage missile launcher. While capable of being fired manually, what truly sets this apart from standard boom-tubes is it's onboard fire-control systems. While deployed on a baseplate and supporting bipod stand it will attempt to link with any local USCM sensor matrix, allowing it to automatically track, identify and request to fire upon hostile targets in range."
+	desc = "一具便携式两级导弹发射器。它可以手动发射，但与普通火箭筒真正不同的是内置火控系统。使用底板和两脚架部署后，它会尝试连接当地的殖民地陆战队传感器网络，从而自动跟踪、识别射程内的敌对目标，并请求开火。"
 	icon_state = "himat"
 	kit_type = /obj/item/mortar_kit/himat
 	firesound = 'sound/weapons/gun_rocketlauncher.ogg'
-	warning_text = "A MISSILE IS COMING DOWN"
-	close_warning_text = "A MISSILE IS ABOUT TO IMPACT"
+	warning_text = "导弹正在落下，方位："
+	close_warning_text = "导弹即将落地，方位："
 	travel_time = 2 SECONDS
 	has_camo = FALSE
 	var/obj/item/mortar_shell/loaded_shell = null
@@ -485,10 +486,10 @@
 	if(istype(item, /obj/item/mortar_shell))
 		var/obj/item/mortar_shell/mortar_shell = item
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_NOVICE))
-			to_chat(user, SPAN_WARNING("You don't have the training to fire [src]."))
+			to_chat(user, SPAN_WARNING("你没有接受过发射[src]的训练。"))
 			return
 		if(busy)
-			to_chat(user, SPAN_WARNING("Someone else is currently using [src]."))
+			to_chat(user, SPAN_WARNING("已经有人在使用[src]了。"))
 			return
 
 		var/area/our_area = get_area(src)
@@ -497,18 +498,18 @@
 			if(crash_occurred)
 				travel_time = 0.5 SECONDS
 			else
-				to_chat(user, SPAN_RED("You realize how bad of an idea this is and quickly stop."))
+				to_chat(user, SPAN_RED("你意识到这个主意有多糟糕，赶紧停了下来。"))
 				return
 		if(!loaded_shell)
-			user.visible_message(SPAN_NOTICE("[user] starts loading \a [mortar_shell.name] into [src]."),
-			SPAN_NOTICE("You start loading \a [mortar_shell.name] into [src]."))
+			user.visible_message(SPAN_NOTICE("[user]开始将[mortar_shell.name]装入[src]。"),
+			SPAN_NOTICE("你开始将[mortar_shell.name]装入[src]。"))
 			playsound(loc, 'sound/weapons/gun_mortar_reload.ogg', 50, 1)
 			busy = TRUE
 			var/success = do_after(user, 1.5 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE)
 			busy = FALSE
 			if(success)
-				user.visible_message(SPAN_NOTICE("[user] loads \a [mortar_shell.name] into [src]."),
-				SPAN_NOTICE("You load \a [mortar_shell.name] into [src]."))
+				user.visible_message(SPAN_NOTICE("[user]将[mortar_shell.name]装入了[src]。"),
+				SPAN_NOTICE("你将[mortar_shell.name]装入了[src]。"))
 				user.drop_inv_item_to_loc(mortar_shell, src)
 				busy = FALSE
 				mortar_shell.cause_data = create_cause_data(initial(mortar_shell.name), user, src)
@@ -517,26 +518,26 @@
 
 	if(HAS_TRAIT(item, TRAIT_TOOL_WRENCH))
 		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_NOVICE))
-			to_chat(user, SPAN_WARNING("You don't have the training to undeploy [src]."))
+			to_chat(user, SPAN_WARNING("你没有接受过收起[src]的训练。"))
 			return
 		if(fixed)
-			to_chat(user, SPAN_WARNING("[src]'s supports are bolted and welded into the floor. It looks like it's going to be staying there."))
+			to_chat(user, SPAN_WARNING("[src]的支架已用螺栓和焊接固定在地面上，看起来是要永久留在这里了。"))
 			return
 		if(busy)
-			to_chat(user, SPAN_WARNING("Someone else is currently using [src]."))
+			to_chat(user, SPAN_WARNING("已经有人在使用[src]了。"))
 			return
 		if(firing)
-			to_chat(user, SPAN_WARNING("[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it."))
+			to_chat(user, SPAN_WARNING("[src]的炮管仍然滚烫。停止射击，等几秒再操作。"))
 			return
 		if(loaded_shell)
-			to_chat(user, SPAN_WARNING("[src] is loaded with a missile, unload it first."))
+			to_chat(user, SPAN_WARNING("[src]内装有导弹，请先卸下。"))
 			return
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-		user.visible_message(SPAN_NOTICE("[user] starts undeploying [src]."), \
-				SPAN_NOTICE("You start undeploying [src]."))
+		user.visible_message(SPAN_NOTICE("[user]开始收起[src]。"), \
+				SPAN_NOTICE("你开始收起[src]。"))
 		if(do_after(user, 4 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-			user.visible_message(SPAN_NOTICE("[user] undeploys [src]."), \
-				SPAN_NOTICE("You undeploy [src]."))
+			user.visible_message(SPAN_NOTICE("[user]收起了[src]。"), \
+				SPAN_NOTICE("你收起了[src]。"))
 			playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 			var/obj/item/mortar_kit/mortar = new kit_type(loc)
 			mortar.name = src.name
@@ -544,32 +545,32 @@
 
 	if(HAS_TRAIT(item, TRAIT_TOOL_SCREWDRIVER))
 		if(do_after(user, 1 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-			user.visible_message(SPAN_NOTICE("[user] toggles the targeting computer on [src]."), \
-				SPAN_NOTICE("You toggle the targeting computer on [src]."))
+			user.visible_message(SPAN_NOTICE("[user]切换了[src]的瞄准计算机开关。"), \
+				SPAN_NOTICE("你切换了[src]的瞄准计算机开关。"))
 			computer_enabled = !computer_enabled
 			playsound(loc, 'sound/machines/switch.ogg', 25, 1)
 
 	if(HAS_TRAIT(item, TRAIT_TOOL_MULTITOOL))
-		var/new_id = tgui_input_text(user, "Select ID (4 characters)", "HIMAT ID", id)
+		var/new_id = tgui_input_text(user, "设置识别码（4个字符）", "HIMAT 识别码", id)
 		if(!new_id || !istext(new_id))
 			return
 
 		if(length(new_id) != 4)
-			to_chat(src, SPAN_NOTICE("ID must be 4 characters long."))
+			to_chat(src, SPAN_NOTICE("识别码必须为4个字符。"))
 			return
 		id = new_id
 
 	if(istype(item, /obj/item/device/binoculars/range/designator))
 		if(!id)
-			to_chat(user, SPAN_WARNING("[src] must have an ID before connecting. Use multitool to set ID."))
+			to_chat(user, SPAN_WARNING("连接前必须为[src]设置识别码。使用多功能工具即可设置。"))
 			return
 
 		var/obj/item/device/binoculars/range/designator/desig = item
 		if(src in desig.connected_himats)
-			to_chat(user, SPAN_WARNING("[src] is already connected to this designator."))
+			to_chat(user, SPAN_WARNING("[src]已经连接到这个目标指示器了。"))
 			return
 		desig.connected_himats += src
-		to_chat(user, SPAN_WARNING("[src] successfully connected. ID: [id]."))
+		to_chat(user, SPAN_WARNING("[src]连接成功。识别码：[id]。"))
 
 
 /obj/structure/mortar/himat/handle_shell(turf/target, obj/item/mortar_shell/shell)
@@ -579,14 +580,14 @@
 	var/turf/mortar_turf = get_turf(src)
 	mortar_turf.ceiling_debris_check(2)
 	playsound(loc, firesound, 50, 1)
-	visible_message("[icon2html(src, viewers(src))] [SPAN_DANGER("The [name] fires!")]")
+	visible_message("[icon2html(src, viewers(src))] [SPAN_DANGER("[name]开火了！")]")
 
 	for(var/mob/mob in range(7, src))
 		shake_camera(mob, 3, 1)
 		if(ishuman(mob) && !HAS_TRAIT(mob, TRAIT_EAR_PROTECTION))
 			var/mob/living/carbon/human/human = mob
 			human.SetEarDeafness(max(human.ear_deaf, 25))
-			to_chat(human, SPAN_WARNING("Augh!! \The [src]'s launch blast resonates extremely loudly in your ears! You probably should have worn some sort of ear protection..."))
+			to_chat(human, SPAN_WARNING("啊！！[src]发射时的巨响在你耳边轰鸣！你真该戴上某种听力防护装备……"))
 	firing = TRUE
 	flick(icon_state + "_fire", src)
 	spawn(travel_time+rand(1, 10))
@@ -596,15 +597,15 @@
 
 /obj/structure/mortar/himat/attack_hand(mob/user)
 	if(loaded_shell)
-		visible_message(SPAN_NOTICE("[user] begins removing [loaded_shell] from [src]."))
+		visible_message(SPAN_NOTICE("[user]开始从[src]中卸下[loaded_shell]。"))
 		if(do_after(user, 5 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			loaded_shell.forceMove(get_turf(src))
 			loaded_shell = null
-			visible_message(SPAN_NOTICE("[user] removes [loaded_shell] from [src]."))
+			visible_message(SPAN_NOTICE("[user]从[src]中卸下了[loaded_shell]。"))
 
 /obj/item/mortar_kit/himat
 	name = "\improper M112 HIMAT"
-	desc = "Folded up and ready to be carried HIMAT missile launcher. Can be worn on your back."
+	desc = "已折叠、便于携带的 HIMAT 导弹发射器，可以背在背上。"
 	icon_state = "himat_carry"
 	flags_equip_slot = SLOT_BACK
 	item_state_slots = list(
@@ -614,8 +615,8 @@
 	has_camo = FALSE
 
 /obj/structure/mortar/rmc
-	name = "\improper L53A1 light mortar"
-	desc = "A manual, crew-operated light mortar system intended to provide mobile fire support for a troop of Royal Marines. Uses an advanced targeting computer. Insert round to fire."
+	name = "\improper L53A1 轻型迫击炮"
+	desc = "一套由炮组手动操作的轻型迫击炮系统，为皇家陆战队分队提供机动火力支援。配备先进的瞄准计算机，装入炮弹即可发射。"
 	icon_state = "mortar_l53a1"
 	travel_time = 3 SECONDS //Light mortar, quicker on target
 	has_camo = FALSE

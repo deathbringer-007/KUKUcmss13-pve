@@ -33,7 +33,7 @@
 		var/datum/seed/S = GLOB.seed_types[plantname]
 		if(!S)
 			return
-		name = S.seed_name //Copies the name from the seed, important for renamed plants
+		name = localized_seed_label(S.seed_name) //Copies the name from the seed, important for renamed plants
 		if(!S.chems)
 			return
 		potency = S.potency
@@ -67,8 +67,8 @@
 	plantname = "cherry"
 
 /obj/item/reagent_container/food/snacks/grown/poppy
-	name = "poppy"
-	desc = "Long-used as a symbol of rest, peace, and death."
+	name = "罂粟"
+	desc = "长久以来都是安息、和平与死亡的象征。"
 	icon_state = "poppy"
 	potency = 30
 	filling_color = "#CC6464"
@@ -76,8 +76,8 @@
 	black_market_value = 25
 
 /obj/item/reagent_container/food/snacks/grown/harebell
-	name = "harebell"
-	desc = "\"I'll sweeten thy sad grave: thou shalt not lack the flower that's like thy face, pale primrose, nor the azured hare-bell, like thy veins; no, nor the leaf of eglantine, whom not to slander, out-sweeten'd not thy breath.\""
+	name = "风铃草"
+	desc = "“我要为你凄清的坟茔添上芬芳：像你面庞的淡色报春花不会少，像你血脉的湛蓝风铃草也不会少；还要有野蔷薇的叶子——不是贬低它，它的香气也比不上你的呼吸。”"
 	icon_state = "harebell"
 	potency = 1
 	filling_color = "#D4B2C9"
@@ -92,23 +92,23 @@
 	plantname = "potato"
 
 /obj/item/reagent_container/food/snacks/grown/grapes
-	name = "bunch of grapes"
-	desc = "Nutritious!"
+	name = "一串葡萄"
+	desc = "营养丰富！"
 	icon_state = "grapes"
 	filling_color = "#A332AD"
 	plantname = "grapes"
 
 /obj/item/reagent_container/food/snacks/grown/greengrapes
-	name = "bunch of green grapes"
-	desc = "Nutritious!"
+	name = "一串绿葡萄"
+	desc = "营养丰富！"
 	icon_state = "greengrapes"
 	potency = 25
 	filling_color = "#A6FFA3"
 	plantname = "greengrapes"
 
 /obj/item/reagent_container/food/snacks/grown/peanut
-	name = "peanut"
-	desc = "Nuts!"
+	name = "花生"
+	desc = "坚果！"
 	icon_state = "peanut"
 	filling_color = "857e27"
 	potency = 25
@@ -123,29 +123,29 @@
 	plantname = "cabbage"
 
 /obj/item/reagent_container/food/snacks/grown/berries
-	name = "bunch of berries"
-	desc = "Nutritious!"
+	name = "一串浆果"
+	desc = "营养丰富！"
 	icon_state = "berrypile"
 	filling_color = "#C2C9FF"
 	plantname = "berries"
 
 /obj/item/reagent_container/food/snacks/grown/plastellium
-	name = "clump of plastellium"
-	desc = "Hmm, needs some processing"
+	name = "一丛塑钢草"
+	desc = "嗯，还得加工一下。"
 	icon_state = "plastellium"
 	filling_color = "#C4C4C4"
 	plantname = "plastic"
 
 /obj/item/reagent_container/food/snacks/grown/shand
-	name = "S'rendarr's Hand leaf"
-	desc = "A leaf sample from a lowland thicket shrub. Smells strongly like wax."
+	name = "斯兰达之手叶片"
+	desc = "一片取自低地灌木丛的叶片，散发着浓重的蜡味。"
 	icon_state = "shand"
 	filling_color = "#70C470"
 	plantname = "shand"
 
 /obj/item/reagent_container/food/snacks/grown/mtear
-	name = "sprig of Messa's Tear"
-	desc = "A mountain climate herb with a soft, cold blue flower, known to contain an abundance of healing chemicals."
+	name = "一枝梅萨之泪"
+	desc = "一种生长在山地气候中的草本植物，开着柔软的冷蓝色花朵，以富含药用成分而闻名。"
 	icon_state = "mtear"
 	filling_color = "#70C470"
 	plantname = "mtear"
@@ -160,7 +160,7 @@
 	poultice.heal_burn = potency
 	qdel(src)
 
-	to_chat(user, SPAN_NOTICE("You mash the petals into a poultice."))
+	to_chat(user, SPAN_NOTICE("你把花瓣捣成了膏药。"))
 
 /obj/item/reagent_container/food/snacks/grown/shand/attack_self(mob/user)
 	..()
@@ -172,11 +172,11 @@
 	poultice.heal_brute = potency
 	qdel(src)
 
-	to_chat(user, SPAN_NOTICE("You mash the leaves into a poultice."))
+	to_chat(user, SPAN_NOTICE("你把叶片捣成了膏药。"))
 
 /obj/item/reagent_container/food/snacks/grown/glowberries
-	name = "bunch of glow-berries"
-	desc = "Nutritious!"
+	name = "一串发光浆果"
+	desc = "营养丰富！"
 	var/brightness_on = 2 //luminosity when on
 	filling_color = "#D3FF9E"
 	icon_state = "glowberrypile"
@@ -189,24 +189,24 @@
 	set_light_on(TRUE)
 
 /obj/item/reagent_container/food/snacks/grown/cocoapod
-	name = "cocoa pod"
-	desc = "Can be ground into cocoa powder."
+	name = "可可荚"
+	desc = "可以磨成可可粉。"
 	icon_state = "cocoapod"
 	potency = 50
 	filling_color = "#9C8E54"
 	plantname = "cocoa"
 
 /obj/item/reagent_container/food/snacks/grown/sugarcane
-	name = "sugarcane"
-	desc = "Sickly sweet."
+	name = "甘蔗"
+	desc = "甜得发腻。"
 	icon_state = "sugarcane"
 	potency = 50
 	filling_color = "#C0C9AD"
 	plantname = "sugarcane"
 
 /obj/item/reagent_container/food/snacks/grown/poisonberries
-	name = "bunch of poison-berries"
-	desc = "Taste so good, you could die!"
+	name = "一串毒浆果"
+	desc = "好吃得让你可能连命都丢了！"
 	icon_state = "poisonberrypile"
 	gender = PLURAL
 	potency = 15
@@ -214,8 +214,8 @@
 	plantname = "poisonberries"
 
 /obj/item/reagent_container/food/snacks/grown/deathberries
-	name = "bunch of death-berries"
-	desc = "Taste so good, you will die!"
+	name = "一串致命浆果"
+	desc = "好吃得让你肯定连命都丢了！"
 	icon_state = "deathberrypile"
 	gender = PLURAL
 	potency = 50
@@ -223,8 +223,8 @@
 	plantname = "deathberries"
 
 /obj/item/reagent_container/food/snacks/grown/ambrosiavulgaris
-	name = "ambrosia vulgaris branch"
-	desc = "This is a plant containing various healing chemicals."
+	name = "普通仙草枝条"
+	desc = "这株植物含有多种药用成分。"
 	icon_state = "ambrosiavulgaris"
 	potency = 10
 	filling_color = "#125709"
@@ -232,7 +232,7 @@
 
 /obj/item/reagent_container/food/snacks/grown/ambrosiavulgaris/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/paper))
-		to_chat(user, SPAN_NOTICE("You scoop up the ambrosia vulgaris and wrap it in the paper, making a joint."))
+		to_chat(user, SPAN_NOTICE("你抓起普通仙草，用纸把它卷成了一支烟卷。"))
 		new /obj/item/clothing/mask/cigarette/weed (user.loc)
 		qdel(src)
 		qdel(W)
@@ -241,8 +241,8 @@
 
 
 /obj/item/reagent_container/food/snacks/grown/ambrosiadeus
-	name = "ambrosia deus branch"
-	desc = "Eating this makes you feel immortal!"
+	name = "神圣仙草枝条"
+	desc = "吃了它，让你感觉自己能长生不老！"
 	icon_state = "ambrosiadeus"
 	potency = 10
 	filling_color = "#229E11"
@@ -265,8 +265,8 @@
 	plantname = "poisonapple"
 
 /obj/item/reagent_container/food/snacks/grown/goldapple
-	name = "golden apple"
-	desc = "Emblazoned upon the apple is the word 'Kallisti'."
+	name = "金苹果"
+	desc = "金苹果上刻着“Kallisti（献给最美者）”。"
 	icon_state = "goldapple"
 	potency = 15
 	filling_color = "#F5CB42"
@@ -274,8 +274,8 @@
 	black_market_value = 30
 
 /obj/item/reagent_container/food/snacks/grown/watermelon
-	name = "watermelon"
-	desc = "It's full of watery goodness."
+	name = "西瓜"
+	desc = "汁水丰沛，鲜甜可口。"
 	icon_state = "watermelon"
 	potency = 10
 	filling_color = "#FA2863"
@@ -284,8 +284,8 @@
 	plantname = "watermelon"
 
 /obj/item/reagent_container/food/snacks/grown/pumpkin
-	name = "pumpkin"
-	desc = "It's large and scary."
+	name = "南瓜"
+	desc = "又大又吓人。"
 	icon_state = "pumpkin"
 	potency = 10
 	filling_color = "#FAB728"
@@ -293,7 +293,7 @@
 
 /obj/item/reagent_container/food/snacks/grown/pumpkin/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.sharp == IS_SHARP_ITEM_ACCURATE || W.sharp == IS_SHARP_ITEM_BIG)
-		to_chat(user, SPAN_NOTICE("You carve a face into [src]!"))
+		to_chat(user, SPAN_NOTICE("你在[src]上刻出了一张脸！"))
 		new /obj/item/clothing/head/pumpkinhead (user.loc)
 		qdel(src)
 	else
@@ -356,8 +356,8 @@
 	plantname = "eggplant"
 
 /obj/item/reagent_container/food/snacks/grown/soybeans
-	name = "soybeans"
-	desc = "It's pretty bland, but oh the possibilities..."
+	name = "大豆"
+	desc = "味道挺淡，但能做出的花样可不少……"
 	gender = PLURAL
 	filling_color = "#E6E8B7"
 	icon_state = "soybeans"
@@ -374,13 +374,13 @@
 /obj/item/reagent_container/food/snacks/grown/tomato/launch_impact(atom/hit_atom)
 	..()
 	new/obj/effect/decal/cleanable/tomato_smudge(src.loc)
-	src.visible_message(SPAN_NOTICE("The [src.name] has been squashed."),SPAN_MODERATE("You hear a smack."))
+	src.visible_message(SPAN_NOTICE("[src.name]被砸烂了。"),SPAN_MODERATE("你听见啪的一声。"))
 	qdel(src)
 	return
 
 /obj/item/reagent_container/food/snacks/grown/killertomato
-	name = "killer-tomato"
-	desc = "I say to-mah-to, you say tom-mae-to... OH GOD IT'S EATING MY LEGS!!"
+	name = "杀人番茄"
+	desc = "我叫它番茄，你叫它西红柿……天哪，它在啃我的腿！！"
 	icon_state = "killertomato"
 	potency = 10
 	filling_color = COLOR_RED
@@ -395,11 +395,11 @@
 	new /mob/living/simple_animal/tomato(user.loc)
 	qdel(src)
 
-	to_chat(user, SPAN_NOTICE("You plant the killer-tomato."))
+	to_chat(user, SPAN_NOTICE("你种下了杀人番茄。"))
 
 /obj/item/reagent_container/food/snacks/grown/bloodtomato
-	name = "blood-tomato"
-	desc = "So bloody...so...very...bloody....AHHHH!!!!"
+	name = "血番茄"
+	desc = "好多血……太……太多……血了……啊啊啊啊！！！！"
 	icon_state = "bloodtomato"
 	potency = 10
 	filling_color = COLOR_RED
@@ -408,7 +408,7 @@
 /obj/item/reagent_container/food/snacks/grown/bloodtomato/launch_impact(atom/hit_atom)
 	..()
 	new/obj/effect/decal/cleanable/blood/splatter(src.loc)
-	src.visible_message(SPAN_NOTICE("The [src.name] has been squashed."),SPAN_MODERATE("You hear a smack."))
+	src.visible_message(SPAN_NOTICE("[src.name]被砸烂了。"),SPAN_MODERATE("你听见啪的一声。"))
 	src.reagents.reaction(get_turf(hit_atom))
 	for(var/atom/A in get_turf(hit_atom))
 		src.reagents.reaction(A)
@@ -416,8 +416,8 @@
 	return
 
 /obj/item/reagent_container/food/snacks/grown/bluetomato
-	name = "blue-tomato"
-	desc = "I say blue-mah-to, you say blue-mae-to."
+	name = "蓝番茄"
+	desc = "我叫它蓝番茄，你叫它蓝西红柿。"
 	icon_state = "bluetomato"
 	potency = 10
 	filling_color = "#586CFC"
@@ -426,7 +426,7 @@
 /obj/item/reagent_container/food/snacks/grown/bluetomato/launch_impact(atom/hit_atom)
 	..()
 	new/obj/effect/decal/cleanable/blood/oil(src.loc)
-	src.visible_message(SPAN_NOTICE("The [src.name] has been squashed."),SPAN_MODERATE("You hear a smack."))
+	src.visible_message(SPAN_NOTICE("[src.name]被砸烂了。"),SPAN_MODERATE("你听见啪的一声。"))
 	src.reagents.reaction(get_turf(hit_atom))
 	for(var/atom/A in get_turf(hit_atom))
 		src.reagents.reaction(A)
@@ -439,31 +439,31 @@
 		C.slip(name, 8, 5)
 
 /obj/item/reagent_container/food/snacks/grown/wheat
-	name = "wheat"
-	desc = "Sigh... wheat... a-grain?"
+	name = "小麦"
+	desc = "唉……小麦……又来一茬？"
 	gender = PLURAL
 	icon_state = "wheat"
 	filling_color = "#F7E186"
 	plantname = "wheat"
 
 /obj/item/reagent_container/food/snacks/grown/ricestalk
-	name = "rice stalk"
-	desc = "Rice to see you."
+	name = "稻秆"
+	desc = "很高“稻”见到你。"
 	gender = PLURAL
 	icon_state = "rice"
 	filling_color = "#FFF8DB"
 	plantname = "rice"
 
 /obj/item/reagent_container/food/snacks/grown/kudzupod
-	name = "kudzu pod"
-	desc = "<I>Pueraria Virallis</I>: An invasive species with vines that rapidly creep and wrap around whatever they contact."
+	name = "葛藤荚"
+	desc = "<I>Pueraria Virallis</I>：一种入侵植物，其藤蔓会迅速蔓延，缠住接触到的一切。"
 	icon_state = "kudzupod"
 	filling_color = "#59691B"
 	plantname = "kudzu"
 
 /obj/item/reagent_container/food/snacks/grown/icepepper
-	name = "ice-pepper"
-	desc = "It's a mutant strain of chili"
+	name = "冰椒"
+	desc = "这是一种变异辣椒。"
 	icon_state = "icepepper"
 	potency = 20
 	filling_color = "#66CEED"
@@ -478,40 +478,40 @@
 	plantname = "carrot"
 
 /obj/item/reagent_container/food/snacks/grown/mushroom/reishi
-	name = "reishi"
-	desc = "<I>Ganoderma lucidum</I>: A special fungus believed to help relieve stress."
+	name = "灵芝"
+	desc = "<I>Ganoderma lucidum</I>：一种特殊真菌，据说有助于缓解压力。"
 	icon_state = "reishi"
 	potency = 10
 	filling_color = "#FF4800"
 	plantname = "reishi"
 
 /obj/item/reagent_container/food/snacks/grown/mushroom/amanita
-	name = "fly amanita"
-	desc = "<I>Amanita Muscaria</I>: Learn poisonous mushrooms by heart. Only pick mushrooms you know."
+	name = "毒蝇伞"
+	desc = "<I>Amanita Muscaria</I>：要牢记毒蘑菇的特征，只采摘自己认识的蘑菇。"
 	icon_state = "amanita"
 	potency = 10
 	filling_color = COLOR_RED
 	plantname = "amanita"
 
 /obj/item/reagent_container/food/snacks/grown/mushroom/angel
-	name = "destroying angel"
-	desc = "<I>Amanita Virosa</I>: Deadly poisonous basidiomycete fungus filled with alpha amatoxins."
+	name = "毁灭天使菇"
+	desc = "<I>Amanita Virosa</I>：一种剧毒的担子菌，富含α型鹅膏毒素。"
 	icon_state = "angel"
 	potency = 35
 	filling_color = "#FFDEDE"
 	plantname = "destroyingangel"
 
 /obj/item/reagent_container/food/snacks/grown/mushroom/libertycap
-	name = "liberty-cap"
-	desc = "<I>Psilocybe Semilanceata</I>: Liberate yourself!"
+	name = "自由帽菇"
+	desc = "<I>Psilocybe Semilanceata</I>：解放自己！"
 	icon_state = "libertycap"
 	potency = 15
 	filling_color = "#F714BE"
 	plantname = "libertycap"
 
 /obj/item/reagent_container/food/snacks/grown/mushroom/plumphelmet
-	name = "plump-helmet"
-	desc = "<I>Plumus Hellmus</I>: Plump, soft and s-so inviting~"
+	name = "肥菇"
+	desc = "<I>Plumus Hellmus</I>：饱满、柔软，还、还那么诱人～"
 	icon_state = "plumphelmet"
 	filling_color = "#F714BE"
 	plantname = "plumphelmet"
@@ -524,8 +524,8 @@
 	plantname = "mushrooms"
 
 /obj/item/reagent_container/food/snacks/grown/mushroom/glowshroom
-	name = "glowshroom cluster"
-	desc = "<I>Mycena Bregprox</I>: This species of mushroom glows in the dark. Or does it?"
+	name = "一簇发光菇"
+	desc = "<I>Mycena Bregprox</I>：这种蘑菇会在黑暗中发光。真的会吗？"
 	icon_state = "glowshroom"
 	filling_color = "#DAFF91"
 	potency = 30
@@ -544,7 +544,7 @@
 	planted.potency = potency
 	qdel(src)
 
-	to_chat(user, SPAN_NOTICE("You plant the glowshroom."))
+	to_chat(user, SPAN_NOTICE("你种下了发光菇。"))
 
 // *************************************
 // Complex Grown Object Defines -
@@ -552,8 +552,8 @@
 // *************************************
 
 /obj/item/reagent_container/food/snacks/grown/bluespacetomato
-	name = "blue-space tomato"
-	desc = "So lubricated, you might slip through space-time."
+	name = "蓝空间番茄"
+	desc = "滑得让你可能直接滑穿时空。"
 	icon_state = "bluespacetomato"
 	potency = 20
 
@@ -569,7 +569,7 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	if(inner_teleport_radius < 1) //Wasn't potent enough, it just splats.
 		new/obj/effect/decal/cleanable/blood/oil(src.loc)
-		src.visible_message(SPAN_NOTICE("The [src.name] has been squashed."),SPAN_MODERATE("You hear a smack."))
+		src.visible_message(SPAN_NOTICE("[src.name]被砸烂了。"),SPAN_MODERATE("你听见啪的一声。"))
 		qdel(src)
 		return
 	for(var/turf/T as anything in (RANGE_TURFS(outer_teleport_radius, M) - RANGE_TURFS(inner_teleport_radius, M)))
@@ -601,6 +601,6 @@
 				s.set_up(3, 1, A)
 				s.start()
 	new/obj/effect/decal/cleanable/blood/oil(src.loc)
-	src.visible_message(SPAN_NOTICE("The [src.name] has been squashed, causing a distortion in space-time."),SPAN_MODERATE("You hear a splat and a crackle."))
+	src.visible_message(SPAN_NOTICE("[src.name]被砸烂了，导致时空发生扭曲。"),SPAN_MODERATE("你听见噗的一声，随后传来噼啪声。"))
 	qdel(src)
 	return

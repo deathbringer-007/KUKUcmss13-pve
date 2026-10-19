@@ -329,11 +329,11 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 			humans_other -= current_mob
 
 	if(timer_warning) //we check for timer warnings first
-		announcement_helper("WARNING.\n\nDETONATION IN [floor(timeleft/10)] SECONDS.", "[MAIN_AI_SYSTEM] Nuclear Tracker", humans_uscm, 'sound/misc/notice1.ogg')
-		announcement_helper("WARNING.\n\nDETONATION IN [floor(timeleft/10)] SECONDS.", "HQ Intel Division", humans_other, 'sound/misc/notice1.ogg')
+		announcement_helper("警告。\n\n距离引爆还剩[floor(timeleft/10)]秒。", "[MAIN_AI_SYSTEM]核装置追踪系统", humans_uscm, 'sound/misc/notice1.ogg')
+		announcement_helper("警告。\n\n距离引爆还剩[floor(timeleft/10)]秒。", "总部情报部门", humans_other, 'sound/misc/notice1.ogg')
 		//preds part
 		var/t_left = duration2text_sec(floor(rand(timeleft - timeleft / 10, timeleft + timeleft / 10)))
-		yautja_announcement(SPAN_YAUTJABOLDBIG("警告！\n\n距离人类净化装置启动还剩约[t_left]秒，请立即撤离猎场。"))
+		yautja_announcement(SPAN_YAUTJABOLDBIG("警告！\n\n距离人类净化装置启动还剩约[t_left]（分:秒），请立即撤离猎场。"))
 		//xenos part
 		var/warning
 		if(timer_warning & NUKE_SHOW_TIMER_HALF)
@@ -352,8 +352,8 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 
 	var/datum/hive_status/hive
 	if(timing)
-		announcement_helper("ALERT.\n\nNUCLEAR EXPLOSIVE ORDNANCE ACTIVATED.\n\nDETONATION IN [floor(timeleft/10)] SECONDS.", "[MAIN_AI_SYSTEM] Nuclear Tracker", humans_uscm, 'sound/misc/notice1.ogg')
-		announcement_helper("ALERT.\n\nNUCLEAR EXPLOSIVE ORDNANCE ACTIVATED.\n\nDETONATION IN [floor(timeleft/10)] SECONDS.", "HQ Nuclear Tracker", humans_other, 'sound/misc/notice1.ogg')
+		announcement_helper("警报。\n\n核爆炸装置已启动。\n\n距离引爆还剩[floor(timeleft/10)]秒。", "[MAIN_AI_SYSTEM]核装置追踪系统", humans_uscm, 'sound/misc/notice1.ogg')
+		announcement_helper("警报。\n\n核爆炸装置已启动。\n\n距离引爆还剩[floor(timeleft/10)]秒。", "总部核装置追踪系统", humans_other, 'sound/misc/notice1.ogg')
 		var/t_left = duration2text_sec(floor(rand(timeleft - timeleft / 10, timeleft + timeleft / 10)))
 		yautja_announcement(SPAN_YAUTJABOLDBIG("警告！<br>检测到人类净化装置。距离启动还剩约[t_left]，请撤离猎场。"))
 		for(var/hivenumber in GLOB.hive_datum)
@@ -362,8 +362,8 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 				continue
 			xeno_announcement(SPAN_XENOANNOUNCE("高个子宿主在[get_area_name(loc)]部署了灭巢装置！不惜一切代价阻止它！"), hive.hivenumber, XENO_GENERAL_ANNOUNCE)
 	else
-		announcement_helper("ALERT.\n\nNUCLEAR EXPLOSIVE ORDNANCE DEACTIVATED.", "[MAIN_AI_SYSTEM] Nuclear Tracker", humans_uscm, 'sound/misc/notice1.ogg')
-		announcement_helper("ALERT.\n\nNUCLEAR EXPLOSIVE ORDNANCE DEACTIVATED.", "HQ Intel Division", humans_other, 'sound/misc/notice1.ogg')
+		announcement_helper("警报。\n\n核爆炸装置已停用。", "[MAIN_AI_SYSTEM]核装置追踪系统", humans_uscm, 'sound/misc/notice1.ogg')
+		announcement_helper("警报。\n\n核爆炸装置已停用。", "总部情报部门", humans_other, 'sound/misc/notice1.ogg')
 		yautja_announcement(SPAN_YAUTJABOLDBIG("警告！<br>人类净化装置的信号消失了。"))
 		for(var/hivenumber in GLOB.hive_datum)
 			hive = GLOB.hive_datum[hivenumber]
@@ -405,8 +405,8 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 		if(current_mob.faction == FACTION_MARINE || current_mob.faction == FACTION_SURVIVOR) //separating marines from other factions. Survs go here too
 			humans_uscm += current_mob
 			humans_other -= current_mob
-	announcement_helper("IMMINENT NUCLEAR DETONATION.", "[MAIN_AI_SYSTEM] Nuclear Tracker", humans_uscm, 'sound/effects/ob_alert.ogg')
-	announcement_helper("IMMINENT NUCLEAR BLAST, DUCK AND COVER IMMEDIATELY.", "Colony Alert System", humans_other, 'sound/effects/ob_alert.ogg')
+	announcement_helper("核爆即将发生。", "[MAIN_AI_SYSTEM]核装置追踪系统", humans_uscm, 'sound/effects/ob_alert.ogg')
+	announcement_helper("核爆即将发生，立即卧倒并寻找掩护。", "殖民地警报系统", humans_other, 'sound/effects/ob_alert.ogg')
 
 	sleep(10 SECONDS)
 
@@ -443,8 +443,8 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 			qdel(embryo)
 
 	cell_explosion(loc, 500, 10, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, create_cause_data(initial(name)))
-	announcement_helper("NUCLEAR DETONATION DETECTED.", "[MAIN_AI_SYSTEM] Nuclear Tracker", humans_uscm, 'sound/misc/notice1.ogg')
-	announcement_helper("NUCLEAR DETONATION DETECTED.", "Colony Alert System", humans_other, 'sound/misc/notice1.ogg')
+	announcement_helper("检测到核爆。", "[MAIN_AI_SYSTEM]核装置追踪系统", humans_uscm, 'sound/misc/notice1.ogg')
+	announcement_helper("检测到核爆。", "殖民地警报系统", humans_other, 'sound/misc/notice1.ogg')
 	qdel(src)
 	return TRUE
 
@@ -586,8 +586,8 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 
 	if(timer_warning)
 		if(timer_warning == NUKE_DECRYPT_SHOW_TIMER_COMPLETE)
-			announcement_helper("DECRYPTION COMPLETE", "[MAIN_AI_SYSTEM] Nuclear Tracker", humans_uscm, 'sound/misc/notice1.ogg')
-			announcement_helper("DECRYPTION COMPLETE", "HQ Intel Division", humans_other, 'sound/misc/notice1.ogg')
+			announcement_helper("解密完成", "[MAIN_AI_SYSTEM]核装置追踪系统", humans_uscm, 'sound/misc/notice1.ogg')
+			announcement_helper("解密完成", "总部情报部门", humans_other, 'sound/misc/notice1.ogg')
 
 			yautja_announcement(SPAN_YAUTJABOLDBIG("警告！\n\n人类净化装置现在可以启动了。"))
 
@@ -599,17 +599,17 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 				xeno_announcement(SPAN_XENOANNOUNCE("我们感到末日将至……灭巢装置已准备好启动。"), hive.hivenumber, XENO_GENERAL_ANNOUNCE)
 			return
 
-		announcement_helper("DECRYPTION IN [floor(decryption_time/10)] SECONDS.", "[MAIN_AI_SYSTEM] Nuclear Tracker", humans_uscm, 'sound/misc/notice1.ogg')
-		announcement_helper("DECRYPTION IN [floor(decryption_time/10)] SECONDS.", "HQ Intel Division", humans_other, 'sound/misc/notice1.ogg')
+		announcement_helper("距离解密完成还剩[floor(decryption_time/10)]秒。", "[MAIN_AI_SYSTEM]核装置追踪系统", humans_uscm, 'sound/misc/notice1.ogg')
+		announcement_helper("距离解密完成还剩[floor(decryption_time/10)]秒。", "总部情报部门", humans_other, 'sound/misc/notice1.ogg')
 
 		//preds part
 		var/time_left = duration2text_sec(floor(rand(decryption_time - decryption_time / 10, decryption_time + decryption_time / 10)))
-		yautja_announcement(SPAN_YAUTJABOLDBIG("警告！\n\n距离人类净化装置可以启动还剩约[time_left]秒，请撤离猎场。"))
+		yautja_announcement(SPAN_YAUTJABOLDBIG("警告！\n\n距离人类净化装置可以启动还剩约[time_left]（分:秒），请撤离猎场。"))
 
 		//xenos part
-		var/warning = "We are almost out of time, STOP THEM."
+		var/warning = "我们快没时间了，阻止它们！"
 		if(timer_warning & NUKE_DECRYPT_SHOW_TIMER_HALF)
-			warning = "The Hive grows restless! it's halfway done..."
+			warning = "虫巢愈发躁动！它们的解密已经完成一半了……"
 
 		var/datum/hive_status/hive
 		for(var/hivenumber in GLOB.hive_datum)
@@ -621,8 +621,8 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 
 	var/datum/hive_status/hive
 	if(decrypting)
-		announcement_helper("ALERT.\n\nNUCLEAR EXPLOSIVE ORDNANCE DECRYPTION STARTED.\n\nDECRYPTION IN [floor(decryption_time/10)] SECONDS.", "[MAIN_AI_SYSTEM] Nuclear Tracker", humans_uscm, 'sound/misc/notice1.ogg')
-		announcement_helper("ALERT.\n\nNUCLEAR EXPLOSIVE ORDNANCE DECRYPTION STARTED.\n\nDECRYPTION IN [floor(decryption_time/10)] SECONDS.", "HQ Nuclear Tracker", humans_other, 'sound/misc/notice1.ogg')
+		announcement_helper("警报。\n\n核爆炸装置已开始解密。\n\n距离解密完成还剩[floor(decryption_time/10)]秒。", "[MAIN_AI_SYSTEM]核装置追踪系统", humans_uscm, 'sound/misc/notice1.ogg')
+		announcement_helper("警报。\n\n核爆炸装置已开始解密。\n\n距离解密完成还剩[floor(decryption_time/10)]秒。", "总部核装置追踪系统", humans_other, 'sound/misc/notice1.ogg')
 		var/time_left = duration2text_sec(floor(rand(decryption_time - decryption_time / 10, decryption_time + decryption_time / 10)))
 		yautja_announcement(SPAN_YAUTJABOLDBIG("警告！<br>检测到人类净化装置。其初始阶段还将在约[time_left]后完成。"))
 		for(var/hivenumber in GLOB.hive_datum)
@@ -632,8 +632,8 @@ GLOBAL_VAR_INIT(bomb_set, FALSE)
 			xeno_announcement(SPAN_XENOANNOUNCE("高个子宿主在[get_area_name(loc)]启动了灭巢装置的初始阶段！摧毁它们的通信中继站！"), hive.hivenumber, XENO_GENERAL_ANNOUNCE)
 		return
 
-	announcement_helper("ALERT.\n\nNUCLEAR EXPLOSIVE DECRYPTION HALTED.", "[MAIN_AI_SYSTEM] Nuclear Tracker", humans_uscm, 'sound/misc/notice1.ogg')
-	announcement_helper("ALERT.\n\nNUCLEAR EXPLOSIVE DECRYPTION HALTED.", "HQ Intel Division", humans_other, 'sound/misc/notice1.ogg')
+	announcement_helper("警报。\n\n核爆炸装置解密已中止。", "[MAIN_AI_SYSTEM]核装置追踪系统", humans_uscm, 'sound/misc/notice1.ogg')
+	announcement_helper("警报。\n\n核爆炸装置解密已中止。", "总部情报部门", humans_other, 'sound/misc/notice1.ogg')
 	yautja_announcement(SPAN_YAUTJABOLDBIG("警告！<br>人类净化装置的信号消失了。"))
 	for(var/hivenumber in GLOB.hive_datum)
 		hive = GLOB.hive_datum[hivenumber]

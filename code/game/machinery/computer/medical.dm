@@ -91,7 +91,7 @@
 					else
 						dat += "<B>一般档案丢失！</B><BR>"
 					if ((istype(src.active2, /datum/data/record) && GLOB.data_core.medical.Find(src.active2)))
-						dat += "<BR>\n<CENTER><B>医疗数据</B></CENTER><BR>\n血型： <A href='byond://?src=\ref[src];field=b_type'>[active2.fields["b_type"]]</A><BR>\n<BR>\n轻度残疾： <A href='byond://?src=\ref[src];field=mi_dis'>[record_display_text(active2.fields["mi_dis"])]</A><BR>\n详情： <A href='byond://?src=\ref[src];field=mi_dis_d'>[record_display_text(active2.fields["mi_dis_d"])]</A><BR>\n<BR>\n重度残疾： <A href='byond://?src=\ref[src];field=ma_dis'>[record_display_text(active2.fields["ma_dis"])]</A><BR>\n详情： <A href='byond://?src=\ref[src];field=ma_dis_d'>[record_display_text(active2.fields["ma_dis_d"])]</A><BR>\n<BR>\n过敏情况： <A href='byond://?src=\ref[src];field=alg'>[record_display_text(active2.fields["alg"])]</A><BR>\n详情： <A href='byond://?src=\ref[src];field=alg_d'>[record_display_text(active2.fields["alg_d"])]</A><BR>\n<BR>\n当前疾病： <A href='byond://?src=\ref[src];field=cdi'>[record_display_text(active2.fields["cdi"])]</A> （各项疾病详情见日志／备注栏）<BR>\n详情： <A href='byond://?src=\ref[src];field=cdi_d'>[record_display_text(active2.fields["cdi_d"])]</A><BR>\n<BR>\n重要备注：<BR>\n\t<A href='byond://?src=\ref[src];field=notes'>[record_display_text(decode(src.active2.fields["notes"]))]</A><BR>\n<BR>\n<CENTER><B>备注／日志</B></CENTER><BR>"
+						dat += "<BR>\n<CENTER><B>医疗数据</B></CENTER><BR>\n血型： <A href='byond://?src=\ref[src];field=b_type'>[record_display_text(active2.fields["b_type"])]</A><BR>\n<BR>\n轻度残疾： <A href='byond://?src=\ref[src];field=mi_dis'>[record_display_text(active2.fields["mi_dis"])]</A><BR>\n详情： <A href='byond://?src=\ref[src];field=mi_dis_d'>[record_display_text(active2.fields["mi_dis_d"])]</A><BR>\n<BR>\n重度残疾： <A href='byond://?src=\ref[src];field=ma_dis'>[record_display_text(active2.fields["ma_dis"])]</A><BR>\n详情： <A href='byond://?src=\ref[src];field=ma_dis_d'>[record_display_text(active2.fields["ma_dis_d"])]</A><BR>\n<BR>\n过敏情况： <A href='byond://?src=\ref[src];field=alg'>[record_display_text(active2.fields["alg"])]</A><BR>\n详情： <A href='byond://?src=\ref[src];field=alg_d'>[record_display_text(active2.fields["alg_d"])]</A><BR>\n<BR>\n当前疾病： <A href='byond://?src=\ref[src];field=cdi'>[record_display_text(active2.fields["cdi"])]</A> （各项疾病详情见日志／备注栏）<BR>\n详情： <A href='byond://?src=\ref[src];field=cdi_d'>[record_display_text(active2.fields["cdi_d"])]</A><BR>\n<BR>\n重要备注：<BR>\n\t<A href='byond://?src=\ref[src];field=notes'>[record_display_text(decode(src.active2.fields["notes"]))]</A><BR>\n<BR>\n<CENTER><B>备注／日志</B></CENTER><BR>"
 						var/counter = 1
 						while(active2.fields[text("com_[]", counter)])
 							var/current_index = text("com_[]", counter)
@@ -408,13 +408,13 @@
 				var/counter = 1
 				while(active2.fields[text("com_[]", counter)])
 					counter++
-				active2.fields[text("com_[counter]")] = text("Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOB.game_year]<BR>[new_value]")
+				active2.fields[text("com_[counter]")] = text("由[authenticated]（[rank == "AI" ? "人工智能" : preference_label(rank)]）于[GLOB.game_year]年[time2text(world.realtime, "MM-DD hh:mm:ss")]记录<BR>[new_value]")
 				msg_admin_niche("[key_name_admin(usr)] added a medical comment for [active1.fields["name"]] ([active1.fields["id"]]): [new_value].")
 
 			if (href_list["del_c"])
 				if ((istype(active2, /datum/data/record) && active2.fields[text("com_[]", href_list["del_c"])]))
 					msg_admin_niche("[key_name_admin(usr)] deleted a medical comment for [active1.fields["name"]] ([active1.fields["id"]]): [active2.fields[text("com_[]", href_list["del_c"])]].")
-					active2.fields[text("com_[]", href_list["del_c"])] = text("Deleted entry by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOB.game_year]")
+					active2.fields[text("com_[]", href_list["del_c"])] = text("此条目由[authenticated]（[rank == "AI" ? "人工智能" : preference_label(rank)]）于[GLOB.game_year]年[time2text(world.realtime, "MM-DD hh:mm:ss")]删除")
 
 			if (href_list["search"])
 				var/t1 = stripped_input(usr, "搜索内容（姓名、DNA或编号）：", "医疗档案")
@@ -454,7 +454,7 @@
 						P.info += "<B>一般档案丢失！</B><BR>"
 						P.name = "医疗档案"
 					if (record2)
-						P.info += "<BR>\n<CENTER><B>医疗数据</B></CENTER><BR>\n血型： [record2.fields["b_type"]]<BR>\n<BR>\n轻度残疾： [record_display_text(record2.fields["mi_dis"])]<BR>\n详情： [record_display_text(record2.fields["mi_dis_d"])]<BR>\n<BR>\n重度残疾： [record_display_text(record2.fields["ma_dis"])]<BR>\n详情： [record_display_text(record2.fields["ma_dis_d"])]<BR>\n<BR>\n过敏情况： [record_display_text(record2.fields["alg"])]<BR>\n详情： [record_display_text(record2.fields["alg_d"])]<BR>\n<BR>\n当前疾病： [record_display_text(record2.fields["cdi"])] （各项疾病详情见日志／备注栏）<BR>\n详情： [record_display_text(record2.fields["cdi_d"])]<BR>\n<BR>\n重要备注：<BR>\n\t[record_display_text(decode(record2.fields["notes"]))]<BR>\n<BR>\n<CENTER><B>备注／日志</B></CENTER><BR>"
+						P.info += "<BR>\n<CENTER><B>医疗数据</B></CENTER><BR>\n血型： [record_display_text(record2.fields["b_type"])]<BR>\n<BR>\n轻度残疾： [record_display_text(record2.fields["mi_dis"])]<BR>\n详情： [record_display_text(record2.fields["mi_dis_d"])]<BR>\n<BR>\n重度残疾： [record_display_text(record2.fields["ma_dis"])]<BR>\n详情： [record_display_text(record2.fields["ma_dis_d"])]<BR>\n<BR>\n过敏情况： [record_display_text(record2.fields["alg"])]<BR>\n详情： [record_display_text(record2.fields["alg_d"])]<BR>\n<BR>\n当前疾病： [record_display_text(record2.fields["cdi"])] （各项疾病详情见日志／备注栏）<BR>\n详情： [record_display_text(record2.fields["cdi_d"])]<BR>\n<BR>\n重要备注：<BR>\n\t[record_display_text(decode(record2.fields["notes"]))]<BR>\n<BR>\n<CENTER><B>备注／日志</B></CENTER><BR>"
 						var/counter = 1
 						while(record2.fields[text("com_[]", counter)])
 							P.info += text("[]<BR>", record2.fields[text("com_[]", counter)])
@@ -462,7 +462,7 @@
 					else
 						P.info += "<B>医疗档案丢失！</B><BR>"
 					P.info += "</TT>"
-					P.info += text("<BR><HR><font size = \"1\"><I>本报告由 [] [] 打印。<BR>[MAIN_SHIP_NAME]，[]/[], []</I></font><BR>\n<span class=\"paper_field\"></span>",rank,authenticated,time2text(world.timeofday, "MM/DD"),GLOB.game_year,worldtime2text())
+					P.info += text("<BR><HR><font size = \"1\"><I>本报告由 [] [] 打印。<BR>[MAIN_SHIP_NAME]，[]/[], []</I></font><BR>\n<span class=\"paper_field\"></span>",rank == "AI" ? "人工智能" : preference_label(rank),authenticated,time2text(world.timeofday, "MM/DD"),GLOB.game_year,worldtime2text())
 					src.printing = null
 
 			if(href_list["print_bs"])//Prints latest body scan
@@ -485,7 +485,7 @@
 								break
 							else
 								P.info += "档案中没有扫描记录。"
-					P.info += text("<BR><HR><font size = \"1\"><I>本报告由 [] [] 打印。<BR>[MAIN_SHIP_NAME]，  []/[], []</I></font><BR>\n<span class=\"paper_field\"></span>",rank,authenticated,time2text(world.timeofday, "MM/DD"),GLOB.game_year,worldtime2text())
+					P.info += text("<BR><HR><font size = \"1\"><I>本报告由 [] [] 打印。<BR>[MAIN_SHIP_NAME]，  []/[], []</I></font><BR>\n<span class=\"paper_field\"></span>",rank == "AI" ? "人工智能" : preference_label(rank),authenticated,time2text(world.timeofday, "MM/DD"),GLOB.game_year,worldtime2text())
 					src.printing = null
 
 

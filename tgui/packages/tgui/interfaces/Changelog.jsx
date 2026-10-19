@@ -190,7 +190,7 @@ export class Changelog extends Component {
 
     const header = (
       <Section>
-        <h1>殖民地陆战队：空间站13</h1>
+        <h1>殖民地陆战队：空间站13号</h1>
         <p>
           <b>致谢：</b>
           感谢Baystation 12、/tg/station、/vg/station、NTstation、CDK Station、
@@ -216,7 +216,7 @@ export class Changelog extends Component {
       <Section>
         {dateDropdown}
         <h3>CM 13开发团队</h3>
-        <h3>殖民地陆战队：空间站13许可协议</h3>
+        <h3>殖民地陆战队：空间站13号许可协议</h3>
         <p>
           {'在'}
           <a
@@ -283,7 +283,7 @@ export class Changelog extends Component {
             <Box ml={3}>
               {Object.entries(authors).map(([name, changes]) => (
                 <Fragment key={name}>
-                  <h4>{name} changed:</h4>
+                  <h4>{name}的更新：</h4>
                   <Box ml={3}>
                     <Table>
                       {changes.map((change) => {

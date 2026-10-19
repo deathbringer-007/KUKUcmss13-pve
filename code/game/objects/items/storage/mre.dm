@@ -157,7 +157,7 @@
 
 	UnregisterSignal(src, COMSIG_ITEM_DROPPED)
 	storage_close(user)
-	to_chat(user, SPAN_NOTICE("You throw away [src]."))
+	to_chat(user, SPAN_NOTICE("你扔掉了[src]。"))
 	new trash_item(user.loc)
 	qdel(src)
 
@@ -292,8 +292,8 @@
 	new /obj/item/tool/kitchen/utensil/mre_spork/fsr(src)
 
 /obj/item/storage/box/mre/wy
-	name = "\improper W-Y brand ration pack"
-	desc = "A more or less cohesive ration, intended for colonist and corporate security, packed with a medium quality foods with a long shelf life. \nOn the box is the Weyland-Yutani logo, with a slogan surrounding it: \n<b>WEYLAND-YUTANI. FEEDING BETTER WORLDS</b>."
+	name = "\improper 维兰德-汤谷牌口粮包"
+	desc = "一份还算搭配齐全的口粮，面向殖民者和公司安保人员，装有品质一般但保质期很长的食物。\n盒子上印着维兰德-汤谷标志，周围环绕着一句口号：\n<b>维兰德-汤谷。吃出更美好的世界</b>。"
 	icon_state = "wy_mealpack"
 	icon_closed = "wy_mealpack"
 	icon_opened = "wy_mealpackopened"
@@ -373,8 +373,8 @@
 ///HUMANITARIAN DAILY RATION
 
 /obj/item/storage/box/mre/hdr
-	name = "\improper UA humanitarian daily ration"
-	desc = "HDR for short. Sometimes given out by armies of UA memberstates on conflicted colonies or during natural disasters. Vegeterian, two entrees, but no beverage powder. Menu is quite limited, too."
+	name = "\improper 美洲联盟人道主义救济口粮"
+	desc = "简称 HDR。有时由美洲联盟成员国的军队在冲突中的殖民地或自然灾害期间发放。素食，含两份主菜，但没有冲调饮料粉，可选菜品也相当有限。"
 	icon_state = "hdr_mealpack"
 	icon_closed = "hdr_mealpack"
 	icon_opened = "hdr_mealpackopened"

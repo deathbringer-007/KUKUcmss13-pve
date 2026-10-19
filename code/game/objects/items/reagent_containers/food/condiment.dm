@@ -129,9 +129,9 @@
 			else
 				name = "杂项调味料瓶"
 				if (length(reagents.reagent_list)==1)
-					desc = "看起来像是[reagents.get_master_reagent_name()]，但你无法确定。"
+					desc = "看起来像是[reagents.get_master_reagent_display_name()]，但你无法确定。"
 				else
-					desc = "多种调味料的混合物，其中包括[reagents.get_master_reagent_name()]。"
+					desc = "多种调味料的混合物，其中包括[reagents.get_master_reagent_display_name()]。"
 				icon_state = "mixedcondiments"
 				center_of_mass = "x=16;y=6"
 	else
@@ -227,7 +227,7 @@
 
 /obj/item/reagent_container/food/condiment/coldsauce
 	name = "科尔冰凉酱瓶"
-	desc = "一瓶希瓦雪球本地生产的冰凉酱。你大概不该直接喝它。"
+	desc = "一瓶湿婆雪球本地生产的冰凉酱。你大概不该直接喝它。"
 	icon_state = "coldsauce_cole"
 
 /obj/item/reagent_container/food/condiment/coldsauce/Initialize()

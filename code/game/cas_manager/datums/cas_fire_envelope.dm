@@ -313,7 +313,7 @@
 	QDEL_IN(firemission_effect, 12 SECONDS)
 
 
-	notify_ghosts(header = "CAS Fire Mission", message = "[usr ? usr : "Someone"] is launching Fire Mission '[mission.name]' at [get_area(target_turf)].", source = firemission_effect)
+	notify_ghosts(header = "近距空中支援火力任务", message = "[usr ? usr : "某人"]正在[get_area(target_turf)]执行火力任务“[mission.name]”。", source = firemission_effect)
 	msg_admin_niche("[usr ? key_name(usr) : "Someone"] is launching Fire Mission '[mission.name]' at ([target_turf.x],[target_turf.y],[target_turf.z]) [ADMIN_JMP(target_turf)]")
 
 

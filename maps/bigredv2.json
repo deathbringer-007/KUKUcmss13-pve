@@ -12,7 +12,7 @@
         0.0
     ],
     "map_item_type": "/obj/item/map/big_red_map",
-    "announce_text": "Weyland-Yutani has lost contact with one of its Biological Storage Facilities, Solaris Ridge, on the planet of LV-1413. The ###SHIPNAME### has been requested to look into the blackout by Weyland-Yutani.",
+    "announce_text": "维兰德-汤谷与其位于LV-1413行星的生物储存设施“索拉里斯山脊”失去了联系。公司已请求###SHIPNAME###调查此次通信中断。",
     "monkey_types": [
         "neaera"
     ],

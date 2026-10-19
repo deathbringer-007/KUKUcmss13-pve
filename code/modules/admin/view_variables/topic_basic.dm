@@ -39,7 +39,7 @@
 				return
 			message_admins("[key_name_admin(usr)] showed [key_name_admin(C)] a <a href='byond://?_src_=vars;[HrefToken(forceGlobal = TRUE)];Vars=[REF(target)]'>VV window</a>")
 			log_admin("Admin [key_name(usr)] showed [key_name(C)] a VV window of a [target]")
-			to_chat(C, "[admin_holder.fakekey ? "an Administrator" : "[usr.client.key]"] has granted you access to view a View Variables window", confidential = TRUE)
+			to_chat(C, "[admin_holder.fakekey ? "一名管理员" : "[usr.client.key]"]已授予你查看变量窗口的权限。", confidential = TRUE)
 			C.debug_variables(target)
 	if(check_rights(R_DEBUG))
 		if(href_list[VV_HK_DELETE])

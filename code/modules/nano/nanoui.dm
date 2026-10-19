@@ -394,7 +394,7 @@ nanoui is used to open and update nano browser uis
 	return {"
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<head>
 		<script type='text/javascript'>
@@ -416,9 +416,9 @@ nanoui is used to open and update nano browser uis
 		</div>
 		<noscript>
 			<div id='uiNoScript'>
-				<h2>JAVASCRIPT REQUIRED</h2>
-				<p>Your Internet Explorer's Javascript is disabled (or broken).<br/>
-				Enable Javascript and then open this UI again.</p>
+				<h2>需要启用JavaScript</h2>
+				<p>你的Internet Explorer已禁用JavaScript，或其JavaScript功能无法正常工作。<br/>
+				请启用JavaScript，然后重新打开此界面。</p>
 			</div>
 		</noscript>
 	</body>

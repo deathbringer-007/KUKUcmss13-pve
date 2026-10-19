@@ -1,7 +1,7 @@
 /datum/squad/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "SquadInfo", "Squad Info")
+		ui = new(user, src, "SquadInfo", "小队信息")
 		ui.open()
 
 /datum/squad/ui_state(mob/user)
@@ -114,7 +114,7 @@
 	var/i = 1
 	for(var/team in fireteams)
 		squad_info_data["fireteams"][team] = list()
-		squad_info_data["fireteams"][team]["name"] = "Squad [i]"
+		squad_info_data["fireteams"][team]["name"] = "[i]号战斗组"
 		update_fireteam(team)
 		i++
 	squad_info_data["mar_free"] = list()
@@ -125,7 +125,7 @@
 	var/obj/item/card/id/ID = null
 	if(squad_leader)
 		ID = squad_leader.get_idcard()
-	squad_info_data["sctsgt"]["name"] = squad_leader ? squad_leader.real_name : "None"
+	squad_info_data["sctsgt"]["name"] = squad_leader ? squad_leader.real_name : "无"
 	squad_info_data["sctsgt"]["refer"] = squad_leader ? "\ref[squad_leader]" : null
 	squad_info_data["sctsgt"]["paygrade"] = ID ? get_paygrades(ID.paygrade, 1) : ""
 
