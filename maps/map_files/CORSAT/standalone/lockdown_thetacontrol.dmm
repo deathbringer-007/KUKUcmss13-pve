@@ -19,7 +19,7 @@
 "f" = (
 /obj/structure/machinery/door/poddoor/two_tile/four_tile/open{
 	id = "ThetaNorthD";
-	name = "Theta Dome Airlock"
+	name = "西塔穹顶气闸门"
 	},
 /turf/open/floor/corsat/marked,
 /area/corsat/theta/airlock/control)

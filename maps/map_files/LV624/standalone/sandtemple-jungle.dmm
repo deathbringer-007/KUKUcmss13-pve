@@ -49,9 +49,9 @@
 /area/lv624/ground/jungle/south_west_jungle)
 "lR" = (
 /obj/item/weapon/unathiknife{
-	desc = "A curved blade made of a strange material. It looks both old and very sharp.";
+	desc = "一把由奇异材料制成的弯刀，看上去既古老又锋利。";
 	force = 30;
-	name = "\improper alien blade";
+	name = "\improper 异星利刃";
 	throwforce = 26
 	},
 /turf/open/gm/grass/grass2,

@@ -20,7 +20,7 @@
 	pixel_y = -11
 	},
 /obj/structure/bed/chair/dropship{
-	name = "handrail seat";
+	name = "扶手座椅";
 	icon = 'icons/obj/structures/handrail.dmi';
 	icon_state = "handrail_strata";
 	indestructible = 1
@@ -49,7 +49,7 @@
 /obj/effect/landmark/interior/spawn/entrance{
 	dir = 8;
 	exit_type = /obj/structure/interior_exit/vehicle/tank;
-	name = "back entrance marker";
+	name = "后侧舱门";
 	tag = "back"
 	},
 /turf/open/shuttle/vehicle/floor_1_13,
@@ -84,7 +84,7 @@
 	pixel_x = 18;
 	pixel_y = 31;
 	layer = 3.1;
-	name = "Tank Telephone";
+	name = "坦克电话";
 	phone_id = "Cheetah 2A Light Tank";
 	phone_category = "Vehicles"
 	},

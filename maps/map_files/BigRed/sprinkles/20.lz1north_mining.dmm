@@ -47,7 +47,7 @@
 /area/bigredv2/outside/lz1_north_cas)
 "k" = (
 /obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
+	desc = "这道路障经过重度加固。看来只有炸开它才行，或者熔毁支撑它的横梁……";
 	dir = 4;
 	health = 25000
 	},
@@ -108,7 +108,7 @@
 "v" = (
 /obj/structure/machinery/door/airlock/almayer/maint/colony{
 	dir = 1;
-	name = "\improper Mining Operations"
+	name = "\improper 采矿作业区"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)

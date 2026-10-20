@@ -48,8 +48,8 @@
 	pixel_x = -7;
 	icon = 'icons/obj/items/drinkcans.dmi';
 	icon_state = "beer_crushed";
-	desc = "A sad, crushed can of beer.";
-	name = "\improper Weyland-Yutani Lite";
+	desc = "一个可怜巴巴、被压扁的啤酒罐。";
+	name = "\improper 维兰德-汤谷淡啤";
 	pixel_y = 19
 	},
 /obj/effect/decal/cleanable/vomit,
@@ -290,8 +290,8 @@
 	pixel_x = -7;
 	icon = 'icons/obj/items/drinkcans.dmi';
 	icon_state = "beer_crushed";
-	desc = "A sad, crushed can of beer.";
-	name = "\improper Weyland-Yutani Lite";
+	desc = "一个可怜巴巴、被压扁的啤酒罐。";
+	name = "\improper 维兰德-汤谷淡啤";
 	pixel_y = 6
 	},
 /obj/effect/decal/strata_decals/grime/grime1,
@@ -324,8 +324,8 @@
 	pixel_x = 4;
 	icon = 'icons/obj/items/drinkcans.dmi';
 	icon_state = "ale_crushed";
-	desc = "Beer's misunderstood cousin.";
-	name = "\improper Weyland-Yutani IPA"
+	desc = "啤酒家族里不被理解的一员。";
+	name = "\improper 维兰德-汤谷印度淡色艾尔"
 	},
 /turf/open/floor/almayer/mono,
 /area/golden_arrow/dorms)
@@ -385,8 +385,8 @@
 	pixel_x = -7;
 	icon = 'icons/obj/items/drinkcans.dmi';
 	icon_state = "beer_crushed";
-	desc = "A sad, crushed can of beer.";
-	name = "\improper Weyland-Yutani Lite";
+	desc = "一个可怜巴巴、被压扁的啤酒罐。";
+	name = "\improper 维兰德-汤谷淡啤";
 	pixel_y = 19
 	},
 /obj/structure/prop/invuln/lattice_prop{
@@ -565,7 +565,7 @@
 	},
 /obj/item/device/radio/intercom{
 	freerange = 1;
-	name = "General Listening Channel";
+	name = "公共收听频道";
 	pixel_y = -29
 	},
 /obj/structure/machinery/power/apc/almayer/west,
@@ -646,8 +646,8 @@
 /obj/item/prop{
 	icon = 'icons/obj/items/weapons/weapons.dmi';
 	icon_state = "snowball";
-	name = "pong ball";
-	desc = "A small, round, white ball used for playing beer pong.";
+	name = "啤酒乒乓球";
+	desc = "一个小巧、圆润的白球，用来玩啤酒乒乓球。";
 	pixel_x = -7;
 	pixel_y = 7
 	},
@@ -748,7 +748,7 @@
 	},
 /obj/structure/machinery/camera/autoname/golden_arrow{
 	dir = 4;
-	name = "ship-grade camera"
+	name = "舰用摄像头"
 	},
 /turf/open/floor/almayer/edge/southwest,
 /area/golden_arrow/dorms)

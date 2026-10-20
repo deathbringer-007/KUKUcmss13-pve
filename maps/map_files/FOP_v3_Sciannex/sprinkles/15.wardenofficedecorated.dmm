@@ -94,7 +94,7 @@
 "R" = (
 /obj/structure/surface/table/woodentable/fancy,
 /obj/item/weapon/unathiknife{
-	name = "ceremonial knife";
+	name = "仪式短刀";
 	pixel_x = 7;
 	pixel_y = -2
 	},
@@ -115,7 +115,7 @@
 "W" = (
 /obj/structure/machinery/door/airlock/almayer/command{
 	dir = 2;
-	name = "Warden's Office";
+	name = "监狱长办公室";
 	req_access = null
 	},
 /turf/open/floor/plating/prison,

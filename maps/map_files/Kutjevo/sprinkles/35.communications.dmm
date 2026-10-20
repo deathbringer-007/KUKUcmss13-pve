@@ -41,8 +41,8 @@
 /area/template_noop)
 "lD" = (
 /obj/structure/machinery/door_display{
-	desc = "A work schedule monitor. It appears to be broken.";
-	name = "Schedule Monitor"
+	desc = "一台工作排班显示器，似乎已经坏了。";
+	name = "排班显示器"
 	},
 /turf/closed/wall/kutjevo/colony,
 /area/template_noop)
@@ -148,10 +148,10 @@
 	pixel_y = 3
 	},
 /obj/item/paper{
-	info = "It has been three weeks since I was relocated to the 'finished' comms office. Me and Paul have been trying to work with this infernal racket going on, but by all that's holy I can't think- let alone recalibrate the new computers. Speaking of, these new computers are all fine and dandy but the sensor uplink tower still hasn't been setup properly after the accident with the apprentice, you know, the one that piled up those debris filled trash bags by Paul's 'desk' and then left. Anyway, like you said the builders didn't lay down the protective matting for the new flooring so there's dirt everywhere. For your sake Jeff, I hope your holiday doesn't end too soon, you still don't even have a desk yet.";
+	info = "搬进这间号称“已经完工”的通讯办公室，已经三个星期了。我和保罗一直努力在这要命的噪声中工作，可老天作证，我连思考都做不到，更别说重新校准新电脑了。说到电脑，新电脑倒是挺不错，但自从那个学徒闯祸之后，传感器上行链路塔一直没调好——对，就是那个把装满施工废料的垃圾袋堆在保罗的“办公桌”旁边，然后就走人的家伙。总之，正如你说的，施工人员没给新地板铺保护垫，弄得到处都是泥土。为你好，杰夫，我希望你的假期别这么快结束，毕竟你连张办公桌都还没有。";
 	pixel_x = -5;
 	icon_state = "paper_words";
-	name = "I should have gone on holiday"
+	name = "我就该去休假"
 	},
 /turf/open/floor/kutjevo/grey/plate,
 /area/template_noop)
@@ -377,7 +377,7 @@
 /area/template_noop)
 "XS" = (
 /obj/structure/fence{
-	desc = "A large metal mesh strewn between two poles. A 'Keep Out! Under Construction' sign dangles from one of the fence posts."
+	desc = "两根杆子之间拉着一大片金属网，一根围栏柱上挂着“施工中，禁止入内！”的标牌。"
 	},
 /turf/open/auto_turf/sand/layer1,
 /area/template_noop)

@@ -15,7 +15,7 @@
 /area/space)
 "r" = (
 /obj/structure/phone_base{
-	name = "ARC reciever";
+	name = "装甲侦察车电话";
 	phone_category = "Vehicles";
 	phone_id = "M540 Armoured Recon Carrier";
 	pixel_x = -13;
@@ -26,7 +26,7 @@
 	dir = 4
 	},
 /obj/structure/gun_rack/apc/frontal{
-	desc = "A small compartment that stores ammunition for the ARC's 'Bleihagel RE-RE850 Frontal Rotary Cannon'.";
+	desc = "存放装甲侦察车“铅雨”RE-RE850前置转管炮弹药的小储物格。";
 	pixel_y = 6;
 	pixel_x = 2;
 	layer = 2.9;
@@ -81,7 +81,7 @@
 /obj/effect/landmark/interior/spawn/entrance{
 	alpha = 50;
 	exit_type = /obj/structure/interior_exit/vehicle/arc;
-	name = "ARC exit door";
+	name = "装甲侦察车舱门";
 	tag = "right";
 	pixel_y = -10
 	},

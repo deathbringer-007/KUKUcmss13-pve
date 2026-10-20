@@ -128,7 +128,7 @@
 /obj/item/device/radio/intercom{
 	freerange = 1;
 	frequency = 1469;
-	name = "General Listening Channel";
+	name = "公共收听频道";
 	pixel_y = 28
 	},
 /turf/open/floor/whiteblue/north,
@@ -148,8 +148,8 @@
 /area/lv624/lazarus/medbay)
 "sK" = (
 /obj/item/reagent_container/spray/cleaner{
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
-	name = "Surgery Cleaner"
+	desc = "有人把“太空清洁剂”中的“太空”划掉，改成了“手术”。背面潦草地写着“严禁拿走，违者处死！！！”";
+	name = "手术清洁剂"
 	},
 /turf/open/floor/whiteblue/east,
 /area/lv624/lazarus/medbay)
@@ -201,7 +201,7 @@
 /obj/item/device/radio/intercom{
 	freerange = 1;
 	frequency = 1469;
-	name = "General Listening Channel";
+	name = "公共收听频道";
 	pixel_y = 28
 	},
 /turf/open/floor/whitebluefull,
@@ -249,7 +249,7 @@
 "Gc" = (
 /obj/structure/machinery/door/airlock/multi_tile/almayer/medidoor/colony{
 	dir = 2;
-	name = "\improper Medical Bay"
+	name = "\improper 医务室"
 	},
 /turf/open/floor/white,
 /area/lv624/lazarus/medbay)

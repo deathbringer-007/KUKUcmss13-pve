@@ -24,12 +24,18 @@ export const PhoneMenu = (props) => {
 
 const GeneralPanel = (props) => {
   const { act, data } = useBackend();
-  const { availability, last_caller } = data;
+  const { availability, last_caller, last_caller_display } = data;
   const available_transmitters = Object.keys(data.available_transmitters);
   const transmitters = data.transmitters.filter((val1) =>
     available_transmitters.includes(val1.phone_id),
   );
 
+  const categoryDisplayNames = new Map(
+    transmitters.map((phone) => [
+      phone.phone_category,
+      phone.display_phone_category,
+    ]),
+  );
   const categories = [];
   for (let i = 0; i < transmitters.length; i++) {
     let data = transmitters[i];
@@ -68,7 +74,7 @@ const GeneralPanel = (props) => {
                 onClick={() => setCategory(val)}
                 key={val}
               >
-                {categoryLabels.get(val) ?? val}
+                {categoryDisplayNames.get(val) ?? categoryLabels.get(val) ?? val}
               </Tabs.Tab>
             ))}
           </Tabs>
@@ -88,7 +94,12 @@ const GeneralPanel = (props) => {
                 if (
                   !currentSearch.includes('\\') &&
                   (val.phone_category !== currentCategory ||
-                    !val.phone_id.toLowerCase().match(currentSearch))
+                    !(
+                      val.phone_id.toLowerCase().match(currentSearch) ||
+                      (val.display_phone_id || val.phone_id)
+                        .toLowerCase()
+                        .match(currentSearch)
+                    ))
                 ) {
                   return;
                 }
@@ -111,7 +122,7 @@ const GeneralPanel = (props) => {
                     }
                     icon={val.phone_icon}
                   >
-                    {val.phone_id}
+                    {val.display_phone_id || val.phone_id}
                   </Tabs.Tab>
                 );
               })}
@@ -130,7 +141,9 @@ const GeneralPanel = (props) => {
             </Button>
           </Stack.Item>
         )}
-        {!!last_caller && <Stack.Item>上次来电：{last_caller}</Stack.Item>}
+        {!!last_caller && (
+          <Stack.Item>上次来电：{last_caller_display || last_caller}</Stack.Item>
+        )}
         <Stack.Item>
           <Button
             color="red"
@@ -148,7 +161,13 @@ const GeneralPanel = (props) => {
           <Stack.Item>
             <Stack vertical fill>
               <Stack.Item>
-                <Section title={data.calling_phone_id || '电话控制'} />
+                <Section
+                  title={
+                    data.calling_phone_display ||
+                    data.calling_phone_id ||
+                    '电话控制'
+                  }
+                />
               </Stack.Item>
               <Stack.Item>
                 <Button

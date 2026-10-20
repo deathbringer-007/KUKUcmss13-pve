@@ -14,7 +14,7 @@
 /area/template_noop)
 "c" = (
 /obj/structure/cargo_container/grant/left{
-	desc = "A huge industrial shipping container. This one is in space."
+	desc = "一个巨大的工业货运集装箱。这个在太空里。"
 	},
 /turf/open/space,
 /area/template_noop)
@@ -39,7 +39,7 @@
 /obj/structure/barricade/handrail{
 	dir = 1;
 	icon_state = "hr_kutjevo";
-	name = "solar lattice"
+	name = "太阳能支架"
 	},
 /turf/open/space,
 /area/template_noop)
@@ -73,7 +73,7 @@
 /area/template_noop)
 "n" = (
 /obj/structure/cargo_container/grant/right{
-	desc = "A huge industrial shipping container. You're not sure how it got here."
+	desc = "一个巨大的工业货运集装箱。你不清楚它是怎么到这里来的。"
 	},
 /turf/open/space,
 /area/template_noop)
@@ -107,7 +107,7 @@
 "w" = (
 /obj/structure/bedsheetbin{
 	icon_state = "linenbin-empty";
-	name = "solar lattice";
+	name = "太阳能支架";
 	pixel_y = 6
 	},
 /turf/open/floor/almayer_hull,
@@ -138,15 +138,15 @@
 /area/template_noop)
 "D" = (
 /obj/item/trash/used_stasis_bag{
-	desc = "Wow, instant sand. They really have everything in space.";
-	name = "Insta-Sand! bag"
+	desc = "哇，速成沙。太空里还真是什么都有。";
+	name = "“速成沙！”包装袋"
 	},
 /turf/open/floor/plating/prison,
 /area/template_noop)
 "E" = (
 /obj/item/trash/used_stasis_bag{
-	desc = "Wow, instant sand. They really have everything in space.";
-	name = "Insta-Sand! bag"
+	desc = "哇，速成沙。太空里还真是什么都有。";
+	name = "“速成沙！”包装袋"
 	},
 /turf/open/floor/prison,
 /area/template_noop)

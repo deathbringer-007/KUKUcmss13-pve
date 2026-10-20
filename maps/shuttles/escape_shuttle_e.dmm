@@ -14,7 +14,7 @@
 /area/shuttle/escape_pod)
 "i" = (
 /obj/structure/machinery/door/airlock/evacuation{
-	name = "\improper Evacuation Airlock SU-1"
+	name = "\improper 疏散气闸 SU-1"
 	},
 /turf/open/floor/almayer/test_floor4,
 /area/shuttle/escape_pod)

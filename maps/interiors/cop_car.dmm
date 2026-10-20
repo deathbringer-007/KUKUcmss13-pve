@@ -21,13 +21,13 @@
 /obj/effect/landmark/interior/spawn/entrance{
 	dir = 8;
 	exit_type = /obj/structure/interior_exit/vehicle/pizza_van/backright;
-	name = "back right entrance marker";
+	name = "右后侧舱门";
 	pixel_x = -32;
 	tag = "back_right"
 	},
 /obj/structure/closet/crate/secure/weapon{
 	anchored = 1;
-	desc = "A secure weapons crate. There's a label on the side that say's 'CLOSE DURING TRANSPORT.'"
+	desc = "一个带锁的武器箱。侧面的标签写着“运输期间请关闭”。"
 	},
 /obj/item/storage/box/zipcuffs,
 /obj/item/reagent_container/spray/cleaner,
@@ -95,7 +95,7 @@
 /obj/effect/landmark/interior/spawn/entrance{
 	dir = 1;
 	exit_type = /obj/structure/interior_exit/vehicle/pizza_van/left;
-	name = "left entrance marker";
+	name = "左侧舱门";
 	pixel_y = 32;
 	tag = "left"
 	},
@@ -143,7 +143,7 @@
 /obj/effect/landmark/interior/spawn/entrance{
 	alpha = 50;
 	exit_type = /obj/structure/interior_exit/vehicle/pizza_van/right;
-	name = "right entrance marker";
+	name = "右侧舱门";
 	tag = "right"
 	},
 /obj/structure/bed/chair/comfy/beige{
@@ -170,7 +170,7 @@
 /obj/effect/landmark/interior/spawn/entrance{
 	dir = 8;
 	exit_type = /obj/structure/interior_exit/vehicle/pizza_van/backleft;
-	name = "back left entrance marker";
+	name = "左后侧舱门";
 	pixel_x = -32;
 	tag = "back_left"
 	},

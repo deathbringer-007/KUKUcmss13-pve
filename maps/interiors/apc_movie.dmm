@@ -101,7 +101,7 @@
 	density = 0;
 	icon_state = "toc_map";
 	layer = 2.97;
-	name = "Tactical Map Display";
+	name = "战术地图显示屏";
 	pixel_y = 11;
 	pixel_x = -7
 	},
@@ -109,7 +109,7 @@
 	pixel_y = -7
 	},
 /obj/structure/phone_base{
-	name = "APC reciever";
+	name = "装甲运兵车电话";
 	phone_category = "Vehicles";
 	phone_id = "M577A3 Armoured Personnel Carrier";
 	pixel_y = 11;
@@ -225,7 +225,7 @@
 /obj/effect/landmark/interior/spawn/entrance{
 	alpha = 50;
 	exit_type = /obj/structure/interior_exit/vehicle/apc;
-	name = "Right APC door";
+	name = "装甲运兵车右侧舱门";
 	tag = "right rear"
 	},
 /turf/open/shuttle/vehicle/floor_1_3,
@@ -396,7 +396,7 @@
 /obj/effect/landmark/interior/spawn/entrance{
 	alpha = 50;
 	exit_type = /obj/structure/interior_exit/vehicle/apc;
-	name = "Right APC door";
+	name = "装甲运兵车右侧舱门";
 	tag = "right front"
 	},
 /turf/open/shuttle/vehicle/floor_1_4,

@@ -204,7 +204,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		current_runlevel = Master.current_runlevel
 		StartProcessing(10)
 	else
-		to_chat(world, SPAN_BOLDANNOUNCE("The Master Controller is having some issues, we will need to re-initialize EVERYTHING"))
+		to_chat(world, SPAN_BOLDANNOUNCE("主控制器出现故障，需要重新初始化所有系统。"))
 		Initialize(20, TRUE)
 
 // Please don't stuff random bullshit here,
@@ -221,7 +221,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	init_stage_completed = 0
 	var/mc_started = FALSE
 
-	to_chat(world, SPAN_BOLDANNOUNCE("Initializing subsystems..."))
+	to_chat(world, SPAN_BOLDANNOUNCE("正在初始化子系统……"))
 
 	var/list/stage_sorted_subsystems = new(INITSTAGE_MAX)
 	for (var/i in 1 to INITSTAGE_MAX)
@@ -261,7 +261,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 
 	var/msg = "Initializations complete within [time] second[time == 1 ? "" : "s"]!"
-	to_chat(world, SPAN_BOLDANNOUNCE("[msg]"))
+	to_chat(world, SPAN_BOLDANNOUNCE("初始化完成，用时[time]秒！"))
 	log_world(msg)
 
 
@@ -348,7 +348,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			chat_warning = TRUE
 
 	var/message = "[message_prefix] [seconds] second[seconds == 1 ? "" : "s"]!"
-	var/chat_message = chat_warning ? SPAN_WARNING(message) : SPAN_BOLDANNOUNCE(message)
+	var/chat_message = chat_warning ? SPAN_WARNING(result == SS_INIT_FAILURE ? "[get_subsystem_display_name(subsystem.name)]子系统初始化失败，用时[seconds]秒。" : "[get_subsystem_display_name(subsystem.name)]子系统初始化完成，但发生错误，用时[seconds]秒。") : SPAN_BOLDANNOUNCE("[get_subsystem_display_name(subsystem.name)]子系统初始化完成，用时[seconds]秒。")
 
 	to_chat(world, chat_message)
 	log_world(message)
@@ -809,3 +809,88 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	for (var/thing in subsystems)
 		var/datum/controller/subsystem/SS = thing
 		SS.OnConfigLoad()
+
+/datum/controller/master/proc/get_subsystem_display_name(subsystem_name)
+	var/static/list/labels = list(
+		"Acid Pillar" = "酸液柱",
+		"Assets" = "资源",
+		"Atoms" = "实体",
+		"Automated fire" = "自动射击",
+		"Cellular Automata" = "元胞自动机",
+		"Chat" = "聊天",
+		"Clues" = "线索",
+		"Datum Component System" = "数据组件系统",
+		"Defenses Processing" = "防御设施处理",
+		"Disease" = "疾病",
+		"Effects" = "效果",
+		"Events" = "事件",
+		"Evilution" = "邪化等级",
+		"Fast Effects" = "快速效果",
+		"Fast Objects" = "快速物件",
+		"Game Decorator" = "游戏场景布置",
+		"Garbage" = "垃圾回收",
+		"Hijack" = "劫持",
+		"Hive Status" = "虫巢状态",
+		"Human AI" = "人类人工智能",
+		"Human Life" = "人类生命",
+		"Inactivity" = "闲置检查",
+		"InfluxDB Driver" = "InfluxDB驱动",
+		"InfluxDB Game Stats" = "InfluxDB游戏统计",
+		"InfluxDB MC Stats" = "InfluxDB主控制器统计",
+		"Input" = "输入",
+		"Interiors" = "内部空间",
+		"Item Cleanup" = "物品清理",
+		"Landmark Init" = "地标初始化",
+		"Law Init" = "法律初始化",
+		"Lighting" = "光照",
+		"Lobby Art" = "大厅插画",
+		"Machinery" = "机械设备",
+		"Mapping" = "地图加载",
+		"Minimaps" = "小地图",
+		"Misc Mobs" = "其他生物",
+		"Nano UI" = "Nano界面",
+		"Nightmare" = "噩梦系统",
+		"Obj Tab Items" = "物品栏条目",
+		"Objectives" = "目标",
+		"Objects" = "物件",
+		"Old Effects" = "旧版效果",
+		"Old Shuttle" = "旧版穿梭机",
+		"Pager Status" = "呼叫器状态",
+		"Pathfinding" = "寻路",
+		"Perf Logging" = "性能日志",
+		"Ping" = "延迟检测",
+		"Playtime" = "游玩时长",
+		"Power" = "电力",
+		"PredShips" = "铁血飞船",
+		"Processing" = "处理",
+		"Profiler" = "性能分析器",
+		"Projectiles" = "弹道投射物",
+		"Quadtree" = "四叉树",
+		"Reagents" = "试剂",
+		"Redis" = "Redis",
+		"Round Recording" = "回合录制",
+		"Shield Pillar" = "护盾柱",
+		"Shuttle" = "穿梭机",
+		"Slow Objects" = "慢速物件",
+		"Sound" = "音效",
+		"Sound Loops" = "循环音效",
+		"Soundscape" = "环境音效",
+		"Stat Panels" = "状态面板",
+		"Sticky Ban" = "关联封禁",
+		"Tech Tree" = "科技树",
+		"Ticker" = "回合管理",
+		"Time Tracking" = "时间追踪",
+		"Timer" = "计时器",
+		"Tracking" = "追踪",
+		"Vote" = "投票",
+		"Weather" = "天气",
+		"Who" = "玩家列表",
+		"Xeno AI" = "异形人工智能",
+		"Xeno Life" = "异形生命",
+		"Z-Transitions" = "楼层过渡",
+		"tgui" = "tgui界面",
+		"fire coderbus" = "未命名",
+		"Decorator" = "场景布置",
+		"radio" = "无线电",
+	)
+	return labels[subsystem_name] || subsystem_name

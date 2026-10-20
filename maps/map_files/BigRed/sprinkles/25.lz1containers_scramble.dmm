@@ -12,7 +12,7 @@
 "af" = (
 /obj/structure/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 1;
-	name = "\improper Spaceport"
+	name = "\improper 太空港"
 	},
 /turf/open/floor/dark,
 /area/bigredv2/outside/space_port)
@@ -64,7 +64,7 @@
 /obj/effect/spawner/random/toolbox,
 /obj/structure/machinery/door_control{
 	id = "Spaceport";
-	name = "Storm Shutters";
+	name = "防风闸门";
 	pixel_x = 32
 	},
 /obj/item/tool/pen,
@@ -93,7 +93,7 @@
 /obj/structure/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "Spaceport";
-	name = "\improper Spaceport Shutters"
+	name = "\improper 太空港闸门"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
@@ -184,7 +184,7 @@
 /obj/structure/window/framed/solaris,
 /obj/structure/machinery/door/poddoor/shutters/almayer{
 	id = "Spaceport";
-	name = "\improper Spaceport Shutters"
+	name = "\improper 太空港闸门"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)

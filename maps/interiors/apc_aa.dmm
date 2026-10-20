@@ -21,8 +21,8 @@
 /area/space)
 "c" = (
 /obj/structure/prop/vehicle/sensor_equipment{
-	name = "Sensor Apparatus Nexus";
-	desc = "This machinery collects and analyzes data from the M579 ADS-C's sensors cluster and then feeds the results to the onboard gunner station. Better not touch it.";
+	name = "传感器数据处理枢纽";
+	desc = "这台设备收集并分析M579 ADS-C传感器集群的数据，再将结果传送至车载炮手操作台。最好别乱碰。";
 	density = 1
 	},
 /obj/structure/vehicle_locker/movie{
@@ -194,7 +194,7 @@
 /obj/effect/landmark/interior/spawn/entrance{
 	alpha = 50;
 	exit_type = /obj/structure/interior_exit/vehicle/apc;
-	name = "Right APC door";
+	name = "装甲运兵车右侧舱门";
 	tag = "right rear"
 	},
 /turf/open/shuttle/vehicle/floor_1_3,
@@ -350,7 +350,7 @@
 /obj/effect/landmark/interior/spawn/entrance{
 	alpha = 50;
 	exit_type = /obj/structure/interior_exit/vehicle/apc;
-	name = "Right APC door";
+	name = "装甲运兵车右侧舱门";
 	tag = "right front"
 	},
 /turf/open/shuttle/vehicle/floor_1_4,

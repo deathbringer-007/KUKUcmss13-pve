@@ -38,7 +38,7 @@
 	density = 0;
 	icon_state = "toc_map";
 	layer = 2.97;
-	name = "Tactical Map Display";
+	name = "战术地图显示屏";
 	pixel_y = 13;
 	pixel_x = -7
 	},
@@ -46,7 +46,7 @@
 	pixel_x = 11;
 	pixel_y = 13;
 	phone_category = "Vehicles";
-	name = "APC reciever";
+	name = "装甲运兵车电话";
 	phone_id = "ZSL-68 'Pilgrim'"
 	},
 /turf/open/shuttle/vehicle/floor_1_8,
@@ -168,7 +168,7 @@
 /obj/effect/landmark/interior/spawn/entrance{
 	alpha = 50;
 	exit_type = /obj/structure/interior_exit/vehicle/uppapc;
-	name = "Right APC door";
+	name = "装甲运兵车右侧舱门";
 	tag = "right"
 	},
 /obj/effect/decal/warning_stripes{
@@ -235,7 +235,7 @@
 	alpha = 50;
 	dir = 1;
 	exit_type = /obj/structure/interior_exit/vehicle/uppapc;
-	name = "Left APC door";
+	name = "装甲运兵车左侧舱门";
 	pixel_y = 32;
 	tag = "left"
 	},

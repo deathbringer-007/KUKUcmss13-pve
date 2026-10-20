@@ -55,7 +55,7 @@
 	base_icon_state = "hatch";
 	icon_state = "hatch1";
 	openspeed = 22;
-	name = "\improper Elevator Hatch";
+	name = "\improper 电梯舱门";
 	dir = 4;
 	unacidable = 1;
 	id = "north"

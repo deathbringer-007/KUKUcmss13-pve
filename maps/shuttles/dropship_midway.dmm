@@ -571,7 +571,7 @@
 	pixel_y = 12;
 	layer = 3.1;
 	phone_category = "Dropship";
-	name = "Midway telephone receiver";
+	name = "中途岛号电话";
 	phone_id = "Midway"
 	},
 /turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,

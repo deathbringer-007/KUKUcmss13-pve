@@ -21,7 +21,7 @@
 /area/bigredv2/outside/dorms)
 "af" = (
 /obj/structure/machinery/power/apc/power/north{
-	name = "Fitness APC"
+	name = "健身房区域电力控制器"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -243,7 +243,7 @@
 /obj/item/device/radio/intercom{
 	freerange = 1;
 	frequency = 1469;
-	name = "General Listening Channel";
+	name = "公共收听频道";
 	pixel_x = 30
 	},
 /turf/open/floor,
@@ -326,7 +326,7 @@
 	},
 /obj/structure/machinery/door_control{
 	id = "Dormitories";
-	name = "Storm Shutters";
+	name = "防风闸门";
 	pixel_y = -32
 	},
 /obj/structure/machinery/camera/autoname{

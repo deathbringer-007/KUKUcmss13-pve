@@ -10,7 +10,7 @@
 /obj/structure/machinery/door/poddoor/almayer/planet_side_blastdoor{
 	id = "science_blast";
 	layer = 3.3;
-	name = "\improper Science Wing Blast Door"
+	name = "\improper 科研区防爆门"
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/research)
@@ -29,7 +29,7 @@
 /obj/structure/machinery/door/poddoor/almayer/planet_side_blastdoor{
 	id = "science_blast";
 	layer = 3.3;
-	name = "\improper Science Wing Blast Door"
+	name = "\improper 科研区防爆门"
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/research)
@@ -43,7 +43,7 @@
 	dir = 4;
 	id = "science_blast";
 	layer = 3.3;
-	name = "\improper Science Wing Blast Door"
+	name = "\improper 科研区防爆门"
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/research)
@@ -79,7 +79,7 @@
 "fQ" = (
 /obj/structure/machinery/door/airlock/almayer/research/colony{
 	locked = 1;
-	name = "\improper Research Dome"
+	name = "\improper 科研穹顶"
 	},
 /turf/open/floor/whitepurple/northeast,
 /area/lv624/lazarus/research)
@@ -136,14 +136,14 @@
 "sc" = (
 /obj/structure/machinery/door/airlock/almayer/research/colony{
 	locked = 1;
-	name = "\improper Research Dome"
+	name = "\improper 科研穹顶"
 	},
 /turf/open/floor/white,
 /area/lv624/lazarus/research)
 "sn" = (
 /obj/structure/machinery/door_control{
 	id = "science_blast";
-	name = "Science Wing Lockdown";
+	name = "科研区封锁";
 	pixel_x = 25
 	},
 /turf/open/floor/white,
@@ -173,7 +173,7 @@
 	dir = 4;
 	id = "science_blast";
 	layer = 3.3;
-	name = "\improper Science Wing Blast Door"
+	name = "\improper 科研区防爆门"
 	},
 /turf/open/floor/whitepurple/northeast,
 /area/lv624/lazarus/research)
@@ -182,11 +182,11 @@
 	dir = 4;
 	id = "science_blast";
 	layer = 3.3;
-	name = "\improper Science Wing Blast Door"
+	name = "\improper 科研区防爆门"
 	},
 /obj/structure/machinery/door/airlock/almayer/research/colony{
 	locked = 1;
-	name = "\improper Research Dome"
+	name = "\improper 科研穹顶"
 	},
 /turf/open/floor/white,
 /area/lv624/lazarus/research)
@@ -198,7 +198,7 @@
 /obj/structure/machinery/door/airlock/almayer/research/colony{
 	dir = 1;
 	locked = 1;
-	name = "\improper Research Dome"
+	name = "\improper 科研穹顶"
 	},
 /turf/open/floor/white,
 /area/lv624/lazarus/research)
@@ -210,12 +210,12 @@
 /obj/structure/machinery/door/poddoor/almayer/planet_side_blastdoor{
 	id = "science_blast";
 	layer = 3.3;
-	name = "\improper Science Wing Blast Door"
+	name = "\improper 科研区防爆门"
 	},
 /obj/structure/machinery/door/airlock/almayer/research/colony{
 	dir = 1;
 	locked = 1;
-	name = "\improper Research Dome"
+	name = "\improper 科研穹顶"
 	},
 /turf/open/floor/white,
 /area/lv624/lazarus/research)
@@ -319,7 +319,7 @@
 /obj/structure/machinery/door/airlock/almayer/research/colony{
 	dir = 1;
 	locked = 1;
-	name = "\improper Research Dome"
+	name = "\improper 科研穹顶"
 	},
 /turf/open/floor/whitepurple/northeast,
 /area/lv624/lazarus/research)

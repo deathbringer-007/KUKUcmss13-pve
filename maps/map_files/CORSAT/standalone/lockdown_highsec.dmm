@@ -8,7 +8,7 @@
 "c" = (
 /obj/structure/machinery/door/poddoor/two_tile/four_tile/secure/opened{
 	id = "delta_gamma2";
-	name = "Gamma Checkpoint";
+	name = "伽马检查站";
 	use_power = 0
 	},
 /turf/open/floor/corsat/marked,
@@ -54,7 +54,7 @@
 "m" = (
 /obj/structure/machinery/door/poddoor/two_tile/four_tile/vertical/secure/open{
 	id = "delta_gamma";
-	name = "Gamma Emergency Access";
+	name = "伽马紧急通道";
 	use_power = 0
 	},
 /turf/open/floor/corsat/marked,
@@ -63,7 +63,7 @@
 /obj/structure/window/framed/corsat/security,
 /obj/structure/machinery/door/poddoor/shutters/almayer/open{
 	id = "OmegaAccessC";
-	name = "Security Shutters"
+	name = "安保闸门"
 	},
 /turf/open/floor/plating,
 /area/corsat/omega/checkpoint)
@@ -79,13 +79,13 @@
 /obj/structure/surface/table/reinforced,
 /obj/structure/machinery/door_control{
 	id = "delta_gamma";
-	name = "Gamma Emergency Access";
+	name = "伽马紧急通道";
 	pixel_x = -5;
 	use_power = 0
 	},
 /obj/structure/machinery/door_control{
 	id = "delta_gamma2";
-	name = "Checkpoint Gamma";
+	name = "伽马检查站";
 	pixel_x = 5;
 	use_power = 0
 	},
@@ -108,7 +108,7 @@
 /obj/structure/machinery/door/poddoor/shutters/almayer/open{
 	dir = 4;
 	id = "OmegaAccessC";
-	name = "Security Shutters"
+	name = "安保闸门"
 	},
 /turf/open/floor/plating,
 /area/corsat/omega/checkpoint)
@@ -145,16 +145,16 @@
 "D" = (
 /obj/structure/surface/table/reinforced,
 /obj/structure/machinery/door/window/brigdoor/westleft{
-	name = "Identification Desk";
+	name = "身份核验台";
 	req_access_txt = "3"
 	},
 /obj/structure/machinery/door/window/brigdoor/eastleft{
-	name = "Identification Desk"
+	name = "身份核验台"
 	},
 /obj/structure/machinery/door/poddoor/shutters/almayer/open{
 	dir = 4;
 	id = "OmegaAccessC";
-	name = "Security Shutters"
+	name = "安保闸门"
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/corsat/plate,
@@ -173,16 +173,16 @@
 "H" = (
 /obj/structure/surface/table/reinforced,
 /obj/structure/machinery/door/window/brigdoor/westleft{
-	name = "Identification Desk";
+	name = "身份核验台";
 	req_access_txt = "3"
 	},
 /obj/structure/machinery/door/window/brigdoor/eastleft{
-	name = "Identification Desk"
+	name = "身份核验台"
 	},
 /obj/structure/machinery/door/poddoor/shutters/almayer/open{
 	dir = 4;
 	id = "OmegaAccessC";
-	name = "Security Shutters"
+	name = "安保闸门"
 	},
 /turf/open/floor/corsat/plate,
 /area/corsat/omega/checkpoint)
@@ -194,13 +194,13 @@
 /obj/structure/surface/table/reinforced,
 /obj/structure/machinery/door_control{
 	id = "delta_omega";
-	name = "Checkpoint Omega";
+	name = "欧米伽检查站";
 	pixel_x = -5;
 	use_power = 0
 	},
 /obj/structure/machinery/door_control{
 	id = "delta_theta";
-	name = "Theta Emergency Access";
+	name = "西塔紧急通道";
 	pixel_x = 5;
 	use_power = 0
 	},
@@ -249,7 +249,7 @@
 "T" = (
 /obj/structure/machinery/door/poddoor/two_tile/four_tile/vertical/secure/open{
 	id = "delta_omega";
-	name = "Omega Checkpoint";
+	name = "欧米伽检查站";
 	use_power = 0
 	},
 /turf/open/floor/corsat/marked,
@@ -257,7 +257,7 @@
 "U" = (
 /obj/structure/machinery/door/poddoor/two_tile/four_tile/vertical/secure/open{
 	id = "delta_theta";
-	name = "Theta Emergency Access";
+	name = "西塔紧急通道";
 	use_power = 0
 	},
 /turf/open/floor/corsat/marked,

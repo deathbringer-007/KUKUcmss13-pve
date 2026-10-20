@@ -37,7 +37,7 @@
 	pixel_y = 11
 	},
 /obj/structure/machinery/cm_vending/sorted/medical/wall_med/lifeboat{
-	name = "Vehicle NanoMed";
+	name = "车载纳米医疗柜";
 	pixel_x = -5;
 	pixel_y = 31
 	},
@@ -89,13 +89,13 @@
 /obj/effect/landmark/interior/spawn/entrance{
 	dir = 8;
 	exit_type = /obj/structure/interior_exit/vehicle/tank;
-	name = "back entrance marker";
+	name = "后侧舱门";
 	tag = "back"
 	},
 /obj/structure/phone_base{
 	dir = 8;
 	layer = 3.1;
-	name = "Tank Telephone";
+	name = "坦克电话";
 	phone_category = "Vehicles";
 	phone_id = "M34A2 Longstreet Light Tank";
 	pixel_x = 22;

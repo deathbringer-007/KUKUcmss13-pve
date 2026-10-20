@@ -24,8 +24,8 @@
 /area/template_noop)
 "bh" = (
 /turf/closed/wall/strata_ice/jungle{
-	desc = "It is made of Fiberbush(tm). It contains asbestos.";
-	name = "synthetic vegetation"
+	desc = "由纤维灌木™制成，含有石棉。";
+	name = "人造植被"
 	},
 /area/template_noop)
 "bw" = (
@@ -131,7 +131,7 @@
 	armor_internaldamage = 20;
 	armor_melee = 20;
 	armor_rad = 10;
-	desc = "A sturdy helmet worn by an unknown mercenary group. Features a toggleable welding screen for eye protection. This one has seen better days, don't count on the protection you've heard from the rumors!"
+	desc = "一顶来历不明的雇佣兵团使用的结实头盔，带有可翻转的焊接护目面罩。不过这顶已经破旧不堪，可别指望它还有传闻中那么好的防护能力！"
 	},
 /obj/item/clothing/suit/storage/marine/veteran/mercenary/support{
 	pixel_y = -4;
@@ -141,7 +141,7 @@
 	armor_internaldamage = 25;
 	armor_melee = 25;
 	armor_rad = 15;
-	desc = "A set of blue armor with yellow highlights built for protection while building or carrying out medical treatment in highly dangerous environments. It is a specialized uniform of an unknown mercenary group working in the sector. This one has seen better days, don't count on the protection you've heard from the rumors!"
+	desc = "一套带黄色点缀的蓝色护甲，专为在高危环境下进行施工或医疗作业提供防护。这是本星区某个来历不明的雇佣兵团的专用制服。不过这套已经破旧不堪，可别指望它还有传闻中那么好的防护能力！"
 	},
 /obj/structure/machinery/defenses/sentry/premade/dumb{
 	dir = 4
@@ -497,9 +497,9 @@
 /area/template_noop)
 "Pt" = (
 /obj/structure/flora/bush/ausbushes/ausbush{
-	desc = "Fiberbush(tm) infestations have been the leading cause in asbestos related deaths in spacecraft for 3 years in a row now.";
+	desc = "纤维灌木™的蔓延已连续三年成为航天器内石棉致死事件的首要原因。";
 	icon_state = "fullgrass_2";
-	name = "Fiberbush(tm) tubers"
+	name = "纤维灌木™块茎"
 	},
 /turf/open/organic/grass/astroturf,
 /area/template_noop)
@@ -577,7 +577,7 @@
 /obj/structure/surface/table/reinforced/prison,
 /obj/structure/machinery/computer{
 	icon_state = "security_det";
-	name = "Shuttle control deck";
+	name = "穿梭机控制台";
 	pixel_y = 6
 	},
 /obj/structure/machinery/light/small{
@@ -586,7 +586,7 @@
 	pixel_y = 10
 	},
 /obj/item/coin/uranium{
-	desc = "You found one of the three uranium coins. It is entirely worthless."
+	desc = "你找到了三枚铀币中的一枚。它一文不值。"
 	},
 /obj/item/storage/fancy/cigar/tarbacks{
 	pixel_x = -11

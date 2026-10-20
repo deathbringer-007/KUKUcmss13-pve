@@ -37,7 +37,7 @@
 /area/shuttle/escape_pod)
 "D" = (
 /obj/structure/machinery/door/airlock/evacuation/liaison{
-	name = "\improper Evacuation Airlock CL-1";
+	name = "\improper 疏散气闸 CL-1";
 	id_tag = "cl_evac"
 	},
 /turf/open/floor/almayer/test_floor4,

@@ -132,7 +132,7 @@
 "Q" = (
 /obj/structure/machinery/door/airlock/almayer/generic{
 	dir = 2;
-	name = "Residential Apartment"
+	name = "住宅公寓"
 	},
 /turf/open/floor/plating/prison,
 /area/template_noop)
@@ -156,7 +156,7 @@
 	pixel_y = -3
 	},
 /obj/item/paper{
-	desc = "The image appears to be someone's backside, the page number is labled as 259."
+	desc = "图像似乎是某人的屁股，页码标为259。"
 	},
 /turf/open/floor/prison/floor_plate,
 /area/template_noop)

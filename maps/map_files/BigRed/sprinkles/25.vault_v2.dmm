@@ -59,7 +59,7 @@
 "am" = (
 /obj/structure/machinery/door_control{
 	id = "sci_br";
-	name = "Observation Shutters";
+	name = "观察室闸门";
 	pixel_y = 28
 	},
 /obj/effect/decal/cleanable/blood/gibs/xeno,
@@ -69,7 +69,7 @@
 /obj/effect/decal/cleanable/mucus,
 /obj/structure/machinery/door_control{
 	id = "sci_br";
-	name = "Observation Shutters";
+	name = "观察室闸门";
 	pixel_y = 28
 	},
 /obj/effect/decal/cleanable/vomit,
@@ -189,7 +189,7 @@
 /obj/structure/window/framed/solaris/reinforced,
 /obj/structure/machinery/door/poddoor/almayer{
 	id = "sci_br";
-	name = "\improper Lambda Observation Shutters"
+	name = "\improper 兰姆达观察室闸门"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda/breakroom)
@@ -211,7 +211,7 @@
 /obj/structure/surface/table/reinforced/prison,
 /obj/structure/machinery/door_control{
 	id = "vault";
-	name = "Vault Lockdown"
+	name = "保险库封锁"
 	},
 /turf/open/floor/strata/white_cyan1/east,
 /area/bigredv2/caves/lambda/breakroom)
@@ -266,7 +266,7 @@
 /obj/structure/machinery/door/poddoor/almayer/closed{
 	dir = 4;
 	id = "vault";
-	name = "Vault Lockdown"
+	name = "保险库封锁"
 	},
 /turf/open/floor/delivery,
 /area/bigredv2/caves/lambda/breakroom)
@@ -295,7 +295,7 @@
 "EW" = (
 /obj/structure/machinery/door/poddoor/almayer{
 	id = "sci_br";
-	name = "\improper Lambda Observation Shutters"
+	name = "\improper 兰姆达观察室闸门"
 	},
 /obj/item/shard{
 	icon_state = "medium"
@@ -306,7 +306,7 @@
 "Gv" = (
 /obj/structure/machinery/door/poddoor/almayer{
 	id = "sci_br";
-	name = "\improper Lambda Observation Shutters"
+	name = "\improper 兰姆达观察室闸门"
 	},
 /obj/item/shard,
 /obj/structure/window_frame/solaris/reinforced,

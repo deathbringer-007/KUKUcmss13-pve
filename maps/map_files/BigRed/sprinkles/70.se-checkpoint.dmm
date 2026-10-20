@@ -68,7 +68,7 @@
 /obj/structure/machinery/door/poddoor/almayer/closed{
 	dir = 4;
 	id = "filtration";
-	name = "Filtration Lockdown"
+	name = "过滤设施封锁"
 	},
 /turf/open/floor/delivery,
 /area/bigredv2/outside/filtration_cave_cas)
@@ -125,7 +125,7 @@
 "tK" = (
 /obj/structure/machinery/door/airlock/almayer/security/glass/colony{
 	icon_state = "door_locked";
-	name = "\improper Checkpoint Office"
+	name = "\improper 检查站办公室"
 	},
 /turf/open/floor,
 /area/bigred/ground/security)
@@ -201,7 +201,7 @@
 /obj/structure/machinery/door/poddoor/almayer/closed{
 	dir = 4;
 	id = "filtration";
-	name = "Filtration Lockdown"
+	name = "过滤设施封锁"
 	},
 /turf/open/floor/delivery,
 /area/bigredv2/outside/filtration_cave_cas)
@@ -279,7 +279,7 @@
 "Td" = (
 /obj/structure/machinery/door/airlock/almayer/security/glass/colony{
 	dir = 1;
-	name = "\improper Checkpoint Office"
+	name = "\improper 检查站办公室"
 	},
 /obj/structure/blocker/forcefield/multitile_vehicles,
 /turf/open/floor/delivery,
@@ -300,7 +300,7 @@
 "XM" = (
 /obj/structure/machinery/door/airlock/almayer/security/glass/colony{
 	dir = 1;
-	name = "\improper Checkpoint Office"
+	name = "\improper 检查站办公室"
 	},
 /turf/open/floor/delivery,
 /area/bigred/ground/security)

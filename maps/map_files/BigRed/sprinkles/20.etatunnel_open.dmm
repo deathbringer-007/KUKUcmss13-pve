@@ -24,7 +24,7 @@
 /area/bigredv2/caves/mining)
 "cH" = (
 /obj/structure/machinery/door/poddoor/two_tile{
-	name = "\improper Eta Tunnel Lockdown"
+	name = "\improper 伊塔隧道封锁"
 	},
 /turf/open/floor/asteroidfloor/north,
 /area/bigredv2/outside/lz2_south_cas)
@@ -43,10 +43,10 @@
 "fH" = (
 /obj/effect/decal/cleanable/blood{
 	base_icon = 'icons/obj/items/weapons/grenade.dmi';
-	desc = "An expended M55C tear gas grenade that was used for nonlethal riot control. These used to be used on USCM ships until they found out that marines are already used to teargas so the U.S.S Re-education made a better model through 'extensive trials' that works on marines, which is now the M66 used by MPs today. Being now utterly useless to marines and phased out by the M66, M55Cs were spread around the colonies across the UA galaxy like salt to be used on poor colonists instead.";
+	desc = "一枚已用过的M55C催泪手榴弹，原用于非致命防暴。这种手榴弹曾配备于殖民地陆战队舰船，后来大家发现陆战队员早已习惯了催泪瓦斯，于是再教育号通过“广泛试验”研制出了对陆战队员也有效的改进型号，也就是如今宪兵使用的M66。M55C对陆战队员已完全无用，又被M66淘汰，便像撒盐一样散发到美洲联盟遍布银河的殖民地，转而用来对付可怜的殖民者。";
 	icon = 'icons/obj/items/weapons/grenade.dmi';
 	icon_state = "grenade_custom";
-	name = "M55C Teargas grenade"
+	name = "M55C催泪手榴弹"
 	},
 /turf/open/floor/plating/platingdmg3/west,
 /area/bigredv2/caves/mining)
@@ -262,7 +262,7 @@
 /area/bigredv2/caves/mining)
 "Ik" = (
 /obj/structure/machinery/door/airlock/almayer/security/glass/colony{
-	name = "\improper Marshals Mining Security Post"
+	name = "\improper 法警采矿安保岗哨"
 	},
 /turf/open/floor/plating/platingdmg3/west,
 /area/bigredv2/caves/mining)
@@ -339,10 +339,10 @@
 	},
 /obj/effect/decal/cleanable/blood{
 	base_icon = 'icons/obj/items/weapons/grenade.dmi';
-	desc = "An expended M55C tear gas grenade that was used for nonlethal riot control. These used to be used on USCM ships until they found out that marines are already used to teargas so the U.S.S Re-education made a better model through 'extensive trials' that works on marines, which is now the M66 used by MPs today. Being now utterly useless to marines and phased out by the M66, M55Cs were spread around the colonies across the UA galaxy like salt to be used on poor colonists instead.";
+	desc = "一枚已用过的M55C催泪手榴弹，原用于非致命防暴。这种手榴弹曾配备于殖民地陆战队舰船，后来大家发现陆战队员早已习惯了催泪瓦斯，于是再教育号通过“广泛试验”研制出了对陆战队员也有效的改进型号，也就是如今宪兵使用的M66。M55C对陆战队员已完全无用，又被M66淘汰，便像撒盐一样散发到美洲联盟遍布银河的殖民地，转而用来对付可怜的殖民者。";
 	icon = 'icons/obj/items/weapons/grenade.dmi';
 	icon_state = "grenade_custom";
-	name = "M55C Teargas grenade"
+	name = "M55C催泪手榴弹"
 	},
 /turf/open/floor/plating/platingdmg3/west,
 /area/bigredv2/caves/mining)

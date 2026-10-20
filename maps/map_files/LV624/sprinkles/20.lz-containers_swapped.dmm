@@ -25,7 +25,7 @@
 /obj/item/device/radio/intercom{
 	freerange = 1;
 	frequency = 1469;
-	name = "General Listening Channel";
+	name = "公共收听频道";
 	pixel_x = -30
 	},
 /turf/open/floor/warning/southwest,

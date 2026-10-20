@@ -2,7 +2,7 @@
 "a" = (
 /obj/structure/machinery/door/airlock/prison_hatch/autoname{
 	dir = 1;
-	name = "\improper ambulance pod hatch"
+	name = "\improper 救护舱门"
 	},
 /turf/open/floor/plating/prison,
 /area/template_noop)
@@ -42,7 +42,7 @@
 /obj/structure/surface/table/reinforced/prison,
 /obj/structure/machinery/computer{
 	icon_state = "security_det";
-	name = "Shuttle control deck";
+	name = "穿梭机控制台";
 	pixel_y = 6
 	},
 /obj/structure/machinery/light/small{
@@ -55,8 +55,8 @@
 	pixel_y = -7
 	},
 /obj/item/clothing/mask/cigarette/cigar{
-	desc = "Manufactured in New Space Cuba, a product of Castro LTD.";
-	name = "comically large cigar";
+	desc = "产自新太空古巴，由卡斯特罗有限公司制造。";
+	name = "夸张的大雪茄";
 	pixel_x = 14;
 	pixel_y = 1
 	},
@@ -101,7 +101,7 @@
 /area/template_noop)
 "K" = (
 /obj/structure/prop/invuln{
-	desc = "An inflated membrane. This one is puncture proof. Wow!";
+	desc = "一层充气薄膜。这层还能防刺穿，真厉害！";
 	icon = 'icons/obj/items/inflatable.dmi';
 	icon_state = "wall"
 	},

@@ -319,7 +319,7 @@
 "BR" = (
 /obj/structure/machinery/door_control{
 	id = "dropship_saipan";
-	name = "Dropship Lockdown";
+	name = "运输艇封锁";
 	normaldoorcontrol = 3;
 	pixel_y = -19;
 	req_one_access_txt = "3;22";
@@ -538,7 +538,7 @@
 "QI" = (
 /obj/structure/machinery/computer/dropship_weapons/dropship3,
 /obj/structure/phone_base/rotary{
-	name = "saipan Telephone";
+	name = "塞班号电话";
 	phone_category = "Dropship";
 	phone_id = "saipan";
 	pixel_x = 11;

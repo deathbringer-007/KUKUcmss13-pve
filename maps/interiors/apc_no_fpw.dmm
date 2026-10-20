@@ -137,7 +137,7 @@
 	alpha = 50;
 	dir = 1;
 	exit_type = /obj/structure/interior_exit/vehicle/apc;
-	name = "Left APC door";
+	name = "装甲运兵车左侧舱门";
 	pixel_y = 32;
 	tag = "left"
 	},
@@ -365,7 +365,7 @@
 	pixel_x = 8
 	},
 /obj/structure/phone_base{
-	name = "APC reciever";
+	name = "装甲运兵车电话";
 	phone_category = "Vehicles";
 	phone_id = "M577 Armoured Personnel Carrier";
 	pixel_x = 5;

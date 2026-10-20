@@ -208,7 +208,7 @@
 	if(!target)
 		return
 	var/obj/structure/ob_ammo/warhead/explosive/warhead = new
-	warhead.name = "\improper CN20-X miasma warhead"
+	warhead.name = "\improper CN20-X瘴气弹头"
 	warhead.clear_power = 0
 	warhead.clear_falloff = 400
 	warhead.standard_power = 0
@@ -242,9 +242,9 @@
 		marine_announcement(rendered_announce_text, "[MAIN_SHIP_NAME]")
 
 /datum/game_mode/colonialmarines/proc/ares_conclude()
-	ai_silent_announcement("Bioscan complete. No unknown lifeform signature detected.", ".V")
-	ai_silent_announcement("Saving operational report to archive.", ".V")
-	ai_silent_announcement("Commencing final systems scan in 3 minutes.", ".V")
+	ai_silent_announcement("生物扫描完成。未检测到未知生命体信号。", ".V")
+	ai_silent_announcement("正在将行动报告存入档案。", ".V")
+	ai_silent_announcement("将在3分钟后开始最终系统扫描。", ".V")
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -273,7 +273,7 @@
 				continue
 
 			if(!hive.living_xeno_queen && hive.xeno_queen_timer < world.time)
-				xeno_message("The Hive is ready for a new Queen to evolve.", 3, hive.hivenumber)
+				xeno_message("虫巢已准备好让新的女皇进化。", 3, hive.hivenumber)
 
 		// Automated bioscan / Queen Mother message
 		if(world.time > bioscan_current_interval) //If world time is greater than required bioscan time.
@@ -287,8 +287,8 @@
 
 						round_status_flags |= ROUNDSTATUS_PODDOORS_OPEN
 
-						var/input = "Security lockdown will be lifting in 30 seconds per automated lockdown protocol."
-						var/name = "Automated Security Authority Announcement"
+						var/input = "根据自动封锁协议，安全封锁将在30秒后解除。"
+						var/name = "自动安保系统公告"
 						marine_announcement(input, name, 'sound/AI/commandreport.ogg')
 						for(var/i in GLOB.living_xeno_list)
 							var/mob/M = i
@@ -388,19 +388,19 @@
 			switch(human.faction)
 				if(FACTION_MARINE)
 					if(human.assigned_squad && human.assigned_squad.name == SQUAD_LRRP)
-						human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[uppertext(GLOB.round_statistics.round_name)]</u></span><br>" + "███<br>" + "█:█, ██<br>" + "Snake Eaters<br>" + "[human.job], ███<br>", /atom/movable/screen/text/screen_text/picture/snake_eater)
+						human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[uppertext(GLOB.round_statistics.round_name)]</u></span><br>" + "███<br>" + "█:█, ██<br>" + "食蛇者<br>" + "[preference_label(human.job)]， ███<br>", /atom/movable/screen/text/screen_text/picture/snake_eater)
 					else
-						human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[uppertext(GLOB.round_statistics.round_name)]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[worldtime2text("hh:mm")], [time2text(REALTIMEOFDAY, "DD-MMM-[GLOB.game_year]")]<br>" + "3rd Bat. 'Solar Devils<br>" + "[human.job], [human]<br>", /atom/movable/screen/text/screen_text/picture/solar_devils)
+						human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[uppertext(GLOB.round_statistics.round_name)]</u></span><br>" + "[get_statistic_display_label(SSmapping.configs[GROUND_MAP].map_name)]<br>" + "[worldtime2text("hh:mm")], [time2text(REALTIMEOFDAY, "[GLOB.game_year]-MM-DD")]<br>" + "第3营“太阳恶魔”<br>" + "[preference_label(human.job)]， [human]<br>", /atom/movable/screen/text/screen_text/picture/solar_devils)
 				if(FACTION_UPP)
-					human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[uppertext(GLOB.round_statistics.round_name)]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[worldtime2text("hh:mm")], [time2text(REALTIMEOFDAY, "DD-MMM-[GLOB.game_year]")]<br>" + "Red Dawn<br>" + "[human.job], [human]<br>", /atom/movable/screen/text/screen_text/picture/red_dawn)
+					human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[uppertext(GLOB.round_statistics.round_name)]</u></span><br>" + "[get_statistic_display_label(SSmapping.configs[GROUND_MAP].map_name)]<br>" + "[worldtime2text("hh:mm")], [time2text(REALTIMEOFDAY, "[GLOB.game_year]-MM-DD")]<br>" + "赤色黎明<br>" + "[preference_label(human.job)]， [human]<br>", /atom/movable/screen/text/screen_text/picture/red_dawn)
 				if(FACTION_PMC)
-					human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[uppertext(GLOB.round_statistics.round_name)]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[worldtime2text("hh:mm")], [time2text(REALTIMEOFDAY, "DD-MMM-[GLOB.game_year]")]<br>" + "Azure-15<br>" + "[human.job], [human]<br>", /atom/movable/screen/text/screen_text/picture/azure)
+					human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[uppertext(GLOB.round_statistics.round_name)]</u></span><br>" + "[get_statistic_display_label(SSmapping.configs[GROUND_MAP].map_name)]<br>" + "[worldtime2text("hh:mm")], [time2text(REALTIMEOFDAY, "[GLOB.game_year]-MM-DD")]<br>" + "苍蓝-15<br>" + "[preference_label(human.job)]， [human]<br>", /atom/movable/screen/text/screen_text/picture/azure)
 				if(FACTION_TWE)
-					human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[uppertext(GLOB.round_statistics.round_name)]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[worldtime2text("hh:mm")], [time2text(REALTIMEOFDAY, "DD-MMM-[GLOB.game_year]")]<br>" + "Gamma Troop<br>" + "[human.job], [human]<br>", /atom/movable/screen/text/screen_text/picture/gamma_troop)
+					human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[uppertext(GLOB.round_statistics.round_name)]</u></span><br>" + "[get_statistic_display_label(SSmapping.configs[GROUND_MAP].map_name)]<br>" + "[worldtime2text("hh:mm")], [time2text(REALTIMEOFDAY, "[GLOB.game_year]-MM-DD")]<br>" + "伽马分队<br>" + "[preference_label(human.job)]， [human]<br>", /atom/movable/screen/text/screen_text/picture/gamma_troop)
 			var/admin_names
 			for(var/client/admin in GLOB.admins)
 				admin_names += "[admin.ckey]<br>"
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'>Directed by: <br>[admin_names]", /atom/movable/screen/text/screen_text)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'>本场主持：<br>[admin_names]", /atom/movable/screen/text/screen_text)
 ///////////////////////////
 //Checks to see who won///
 //////////////////////////

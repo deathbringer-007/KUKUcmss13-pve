@@ -33,7 +33,7 @@
 /area/golden_arrow/hangar)
 "f" = (
 /obj/structure/machinery/door/poddoor/almayer/open{
-	name = "\improper Storage Bay Blast Door"
+	name = "\improper 货舱防爆门"
 	},
 /turf/open/floor/almayer/test_floor4,
 /area/golden_arrow/hangar)
@@ -163,7 +163,7 @@
 	layer = 2.52
 	},
 /obj/structure/machinery/door/poddoor/almayer/open{
-	name = "\improper Storage Bay Blast Door"
+	name = "\improper 货舱防爆门"
 	},
 /turf/open/floor/almayer/test_floor4,
 /area/golden_arrow/hangar)
@@ -192,8 +192,8 @@
 	icon_state = "tank_base";
 	pixel_x = -18;
 	pixel_y = 10;
-	name = "wrecked M34A2 Longstreet Light Tank";
-	desc = "It looks absolutely messed up - it's tracked, has a hole blown in it's side, and the turret looks like it was rammed straight into a wall. Makes you wonder if bad driving or the RPG took it out first...";
+	name = "损毁的M34A2“朗斯特里特”轻型坦克";
+	desc = "它看上去被毁得不成样子：履带断了，侧面被炸出一个洞，炮塔像是直接撞上了墙。让人不禁想知道，究竟是糟糕的驾驶技术，还是RPG火箭弹先把它毁掉的……";
 	layer = 3.4
 	},
 /obj/structure/machinery/prop{
@@ -201,8 +201,8 @@
 	icon_state = "treads_1";
 	pixel_x = -18;
 	pixel_y = 12;
-	name = "wrecked M34A2 Longstreet Light Tank";
-	desc = "It looks absolutely messed up - it's tracked, has a hole blown in it's side, and the turret looks like it was rammed straight into a wall. Makes you wonder if bad driving or the RPG took it out first...";
+	name = "损毁的M34A2“朗斯特里特”轻型坦克";
+	desc = "它看上去被毁得不成样子：履带断了，侧面被炸出一个洞，炮塔像是直接撞上了墙。让人不禁想知道，究竟是糟糕的驾驶技术，还是RPG火箭弹先把它毁掉的……";
 	layer = 3.4
 	},
 /obj/structure/blocker/invisible_wall,
@@ -222,7 +222,7 @@
 "Z" = (
 /obj/structure/pipes/standard/simple/hidden/supply,
 /obj/structure/machinery/door/poddoor/almayer/open{
-	name = "\improper Storage Bay Blast Door"
+	name = "\improper 货舱防爆门"
 	},
 /turf/open/floor/almayer/test_floor4,
 /area/golden_arrow/hangar)

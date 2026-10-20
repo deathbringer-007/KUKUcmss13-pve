@@ -185,7 +185,7 @@
 	alpha = 50;
 	dir = 1;
 	exit_type = /obj/structure/interior_exit/vehicle/apc;
-	name = "Left APC door";
+	name = "装甲运兵车左侧舱门";
 	pixel_y = 32;
 	tag = "left"
 	},
@@ -283,7 +283,7 @@
 /obj/effect/landmark/interior/spawn/entrance{
 	alpha = 50;
 	exit_type = /obj/structure/interior_exit/vehicle/apc;
-	name = "Right APC door";
+	name = "装甲运兵车右侧舱门";
 	tag = "right"
 	},
 /obj/effect/landmark/interior/spawn/interior_viewport{
@@ -374,7 +374,7 @@
 	pixel_x = 8
 	},
 /obj/structure/phone_base/toc{
-	name = "APC reciever";
+	name = "装甲运兵车电话";
 	phone_category = "Vehicles";
 	phone_id = "M577-MED Armoured Personnel Carrier";
 	pixel_x = 5;

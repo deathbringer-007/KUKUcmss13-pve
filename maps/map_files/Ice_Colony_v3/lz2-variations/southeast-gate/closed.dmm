@@ -121,7 +121,7 @@
 	density = 0;
 	dir = 4;
 	id = "selz_shutters";
-	name = "\improper Landing Zone Shutters"
+	name = "\improper 着陆区闸门"
 	},
 /turf/open/floor/plating/plating_catwalk/shiva,
 /area/shiva/exterior/lz2_fortress)
@@ -140,7 +140,7 @@
 	density = 0;
 	dir = 4;
 	id = "seelz_shutters";
-	name = "\improper Landing Zone Shutters"
+	name = "\improper 着陆区闸门"
 	},
 /turf/open/floor/plating/plating_catwalk/shiva,
 /area/shiva/exterior/lz2_fortress)

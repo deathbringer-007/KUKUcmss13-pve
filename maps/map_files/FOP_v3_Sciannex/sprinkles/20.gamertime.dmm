@@ -139,7 +139,7 @@
 /obj/item/holder/mouse{
 	pixel_x = 4;
 	pixel_y = 18;
-	desc = "Wait, why won't it work with my computer?"
+	desc = "等等，为什么这只“鼠标”不能接到我的电脑上？"
 	},
 /turf/open/floor/prison/darkpurplefull2,
 /area/template_noop)
@@ -325,7 +325,7 @@
 /obj/item/holder/mouse{
 	pixel_x = 12;
 	pixel_y = 12;
-	desc = "Wait, why won't it work with my computer?"
+	desc = "等等，为什么这只“鼠标”不能接到我的电脑上？"
 	},
 /turf/open/floor/prison,
 /area/template_noop)

@@ -182,7 +182,7 @@
 "Mn" = (
 /obj/structure/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 1;
-	name = "\improper Leisure Dome";
+	name = "\improper 休闲穹顶";
 	req_access_txt = "100"
 	},
 /turf/open/floor/whitepurple/northeast,
@@ -192,7 +192,7 @@
 /area/lv624/ground/jungle/central_jungle)
 "Of" = (
 /obj/structure/machinery/atm{
-	name = "Weyland-Yutani Automatic Teller Machine";
+	name = "维兰德-汤谷自动取款机";
 	pixel_x = -30
 	},
 /obj/structure/machinery/light{
@@ -266,7 +266,7 @@
 /obj/item/device/radio/intercom{
 	freerange = 1;
 	frequency = 1469;
-	name = "General Listening Channel";
+	name = "公共收听频道";
 	pixel_y = 30
 	},
 /turf/open/floor/whitepurplecorner/east,
@@ -277,7 +277,7 @@
 "Xt" = (
 /obj/structure/machinery/door/airlock/almayer/medical/glass/colony{
 	dir = 1;
-	name = "\improper Leisure Dome";
+	name = "\improper 休闲穹顶";
 	req_access_txt = "100";
 	req_one_access = null
 	},

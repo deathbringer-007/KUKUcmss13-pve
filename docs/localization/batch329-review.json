@@ -1,0 +1,3409 @@
+{
+  "batchId": "batch329",
+  "startProcessedCount": 1770,
+  "endProcessedCount": 1864,
+  "actualModifiedSourceFiles": 100,
+  "fullyTranslatedPlayerTextFileCount": 100,
+  "localizationSupportFileCount": 0,
+  "newSourceFiles": 94,
+  "revisitedSourceFiles": 6,
+  "files": [
+    "code/controllers/mc/master.dm",
+    "code/datums/components/phone.dm",
+    "code/game/gamemodes/colonialmarines/colonialmarines.dm",
+    "code/game/machinery/air_alarm.dm",
+    "code/game/machinery/doors/multi_tile.dm",
+    "code/modules/mob/living/simple_animal/parrot.dm",
+    "tgui/packages/tgui/interfaces/PhoneMenu.jsx",
+    "maps/interiors/aev.dmm",
+    "maps/interiors/ambulance.dmm",
+    "maps/interiors/apc.dmm",
+    "maps/interiors/apc_aa.dmm",
+    "maps/interiors/apc_command.dmm",
+    "maps/interiors/apc_med.dmm",
+    "maps/interiors/apc_movie.dmm",
+    "maps/interiors/apc_moviemed.dmm",
+    "maps/interiors/apc_no_fpw.dmm",
+    "maps/interiors/arc.dmm",
+    "maps/interiors/cop_car.dmm",
+    "maps/interiors/tank.dmm",
+    "maps/interiors/tank_command.dmm",
+    "maps/interiors/uppapc.dmm",
+    "maps/interiors/upptank.dmm",
+    "maps/interiors/upptank_command.dmm",
+    "maps/interiors/uppvan_medical.dmm",
+    "maps/map_files/BigRed/sprinkles/20.etatunnel_open.dmm",
+    "maps/map_files/BigRed/sprinkles/20.lz1entrance_v2.dmm",
+    "maps/map_files/BigRed/sprinkles/20.lz1north_mining.dmm",
+    "maps/map_files/BigRed/sprinkles/25.chapel_cult.dmm",
+    "maps/map_files/BigRed/sprinkles/25.lz1containers_scramble.dmm",
+    "maps/map_files/BigRed/sprinkles/25.vault_v2.dmm",
+    "maps/map_files/BigRed/sprinkles/30.cargo_containers.dmm",
+    "maps/map_files/BigRed/sprinkles/40.admin_pmc.dmm",
+    "maps/map_files/BigRed/sprinkles/40.dorms_party.dmm",
+    "maps/map_files/BigRed/sprinkles/40.viro_open.dmm",
+    "maps/map_files/BigRed/sprinkles/5.eta_carp.dmm",
+    "maps/map_files/BigRed/sprinkles/70.se-checkpoint.dmm",
+    "maps/map_files/BigRed/standalone/medbay-passage.dmm",
+    "maps/map_files/CORSAT/standalone/lockdown_gammacontrol.dmm",
+    "maps/map_files/CORSAT/standalone/lockdown_gammanorth.dmm",
+    "maps/map_files/CORSAT/standalone/lockdown_highsec.dmm",
+    "maps/map_files/CORSAT/standalone/lockdown_thetacontrol.dmm",
+    "maps/map_files/CORSAT/standalone/lockdown_thetaeast.dmm",
+    "maps/map_files/DesertDam/sprinkles/20+minievac_westresearch.dmm",
+    "maps/map_files/FOP_v3_Sciannex/sprinkles/10.podholder.dmm",
+    "maps/map_files/FOP_v3_Sciannex/sprinkles/10.scavshipholder.dmm",
+    "maps/map_files/FOP_v3_Sciannex/sprinkles/15.wardenofficedecorated.dmm",
+    "maps/map_files/FOP_v3_Sciannex/sprinkles/20.gamertime.dmm",
+    "maps/map_files/FOP_v3_Sciannex/sprinkles/20.medicalhold.dmm",
+    "maps/map_files/FOP_v3_Sciannex/sprinkles/25.researchprestine.dmm",
+    "maps/map_files/FOP_v3_Sciannex/sprinkles/30.engineeroffice.dmm",
+    "maps/map_files/FOP_v3_Sciannex/sprinkles/30.repairpanelslz.dmm",
+    "maps/map_files/Ice_Colony_v3/lz2-south-caves/20.destroyed_lz2-south-caves.dmm",
+    "maps/map_files/Ice_Colony_v3/lz2-south-caves/30.builtup_lz2-south-caves.dmm",
+    "maps/map_files/Ice_Colony_v3/lz2-variations/east-gate/closed.dmm",
+    "maps/map_files/Ice_Colony_v3/lz2-variations/south-gate/closed.dmm",
+    "maps/map_files/Ice_Colony_v3/lz2-variations/southeast-gate/closed.dmm",
+    "maps/map_files/Ice_Colony_v3/sprinkles/33.labs-entrance.dmm",
+    "maps/map_files/Kutjevo/sprinkles/35.communications.dmm",
+    "maps/map_files/Kutjevo/sprinkles/5+trappedmonke_andclown.dmm",
+    "maps/map_files/LV624/armory/10.cheese.dmm",
+    "maps/map_files/LV624/armory/10.extra.dmm",
+    "maps/map_files/LV624/armory/10.looted.dmm",
+    "maps/map_files/LV624/gym/20.pool.dmm",
+    "maps/map_files/LV624/gym/30.alternate.dmm",
+    "maps/map_files/LV624/hydro/30.destroyed.dmm",
+    "maps/map_files/LV624/medbay/10.destroyed.dmm",
+    "maps/map_files/LV624/medbay/30.larvasurgery.dmm",
+    "maps/map_files/LV624/science/10.yautja.dmm",
+    "maps/map_files/LV624/science/40.fullylocked.dmm",
+    "maps/map_files/LV624/sprinkles/20.lz-containers_swapped.dmm",
+    "maps/map_files/LV624/standalone/sandtemple-jungle.dmm",
+    "maps/map_files/LV624/storage-crashed-ship/10.armorystorage.dmm",
+    "maps/map_files/LV624/storage-crashed-ship/10.valuables.dmm",
+    "maps/map_files/golden_arrow/briefing/10.missingchairs.dmm",
+    "maps/map_files/golden_arrow/dorms/10.party.dmm",
+    "maps/map_files/golden_arrow/medbay/10.visceracleanupdetail.dmm",
+    "maps/map_files/golden_arrow/medbay/10.wrongtile.dmm",
+    "maps/map_files/golden_arrow/storage_northeast/10.tank.dmm",
+    "maps/shuttles/dropship_alamo.dmm",
+    "maps/shuttles/dropship_cyclone.dmm",
+    "maps/shuttles/dropship_gibraltar.dmm",
+    "maps/shuttles/dropship_midway.dmm",
+    "maps/shuttles/dropship_normandy.dmm",
+    "maps/shuttles/dropship_pmc.dmm",
+    "maps/shuttles/dropship_resolute.dmm",
+    "maps/shuttles/dropship_tornado.dmm",
+    "maps/shuttles/dropship_tripoli.dmm",
+    "maps/shuttles/dropship_typhoon.dmm",
+    "maps/shuttles/dropship_upp.dmm",
+    "maps/shuttles/escape_shuttle_e.dmm",
+    "maps/shuttles/escape_shuttle_e_cl.dmm",
+    "maps/shuttles/escape_shuttle_n.dmm",
+    "maps/shuttles/escape_shuttle_s.dmm",
+    "maps/shuttles/escape_shuttle_w.dmm",
+    "maps/shuttles/garrow_cargo_elevator.dmm",
+    "maps/shuttles/ice_classic_shuttle.dmm",
+    "maps/shuttles/lifeboat-compact.dmm",
+    "maps/shuttles/lifeboat-port.dmm",
+    "maps/shuttles/lifeboat-starboard.dmm",
+    "maps/tutorial/tutorial_reqs_line.dmm"
+  ],
+  "wholeFileReview": [
+    {
+      "file": "code/controllers/mc/master.dm",
+      "sha256": "5ba8f0244e3113367a6d52795c0ccb8719a552d03c6510c85f4bfa71795e3681",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "code/datums/components/phone.dm",
+      "sha256": "1760cdcb5bee15b24c3c36fd2afe4ace98f8ca8207fa94aef15327f9fd89540f",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "code/game/gamemodes/colonialmarines/colonialmarines.dm",
+      "sha256": "c57766ed44bb60fa49fc37af99ac51db7bd3a67c845cd72d3a3a412980aee262",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "code/game/machinery/air_alarm.dm",
+      "sha256": "9a6d92a4e36aec1d5ed0aba2a1fd1f04e42ed27d2e57aa4b0105d55988eeeaa5",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "code/game/machinery/doors/multi_tile.dm",
+      "sha256": "9c458fcbb46f433f1254c4d7694e10fd63004513cb783b8df1ecc3a516404f52",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "code/modules/mob/living/simple_animal/parrot.dm",
+      "sha256": "d35666605bad53c8f072ad1d7c69dcabd158e44d6cc850cdc9515df6c3e22aa7",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "tgui/packages/tgui/interfaces/PhoneMenu.jsx",
+      "sha256": "e620fcabdea4fe4c87e7b77be54d221619a34f54622d0663b917a78eb76c66a0",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/interiors/aev.dmm",
+      "sha256": "9c7a325d0d1ae9cb806d7eac8750460d495aecf39ae29b837158572fb69afc60",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/interiors/ambulance.dmm",
+      "sha256": "60d08a50d743f34c5f05eca47905f95720e1c978493ad2886431c6ab14625fcd",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/interiors/apc.dmm",
+      "sha256": "b9f13e1f6aa1e1e513db8dc84027c90ca59e523c6761db3b9be2835e86d33132",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/interiors/apc_aa.dmm",
+      "sha256": "4e98529fce9e4e6b744ad7857da919f3bdc9761370d5a1971adca1109005342c",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/interiors/apc_command.dmm",
+      "sha256": "b3c854eae7e8b1774ca0cd607b8e9ff14ef8611d6a42fd07c218f0e7812d1848",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/interiors/apc_med.dmm",
+      "sha256": "03a8b23a7c11bcb271f6866a6ba7f7225a99f5230b0c84b0c978e1038a08c5ba",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/interiors/apc_movie.dmm",
+      "sha256": "eafd4ced1ff9f0d3ad8314e514f559685ed6412483f25b7c2d99c94df28a7c0a",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/interiors/apc_moviemed.dmm",
+      "sha256": "0916dccb1ef56de51fc79ba4a40babc303a856616e9fb8ba384ff51cb7c51b83",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/interiors/apc_no_fpw.dmm",
+      "sha256": "71682d51a5774c5605ab34aa02d661bf776ef296334bd4744d0e799ebf11f121",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/interiors/arc.dmm",
+      "sha256": "e6b9339eba80649b892a6cdf3025d3f3f2533ef78e3bf5337c3a03149c94bae2",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/interiors/cop_car.dmm",
+      "sha256": "f54598638c2f5b2100b024a917431fd34dae7461e671c6f0800b3e2aacc8f02d",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/interiors/tank.dmm",
+      "sha256": "fdae5d649be95c51f0579fcca95656621c7084b637a9f8f8e63cd9e17d1ac87a",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/interiors/tank_command.dmm",
+      "sha256": "854ad33bbcc1e722fa3307004497caefba10fa252a14f27a73fa27d90923f51a",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/interiors/uppapc.dmm",
+      "sha256": "9ef04e4331d266d98325c05a0e8936b04463ef76cb29c3106acdff1db93b12eb",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/interiors/upptank.dmm",
+      "sha256": "99c36d91b896de178cbc3498ba9c7de68ab97156fca1a6956c5c3fbd89b10d2f",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/interiors/upptank_command.dmm",
+      "sha256": "e17207a4b3c8041e69bfe67761a34156a5dec94435f0d08d46720766f460484c",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/interiors/uppvan_medical.dmm",
+      "sha256": "17224e59acbab246f6c5bd4b36a30ef41ac02a5bb896d38c68fa4f3ff5f4beca",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/BigRed/sprinkles/20.etatunnel_open.dmm",
+      "sha256": "20d11fffd3b167b82431e5fd99f62cc9c46d9493d703d967796a81aefeae155d",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/BigRed/sprinkles/20.lz1entrance_v2.dmm",
+      "sha256": "b989a4e6a613a3059604d41b202b771d15821b673439a80b051b088a5b30040f",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/BigRed/sprinkles/20.lz1north_mining.dmm",
+      "sha256": "91c35ecc966ccb37a4da2cfb09ee53eb0a27c687b642a596cecdb84a8b456824",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/BigRed/sprinkles/25.chapel_cult.dmm",
+      "sha256": "a5d78ea1410c554a83da5251f515e91f7cdfc80b722015eae0162567344e9c22",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/BigRed/sprinkles/25.lz1containers_scramble.dmm",
+      "sha256": "f2771daaed21da1a0743c58996b004657328149d97791ee9b3534245ddae460c",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/BigRed/sprinkles/25.vault_v2.dmm",
+      "sha256": "b86bdb678b0298e726ae00888689cb135a7a83e29aa4bc6a2204e15ae86a3207",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/BigRed/sprinkles/30.cargo_containers.dmm",
+      "sha256": "9d4fa2f18c0ed9119bb7ebee36698bfe7e2bdbfaae65beb80eb67ad6a1617c13",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/BigRed/sprinkles/40.admin_pmc.dmm",
+      "sha256": "7bae9d8935ad677b64f8a631a8e5d371b17555bfc7bc2f38b23781f6ac35b1dd",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/BigRed/sprinkles/40.dorms_party.dmm",
+      "sha256": "213b9668dc31d0edc45578983b43310eeba48f7e89d899bc681e3ee52246d8a7",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/BigRed/sprinkles/40.viro_open.dmm",
+      "sha256": "4d184975d591c299fb67e4b199680625990e0fc843c1a47cf8e47f550bc69f6e",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/BigRed/sprinkles/5.eta_carp.dmm",
+      "sha256": "66c67cf5e77a6aeb28569d8eaafbec58d0e03db6adeca2f65997e3a41d015a97",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/BigRed/sprinkles/70.se-checkpoint.dmm",
+      "sha256": "4e5164e8ae739fb9211ddf7a989bc1ee0e35b06a21c247eaddffd5d5480346e3",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/BigRed/standalone/medbay-passage.dmm",
+      "sha256": "fc58f23509fea390e9892dc61f56d924299fc892cdc3243d3a62ccd4a599c7d2",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/CORSAT/standalone/lockdown_gammacontrol.dmm",
+      "sha256": "010e844c4d583d5c8ec1f6e5cb89dc42cb560942b62e412514866503b485c612",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/CORSAT/standalone/lockdown_gammanorth.dmm",
+      "sha256": "58e90e5c44e23580483da0fd583a73eb8d99888c70d7cf032e9932fd2f777efc",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/CORSAT/standalone/lockdown_highsec.dmm",
+      "sha256": "2164c08569ba2087c7994e47504c68de3a9b7edd9f80f200f225a3dd21ec6e58",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/CORSAT/standalone/lockdown_thetacontrol.dmm",
+      "sha256": "00d32cef16db2bb60bb21b5296561b2462cf15d4afeb46f044590caf0e08087b",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/CORSAT/standalone/lockdown_thetaeast.dmm",
+      "sha256": "7306cc107293729786990117e80a86b79cf84cbc1d32cb134912a721b1eb1b8c",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/DesertDam/sprinkles/20+minievac_westresearch.dmm",
+      "sha256": "666ca7a61153ac97596209cd0fd56b3cdaa94845af93e2d2ec9c8b793497a366",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/10.podholder.dmm",
+      "sha256": "ab5dc51d0e17dc314ba1cf228967ed2e0c8e6d266df922476655d31ee7d4ff21",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/10.scavshipholder.dmm",
+      "sha256": "9571e2efcdf6fa975fbe6f77a637ea6b3f76f134b1e498622e57368f0e35d9a2",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/15.wardenofficedecorated.dmm",
+      "sha256": "a36468d1caba1cf665b7494f215c1d343c691593448bf8e7f42d7f94bb35c489",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/20.gamertime.dmm",
+      "sha256": "9e0c92f4f76cddff2c53c7fa0018882746b54109c79202a97ba03bc730b8e916",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/20.medicalhold.dmm",
+      "sha256": "dd08f6be783ac4cd83a23534990643a62f533af069c86de615303fc3206a6a87",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/25.researchprestine.dmm",
+      "sha256": "930258dc40aa88aaf607bb21b029c0615a8e1be9e8a38ae2664380f083913ed8",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/30.engineeroffice.dmm",
+      "sha256": "9f45b21b864379f29f327785a44429e9c216e2824f43b9ca707886e51ae5f838",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/30.repairpanelslz.dmm",
+      "sha256": "12425e762ed67d6349f9c53c3d18e734d70443aac8f05c7f42a07f799902f9e4",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/Ice_Colony_v3/lz2-south-caves/20.destroyed_lz2-south-caves.dmm",
+      "sha256": "0d4f64a505716516bbf8b49b3232f2e5b9af15dd96c709826c81f96d9c152bfc",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/Ice_Colony_v3/lz2-south-caves/30.builtup_lz2-south-caves.dmm",
+      "sha256": "555ecca9f88f3de1e6976fa77cea51e0b5876a5beb142af0677e3885a887b7db",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/Ice_Colony_v3/lz2-variations/east-gate/closed.dmm",
+      "sha256": "236165c5b751a50cb3678da55d56b08046b6dd0218e3f1b94c5e06cc7d1236fe",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/Ice_Colony_v3/lz2-variations/south-gate/closed.dmm",
+      "sha256": "fa8db667e9e985a9833f6e84f94082f18d50040c29241bfb3e701fd7765179c4",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/Ice_Colony_v3/lz2-variations/southeast-gate/closed.dmm",
+      "sha256": "57b80ae64760ecc861e4da4a65e326e1dcfcc5261d0bacae064cdacdd5bbf6fc",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/Ice_Colony_v3/sprinkles/33.labs-entrance.dmm",
+      "sha256": "9f208b861228cf7580af99f3cb7cd9d767a71618decdf1caf51b098e9cfa0582",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/Kutjevo/sprinkles/35.communications.dmm",
+      "sha256": "6a04afb8b667792a49512e9bb5de44f01ebc7f6a38032c341579897678ca1528",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/Kutjevo/sprinkles/5+trappedmonke_andclown.dmm",
+      "sha256": "aa1083bea89e4e7e98d37086032d9a5dfdd3f1d64fede34a3d643d2cbe262480",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/LV624/armory/10.cheese.dmm",
+      "sha256": "8ff087109271363d19b5d833e4aa11ecf642bcc9e44c356881efee65fca143df",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/LV624/armory/10.extra.dmm",
+      "sha256": "d8f721e3fb9ae3da7d1d241ac5bc2748afc603d4df882a4c2ab06856837cdc07",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/LV624/armory/10.looted.dmm",
+      "sha256": "5061d8af754f2aee29f4340b49c42ad41b57afc02706487044fbce464180f731",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/LV624/gym/20.pool.dmm",
+      "sha256": "fcf94c519df7a3b9fc447b10453f92e8e6ac27014c68f1e539d2051475b4724b",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/LV624/gym/30.alternate.dmm",
+      "sha256": "eba442be234bc3966a3957bf59deda51083d5ab05a544acdb905de2aed1e309f",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/LV624/hydro/30.destroyed.dmm",
+      "sha256": "5201790d5e3179ee480c68b10c497d4985b1694c5d7a1b640a2e34ec18ada0e5",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/LV624/medbay/10.destroyed.dmm",
+      "sha256": "f145aade116048a54269a857d503440fb1d2f5810f56278b9d107af1e5e032ba",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/LV624/medbay/30.larvasurgery.dmm",
+      "sha256": "6dac23b62fbe82aec0f5d4e2e84ae29b772193a6ada406cb728c2da826371154",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/LV624/science/10.yautja.dmm",
+      "sha256": "de35a559ce368be869425dc435ab94934afbd84f60c82236db7d86c9b133c1b4",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/LV624/science/40.fullylocked.dmm",
+      "sha256": "40be5e904e9dd601495e4158acad92c8268f93e4555aa9e8195b24acd2d644dc",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/LV624/sprinkles/20.lz-containers_swapped.dmm",
+      "sha256": "079c50e1c6bf2e31e08fc56fd83f47073865a344ca98baa5dac1232b1281f9e0",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/LV624/standalone/sandtemple-jungle.dmm",
+      "sha256": "b67c68f64953a7ef16c2f948b32ca04853ec0ac779005ac8a7dd6c13ff738f95",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/LV624/storage-crashed-ship/10.armorystorage.dmm",
+      "sha256": "0cfb7a72977be68022cb3abb2376d2169a0235cb045aa96f8d9631583eb540f4",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/LV624/storage-crashed-ship/10.valuables.dmm",
+      "sha256": "68187cbc782d46db11408bbccf0dca649d6a91477b38c8f9a6ffef6e3f2bf283",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/golden_arrow/briefing/10.missingchairs.dmm",
+      "sha256": "559978185b858f443a83707a84e65efc3e4336da4debd30e7bb6130fafa3634e",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/golden_arrow/dorms/10.party.dmm",
+      "sha256": "bd56b878ae8a8f391ae4045b52d6d3f017bda927126579a3a73620147b2463c2",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/golden_arrow/medbay/10.visceracleanupdetail.dmm",
+      "sha256": "b66b27efeeb958e2602b70559a03c8c7efc12535e2680adaaa3ba5a7568a2813",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/golden_arrow/medbay/10.wrongtile.dmm",
+      "sha256": "3e3262b616e4ac11c2b868f2e078da748c1f19f05a2461db8cb4366580f1f3ec",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/map_files/golden_arrow/storage_northeast/10.tank.dmm",
+      "sha256": "db7c6ee291f2d2fae38536da55d0f96a748257375ac62f62cb5df1db24ae80fa",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/dropship_alamo.dmm",
+      "sha256": "f8b3edc67970a90b42c4deb99d22a9f4bf754665af15fc6e72bfc289045fd352",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/dropship_cyclone.dmm",
+      "sha256": "1ecf32a65f5a90d808ea14efed75c8f3cbab773741a1f7ab8618f100016305b6",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/dropship_gibraltar.dmm",
+      "sha256": "19c1f64500fd4fae9ac43e377f687cbbf21afd82e87d72f45cdff2fdf9229528",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/dropship_midway.dmm",
+      "sha256": "bb96136059117b0e769a74cd658c7b974b3503ad7156a7cf2258da959482f953",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/dropship_normandy.dmm",
+      "sha256": "68e37c5c06b0a2187a3fa7abdd28c90f920610bbcd94ce9e56b991889eced59f",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/dropship_pmc.dmm",
+      "sha256": "2c9df18fa3a2d67da21995eb534e89c1bf3781a30e5e697496d0bd3474bb64f8",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/dropship_resolute.dmm",
+      "sha256": "841c9041fe66400dd7b7469115a69840a32a72cbc11330b82cbba8cd83d21f4d",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/dropship_tornado.dmm",
+      "sha256": "b391be00c0536d53875efd97b2d12d9edcad8ab2a2076d93d6d12e4fe666f053",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/dropship_tripoli.dmm",
+      "sha256": "b7a317ad6bf4d6f351b7216112ecde10ea0399631af6b66a5b026272df28974a",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/dropship_typhoon.dmm",
+      "sha256": "8bb571bcb607a799238f5d232d13793f123b8675f2208e521888a3fe05ed45a8",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/dropship_upp.dmm",
+      "sha256": "5b50b9175e344244567598aaf0af71059d9a64ffef98ac4ccebf45d21c717d62",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/escape_shuttle_e.dmm",
+      "sha256": "4af4f1a22491beccd6d454322f1f173ff6823a3361b29043fb0080611471ed88",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/escape_shuttle_e_cl.dmm",
+      "sha256": "2f959a22dcc92866c2e9ae14bb0dcfd44848a59eb3414d56a746bfeade4cc432",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/escape_shuttle_n.dmm",
+      "sha256": "ef35839c0d9ef5fdf0b52031abd00f430777aab17ab88dca4ee20c603bb3544b",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/escape_shuttle_s.dmm",
+      "sha256": "da016ba2321679080f89a1a80425ed457a0c789689b44d2eb53d6f2d16b34a80",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/escape_shuttle_w.dmm",
+      "sha256": "66000d1c979195356485d1d2d0fd51455d77abb50382d1da764ef98859fabe0f",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/garrow_cargo_elevator.dmm",
+      "sha256": "e8d79250ee6a65ec55b514da76b18f3ded9d2479f0338bbf18e404a08aa13b07",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/ice_classic_shuttle.dmm",
+      "sha256": "e58fd8547cadfbb7540f9bec11f3c1842570399d69301a7058623204f7466ae1",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/lifeboat-compact.dmm",
+      "sha256": "22760f6337bd5223b254176f68d722a783c1bd324f087116081a8fdb94b36d05",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/lifeboat-port.dmm",
+      "sha256": "8b03cfb88a8351a616c922de86972fe876a7d856a70608a9fb1a475930059196",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/shuttles/lifeboat-starboard.dmm",
+      "sha256": "1117fd6ed444a26456268c5a5f47fa8b7e0a3b3d6f83b5c10707a007feb82e7a",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    },
+    {
+      "file": "maps/tutorial/tutorial_reqs_line.dmm",
+      "sha256": "f8e8f02a431a5e72ebb9049165e2d711760d1217f3f6f453dbefedf2023cff33",
+      "scope": "player_text",
+      "localPlayerTextReview": "complete",
+      "commentsAndResourcesPreserved": true,
+      "retainedKeysReviewed": true,
+      "reviewBatch": "batch329"
+    }
+  ],
+  "glossaryNewTerms": 565,
+  "canonicalTermCorrections": 1,
+  "glossaryRowsAddedOrCorrected": 566,
+  "closureRule": "全文审读玩家可见文本和动态显示来源；原生指令、索引、逻辑键、资源、注释及管理员专用文本保持。地图覆盖属性经完整解析和逐字比对。",
+  "retainedEnglishClassification": [
+    "图标、资源、型号、品牌缩写和技术标识",
+    "电话ID、分类、网络、状态及拨号参数等原始协议键，通过显示映射提供中文",
+    "门控ID、入口tag、类型路径、宏、原生命令及保存索引",
+    "管理员界面、私密日志、诊断、注释和自定义玩家姓名"
+  ],
+  "compileSuccess": true,
+  "compilerErrors": 0,
+  "compilerWarnings": 3,
+  "compileOutput": "compile329-final-verified.json",
+  "compileSummary": "DM compiler version 516.1682\r\nloading colonialmarines.dme\r\ncode\\_compile_options.dm:34:warning: #warn Building with Dream Maker is no longer supported and will result in errors.\r\ncode\\_compile_options.dm:35:warning: #warn In order to build, run BUILD.bat in the bin directory.\r\ncode\\_compile_options.dm:36:warning: #warn Consider switching to VSCode editor instead, where you can press Ctrl+Shift+B to build.\r\nloading interface/skin.dmf\r\nloading maps/map_files/generic/Admin_level.dmm\r\nsaving colonialmarines.dmb (DEBUG mode)\r\ncolonialmarines.dmb - 0 errors, 3 warnings (10/21/26 3:03 am)\r\nTotal time: 0:09\r\n",
+  "compileSourceHashes": {
+    "code/controllers/mc/master.dm": "5ba8f0244e3113367a6d52795c0ccb8719a552d03c6510c85f4bfa71795e3681",
+    "code/datums/components/phone.dm": "1760cdcb5bee15b24c3c36fd2afe4ace98f8ca8207fa94aef15327f9fd89540f",
+    "code/game/gamemodes/colonialmarines/colonialmarines.dm": "c57766ed44bb60fa49fc37af99ac51db7bd3a67c845cd72d3a3a412980aee262",
+    "code/game/machinery/air_alarm.dm": "9a6d92a4e36aec1d5ed0aba2a1fd1f04e42ed27d2e57aa4b0105d55988eeeaa5",
+    "code/game/machinery/doors/multi_tile.dm": "9c458fcbb46f433f1254c4d7694e10fd63004513cb783b8df1ecc3a516404f52",
+    "code/modules/mob/living/simple_animal/parrot.dm": "d35666605bad53c8f072ad1d7c69dcabd158e44d6cc850cdc9515df6c3e22aa7",
+    "tgui/packages/tgui/interfaces/PhoneMenu.jsx": "e620fcabdea4fe4c87e7b77be54d221619a34f54622d0663b917a78eb76c66a0",
+    "maps/interiors/aev.dmm": "9c7a325d0d1ae9cb806d7eac8750460d495aecf39ae29b837158572fb69afc60",
+    "maps/interiors/ambulance.dmm": "60d08a50d743f34c5f05eca47905f95720e1c978493ad2886431c6ab14625fcd",
+    "maps/interiors/apc.dmm": "b9f13e1f6aa1e1e513db8dc84027c90ca59e523c6761db3b9be2835e86d33132",
+    "maps/interiors/apc_aa.dmm": "4e98529fce9e4e6b744ad7857da919f3bdc9761370d5a1971adca1109005342c",
+    "maps/interiors/apc_command.dmm": "b3c854eae7e8b1774ca0cd607b8e9ff14ef8611d6a42fd07c218f0e7812d1848",
+    "maps/interiors/apc_med.dmm": "03a8b23a7c11bcb271f6866a6ba7f7225a99f5230b0c84b0c978e1038a08c5ba",
+    "maps/interiors/apc_movie.dmm": "eafd4ced1ff9f0d3ad8314e514f559685ed6412483f25b7c2d99c94df28a7c0a",
+    "maps/interiors/apc_moviemed.dmm": "0916dccb1ef56de51fc79ba4a40babc303a856616e9fb8ba384ff51cb7c51b83",
+    "maps/interiors/apc_no_fpw.dmm": "71682d51a5774c5605ab34aa02d661bf776ef296334bd4744d0e799ebf11f121",
+    "maps/interiors/arc.dmm": "e6b9339eba80649b892a6cdf3025d3f3f2533ef78e3bf5337c3a03149c94bae2",
+    "maps/interiors/cop_car.dmm": "f54598638c2f5b2100b024a917431fd34dae7461e671c6f0800b3e2aacc8f02d",
+    "maps/interiors/tank.dmm": "fdae5d649be95c51f0579fcca95656621c7084b637a9f8f8e63cd9e17d1ac87a",
+    "maps/interiors/tank_command.dmm": "854ad33bbcc1e722fa3307004497caefba10fa252a14f27a73fa27d90923f51a",
+    "maps/interiors/uppapc.dmm": "9ef04e4331d266d98325c05a0e8936b04463ef76cb29c3106acdff1db93b12eb",
+    "maps/interiors/upptank.dmm": "99c36d91b896de178cbc3498ba9c7de68ab97156fca1a6956c5c3fbd89b10d2f",
+    "maps/interiors/upptank_command.dmm": "e17207a4b3c8041e69bfe67761a34156a5dec94435f0d08d46720766f460484c",
+    "maps/interiors/uppvan_medical.dmm": "17224e59acbab246f6c5bd4b36a30ef41ac02a5bb896d38c68fa4f3ff5f4beca",
+    "maps/map_files/BigRed/sprinkles/20.etatunnel_open.dmm": "20d11fffd3b167b82431e5fd99f62cc9c46d9493d703d967796a81aefeae155d",
+    "maps/map_files/BigRed/sprinkles/20.lz1entrance_v2.dmm": "b989a4e6a613a3059604d41b202b771d15821b673439a80b051b088a5b30040f",
+    "maps/map_files/BigRed/sprinkles/20.lz1north_mining.dmm": "91c35ecc966ccb37a4da2cfb09ee53eb0a27c687b642a596cecdb84a8b456824",
+    "maps/map_files/BigRed/sprinkles/25.chapel_cult.dmm": "a5d78ea1410c554a83da5251f515e91f7cdfc80b722015eae0162567344e9c22",
+    "maps/map_files/BigRed/sprinkles/25.lz1containers_scramble.dmm": "f2771daaed21da1a0743c58996b004657328149d97791ee9b3534245ddae460c",
+    "maps/map_files/BigRed/sprinkles/25.vault_v2.dmm": "b86bdb678b0298e726ae00888689cb135a7a83e29aa4bc6a2204e15ae86a3207",
+    "maps/map_files/BigRed/sprinkles/30.cargo_containers.dmm": "9d4fa2f18c0ed9119bb7ebee36698bfe7e2bdbfaae65beb80eb67ad6a1617c13",
+    "maps/map_files/BigRed/sprinkles/40.admin_pmc.dmm": "7bae9d8935ad677b64f8a631a8e5d371b17555bfc7bc2f38b23781f6ac35b1dd",
+    "maps/map_files/BigRed/sprinkles/40.dorms_party.dmm": "213b9668dc31d0edc45578983b43310eeba48f7e89d899bc681e3ee52246d8a7",
+    "maps/map_files/BigRed/sprinkles/40.viro_open.dmm": "4d184975d591c299fb67e4b199680625990e0fc843c1a47cf8e47f550bc69f6e",
+    "maps/map_files/BigRed/sprinkles/5.eta_carp.dmm": "66c67cf5e77a6aeb28569d8eaafbec58d0e03db6adeca2f65997e3a41d015a97",
+    "maps/map_files/BigRed/sprinkles/70.se-checkpoint.dmm": "4e5164e8ae739fb9211ddf7a989bc1ee0e35b06a21c247eaddffd5d5480346e3",
+    "maps/map_files/BigRed/standalone/medbay-passage.dmm": "fc58f23509fea390e9892dc61f56d924299fc892cdc3243d3a62ccd4a599c7d2",
+    "maps/map_files/CORSAT/standalone/lockdown_gammacontrol.dmm": "010e844c4d583d5c8ec1f6e5cb89dc42cb560942b62e412514866503b485c612",
+    "maps/map_files/CORSAT/standalone/lockdown_gammanorth.dmm": "58e90e5c44e23580483da0fd583a73eb8d99888c70d7cf032e9932fd2f777efc",
+    "maps/map_files/CORSAT/standalone/lockdown_highsec.dmm": "2164c08569ba2087c7994e47504c68de3a9b7edd9f80f200f225a3dd21ec6e58",
+    "maps/map_files/CORSAT/standalone/lockdown_thetacontrol.dmm": "00d32cef16db2bb60bb21b5296561b2462cf15d4afeb46f044590caf0e08087b",
+    "maps/map_files/CORSAT/standalone/lockdown_thetaeast.dmm": "7306cc107293729786990117e80a86b79cf84cbc1d32cb134912a721b1eb1b8c",
+    "maps/map_files/DesertDam/sprinkles/20+minievac_westresearch.dmm": "666ca7a61153ac97596209cd0fd56b3cdaa94845af93e2d2ec9c8b793497a366",
+    "maps/map_files/FOP_v3_Sciannex/sprinkles/10.podholder.dmm": "ab5dc51d0e17dc314ba1cf228967ed2e0c8e6d266df922476655d31ee7d4ff21",
+    "maps/map_files/FOP_v3_Sciannex/sprinkles/10.scavshipholder.dmm": "9571e2efcdf6fa975fbe6f77a637ea6b3f76f134b1e498622e57368f0e35d9a2",
+    "maps/map_files/FOP_v3_Sciannex/sprinkles/15.wardenofficedecorated.dmm": "a36468d1caba1cf665b7494f215c1d343c691593448bf8e7f42d7f94bb35c489",
+    "maps/map_files/FOP_v3_Sciannex/sprinkles/20.gamertime.dmm": "9e0c92f4f76cddff2c53c7fa0018882746b54109c79202a97ba03bc730b8e916",
+    "maps/map_files/FOP_v3_Sciannex/sprinkles/20.medicalhold.dmm": "dd08f6be783ac4cd83a23534990643a62f533af069c86de615303fc3206a6a87",
+    "maps/map_files/FOP_v3_Sciannex/sprinkles/25.researchprestine.dmm": "930258dc40aa88aaf607bb21b029c0615a8e1be9e8a38ae2664380f083913ed8",
+    "maps/map_files/FOP_v3_Sciannex/sprinkles/30.engineeroffice.dmm": "9f45b21b864379f29f327785a44429e9c216e2824f43b9ca707886e51ae5f838",
+    "maps/map_files/FOP_v3_Sciannex/sprinkles/30.repairpanelslz.dmm": "12425e762ed67d6349f9c53c3d18e734d70443aac8f05c7f42a07f799902f9e4",
+    "maps/map_files/Ice_Colony_v3/lz2-south-caves/20.destroyed_lz2-south-caves.dmm": "0d4f64a505716516bbf8b49b3232f2e5b9af15dd96c709826c81f96d9c152bfc",
+    "maps/map_files/Ice_Colony_v3/lz2-south-caves/30.builtup_lz2-south-caves.dmm": "555ecca9f88f3de1e6976fa77cea51e0b5876a5beb142af0677e3885a887b7db",
+    "maps/map_files/Ice_Colony_v3/lz2-variations/east-gate/closed.dmm": "236165c5b751a50cb3678da55d56b08046b6dd0218e3f1b94c5e06cc7d1236fe",
+    "maps/map_files/Ice_Colony_v3/lz2-variations/south-gate/closed.dmm": "fa8db667e9e985a9833f6e84f94082f18d50040c29241bfb3e701fd7765179c4",
+    "maps/map_files/Ice_Colony_v3/lz2-variations/southeast-gate/closed.dmm": "57b80ae64760ecc861e4da4a65e326e1dcfcc5261d0bacae064cdacdd5bbf6fc",
+    "maps/map_files/Ice_Colony_v3/sprinkles/33.labs-entrance.dmm": "9f208b861228cf7580af99f3cb7cd9d767a71618decdf1caf51b098e9cfa0582",
+    "maps/map_files/Kutjevo/sprinkles/35.communications.dmm": "6a04afb8b667792a49512e9bb5de44f01ebc7f6a38032c341579897678ca1528",
+    "maps/map_files/Kutjevo/sprinkles/5+trappedmonke_andclown.dmm": "aa1083bea89e4e7e98d37086032d9a5dfdd3f1d64fede34a3d643d2cbe262480",
+    "maps/map_files/LV624/armory/10.cheese.dmm": "8ff087109271363d19b5d833e4aa11ecf642bcc9e44c356881efee65fca143df",
+    "maps/map_files/LV624/armory/10.extra.dmm": "d8f721e3fb9ae3da7d1d241ac5bc2748afc603d4df882a4c2ab06856837cdc07",
+    "maps/map_files/LV624/armory/10.looted.dmm": "5061d8af754f2aee29f4340b49c42ad41b57afc02706487044fbce464180f731",
+    "maps/map_files/LV624/gym/20.pool.dmm": "fcf94c519df7a3b9fc447b10453f92e8e6ac27014c68f1e539d2051475b4724b",
+    "maps/map_files/LV624/gym/30.alternate.dmm": "eba442be234bc3966a3957bf59deda51083d5ab05a544acdb905de2aed1e309f",
+    "maps/map_files/LV624/hydro/30.destroyed.dmm": "5201790d5e3179ee480c68b10c497d4985b1694c5d7a1b640a2e34ec18ada0e5",
+    "maps/map_files/LV624/medbay/10.destroyed.dmm": "f145aade116048a54269a857d503440fb1d2f5810f56278b9d107af1e5e032ba",
+    "maps/map_files/LV624/medbay/30.larvasurgery.dmm": "6dac23b62fbe82aec0f5d4e2e84ae29b772193a6ada406cb728c2da826371154",
+    "maps/map_files/LV624/science/10.yautja.dmm": "de35a559ce368be869425dc435ab94934afbd84f60c82236db7d86c9b133c1b4",
+    "maps/map_files/LV624/science/40.fullylocked.dmm": "40be5e904e9dd601495e4158acad92c8268f93e4555aa9e8195b24acd2d644dc",
+    "maps/map_files/LV624/sprinkles/20.lz-containers_swapped.dmm": "079c50e1c6bf2e31e08fc56fd83f47073865a344ca98baa5dac1232b1281f9e0",
+    "maps/map_files/LV624/standalone/sandtemple-jungle.dmm": "b67c68f64953a7ef16c2f948b32ca04853ec0ac779005ac8a7dd6c13ff738f95",
+    "maps/map_files/LV624/storage-crashed-ship/10.armorystorage.dmm": "0cfb7a72977be68022cb3abb2376d2169a0235cb045aa96f8d9631583eb540f4",
+    "maps/map_files/LV624/storage-crashed-ship/10.valuables.dmm": "68187cbc782d46db11408bbccf0dca649d6a91477b38c8f9a6ffef6e3f2bf283",
+    "maps/map_files/golden_arrow/briefing/10.missingchairs.dmm": "559978185b858f443a83707a84e65efc3e4336da4debd30e7bb6130fafa3634e",
+    "maps/map_files/golden_arrow/dorms/10.party.dmm": "bd56b878ae8a8f391ae4045b52d6d3f017bda927126579a3a73620147b2463c2",
+    "maps/map_files/golden_arrow/medbay/10.visceracleanupdetail.dmm": "b66b27efeeb958e2602b70559a03c8c7efc12535e2680adaaa3ba5a7568a2813",
+    "maps/map_files/golden_arrow/medbay/10.wrongtile.dmm": "3e3262b616e4ac11c2b868f2e078da748c1f19f05a2461db8cb4366580f1f3ec",
+    "maps/map_files/golden_arrow/storage_northeast/10.tank.dmm": "db7c6ee291f2d2fae38536da55d0f96a748257375ac62f62cb5df1db24ae80fa",
+    "maps/shuttles/dropship_alamo.dmm": "f8b3edc67970a90b42c4deb99d22a9f4bf754665af15fc6e72bfc289045fd352",
+    "maps/shuttles/dropship_cyclone.dmm": "1ecf32a65f5a90d808ea14efed75c8f3cbab773741a1f7ab8618f100016305b6",
+    "maps/shuttles/dropship_gibraltar.dmm": "19c1f64500fd4fae9ac43e377f687cbbf21afd82e87d72f45cdff2fdf9229528",
+    "maps/shuttles/dropship_midway.dmm": "bb96136059117b0e769a74cd658c7b974b3503ad7156a7cf2258da959482f953",
+    "maps/shuttles/dropship_normandy.dmm": "68e37c5c06b0a2187a3fa7abdd28c90f920610bbcd94ce9e56b991889eced59f",
+    "maps/shuttles/dropship_pmc.dmm": "2c9df18fa3a2d67da21995eb534e89c1bf3781a30e5e697496d0bd3474bb64f8",
+    "maps/shuttles/dropship_resolute.dmm": "841c9041fe66400dd7b7469115a69840a32a72cbc11330b82cbba8cd83d21f4d",
+    "maps/shuttles/dropship_tornado.dmm": "b391be00c0536d53875efd97b2d12d9edcad8ab2a2076d93d6d12e4fe666f053",
+    "maps/shuttles/dropship_tripoli.dmm": "b7a317ad6bf4d6f351b7216112ecde10ea0399631af6b66a5b026272df28974a",
+    "maps/shuttles/dropship_typhoon.dmm": "8bb571bcb607a799238f5d232d13793f123b8675f2208e521888a3fe05ed45a8",
+    "maps/shuttles/dropship_upp.dmm": "5b50b9175e344244567598aaf0af71059d9a64ffef98ac4ccebf45d21c717d62",
+    "maps/shuttles/escape_shuttle_e.dmm": "4af4f1a22491beccd6d454322f1f173ff6823a3361b29043fb0080611471ed88",
+    "maps/shuttles/escape_shuttle_e_cl.dmm": "2f959a22dcc92866c2e9ae14bb0dcfd44848a59eb3414d56a746bfeade4cc432",
+    "maps/shuttles/escape_shuttle_n.dmm": "ef35839c0d9ef5fdf0b52031abd00f430777aab17ab88dca4ee20c603bb3544b",
+    "maps/shuttles/escape_shuttle_s.dmm": "da016ba2321679080f89a1a80425ed457a0c789689b44d2eb53d6f2d16b34a80",
+    "maps/shuttles/escape_shuttle_w.dmm": "66000d1c979195356485d1d2d0fd51455d77abb50382d1da764ef98859fabe0f",
+    "maps/shuttles/garrow_cargo_elevator.dmm": "e8d79250ee6a65ec55b514da76b18f3ded9d2479f0338bbf18e404a08aa13b07",
+    "maps/shuttles/ice_classic_shuttle.dmm": "e58fd8547cadfbb7540f9bec11f3c1842570399d69301a7058623204f7466ae1",
+    "maps/shuttles/lifeboat-compact.dmm": "22760f6337bd5223b254176f68d722a783c1bd324f087116081a8fdb94b36d05",
+    "maps/shuttles/lifeboat-port.dmm": "8b03cfb88a8351a616c922de86972fe876a7d856a70608a9fb1a475930059196",
+    "maps/shuttles/lifeboat-starboard.dmm": "1117fd6ed444a26456268c5a5f47fa8b7e0a3b3d6f83b5c10707a007feb82e7a",
+    "maps/tutorial/tutorial_reqs_line.dmm": "f8e8f02a431a5e72ebb9049165e2d711760d1217f3f6f453dbefedf2023cff33"
+  },
+  "staticAuditSuccess": true,
+  "staticAuditOutput": "audit-batch329-final.json",
+  "cumulativeAuditedSourceFiles": 1865,
+  "independentInvariants": [
+    {
+      "file": "group329a-invariants.json",
+      "result": {
+        "batchId": "batch329",
+        "files": [
+          "code/game/gamemodes/colonialmarines/colonialmarines.dm",
+          "code/controllers/mc/master.dm",
+          "code/game/machinery/doors/multi_tile.dm",
+          "code/game/machinery/air_alarm.dm",
+          "code/modules/mob/living/simple_animal/parrot.dm"
+        ],
+        "checks": {
+          "code/game/gamemodes/colonialmarines/colonialmarines.dm:native_commands": true,
+          "code/game/gamemodes/colonialmarines/colonialmarines.dm:resource_states": true,
+          "code/controllers/mc/master.dm:native_commands": true,
+          "code/controllers/mc/master.dm:resource_states": true,
+          "code/game/machinery/doors/multi_tile.dm:native_commands": true,
+          "code/game/machinery/doors/multi_tile.dm:resource_states": true,
+          "code/game/machinery/air_alarm.dm:native_commands": true,
+          "code/game/machinery/air_alarm.dm:resource_states": true,
+          "code/modules/mob/living/simple_animal/parrot.dm:native_commands": true,
+          "code/modules/mob/living/simple_animal/parrot.dm:resource_states": true,
+          "alarm_all_href_targets_unchanged": true,
+          "alarm_signal_commands_unchanged": true,
+          "alarm_threshold_keys_and_limits_unchanged": true,
+          "alarm_wire_color_ids_unchanged": true,
+          "parrot_emote_command_calls_unchanged": true,
+          "parrot_radio_channel_and_state_ids_unchanged": true,
+          "master_diagnostic_logging_unchanged": true,
+          "master_original_log_message_values_unchanged": true,
+          "mode_protocol_and_integration_keys_unchanged": true
+        },
+        "problems": [],
+        "scopeNotes": {
+          "mode": "玩家广播、开场字幕及生成弹头显示名全部审读；地标、模式配置、后台统计/webhook集成字段和管理员日志保留。",
+          "master": "世界广播翻译并提供子系统名称显示映射；内部元数据和诊断日志不改。",
+          "multiTile": "玩家提示、名称和取证描述已全文审读；破坏来源键、门控索引和资源保持。",
+          "alarm": "全文审读全部HTML页面、线路描述、模式说明及阈值提示；通信指令、阈值索引、颜色ID及数值保持。",
+          "parrot": "全文审读名字、固定对白和玩家提示；原生指令已有statbrowser中文标签。emote首参数为查表命令，原有不产生自由文本的调用保持。"
+        },
+        "sourceHashes": {
+          "code/game/gamemodes/colonialmarines/colonialmarines.dm": "c57766ed44bb60fa49fc37af99ac51db7bd3a67c845cd72d3a3a412980aee262",
+          "code/controllers/mc/master.dm": "5ba8f0244e3113367a6d52795c0ccb8719a552d03c6510c85f4bfa71795e3681",
+          "code/game/machinery/doors/multi_tile.dm": "9c458fcbb46f433f1254c4d7694e10fd63004513cb783b8df1ecc3a516404f52",
+          "code/game/machinery/air_alarm.dm": "9a6d92a4e36aec1d5ed0aba2a1fd1f04e42ed27d2e57aa4b0105d55988eeeaa5",
+          "code/modules/mob/living/simple_animal/parrot.dm": "d35666605bad53c8f072ad1d7c69dcabd158e44d6cc850cdc9515df6c3e22aa7"
+        },
+        "testsRun": false,
+        "batchCompilePending": true
+      }
+    },
+    {
+      "file": "phone329-invariants.json",
+      "result": {
+        "batchId": "batch329",
+        "files": [
+          "code/datums/components/phone.dm",
+          "tgui/packages/tgui/interfaces/PhoneMenu.jsx"
+        ],
+        "checks": {
+          "original_id_category_caller_and_state_assignments_unchanged": true,
+          "original_logs_and_crash_diagnostics_unchanged": true,
+          "signals_timers_and_sounds_unchanged": true,
+          "original_control_proc:/datum/component/phone/proc/force_unique_ids(": true,
+          "original_control_proc:/datum/component/phone/proc/get_phones(": true,
+          "original_control_proc:/datum/component/phone/proc/call_phone(": true,
+          "original_control_proc:/datum/component/phone/proc/phone_available(": true,
+          "original_control_proc:/datum/component/phone/proc/phone_menu_usable(": true,
+          "original_control_proc:/datum/component/phone/proc/reset_call(": true,
+          "original_control_proc:/datum/component/phone/ui_act(": true,
+          "original_control_proc:/datum/component/phone/virtual/ui_act(": true,
+          "original_control_proc:/datum/component/phone/virtual/phone_available(": true,
+          "phone_helper_has_no_protocol_state_mutations": true,
+          "raw_frontend_actions_unchanged": true,
+          "frontend_selection_keys_and_raw_number_choices_unchanged": true,
+          "ghost_follow_link_targets_unchanged": true,
+          "player_notifications_all_use_display_names": true,
+          "radio_voice_names_use_display_names": true,
+          "no_english_speech_verb_in_phone_output": true,
+          "mobile_name_cache_uses_original_player_names": true,
+          "historical_caller_display_snapshot_present": true,
+          "duplicate_suffix_preserved": true,
+          "chinese_and_original_names_searchable": true,
+          "complete_label_dictionary:categoryLabels": true,
+          "complete_label_dictionary:ids": true,
+          "complete_label_dictionary:roles": true,
+          "complete_label_dictionary:squads": true,
+          "fixed_source_catalog_covered": true,
+          "positional_and_macro_categories_covered": true
+        },
+        "problems": [],
+        "coverage": {
+          "fixedIds": 241,
+          "categories": 36,
+          "roles": 263,
+          "squads": 34
+        },
+        "scopeNotes": [
+          "电话组件和PhoneMenu已全文审读；原始号码、去重、网络、状态、拨号与日志保持。",
+          "移动电话仅新增显示缓存，姓名和自定义物品名称由原始来源保留；历史来电另保存显示快照。",
+          "所有普通/虚拟电话的通知、幽灵消息、语音显示名、窗口标题和目录均显示已知中文标签。"
+        ],
+        "sourceHashes": {
+          "code/datums/components/phone.dm": "1760cdcb5bee15b24c3c36fd2afe4ace98f8ca8207fa94aef15327f9fd89540f",
+          "tgui/packages/tgui/interfaces/PhoneMenu.jsx": "e620fcabdea4fe4c87e7b77be54d221619a34f54622d0663b917a78eb76c66a0"
+        },
+        "testsRun": false,
+        "gameLaunched": false,
+        "batchCompilePending": true
+      }
+    },
+    {
+      "file": "maps329a-invariants.json",
+      "result": {
+        "batchId": "batch329",
+        "files": [
+          {
+            "file": "maps/map_files/Kutjevo/sprinkles/5+trappedmonke_andclown.dmm",
+            "size": [
+              1,
+              1,
+              1
+            ],
+            "gridCells": 1,
+            "dictionaryEntries": 1,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "aa1083bea89e4e7e98d37086032d9a5dfdd3f1d64fede34a3d643d2cbe262480"
+          },
+          {
+            "file": "maps/map_files/DesertDam/sprinkles/20+minievac_westresearch.dmm",
+            "size": [
+              11,
+              11,
+              1
+            ],
+            "gridCells": 121,
+            "dictionaryEntries": 8,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "666ca7a61153ac97596209cd0fd56b3cdaa94845af93e2d2ec9c8b793497a366"
+          },
+          {
+            "file": "maps/shuttles/ice_classic_shuttle.dmm",
+            "size": [
+              8,
+              5,
+              1
+            ],
+            "gridCells": 40,
+            "dictionaryEntries": 13,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "e58fd8547cadfbb7540f9bec11f3c1842570399d69301a7058623204f7466ae1"
+          },
+          {
+            "file": "maps/tutorial/tutorial_reqs_line.dmm",
+            "size": [
+              8,
+              11,
+              1
+            ],
+            "gridCells": 88,
+            "dictionaryEntries": 13,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "f8e8f02a431a5e72ebb9049165e2d711760d1217f3f6f453dbefedf2023cff33"
+          },
+          {
+            "file": "maps/map_files/CORSAT/standalone/lockdown_gammacontrol.dmm",
+            "size": [
+              3,
+              6,
+              1
+            ],
+            "gridCells": 18,
+            "dictionaryEntries": 14,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "010e844c4d583d5c8ec1f6e5cb89dc42cb560942b62e412514866503b485c612"
+          },
+          {
+            "file": "maps/map_files/CORSAT/standalone/lockdown_thetaeast.dmm",
+            "size": [
+              3,
+              6,
+              1
+            ],
+            "gridCells": 18,
+            "dictionaryEntries": 14,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "7306cc107293729786990117e80a86b79cf84cbc1d32cb134912a721b1eb1b8c"
+          },
+          {
+            "file": "maps/map_files/CORSAT/standalone/lockdown_thetacontrol.dmm",
+            "size": [
+              6,
+              3,
+              1
+            ],
+            "gridCells": 18,
+            "dictionaryEntries": 14,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "00d32cef16db2bb60bb21b5296561b2462cf15d4afeb46f044590caf0e08087b"
+          },
+          {
+            "file": "maps/map_files/CORSAT/standalone/lockdown_gammanorth.dmm",
+            "size": [
+              6,
+              3,
+              1
+            ],
+            "gridCells": 18,
+            "dictionaryEntries": 14,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "58e90e5c44e23580483da0fd583a73eb8d99888c70d7cf032e9932fd2f777efc"
+          }
+        ],
+        "problems": [],
+        "testsRun": false,
+        "gameLaunched": false,
+        "batchCompilePending": true,
+        "processor": "repository tools/mapmerge2/merge_map with bidict==0.22.0 from tools/requirements.txt"
+      }
+    },
+    {
+      "file": "maps329b-invariants.json",
+      "result": {
+        "batchId": "batch329",
+        "files": [
+          {
+            "file": "maps/shuttles/escape_shuttle_n.dmm",
+            "size": [
+              5,
+              4,
+              1
+            ],
+            "gridCells": 20,
+            "dictionaryEntries": 15,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "ef35839c0d9ef5fdf0b52031abd00f430777aab17ab88dca4ee20c603bb3544b"
+          },
+          {
+            "file": "maps/shuttles/escape_shuttle_w.dmm",
+            "size": [
+              4,
+              5,
+              1
+            ],
+            "gridCells": 20,
+            "dictionaryEntries": 16,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "66000d1c979195356485d1d2d0fd51455d77abb50382d1da764ef98859fabe0f"
+          },
+          {
+            "file": "maps/shuttles/escape_shuttle_s.dmm",
+            "size": [
+              5,
+              4,
+              1
+            ],
+            "gridCells": 20,
+            "dictionaryEntries": 16,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "da016ba2321679080f89a1a80425ed457a0c789689b44d2eb53d6f2d16b34a80"
+          },
+          {
+            "file": "maps/shuttles/escape_shuttle_e.dmm",
+            "size": [
+              4,
+              5,
+              1
+            ],
+            "gridCells": 20,
+            "dictionaryEntries": 17,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "4af4f1a22491beccd6d454322f1f173ff6823a3361b29043fb0080611471ed88"
+          },
+          {
+            "file": "maps/shuttles/escape_shuttle_e_cl.dmm",
+            "size": [
+              4,
+              5,
+              1
+            ],
+            "gridCells": 20,
+            "dictionaryEntries": 17,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "2f959a22dcc92866c2e9ae14bb0dcfd44848a59eb3414d56a746bfeade4cc432"
+          }
+        ],
+        "problems": [],
+        "testsRun": false,
+        "gameLaunched": false,
+        "batchCompilePending": true,
+        "processor": "repository tools/mapmerge2/merge_map with bidict==0.22.0 from tools/requirements.txt"
+      }
+    },
+    {
+      "file": "maps329c-invariants.json",
+      "result": {
+        "batchId": "batch329",
+        "files": [
+          {
+            "file": "maps/map_files/BigRed/standalone/medbay-passage.dmm",
+            "size": [
+              6,
+              6,
+              1
+            ],
+            "gridCells": 36,
+            "dictionaryEntries": 15,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "fc58f23509fea390e9892dc61f56d924299fc892cdc3243d3a62ccd4a599c7d2"
+          },
+          {
+            "file": "maps/shuttles/garrow_cargo_elevator.dmm",
+            "size": [
+              8,
+              6,
+              1
+            ],
+            "gridCells": 48,
+            "dictionaryEntries": 18,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "e8d79250ee6a65ec55b514da76b18f3ded9d2479f0338bbf18e404a08aa13b07"
+          },
+          {
+            "file": "maps/map_files/LV624/sprinkles/20.lz-containers_swapped.dmm",
+            "size": [
+              6,
+              15,
+              1
+            ],
+            "gridCells": 90,
+            "dictionaryEntries": 21,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "079c50e1c6bf2e31e08fc56fd83f47073865a344ca98baa5dac1232b1281f9e0"
+          },
+          {
+            "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/15.wardenofficedecorated.dmm",
+            "size": [
+              9,
+              7,
+              1
+            ],
+            "gridCells": 63,
+            "dictionaryEntries": 22,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "a36468d1caba1cf665b7494f215c1d343c691593448bf8e7f42d7f94bb35c489"
+          },
+          {
+            "file": "maps/map_files/Ice_Colony_v3/lz2-variations/south-gate/closed.dmm",
+            "size": [
+              8,
+              8,
+              1
+            ],
+            "gridCells": 64,
+            "dictionaryEntries": 20,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "fa8db667e9e985a9833f6e84f94082f18d50040c29241bfb3e701fd7765179c4"
+          },
+          {
+            "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/10.podholder.dmm",
+            "size": [
+              4,
+              5,
+              1
+            ],
+            "gridCells": 20,
+            "dictionaryEntries": 17,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "ab5dc51d0e17dc314ba1cf228967ed2e0c8e6d266df922476655d31ee7d4ff21"
+          },
+          {
+            "file": "maps/map_files/Ice_Colony_v3/lz2-variations/east-gate/closed.dmm",
+            "size": [
+              8,
+              8,
+              1
+            ],
+            "gridCells": 64,
+            "dictionaryEntries": 21,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "236165c5b751a50cb3678da55d56b08046b6dd0218e3f1b94c5e06cc7d1236fe"
+          },
+          {
+            "file": "maps/map_files/LV624/armory/10.looted.dmm",
+            "size": [
+              7,
+              10,
+              1
+            ],
+            "gridCells": 70,
+            "dictionaryEntries": 27,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "5061d8af754f2aee29f4340b49c42ad41b57afc02706487044fbce464180f731"
+          },
+          {
+            "file": "maps/map_files/Ice_Colony_v3/lz2-variations/southeast-gate/closed.dmm",
+            "size": [
+              8,
+              8,
+              1
+            ],
+            "gridCells": 64,
+            "dictionaryEntries": 25,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "57b80ae64760ecc861e4da4a65e326e1dcfcc5261d0bacae064cdacdd5bbf6fc"
+          },
+          {
+            "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/30.engineeroffice.dmm",
+            "size": [
+              9,
+              7,
+              1
+            ],
+            "gridCells": 63,
+            "dictionaryEntries": 20,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "9f45b21b864379f29f327785a44429e9c216e2824f43b9ca707886e51ae5f838"
+          },
+          {
+            "file": "maps/map_files/BigRed/sprinkles/20.lz1north_mining.dmm",
+            "size": [
+              10,
+              10,
+              1
+            ],
+            "gridCells": 100,
+            "dictionaryEntries": 24,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "91c35ecc966ccb37a4da2cfb09ee53eb0a27c687b642a596cecdb84a8b456824"
+          },
+          {
+            "file": "maps/map_files/BigRed/sprinkles/5.eta_carp.dmm",
+            "size": [
+              15,
+              13,
+              1
+            ],
+            "gridCells": 195,
+            "dictionaryEntries": 37,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "66c67cf5e77a6aeb28569d8eaafbec58d0e03db6adeca2f65997e3a41d015a97"
+          },
+          {
+            "file": "maps/map_files/LV624/armory/10.extra.dmm",
+            "size": [
+              7,
+              10,
+              1
+            ],
+            "gridCells": 70,
+            "dictionaryEntries": 27,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "d8f721e3fb9ae3da7d1d241ac5bc2748afc603d4df882a4c2ab06856837cdc07"
+          },
+          {
+            "file": "maps/map_files/LV624/armory/10.cheese.dmm",
+            "size": [
+              7,
+              10,
+              1
+            ],
+            "gridCells": 70,
+            "dictionaryEntries": 28,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "8ff087109271363d19b5d833e4aa11ecf642bcc9e44c356881efee65fca143df"
+          },
+          {
+            "file": "maps/map_files/LV624/storage-crashed-ship/10.valuables.dmm",
+            "size": [
+              11,
+              8,
+              1
+            ],
+            "gridCells": 88,
+            "dictionaryEntries": 25,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "68187cbc782d46db11408bbccf0dca649d6a91477b38c8f9a6ffef6e3f2bf283"
+          },
+          {
+            "file": "maps/map_files/golden_arrow/storage_northeast/10.tank.dmm",
+            "size": [
+              7,
+              6,
+              1
+            ],
+            "gridCells": 42,
+            "dictionaryEntries": 25,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "db7c6ee291f2d2fae38536da55d0f96a748257375ac62f62cb5df1db24ae80fa"
+          },
+          {
+            "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/30.repairpanelslz.dmm",
+            "size": [
+              13,
+              9,
+              1
+            ],
+            "gridCells": 117,
+            "dictionaryEntries": 47,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "12425e762ed67d6349f9c53c3d18e734d70443aac8f05c7f42a07f799902f9e4"
+          }
+        ],
+        "problems": [],
+        "testsRun": false,
+        "gameLaunched": false,
+        "batchCompilePending": true,
+        "processor": "repository tools/mapmerge2/merge_map with bidict==0.22.0 from tools/requirements.txt"
+      }
+    },
+    {
+      "file": "maps329d-invariants.json",
+      "result": {
+        "batchId": "batch329",
+        "files": [
+          {
+            "file": "maps/map_files/Ice_Colony_v3/lz2-south-caves/20.destroyed_lz2-south-caves.dmm",
+            "size": [
+              13,
+              13,
+              1
+            ],
+            "gridCells": 169,
+            "dictionaryEntries": 36,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "0d4f64a505716516bbf8b49b3232f2e5b9af15dd96c709826c81f96d9c152bfc"
+          },
+          {
+            "file": "maps/map_files/Ice_Colony_v3/lz2-south-caves/30.builtup_lz2-south-caves.dmm",
+            "size": [
+              13,
+              13,
+              1
+            ],
+            "gridCells": 169,
+            "dictionaryEntries": 41,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "555ecca9f88f3de1e6976fa77cea51e0b5876a5beb142af0677e3885a887b7db"
+          },
+          {
+            "file": "maps/map_files/LV624/storage-crashed-ship/10.armorystorage.dmm",
+            "size": [
+              11,
+              8,
+              1
+            ],
+            "gridCells": 88,
+            "dictionaryEntries": 27,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "0cfb7a72977be68022cb3abb2376d2169a0235cb045aa96f8d9631583eb540f4"
+          },
+          {
+            "file": "maps/map_files/CORSAT/standalone/lockdown_highsec.dmm",
+            "size": [
+              14,
+              17,
+              1
+            ],
+            "gridCells": 238,
+            "dictionaryEntries": 47,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "2164c08569ba2087c7994e47504c68de3a9b7edd9f80f200f225a3dd21ec6e58"
+          },
+          {
+            "file": "maps/map_files/BigRed/sprinkles/25.chapel_cult.dmm",
+            "size": [
+              17,
+              9,
+              1
+            ],
+            "gridCells": 153,
+            "dictionaryEntries": 55,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "a5d78ea1410c554a83da5251f515e91f7cdfc80b722015eae0162567344e9c22"
+          },
+          {
+            "file": "maps/map_files/BigRed/sprinkles/25.lz1containers_scramble.dmm",
+            "size": [
+              17,
+              17,
+              1
+            ],
+            "gridCells": 289,
+            "dictionaryEntries": 54,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "f2771daaed21da1a0743c58996b004657328149d97791ee9b3534245ddae460c"
+          },
+          {
+            "file": "maps/map_files/BigRed/sprinkles/25.vault_v2.dmm",
+            "size": [
+              14,
+              14,
+              1
+            ],
+            "gridCells": 196,
+            "dictionaryEntries": 54,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "b86bdb678b0298e726ae00888689cb135a7a83e29aa4bc6a2204e15ae86a3207"
+          },
+          {
+            "file": "maps/map_files/LV624/gym/20.pool.dmm",
+            "size": [
+              15,
+              15,
+              1
+            ],
+            "gridCells": 225,
+            "dictionaryEntries": 61,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "fcf94c519df7a3b9fc447b10453f92e8e6ac27014c68f1e539d2051475b4724b"
+          },
+          {
+            "file": "maps/map_files/LV624/standalone/sandtemple-jungle.dmm",
+            "size": [
+              15,
+              14,
+              1
+            ],
+            "gridCells": 210,
+            "dictionaryEntries": 62,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "b67c68f64953a7ef16c2f948b32ca04853ec0ac779005ac8a7dd6c13ff738f95"
+          },
+          {
+            "file": "maps/map_files/Kutjevo/sprinkles/35.communications.dmm",
+            "size": [
+              8,
+              12,
+              1
+            ],
+            "gridCells": 96,
+            "dictionaryEntries": 63,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "6a04afb8b667792a49512e9bb5de44f01ebc7f6a38032c341579897678ca1528"
+          },
+          {
+            "file": "maps/map_files/BigRed/sprinkles/40.dorms_party.dmm",
+            "size": [
+              19,
+              7,
+              1
+            ],
+            "gridCells": 133,
+            "dictionaryEntries": 66,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "213b9668dc31d0edc45578983b43310eeba48f7e89d899bc681e3ee52246d8a7"
+          },
+          {
+            "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/20.gamertime.dmm",
+            "size": [
+              12,
+              13,
+              1
+            ],
+            "gridCells": 156,
+            "dictionaryEntries": 68,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "9e0c92f4f76cddff2c53c7fa0018882746b54109c79202a97ba03bc730b8e916"
+          },
+          {
+            "file": "maps/shuttles/lifeboat-compact.dmm",
+            "size": [
+              20,
+              7,
+              1
+            ],
+            "gridCells": 140,
+            "dictionaryEntries": 78,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "22760f6337bd5223b254176f68d722a783c1bd324f087116081a8fdb94b36d05"
+          },
+          {
+            "file": "maps/shuttles/lifeboat-port.dmm",
+            "size": [
+              27,
+              7,
+              1
+            ],
+            "gridCells": 189,
+            "dictionaryEntries": 87,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "8b03cfb88a8351a616c922de86972fe876a7d856a70608a9fb1a475930059196"
+          },
+          {
+            "file": "maps/shuttles/lifeboat-starboard.dmm",
+            "size": [
+              27,
+              7,
+              1
+            ],
+            "gridCells": 189,
+            "dictionaryEntries": 87,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "1117fd6ed444a26456268c5a5f47fa8b7e0a3b3d6f83b5c10707a007feb82e7a"
+          }
+        ],
+        "problems": [],
+        "testsRun": false,
+        "gameLaunched": false,
+        "batchCompilePending": true,
+        "processor": "repository tools/mapmerge2/merge_map with bidict==0.22.0 from tools/requirements.txt"
+      }
+    },
+    {
+      "file": "maps329e-invariants.json",
+      "result": {
+        "batchId": "batch329",
+        "files": [
+          {
+            "file": "maps/interiors/arc.dmm",
+            "size": [
+              5,
+              4,
+              1
+            ],
+            "gridCells": 20,
+            "dictionaryEntries": 8,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "e6b9339eba80649b892a6cdf3025d3f3f2533ef78e3bf5337c3a03149c94bae2"
+          },
+          {
+            "file": "maps/interiors/upptank.dmm",
+            "size": [
+              6,
+              5,
+              1
+            ],
+            "gridCells": 30,
+            "dictionaryEntries": 9,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "99c36d91b896de178cbc3498ba9c7de68ab97156fca1a6956c5c3fbd89b10d2f"
+          },
+          {
+            "file": "maps/interiors/upptank_command.dmm",
+            "size": [
+              6,
+              5,
+              1
+            ],
+            "gridCells": 30,
+            "dictionaryEntries": 10,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "e17207a4b3c8041e69bfe67761a34156a5dec94435f0d08d46720766f460484c"
+          },
+          {
+            "file": "maps/map_files/LV624/science/40.fullylocked.dmm",
+            "size": [
+              15,
+              15,
+              1
+            ],
+            "gridCells": 225,
+            "dictionaryEntries": 57,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "40be5e904e9dd601495e4158acad92c8268f93e4555aa9e8195b24acd2d644dc"
+          },
+          {
+            "file": "maps/map_files/BigRed/sprinkles/70.se-checkpoint.dmm",
+            "size": [
+              12,
+              14,
+              1
+            ],
+            "gridCells": 168,
+            "dictionaryEntries": 67,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "4e5164e8ae739fb9211ddf7a989bc1ee0e35b06a21c247eaddffd5d5480346e3"
+          }
+        ],
+        "problems": [],
+        "testsRun": false,
+        "gameLaunched": false,
+        "batchCompilePending": true,
+        "processor": "repository tools/mapmerge2/merge_map with bidict==0.22.0 from tools/requirements.txt"
+      }
+    },
+    {
+      "file": "maps329f-invariants.json",
+      "result": {
+        "batchId": "batch329",
+        "files": [
+          {
+            "file": "maps/interiors/tank.dmm",
+            "size": [
+              5,
+              5,
+              1
+            ],
+            "gridCells": 25,
+            "dictionaryEntries": 20,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "fdae5d649be95c51f0579fcca95656621c7084b637a9f8f8e63cd9e17d1ac87a"
+          },
+          {
+            "file": "maps/interiors/uppvan_medical.dmm",
+            "size": [
+              6,
+              5,
+              1
+            ],
+            "gridCells": 30,
+            "dictionaryEntries": 11,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "17224e59acbab246f6c5bd4b36a30ef41ac02a5bb896d38c68fa4f3ff5f4beca"
+          },
+          {
+            "file": "maps/interiors/tank_command.dmm",
+            "size": [
+              6,
+              5,
+              1
+            ],
+            "gridCells": 30,
+            "dictionaryEntries": 23,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "854ad33bbcc1e722fa3307004497caefba10fa252a14f27a73fa27d90923f51a"
+          },
+          {
+            "file": "maps/interiors/cop_car.dmm",
+            "size": [
+              6,
+              5,
+              1
+            ],
+            "gridCells": 30,
+            "dictionaryEntries": 19,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "f54598638c2f5b2100b024a917431fd34dae7461e671c6f0800b3e2aacc8f02d"
+          },
+          {
+            "file": "maps/interiors/aev.dmm",
+            "size": [
+              6,
+              5,
+              1
+            ],
+            "gridCells": 30,
+            "dictionaryEntries": 24,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "9c7a325d0d1ae9cb806d7eac8750460d495aecf39ae29b837158572fb69afc60"
+          },
+          {
+            "file": "maps/interiors/ambulance.dmm",
+            "size": [
+              6,
+              5,
+              1
+            ],
+            "gridCells": 30,
+            "dictionaryEntries": 19,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "60d08a50d743f34c5f05eca47905f95720e1c978493ad2886431c6ab14625fcd"
+          },
+          {
+            "file": "maps/interiors/uppapc.dmm",
+            "size": [
+              9,
+              5,
+              1
+            ],
+            "gridCells": 45,
+            "dictionaryEntries": 22,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "9ef04e4331d266d98325c05a0e8936b04463ef76cb29c3106acdff1db93b12eb"
+          },
+          {
+            "file": "maps/interiors/apc_command.dmm",
+            "size": [
+              8,
+              7,
+              1
+            ],
+            "gridCells": 56,
+            "dictionaryEntries": 50,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "b3c854eae7e8b1774ca0cd607b8e9ff14ef8611d6a42fd07c218f0e7812d1848"
+          },
+          {
+            "file": "maps/interiors/apc_aa.dmm",
+            "size": [
+              9,
+              6,
+              1
+            ],
+            "gridCells": 54,
+            "dictionaryEntries": 43,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "4e98529fce9e4e6b744ad7857da919f3bdc9761370d5a1971adca1109005342c"
+          },
+          {
+            "file": "maps/interiors/apc_no_fpw.dmm",
+            "size": [
+              8,
+              7,
+              1
+            ],
+            "gridCells": 56,
+            "dictionaryEntries": 50,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "71682d51a5774c5605ab34aa02d661bf776ef296334bd4744d0e799ebf11f121"
+          },
+          {
+            "file": "maps/interiors/apc_med.dmm",
+            "size": [
+              8,
+              7,
+              1
+            ],
+            "gridCells": 56,
+            "dictionaryEntries": 49,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "03a8b23a7c11bcb271f6866a6ba7f7225a99f5230b0c84b0c978e1038a08c5ba"
+          },
+          {
+            "file": "maps/interiors/apc.dmm",
+            "size": [
+              8,
+              7,
+              1
+            ],
+            "gridCells": 56,
+            "dictionaryEntries": 49,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "b9f13e1f6aa1e1e513db8dc84027c90ca59e523c6761db3b9be2835e86d33132"
+          },
+          {
+            "file": "maps/interiors/apc_movie.dmm",
+            "size": [
+              9,
+              6,
+              1
+            ],
+            "gridCells": 54,
+            "dictionaryEntries": 45,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "eafd4ced1ff9f0d3ad8314e514f559685ed6412483f25b7c2d99c94df28a7c0a"
+          },
+          {
+            "file": "maps/interiors/apc_moviemed.dmm",
+            "size": [
+              9,
+              6,
+              1
+            ],
+            "gridCells": 54,
+            "dictionaryEntries": 48,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "0916dccb1ef56de51fc79ba4a40babc303a856616e9fb8ba384ff51cb7c51b83"
+          },
+          {
+            "file": "maps/map_files/LV624/science/10.yautja.dmm",
+            "size": [
+              15,
+              15,
+              1
+            ],
+            "gridCells": 225,
+            "dictionaryEntries": 66,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "de35a559ce368be869425dc435ab94934afbd84f60c82236db7d86c9b133c1b4"
+          },
+          {
+            "file": "maps/map_files/BigRed/sprinkles/40.viro_open.dmm",
+            "size": [
+              22,
+              10,
+              1
+            ],
+            "gridCells": 220,
+            "dictionaryEntries": 83,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "4d184975d591c299fb67e4b199680625990e0fc843c1a47cf8e47f550bc69f6e"
+          },
+          {
+            "file": "maps/map_files/BigRed/sprinkles/40.admin_pmc.dmm",
+            "size": [
+              12,
+              10,
+              1
+            ],
+            "gridCells": 120,
+            "dictionaryEntries": 70,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "7bae9d8935ad677b64f8a631a8e5d371b17555bfc7bc2f38b23781f6ac35b1dd"
+          },
+          {
+            "file": "maps/map_files/LV624/medbay/30.larvasurgery.dmm",
+            "size": [
+              17,
+              17,
+              1
+            ],
+            "gridCells": 289,
+            "dictionaryEntries": 85,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "6dac23b62fbe82aec0f5d4e2e84ae29b772193a6ada406cb728c2da826371154"
+          },
+          {
+            "file": "maps/shuttles/dropship_gibraltar.dmm",
+            "size": [
+              9,
+              16,
+              1
+            ],
+            "gridCells": 144,
+            "dictionaryEntries": 74,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "19c1f64500fd4fae9ac43e377f687cbbf21afd82e87d72f45cdff2fdf9229528"
+          },
+          {
+            "file": "maps/map_files/LV624/medbay/10.destroyed.dmm",
+            "size": [
+              17,
+              17,
+              1
+            ],
+            "gridCells": 289,
+            "dictionaryEntries": 92,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "f145aade116048a54269a857d503440fb1d2f5810f56278b9d107af1e5e032ba"
+          },
+          {
+            "file": "maps/shuttles/dropship_pmc.dmm",
+            "size": [
+              9,
+              16,
+              1
+            ],
+            "gridCells": 144,
+            "dictionaryEntries": 85,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "2c9df18fa3a2d67da21995eb534e89c1bf3781a30e5e697496d0bd3474bb64f8"
+          },
+          {
+            "file": "maps/map_files/BigRed/sprinkles/20.lz1entrance_v2.dmm",
+            "size": [
+              19,
+              19,
+              1
+            ],
+            "gridCells": 361,
+            "dictionaryEntries": 100,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "b989a4e6a613a3059604d41b202b771d15821b673439a80b051b088a5b30040f"
+          },
+          {
+            "file": "maps/map_files/Ice_Colony_v3/sprinkles/33.labs-entrance.dmm",
+            "size": [
+              18,
+              14,
+              1
+            ],
+            "gridCells": 252,
+            "dictionaryEntries": 75,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "9f208b861228cf7580af99f3cb7cd9d767a71618decdf1caf51b098e9cfa0582"
+          },
+          {
+            "file": "maps/map_files/LV624/gym/30.alternate.dmm",
+            "size": [
+              15,
+              15,
+              1
+            ],
+            "gridCells": 225,
+            "dictionaryEntries": 92,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "eba442be234bc3966a3957bf59deda51083d5ab05a544acdb905de2aed1e309f"
+          },
+          {
+            "file": "maps/shuttles/dropship_upp.dmm",
+            "size": [
+              9,
+              18,
+              1
+            ],
+            "gridCells": 162,
+            "dictionaryEntries": 78,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "5b50b9175e344244567598aaf0af71059d9a64ffef98ac4ccebf45d21c717d62"
+          },
+          {
+            "file": "maps/shuttles/dropship_midway.dmm",
+            "size": [
+              9,
+              16,
+              1
+            ],
+            "gridCells": 144,
+            "dictionaryEntries": 97,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "bb96136059117b0e769a74cd658c7b974b3503ad7156a7cf2258da959482f953"
+          },
+          {
+            "file": "maps/shuttles/dropship_tripoli.dmm",
+            "size": [
+              9,
+              16,
+              1
+            ],
+            "gridCells": 144,
+            "dictionaryEntries": 99,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "b7a317ad6bf4d6f351b7216112ecde10ea0399631af6b66a5b026272df28974a"
+          },
+          {
+            "file": "maps/shuttles/dropship_cyclone.dmm",
+            "size": [
+              9,
+              16,
+              1
+            ],
+            "gridCells": 144,
+            "dictionaryEntries": 101,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "1ecf32a65f5a90d808ea14efed75c8f3cbab773741a1f7ab8618f100016305b6"
+          },
+          {
+            "file": "maps/shuttles/dropship_tornado.dmm",
+            "size": [
+              11,
+              18,
+              1
+            ],
+            "gridCells": 198,
+            "dictionaryEntries": 95,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "b391be00c0536d53875efd97b2d12d9edcad8ab2a2076d93d6d12e4fe666f053"
+          },
+          {
+            "file": "maps/map_files/BigRed/sprinkles/20.etatunnel_open.dmm",
+            "size": [
+              42,
+              20,
+              1
+            ],
+            "gridCells": 840,
+            "dictionaryEntries": 80,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "20d11fffd3b167b82431e5fd99f62cc9c46d9493d703d967796a81aefeae155d"
+          },
+          {
+            "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/25.researchprestine.dmm",
+            "size": [
+              25,
+              18,
+              1
+            ],
+            "gridCells": 450,
+            "dictionaryEntries": 103,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "930258dc40aa88aaf607bb21b029c0615a8e1be9e8a38ae2664380f083913ed8"
+          },
+          {
+            "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/10.scavshipholder.dmm",
+            "size": [
+              14,
+              21,
+              1
+            ],
+            "gridCells": 294,
+            "dictionaryEntries": 92,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "9571e2efcdf6fa975fbe6f77a637ea6b3f76f134b1e498622e57368f0e35d9a2"
+          },
+          {
+            "file": "maps/map_files/LV624/hydro/30.destroyed.dmm",
+            "size": [
+              16,
+              14,
+              1
+            ],
+            "gridCells": 224,
+            "dictionaryEntries": 86,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "5201790d5e3179ee480c68b10c497d4985b1694c5d7a1b640a2e34ec18ada0e5"
+          },
+          {
+            "file": "maps/map_files/golden_arrow/medbay/10.wrongtile.dmm",
+            "size": [
+              11,
+              9,
+              1
+            ],
+            "gridCells": 99,
+            "dictionaryEntries": 66,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "3e3262b616e4ac11c2b868f2e078da748c1f19f05a2461db8cb4366580f1f3ec"
+          },
+          {
+            "file": "maps/shuttles/dropship_alamo.dmm",
+            "size": [
+              11,
+              21,
+              1
+            ],
+            "gridCells": 231,
+            "dictionaryEntries": 109,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "f8b3edc67970a90b42c4deb99d22a9f4bf754665af15fc6e72bfc289045fd352"
+          },
+          {
+            "file": "maps/shuttles/dropship_typhoon.dmm",
+            "size": [
+              11,
+              18,
+              1
+            ],
+            "gridCells": 198,
+            "dictionaryEntries": 100,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "8bb571bcb607a799238f5d232d13793f123b8675f2208e521888a3fe05ed45a8"
+          },
+          {
+            "file": "maps/shuttles/dropship_resolute.dmm",
+            "size": [
+              11,
+              21,
+              1
+            ],
+            "gridCells": 231,
+            "dictionaryEntries": 116,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "841c9041fe66400dd7b7469115a69840a32a72cbc11330b82cbba8cd83d21f4d"
+          },
+          {
+            "file": "maps/shuttles/dropship_normandy.dmm",
+            "size": [
+              11,
+              21,
+              1
+            ],
+            "gridCells": 231,
+            "dictionaryEntries": 116,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "68e37c5c06b0a2187a3fa7abdd28c90f920610bbcd94ce9e56b991889eced59f"
+          },
+          {
+            "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/20.medicalhold.dmm",
+            "size": [
+              14,
+              18,
+              1
+            ],
+            "gridCells": 252,
+            "dictionaryEntries": 105,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "dd08f6be783ac4cd83a23534990643a62f533af069c86de615303fc3206a6a87"
+          },
+          {
+            "file": "maps/map_files/golden_arrow/dorms/10.party.dmm",
+            "size": [
+              8,
+              9,
+              1
+            ],
+            "gridCells": 72,
+            "dictionaryEntries": 67,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "bd56b878ae8a8f391ae4045b52d6d3f017bda927126579a3a73620147b2463c2"
+          },
+          {
+            "file": "maps/map_files/golden_arrow/medbay/10.visceracleanupdetail.dmm",
+            "size": [
+              11,
+              9,
+              1
+            ],
+            "gridCells": 99,
+            "dictionaryEntries": 70,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "b66b27efeeb958e2602b70559a03c8c7efc12535e2680adaaa3ba5a7568a2813"
+          },
+          {
+            "file": "maps/map_files/BigRed/sprinkles/30.cargo_containers.dmm",
+            "size": [
+              19,
+              19,
+              1
+            ],
+            "gridCells": 361,
+            "dictionaryEntries": 115,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "9d4fa2f18c0ed9119bb7ebee36698bfe7e2bdbfaae65beb80eb67ad6a1617c13"
+          },
+          {
+            "file": "maps/map_files/golden_arrow/briefing/10.missingchairs.dmm",
+            "size": [
+              16,
+              12,
+              1
+            ],
+            "gridCells": 192,
+            "dictionaryEntries": 86,
+            "mapmerge2Processed": true,
+            "gridUnchanged": true,
+            "dictionaryKeysUnchanged": true,
+            "allNonTextAtomPropertiesUnchanged": true,
+            "playerTextReview": "complete",
+            "sha256": "559978185b858f443a83707a84e65efc3e4336da4debd30e7bb6130fafa3634e"
+          }
+        ],
+        "problems": [],
+        "testsRun": false,
+        "gameLaunched": false,
+        "batchCompilePending": true,
+        "processor": "repository tools/mapmerge2/merge_map with bidict==0.22.0 from tools/requirements.txt"
+      }
+    }
+  ],
+  "mapExactByteReview": {
+    "files": [
+      {
+        "file": "maps/map_files/Kutjevo/sprinkles/5+trappedmonke_andclown.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "aa1083bea89e4e7e98d37086032d9a5dfdd3f1d64fede34a3d643d2cbe262480"
+      },
+      {
+        "file": "maps/map_files/DesertDam/sprinkles/20+minievac_westresearch.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "666ca7a61153ac97596209cd0fd56b3cdaa94845af93e2d2ec9c8b793497a366"
+      },
+      {
+        "file": "maps/shuttles/ice_classic_shuttle.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "e58fd8547cadfbb7540f9bec11f3c1842570399d69301a7058623204f7466ae1"
+      },
+      {
+        "file": "maps/tutorial/tutorial_reqs_line.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "f8e8f02a431a5e72ebb9049165e2d711760d1217f3f6f453dbefedf2023cff33"
+      },
+      {
+        "file": "maps/map_files/CORSAT/standalone/lockdown_gammacontrol.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "010e844c4d583d5c8ec1f6e5cb89dc42cb560942b62e412514866503b485c612"
+      },
+      {
+        "file": "maps/map_files/CORSAT/standalone/lockdown_thetaeast.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "7306cc107293729786990117e80a86b79cf84cbc1d32cb134912a721b1eb1b8c"
+      },
+      {
+        "file": "maps/map_files/CORSAT/standalone/lockdown_thetacontrol.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "00d32cef16db2bb60bb21b5296561b2462cf15d4afeb46f044590caf0e08087b"
+      },
+      {
+        "file": "maps/map_files/CORSAT/standalone/lockdown_gammanorth.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "58e90e5c44e23580483da0fd583a73eb8d99888c70d7cf032e9932fd2f777efc"
+      },
+      {
+        "file": "maps/shuttles/escape_shuttle_n.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "ef35839c0d9ef5fdf0b52031abd00f430777aab17ab88dca4ee20c603bb3544b"
+      },
+      {
+        "file": "maps/shuttles/escape_shuttle_w.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "66000d1c979195356485d1d2d0fd51455d77abb50382d1da764ef98859fabe0f"
+      },
+      {
+        "file": "maps/shuttles/escape_shuttle_s.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "da016ba2321679080f89a1a80425ed457a0c789689b44d2eb53d6f2d16b34a80"
+      },
+      {
+        "file": "maps/shuttles/escape_shuttle_e.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "4af4f1a22491beccd6d454322f1f173ff6823a3361b29043fb0080611471ed88"
+      },
+      {
+        "file": "maps/shuttles/escape_shuttle_e_cl.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "2f959a22dcc92866c2e9ae14bb0dcfd44848a59eb3414d56a746bfeade4cc432"
+      },
+      {
+        "file": "maps/map_files/BigRed/standalone/medbay-passage.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "fc58f23509fea390e9892dc61f56d924299fc892cdc3243d3a62ccd4a599c7d2"
+      },
+      {
+        "file": "maps/shuttles/garrow_cargo_elevator.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "e8d79250ee6a65ec55b514da76b18f3ded9d2479f0338bbf18e404a08aa13b07"
+      },
+      {
+        "file": "maps/map_files/LV624/sprinkles/20.lz-containers_swapped.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "079c50e1c6bf2e31e08fc56fd83f47073865a344ca98baa5dac1232b1281f9e0"
+      },
+      {
+        "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/15.wardenofficedecorated.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "a36468d1caba1cf665b7494f215c1d343c691593448bf8e7f42d7f94bb35c489"
+      },
+      {
+        "file": "maps/map_files/Ice_Colony_v3/lz2-variations/south-gate/closed.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "fa8db667e9e985a9833f6e84f94082f18d50040c29241bfb3e701fd7765179c4"
+      },
+      {
+        "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/10.podholder.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "ab5dc51d0e17dc314ba1cf228967ed2e0c8e6d266df922476655d31ee7d4ff21"
+      },
+      {
+        "file": "maps/map_files/Ice_Colony_v3/lz2-variations/east-gate/closed.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "236165c5b751a50cb3678da55d56b08046b6dd0218e3f1b94c5e06cc7d1236fe"
+      },
+      {
+        "file": "maps/map_files/LV624/armory/10.looted.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "5061d8af754f2aee29f4340b49c42ad41b57afc02706487044fbce464180f731"
+      },
+      {
+        "file": "maps/map_files/Ice_Colony_v3/lz2-variations/southeast-gate/closed.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "57b80ae64760ecc861e4da4a65e326e1dcfcc5261d0bacae064cdacdd5bbf6fc"
+      },
+      {
+        "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/30.engineeroffice.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "9f45b21b864379f29f327785a44429e9c216e2824f43b9ca707886e51ae5f838"
+      },
+      {
+        "file": "maps/map_files/BigRed/sprinkles/20.lz1north_mining.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "91c35ecc966ccb37a4da2cfb09ee53eb0a27c687b642a596cecdb84a8b456824"
+      },
+      {
+        "file": "maps/map_files/BigRed/sprinkles/5.eta_carp.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "66c67cf5e77a6aeb28569d8eaafbec58d0e03db6adeca2f65997e3a41d015a97"
+      },
+      {
+        "file": "maps/map_files/LV624/armory/10.extra.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "d8f721e3fb9ae3da7d1d241ac5bc2748afc603d4df882a4c2ab06856837cdc07"
+      },
+      {
+        "file": "maps/map_files/LV624/armory/10.cheese.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "8ff087109271363d19b5d833e4aa11ecf642bcc9e44c356881efee65fca143df"
+      },
+      {
+        "file": "maps/map_files/LV624/storage-crashed-ship/10.valuables.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "68187cbc782d46db11408bbccf0dca649d6a91477b38c8f9a6ffef6e3f2bf283"
+      },
+      {
+        "file": "maps/map_files/golden_arrow/storage_northeast/10.tank.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "db7c6ee291f2d2fae38536da55d0f96a748257375ac62f62cb5df1db24ae80fa"
+      },
+      {
+        "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/30.repairpanelslz.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "12425e762ed67d6349f9c53c3d18e734d70443aac8f05c7f42a07f799902f9e4"
+      },
+      {
+        "file": "maps/map_files/Ice_Colony_v3/lz2-south-caves/20.destroyed_lz2-south-caves.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "0d4f64a505716516bbf8b49b3232f2e5b9af15dd96c709826c81f96d9c152bfc"
+      },
+      {
+        "file": "maps/map_files/Ice_Colony_v3/lz2-south-caves/30.builtup_lz2-south-caves.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "555ecca9f88f3de1e6976fa77cea51e0b5876a5beb142af0677e3885a887b7db"
+      },
+      {
+        "file": "maps/map_files/LV624/storage-crashed-ship/10.armorystorage.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "0cfb7a72977be68022cb3abb2376d2169a0235cb045aa96f8d9631583eb540f4"
+      },
+      {
+        "file": "maps/map_files/CORSAT/standalone/lockdown_highsec.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "2164c08569ba2087c7994e47504c68de3a9b7edd9f80f200f225a3dd21ec6e58"
+      },
+      {
+        "file": "maps/map_files/BigRed/sprinkles/25.chapel_cult.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "a5d78ea1410c554a83da5251f515e91f7cdfc80b722015eae0162567344e9c22"
+      },
+      {
+        "file": "maps/map_files/BigRed/sprinkles/25.lz1containers_scramble.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "f2771daaed21da1a0743c58996b004657328149d97791ee9b3534245ddae460c"
+      },
+      {
+        "file": "maps/map_files/BigRed/sprinkles/25.vault_v2.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "b86bdb678b0298e726ae00888689cb135a7a83e29aa4bc6a2204e15ae86a3207"
+      },
+      {
+        "file": "maps/map_files/LV624/gym/20.pool.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "fcf94c519df7a3b9fc447b10453f92e8e6ac27014c68f1e539d2051475b4724b"
+      },
+      {
+        "file": "maps/map_files/LV624/standalone/sandtemple-jungle.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "b67c68f64953a7ef16c2f948b32ca04853ec0ac779005ac8a7dd6c13ff738f95"
+      },
+      {
+        "file": "maps/map_files/Kutjevo/sprinkles/35.communications.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "6a04afb8b667792a49512e9bb5de44f01ebc7f6a38032c341579897678ca1528"
+      },
+      {
+        "file": "maps/map_files/BigRed/sprinkles/40.dorms_party.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "213b9668dc31d0edc45578983b43310eeba48f7e89d899bc681e3ee52246d8a7"
+      },
+      {
+        "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/20.gamertime.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "9e0c92f4f76cddff2c53c7fa0018882746b54109c79202a97ba03bc730b8e916"
+      },
+      {
+        "file": "maps/shuttles/lifeboat-compact.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "22760f6337bd5223b254176f68d722a783c1bd324f087116081a8fdb94b36d05"
+      },
+      {
+        "file": "maps/shuttles/lifeboat-port.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "8b03cfb88a8351a616c922de86972fe876a7d856a70608a9fb1a475930059196"
+      },
+      {
+        "file": "maps/shuttles/lifeboat-starboard.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "1117fd6ed444a26456268c5a5f47fa8b7e0a3b3d6f83b5c10707a007feb82e7a"
+      },
+      {
+        "file": "maps/interiors/arc.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "e6b9339eba80649b892a6cdf3025d3f3f2533ef78e3bf5337c3a03149c94bae2"
+      },
+      {
+        "file": "maps/interiors/upptank.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "99c36d91b896de178cbc3498ba9c7de68ab97156fca1a6956c5c3fbd89b10d2f"
+      },
+      {
+        "file": "maps/interiors/upptank_command.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "e17207a4b3c8041e69bfe67761a34156a5dec94435f0d08d46720766f460484c"
+      },
+      {
+        "file": "maps/map_files/LV624/science/40.fullylocked.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "40be5e904e9dd601495e4158acad92c8268f93e4555aa9e8195b24acd2d644dc"
+      },
+      {
+        "file": "maps/map_files/BigRed/sprinkles/70.se-checkpoint.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "4e5164e8ae739fb9211ddf7a989bc1ee0e35b06a21c247eaddffd5d5480346e3"
+      },
+      {
+        "file": "maps/interiors/tank.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "fdae5d649be95c51f0579fcca95656621c7084b637a9f8f8e63cd9e17d1ac87a"
+      },
+      {
+        "file": "maps/interiors/uppvan_medical.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "17224e59acbab246f6c5bd4b36a30ef41ac02a5bb896d38c68fa4f3ff5f4beca"
+      },
+      {
+        "file": "maps/interiors/tank_command.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "854ad33bbcc1e722fa3307004497caefba10fa252a14f27a73fa27d90923f51a"
+      },
+      {
+        "file": "maps/interiors/cop_car.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "f54598638c2f5b2100b024a917431fd34dae7461e671c6f0800b3e2aacc8f02d"
+      },
+      {
+        "file": "maps/interiors/aev.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "9c7a325d0d1ae9cb806d7eac8750460d495aecf39ae29b837158572fb69afc60"
+      },
+      {
+        "file": "maps/interiors/ambulance.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "60d08a50d743f34c5f05eca47905f95720e1c978493ad2886431c6ab14625fcd"
+      },
+      {
+        "file": "maps/interiors/uppapc.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "9ef04e4331d266d98325c05a0e8936b04463ef76cb29c3106acdff1db93b12eb"
+      },
+      {
+        "file": "maps/interiors/apc_command.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "b3c854eae7e8b1774ca0cd607b8e9ff14ef8611d6a42fd07c218f0e7812d1848"
+      },
+      {
+        "file": "maps/interiors/apc_aa.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "4e98529fce9e4e6b744ad7857da919f3bdc9761370d5a1971adca1109005342c"
+      },
+      {
+        "file": "maps/interiors/apc_no_fpw.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "71682d51a5774c5605ab34aa02d661bf776ef296334bd4744d0e799ebf11f121"
+      },
+      {
+        "file": "maps/interiors/apc_med.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "03a8b23a7c11bcb271f6866a6ba7f7225a99f5230b0c84b0c978e1038a08c5ba"
+      },
+      {
+        "file": "maps/interiors/apc.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "b9f13e1f6aa1e1e513db8dc84027c90ca59e523c6761db3b9be2835e86d33132"
+      },
+      {
+        "file": "maps/interiors/apc_movie.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "eafd4ced1ff9f0d3ad8314e514f559685ed6412483f25b7c2d99c94df28a7c0a"
+      },
+      {
+        "file": "maps/interiors/apc_moviemed.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "0916dccb1ef56de51fc79ba4a40babc303a856616e9fb8ba384ff51cb7c51b83"
+      },
+      {
+        "file": "maps/map_files/LV624/science/10.yautja.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "de35a559ce368be869425dc435ab94934afbd84f60c82236db7d86c9b133c1b4"
+      },
+      {
+        "file": "maps/map_files/BigRed/sprinkles/40.viro_open.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "4d184975d591c299fb67e4b199680625990e0fc843c1a47cf8e47f550bc69f6e"
+      },
+      {
+        "file": "maps/map_files/BigRed/sprinkles/40.admin_pmc.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "7bae9d8935ad677b64f8a631a8e5d371b17555bfc7bc2f38b23781f6ac35b1dd"
+      },
+      {
+        "file": "maps/map_files/LV624/medbay/30.larvasurgery.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "6dac23b62fbe82aec0f5d4e2e84ae29b772193a6ada406cb728c2da826371154"
+      },
+      {
+        "file": "maps/shuttles/dropship_gibraltar.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "19c1f64500fd4fae9ac43e377f687cbbf21afd82e87d72f45cdff2fdf9229528"
+      },
+      {
+        "file": "maps/map_files/LV624/medbay/10.destroyed.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "f145aade116048a54269a857d503440fb1d2f5810f56278b9d107af1e5e032ba"
+      },
+      {
+        "file": "maps/shuttles/dropship_pmc.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "2c9df18fa3a2d67da21995eb534e89c1bf3781a30e5e697496d0bd3474bb64f8"
+      },
+      {
+        "file": "maps/map_files/BigRed/sprinkles/20.lz1entrance_v2.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "b989a4e6a613a3059604d41b202b771d15821b673439a80b051b088a5b30040f"
+      },
+      {
+        "file": "maps/map_files/Ice_Colony_v3/sprinkles/33.labs-entrance.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "9f208b861228cf7580af99f3cb7cd9d767a71618decdf1caf51b098e9cfa0582"
+      },
+      {
+        "file": "maps/map_files/LV624/gym/30.alternate.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "eba442be234bc3966a3957bf59deda51083d5ab05a544acdb905de2aed1e309f"
+      },
+      {
+        "file": "maps/shuttles/dropship_upp.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "5b50b9175e344244567598aaf0af71059d9a64ffef98ac4ccebf45d21c717d62"
+      },
+      {
+        "file": "maps/shuttles/dropship_midway.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "bb96136059117b0e769a74cd658c7b974b3503ad7156a7cf2258da959482f953"
+      },
+      {
+        "file": "maps/shuttles/dropship_tripoli.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "b7a317ad6bf4d6f351b7216112ecde10ea0399631af6b66a5b026272df28974a"
+      },
+      {
+        "file": "maps/shuttles/dropship_cyclone.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "1ecf32a65f5a90d808ea14efed75c8f3cbab773741a1f7ab8618f100016305b6"
+      },
+      {
+        "file": "maps/shuttles/dropship_tornado.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "b391be00c0536d53875efd97b2d12d9edcad8ab2a2076d93d6d12e4fe666f053"
+      },
+      {
+        "file": "maps/map_files/BigRed/sprinkles/20.etatunnel_open.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "20d11fffd3b167b82431e5fd99f62cc9c46d9493d703d967796a81aefeae155d"
+      },
+      {
+        "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/25.researchprestine.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "930258dc40aa88aaf607bb21b029c0615a8e1be9e8a38ae2664380f083913ed8"
+      },
+      {
+        "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/10.scavshipholder.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "9571e2efcdf6fa975fbe6f77a637ea6b3f76f134b1e498622e57368f0e35d9a2"
+      },
+      {
+        "file": "maps/map_files/LV624/hydro/30.destroyed.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "5201790d5e3179ee480c68b10c497d4985b1694c5d7a1b640a2e34ec18ada0e5"
+      },
+      {
+        "file": "maps/map_files/golden_arrow/medbay/10.wrongtile.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "3e3262b616e4ac11c2b868f2e078da748c1f19f05a2461db8cb4366580f1f3ec"
+      },
+      {
+        "file": "maps/shuttles/dropship_alamo.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "f8b3edc67970a90b42c4deb99d22a9f4bf754665af15fc6e72bfc289045fd352"
+      },
+      {
+        "file": "maps/shuttles/dropship_typhoon.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "8bb571bcb607a799238f5d232d13793f123b8675f2208e521888a3fe05ed45a8"
+      },
+      {
+        "file": "maps/shuttles/dropship_resolute.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "841c9041fe66400dd7b7469115a69840a32a72cbc11330b82cbba8cd83d21f4d"
+      },
+      {
+        "file": "maps/shuttles/dropship_normandy.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "68e37c5c06b0a2187a3fa7abdd28c90f920610bbcd94ce9e56b991889eced59f"
+      },
+      {
+        "file": "maps/map_files/FOP_v3_Sciannex/sprinkles/20.medicalhold.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "dd08f6be783ac4cd83a23534990643a62f533af069c86de615303fc3206a6a87"
+      },
+      {
+        "file": "maps/map_files/golden_arrow/dorms/10.party.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "bd56b878ae8a8f391ae4045b52d6d3f017bda927126579a3a73620147b2463c2"
+      },
+      {
+        "file": "maps/map_files/golden_arrow/medbay/10.visceracleanupdetail.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "b66b27efeeb958e2602b70559a03c8c7efc12535e2680adaaa3ba5a7568a2813"
+      },
+      {
+        "file": "maps/map_files/BigRed/sprinkles/30.cargo_containers.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "9d4fa2f18c0ed9119bb7ebee36698bfe7e2bdbfaae65beb80eb67ad6a1617c13"
+      },
+      {
+        "file": "maps/map_files/golden_arrow/briefing/10.missingchairs.dmm",
+        "onlyReviewedTextAssignmentsChanged": true,
+        "allOtherBytesIncludingCommentsUnchanged": true,
+        "sha256": "559978185b858f443a83707a84e65efc3e4336da4debd30e7bb6130fafa3634e"
+      }
+    ],
+    "problems": [],
+    "testsRun": false
+  },
+  "mapmerge2ProcessedFiles": 93,
+  "mapValidationNote": "地图分别由仓库tools/mapmerge2解析、整理并比较网格和属性；运行时加载地图的验证依据静态解析与字节比较。",
+  "phoneDisplayCoverage": {
+    "fixedIds": 241,
+    "categories": 36,
+    "roles": 263,
+    "squads": 34
+  },
+  "phoneMapDependencies": [
+    "maps329e-phone-dependencies.json",
+    "maps329f-phone-dependencies.json"
+  ],
+  "frontendStaticSyntax": {
+    "files": [
+      {
+        "file": "tgui/packages/tgui/interfaces/PhoneMenu.jsx",
+        "syntaxOnly": true
+      }
+    ],
+    "syntaxDiagnostics": [],
+    "testsRun": false,
+    "gameLaunched": false
+  },
+  "gitDiffCheckSuccess": true,
+  "preservedExternalSourceFiles": 50,
+  "inheritedBaselineFiles": 82,
+  "testsRun": false,
+  "gameLaunched": false,
+  "fullProjectComplete": false,
+  "goalStatus": "active",
+  "pauseRequestedByUser": false,
+  "validationNote": "仅dm-mcp编译与静态审查，未运行测试、启动游戏或更改上游。"
+}

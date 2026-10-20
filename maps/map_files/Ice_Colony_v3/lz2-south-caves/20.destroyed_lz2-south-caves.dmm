@@ -11,14 +11,14 @@
 "f" = (
 /obj/item/shard{
 	icon_state = "large";
-	name = "ice shard"
+	name = "冰块碎片"
 	},
 /turf/open/floor/shiva/north,
 /area/shiva/exterior/lz2_fortress)
 "g" = (
 /obj/item/shard{
 	icon_state = "medium";
-	name = "ice shard"
+	name = "冰块碎片"
 	},
 /turf/open/auto_turf/ice/layer1,
 /area/shiva/interior/caves/s_lz2)
@@ -31,14 +31,14 @@
 "l" = (
 /obj/item/shard{
 	icon_state = "large";
-	name = "ice shard"
+	name = "冰块碎片"
 	},
 /turf/open/floor/shiva/north,
 /area/shiva/interior/caves/s_lz2)
 "o" = (
 /obj/item/shard{
 	icon_state = "large";
-	name = "ice shard"
+	name = "冰块碎片"
 	},
 /turf/open/auto_turf/ice/layer1,
 /area/shiva/interior/caves/s_lz2)
@@ -67,7 +67,7 @@
 "x" = (
 /obj/item/shard{
 	icon_state = "medium";
-	name = "ice shard"
+	name = "冰块碎片"
 	},
 /obj/structure/barricade/snow,
 /turf/open/floor/shiva/north,
@@ -89,7 +89,7 @@
 "G" = (
 /obj/item/shard{
 	icon_state = "large";
-	name = "ice shard"
+	name = "冰块碎片"
 	},
 /turf/open/auto_turf/ice/layer0,
 /area/shiva/interior/caves/s_lz2)
@@ -122,14 +122,14 @@
 "S" = (
 /obj/item/shard{
 	icon_state = "medium";
-	name = "ice shard"
+	name = "冰块碎片"
 	},
 /turf/open/floor/shiva/north,
 /area/shiva/exterior/lz2_fortress)
 "T" = (
 /obj/item/shard{
 	icon_state = "medium";
-	name = "ice shard"
+	name = "冰块碎片"
 	},
 /turf/open/floor/plating,
 /area/shiva/interior/caves/s_lz2)
@@ -139,11 +139,11 @@
 "V" = (
 /obj/item/shard{
 	icon_state = "large";
-	name = "ice shard"
+	name = "冰块碎片"
 	},
 /obj/item/shard{
 	icon_state = "medium";
-	name = "ice shard";
+	name = "冰块碎片";
 	pixel_x = -10;
 	pixel_y = -19
 	},
@@ -158,7 +158,7 @@
 "Y" = (
 /obj/item/shard{
 	icon_state = "medium";
-	name = "ice shard"
+	name = "冰块碎片"
 	},
 /turf/open/floor/shiva/north,
 /area/shiva/interior/caves/s_lz2)

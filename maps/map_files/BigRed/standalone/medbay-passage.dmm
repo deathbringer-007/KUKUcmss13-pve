@@ -65,7 +65,7 @@
 "S" = (
 /obj/structure/pipes/standard/simple/hidden/green,
 /obj/structure/machinery/door/airlock/multi_tile/almayer/comdoor/colony{
-	name = "\improper Operations"
+	name = "\improper 运营中心"
 	},
 /turf/open/floor/white,
 /area/bigredv2/outside/admin_building)

@@ -28,7 +28,7 @@
 /obj/structure/window/framed/solaris/reinforced,
 /obj/structure/machinery/door/poddoor/shutters/almayer{
 	id = "Spaceport2";
-	name = "\improper Spaceport Shutters"
+	name = "\improper 太空港闸门"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
@@ -153,7 +153,7 @@
 	},
 /obj/structure/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 1;
-	name = "\improper Spaceport"
+	name = "\improper 太空港"
 	},
 /turf/open/floor/dark,
 /area/bigredv2/outside/space_port)
@@ -172,7 +172,7 @@
 /obj/item/device/flashlight/lamp,
 /obj/structure/machinery/door_control{
 	id = "Spaceport2";
-	name = "Storm Shutters";
+	name = "防风闸门";
 	pixel_x = 32
 	},
 /turf/open/floor/darkgreen2/east,
@@ -193,7 +193,7 @@
 /obj/structure/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "Spaceport2";
-	name = "\improper Spaceport Shutters"
+	name = "\improper 太空港闸门"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)

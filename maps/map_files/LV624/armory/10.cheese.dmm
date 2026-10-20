@@ -11,7 +11,7 @@
 /area/lv624/lazarus/main_hall)
 "d" = (
 /obj/item/handset{
-	desc = "A model of an ancient Earth communication device.";
+	desc = "一件古代地球通信设备的模型。";
 	force = 8
 	},
 /obj/structure/surface/rack{
@@ -156,14 +156,14 @@
 "B" = (
 /obj/structure/machinery/door/airlock/almayer/secure/colony{
 	locked = 1;
-	name = "\improper Nexus Dome Armory"
+	name = "\improper 枢纽穹顶军械库"
 	},
 /turf/open/floor/cult,
 /area/lv624/lazarus/armory)
 "C" = (
 /obj/structure/machinery/door_control{
 	id = "garage_blast";
-	name = "Garage Shutters";
+	name = "车库闸门";
 	pixel_x = -26;
 	range = 200
 	},

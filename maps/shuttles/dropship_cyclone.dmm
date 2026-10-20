@@ -365,7 +365,7 @@
 	pixel_y = 12;
 	layer = 3.1;
 	phone_category = "Dropship";
-	name = "Cyclone telephone receiver";
+	name = "旋风号电话";
 	phone_id = "Cyclone"
 	},
 /obj/structure/bed/chair/vehicle/dropship_cockpit/pilot{
@@ -416,7 +416,7 @@
 /area/shuttle/cyclone)
 "Ax" = (
 /obj/structure/shuttle/part/dropship2/lower_right_wall{
-	name = "\improper Cyclone"
+	name = "\improper 旋风号"
 	},
 /obj/structure/shuttle/part/cyclone/transparent{
 	icon_state = "40"
@@ -542,7 +542,7 @@
 	},
 /obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2{
 	id = "aft_door";
-	name = "\improper Cyclone cargo door"
+	name = "\improper 旋风号货舱门"
 	},
 /turf/open/shuttle/dropship/medium_grey_single_wide_left_to_right,
 /area/shuttle/cyclone)

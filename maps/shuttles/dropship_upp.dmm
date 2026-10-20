@@ -152,7 +152,7 @@
 /area/shuttle/ds_upp)
 "rr" = (
 /obj/structure/machinery/computer/dropship_weapons/midway{
-	name = "\improper 'Akademia Nauk' weapons controls";
+	name = "\improper “科学院号”武器控制台";
 	shuttle_tag = "dropship_upp";
 	faction = "UPP";
 	req_one_access = list(230, 235,240)
@@ -251,8 +251,8 @@
 	can_buckle = 1
 	},
 /obj/structure/machinery/cm_vending/sorted/medical/wall_med/limited{
-	name = "\improper MinZdrav dispenser";
-	desc = "A wall-mounted medical equipment dispenser. Provided by Ministry of Health of UPP, it contains a small quantity of emergency supplies.";
+	name = "\improper 卫生部医疗分配机";
+	desc = "一台壁挂式医疗用品分配机，由进步人民联盟卫生部提供，内含少量急救物资。";
 	pixel_x = 30
 	},
 /turf/open/floor/plating/plating_catwalk/strata,
@@ -324,8 +324,8 @@
 /obj/item/frame/camera{
 	pixel_x = 12;
 	pixel_y = 17;
-	name = "broken dashcam";
-	desc = "Welp, no more funny crash vids..."
+	name = "损坏的行车记录仪";
+	desc = "唉，再也拍不到搞笑的撞车视频了……"
 	},
 /turf/open/floor/strata/floor3/east,
 /area/shuttle/ds_upp)
@@ -342,7 +342,7 @@
 /area/shuttle/ds_upp)
 "HB" = (
 /turf/closed/shuttle/dropship1/transparent{
-	name = "wall";
+	name = "墙壁";
 	icon = 'icons/turf/ert_shuttle.dmi';
 	icon_state = "upp27"
 	},
@@ -451,12 +451,12 @@
 "Qk" = (
 /obj/structure/machinery/computer/cameras/dropship/midway{
 	network = list("Akademia Nauk","Laser Targets");
-	name = "\improper 'Akademia Nauk' camera controls"
+	name = "\improper “科学院号”摄像头控制台"
 	},
 /obj/structure/blocker/invisible_wall,
 /obj/structure/phone_base{
 	pixel_y = 32;
-	name = "Akademia Nauk Telephone";
+	name = "科学院号电话";
 	phone_category = "Dropship";
 	phone_id = "Akademia Nauk";
 	networks_receive = list("UPP");
@@ -583,8 +583,8 @@
 	can_buckle = 1
 	},
 /obj/structure/machinery/cm_vending/sorted/medical/wall_med/limited{
-	name = "\improper MinZdrav dispenser";
-	desc = "A wall-mounted medical equipment dispenser. Provided by Ministry of Health of UPP, it contains a small quantity of emergency supplies.";
+	name = "\improper 卫生部医疗分配机";
+	desc = "一台壁挂式医疗用品分配机，由进步人民联盟卫生部提供，内含少量急救物资。";
 	pixel_x = -30
 	},
 /turf/open/floor/plating/plating_catwalk/strata,

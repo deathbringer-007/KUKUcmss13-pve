@@ -146,7 +146,7 @@
 /area/golden_arrow/medical)
 "pb" = (
 /obj/structure/closet/crate/freezer{
-	name = "blood cooler crate";
+	name = "血液冷藏箱";
 	pixel_y = 7
 	},
 /obj/item/reagent_container/blood/OMinus,
@@ -168,7 +168,7 @@
 	pixel_x = -1
 	},
 /obj/structure/sign/safety/commline_connection{
-	name = "communication line semiotic";
+	name = "通信线路标志";
 	pixel_y = 22;
 	pixel_x = 32
 	},
@@ -403,7 +403,7 @@
 "BR" = (
 /obj/structure/machinery/door/airlock/almayer/medical{
 	dir = 8;
-	name = "\improper Medical Office";
+	name = "\improper 医疗办公室";
 	req_one_access = list();
 	req_one_access_txt = "8;12"
 	},
@@ -489,7 +489,7 @@
 "Gr" = (
 /obj/structure/phone_base{
 	pixel_y = 6;
-	name = "medical bay receiver";
+	name = "医务室电话";
 	phone_category = "Golden Arrow";
 	phone_id = "Medical Bay";
 	pixel_x = 23;
@@ -585,7 +585,7 @@
 /area/golden_arrow/medical)
 "LQ" = (
 /obj/structure/machinery/door/airlock/multi_tile/almayer/medidoor{
-	name = "\improper Emergency Infirmary";
+	name = "\improper 急诊医务室";
 	req_one_access = null
 	},
 /obj/structure/pipes/standard/simple/hidden/supply,
@@ -634,7 +634,7 @@
 /obj/structure/filingcabinet/medical{
 	pixel_y = 17;
 	pixel_x = -8;
-	name = "medical records";
+	name = "医疗档案";
 	density = 0
 	},
 /obj/structure/filingcabinet{
@@ -738,7 +738,7 @@
 "WU" = (
 /obj/item/device/radio/intercom{
 	freerange = 1;
-	name = "General Listening Channel";
+	name = "公共收听频道";
 	pixel_y = 29
 	},
 /obj/effect/decal/warning_stripes{

@@ -42,7 +42,7 @@
 "k" = (
 /obj/structure/machinery/door/poddoor/two_tile/four_tile/vertical/opened{
 	id = "ThetaEastW";
-	name = "Theta East Airlock"
+	name = "西塔东侧气闸门"
 	},
 /turf/open/floor/corsat/marked,
 /area/corsat/theta/airlock/east)
@@ -62,7 +62,7 @@
 /obj/structure/window/framed/corsat/security,
 /obj/structure/machinery/door/poddoor/shutters/almayer/open{
 	id = "ThetaIDEC2";
-	name = "Security Shutters"
+	name = "安保闸门"
 	},
 /turf/open/floor/plating,
 /area/corsat/theta/airlock/east/id)

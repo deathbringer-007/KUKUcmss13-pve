@@ -428,7 +428,7 @@
 	},
 /obj/item/device/radio/intercom{
 	freerange = 1;
-	name = "General Listening Channel";
+	name = "公共收听频道";
 	pixel_y = 26
 	},
 /turf/open/floor/almayer/mono,
@@ -538,7 +538,7 @@
 	dir = 1;
 	id = "briefingdoor";
 	req_access = null;
-	name = "\improper Assembly Room"
+	name = "\improper 集合室"
 	},
 /obj/structure/machinery/door/firedoor/border_only/almayer{
 	dir = 2
@@ -626,7 +626,7 @@
 	density = 0;
 	icon_state = "map";
 	layer = 2.97;
-	name = "Tactical Map Display";
+	name = "战术地图显示屏";
 	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt{
@@ -693,7 +693,7 @@
 	dir = 4;
 	icon_state = "shuttle";
 	layer = 2.97;
-	name = "Tactical Map Display";
+	name = "战术地图显示屏";
 	pixel_x = 1;
 	pixel_y = 14
 	},
@@ -708,7 +708,7 @@
 /area/golden_arrow/briefing)
 "WP" = (
 /obj/structure/phone_base{
-	name = "briefing receiver";
+	name = "简报室电话";
 	phone_category = "Golden Arrow";
 	phone_id = "Briefing";
 	pixel_x = 17;

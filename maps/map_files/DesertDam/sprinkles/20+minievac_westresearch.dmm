@@ -15,7 +15,7 @@
 	dir = 1
 	},
 /obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
+	desc = "这道路障经过重度加固。看来只有炸开它才行，或者熔毁支撑它的横梁……";
 	dir = 8;
 	health = 25000
 	},
@@ -42,7 +42,7 @@
 /area/template_noop)
 "O" = (
 /obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
+	desc = "这道路障经过重度加固。看来只有炸开它才行，或者熔毁支撑它的横梁……";
 	dir = 8;
 	health = 25000
 	},

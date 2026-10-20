@@ -29,11 +29,11 @@
 #define AALARM_WIRE_AALARM 5
 
 GLOBAL_LIST_INIT(aalarm_wire_descriptions, flatten_numeric_alist(alist(
-		AALARM_WIRE_IDSCAN = "ID scanner",
-		AALARM_WIRE_POWER = "Main power",
-		AALARM_WIRE_SYPHON = "Siphon",
-		AALARM_WIRE_AI_CONTROL = "AI Control",
-		AALARM_WIRE_AALARM = "Air Alarm",
+		AALARM_WIRE_IDSCAN = "身份卡扫描器",
+		AALARM_WIRE_POWER = "主电源",
+		AALARM_WIRE_SYPHON = "抽气",
+		AALARM_WIRE_AI_CONTROL = "人工智能控制",
+		AALARM_WIRE_AALARM = "空气警报",
 	)))
 
 #define AALARM_MODE_SCRUBBING 1
@@ -44,12 +44,12 @@ GLOBAL_LIST_INIT(aalarm_wire_descriptions, flatten_numeric_alist(alist(
 #define AALARM_MODE_OFF 6 //Shuts it all down.
 
 GLOBAL_LIST_INIT(aalarm_mode_descriptions, flatten_numeric_alist(alist(
-		AALARM_MODE_SCRUBBING = "Filtering - Scrubs out contaminants",
-		AALARM_MODE_REPLACEMENT = SET_CLASS("Replace Air - Siphons out air while replacing", INTERFACE_BLUE),
-		AALARM_MODE_PANIC = SET_CLASS("Panic - Siphons air out of the room", INTERFACE_RED),
-		AALARM_MODE_CYCLE = SET_CLASS("Cycle - Siphons air before replacing", INTERFACE_RED),
-		AALARM_MODE_FILL = SET_CLASS("Fill - Shuts off scrubbers and opens vents", INTERFACE_GREEN),
-		AALARM_MODE_OFF = SET_CLASS("Off - Shuts off vents and scrubbers", INTERFACE_BLUE),
+		AALARM_MODE_SCRUBBING = "过滤——清除污染物",
+		AALARM_MODE_REPLACEMENT = SET_CLASS("换气——一边抽出空气，一边补充新鲜空气", INTERFACE_BLUE),
+		AALARM_MODE_PANIC = SET_CLASS("紧急抽气——抽空房间内的空气", INTERFACE_RED),
+		AALARM_MODE_CYCLE = SET_CLASS("循环——先抽空空气，再补充新鲜空气", INTERFACE_RED),
+		AALARM_MODE_FILL = SET_CLASS("充气——关闭洗涤器，打开通风口", INTERFACE_GREEN),
+		AALARM_MODE_OFF = SET_CLASS("关闭——关闭通风口和洗涤器", INTERFACE_BLUE),
 	)))
 
 #define AALARM_SCREEN_MAIN 1
@@ -275,10 +275,10 @@ GLOBAL_LIST_INIT(aalarm_mode_descriptions, flatten_numeric_alist(alist(
 /obj/structure/machinery/alarm/proc/register_env_machine(m_id, device_type)
 	var/new_name
 	if (device_type=="AVP")
-		new_name = "[alarm_area.name] Vent Pump #[length(alarm_area.air_vent_names)+1]"
+		new_name = "[alarm_area.name]通风泵 #[length(alarm_area.air_vent_names)+1]"
 		alarm_area.air_vent_names[m_id] = new_name
 	else if (device_type=="AScr")
-		new_name = "[alarm_area.name] Air Scrubber #[length(alarm_area.air_scrub_names)+1]"
+		new_name = "[alarm_area.name]空气洗涤器 #[length(alarm_area.air_scrub_names)+1]"
 		alarm_area.air_scrub_names[m_id] = new_name
 	else
 		return
@@ -529,7 +529,7 @@ GLOBAL_LIST_INIT(aalarm_mode_descriptions, flatten_numeric_alist(alist(
 			return
 
 	if(wiresexposed && (!isRemoteControlling(user)))
-		var/t1 = text("<html><head><title>[alarm_area.name] Air Alarm Wires</title></head><body><B>Access Panel</B><br>\n")
+		var/t1 = text("<html><head><title>[alarm_area.name]空气警报器线路</title></head><body><B>检修面板</B><br>\n")
 		var/list/wirecolors = list(
 			"Orange" = 1,
 			"Dark red" = 2,
@@ -539,17 +539,17 @@ GLOBAL_LIST_INIT(aalarm_mode_descriptions, flatten_numeric_alist(alist(
 		)
 		for(var/wiredesc in wirecolors)
 			var/is_uncut = AAlarmwires & GLOB.AAlarmWireColorToFlag[wirecolors[wiredesc]]
-			t1 += "[wiredesc] wire: "
+			t1 += "[list("Orange" = "橙色", "Dark red" = "暗红色", "White" = "白色", "Yellow" = "黄色", "Black" = "黑色")[wiredesc]]电线："
 			if(!is_uncut)
-				t1 += "<a href='byond://?src=\ref[src];AAlarmwires=[wirecolors[wiredesc]]'>Mend</a>"
+				t1 += "<a href='byond://?src=\ref[src];AAlarmwires=[wirecolors[wiredesc]]'>接线</a>"
 
 			else
-				t1 += "<a href='byond://?src=\ref[src];AAlarmwires=[wirecolors[wiredesc]]'>Cut</a> "
-				t1 += "<a href='byond://?src=\ref[src];pulse=[wirecolors[wiredesc]]'>Pulse</a> "
+				t1 += "<a href='byond://?src=\ref[src];AAlarmwires=[wirecolors[wiredesc]]'>剪断</a> "
+				t1 += "<a href='byond://?src=\ref[src];pulse=[wirecolors[wiredesc]]'>脉冲</a> "
 
 			t1 += "<br>"
-		t1 += text("<br>\n[(locked ? "The Air Alarm is locked." : "The Air Alarm is unlocked.")]<br>\n[((shorted || (inoperable())) ? "The Air Alarm is offline." : "The Air Alarm is working properly!")]<br>\n[(aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]")
-		t1 += text("<p><a href='byond://?src=\ref[src];close2=1'>Close</a></p></body></html>")
+		t1 += text("<br>\n[(locked ? "空气警报器已锁定。" : "空气警报器已解锁。")]<br>\n[((shorted || (inoperable())) ? "空气警报器已离线。" : "空气警报器运行正常！")]<br>\n[(aidisabled ? "“允许人工智能控制”指示灯已熄灭。" : "“允许人工智能控制”指示灯已亮起。")]")
+		t1 += text("<p><a href='byond://?src=\ref[src];close2=1'>关闭</a></p></body></html>")
 		show_browser(user, t1, name, "AAlarmwires")
 
 	if(!shorted)
@@ -559,14 +559,14 @@ GLOBAL_LIST_INIT(aalarm_mode_descriptions, flatten_numeric_alist(alist(
 
 /obj/structure/machinery/alarm/proc/return_text(mob/user)
 	if(!(isRemoteControlling(user)) && locked)
-		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr><i>(Swipe ID card to unlock interface)</i></body></html>"
+		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr><i>（刷身份卡以解锁界面）</i></body></html>"
 	else
 		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr>[return_controls()]</body></html>"
 
 /obj/structure/machinery/alarm/proc/return_status()
 	var/turf/location = get_turf(src)
 
-	var/output = "<b>Air Status:</b><br>"
+	var/output = "<b>空气状态：</b><br>"
 
 
 	output += {"
@@ -587,28 +587,28 @@ GLOBAL_LIST_INIT(aalarm_mode_descriptions, flatten_numeric_alist(alist(
 	var/temperature_dangerlevel = get_danger_level(environment_temperature, current_settings)
 
 	output += {"
-Pressure: <span class='dl[pressure_dangerlevel]'>[environment_pressure]</span>kPa<br>
+气压：<span class='dl[pressure_dangerlevel]'>[environment_pressure]</span>kPa<br>
 "}
 
-	output += "Temperature: <span class='dl[temperature_dangerlevel]'>[environment_temperature]</span>K ([round(environment_temperature - T0C, 0.1)]C)<br>"
+	output += "温度：<span class='dl[temperature_dangerlevel]'>[environment_temperature]</span>K ([round(environment_temperature - T0C, 0.1)]C)<br>"
 
 	//'Local Status' should report the LOCAL status, damnit.
-	output += "Local Status: "
+	output += "本地状态："
 	switch(max(pressure_dangerlevel,oxygen_dangerlevel,co2_dangerlevel,phoron_dangerlevel,other_dangerlevel,temperature_dangerlevel))
 		if(2)
-			output += "<span class='dl2'>DANGER: Internals Required</span><br>"
+			output += "<span class='dl2'>危险：必须使用内部供气</span><br>"
 		if(1)
-			output += "<span class='dl1'>Caution</span><br>"
+			output += "<span class='dl1'>注意</span><br>"
 		if(0)
-			output += "<span class='dl0'>Optimal</span><br>"
+			output += "<span class='dl0'>正常</span><br>"
 
-	output += "Area Status: "
+	output += "区域状态："
 	if(alarm_area.atmosalm)
-		output += SPAN_DL1("Atmos alert in area")
+		output += SPAN_DL1("区域内有大气警报")
 	else if (alarm_area.flags_alarm_state & ALARM_WARNING_FIRE)
-		output += SPAN_DL1("Fire alarm in area")
+		output += SPAN_DL1("区域内有火灾警报")
 	else
-		output += "No alerts"
+		output += "无警报"
 
 	return output
 
@@ -640,21 +640,21 @@ Pressure: <span class='dl[pressure_dangerlevel]'>[environment_pressure]</span>kP
 	switch(screen)
 		if (AALARM_SCREEN_MAIN)
 			if(alarm_area.atmosalm)
-				output += "<a href='byond://?src=\ref[src];atmos_reset=1'>Reset - Area Atmospheric Alarm</a><hr>"
+				output += "<a href='byond://?src=\ref[src];atmos_reset=1'>重置区域大气警报</a><hr>"
 			else
-				output += "<a href='byond://?src=\ref[src];atmos_alarm=1'>Activate - Area Atmospheric Alarm</a><hr>"
+				output += "<a href='byond://?src=\ref[src];atmos_alarm=1'>启动区域大气警报</a><hr>"
 
 			output += {"
-<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_SCRUB]'>Scrubbers Control</a><br>
-<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_VENT]'>Vents Control</a><br>
-<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_MODE]'>Set environmentals mode</a><br>
-<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_SENSORS]'>Sensor Settings</a><br>
+<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_SCRUB]'>洗涤器控制</a><br>
+<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_VENT]'>通风口控制</a><br>
+<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_MODE]'>设置环境控制模式</a><br>
+<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_SENSORS]'>传感器设置</a><br>
 <HR>
 "}
 			if (mode==AALARM_MODE_PANIC)
-				output += "[SET_CLASS("<B>PANIC SYPHON ACTIVE</B>", INTERFACE_RED)]<br><A href='byond://?src=\ref[src];mode=[AALARM_MODE_SCRUBBING]'>Turn syphoning off</A>"
+				output += "[SET_CLASS("<B>紧急抽气已启用</B>", INTERFACE_RED)]<br><A href='byond://?src=\ref[src];mode=[AALARM_MODE_SCRUBBING]'>停止抽气</A>"
 			else
-				output += "<A href='byond://?src=\ref[src];mode=[AALARM_MODE_PANIC]'>[SET_CLASS("ACTIVATE PANIC SYPHON IN AREA", INTERFACE_RED)]</A>"
+				output += "<A href='byond://?src=\ref[src];mode=[AALARM_MODE_PANIC]'>[SET_CLASS("启用区域紧急抽气", INTERFACE_RED)]</A>"
 
 
 		if (AALARM_SCREEN_VENT)
@@ -669,14 +669,14 @@ Pressure: <span class='dl[pressure_dangerlevel]'>[environment_pressure]</span>kP
 
 					sensor_data += {"
 <B>[long_name]</B>[state]<BR>
-<B>Operating:</B>
-<A href='byond://?src=\ref[src];id_tag=[id_tag];command=power;val=[!data["power"]]'>[data["power"]?"on":"off"]</A>
+<B>运行状态：</B>
+<A href='byond://?src=\ref[src];id_tag=[id_tag];command=power;val=[!data["power"]]'>[data["power"]?"开启":"关闭"]</A>
 <BR>
-<B>Pressure checks:</B>
-<A href='byond://?src=\ref[src];id_tag=[id_tag];command=checks;val=[data["checks"]^1]' [(data["checks"]&1)?"style='font-weight:bold;'":""]>external</A>
-<A href='byond://?src=\ref[src];id_tag=[id_tag];command=checks;val=[data["checks"]^2]' [(data["checks"]&2)?"style='font-weight:bold;'":""]>internal</A>
+<B>气压检查：</B>
+<A href='byond://?src=\ref[src];id_tag=[id_tag];command=checks;val=[data["checks"]^1]' [(data["checks"]&1)?"style='font-weight:bold;'":""]>外部</A>
+<A href='byond://?src=\ref[src];id_tag=[id_tag];command=checks;val=[data["checks"]^2]' [(data["checks"]&2)?"style='font-weight:bold;'":""]>内部</A>
 <BR>
-<B>External pressure bound:</B>
+<B>外部气压限值：</B>
 <A href='byond://?src=\ref[src];id_tag=[id_tag];command=adjust_external_pressure;val=-1000'>-</A>
 <A href='byond://?src=\ref[src];id_tag=[id_tag];command=adjust_external_pressure;val=-100'>-</A>
 <A href='byond://?src=\ref[src];id_tag=[id_tag];command=adjust_external_pressure;val=-10'>-</A>
@@ -686,13 +686,13 @@ Pressure: <span class='dl[pressure_dangerlevel]'>[environment_pressure]</span>kP
 <A href='byond://?src=\ref[src];id_tag=[id_tag];command=adjust_external_pressure;val=+10'>+</A>
 <A href='byond://?src=\ref[src];id_tag=[id_tag];command=adjust_external_pressure;val=+100'>+</A>
 <A href='byond://?src=\ref[src];id_tag=[id_tag];command=adjust_external_pressure;val=+1000'>+</A>
-<A href='byond://?src=\ref[src];id_tag=[id_tag];command=set_external_pressure;val=[ONE_ATMOSPHERE]'> (reset) </A>
+<A href='byond://?src=\ref[src];id_tag=[id_tag];command=set_external_pressure;val=[ONE_ATMOSPHERE]'>（重置）</A>
 <BR>
 "}
 					if (data["direction"] == "siphon")
 						sensor_data += {"
-<B>Direction:</B>
-siphoning
+<B>方向：</B>
+抽气
 <BR>
 "}
 					sensor_data += {"<HR>"}
@@ -711,26 +711,26 @@ siphoning
 
 					sensor_data += {"
 <B>[long_name]</B>[state]<BR>
-<B>Operating:</B>
-<A href='byond://?src=\ref[src];id_tag=[id_tag];command=power;val=[!data["power"]]'>[data["power"]?"on":"off"]</A><BR>
-<B>Type:</B>
-<A href='byond://?src=\ref[src];id_tag=[id_tag];command=scrubbing;val=[!data["scrubbing"]]'>[data["scrubbing"]?"scrubbing":"syphoning"]</A><BR>
+<B>运行状态：</B>
+<A href='byond://?src=\ref[src];id_tag=[id_tag];command=power;val=[!data["power"]]'>[data["power"]?"开启":"关闭"]</A><BR>
+<B>类型：</B>
+<A href='byond://?src=\ref[src];id_tag=[id_tag];command=scrubbing;val=[!data["scrubbing"]]'>[data["scrubbing"]?"过滤":"抽气"]</A><BR>
 "}
 
 					if(data["scrubbing"])
 						sensor_data += {"
-<B>Filtering:</B>
-Carbon Dioxide
-<A href='byond://?src=\ref[src];id_tag=[id_tag];command=co2_scrub;val=[!data["filter_co2"]]'>[data["filter_co2"]?"on":"off"]</A>;
-Toxins
-<A href='byond://?src=\ref[src];id_tag=[id_tag];command=tox_scrub;val=[!data["filter_phoron"]]'>[data["filter_phoron"]?"on":"off"]</A>;
-Nitrous Oxide
-<A href='byond://?src=\ref[src];id_tag=[id_tag];command=n2o_scrub;val=[!data["filter_n2o"]]'>[data["filter_n2o"]?"on":"off"]</A>
+<B>过滤：</B>
+二氧化碳
+<A href='byond://?src=\ref[src];id_tag=[id_tag];command=co2_scrub;val=[!data["filter_co2"]]'>[data["filter_co2"]?"开启":"关闭"]</A>;
+毒素
+<A href='byond://?src=\ref[src];id_tag=[id_tag];command=tox_scrub;val=[!data["filter_phoron"]]'>[data["filter_phoron"]?"开启":"关闭"]</A>;
+一氧化二氮
+<A href='byond://?src=\ref[src];id_tag=[id_tag];command=n2o_scrub;val=[!data["filter_n2o"]]'>[data["filter_n2o"]?"开启":"关闭"]</A>
 <BR>
 "}
 					sensor_data += {"
-<B>Panic syphon:</B> [data["panic"] ? "[SET_CLASS("<B>PANIC SYPHON ACTIVATED</B>", INTERFACE_RED)]" : ""]
-<A href='byond://?src=\ref[src];id_tag=[id_tag];command=panic_siphon;val=[!data["panic"]]'>[data["panic"] ? "[SET_CLASS("Deactivate", INTERFACE_BLUE)]" : "[SET_CLASS("Activate", INTERFACE_RED)]"]</A><BR>
+<B>紧急抽气：</B> [data["panic"] ? "[SET_CLASS("<B>紧急抽气已启用</B>", INTERFACE_RED)]" : ""]
+<A href='byond://?src=\ref[src];id_tag=[id_tag];command=panic_siphon;val=[!data["panic"]]'>[data["panic"] ? "[SET_CLASS("停用", INTERFACE_BLUE)]" : "[SET_CLASS("启用", INTERFACE_RED)]"]</A><BR>
 <HR>
 "}
 			else
@@ -738,19 +738,19 @@ Nitrous Oxide
 			output = {"<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>主菜单</a><br>[sensor_data]"}
 
 		if (AALARM_SCREEN_MODE)
-			output += "<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br><b>Air machinery mode for the area:</b><ul>"
+			output += "<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>主菜单</a><br><b>区域空气处理设备模式：</b><ul>"
 			for (var/m=1,m<=length(GLOB.aalarm_mode_descriptions),m++)
 				if (mode==m)
-					output += "<li><A href='byond://?src=\ref[src];mode=[m]'><b>[GLOB.aalarm_mode_descriptions[m]]</b></A> (selected)</li>"
+					output += "<li><A href='byond://?src=\ref[src];mode=[m]'><b>[GLOB.aalarm_mode_descriptions[m]]</b></A>（已选择）</li>"
 				else
 					output += "<li><A href='byond://?src=\ref[src];mode=[m]'>[GLOB.aalarm_mode_descriptions[m]]</A></li>"
 			output += "</ul>"
 
 		if (AALARM_SCREEN_SENSORS)
 			output += {"
-<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br>
-<b>Alarm thresholds:</b><br>
-Partial pressure for gases
+<a href='byond://?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>主菜单</a><br>
+<b>警报阈值：</b><br>
+气体使用分压数值
 <style>/* some CSS woodoo here. Does not work perfect in ie6 but who cares? */
 table td { border-left: 1px solid black; border-top: 1px solid black;}
 table tr:first-child th { border-left: 1px solid black;}
@@ -761,32 +761,32 @@ table tr:first-child th:first-child { border: none;}
 .dl2 { color: red; font-weght: bold;}
 </style>
 <table cellspacing=0>
-<TR><th></th><th class=dl2>min2</th><th class=dl1>min1</th><th class=dl1>max1</th><th class=dl2>max2</th></TR>
+<TR><th></th><th class=dl2>极低下限</th><th class=dl1>低值预警</th><th class=dl1>高值预警</th><th class=dl2>极高上限</th></TR>
 "}
 			var/list/gases = list(
 				"oxygen"  = "O<sub>2</sub>",
 				"carbon dioxide" = "CO<sub>2</sub>",
-				"phoron"  = "Toxin",
-				"other"   = "Other",)
+				"phoron"  = "弗燃素",
+				"other"   = "其他气体",)
 
 			var/list/selected
 			for (var/g in gases)
 				output += "<TR><th>[gases[g]]</th>"
 				selected = TLV[g]
 				for(var/i = 1, i <= 4, i++)
-					output += "<td><A href='byond://?src=\ref[src];command=set_threshold;env=[g];var=[i]'>[selected[i] >= 0 ? selected[i] :"OFF"]</A></td>"
+					output += "<td><A href='byond://?src=\ref[src];command=set_threshold;env=[g];var=[i]'>[selected[i] >= 0 ? selected[i] :"关闭"]</A></td>"
 				output += "</TR>"
 
 			selected = TLV["pressure"]
-			output += " <TR><th>Pressure</th>"
+			output += " <TR><th>气压</th>"
 			for(var/i = 1, i <= 4, i++)
-				output += "<td><A href='byond://?src=\ref[src];command=set_threshold;env=pressure;var=[i]'>[selected[i] >= 0 ? selected[i] :"OFF"]</A></td>"
+				output += "<td><A href='byond://?src=\ref[src];command=set_threshold;env=pressure;var=[i]'>[selected[i] >= 0 ? selected[i] :"关闭"]</A></td>"
 			output += "</TR>"
 
 			selected = TLV["temperature"]
-			output += "<TR><th>Temperature</th>"
+			output += "<TR><th>温度</th>"
 			for(var/i = 1, i <= 4, i++)
-				output += "<td><A href='byond://?src=\ref[src];command=set_threshold;env=temperature;var=[i]'>[selected[i] >= 0 ? selected[i] :"OFF"]</A></td>"
+				output += "<td><A href='byond://?src=\ref[src];command=set_threshold;env=temperature;var=[i]'>[selected[i] >= 0 ? selected[i] :"关闭"]</A></td>"
 			output += "</TR></table>"
 
 	return output
@@ -847,8 +847,8 @@ table tr:first-child th:first-child { border: none;}
 					var/env = href_list["env"]
 					var/threshold = text2num(href_list["var"])
 					var/list/selected = TLV[env]
-					var/list/thresholds = list("lower bound", "low warning", "high warning", "upper bound")
-					var/newval = tgui_input_real_number(usr, "Enter [thresholds[threshold]] for [env]", "Alarm triggers", selected[threshold])
+					var/list/thresholds = list("下限", "低值预警", "高值预警", "上限")
+					var/newval = tgui_input_real_number(usr, "请输入[list("oxygen" = "氧气", "carbon dioxide" = "二氧化碳", "phoron" = "弗燃素", "other" = "其他气体", "pressure" = "气压", "temperature" = "温度")[env] || env]的[thresholds[threshold]]", "警报触发阈值", selected[threshold])
 					if (isnull(newval) || ..() || (locked && !isRemoteControlling(usr)))
 						return
 					if (newval<0)
@@ -940,7 +940,7 @@ table tr:first-child th:first-child { border: none;}
 			var/t1 = text2num(href_list["pulse"])
 			var/obj/item/held_item = usr.get_held_item()
 			if (held_item && !HAS_TRAIT(held_item, TRAIT_TOOL_MULTITOOL))
-				to_chat(usr, SPAN_WARNING("你需要多用工具！"))
+				to_chat(usr, SPAN_WARNING("你需要多功能工具！"))
 				return
 			if (isWireColorCut(t1))
 				to_chat(usr, SPAN_WARNING("你无法向已剪断的电线发送脉冲。"))
@@ -1013,7 +1013,7 @@ table tr:first-child th:first-child { border: none;}
 				return
 
 			else if(HAS_TRAIT(W, TRAIT_TOOL_WRENCH))
-				to_chat(user, "你从墙上拆下了火灾警报器框架！")
+				to_chat(user, "你从墙上拆下了空气警报器框架！")
 				var/obj/item/frame/air_alarm/frame = new /obj/item/frame/air_alarm()
 				frame.forceMove(user.loc)
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)

@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /mob/living/simple_animal/hostile/retaliate/clown{
-	name = "Honkius T. Conk"
+	name = "哔哔·T·康克"
 	},
 /turf/template_noop,
 /area/template_noop)

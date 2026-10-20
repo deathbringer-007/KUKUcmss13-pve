@@ -26,7 +26,7 @@
 
 
 /mob/living/simple_animal/parrot
-	name = "\improper Parrot"
+	name = "\improper 鹦鹉"
 	desc = "鹦鹉尖叫着：“这是只鹦鹉！嘎——！”"
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "parrot_fly"
@@ -123,23 +123,23 @@
 				if("ears")
 					if(ears)
 						if(length(available_channels))
-							src.say("[pick(available_channels)] BAWWWWWK LEAVE THE HEADSET BAWKKKKK!")
+							src.say("[pick(available_channels)] 嘎——别碰耳机，嘎——！")
 						else
-							src.say("BAWWWWWK LEAVE THE HEADSET BAWKKKKK!")
+							src.say("嘎——别碰耳机，嘎——！")
 						ears.forceMove(src.loc)
 						ears = null
 						for(var/possible_phrase in speak)
 							if(copytext(possible_phrase,1,3) in GLOB.department_radio_keys)
 								possible_phrase = copytext(possible_phrase,3,length(possible_phrase))
 					else
-						to_chat(usr, SPAN_DANGER("它的[remove_from]上没有可取下的东西。"))
+						to_chat(usr, SPAN_DANGER("它的[remove_from == "ears" ? "耳朵" : remove_from]上没有可取下的东西。"))
 						return
 
 		//Adding things to inventory
 		else if(href_list["add_inv"])
 			var/add_to = href_list["add_inv"]
 			if(!usr.get_active_hand())
-				to_chat(usr, SPAN_DANGER("你手里没有可放到它[add_to]上的东西。"))
+				to_chat(usr, SPAN_DANGER("你手里没有可放到它[add_to == "ears" ? "耳朵" : add_to]上的东西。"))
 				return
 			switch(add_to)
 				if("ears")
@@ -670,7 +670,7 @@
  * Sub-types
  */
 /mob/living/simple_animal/parrot/Poly
-	name = "Poly"
+	name = "波利"
 	desc = "鹦鹉波利，量子饼干理论专家。"
 	speak = list("波利想吃饼干！", ":e 去检查奇点，你们这群蠢货！",":e 给太阳能板接线，你们这群懒鬼！",":e 谁拿走了那该死的硬式太空服？",":e 天啊它跑出来了，快叫穿梭机！")
 
@@ -684,7 +684,7 @@
 	if(stat)
 		return
 
-	var/verb = "says"
+	var/verb = "说道"
 	if(length(speak_emote))
 		verb = pick(speak_emote)
 
@@ -713,14 +713,14 @@
 	..(message)
 
 
-/mob/living/simple_animal/parrot/hear_say(message, verb = "says", datum/language/language = null, alt_name = "", italics = 0, mob/speaker = null)
+/mob/living/simple_animal/parrot/hear_say(message, verb = "说道", datum/language/language = null, alt_name = "", italics = 0, mob/speaker = null)
 	if(prob(50))
 		parrot_hear(message)
 	..(message,verb,language,alt_name,italics,speaker)
 
 
 
-/mob/living/simple_animal/parrot/hear_radio(message, verb="says", datum/language/language=null, part_a, part_b, mob/speaker = null, hard_to_hear = 0, command, vname, no_paygrade)
+/mob/living/simple_animal/parrot/hear_radio(message, verb="说道", datum/language/language=null, part_a, part_b, mob/speaker = null, hard_to_hear = 0, command, vname, no_paygrade)
 	if(prob(50))
 		parrot_hear("[pick(available_channels)] [message]")
 	..(message,verb,language,part_a,part_b,speaker,hard_to_hear)

@@ -323,7 +323,7 @@
 "NE" = (
 /obj/structure/bed/chair/dropship/passenger/shuttle_chair{
 	dir = 4;
-	name = "pilot seat"
+	name = "驾驶座"
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/lifeboat)

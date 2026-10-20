@@ -113,7 +113,7 @@
 /obj/structure/window/framed/solaris/reinforced,
 /obj/structure/machinery/door/poddoor/shutters/almayer{
 	id = "Operations";
-	name = "\improper Operations Shutters"
+	name = "\improper 运营中心闸门"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/admin_building)
@@ -156,14 +156,14 @@
 	dir = 4
 	},
 /obj/structure/machinery/door/airlock/almayer/command/colony{
-	name = "\improper Operations Office"
+	name = "\improper 运营中心办公室"
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "jH" = (
 /obj/structure/machinery/door/airlock/almayer/command/colony{
 	dir = 1;
-	name = "\improper Operations Meeting Room"
+	name = "\improper 运营中心会议室"
 	},
 /turf/open/floor/delivery,
 /area/bigredv2/outside/admin_building)
@@ -213,7 +213,7 @@
 /obj/structure/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "Operations";
-	name = "\improper Operations Shutters"
+	name = "\improper 运营中心闸门"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/admin_building)
@@ -257,7 +257,7 @@
 	dir = 4
 	},
 /obj/structure/machinery/door/airlock/almayer/command/colony{
-	name = "\improper Operations Meeting Room"
+	name = "\improper 运营中心会议室"
 	},
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 4
@@ -326,7 +326,7 @@
 /obj/structure/surface/table,
 /obj/item/device/radio/marine,
 /obj/item/weapon/gun/pistol/m4a3/training{
-	name = "dented M4A3 service pistol"
+	name = "有凹痕的M4A3制式手枪"
 	},
 /obj/item/ammo_magazine/pistol/rubber,
 /turf/open/floor/carpet,
@@ -364,7 +364,7 @@
 /obj/item/device/radio/intercom{
 	freerange = 1;
 	frequency = 1469;
-	name = "General Listening Channel";
+	name = "公共收听频道";
 	pixel_x = 30
 	},
 /turf/open/floor/darkred2/southeast,

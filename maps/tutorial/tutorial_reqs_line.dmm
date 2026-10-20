@@ -54,8 +54,8 @@
 /area/misc/tutorial)
 "J" = (
 /obj/item/toy/bikehorn/rubberducky{
-	name = "Quackers";
-	desc = "You feel as though this rubber duck has been here for a long time. It's Mr. Quackers! He loves you!"
+	name = "嘎嘎";
+	desc = "你感觉这只橡皮鸭已经在这里待了很久。它就是嘎嘎先生！它爱你哟！"
 	},
 /obj/effect/landmark/tutorial/reqs_line_cleaner,
 /turf/open/floor/almayer,

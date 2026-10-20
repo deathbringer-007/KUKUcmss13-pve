@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
 /obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
+	desc = "这道路障经过重度加固。看来只有炸开它才行，或者熔毁支撑它的横梁……";
 	dir = 8;
 	health = 25000
 	},
@@ -120,7 +120,7 @@
 /obj/structure/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "Cargonia";
-	name = "\improper Cargo Shutters"
+	name = "\improper 货舱闸门"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
@@ -206,7 +206,7 @@
 "bO" = (
 /obj/structure/machinery/door_control{
 	id = "Cargonia";
-	name = "Storm Shutters";
+	name = "防风闸门";
 	pixel_x = 32
 	},
 /turf/open/floor,
@@ -260,7 +260,7 @@
 /area/bigredv2/outside/cargo)
 "cl" = (
 /obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
+	desc = "这道路障经过重度加固。看来只有炸开它才行，或者熔毁支撑它的横梁……";
 	health = 25000
 	},
 /turf/open/floor,
@@ -268,7 +268,7 @@
 "cm" = (
 /obj/structure/pipes/standard/simple/hidden/green,
 /obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
+	desc = "这道路障经过重度加固。看来只有炸开它才行，或者熔毁支撑它的横梁……";
 	health = 25000
 	},
 /turf/open/floor,
@@ -325,7 +325,7 @@
 /obj/structure/window/framed/solaris,
 /obj/structure/machinery/door/poddoor/shutters/almayer{
 	id = "Cargonia";
-	name = "\improper Cargo Shutters"
+	name = "\improper 货舱闸门"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
@@ -395,7 +395,7 @@
 /area/bigredv2/outside/cargo)
 "ss" = (
 /obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
+	desc = "这道路障经过重度加固。看来只有炸开它才行，或者熔毁支撑它的横梁……";
 	dir = 8;
 	health = 25000
 	},
@@ -406,7 +406,7 @@
 	dir = 4
 	},
 /obj/structure/machinery/door/airlock/almayer/security/glass/colony{
-	name = "\improper Cargo Bay Security"
+	name = "\improper 货舱安保室"
 	},
 /turf/open/floor/delivery,
 /area/bigredv2/outside/cargo)
@@ -424,14 +424,14 @@
 /obj/structure/pipes/standard/simple/hidden/green,
 /obj/structure/machinery/door/airlock/almayer/engineering/colony{
 	dir = 1;
-	name = "\improper Cargo Bay Quartermaster"
+	name = "\improper 货舱军需官办公室"
 	},
 /turf/open/floor/delivery,
 /area/bigredv2/outside/cargo)
 "xd" = (
 /obj/structure/pipes/standard/simple/hidden/green,
 /obj/structure/machinery/door/airlock/multi_tile/almayer/generic{
-	name = "\improper Cargo Offices"
+	name = "\improper 货运办公室"
 	},
 /turf/open/floor/delivery,
 /area/bigredv2/outside/cargo)
@@ -584,13 +584,13 @@
 /area/bigredv2/outside/cargo)
 "Rd" = (
 /obj/structure/machinery/door/airlock/multi_tile/almayer/generic{
-	name = "\improper Engineering Complex"
+	name = "\improper 工程园区"
 	},
 /turf/open/floor/delivery,
 /area/bigredv2/outside/engineering)
 "Rk" = (
 /obj/structure/machinery/door/airlock/almayer/engineering/colony{
-	name = "\improper Cargo Bay Quartermaster"
+	name = "\improper 货舱军需官办公室"
 	},
 /turf/open/floor/delivery,
 /area/bigredv2/outside/cargo)
@@ -635,7 +635,7 @@
 "Xz" = (
 /obj/structure/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 1;
-	name = "\improper Cargo Bay"
+	name = "\improper 货舱"
 	},
 /turf/open/floor/delivery,
 /area/bigredv2/outside/cargo)

@@ -85,7 +85,7 @@
 	pixel_y = 12;
 	layer = 3.1;
 	phone_category = "Dropship";
-	name = "Midway telephone receiver";
+	name = "中途岛号电话";
 	phone_id = "Midway"
 	},
 /turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
@@ -234,7 +234,7 @@
 /obj/structure/machinery/computer/dropship_weapons/midway/small{
 	pixel_y = 8;
 	pixel_x = 8;
-	name = "\improper 'Cash Flow' weapons controls";
+	name = "\improper “现金流号”武器控制台";
 	req_one_access = list(12,22,205, 200)
 	},
 /obj/structure/bed/chair/vehicle/dropship_cockpit/copilot{
@@ -528,7 +528,7 @@
 	pixel_y = 2
 	},
 /obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2{
-	name = "\improper Cash Flow cargo door";
+	name = "\improper 现金流号货舱门";
 	id = "aft_door"
 	},
 /turf/open/shuttle/dropship/medium_grey_single_wide_left_to_right,
