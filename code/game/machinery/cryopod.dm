@@ -82,7 +82,8 @@ GLOBAL_LIST_INIT(frozen_items, list(SQUAD_MARINE_1 = list(), SQUAD_MARINE_2 = li
 	dat += "<a href='byond://?src=\ref[src];item=1'>取回物品</a>。<br>"
 	dat += "<a href='byond://?src=\ref[src];allitems=1'>取回全部物品</a>。<br>"
 
-	show_browser(user, dat, "[cryotype]休眠监管控制", "cryopod_console")
+	var/list/department_labels = list("REQ" = "军需", "MP" = "宪兵", "Eng" = "工程", "Med" = "医疗", "Yautja" = "铁血战士")
+	show_browser(user, dat, "[department_labels[cryotype] || preference_label(cryotype)]休眠监管控制", "cryopod_console")
 
 /obj/structure/machinery/computer/cryopod/Topic(href, href_list)
 	. = ..()
@@ -373,10 +374,10 @@ GLOBAL_LIST_INIT(frozen_items, list(SQUAD_MARINE_1 = list(), SQUAD_MARINE_2 = li
 		occupant.ghostize(0)
 
 	//Make an announcement and log the person entering storage.
-	GLOB.frozen_crew += "[occupant.real_name] ([occupant.job])"
+	GLOB.frozen_crew += "[occupant.real_name]（[preference_label(occupant.job)]）"
 
 	if(!isyautja(occupant))
-		ai_silent_announcement("[occupant.real_name]，[occupant.job]，已进入长期深度休眠，随身物品已转移至休眠储物区。")
+		ai_silent_announcement("[occupant.real_name]，[preference_label(occupant.job)]，已进入长期深度休眠，随身物品已转移至休眠储物区。")
 	visible_message(SPAN_NOTICE("[src]嗡嗡作响，伴随着嘶嘶声，将[occupant.real_name]送入深度休眠区。"))
 
 	//Delete the mob.

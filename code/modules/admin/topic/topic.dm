@@ -767,7 +767,7 @@
 
 		GLOB.master_mode = href_list["c_mode2"]
 		message_admins("[key_name_admin(usr)] set the mode as [GLOB.master_mode].")
-		to_world(SPAN_NOTICE("<b><i>The mode is now: [GLOB.master_mode]!</i></b>"))
+		to_world(SPAN_NOTICE("<b><i>当前模式已切换为：[get_statistic_display_label(GLOB.master_mode)]！</i></b>"))
 		Game() // updates the main game menu
 		SSticker.save_mode(GLOB.master_mode)
 
@@ -950,7 +950,7 @@
 		sleep(5)
 		M.forceMove(get_turf(pick(GLOB.thunderdome_one)))
 		spawn(50)
-			to_chat(M, SPAN_NOTICE(" You have been sent to the Thunderdome."))
+			to_chat(M, SPAN_NOTICE("你已被传送至雷霆竞技场。"))
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 1)", 1)
 
 	else if(href_list["tdome2"])
@@ -971,7 +971,7 @@
 		sleep(5)
 		M.forceMove(get_turf(pick(GLOB.thunderdome_two)))
 		spawn(50)
-			to_chat(M, SPAN_NOTICE(" You have been sent to the Thunderdome."))
+			to_chat(M, SPAN_NOTICE("你已被传送至雷霆竞技场。"))
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 2)", 1)
 
 	else if(href_list["tdomeadmin"])
@@ -989,7 +989,7 @@
 		sleep(5)
 		M.forceMove(get_turf(pick(GLOB.thunderdome_admin)))
 		spawn(50)
-			to_chat(M, SPAN_NOTICE(" You have been sent to the Thunderdome."))
+			to_chat(M, SPAN_NOTICE("你已被传送至雷霆竞技场。"))
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Admin.)", 1)
 
 	else if(href_list["tdomeobserve"])
@@ -1014,7 +1014,7 @@
 		sleep(5)
 		M.forceMove(get_turf(pick(GLOB.thunderdome_observer)))
 		spawn(50)
-			to_chat(M, SPAN_NOTICE(" You have been sent to the Thunderdome."))
+			to_chat(M, SPAN_NOTICE("你已被传送至雷霆竞技场。"))
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Observer.)", 1)
 
 	else if(href_list["revive"])

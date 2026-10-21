@@ -315,9 +315,9 @@
 	if(!mob_client)
 		mob_client = new_human.client
 	var/obj/item/card/id/ID = new idtype()
-	ID.name = "[new_human.real_name]'s [ID.card_name]"
+	ID.name = "[new_human.real_name]的[localized_player_label(ID.card_name)]"
 	if(get_assignment(new_human))
-		ID.name += " ([get_assignment(new_human)])"
+		ID.name += "（[localized_player_label(get_assignment(new_human))]）"
 	ID.access = access.Copy(1, 0)
 	ID.faction = faction
 	ID.faction_group = faction_group.Copy()
@@ -407,13 +407,13 @@
 		var/datum/gear/current_gear = GLOB.gear_datums_by_name[gear_name]
 		if(current_gear)
 			if(current_gear.allowed_roles && !(assignment in current_gear.allowed_roles))
-				to_chat(new_human, SPAN_WARNING("Custom gear [current_gear.display_name] cannot be equipped: Invalid Role"))
+				to_chat(new_human, SPAN_WARNING("无法装备自选装备[current_gear.display_name]：职业不符。"))
 				return
 			if(current_gear.allowed_origins && !(new_human.origin in current_gear.allowed_origins))
-				to_chat(new_human, SPAN_WARNING("Custom gear [current_gear.display_name] cannot be equipped: Invalid Origin"))
+				to_chat(new_human, SPAN_WARNING("无法装备自选装备[current_gear.display_name]：出身不符。"))
 				return
 			if(!current_gear.special_conditions())
-				to_chat(new_human, SPAN_WARNING("Custom gear [current_gear.display_name] cannot be equipped: Special conditions not met."))
+				to_chat(new_human, SPAN_WARNING("无法装备自选装备[current_gear.display_name]：未满足特殊条件。"))
 				return
 			if(!(current_gear.slot && new_human.equip_to_slot_or_del(new current_gear.path, current_gear.slot)))
 				var/obj/equipping_gear = new current_gear.path
@@ -498,7 +498,7 @@ GLOBAL_LIST_EMPTY(personal_closets)
 
 		closet.owner = new_human.real_name
 		closet_to_spawn_in = closet
-		closet_to_spawn_in.name = "[closet_to_spawn_in.owner]'s personal locker"
+		closet_to_spawn_in.name = "[closet_to_spawn_in.owner]的个人储物柜"
 		break
 	if(!closet_to_spawn_in)
 		load_vanity(new_human, mob_client)
@@ -508,13 +508,13 @@ GLOBAL_LIST_EMPTY(personal_closets)
 		var/datum/gear/current_gear = GLOB.gear_datums_by_name[gear_name]
 		if(current_gear)
 			if(current_gear.allowed_roles && !(assignment in current_gear.allowed_roles))
-				to_chat(new_human, SPAN_WARNING("Custom gear [current_gear.display_name] cannot be equipped: Invalid Role"))
+				to_chat(new_human, SPAN_WARNING("无法装备自选装备[current_gear.display_name]：职业不符。"))
 				return
 			if(current_gear.allowed_origins && !(new_human.origin in current_gear.allowed_origins))
-				to_chat(new_human, SPAN_WARNING("Custom gear [current_gear.display_name] cannot be equipped: Invalid Origin"))
+				to_chat(new_human, SPAN_WARNING("无法装备自选装备[current_gear.display_name]：出身不符。"))
 				return
 			if(!current_gear.special_conditions())
-				to_chat(new_human, SPAN_WARNING("Custom gear [current_gear.display_name] cannot be equipped: Special conditions not met."))
+				to_chat(new_human, SPAN_WARNING("无法装备自选装备[current_gear.display_name]：未满足特殊条件。"))
 				return
 			new current_gear.path(closet_to_spawn_in)
 
@@ -1307,7 +1307,7 @@ GLOBAL_LIST_INIT(rebel_ua_pistols, list(
 	return list(
 		list("标准装备 (全部领取)", 0, null, null, null),
 		list("殖民地解放阵线鞋子（随机）", 0, /obj/effect/essentials_set/random/clf_shoes, MARINE_CAN_BUY_SHOES, VENDOR_ITEM_MANDATORY),
-		list("CLF 制服", 0, /obj/item/clothing/under/colonist/clf, MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
+		list("殖民地解放阵线制服", 0, /obj/item/clothing/under/colonist/clf, MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
 		list("殖民地解放阵线护甲（随机）", 0, /obj/effect/essentials_set/random/clf_armor, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_MANDATORY),
 		list("殖民地解放阵线手套（随机）", 0, /obj/effect/essentials_set/random/clf_gloves, MARINE_CAN_BUY_GLOVES, VENDOR_ITEM_MANDATORY),
 		list("殖民地解放阵线腰带（随机）", 0, /obj/effect/essentials_set/random/clf_belt, MARINE_CAN_BUY_BELT, VENDOR_ITEM_MANDATORY),
@@ -1364,7 +1364,7 @@ GLOBAL_LIST_INIT(rebel_ua_pistols, list(
 		list("简易磷弹", 20, /obj/item/explosive/grenade/phosphorus/clf, null, VENDOR_ITEM_REGULAR),
 		list("烟幕手榴弹", 5, /obj/item/explosive/grenade/smokebomb, null, VENDOR_ITEM_REGULAR),
 
-		list("勤务服", 0, null, null, null),
+		list("工具", 0, null, null, null),
 		list("灭火器 (便携式)", 5, /obj/item/tool/extinguisher/mini, null, VENDOR_ITEM_REGULAR),
 		list("大型杂物袋", 10, /obj/item/storage/pouch/general/large, null, VENDOR_ITEM_REGULAR),
 		list("随机物品（可能有用，也可能没用）", 5, /obj/effect/essentials_set/random/clf_bonus_item, null, VENDOR_ITEM_REGULAR),

@@ -136,10 +136,10 @@
 			var/obj/limb/affecting = H.get_limb(target_zone)
 			if (affecting)
 				if(!status)
-					human_target.visible_message(SPAN_WARNING("[user]用[src]戳中了[human_target]的[affecting.display_name]。幸好警棍没通电。"))
+					human_target.visible_message(SPAN_WARNING("[user]用[src]戳中了[human_target]的[localized_player_label(affecting.display_name)]。幸好警棍没通电。"))
 					return TRUE
 				else
-					H.visible_message(SPAN_DANGER("[user]用[src]戳中了[human_target]的[affecting.display_name]！"))
+					H.visible_message(SPAN_DANGER("[user]用[src]戳中了[human_target]的[localized_player_label(affecting.display_name)]！"))
 		else
 			if(!status)
 				human_target.visible_message(SPAN_WARNING("[user]用[src]戳中了[human_target]。幸好警棍没通电。"))

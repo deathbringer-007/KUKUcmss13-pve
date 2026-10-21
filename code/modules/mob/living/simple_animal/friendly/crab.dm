@@ -16,7 +16,7 @@
 	response_disarm = "轻轻推开"
 	response_harm   = "踩踏"
 	stop_automated_movement = 1
-	friendly = "pinches"
+	friendly = "轻夹"
 	black_market_value = 50
 	dead_black_market_value = 0
 	var/obj/item/inventory_head

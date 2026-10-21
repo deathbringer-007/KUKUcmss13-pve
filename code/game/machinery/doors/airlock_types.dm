@@ -338,7 +338,7 @@
 /obj/structure/machinery/door/airlock/almayer/take_damage(dam, mob/M)
 	var/damage_check = max(0, damage + dam)
 	if(damage_check >= damage_cap && M && is_mainship_level(z))
-		SSclues.create_print(get_turf(M), M, "The fingerprint contains bits of wire and metal specks.")
+		SSclues.create_print(get_turf(M), M, "指纹中残留着电线碎屑和金属微粒。")
 
 	..()
 

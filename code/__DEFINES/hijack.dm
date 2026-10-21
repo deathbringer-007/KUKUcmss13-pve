@@ -2,8 +2,8 @@
 #define EVACUATION_TYPE_ADDITIVE 1
 #define EVACUATION_TYPE_MULTIPLICATIVE 2
 
-#define HIJACK_ANNOUNCE "ARES Emergency Procedures"
-#define XENO_HIJACK_ANNOUNCE "You sense something unusual..."
+#define HIJACK_ANNOUNCE "ARES 应急程序"
+#define XENO_HIJACK_ANNOUNCE "你察觉到了一丝异样……"
 
 #define EVACUATION_STATUS_NOT_INITIATED 0
 #define EVACUATION_STATUS_INITIATED 1

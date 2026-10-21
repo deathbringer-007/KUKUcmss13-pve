@@ -214,7 +214,7 @@
 
 /turf/open/floor/plating/airless/Initialize(mapload, ...)
 	. = ..()
-	name = "plating"
+	name = "底板"
 
 /turf/open/floor/plating/icefloor
 	icon_state = "plating"
@@ -222,7 +222,7 @@
 
 /turf/open/floor/plating/icefloor/Initialize(mapload, ...)
 	. = ..()
-	name = "plating"
+	name = "底板"
 
 /turf/open/floor/plating/icefloor/warnplate
 	icon_state = "warnplate"
@@ -1228,7 +1228,7 @@
 
 /turf/open/floor/airless/Initialize(mapload, ...)
 	. = ..()
-	name = "floor"
+	name = "地板"
 
 /turf/open/floor/airless/asteroidfloor
 	icon_state = "asteroidfloor"

@@ -1,7 +1,7 @@
 
 // SPACE VINES (Note that this code is very similar to Biomass code)
 /obj/effect/plantsegment
-	name = "space vines"
+	name = "太空藤蔓"
 	desc = "一种扩散能力极强的藤蔓。"
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "light_1"
@@ -88,7 +88,7 @@
 			unbuckle()
 			return 1
 		else
-			var/text = pick("rips","tears","pulls")
+			var/text = pick("撕扯", "拉扯", "拽拉")
 			user.visible_message(\
 				SPAN_NOTICE("[user.name]对[src]进行[text]。"),\
 				SPAN_NOTICE("你对[src]进行[text]。"),\
@@ -303,7 +303,7 @@
 	vine.master = src
 	if(seed)
 		vine.seed = seed
-		vine.name = "[seed.seed_name] vines"
+		vine.name = "[localized_seed_label(seed.seed_name)]藤蔓"
 		vine.update()
 
 /obj/effect/plant_controller/process()

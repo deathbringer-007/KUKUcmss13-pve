@@ -29,7 +29,7 @@ export const Dialog = (props: DialogProps) => {
               textAlign="center"
               color="transparent"
               icon="window-close-o"
-              tooltip="Close"
+              tooltip="关闭"
               tooltipPosition="bottom-start"
               onClick={onClose}
             />
@@ -71,14 +71,12 @@ type UnsavedChangesDialogProps = {
 export const UnsavedChangesDialog = (props: UnsavedChangesDialogProps) => {
   const { documentName, onSave, onDiscard, onClose } = props;
   return (
-    <Dialog title="Notepad" onClose={onClose}>
-      <div className="Dialog__body">
-        Do you want to save changes to {documentName}?
-      </div>
+    <Dialog title="记事本" onClose={onClose}>
+      <div className="Dialog__body">是否保存对{documentName}的修改？</div>
       <div className="Dialog__footer">
-        <DialogButton onClick={onSave}>Save</DialogButton>
-        <DialogButton onClick={onDiscard}>Don&apos;t Save</DialogButton>
-        <DialogButton onClick={onClose}>Cancel</DialogButton>
+        <DialogButton onClick={onSave}>保存</DialogButton>
+        <DialogButton onClick={onDiscard}>不保存</DialogButton>
+        <DialogButton onClick={onClose}>取消</DialogButton>
       </div>
     </Dialog>
   );

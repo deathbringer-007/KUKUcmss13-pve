@@ -134,7 +134,7 @@ GLOBAL_VAR_INIT(cas_tracking_id_increment, 0) //this var used to assign unique t
 		GLOB.round_statistics.track_round_end()
 	log_game("Round end result: [round_finished]")
 	to_chat_spaced(world, margin_top = 2, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDHEADER("|回合结束|"))
-	to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDBODY("至此，[MAIN_SHIP_NAME]上英勇男女在[SSmapping.configs[GROUND_MAP].map_name]奋战的故事画上了句号。\n本局游戏模式：[GLOB.master_mode]！\n[CONFIG_GET(string/endofroundblurb)]"))
+	to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDBODY("至此，[MAIN_SHIP_NAME]上英勇男女在[get_statistic_display_label(SSmapping.configs[GROUND_MAP].map_name)]奋战的故事画上了句号。\n本局游戏模式：[GLOB.master_mode == "secret" ? "秘密模式" : get_statistic_display_label(GLOB.master_mode)]！\n[CONFIG_GET(string/endofroundblurb)]"))
 
 /datum/game_mode/proc/declare_completion()
 	if(GLOB.round_statistics)
@@ -330,9 +330,9 @@ GLOBAL_VAR_INIT(cas_tracking_id_increment, 0) //this var used to assign unique t
 /proc/show_generic_antag_text(datum/mind/player)
 	if(player.current)
 		player.current << \
-		"You are an antagonist! <font color=blue>Within the rules,</font> \
-		try to act as an opposing force to the crew. Further RP and try to make sure \
-		other players have <i>fun</i>! If you are confused or at a loss, always adminhelp, \
-		and before taking extreme actions, please try to also contact the administration! \
-		Think through your actions and make the roleplay immersive! <b>Please remember all \
-		rules aside from those without explicit exceptions apply to antagonists.</b>"
+		"你是对抗角色！请<font color=blue>在规则允许的范围内</font> \
+		扮演船员的敌对力量，推动角色扮演，并尽量确保 \
+		其他玩家也能<i>享受游戏</i>！如果困惑或不知所措，请使用管理员求助； \
+		采取极端行动前，也请尽量先联系管理人员！ \
+		认真考虑自己的行动，让角色扮演更有代入感！<b>请记住，除非明确规定例外， \
+		所有规则同样适用于对抗角色。</b>"

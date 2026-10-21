@@ -5,7 +5,7 @@ SPEC-OPS
 */
 
 /datum/skills/commando
-	name = "Commando"
+	name = "突击队员"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_EXPERT,
 		SKILL_FIREMAN = SKILL_FIREMAN_SKILLED,
@@ -20,7 +20,7 @@ SPEC-OPS
 	)
 
 /datum/skills/commando/medic
-	name = "Commando Medic"
+	name = "突击队医疗兵"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_EXPERT,
 		SKILL_FIREMAN = SKILL_FIREMAN_SKILLED,
@@ -36,7 +36,7 @@ SPEC-OPS
 	)
 
 /datum/skills/commando/leader
-	name = "Commando Leader"
+	name = "突击队长"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_EXPERT,
 		SKILL_FIREMAN = SKILL_FIREMAN_SKILLED,
@@ -52,7 +52,7 @@ SPEC-OPS
 	)
 
 /datum/skills/commando/deathsquad
-	name = "Deathsquad"
+	name = "死亡小队队员"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_MASTER,
 		SKILL_FIREMAN = SKILL_FIREMAN_SKILLED,
@@ -67,7 +67,7 @@ SPEC-OPS
 	)
 
 /datum/skills/commando/deathsquad/leader
-	name = "Deathsquad Leader"
+	name = "死亡小队队长"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_MASTER,
 		SKILL_FIREMAN = SKILL_FIREMAN_MASTER,
@@ -83,7 +83,7 @@ SPEC-OPS
 	)
 
 /datum/skills/commando/deathsquad/officer
-	name = "Deathsquad Officer"
+	name = "死亡小队军官"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_MASTER,
 		SKILL_FIREMAN = SKILL_FIREMAN_MASTER,
@@ -100,7 +100,7 @@ SPEC-OPS
 	)
 
 /datum/skills/spy
-	name = "Spy"
+	name = "间谍"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_TRAINED,
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,
@@ -113,7 +113,7 @@ SPEC-OPS
 	)
 
 /datum/skills/ninja
-	name = "Ninja"
+	name = "忍者"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_MASTER,
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,

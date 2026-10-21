@@ -1,5 +1,5 @@
 /datum/faction/royal_marines_commando
-	name = "Royal Marines Commando"
+	name = "皇家陆战突击队"
 	faction_tag = FACTION_TWE
 
 /datum/faction/royal_marines_commando/modify_hud_holder(image/holder, mob/living/carbon/human/H)

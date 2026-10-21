@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(who)
 // WHO DATA
 /datum/player_list
 	var/tgui_name = "Who"
-	var/tgui_interface_name = "Who"
+	var/tgui_interface_name = "在线玩家"
 	var/list/base_data = list()
 	var/list/admin_sorted_additional = list()
 
@@ -196,14 +196,14 @@ SUBSYSTEM_DEF(who)
 // STAFF DATA
 /datum/player_list/staff
 	tgui_name = "StaffWho"
-	tgui_interface_name = "Staff Who"
+	tgui_interface_name = "在线管理人员"
 
 	var/list/category_colors = list(
-		"Management" = "purple",
-		"Maintainers" = "blue",
-		"Administrators" = "red",
-		"Moderators" = "orange",
-		"Mentors" = "green"
+		"管理层" = "purple",
+		"维护人员" = "blue",
+		"管理员" = "red",
+		"版主" = "orange",
+		"导师" = "green"
 	)
 
 /datum/player_list/staff/update_data()
@@ -218,14 +218,14 @@ SUBSYSTEM_DEF(who)
 
 	var/list/listings = list()
 	if(CONFIG_GET(flag/show_manager))
-		listings["Management"] = list(R_PERMISSIONS, list())
+		listings["管理层"] = list(R_PERMISSIONS, list())
 	if(CONFIG_GET(flag/show_devs))
-		listings["Maintainers"] = list(R_PROFILER, list())
-	listings["Administrators"] = list(R_ADMIN, list())
+		listings["维护人员"] = list(R_PROFILER, list())
+	listings["管理员"] = list(R_ADMIN, list())
 	if(CONFIG_GET(flag/show_mods))
-		listings["Moderators"] = list(R_MOD|R_BAN, list())
+		listings["版主"] = list(R_MOD|R_BAN, list())
 	if(CONFIG_GET(flag/show_mentors))
-		listings["Mentors"] = list(R_MENTOR, list())
+		listings["导师"] = list(R_MENTOR, list())
 
 	for(var/client/client as anything in GLOB.admins)
 		for(var/category in listings)
@@ -262,14 +262,14 @@ SUBSYSTEM_DEF(who)
 			admin_payload["text"] = ""
 			if(istype(client.mob, /mob/dead/observer))
 				admin_payload["color"] = "#808080"
-				admin_payload["text"] += "Spectating"
+				admin_payload["text"] += "旁观中"
 
 			else if(istype(client.mob, /mob/new_player))
 				admin_payload["color"] = "#FFFFFF"
-				admin_payload["text"] += "in Lobby"
+				admin_payload["text"] += "在大厅"
 			else
 				admin_payload["color"] = "#688944"
-				admin_payload["text"] += "Playing"
+				admin_payload["text"] += "游戏中"
 
 			if(client.is_afk())
 				admin_payload["color"] = "#A040D0"

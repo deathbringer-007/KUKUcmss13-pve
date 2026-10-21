@@ -208,9 +208,9 @@ DEFINES in setup.dm, referenced here.
 		if(WEAR_IN_SCABBARD)
 			message = "[src]扣在了[user.back]上。"
 		if(WEAR_WAIST)
-			message = "[src] snaps into place on your waist."
+			message = "[src]咔嗒一声固定在你的腰间。"
 		if(WEAR_J_STORE)
-			message = "[src] snaps into place on [user.wear_suit]."
+			message = "[src]咔嗒一声固定在[user.wear_suit]上。"
 	to_chat(user, SPAN_NOTICE(message))
 	return TRUE
 
@@ -457,9 +457,9 @@ DEFINES in setup.dm, referenced here.
 
 /obj/item/weapon/gun/proc/update_force_list()
 	switch(force)
-		if(-50 to 15) attack_verb = list("struck", "hit", "bashed") //Unlikely to ever be -50, but just to be safe.
-		if(16 to 35) attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
-		else attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored") //Greater than 35
+		if(-50 to 15) attack_verb = list("击打", "打击", "猛击") //Unlikely to ever be -50, but just to be safe.
+		if(16 to 35) attack_verb = list("砸击", "击打", "猛敲", "殴打", "重击")
+		else attack_verb = list("劈砍", "刺击", "穿刺", "撕裂", "戳刺", "刺穿", "捅刺") //Greater than 35
 
 /obj/item/weapon/gun/proc/get_active_firearm(mob/user, restrictive = TRUE)
 	if(user.is_mob_incapacitated() || !isturf(usr.loc))

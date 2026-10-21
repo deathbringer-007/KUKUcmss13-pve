@@ -486,14 +486,14 @@ GLOBAL_LIST_INIT(roundstart_mod_verbs, list(
 		ban_unban_log_save("[ckey] warned [warned_ckey], resulting in a [AUTOBANTIME] minute autoban.")
 		if(P.owning_client)
 			message_admins("[key_name_admin(src)] has warned [ckey] resulting in a [AUTOBANTIME] minute ban.")
-			to_chat_forced(P.owning_client, "<font color='red'><BIG><B>You have been autobanned due to a warning by [key_name_admin(P.owning_client)].</B></BIG><br>This is a temporary ban, it will be removed in [AUTOBANTIME] minutes.")
+			to_chat_forced(P.owning_client, "<font color='red'><BIG><B>你因[key_name_admin(P.owning_client)]发出的警告而被自动封禁。</B></BIG><br>此次为临时封禁，将在[AUTOBANTIME]分钟后解除。")
 		else
 			message_admins("[key_name_admin(src)] has warned [warned_ckey] resulting in a [AUTOBANTIME] minute ban.")
 
 		P.add_timed_ban("Autobanning due to too many formal warnings", AUTOBANTIME)
 	else
 		if(P.owning_client)
-			to_chat(P.owning_client, "<font color='red'><BIG><B>You have been formally warned by an administrator.</B></BIG><br>Further warnings will result in an autoban.</font>")
+			to_chat(P.owning_client, "<font color='red'><BIG><B>你已收到管理员的正式警告。</B></BIG><br>再次收到警告将导致自动封禁。</font>")
 			message_admins("[key_name_admin(src)] has warned [key_name_admin(P.owning_client)]. They have [MAX_WARNS-P.warning_count] strikes remaining.")
 		else
 			message_admins("[key_name_admin(src)] has warned [warned_ckey] (DC). They have [MAX_WARNS-P.warning_count] strikes remaining.")

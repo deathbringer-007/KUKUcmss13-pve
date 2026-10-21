@@ -297,7 +297,7 @@
 	nutrition_icon = new /atom/movable/screen()
 	nutrition_icon.icon = ui_datum.ui_style_icon
 	nutrition_icon.icon_state = "nutrition0"
-	nutrition_icon.name = "nutrition"
+	nutrition_icon.name = "营养"
 	nutrition_icon.screen_loc = ui_datum.UI_NUTRITION_LOC
 	infodisplay += nutrition_icon
 

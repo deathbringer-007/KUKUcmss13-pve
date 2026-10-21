@@ -4,167 +4,167 @@
 /datum/human_ai_conversation/faction/military/radio
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 ; Radio check.",
+		"P1 ; 无线电检查。",
 	)
 
 /datum/human_ai_conversation/faction/military/firstmission
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 Boy, this is some first mission.",
+		"P1 好家伙，头一次出任务就这么刺激。",
 	)
 
 /datum/human_ai_conversation/faction/military/jobdescription
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 This was not in my job description.",
+		"P1 我的工作可不包括这个。",
 	)
 
 /datum/human_ai_conversation/faction/military/getlost
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 I bet you can get lost in this place /reaaal/ easy.",
+		"P1 我敢打赌，这地方简直太容易迷路了。",
 	)
 
 /datum/human_ai_conversation/faction/military/disneyland
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 This place makes basic seem like Disneyland.",
+		"P1 跟这地方比起来，新兵训练简直就是迪士尼乐园。",
 	)
 
 /datum/human_ai_conversation/faction/military/stayedhome
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 I could've stayed home.",
+		"P1 我本可以待在家里的。",
 	)
 
 /datum/human_ai_conversation/faction/military/nothingtosee
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 Move along, nothing to see... Move along, nothing to see.",
+		"P1 继续走，没什么好看的……继续走，没什么好看的。",
 	)
 
 /datum/human_ai_conversation/faction/military/kungfu
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 /Everybody was Kung-Fu fightin'!- Dadadada-duh-da duh-daaa.../",
+		"P1 /人人都在打功夫！哒哒哒哒，哒哒哒哒……/",
 	)
 
 /datum/human_ai_conversation/faction/military/pie
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 After this, my place for pie.",
+		"P1 完事以后，来我家吃派。",
 	)
 
 /datum/human_ai_conversation/faction/military/jackson
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 Never a Jackson around when you need one.",
+		"P1 需要杰克逊的时候，他总是不在。",
 	)
 
 /datum/human_ai_conversation/faction/military/needtape
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 I should put more tape on this.",
+		"P1 我该给这玩意儿再缠点胶带。",
 	)
 
 /datum/human_ai_conversation/faction/military/stayedhome
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 I could've stayed home.",
+		"P1 我本可以待在家里的。",
 	)
 
 /datum/human_ai_conversation/faction/military/hatethisplace
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 Ugh. I friggin' hate this place.",
+		"P1 呃，我他妈讨厌这鬼地方。",
 	)
 
 /datum/human_ai_conversation/faction/military/huh
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 What the hell was that? Oh. Nevermind.",
+		"P1 那他妈是什么？哦，没事。",
 	)
 
 /datum/human_ai_conversation/faction/military/cleangun
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 If I gotta clean my fuckin' gun one more time, it'll blind me.",
+		"P1 这破枪再擦一次，反光都能晃瞎我的眼。",
 	)
 
 /datum/human_ai_conversation/faction/military/shadows
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 Just me and the shadows. Again.",
+		"P1 又只剩我和影子了。",
 	)
 
 /datum/human_ai_conversation/faction/military/dark
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 Why's it always so fucking dark?",
+		"P1 为什么总是这么他妈黑？",
 	)
 
 /datum/human_ai_conversation/faction/military/talkingself
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 Talking to yourself again. Good thing I'm sane.",
+		"P1 又在自言自语了。还好我脑子没问题。",
 	)
 
 /datum/human_ai_conversation/faction/military/nobitches
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 No bugs, no bad guys, no bitches. This sucks.",
+		"P1 没虫子，没坏蛋，也没妞。真没劲。",
 	)
 
 /datum/human_ai_conversation/faction/military/humming
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 Maybe a little humming. Maybe.",
+		"P1 要不哼个小曲儿吧。也许吧。",
 	)
 
 /datum/human_ai_conversation/faction/military/dietrich
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 If this was a movie, I'd be guy who dies first. Yep. I can see it now.",
+		"P1 要是在电影里，我肯定是第一个死的。没错，我都能想象出来。",
 	)
 
 /datum/human_ai_conversation/faction/military/acm
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 Hey, when do we get to fight aliens, Colonial Marines?",
+		"P1 嘿，殖民地陆战队的伙计们，我们什么时候才能打异形？",
 	)
 
 /datum/human_ai_conversation/faction/military/avp
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 We're the apex predators, man. Those bugs got nothing. It's Aliens versus Predators, baby...",
+		"P1 我们才是顶级猎食者，兄弟。那些虫子算什么。这可是异形大战铁血战士，宝贝……",
 	)
 
 /datum/human_ai_conversation/faction/military/johnwayne
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 Is that you John Wayne? Is this me?",
+		"P1 那是你吗，约翰·韦恩？这是我吗？",
 	)
 
 /datum/human_ai_conversation/faction/military/gooddaytodie
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 Everybody got to die sometime...",
+		"P1 人总有一死……",
 	)
 
 /datum/human_ai_conversation/faction/military/feelinggood
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 Feeling good's good enough.",
+		"P1 感觉不错就够了。",
 	)
 
 /datum/human_ai_conversation/faction/military/badman
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 This is bad, man.",
+		"P1 这下糟了，兄弟。",
 	)
 
 /datum/human_ai_conversation/faction/military/purgatory
 	amount_ai_involved = 1
 	conversation_data = list(
-		"P1 If this is purgatory, it's boring as hell.",
+		"P1 如果这就是炼狱，那也太无聊了。",
 	)

@@ -9,15 +9,15 @@
 #define AIRLOCK_WIRE_ELECTRIFY 9
 
 GLOBAL_LIST_INIT(airlock_wire_descriptions, flatten_numeric_alist(alist(
-		AIRLOCK_WIRE_MAIN_POWER = "Main power",
-		AIRLOCK_WIRE_BACKUP_POWER = "Backup power",
-		AIRLOCK_WIRE_DOOR_BOLTS = "Door bolts",
-		AIRLOCK_WIRE_OPEN_DOOR = "Door motors",
-		AIRLOCK_WIRE_IDSCAN = "ID scanner",
-		AIRLOCK_WIRE_LIGHT = "Bolt lights",
-		AIRLOCK_WIRE_SAFETY = "Proximity sensor",
-		AIRLOCK_WIRE_SPEED = "Motor speed override",
-		AIRLOCK_WIRE_ELECTRIFY = "Ground safety",
+		AIRLOCK_WIRE_MAIN_POWER = "主电源",
+		AIRLOCK_WIRE_BACKUP_POWER = "备用电源",
+		AIRLOCK_WIRE_DOOR_BOLTS = "门栓",
+		AIRLOCK_WIRE_OPEN_DOOR = "门控电机",
+		AIRLOCK_WIRE_IDSCAN = "身份卡扫描器",
+		AIRLOCK_WIRE_LIGHT = "门栓指示灯",
+		AIRLOCK_WIRE_SAFETY = "接近传感器",
+		AIRLOCK_WIRE_SPEED = "电机转速超控",
+		AIRLOCK_WIRE_ELECTRIFY = "接地保护",
 	)))
 
 /obj/structure/machinery/door/airlock
@@ -457,7 +457,7 @@ GLOBAL_LIST_INIT(airlock_wire_descriptions, flatten_numeric_alist(alist(
 /obj/structure/machinery/door/airlock/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "Wires", "[name] Wires")
+		ui = new(user, src, "Wires", "[name]线路")
 		ui.open()
 
 /obj/structure/machinery/door/airlock/ui_data(mob/user)
@@ -509,7 +509,7 @@ GLOBAL_LIST_INIT(airlock_wire_descriptions, flatten_numeric_alist(alist(
 
 				if(announce_hacked && is_mainship_level(z))
 					announce_hacked = FALSE
-					SSclues.create_print(get_turf(usr), usr, "The fingerprint contains oil and wire pieces.")
+					SSclues.create_print(get_turf(usr), usr, "指纹中残留着油污和电线碎屑。")
 				. = TRUE
 			if("pulse")
 				var/obj/item/held_item = usr.get_held_item()

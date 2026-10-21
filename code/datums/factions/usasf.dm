@@ -1,5 +1,5 @@
 /datum/faction/navy
-	name = "United States AeroSpace Force"
+	name = "美国航空航天军"
 	faction_tag = FACTION_NAVY
 
 /datum/faction/navy/modify_hud_holder(image/holder, mob/living/carbon/human/H)

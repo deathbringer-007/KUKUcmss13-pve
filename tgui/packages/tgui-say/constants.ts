@@ -19,90 +19,98 @@ export enum LineLength {
  * id - string. css class identifier.
  * label - string. button label.
  */
+export const CHANNEL_LABELS: Record<string, string> = {
+  Say: '说话',
+  Comms: '无线电',
+  Me: '表情',
+  Mentor: '导师',
+  ASAY: '管理频道',
+};
+
 export const RADIO_PREFIXES = {
   ':h ': {
     id: 'department',
-    label: 'Depart.',
+    label: '部门',
   },
   '.h ': {
     id: 'department',
-    label: 'Depart.',
+    label: '部门',
   },
   '#h ': {
     id: 'department',
-    label: 'Depart.',
+    label: '部门',
   },
   ':i ': {
     id: 'comms',
-    label: 'Intercom',
+    label: '对讲机',
   },
   '.i ': {
     id: 'comms',
-    label: 'Intercom',
+    label: '对讲机',
   },
   '#i ': {
     id: 'comms',
-    label: 'Intercom',
+    label: '对讲机',
   },
   ':l ': {
     id: 'comms',
-    label: 'L Hand',
+    label: '左手',
   },
   '.l ': {
     id: 'comms',
-    label: 'L Hand',
+    label: '左手',
   },
   ':r ': {
     id: 'comms',
-    label: 'R Hand',
+    label: '右手',
   },
   '.r ': {
     id: 'comms',
-    label: 'R Hand',
+    label: '右手',
   },
   ':w ': {
     id: 'whisper',
-    label: 'Whisper',
+    label: '低语',
   },
   '.w ': {
     id: 'whisper',
-    label: 'Whisper',
+    label: '低语',
   },
   '#w ': {
     id: 'whisper',
-    label: 'Whisper',
+    label: '低语',
   },
   ':a ': {
     id: 'alpha',
-    label: 'Alpha',
+    label: '阿尔法',
   },
   '.a ': {
     id: 'alpha',
-    label: 'Alpha',
+    label: '阿尔法',
   },
   '#a ': {
     id: 'clf-med',
-    label: 'CLF Med',
+    label: 'CLF医疗',
   },
   ':b ': {
     id: 'bravo',
-    label: 'Bravo',
+    label: '布拉沃',
   },
   '.b ': {
     id: 'bravo',
-    label: 'Bravo',
+    label: '布拉沃',
   },
   '#b ': {
     id: 'clf-engi',
-    label: 'CLF Engi',
+    label: 'CLF工程',
   },
   ':c ': {
     id: 'charlie',
-    label: 'Charl.',
+    label: '查理',
   },
   '.c ': {
     id: 'charlie',
-    label: 'Charl.',
+    label: '查理',
   },
   '#c ': {
     id: 'cia',
@@ -110,47 +118,47 @@ export const RADIO_PREFIXES = {
   },
   ':d ': {
     id: 'delta',
-    label: 'Delta',
+    label: '德尔塔',
   },
   '.d ': {
     id: 'delta',
-    label: 'Delta',
+    label: '德尔塔',
   },
   '#d ': {
     id: 'merc',
-    label: 'Mercenary',
+    label: '雇佣兵',
   },
   ':e ': {
     id: 'echo',
-    label: 'Echo',
+    label: '埃科',
   },
   '.e ': {
     id: 'echo',
-    label: 'Echo',
+    label: '埃科',
   },
   '#e ': {
     id: 'pmc-engi',
-    label: 'PMC Engi',
+    label: 'PMC工程',
   },
   ':f ': {
     id: 'foxtrot',
-    label: 'Foxtr.',
+    label: '福克斯特罗特',
   },
   '.f ': {
     id: 'foxtrot',
-    label: 'Foxtr.',
+    label: '福克斯特罗特',
   },
   '#f ': {
     id: 'pmc-med',
-    label: 'PMC Med',
+    label: 'PMC医疗',
   },
   ':g ': {
     id: 'ship',
-    label: 'Ship',
+    label: '舰船',
   },
   '.g ': {
     id: 'ship',
-    label: 'Ship',
+    label: '舰船',
   },
   '#g ': {
     id: 'clf',
@@ -166,7 +174,7 @@ export const RADIO_PREFIXES = {
   },
   '#j ': {
     id: 'upp-cct',
-    label: 'UPP CCT',
+    label: 'UPP战斗控制',
   },
   ':k ': {
     id: 'sof',
@@ -178,55 +186,55 @@ export const RADIO_PREFIXES = {
   },
   '#k ': {
     id: 'specops',
-    label: 'SpecOps',
+    label: '特别行动',
   },
   '#l ': {
     id: 'provost',
-    label: 'Provost',
+    label: '军法监察',
   },
   ':m ': {
     id: 'medsci',
-    label: 'MedSci',
+    label: '医研',
   },
   '.m ': {
     id: 'medsci',
-    label: 'MedSci',
+    label: '医研',
   },
   '#m ': {
     id: 'upp-med',
-    label: 'UPP Med',
+    label: 'UPP医疗',
   },
   ':n ': {
     id: 'engi',
-    label: 'Engi',
+    label: '工程',
   },
   '.n ': {
     id: 'engi',
-    label: 'Engi',
+    label: '工程',
   },
   '#n ': {
     id: 'upp-engi',
-    label: 'UPP Engi',
+    label: 'UPP工程',
   },
   ':o ': {
     id: 'colony',
-    label: 'Colony',
+    label: '殖民地',
   },
   '.o ': {
     id: 'colony',
-    label: 'Colony',
+    label: '殖民地',
   },
   '#o ': {
     id: 'pmc-cct',
-    label: 'PMC CCT',
+    label: 'PMC战斗控制',
   },
   ':p ': {
     id: 'security',
-    label: 'MP',
+    label: '宪兵',
   },
   '.p ': {
     id: 'security',
-    label: 'MP',
+    label: '宪兵',
   },
   '#p ': {
     id: 'pmc',
@@ -246,39 +254,39 @@ export const RADIO_PREFIXES = {
   },
   '#r ': {
     id: 'yautja',
-    label: 'Yautja',
+    label: '铁血战士',
   },
   ':s ': {
     id: 'us-army',
-    label: 'US Army',
+    label: '美国陆军',
   },
   '.s ': {
     id: 'us-army',
-    label: 'US Army',
+    label: '美国陆军',
   },
   '#s ': {
     id: 'us-army',
-    label: 'US Army',
+    label: '美国陆军',
   },
   ':t ': {
     id: 'intel',
-    label: 'Int',
+    label: '情报',
   },
   '.t ': {
     id: 'intel',
-    label: 'Int',
+    label: '情报',
   },
   '#t ': {
     id: 'upp-kdo',
-    label: 'UPP Kdo',
+    label: 'UPP突击队',
   },
   ':u ': {
     id: 'req',
-    label: 'Req',
+    label: '补给',
   },
   '.u ': {
     id: 'req',
-    label: 'Req',
+    label: '补给',
   },
   '#u ': {
     id: 'upp',
@@ -286,15 +294,15 @@ export const RADIO_PREFIXES = {
   },
   ':v ': {
     id: 'command',
-    label: 'Cmd.',
+    label: '指挥',
   },
   '.v ': {
     id: 'command',
-    label: 'Cmd.',
+    label: '指挥',
   },
   '#v ': {
     id: 'upp-cmd',
-    label: 'UPP Cmd.',
+    label: 'UPP指挥',
   },
   ':x ': {
     id: 'usasf',
@@ -322,15 +330,15 @@ export const RADIO_PREFIXES = {
   },
   ':z ': {
     id: 'highcom',
-    label: 'HC',
+    label: '最高指挥部',
   },
   '.z ': {
     id: 'highcom',
-    label: 'HC',
+    label: '最高指挥部',
   },
   '#z ': {
     id: 'pmc-cmd',
-    label: 'PMC Cmd.',
+    label: 'PMC指挥',
   },
   ':0 ': {
     id: 'uscg',
@@ -385,78 +393,78 @@ export const RADIO_PREFIXES = {
 export const LANGUAGE_PREFIXES = {
   '!0 ': {
     id: 'scandinavian',
-    label: 'Scandinavian',
+    label: '斯堪的纳维亚语',
   },
   '!1 ': {
     id: 'english',
-    label: 'English',
+    label: '英语',
   },
   '!2 ': {
     id: 'japanese',
-    label: 'Japanese',
+    label: '日语',
   },
   '!3 ': {
     id: 'russian',
-    label: 'Russian',
+    label: '俄语',
   },
   '!4 ': {
     id: 'german',
-    label: 'German',
+    label: '德语',
   },
   '!5 ': {
     id: 'spanish',
-    label: 'Spanish',
+    label: '西班牙语',
   },
   '!6 ': {
     id: 'apollo',
-    label: 'Apollo',
+    label: '阿波罗',
   },
   '!7 ': {
     id: 'french',
-    label: 'French',
+    label: '法语',
   },
   '!8 ': {
     id: 'chinese',
-    label: 'Chinese',
+    label: '中文',
   },
   '!9 ': {
     id: 'russian patois',
-    label: 'Russian patois',
+    label: '俄语混合方言',
   },
   '!f ': {
     id: 'filipino',
-    label: 'Filipino',
+    label: '菲律宾语',
   },
   '!h ': {
     id: 'hellhound',
-    label: 'Hellhound',
+    label: '地狱猎犬语',
   },
   '!l ': {
     id: 'tactical sign language',
-    label: 'Tacitical Sign',
+    label: '战术手语',
   },
   '!m ': {
     id: 'primitive',
-    label: 'Primitive',
+    label: '原始语',
   },
   '!p ': {
     id: 'polish',
-    label: 'Polish',
+    label: '波兰语',
   },
   '!s ': {
     id: 'sainja',
-    label: 'Sainja',
+    label: '赛因加语',
   },
   '!t ': {
     id: 'telepathy',
-    label: 'Telepathy',
+    label: '心灵感应',
   },
   '!q ': {
     id: 'hivemind',
-    label: 'Hivemind',
+    label: '虫巢意志',
   },
   '!x ': {
     id: 'xenomorph',
-    label: 'Xenomporph',
+    label: '异形语',
   },
 } as const;

@@ -280,7 +280,7 @@
 			/*
 			if("hide")
 				src.hide = !hide
-				temp = "<font color = #666633>-% Shadow Link has been [src.hide ? "activated" : "deactivated"].</font color>"
+				temp = "<font color = #666633>-% 隐蔽链接已[src.hide ? "启用" : "停用"]。</font color>"
 			*/
 
 			if("id")

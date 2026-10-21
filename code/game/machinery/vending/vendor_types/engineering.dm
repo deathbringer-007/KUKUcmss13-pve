@@ -80,7 +80,7 @@
 	listed_products = list(
 		list("电路板", -1, null, null),
 		list("火灾警报器", 5, /obj/item/circuitboard/firealarm, VENDOR_ITEM_REGULAR),
-		list("APC", 6, /obj/item/circuitboard/apc, VENDOR_ITEM_REGULAR),
+		list("区域电力控制器电路板", 6, /obj/item/circuitboard/apc, VENDOR_ITEM_REGULAR),
 		list("自动车床", 2, /obj/item/circuitboard/machine/autolathe, VENDOR_ITEM_REGULAR),
 		list("TC-4T 通讯", 1, /obj/item/circuitboard/machine/telecomms/relay/tower, VENDOR_ITEM_REGULAR),
 		list("人员监测计算机", 2, /obj/item/circuitboard/computer/crew, VENDOR_ITEM_REGULAR),

@@ -1,5 +1,5 @@
 /datum/skills/wy_goon
-	name = "Corporate Security"
+	name = "企业安保员"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_SKILLED,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
@@ -9,7 +9,7 @@
 	)
 
 /datum/skills/wy_goon_tech
-	name = "Corporate Security Support Technician"
+	name = "企业安保支援技术员"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_SKILLED,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
@@ -22,7 +22,7 @@
 	)
 
 /datum/skills/wy_goon_lead
-	name = "Corporate Security Leader"
+	name = "企业安保队长"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_SKILLED,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,

@@ -1,5 +1,5 @@
 /datum/skills/dutch
-	name = "Dutch"
+	name = "达奇"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_MASTER,
 		SKILL_FIREMAN = SKILL_FIREMAN_MAX,
@@ -17,7 +17,7 @@
 	)
 
 /datum/skills/dutchmerc
-	name = "Dutch's Dozen Mercenary"
+	name = "达奇十二人组雇佣兵"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_TRAINED,
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
@@ -32,7 +32,7 @@
 	)
 
 /datum/skills/dutchmedic
-	name = "Dutch's Dozen Medic"
+	name = "达奇十二人组医疗兵"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_TRAINED,
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,

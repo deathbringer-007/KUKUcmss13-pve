@@ -23,7 +23,7 @@ export const ReconnectButton = () => {
           Byond.command('.reconnect');
         }}
       >
-        Reconnect
+        重新连接
       </Button>
       <Button
         color="white"
@@ -32,7 +32,7 @@ export const ReconnectButton = () => {
           Byond.command('.quit');
         }}
       >
-        Relaunch game
+        重新启动游戏
       </Button>
     </>
   );

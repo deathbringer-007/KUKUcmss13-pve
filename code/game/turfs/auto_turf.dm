@@ -4,7 +4,7 @@
 	icon_state = "sand_1"//editor icon
 	is_groundmap_turf = TRUE
 	var/icon_prefix = "sand"
-	var/layer_name = list("layer 1", "layer2", "layer 3", "layer 4", "layer 5")
+	var/layer_name = list("第一层", "第二层", "第三层", "第四层", "第五层")
 	var/variant = 0
 	var/variant_prefix_name = ""
 
@@ -94,7 +94,7 @@
 
 //Kutjevo & Trijent sand
 /turf/open/auto_turf/sand
-	layer_name = list("red dirt", "sand", "rocky sand", "this layer does not exist", "call a coder")
+	layer_name = list("红土", "沙地", "碎石沙地", "不存在的地层", "请联系开发者")
 
 /turf/open/auto_turf/sand/insert_self_into_baseturfs()
 	baseturfs += /turf/open/auto_turf/sand/layer0
@@ -114,10 +114,10 @@
 	icon_state = "sand_1_1"
 	bleed_layer = 1
 	variant = 1
-	variant_prefix_name = "rocky"
+	variant_prefix_name = "多岩石的"
 
 /turf/open/auto_turf/sand_white
-	layer_name = list("aged igneous", "wind swept dunes", "warn a coder", "warn a coder", "warn a coder")
+	layer_name = list("古老火成岩", "风蚀沙丘", "请通知开发者", "请通知开发者", "请通知开发者")
 	icon_state = "varadero_1"
 	icon_prefix = "varadero"
 
@@ -138,7 +138,7 @@
 	icon = 'icons/turf/floors/auto_ice.dmi'
 	icon_state = "ice_0"
 	icon_prefix = "ice"
-	layer_name = list("cracked permafrost","permafrost","glacial permafrost","warn a coder","warn a coder")
+	layer_name = list("开裂冻土", "永久冻土", "冰川冻土", "请通知开发者", "请通知开发者")
 
 /turf/open/auto_turf/ice/insert_self_into_baseturfs()
 	baseturfs += /turf/open/auto_turf/ice/layer0
@@ -164,7 +164,7 @@
 	icon = 'icons/turf/floors/snow2.dmi'
 	icon_state = "snow_0"
 	icon_prefix = "snow"
-	layer_name = list("icy dirt", "shallow snow", "deep snow", "very deep snow", "rock filled snow")
+	layer_name = list("冰冻泥土", "浅积雪", "深积雪", "极深积雪", "夹杂岩石的积雪")
 
 /turf/open/auto_turf/snow/insert_self_into_baseturfs()
 	baseturfs += /turf/open/auto_turf/snow/layer0
@@ -297,7 +297,7 @@
 	icon = 'icons/turf/floors/auto_strata_grass.dmi'
 	icon_state = "grass_0"
 	icon_prefix = "grass"
-	layer_name = list("ground","lush thick grass")
+	layer_name = list("地面", "茂密草地")
 	desc = "草、泥土、淤泥以及其他含水量很高的洞穴地面。"
 
 /turf/open/auto_turf/strata_grass/insert_self_into_baseturfs()
@@ -306,19 +306,19 @@
 /turf/open/auto_turf/strata_grass/layer0
 	icon_state = "grass_0"
 	bleed_layer = 0
-	variant_prefix_name = "matted grass"
+	variant_prefix_name = "草丛交错的"
 
 /turf/open/auto_turf/strata_grass/layer0_mud
 	icon_state = "grass_0_mud"
 	bleed_layer = 0
 	variant = "mud"
-	variant_prefix_name = "muddy"
+	variant_prefix_name = "泥泞的"
 
 /turf/open/auto_turf/strata_grass/layer0_mud_alt
 	icon_state = "grass_0_mud_alt"
 	bleed_layer = 0
 	variant = "mud_alt"
-	variant_prefix_name = "muddy"
+	variant_prefix_name = "泥泞的"
 
 /turf/open/auto_turf/strata_grass/layer1
 	icon_state = "grass_1"
@@ -327,7 +327,7 @@
 //Chance's Claim / Hadley Shale dirt
 
 /turf/open/auto_turf/shale
-	layer_name = list("wind blown dirt", "volcanic plate rock", "volcanic plate and rock", "this layer does not exist")
+	layer_name = list("风蚀泥土", "板状火山岩", "火山岩板与岩石", "不存在的地层")
 	icon = 'icons/turf/floors/auto_shale.dmi'
 	icon_prefix = "shale"
 

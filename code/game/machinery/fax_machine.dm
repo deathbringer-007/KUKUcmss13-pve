@@ -423,7 +423,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 						if("USCM High Command Quantum Relay")
 							var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 							stampoverlay.icon_state = "paper_stamp-uscm"
-							P.stamps += "<HR><i>本文件已由美国殖民地陆战队最高指挥部量子中继加盖印章。</i>"
+							P.stamps += "<HR><i>本文件已由殖民地海军陆战队最高司令部量子中继加盖印章。</i>"
 						if("NC4 UA Federal Secure Network - CMB Relay")
 							var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 							stampoverlay.icon_state = "paper_stamp-cmb"
@@ -431,7 +431,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 								P.stamped = new
 							P.stamped += /obj/item/tool/stamp
 							P.overlays += stampoverlay
-							P.stamps += "<HR><i>本文件已由殖民地法警署加盖印章。</i>"
+							P.stamps += "<HR><i>本文件已由殖民地执法局加盖印章。</i>"
 						if("Weyland-Yutani Quantum Relay")
 							var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 							stampoverlay.icon_state = "paper_stamp-weyyu"
@@ -488,7 +488,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 	network = "Weyland-Yutani Quantum Relay"
 
 /obj/structure/machinery/faxmachine/uscm
-	name = "\improper 美国殖民地陆战队军用传真机"
+	name = "\improper 美国殖民地海军陆战队军用传真机"
 	department = "USCM Local Operations"
 	network = "USCM Encrypted Network"
 	target_department = DEPARTMENT_HC
@@ -505,7 +505,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 	network = "USCM High Command Quantum Relay"
 
 /obj/structure/machinery/faxmachine/uscm/brig
-	name = "\improper 美国殖民地陆战队军法监察传真机"
+	name = "\improper 美国殖民地海军陆战队军法监察传真机"
 	department = "Brig"
 	target_department = DEPARTMENT_PROVOST
 

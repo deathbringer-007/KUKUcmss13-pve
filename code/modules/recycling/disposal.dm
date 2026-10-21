@@ -1093,11 +1093,11 @@
 /obj/structure/disposalpipe/tagger/proc/updatedesc()
 	desc = initial(desc)
 	if(sort_tag)
-		desc += "\n它会为物品添加“[sort_tag]”标签。"
+		desc += "\n它会为物品添加“[localized_player_label(sort_tag)]”标签。"
 
 /obj/structure/disposalpipe/tagger/proc/updatename()
 	if(sort_tag)
-		name = "[initial(name)] ([sort_tag])"
+		name = "[initial(name)] ([localized_player_label(sort_tag)])"
 	else
 		name = initial(name)
 
@@ -1111,7 +1111,7 @@
 		if(O.currTag) //Tag set
 			sort_tag = O.currTag
 			playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
-			to_chat(user, SPAN_NOTICE("标签已改为“[sort_tag]”。"))
+			to_chat(user, SPAN_NOTICE("标签已改为“[localized_player_label(sort_tag)]”。"))
 			updatename()
 			updatedesc()
 
@@ -1152,11 +1152,11 @@
 /obj/structure/disposalpipe/sortjunction/proc/updatedesc()
 	desc = initial(desc)
 	if(sortType)
-		desc += "\n它会筛选带有“[sortType]”标签的物品。"
+		desc += "\n它会筛选带有“[localized_player_label(sortType)]”标签的物品。"
 
 /obj/structure/disposalpipe/sortjunction/proc/updatename()
 	if(sortType)
-		name = "[initial(name)] ([sortType])"
+		name = "[initial(name)] ([localized_player_label(sortType)])"
 	else
 		name = initial(name)
 
@@ -1181,7 +1181,7 @@
 		if(O.currTag) //Tag set
 			sortType = O.currTag
 			playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
-			to_chat(user, SPAN_NOTICE("过滤规则已改为“[sortType]”。"))
+			to_chat(user, SPAN_NOTICE("过滤规则已改为“[localized_player_label(sortType)]”。"))
 			updatename()
 			updatedesc()
 

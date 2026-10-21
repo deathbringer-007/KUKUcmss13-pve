@@ -4,7 +4,7 @@ COLONIAL MARSHALS
 ---------------------
 */
 /datum/skills/cmb
-	name = "CMB Deputy"
+	name = "殖民地副执法官"
 	skills = list(
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
 		SKILL_CQC = SKILL_CQC_EXPERT,
@@ -18,7 +18,7 @@ COLONIAL MARSHALS
 	)
 
 /datum/skills/cmb/leader
-	name = "CMB Marshal"
+	name = "殖民地执法官"
 	skills = list(
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
 		SKILL_CQC = SKILL_CQC_EXPERT,
@@ -36,7 +36,7 @@ COLONIAL MARSHALS
 	)
 
 /datum/skills/synthetic/cmb
-	name = "CMB Investigative Synthetic"
+	name = "殖民地执法局调查合成人"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_MASTER,
 		SKILL_ENGINEER = SKILL_ENGINEER_MASTER,

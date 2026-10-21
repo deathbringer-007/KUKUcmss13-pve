@@ -11,7 +11,7 @@ GLOBAL_DATUM(Banlist, /savefile)
 	. = list()
 	var/appeal
 	if(CONFIG_GET(string/banappeals))
-		appeal = "\nFor more information on your ban, or to appeal, head to <a href='[CONFIG_GET(string/banappeals)]'>[CONFIG_GET(string/banappeals)]</a>"
+		appeal = "\n如需了解封禁详情或提出申诉，请访问<a href='[CONFIG_GET(string/banappeals)]'>[CONFIG_GET(string/banappeals)]</a>"
 	GLOB.Banlist.cd = "/base"
 	if( "[ckey][id]" in GLOB.Banlist.dir )
 		GLOB.Banlist.cd = "[ckey][id]"
@@ -20,10 +20,10 @@ GLOBAL_DATUM(Banlist, /savefile)
 				ClearTempbans()
 				return 0
 			else
-				.["desc"] = "\nReason: [GLOB.Banlist["reason"]]\nExpires: [GetExp(GLOB.Banlist["minutes"])]\nBy: [GLOB.Banlist["bannedby"]][appeal]"
+				.["desc"] = "\n原因：[GLOB.Banlist["reason"]]\n剩余期限：[GetExp(GLOB.Banlist["minutes"])]\n执行者：[GLOB.Banlist["bannedby"]][appeal]"
 		else
 			GLOB.Banlist.cd = "/base/[ckey][id]"
-			.["desc"] = "\nReason: [GLOB.Banlist["reason"]]\nExpires: <B>PERMENANT</B>\nBy: [GLOB.Banlist["bannedby"]][appeal]"
+			.["desc"] = "\n原因：[GLOB.Banlist["reason"]]\n期限：<B>永久</B>\n执行者：[GLOB.Banlist["bannedby"]][appeal]"
 		.["reason"] = "ckey/id"
 		return .
 	else
@@ -46,9 +46,9 @@ GLOBAL_DATUM(Banlist, /savefile)
 						ClearTempbans()
 						return 0
 					else
-						.["desc"] = "\nReason: [GLOB.Banlist["reason"]]\nExpires: [GetExp(GLOB.Banlist["minutes"])]\nBy: [GLOB.Banlist["bannedby"]][appeal]"
+						.["desc"] = "\n原因：[GLOB.Banlist["reason"]]\n剩余期限：[GetExp(GLOB.Banlist["minutes"])]\n执行者：[GLOB.Banlist["bannedby"]][appeal]"
 				else
-					.["desc"] = "\nReason: [GLOB.Banlist["reason"]]\nExpires: <B>PERMENANT</B>\nBy: [GLOB.Banlist["bannedby"]][appeal]"
+					.["desc"] = "\n原因：[GLOB.Banlist["reason"]]\n期限：<B>永久</B>\n执行者：[GLOB.Banlist["bannedby"]][appeal]"
 				.["reason"] = matches
 				return .
 	return 0
@@ -160,11 +160,11 @@ GLOBAL_DATUM(Banlist, /savefile)
 	else
 		var/timeleftstring
 		if (exp >= 1440) //1440 = 1 day in minutes
-			timeleftstring = "[round(exp / 1440, 0.1)] Days"
+			timeleftstring = "[round(exp / 1440, 0.1)]天"
 		else if (exp >= 60) //60 = 1 hour in minutes
-			timeleftstring = "[round(exp / 60, 0.1)] Hours"
+			timeleftstring = "[round(exp / 60, 0.1)]小时"
 		else
-			timeleftstring = "[exp] Minutes"
+			timeleftstring = "[exp]分钟"
 		return timeleftstring
 
 /datum/admins/proc/unbanpanel()

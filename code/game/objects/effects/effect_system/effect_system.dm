@@ -48,7 +48,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 */
 /////////////////////////////////////////////
 /obj/effect/particle_effect/steam
-	name = "steam"
+	name = "蒸汽"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
 	density = FALSE
@@ -88,7 +88,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /////////////////////////////////////////////
 
 /obj/effect/particle_effect/sparks
-	name = "sparks"
+	name = "火花"
 	icon_state = "sparks"
 	var/amount = 6
 	anchored = TRUE
@@ -150,7 +150,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /////////////////////////////////////////////
 
 /obj/effect/particle_effect/ion_trails
-	name = "ion trails"
+	name = "离子尾迹"
 	icon_state = "ion_trails"
 	anchored = TRUE
 

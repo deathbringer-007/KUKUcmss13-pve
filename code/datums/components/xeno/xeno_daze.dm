@@ -51,7 +51,7 @@
 	if(has_immunity)
 		L += "恍惚免疫：[grace_period]/[initial(grace_period)]"
 		return
-	L += "Daze: [daze]/[max_buildup]"
+	L += "恍惚：[daze]/[max_buildup]"
 
 /datum/component/status_effect/daze/cleanse()
 	REMOVE_TRAIT(parent, TRAIT_DAZED, TRAIT_STATUS_EFFECT("daze_warcrimes"))

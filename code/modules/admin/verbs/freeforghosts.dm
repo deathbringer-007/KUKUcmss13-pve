@@ -25,7 +25,7 @@
 	if(!notify)
 		return
 
-	notify_ghosts(header = "Freed Mob", message = "A mob is now available for ghosts. Name: [real_name], Job: [job ? job : ""]", enter_link = "claim_freed=[REF(src)]", source = src, action = NOTIFY_ORBIT)
+	notify_ghosts(header = "可接管角色", message = "旁观者现在可以接管一个角色。姓名：[real_name]，职务：[job ? localized_player_label(job) : "无"]", enter_link = "claim_freed=[REF(src)]", source = src, action = NOTIFY_ORBIT)
 
 /client/proc/free_all_mobs_in_view()
 	set name = "Free All Mobs"

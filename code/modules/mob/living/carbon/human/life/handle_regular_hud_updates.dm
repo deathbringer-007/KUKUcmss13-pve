@@ -180,7 +180,7 @@
 
 	var/is_bleeding = is_bleeding()
 	if(is_bleeding)
-		hud_used.bleeding_icon.name = "bleeding"
+		hud_used.bleeding_icon.name = "流血"
 		hud_used.bleeding_icon.icon_state = "status_bleed"
 		hud_used.bleeding_icon.screen_loc = ui_datum.get_status_loc(status_effect_placement)
 		status_effect_placement++
@@ -190,7 +190,7 @@
 
 	var/is_slowed = (slowed || superslowed)
 	if(is_slowed)
-		hud_used.slowed_icon.name = "slowed"
+		hud_used.slowed_icon.name = "减速"
 		hud_used.slowed_icon.icon_state = "status_slow"
 		hud_used.slowed_icon.screen_loc = ui_datum.get_status_loc(status_effect_placement)
 		status_effect_placement++
@@ -200,7 +200,7 @@
 
 	var/is_embedded = length(embedded_items)
 	if(is_embedded)
-		hud_used.shrapnel_icon.name = "shrapnel"
+		hud_used.shrapnel_icon.name = "弹片嵌入"
 		hud_used.shrapnel_icon.icon_state = "status_shrapnel"
 		hud_used.shrapnel_icon.screen_loc = ui_datum.get_status_loc(status_effect_placement)
 		status_effect_placement++
@@ -210,7 +210,7 @@
 
 	var/is_tethering = is_tethering()
 	if(is_tethering)
-		hud_used.tethering_icon.name = "tethering"
+		hud_used.tethering_icon.name = "正在牵引"
 		hud_used.tethering_icon.icon_state = "status_tethering"
 		hud_used.tethering_icon.screen_loc = ui_datum.get_status_loc(status_effect_placement)
 		status_effect_placement++
@@ -220,7 +220,7 @@
 
 	var/is_tethered = is_tethered()
 	if(is_tethered)
-		hud_used.tethered_icon.name = "tethered"
+		hud_used.tethered_icon.name = "被牵引"
 		hud_used.tethered_icon.icon_state = "status_tethered"
 		hud_used.tethered_icon.screen_loc = ui_datum.get_status_loc(status_effect_placement)
 		status_effect_placement++
@@ -229,7 +229,7 @@
 		hud_used.tethered_icon.icon_state = "status_0"
 
 	if(length(active_transfusions))
-		hud_used.tethered_icon.name = "transfusion"
+		hud_used.tethered_icon.name = "输血中"
 		hud_used.tethered_icon.icon_state = "status_blood"
 		hud_used.tethered_icon.screen_loc = ui_datum.get_status_loc(status_effect_placement)
 		status_effect_placement++

@@ -242,7 +242,7 @@
 		list("创伤治疗包", 2, /obj/item/stack/medical/advanced/bruise_pack, null, VENDOR_ITEM_RECOMMENDED),
 		list("医用夹板", 1, /obj/item/stack/medical/splint, null, VENDOR_ITEM_RECOMMENDED),
 
-		list("FIRSTAID KITS", 0, null, null, null),
+		list("急救包", 0, null, null, null),
 		list("高级急救箱", 12, /obj/item/storage/firstaid/softpack/adv, null, VENDOR_ITEM_RECOMMENDED),
 		list("急救箱", 5, /obj/item/storage/firstaid/softpack/regular, null, VENDOR_ITEM_REGULAR),
 		list("烧伤急救箱", 6, /obj/item/storage/firstaid/softpack/fire, null, VENDOR_ITEM_REGULAR),

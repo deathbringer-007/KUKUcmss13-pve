@@ -671,7 +671,8 @@ class ChatRenderer {
       '<!doctype html>\n' +
       '<html>\n' +
       '<head>\n' +
-      '<title>SS13 Chat Log</title>\n' +
+      '<meta charset="utf-8">\n' +
+      '<title>SS13聊天记录</title>\n' +
       '<style>\n' +
       cssText +
       '</style>\n' +

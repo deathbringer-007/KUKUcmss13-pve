@@ -60,8 +60,8 @@ Template
 
 /datum/poster/poster_11
 	icon_state="poster11"
-	name = "工作乔伊，你一眼就能认出。"
-	desc = "工作乔伊，你一眼就能认出。工作乔伊，你一眼就能认出。工作乔伊，你一眼就能认出。工作乔伊，你一眼就能认出。工作乔伊，你一眼就能认出。"
+	name = "工作乔，你总能一眼认出。"
+	desc = "工作乔，你总能一眼认出。工作乔，你总能一眼认出。工作乔，你总能一眼认出。工作乔，你总能一眼认出。工作乔，你总能一眼认出。"
 
 /datum/poster/poster_12
 	icon_state="poster12"

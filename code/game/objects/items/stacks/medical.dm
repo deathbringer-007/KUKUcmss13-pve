@@ -75,7 +75,7 @@
 					return 1
 
 		if(affecting.get_incision_depth())
-			to_chat(user, SPAN_NOTICE("[M]的[affecting.display_name]已被切开，光靠绷带可不够！"))
+			to_chat(user, SPAN_NOTICE("[M]的[localized_player_label(affecting.display_name)]已被切开，光靠绷带可不够！"))
 			return TRUE
 
 		var/possessive = "[user == M ? "你的" : "[M]的"]"
@@ -93,9 +93,9 @@
 					possessive = "[user == M ? "你的" : "[M]的"]"
 					possessive_their = "[user == M ? user.gender == MALE ? "他自己的" : "她自己的" : "[M]的"]"
 					user.affected_message(M,
-					SPAN_HELPFUL("你对[possessive]<b>[affecting.display_name]</b>中受损的动脉进行<b>填塞止血</b>，<b>减缓了出血。</b>"),
-					SPAN_HELPFUL("[user]对你的<b>[affecting.display_name]</b>中受损的动脉进行<b>填塞止血</b>，<b>减缓了出血。</b>"),
-					SPAN_NOTICE("[user]对[possessive_their][affecting.display_name]中受损的动脉进行填塞止血，<b>减缓了出血。</b>"))
+					SPAN_HELPFUL("你对[possessive]<b>[localized_player_label(affecting.display_name)]</b>中受损的动脉进行<b>填塞止血</b>，<b>减缓了出血。</b>"),
+					SPAN_HELPFUL("[user]对你的<b>[localized_player_label(affecting.display_name)]</b>中受损的动脉进行<b>填塞止血</b>，<b>减缓了出血。</b>"),
+					SPAN_NOTICE("[user]对[possessive_their][localized_player_label(affecting.display_name)]中受损的动脉进行填塞止血，<b>减缓了出血。</b>"))
 					I.has_been_bandaged = TRUE
 					use(1)
 					return FALSE
@@ -104,16 +104,16 @@
 		switch(affecting.bandage())
 			if(WOUNDS_BANDAGED)
 				user.affected_message(M,
-					SPAN_HELPFUL("你<b>包扎了</b>[possessive]<b>[affecting.display_name]</b>。"),
-					SPAN_HELPFUL("[user]<b>包扎了</b>你的<b>[affecting.display_name]</b>。"),
-					SPAN_NOTICE("[user]包扎了[possessive_their][affecting.display_name]。"))
+					SPAN_HELPFUL("你<b>包扎了</b>[possessive]<b>[localized_player_label(affecting.display_name)]</b>。"),
+					SPAN_HELPFUL("[user]<b>包扎了</b>你的<b>[localized_player_label(affecting.display_name)]</b>。"),
+					SPAN_NOTICE("[user]包扎了[possessive_their][localized_player_label(affecting.display_name)]。"))
 				use(1)
 				playsound(user, 'sound/handling/bandage.ogg', 25, 1, 2)
 			if(WOUNDS_ALREADY_TREATED)
-				to_chat(user, SPAN_WARNING("[possessive][affecting.display_name]上的伤口已经处理过了。"))
+				to_chat(user, SPAN_WARNING("[possessive][localized_player_label(affecting.display_name)]上的伤口已经处理过了。"))
 				return TRUE
 			else
-				to_chat(user, SPAN_WARNING("[possessive][affecting.display_name]上没有伤口。"))
+				to_chat(user, SPAN_WARNING("[possessive][localized_player_label(affecting.display_name)]上没有伤口。"))
 				return TRUE
 
 /obj/item/stack/medical/bruise_pack/ai_use(mob/living/carbon/human/user, datum/human_ai_brain/ai_brain, mob/living/carbon/human/target)
@@ -154,7 +154,7 @@
 					return 1
 
 		if(affecting.get_incision_depth())
-			to_chat(user, SPAN_NOTICE("[M]的[affecting.display_name]已被切开，光靠药膏可不够！"))
+			to_chat(user, SPAN_NOTICE("[M]的[localized_player_label(affecting.display_name)]已被切开，光靠药膏可不够！"))
 			return TRUE
 
 		var/possessive = "[user == M ? "你的" : "[M]的"]"
@@ -162,17 +162,17 @@
 		switch(affecting.salve())
 			if(WOUNDS_BANDAGED)
 				user.affected_message(M,
-					SPAN_HELPFUL("你给[possessive]<b>[affecting.display_name]</b>上的<b>烧伤涂上了药膏</b>。"),
-					SPAN_HELPFUL("[user]给你的<b>[affecting.display_name]</b>上的<b>烧伤涂上了药膏</b>。"),
-					SPAN_NOTICE("[user]给[possessive_their][affecting.display_name]上的烧伤涂上了药膏。"))
+					SPAN_HELPFUL("你给[possessive]<b>[localized_player_label(affecting.display_name)]</b>上的<b>烧伤涂上了药膏</b>。"),
+					SPAN_HELPFUL("[user]给你的<b>[localized_player_label(affecting.display_name)]</b>上的<b>烧伤涂上了药膏</b>。"),
+					SPAN_NOTICE("[user]给[possessive_their][localized_player_label(affecting.display_name)]上的烧伤涂上了药膏。"))
 				affecting.heal_damage(burn = heal_burn)
 				use(1)
 				playsound(user, 'sound/handling/ointment_spreading.ogg', 25, 1, 2)
 			if(WOUNDS_ALREADY_TREATED)
-				to_chat(user, SPAN_WARNING("[possessive][affecting.display_name]上的烧伤已经处理过了。"))
+				to_chat(user, SPAN_WARNING("[possessive][localized_player_label(affecting.display_name)]上的烧伤已经处理过了。"))
 				return TRUE
 			else
-				to_chat(user, SPAN_WARNING("[possessive][affecting.display_name]上没有烧伤。"))
+				to_chat(user, SPAN_WARNING("[possessive][localized_player_label(affecting.display_name)]上没有烧伤。"))
 				return TRUE
 
 /obj/item/stack/medical/advanced/bruise_pack
@@ -201,7 +201,7 @@
 				heal_amt = 3 //non optimal application means less healing
 
 		if(affecting.get_incision_depth())
-			to_chat(user, SPAN_NOTICE("[M]的[affecting.display_name]已被切开，光靠创伤治疗包可不够！"))
+			to_chat(user, SPAN_NOTICE("[M]的[localized_player_label(affecting.display_name)]已被切开，光靠创伤治疗包可不够！"))
 			return TRUE
 
 		var/possessive = "[user == M ? "你的" : "[M]的"]"
@@ -217,9 +217,9 @@
 					possessive = "[user == M ? "你的" : "[M]的"]"
 					possessive_their = "[user == M ? user.gender == MALE ? "他自己的" : "她自己的" : "[M]的"]"
 					user.affected_message(M,
-					SPAN_HELPFUL("你对[possessive]<b>[affecting.display_name]</b>中受损的动脉进行<b>填塞止血</b>，<b>减缓了出血。</b>"),
-					SPAN_HELPFUL("[user]对你的<b>[affecting.display_name]</b>中受损的动脉进行<b>填塞止血</b>，<b>减缓了出血。</b>"),
-					SPAN_NOTICE("[user]对[possessive_their][affecting.display_name]中受损的动脉进行填塞止血，<b>减缓了出血。</b>"))
+					SPAN_HELPFUL("你对[possessive]<b>[localized_player_label(affecting.display_name)]</b>中受损的动脉进行<b>填塞止血</b>，<b>减缓了出血。</b>"),
+					SPAN_HELPFUL("[user]对你的<b>[localized_player_label(affecting.display_name)]</b>中受损的动脉进行<b>填塞止血</b>，<b>减缓了出血。</b>"),
+					SPAN_NOTICE("[user]对[possessive_their][localized_player_label(affecting.display_name)]中受损的动脉进行填塞止血，<b>减缓了出血。</b>"))
 					I.has_been_bandaged = TRUE
 					use(1)
 					return FALSE
@@ -228,19 +228,19 @@
 		switch(affecting.bandage(TRUE))
 			if(WOUNDS_BANDAGED)
 				user.affected_message(M,
-					SPAN_HELPFUL("你用生物胶<b>清理并封合了</b>[possessive]<b>[affecting.display_name]</b>上的伤口。"),
-					SPAN_HELPFUL("[user]用生物胶<b>清理并封合了</b>你的<b>[affecting.display_name]</b>上的伤口。"),
-					SPAN_NOTICE("[user]用生物胶清理并封合了[possessive_their][affecting.display_name]上的伤口。"))
+					SPAN_HELPFUL("你用生物胶<b>清理并封合了</b>[possessive]<b>[localized_player_label(affecting.display_name)]</b>上的伤口。"),
+					SPAN_HELPFUL("[user]用生物胶<b>清理并封合了</b>你的<b>[localized_player_label(affecting.display_name)]</b>上的伤口。"),
+					SPAN_NOTICE("[user]用生物胶清理并封合了[possessive_their][localized_player_label(affecting.display_name)]上的伤口。"))
 				//If a suture datum exists, apply half the damage as sutures. This ensures consistency in healing amounts.
 				if(SEND_SIGNAL(affecting, COMSIG_LIMB_ADD_SUTURES, TRUE, FALSE, heal_amt * 0.5))
 					heal_amt *= 0.5
 				affecting.heal_damage(brute = heal_amt)
 				use(1)
 			if(WOUNDS_ALREADY_TREATED)
-				to_chat(user, SPAN_WARNING("[possessive][affecting.display_name]上的伤口已经处理过了。"))
+				to_chat(user, SPAN_WARNING("[possessive][localized_player_label(affecting.display_name)]上的伤口已经处理过了。"))
 				return TRUE
 			else
-				to_chat(user, SPAN_WARNING("[possessive][affecting.display_name]上没有伤口。"))
+				to_chat(user, SPAN_WARNING("[possessive][localized_player_label(affecting.display_name)]上没有伤口。"))
 				return TRUE
 
 /obj/item/stack/medical/advanced/bruise_pack/ai_can_use(mob/living/carbon/human/user, datum/human_ai_brain/ai_brain, mob/living/carbon/human/target)
@@ -328,7 +328,7 @@
 				heal_amt = 3 //non optimal application means less healing
 
 		if(affecting.get_incision_depth())
-			to_chat(user, SPAN_NOTICE("[M]的[affecting.display_name]已被切开，光靠烧伤治疗包可不够！"))
+			to_chat(user, SPAN_NOTICE("[M]的[localized_player_label(affecting.display_name)]已被切开，光靠烧伤治疗包可不够！"))
 			return TRUE
 
 		var/possessive = "[user == M ? "你的" : "[M]的"]"
@@ -336,19 +336,19 @@
 		switch(affecting.salve(TRUE))
 			if(WOUNDS_BANDAGED)
 				user.affected_message(M,
-					SPAN_HELPFUL("你用再生膜<b>覆盖了</b>[possessive]<b>[affecting.display_name]</b>上的<b>烧伤</b>。"),
-					SPAN_HELPFUL("[user]用再生膜<b>覆盖了</b>你的<b>[affecting.display_name]</b>上的<b>烧伤</b>。"),
-					SPAN_NOTICE("[user]用再生膜覆盖了[possessive_their][affecting.display_name]上的烧伤。"))
+					SPAN_HELPFUL("你用再生膜<b>覆盖了</b>[possessive]<b>[localized_player_label(affecting.display_name)]</b>上的<b>烧伤</b>。"),
+					SPAN_HELPFUL("[user]用再生膜<b>覆盖了</b>你的<b>[localized_player_label(affecting.display_name)]</b>上的<b>烧伤</b>。"),
+					SPAN_NOTICE("[user]用再生膜覆盖了[possessive_their][localized_player_label(affecting.display_name)]上的烧伤。"))
 				//If a suture datum exists, apply half the damage as grafts. This ensures consistency in healing amounts.
 				if(SEND_SIGNAL(affecting, COMSIG_LIMB_ADD_SUTURES, FALSE, TRUE, heal_amt * 0.5))
 					heal_amt *= 0.5
 				affecting.heal_damage(burn = heal_amt)
 				use(1)
 			if(WOUNDS_ALREADY_TREATED)
-				to_chat(user, SPAN_WARNING("[possessive][affecting.display_name]上的烧伤已经处理过了。"))
+				to_chat(user, SPAN_WARNING("[possessive][localized_player_label(affecting.display_name)]上的烧伤已经处理过了。"))
 				return TRUE
 			else
-				to_chat(user, SPAN_WARNING("[possessive][affecting.display_name]上没有烧伤。"))
+				to_chat(user, SPAN_WARNING("[possessive][localized_player_label(affecting.display_name)]上没有烧伤。"))
 				return TRUE
 
 /obj/item/stack/medical/advanced/ointment/ai_can_use(mob/living/carbon/human/user, datum/human_ai_brain/ai_brain, mob/living/carbon/human/target)
@@ -398,7 +398,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/limb/affecting = H.get_limb(user.zone_selected)
-		var/limb = affecting.display_name
+		var/limb = localized_player_label(affecting.display_name)
 
 		if(!(affecting.name in list("l_arm", "r_arm", "l_leg", "r_leg", "r_hand", "l_hand", "r_foot", "l_foot", "chest", "groin", "head")))
 			to_chat(user, SPAN_WARNING("那个部位不能上夹板！"))
@@ -418,9 +418,9 @@
 			var/possessive = "[user == M ? "你的" : "[M]的"]"
 			var/possessive_their = "[user == M ? user.gender == MALE ? "他自己的" : "她自己的" : "[M]的"]"
 			user.affected_message(M,
-				SPAN_HELPFUL("你<b>开始给</b>[possessive]<b>[affecting.display_name]上夹板</b>。"),
-				SPAN_HELPFUL("[user]<b>开始给</b>你的<b>[affecting.display_name]上夹板</b>。"),
-				SPAN_NOTICE("[user]开始给[possessive_their][affecting.display_name]上夹板。"))
+				SPAN_HELPFUL("你<b>开始给</b>[possessive]<b>[localized_player_label(affecting.display_name)]上夹板</b>。"),
+				SPAN_HELPFUL("[user]<b>开始给</b>你的<b>[localized_player_label(affecting.display_name)]上夹板</b>。"),
+				SPAN_NOTICE("[user]开始给[possessive_their][localized_player_label(affecting.display_name)]上夹板。"))
 		else
 			if((!user.hand && (affecting.name in list("r_arm", "r_hand"))) || (user.hand && (affecting.name in list("l_arm", "l_hand"))))
 				to_chat(user, SPAN_WARNING("你不能给当前正在使用的\
@@ -428,9 +428,9 @@
 				return
 			// Self-splinting
 			user.affected_message(M,
-				SPAN_HELPFUL("你<b>开始给</b>自己的<b>[affecting.display_name]上夹板</b>。"),
+				SPAN_HELPFUL("你<b>开始给</b>自己的<b>[localized_player_label(affecting.display_name)]上夹板</b>。"),
 				,
-				SPAN_NOTICE("[user]开始给自己的[affecting.display_name]上夹板。"))
+				SPAN_NOTICE("[user]开始给自己的[localized_player_label(affecting.display_name)]上夹板。"))
 
 		if(affecting.apply_splints(src, user, M, indestructible_splints)) // Referenced in external organ helpers.
 			use(1)

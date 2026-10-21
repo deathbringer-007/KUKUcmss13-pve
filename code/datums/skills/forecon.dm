@@ -6,7 +6,7 @@ MILITARY SURVIVORS
 //Hardcore survivors with poor equipment and skills, prove you're the best of the best.
 
 /datum/skills/military/survivor/forecon_standard
-	name = "Reconnaissance Rifleman"
+	name = "武装侦察部队步枪兵"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_DEFAULT,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_DEFAULT,
@@ -22,7 +22,7 @@ MILITARY SURVIVORS
 	)
 
 /datum/skills/military/survivor/forecon_techician
-	name = "Reconnaissance Support Technician"
+	name = "武装侦察部队支援技术员"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_ENGI,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_MASTER,
@@ -39,7 +39,7 @@ MILITARY SURVIVORS
 	)
 
 /datum/skills/military/survivor/forecon_marksman
-	name = "Reconnaissance Designated Marksman"
+	name = "武装侦察部队精确射手"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_DEFAULT,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_DEFAULT,
@@ -56,7 +56,7 @@ MILITARY SURVIVORS
 	)
 
 /datum/skills/military/survivor/forecon_smartgunner
-	name = "Reconnaissance Smartgunner"
+	name = "武装侦察部队智能机枪手"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_DEFAULT,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_DEFAULT,
@@ -73,7 +73,7 @@ MILITARY SURVIVORS
 	)
 
 /datum/skills/military/survivor/forecon_squad_leader
-	name = "Reconnaissance Squad Leader"
+	name = "武装侦察部队小队长"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_DEFAULT,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_DEFAULT,

@@ -29,7 +29,7 @@
 	var/mission_length = 3 //can be 3,4,6 or 12
 	var/list/datum/cas_fire_mission_record/records = list()
 	var/obj/structure/dropship_equipment/weapon/error_weapon
-	var/name = "Unnamed Firemission"
+	var/name = "未命名火力任务"
 
 /datum/cas_fire_mission/ui_data(mob/user)
 	. = list()
@@ -128,37 +128,37 @@
 
 /datum/cas_fire_mission/proc/error_message(code_id)
 	if(code_id == FIRE_MISSION_ALL_GOOD)
-		return "All checks passed."
+		return "所有检查均已通过。"
 	if(code_id == FIRE_MISSION_CODE_ERROR)
-		return "System error. Call Tech Support or create Fire Mission from scratch."
+		return "系统错误。请联系技术支持，或重新创建火力任务。"
 	if(!istype(error_weapon))
-		return "Error or Fire Mission is outdated. Create Fire Mission from scratch if Error persists."
+		return "发生错误，或火力任务已过时。若错误持续出现，请重新创建火力任务。"
 	var/weapon_string = "[error_weapon.name] "
 	if(error_weapon.ammo_equipped)
 		weapon_string += "([error_weapon.ammo_equipped.ammo_count]/[error_weapon.ammo_equipped.max_ammo_count]) "
 	if(error_weapon.ship_base)
-		weapon_string += "mounted on [error_weapon.ship_base.name] "
+		weapon_string += "（安装于[error_weapon.ship_base.name]）"
 
 	if(code_id == FIRE_MISSION_BAD_COOLDOWN)
-		return "Weapon [weapon_string] requires interval of [error_weapon.ammo_equipped.fire_mission_delay] time units per shot."
+		return "武器[weapon_string]每次射击需间隔[error_weapon.ammo_equipped.fire_mission_delay]个时间单位。"
 	if(code_id == FIRE_MISSION_BAD_OFFSET)
 		// Change this to using weapon's when it is implemented
 		var/obj/effect/attach_point/weapon/AW = error_weapon.ship_base
 		if(!istype(AW))
-			. = "Internal error: [weapon_string] hardpoint invalid"
+			. = "内部错误：[weapon_string]的挂点无效"
 			CRASH("CASFM-CHECK-01: Weapon attached to invalid hardpoint")
 		var/list/allowed_offsets = AW.get_offsets()
 		if(!allowed_offsets)
-			. = "Internal error: [weapon_string] offsets invalid"
+			. = "内部错误：[weapon_string]的偏移量无效"
 			CRASH("CASFM-CHECK-02: Weapon reported offsets invalid")
-		return "Weapon hardpoint of [weapon_string] only allows gimbal offset between [allowed_offsets["min"]] and [allowed_offsets["max"]]."
+		return "[weapon_string]的武器挂点仅允许在[allowed_offsets["min"]]至[allowed_offsets["max"]]之间调整瞄准偏移。"
 	if(code_id == FIRE_MISSION_WEAPON_REMOVED)
-		return "Weapon [weapon_string] is no longer located on this dropship"
+		return "武器[weapon_string]已不在这艘运输艇上。"
 	if(code_id == FIRE_MISSION_WEAPON_UNUSABLE)
-		return "Weapon [weapon_string] is loaded with ammunition too dangerous to be used in Fire Mission"
+		return "武器[weapon_string]装填的弹药过于危险，不能用于火力任务。"
 	if(code_id == FIRE_MISSION_WEAPON_OUT_OF_AMMO)
-		return "Weapon [weapon_string] has not enough ammunition to complete this Fire Mission"
-	return "Unknown Error"
+		return "武器[weapon_string]的弹药不足，无法完成此次火力任务。"
+	return "未知错误"
 
 /datum/cas_fire_mission/proc/execute_firemission(obj/structure/machinery/computer/dropship_weapons/linked_console, turf/initial_turf, direction = NORTH, steps = 12, step_delay = 3, datum/cas_fire_envelope/envelope = null)
 	if(initial_turf == null || check(linked_console) != FIRE_MISSION_ALL_GOOD)

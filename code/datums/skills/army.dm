@@ -5,7 +5,7 @@ United States Army
 */
 
 /datum/skills/trooper
-	name = "Trooper"
+	name = "步兵"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,
 		SKILL_VEHICLE = SKILL_VEHICLE_SMALL,
@@ -18,7 +18,7 @@ United States Army
 	)
 
 /datum/skills/heavygunner
-	name = "Heavy Gunner"
+	name = "重机枪手"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,
 		SKILL_VEHICLE = SKILL_VEHICLE_SMALL,
@@ -31,7 +31,7 @@ United States Army
 	)
 
 /datum/skills/sapper
-	name = "Combat Engineering Technician"
+	name = "战斗工程技术员"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,
 		SKILL_ENGINEER = SKILL_ENGINEER_ENGI,
@@ -45,7 +45,7 @@ United States Army
 	)
 
 /datum/skills/mainttech
-	name = "Technical Engineer"
+	name = "技术工程师"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,
 		SKILL_ENGINEER = SKILL_ENGINEER_ENGI,
@@ -59,7 +59,7 @@ United States Army
 	)
 
 /datum/skills/cargotech
-	name = "Logistics Specialist"
+	name = "后勤专员"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
@@ -72,7 +72,7 @@ United States Army
 	)
 
 /datum/skills/medic
-	name = "Combat Medical Technician"
+	name = "战斗医疗技术员"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,
 		SKILL_VEHICLE = SKILL_VEHICLE_SMALL,
@@ -88,7 +88,7 @@ United States Army
 	)
 
 /datum/skills/nco
-	name = "Fireteam Leader"
+	name = "战斗组长"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,
 		SKILL_JTAC = SKILL_JTAC_EXPERT,
@@ -103,7 +103,7 @@ United States Army
 	)
 
 /datum/skills/snco
-	name = "Squad Leader"
+	name = "小队长"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,
 		SKILL_CQC = SKILL_CQC_TRAINED,
@@ -120,7 +120,7 @@ United States Army
 	)
 
 /datum/skills/lt
-	name = "Platoon Officer"
+	name = "排级军官"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,
 		SKILL_LEADERSHIP = SKILL_LEAD_EXPERT,
@@ -138,7 +138,7 @@ United States Army
 	)
 
 /datum/skills/cargoofficer
-	name = "Logistics Officer"
+	name = "后勤军官"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,
 		SKILL_LEADERSHIP = SKILL_LEAD_EXPERT,

@@ -7,7 +7,7 @@ Royal Marines Commando
 //NOTE: Skills take heavy from PMCs
 
 /datum/skills/rmc
-	name = "Royal Marines Commando"
+	name = "皇家陆战突击队员"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_EXPERT,
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,
@@ -22,7 +22,7 @@ Royal Marines Commando
 	)
 
 /datum/skills/rmc/medic
-	name = "Royal Marines Commando Hospital Assistant"
+	name = "皇家陆战突击队医疗助理"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_EXPERT,
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,
@@ -37,7 +37,7 @@ Royal Marines Commando
 	)
 
 /datum/skills/rmc/engi
-	name = "Royal Marines Commando Combat Engineer"
+	name = "皇家陆战突击队战斗工兵"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_EXPERT,
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,
@@ -52,7 +52,7 @@ Royal Marines Commando
 	)
 
 /datum/skills/rmc/smartgun
-	name = "Royal Marines Commando Smartgunner"
+	name = "皇家陆战突击队智能机枪手"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_EXPERT,
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,
@@ -68,7 +68,7 @@ Royal Marines Commando
 	)
 
 /datum/skills/rmc/leader
-	name = "Royal Marines Commando Leader"
+	name = "皇家陆战突击队队长"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_EXPERT,
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,
@@ -84,7 +84,7 @@ Royal Marines Commando
 	)
 
 /datum/skills/rmc/officer
-	name = "Royal Marines Commando Officer"
+	name = "皇家陆战突击队军官"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_EXPERT,
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,

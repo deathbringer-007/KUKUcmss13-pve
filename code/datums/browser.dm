@@ -106,7 +106,7 @@
 
 	return {"<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<head>
 		[head_content]
 	</head>
@@ -344,13 +344,13 @@
 			output += {"<li><input id="name="[i["name"]]"" style="width: 50px" type="[type]" name="[i["name"]]" value="[i["value"]]">
 			<label for="[i["name"]]">[i["name"]]</label></li>"}
 	output += {"</ul><div style="text-align:center">
-		<button type="submit" name="button" value="[button1]" style="font-size:large;float:[( button2 ? "left" : "right" )]">[button1]</button>"}
+		<button type="submit" name="button" value="[button1]" style="font-size:large;float:[( button2 ? "left" : "right" )]">[localized_player_label(button1)]</button>"}
 
 	if(button2)
-		output += {"<button type="submit" name="button" value="[button2]" style="font-size:large;[( button3 ? "" : "float:right" )]">[button2]</button>"}
+		output += {"<button type="submit" name="button" value="[button2]" style="font-size:large;[( button3 ? "" : "float:right" )]">[localized_player_label(button2)]</button>"}
 
 	if(button3)
-		output += {"<button type="submit" name="button" value="[button3]" style="font-size:large;float:right">[button3]</button>"}
+		output += {"<button type="submit" name="button" value="[button3]" style="font-size:large;float:right">[localized_player_label(button3)]</button>"}
 
 	output += {"</form></div>"}
 	..(user, ckey("[user]-[message]-[title]-[world.time]-[rand(1,10000)]"), title, "common.css", width, height, src, stealfocus, timeout)

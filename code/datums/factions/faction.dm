@@ -1,5 +1,5 @@
 /datum/faction
-	var/name = "Neutral Faction"
+	var/name = "中立阵营"
 	var/faction_tag = FACTION_NEUTRAL
 	var/hud_type = FACTION_HUD
 

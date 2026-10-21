@@ -23,10 +23,10 @@ Contains most of the procs that are called when a mob is attacked by something
 
 				drop_inv_item_on_ground(c_hand)
 				if (affected.status & (LIMB_ROBOT|LIMB_SYNTHSKIN))
-					emote("me", 1, "drops what they were holding, their [affected.display_name] malfunctioning!")
+					emote("me", 1, "因[localized_player_label(affected.display_name)]故障而掉落了手中的物品！")
 				else
-					var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
-					emote("me", 1, "[(!pain.feels_pain) ? "" : emote_scream ] drops what they were holding in their [affected.display_name]!")
+					var/emote_scream = pick("痛苦地尖叫着，", "发出一声尖叫，", "大叫一声，")
+					emote("me", 1, "[(!pain.feels_pain) ? "" : emote_scream ]松开了[localized_player_label(affected.display_name)]中的物品！")
 
 	..(stun_amount, agony_amount, def_zone)
 
@@ -94,6 +94,13 @@ Contains most of the procs that are called when a mob is attacked by something
 	return FALSE
 
 /mob/living/carbon/human/proc/check_shields(damage = 0, attack_text = "the attack", combistick=0)
+	var/attack_label = attack_text
+	if(attack_text == "the attack")
+		attack_label = "攻击"
+	else if(attack_text == "the pounce")
+		attack_label = "扑击"
+	else if(findtext(attack_text, "the ") == 1)
+		attack_label = copytext(attack_text, 5)
 	if(l_hand && istype(l_hand, /obj/item/weapon))//Current base is the prob(50-d/3)
 		if(combistick && istype(l_hand,/obj/item/weapon/yautja/combistick) && prob(66))
 			var/obj/item/weapon/yautja/combistick/C = l_hand
@@ -110,13 +117,13 @@ Contains most of the procs that are called when a mob is attacked by something
 				shield_blocked_l = TRUE
 
 			if(shield_blocked_l)
-				visible_message(SPAN_DANGER("<B>[src]用[l_hand.name]挡住了[attack_text]！</B>"), null, null, 5)
+				visible_message(SPAN_DANGER("<B>[src]用[l_hand.name]挡住了[attack_label]！</B>"), null, null, 5)
 				return TRUE
 			// We cannot return FALSE on fail here, because we haven't checked r_hand yet. Dual-wielding shields perhaps!
 
 		var/obj/item/weapon/I = l_hand
 		if(I.IsShield() && !istype(I, /obj/item/weapon/shield) && (prob(50 - floor(damage / 3)))) // 'other' shields, like predweapons. Make sure that item/weapon/shield does not apply here, no double-rolls.
-			visible_message(SPAN_DANGER("<B>[src]用[l_hand.name]挡住了[attack_text]！</B>"), null, null, 5)
+			visible_message(SPAN_DANGER("<B>[src]用[l_hand.name]挡住了[attack_label]！</B>"), null, null, 5)
 			return TRUE
 
 	if(r_hand && istype(r_hand, /obj/item/weapon))
@@ -135,22 +142,22 @@ Contains most of the procs that are called when a mob is attacked by something
 				shield_blocked_r = TRUE
 
 			if(shield_blocked_r)
-				visible_message(SPAN_DANGER("<B>[src]用[r_hand.name]挡住了[attack_text]！</B>"), null, null, 5)
+				visible_message(SPAN_DANGER("<B>[src]用[r_hand.name]挡住了[attack_label]！</B>"), null, null, 5)
 				return TRUE
 
 		var/obj/item/weapon/I = r_hand
 		if(I.IsShield() && !istype(I, /obj/item/weapon/shield) && (prob(50 - floor(damage / 3)))) // other shields. Don't doublecheck activable here.
-			visible_message(SPAN_DANGER("<B>[src]用[r_hand.name]挡住了[attack_text]！</B>"), null, null, 5)
+			visible_message(SPAN_DANGER("<B>[src]用[r_hand.name]挡住了[attack_label]！</B>"), null, null, 5)
 			return TRUE
 
 	if(back && istype(back, /obj/item/weapon/shield/riot) && prob(20))
 		var/obj/item/weapon/shield/riot/shield = back
 		if(shield.blocks_on_back)
-			visible_message(SPAN_DANGER("<B>[src]背上的[back]挡住了[attack_text]！</B>"), null, null, 5)
+			visible_message(SPAN_DANGER("<B>[src]背上的[back]挡住了[attack_label]！</B>"), null, null, 5)
 			return TRUE
 
 	if(attack_text == "the pounce" && wear_suit && wear_suit.flags_inventory & BLOCK_KNOCKDOWN)
-		visible_message(SPAN_DANGER("<B>[src]身上的[wear_suit.name]承受住了[attack_text]！</B>"), null, null, 5)
+		visible_message(SPAN_DANGER("<B>[src]身上的[wear_suit.name]承受住了[attack_label]！</B>"), null, null, 5)
 		return TRUE
 	return FALSE
 
@@ -187,7 +194,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if (!affecting)
 		return FALSE
 	if(affecting.status & LIMB_DESTROYED)
-		to_chat(user, "哪来的[affecting.display_name]？")
+		to_chat(user, "哪来的[localized_player_label(affecting.display_name)]？")
 		return FALSE
 	var/hit_area = affecting.display_name
 

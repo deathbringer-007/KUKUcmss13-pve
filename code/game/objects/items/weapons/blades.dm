@@ -463,8 +463,8 @@
 	for(var/obj/item/shard/S in embedded_human.embedded_items)
 		var/obj/limb/organ = S.embedded_organ
 
-		if(!(organ.display_name in removed_limbs))
-			removed_limbs += organ.display_name
+		if(!(localized_player_label(organ.display_name) in removed_limbs))
+			removed_limbs += localized_player_label(organ.display_name)
 
 		S.forceMove(embedded_human.loc)
 		organ.implants -= S

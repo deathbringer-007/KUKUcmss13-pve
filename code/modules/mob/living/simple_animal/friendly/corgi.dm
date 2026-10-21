@@ -81,10 +81,10 @@
 						movement_target.attack_animal(src)
 					else if(ishuman(movement_target.loc) )
 						if(prob(20))
-							INVOKE_ASYNC(src, PROC_REF(emote), "stares at [movement_target] that [movement_target.loc] has with a sad puppy-face")
+							INVOKE_ASYNC(src, PROC_REF(emote), "一脸可怜地盯着[movement_target.loc]拿着的[movement_target]")
 
 		if(prob(1))
-			INVOKE_ASYNC(src, PROC_REF(emote), pick("dances around","chases its tail"))
+			INVOKE_ASYNC(src, PROC_REF(emote), pick("蹦蹦跳跳", "追着自己的尾巴转圈"))
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					setDir(i)
@@ -208,7 +208,7 @@
 
 
 		if(prob(1))
-			INVOKE_ASYNC(src, PROC_REF(emote), pick("dances around","chases her tail"))
+			INVOKE_ASYNC(src, PROC_REF(emote), pick("蹦蹦跳跳", "追着自己的尾巴转圈"))
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					setDir(i)

@@ -88,10 +88,10 @@
 
 /obj/effect/spawner/prop_gun/m41aMK1
 	prop_gun_type = /obj/item/weapon/gun/rifle/m41aMK1
-	custom_gun_name = "\improper Broken M41A pulse rifle"
-	custom_gun_desc = "An older design of the Pulse Rifle commonly used by Colonial Marines. This one has seen better days. The trigger is missing, the barrel is bent, and it no longer appropriately feeds magazines."
+	custom_gun_name = "损坏的M41A脉冲步枪"
+	custom_gun_desc = "殖民地陆战队常用的一种老式脉冲步枪。这把枪已经破败不堪：扳机不翼而飞，枪管弯曲，弹匣也无法正常供弹。"
 
 /obj/effect/spawner/prop_gun/anti_tank
 	prop_gun_type = /obj/item/weapon/gun/launcher/rocket/anti_tank
-	custom_gun_name = "\improper Spent M83A2 SADAR"
-	custom_gun_desc = "A spent M83A2 tube. It's been kept as a trophy after a lucky tank kill nearly a thousand meters out. Someone has engraved a single tally-mark on the side to begin recording a kill-count."
+	custom_gun_name = "用过的M83A2 SADAR发射筒"
+	custom_gun_desc = "一具用过的M83A2发射筒。在一次幸运地击毁近千米外坦克的战斗后，它被留下作为战利品。有人在侧面刻下一道计数划痕，作为击杀记录的开始。"

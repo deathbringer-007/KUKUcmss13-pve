@@ -4,7 +4,7 @@ CONTRACTORS
 ---------------------
 */
 /datum/skills/contractor
-	name = "Contractor Standard"
+	name = "承包商普通队员"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_TRAINED,
 		SKILL_ENGINEER = SKILL_ENGINEER_NOVICE,
@@ -20,7 +20,7 @@ CONTRACTORS
 	)
 
 /datum/skills/contractor/leader
-	name = "Contractor Leader"
+	name = "承包商队长"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
 		SKILL_FIREARMS = SKILL_FIREARMS_MAX,
@@ -39,7 +39,7 @@ CONTRACTORS
 	)
 
 /datum/skills/contractor/medic
-	name = "Contractor Medic"
+	name = "承包商医疗兵"
 	skills = list(
 		SKILL_FIREARMS = SKILL_FIREARMS_MAX,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
@@ -56,7 +56,7 @@ CONTRACTORS
 	)
 
 /datum/skills/contractor/engi
-	name = "Contractor Engi"
+	name = "承包商工程师"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_TRAINED,
 		SKILL_ENGINEER = SKILL_ENGINEER_MAX,
@@ -73,7 +73,7 @@ CONTRACTORS
 	)
 
 /datum/skills/contractor/heavy
-	name = "Contractor Machinegunner"
+	name = "承包商机枪手"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_TRAINED,
 		SKILL_ENGINEER = SKILL_ENGINEER_NOVICE,

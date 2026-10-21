@@ -7,7 +7,7 @@ UNITED PROGRESSIVE PEOPLES
 //NOTE: UPP make up for their subpar gear with extreme training.
 
 /datum/skills/upp
-	name = "UPP Private"
+	name = "UPP 列兵"
 	skills = list(
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_TRAINED,
 		SKILL_ENGINEER = SKILL_ENGINEER_NOVICE,
@@ -19,7 +19,7 @@ UNITED PROGRESSIVE PEOPLES
 	)
 
 /datum/skills/upp/combat_engineer
-	name = "UPP Sapper"
+	name = "UPP 工兵"
 	skills = list(
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
@@ -31,7 +31,7 @@ UNITED PROGRESSIVE PEOPLES
 	)
 
 /datum/skills/upp/combat_medic
-	name = "UPP Medic"
+	name = "UPP 医疗兵"
 	skills = list(
 		SKILL_MEDICAL = SKILL_MEDICAL_DOCTOR,
 		SKILL_SURGERY = SKILL_SURGERY_TRAINED,
@@ -42,7 +42,7 @@ UNITED PROGRESSIVE PEOPLES
 	)
 
 /datum/skills/upp/specialist
-	name = "UPP Specialist"
+	name = "UPP 武器专家"
 	skills = list(
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_TRAINED,
 		SKILL_ENGINEER = SKILL_ENGINEER_NOVICE,
@@ -57,7 +57,7 @@ UNITED PROGRESSIVE PEOPLES
 	)
 
 /datum/skills/upp/SL
-	name = "UPP Squad Leader"
+	name = "UPP 小队长"
 	skills = list(
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
@@ -71,7 +71,7 @@ UNITED PROGRESSIVE PEOPLES
 	)
 
 /datum/skills/upp/military_police
-	name = "UPP Military Police"
+	name = "UPP 宪兵"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_SKILLED,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
@@ -84,7 +84,7 @@ UNITED PROGRESSIVE PEOPLES
 	)
 
 /datum/skills/upp/logistics_technician
-	name = "UPP Logistics Technician"
+	name = "UPP 后勤技术员"
 	skills = list(
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
@@ -96,7 +96,7 @@ UNITED PROGRESSIVE PEOPLES
 	)
 
 /datum/skills/upp/commissar
-	name = "UPP Starshy Politruk"
+	name = "UPP 高级政治指导员"
 	skills = list(
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
 		SKILL_ENGINEER = SKILL_ENGINEER_NOVICE,
@@ -112,7 +112,7 @@ UNITED PROGRESSIVE PEOPLES
 	)
 
 /datum/skills/upp/officer
-	name = "UPP Officer"
+	name = "UPP 军官"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_TRAINED,
 		SKILL_POLICE = SKILL_POLICE_FLASH,
@@ -129,7 +129,7 @@ UNITED PROGRESSIVE PEOPLES
 	)
 
 /datum/skills/upp/kapitan
-	name = "UPP Kapitan"
+	name = "UPP 上尉"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_SKILLED,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
@@ -146,7 +146,7 @@ UNITED PROGRESSIVE PEOPLES
 	)
 
 /datum/skills/upp/commander
-	name = "UPP Command Officer"
+	name = "UPP 指挥军官"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_SKILLED,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
@@ -163,7 +163,7 @@ UNITED PROGRESSIVE PEOPLES
 		SKILL_EXECUTION = SKILL_EXECUTION_TRAINED,
 	)
 /datum/skills/upp/conscript
-	name = "UPP Conscript"
+	name = "UPP 义务兵"
 	skills = list(
 		SKILL_FIREARMS = SKILL_FIREARMS_TRAINED,
 	)
@@ -172,7 +172,7 @@ UNITED PROGRESSIVE PEOPLES
 //Survivor
 
 /datum/skills/military/survivor/upp_private
-	name = "UPP Private"
+	name = "UPP 列兵"
 	skills = list(
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_TRAINED,
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
@@ -186,7 +186,7 @@ UNITED PROGRESSIVE PEOPLES
 	)
 
 /datum/skills/military/survivor/upp_sapper
-	name = "UPP Sapper"
+	name = "UPP 工兵"
 	skills = list(
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
@@ -201,7 +201,7 @@ UNITED PROGRESSIVE PEOPLES
 	)
 
 /datum/skills/military/survivor/upp_medic
-	name = "UPP Medic"
+	name = "UPP 医疗兵"
 	skills = list(
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_TRAINED,
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
@@ -217,7 +217,7 @@ UNITED PROGRESSIVE PEOPLES
 	)
 
 /datum/skills/military/survivor/upp_spec
-	name = "UPP Specialist"
+	name = "UPP 武器专家"
 	skills = list(
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_TRAINED,
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
@@ -235,7 +235,7 @@ UNITED PROGRESSIVE PEOPLES
 	)
 
 /datum/skills/military/survivor/upp_sl
-	name = "UPP Squad Leader"
+	name = "UPP 小队长"
 	skills = list(
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,

@@ -594,7 +594,7 @@
 	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "folding_chair"
 	item_state = "folding_chair"
-	attack_verb = list("bashed", "battered", "chaired")
+	attack_verb = list("猛砸", "殴打", "用椅子砸")
 	force = 1
 	throwforce = 3
 	sharp = null

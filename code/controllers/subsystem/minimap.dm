@@ -510,7 +510,7 @@ SUBSYSTEM_DEF(minimaps)
 
 	var/icon/flat_map = getFlatIcon(map_holder.map, appearance_flags = TRUE)
 	if(!flat_map)
-		to_chat(usr, SPAN_WARNING("A critical error has occurred! Contact a coder.")) // tf2heavy: "Oh, this is bad!"
+		to_chat(usr, SPAN_WARNING("发生严重错误！请联系开发者。")) // tf2heavy: "Oh, this is bad!"
 		return FALSE
 
 	// Send to only relevant clients
@@ -531,7 +531,7 @@ SUBSYSTEM_DEF(minimaps)
 	// This may be unnecessary to do this way if the asset url is always the same as the lookup key
 	var/flat_tacmap_key = icon2html(flat_map, faction_clients, keyonly = TRUE)
 	if(!flat_tacmap_key)
-		to_chat(usr, SPAN_WARNING("A critical error has occurred! Contact a coder."))
+		to_chat(usr, SPAN_WARNING("发生严重错误！请联系开发者。"))
 		return FALSE
 	var/flat_tacmap_png = SSassets.transport.get_asset_url(flat_tacmap_key)
 	var/datum/flattened_tacmap/new_flat = new(flat_tacmap_png, flat_tacmap_key)
@@ -577,7 +577,7 @@ SUBSYSTEM_DEF(minimaps)
 
 ///Default HUD screen minimap object
 /atom/movable/screen/minimap
-	name = "Minimap"
+	name = "小地图"
 	icon = null
 	icon_state = ""
 	layer = ABOVE_HUD_LAYER
@@ -639,7 +639,7 @@ SUBSYSTEM_DEF(minimaps)
  * Action that gives the owner access to the minimap pool
  */
 /datum/action/minimap
-	name = "Toggle Minimap"
+	name = "切换小地图"
 	action_icon_state = "minimap"
 	///Flags to allow the owner to see others of this type
 	var/minimap_flags = MINIMAP_FLAG_ALL
@@ -1009,17 +1009,17 @@ SUBSYSTEM_DEF(minimaps)
 				GLOB.uscm_flat_tacmap_data += new_current_map
 				COOLDOWN_START(GLOB, uscm_canvas_cooldown, CANVAS_COOLDOWN_TIME)
 				for(var/datum/squad/current_squad in GLOB.RoleAuthority.squads)
-					current_squad.send_maptext("Tactical map update in progress...", "Tactical Map:")
+					current_squad.send_maptext("正在更新战术地图……", "战术地图：")
 				var/mob/living/carbon/human/human_leader = user
 				human_leader.visible_message(SPAN_BOLDNOTICE("正在更新战术地图……"))
 				playsound_client(human_leader.client, "sound/effects/data-transmission.ogg")
-				notify_ghosts(header = "Tactical Map", message = "The [faction] tactical map has been updated.", ghost_sound = "sound/effects/data-transmission.ogg", notify_volume = 80, action = NOTIFY_USCM_TACMAP, enter_link = "uscm_tacmap=1", enter_text = "View", source = owner)
+				notify_ghosts(header = "战术地图", message = "[get_statistic_display_label(faction)]的战术地图已更新。", ghost_sound = "sound/effects/data-transmission.ogg", notify_volume = 80, action = NOTIFY_USCM_TACMAP, enter_link = "uscm_tacmap=1", enter_text = "查看", source = owner)
 			else if(faction == XENO_HIVE_NORMAL)
 				GLOB.xeno_flat_tacmap_data += new_current_map
 				COOLDOWN_START(GLOB, xeno_canvas_cooldown, CANVAS_COOLDOWN_TIME)
-				xeno_maptext("The Queen has updated our hive mind map", "We sense something unusual...", faction)
+				xeno_maptext("女皇更新了我们的虫巢意志地图", "我们感受到了异样……", faction)
 				var/mutable_appearance/appearance = mutable_appearance(icon('icons/mob/hud/actions_xeno.dmi'), "toggle_queen_zoom")
-				notify_ghosts(header = "Tactical Map", message = "The Xenomorph tactical map has been updated.", ghost_sound = "sound/voice/alien_distantroar_3.ogg", notify_volume = 50, action = NOTIFY_XENO_TACMAP, enter_link = "xeno_tacmap=1", enter_text = "View", source = user, alert_overlay = appearance)
+				notify_ghosts(header = "战术地图", message = "异形战术地图已更新。", ghost_sound = "sound/voice/alien_distantroar_3.ogg", notify_volume = 50, action = NOTIFY_XENO_TACMAP, enter_link = "xeno_tacmap=1", enter_text = "查看", source = user, alert_overlay = appearance)
 
 			store_current_svg_coords(faction, params["image"], user)
 			current_svg = get_tacmap_data_svg(faction)

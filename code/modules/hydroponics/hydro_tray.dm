@@ -437,7 +437,7 @@
 	pestlevel = 0
 	sampled = 0
 	update_icon()
-	visible_message(SPAN_NOTICE("[src]已被[seed.display_name]侵占。"))
+	visible_message(SPAN_NOTICE("[src]已被[localized_seed_label(seed.display_name)]侵占。"))
 
 	return
 
@@ -478,7 +478,7 @@
 
 /obj/structure/machinery/portable_atmospherics/hydroponics/proc/mutate_species()
 
-	var/previous_plant = seed.display_name
+	var/previous_plant = localized_seed_label(seed.display_name)
 	var/newseed = seed.get_mutant_variant()
 	if(newseed in GLOB.seed_types)
 		seed = GLOB.seed_types[newseed]
@@ -494,7 +494,7 @@
 	weedlevel = 0
 
 	update_icon()
-	visible_message(SPAN_DANGER("\blue [previous_plant] \red 突然变异成了\blue [seed.display_name]！"))
+	visible_message(SPAN_DANGER("\blue [previous_plant] \red 突然变异成了\blue [localized_seed_label(seed.display_name)]！"))
 
 	return
 
@@ -560,7 +560,7 @@
 				qdel(O)
 				return
 
-			to_chat(user, "你种下了[S.seed.seed_name][S.seed.seed_noun]。")
+			to_chat(user, "你种下了[localized_seed_label(S.seed.seed_name)][localized_seed_label(S.seed.seed_noun)]。")
 
 			if(S.seed.spread == 1)
 				msg_admin_attack("[key_name(user)] has planted a creeper packet in [get_area(user)] ([user.loc.x],[user.loc.y],[user.loc.z]).", user.loc.x, user.loc.y, user.loc.z)
@@ -660,7 +660,7 @@
 /obj/structure/machinery/portable_atmospherics/hydroponics/proc/show_hydro_info(mob/user as mob)
 	var/info = ""
 	if(seed && !dead)
-		info += "[src]内种有" + SPAN_HELPFUL("[seed.display_name]") +"。\n"
+		info += "[src]内种有" + SPAN_HELPFUL("[localized_seed_label(seed.display_name)]") +"。\n"
 		if(plant_health <= (seed.endurance / 2))
 			info += "这株植物" + SPAN_RED("生长不良") + "。\n"
 	else

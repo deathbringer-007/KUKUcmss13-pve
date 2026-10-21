@@ -89,7 +89,7 @@
 						to_chat(src, ambiguous_dir_msg)
 						return
 
-			var/acided_hole_type = W.acided_hole_dir & (EAST|WEST) ? "a hole horizontally" : "a hole vertically"
+			var/acided_hole_type = W.acided_hole_dir & (EAST|WEST) ? "一个横向通道" : "一个纵向通道"
 			to_chat(src, SPAN_XENOWARNING("我们开始积聚足够的酸液，准备在[W]上腐蚀出[acided_hole_type]。"))
 		else
 			to_chat(src, SPAN_XENOWARNING("我们开始积聚足够的酸液，准备腐蚀穿透[turf]。"))

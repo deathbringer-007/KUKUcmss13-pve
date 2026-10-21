@@ -644,7 +644,7 @@
 	new_human.b_facial = 255
 
 /datum/equipment_preset/synth/working_joe/load_name(mob/living/carbon/human/new_human, randomise)
-	new_human.change_real_name(new_human, "Working Joe #[rand(100)][rand(100)]")
+	new_human.change_real_name(new_human, "工作乔#[rand(100)][rand(100)]")
 
 /datum/equipment_preset/synth/working_joe/upp
 	name = "UPP Dzho Automaton"
@@ -672,7 +672,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/device/lightreplacer(new_human.back), WEAR_IN_R_STORE)
 
 /datum/equipment_preset/synth/working_joe/upp/load_name(mob/living/carbon/human/new_human, randomise)
-	new_human.change_real_name(new_human, "Dzho Automaton #[rand(100)][rand(100)]")
+	new_human.change_real_name(new_human, "德卓自动机#[rand(100)][rand(100)]")
 
 /datum/equipment_preset/synth/working_joe/upp/load_race(mob/living/carbon/human/new_human)
 	. = ..()
@@ -748,13 +748,13 @@
 
 
 /datum/equipment_preset/synth/survivor/midwife/load_name(mob/living/carbon/human/new_human, randomise)
-	var/final_name = "Midwife Joe"
+	var/final_name = "助产乔"
 	if(new_human.client && new_human.client.prefs)
 		final_name = new_human.client.prefs.synthetic_name
 		if(!final_name || final_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.
-			final_name = "Midwife Joe"
+			final_name = "助产乔"
 		else
-			final_name = "Midwife [new_human.real_name]"
+			final_name = "助产士[new_human.real_name]"
 	new_human.change_real_name(new_human, final_name)
 
 //*****************************************************************************************************/
@@ -902,7 +902,7 @@
 		new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather/scarf, WEAR_FACE)
 
 /datum/equipment_preset/synth/working_joe/security_android/load_name(mob/living/carbon/human/new_human, randomise)
-	new_human.change_real_name(new_human, "Security Android #[rand(100)][rand(100)]")
+	new_human.change_real_name(new_human, "安保仿生人#[rand(100)][rand(100)]")
 
 /datum/equipment_preset/synth/working_joe/upp/combat
 	name = "UPP Dzho Automaton - Combat"
@@ -945,7 +945,7 @@
 
 
 /datum/equipment_preset/synth/working_joe/upp/combat/load_name(mob/living/carbon/human/new_human, randomise)
-	new_human.change_real_name(new_human, "Dzho Automaton #[rand(100)][rand(100)]")
+	new_human.change_real_name(new_human, "德卓自动机#[rand(100)][rand(100)]")
 
 /datum/equipment_preset/synth/working_joe/upp/combat/load_race(mob/living/carbon/human/new_human)
 	. = ..()

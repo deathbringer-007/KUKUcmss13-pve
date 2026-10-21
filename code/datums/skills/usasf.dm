@@ -5,7 +5,7 @@ United States Aerospace Force
 */
 
 /datum/skills/ship_crew
-	name = "Crewman"
+	name = "舰员"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_NOVICE,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_TRAINED,
@@ -20,7 +20,7 @@ United States Aerospace Force
 	)
 
 /datum/skills/flight_crew
-	name = "Flight-Deck Crewman"
+	name = "飞行甲板组员"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_NOVICE,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_TRAINED,
@@ -34,7 +34,7 @@ United States Aerospace Force
 	)
 
 /datum/skills/corpsman
-	name = "Hospital Corpsman"
+	name = "医疗兵"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_EXPERT,
 		SKILL_VEHICLE = SKILL_VEHICLE_DEFAULT,
@@ -49,7 +49,7 @@ United States Aerospace Force
 	)
 
 /datum/skills/eng_tech
-	name = "Engineering Technician"
+	name = "工程技术员"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_SKILLED,
 		SKILL_VEHICLE = SKILL_VEHICLE_DEFAULT,
@@ -63,7 +63,7 @@ United States Aerospace Force
 	)
 
 /datum/skills/para_tech
-	name = "Para-Rescue Support Technician"
+	name = "伞降救援支援技术员"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
@@ -81,7 +81,7 @@ United States Aerospace Force
 	)
 
 /datum/skills/jtac
-	name = "Orbital Fire-Support Liason Officer"
+	name = "轨道火力支援联络官"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_TRAINED,
@@ -98,7 +98,7 @@ United States Aerospace Force
 	)
 
 /datum/skills/navypilot
-	name = "Pilot"
+	name = "飞行员"
 	skills = list(
 		SKILL_LEADERSHIP = SKILL_LEAD_TRAINED,
 		SKILL_OVERWATCH = SKILL_OVERWATCH_TRAINED,
@@ -115,7 +115,7 @@ United States Aerospace Force
 	)
 
 /datum/skills/officer
-	name = "Duty Officer"
+	name = "值勤军官"
 	skills = list(
 		SKILL_LEADERSHIP = SKILL_LEAD_EXPERT,
 		SKILL_OVERWATCH = SKILL_OVERWATCH_TRAINED,
@@ -135,7 +135,7 @@ United States Aerospace Force
 	)
 
 /datum/skills/flightboss
-	name = "Flight Boss"
+	name = "飞行甲板主管"
 	skills = list(
 		SKILL_LEADERSHIP = SKILL_LEAD_EXPERT,
 		SKILL_OVERWATCH = SKILL_OVERWATCH_TRAINED,
@@ -154,7 +154,7 @@ United States Aerospace Force
 	)
 
 /datum/skills/navycengi
-	name = "Engineering Duty Officer"
+	name = "工程值勤军官"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_MASTER,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_MASTER,
@@ -172,7 +172,7 @@ United States Aerospace Force
 	)
 
 /datum/skills/navycommander
-	name = "USASF Commanding Officer"
+	name = "USASF 指挥官"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,

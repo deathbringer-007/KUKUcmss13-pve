@@ -714,7 +714,7 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 		.["user"] = list()
 		.["user"]["name"] = account.owner_name
 		.["user"]["cash"] = max(account.money, cash_worth)
-		.["user"]["job"] =  id_card.assignment
+		.["user"]["job"] = localized_player_label(id_card.assignment)
 	else if(cash_worth)
 		.["user"] = list()
 		.["user"]["name"] = ""

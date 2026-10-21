@@ -1,5 +1,5 @@
 /datum/tutorial/marine/example
-	name = "Example Tutorial"
+	name = "示例教程"
 	tutorial_id = "example" // This won't show up in the list, so this'll be irrelevant anyway.
 	category = TUTORIAL_CATEGORY_BASE
 	parent_path = /datum/tutorial/marine/example
@@ -16,8 +16,8 @@
 	// Init_mob() isn't called by default, so we call it here
 	init_mob()
 	// As is standard, we give a message to the player and update their status panel with what we want done.
-	message_to_player("This is an example tutorial. Perform any emote to continue.")
-	update_objective("Do any emote.")
+	message_to_player("这是一个示例教程。做出任意表情动作以继续。")
+	update_objective("做出任意表情动作。")
 	// This makes the player (tutorial_mob) listen for the COMSIG_MOB_EMOTE event, which will then call on_emote() when it hears it.
 	RegisterSignal(tutorial_mob, COMSIG_MOB_EMOTE, PROC_REF(on_emote))
 
@@ -27,8 +27,8 @@
 
 	// Now that we've gotten the signal and started the script, we want to immediately stop listening for it.
 	UnregisterSignal(tutorial_mob, COMSIG_MOB_EMOTE)
-	message_to_player("Good. Now, pick up that can of <b>Weyland-Yutani Aspen Beer</b>.")
-	update_objective("Pick up that can.")
+	message_to_player("很好。现在，拿起那罐<b>维兰德-汤谷阿斯彭啤酒</b>。")
+	update_objective("拿起那罐啤酒。")
 	// This macro takes a specific type path (the same used in init_map()) and a variable name to retrieve an object from the tracked object list
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/item/reagent_container/food/drinks/cans/aspen, beer_can)
 	// Now we're adding a yellow highlight around the can to make sure people know what we're talking about
@@ -51,7 +51,7 @@
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/item/reagent_container/food/drinks/cans/aspen, beer_can)
 	// And remove the highlight now that it's picked up
 	remove_highlight(beer_can)
-	message_to_player("Very good. This is the end of the example tutorial. You will be sent back to the lobby screen momentarily.")
+	message_to_player("很好。示例教程到此结束。你很快就会返回大厅界面。")
 	// 7.5 seconds after the above message is sent, kick the player out and end the tutorial.
 	tutorial_end_in(7.5 SECONDS, TRUE)
 

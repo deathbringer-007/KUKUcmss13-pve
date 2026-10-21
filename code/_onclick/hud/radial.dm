@@ -50,7 +50,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	return FALSE
 
 /atom/movable/screen/radial/center
-	name = "Close Menu"
+	name = "关闭菜单"
 	icon_state = "radial_center"
 
 /atom/movable/screen/radial/center/MouseEntered(location, control, params)
@@ -189,7 +189,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 /datum/radial_menu/proc/HideElement(atom/movable/screen/radial/slice/E)
 	E.overlays.Cut()
 	E.alpha = 0
-	E.name = "None"
+	E.name = "无"
 	E.maptext = null
 	E.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	E.choice = null
@@ -215,7 +215,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	E.mouse_opacity = MOUSE_OPACITY_ICON
 	E.overlays.Cut()
 	if(choice_id == NEXT_PAGE_ID)
-		E.name = "Next Page"
+		E.name = "下一页"
 		E.next_page = TRUE
 		E.overlays += ("radial_next")
 	else

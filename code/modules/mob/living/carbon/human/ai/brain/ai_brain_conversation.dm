@@ -72,25 +72,25 @@ GLOBAL_LIST_INIT(human_ai_conversations, initialize_human_ai_conversations())
 /datum/human_ai_conversation/hello
 	amount_ai_involved = 2
 	conversation_data = list(
-		"P1 Hello.",
+		"P1 你好。",
 		"D 16",
-		"P2 Hello.",
+		"P2 你好。",
 		"D 25",
-		"P1 How are you doing?",
+		"P1 最近怎么样？",
 		"D 25",
-		"P2 I'm doing well, how are you?||Could be better, you?||Fine, I guess. How about you?",
+		"P2 挺好的，你呢？||不太顺心，你呢？||还行吧。你怎么样？",
 		"D 15",
-		"P1 I'm doin' pretty alright.",
+		"P1 我过得挺不错的。",
 	)
 
 /datum/human_ai_conversation/smoke
 	amount_ai_involved = 2
 	conversation_data = list(
-		"P1 Hey, got a smoke?",
+		"P1 嘿，有烟吗？",
 		"D 20",
-		"P2 Nah, sorry man.",
+		"P2 没有，抱歉啊兄弟。",
 		"D 22",
-		"P1 Damn.",
+		"P1 该死。",
 	)
 
 /datum/human_ai_conversation/faction

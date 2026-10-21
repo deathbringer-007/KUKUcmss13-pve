@@ -15,7 +15,7 @@
 	attacktext = "攻击"
 	attack_sound = null
 	//Attacktext is the mob deal 0 damaage.
-	friendly = "nuzzles"
+	friendly = "亲昵地蹭"
 	can_crawl = FALSE
 	black_market_value = 25
 	dead_black_market_value = 0

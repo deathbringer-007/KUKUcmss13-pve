@@ -46,7 +46,7 @@
 			icon_state = "mouse_[body_color]"
 			wander = 1
 		else if(prob(5))
-			INVOKE_ASYNC(src, PROC_REF(emote), "snuffles")
+			INVOKE_ASYNC(src, PROC_REF(emote), "抽着鼻子嗅了嗅")
 
 /mob/living/simple_animal/mouse/New()
 	..()

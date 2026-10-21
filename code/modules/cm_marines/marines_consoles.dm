@@ -104,35 +104,35 @@
 					printing = TRUE
 					playsound(src.loc, 'sound/machines/fax.ogg', 15, 1)
 					sleep(40)
-					var/contents = {"<center><h4>Access Report</h4></center>
-								<u>Prepared By:</u> [user_id_card?.registered_name ? user_id_card.registered_name : "Unknown"]<br>
-								<u>For:</u> [target_id_card.registered_name ? target_id_card.registered_name : "Unregistered"]<br>
+					var/contents = {"<center><h4>权限报告</h4></center>
+								<u>编制人：</u> [user_id_card?.registered_name ? user_id_card.registered_name : "未知"]<br>
+								<u>对象：</u> [target_id_card.registered_name ? target_id_card.registered_name : "未登记"]<br>
 								<hr>
-								<u>Faction:</u> [target_id_card.faction ? target_id_card.faction : "N/A"]<br>
-								<u>Assignment:</u> [target_id_card.assignment]<br>
-								<u>Account Number:</u> #[target_id_card.associated_account_number]<br>
-								<u>Blood Type:</u> [target_id_card.blood_type]<br><br>
-								<u>Access:</u><br>
+								<u>阵营：</u> [target_id_card.faction ? localized_player_label(target_id_card.faction) : "不适用"]<br>
+								<u>职务：</u> [localized_player_label(target_id_card.assignment)]<br>
+								<u>账户号码：</u> #[target_id_card.associated_account_number]<br>
+								<u>血型：</u> [target_id_card.blood_type]<br><br>
+								<u>权限：</u><br>
 								"}
 
 					var/known_access_rights = get_access(ACCESS_LIST_MARINE_ALL)
 					for(var/A in target_id_card.access)
 						if(A in known_access_rights)
 							contents += "  [get_access_desc(A)]<br>"
-					contents += "<br><u>Modification Log:</u><br>"
+					contents += "<br><u>修改记录：</u><br>"
 					for(var/change in target_id_card.modification_log)
 						contents += "  [change]<br>"
 
 					var/obj/item/paper/P = new /obj/item/paper(src.loc)
-					P.name = "Access Report"
+					P.name = "权限报告"
 					P.info += contents
 				else
 					printing = TRUE
 					playsound(src.loc, 'sound/machines/fax.ogg', 15, 1)
 					sleep(40)
 					var/obj/item/paper/P = new /obj/item/paper(src.loc)
-					P.name = text("Crew Manifest ([])", worldtime2text())
-					P.info = {"<center><h4>Crew Manifest</h4></center>
+					P.name = text("船员名册（[]）", worldtime2text())
+					P.info = {"<center><h4>船员名册</h4></center>
 						<br>
 						[GLOB.data_core.get_manifest(TRUE)]
 					"}
@@ -146,11 +146,11 @@
 			if(target_id_card)
 				if(target_id_card.registered_name != origin_name || target_id_card.assignment != origin_assignment)
 					GLOB.data_core.manifest_modify(target_id_card.registered_name, target_id_card.registered_ref, target_id_card.assignment, target_id_card.rank)
-					target_id_card.name = text("[target_id_card.registered_name]'s [target_id_card.card_name] ([target_id_card.assignment])")
+					target_id_card.name = "[target_id_card.registered_name]的[target_id_card.card_name]（[localized_player_label(target_id_card.assignment)]）"
 					if(target_id_card.registered_name != origin_name)
-						log_idmod(target_id_card, "<font color='orange'> [user.real_name] changed the registered name of the ID to '[target_id_card.registered_name]'. </font>", key_name_admin(user))
+						log_idmod(target_id_card, "<font color='orange'> [user.real_name]将身份卡登记姓名改为“[target_id_card.registered_name]”。 </font>", key_name_admin(user))
 					if(target_id_card.assignment != origin_assignment)
-						log_idmod(target_id_card, "<font color='orange'> [user.real_name] changed the assignment of the ID to the custom position '[target_id_card.assignment]'. </font>", key_name_admin(user))
+						log_idmod(target_id_card, "<font color='orange'> [user.real_name]将身份卡职务改为自定义职位“[localized_player_label(target_id_card.assignment)]”。 </font>", key_name_admin(user))
 				if(ishuman(user))
 					target_id_card.forceMove(user.loc)
 					if(!user.get_active_hand())
@@ -179,7 +179,7 @@
 
 			target_id_card.assignment = "Terminated"
 			target_id_card.access = list()
-			log_idmod(target_id_card, "<font color='red'> [user.real_name] terminated the ID. </font>", key_name_admin(user))
+			log_idmod(target_id_card, "<font color='red'> [user.real_name]注销了身份卡。 </font>", key_name_admin(user))
 			message_admins("[user.real_name] terminated the ID of [target_id_card.registered_name].", key_name_admin(user))
 			return TRUE
 		if("PRG_edit")
@@ -230,19 +230,19 @@
 					target_id_card.faction_group = list()
 				if(params["access_target"] in target_id_card.faction_group)
 					target_id_card.faction_group -= params["access_target"]
-					log_idmod(target_id_card, "<font color='red'> [user.real_name] revoked [access_type] IFF. </font>", key_name_admin(user))
+					log_idmod(target_id_card, "<font color='red'> [user.real_name]撤销了[localized_player_label(access_type)]敌我识别权限。 </font>", key_name_admin(user))
 				else
 					target_id_card.faction_group |= params["access_target"]
-					log_idmod(target_id_card, "<font color='green'> [user.real_name] granted [access_type] IFF. </font>", key_name_admin(user))
+					log_idmod(target_id_card, "<font color='green'> [user.real_name]授予了[localized_player_label(access_type)]敌我识别权限。 </font>", key_name_admin(user))
 				return TRUE
 			access_type = text2num(params["access_target"])
 			if(access_type in (is_weyland ? get_access(ACCESS_LIST_WY_ALL) : get_access(ACCESS_LIST_MARINE_MAIN)))
 				if(access_type in target_id_card.access)
 					target_id_card.access -= access_type
-					log_idmod(target_id_card, "<font color='red'> [user.real_name] revoked access '[get_access_desc(access_type)]'. </font>", key_name_admin(user))
+					log_idmod(target_id_card, "<font color='red'> [user.real_name]撤销了“[get_access_desc(access_type)]”权限。 </font>", key_name_admin(user))
 				else
 					target_id_card.access |= access_type
-					log_idmod(target_id_card, "<font color='green'> [user.real_name] granted access '[get_access_desc(access_type)]'. </font>", key_name_admin(user))
+					log_idmod(target_id_card, "<font color='green'> [user.real_name]授予了“[get_access_desc(access_type)]”权限。 </font>", key_name_admin(user))
 				return TRUE
 		if("PRG_grantall")
 			if(!authenticated || !target_id_card)
@@ -250,7 +250,7 @@
 
 			target_id_card.access |= (is_weyland ? get_access(ACCESS_LIST_WY_ALL) : get_access(ACCESS_LIST_MARINE_MAIN))
 			target_id_card.faction_group |= factions
-			log_idmod(target_id_card, "<font color='green'> [user.real_name] granted the ID all access and USCM IFF. </font>", key_name_admin(user))
+			log_idmod(target_id_card, "<font color='green'> [user.real_name]授予身份卡全部通行权限及USCM敌我识别权限。 </font>", key_name_admin(user))
 			return TRUE
 		if("PRG_denyall")
 			if(!authenticated || !target_id_card)
@@ -259,7 +259,7 @@
 			var/list/access = target_id_card.access
 			access.Cut()
 			target_id_card.faction_group -= factions
-			log_idmod(target_id_card, "<font color='red'> [user.real_name] removed all accesses and USCM IFF. </font>", key_name_admin(user))
+			log_idmod(target_id_card, "<font color='red'> [user.real_name]移除了全部通行权限及USCM敌我识别权限。 </font>", key_name_admin(user))
 			return TRUE
 		if("PRG_grantregion")
 			if(!authenticated || !target_id_card)
@@ -267,14 +267,14 @@
 
 			if(params["region"] == "Faction (IFF system)")
 				target_id_card.faction_group |= factions
-				log_idmod(target_id_card, "<font color='green'> [user.real_name] granted USCM IFF. </font>", key_name_admin(user))
+				log_idmod(target_id_card, "<font color='green'> [user.real_name]授予了USCM敌我识别权限。 </font>", key_name_admin(user))
 				return TRUE
 			var/region = text2num(params["region"])
 			if(isnull(region))
 				return
 			target_id_card.access |= get_region_accesses(region)
 			var/additions = get_region_accesses_name(region)
-			log_idmod(target_id_card, "<font color='green'> [user.real_name] granted all [additions] accesses. </font>", key_name_admin(user))
+			log_idmod(target_id_card, "<font color='green'> [user.real_name]授予了[additions]的全部权限。 </font>", key_name_admin(user))
 			return TRUE
 		if("PRG_denyregion")
 			if(!authenticated || !target_id_card)
@@ -282,14 +282,14 @@
 
 			if(params["region"] == "Faction (IFF system)")
 				target_id_card.faction_group -= factions
-				log_idmod(target_id_card, "<font color='red'> [user.real_name] revoked USCM IFF. </font>", key_name_admin(user))
+				log_idmod(target_id_card, "<font color='red'> [user.real_name]撤销了USCM敌我识别权限。 </font>", key_name_admin(user))
 				return TRUE
 			var/region = text2num(params["region"])
 			if(isnull(region))
 				return
 			target_id_card.access -= get_region_accesses(region)
 			var/additions = get_region_accesses_name(region)
-			log_idmod(target_id_card, "<font color='red'> [user.real_name] revoked all [additions] accesses. </font>", key_name_admin(user))
+			log_idmod(target_id_card, "<font color='red'> [user.real_name]撤销了[additions]的全部权限。 </font>", key_name_admin(user))
 			return TRUE
 		if("PRG_account")
 			if(!authenticated || !target_id_card)
@@ -297,7 +297,7 @@
 
 			var/account = text2num(params["account"])
 			target_id_card.associated_account_number = account
-			log_idmod(target_id_card, "<font color='orange'> [user.real_name] changed the account number to '[account]'. </font>", key_name_admin(user))
+			log_idmod(target_id_card, "<font color='orange'> [user.real_name]将账户号码改为“[account]”。 </font>", key_name_admin(user))
 			return TRUE
 
 /obj/structure/machinery/computer/card/ui_static_data(mob/user)
@@ -475,7 +475,7 @@
 			usr.put_in_hands(target_id_card)
 		if(operable()) // Powered. Make comp proceed ejection
 			GLOB.data_core.manifest_modify(target_id_card.registered_name, target_id_card.registered_ref, target_id_card.assignment, target_id_card.rank)
-			target_id_card.name = text("[target_id_card.registered_name]'s [target_id_card.card_name] ([target_id_card.assignment])")
+			target_id_card.name = "[target_id_card.registered_name]的[target_id_card.card_name]（[localized_player_label(target_id_card.assignment)]）"
 			visible_message("[SPAN_BOLD("[src]")]播报：\"退卡：数据已写入。正在更新数据库……成功。\"")
 		else
 			to_chat(usr, "你从[src]中取出了[target_id_card]。")
@@ -592,13 +592,13 @@
 				if(!selected)
 					return
 				if(GLOB.RoleAuthority.check_squad_capacity(person_to_modify, selected))
-					visible_message("[SPAN_BOLD("[src]")]播报：\"名额错误：[selected]无法再容纳一名[person_to_modify.job]。\"")
+					visible_message("[SPAN_BOLD("[src]")]播报：\"名额错误：[preference_label(selected.name)]无法再容纳一名[preference_label(person_to_modify.job)]。\"")
 					return TRUE
 				if(transfer_marine_to_squad(person_to_modify, selected, person_to_modify.assigned_squad, ID_to_modify))
-					visible_message("[SPAN_BOLD("[src]")]播报：\"数据库记录：[person_to_modify]已分配至[selected]小队。\"")
+					visible_message("[SPAN_BOLD("[src]")]播报：\"数据库记录：[person_to_modify]已分配至[preference_label(selected.name)]小队。\"")
 					return TRUE
 				else
-					visible_message("[SPAN_BOLD("[src]")]播报：\"数据库错误：将[person_to_modify]分配至[selected]小队时发生错误。\"")
+					visible_message("[SPAN_BOLD("[src]")]播报：\"数据库错误：将[person_to_modify]分配至[preference_label(selected.name)]小队时发生错误。\"")
 			else if(!istype(ID_to_modify))
 				to_chat(usr, SPAN_WARNING("你需要插入一张待修改的卡片。"))
 			else if(!istype(person_to_modify) || !person_to_modify.Adjacent(src))

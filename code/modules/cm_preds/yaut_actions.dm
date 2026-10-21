@@ -68,7 +68,7 @@
 		button.icon_state += "_on"
 
 /datum/action/predator_action/mark_for_hunt
-	name = "Mark for Hunt"
+	name = "标记猎物"
 	action_icon_state = "mark_for_hunt"
 	listen_signal = COMSIG_KB_YAUTJA_TOGGLE_MARK_FOR_HUNT
 	active = PREDATOR_ACTION_ON_CLICK
@@ -81,7 +81,7 @@
 	yautja.mark_for_hunt()
 
 /datum/action/predator_action/mark_panel
-	name = "Open Mark Panel"
+	name = "打开标记面板"
 	action_icon_state = "mark_panel"
 	listen_signal = COMSIG_KB_YAUTJA_MARK_PANEL
 	active = PREDATOR_ACTION_ON_CLICK
@@ -91,7 +91,7 @@
 	yautja.mark_panel()
 
 /datum/action/predator_action/claim_equipment
-	name = "Claim Equipment"
+	name = "领取装备"
 	action_icon_state = "claim_equipment"
 	listen_signal = COMSIG_KB_YAUTJA_PRED_BUY
 	active = PREDATOR_ACTION_ON_CLICK
@@ -105,7 +105,7 @@
 	require_mask = TRUE
 
 /datum/action/predator_action/mask/zoom
-	name = "Toggle Mask Zoom"
+	name = "切换面具缩放"
 	action_icon_state = "zoom"
 	listen_signal = COMSIG_KB_YAUTJA_MASK_TOGGLE_ZOOM
 
@@ -114,7 +114,7 @@
 	mask.toggle_zoom()
 
 /datum/action/predator_action/mask/visor
-	name = "Toggle Mask Visor"
+	name = "切换面具目镜"
 	action_icon_state = "visor"
 	require_bracers = TRUE //Needs bracer power to operate
 	listen_signal = COMSIG_KB_YAUTJA_MASK_TOGGLESIGHT
@@ -137,7 +137,7 @@
 	button.overlays += new_overlays
 
 /datum/action/predator_action/mask/control_falcon_drone
-	name = "Control Falcon Drone"
+	name = "控制猎鹰无人机"
 	action_icon_state = "falcon_drone"
 	listen_signal = COMSIG_KB_YAUTJA_CONTROL_FALCON
 	active = PREDATOR_ACTION_ON_CLICK
@@ -155,7 +155,7 @@
 	require_bracers = TRUE
 
 /datum/action/predator_action/bracer/wristblade
-	name = "Toggle Wristblades"
+	name = "伸缩腕刃"
 	action_icon_state = "wristblade"
 	listen_signal = COMSIG_KB_YAUTJA_WRISTBLADES
 
@@ -164,7 +164,7 @@
 	bracers.wristblades()
 
 /datum/action/predator_action/bracer/combistick
-	name = "Yank Combi-stick"
+	name = "拔回伸缩战矛"
 	action_icon_state = "combi"
 	listen_signal = COMSIG_KB_YAUTJA_CALL_COMBI
 	active = PREDATOR_ACTION_ON_CLICK
@@ -174,7 +174,7 @@
 	yautja.call_combi_internal(yautja, forced = FALSE)
 
 /datum/action/predator_action/bracer/smartdisc
-	name = "Recall nearby smart-discs"
+	name = "召回附近的智能飞盘"
 	action_icon_state = "smartdisc"
 	listen_signal = COMSIG_KB_YAUTJA_CALL_DISC
 	active = PREDATOR_ACTION_ON_CLICK
@@ -184,7 +184,7 @@
 	bracers.call_disc()
 
 /datum/action/predator_action/bracer/caster
-	name = "Toggle Plasma Caster"
+	name = "切换等离子肩炮"
 	action_icon_state = "plasma_caster"
 	listen_signal = COMSIG_KB_YAUTJA_CASTER
 
@@ -193,7 +193,7 @@
 	bracers.caster()
 
 /datum/action/predator_action/bracer/cloak
-	name = "Toggle Cloak"
+	name = "切换隐身"
 	action_icon_state = "cloak"
 	listen_signal = COMSIG_KB_YAUTJA_CLOAKER
 
@@ -202,7 +202,7 @@
 	bracers.cloaker()
 
 /datum/action/predator_action/bracer/thwei
-	name = "Create Stabilizing Crystal"
+	name = "制造稳定晶体"
 	action_icon_state = "thwei"
 	listen_signal = COMSIG_KB_YAUTJA_INJECTORS
 	active = PREDATOR_ACTION_ON_CLICK
@@ -212,7 +212,7 @@
 	bracers.injectors()
 
 /datum/action/predator_action/bracer/capsule
-	name = "Create Healing Capsule"
+	name = "制造治疗胶囊"
 	action_icon_state = "thwei"
 	listen_signal = COMSIG_KB_YAUTJA_CAPSULE
 	active = PREDATOR_ACTION_ON_CLICK
@@ -222,7 +222,7 @@
 	bracers.healing_capsule()
 
 /datum/action/predator_action/bracer/translator
-	name = "Use Translator"
+	name = "使用翻译器"
 	action_icon_state = "translator"
 	listen_signal = COMSIG_KB_YAUTJA_TRANSLATE
 	active = PREDATOR_ACTION_ON_CLICK
@@ -232,7 +232,7 @@
 	bracers.translate()
 
 /datum/action/predator_action/bracer/self_destruct
-	name = "Self Destruct"
+	name = "自毁"
 	action_icon_state = "self_destruct"
 	listen_signal = COMSIG_KB_YAUTJA_ACTIVATE_SUICIDE
 
@@ -244,7 +244,7 @@
 
 //Misc actions
 /datum/action/yautja_emote_panel
-	name = "Open Emote Panel"
+	name = "打开表情面板"
 	button_icon_state = "pred_template"
 	action_icon_state = "looc_toggle"
 

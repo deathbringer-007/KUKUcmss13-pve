@@ -5,7 +5,7 @@
 	selection_class = "job_predator"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_WHITELISTED|ROLE_NO_ACCOUNT|ROLE_CUSTOM_SPAWN
 	flags_whitelist = WHITELIST_YAUTJA
-	supervisors = "Ancients"
+	supervisors = "远古者"
 	gear_preset = /datum/equipment_preset/yautja/blooded
 
 	handle_spawn_and_equip = TRUE

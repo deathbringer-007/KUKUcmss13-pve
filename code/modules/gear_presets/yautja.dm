@@ -98,7 +98,7 @@
 
 /datum/equipment_preset/yautja/youngblood/load_name(mob/living/carbon/human/new_human, randomise)
 	. = ..()
-	var/new_name = "Young [new_human.real_name]"
+	var/new_name = "新血者[new_human.real_name]"
 	new_human.change_real_name(new_human, new_name)
 
 //BLOODED
@@ -117,7 +117,7 @@
 
 /datum/equipment_preset/yautja/elite/load_name(mob/living/carbon/human/new_human, randomise)
 	. = ..()
-	var/new_name = "Elite [new_human.real_name]"
+	var/new_name = "精英[new_human.real_name]"
 	new_human.change_real_name(new_human, new_name)
 
 // ELDER
@@ -129,7 +129,7 @@
 
 /datum/equipment_preset/yautja/elder/load_name(mob/living/carbon/human/new_human, randomise)
 	. = ..()
-	var/new_name = "Elder [new_human.real_name]"
+	var/new_name = "长老[new_human.real_name]"
 	new_human.change_real_name(new_human, new_name)
 
 /datum/equipment_preset/yautja/elder/load_gear(mob/living/carbon/human/new_human)
@@ -145,7 +145,7 @@
 
 /datum/equipment_preset/yautja/leader/load_name(mob/living/carbon/human/new_human, randomise)
 	. = ..()
-	var/new_name = "Clan Leader [new_human.real_name]"
+	var/new_name = "氏族领袖[new_human.real_name]"
 	new_human.change_real_name(new_human, new_name)
 
 /datum/equipment_preset/yautja/leader/load_gear(mob/living/carbon/human/new_human)
@@ -161,7 +161,7 @@
 
 /datum/equipment_preset/yautja/ancient/load_name(mob/living/carbon/human/new_human, randomise)
 	. = ..()
-	var/new_name = "Ancient [new_human.real_name]"
+	var/new_name = "远古者[new_human.real_name]"
 	new_human.change_real_name(new_human, new_name)
 
 /datum/equipment_preset/yautja/ancient/load_gear(mob/living/carbon/human/new_human)

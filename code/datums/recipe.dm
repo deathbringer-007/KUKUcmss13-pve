@@ -658,7 +658,7 @@
 	being_cooked.warm = 1
 	being_cooked.reagents.add_reagent("bread", 1)
 	being_cooked.reagents.add_reagent("meatprotein", 1)
-	being_cooked.name = "Warm " + being_cooked.name
+	being_cooked.name = "温热的" + being_cooked.name
 	being_cooked.desc = being_cooked.warm_desc
 
 /datum/recipe/microwavesnack/make_food(obj/container as obj)

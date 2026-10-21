@@ -1,5 +1,4 @@
 import { toFixed } from 'common/math';
-import { capitalize } from 'common/string';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'tgui/backend';
 import {
@@ -16,7 +15,7 @@ import {
 import { clearChat, saveChatToDisk } from '../../chat/actions';
 import { THEMES } from '../../themes';
 import { exportSettings, updateSettings } from '../actions';
-import { FONTS } from '../constants';
+import { FONTS, FONTS_DISABLED } from '../constants';
 import { selectSettings } from '../selectors';
 import { importChatSettings } from '../settingsImExport';
 
@@ -29,7 +28,7 @@ export function SettingsGeneral(props) {
   return (
     <Section>
       <LabeledList>
-        <LabeledList.Item label="Theme">
+        <LabeledList.Item label="主题">
           {THEMES.map((THEME) => (
             <Button
               key={THEME}
@@ -43,15 +42,15 @@ export function SettingsGeneral(props) {
                 )
               }
             >
-              {capitalize(THEME)}
+              {THEME === 'light' ? '浅色' : '深色'}
             </Button>
           ))}
         </LabeledList.Item>
-        <LabeledList.Item label="Font style">
+        <LabeledList.Item label="字体">
           <Stack.Item>
             {!freeFont ? (
               <Collapsible
-                title={fontFamily}
+                title={fontFamily === FONTS_DISABLED ? '默认' : fontFamily}
                 width={'100%'}
                 buttons={
                   <Button
@@ -61,7 +60,7 @@ export function SettingsGeneral(props) {
                       setFreeFont(!freeFont);
                     }}
                   >
-                    Custom font
+                    自定义字体
                   </Button>
                 }
               >
@@ -79,7 +78,7 @@ export function SettingsGeneral(props) {
                       )
                     }
                   >
-                    {FONT}
+                    {FONT === FONTS_DISABLED ? '默认' : FONT}
                   </Button>
                 ))}
               </Collapsible>
@@ -104,13 +103,13 @@ export function SettingsGeneral(props) {
                     setFreeFont(!freeFont);
                   }}
                 >
-                  Custom font
+                  自定义字体
                 </Button>
               </Stack>
             )}
           </Stack.Item>
         </LabeledList.Item>
-        <LabeledList.Item label="Font size" verticalAlign="middle">
+        <LabeledList.Item label="字号" verticalAlign="middle">
           <Stack textAlign="center">
             <Stack.Item grow>
               <Slider
@@ -129,7 +128,7 @@ export function SettingsGeneral(props) {
             </Stack.Item>
           </Stack>
         </LabeledList.Item>
-        <LabeledList.Item label="Line height">
+        <LabeledList.Item label="行高">
           <Slider
             width="100%"
             step={0.01}
@@ -152,38 +151,38 @@ export function SettingsGeneral(props) {
         <Stack.Item mt={0.15}>
           <Button
             icon="compact-disc"
-            tooltip="Export chat settings"
+            tooltip="导出聊天设置"
             onClick={() => dispatch(exportSettings())}
           >
-            Export settings
+            导出设置
           </Button>
         </Stack.Item>
         <Stack.Item mt={0.15}>
           <Button.File
             accept=".json"
-            tooltip="Import chat settings"
+            tooltip="导入聊天设置"
             icon="arrow-up-from-bracket"
             onSelectFiles={(files) => importChatSettings(files)}
           >
-            Import settings
+            导入设置
           </Button.File>
         </Stack.Item>
         <Stack.Item grow mt={0.15}>
           <Button
             icon="save"
-            tooltip="Export current tab history into HTML file"
+            tooltip="将当前选项卡的记录导出为HTML文件"
             onClick={() => dispatch(saveChatToDisk())}
           >
-            Save chat log
+            保存聊天记录
           </Button>
         </Stack.Item>
         <Stack.Item mt={0.15}>
           <Button.Confirm
             icon="trash"
-            tooltip="Erase current tab history"
+            tooltip="清除当前选项卡的聊天记录"
             onClick={() => dispatch(clearChat())}
           >
-            Clear chat
+            清空聊天
           </Button.Confirm>
         </Stack.Item>
       </Stack>

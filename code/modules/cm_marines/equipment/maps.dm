@@ -77,8 +77,8 @@ GLOBAL_LIST_INIT(mapless_maps, list(MAP_RUNTIME, MAP_CHINOOK, MAIN_SHIP_DEFAULT_
 	html_link = ""
 
 /obj/item/map/ice_colony_map_v3
-	name = "\improper 希瓦雪球地图"
-	desc = "美洲联盟殖民地希瓦雪球的正面扫描打印图，带有标注。"
+	name = "\improper 湿婆雪球地图"
+	desc = "美洲联盟殖民地湿婆雪球的正面扫描打印图，带有标注。"
 	html_link = "images/1/18/Map_icecolony.png"
 	color = "cyan"
 

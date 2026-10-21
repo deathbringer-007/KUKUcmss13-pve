@@ -572,7 +572,7 @@
 
 /datum/equipment_preset/other/souto/load_name(mob/living/carbon/human/new_human, randomise)
 	new_human.gender = MALE
-	new_human.change_real_name(new_human, "Souto Man")
+	new_human.change_real_name(new_human, "索托侠")
 	new_human.age = 40
 
 /datum/equipment_preset/other/souto/load_gear(mob/living/carbon/human/new_human)
@@ -626,7 +626,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/weapon/sword, WEAR_L_HAND)
 
 	var/obj/item/lantern = new /obj/item/device/flashlight/lantern(new_human)
-	lantern.name = "Beacon of Holy Light"
+	lantern.name = "圣光信标"
 
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/ert, WEAR_L_STORE)
 	new_human.equip_to_slot_or_del(lantern, WEAR_R_STORE)
@@ -652,7 +652,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/weapon/sword, WEAR_L_HAND)
 
 	var/obj/item/lantern = new /obj/item/device/flashlight/lantern(new_human)
-	lantern.name = "Beacon of Holy Light"
+	lantern.name = "圣光信标"
 
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/ert, WEAR_L_STORE)
 	new_human.equip_to_slot_or_del(lantern, WEAR_R_STORE)
@@ -678,7 +678,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/weapon/sword, WEAR_L_HAND)
 
 	var/obj/item/lantern = new /obj/item/device/flashlight/lantern(new_human)
-	lantern.name = "Beacon of Holy Light"
+	lantern.name = "圣光信标"
 
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/ert, WEAR_L_STORE)
 	new_human.equip_to_slot_or_del(lantern, WEAR_R_STORE)

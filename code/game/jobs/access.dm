@@ -384,116 +384,116 @@
 /proc/get_region_accesses_name(code)
 	switch(code)
 		if(0)
-			return "All"
+			return "全部"
 		if(1)
-			return "[MAIN_SHIP_NAME] Security" // Security
+			return "[get_statistic_display_label(MAIN_SHIP_NAME)]安保区" // Security
 		if(2)
-			return "[MAIN_SHIP_NAME] Medbay" // Medbay
+			return "[get_statistic_display_label(MAIN_SHIP_NAME)]医务区" // Medbay
 		if(3)
-			return "[MAIN_SHIP_NAME] Research" // Research
+			return "[get_statistic_display_label(MAIN_SHIP_NAME)]科研区" // Research
 		if(4)
-			return "[MAIN_SHIP_NAME] Engineering" // Engineering
+			return "[get_statistic_display_label(MAIN_SHIP_NAME)]工程区" // Engineering
 		if(5)
-			return "[MAIN_SHIP_NAME] Command" // Command
+			return "[get_statistic_display_label(MAIN_SHIP_NAME)]指挥区" // Command
 		if(6)
-			return "Marines" // Marine prep
+			return "陆战队" // Marine prep
 		if(7)
-			return "Squads" // Squads
+			return "小队" // Squads
 		if(8)
-			return "Civilian" // Civilian
+			return "平民" // Civilian
 
 /proc/get_access_desc(A)
 	switch(A)
 		if(ACCESS_MARINE_CMP)
-			return "CMP's Office"
+			return "宪兵长办公室"
 		if(ACCESS_MARINE_BRIG)
-			return "Brig"
+			return "禁闭区"
 		if(ACCESS_MARINE_ARMORY)
-			return "Armory"
+			return "军械库"
 		if(ACCESS_MARINE_CMO)
-			return "CMO's Office"
+			return "首席医疗官办公室"
 		if(ACCESS_MARINE_MEDBAY)
-			return "[MAIN_SHIP_NAME] Medbay"
+			return "[get_statistic_display_label(MAIN_SHIP_NAME)]医务区"
 		if(ACCESS_MARINE_RESEARCH)
-			return "[MAIN_SHIP_NAME] Research"
+			return "[get_statistic_display_label(MAIN_SHIP_NAME)]科研区"
 		if(ACCESS_MARINE_CHEMISTRY)
-			return "[MAIN_SHIP_NAME] Chemistry"
+			return "[get_statistic_display_label(MAIN_SHIP_NAME)]化学区"
 		if(ACCESS_MARINE_MORGUE)
-			return "[MAIN_SHIP_NAME] Morgue"
+			return "[get_statistic_display_label(MAIN_SHIP_NAME)]停尸间"
 		if(ACCESS_MARINE_CE)
-			return "CE's Office"
+			return "总工程师办公室"
 		if(ACCESS_MARINE_RO)
-			return "RO's Office"
+			return "后勤军官办公室"
 		if(ACCESS_MARINE_ENGINEERING)
-			return "[MAIN_SHIP_NAME] Engineering"
+			return "[get_statistic_display_label(MAIN_SHIP_NAME)]工程区"
 		if(ACCESS_MARINE_OT)
-			return "[MAIN_SHIP_NAME] Ordnance Workshop"
+			return "[get_statistic_display_label(MAIN_SHIP_NAME)]军械工坊"
 		if(ACCESS_MARINE_SENIOR)
-			return "[MAIN_SHIP_NAME] Senior Command"
+			return "[get_statistic_display_label(MAIN_SHIP_NAME)]高级指挥区"
 		if(ACCESS_MARINE_CO)
-			return "Commander's Quarters"
+			return "指挥官住舱"
 		if(ACCESS_MARINE_DATABASE)
-			return "[MAIN_SHIP_NAME]'s Database"
+			return "[get_statistic_display_label(MAIN_SHIP_NAME)]数据库"
 		if(ACCESS_MARINE_COMMAND)
-			return "[MAIN_SHIP_NAME] Command"
+			return "[get_statistic_display_label(MAIN_SHIP_NAME)]指挥区"
 		if(ACCESS_MARINE_CREWMAN)
-			return "Vehicle Crewman"
+			return "载具乘员"
 		if(ACCESS_MARINE_PREP)
-			return "Marine Prep"
+			return "陆战队整备区"
 		if(ACCESS_MARINE_ENGPREP)
-			return "Marine Squad Engineering"
+			return "陆战队小队工程"
 		if(ACCESS_MARINE_MEDPREP)
-			return "Marine Squad Medical"
+			return "陆战队小队医疗"
 		if(ACCESS_MARINE_SPECPREP)
-			return "Marine Weapons Specialist"
+			return "陆战队武器专家"
 		if(ACCESS_MARINE_SMARTPREP)
-			return "Marine Smartgunner"
+			return "陆战队智能机枪手"
 		if(ACCESS_MARINE_TL_PREP)
-			return "Marine Team Leader"
+			return "陆战队战斗组长"
 		if(ACCESS_MARINE_LEADER)
-			return "Marine Leader"
+			return "陆战队小队长"
 		if(ACCESS_MARINE_ALPHA)
-			return "Alpha Squad"
+			return "阿尔法小队"
 		if(ACCESS_MARINE_BRAVO)
-			return "Bravo Squad"
+			return "布拉沃小队"
 		if(ACCESS_MARINE_CHARLIE)
-			return "Charlie Squad"
+			return "查理小队"
 		if(ACCESS_MARINE_DELTA)
-			return "Delta Squad"
+			return "德尔塔小队"
 		if(ACCESS_MARINE_CARGO)
-			return "Requisitions"
+			return "补给部"
 		if(ACCESS_MARINE_DROPSHIP)
-			return "Dropship Piloting"
+			return "运输艇驾驶"
 		if(ACCESS_MARINE_PILOT)
-			return "Pilot Gear"
+			return "飞行员装备"
 		if(ACCESS_MARINE_MAINT)
-			return "[MAIN_SHIP_NAME] Maintenance"
+			return "[get_statistic_display_label(MAIN_SHIP_NAME)]维护区"
 		if(ACCESS_CIVILIAN_RESEARCH)
-			return "Civilian Research"
+			return "平民科研区"
 		if(ACCESS_CIVILIAN_COMMAND)
-			return "Civilian Command"
+			return "平民指挥区"
 		if(ACCESS_CIVILIAN_MEDBAY)
-			return "Civilian Medbay"
+			return "平民医务区"
 		if(ACCESS_CIVILIAN_LOGISTICS)
-			return "Civilian Logistics"
+			return "平民后勤区"
 		if(ACCESS_CIVILIAN_ENGINEERING)
-			return "Civilian Engineering"
+			return "平民工程区"
 		if(ACCESS_CIVILIAN_BRIG)
-			return "Civilian Brig"
+			return "平民禁闭区"
 		if(ACCESS_CIVILIAN_PUBLIC)
-			return "Civilian"
+			return "平民"
 		if(ACCESS_MARINE_SEA)
-			return "SEA's Office"
+			return "资深士官顾问办公室"
 		if(ACCESS_MARINE_KITCHEN)
-			return "Kitchen"
+			return "厨房"
 		if(ACCESS_MARINE_SYNTH)
-			return "Synthetic Storage"
+			return "合成人储藏室"
 		if(ACCESS_MARINE_AI)
-			return "AI Core"
+			return "AI 核心"
 		if(ACCESS_MARINE_AI_TEMP)
-			return "AI Access"
+			return "AI 访问权限"
 		if(ACCESS_ARES_DEBUG)
-			return "AI Debug"
+			return "AI 调试权限"
 
 /proc/get_region_accesses_wy(code)
 	switch(code)
@@ -515,63 +515,63 @@
 /proc/get_region_accesses_name_wy(code)
 	switch(code)
 		if(0)
-			return "All"
+			return "全部"
 		if(1)
-			return "Corporate" // Security
+			return "企业" // Security
 		if(2)
-			return "Corporate Security" // Medbay
+			return "企业安保" // Medbay
 		if(3)
-			return "Corporate Departments" // Research
+			return "企业部门" // Research
 		if(4)
-			return "Corporate Leadership" // Engineering
+			return "企业管理层" // Engineering
 		if(5)
-			return "Corporate PMCs" // Command
+			return "企业私人军事承包商" // Command
 		if(6)
-			return "Civilian" // Civilian
+			return "平民" // Civilian
 
 /proc/get_weyland_access_desc(A)
 	switch(A)
 		if(ACCESS_WY_GENERAL)
-			return "Wey-Yu General"
+			return "维兰德-汤谷通用权限"
 		if(ACCESS_WY_COLONIAL)
-			return "Wey-Yu Colony"
+			return "维兰德-汤谷殖民地"
 		if(ACCESS_WY_MEDICAL)
-			return "Wey-Yu Medical"
+			return "维兰德-汤谷医疗"
 		if(ACCESS_WY_SECURITY)
-			return "Wey-Yu Security"
+			return "维兰德-汤谷安保"
 		if(ACCESS_WY_ENGINEERING)
-			return "Wey-Yu Engineering"
+			return "维兰德-汤谷工程"
 		if(ACCESS_WY_FLIGHT)
-			return "Wey-Yu Flight Control"
+			return "维兰德-汤谷飞行管制"
 		if(ACCESS_WY_RESEARCH)
-			return "Wey-Yu Research"
+			return "维兰德-汤谷科研"
 		if(ACCESS_WY_EXEC)
-			return "Wey-Yu Executive"
+			return "维兰德-汤谷行政"
 		if(ACCESS_WY_PMC)
-			return "Wey-Yu PMC"
+			return "维兰德-汤谷私人军事承包商"
 		if(ACCESS_WY_PMC_TL)
-			return "Wey-Yu PMC Lead"
+			return "维兰德-汤谷私人军事承包商指挥"
 		if(ACCESS_WY_ARMORY)
-			return "Wey-Yu Armory"
+			return "维兰德-汤谷军械库"
 		if(ACCESS_WY_SECRETS)
-			return "Wey-Yu HighSec"
+			return "维兰德-汤谷高安保区"
 		if(ACCESS_WY_DATABASE)
-			return "Wey-Yu Database"
+			return "维兰德-汤谷数据库"
 		if(ACCESS_WY_LEADERSHIP)
-			return "Wey-Yu Leadership"
+			return "维兰德-汤谷管理层"
 		if(ACCESS_WY_SENIOR_LEAD)
-			return "Wey-Yu Senior Leadership"
+			return "维兰德-汤谷高级管理层"
 		if(ACCESS_CIVILIAN_RESEARCH)
-			return "Civilian Research"
+			return "平民科研区"
 		if(ACCESS_CIVILIAN_COMMAND)
-			return "Civilian Command"
+			return "平民指挥区"
 		if(ACCESS_CIVILIAN_MEDBAY)
-			return "Civilian Medbay"
+			return "平民医务区"
 		if(ACCESS_CIVILIAN_LOGISTICS)
-			return "Civilian Logistics"
+			return "平民后勤区"
 		if(ACCESS_CIVILIAN_ENGINEERING)
-			return "Civilian Engineering"
+			return "平民工程区"
 		if(ACCESS_CIVILIAN_BRIG)
-			return "Civilian Brig"
+			return "平民禁闭区"
 		if(ACCESS_CIVILIAN_PUBLIC)
-			return "Civilian"
+			return "平民"

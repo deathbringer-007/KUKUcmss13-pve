@@ -1,5 +1,4 @@
 import { toFixed } from 'common/math';
-import { capitalize } from 'common/string';
 import { useDispatch, useSelector } from 'tgui/backend';
 import {
   Button,
@@ -15,7 +14,7 @@ import { selectSettings } from '../selectors';
 
 const TabsViews = ['default', 'classic', 'scrollable'];
 const LinkedToChat = () => (
-  <NoticeBox color="red">Unlink Stat Panel from chat!</NoticeBox>
+  <NoticeBox color="red">请先解除状态面板与聊天的关联！</NoticeBox>
 );
 
 export function SettingsStatPanel(props) {
@@ -28,7 +27,7 @@ export function SettingsStatPanel(props) {
       <Stack fill vertical>
         <Stack.Item>
           <LabeledList>
-            <LabeledList.Item label="Tabs" verticalAlign="middle">
+            <LabeledList.Item label="选项卡" verticalAlign="middle">
               {TabsViews.map((view) => (
                 <Button
                   key={view}
@@ -38,11 +37,15 @@ export function SettingsStatPanel(props) {
                     dispatch(updateSettings({ statTabsStyle: view }))
                   }
                 >
-                  {capitalize(view)}
+                  {view === 'classic'
+                    ? '经典'
+                    : view === 'scrollable'
+                      ? '滚动'
+                      : '默认'}
                 </Button>
               ))}
             </LabeledList.Item>
-            <LabeledList.Item label="Font size">
+            <LabeledList.Item label="字号">
               <Stack.Item grow>
                 {statLinked ? (
                   <LinkedToChat />
@@ -75,7 +78,7 @@ export function SettingsStatPanel(props) {
               dispatch(updateSettings({ statLinked: !statLinked }))
             }
           >
-            {statLinked ? 'Unlink from chat' : 'Link to chat'}
+            {statLinked ? '解除与聊天的关联' : '与聊天关联'}
           </Button>
         </Stack.Item>
       </Stack>

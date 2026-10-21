@@ -13,7 +13,7 @@
 	response_help  = "抚摸"
 	response_disarm = "轻轻推开"
 	response_harm   = "踢"
-	friendly = "nibbles"
+	friendly = "轻咬"
 	black_market_value = 50
 	dead_black_market_value = 0
 

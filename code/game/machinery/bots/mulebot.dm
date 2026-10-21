@@ -231,36 +231,36 @@
 		if(locked && !ai)
 			dat += "<HR>控制面板已锁定<A href='byond://?src=\ref[src];op=unlock'><I>（解锁）</I></A>"
 		else
-			dat += "<HR>Controls are unlocked <A href='byond://?src=\ref[src];op=lock'><I>(lock)</I></A><BR><BR>"
+			dat += "<HR>控制面板已解锁 <A href='byond://?src=\ref[src];op=lock'><I>（锁定）</I></A><BR><BR>"
 
-			dat += "<A href='byond://?src=\ref[src];op=power'>Toggle Power</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=stop'>Stop</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=go'>Proceed</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=home'>Return to Home</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=destination'>Set Destination</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=setid'>Set Bot ID</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=sethome'>Set Home</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=autoret'>Toggle Auto Return Home</A> ([auto_return ? "On":"Off"])<BR>"
-			dat += "<A href='byond://?src=\ref[src];op=autopick'>Toggle Auto Pickup Crate</A> ([auto_pickup ? "On":"Off"])<BR>"
+			dat += "<A href='byond://?src=\ref[src];op=power'>切换电源</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];op=stop'>停止</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];op=go'>继续</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];op=home'>返回起点</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];op=destination'>设置目的地</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];op=setid'>设置机器人编号</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];op=sethome'>设置起点</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];op=autoret'>切换自动返回起点</A>（[auto_return ? "开启":"关闭"]）<BR>"
+			dat += "<A href='byond://?src=\ref[src];op=autopick'>切换自动搬运货箱</A>（[auto_pickup ? "开启":"关闭"]）<BR>"
 
 			if(load)
-				dat += "<A href='byond://?src=\ref[src];op=unload'>Unload Now</A><BR>"
-			dat += "<HR>The maintenance hatch is closed.<BR>"
+				dat += "<A href='byond://?src=\ref[src];op=unload'>立即卸货</A><BR>"
+			dat += "<HR>维护舱盖已关闭。<BR>"
 
 	else
 		if(!ai)
-			dat += "The maintenance hatch is open.<BR><BR>"
-			dat += "Power cell: "
+			dat += "维护舱盖已打开。<BR><BR>"
+			dat += "电池："
 			if(cell)
-				dat += "<A href='byond://?src=\ref[src];op=cellremove'>Installed</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];op=cellremove'>已安装</A><BR>"
 			else
-				dat += "<A href='byond://?src=\ref[src];op=cellinsert'>Removed</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];op=cellinsert'>未安装</A><BR>"
 
 			dat += wires()
 		else
-			dat += "The bot is in maintenance mode and cannot be controlled.<BR>"
+			dat += "机器人处于维护模式，无法控制。<BR>"
 
-	show_browser(user, dat, "Mulebot [suffix ? "([suffix])" : ""]", "mulebot", width = 350, height = 500)
+	show_browser(user, dat, "骡子搬运机器人 [suffix ? "([suffix])" : ""]", "mulebot", width = 350, height = 500)
 	return
 
 // returns the wire panel text
@@ -268,11 +268,11 @@
 	var/t = ""
 	for(var/i = 0 to 9)
 		var/index = 1<<wire_order[i+1]
-		t += "[wire_text[i+1]] wire: "
+		t += "[wire_text[i+1] == "Magenta" ? "品红色" : localized_player_label(wire_text[i+1])]电线："
 		if(index & wires)
-			t += "<A href='byond://?src=\ref[src];op=wirecut;wire=[index]'>(cut)</A> <A href='byond://?src=\ref[src];op=wirepulse;wire=[index]'>(pulse)</A><BR>"
+			t += "<A href='byond://?src=\ref[src];op=wirecut;wire=[index]'>（剪断）</A> <A href='byond://?src=\ref[src];op=wirepulse;wire=[index]'>（发送脉冲）</A><BR>"
 		else
-			t += "<A href='byond://?src=\ref[src];op=wiremend;wire=[index]'>(mend)</A><BR>"
+			t += "<A href='byond://?src=\ref[src];op=wiremend;wire=[index]'>（修复）</A><BR>"
 
 	return t
 

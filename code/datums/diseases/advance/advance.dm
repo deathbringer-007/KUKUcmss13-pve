@@ -27,7 +27,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 /datum/disease/advance
 
-	name = "Unknown" // We will always let our Virologist name our disease.
+	name = "未知" // We will always let our Virologist name our disease.
 	desc = "一种经过人工改造、可包含多种症状的疾病。"
 	form = "高级疾病" // Will let med-scanners know that this disease was engineered.
 	agent = "高级病原微生物"
@@ -282,7 +282,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	return
 
 // Name the disease.
-/datum/disease/advance/proc/AssignName(name = "Unknown")
+/datum/disease/advance/proc/AssignName(name = "未知")
 	src.name = name
 	return
 

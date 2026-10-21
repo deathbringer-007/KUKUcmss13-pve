@@ -7,7 +7,7 @@ FREELANCERS
 //NOTE: Freelancer training is similar to the USCM's, but with additional construction skills
 
 /datum/skills/freelancer
-	name = "Freelancer Private"
+	name = "自由佣兵列兵"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
@@ -16,7 +16,7 @@ FREELANCERS
 	)
 
 /datum/skills/freelancer/combat_medic
-	name = "Freelancer Medic"
+	name = "自由佣兵医疗兵"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
@@ -27,7 +27,7 @@ FREELANCERS
 	)
 
 /datum/skills/freelancer/SL
-	name = "Freelancer Leader"
+	name = "自由佣兵队长"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_SKILLED,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
@@ -41,7 +41,7 @@ FREELANCERS
 	)
 
 /datum/skills/freelancer/marksman
-	name = "Freelancer Marksman"
+	name = "自由佣兵精确射手"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,

@@ -2,6 +2,7 @@
 // The action for watching another Xeno (Queen still has some shitty leftovers, but it's mostly been cleaned out)
 /datum/action/xeno_action/watch_xeno
 	name = "Watch Xenomorph"
+	localized_names = list("Watch Xenomorph" = "观察异形")
 	action_icon_state = "watch_xeno"
 	plasma_cost = 0
 	macro_path = /datum/action/xeno_action/verb/verb_watch_xeno

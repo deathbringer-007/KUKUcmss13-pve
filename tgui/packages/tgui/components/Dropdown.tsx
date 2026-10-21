@@ -83,7 +83,7 @@ export function Dropdown(props: Props) {
     onSelected,
     options = [],
     over,
-    placeholder = 'Select...',
+    placeholder = '请选择……',
     selected,
     width = '15rem',
   } = props;
@@ -157,7 +157,7 @@ export function Dropdown(props: Props) {
           ref={innerRef}
         >
           {options.length === 0 && (
-            <div className="Dropdown__menuentry">No options</div>
+            <div className="Dropdown__menuentry">无可用选项</div>
           )}
 
           {options.map((option, index) => {

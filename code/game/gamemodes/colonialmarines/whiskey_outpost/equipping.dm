@@ -175,7 +175,7 @@
 //*************************************/
 /datum/job/logistics/tech/maint/whiskey
 	title = JOB_WO_ORDNANCE_TECH
-	supervisors = "the bunker crew master and the quartermaster"
+	supervisors = "掩体班长与军需官"
 	gear_preset = /datum/equipment_preset/wo/bc
 
 /datum/job/logistics/tech/maint/whiskey/generate_entry_message(mob/living/carbon/human/H)
@@ -188,7 +188,7 @@
 //*************************************/
 /datum/job/logistics/cargo/whiskey
 	title = JOB_WO_REQUISITION
-	supervisors = "the bunker crew master and the quartermaster"
+	supervisors = "掩体班长与军需官"
 	selection_class = "job_bunker_crew"
 	gear_preset = /datum/equipment_preset/wo/cargo
 
@@ -204,7 +204,7 @@
 //*************************************/
 /datum/job/civilian/liaison/whiskey
 	title = JOB_WO_CORPORATE_LIAISON
-	supervisors = "the press"
+	supervisors = "新闻机构"
 	gear_preset = /datum/equipment_preset/wo/reporter
 
 /datum/job/civilian/liaison/whiskey/generate_entry_message(mob/living/carbon/human/H)

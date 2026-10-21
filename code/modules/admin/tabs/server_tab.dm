@@ -10,7 +10,7 @@
 	if(confirm == "Cancel")
 		return
 	if(confirm == "Yes")
-		to_world(SPAN_DANGER("<b>Restarting world!</b> [SPAN_NOTICE("Initiated by [usr.client.admin_holder.fakekey ? "Admin" : usr.key]!")]"))
+		to_world(SPAN_DANGER("<b>正在重启服务器！</b> [SPAN_NOTICE("由[usr.client.admin_holder.fakekey ? "管理员" : usr.key]发起！")]"))
 		log_admin("[key_name(usr)] initiated a reboot.")
 
 		sleep(50)
@@ -23,9 +23,9 @@
 
 	GLOB.enter_allowed = !GLOB.enter_allowed
 	if(!GLOB.enter_allowed)
-		to_world("<B>New players may no longer join the game.</B>")
+		to_world("<B>现在不再允许新玩家加入游戏。</B>")
 	else
-		to_world("<B>New players may now join the game.</B>")
+		to_world("<B>现在允许新玩家加入游戏。</B>")
 	message_admins("[key_name_admin(usr)] toggled new player game joining.")
 	world.update_status()
 
@@ -36,9 +36,9 @@
 
 	GLOB.dsay_allowed = !GLOB.dsay_allowed
 	if(GLOB.dsay_allowed)
-		to_world("<B>Deadchat has been globally enabled!</B>")
+		to_world("<B>死亡聊天频道已全局启用！</B>")
 	else
-		to_world("<B>Deadchat has been globally disabled!</B>")
+		to_world("<B>死亡聊天频道已全局禁用！</B>")
 	message_admins("[key_name_admin(usr)] toggled deadchat.")
 
 /datum/admins/proc/toggleooc()
@@ -48,9 +48,9 @@
 
 	GLOB.ooc_allowed = !GLOB.ooc_allowed
 	if(GLOB.ooc_allowed)
-		to_world("<B>The OOC channel has been globally enabled!</B>")
+		to_world("<B>OOC频道已全局启用！</B>")
 	else
-		to_world("<B>The OOC channel has been globally disabled!</B>")
+		to_world("<B>OOC频道已全局禁用！</B>")
 	message_admins("[key_name_admin(usr)] toggled OOC.")
 
 /datum/admins/proc/togglelooc()
@@ -60,9 +60,9 @@
 
 	GLOB.looc_allowed = !GLOB.looc_allowed
 	if(GLOB.looc_allowed)
-		to_world("<B>The LOOC channel has been globally enabled!</B>")
+		to_world("<B>LOOC频道已全局启用！</B>")
 	else
-		to_world("<B>The LOOC channel has been globally disabled!</B>")
+		to_world("<B>LOOC频道已全局禁用！</B>")
 	message_admins("[key_name_admin(usr)] toggled LOOC.")
 
 /datum/admins/proc/setlooccooldoown()

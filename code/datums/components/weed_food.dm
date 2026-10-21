@@ -2,7 +2,7 @@
 #define WEED_FOOD_STATE_DELAY 1 MINUTES
 
 /atom/movable/vis_obj/weed_food
-	name = "weeds"
+	name = "菌毯"
 	desc = "形状像尸体的怪异黑色菌毯……"
 	gender = PLURAL
 	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER

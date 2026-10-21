@@ -62,7 +62,7 @@
 
 	can_be_near_defense = TRUE
 
-	var/start_up_message = "Default systems initiated."
+	var/start_up_message = "默认系统已启动。"
 
 	///Effect for the muzzle flash of the gun.
 	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
@@ -935,7 +935,7 @@
 		SENTRY_CATEGORY_IFF = FACTION_UPP,
 	)
 	faction_group = FACTION_LIST_UPP
-	start_up_message = "Sentry mounted and loaded. Glory to the UPP."
+	start_up_message = "哨戒炮已架设并装填完毕。荣耀归于进步人民联盟。"
 	defense_type = "UPP"
 	handheld_type = /obj/item/defenses/handheld/sentry/upp
 	fire_delay = 1.2
@@ -1010,7 +1010,7 @@
 	selected_categories = list(
 		SENTRY_CATEGORY_IFF = FACTION_UPP,
 	)
-	start_up_message = "Sentry mounted and loaded. Glory to the UPP."
+	start_up_message = "哨戒炮已架设并装填完毕。荣耀归于进步人民联盟。"
 	defense_type = "UPP"
 	handheld_type = /obj/item/defenses/handheld/sentry/upp
 	fire_delay = 1.2

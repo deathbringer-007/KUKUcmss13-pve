@@ -6,6 +6,7 @@ import { dragStartHandler } from 'tgui/drag';
 import { Channel, ChannelIterator } from './ChannelIterator';
 import { ChatHistory } from './ChatHistory';
 import {
+  CHANNEL_LABELS,
   LANGUAGE_PREFIXES,
   LineLength,
   RADIO_PREFIXES,
@@ -349,6 +350,10 @@ export class TguiSay extends Component<{}, State> {
   }
 
   render() {
+    const buttonContent =
+      typeof this.state.buttonContent === 'string'
+        ? CHANNEL_LABELS[this.state.buttonContent] || this.state.buttonContent
+        : this.state.buttonContent;
     const theme =
       (this.lightMode && 'lightMode') ||
       (this.currentPrefix && RADIO_PREFIXES[this.currentPrefix])?.id ||
@@ -364,8 +369,9 @@ export class TguiSay extends Component<{}, State> {
               className={`button button-${theme}`}
               onClick={this.handleIncrementChannel}
               type="button"
+              title={String(buttonContent)}
             >
-              {this.state.buttonContent}
+              {buttonContent}
             </button>
           )}
           <textarea

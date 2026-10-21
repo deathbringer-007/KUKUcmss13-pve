@@ -1,7 +1,7 @@
 //Construction template datums. Used by factions to build unique structures with a material resource requirement. Stores references to the build type path, icon, and icon_state for the purpose of overlaying the finished product wherever you place the construction marker.
 
 /datum/construction_template
-	var/name = "generic structure"
+	var/name = "通用建筑"
 	var/description //Used to explain to the user what this structure does.
 
 	var/atom/owner //Where it should refer to for completion and locations

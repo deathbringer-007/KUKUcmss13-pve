@@ -18,7 +18,7 @@
 	data["disk"] = loaded_disk
 
 	if(loaded_disk && length(loaded_disk.genes))
-		data["sourceName"] = loaded_disk.genesource
+		data["sourceName"] = localized_seed_label(loaded_disk.genesource)
 
 		for(var/datum/plantgene/P in loaded_disk.genes)
 			locus.Add("[GLOB.gene_tag_masks[P.genetype]]")

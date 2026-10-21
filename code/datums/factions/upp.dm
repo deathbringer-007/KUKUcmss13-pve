@@ -1,5 +1,5 @@
 /datum/faction/upp
-	name = "Union of Progressive Peoples"
+	name = "进步人民联盟"
 	faction_tag = FACTION_UPP
 
 /datum/faction/upp/modify_hud_holder(image/holder, mob/living/carbon/human/H)

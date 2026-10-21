@@ -35,23 +35,23 @@
 		return
 
 	if(disk)
-		to_chat(inserter, SPAN_WARNING("There's already a disk inside [parent], wait for it to finish first!"))
+		to_chat(inserter, SPAN_WARNING("[parent]内已有一张磁盘，请先等待处理完成！"))
 		return COMPONENT_NO_AFTERATTACK
 
 	if(potential_disk.objective.state == OBJECTIVE_COMPLETE)
-		to_chat(inserter, SPAN_WARNING("The reader displays a message stating this disk has already been read and refuses to accept it."))
+		to_chat(inserter, SPAN_WARNING("读取器提示这张磁盘已被读取，并拒绝接收。"))
 		return COMPONENT_NO_AFTERATTACK
 
 	INVOKE_ASYNC(src, PROC_REF(handle_disk_insert), potential_disk, inserter)
 	return COMPONENT_NO_AFTERATTACK
 
 /datum/component/disk_reader/proc/handle_disk_insert(obj/item/disk/objective/potential_disk, mob/living/inserter)
-	if(tgui_input_text(inserter, "Enter the encryption key", "Decrypting [potential_disk]", "") != potential_disk.objective.decryption_password)
-		to_chat(inserter, SPAN_WARNING("The reader buzzes, ejecting the disk."))
+	if(tgui_input_text(inserter, "输入解密密钥", "解密[potential_disk]", "") != potential_disk.objective.decryption_password)
+		to_chat(inserter, SPAN_WARNING("读取器发出蜂鸣声，将磁盘弹出。"))
 		return
 
 	if(disk)
-		to_chat(inserter, SPAN_WARNING("There's already a disk inside [parent], wait for it to finish first!"))
+		to_chat(inserter, SPAN_WARNING("[parent]内已有一张磁盘，请先等待处理完成！"))
 		return
 
 	if(!(potential_disk in inserter.contents))
@@ -61,17 +61,17 @@
 
 	inserter.drop_inv_item_to_loc(potential_disk, parent)
 	disk = potential_disk
-	to_chat(inserter, SPAN_NOTICE("You insert [potential_disk] and enter the decryption key."))
+	to_chat(inserter, SPAN_NOTICE("你插入[potential_disk]并输入解密密钥。"))
 	inserter.count_niche_stat(STATISTICS_NICHE_DISK)
 
 /datum/component/disk_reader/proc/on_disk_complete(datum/source)
 	SIGNAL_HANDLER
 	var/atom/atom_parent = parent
 
-	atom_parent.visible_message("[atom_parent] pings softly as the upload finishes and ejects [disk].")
+	atom_parent.visible_message("[atom_parent]在上传完成后轻响一声，弹出[disk]。")
 	playsound(atom_parent, 'sound/machines/screen_output1.ogg', 25, 1)
 	disk.forceMove(get_turf(atom_parent))
-	disk.name = "[disk.name] (complete)"
+	disk.name = "[disk.name]（已完成）"
 	disk.objective.award_points()
 	disk.retrieve_objective.state = OBJECTIVE_ACTIVE
 	disk.retrieve_objective.activate()
@@ -81,7 +81,7 @@
 	SIGNAL_HANDLER
 	var/atom/atom_parent = parent
 
-	atom_parent.visible_message(SPAN_WARNING("[atom_parent] powers down mid-operation as the area loses power."))
+	atom_parent.visible_message(SPAN_WARNING("由于所在区域断电，[atom_parent]在运行中关闭了。"))
 	playsound(atom_parent, 'sound/machines/terminal_shutdown.ogg', 25, 1)
 	SSobjectives.stop_processing_objective(src)
 	disk.forceMove(get_turf(atom_parent))

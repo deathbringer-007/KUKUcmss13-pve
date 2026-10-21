@@ -224,7 +224,7 @@
 		scale = "large"
 
 	var/message_start = "<i><span class='game say'>[name], <span class='name'>[speaker.name]</span>"
-	var/message_body = "<span class='message'>broadcasts, \"[message]\"</span></span></i>"
+	var/message_body = "<span class='message'>广播道：“[message]”</span></span></i>"
 	var/full_message = "<span class='[scale]'><span class='[color]'>[message_start] [message_body]</span></span>"
 
 

@@ -167,7 +167,7 @@
 
 	playsound(referenced_atom, pick(ambush_sounds), 40, 1)
 	var/timer_increment = AMBUSH_ESCAPE_INCREMENT_TIME
-	referenced_atom.visible_message(SPAN_NOTICE("Something begins climbing out of [referenced_atom]!"))
+	referenced_atom.visible_message(SPAN_NOTICE("有什么东西正从[referenced_atom]里爬出来！"))
 
 	if(ambush)
 		for(var/ambusher_type in current_ambush)

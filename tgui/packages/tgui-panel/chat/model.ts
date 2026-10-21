@@ -22,7 +22,7 @@ export const createPage = (obj?: Object): Page => {
   return {
     isMain: false,
     id: createUuid(),
-    name: 'New Tab',
+    name: '新选项卡',
     acceptedTypes: acceptedTypes,
     unreadCount: 0,
     hideUnreadCount: false,
@@ -38,7 +38,7 @@ export const createMainPage = (): Page => {
   }
   return createPage({
     isMain: true,
-    name: 'Main',
+    name: '主选项卡',
     acceptedTypes,
   });
 };

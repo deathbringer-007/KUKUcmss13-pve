@@ -182,34 +182,34 @@
 	var/text = ""
 	switch(rarity)
 		if(PROPERTY_DISABLED)
-			text += "Unique "
+			text += "独特 "
 		if(PROPERTY_COMMON)
-			text += "Common "
+			text += "常见 "
 		if(PROPERTY_UNCOMMON)
-			text += "Uncommon "
+			text += "不常见 "
 		if(PROPERTY_RARE)
-			text += "Rare "
+			text += "稀有 "
 		if(PROPERTY_LEGENDARY)
-			text += "Legendary "
+			text += "传奇 "
 		if(PROPERTY_ADMIN)
-			text += "Special "
+			text += "特殊 "
 	if(isNegativeProperty(src))
-		text += "Harmful "
+		text += "有害 "
 	else if(isPositiveProperty(src))
-		text += "Helpful "
+		text += "有益 "
 	if(category & PROPERTY_TYPE_MEDICINE)
-		text += "Medicine "
+		text += "药物 "
 	if(category & PROPERTY_TYPE_TOXICANT)
-		text += "Toxicant "
+		text += "毒剂 "
 	if(category & PROPERTY_TYPE_STIMULANT)
-		text += "Stimulant "
+		text += "兴奋剂 "
 	if(category & PROPERTY_TYPE_REACTANT)
-		text += "Reactant "
+		text += "反应剂 "
 	if(category & PROPERTY_TYPE_IRRITANT)
-		text += "Irritant "
+		text += "刺激物 "
 	if(category & PROPERTY_TYPE_METABOLITE)
-		text += "Metabolite "
+		text += "代谢物 "
 	if(category & PROPERTY_TYPE_ANOMALOUS)
-		text += "Anomalous "
+		text += "异常 "
 	return text
 

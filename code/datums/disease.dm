@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(diseases, typesof(/datum/disease) - /datum/disease)
 
 /datum/disease
 	var/form = "病毒" //During medscans, what the disease is referred to as
-	var/name = "No disease"
+	var/name = "无疾病"
 	var/stage = 1 //all diseases start at stage 1
 	var/max_stages = 0
 	var/cure = null

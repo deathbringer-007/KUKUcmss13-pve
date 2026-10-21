@@ -481,7 +481,7 @@
 	new_order.approvedby = MAIN_AI_SYSTEM
 	GLOB.supply_controller.shoppinglist += new_order
 
-	marine_announcement("A nuclear device has been supplied and will be delivered to requisitions via ASRS.", "NUCLEAR ARSENAL ACQUIRED", 'sound/misc/notice2.ogg')
+	marine_announcement("已配发一枚核装置，将通过ASRS送至补给部。", "已获得核武器", 'sound/misc/notice2.ogg')
 	message_admins("[key_name_admin(usr)] admin-spawned \a [encrypt] nuke.")
 	log_game("[key_name_admin(usr)] admin-spawned \a [encrypt] nuke.")
 

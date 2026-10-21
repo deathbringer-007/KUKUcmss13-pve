@@ -1,5 +1,5 @@
 /datum/faction/army
-	name = "United States Army"
+	name = "美国陆军"
 	faction_tag = FACTION_ARMY
 
 /datum/faction/army/modify_hud_holder(image/holder, mob/living/carbon/human/H)

@@ -455,7 +455,7 @@ This function completely restores a damaged organ to perfect condition.
 		var/datum/wound/internal_bleeding/I = new (0)
 		add_bleeding(I, TRUE)
 		wounds += I
-		owner.custom_pain("你感觉[display_name]里有什么东西撕裂了！", 1)
+		owner.custom_pain("你感觉[localized_player_label(display_name)]里有什么东西撕裂了！", 1)
 
 /obj/limb/proc/createwound(type = CUT, damage, is_ff = FALSE)
 	if(!damage)
@@ -469,7 +469,7 @@ This function completely restores a damaged organ to perfect condition.
 	if(!(status & LIMB_SPLINTED_INDESTRUCTIBLE) && (status & LIMB_SPLINTED) && damage > 5 && prob((10 + damage * 2.5) * (MODE_HAS_TOGGLEABLE_FLAG(MODE_HUMAN_AI_TWEAKS) ? 0.33 : 1))) //If they have it splinted, the splint won't hold.
 		status &= ~LIMB_SPLINTED
 		playsound(get_turf(loc), 'sound/items/splintbreaks.ogg', 20)
-		to_chat(owner, SPAN_HIGHDANGER("你[display_name]上的夹板散开了！"))
+		to_chat(owner, SPAN_HIGHDANGER("你[localized_player_label(display_name)]上的夹板散开了！"))
 		owner.pain.apply_pain(PAIN_BONE_BREAK_SPLINTED)
 		owner.update_med_icon()
 
@@ -490,8 +490,8 @@ This function completely restores a damaged organ to perfect condition.
 					owner.add_splatter_floor(get_turf(loc))
 				if(prob(25))
 					//maybe have a separate message for BRUISE type damage?
-					owner.visible_message(SPAN_WARNING("[owner.name]的[display_name]伤口扩大，发出令人难受的撕裂声。"),
-					SPAN_WARNING("你[display_name]上的伤口扩大，发出令人难受的撕裂声。"),
+					owner.visible_message(SPAN_WARNING("[owner.name]的[localized_player_label(display_name)]伤口扩大，发出令人难受的撕裂声。"),
+					SPAN_WARNING("你[localized_player_label(display_name)]上的伤口扩大，发出令人难受的撕裂声。"),
 					SPAN_WARNING("你听见令人难受的撕裂声，仿佛血肉正被扯开。"))
 				return
 
@@ -596,7 +596,7 @@ This function completely restores a damaged organ to perfect condition.
 		perma_injury = 0
 	if(knitting_time > 0)
 		if(world.time > knitting_time)
-			to_chat(owner, SPAN_WARNING("你感觉[display_name]里的骨骼已经完全接合。"))
+			to_chat(owner, SPAN_WARNING("你感觉[localized_player_label(display_name)]里的骨骼已经完全接合。"))
 			owner.pain.apply_pain(-PAIN_BONE_BREAK)
 			status &= ~LIMB_BROKEN //Let it be known that this code never unbroke the limb.
 			knitting_time = -1
@@ -939,8 +939,8 @@ This function completely restores a damaged organ to perfect condition.
 		if(delete_limb)
 			qdel(organ)
 		else
-			owner.visible_message(SPAN_WARNING("[owner.name]的[display_name]划出一道弧线，飞了出去！"),
-			SPAN_HIGHDANGER("<b>你的[display_name]飞了出去！</b>"),
+			owner.visible_message(SPAN_WARNING("[owner.name]的[localized_player_label(display_name)]划出一道弧线，飞了出去！"),
+			SPAN_HIGHDANGER("<b>你的[localized_player_label(display_name)]飞了出去！</b>"),
 			SPAN_WARNING("你听见肌腱与血肉被撕裂的可怕声音！"), 3)
 
 			// Checks if the mob can feel pain or if they have at least oxycodone level of painkiller
@@ -974,29 +974,29 @@ This function completely restores a damaged organ to perfect condition.
 /obj/limb/proc/get_incision_depth()
 	switch(owner.incision_depths[name])
 		if(SURGERY_DEPTH_SHALLOW)
-			return "a surgical incision"
+			return "一个手术切口"
 		if(SURGERY_DEPTH_DEEP)
-			return "a massive surgical incision"
+			return "一个很大的手术切口"
 
 ///Returns a description of active surgeries.
 /obj/limb/proc/get_active_limb_surgeries()
 	if(owner.active_surgeries[name])
-		return "an incomplete surgical operation"
+		return "一项尚未完成的手术"
 
 /obj/limb/proc/release_restraints()
 	if(!owner)
 		return
 	if (owner.handcuffed && (body_part in list(BODY_FLAG_ARM_LEFT, BODY_FLAG_ARM_RIGHT, BODY_FLAG_HAND_LEFT, BODY_FLAG_HAND_RIGHT)))
 		owner.visible_message(\
-			"\The [owner.handcuffed.name] falls off of [owner.name].",\
-			"\The [owner.handcuffed.name] falls off you.")
+			"[owner.handcuffed.name]从[owner.name]身上掉了下来。",\
+			"[owner.handcuffed.name]从你身上掉了下来。")
 
 		owner.drop_inv_item_on_ground(owner.handcuffed)
 
 	if (owner.legcuffed && (body_part in list(BODY_FLAG_FOOT_LEFT, BODY_FLAG_FOOT_RIGHT, BODY_FLAG_LEG_LEFT, BODY_FLAG_LEG_RIGHT)))
 		owner.visible_message(\
-			"\The [owner.legcuffed.name] falls off of [owner.name].",\
-			"\The [owner.legcuffed.name] falls off you.")
+			"[owner.legcuffed.name]从[owner.name]身上掉了下来。",\
+			"[owner.legcuffed.name]从你身上掉了下来。")
 
 		owner.drop_inv_item_on_ground(owner.legcuffed)
 
@@ -1072,13 +1072,13 @@ treat_grafted var tells it to apply to grafted but unsalved wounds, for burn kit
 	if(status & (LIMB_BROKEN|LIMB_DESTROYED|LIMB_UNCALIBRATED_PROSTHETIC|LIMB_SYNTHSKIN))
 		if (knitting_time != -1)
 			knitting_time = -1
-			to_chat(owner, SPAN_WARNING("你的[display_name]受到损伤，骨骼停止愈合！"))
+			to_chat(owner, SPAN_WARNING("你的[localized_player_label(display_name)]受到损伤，骨骼停止愈合！"))
 		return
 
 	if(owner.status_flags & NO_PERMANENT_DAMAGE)
 		owner.visible_message(\
 			SPAN_WARNING("[owner]扛住了这一击！"),
-			SPAN_WARNING("你的[display_name]扛住了这一击！"))
+			SPAN_WARNING("你的[localized_player_label(display_name)]扛住了这一击！"))
 		return
 
 	//stops division by zero
@@ -1104,8 +1104,8 @@ treat_grafted var tells it to apply to grafted but unsalved wounds, for burn kit
 		owner.recalculate_move_delay = TRUE
 		if(status & (LIMB_ROBOT))
 			owner.visible_message(\
-				SPAN_WARNING("你看见[owner]的[display_name]冒出火花！"),
-				SPAN_HIGHDANGER("你的[display_name]似乎有什么东西坏了，正在向外冒火花！"),
+				SPAN_WARNING("你看见[owner]的[localized_player_label(display_name)]冒出火花！"),
+				SPAN_HIGHDANGER("你的[localized_player_label(display_name)]似乎有什么东西坏了，正在向外冒火花！"),
 				SPAN_HIGHDANGER("你听见电火花的噼啪声！"))
 			var/datum/effect_system/spark_spread/spark_system = new()
 			spark_system.set_up(5, 0, owner)
@@ -1115,7 +1115,7 @@ treat_grafted var tells it to apply to grafted but unsalved wounds, for burn kit
 		else
 			owner.visible_message(\
 				SPAN_WARNING("[owner]体内传来响亮的断裂声！"),
-				SPAN_HIGHDANGER("你的[display_name]里似乎有什么东西碎裂了！"),
+				SPAN_HIGHDANGER("你的[localized_player_label(display_name)]里似乎有什么东西碎裂了！"),
 				SPAN_HIGHDANGER("你听见令人不适的碎裂声！"))
 			playsound(owner, "bone_break", 45, TRUE)
 		start_processing()
@@ -1135,7 +1135,7 @@ treat_grafted var tells it to apply to grafted but unsalved wounds, for burn kit
 	else
 		owner.visible_message(\
 			SPAN_WARNING("[owner]似乎扛住了这一击！"),
-			SPAN_WARNING("你的[display_name]勉强扛住了这一击！"))
+			SPAN_WARNING("你的[localized_player_label(display_name)]勉强扛住了这一击！"))
 
 /obj/limb/proc/robotize(surgery_in_progress, uncalibrated, synth_skin)
 	if(synth_skin)
@@ -1194,12 +1194,12 @@ treat_grafted var tells it to apply to grafted but unsalved wounds, for burn kit
 	if(is_broken())
 		if(prob(15))
 			owner.drop_inv_item_on_ground(c_hand)
-			var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
-			owner.emote("me", 1, "[(!owner.pain.feels_pain) ? "" : emote_scream ] drops what they were holding in their [hand_name]!")
+			var/emote_scream = pick("痛苦地尖叫着，", "发出一声尖叫，", "大叫一声，")
+			owner.emote("me", 1, "[(!owner.pain.feels_pain) ? "" : emote_scream ]松开了[localized_player_label(hand_name)]中的物品！")
 	if(is_malfunctioning())
 		if(prob(10))
 			owner.drop_inv_item_on_ground(c_hand)
-			owner.emote("me", 1, "drops what they were holding, their [hand_name] malfunctioning!")
+			owner.emote("me", 1, "因[localized_player_label(hand_name)]故障而掉落了手中的物品！")
 			var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 			spark_system.set_up(5, 0, owner)
 			spark_system.attach(owner)
@@ -1238,9 +1238,9 @@ treat_grafted var tells it to apply to grafted but unsalved wounds, for burn kit
 			var/possessive = "[user == target ? "你" : "[target]"]"
 			var/possessive_their = "[user == target ? user.gender == MALE ? "他" : "她" : "[target]"]"
 			user.affected_message(target,
-				SPAN_HELPFUL("你将<b>[S]</b>敷在了[possessive]的[display_name]上。"),
-				SPAN_HELPFUL("[user]将<b>[S]</b>敷在了你的[display_name]上。"),
-				SPAN_NOTICE("[user]将[S]敷在了[possessive_their]的[display_name]上。"))
+				SPAN_HELPFUL("你将<b>[S]</b>敷在了[possessive]的[localized_player_label(display_name)]上。"),
+				SPAN_HELPFUL("[user]将<b>[S]</b>敷在了你的[localized_player_label(display_name)]上。"),
+				SPAN_NOTICE("[user]将[S]敷在了[possessive_their]的[localized_player_label(display_name)]上。"))
 			status |= LIMB_SPLINTED
 			if(indestructible_splints)
 				status |= LIMB_SPLINTED_INDESTRUCTIBLE
@@ -1482,19 +1482,19 @@ treat_grafted var tells it to apply to grafted but unsalved wounds, for burn kit
 			if(SURGERY_DEPTH_SHALLOW)
 				incisions++
 			if(SURGERY_DEPTH_DEEP) //Only the head itself can be cut this deeply.
-				. = "a massive surgical incision"
+				. = "一个很大的手术切口"
 
 	switch(incisions)
 		if(1)
 			if(.)
 				. += "，以及一个较小的切口"
 			else
-				. = "a surgical incision"
+				. = "一个手术切口"
 		if(2, 3)
 			if(.) //3 locations tested, . means skull is opened deeply, therefore this is eye + mouth.
 				. += "，以及两个较小的切口"
 			else //2-3 open incisions. Not bothering to test exact number.
-				. = "several surgical incisions"
+				. = "几处手术切口"
 
 /obj/limb/head/get_active_limb_surgeries()
 	for(var/zone in list("head", "eyes", "mouth"))
@@ -1503,9 +1503,9 @@ treat_grafted var tells it to apply to grafted but unsalved wounds, for burn kit
 
 	switch(.)
 		if(1)
-			return "an incomplete surgical operation"
+			return "一项尚未完成的手术"
 		if(2, 3)
-			return "several incomplete surgical operations"
+			return "几项尚未完成的手术"
 
 /obj/limb/head/limb_delimb(damage_source)
 	var/obj/item/clothing/head/helmet/owner_helmet = owner.head

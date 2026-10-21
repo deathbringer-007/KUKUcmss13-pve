@@ -44,7 +44,7 @@ export function TextHighlightSettings(props) {
                 dispatch(addHighlightSetting());
               }}
             >
-              Add Highlight Setting
+              添加高亮规则
             </Button>
           </Box>
         </Stack.Item>
@@ -52,10 +52,10 @@ export function TextHighlightSettings(props) {
       <Divider />
       <Box>
         <Button icon="check" onClick={() => dispatch(rebuildChat())}>
-          Apply now
+          立即应用
         </Button>
         <Box inline fontSize="0.9em" ml={1} color="label">
-          Can freeze the chat for a while.
+          可能会使聊天短暂卡顿。
         </Box>
       </Box>
     </Section>
@@ -89,13 +89,13 @@ function TextHighlightSetting(props) {
               )
             }
           >
-            Delete
+            删除
           </Button>
         </Stack.Item>
         <Stack.Item>
           <Button.Checkbox
             checked={highlightWholeMessage}
-            tooltip="If this option is selected, the entire message will be highlighted in yellow."
+            tooltip="选中后，整条消息会以黄色高亮显示。"
             onClick={() =>
               dispatch(
                 updateHighlightSetting({
@@ -105,14 +105,14 @@ function TextHighlightSetting(props) {
               )
             }
           >
-            Whole Message
+            整条消息
           </Button.Checkbox>
         </Stack.Item>
         <Stack.Item>
           <Button.Checkbox
             checked={matchWord}
             tooltipPosition="bottom-start"
-            tooltip="If this option is selected, only exact matches (no extra letters before or after) will trigger. Not compatible with punctuation. Overriden if regex is used."
+            tooltip="仅在完整匹配时触发，前后不能有多余字母。不适用于标点符号；使用正则表达式时，此选项不生效。"
             onClick={() =>
               dispatch(
                 updateHighlightSetting({
@@ -122,12 +122,12 @@ function TextHighlightSetting(props) {
               )
             }
           >
-            Exact
+            完整匹配
           </Button.Checkbox>
         </Stack.Item>
         <Stack.Item>
           <Button.Checkbox
-            tooltip="If this option is selected, the highlight will be case-sensitive."
+            tooltip="选中后，高亮匹配将区分大小写。"
             checked={matchCase}
             onClick={() =>
               dispatch(
@@ -138,7 +138,7 @@ function TextHighlightSetting(props) {
               )
             }
           >
-            Case
+            区分大小写
           </Button.Checkbox>
         </Stack.Item>
         <Stack.Item>
@@ -162,7 +162,7 @@ function TextHighlightSetting(props) {
       <TextArea
         height="3em"
         value={highlightText}
-        placeholder="Put words to highlight here. Separate terms with commas, i.e. (term1, term2, term3)"
+        placeholder="输入要高亮的词语，用英文逗号分隔，例如：词语1,词语2,词语3"
         onChange={(e, value) =>
           dispatch(
             updateHighlightSetting({

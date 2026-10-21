@@ -21,7 +21,7 @@ export const PingIndicator = (props) => {
   ]).toString();
   const roundtrip = ping.roundtrip ? toFixed(ping.roundtrip) : '--';
   return (
-    <Tooltip content="Ping relays" position="bottom-start">
+    <Tooltip content="检测中继延迟" position="bottom-start">
       <div
         tabIndex={0}
         role="button"

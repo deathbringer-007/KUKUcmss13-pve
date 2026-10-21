@@ -99,7 +99,7 @@
 
 	switch(tgui_alert(src, "Show the name of this sound to the players?", "Sound Name", list("No","Yes","Cancel")))
 		if("No")
-			music_extra_data["title"] = "Admin sound"
+			music_extra_data["title"] = "管理员音频"
 			announce_title = FALSE
 		if("Cancel")
 			return
@@ -147,7 +147,7 @@
 				SSassets.transport.send_assets(client, asset_name)
 			client?.tgui_panel?.play_music(web_sound_url, music_extra_data)
 			if(announce_title)
-				to_chat(client, SPAN_BOLDANNOUNCE("An admin played: [music_extra_data["title"]]"), confidential = TRUE)
+				to_chat(client, SPAN_BOLDANNOUNCE("管理员播放了：[music_extra_data["title"]]"), confidential = TRUE)
 		else
 			client?.tgui_panel?.stop_music()
 

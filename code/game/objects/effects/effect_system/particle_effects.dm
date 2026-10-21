@@ -16,7 +16,7 @@
 //Water
 
 /obj/effect/particle_effect/water
-	name = "water"
+	name = "水"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
 	var/life = 15

@@ -137,7 +137,7 @@ const TitleSection = (props: { readonly data: SentrySpec }) => {
             <span>{props.data.active === 0 ? '未启动' : '已启动'}</span>
           </Stack.Item>
           <Stack.Item>
-            <span>REMOTE SENTRY WEAPON SYSTEM</span>
+            <span>远程哨戒武器系统</span>
           </Stack.Item>
         </Stack>
       </Stack.Item>

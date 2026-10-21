@@ -47,11 +47,11 @@
 		var/mob/living/M = imp_in
 		if(accidental) //was triggered by random chance or EMP
 			playsound(M, 'sound/machines/buzz-two.ogg', 60, 1)
-			var/malf_msg = "[imp_in][part ? "的[part.display_name]" : "体内"]有什么东西在嗡嗡作响。"
+			var/malf_msg = "[imp_in][part ? "的[localized_player_label(part.display_name)]" : "体内"]有什么东西在嗡嗡作响。"
 			imp_in.visible_message(SPAN_WARNING(malf_msg))
 		else
 			playsound(M, 'sound/machines/twobeep.ogg', 60, 1)
-			var/malf_msg = "[imp_in][part ? "的[part.display_name]" : "体内"]有什么东西在发出哔哔声。"
+			var/malf_msg = "[imp_in][part ? "的[localized_player_label(part.display_name)]" : "体内"]有什么东西在发出哔哔声。"
 			imp_in.visible_message(SPAN_WARNING(malf_msg))
 		sleep(10)
 		playsound(M, 'sound/effects/sparks2.ogg', 60, 1)
@@ -60,7 +60,7 @@
 		s.start()
 		sleep(5)
 
-		var/mob_pain_msg = "剧痛贯穿了[part ? "你的[part.display_name]" : "你的全身"]！"
+		var/mob_pain_msg = "剧痛贯穿了[part ? "你的[localized_player_label(part.display_name)]" : "你的全身"]！"
 		M.visible_message(SPAN_DANGER("[M]痛得浑身抽搐！"), SPAN_DANGER(mob_pain_msg))
 		M.flash_eyes(1, TRUE)
 		M.apply_effect(10, STUN)

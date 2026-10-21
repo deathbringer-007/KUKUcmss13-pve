@@ -74,9 +74,9 @@
 		evolve_progress = "[min(stored_evolution, evolution_threshold)]/[evolution_threshold]"
 		if(hive && !hive.allow_no_queen_evo && !caste?.evolve_without_queen)
 			if(!hive.living_xeno_queen)
-				evolve_progress += " (NO QUEEN)"
+				evolve_progress += "（没有女皇）"
 			else if(!(hive.living_xeno_queen.ovipositor || hive.evolution_without_ovipositor))
-				evolve_progress += " (NO OVIPOSITOR)"
+				evolve_progress += "（没有产卵器）"
 
 	if(evolve_progress)
 		. += "演化进度：[evolve_progress]"
@@ -604,17 +604,17 @@
 /proc/get_pheromone_aura_strength(aura)
 	switch(aura)
 		if(-INFINITY to 0.9)
-			return "Very Weak"
+			return "极弱"
 		if(1 to 1.9)
-			return "Weak"
+			return "弱"
 		if(2 to 2.9)
-			return "Moderate"
+			return "适中"
 		if(3 to 3.9)
-			return "Strong"
+			return "强"
 		if(4 to 4.9)
-			return "Very Strong"
+			return "极强"
 		if(4.9 to INFINITY)
-			return "Overwhelming"
+			return "压倒性"
 
 /mob/living/carbon/xenomorph/proc/start_tracking_resin_mark(obj/effect/alien/resin/marker/target)
 	if(!target)

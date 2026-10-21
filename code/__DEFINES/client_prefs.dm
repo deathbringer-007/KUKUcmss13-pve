@@ -40,8 +40,8 @@
 
 #define JOB_SLOT_RANDOMISED_SLOT -1
 #define JOB_SLOT_CURRENT_SLOT 0
-#define JOB_SLOT_RANDOMISED_TEXT "Randomise name and appearance"
-#define JOB_SLOT_CURRENT_TEXT "Current character"
+#define JOB_SLOT_RANDOMISED_TEXT "随机姓名与外貌"
+#define JOB_SLOT_CURRENT_TEXT "当前角色"
 
 #define AGE_MIN 19 //youngest a character can be
 #define AGE_MAX 90 //oldest a character can be //no. you are not allowed to be 160.

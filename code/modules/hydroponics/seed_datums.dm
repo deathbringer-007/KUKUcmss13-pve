@@ -319,7 +319,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 
 	if(!degree || immutable > 0) return
 
-	source_turf.visible_message(SPAN_NOTICE("[display_name]颤动起来！"))
+	source_turf.visible_message(SPAN_NOTICE("[localized_seed_label(display_name)]颤动起来！"))
 
 	//This looks like shit, but it's a lot easier to read/change this way.
 	var/total_mutations = rand(1,1+degree)
@@ -328,7 +328,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 			if(0) //Plant cancer!
 				lifespan = max(0,lifespan-rand(1,5))
 				endurance = max(0,endurance-rand(10,20))
-				source_turf.visible_message(SPAN_DANGER("[display_name]迅速枯萎！"))
+				source_turf.visible_message(SPAN_DANGER("[localized_seed_label(display_name)]迅速枯萎！"))
 			if(1) //Gluttony!
 				nutrient_consumption =   max(0,  min(5,   nutrient_consumption + rand(-(degree*0.1),(degree*0.1))))
 				water_consumption =  max(0,  min(50,  water_consumption + rand(-degree,degree)))
@@ -344,7 +344,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 				if(prob(degree*5))
 					carnivorous =    max(0,  min(2,   carnivorous   + rand(-degree,degree)))
 					if(carnivorous)
-						source_turf.visible_message(SPAN_NOTICE("[display_name]饥饿地颤动着。"))
+						source_turf.visible_message(SPAN_NOTICE("[localized_seed_label(display_name)]饥饿地颤动着。"))
 				else if(prob(degree*5))
 					parasite = !parasite
 			if(6) //Production
@@ -362,22 +362,22 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 				if(prob(degree*2))
 					biolum = !biolum
 					if(biolum)
-						source_turf.visible_message(SPAN_NOTICE("[display_name]开始发光！"))
+						source_turf.visible_message(SPAN_NOTICE("[localized_seed_label(display_name)]开始发光！"))
 						if(prob(degree*2))
 							biolum_color = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
-							source_turf.visible_message(SPAN_NOTICE("[display_name]发出的光<font color='[biolum_color]'>变色了</font>！"))
+							source_turf.visible_message(SPAN_NOTICE("[localized_seed_label(display_name)]发出的光<font color='[biolum_color]'>变色了</font>！"))
 					else
-						source_turf.visible_message(SPAN_NOTICE("[display_name]的光芒暗淡下来……"))
+						source_turf.visible_message(SPAN_NOTICE("[localized_seed_label(display_name)]的光芒暗淡下来……"))
 			if(11) //Flowers?
 				if(prob(degree*2))
 					flowers = !flowers
 					if(flowers)
-						source_turf.visible_message(SPAN_NOTICE("[display_name]开出了许多花！"))
+						source_turf.visible_message(SPAN_NOTICE("[localized_seed_label(display_name)]开出了许多花！"))
 						if(prob(degree*2))
 							flower_color = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
-						source_turf.visible_message(SPAN_NOTICE("[display_name]的花<font=[flower_color]>变色了</font>！"))
+							source_turf.visible_message(SPAN_NOTICE("[localized_seed_label(display_name)]的花<font=[flower_color]>变色了</font>！"))
 					else
-						source_turf.visible_message(SPAN_NOTICE("[display_name]的花枯萎脱落。"))
+						source_turf.visible_message(SPAN_NOTICE("[localized_seed_label(display_name)]的花枯萎脱落。"))
 			else //New chems! (20% chance)
 				var/new_chem = list(pick( prob(10);pick(GLOB.chemical_gen_classes_list["C1"]),\
 											prob(15);pick(GLOB.chemical_gen_classes_list["C2"]),\
@@ -577,7 +577,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	if(!got_product && !harvest_sample)
 		to_chat(user, SPAN_DANGER("你没能收获任何有用的东西。"))
 	else
-		to_chat(user, "你从[display_name]上[harvest_sample ? "取得了样本" : "收获了产物"]。")
+		to_chat(user, "你从[localized_seed_label(display_name)]上[harvest_sample ? "取得了样本" : "收获了产物"]。")
 
 		//This may be a new line. Update the global if it is.
 		if(name == "new line" || !(name in GLOB.seed_types))

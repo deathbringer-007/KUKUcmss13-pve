@@ -7,7 +7,7 @@ Private Military Contractors
 //NOTE: Compared to the USCM, PMCs have additional firearms training, construction skills and policing skills
 
 /datum/skills/pmc
-	name = "PMC Private"
+	name = "私人军事承包商列兵"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_TRAINED,
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,
@@ -19,7 +19,7 @@ Private Military Contractors
 	)
 
 /datum/skills/pmc/medic
-	name = "PMC Medic"
+	name = "私人军事承包商医疗兵"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_TRAINED,
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,
@@ -33,7 +33,7 @@ Private Military Contractors
 	)
 
 /datum/skills/pmc/medic/chem
-	name = "PMC Medical Investigator"
+	name = "私人军事承包商医疗调查员"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_TRAINED,
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,
@@ -47,7 +47,7 @@ Private Military Contractors
 	)
 
 /datum/skills/pmc/smartgunner
-	name = "PMC Smartgunner"
+	name = "私人军事承包商智能机枪手"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_TRAINED,
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,
@@ -61,7 +61,7 @@ Private Military Contractors
 	)
 
 /datum/skills/pmc/specialist
-	name = "PMC Specialist"
+	name = "私人军事承包商武器专家"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_TRAINED,
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,
@@ -77,7 +77,7 @@ Private Military Contractors
 	)
 
 /datum/skills/pmc/SL
-	name = "PMC Leader"
+	name = "私人军事承包商队长"
 	skills = list(
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
@@ -93,7 +93,7 @@ Private Military Contractors
 	)
 
 /datum/skills/pmc/SL/chem
-	name = "PMC Lead Investigator"
+	name = "私人军事承包商首席调查员"
 	skills = list(
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
@@ -110,7 +110,7 @@ Private Military Contractors
 	)
 
 /datum/skills/pmc/tank_crew
-	name = "Vehicle Crewman"
+	name = "载具乘员"
 	skills = list(
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
@@ -125,7 +125,7 @@ Private Military Contractors
 	)
 
 /datum/skills/pmc/doctor
-	name = "PMC Triage Doctor"
+	name = "私人军事承包商分诊医生"
 	skills = list(
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
@@ -139,7 +139,7 @@ Private Military Contractors
 	)
 
 /datum/skills/pmc/engineer
-	name = "PMC Corporate Technician"
+	name = "私人军事承包商企业技术员"
 	skills = list(
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
@@ -154,7 +154,7 @@ Private Military Contractors
 	)
 
 /datum/skills/pmc/director
-	name = "PMC Site Director"
+	name = "私人军事承包商基地主管"
 	skills = list(
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,

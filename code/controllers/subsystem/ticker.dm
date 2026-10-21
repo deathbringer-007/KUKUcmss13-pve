@@ -169,7 +169,7 @@ SUBSYSTEM_DEF(ticker)
 
 	CHECK_TICK
 	if(!mode.can_start(bypass_checks))
-		to_chat(world, "未满足启动 [GLOB.master_mode] 的条件，正在返回开局大厅。")
+		to_chat(world, "未满足启动 [get_statistic_display_label(GLOB.master_mode)] 的条件，正在返回开局大厅。")
 		// Make only one more attempt
 		if(world.time - 2 * wait > CONFIG_GET(number/lobby_countdown) SECONDS)
 			flash_clients()
@@ -185,7 +185,7 @@ SUBSYSTEM_DEF(ticker)
 	CHECK_TICK
 	if(!mode.pre_setup() && !bypass_checks)
 		QDEL_NULL(mode)
-		to_chat(world, "<b>[GLOB.master_mode] 的预设置阶段出错。</b>正在返回开局大厅。")
+		to_chat(world, "<b>[get_statistic_display_label(GLOB.master_mode)] 的预设置阶段出错。</b>正在返回开局大厅。")
 		GLOB.RoleAuthority.reset_roles()
 		return FALSE
 
@@ -258,7 +258,7 @@ SUBSYSTEM_DEF(ticker)
 	save_mode(CONFIG_GET(string/gamemode_default))
 
 	if(GLOB.round_statistics)
-		to_chat_spaced(world, html = FONT_SIZE_BIG(SPAN_ROLE_BODY("<B>欢迎来到 [GLOB.round_statistics.round_name]</B>")))
+		to_chat_spaced(world, html = FONT_SIZE_BIG(SPAN_ROLE_BODY("<B>欢迎来到 [get_statistic_display_label(GLOB.round_statistics.round_name)]</B>")))
 
 	GLOB.supply_controller.start_processing()
 

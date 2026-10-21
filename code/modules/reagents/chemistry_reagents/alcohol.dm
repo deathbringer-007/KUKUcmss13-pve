@@ -333,7 +333,7 @@
 	name = "Blackout Stout"
 	localized_name = null
 	id = "blackout"
-	description = "You probably shouldn't drink this."
+	description = "你最好别喝这个。"
 	color = "#34220F"
 	properties = list(PROPERTY_ALCOHOLIC = 50) //You WILL die in record time
 	boozepwr = 250

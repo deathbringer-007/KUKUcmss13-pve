@@ -1,5 +1,5 @@
 /datum/faction/uscm
-	name = "United States Colonial Marines"
+	name = "美国殖民地海军陆战队"
 	faction_tag = FACTION_MARINE
 
 /datum/faction/uscm/modify_hud_holder(image/holder, mob/living/carbon/human/current_human)

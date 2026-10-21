@@ -35,7 +35,7 @@ export const ChatPageSettings = (props) => {
             <Button
               color="blue"
               icon="angles-left"
-              tooltip="Reorder tab to the left"
+              tooltip="将选项卡左移"
               onClick={() =>
                 dispatch(
                   moveChatPageLeft({
@@ -65,7 +65,7 @@ export const ChatPageSettings = (props) => {
             <Button
               color="blue"
               icon="angles-right"
-              tooltip="Reorder tab to the right"
+              tooltip="将选项卡右移"
               onClick={() =>
                 dispatch(
                   moveChatPageRight({
@@ -80,7 +80,7 @@ export const ChatPageSettings = (props) => {
           <Button.Checkbox
             checked={page.hideUnreadCount}
             icon={page.hideUnreadCount ? 'bell-slash' : 'bell'}
-            tooltip="Disables unread counter"
+            tooltip="关闭未读计数"
             onClick={() =>
               dispatch(
                 updateChatPage({
@@ -90,7 +90,7 @@ export const ChatPageSettings = (props) => {
               )
             }
           >
-            Mute
+            静音
           </Button.Checkbox>
         </Stack.Item>
         {!page.isMain && (
@@ -106,13 +106,13 @@ export const ChatPageSettings = (props) => {
                 )
               }
             >
-              Remove
+              移除
             </Button>
           </Stack.Item>
         )}
       </Stack>
       <Divider />
-      <Section title="Messages to display">
+      <Section title="要显示的消息">
         {MESSAGE_TYPES.filter(
           (typeDef) => !typeDef.important && !typeDef.admin,
         ).map((typeDef) => (
@@ -131,7 +131,7 @@ export const ChatPageSettings = (props) => {
             {typeDef.name}
           </Button.Checkbox>
         ))}
-        <Collapsible mt={1} color="transparent" title="Admin stuff">
+        <Collapsible mt={1} color="transparent" title="管理相关消息">
           {MESSAGE_TYPES.filter(
             (typeDef) => !typeDef.important && typeDef.admin,
           ).map((typeDef) => (

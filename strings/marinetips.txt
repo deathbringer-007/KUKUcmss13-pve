@@ -1,88 +1,88 @@
-You can link plasteel barricades together using a crowbar. First click one, and then click one adjacent. Repeat as needed.
-A lone marine is a dead marine and a happy xeno. Stick together!
-Watch out for friendly fire. Make sure you're not walking into anyone's firing line, and make sure no one else is in yours!
-Be mindful when using hand grenades. Getting stunned or knocked over after priming a grenade will drop it at your feet. This is obviously very dangerous for not only you, but your friends as well.
-Reflective walls will bounce back non-IFF bullets, including rockets. Try not to shoot them.
-Vary your loadout! Doing the same thing every round gets old fast. Try out the pistols, or carry flares.
-Be careful when firing an Orbital Bombardment, Close Air Support, or the Mortar. Make sure you're not about to blow up the entire marine push.
-The Orbital Bombardment is always closer than it looks.
-Never inject a marine you haven't scanned! You might overdose them; ESPECIALLY so with an emergency autoinjector.
-Check dead marines (skull icon on medhud) for useful gear, such as webbings, AP ammo, or binoculars.
-Always check for traps beneath loose objects - it could save your life!
-Bring a fire extinguisher, it might just save someone's life. They can remove flames that block a push, remove acid from other marines, as well as put out people on fire.
-Trading your life for a Xenomorph's is almost never worth it.
-If another marine is stunned, you can click on them with help intent with an open hand to shake them up faster.
-No round has ever been won behind a barricade. Apart from the ones that have.
-Always clear weeds and alien structures as you advance.
-Try not to block off pushes when using a flamethrower.
-Recover bodies whenever possible. Useful gear and ammunition can be salvaged from their corpse.
-A lack of supplies at the FOB can cost you the round. Make sure to unpack supply crates, weapons, and ammo for your fellow marines.
-More dakka is not good when it is directed towards your teammates.
-Never place barricades facing each other - Not only does this block bullets, both barricades are damaged at once if one is slashed!
-An FOB is as strong as its weakest part. Secure all flanks, remember that walls can be pried open.
-Flamethrowers: Green fire is weak but has a lot of utility, such as melting through armor and being instantly extinguishable. Queens and Ravagers are flameproof. Most flamethrower damage comes from the initial burst, not the flame on the ground. Don't forget you have an underbarrel extinguisher.
-Use CPR to keep critically wounded marines alive for a corpsman to get to them. It can be done by clicking the marine on help intent with an open hand. Make sure to get the rhythm correct!
-If the main push is stagnating and the area is congested, try to coordinate with a few others and go to a different area.
-When pushing into an area, check the flanks. Especially so in caves.
-Examine your gun and click [See combat statistics] to view information such as damage for your weapon.
-Xenomorphs who resist while on fire are stunned for some time and emit light. Use that time to catch up and finish them off!
-When you have shrapnel embedded, take out your boot knife and use it in your hand to rip them out of your body.
-If your weapon has a bayonet, you can manually pry open unpowered doors by clicking on them with the gun. Click on the door again to close it. UPP bayonets can pry them open quicker.
-Items on the floor can be shot. Shoot a poorly thrown HEDP away to save your buddies!
-You can hold a bayonet or throwing knife on your mask slot. Always be prepared.
-Xenomorphs can't apply huggers to marines if they're on fire.
-Dragging a Nanomed onto yourself instantly gives a Health Analyzer report. Always know what's wrong with you.
-Splints slow you down. Remove them after your bones are healed by using the Remove Your Splints verb.
-Blood loss can lead to hunger, which can slow you down. Make sure you're always full after taking a beating.
-Resin structures are weaker to melee than they are to bullets. Take out your knives!
-When fighting xenomorphs, don't aim for the head - It won't increase damage against anyone but your fellow marines.
-Scavenging attachments (or other things) from dead marines isn't bad practice, as long as you make sure they're actually dead first.
-When receiving a supply crate drop, make sure to move the crate before opening it - Otherwise subsequent supply crates will be hidden beneath it!
-If a grenade comes your way, hit the deck! Lying down will reduce damage and let you dodge any shrapnel flying overhead.
-You can grab items from second-level storage, such as a splint in a first aid kit stored inside a satchel.
-You can put screwdrivers, cigarettes, and some other things in your second ear slot!
-You can use a hand labeler (as found in squad prep rooms) to name your equipment and make it less likely to be stolen.
-You can use a health analyzer in hand (Z key) to check the last scan readout from it.
-Holocards are a useful triage tool for doctors and medics. Ensure you assign them (examine the marine with shift-click and select an appropriate holocard) to marines who have taken damage that cannot be healed without surgery. (Hint : major organ damage or larval infection = red card!)
-You can change what your SL tracker beacon is tracking by right clicking on your headset and clicking "Switch Tracker Target".
-The amount of items in Requisitions and Squad Preparations depend on how many players readied up at the start of the round.
-You can carry a variety of items inside your helmet - from gauze and cigarettes to flares and screwdrivers.
-the PLTCO can track every USCM-aligned person via the suit sensors console and overwatch console - useful for finding escaped prisoners or dead marines.
-W-Y PMCs do not have marine IFF. Don't fire Smartguns at them!
-To talk on multiple radio channels at once, put a COMMA [,] before your message and add up to four prefixes. E.g, ,abcd talks on the main four squad channels at once.
-Put .w or :w before your message to whisper. Another way to whisper is to use the verb "whisper" in the IC tab or command bar.
-For Vehicle Crewmen : it is often safer to repair the parts of your APC or tank inside the vehicle than outside it.
-It is almost always faster to do surgery manually than in the autodoc.
-To check your skills, go to the IC tab and click "view skills".
-Minirockets pack the most punch per cost as far as CAS weaponry is concerned.
-The U7 underbarrel shotgun can instantly break down both resin doors and mechanical airlocks, and it's not bad at breaking walls down either.
-You can find breaching charges in Requisitions or the Squad Engineer vendor. They function like C4, but can be deployed and explode much quicker, and release powerful shrapnel on the opposite side. They require minor engineering knowledge, which can be obtained from pamphlets.
-Armor piercing ammunition does less damage to unarmored targets.
-You can insert empty pill bottles into ChemMasters before creating pills to have them automatically inserted.
-Drinks from the hot drinks machine warm you up.
-Be careful! Barricades block grenades, and indeed all thrown items, from the front if they're barbed up.
-CAS Fire Missions doubles the accuracy of fired weapons, which can be substantial.
-Painkillers do not stack. Only the strongest has any effect.
-You can shoot through tents, but they won't protect you much in return.
-A ‘point blank’ or ‘PB’ is a type of attack with a firearm where you click directly on a mob next to you. These attacks are not effected by accuracy allowing you to quickly fire with weapons like a shotgun to great effect.
-If you've been pounced on and your squad is unloading into the target, you can hit the 'rest' button to stay down so you don't get filled with lead after getting up.
-You can check the landing zone as a marine in the status panel.
-A night vision HUD optic can be recharged by removing it with a screwdriver, then placing it into a recharger.
-You can put a pistol belt on your suit slot. (Just grab a rifle instead.)
-Alt-clicking the Squad Leader tracker lets you track your Platoon Sergeant instead.
-Armor consistently protects you from damage to your chest, arms, and legs, but does not protect hands and feet. Take the wiki damage values as a best-case scenario.
-You can click on your Security Access Tuner (multitool) in your hand to locate the area's APC if there is one.
-Need help learning the game and these tips aren't enough? Use MentorHelp.
-Clicking on your sprite with help intent will let you check your body, seeing where your fractures and other wounds are.
-Armor has insulative properties - taking it off will help you cool off and take less damage faster if you've been set on fire.
-Both foldable cades & plasteel cades if loosened and folded down can be transported in crates! In this way, you can use the crate as a portable breach-repair kit, or dragged (or carried via Power Loader) to an unsecure area for quick defensive set up.
-The fuel tank pouch doesn't just carry fuel for an incinerator- they can also carry full-size extinguishers. Toolbelts & tool pouches also may hold miniature extinguishers.
-The M2C heavy machine gunner belt rig can also carry C4, breaching charges, and most tools.
-You can always multitask as Medic, such as by using pills or healing kits at the same time.
-The nuclear ordnance requires BOTH communication towers to be actively held to decrypt the nuclear codes.
-The quick wield keys generally prioritize wieldable gear going from left to right on your inventory bar.
-Orbital Bombardment warheads respect roofing and hive core protection. They won't hit inside of protected areas.
-The Queen can unbolt and break dropship doors by prying them open, even if they are unlocked. Pilots, Dropship Crew Chiefs, Engineers and Synths can repair these doors with a multitool.
-If you jump out of a dropship with a parachute on (when there is no paradrop system active), you will land at a random location on the map.
-If you push crates out of a dropship when paradropping, it will land near the paradrop drop point.
-When paradropping, you can toss any large item (such as a backpack, pouch, or gun) into hyperspace, and it will land near the paradrop drop point. However, smaller items such as flares will not survive the fall.
+你可以用撬棍连接塑钢路障。先点击一个，再点击相邻的另一个，按需重复即可。
+落单的陆战队员会变成尸体，让异形乐开花。保持集体行动！
+小心友军误伤。别走进别人的射界，也别让别人挡在你的枪口前！
+使用手榴弹时要谨慎。拉开保险后若被眩晕或击倒，手榴弹就会掉在脚下。这显然会危及你和战友。
+反射墙会弹回未受IFF保护的弹药，包括火箭弹。尽量别朝它们开火。
+换换装备搭配吧！每回合都做同样的事很快就会腻。不妨试试手枪，或者多带些照明弹。
+呼叫轨道轰炸、近距离空中支援或迫击炮时要小心。确认你不会把正在推进的整支陆战队炸上天。
+轨道轰炸的落点总比看起来更近。
+没扫描就别给陆战队员打针！你可能会让对方药物过量，尤其是使用应急自动注射器时。
+检查阵亡陆战队员的遗体（医疗HUD上显示骷髅图标），寻找携行具、穿甲弹或双筒望远镜等有用装备。
+随手物品下面可能藏着陷阱，务必检查，这能救你一命！
+带个灭火器，也许就能救下一条命。它能扑灭挡住进攻路线的火焰、清除战友身上的酸液，也能给着火的人灭火。
+用自己的命换一只异形，几乎从来都不划算。
+如果战友被眩晕，你可以空手切换协助意图点击对方，帮助其更快清醒。
+躲在路障后面可赢不了回合。除非还真赢了。
+推进时记得清除菌毯和异形建筑。
+使用喷火器时，尽量别把进攻路线封死。
+尽可能回收遗体。可以从阵亡者身上取回有用的装备和弹药。
+前进作战基地缺乏补给可能导致整局败北。记得打开补给箱，为战友取出武器和弹药。
+朝战友倾泻的火力可不是越多越好。
+别让两个路障正面相对。这不仅会挡住子弹，异形劈砍其中一个时，两个都会受损！
+前进作战基地的防御取决于最薄弱的一环。守住所有侧翼，别忘了墙壁也能被撬开。
+喷火器提示：绿火伤害较低，但能削弱护甲，也能立刻扑灭，用途很多。异形女皇和蹂躏者免疫火焰。喷火器的大部分伤害来自最初的喷射，而非地上的火焰。别忘了枪管下方还装着灭火器。
+医疗兵赶到前，用心肺复苏维持重伤战友的生命。空手切换协助意图点击对方即可，注意按对节奏！
+如果主攻方向停滞、通道拥堵，试着叫上几个人，协调向其他区域推进。
+攻入某个区域时要检查侧翼，在洞穴里尤其如此。
+检查枪械并点击[查看战斗统计]，就能看到武器伤害等信息。
+着火的异形挣扎灭火时会短暂眩晕并发光。趁机追上去，彻底解决它！
+如果体内嵌入了弹片，取出靴子里的匕首，在手中使用它，就能把弹片挖出来。
+如果枪上装有刺刀，用枪点击断电的门就能将其撬开。再次点击可将门关上。UPP刺刀撬门更快。
+地上的物品也能被子弹击中。把扔歪的HEDP手榴弹射远一点，救下你的战友！
+刺刀或飞刀可以放在面罩栏位，随时做好准备。
+异形着火时无法把抱脸虫放到陆战队员脸上。
+把纳米医疗柜拖到自己身上，就能立刻获得健康分析报告。时刻了解自己的身体状况。
+夹板会让你减速。骨头愈合后，使用“移除夹板”指令取下它们。
+失血会让你感到饥饿，而饥饿会让你减速。挨过一顿打后，记得吃饱。
+相比子弹，近战攻击对树脂建筑更有效。拔出你的刀！
+对付异形时别瞄准头部，这样只会对战友增加伤害。
+从阵亡战友身上回收配件或其他物资并没有错，前提是先确认对方确实已经死了。
+收到空投补给箱后，先把箱子移开再打开，否则后续投下的补给箱会藏在它下面！
+手榴弹朝你飞来时，赶紧卧倒！趴下能降低伤害，还能躲过从头顶飞过的弹片。
+你可以直接取出第二层容器里的物品，例如放在挎包内的急救包中的夹板。
+螺丝刀、香烟和一些其他物品可以放在第二个耳部栏位！
+用手持标签机（小队整备室里有）给装备起名，可以减少它被偷走的概率。
+在手中使用健康分析仪（Z键），可以查看上一次扫描的结果。
+全息分诊卡能帮助医生和医疗兵判断救治优先级。对需要手术才能治愈的伤员分配合适的分诊卡：按住Shift点击检查对方，再选择相应分诊卡。提示：严重器官损伤或感染异形幼体，应使用红卡！
+右键点击耳机并选择“切换追踪目标”，可以更改小队长追踪信标的追踪对象。
+补给部和小队整备室里的物资数量，取决于回合开始时点击准备的玩家人数。
+头盔可以存放各种物品，从纱布、香烟到照明弹、螺丝刀都行。
+排指挥官可以通过服装传感器控制台和战场监控控制台追踪所有USCM友方人员，寻找逃犯或阵亡陆战队员时很有用。
+维兰德-汤谷私人军事承包商没有陆战队IFF识别。别用智能机枪朝他们开火！
+想同时向多个无线电频道发言，在消息前输入逗号[,]，再加上最多四个频道前缀。例如，,abcd可以同时向四个主要小队频道发言。
+在消息前输入.w或:w即可低语。也可以在IC选项卡或命令栏使用“低语”指令。
+载具乘员提示：在装甲运兵车或坦克内部修理部件，往往比在车外更安全。
+手动进行手术几乎总比使用自动手术舱更快。
+想查看自己的技能，在IC选项卡点击“查看技能”。
+在近距离空中支援武器中，微型火箭弹的性价比最高。
+U7下挂霰弹枪能立刻击破树脂门和机械气闸，破墙能力也不错。
+补给部或小队工程兵售货机里可以找到破门炸药。它们类似C4，但部署和起爆更快，还会向另一侧喷射强力弹片。使用它们需要少量工程知识，可以通过手册获得。
+穿甲弹对无护甲目标造成的伤害更低。
+制作药丸前，先把空药瓶放入化学大师，制成的药丸就会自动装瓶。
+热饮机会提供能让你暖和起来的饮料。
+小心！带刺铁丝网的路障会挡住从正面飞来的手榴弹，以及其他所有投掷物。
+近距离空中支援的火力任务能使武器射击精度翻倍，效果相当可观。
+止痛药的效果不会叠加，只有最强的一种生效。
+你能隔着帐篷射击，但帐篷也无法提供多少保护。
+“贴身射击”或“PB”指用枪直接点击紧邻自己的目标发动攻击。这种攻击不受精度影响，使用霰弹枪等武器能快速打出可观效果。
+被异形扑倒后，如果小队正在集火它，你可以点击“休息”保持卧倒，免得刚爬起来就被打成筛子。
+陆战队员可以在状态面板查看着陆区情况。
+用螺丝刀拆下夜视HUD瞄具，再放入充电器，就能为其充电。
+手枪腰带可以放在外套栏位。（还是拿把步枪吧。）
+按住Alt点击小队长追踪器，就能改为追踪排士官。
+护甲能稳定保护胸部、手臂和腿部，但不保护手和脚。百科列出的伤害值应视作最佳情况。
+在手中点击安保权限调谐器（多功能工具），可以定位所在区域的区域电力控制器。
+这些提示还不够帮助你学会游戏？使用导师求助吧。
+切换协助意图点击自己的角色，就能检查身体，了解骨折及其他伤势的位置。
+护甲具有隔热作用。如果着火了，脱掉护甲能让你更快降温、减少伤害。
+折叠路障，以及松开固定并折叠的塑钢路障，都能装进箱子运输！你可以把箱子当作便携式缺口抢修包，也能拖走或用动力装载机搬到防守薄弱的区域，快速建立防线。
+燃料罐收纳袋不仅能装焚烧器燃料，也能装全尺寸灭火器。工具腰带和工具收纳袋还可以装小型灭火器。
+M2C重机枪手腰带携行具也能携带C4、破门炸药及大部分工具。
+医疗兵可以同时进行多项操作，例如同时使用药丸和治疗包。
+解密核武器密码需要同时控制两座通信塔，并保持它们正常运转。
+快速持握快捷键通常会从左到右，优先选择物品栏中可以双手持握的装备。
+轨道轰炸弹头受屋顶和虫巢核心保护机制限制，不会命中受保护区域内部。
+女皇可以撬开运输艇舱门，解除门栓并将门损坏，即使门没有上锁也一样。飞行员、运输艇机组长、工程兵和合成人可以用多功能工具修理这些门。
+穿着降落伞跳出运输艇时，如果当前没有启用伞降系统，你会落在地图上的随机位置。
+伞降时把箱子推出运输艇，箱子会落在伞降点附近。
+伞降时，可以把背包、收纳袋、枪械等大件物品扔进超空间，它们会落在伞降点附近。但照明弹等小物品无法承受坠落。

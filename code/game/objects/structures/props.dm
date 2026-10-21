@@ -355,7 +355,7 @@
 
 /obj/structure/prop/cash_register
 	name = "数字收银机"
-	desc = "西格森牌销售终端，接受信用凭单；有人操作时也收现金。据说它与西格森工作乔伊使用相同逻辑板。你的财务状况开始不稳定了。"
+	desc = "西格森牌销售终端，接受信用凭单；有人操作时也收现金。据说它与西格森工作乔使用相同逻辑板。你的财务状况开始不稳定了。"
 	icon = 'icons/obj/structures/props/cash_register.dmi'
 	icon_state = "cash_register"
 	density = TRUE
@@ -666,7 +666,7 @@
 
 /obj/structure/prop/ice_colony/ice_crystal
 	name = "冰晶"
-	desc = "巨大的冰晶。在季节温度大幅变化时，仍有某种化学过程让它保持冻结；美洲联盟大阿根廷科学团队正在希瓦雪球研究此事。"
+	desc = "巨大的冰晶。在季节温度大幅变化时，仍有某种化学过程让它保持冻结；美洲联盟大阿根廷科学团队正在湿婆雪球研究此事。"
 	icon_state = "ice_crystal"
 
 /obj/structure/prop/ice_colony/ground_wire
@@ -938,7 +938,7 @@
 
 /obj/structure/prop/invuln/overhead_pipe/Initialize(mapload)
 	. = ..()
-	desc = "这是管网的一部分，负责在[is_mainship_level(z) ? copytext(MAIN_SHIP_NAME, 5) : "殖民地"]内输送水，以及不那么愉快的其他液体。"
+	desc = "这是管网的一部分，负责在[is_mainship_level(z) ? get_statistic_display_label(MAIN_SHIP_NAME) : "殖民地"]内输送水，以及不那么愉快的其他液体。"
 
 ///Decorative fire.
 /obj/structure/prop/invuln/fire
@@ -966,7 +966,7 @@
 
 /obj/structure/prop/invuln/pipe_water/Initialize(mapload)
 	. = ..()
-	desc = "[is_mainship_level(z) ? copytext(MAIN_SHIP_NAME, 5) : "殖民地"]漏水了！"
+	desc = "[is_mainship_level(z) ? get_statistic_display_label(MAIN_SHIP_NAME) : "殖民地"]漏水了！"
 
 /obj/structure/prop/invuln/lattice_prop
 	desc = "轻型支撑格架。"
@@ -1074,7 +1074,7 @@
 
 /obj/structure/prop/wooden_cross/get_examine_text(mob/user)
 	. = ..()
-	. += (tagged ? "十字架上挂着身份识别牌，上面写着：\"[dogtag_name] - [dogtag_assign] - [dogtag_blood]\"." : "十字架上没有身份识别牌。")
+	. += (tagged ? "十字架上挂着身份识别牌，上面写着：\"[dogtag_name] - [localized_player_label(dogtag_assign)] - [dogtag_blood]\"." : "十字架上没有身份识别牌。")
 	. += (engraved ? "上面刻着字，内容为：\"[inscription]\"" : "上面没有刻字。")
 
 /obj/structure/prop/wooden_cross/attack_hand(mob/user)
@@ -1119,7 +1119,7 @@
 
 /obj/structure/prop/invuln/joey
 	name = "工作乔伊酒保"
-	desc = "一队陆战队员在上次岸休后从深处仓库搬出来的报废西格森工作乔伊。有人试图把这台清洁合成人改成简陋酒保，但效果不佳。"
+	desc = "一队陆战队员在上次岸休后从深处仓库搬出来的报废西格森工作乔。有人试图把这台清洁合成人改成简陋酒保，但效果不佳。"
 	icon = 'icons/obj/structures/props/props.dmi'
 	icon_state = "joey"
 	unslashable = FALSE
@@ -1203,8 +1203,8 @@
 	return TRUE
 
 /obj/structure/prop/invuln/joey/normal
-	name = "工作乔伊"
-	desc = "西格森牌工作乔伊，存放在合成人维护站，随时可以调用。前提是你有钥匙。"
+	name = "工作乔"
+	desc = "西格森牌工作乔，存放在合成人维护站，随时可以调用。前提是你有钥匙。"
 	icon_state = "joe"
 
 /obj/structure/prop/invuln/darkness //I cant take credit for this, whoever made LV671 this was all you

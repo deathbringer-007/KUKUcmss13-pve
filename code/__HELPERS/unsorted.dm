@@ -294,7 +294,7 @@
 				var/obj/item/card/id/ID = A
 				if(ID.registered_name == oldname)
 					ID.registered_name = newname
-					ID.name = "[newname]'s [ID.card_name] ([ID.assignment])"
+					ID.name = "[newname]的[localized_player_label(ID.card_name)]（[localized_player_label(ID.assignment)]）"
 					if(!search_pda) break
 					search_id = 0
 	return 1
@@ -1061,7 +1061,7 @@ GLOBAL_DATUM(action_purple_power_up, /image)
 						corner.icon = X.icon
 						corner.icon_state = replacetext(X.icon_state, "_s", "_f")
 						corner.tag = "delete me"
-						corner.name = "wall"
+						corner.name = "墙壁"
 
 						// Find a new turf to take on the property of
 						var/turf/nextturf = get_step(corner, direction)
@@ -1079,7 +1079,7 @@ GLOBAL_DATUM(action_purple_power_up, /image)
 						if(O.tag == "delete me")
 							X.icon = 'icons/turf/shuttle.dmi'
 							X.icon_state = replacetext(O.icon_state, "_f", "_s") // revert the turf to the old icon_state
-							X.name = "wall"
+							X.name = "墙壁"
 							qdel(O) // prevents multiple shuttle corners from stacking
 							continue
 						if(!istype(O,/obj)) continue

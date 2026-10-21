@@ -1,7 +1,7 @@
 //Skills
 
 /datum/skills/honor_guard
-	name = "Honor Guard" //MP
+	name = "荣誉卫兵" //MP
 	skills = list(
 		SKILL_VEHICLE = SKILL_VEHICLE_CREWMAN,
 		SKILL_POWERLOADER = SKILL_POWERLOADER_MASTER,
@@ -11,7 +11,7 @@
 	)
 
 /datum/skills/honor_guard/vet
-	name = "Honor Guard Verteran" //SO
+	name = "资深荣誉卫兵" //SO
 	skills = list(
 		SKILL_VEHICLE = SKILL_VEHICLE_CREWMAN,
 		SKILL_POWERLOADER = SKILL_POWERLOADER_MASTER,
@@ -22,7 +22,7 @@
 	)
 
 /datum/skills/honor_guard/spec
-	name = "Honor Guard Weapons Specialist" //Tank crew
+	name = "荣誉卫队武器专家" //Tank crew
 	skills = list(
 		SKILL_VEHICLE = SKILL_VEHICLE_CREWMAN,
 		SKILL_POWERLOADER = SKILL_POWERLOADER_MASTER,
@@ -33,7 +33,7 @@
 	)
 
 /datum/skills/honor_guard/lead
-	name = "Honor Guard Squad Leader"
+	name = "荣誉卫队队长"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED, //to fix CIC apc.
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
@@ -47,7 +47,7 @@
 	)
 
 /datum/skills/mortar_crew
-	name = "Mortar Crew"
+	name = "迫击炮组员"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,

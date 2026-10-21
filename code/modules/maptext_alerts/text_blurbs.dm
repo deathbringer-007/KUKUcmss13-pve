@@ -5,7 +5,7 @@
 	set waitfor = 0
 	var/areaname = replacetext(A.name, "\improper", "") //The \improper flickers "ÿ" briefly
 
-	var/text = "[worldtime2text("hhmm")], [time2text(REALTIMEOFDAY, "DD-MMM-[GLOB.game_year]")]\n[MAIN_SHIP_NAME], [areaname]"
+	var/text = "[worldtime2text("hhmm")]时，[GLOB.game_year]年[time2text(REALTIMEOFDAY, "MM")]月[time2text(REALTIMEOFDAY, "DD")]日\n[get_statistic_display_label(MAIN_SHIP_NAME)]，[areaname]"
 
 	show_blurb(targets, duration, text, TRUE)
 
@@ -14,23 +14,24 @@ exempt_ztraits = trait or list of traits of zlevels where any marines don't see 
 shouldn't see the ship marines' drop message. Ex. ZTRAIT_GROUND by default.
 unit = the unit the marines are from. FF, Dust Raiders etc. Military crew see this.
 base = the base the marines are staging from. The ship, Whiskey Outpost etc. Noncombat crew see this.**/
-/proc/show_blurb_uscm(list/exempt_ztraits = ZTRAIT_GROUND, unit = "3rd Bat. 'Solar Devils'", base = MAIN_SHIP_NAME)
+/proc/show_blurb_uscm(list/exempt_ztraits = ZTRAIT_GROUND, unit = "第3营“太阳恶魔”", base = MAIN_SHIP_NAME)
 	if(!islist(exempt_ztraits))
 		exempt_ztraits = list(exempt_ztraits)
 	var/list/exempt_zlevels = SSmapping.levels_by_any_trait(exempt_ztraits)
 
-	var/base_text = "<b>[uppertext(GLOB.round_statistics.round_name)]</b>\n\
-						[worldtime2text("hhmm hrs")], [uppertext(time2text(REALTIMEOFDAY, "DD-MMM-[GLOB.game_year]"))]\n\
-						[SSmapping.configs[GROUND_MAP].map_name]"
+	var/base_text = "<b>[uppertext(get_statistic_display_label(GLOB.round_statistics.round_name))]</b>\n\
+						[worldtime2text("hhmm")]时，[GLOB.game_year]年[time2text(REALTIMEOFDAY, "MM")]月[time2text(REALTIMEOFDAY, "DD")]日\n\
+						[get_statistic_display_label(SSmapping.configs[GROUND_MAP].map_name)]"
+	var/base_label = get_statistic_display_label(base)
 
 	var/list/post_text = list("combat" = "\n[unit]",
-							"po" = "\nFlight Crew, [base]",
-							"mp" = "\nSecurity, [base]",
-							"eng" = "\nEngineering, [base]",
-							"med" = "\nMedical, [base]",
-							"req" = "\nLogistics, [base]",
-							"cl" = "\nLiaison, [base]",
-							"misc" = "\nCrew, [base]")
+							"po" = "\n飞行组，[base_label]",
+							"mp" = "\n安保部，[base_label]",
+							"eng" = "\n工程部，[base_label]",
+							"med" = "\n医疗部，[base_label]",
+							"req" = "\n后勤部，[base_label]",
+							"cl" = "\n联络处，[base_label]",
+							"misc" = "\n舰员，[base_label]")
 
 	//We'll save processing by showing the same message object to each marine in a category.
 	var/list/mobarray = list("combat" = list(),
@@ -100,26 +101,26 @@ but should see their own spawn message even if the player already dropped as USC
 	var/style = "font-family: Fixedsys, monospace; -dm-text-outline: 1 black; font-size: 11px; text-align: [text_alignment]; color: [text_color];" //This font doesn't seem to respect pixel sizes.
 	var/list/linebreaks = list() //Due to singular /'s making text disappear for a moment and for counting lines.
 
-	var/linebreak = findtext(message, "\n")
+	var/linebreak = findtext_char(message, "\n")
 	while(linebreak)
 		linebreak++ //Otherwise it picks up the character immediately before the linebreak.
 		linebreaks += linebreak
-		linebreak = findtext(message, "\n", linebreak)
+		linebreak = findtext_char(message, "\n", linebreak)
 
 	var/list/html_tags = list()
-	var/html_tag = findtext(message, regex("<.>"))
+	var/html_tag = findtext_char(message, regex("<.>"))
 	var/opener = TRUE
 	while(html_tag)
 		html_tag++
 		if(opener)
 			html_tags += list(html_tag, html_tag + 1, html_tag + 2)
-			html_tag = findtext(message, regex("<.>"), html_tag + 2)
+			html_tag = findtext_char(message, regex("<.>"), html_tag + 2)
 			if(!html_tag)
 				opener = FALSE
-				html_tag = findtext(message, regex("</.>"))
+				html_tag = findtext_char(message, regex("</.>"))
 		else
 			html_tags += list(html_tag, html_tag + 1, html_tag + 2, html_tag + 3)
-			html_tag = findtext(message, regex("</.>"), html_tag + 3)
+			html_tag = findtext_char(message, regex("</.>"), html_tag + 3)
 
 	var/atom/movable/screen/text/T = new()
 	T.screen_loc = screen_position
@@ -138,14 +139,14 @@ but should see their own spawn message even if the player already dropped as USC
 			LAZYDISTINCTADD(GLOB.blurb_witnesses[blurb_key], M.key)
 		M.client?.add_to_screen(T)
 
-	for(var/i in 1 to length(message) + 1)
+	for(var/i in 1 to length_char(message) + 1)
 		if(i in linebreaks)
 			if(scroll_down)
 				T.maptext_y -= 14 //Move the object to keep lines in the same place.
 			continue
 		if(i in html_tags)
 			continue
-		T.maptext = "<span style=\"[style]\">[copytext(message,1,i)]</span>"
+		T.maptext = "<span style=\"[style]\">[copytext_char(message,1,i)]</span>"
 		sleep(speed)
 
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_blurb), targets, T), duration)

@@ -6,9 +6,9 @@
 #define WALL_STATE_CROWBAR 4
 
 // Defines for barricade upgrades
-#define BARRICADE_UPGRADE_BURN "Biohazard Upgrade (+Burn)"
-#define BARRICADE_UPGRADE_BRUTE "Reinforced Upgrade (+Brute)"
-#define BARRICADE_UPGRADE_ANTIFF "Composite Upgrade (++Explosive, ++Projectile, ++Fire)"
+#define BARRICADE_UPGRADE_BURN "生化防护升级（+灼烧抗性）"
+#define BARRICADE_UPGRADE_BRUTE "加固升级（+物理抗性）"
+#define BARRICADE_UPGRADE_ANTIFF "复合升级（++爆炸抗性、++弹丸抗性、++火焰抗性）"
 
 // Defines for defense stats
 #define DEFENSE_FUNCTIONAL 0

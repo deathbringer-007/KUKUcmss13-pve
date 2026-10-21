@@ -89,15 +89,15 @@ SUBSYSTEM_DEF(objectives)
 /datum/controller/subsystem/objectives/proc/announce_stats()
 	var/datum/techtree/tree = GET_TREE(TREE_MARINE)
 
-	var/message = "TECH REPORT: [round(tree.points, 0.1)] points available"
+	var/message = "科技报告：可用点数[round(tree.points, 0.1)]"
 	var/earned = round(tree.total_points - tree.total_points_last_sitrep, 0.1)
 	if (earned)
 		message += " (+[earned])"
-	message += "."
+	message += "。"
 
 	ai_silent_announcement(message, ":v", TRUE)
 	ai_silent_announcement(message, ":t", TRUE)
-	log_ares_tech(MAIN_AI_SYSTEM, FALSE, "TECH REPORT", "[round(tree.points, 0.1)] points available.", 0)
+	log_ares_tech(MAIN_AI_SYSTEM, FALSE, "科技报告", "可用点数[round(tree.points, 0.1)]。", 0)
 	tree.total_points_last_sitrep = tree.total_points
 
 	next_sitrep = world.time + SITREP_INTERVAL

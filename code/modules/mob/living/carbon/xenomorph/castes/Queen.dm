@@ -451,26 +451,26 @@
 /mob/living/carbon/xenomorph/queen/generate_name()
 	if(!nicknumber)
 		generate_and_set_nicknumber()
-	var/name_prefix = hive.prefix
+	var/name_prefix = localized_player_label(trim(hive.prefix))
 	if(queen_aged)
 		age_xeno()
 		switch(age)
 			if(XENO_NORMAL)
-				name = "[name_prefix]Queen"  //Regular
+				name = "[name_prefix]女皇"  //Regular
 			if(XENO_MATURE)
-				name = "[name_prefix]Elder Queen"  //Mature
+				name = "[name_prefix]长老女皇"  //Mature
 			if(XENO_ELDER)
-				name = "[name_prefix]Elder Empress"  //Elite
+				name = "[name_prefix]长老女帝"  //Elite
 			if(XENO_ANCIENT)
-				name = "[name_prefix]Ancient Empress" //Ancient
+				name = "[name_prefix]远古女帝" //Ancient
 			if(XENO_PRIME)
-				name = "[name_prefix]Prime Empress" //Primordial
+				name = "[name_prefix]巅峰女帝" //Primordial
 	else
 		age = XENO_NORMAL
 		if(client)
 			hud_update()
 
-		name = "[name_prefix]Immature Queen"
+		name = "[name_prefix]未成熟女皇"
 
 	var/name_client_prefix = ""
 	var/name_client_postfix = ""

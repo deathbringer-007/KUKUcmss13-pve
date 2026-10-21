@@ -152,11 +152,11 @@
 //taken from gear_access_point.dm
 /obj/vehicle/multitile/apc/command/proc/access_techpod(mob/user)
 	if(!ishuman(user) || !get_access_permission(user))
-		to_chat(user, SPAN_WARNING("Access denied."))
+		to_chat(user, SPAN_WARNING("访问被拒绝。"))
 		return
 
 	if(health < initial(health) * 0.5)
-		to_chat(user, SPAN_WARNING("\The [name]'s hull is too damaged and Techpod Vendor is not responding."))
+		to_chat(user, SPAN_WARNING("[name]的车体损伤过重，科技装备发放机没有响应。"))
 		return
 
 	var/list/list_of_techs = list()
@@ -168,16 +168,16 @@
 		list_of_techs[droppod_tech.name] = droppod_tech
 
 	if(!length(list_of_techs))
-		to_chat(user, SPAN_WARNING("No tech gear is available at the moment!"))
+		to_chat(user, SPAN_WARNING("目前没有可领取的科技装备！"))
 		return
 
-	var/user_input = tgui_input_list(user, "Choose a tech to retrieve an item from.", name, list_of_techs)
+	var/user_input = tgui_input_list(user, "选择要领取物品的科技。", name, list_of_techs)
 	if(!user_input)
 		return
 
 	var/datum/tech/droppod/chosen_tech = list_of_techs[user_input]
 	if(!chosen_tech.can_access(user))
-		to_chat(user, SPAN_WARNING("You cannot access this tech!"))
+		to_chat(user, SPAN_WARNING("你没有权限使用这项科技！"))
 		return
 
 	chosen_tech.on_pod_access(user)

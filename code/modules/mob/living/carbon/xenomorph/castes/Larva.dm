@@ -209,15 +209,15 @@ Also handles the "Mature / Bloody naming convention. Call this to update the nam
 	var/name_prefix = "" // Prefix for hive
 
 	if(hive)
-		name_prefix = hive.prefix
+		name_prefix = localized_player_label(trim(hive.prefix))
 		color = hive.color
 
 	if(evolution_stored >= evolution_threshold)
-		progress = "Mature "
+		progress = "成熟"
 	else if(evolution_stored < evolution_threshold / 2) //We're still bloody
-		progress = "Bloody "
+		progress = "染血"
 
-	name = "[name_prefix][progress]Larva ([nicknumber])"
+	name = "[name_prefix][progress]幼虫（[nicknumber]）"
 
 	//Update linked data so they show up properly
 	change_real_name(src, name)

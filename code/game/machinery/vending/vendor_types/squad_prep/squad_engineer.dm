@@ -290,10 +290,10 @@ GLOBAL_LIST_INIT(cm_vending_mortar_gear, list(
 		list("照明／摄像迫击炮弹", 10, /obj/item/mortar_shell/flare, null, VENDOR_ITEM_REGULAR),
 
 		list("20MM 手榴弹包", 0, null, null, null),
-		list("L103A1 20mm HE", 20, /obj/item/storage/box/packet/rmc/mini, null, VENDOR_ITEM_REGULAR),
+		list("L103A1 20mm 高爆弹", 20, /obj/item/storage/box/packet/rmc/mini, null, VENDOR_ITEM_REGULAR),
 		list("L104A1 20mm 破片弹", 20, /obj/item/storage/box/packet/rmc/mini/frag, null, VENDOR_ITEM_REGULAR),
 		list("L103A1/I 20mm 燃烧弹", 20, /obj/item/storage/box/packet/rmc/mini/incen, null, VENDOR_ITEM_REGULAR),
-		list("L108A1 20mm HESH", 30, /obj/item/storage/box/packet/rmc/mini/squash, null, VENDOR_ITEM_REGULAR),
+		list("L108A1 20mm 碎甲弹", 30, /obj/item/storage/box/packet/rmc/mini/squash, null, VENDOR_ITEM_REGULAR),
 		list("L104A1/H 20mm 全息标记弹", 20, /obj/item/storage/box/packet/rmc/mini/holo, null, VENDOR_ITEM_REGULAR),
 		list("L101A2 20mm 神经毒剂弹", 30, /obj/item/storage/box/packet/rmc/mini/gas, null, VENDOR_ITEM_REGULAR),
 

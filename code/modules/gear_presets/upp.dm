@@ -995,7 +995,7 @@
 	var/datum/preferences/A = new()
 	A.randomize_appearance(new_human)
 
-	new_human.change_real_name(new_human, "Commando #[rand(250)]")
+	new_human.change_real_name(new_human, "突击队员#[rand(250)]")
 	new_human.age = rand(18,35)
 	var/static/list/colors = list("BLACK" = list(15, 15, 10), "BROWN" = list(48, 38, 18), "BROWN" = list(48, 38, 18),"BLUE" = list(29, 51, 65), "GREEN" = list(40, 61, 39), "STEEL" = list(46, 59, 54))
 	var/static/list/hair_colors = list("BLACK" = list(15, 15, 10), "BROWN" = list(48, 38, 18), "AUBURN" = list(77, 48, 36), "BLONDE" = list(95, 76, 44))

@@ -37,7 +37,7 @@
 	return ..()
 
 /atom/movable/screen/alert/status_effect/stun
-	name = "Stunned"
+	name = "眩晕"
 	desc = "你已失去行动能力，无法移动或采取行动。"
 	icon_state = ALERT_INCAPACITATED
 
@@ -58,7 +58,7 @@
 	return ..()
 
 /atom/movable/screen/alert/status_effect/knockdown
-	name = "Floored"
+	name = "倒地"
 	desc = "你无法站起来！"
 	icon_state = ALERT_FLOORED
 
@@ -78,7 +78,7 @@
 	return ..()
 
 /atom/movable/screen/alert/status_effect/immobilized
-	name = "Immobilized"
+	name = "无法移动"
 	desc = "你无法移动。"
 	icon_state = ALERT_IMMOBILIZED
 
@@ -99,7 +99,7 @@
 	return ..()
 
 /atom/movable/screen/alert/status_effect/unconscious
-	name = "Unconscious"
+	name = "昏迷"
 	desc = "你被击昏了。"
 	icon_state = ALERT_KNOCKEDOUT
 

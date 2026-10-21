@@ -61,29 +61,29 @@ Gunshots/explosions/opening doors/less rare audio (done)
 							if(1) //revolver
 								halitem.icon = 'icons/obj/items/weapons/guns/legacy/old_bayguns.dmi'
 								halitem.icon_state = "revolver"
-								halitem.name = "Revolver"
+								halitem.name = "左轮手枪"
 							if(2) //c4
 								halitem.icon = 'icons/obj/items/assemblies.dmi'
 								halitem.icon_state = "plastic-explosive0"
-								halitem.name = "Mysterious Package"
+								halitem.name = "神秘包裹"
 								if(prob(25))
 									halitem.icon_state = "c4small_1"
 							if(3) //sword
 								halitem.icon = 'icons/obj/items/weapons/weapons.dmi'
 								halitem.icon_state = "sword1"
-								halitem.name = "Sword"
+								halitem.name = "剑"
 							if(4) //stun baton
 								halitem.icon = 'icons/obj/items/weapons/weapons.dmi'
 								halitem.icon_state = "stunbaton"
-								halitem.name = "Stun Baton"
+								halitem.name = "电击警棍"
 							if(5) //emag
 								halitem.icon = 'icons/obj/items/card.dmi'
 								halitem.icon_state = "emag"
-								halitem.name = "Cryptographic Sequencer"
+								halitem.name = "密码序列器"
 							if(6) //flashbang
 								halitem.icon = 'icons/obj/items/weapons/grenade.dmi'
 								halitem.icon_state = "flashbang1"
-								halitem.name = "Flashbang"
+								halitem.name = "闪光弹"
 						if(client)
 							client.add_to_screen(halitem)
 						spawn(rand(100,250))
@@ -335,7 +335,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 
 /proc/fake_blood(mob/target)
 	var/obj/effect/overlay/O = new/obj/effect/overlay(target.loc)
-	O.name = "blood"
+	O.name = "血迹"
 	var/image/I = image('icons/effects/blood.dmi',O,"floor[rand(1,7)]",O.dir,1)
 	target << I
 	QDEL_IN(O, 30 SECONDS)

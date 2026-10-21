@@ -27,6 +27,15 @@ type Camera = {
   ref: string;
 };
 
+const cameraLabel = (name: string) =>
+  name
+    .replace(/ interior$/, ' 内部')
+    .replace(/ Command Tank(?= 内部$|$)/, ' 指挥坦克')
+    .replace(/ Tank(?= 内部$|$)/, ' 坦克')
+    .replace(/^(#\d+ )Cheetah (2[AB])/, '$1“猎豹”$2')
+    .replace(/ CMD APC(?= 内部$|$)/, ' 指挥型装甲输送车')
+    .replace(/ MED APC(?= 内部$|$)/, ' 医疗型装甲输送车');
+
 /**
  * Returns previous and next camera names relative to the currently
  * active camera.
@@ -73,7 +82,7 @@ const selectCameras = (cameras: Camera[], searchText = ''): Camera[] => {
   if (searchText) {
     const testSearch = createSearch(
       searchText,
-      (camera: Camera) => camera.name,
+      (camera: Camera) => `${camera.name} ${cameraLabel(camera.name)}`,
     );
     queriedCameras = filter(queriedCameras, testSearch);
   }
@@ -133,7 +142,7 @@ const CameraSelector = (props) => {
             // would be absolutely abysmal (50+ ms for each re-render).
             <div
               key={camera.name}
-              title={camera.name}
+              title={cameraLabel(camera.name)}
               className={classes([
                 'Button',
                 'Button--fluid',
@@ -149,7 +158,7 @@ const CameraSelector = (props) => {
                 })
               }
             >
-              {camera.name}
+              {cameraLabel(camera.name)}
             </div>
           ))}
         </Section>
@@ -174,7 +183,7 @@ const CameraControls = (props: { readonly searchText: string }) => {
           <Stack fill>
             <Stack.Item grow>
               {activeCamera?.status ? (
-                <NoticeBox info>{activeCamera.name}</NoticeBox>
+                <NoticeBox info>{cameraLabel(activeCamera.name)}</NoticeBox>
               ) : (
                 <NoticeBox danger>无输入信号</NoticeBox>
               )}

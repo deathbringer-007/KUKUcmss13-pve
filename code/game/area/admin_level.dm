@@ -12,67 +12,67 @@
 	flags_area = AREA_NOTUNNEL
 
 /area/adminlevel/bunker01/mainroom
-	name = "\improper Bunker Main Room"
+	name = "地堡主厅"
 	icon_state = "bunker01_main"
 	ceiling = CEILING_UNDERGROUND_METAL_ALLOW_CAS
 
 /area/adminlevel/bunker01/medbay
-	name = "\improper Bunker Medbay"
+	name = "地堡医务室"
 	icon_state = "bunker01_medbay"
 	ceiling = CEILING_UNDERGROUND_METAL_ALLOW_CAS
 
 /area/adminlevel/bunker01/security
-	name = "\improper Bunker Security"
+	name = "地堡安保区"
 	icon_state = "bunker01_security"
 	ceiling = CEILING_UNDERGROUND_METAL_ALLOW_CAS
 
 /area/adminlevel/bunker01/engineering
-	name = "\improper Bunker Engineering"
+	name = "地堡工程区"
 	icon_state = "bunker01_engineering"
 	ceiling = CEILING_UNDERGROUND_METAL_ALLOW_CAS
 
 /area/adminlevel/bunker01/storage
-	name = "\improper Bunker Storage"
+	name = "地堡储藏室"
 	icon_state = "bunker01_storage"
 	ceiling = CEILING_UNDERGROUND_METAL_ALLOW_CAS
 
 /area/adminlevel/bunker01/bedroom
-	name = "\improper Bunker Bedroom"
+	name = "地堡卧室"
 	icon_state = "bunker01_bedroom"
 	ceiling = CEILING_UNDERGROUND_METAL_ALLOW_CAS
 
 /area/adminlevel/bunker01/command
-	name = "\improper Bunker Command Room"
+	name = "地堡指挥室"
 	icon_state = "bunker01_command"
 	ceiling = CEILING_UNDERGROUND_METAL_ALLOW_CAS
 
 /area/adminlevel/bunker01/bathroom
-	name = "\improper Bunker Bathroom"
+	name = "地堡浴室"
 	icon_state = "bunker01_bathroom"
 	ceiling = CEILING_UNDERGROUND_METAL_ALLOW_CAS
 
 /area/adminlevel/bunker01/kitchen
-	name = "\improper Bunker Kitchen"
+	name = "地堡厨房"
 	icon_state = "bunker01_kitchen"
 	ceiling = CEILING_UNDERGROUND_METAL_ALLOW_CAS
 
 /area/adminlevel/bunker01/hydroponics
-	name = "\improper Bunker Hydroponics"
+	name = "地堡水培室"
 	icon_state = "bunker01_hydroponics"
 	ceiling = CEILING_UNDERGROUND_METAL_ALLOW_CAS
 
 /area/adminlevel/bunker01/breakroom
-	name = "\improper Bunker Breakroom"
+	name = "地堡休息室"
 	icon_state = "bunker01_break"
 	ceiling = CEILING_UNDERGROUND_METAL_ALLOW_CAS
 
 /area/adminlevel/bunker01/gear
-	name = "\improper Bunker Gear"
+	name = "地堡装备室"
 	icon_state = "bunker01_gear"
 	ceiling = CEILING_UNDERGROUND_METAL_ALLOW_CAS
 
 /area/adminlevel/bunker01/caves
-	name = "\improper Bunker Caves"
+	name = "地堡洞穴"
 	icon_state = "bunker01_caves"
 	ceiling = CEILING_UNDERGROUND_ALLOW_CAS
 	always_unpowered = TRUE
@@ -80,14 +80,14 @@
 	base_lighting_alpha = 0
 
 /area/adminlevel/bunker01/caves/outpost
-	name = "\improper Bunker Outpost"
+	name = "地堡哨站"
 	icon_state = "bunker01_caves_outpost"
 	ceiling = CEILING_UNDERGROUND_ALLOW_CAS
 	requires_power = TRUE
 	always_unpowered = FALSE
 
 /area/adminlevel/bunker01/caves/xeno
-	name = "\improper Bunker Xeno Hive"
+	name = "地堡异形虫巢"
 	icon_state = "bunker01_caves_outpost"
 	ceiling = CEILING_UNDERGROUND_ALLOW_CAS
 	flags_area = AREA_NOTUNNEL|AREA_ALLOW_XENO_JOIN
@@ -104,47 +104,47 @@
 
 // ERT Station
 /area/adminlevel/ert_station
-	name = "ERT Station"
+	name = "应急响应队驻地"
 	icon_state = "green"
 	requires_power = FALSE
 	flags_area = AREA_NOTUNNEL
 
 /area/adminlevel/ert_station/upp_station
-	name = "UPP Station"
+	name = "进步人民联盟驻地"
 	icon_state = "green"
 
 /area/adminlevel/ert_station/pizza_station
-	name = "Pizza Galaxy"
+	name = "银河披萨"
 	icon_state = "red"
 
 /area/adminlevel/ert_station/clf_station
-	name = "CLF Station"
+	name = "殖民地解放阵线驻地"
 	icon_state = "white"
 
 /area/adminlevel/ert_station/weyland_station
-	name = "Weyland-Yutani Station"
+	name = "维兰德-汤谷驻地"
 	icon_state = "red"
 
 /area/adminlevel/ert_station/uscm_station
-	name = "USCM Station"
+	name = "美国殖民地海军陆战队驻地"
 	icon_state = "green"
 
 /area/adminlevel/ert_station/freelancer_station
-	name = "Freelancer Station"
+	name = "自由佣兵驻地"
 	icon_state = "yellow"
 
 /area/adminlevel/ert_station/royal_marines_station
-	name = "HMS Patna Hangerbay"
+	name = "HMS 帕特纳号机库"
 	icon_state = "yellow"
 
 /area/adminlevel/ert_station/shuttle_dispatch
-	name = "Shuttle Dispatch Station"
+	name = "穿梭机调度站"
 	soundscape_playlist = SCAPE_PL_ELEVATOR_MUSIC
 	icon_state = "yellow"
 
 //Simulation area
 /area/adminlevel/simulation
-	name = "Simulated Reality"
+	name = "模拟现实"
 	icon_state = "green"
 	requires_power = 0
 	flags_area = AREA_NOTUNNEL
@@ -157,7 +157,7 @@
 	name = "Test Room"
 
 /area/misc/tutorial
-	name = "Tutorial Zone"
+	name = "教程区域"
 	icon_state = "tutorial"
 	requires_power = FALSE
 	flags_area = AREA_NOTUNNEL|AREA_AVOID_BIOSCAN

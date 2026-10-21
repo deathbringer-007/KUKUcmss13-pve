@@ -91,7 +91,7 @@ GLOBAL_DATUM_INIT(data_core, /datum/datacore, new)
 		.manifest tr.alt td {[monochrome?"border-top-width: 2px":"background-color: #DEF"]}
 	</style></head>
 	<table class="manifest">
-	<tr class='head'><th>Name</th><th>Rank</th><th>Activity</th></tr>
+	<tr class='head'><th>姓名</th><th>职务</th><th>状态</th></tr>
 	"}
 
 	var/even = 0
@@ -118,7 +118,7 @@ GLOBAL_DATUM_INIT(data_core, /datum/datacore, new)
 				if(M.real_name == name && M.client && M.client.inactivity <= 10 * 60 * 10)
 					active = 1
 					break
-			isactive[name] = active ? "Active" : "Inactive"
+			isactive[name] = active ? "在线" : "离线"
 		else
 			isactive[name] = record_entry.fields["p_stat"]
 			//cael - to prevent multiple appearances of a player/job combination, add a continue after each line
@@ -158,56 +158,56 @@ GLOBAL_DATUM_INIT(data_core, /datum/datacore, new)
 	var/name
 	var/real_rank
 	if(dept_flags & FLAG_SHOW_CIC)
-		dat += "<tr><th colspan=3>Command</th></tr>"
+		dat += "<tr><th colspan=3>指挥部</th></tr>"
 		for(real_rank in cic)
 			for(name in cic[real_rank])
-				dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[cic[real_rank][name]]</td><td>[isactive[name]]</td></tr>"
+				dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[localized_player_label(cic[real_rank][name])]</td><td>[localized_player_label(isactive[name])]</td></tr>"
 				even = !even
 	if(dept_flags & FLAG_SHOW_AUXIL_SUPPORT)
 		dat += "<tr><th colspan=3>辅助作战支援</th></tr>"
 		for(real_rank in auxil)
 			for(name in auxil[real_rank])
-				dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[auxil[real_rank][name]]</td><td>[isactive[name]]</td></tr>"
+				dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[localized_player_label(auxil[real_rank][name])]</td><td>[localized_player_label(isactive[name])]</td></tr>"
 				even = !even
 	if(dept_flags & FLAG_SHOW_MARINES)
 		dat += "<tr><th colspan=3>作战部队</th></tr>"
 		for(var/squad_name in GLOB.ROLES_SQUAD_ALL)
 			if(!squad_sublists[squad_name])
 				continue
-			dat += "<tr><th colspan=3>[squad_name]</th></tr>"
+			dat += "<tr><th colspan=3>[localized_player_label(squad_name)]</th></tr>"
 			for(real_rank in marines_by_squad[squad_name])
 				for(name in marines_by_squad[squad_name][real_rank])
-					dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[marines_by_squad[squad_name][real_rank][name]]</td><td>[isactive[name]]</td></tr>"
+					dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[localized_player_label(marines_by_squad[squad_name][real_rank][name])]</td><td>[localized_player_label(isactive[name])]</td></tr>"
 					even = !even
 	if(dept_flags & FLAG_SHOW_POLICE)
 		dat += "<tr><th colspan=3>宪兵</th></tr>"
 		for(real_rank in mp)
 			for(name in mp[real_rank])
-				dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[mp[real_rank][name]]</td><td>[isactive[name]]</td></tr>"
+				dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[localized_player_label(mp[real_rank][name])]</td><td>[localized_player_label(isactive[name])]</td></tr>"
 				even = !even
 	if(dept_flags & FLAG_SHOW_ENGINEERING)
-		dat += "<tr><th colspan=3>Engineering</th></tr>"
+		dat += "<tr><th colspan=3>工程部</th></tr>"
 		for(real_rank in eng)
 			for(name in eng[real_rank])
-				dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[eng[real_rank][name]]</td><td>[isactive[name]]</td></tr>"
+				dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[localized_player_label(eng[real_rank][name])]</td><td>[localized_player_label(isactive[name])]</td></tr>"
 				even = !even
 	if(dept_flags & FLAG_SHOW_REQUISITION)
-		dat += "<tr><th colspan=3>Requisition</th></tr>"
+		dat += "<tr><th colspan=3>补给部</th></tr>"
 		for(real_rank in req)
 			for(name in req[real_rank])
-				dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[req[real_rank][name]]</td><td>[isactive[name]]</td></tr>"
+				dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[localized_player_label(req[real_rank][name])]</td><td>[localized_player_label(isactive[name])]</td></tr>"
 				even = !even
 	if(dept_flags & FLAG_SHOW_MEDICAL)
-		dat += "<tr><th colspan=3>Medbay</th></tr>"
+		dat += "<tr><th colspan=3>医务室</th></tr>"
 		for(real_rank in med)
 			for(name in med[real_rank])
-				dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[med[real_rank][name]]</td><td>[isactive[name]]</td></tr>"
+				dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[localized_player_label(med[real_rank][name])]</td><td>[localized_player_label(isactive[name])]</td></tr>"
 				even = !even
 	if(dept_flags & FLAG_SHOW_MISC)
-		dat += "<tr><th colspan=3>Other</th></tr>"
+		dat += "<tr><th colspan=3>其他</th></tr>"
 		for(real_rank in misc)
 			for(name in misc[real_rank])
-				dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[misc[real_rank][name]]</td><td>[isactive[name]]</td></tr>"
+				dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[localized_player_label(misc[real_rank][name])]</td><td>[localized_player_label(isactive[name])]</td></tr>"
 				even = !even
 
 
@@ -290,7 +290,7 @@ GLOBAL_DATUM_INIT(data_core, /datum/datacore, new)
 	if(target.gen_record && !jobban_isbanned(target, "Records"))
 		record_general.fields["notes"] = target.gen_record
 	else
-		record_general.fields["notes"] = "No notes found."
+		record_general.fields["notes"] = "未找到备注。"
 	general += record_general
 
 	//Medical Record
@@ -300,15 +300,15 @@ GLOBAL_DATUM_INIT(data_core, /datum/datacore, new)
 	record_medical.name = target.name
 	record_medical.fields["b_type"] = target.blood_type
 	record_medical.fields["mi_dis"] = "None"
-	record_medical.fields["mi_dis_d"] = "No minor disabilities have been declared."
+	record_medical.fields["mi_dis_d"] = "未申报轻度残疾。"
 	record_medical.fields["ma_dis"] = "None"
-	record_medical.fields["ma_dis_d"] = "No major disabilities have been diagnosed."
+	record_medical.fields["ma_dis_d"] = "未诊断出重度残疾。"
 	record_medical.fields["alg"] = "None"
-	record_medical.fields["alg_d"] = "No allergies have been detected in this patient."
+	record_medical.fields["alg_d"] = "未发现该患者有过敏症状。"
 	record_medical.fields["cdi"] = "None"
-	record_medical.fields["cdi_d"] = "No diseases have been diagnosed at the moment."
+	record_medical.fields["cdi_d"] = "目前未诊断出任何疾病。"
 	record_medical.fields["last_scan_time"] = null
-	record_medical.fields["last_scan_result"] = "No scan data on record" // body scanner results
+	record_medical.fields["last_scan_result"] = "尚无扫描记录" // body scanner results
 	record_medical.fields["autodoc_data"] = list()
 	record_medical.fields["autodoc_manual"] = list()
 	record_medical.fields["ref"] = WEAKREF(target)
@@ -316,7 +316,7 @@ GLOBAL_DATUM_INIT(data_core, /datum/datacore, new)
 	if(target.med_record && !jobban_isbanned(target, "Records"))
 		record_medical.fields["notes"] = target.med_record
 	else
-		record_medical.fields["notes"] = "No notes found."
+		record_medical.fields["notes"] = "未找到备注。"
 	medical += record_medical
 
 	//Security Record
@@ -353,7 +353,7 @@ GLOBAL_DATUM_INIT(data_core, /datum/datacore, new)
 	if(target.exploit_record && !jobban_isbanned(target, "Records"))
 		record_locked.fields["exploit_record"] = target.exploit_record
 	else
-		record_locked.fields["exploit_record"] = "No additional information acquired."
+		record_locked.fields["exploit_record"] = "未获得其他信息。"
 	locked += record_locked
 
 

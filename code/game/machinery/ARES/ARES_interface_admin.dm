@@ -336,7 +336,7 @@
 		// -- 1:1 Conversation -- //
 		if("new_conversation")
 			var/datum/ares_record/talk_log/convo = new(interface.last_login)
-			convo.conversation += "[MAIN_AI_SYSTEM] at [worldtime2text()], 'New 1:1 link initiated. Greetings, [interface.last_login].'"
+			convo.conversation += "[MAIN_AI_SYSTEM]于[worldtime2text()]：‘新的一对一连接已建立。你好，[interface.last_login]。’"
 			datacore.records_talking += convo
 
 		if("clear_conversation")
@@ -406,14 +406,14 @@
 					continue
 				identification.handle_ares_access(MAIN_AI_SYSTEM, user)
 				access_ticket.ticket_status = TICKET_GRANTED
-				ares_apollo_talk("Access Ticket [access_ticket.ticket_id]: [access_ticket.ticket_submitter] granted core access.")
+				ares_apollo_talk("访问工单[access_ticket.ticket_id]：已授予[access_ticket.ticket_submitter]核心访问权限。")
 				return TRUE
 			for(var/obj/item/card/id/identification in active_ids)
 				if(identification.registered_gid != access_ticket.user_id_num)
 					continue
 				identification.handle_ares_access(MAIN_AI_SYSTEM, user)
 				access_ticket.ticket_status = TICKET_REVOKED
-				ares_apollo_talk("Access Ticket [access_ticket.ticket_id]: core access for [access_ticket.ticket_submitter] revoked.")
+				ares_apollo_talk("访问工单[access_ticket.ticket_id]：已撤销[access_ticket.ticket_submitter]的核心访问权限。")
 				return TRUE
 			return FALSE
 
@@ -423,7 +423,7 @@
 				return FALSE
 			access_ticket.ticket_status = TICKET_REJECTED
 			to_chat(user, SPAN_NOTICE("[access_ticket.ticket_type] [access_ticket.ticket_id] marked as rejected."))
-			ares_apollo_talk("Access Ticket [access_ticket.ticket_id] rejected.")
+			ares_apollo_talk("访问工单[access_ticket.ticket_id]已被拒绝。")
 			return TRUE
 
 		if("new_report")
@@ -449,7 +449,7 @@
 				var/datum/ares_ticket/maintenance/maint_ticket = new(MAIN_AI_SYSTEM, maint_type, details, priority_report)
 				tickets_maintenance += maint_ticket
 				if(priority_report)
-					ares_apollo_talk("Priority Maintenance Report: [maint_type] - ID [maint_ticket.ticket_id]. Seek and resolve.")
+					ares_apollo_talk("优先维护报告：[localized_player_label(maint_type)]——编号[maint_ticket.ticket_id]。请查明并解决问题。")
 				log_game("ARES: Maintenance Ticket '\ref[maint_ticket]' created by [key_name(user)] as [MAIN_AI_SYSTEM] with Category '[maint_type]' and Details of '[details]'.")
 				return TRUE
 			return FALSE
@@ -464,7 +464,7 @@
 			to_chat(user, SPAN_WARNING("[ticket.ticket_type] [ticket.ticket_id] has been cancelled."))
 			ticket.ticket_status = TICKET_CANCELLED
 			if(ticket.ticket_priority)
-				ares_apollo_talk("Priority [ticket.ticket_type] [ticket.ticket_id] has been cancelled.")
+				ares_apollo_talk("优先[localized_player_label(ticket.ticket_type)][ticket.ticket_id]已取消。")
 			return TRUE
 
 		if("mark_ticket")
@@ -480,11 +480,11 @@
 			switch(choice)
 				if(TICKET_PRIORITY)
 					ticket.ticket_priority = TRUE
-					ares_apollo_talk("[ticket.ticket_type] [ticket.ticket_id] upgraded to Priority.")
+					ares_apollo_talk("[localized_player_label(ticket.ticket_type)][ticket.ticket_id]已提升为优先处理。")
 					return TRUE
 				if(TICKET_NON_PRIORITY)
 					ticket.ticket_priority = FALSE
-					ares_apollo_talk("[ticket.ticket_type] [ticket.ticket_id] downgraded from Priority.")
+					ares_apollo_talk("[localized_player_label(ticket.ticket_type)][ticket.ticket_id]已取消优先处理。")
 					return TRUE
 				if(TICKET_COMPLETED)
 					ticket.ticket_status = TICKET_COMPLETED
@@ -493,7 +493,7 @@
 				else
 					return FALSE
 			if(ticket.ticket_priority)
-				ares_apollo_talk("Priority [ticket.ticket_type] [ticket.ticket_id] has been [choice] by [MAIN_AI_SYSTEM].")
+				ares_apollo_talk("[MAIN_AI_SYSTEM]已将优先[localized_player_label(ticket.ticket_type)][ticket.ticket_id]标记为[localized_player_label(capitalize(choice))]。")
 			to_chat(user, SPAN_NOTICE("[ticket.ticket_type] [ticket.ticket_id] marked as [choice]."))
 			return TRUE
 
@@ -510,7 +510,7 @@
 			to_chat(user, SPAN_WARNING("Initiating gas release from [sec_vent.vent_tag]."))
 			playsound(src, 'sound/machines/chime.ogg', 15, 1)
 			COOLDOWN_START(sec_vent, vent_trigger_cooldown, COOLDOWN_ARES_VENT)
-			ares_apollo_talk("Nerve Gas release imminent from [sec_vent.vent_tag].")
-			log_ares_security("Nerve Gas Release", "Released Nerve Gas from Vent '[sec_vent.vent_tag]'.", MAIN_AI_SYSTEM)
+			ares_apollo_talk("[sec_vent.vent_tag]即将释放神经毒气。")
+			log_ares_security("神经毒气释放", "已从通风口‘[sec_vent.vent_tag]’释放神经毒气。", MAIN_AI_SYSTEM)
 			sec_vent.create_gas(VENT_GAS_CN20_XENO, 6, 5 SECONDS)
 			log_admin("[key_name(user)] released nerve gas from Vent '[sec_vent.vent_tag]' via ARES.")

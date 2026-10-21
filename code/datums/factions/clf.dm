@@ -1,5 +1,5 @@
 /datum/faction/clf
-	name = "Colonial Liberation Front"
+	name = "殖民地解放阵线"
 	faction_tag = FACTION_CLF
 
 /datum/faction/clf/modify_hud_holder(image/holder, mob/living/carbon/human/human)
@@ -142,7 +142,7 @@
 		list("S&W 快速装弹器 (.357)", 40, /obj/item/ammo_magazine/revolver/small, VENDOR_ITEM_REGULAR),
 		list("袖珍手枪弹匣 (.22)", 40, /obj/item/ammo_magazine/pistol/holdout, VENDOR_ITEM_REGULAR),
 
-		list("MELEE WEAPONS", -1, null, null),
+		list("近战武器", -1, null, null),
 		list("棒球棍", 10, /obj/item/weapon/baseballbat, VENDOR_ITEM_REGULAR),
 		list("棒球棍（金属）", 5, /obj/item/weapon/baseballbat/metal, VENDOR_ITEM_REGULAR),
 		list("消防斧", 5, /obj/item/weapon/twohanded/fireaxe, VENDOR_ITEM_REGULAR),

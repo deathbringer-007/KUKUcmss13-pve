@@ -5,7 +5,7 @@
 	var/shield_per_slash = 20
 	var/stored_shield = 0
 
-/datum/component/shield_slash/Initialize(max_shield = 160, shield_per_slash = 20, stat_name = "Shield")
+/datum/component/shield_slash/Initialize(max_shield = 160, shield_per_slash = 20, stat_name = "护盾")
 	if(!isxeno(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -29,7 +29,7 @@
 
 /datum/component/shield_slash/proc/handle_stat_display(mob/living/carbon/xenomorph/X, list/statdata)
 	SIGNAL_HANDLER
-	statdata += "Stored [stat_name]: [stored_shield]/[max_shield]"
+	statdata += "已积蓄[localized_player_label(stat_name)]：[stored_shield]/[max_shield]"
 
 /datum/component/shield_slash/proc/handle_shield_buildup(mob/living/carbon/xenomorph/X)
 	SIGNAL_HANDLER

@@ -1,7 +1,7 @@
 #define XENO_STRUCTURE_PLASMA_MULTIPLIER 10 //When using plasma to construct we need it to cost more.
 
 /datum/construction_template/xenomorph
-	name = "xenomorph structure"
+	name = "异形建筑"
 	build_type = /obj/effect/alien/resin/special
 	plasma_required = 45 * XENO_STRUCTURE_PLASMA_MULTIPLIER
 	/// The hive that this structure belongs to.

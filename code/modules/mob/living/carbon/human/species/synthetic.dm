@@ -1,7 +1,7 @@
 /datum/species/synthetic
 	group = SPECIES_SYNTHETIC
 	name = SYNTH_GEN_THREE
-	name_plural = "synthetics"
+	name_plural = "合成人"
 	uses_skin_color = TRUE //Uses skin color presets
 	special_body_types = TRUE
 
@@ -74,7 +74,7 @@
 
 /datum/species/synthetic/colonial
 	name = SYNTH_COLONY
-	name_plural = "Colonial Synthetics"
+	name_plural = "殖民地合成人"
 	uses_skin_color = TRUE
 	special_body_types = TRUE
 	burn_mod = 0.8
@@ -104,7 +104,7 @@
 // Synth used for W-Y Deathsquads
 /datum/species/synthetic/colonial/combat
 	name = SYNTH_COMBAT
-	name_plural = "Combat Synthetics"
+	name_plural = "战斗合成人"
 	uses_skin_color = FALSE
 	special_body_types = FALSE
 	mob_inherent_traits = list(TRAIT_SUPER_STRONG, TRAIT_INTENT_EYES, TRAIT_IRON_TEETH)
@@ -126,7 +126,7 @@
 // Synth used for synths posing as humans
 /datum/species/synthetic/infiltrator
 	name = SYNTH_INFILTRATOR
-	name_plural = "Infiltrator Synthetics"
+	name_plural = "渗透型合成人"
 	uses_skin_color = TRUE
 	mob_inherent_traits = list(TRAIT_SUPER_STRONG, TRAIT_INFILTRATOR_SYNTH, TRAIT_IRON_TEETH)
 

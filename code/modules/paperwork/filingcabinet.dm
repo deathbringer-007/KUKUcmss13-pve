@@ -113,8 +113,8 @@
 			if(S)
 				var/obj/item/paper/P = new /obj/item/paper(src)
 				P.info = "<CENTER><B>安保档案</B></CENTER><BR>"
-				P.info += "姓名：[G.fields["name"]] 编号：[G.fields["id"]]<BR>\n性别：[G.fields["sex"]]<BR>\n年龄：[G.fields["age"]]<BR>\n身体状况：[G.fields["p_stat"]]<BR>\n精神状况：[G.fields["m_stat"]]<BR>"
-				P.info += "<BR>\n<CENTER><B>安保资料</B></CENTER><BR>\n犯罪状态：[S.fields["criminal"]]<BR>\n<BR>\n事件：[S.fields["incident"]]<BR>\n<BR>\n<CENTER><B>备注／记录</B></CENTER><BR>"
+				P.info += "姓名：[G.fields["name"]] 编号：[G.fields["id"]]<BR>\n性别：[localized_player_label(G.fields["sex"])]<BR>\n年龄：[G.fields["age"]]<BR>\n身体状况：[localized_player_label(G.fields["p_stat"])]<BR>\n精神状况：[localized_player_label(G.fields["m_stat"])]<BR>"
+				P.info += "<BR>\n<CENTER><B>安保资料</B></CENTER><BR>\n犯罪状态：[localized_player_label(S.fields["criminal"])]<BR>\n<BR>\n事件：[localized_player_label(S.fields["incident"])]<BR>\n<BR>\n<CENTER><B>备注／记录</B></CENTER><BR>"
 				var/counter = 1
 				while(S.fields["com_[counter]"])
 					P.info += "[S.fields["com_[counter]"]]<BR>"
@@ -145,9 +145,9 @@
 			if(M)
 				var/obj/item/paper/P = new /obj/item/paper(src)
 				P.info = "<CENTER><B>医疗档案</B></CENTER><BR>"
-				P.info += "姓名：[G.fields["name"]] 编号：[G.fields["id"]]<BR>\n性别：[G.fields["sex"]]<BR>\n年龄：[G.fields["age"]]<BR>\n身体状况：[G.fields["p_stat"]]<BR>\n精神状况：[G.fields["m_stat"]]<BR>"
+				P.info += "姓名：[G.fields["name"]] 编号：[G.fields["id"]]<BR>\n性别：[localized_player_label(G.fields["sex"])]<BR>\n年龄：[G.fields["age"]]<BR>\n身体状况：[localized_player_label(G.fields["p_stat"])]<BR>\n精神状况：[localized_player_label(G.fields["m_stat"])]<BR>"
 
-				P.info += "<BR>\n<CENTER><B>医疗资料</B></CENTER><BR>\n血型：[M.fields["b_type"]]<BR>\n<BR>\n轻度残障：[M.fields["mi_dis"]]<BR>\n详情：[M.fields["mi_dis_d"]]<BR>\n<BR>\n重度残障：[M.fields["ma_dis"]]<BR>\n详情：[M.fields["ma_dis_d"]]<BR>\n<BR>\n过敏：[M.fields["alg"]]<BR>\n详情：[M.fields["alg_d"]]<BR>\n<BR>\n现有疾病：[M.fields["cdi"]]（各疾病的信息见记录／备注栏）<BR>\n详情：[M.fields["cdi_d"]]<BR>\n<BR>\n重要备注：<BR>\n\t[M.fields["notes"]]<BR>\n<BR>\n<CENTER><B>备注／记录</B></CENTER><BR>"
+				P.info += "<BR>\n<CENTER><B>医疗资料</B></CENTER><BR>\n血型：[M.fields["b_type"]]<BR>\n<BR>\n轻度残障：[localized_player_label(M.fields["mi_dis"])]<BR>\n详情：[localized_player_label(M.fields["mi_dis_d"])]<BR>\n<BR>\n重度残障：[localized_player_label(M.fields["ma_dis"])]<BR>\n详情：[localized_player_label(M.fields["ma_dis_d"])]<BR>\n<BR>\n过敏：[localized_player_label(M.fields["alg"])]<BR>\n详情：[localized_player_label(M.fields["alg_d"])]<BR>\n<BR>\n现有疾病：[localized_player_label(M.fields["cdi"])]（各疾病的信息见记录／备注栏）<BR>\n详情：[localized_player_label(M.fields["cdi_d"])]<BR>\n<BR>\n重要备注：<BR>\n\t[localized_player_label(M.fields["notes"])]<BR>\n<BR>\n<CENTER><B>备注／记录</B></CENTER><BR>"
 				var/counter = 1
 				while(M.fields["com_[counter]"])
 					P.info += "[M.fields["com_[counter]"]]<BR>"

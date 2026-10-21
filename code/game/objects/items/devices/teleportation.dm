@@ -76,7 +76,7 @@
 										direct = "弱"
 									else
 										direct = "极弱"
-							src.temp += "[W.code]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
+							src.temp += "[W.code]-[localized_player_label(dir2text(get_dir(sr, tr)))]-[direct]<BR>"
 
 				src.temp += "<B>其他信号：</B><BR>"
 				for (var/i in GLOB.tracking_implant_list)
@@ -100,7 +100,7 @@
 									direct = "强"
 								else
 									direct = "弱"
-							src.temp += "[W.id]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
+							src.temp += "[W.id]-[localized_player_label(dir2text(get_dir(sr, tr)))]-[direct]<BR>"
 
 				src.temp += "<B>你所在的轨道坐标为\[[sr.x],[sr.y],[sr.z]\]</B>。<BR><BR><A href='byond://?src=\ref[src];refresh=1'>刷新</A><BR>"
 			else

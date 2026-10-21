@@ -179,7 +179,7 @@
 
 #define LURKER_BAIT_TYPES list("Taunt","Emote","Interact")
 #define LURKER_BAIT_EMOTES list("growl","roar","hiss","needshelp")
-#define LURKER_BAIT_TAUNTS list("Come here, little host","I won't bite","I see you","Safe to go, little one")
+#define LURKER_BAIT_TAUNTS list("过来，小宿主","我不会咬你的","我看见你了","可以放心走了，小家伙")
 #define LURKER_BAITS_BEFORE_AMBUSH 3
 
 /datum/xeno_ai_movement/linger/lurking/proc/try_bait(no_interact)

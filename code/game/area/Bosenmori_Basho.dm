@@ -217,10 +217,10 @@
 	name = "地下洞穴网络"
 	icon_state = "away2"
 /area/bosenmori/mountain/unknown_level_caves
-	name = "Unknown"
+	name = "未知区域"
 	icon_state = "cave"
 /area/bosenmori/mountain/unknown_level_temple
-	name = "Unknown"
+	name = "未知区域"
 	icon_state = "away3"
 /area/bosenmori/mountain/abandoned_dome_under
 	name = "废弃穹顶"

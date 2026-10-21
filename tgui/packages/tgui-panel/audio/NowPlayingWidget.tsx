@@ -43,31 +43,31 @@ export const NowPlayingWidget = (props) => {
           }}
         >
           {
-            <Collapsible title={title || 'Unknown Track'} color={'blue'}>
+            <Collapsible title={title || '未知曲目'} color={'blue'}>
               <Section>
                 {URL !== 'Song Link Hidden' && (
                   <Stack.Item grow color="label">
-                    URL: {URL}
+                    链接：{URL}
                   </Stack.Item>
                 )}
                 <Stack.Item grow color="label">
-                  Duration: {duration}
+                  时长：{duration}
                 </Stack.Item>
                 {Artist !== 'Song Artist Hidden' &&
                   Artist !== 'Unknown Artist' && (
                     <Stack.Item grow color="label">
-                      Artist: {Artist}
+                      艺术家：{Artist}
                     </Stack.Item>
                   )}
                 {album !== 'Song Album Hidden' && album !== 'Unknown Album' && (
                   <Stack.Item grow color="label">
-                    Album: {album}
+                    专辑：{album}
                   </Stack.Item>
                 )}
                 {upload_date !== 'Song Upload Date Hidden' &&
                   upload_date !== 'Unknown Date' && (
                     <Stack.Item grow color="label">
-                      Uploaded: {date}
+                      上传日期：{date}
                     </Stack.Item>
                   )}
               </Section>
@@ -76,13 +76,13 @@ export const NowPlayingWidget = (props) => {
         </Stack.Item>
       )) || (
         <Stack.Item grow color="label">
-          Nothing to play.
+          暂无播放内容。
         </Stack.Item>
       )}
       {audio.playing && (
         <Stack.Item mx={0.5} fontSize="0.9em">
           <Button
-            tooltip="Stop"
+            tooltip="停止"
             icon="stop"
             onClick={() =>
               dispatch({

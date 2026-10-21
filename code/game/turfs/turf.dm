@@ -572,36 +572,36 @@
 	if(LAZYLEN(linked_pylons))
 		switch(get_pylon_protection_level())
 			if(TURF_PROTECTION_MORTAR)
-				return "The ceiling above is made of light resin. Doesn't look like it's going to stop much."
+				return "上方覆盖着薄薄的树脂，看起来挡不住多少火力。"
 			if(TURF_PROTECTION_CAS)
-				return "The ceiling above is made of resin. Seems about as strong as a cavern roof."
+				return "上方覆盖着树脂，强度似乎与洞顶相当。"
 			if(TURF_PROTECTION_OB)
-				return "The ceiling above is made of thick resin. Nothing is getting through that."
+				return "上方覆盖着厚重的树脂，什么都无法穿透。"
 
 	var/area/A = get_area(src)
 	switch(A.ceiling)
 		if(CEILING_GLASS)
-			return "The ceiling above is glass. That's not going to stop anything."
+			return "上方是玻璃顶，挡不住任何火力。"
 		if(CEILING_METAL)
-			return "The ceiling above is metal. You can't see through it with a camera from above, but that's not going to stop anything."
+			return "上方是金属顶，能遮挡从上方观察的摄像头，但挡不住任何火力。"
 		if(CEILING_UNDERGROUND_ALLOW_CAS)
-			return "It is underground. A thin cavern roof lies above. Doesn't look like it's going to stop much."
+			return "这里位于地下，上方的洞顶很薄，看起来挡不住多少火力。"
 		if(CEILING_UNDERGROUND_BLOCK_CAS)
-			return "It is underground. The cavern roof lies above. Can probably stop most ordnance."
+			return "这里位于地下，上方的洞顶大概能挡住大部分弹药。"
 		if(CEILING_UNDERGROUND_METAL_ALLOW_CAS)
-			return "It is underground. The ceiling above is made of thin metal. Doesn't look like it's going to stop much."
+			return "这里位于地下，上方是薄金属顶，看起来挡不住多少火力。"
 		if(CEILING_UNDERGROUND_METAL_BLOCK_CAS)
-			return "It is underground. The ceiling above is made of metal.  Can probably stop most ordnance."
+			return "这里位于地下，上方的金属顶大概能挡住大部分弹药。"
 		if(CEILING_HULL_METAL)
-			return "The ceiling above is thick, braced metal. It'll take some serious firepower to break through that."
+			return "上方是厚重且带有支撑的金属顶，需要强大火力才能击穿。"
 		if(CEILING_DEEP_UNDERGROUND)
-			return "It is deep underground. The cavern roof lies above. Nothing is getting through that."
+			return "这里位于地下深处，上方的洞顶无法被穿透。"
 		if(CEILING_DEEP_UNDERGROUND_METAL)
-			return "It is deep underground. The ceiling above is made of thick metal. Nothing is getting through that."
+			return "这里位于地下深处，上方的厚金属顶无法被穿透。"
 		if(CEILING_REINFORCED_METAL)
-			return "The ceiling above is heavy reinforced metal. Nothing is getting through that."
+			return "上方是厚重的强化金属顶，什么都无法穿透。"
 		else
-			return "It is in the open."
+			return "这里露天，没有顶棚遮挡。"
 
 /turf/proc/wet_floor()
 	return

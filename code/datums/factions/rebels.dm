@@ -3,13 +3,13 @@
 	faction_tag = FACTION_MARINE
 
 /datum/faction/rebels/ua
-	name = "Patriotic Front of America"
+	name = "美洲爱国阵线"
 	faction_tag = FACTION_UA_REBEL
 
 /datum/faction/rebels/twe
-	name = "Japanese Socialist Coalition"
+	name = "日本社会主义联盟"
 	faction_tag = FACTION_TWE_REBEL
 
 /datum/faction/rebels/canc
-	name = "Chinese Asian Nation Cooperative Loyalists"
+	name = "中国与亚洲国家合作体效忠派"
 	faction_tag = FACTION_CANC

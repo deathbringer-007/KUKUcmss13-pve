@@ -156,9 +156,9 @@
 	set name = "Toggle Respawn"
 	CONFIG_SET(flag/respawn, !CONFIG_GET(flag/respawn))
 	if (CONFIG_GET(flag/respawn))
-		to_world("<B>You may now respawn.</B>")
+		to_world("<B>现在允许重生。</B>")
 	else
-		to_world("<B>You may no longer respawn :(</B>")
+		to_world("<B>现在不再允许重生。</B>")
 	message_admins("[key_name_admin(usr)] toggled respawn to [CONFIG_GET(flag/respawn) ? "On" : "Off"].")
 	world.update_status()
 

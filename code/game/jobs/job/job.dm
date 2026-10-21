@@ -213,7 +213,7 @@
 	sleep(10)
 	if(H && H.loc && H.client)
 		var/title_given
-		title_given = lowertext(disp_title)
+		title_given = lowertext(preference_label(disp_title))
 
 		//Document syntax cannot have tabs for proper formatting.
 		var/entrydisplay = " \

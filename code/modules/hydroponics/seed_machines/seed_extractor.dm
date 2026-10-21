@@ -34,7 +34,7 @@
 
 	if(genetics)
 		data["hasGenetics"] = TRUE
-		data["sourceName"] = genetics.display_name
+		data["sourceName"] = localized_seed_label(genetics.display_name)
 		if(!genetics.roundstart)
 			data["sourceName"] += "（品系编号[genetics.uid]）"
 	else
@@ -85,12 +85,12 @@
 
 			loaded_disk.genes += P
 
-			loaded_disk.genesource = "[genetics.display_name]"
+			loaded_disk.genesource = localized_seed_label(genetics.display_name)
 			if(!genetics.roundstart)
 				loaded_disk.genesource += "（品系编号[genetics.uid]）"
 
 			loaded_disk.name += " ([GLOB.gene_tag_masks[params["gene"]]], #[genetics.uid])"
-			loaded_disk.desc += "标签写着“基因[GLOB.gene_tag_masks[params["gene"]]]，采样来源：[genetics.display_name]”。"
+			loaded_disk.desc += "标签写着“基因[GLOB.gene_tag_masks[params["gene"]]]，采样来源：[localized_seed_label(genetics.display_name)]”。"
 			playsound(loc, 'sound/machines/fax.ogg', 15, 1)
 			eject_disk()
 

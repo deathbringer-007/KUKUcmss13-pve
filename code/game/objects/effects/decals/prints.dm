@@ -69,13 +69,13 @@
 		return information
 
 	information += ", "
-	information += "criminal_rank"
+	information += localized_player_label(criminal_rank)
 
 	if(!criminal_squad)
 		return information
 
 	information += " "
-	information += criminal_squad
+	information += preference_label(criminal_squad)
 
 	return information
 

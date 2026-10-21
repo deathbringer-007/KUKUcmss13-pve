@@ -136,7 +136,7 @@
 	if(message)
 		if(!check_rights(R_SERVER,0))
 			message = adminscrub(message,500)
-		to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ANNOUNCEMENT_HEADER_ADMIN(" <b>[usr.client.admin_holder.fakekey ? "Administrator" : usr.key] Announces:</b>\n \t [message]"))
+		to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ANNOUNCEMENT_HEADER_ADMIN(" <b>[usr.client.admin_holder.fakekey ? "管理员" : usr.key]公告：</b>\n \t [message]"))
 		log_admin("Announce: [key_name(usr)] : [message]")
 
 /datum/admins/proc/player_notes_show(key as text)
@@ -362,9 +362,9 @@
 	var/message
 	switch(message_option)
 		if(SUBTLE_MESSAGE_IN_HEAD)
-			message = SPAN_ANNOUNCEMENT_HEADER_BLUE("You hear a voice in your head... [input]")
+			message = SPAN_ANNOUNCEMENT_HEADER_BLUE("你听到脑海中传来一个声音……[input]")
 		else
-			message = SPAN_ANNOUNCEMENT_HEADER_BLUE("Message received through headset. [message_option] Transmission <b>\"[input]\"</b>")
+			message = SPAN_ANNOUNCEMENT_HEADER_BLUE("耳机收到一条消息。[localized_player_label(message_option)]传输：<b>“[input]”</b>")
 
 	for(var/mob/living/carbon/human/mob in view(usr.client))
 		if(message_option == SUBTLE_MESSAGE_IN_HEAD)

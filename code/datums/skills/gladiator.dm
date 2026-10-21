@@ -1,5 +1,5 @@
 /datum/skills/gladiator
-	name = "Gladiator"
+	name = "角斗士"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_SKILLED,
 		SKILL_FIREMAN = SKILL_FIREMAN_SKILLED,
@@ -11,7 +11,7 @@
 	)
 
 /datum/skills/gladiator/champion
-	name = "Gladiator Champion"
+	name = "角斗冠军"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_MASTER,
 		SKILL_FIREMAN = SKILL_FIREMAN_MAX,
@@ -23,7 +23,7 @@
 	)
 
 /datum/skills/gladiator/champion/leader
-	name = "Gladiator Leader"
+	name = "角斗士首领"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_MASTER,
 		SKILL_FIREMAN = SKILL_FIREMAN_MAX,

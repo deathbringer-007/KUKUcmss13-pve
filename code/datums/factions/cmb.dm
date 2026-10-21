@@ -1,5 +1,5 @@
 /datum/faction/cmb
-	name = "Colonial Marshal Bureau"
+	name = "殖民地执法局"
 	faction_tag = FACTION_MARSHAL
 
 /datum/faction/cmb/modify_hud_holder(image/holder, mob/living/carbon/human/H)
@@ -27,5 +27,5 @@
 
 //UACG included
 /datum/faction/uacg
-	name = "United Americas Colonial Guard"
+	name = "美洲联盟殖民地卫队"
 	faction_tag = FACTION_UACG

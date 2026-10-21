@@ -24,44 +24,49 @@
 
 /datum/skill/cqc
 	skill_name = SKILL_CQC
-	readable_skill_name = "CQC"
+	readable_skill_name = "近身格斗"
 	skill_level = SKILL_CQC_DEFAULT
 	max_skill_level = SKILL_CQC_MAX
 
 /datum/skill/melee_weapons
 	skill_name = SKILL_MELEE_WEAPONS
-	readable_skill_name = "melee weapons"
+	readable_skill_name = "近战武器"
 	skill_level = SKILL_MELEE_DEFAULT
 	max_skill_level = SKILL_MELEE_MAX
 
 /datum/skill/firearms
 	skill_name = SKILL_FIREARMS
+	readable_skill_name = "枪械"
 	skill_level = SKILL_FIREARMS_TRAINED
 	max_skill_level = SKILL_FIREARMS_MAX
 
 /datum/skill/spec_weapons
 	skill_name = SKILL_SPEC_WEAPONS
-	readable_skill_name = "specialist weapons"
+	readable_skill_name = "专家武器"
 	skill_level = SKILL_SPEC_DEFAULT
 	max_skill_level = SKILL_SPEC_ALL
 
 /datum/skill/endurance
 	skill_name = SKILL_ENDURANCE
+	readable_skill_name = "耐力"
 	skill_level = SKILL_ENDURANCE_WEAK
 	max_skill_level = SKILL_ENDURANCE_MAX
 
 /datum/skill/engineer
 	skill_name = SKILL_ENGINEER
+	readable_skill_name = "工程"
 	skill_level = SKILL_ENGINEER_DEFAULT
 	max_skill_level = SKILL_ENGINEER_MAX
 
 /datum/skill/construction
 	skill_name = SKILL_CONSTRUCTION
+	readable_skill_name = "建造"
 	skill_level = SKILL_CONSTRUCTION_DEFAULT
 	max_skill_level = SKILL_CONSTRUCTION_MAX
 
 /datum/skill/leadership
 	skill_name = SKILL_LEADERSHIP
+	readable_skill_name = "领导力"
 	skill_level = SKILL_LEAD_NOVICE
 	max_skill_level = SKILL_LEAD_MAX
 
@@ -81,16 +86,19 @@
 
 /datum/skill/overwatch
 	skill_name = SKILL_OVERWATCH
+	readable_skill_name = "战术指挥"
 	skill_level = SKILL_OVERWATCH_DEFAULT
 	max_skill_level = SKILL_OVERWATCH_MAX
 
 /datum/skill/medical
 	skill_name = SKILL_MEDICAL
+	readable_skill_name = "医疗"
 	skill_level = SKILL_MEDICAL_DEFAULT
 	max_skill_level = SKILL_MEDICAL_MAX
 
 /datum/skill/surgery
 	skill_name = SKILL_SURGERY
+	readable_skill_name = "外科手术"
 	skill_level = SKILL_SURGERY_DEFAULT
 	max_skill_level = SKILL_SURGERY_MAX
 
@@ -115,64 +123,73 @@
 
 /datum/skill/research
 	skill_name = SKILL_RESEARCH
+	readable_skill_name = "科研"
 	skill_level = SKILL_RESEARCH_DEFAULT
 	max_skill_level = SKILL_RESEARCH_MAX
 
 /datum/skill/antag
 	skill_name = SKILL_ANTAG
-	readable_skill_name = "illegal technology"
+	readable_skill_name = "非法科技"
 	skill_level = SKILL_ANTAG_DEFAULT
 	max_skill_level = SKILL_ANTAG_MAX
 
 /datum/skill/pilot
 	skill_name = SKILL_PILOT
+	readable_skill_name = "飞行驾驶"
 	skill_level = SKILL_PILOT_DEFAULT
 	max_skill_level = SKILL_PILOT_MAX
 
 /datum/skill/navigations
 	skill_name = SKILL_NAVIGATIONS
+	readable_skill_name = "导航"
 	skill_level = SKILL_NAVIGATIONS_DEFAULT
 	max_skill_level = SKILL_NAVIGATIONS_MAX
 
 /datum/skill/police
 	skill_name = SKILL_POLICE
+	readable_skill_name = "执法"
 	skill_level = SKILL_POLICE_DEFAULT
 	max_skill_level = SKILL_POLICE_MAX
 
 /datum/skill/powerloader
 	skill_name = SKILL_POWERLOADER
+	readable_skill_name = "动力装载机"
 	skill_level = SKILL_POWERLOADER_DEFAULT
 	max_skill_level = SKILL_POWERLOADER_MAX
 
 /datum/skill/vehicles
 	skill_name = SKILL_VEHICLE
+	readable_skill_name = "载具驾驶"
 	skill_level = SKILL_VEHICLE_DEFAULT
 	max_skill_level = SKILL_VEHICLE_MAX
 
 /datum/skill/jtac
 	skill_name = SKILL_JTAC
-	readable_skill_name = "JTAC"
+	readable_skill_name = "联合终端攻击控制"
 	skill_level = SKILL_JTAC_NOVICE
 	max_skill_level = SKILL_JTAC_MAX
 
 /datum/skill/execution
 	skill_name = SKILL_EXECUTION
+	readable_skill_name = "处决"
 	skill_level = SKILL_EXECUTION_DEFAULT
 	max_skill_level = SKILL_EXECUTION_MAX
 
 /datum/skill/intel
 	skill_name = SKILL_INTEL
+	readable_skill_name = "情报"
 	skill_level = SKILL_INTEL_NOVICE
 	max_skill_level = SKILL_INTEL_MAX
 
 /datum/skill/domestic
 	skill_name = SKILL_DOMESTIC
+	readable_skill_name = "家务"
 	skill_level = SKILL_DOMESTIC_NONE
 	max_skill_level = SKILL_DOMESTIC_MAX
 
 /datum/skill/fireman
 	skill_name = SKILL_FIREMAN
-	readable_skill_name = "fireman carrying"
+	readable_skill_name = "消防员式背负"
 	skill_level = SKILL_FIREMAN_DEFAULT
 	max_skill_level = SKILL_FIREMAN_MAX
 

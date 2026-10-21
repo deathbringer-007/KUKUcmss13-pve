@@ -57,7 +57,8 @@ SUBSYSTEM_DEF(techtree)
 				node.on_tree_insertion(tree)
 
 		tree.generate_tree()
-		var/msg = "Loaded [tree.name]!"
+		var/static/list/tree_labels = list(TREE_MARINE = "陆战队科技树", TREE_XENO = "异形科技树", TREE_NONE = "未定义科技树")
+		var/msg = "已加载[tree_labels[tree.name] || tree.name]！"
 		to_chat(world, SPAN_BOLDANNOUNCE("[msg]"))
 
 	return SS_INIT_SUCCESS

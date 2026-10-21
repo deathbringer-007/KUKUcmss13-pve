@@ -5,15 +5,15 @@ United States Colonial Marines
 */
 
 /datum/skills/pfc
-	name = "Private"
+	name = "列兵"
 	skills = list(SKILL_ENDURANCE = SKILL_ENDURANCE_TRAINED)
 
 /datum/skills/pfc/recon
-	name = "Recon Private"
+	name = "侦察列兵"
 	skills = list(SKILL_ENDURANCE = SKILL_ENDURANCE_MASTER)
 
 /datum/skills/combat_medic
-	name = "Combat Medic"
+	name = "战斗医疗兵"
 	skills = list(
 		SKILL_MEDICAL = SKILL_MEDICAL_MEDIC,
 		SKILL_ENDURANCE = SKILL_ENDURANCE_TRAINED,
@@ -22,7 +22,7 @@ United States Colonial Marines
 	)
 
 /datum/skills/combat_medic/recon
-	name = "Recon Medic"
+	name = "侦察医疗兵"
 	skills = list(
 		SKILL_MEDICAL = SKILL_MEDICAL_DOCTOR,
 		SKILL_SURGERY = SKILL_SURGERY_NOVICE,
@@ -31,7 +31,7 @@ United States Colonial Marines
 	)
 
 /datum/skills/combat_engineer
-	name = "Combat Engineer"
+	name = "战斗工兵"
 	skills = list(
 		SKILL_POWERLOADER = SKILL_POWERLOADER_MASTER,
 		SKILL_ENDURANCE = SKILL_ENDURANCE_TRAINED,
@@ -41,7 +41,7 @@ United States Colonial Marines
 	)
 
 /datum/skills/smartgunner
-	name = "Squad Smartgunner"
+	name = "小队智能机枪手"
 	skills = list(
 		SKILL_SPEC_WEAPONS = SKILL_SPEC_SMARTGUN,
 		SKILL_JTAC = SKILL_JTAC_BEGINNER,
@@ -49,7 +49,7 @@ United States Colonial Marines
 	)
 
 /datum/skills/smartgunner/recon
-	name = "Recon Smartgunner"
+	name = "侦察智能机枪手"
 	skills = list(
 		SKILL_SPEC_WEAPONS = SKILL_SPEC_SMARTGUN,
 		SKILL_JTAC = SKILL_JTAC_BEGINNER,
@@ -59,7 +59,7 @@ United States Colonial Marines
 
 
 /datum/skills/specialist
-	name = "Squad Weapons Specialist"
+	name = "小队武器专家"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_TRAINED,
 		SKILL_SPEC_WEAPONS = SKILL_SPEC_ALL,
@@ -69,7 +69,7 @@ United States Colonial Marines
 	)
 
 /datum/skills/tl
-	name = "Fireteam Leader"
+	name = "战斗组长"
 	skills = list(
 		SKILL_JTAC = SKILL_JTAC_TRAINED,
 		SKILL_LEADERSHIP = SKILL_LEAD_TRAINED,
@@ -77,7 +77,7 @@ United States Colonial Marines
 	)
 
 /datum/skills/tl/recon
-	name = "Recon Fireteam Leader"
+	name = "侦察战斗组长"
 	skills = list(
 		SKILL_JTAC = SKILL_JTAC_TRAINED,
 		SKILL_LEADERSHIP = SKILL_LEAD_TRAINED,
@@ -87,7 +87,7 @@ United States Colonial Marines
 
 
 /datum/skills/SL
-	name = "Squad Leader"
+	name = "小队长"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_TRAINED,
 		SKILL_LEADERSHIP = SKILL_LEAD_EXPERT,
@@ -100,7 +100,7 @@ United States Colonial Marines
 	)
 
 /datum/skills/intel
-	name = "Intelligence Officer"
+	name = "情报官"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
 		SKILL_LEADERSHIP = SKILL_LEAD_TRAINED,
@@ -119,7 +119,7 @@ MILITARY NONCOMBATANT
 */
 
 /datum/skills/doctor
-	name = "Doctor"
+	name = "医生"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,
 		SKILL_FIREARMS = SKILL_FIREARMS_CIVILIAN,
@@ -128,7 +128,7 @@ MILITARY NONCOMBATANT
 	)
 
 /datum/skills/nurse
-	name = "Nurse"
+	name = "护士"
 	skills = list(
 		SKILL_FIREARMS = SKILL_FIREARMS_CIVILIAN,
 		SKILL_MEDICAL = SKILL_MEDICAL_DOCTOR,
@@ -136,7 +136,7 @@ MILITARY NONCOMBATANT
 	)
 
 /datum/skills/researcher
-	name = "Researcher"
+	name = "研究员"
 	skills = list(
 		SKILL_FIREARMS = SKILL_FIREARMS_CIVILIAN,
 		SKILL_MEDICAL = SKILL_MEDICAL_DOCTOR,
@@ -145,7 +145,7 @@ MILITARY NONCOMBATANT
 	)
 
 /datum/skills/pilot
-	name = "Pilot Officer"
+	name = "飞行军官"
 	skills = list(
 		SKILL_PILOT = SKILL_PILOT_EXPERT,
 		SKILL_POWERLOADER = SKILL_POWERLOADER_MASTER,
@@ -156,7 +156,7 @@ MILITARY NONCOMBATANT
 	)
 
 /datum/skills/crew_chief
-	name = "Dropship Crew Chief"
+	name = "运输艇机组长"
 	skills = list(
 		SKILL_PILOT = SKILL_PILOT_TRAINED,
 		SKILL_POWERLOADER = SKILL_POWERLOADER_MASTER,
@@ -166,7 +166,7 @@ MILITARY NONCOMBATANT
 	)
 
 /datum/skills/MP
-	name = "Military Police"
+	name = "宪兵"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_SKILLED,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
@@ -174,7 +174,7 @@ MILITARY NONCOMBATANT
 	)
 
 /datum/skills/MW
-	name = "Military Warden"
+	name = "军事监狱长"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_SKILLED,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
@@ -188,7 +188,7 @@ MILITARY NONCOMBATANT
 	)
 
 /datum/skills/provost
-	name = "Provost"
+	name = "宪兵督察"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_EXPERT,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
@@ -198,7 +198,7 @@ MILITARY NONCOMBATANT
 	)
 
 /datum/skills/OT
-	name = "Ordnance Technician"
+	name = "军械技术员"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,
 		SKILL_ENGINEER = SKILL_ENGINEER_MASTER,
@@ -207,7 +207,7 @@ MILITARY NONCOMBATANT
 	)
 
 /datum/skills/MT
-	name = "Maintenance Technician"
+	name = "维护技术员"
 	skills = list(
 		SKILL_FIREMAN = SKILL_FIREMAN_TRAINED,
 		SKILL_ENGINEER = SKILL_ENGINEER_MASTER,
@@ -217,20 +217,20 @@ MILITARY NONCOMBATANT
 	)
 
 /datum/skills/mess_technician
-	name = "Mess Technician"
+	name = "炊事员"
 	skills = list(
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT, // need to hunt food somehow
 		SKILL_DOMESTIC = SKILL_DOMESTIC_MASTER
 	)
 
 /datum/skills/CT
-	name = "Cargo Technician"
+	name = "货运技术员"
 	skills = list(
 		SKILL_POWERLOADER = SKILL_POWERLOADER_MASTER,
 	)
 
 /datum/skills/armorer
-	name = "Armorer"
+	name = "军械员"
 	skills = list(
 		SKILL_FIREARMS = SKILL_FIREARMS_EXPERT,
 		SKILL_ENGINEER = SKILL_ENGINEER_ENGI,
@@ -243,7 +243,7 @@ COMMAND STAFF
 */
 
 /datum/skills/general
-	name = "General"
+	name = "将军"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_TRAINED,
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
@@ -263,7 +263,7 @@ COMMAND STAFF
 	)
 
 /datum/skills/commander
-	name = "Commanding Officer"
+	name = "指挥官"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
@@ -286,7 +286,7 @@ COMMAND STAFF
 	)
 
 /datum/skills/XO
-	name = "Executive Officer"
+	name = "副指挥官"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED, //to fix CIC apc.
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
@@ -307,7 +307,7 @@ COMMAND STAFF
 	)
 
 /datum/skills/SO
-	name = "Staff Officer"
+	name = "参谋军官"
 	skills = list(
 		SKILL_LEADERSHIP = SKILL_LEAD_EXPERT,
 		SKILL_OVERWATCH = SKILL_OVERWATCH_TRAINED,
@@ -324,7 +324,7 @@ COMMAND STAFF
 	)
 
 /datum/skills/DI
-	name = "Drill Instructor"
+	name = "训练教官"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_SKILLED,
 		SKILL_ENGINEER = SKILL_ENGINEER_TRAINED,
@@ -354,7 +354,7 @@ COMMAND STAFF
 	return ..()
 
 /datum/skills/CMO
-	name = "CMO"
+	name = "首席医疗官"
 	skills = list(
 		SKILL_FIREARMS = SKILL_FIREARMS_CIVILIAN,
 		SKILL_LEADERSHIP = SKILL_LEAD_EXPERT,
@@ -369,7 +369,7 @@ COMMAND STAFF
 	)
 
 /datum/skills/CMP
-	name = "Chief MP"
+	name = "宪兵长"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_SKILLED,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
@@ -386,7 +386,7 @@ COMMAND STAFF
 	)
 
 /datum/skills/auxiliary_officer
-	name = "Auxiliary Support Officer"
+	name = "辅助支援军官"
 	skills = list(
 		SKILL_PILOT = SKILL_PILOT_EXPERT,
 		SKILL_POWERLOADER = SKILL_POWERLOADER_MASTER,
@@ -405,7 +405,7 @@ COMMAND STAFF
 	)
 
 /datum/skills/CE
-	name = "Chief Engineer"
+	name = "总工程师"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_MASTER,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_MASTER,
@@ -420,7 +420,7 @@ COMMAND STAFF
 	)
 
 /datum/skills/RO
-	name = "Requisition Officer"
+	name = "补给官"
 	skills = list(
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
 		SKILL_LEADERSHIP = SKILL_LEAD_EXPERT,
@@ -437,7 +437,7 @@ SOLAR DEVILS (PvE Marines)
 */
 
 /datum/skills/rifleman_pve
-	name = "Private"
+	name = "列兵"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_ENGI,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
@@ -449,7 +449,7 @@ SOLAR DEVILS (PvE Marines)
 	)
 
 /datum/skills/combat_medic_pve
-	name = "Combat Medic"
+	name = "战斗医疗兵"
 	skills = list(
 		SKILL_JTAC = SKILL_JTAC_BEGINNER,
 		SKILL_ENDURANCE = SKILL_ENDURANCE_TRAINED,
@@ -458,7 +458,7 @@ SOLAR DEVILS (PvE Marines)
 	)
 
 /datum/skills/smartgunner_pve
-	name = "Smartgunner"
+	name = "智能机枪手"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_ENGI,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
@@ -471,7 +471,7 @@ SOLAR DEVILS (PvE Marines)
 	)
 
 /datum/skills/tl_pve
-	name = "Fireteam Leader"
+	name = "战斗组长"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_ENGI,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
@@ -485,7 +485,7 @@ SOLAR DEVILS (PvE Marines)
 	)
 
 /datum/skills/sl_pve
-	name = "Squad Leader"
+	name = "小队长"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_ENGI,
 		SKILL_CONSTRUCTION = SKILL_CONSTRUCTION_ENGI,
@@ -509,7 +509,7 @@ CIA
 */
 
 /datum/skills/cia
-	name = "CIA Agent"
+	name = "CIA 特工"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_MASTER,
 		SKILL_POLICE = SKILL_POLICE_SKILLED,
@@ -527,7 +527,7 @@ CIA
 		SKILL_ANTAG = SKILL_ANTAG_AGENT,
 	)
 /datum/skills/cia/officer
-	name = "CIA Officer"
+	name = "CIA 官员"
 	additional_skills = list(
 		SKILL_LEADERSHIP = SKILL_LEAD_EXPERT,
 	)

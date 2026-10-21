@@ -15,7 +15,7 @@
 	if(!real_bans_only && CONFIG_GET(flag/guest_ban) && IsGuestKey(key))
 		log_access("Failed Login: [key] - Guests not allowed")
 		message_admins("Failed Login: [key] - Guests not allowed")
-		return list("reason"="guest", "desc"="\nReason: Guests not allowed. Please sign in with a byond account.")
+		return list("reason"="guest", "desc"="\n原因：不允许游客加入。请登录BYOND账户。")
 
 	// wait for database to be ready
 	WAIT_DB_READY
@@ -23,7 +23,7 @@
 		return ..()
 
 	if(CONFIG_GET(number/limit_players) && CONFIG_GET(number/limit_players) < length(GLOB.clients))
-		return list("reason"="POP CAPPED", "desc"="\nReason: Server is pop capped at the moment at [CONFIG_GET(number/limit_players)] players. Attempt reconnection in 2-3 minutes.")
+		return list("reason"="POP CAPPED", "desc"="\n原因：服务器已达到[CONFIG_GET(number/limit_players)]人的人数上限。请在2—3分钟后尝试重新连接。")
 
 	var/datum/entity/player/P = get_player_from_key(ckey)
 

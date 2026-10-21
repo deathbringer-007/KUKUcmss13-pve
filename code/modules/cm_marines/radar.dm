@@ -226,21 +226,21 @@
 		var/mob/living/carbon/human/humanoid = i
 		if(!trackable(humanoid))
 			continue
-		var/crewmember_name = "Unknown"
-		var/crewmember_rank = "Unknown"
+		var/crewmember_name = "未知"
+		var/crewmember_rank = "未知"
 		var/obj/item/card/id/card = humanoid.get_idcard()
 		if(card)
 			if(card.registered_name)
 				crewmember_name = card.registered_name
 			if(card.assignment)
-				crewmember_rank = card.assignment
+				crewmember_rank = localized_player_label(card.assignment)
 		switch(humanoid.stat)
 			if(CONSCIOUS)
-				crewmember_name = "[crewmember_name] ([crewmember_rank]) (Conscious)"
+				crewmember_name = "[crewmember_name]（[crewmember_rank]，清醒）"
 			if(UNCONSCIOUS)
-				crewmember_name = "[crewmember_name] ([crewmember_rank]) (Unconscious)"
+				crewmember_name = "[crewmember_name]（[crewmember_rank]，昏迷）"
 			if(DEAD)
-				crewmember_name = "[crewmember_name] ([crewmember_rank]) (DEAD)"
+				crewmember_name = "[crewmember_name]（[crewmember_rank]，死亡）"
 		var/list/crewinfo = list(
 			ref = REF(humanoid),
 			name = crewmember_name,

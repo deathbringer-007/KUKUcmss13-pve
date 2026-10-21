@@ -180,7 +180,7 @@
 					affecting = H.get_limb("head")
 
 			if(affecting)
-				to_chat(M, SPAN_DANGER("你的[affecting.display_name]重重着地！"))
+				to_chat(M, SPAN_DANGER("你的[localized_player_label(affecting.display_name)]重重着地！"))
 				affecting.take_damage(damage, 0)
 				if(affecting.parent)
 					affecting.parent.add_autopsy_data("Misadventure", damage)

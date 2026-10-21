@@ -57,7 +57,7 @@ SUBSYSTEM_DEF(mapping)
 			var/old_config = configs[i]
 			configs[i] = global.config.defaultmaps[i]
 			if(!configs || configs[i].defaulted)
-				to_chat(world, SPAN_BOLDANNOUNCE("Unable to load next or default map config, defaulting."))
+				to_chat(world, SPAN_BOLDANNOUNCE("无法加载下一张地图或默认地图配置，正在使用回退配置。"))
 				configs[i] = old_config
 
 	loadWorld()
@@ -162,7 +162,7 @@ SUBSYSTEM_DEF(mapping)
 		for (var/i in 1 to total_z)
 			traits += list(default_traits)
 	else if (total_z != length(traits))  // mismatch
-		INIT_ANNOUNCE("WARNING: [length(traits)] trait sets specified for [total_z] z-levels in [path]!")
+		INIT_ANNOUNCE("警告：[path]中共有[total_z]个Z层，却指定了[length(traits)]组特性！")
 		if (total_z < length(traits))  // ignore extra traits
 			traits.Cut(total_z + 1)
 		while (total_z > length(traits))  // fall back to defaults on extra levels
@@ -200,7 +200,7 @@ SUBSYSTEM_DEF(mapping)
 	// =============== END CM Change =================
 
 	if(!silent)
-		INIT_ANNOUNCE("Loaded [name] in [(REALTIMEOFDAY - start_time)/10]s!")
+		INIT_ANNOUNCE("已加载[get_statistic_display_label(name)]，耗时[(REALTIMEOFDAY - start_time)/10]秒！")
 	return parsed_maps
 
 /datum/controller/subsystem/mapping/proc/Loadship(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE, override_map_path = "maps/")
@@ -221,7 +221,7 @@ SUBSYSTEM_DEF(mapping)
 	ground_start = world.maxz + 1
 
 	var/datum/map_config/ground_map = configs[GROUND_MAP]
-	INIT_ANNOUNCE("Loading [ground_map.map_name]...")
+	INIT_ANNOUNCE("正在加载[get_statistic_display_label(ground_map.map_name)]……")
 	var/ground_base_path = "maps/"
 	if(ground_map.override_map)
 		ground_base_path = "data/"
@@ -232,15 +232,15 @@ SUBSYSTEM_DEF(mapping)
 		var/ship_base_path = "maps/"
 		if(ship_map.override_map)
 			ship_base_path = "data/"
-		INIT_ANNOUNCE("Loading [ship_map.map_name]...")
+		INIT_ANNOUNCE("正在加载[get_statistic_display_label(ship_map.map_name)]……")
 		Loadship(FailedZs, ship_map.map_name, ship_map.map_path, ship_map.map_file, ship_map.traits, ZTRAITS_MAIN_SHIP, override_map_path = ship_base_path)
 
 	if(LAZYLEN(FailedZs)) //but seriously, unless the server's filesystem is messed up this will never happen
-		var/msg = "RED ALERT! The following map files failed to load: [FailedZs[1]]"
+		var/msg = "红色警报！以下地图文件加载失败：[FailedZs[1]]"
 		if(length(FailedZs) > 1)
 			for(var/I in 2 to length(FailedZs))
 				msg += ", [FailedZs[I]]"
-		msg += ". Yell at your server host!"
+		msg += "。请联系服务器管理员！"
 		INIT_ANNOUNCE(msg)
 #undef INIT_ANNOUNCE
 

@@ -74,7 +74,7 @@
 		L += "减速免疫：[grace_period]/[initial(grace_period)]"
 		return
 	if(!increase_speed)
-		L += "Slow: [speed_modifier]/[max_buildup]"
+		L += "减速：[speed_modifier]/[max_buildup]"
 	else
 		L += "速度增益：[speed_modifier]/[max_buildup]"
 

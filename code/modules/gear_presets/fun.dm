@@ -100,7 +100,7 @@
 		"Mordred", "Morien", "Pelleas", "Pinel", "Sagramore", "Safir", "Segwarides", "Tor", "Ulfius", "Yvain", "Ywain"
 	)
 
-	var/new_name = pick(names) + " of the HEFA Order"
+	var/new_name = "HEFA教团·" + pick(names)
 	new_human.change_real_name(new_human, new_name)
 	new_human.f_style = "5 O'clock Shadow"
 
@@ -125,7 +125,7 @@
 	// M92 launcher
 	if(gun_success)
 		var/obj/item/weapon/gun/launcher/grenade/m92/launcher = new_human.s_store
-		launcher.name = "HEFA grenade launcher"
+		launcher.name = "HEFA榴弹发射器"
 		launcher.internal_slots = 10 // big buff
 
 		// give it a magharness
@@ -151,21 +151,21 @@
 	// Belt
 	if(waist_success)
 		var/obj/item/storage/belt/grenade/large/belt = new_human.belt
-		belt.name = "M42 HEFA rig Mk. XVII"
+		belt.name = "M42 HEFA携行具Mk. XVII"
 		for(var/i in 1 to belt.storage_slots)
 			new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/high_explosive/frag(new_human.belt), WEAR_IN_BELT)
 
 	// Armor/suit
 	if(jacket_success)
 		var/obj/item/clothing/suit/storage/marine/M3G/armor = new_human.wear_suit
-		armor.name = "HEFA Knight armor"
+		armor.name = "HEFA 骑士护甲"
 		for(var/i in 1 to armor.storage_slots)
 			new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/high_explosive/frag(new_human.wear_suit), WEAR_IN_JACKET)
 
 	// Pouch
 	if(pouch_r_success)
 		var/obj/item/storage/pouch/explosive/pouch = new_human.r_store
-		pouch.name = "HEFA pouch"
+		pouch.name = "HEFA收纳袋"
 		for(var/i in 1 to pouch.storage_slots)
 			new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/high_explosive/frag(new_human.r_store), WEAR_IN_R_STORE)
 
@@ -178,7 +178,7 @@
 
 /datum/equipment_preset/fun/hefa/melee/load_gear(mob/living/carbon/human/new_human)
 	var/obj/item/clothing/under/marine/M = new(new_human)
-	M.name = "HEFA Knight uniform"
+	M.name = "HEFA骑士制服"
 	var/obj/item/clothing/accessory/storage/webbing/W = new()
 	M.attach_accessory(new_human, W)
 
@@ -196,35 +196,35 @@
 
 	if(shoes_success)
 		var/obj/item/clothing/shoes/marine/knife/shoes = new_human.shoes
-		shoes.name = "HEFA Knight combat boots"
+		shoes.name = "HEFA骑士战斗靴"
 
 	// Now pump /everything/ full of HEFAs
 
 	// Satchel
 	if(satchel_success)
 		var/obj/item/storage/backpack/marine/satchel = new_human.back
-		satchel.name = "HEFA storage bag"
+		satchel.name = "HEFA储物包"
 		for(var/i in 1 to 7)
 			new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/high_explosive/frag(new_human.back), WEAR_IN_BACK)
 
 	// Belt
 	if(waist_success)
 		var/obj/item/storage/belt/grenade/large/belt = new_human.belt
-		belt.name = "M42 HEFA rig Mk. XVII"
+		belt.name = "M42 HEFA携行具Mk. XVII"
 		for(var/i in 1 to belt.storage_slots)
 			new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/high_explosive/frag(new_human.belt), WEAR_IN_BELT)
 
 	// Armor/suit
 	if(jacket_success)
 		var/obj/item/clothing/suit/storage/marine/M3G/armor = new_human.wear_suit
-		armor.name = "HEFA Knight armor"
+		armor.name = "HEFA 骑士护甲"
 		for(var/i in 1 to armor.storage_slots)
 			new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/high_explosive/frag(new_human.wear_suit), WEAR_IN_JACKET)
 
 	// Pouches
 	if(pouch_r_success)
 		var/obj/item/storage/pouch/explosive/pouch = new_human.r_store
-		pouch.name = "HEFA pouch"
+		pouch.name = "HEFA收纳袋"
 		for(var/i in 1 to pouch.storage_slots)
 			new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/high_explosive/frag(new_human.r_store), WEAR_IN_R_STORE)
 

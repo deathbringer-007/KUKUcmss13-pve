@@ -5,7 +5,7 @@ SYNTHETIC
 */
 
 /datum/skills/synthetic
-	name = "Synthetic"
+	name = "合成人"
 	skills = list(
 		SKILL_CQC = SKILL_CQC_MASTER,
 		SKILL_ENGINEER = SKILL_ENGINEER_MASTER,

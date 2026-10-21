@@ -898,7 +898,7 @@
 	old_lead.hud_set_squad()
 	old_lead.update_inv_head() //updating marine helmet leader overlays
 	old_lead.update_inv_wear_suit()
-	to_chat(old_lead, FONT_SIZE_BIG(SPAN_BLUE("你不再担任[src]的[squad_type == "Section" ? "班长" : squad_type == "Platoon" ? "排长" : squad_type == "Squad" ? "小队长" : squad_type == "Team" ? "战斗组长" : squad_type == "Taskforce" ? "特遣队长" : squad_type == "Cell" ? "小组长" : "指挥官"]！")))
+	to_chat(old_lead, FONT_SIZE_BIG(SPAN_BLUE("你不再担任[preference_label(name)]的[squad_type == "Section" ? "班长" : squad_type == "Platoon" ? "排长" : squad_type == "Squad" ? "小队长" : squad_type == "Team" ? "战斗组长" : squad_type == "Taskforce" ? "特遣队长" : squad_type == "Cell" ? "小组长" : "指挥官"]！")))
 
 //Not a safe proc. Returns null if squads or jobs aren't set up.
 //Mostly used in the marine squad console in marine_consoles.dm.

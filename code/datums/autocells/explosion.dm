@@ -345,7 +345,7 @@ as having entered the turf.
 			log_attack("[key_name(M)] was harmed by unknown explosion in [T.loc.name] at ([T.x],[T.y],[T.z])")
 
 /obj/effect/particle_effect/shockwave
-	name = "shockwave"
+	name = "冲击波"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
 	anchored = TRUE

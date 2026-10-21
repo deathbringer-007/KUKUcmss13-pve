@@ -76,8 +76,8 @@
 
 #define NO_CLAN_LIST list(\
 			clan_id = null,\
-			clan_name = "Clanless",\
-			clan_description = "This is a list of players without a clan",\
+			clan_name = "无氏族",\
+			clan_description = "此列表列出尚未加入氏族的玩家",\
 			clan_honor = null,\
 			clan_keys = list(),\
 			\

@@ -69,7 +69,7 @@
 	///The max quantity of things this can restock
 	var/supplies_max = 20
 	///The descriptor for the kind of things being restocked
-	var/supply_descriptor = "supplies"
+	var/supply_descriptor = "份物资"
 	///The sound to play when attacked
 	var/attacked_sound = 'sound/effects/metalhit.ogg'
 	///The sound to play when destroyed
@@ -126,7 +126,7 @@
 		return
 	. += SPAN_NOTICE("内含：")
 	if(supplies_remaining)
-		. += SPAN_NOTICE(" [supplies_remaining] [supply_descriptor].")
+		. += SPAN_NOTICE("[supplies_remaining][supply_descriptor]。")
 	else
 		. += SPAN_NOTICE("空无一物。")
 
